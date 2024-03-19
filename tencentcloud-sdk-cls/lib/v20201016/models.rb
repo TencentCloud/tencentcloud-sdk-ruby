@@ -6194,7 +6194,7 @@ module TencentCloud
 
       # Kafka导入配置信息
       class KafkaRechargeInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: Kafka数据订阅配置的ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param TopicId: 日志主题ID

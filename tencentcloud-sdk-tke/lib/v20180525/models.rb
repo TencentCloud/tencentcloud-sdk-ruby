@@ -14684,19 +14684,24 @@ module TencentCloud
         # @param TKEDirectENI: TKE独立网卡模式可支持的Pod数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TKEDirectENI: Integer
+        # @param TKESubENI: TKE中继网卡模式可支持的Pod数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TKESubENI: Integer
 
-        attr_accessor :TKERouteENINonStaticIP, :TKERouteENIStaticIP, :TKEDirectENI
+        attr_accessor :TKERouteENINonStaticIP, :TKERouteENIStaticIP, :TKEDirectENI, :TKESubENI
 
-        def initialize(tkerouteeninonstaticip=nil, tkerouteenistaticip=nil, tkedirecteni=nil)
+        def initialize(tkerouteeninonstaticip=nil, tkerouteenistaticip=nil, tkedirecteni=nil, tkesubeni=nil)
           @TKERouteENINonStaticIP = tkerouteeninonstaticip
           @TKERouteENIStaticIP = tkerouteenistaticip
           @TKEDirectENI = tkedirecteni
+          @TKESubENI = tkesubeni
         end
 
         def deserialize(params)
           @TKERouteENINonStaticIP = params['TKERouteENINonStaticIP']
           @TKERouteENIStaticIP = params['TKERouteENIStaticIP']
           @TKEDirectENI = params['TKEDirectENI']
+          @TKESubENI = params['TKESubENI']
         end
       end
 

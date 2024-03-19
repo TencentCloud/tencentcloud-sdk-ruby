@@ -1522,6 +1522,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过[获取批量撤销签署流程腾讯电子签小程序链接](https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl)发起批量撤销任务后，可通过此接口查询批量撤销任务的结果。
+
+        # @param request: Request instance for DescribeCancelFlowsTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeCancelFlowsTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeCancelFlowsTaskResponse`
+        def DescribeCancelFlowsTask(request)
+          body = send_request('DescribeCancelFlowsTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCancelFlowsTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业扩展服务的授权详情（列表），当前支持查询以下内容：
         # 1. 企业自动签（本企业授权、集团企业授权、合作企业授权）
         # 2. 批量签署能力

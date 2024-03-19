@@ -106,7 +106,7 @@ module TencentCloud
       class AvailableProtoStatus < TencentCloud::Common::AbstractModel
         # @param SaleStatus: 售卖状态。可选值有 sale_out 售罄、saling可售、no_saling不可销售
         # @type SaleStatus: String
-        # @param Protocol: 协议类型。可选值有 NFS、CIFS
+        # @param Protocol: 协议类型。可选值有 NFS、CIFS、TURBO
         # @type Protocol: String
 
         attr_accessor :SaleStatus, :Protocol

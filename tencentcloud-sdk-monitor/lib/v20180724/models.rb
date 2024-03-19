@@ -4366,6 +4366,90 @@ module TencentCloud
         end
       end
 
+      # DescribeAlarmSmsQuota接口的配额信息
+      class DescribeAlarmSmsQuotaQuota < TencentCloud::Common::AbstractModel
+        # @param Type: 配额类型
+        # @type Type: String
+        # @param Name: 配额名称
+        # @type Name: String
+        # @param FreeLeft: 免费配额剩余量
+        # @type FreeLeft: Integer
+        # @param PurchaseLeft: 付费配额剩余量
+        # @type PurchaseLeft: Integer
+        # @param Used: 已使用量
+        # @type Used: Integer
+
+        attr_accessor :Type, :Name, :FreeLeft, :PurchaseLeft, :Used
+
+        def initialize(type=nil, name=nil, freeleft=nil, purchaseleft=nil, used=nil)
+          @Type = type
+          @Name = name
+          @FreeLeft = freeleft
+          @PurchaseLeft = purchaseleft
+          @Used = used
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @FreeLeft = params['FreeLeft']
+          @PurchaseLeft = params['PurchaseLeft']
+          @Used = params['Used']
+        end
+      end
+
+      # DescribeAlarmSmsQuota请求参数结构体
+      class DescribeAlarmSmsQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+
+        attr_accessor :Module
+
+        def initialize(_module=nil)
+          @Module = _module
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+        end
+      end
+
+      # DescribeAlarmSmsQuota返回参数结构体
+      class DescribeAlarmSmsQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 配额总数
+        # @type Total: Integer
+        # @param Used: 总使用量
+        # @type Used: Integer
+        # @param QuotaList: 短信配额信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Used, :QuotaList, :RequestId
+
+        def initialize(total=nil, used=nil, quotalist=nil, requestid=nil)
+          @Total = total
+          @Used = used
+          @QuotaList = quotalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Used = params['Used']
+          unless params['QuotaList'].nil?
+            @QuotaList = []
+            params['QuotaList'].each do |i|
+              describealarmsmsquotaquota_tmp = DescribeAlarmSmsQuotaQuota.new
+              describealarmsmsquotaquota_tmp.deserialize(i)
+              @QuotaList << describealarmsmsquotaquota_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAlertRules请求参数结构体
       class DescribeAlertRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -5615,6 +5699,49 @@ module TencentCloud
         end
       end
 
+      # DescribeMonitorResourceInfo请求参数结构体
+      class DescribeMonitorResourceInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMonitorResourceInfo返回参数结构体
+      class DescribeMonitorResourceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param PhoneAlarmNumber: 电话告警数量
+        # @type PhoneAlarmNumber: Integer
+        # @param AdvancedMetricNumber: 高级指标数量
+        # @type AdvancedMetricNumber: Integer
+        # @param APIUsageNumber: API调用量
+        # @type APIUsageNumber: Integer
+        # @param AlarmSMSNumber: 告警短信数量
+        # @type AlarmSMSNumber: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PhoneAlarmNumber, :AdvancedMetricNumber, :APIUsageNumber, :AlarmSMSNumber, :RequestId
+
+        def initialize(phonealarmnumber=nil, advancedmetricnumber=nil, apiusagenumber=nil, alarmsmsnumber=nil, requestid=nil)
+          @PhoneAlarmNumber = phonealarmnumber
+          @AdvancedMetricNumber = advancedmetricnumber
+          @APIUsageNumber = apiusagenumber
+          @AlarmSMSNumber = alarmsmsnumber
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PhoneAlarmNumber = params['PhoneAlarmNumber']
+          @AdvancedMetricNumber = params['AdvancedMetricNumber']
+          @APIUsageNumber = params['APIUsageNumber']
+          @AlarmSMSNumber = params['AlarmSMSNumber']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMonitorTypes请求参数结构体
       class DescribeMonitorTypesRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定值 monitor
@@ -5658,6 +5785,46 @@ module TencentCloud
               @MonitorTypeInfos << monitortypeinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePhoneAlarmFlowTotalCount请求参数结构体
+      class DescribePhoneAlarmFlowTotalCountRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 默认monitor
+        # @type Module: String
+        # @param QueryTime: unix时间戳，单位：s
+        # @type QueryTime: Integer
+
+        attr_accessor :Module, :QueryTime
+
+        def initialize(_module=nil, querytime=nil)
+          @Module = _module
+          @QueryTime = querytime
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @QueryTime = params['QueryTime']
+        end
+      end
+
+      # DescribePhoneAlarmFlowTotalCount返回参数结构体
+      class DescribePhoneAlarmFlowTotalCountResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 电话流水总数
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
           @RequestId = params['RequestId']
         end
       end

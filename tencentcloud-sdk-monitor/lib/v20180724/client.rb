@@ -1336,6 +1336,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取告警短信配额
+
+        # @param request: Request instance for DescribeAlarmSmsQuota.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeAlarmSmsQuotaRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeAlarmSmsQuotaResponse`
+        def DescribeAlarmSmsQuota(request)
+          body = send_request('DescribeAlarmSmsQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAlarmSmsQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # Prometheus 报警规则查询接口
 
         # @param request: Request instance for DescribeAlertRules.
@@ -1744,6 +1768,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取资源消耗页概览
+
+        # @param request: Request instance for DescribeMonitorResourceInfo.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeMonitorResourceInfoRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeMonitorResourceInfoResponse`
+        def DescribeMonitorResourceInfo(request)
+          body = send_request('DescribeMonitorResourceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMonitorResourceInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 腾讯云可观测平台支持多种类型的监控，此接口列出支持的所有类型
 
         # @param request: Request instance for DescribeMonitorTypes.
@@ -1754,6 +1802,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMonitorTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询周期内电话流水总数
+
+        # @param request: Request instance for DescribePhoneAlarmFlowTotalCount.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePhoneAlarmFlowTotalCountRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePhoneAlarmFlowTotalCountResponse`
+        def DescribePhoneAlarmFlowTotalCount(request)
+          body = send_request('DescribePhoneAlarmFlowTotalCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePhoneAlarmFlowTotalCountResponse.new
             model.deserialize(response['Response'])
             model
           else

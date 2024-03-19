@@ -899,7 +899,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Waf 多域名ip黑白名单查询
+        # Waf 批量防护IP黑白名单查询
 
         # @param request: Request instance for DescribeBatchIpAccessControl.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBatchIpAccessControlRequest`
@@ -923,7 +923,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Waf 斯巴达版本查询cc自动封堵状态
+        # 获取SAAS型接入的紧急CC防护状态
 
         # @param request: Request instance for DescribeCCAutoStatus.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCCAutoStatusRequest`
@@ -2796,7 +2796,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # waf斯巴达-waf开关
+        # 获取基础安全防护（WAF开关）状态
 
         # @param request: Request instance for ModifyProtectionStatus.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyProtectionStatusRequest`
@@ -3132,7 +3132,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Waf 斯巴达版本更新cc自动封堵状态
+        # 编辑SAAS型接入的紧急CC防护状态
 
         # @param request: Request instance for UpsertCCAutoStatus.
         # @type request: :class:`Tencentcloud::waf::V20180125::UpsertCCAutoStatusRequest`

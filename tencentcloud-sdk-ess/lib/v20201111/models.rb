@@ -764,6 +764,26 @@ module TencentCloud
         end
       end
 
+      # 撤销失败的流程信息
+      class CancelFailureFlow < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # @type FlowId: String
+        # @param Reason: 撤销失败原因
+        # @type Reason: String
+
+        attr_accessor :FlowId, :Reason
+
+        def initialize(flowid=nil, reason=nil)
+          @FlowId = flowid
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @Reason = params['Reason']
+        end
+      end
+
       # CancelFlow请求参数结构体
       class CancelFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -3129,24 +3149,26 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param InvitationNotifyType: 员工邀请方式可通过以下方式进行设置：
-
-        # **H5**：会生成H5的链接，点击链接进入H5的认证加入企业的逻辑。
-        # **SMS（默认）**：会通过短信或企业微信消息进行邀请。如果非企业微信场景，则是企业微信消息。其他场景则是短信通知，短信中包含链接，点击后进入微信小程序进行认证加入企业的逻辑。
+        # @param InvitationNotifyType: 员工邀请方式
+        # 可通过以下途径进行设置：
+        # <ul><li>**SMS（默认）**：邀请将通过短信或企业微信消息发送。若场景非企业微信，则采用企业微信消息；其他情境下则使用短信通知。短信内含链接，点击后将进入微信小程序进行认证并加入企业的流程。</li><li>**H5**：将生成H5链接，用户点击链接后可进入H5页面进行认证并加入企业的流程。</li><li>**NONE**：系统会根据Endpoint生成签署链接，业务方需获取链接并通知客户。</li></ul>
         # @type InvitationNotifyType: String
         # @param JumpUrl: 回跳地址，为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。
 
         # 注：`只有在员工邀请方式（InvitationNotifyType参数）为H5场景下才生效， 其他方式下设置无效。`
         # @type JumpUrl: String
+        # @param Endpoint: 要跳转的链接类型<ul><li> **HTTP**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链 (默认类型)</li><li>**HTTP_SHORT_URL**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li>**APP**： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型</li><li>**H5**： 第三方移动端浏览器进行嵌入，不支持小程序嵌入，过期时间一个月</li></ul>注意：InvitationNotifyType 和 Endpoint 的关系图<table><tbody><tr><td>通知类型（InvitationNotifyType）</td><td>Endpoint</td></tr><tr><td>SMS（默认）</td><td>不需要传递，会将 Endpoint 默认设置为HTTP_SHORT_URL</td></tr><tr><td>H5</td><td>不需要传递，会将 Endpoint 默认设置为 H5</td></tr><tr><td>NONE</td><td>所有 Endpoint 都支持（HTTP_URL/HTTP_SHORT_URL/H5/APP）默认为HTTP_SHORT_URL</td></tr></tbody></table>
+        # @type Endpoint: String
 
-        attr_accessor :Operator, :Employees, :Agent, :InvitationNotifyType, :JumpUrl
+        attr_accessor :Operator, :Employees, :Agent, :InvitationNotifyType, :JumpUrl, :Endpoint
 
-        def initialize(operator=nil, employees=nil, agent=nil, invitationnotifytype=nil, jumpurl=nil)
+        def initialize(operator=nil, employees=nil, agent=nil, invitationnotifytype=nil, jumpurl=nil, endpoint=nil)
           @Operator = operator
           @Employees = employees
           @Agent = agent
           @InvitationNotifyType = invitationnotifytype
           @JumpUrl = jumpurl
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
@@ -3168,6 +3190,7 @@ module TencentCloud
           end
           @InvitationNotifyType = params['InvitationNotifyType']
           @JumpUrl = params['JumpUrl']
+          @Endpoint = params['Endpoint']
         end
       end
 
@@ -5163,6 +5186,80 @@ module TencentCloud
               billusagedetail_tmp = BillUsageDetail.new
               billusagedetail_tmp.deserialize(i)
               @Details << billusagedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCancelFlowsTask请求参数结构体
+      class DescribeCancelFlowsTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # <br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 批量撤销任务编号，为32位字符串，通过接口[获取批量撤销签署流程腾讯电子签小程序链接](https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl)获得。
+        # @type TaskId: String
+        # @param Agent: 代理企业和员工的信息。
+        # <br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :TaskId, :Agent
+
+        def initialize(operator=nil, taskid=nil, agent=nil)
+          @Operator = operator
+          @TaskId = taskid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeCancelFlowsTask返回参数结构体
+      class DescribeCancelFlowsTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 批量撤销任务编号，为32位字符串，通过接口[获取批量撤销签署流程腾讯电子签小程序链接](https://qian.tencent.com/developers/companyApis/operateFlows/CreateBatchCancelFlowUrl)获得。
+        # @type TaskId: String
+        # @param TaskStatus: 任务状态，需要关注的状态
+        # <ul><li>**PROCESSING**  - 任务执行中</li>
+        # <li>**END** - 任务处理完成</li>
+        # <li>**TIMEOUT** 任务超时未处理完成，用户未在批量撤销链接有效期内操作</li></ul>
+        # @type TaskStatus: String
+        # @param SuccessFlowIds: 批量撤销成功的签署流程编号
+        # @type SuccessFlowIds: Array
+        # @param FailureFlows: 批量撤销失败的签署流程信息
+        # @type FailureFlows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskStatus, :SuccessFlowIds, :FailureFlows, :RequestId
+
+        def initialize(taskid=nil, taskstatus=nil, successflowids=nil, failureflows=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+          @SuccessFlowIds = successflowids
+          @FailureFlows = failureflows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
+          @SuccessFlowIds = params['SuccessFlowIds']
+          unless params['FailureFlows'].nil?
+            @FailureFlows = []
+            params['FailureFlows'].each do |i|
+              cancelfailureflow_tmp = CancelFailureFlow.new
+              cancelfailureflow_tmp.deserialize(i)
+              @FailureFlows << cancelfailureflow_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -10163,24 +10260,22 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param InvitationNotifyType: 员工邀请方式可通过以下方式进行设置：
-
-        # **H5**：会生成H5的链接，点击链接进入H5的认证加入企业的逻辑。
-        # **SMS（默认）**：会通过短信或企业微信消息进行邀请。如果非企业微信场景，则是企业微信消息。其他场景则是短信通知，短信中包含链接，点击后进入微信小程序进行认证加入企业的逻辑。
+        # @param InvitationNotifyType: 员工邀请方式可通过以下途径进行设置：<ul><li>**SMS（默认）**：邀请将通过短信或企业微信消息发送。若场景非企业微信，则采用企业微信消息；其他情境下则使用短信通知。短信内含链接，点击后将进入微信小程序进行认证并加入企业的流程。</li><li>**H5**：将生成H5链接，用户点击链接后可进入H5页面进行认证并加入企业的流程。</li><li>**NONE**：系统会根据Endpoint生成签署链接，业务方需获取链接并通知客户。</li></ul>
         # @type InvitationNotifyType: String
-        # @param JumpUrl: 回跳地址，为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。
-
-        # 注：`只有在员工邀请方式（InvitationNotifyType参数）为H5场景下才生效， 其他方式下设置无效。`
+        # @param JumpUrl: 回跳地址，为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。注：`只有在员工邀请方式（InvitationNotifyType参数）为H5场景下才生效， 其他方式下设置无效。`
         # @type JumpUrl: String
+        # @param Endpoint: 要跳转的链接类型<ul><li> **HTTP**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链 (默认类型)</li><li>**HTTP_SHORT_URL**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li>**APP**： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型</li><li>**H5**： 第三方移动端浏览器进行嵌入，不支持小程序嵌入，过期时间一个月</li></ul>注意：InvitationNotifyType 和 Endpoint 的关系图<table><tbody><tr><td>通知类型（InvitationNotifyType）</td><td>Endpoint</td></tr><tr><td>SMS（默认）</td><td>不需要传递，会将 Endpoint 默认设置为HTTP_SHORT_URL</td></tr><tr><td>H5</td><td>不需要传递，会将 Endpoint 默认设置为 H5</td></tr><tr><td>NONE</td><td>所有 Endpoint 都支持（HTTP_URL/HTTP_SHORT_URL/H5/APP）默认为HTTP_SHORT_URL</td></tr></tbody></table>
+        # @type Endpoint: String
 
-        attr_accessor :Operator, :Employees, :Agent, :InvitationNotifyType, :JumpUrl
+        attr_accessor :Operator, :Employees, :Agent, :InvitationNotifyType, :JumpUrl, :Endpoint
 
-        def initialize(operator=nil, employees=nil, agent=nil, invitationnotifytype=nil, jumpurl=nil)
+        def initialize(operator=nil, employees=nil, agent=nil, invitationnotifytype=nil, jumpurl=nil, endpoint=nil)
           @Operator = operator
           @Employees = employees
           @Agent = agent
           @InvitationNotifyType = invitationnotifytype
           @JumpUrl = jumpurl
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
@@ -10202,6 +10297,7 @@ module TencentCloud
           end
           @InvitationNotifyType = params['InvitationNotifyType']
           @JumpUrl = params['JumpUrl']
+          @Endpoint = params['Endpoint']
         end
       end
 

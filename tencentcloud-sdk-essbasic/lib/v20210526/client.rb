@@ -2052,6 +2052,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过接口[批量撤销合同流程](https://qian.tencent.com/developers/partnerApis/operateFlows/ChannelBatchCancelFlows)或者[获取批量撤销签署流程腾讯电子签小程序链接](https://qian.tencent.com/developers/partnerApis/operateFlows/ChannelCreateBatchCancelFlowUrl)发起批量撤销任务后，可通过此接口查询批量撤销任务的结果。
+
+        # @param request: Request instance for DescribeCancelFlowsTask.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeCancelFlowsTaskRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeCancelFlowsTaskResponse`
+        def DescribeCancelFlowsTask(request)
+          body = send_request('DescribeCancelFlowsTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCancelFlowsTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取出证报告任务执行结果，返回报告 URL。
 
         # 注意：

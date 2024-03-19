@@ -734,6 +734,19 @@ module TencentCloud
         # 1：IP hash
         # 2：加权轮询
         # @type LoadBalance: String
+        # @param Ports: 服务端口列表配置。
+        # NginxServerId：新增域名时填'0'
+        # Port：监听端口号
+        # Protocol：端口协议
+        # UpstreamPort：与Port相同
+        # UpstreamProtocol：与Protocol相同
+        # @type Ports: Array
+        # @param IsKeepAlive: 必填项，是否开启长连接。
+        # 0： 短连接
+        # 1： 长连接
+        # @type IsKeepAlive: String
+        # @param InstanceID: 必填项，域名所属实例id
+        # @type InstanceID: String
         # @param Cert: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Cert: String
         # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
@@ -766,24 +779,11 @@ module TencentCloud
         # 0：关闭
         # 1：开启
         # @type IsHttp2: Integer
-        # @param Ports: 服务端口列表配置。
-        # NginxServerId：新增域名时填'0'
-        # Port：监听端口号
-        # Protocol：端口协议
-        # UpstreamPort：与Port相同
-        # UpstreamProtocol：与Protocol相同
-        # @type Ports: Array
         # @param Edition: 待废弃，可不填。WAF实例类型。
         # sparta-waf：SAAS型WAF
         # clb-waf：负载均衡型WAF
         # cdn-waf：CDN上的Web防护能力
         # @type Edition: String
-        # @param IsKeepAlive: 必填项，是否开启长连接。
-        # 0： 短连接
-        # 1： 长连接
-        # @type IsKeepAlive: String
-        # @param InstanceID: 必填项，域名所属实例id
-        # @type InstanceID: String
         # @param Anycast: 待废弃，目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
@@ -822,16 +822,21 @@ module TencentCloud
         # @type Note: String
         # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
         # @type UpstreamHost: String
+        # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
+        # @type ProxyBuffer: Integer
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
           @UpstreamType = upstreamtype
           @IsWebsocket = iswebsocket
           @LoadBalance = loadbalance
+          @Ports = ports
+          @IsKeepAlive = iskeepalive
+          @InstanceID = instanceid
           @Cert = cert
           @PrivateKey = privatekey
           @SSLId = sslid
@@ -845,10 +850,7 @@ module TencentCloud
           @UpstreamDomain = upstreamdomain
           @SrcList = srclist
           @IsHttp2 = ishttp2
-          @Ports = ports
           @Edition = edition
-          @IsKeepAlive = iskeepalive
-          @InstanceID = instanceid
           @Anycast = anycast
           @Weights = weights
           @ActiveCheck = activecheck
@@ -862,6 +864,7 @@ module TencentCloud
           @XFFReset = xffreset
           @Note = note
           @UpstreamHost = upstreamhost
+          @ProxyBuffer = proxybuffer
         end
 
         def deserialize(params)
@@ -871,6 +874,16 @@ module TencentCloud
           @UpstreamType = params['UpstreamType']
           @IsWebsocket = params['IsWebsocket']
           @LoadBalance = params['LoadBalance']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portitem_tmp = PortItem.new
+              portitem_tmp.deserialize(i)
+              @Ports << portitem_tmp
+            end
+          end
+          @IsKeepAlive = params['IsKeepAlive']
+          @InstanceID = params['InstanceID']
           @Cert = params['Cert']
           @PrivateKey = params['PrivateKey']
           @SSLId = params['SSLId']
@@ -884,17 +897,7 @@ module TencentCloud
           @UpstreamDomain = params['UpstreamDomain']
           @SrcList = params['SrcList']
           @IsHttp2 = params['IsHttp2']
-          unless params['Ports'].nil?
-            @Ports = []
-            params['Ports'].each do |i|
-              portitem_tmp = PortItem.new
-              portitem_tmp.deserialize(i)
-              @Ports << portitem_tmp
-            end
-          end
           @Edition = params['Edition']
-          @IsKeepAlive = params['IsKeepAlive']
-          @InstanceID = params['InstanceID']
           @Anycast = params['Anycast']
           @Weights = params['Weights']
           @ActiveCheck = params['ActiveCheck']
@@ -908,6 +911,7 @@ module TencentCloud
           @XFFReset = params['XFFReset']
           @Note = params['Note']
           @UpstreamHost = params['UpstreamHost']
+          @ProxyBuffer = params['ProxyBuffer']
         end
       end
 
@@ -1080,7 +1084,7 @@ module TencentCloud
         end
       end
 
-      # 多域名黑白名单列表Ip
+      # 批量多域名黑白名单列表Ip
       class BatchIpAccessControlItem < TencentCloud::Common::AbstractModel
         # @param Id: mongo表自增Id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1099,10 +1103,16 @@ module TencentCloud
         # @type ValidTs: Integer
         # @param Hosts: 域名列表
         # @type Hosts: Array
+        # @param RuleId: 55101145
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param IpList: IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpList: Array
 
-        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList
 
-        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil)
           @Id = id
           @ActionType = actiontype
           @Ip = ip
@@ -1111,6 +1121,8 @@ module TencentCloud
           @TsVersion = tsversion
           @ValidTs = validts
           @Hosts = hosts
+          @RuleId = ruleid
+          @IpList = iplist
         end
 
         def deserialize(params)
@@ -1122,6 +1134,8 @@ module TencentCloud
           @TsVersion = params['TsVersion']
           @ValidTs = params['ValidTs']
           @Hosts = params['Hosts']
+          @RuleId = params['RuleId']
+          @IpList = params['IpList']
         end
       end
 
@@ -3347,12 +3361,15 @@ module TencentCloud
         # @param LeakCount: 信息泄露总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeakCount: Integer
+        # @param ApiRiskEventCircleCount: API风险事件周环比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiRiskEventCircleCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :ApiRiskEventCount, :IPBlackCount, :TamperCount, :LeakCount, :RequestId
+        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :ApiRiskEventCount, :IPBlackCount, :TamperCount, :LeakCount, :ApiRiskEventCircleCount, :RequestId
 
-        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, apiriskeventcount=nil, ipblackcount=nil, tampercount=nil, leakcount=nil, requestid=nil)
+        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, apiriskeventcount=nil, ipblackcount=nil, tampercount=nil, leakcount=nil, apiriskeventcirclecount=nil, requestid=nil)
           @AccessCount = accesscount
           @AttackCount = attackcount
           @ACLCount = aclcount
@@ -3363,6 +3380,7 @@ module TencentCloud
           @IPBlackCount = ipblackcount
           @TamperCount = tampercount
           @LeakCount = leakcount
+          @ApiRiskEventCircleCount = apiriskeventcirclecount
           @RequestId = requestid
         end
 
@@ -3377,6 +3395,7 @@ module TencentCloud
           @IPBlackCount = params['IPBlackCount']
           @TamperCount = params['TamperCount']
           @LeakCount = params['LeakCount']
+          @ApiRiskEventCircleCount = params['ApiRiskEventCircleCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3679,7 +3698,7 @@ module TencentCloud
 
       # DescribeCCAutoStatus返回参数结构体
       class DescribeCCAutoStatusResponse < TencentCloud::Common::AbstractModel
-        # @param AutoCCSwitch: 配置状态
+        # @param AutoCCSwitch: 配置状态，0表示关闭，1表示开启
         # @type AutoCCSwitch: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4949,7 +4968,7 @@ module TencentCloud
         # @type Source: String
         # @param Sort: 排序参数
         # @type Sort: String
-        # @param Ip: ip
+        # @param Ip: IP
         # @type Ip: String
         # @param ValidStatus: 生效状态
         # @type ValidStatus: Integer
@@ -4957,15 +4976,17 @@ module TencentCloud
         # @type ValidTimeStampMin: String
         # @param ValidTimeStampMax: 最大有效时间的时间戳
         # @type ValidTimeStampMax: String
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
 
-        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax
+        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId
         extend Gem::Deprecate
         deprecate :VtsMin, :none, 2024, 3
         deprecate :VtsMin=, :none, 2024, 3
         deprecate :VtsMax, :none, 2024, 3
         deprecate :VtsMax=, :none, 2024, 3
 
-        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil)
+        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil)
           @Domain = domain
           @Count = count
           @ActionType = actiontype
@@ -4981,6 +5002,7 @@ module TencentCloud
           @ValidStatus = validstatus
           @ValidTimeStampMin = validtimestampmin
           @ValidTimeStampMax = validtimestampmax
+          @RuleId = ruleid
         end
 
         def deserialize(params)
@@ -4999,6 +5021,7 @@ module TencentCloud
           @ValidStatus = params['ValidStatus']
           @ValidTimeStampMin = params['ValidTimeStampMin']
           @ValidTimeStampMax = params['ValidTimeStampMax']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -5007,13 +5030,17 @@ module TencentCloud
         # @param Data: 输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpAccessControlData`
+        # @param UsedTotal: 已经使用的IP黑白名单的IP总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :UsedTotal, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, usedtotal=nil, requestid=nil)
           @Data = data
+          @UsedTotal = usedtotal
           @RequestId = requestid
         end
 
@@ -5022,6 +5049,7 @@ module TencentCloud
             @Data = IpAccessControlData.new
             @Data.deserialize(params['Data'])
           end
+          @UsedTotal = params['UsedTotal']
           @RequestId = params['RequestId']
         end
       end
@@ -6306,7 +6334,7 @@ module TencentCloud
         # "日本": "jp"
         # "弗吉尼亚": "use"
         # "北京": "bj"
-        # "香港": "hk"
+        # "中国香港": "hk"
         # "杭州": "hzec"
         # "北京金融": "bjjr"
         # "上海金融": "shjr"
@@ -6428,10 +6456,13 @@ module TencentCloud
         # @param SgID: 安全组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgID: String
+        # @param AccessStatus: clbwaf接入状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessStatus: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -6466,6 +6497,7 @@ module TencentCloud
           @SrcList = srclist
           @UpstreamDomainList = upstreamdomainlist
           @SgID = sgid
+          @AccessStatus = accessstatus
         end
 
         def deserialize(params)
@@ -6517,6 +6549,7 @@ module TencentCloud
           @SrcList = params['SrcList']
           @UpstreamDomainList = params['UpstreamDomainList']
           @SgID = params['SgID']
+          @AccessStatus = params['AccessStatus']
         end
       end
 
@@ -6725,10 +6758,13 @@ module TencentCloud
         # @param Level: 防护规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
+        # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyBuffer: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -6770,6 +6806,7 @@ module TencentCloud
           @Note = note
           @UpstreamHost = upstreamhost
           @Level = level
+          @ProxyBuffer = proxybuffer
         end
 
         def deserialize(params)
@@ -6821,6 +6858,7 @@ module TencentCloud
           @Note = params['Note']
           @UpstreamHost = params['UpstreamHost']
           @Level = params['Level']
+          @ProxyBuffer = params['ProxyBuffer']
         end
       end
 
@@ -8168,10 +8206,16 @@ module TencentCloud
         # @param ValidStatus: 生效状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidStatus: Integer
+        # @param RuleId: 55000001
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param IpList: IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpList: Array
 
-        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :ValidStatus
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :ValidStatus, :RuleId, :IpList
 
-        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, validstatus=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, validstatus=nil, ruleid=nil, iplist=nil)
           @Id = id
           @ActionType = actiontype
           @Ip = ip
@@ -8180,6 +8224,8 @@ module TencentCloud
           @TsVersion = tsversion
           @ValidTs = validts
           @ValidStatus = validstatus
+          @RuleId = ruleid
+          @IpList = iplist
         end
 
         def deserialize(params)
@@ -8191,6 +8237,8 @@ module TencentCloud
           @TsVersion = params['TsVersion']
           @ValidTs = params['ValidTs']
           @ValidStatus = params['ValidStatus']
+          @RuleId = params['RuleId']
+          @IpList = params['IpList']
         end
       end
 
@@ -8582,6 +8630,9 @@ module TencentCloud
         # @type TopicId: String
 
         attr_accessor :Period, :TopicId
+        extend Gem::Deprecate
+        deprecate :TopicId, :none, 2024, 3
+        deprecate :TopicId=, :none, 2024, 3
 
         def initialize(period=nil, topicid=nil)
           @Period = period
@@ -10078,6 +10129,8 @@ module TencentCloud
         # @type Domain: String
         # @param DomainId: 必填项。域名唯一ID
         # @type DomainId: String
+        # @param InstanceID: 必填项。域名所属实例id
+        # @type InstanceID: String
         # @param CertType: 必填项。证书类型。
         # 0：仅配置HTTP监听端口，没有证书
         # 1：证书来源为自有证书
@@ -10136,8 +10189,6 @@ module TencentCloud
         # 0： 短连接
         # 1： 长连接
         # @type IsKeepAlive: String
-        # @param InstanceID: 必填项。域名所属实例id
-        # @type InstanceID: String
         # @param Anycast: 必填项，待废弃。目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
@@ -10178,12 +10229,15 @@ module TencentCloud
         # @type Note: String
         # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
         # @type UpstreamHost: String
+        # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
+        # @type ProxyBuffer: Integer
 
-        attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost
+        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer
 
-        def initialize(domain=nil, domainid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil)
           @Domain = domain
           @DomainId = domainid
+          @InstanceID = instanceid
           @CertType = certtype
           @Cert = cert
           @PrivateKey = privatekey
@@ -10202,7 +10256,6 @@ module TencentCloud
           @Edition = edition
           @Ports = ports
           @IsKeepAlive = iskeepalive
-          @InstanceID = instanceid
           @Anycast = anycast
           @Weights = weights
           @ActiveCheck = activecheck
@@ -10217,11 +10270,13 @@ module TencentCloud
           @XFFReset = xffreset
           @Note = note
           @UpstreamHost = upstreamhost
+          @ProxyBuffer = proxybuffer
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @DomainId = params['DomainId']
+          @InstanceID = params['InstanceID']
           @CertType = params['CertType']
           @Cert = params['Cert']
           @PrivateKey = params['PrivateKey']
@@ -10247,7 +10302,6 @@ module TencentCloud
             end
           end
           @IsKeepAlive = params['IsKeepAlive']
-          @InstanceID = params['InstanceID']
           @Anycast = params['Anycast']
           @Weights = params['Weights']
           @ActiveCheck = params['ActiveCheck']
@@ -10262,6 +10316,7 @@ module TencentCloud
           @XFFReset = params['XFFReset']
           @Note = params['Note']
           @UpstreamHost = params['UpstreamHost']
+          @ProxyBuffer = params['ProxyBuffer']
         end
       end
 
