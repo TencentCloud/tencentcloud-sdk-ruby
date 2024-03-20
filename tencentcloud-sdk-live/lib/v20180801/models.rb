@@ -6361,12 +6361,25 @@ module TencentCloud
 
       # DescribeLiveWatermarks请求参数结构体
       class DescribeLiveWatermarksRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 水印名称
+        # @type Name: String
+        # @param PageNo: 分页的索引参数，从1开始
+        # @type PageNo: Integer
+        # @param PageSize: 分页的大小参数，默认值500
+        # @type PageSize: Integer
 
+        attr_accessor :Name, :PageNo, :PageSize
 
-        def initialize()
+        def initialize(name=nil, pageno=nil, pagesize=nil)
+          @Name = name
+          @PageNo = pageno
+          @PageSize = pagesize
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
         end
       end
 

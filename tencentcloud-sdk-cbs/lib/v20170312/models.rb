@@ -2527,19 +2527,23 @@ module TencentCloud
       class ModifyDisksRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param DiskIds: 一个或多个待操作的云硬盘ID。
         # @type DiskIds: Array
-        # @param RenewFlag: 云盘的续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。
+        # @param RenewFlag: 	云硬盘的自动续费标识。取值范围：<ul><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li></ul>
         # @type RenewFlag: String
+        # @param AutoRenewPeriod: 该参数支持设置云硬盘的自动续费周期，单位为月。
+        # @type AutoRenewPeriod: Integer
 
-        attr_accessor :DiskIds, :RenewFlag
+        attr_accessor :DiskIds, :RenewFlag, :AutoRenewPeriod
 
-        def initialize(diskids=nil, renewflag=nil)
+        def initialize(diskids=nil, renewflag=nil, autorenewperiod=nil)
           @DiskIds = diskids
           @RenewFlag = renewflag
+          @AutoRenewPeriod = autorenewperiod
         end
 
         def deserialize(params)
           @DiskIds = params['DiskIds']
           @RenewFlag = params['RenewFlag']
+          @AutoRenewPeriod = params['AutoRenewPeriod']
         end
       end
 
