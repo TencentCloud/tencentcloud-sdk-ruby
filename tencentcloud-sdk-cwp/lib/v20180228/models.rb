@@ -4867,7 +4867,17 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param BanStatus: 阻断状态：1-阻断成功；非1-阻断失败
+        # @param BanStatus: 0 -不阻断(客户端版本不支持)
+        # 1 -已阻断
+        # 2 -阻断失败(程序异常)
+        # 3 -不阻断(内网不阻断)
+        # 4 -可用区不支持阻断
+        # 10-阻断中
+        # 81-不阻断(未开启阻断)
+        # 82-不阻断(非专业版)
+        # 83-不阻断(已加白名单)
+        # 86-不阻断(系统白名单)
+        # 87-不阻断(客户端离线)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: Integer
         # @param EventType: 事件类型：200-暴力破解事件，300-暴力破解成功事件（页面展示），400-暴力破解不存在的帐号事件
@@ -4909,10 +4919,16 @@ module TencentCloud
         # @param DataFrom: 事件来源：0--阻断规则，1--威胁情报
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataFrom: Integer
+        # @param AttackStatusDesc: 破解状态说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackStatusDesc: String
+        # @param BanExpiredTime: 阻断过期时间（仅阻断中事件有效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BanExpiredTime: String
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location, :RiskLevel, :DataFrom
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location, :RiskLevel, :DataFrom, :AttackStatusDesc, :BanExpiredTime
 
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil, risklevel=nil, datafrom=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil, risklevel=nil, datafrom=nil, attackstatusdesc=nil, banexpiredtime=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -4938,6 +4954,8 @@ module TencentCloud
           @Location = location
           @RiskLevel = risklevel
           @DataFrom = datafrom
+          @AttackStatusDesc = attackstatusdesc
+          @BanExpiredTime = banexpiredtime
         end
 
         def deserialize(params)
@@ -4969,6 +4987,8 @@ module TencentCloud
           @Location = params['Location']
           @RiskLevel = params['RiskLevel']
           @DataFrom = params['DataFrom']
+          @AttackStatusDesc = params['AttackStatusDesc']
+          @BanExpiredTime = params['BanExpiredTime']
         end
       end
 
@@ -12288,20 +12308,24 @@ module TencentCloud
         # @type Status: Integer
         # @param ShowTips: 是否弹窗提示信息 false: 关闭，true: 开启
         # @type ShowTips: Boolean
+        # @param OpenSmartMode: 是否开启智能过白模式
+        # @type OpenSmartMode: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ShowTips, :RequestId
+        attr_accessor :Status, :ShowTips, :OpenSmartMode, :RequestId
 
-        def initialize(status=nil, showtips=nil, requestid=nil)
+        def initialize(status=nil, showtips=nil, opensmartmode=nil, requestid=nil)
           @Status = status
           @ShowTips = showtips
+          @OpenSmartMode = opensmartmode
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
           @ShowTips = params['ShowTips']
+          @OpenSmartMode = params['OpenSmartMode']
           @RequestId = params['RequestId']
         end
       end
@@ -33197,17 +33221,21 @@ module TencentCloud
 
       # ModifyBanStatus请求参数结构体
       class ModifyBanStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Status: 阻断状态 0:关闭 1:开启
+        # @param Status: 阻断开关状态: 0 -- 关闭 1 -- 高级阻断 2 -- 基础阻断(只阻断情报库黑ip)
         # @type Status: Integer
+        # @param OpenSmartMode: 是否开启智能过白模式
+        # @type OpenSmartMode: Boolean
 
-        attr_accessor :Status
+        attr_accessor :Status, :OpenSmartMode
 
-        def initialize(status=nil)
+        def initialize(status=nil, opensmartmode=nil)
           @Status = status
+          @OpenSmartMode = opensmartmode
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @OpenSmartMode = params['OpenSmartMode']
         end
       end
 

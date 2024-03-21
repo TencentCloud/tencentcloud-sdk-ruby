@@ -809,6 +809,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询页面录制任务
+
+        # @param request: Request instance for DescribeWebRecord.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeWebRecordRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeWebRecordResponse`
+        def DescribeWebRecord(request)
+          body = send_request('DescribeWebRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWebRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
 
         # @param request: Request instance for DismissRoom.
@@ -1186,6 +1210,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过此接口可以发起 WEB 页面录制任务，在接口参数中指定录制 URL，录制分辨率，录制结果存储等参数。
+        # 因为参数或API逻辑问题会立即返回结果。而因为页面问题，如页面无法访问，会在回调中返回结果，请关注。
+
+        # @param request: Request instance for StartWebRecord.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StartWebRecordRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StartWebRecordResponse`
+        def StartWebRecord(request)
+          body = send_request('StartWebRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartWebRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口说明：结束云端混流
 
         # @param request: Request instance for StopMCUMixTranscode.
@@ -1268,6 +1317,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopStreamIngestResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止页面录制任务
+
+        # @param request: Request instance for StopWebRecord.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StopWebRecordRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StopWebRecordResponse`
+        def StopWebRecord(request)
+          body = send_request('StopWebRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopWebRecordResponse.new
             model.deserialize(response['Response'])
             model
           else

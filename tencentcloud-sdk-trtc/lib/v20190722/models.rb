@@ -1876,6 +1876,43 @@ module TencentCloud
         end
       end
 
+      # DescribeWebRecord请求参数结构体
+      class DescribeWebRecordRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 开始页面录制时返回的任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeWebRecord返回参数结构体
+      class DescribeWebRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 1: 正在录制中
+        # 2: 任务不存在
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DismissRoomByStrRoomId请求参数结构体
       class DismissRoomByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -3934,6 +3971,69 @@ module TencentCloud
         end
       end
 
+      # StartWebRecord请求参数结构体
+      class StartWebRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RecordUrl: 需要录制的网页URL
+        # @type RecordUrl: String
+        # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[0, 36000], 默认 36000s(10 小时)
+        # @type MaxDurationLimit: Integer
+        # @param StorageParams: 云存储相关的参数，目前支持腾讯云对象存储，不支持第三方云存储以及VOD
+        # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`
+        # @param WebRecordVideoParams: 页面录制视频参数
+        # @type WebRecordVideoParams: :class:`Tencentcloud::Trtc.v20190722.models.WebRecordVideoParams`
+        # @param SdkAppId: TRTC的SdkAppId
+        # @type SdkAppId: Integer
+        # @param RecordId: 当对重复任务敏感时，请关注此值： 为了避免任务在短时间内重复发起，导致任务重复
+        # 传入录制RecordId来标识此次任务， 小于32字节，若携带RecordId发起两次以上的开始录制请求，任务只会启动一个，第二个报错FailedOperation.TaskExist。注意StartWebRecord调用失败时而非FailedOperation.TaskExist错误，请更换RecordId重新发起。
+        # @type RecordId: String
+
+        attr_accessor :RecordUrl, :MaxDurationLimit, :StorageParams, :WebRecordVideoParams, :SdkAppId, :RecordId
+
+        def initialize(recordurl=nil, maxdurationlimit=nil, storageparams=nil, webrecordvideoparams=nil, sdkappid=nil, recordid=nil)
+          @RecordUrl = recordurl
+          @MaxDurationLimit = maxdurationlimit
+          @StorageParams = storageparams
+          @WebRecordVideoParams = webrecordvideoparams
+          @SdkAppId = sdkappid
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @RecordUrl = params['RecordUrl']
+          @MaxDurationLimit = params['MaxDurationLimit']
+          unless params['StorageParams'].nil?
+            @StorageParams = StorageParams.new
+            @StorageParams.deserialize(params['StorageParams'])
+          end
+          unless params['WebRecordVideoParams'].nil?
+            @WebRecordVideoParams = WebRecordVideoParams.new
+            @WebRecordVideoParams.deserialize(params['WebRecordVideoParams'])
+          end
+          @SdkAppId = params['SdkAppId']
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # StartWebRecord返回参数结构体
+      class StartWebRecordResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 录制任务的唯一Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopMCUMixTranscodeByStrRoomId请求参数结构体
       class StopMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -4068,6 +4168,38 @@ module TencentCloud
 
       # StopStreamIngest返回参数结构体
       class StopStreamIngestResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopWebRecord请求参数结构体
+      class StopWebRecordRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 需要停止的任务Id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopWebRecord返回参数结构体
+      class StopWebRecordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4257,7 +4389,7 @@ module TencentCloud
         # @param MediaType: 上传到vod平台的录制文件格式类型，0：mp4(默认), 1: hls, 2:aac(StreamType=1纯音频录制时有效),
         # 3: hls+mp4, 4: hls+aac(StreamType=1纯音频录制时有效)。
         # @type MediaType: Integer
-        # @param UserDefineRecordId: 仅支持API录制上传vod，该参数表示用户可以自定义录制文件名前缀，【限制长度为64字节，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）及下划线和连词符】。前缀与自动生成的录制文件名之间用__UserDefine_u_分开。
+        # @param UserDefineRecordId: 仅支持API录制上传vod，该参数表示用户可以自定义录制文件名前缀，【限制长度为64字节，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）及下划线和连词符】。前缀与自动生成的录制文件名之间用`__UserDefine_u_` 分开。
         # @type UserDefineRecordId: String
 
         attr_accessor :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SubAppId, :SessionContext, :SourceContext, :MediaType, :UserDefineRecordId
@@ -4766,6 +4898,30 @@ module TencentCloud
           @Pos = params['Pos']
           @TimeZone = params['TimeZone']
           @Font = params['Font']
+        end
+      end
+
+      # 页面录制视频参数
+      class WebRecordVideoParams < TencentCloud::Common::AbstractModel
+        # @param Width: 录制画面宽度，默认为1280，取值范围[0, 1920]
+        # @type Width: Integer
+        # @param Height: 录制画面高度，默认为720，取值范围[0, 1080]
+        # @type Height: Integer
+        # @param Format: 指定输出格式，可选hls,mp4
+        # @type Format: String
+
+        attr_accessor :Width, :Height, :Format
+
+        def initialize(width=nil, height=nil, format=nil)
+          @Width = width
+          @Height = height
+          @Format = format
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Format = params['Format']
         end
       end
 

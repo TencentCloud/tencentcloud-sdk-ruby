@@ -578,10 +578,13 @@ module TencentCloud
         # @param LoginServices: 实例包含的登录服务详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginServices: Array
+        # @param OSType: 应用服务的操作系统类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OSType: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceState, :ApplicationName, :BundleName, :GPUCount, :GPUPerformance, :GPUMemory, :CPU, :Memory, :SystemDisk, :PrivateIpAddresses, :PublicIpAddresses, :SecurityGroupIds, :LatestOperation, :LatestOperationState, :CreateTime, :MaxOutBandwidth, :MaxFreeTraffic, :ConfigurationEnvironment, :LoginServices
+        attr_accessor :InstanceId, :InstanceName, :InstanceState, :ApplicationName, :BundleName, :GPUCount, :GPUPerformance, :GPUMemory, :CPU, :Memory, :SystemDisk, :PrivateIpAddresses, :PublicIpAddresses, :SecurityGroupIds, :LatestOperation, :LatestOperationState, :CreateTime, :MaxOutBandwidth, :MaxFreeTraffic, :ConfigurationEnvironment, :LoginServices, :OSType
 
-        def initialize(instanceid=nil, instancename=nil, instancestate=nil, applicationname=nil, bundlename=nil, gpucount=nil, gpuperformance=nil, gpumemory=nil, cpu=nil, memory=nil, systemdisk=nil, privateipaddresses=nil, publicipaddresses=nil, securitygroupids=nil, latestoperation=nil, latestoperationstate=nil, createtime=nil, maxoutbandwidth=nil, maxfreetraffic=nil, configurationenvironment=nil, loginservices=nil)
+        def initialize(instanceid=nil, instancename=nil, instancestate=nil, applicationname=nil, bundlename=nil, gpucount=nil, gpuperformance=nil, gpumemory=nil, cpu=nil, memory=nil, systemdisk=nil, privateipaddresses=nil, publicipaddresses=nil, securitygroupids=nil, latestoperation=nil, latestoperationstate=nil, createtime=nil, maxoutbandwidth=nil, maxfreetraffic=nil, configurationenvironment=nil, loginservices=nil, ostype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceState = instancestate
@@ -603,6 +606,7 @@ module TencentCloud
           @MaxFreeTraffic = maxfreetraffic
           @ConfigurationEnvironment = configurationenvironment
           @LoginServices = loginservices
+          @OSType = ostype
         end
 
         def deserialize(params)
@@ -637,6 +641,7 @@ module TencentCloud
               @LoginServices << loginservice_tmp
             end
           end
+          @OSType = params['OSType']
         end
       end
 
