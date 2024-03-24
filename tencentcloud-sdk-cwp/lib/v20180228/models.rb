@@ -1201,10 +1201,13 @@ module TencentCloud
         # @param MachineExtraInfo: 附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param CpuLoadNum: cpu负载读数（仅linux系统有效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuLoadNum: String
 
-        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime, :IsNew, :FirstTime, :MachineExtraInfo
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime, :IsNew, :FirstTime, :MachineExtraInfo, :CpuLoadNum
 
-        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil, isnew=nil, firsttime=nil, machineextrainfo=nil)
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil, isnew=nil, firsttime=nil, machineextrainfo=nil, cpuloadnum=nil)
           @Quuid = quuid
           @Uuid = uuid
           @MachineIp = machineip
@@ -1225,6 +1228,7 @@ module TencentCloud
           @IsNew = isnew
           @FirstTime = firsttime
           @MachineExtraInfo = machineextrainfo
+          @CpuLoadNum = cpuloadnum
         end
 
         def deserialize(params)
@@ -1258,6 +1262,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @CpuLoadNum = params['CpuLoadNum']
         end
       end
 

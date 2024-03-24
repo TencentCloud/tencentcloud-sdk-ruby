@@ -1798,10 +1798,12 @@ module TencentCloud
         # @type IntentionRecognition: Boolean
         # @param IsSupportHMTResidentPermitOCR: 是否支持港澳台居住证识别
         # @type IsSupportHMTResidentPermitOCR: Boolean
+        # @param MouthOpenRecognition: 用户语音回答过程中是否开启张嘴识别检测，默认不开启，仅在意愿核身问答模式中使用。
+        # @type MouthOpenRecognition: Boolean
 
-        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionActions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionActions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR, :MouthOpenRecognition
 
-        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionactions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionactions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil, mouthopenrecognition=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
           @IntentionMode = intentionmode
@@ -1810,6 +1812,7 @@ module TencentCloud
           @IntentionActions = intentionactions
           @IntentionRecognition = intentionrecognition
           @IsSupportHMTResidentPermitOCR = issupporthmtresidentpermitocr
+          @MouthOpenRecognition = mouthopenrecognition
         end
 
         def deserialize(params)
@@ -1835,6 +1838,7 @@ module TencentCloud
           end
           @IntentionRecognition = params['IntentionRecognition']
           @IsSupportHMTResidentPermitOCR = params['IsSupportHMTResidentPermitOCR']
+          @MouthOpenRecognition = params['MouthOpenRecognition']
         end
       end
 
@@ -2584,6 +2588,7 @@ module TencentCloud
         # -201: "人脸比对相似度低"
         # -202: "人脸比对失败"
         # -301: "意愿核验不通过"
+        # -302: "用户回答阶段未检测到张嘴动作"
         # -800: "前端不兼容错误"
         # -801: "用户未授权摄像头和麦克风权限"
         # -802: "核验流程异常中断，请勿切屏或进行其他操作"

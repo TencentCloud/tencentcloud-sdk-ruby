@@ -5346,10 +5346,16 @@ module TencentCloud
         # @param GroupId: 监听器的通道组ID，如果监听器属于通道，则为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
+        # @param TLSSupportVersion: 支持的TLS版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSSupportVersion: Array
+        # @param TLSCiphers: 支持的TLS密码套件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSCiphers: String
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo, :Http3Supported, :ProxyId, :GroupId
+        attr_accessor :ListenerId, :ListenerName, :Port, :Protocol, :ListenerStatus, :CertificateId, :ForwardProtocol, :CreateTime, :CertificateAlias, :ClientCertificateId, :AuthType, :ClientCertificateAlias, :PolyClientCertificateAliasInfo, :Http3Supported, :ProxyId, :GroupId, :TLSSupportVersion, :TLSCiphers
 
-        def initialize(listenerid=nil, listenername=nil, port=nil, protocol=nil, listenerstatus=nil, certificateid=nil, forwardprotocol=nil, createtime=nil, certificatealias=nil, clientcertificateid=nil, authtype=nil, clientcertificatealias=nil, polyclientcertificatealiasinfo=nil, http3supported=nil, proxyid=nil, groupid=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, protocol=nil, listenerstatus=nil, certificateid=nil, forwardprotocol=nil, createtime=nil, certificatealias=nil, clientcertificateid=nil, authtype=nil, clientcertificatealias=nil, polyclientcertificatealiasinfo=nil, http3supported=nil, proxyid=nil, groupid=nil, tlssupportversion=nil, tlsciphers=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -5366,6 +5372,8 @@ module TencentCloud
           @Http3Supported = http3supported
           @ProxyId = proxyid
           @GroupId = groupid
+          @TLSSupportVersion = tlssupportversion
+          @TLSCiphers = tlsciphers
         end
 
         def deserialize(params)
@@ -5392,6 +5400,8 @@ module TencentCloud
           @Http3Supported = params['Http3Supported']
           @ProxyId = params['ProxyId']
           @GroupId = params['GroupId']
+          @TLSSupportVersion = params['TLSSupportVersion']
+          @TLSCiphers = params['TLSCiphers']
         end
       end
 
@@ -6801,10 +6811,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
+        # @param IsSupportTLSChoice: 是否支持设置TSL设置
+        # 0表示不支持；
+        # 1表示支持。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportTLSChoice: Integer
 
-        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType, :Http3Supported, :FeatureBitmap
+        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType, :Http3Supported, :FeatureBitmap, :IsSupportTLSChoice
 
-        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil, http3supported=nil, featurebitmap=nil)
+        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil, http3supported=nil, featurebitmap=nil, issupporttlschoice=nil)
           @CreateTime = createtime
           @ProjectId = projectid
           @ProxyNum = proxynum
@@ -6825,6 +6840,7 @@ module TencentCloud
           @PackageType = packagetype
           @Http3Supported = http3supported
           @FeatureBitmap = featurebitmap
+          @IsSupportTLSChoice = issupporttlschoice
         end
 
         def deserialize(params)
@@ -6858,6 +6874,7 @@ module TencentCloud
           @PackageType = params['PackageType']
           @Http3Supported = params['Http3Supported']
           @FeatureBitmap = params['FeatureBitmap']
+          @IsSupportTLSChoice = params['IsSupportTLSChoice']
         end
       end
 
@@ -7095,10 +7112,15 @@ module TencentCloud
         # @param IsAutoScaleProxy: 是否是开启了auto scale的通道，0表示否，1表示是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAutoScaleProxy: Integer
+        # @param IsSupportTLSChoice: 是否允许设置TLS配置
+        # 0表示不支持；
+        # 1表示支持。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportTLSChoice: Integer
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported, :InBanBlacklist, :FeatureBitmap, :IsAutoScaleProxy
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList, :Http3Supported, :InBanBlacklist, :FeatureBitmap, :IsAutoScaleProxy, :IsSupportTLSChoice
 
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil, inbanblacklist=nil, featurebitmap=nil, isautoscaleproxy=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil, http3supported=nil, inbanblacklist=nil, featurebitmap=nil, isautoscaleproxy=nil, issupporttlschoice=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -7135,6 +7157,7 @@ module TencentCloud
           @InBanBlacklist = inbanblacklist
           @FeatureBitmap = featurebitmap
           @IsAutoScaleProxy = isautoscaleproxy
+          @IsSupportTLSChoice = issupporttlschoice
         end
 
         def deserialize(params)
@@ -7194,6 +7217,7 @@ module TencentCloud
           @InBanBlacklist = params['InBanBlacklist']
           @FeatureBitmap = params['FeatureBitmap']
           @IsAutoScaleProxy = params['IsAutoScaleProxy']
+          @IsSupportTLSChoice = params['IsSupportTLSChoice']
         end
       end
 

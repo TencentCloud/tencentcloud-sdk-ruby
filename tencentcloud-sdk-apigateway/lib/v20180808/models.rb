@@ -2462,7 +2462,7 @@ module TencentCloud
         # @type ServiceDesc: String
         # @param NetTypes: 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         # @type NetTypes: Array
-        # @param IpVersion: IP版本号，支持IPv4和IPv6，默认为IPv4。
+        # @param IpVersion: IP版本号，仅支持IPv4。
         # @type IpVersion: String
         # @param SetServerName: 集群名称。保留字段，tsf serverless类型使用。
         # @type SetServerName: String

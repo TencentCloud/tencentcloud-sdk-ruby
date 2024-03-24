@@ -355,6 +355,8 @@ module TencentCloud
         # <ul><li> **false** : ( 默认)可以转他人处理</li>
         # <li> **true** :不可以转他人处理</li></ul>
         # @type NoTransfer: Boolean
+        # @param CanEditApprover: 允许编辑签署人信息（嵌入式使用） 默认true-可以编辑 false-不可以编辑
+        # @type CanEditApprover: Boolean
         # @param FillType: 签署人信息补充类型，默认无需补充。
 
         # <ul><li> **1** : ( 动态签署人（可发起合同后再补充签署人信息）注：`企业自动签不支持动态补充`</li>
@@ -370,11 +372,12 @@ module TencentCloud
         # </ul>
         # @type FlowReadLimit: String
 
-        attr_accessor :NoRefuse, :NoTransfer, :FillType, :FlowReadLimit
+        attr_accessor :NoRefuse, :NoTransfer, :CanEditApprover, :FillType, :FlowReadLimit
 
-        def initialize(norefuse=nil, notransfer=nil, filltype=nil, flowreadlimit=nil)
+        def initialize(norefuse=nil, notransfer=nil, caneditapprover=nil, filltype=nil, flowreadlimit=nil)
           @NoRefuse = norefuse
           @NoTransfer = notransfer
+          @CanEditApprover = caneditapprover
           @FillType = filltype
           @FlowReadLimit = flowreadlimit
         end
@@ -382,6 +385,7 @@ module TencentCloud
         def deserialize(params)
           @NoRefuse = params['NoRefuse']
           @NoTransfer = params['NoTransfer']
+          @CanEditApprover = params['CanEditApprover']
           @FillType = params['FillType']
           @FlowReadLimit = params['FlowReadLimit']
         end
@@ -2627,10 +2631,72 @@ module TencentCloud
         # @type ForbidEditFillComponent: Boolean
         # @param CustomCreateFlowDescription: 定制化发起合同弹窗的描述信息，描述信息最长500字符
         # @type CustomCreateFlowDescription: String
+        # @param ForbidAddApprover:   禁止添加签署方，若为true则在发起流程的可嵌入页面隐藏“添加签署人按钮”
+        # @type ForbidAddApprover: String
+        # @param ForbidEditFlowProperties:   禁止设置设置签署流程属性 (顺序、合同签署认证方式等)，若为true则在发起流程的可嵌入页面隐藏签署流程设置面板
+        # @type ForbidEditFlowProperties: String
+        # @param HideComponentTypes: 在发起流程的可嵌入页面要隐藏的控件列表，和 ShowComponentTypes 参数 只能二选一使用，具体的控件类型如下
+        # <ul><li>SIGN_SIGNATURE : 个人签名/印章</li>
+        # <li>SIGN_SEAL : 企业印章</li>
+        # <li>SIGN_PAGING_SEAL : 骑缝章</li>
+        # <li>SIGN_LEGAL_PERSON_SEAL : 法定代表人章</li>
+        # <li>SIGN_APPROVE : 签批</li>
+        # <li>SIGN_OPINION : 签署意见</li>
+        # <li>BUSI-FULL-NAME  : 企业全称</li>
+        # <li>BUSI-CREDIT-CODE : 统一社会信用代码</li>
+        # <li>BUSI-LEGAL-NAME : 法人/经营者姓名</li>
+        # <li>PERSONAL-NAME : 签署人姓名</li>
+        # <li>PERSONAL-MOBILE : 签署人手机号</li>
+        # <li>PERSONAL-IDCARD-TYPE : 签署人证件类型</li>
+        # <li>PERSONAL-IDCARD : 签署人证件号</li>
+        # <li>TEXT : 单行文本</li>
+        # <li>MULTI_LINE_TEXT : 多行文本</li>
+        # <li>CHECK_BOX : 勾选框</li>
+        # <li>SELECTOR : 选择器</li>
+        # <li>DIGIT : 数字</li>
+        # <li>DATE : 日期</li>
+        # <li>FILL_IMAGE : 图片</li>
+        # <li>ATTACHMENT : 附件</li>
+        # <li>EMAIL : 邮箱</li>
+        # <li>LOCATION : 地址</li>
+        # <li>EDUCATION : 学历</li>
+        # <li>GENDER : 性别</li>
+        # <li>DISTRICT : 省市区</li></ul>
+        # @type HideComponentTypes: Array
+        # @param ShowComponentTypes: 在发起流程的可嵌入页面要显示的控件列表，和 HideComponentTypes 参数 只能二选一使用，具体的控件类型如下
+        # <ul><li>SIGN_SIGNATURE : 个人签名/印章</li>
+        # <li>SIGN_SEAL : 企业印章</li>
+        # <li>SIGN_PAGING_SEAL : 骑缝章</li>
+        # <li>SIGN_LEGAL_PERSON_SEAL : 法定代表人章</li>
+        # <li>SIGN_APPROVE : 签批</li>
+        # <li>SIGN_OPINION : 签署意见</li>
+        # <li>BUSI-FULL-NAME  : 企业全称</li>
+        # <li>BUSI-CREDIT-CODE : 统一社会信用代码</li>
+        # <li>BUSI-LEGAL-NAME : 法人/经营者姓名</li>
+        # <li>PERSONAL-NAME : 签署人姓名</li>
+        # <li>PERSONAL-MOBILE : 签署人手机号</li>
+        # <li>PERSONAL-IDCARD-TYPE : 签署人证件类型</li>
+        # <li>PERSONAL-IDCARD : 签署人证件号</li>
+        # <li>TEXT : 单行文本</li>
+        # <li>MULTI_LINE_TEXT : 多行文本</li>
+        # <li>CHECK_BOX : 勾选框</li>
+        # <li>SELECTOR : 选择器</li>
+        # <li>DIGIT : 数字</li>
+        # <li>DATE : 日期</li>
+        # <li>FILL_IMAGE : 图片</li>
+        # <li>ATTACHMENT : 附件</li>
+        # <li>EMAIL : 邮箱</li>
+        # <li>LOCATION : 地址</li>
+        # <li>EDUCATION : 学历</li>
+        # <li>GENDER : 性别</li>
+        # <li>DISTRICT : 省市区</li></ul>
+        # @type ShowComponentTypes: Array
+        # @param ResultPageConfig: 发起流程的可嵌入页面结果页配置
+        # @type ResultPageConfig: Array
 
-        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription
+        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig
 
-        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil)
+        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil)
           @CanEditFlow = caneditflow
           @CanEditFormField = caneditformfield
           @HideShowFlowName = hideshowflowname
@@ -2640,6 +2706,11 @@ module TencentCloud
           @SkipUploadFile = skipuploadfile
           @ForbidEditFillComponent = forbideditfillcomponent
           @CustomCreateFlowDescription = customcreateflowdescription
+          @ForbidAddApprover = forbidaddapprover
+          @ForbidEditFlowProperties = forbideditflowproperties
+          @HideComponentTypes = hidecomponenttypes
+          @ShowComponentTypes = showcomponenttypes
+          @ResultPageConfig = resultpageconfig
         end
 
         def deserialize(params)
@@ -2652,6 +2723,18 @@ module TencentCloud
           @SkipUploadFile = params['SkipUploadFile']
           @ForbidEditFillComponent = params['ForbidEditFillComponent']
           @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
+          @ForbidAddApprover = params['ForbidAddApprover']
+          @ForbidEditFlowProperties = params['ForbidEditFlowProperties']
+          @HideComponentTypes = params['HideComponentTypes']
+          @ShowComponentTypes = params['ShowComponentTypes']
+          unless params['ResultPageConfig'].nil?
+            @ResultPageConfig = []
+            params['ResultPageConfig'].each do |i|
+              createresultpageconfig_tmp = CreateResultPageConfig.new
+              createresultpageconfig_tmp.deserialize(i)
+              @ResultPageConfig << createresultpageconfig_tmp
+            end
+          end
         end
       end
 
@@ -4114,6 +4197,32 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 发起流程的可嵌入页面操作结果页配置
+      class CreateResultPageConfig < TencentCloud::Common::AbstractModel
+        # @param Type: <ul>
+        #   <li>0 : 发起审批成功页面（通过接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreatePrepareFlow/" target="_blank">创建发起流程web页面</a>发起时设置了NeedCreateReview参数为true）</li>
+        # </ul>
+        # @type Type: Integer
+        # @param Title: 结果页标题，不超过50字
+        # @type Title: String
+        # @param Description: 结果页描述，不超过200字
+        # @type Description: String
+
+        attr_accessor :Type, :Title, :Description
+
+        def initialize(type=nil, title=nil, description=nil)
+          @Type = type
+          @Title = title
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Title = params['Title']
+          @Description = params['Description']
         end
       end
 
