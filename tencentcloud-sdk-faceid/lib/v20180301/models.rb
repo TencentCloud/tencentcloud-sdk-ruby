@@ -2088,10 +2088,13 @@ module TencentCloud
         # @type UseCos: Boolean
         # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param RuleId: 用于细分客户使用场景，申请开通服务后，可以在腾讯云慧眼人脸核身控制台（https://console.cloud.tencent.com/faceid） 自助接入里面创建，审核通过后即可调用。如有疑问，请添加腾讯云人脸核身小助手进行咨询。
+        # 示例值：1
+        # @type RuleId: String
 
-        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos, :Encryption
+        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos, :Encryption, :RuleId
 
-        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil, encryption=nil)
+        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil, encryption=nil, ruleid=nil)
           @CompareLib = comparelib
           @IdCard = idcard
           @Name = name
@@ -2100,6 +2103,7 @@ module TencentCloud
           @Extra = extra
           @UseCos = usecos
           @Encryption = encryption
+          @RuleId = ruleid
         end
 
         def deserialize(params)
@@ -2114,6 +2118,7 @@ module TencentCloud
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
           end
+          @RuleId = params['RuleId']
         end
       end
 

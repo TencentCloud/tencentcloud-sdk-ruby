@@ -5972,7 +5972,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param InstanceType: 资产类型
         # @type InstanceType: String
-        # @param Level: 风险等级
+        # @param Level: 风险等级 low:低危 high:高危 middle:中危 info:提示 extreme:严重
         # @type Level: String
         # @param Protocol: 协议
         # @type Protocol: String

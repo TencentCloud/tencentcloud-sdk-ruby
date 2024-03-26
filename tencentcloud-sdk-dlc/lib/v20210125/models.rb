@@ -9319,6 +9319,79 @@ module TencentCloud
         end
       end
 
+      # QueryTaskCostDetail请求参数结构体
+      class QueryTaskCostDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。
+        # task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
+        # task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
+        # task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。
+        # task-operator- string （子uin过滤）
+        # @type Filters: Array
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。默认为45天前的当前时刻
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
+        # @type EndTime: String
+        # @param DataEngineName: 数据引擎名称，用于筛选
+        # @type DataEngineName: String
+        # @param SearchAfter: 下一页的标识
+        # @type SearchAfter: String
+        # @param PageSize: 每页的大小
+        # @type PageSize: Integer
+
+        attr_accessor :Filters, :StartTime, :EndTime, :DataEngineName, :SearchAfter, :PageSize
+
+        def initialize(filters=nil, starttime=nil, endtime=nil, dataenginename=nil, searchafter=nil, pagesize=nil)
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @DataEngineName = dataenginename
+          @SearchAfter = searchafter
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DataEngineName = params['DataEngineName']
+          @SearchAfter = params['SearchAfter']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # QueryTaskCostDetail返回参数结构体
+      class QueryTaskCostDetailResponse < TencentCloud::Common::AbstractModel
+        # @param SearchAfter: 下一页的标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchAfter: String
+        # @param Data: 返回的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SearchAfter, :Data, :RequestId
+
+        def initialize(searchafter=nil, data=nil, requestid=nil)
+          @SearchAfter = searchafter
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SearchAfter = params['SearchAfter']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RenewDataEngine请求参数结构体
       class RenewDataEngineRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineName: CU队列名称

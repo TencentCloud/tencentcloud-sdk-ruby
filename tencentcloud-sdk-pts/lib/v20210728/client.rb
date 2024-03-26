@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建环境
+
+        # @param request: Request instance for CreateEnvironment.
+        # @type request: :class:`Tencentcloud::pts::V20210728::CreateEnvironmentRequest`
+        # @rtype: :class:`Tencentcloud::pts::V20210728::CreateEnvironmentResponse`
+        def CreateEnvironment(request)
+          body = send_request('CreateEnvironment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建文件
 
         # @param request: Request instance for CreateFile.
@@ -279,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCronJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除环境
+
+        # @param request: Request instance for DeleteEnvironments.
+        # @type request: :class:`Tencentcloud::pts::V20210728::DeleteEnvironmentsRequest`
+        # @rtype: :class:`Tencentcloud::pts::V20210728::DeleteEnvironmentsResponse`
+        def DeleteEnvironments(request)
+          body = send_request('DeleteEnvironments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEnvironmentsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -495,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCronJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看环境列表
+
+        # @param request: Request instance for DescribeEnvironments.
+        # @type request: :class:`Tencentcloud::pts::V20210728::DescribeEnvironmentsRequest`
+        # @rtype: :class:`Tencentcloud::pts::V20210728::DescribeEnvironmentsResponse`
+        def DescribeEnvironments(request)
+          body = send_request('DescribeEnvironments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvironmentsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -975,6 +1047,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateCronJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新环境
+
+        # @param request: Request instance for UpdateEnvironment.
+        # @type request: :class:`Tencentcloud::pts::V20210728::UpdateEnvironmentRequest`
+        # @rtype: :class:`Tencentcloud::pts::V20210728::UpdateEnvironmentResponse`
+        def UpdateEnvironment(request)
+          body = send_request('UpdateEnvironment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateEnvironmentResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -9036,71 +9036,66 @@ module TencentCloud
         # 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
         # 使用*或空字符串可查询所有日志
         # @type Query: String
+        # @param SyntaxRule: 检索语法规则，默认值为0，推荐使用1 (CQL语法)。
+        # 0：Lucene语法，1：CQL语法。
+        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        # @type SyntaxRule: Integer
         # @param TopicId: - 要检索分析的日志主题ID，仅能指定一个日志主题。
         # - 如需同时检索多个日志主题，请使用Topics参数。
         # @type TopicId: String
+        # @param Topics: - 要检索分析的日志主题列表，最大支持20个日志主题。
+        # - 检索单个日志主题时请使用TopicId。
+        # - 不能同时使用TopicId和Topics。
+        # @type Topics: Array
         # @param Limit: 表示单次查询返回的原始日志条数，默认为100，最大值为1000，获取后续日志需使用Context参数
         # 注意：
         # * 仅当检索分析语句(Query)不包含SQL时有效
         # * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
         # @type Limit: Integer
+        # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # 注意：
+        # * 仅当检索分析语句(Query)不包含SQL时有效
+        # * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+        # @type Sort: String
         # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
         # 注意：
         # * 透传该参数时，请勿修改除该参数外的其它参数
         # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
         # * 仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
         # @type Context: String
-        # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
-        # 注意：
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
-        # @type Sort: String
-        # @param UseNewAnalysis: 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
-        # 为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
-        # 两种返回方式在编码格式上有少量区别，建议使用true
-        # @type UseNewAnalysis: Boolean
         # @param SamplingRate: 执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
         # 0：自动采样;
         # 0～1：按指定采样率采样，例如0.02;
         # 1：不采样，即精确分析
         # 默认值为1
         # @type SamplingRate: Float
-        # @param SyntaxRule: 检索语法规则，默认值为0。
-        # 0：Lucene语法，1：CQL语法。
-        # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
-        # @type SyntaxRule: Integer
-        # @param Topics: - 要检索分析的日志主题列表，最大支持20个日志主题。
-        # - 检索单个日志主题时请使用TopicId。
-        # - 不能同时使用TopicId和Topics。
-        # @type Topics: Array
+        # @param UseNewAnalysis: 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
+        # 为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
+        # 两种返回方式在编码格式上有少量区别，建议使用true
+        # @type UseNewAnalysis: Boolean
 
-        attr_accessor :From, :To, :Query, :TopicId, :Limit, :Context, :Sort, :UseNewAnalysis, :SamplingRate, :SyntaxRule, :Topics
+        attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Limit, :Sort, :Context, :SamplingRate, :UseNewAnalysis
 
-        def initialize(from=nil, to=nil, query=nil, topicid=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil, samplingrate=nil, syntaxrule=nil, topics=nil)
+        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topicid=nil, topics=nil, limit=nil, sort=nil, context=nil, samplingrate=nil, usenewanalysis=nil)
           @From = from
           @To = to
           @Query = query
-          @TopicId = topicid
-          @Limit = limit
-          @Context = context
-          @Sort = sort
-          @UseNewAnalysis = usenewanalysis
-          @SamplingRate = samplingrate
           @SyntaxRule = syntaxrule
+          @TopicId = topicid
           @Topics = topics
+          @Limit = limit
+          @Sort = sort
+          @Context = context
+          @SamplingRate = samplingrate
+          @UseNewAnalysis = usenewanalysis
         end
 
         def deserialize(params)
           @From = params['From']
           @To = params['To']
           @Query = params['Query']
-          @TopicId = params['TopicId']
-          @Limit = params['Limit']
-          @Context = params['Context']
-          @Sort = params['Sort']
-          @UseNewAnalysis = params['UseNewAnalysis']
-          @SamplingRate = params['SamplingRate']
           @SyntaxRule = params['SyntaxRule']
+          @TopicId = params['TopicId']
           unless params['Topics'].nil?
             @Topics = []
             params['Topics'].each do |i|
@@ -9109,6 +9104,11 @@ module TencentCloud
               @Topics << multitopicsearchinformation_tmp
             end
           end
+          @Limit = params['Limit']
+          @Sort = params['Sort']
+          @Context = params['Context']
+          @SamplingRate = params['SamplingRate']
+          @UseNewAnalysis = params['UseNewAnalysis']
         end
       end
 

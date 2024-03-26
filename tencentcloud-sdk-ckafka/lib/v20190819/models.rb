@@ -2046,12 +2046,12 @@ module TencentCloud
       class CreateInstancePostRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type InstanceName: String
-        # @param BandWidth: 实例内网峰值带宽。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格。
-        # @type BandWidth: Integer
         # @param VpcId: 创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
         # @type VpcId: String
         # @param SubnetId: 子网id。创建实例默认接入点所在的子网对应的子网 id
         # @type SubnetId: String
+        # @param BandWidth: 实例内网峰值带宽。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格。
+        # @type BandWidth: Integer
         # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
         # @type InstanceType: Integer
         # @param MsgRetentionTime: 实例日志的默认最长保留时间，单位分钟。不传入该参数时默认为 1440 分钟（1天），最大30天。当 topic 显式设置消息保留时间时，以 topic 保留时间为准
@@ -2081,13 +2081,13 @@ module TencentCloud
         # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
         # @type PublicNetworkMonthly: Integer
 
-        attr_accessor :InstanceName, :BandWidth, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :BandWidth, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly
 
-        def initialize(instancename=nil, bandwidth=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, bandwidth=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil)
           @InstanceName = instancename
-          @BandWidth = bandwidth
           @VpcId = vpcid
           @SubnetId = subnetid
+          @BandWidth = bandwidth
           @InstanceType = instancetype
           @MsgRetentionTime = msgretentiontime
           @ClusterId = clusterid
@@ -2106,9 +2106,9 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceName = params['InstanceName']
-          @BandWidth = params['BandWidth']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @BandWidth = params['BandWidth']
           @InstanceType = params['InstanceType']
           @MsgRetentionTime = params['MsgRetentionTime']
           @ClusterId = params['ClusterId']

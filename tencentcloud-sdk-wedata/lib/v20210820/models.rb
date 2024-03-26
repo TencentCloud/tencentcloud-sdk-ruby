@@ -246,6 +246,12 @@ module TencentCloud
         # @param IsSendSuccess: 0：部分成功，1：全部成功，2：全部失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSendSuccess: Integer
+        # @param InQuitePeriods: 是否在免打扰时间内，0:否, 1:是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InQuitePeriods: Integer
+        # @param RecordId: 告警记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: Integer
         # @param MessageId: 消息ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageId: String
@@ -274,9 +280,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Threshold: Float
 
-        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :MessageId, :Operator, :RegularId, :AlarmRecipientName, :TaskType, :SendResult, :MonitorObjectId, :MonitorObjectName, :Threshold
+        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :InQuitePeriods, :RecordId, :MessageId, :Operator, :RegularId, :AlarmRecipientName, :TaskType, :SendResult, :MonitorObjectId, :MonitorObjectName, :Threshold
 
-        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, messageid=nil, operator=nil, regularid=nil, alarmrecipientname=nil, tasktype=nil, sendresult=nil, monitorobjectid=nil, monitorobjectname=nil, threshold=nil)
+        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, inquiteperiods=nil, recordid=nil, messageid=nil, operator=nil, regularid=nil, alarmrecipientname=nil, tasktype=nil, sendresult=nil, monitorobjectid=nil, monitorobjectname=nil, threshold=nil)
           @AlarmId = alarmid
           @AlarmTime = alarmtime
           @TaskId = taskid
@@ -292,6 +298,8 @@ module TencentCloud
           @InstanceId = instanceid
           @TaskName = taskname
           @IsSendSuccess = issendsuccess
+          @InQuitePeriods = inquiteperiods
+          @RecordId = recordid
           @MessageId = messageid
           @Operator = operator
           @RegularId = regularid
@@ -319,6 +327,8 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @TaskName = params['TaskName']
           @IsSendSuccess = params['IsSendSuccess']
+          @InQuitePeriods = params['InQuitePeriods']
+          @RecordId = params['RecordId']
           @MessageId = params['MessageId']
           @Operator = params['Operator']
           @RegularId = params['RegularId']
@@ -1864,15 +1874,19 @@ module TencentCloud
         # @type FailedCount: Integer
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
+        # @param TaskNames: 实际传的为taskId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :RequestId
+        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :TaskNames, :RequestId
 
-        def initialize(successcount=nil, failedcount=nil, totalcount=nil, requestid=nil)
+        def initialize(successcount=nil, failedcount=nil, totalcount=nil, tasknames=nil, requestid=nil)
           @SuccessCount = successcount
           @FailedCount = failedcount
           @TotalCount = totalcount
+          @TaskNames = tasknames
           @RequestId = requestid
         end
 
@@ -1880,6 +1894,7 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
+          @TaskNames = params['TaskNames']
           @RequestId = params['RequestId']
         end
       end
@@ -2218,15 +2233,18 @@ module TencentCloud
         # @type FailedCount: Integer
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
+        # @param TaskNames: 实际传的为taskId
+        # @type TaskNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :RequestId
+        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :TaskNames, :RequestId
 
-        def initialize(successcount=nil, failedcount=nil, totalcount=nil, requestid=nil)
+        def initialize(successcount=nil, failedcount=nil, totalcount=nil, tasknames=nil, requestid=nil)
           @SuccessCount = successcount
           @FailedCount = failedcount
           @TotalCount = totalcount
+          @TaskNames = tasknames
           @RequestId = requestid
         end
 
@@ -2234,6 +2252,7 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
+          @TaskNames = params['TaskNames']
           @RequestId = params['RequestId']
         end
       end
@@ -4500,10 +4519,12 @@ module TencentCloud
         # @type COSRegion: String
         # @param ConnectResult: 连接测试结果
         # @type ConnectResult: String
+        # @param DevelopmentParams: 开发环境数据源配置
+        # @type DevelopmentParams: String
 
-        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion, :ConnectResult
+        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion, :ConnectResult, :DevelopmentParams
 
-        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil, connectresult=nil)
+        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil, connectresult=nil, developmentparams=nil)
           @Name = name
           @Category = category
           @Type = type
@@ -4522,6 +4543,7 @@ module TencentCloud
           @COSBucket = cosbucket
           @COSRegion = cosregion
           @ConnectResult = connectresult
+          @DevelopmentParams = developmentparams
         end
 
         def deserialize(params)
@@ -4543,6 +4565,7 @@ module TencentCloud
           @COSBucket = params['COSBucket']
           @COSRegion = params['COSRegion']
           @ConnectResult = params['ConnectResult']
+          @DevelopmentParams = params['DevelopmentParams']
         end
       end
 
@@ -6017,10 +6040,19 @@ module TencentCloud
         # @param ShowType: 数据源页面展示类型，与Type对应
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowType: String
+        # @param ProductId: 当前数据源生产源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: Integer
+        # @param DevelopmentId: 当前数据源开发源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DevelopmentId: Integer
+        # @param DevelopmentParams: 同params 内容为开发数据源的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DevelopmentParams: String
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams
 
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -6052,6 +6084,9 @@ module TencentCloud
           @BizParamsString = bizparamsstring
           @ModifiedTime = modifiedtime
           @ShowType = showtype
+          @ProductId = productid
+          @DevelopmentId = developmentid
+          @DevelopmentParams = developmentparams
         end
 
         def deserialize(params)
@@ -6086,6 +6121,9 @@ module TencentCloud
           @BizParamsString = params['BizParamsString']
           @ModifiedTime = params['ModifiedTime']
           @ShowType = params['ShowType']
+          @ProductId = params['ProductId']
+          @DevelopmentId = params['DevelopmentId']
+          @DevelopmentParams = params['DevelopmentParams']
         end
       end
 
@@ -7598,8 +7636,6 @@ module TencentCloud
         # @type PageSize: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param MessageId: 消息ID
-        # @type MessageId: String
         # @param TaskType: 类型
         # @type TaskType: Integer
         # @param AlarmRecipient: 告警接收人ID(逗号分隔)
@@ -7608,21 +7644,26 @@ module TencentCloud
         # @type AlarmRecipientName: String
         # @param AlarmTime: 告警时间
         # @type AlarmTime: String
+        # @param MessageId: 消息ID
+        # @type MessageId: String
+        # @param RecordId: 告警记录id
+        # @type RecordId: Integer
         # @param MonitorType: 监控对象类型(1:所有任务,2:指定任务,3:指定责任人,4:指定资源组)
         # @type MonitorType: Integer
 
-        attr_accessor :AlarmId, :PageNumber, :PageSize, :ProjectId, :MessageId, :TaskType, :AlarmRecipient, :AlarmRecipientName, :AlarmTime, :MonitorType
+        attr_accessor :AlarmId, :PageNumber, :PageSize, :ProjectId, :TaskType, :AlarmRecipient, :AlarmRecipientName, :AlarmTime, :MessageId, :RecordId, :MonitorType
 
-        def initialize(alarmid=nil, pagenumber=nil, pagesize=nil, projectid=nil, messageid=nil, tasktype=nil, alarmrecipient=nil, alarmrecipientname=nil, alarmtime=nil, monitortype=nil)
+        def initialize(alarmid=nil, pagenumber=nil, pagesize=nil, projectid=nil, tasktype=nil, alarmrecipient=nil, alarmrecipientname=nil, alarmtime=nil, messageid=nil, recordid=nil, monitortype=nil)
           @AlarmId = alarmid
           @PageNumber = pagenumber
           @PageSize = pagesize
           @ProjectId = projectid
-          @MessageId = messageid
           @TaskType = tasktype
           @AlarmRecipient = alarmrecipient
           @AlarmRecipientName = alarmrecipientname
           @AlarmTime = alarmtime
+          @MessageId = messageid
+          @RecordId = recordid
           @MonitorType = monitortype
         end
 
@@ -7631,11 +7672,12 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
           @ProjectId = params['ProjectId']
-          @MessageId = params['MessageId']
           @TaskType = params['TaskType']
           @AlarmRecipient = params['AlarmRecipient']
           @AlarmRecipientName = params['AlarmRecipientName']
           @AlarmTime = params['AlarmTime']
+          @MessageId = params['MessageId']
+          @RecordId = params['RecordId']
           @MonitorType = params['MonitorType']
         end
       end
@@ -9283,7 +9325,7 @@ module TencentCloud
 
       # DescribeDataTypes请求参数结构体
       class DescribeDataTypesRequest < TencentCloud::Common::AbstractModel
-        # @param DatasourceType: 数据源类型，MYSQL|HIVE|KAFKA|POSTGRE|CDW|ORACLE|SQLSERVER|FTP|HDFS|ICEBERG|HBASE|TDSQL|TDSQLC|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DORIS|CKAFKA|MONGODB|FTP_FILE|HDFS_FILE|DTS_KAFKA|REST_API|FILE|TIDB|SYBASE|TCHOUSE_X 等
+        # @param DatasourceType: 数据源类型，MYSQL|HIVE|KAFKA|POSTGRE|TCHouse-P|ORACLE|SQLSERVER|FTP|HDFS|ICEBERG|HBASE|TDSQL|TDSQLC|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DORIS|CKAFKA|MONGODB|FTP_FILE|HDFS_FILE|DTS_KAFKA|REST_API|FILE|TIDB|SYBASE|TCHOUSE_X 等
         # @type DatasourceType: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: String
@@ -23448,7 +23490,7 @@ module TencentCloud
         # @param TaskBaseInfo: 任务基本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.TaskOpsDto`
-        # @param InstanceCount: 补录计划该任务实例数
+        # @param InstanceCount: 补录该任务当前已生成的实例数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceCount: Integer
         # @param CompletePercent: 补录任务实例完成百分数
@@ -23457,14 +23499,18 @@ module TencentCloud
         # @param SuccessPercent: 补录任务实例成功百分数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessPercent: Integer
+        # @param InstanceTotalCount: 预计生成的总实例个数，由于是异步生成，-1代表实例还未完完全生成
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTotalCount: Integer
 
-        attr_accessor :TaskBaseInfo, :InstanceCount, :CompletePercent, :SuccessPercent
+        attr_accessor :TaskBaseInfo, :InstanceCount, :CompletePercent, :SuccessPercent, :InstanceTotalCount
 
-        def initialize(taskbaseinfo=nil, instancecount=nil, completepercent=nil, successpercent=nil)
+        def initialize(taskbaseinfo=nil, instancecount=nil, completepercent=nil, successpercent=nil, instancetotalcount=nil)
           @TaskBaseInfo = taskbaseinfo
           @InstanceCount = instancecount
           @CompletePercent = completepercent
           @SuccessPercent = successpercent
+          @InstanceTotalCount = instancetotalcount
         end
 
         def deserialize(params)
@@ -23475,6 +23521,7 @@ module TencentCloud
           @InstanceCount = params['InstanceCount']
           @CompletePercent = params['CompletePercent']
           @SuccessPercent = params['SuccessPercent']
+          @InstanceTotalCount = params['InstanceTotalCount']
         end
       end
 
@@ -23983,10 +24030,12 @@ module TencentCloud
         # @type COSRegion: String
         # @param ProjectId: 操作项目id
         # @type ProjectId: String
+        # @param DevelopmentParams: 数据源开发环境配置
+        # @type DevelopmentParams: String
 
-        attr_accessor :Name, :Category, :Type, :ID, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :COSBucket, :COSRegion, :ProjectId
+        attr_accessor :Name, :Category, :Type, :ID, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :COSBucket, :COSRegion, :ProjectId, :DevelopmentParams
 
-        def initialize(name=nil, category=nil, type=nil, id=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, cosbucket=nil, cosregion=nil, projectid=nil)
+        def initialize(name=nil, category=nil, type=nil, id=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, cosbucket=nil, cosregion=nil, projectid=nil, developmentparams=nil)
           @Name = name
           @Category = category
           @Type = type
@@ -24006,6 +24055,7 @@ module TencentCloud
           @COSBucket = cosbucket
           @COSRegion = cosregion
           @ProjectId = projectid
+          @DevelopmentParams = developmentparams
         end
 
         def deserialize(params)
@@ -24028,6 +24078,7 @@ module TencentCloud
           @COSBucket = params['COSBucket']
           @COSRegion = params['COSRegion']
           @ProjectId = params['ProjectId']
+          @DevelopmentParams = params['DevelopmentParams']
         end
       end
 
@@ -26562,6 +26613,33 @@ module TencentCloud
               @DailyScoreList << dailyscoreinfo_tmp
             end
           end
+        end
+      end
+
+      # 数据集成 - 告警免打扰时间
+      class QuietPeriod < TencentCloud::Common::AbstractModel
+        # @param DaysOfWeek: 代表一周里的哪些天，1代表周一，7代表周日，以此类推
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DaysOfWeek: Array
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :DaysOfWeek, :StartTime, :EndTime
+
+        def initialize(daysofweek=nil, starttime=nil, endtime=nil)
+          @DaysOfWeek = daysofweek
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @DaysOfWeek = params['DaysOfWeek']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -32453,6 +32531,9 @@ module TencentCloud
         # @param AlarmRecipientType: 告警接收人类型，0指定人员；1任务责任人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmRecipientType: Integer
+        # @param QuietPeriods: 免打扰时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuietPeriods: Array
         # @param WeComHook: 企业微信群Hook地址，多个hook地址使用,隔开
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeComHook: String
@@ -32484,9 +32565,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LarkWebHooks: String
 
-        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks
+        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks
 
-        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil)
+        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil)
           @TaskId = taskid
           @RegularName = regularname
           @RegularStatus = regularstatus
@@ -32508,6 +32589,7 @@ module TencentCloud
           @NodeName = nodename
           @AlarmIndicatorInfos = alarmindicatorinfos
           @AlarmRecipientType = alarmrecipienttype
+          @QuietPeriods = quietperiods
           @WeComHook = wecomhook
           @UpdateTime = updatetime
           @OperatorUin = operatoruin
@@ -32549,6 +32631,14 @@ module TencentCloud
             end
           end
           @AlarmRecipientType = params['AlarmRecipientType']
+          unless params['QuietPeriods'].nil?
+            @QuietPeriods = []
+            params['QuietPeriods'].each do |i|
+              quietperiod_tmp = QuietPeriod.new
+              quietperiod_tmp.deserialize(i)
+              @QuietPeriods << quietperiod_tmp
+            end
+          end
           @WeComHook = params['WeComHook']
           @UpdateTime = params['UpdateTime']
           @OperatorUin = params['OperatorUin']

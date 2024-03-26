@@ -2945,6 +2945,9 @@ module TencentCloud
         # @param KafkaConfig: kafka配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaConfig: :class:`Tencentcloud::Dts.v20211206.models.SubscribeKafkaConfig`
+        # @param KafkaVersion: 订阅内置kafka的版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVersion: String
         # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessType: String
@@ -2968,9 +2971,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :Topic, :Broker, :SubscribeMode, :Protocol, :SubscribeObjects, :KafkaConfig, :AccessType, :Endpoints, :PipelineInfo, :Tags, :Errors, :ExtraAttr, :RequestId
+        attr_accessor :SubscribeId, :SubscribeName, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :Topic, :Broker, :SubscribeMode, :Protocol, :SubscribeObjects, :KafkaConfig, :KafkaVersion, :AccessType, :Endpoints, :PipelineInfo, :Tags, :Errors, :ExtraAttr, :RequestId
 
-        def initialize(subscribeid=nil, subscribename=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, topic=nil, broker=nil, subscribemode=nil, protocol=nil, subscribeobjects=nil, kafkaconfig=nil, accesstype=nil, endpoints=nil, pipelineinfo=nil, tags=nil, errors=nil, extraattr=nil, requestid=nil)
+        def initialize(subscribeid=nil, subscribename=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, topic=nil, broker=nil, subscribemode=nil, protocol=nil, subscribeobjects=nil, kafkaconfig=nil, kafkaversion=nil, accesstype=nil, endpoints=nil, pipelineinfo=nil, tags=nil, errors=nil, extraattr=nil, requestid=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @Product = product
@@ -2992,6 +2995,7 @@ module TencentCloud
           @Protocol = protocol
           @SubscribeObjects = subscribeobjects
           @KafkaConfig = kafkaconfig
+          @KafkaVersion = kafkaversion
           @AccessType = accesstype
           @Endpoints = endpoints
           @PipelineInfo = pipelineinfo
@@ -3033,6 +3037,7 @@ module TencentCloud
             @KafkaConfig = SubscribeKafkaConfig.new
             @KafkaConfig.deserialize(params['KafkaConfig'])
           end
+          @KafkaVersion = params['KafkaVersion']
           @AccessType = params['AccessType']
           unless params['Endpoints'].nil?
             @Endpoints = []
@@ -3761,7 +3766,7 @@ module TencentCloud
         # @param Region: 地域英文名，如：ap-guangzhou
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Role: tdsql mysql版的节点类型，枚举值为proxy、set。tdsqlmysql必填
+        # @param Role: 节点类型，proxy表示节点类型为主机，set表示节点类型为节点。proxy类型必须填在数组第一项。tdsqlmysql类型的源/目标配置必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param DbKernel: 数据库内核类型，tdsql中用于区分不同内核：percona,mariadb,mysql
@@ -6962,7 +6967,7 @@ module TencentCloud
         # @param DatabaseType: 实例数据库类型，如：mysql,redis,mongodb,postgresql,mariadb,percona 等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseType: String
-        # @param Info: 数据库信息。注意：如果数据类型为tdsqlmysql，此处Endpoint数组的顺序应该与set顺序对应，第一个分片（shardkey范围起始为0的分片）必须要输入在第一个位置
+        # @param Info: 数据库信息。注意：如果数据库类型为tdsqlmysql，此处Endpoint数组的顺序应满足规则：proxy节点放在set节点之前。如果SrcConnectType选择proxy接入则只需要填写proxy节点即可。如果选择set接入，数组中第一个set节点必须是shardkey范围起始为0的分片
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: Array
 
