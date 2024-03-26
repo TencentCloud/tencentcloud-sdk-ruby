@@ -2006,6 +2006,68 @@ module TencentCloud
         end
       end
 
+      # GetFaceIdRiskInfo请求参数结构体
+      class GetFaceIdRiskInfoRequest < TencentCloud::Common::AbstractModel
+        # @param FaceIdToken: SDK人脸核身流程的标识，调用GetFaceidRiskInfoToken接口时生成。
+        # @type FaceIdToken: String
+
+        attr_accessor :FaceIdToken
+
+        def initialize(faceidtoken=nil)
+          @FaceIdToken = faceidtoken
+        end
+
+        def deserialize(params)
+          @FaceIdToken = params['FaceIdToken']
+        end
+      end
+
+      # GetFaceIdRiskInfo返回参数结构体
+      class GetFaceIdRiskInfoResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceInfoTag: 描述当前请求所在设备的风险标签，详情如下： 01-设备疑似被Root/设备疑似越狱 02-设备疑似被注入 03-设备疑似为模拟器 04-设备疑似存在风险操作 05-摄像头疑似被劫持 06-疑似黑产设备
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceInfoTag: String
+        # @param DeviceInfoLevel: 描述当前请求所在设备的风险等级，共4级，详情如下： 1 - 安全 2 - 低风险 3 - 中风险 4 - 高危 ，-1表示未获取到风险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceInfoLevel: Integer
+        # @param OpenId: 设备id标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param CameraInfoLevel: 描述当前请求所在设备的相机指纹风险等级，共4级，详情如下： 1 - 安全 2 - 低风险 3 - 中风险 4 - 高危 ，-1表示未获取到风险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CameraInfoLevel: Integer
+        # @param CameraInfoTag: 描述当前请求所在设备的相机指纹风险标签，详情如下： 01-设备疑似被Root/设备疑似越狱 02-设备疑似被注入 03-设备疑似为模拟器 04-设备疑似存在风险操作 05-摄像头疑似被劫持 06-疑似黑产设备，空表示没有相机指纹风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CameraInfoTag: String
+        # @param Extra: 获取token时透传的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceInfoTag, :DeviceInfoLevel, :OpenId, :CameraInfoLevel, :CameraInfoTag, :Extra, :RequestId
+
+        def initialize(deviceinfotag=nil, deviceinfolevel=nil, openid=nil, camerainfolevel=nil, camerainfotag=nil, extra=nil, requestid=nil)
+          @DeviceInfoTag = deviceinfotag
+          @DeviceInfoLevel = deviceinfolevel
+          @OpenId = openid
+          @CameraInfoLevel = camerainfolevel
+          @CameraInfoTag = camerainfotag
+          @Extra = extra
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeviceInfoTag = params['DeviceInfoTag']
+          @DeviceInfoLevel = params['DeviceInfoLevel']
+          @OpenId = params['OpenId']
+          @CameraInfoLevel = params['CameraInfoLevel']
+          @CameraInfoTag = params['CameraInfoTag']
+          @Extra = params['Extra']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetFaceIdToken请求参数结构体
       class GetFaceIdTokenRequest < TencentCloud::Common::AbstractModel
         # @param CompareLib: 本地上传照片(LOCAL)、商业库(BUSINESS)
@@ -2057,6 +2119,46 @@ module TencentCloud
 
       # GetFaceIdToken返回参数结构体
       class GetFaceIdTokenResponse < TencentCloud::Common::AbstractModel
+        # @param FaceIdToken: 有效期 10分钟。只能完成1次核身。
+        # @type FaceIdToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FaceIdToken, :RequestId
+
+        def initialize(faceidtoken=nil, requestid=nil)
+          @FaceIdToken = faceidtoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FaceIdToken = params['FaceIdToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFaceidRiskInfoToken请求参数结构体
+      class GetFaceidRiskInfoTokenRequest < TencentCloud::Common::AbstractModel
+        # @param Meta: SDK中生成的Meta字符串
+        # @type Meta: String
+        # @param Extra: 透传参数 1000长度字符串
+        # @type Extra: String
+
+        attr_accessor :Meta, :Extra
+
+        def initialize(meta=nil, extra=nil)
+          @Meta = meta
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @Meta = params['Meta']
+          @Extra = params['Extra']
+        end
+      end
+
+      # GetFaceidRiskInfoToken返回参数结构体
+      class GetFaceidRiskInfoTokenResponse < TencentCloud::Common::AbstractModel
         # @param FaceIdToken: 有效期 10分钟。只能完成1次核身。
         # @type FaceIdToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

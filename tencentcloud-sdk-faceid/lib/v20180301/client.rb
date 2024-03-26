@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 完成验证后，用FaceIdToken调用本接口获取设备风险相关信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+
+        # @param request: Request instance for GetFaceIdRiskInfo.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetFaceIdRiskInfoRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetFaceIdRiskInfoResponse`
+        def GetFaceIdRiskInfo(request)
+          body = send_request('GetFaceIdRiskInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFaceIdRiskInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
 
         # @param request: Request instance for GetFaceIdToken.
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetFaceIdTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取风险结果信息，该Token仅能核身一次。
+
+        # @param request: Request instance for GetFaceidRiskInfoToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetFaceidRiskInfoTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetFaceidRiskInfoTokenResponse`
+        def GetFaceidRiskInfoToken(request)
+          body = send_request('GetFaceidRiskInfoToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFaceidRiskInfoTokenResponse.new
             model.deserialize(response['Response'])
             model
           else

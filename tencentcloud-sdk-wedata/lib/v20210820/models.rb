@@ -24855,10 +24855,19 @@ module TencentCloud
         # @type DependencyWorkflow: String
         # @param DependencyConfigDTOs: 依赖配置
         # @type DependencyConfigDTOs: Array
+        # @param ExecutionTTL: 执行耗时
+        # @type ExecutionTTL: Integer
+        # @param ScriptChange: 脚本是否改变
+        # @type ScriptChange: Boolean
+        # @param InChargeIds: 责任人id
+        # @type InChargeIds: Array
 
-        attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs
+        attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
+        extend Gem::Deprecate
+        deprecate :InCharge, :none, 2024, 3
+        deprecate :InCharge=, :none, 2024, 3
 
-        def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil)
+        def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
           @TaskId = taskid
           @DelayTime = delaytime
@@ -24888,6 +24897,9 @@ module TencentCloud
           @TargetServer = targetserver
           @DependencyWorkflow = dependencyworkflow
           @DependencyConfigDTOs = dependencyconfigdtos
+          @ExecutionTTL = executionttl
+          @ScriptChange = scriptchange
+          @InChargeIds = inchargeids
         end
 
         def deserialize(params)
@@ -24941,6 +24953,9 @@ module TencentCloud
               @DependencyConfigDTOs << dependencyconfig_tmp
             end
           end
+          @ExecutionTTL = params['ExecutionTTL']
+          @ScriptChange = params['ScriptChange']
+          @InChargeIds = params['InChargeIds']
         end
       end
 

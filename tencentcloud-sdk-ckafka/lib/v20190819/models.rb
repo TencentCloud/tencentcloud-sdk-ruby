@@ -8538,7 +8538,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param RuleName: ACL策略名
         # @type RuleName: String
-        # @param IsApplied: 是否应用到新增的Topic
+        # @param IsApplied: 修改预设规则时传入,是否应用到新增的Topic
         # @type IsApplied: Integer
 
         attr_accessor :InstanceId, :RuleName, :IsApplied

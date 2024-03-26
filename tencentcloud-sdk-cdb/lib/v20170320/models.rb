@@ -2495,10 +2495,14 @@ module TencentCloud
         # @type CageId: String
         # @param ProjectId: 项目ID，默认项目ID0
         # @type ProjectId: Integer
+        # @param PayType: 付费类型，PRE_PAID：包年包月，USED_PAID：按量计费。默认为按量计费
+        # @type PayType: String
+        # @param Period: 实例时长，PayType为PRE_PAID时必传，单位：月，可选值包括 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
+        # @type Period: Integer
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period
 
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -2520,6 +2524,8 @@ module TencentCloud
           @DryRun = dryrun
           @CageId = cageid
           @ProjectId = projectid
+          @PayType = paytype
+          @Period = period
         end
 
         def deserialize(params)
@@ -2551,6 +2557,8 @@ module TencentCloud
           @DryRun = params['DryRun']
           @CageId = params['CageId']
           @ProjectId = params['ProjectId']
+          @PayType = params['PayType']
+          @Period = params['Period']
         end
       end
 
@@ -12841,6 +12849,30 @@ module TencentCloud
         end
       end
 
+      # 任务列表中的部分任务支持特定的附加信息
+      class TaskAttachInfo < TencentCloud::Common::AbstractModel
+        # @param AttachKey: 升级任务：
+        # ”FastUpgradeStatus“：表示升级类型。1-原地升级；0-普通升级。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachKey: String
+        # @param AttachValue: 升级任务：
+        # ”FastUpgradeStatus“：表示升级类型。1-原地升级；0-普通升级。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachValue: String
+
+        attr_accessor :AttachKey, :AttachValue
+
+        def initialize(attachkey=nil, attachvalue=nil)
+          @AttachKey = attachkey
+          @AttachValue = attachvalue
+        end
+
+        def deserialize(params)
+          @AttachKey = params['AttachKey']
+          @AttachValue = params['AttachValue']
+        end
+      end
+
       # 实例任务详情
       class TaskDetail < TencentCloud::Common::AbstractModel
         # @param Code: 错误码。
@@ -12885,10 +12917,13 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param AsyncRequestId: 异步任务的请求 ID。
         # @type AsyncRequestId: String
+        # @param TaskAttachInfo: 任务的附加信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskAttachInfo: Array
 
-        attr_accessor :Code, :Message, :JobId, :Progress, :TaskStatus, :TaskType, :StartTime, :EndTime, :InstanceIds, :AsyncRequestId
+        attr_accessor :Code, :Message, :JobId, :Progress, :TaskStatus, :TaskType, :StartTime, :EndTime, :InstanceIds, :AsyncRequestId, :TaskAttachInfo
 
-        def initialize(code=nil, message=nil, jobid=nil, progress=nil, taskstatus=nil, tasktype=nil, starttime=nil, endtime=nil, instanceids=nil, asyncrequestid=nil)
+        def initialize(code=nil, message=nil, jobid=nil, progress=nil, taskstatus=nil, tasktype=nil, starttime=nil, endtime=nil, instanceids=nil, asyncrequestid=nil, taskattachinfo=nil)
           @Code = code
           @Message = message
           @JobId = jobid
@@ -12899,6 +12934,7 @@ module TencentCloud
           @EndTime = endtime
           @InstanceIds = instanceids
           @AsyncRequestId = asyncrequestid
+          @TaskAttachInfo = taskattachinfo
         end
 
         def deserialize(params)
@@ -12912,6 +12948,14 @@ module TencentCloud
           @EndTime = params['EndTime']
           @InstanceIds = params['InstanceIds']
           @AsyncRequestId = params['AsyncRequestId']
+          unless params['TaskAttachInfo'].nil?
+            @TaskAttachInfo = []
+            params['TaskAttachInfo'].each do |i|
+              taskattachinfo_tmp = TaskAttachInfo.new
+              taskattachinfo_tmp.deserialize(i)
+              @TaskAttachInfo << taskattachinfo_tmp
+            end
+          end
         end
       end
 

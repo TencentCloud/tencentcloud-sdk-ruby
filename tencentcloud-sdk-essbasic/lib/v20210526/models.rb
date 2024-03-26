@@ -1419,29 +1419,32 @@ module TencentCloud
         # </ul>
         # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowId: 合同流程ID，为32位字符串。 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
-        # @type FlowId: String
         # @param Approvers: 补充企业签署人信息。
 
         # - 如果发起方指定的补充签署人是企业签署人，则需要提供企业名称或者企业OpenId；
 
         # - 如果不指定，则使用姓名和手机号进行补充。
         # @type Approvers: Array
+        # @param FlowId: 合同流程ID，为32位字符串。 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # @type FlowId: String
         # @param FillApproverType: 签署人信息补充方式
 
         # <ul><li>**1**: 表示往未指定签署人的节点，添加一个明确的签署人，支持企业或个人签署方。</li></ul>
         # @type FillApproverType: Integer
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param FlowGroupId: 合同流程组的组ID, 在合同流程组场景下，生成合同流程组的签署链接时需要赋值
+        # @type FlowGroupId: String
 
-        attr_accessor :Agent, :FlowId, :Approvers, :FillApproverType, :Operator
+        attr_accessor :Agent, :Approvers, :FlowId, :FillApproverType, :Operator, :FlowGroupId
 
-        def initialize(agent=nil, flowid=nil, approvers=nil, fillapprovertype=nil, operator=nil)
+        def initialize(agent=nil, approvers=nil, flowid=nil, fillapprovertype=nil, operator=nil, flowgroupid=nil)
           @Agent = agent
-          @FlowId = flowid
           @Approvers = approvers
+          @FlowId = flowid
           @FillApproverType = fillapprovertype
           @Operator = operator
+          @FlowGroupId = flowgroupid
         end
 
         def deserialize(params)
@@ -1449,7 +1452,6 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @FlowId = params['FlowId']
           unless params['Approvers'].nil?
             @Approvers = []
             params['Approvers'].each do |i|
@@ -1458,11 +1460,13 @@ module TencentCloud
               @Approvers << fillapproverinfo_tmp
             end
           end
+          @FlowId = params['FlowId']
           @FillApproverType = params['FillApproverType']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @FlowGroupId = params['FlowGroupId']
         end
       end
 
@@ -1786,20 +1790,31 @@ module TencentCloud
         # `此数组的顺序和入参中的FlowGroupInfos顺序一致`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowIds: Array
+        # @param Approvers: 合同组签署方信息。
+        # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowGroupId, :FlowIds, :RequestId
+        attr_accessor :FlowGroupId, :FlowIds, :Approvers, :RequestId
 
-        def initialize(flowgroupid=nil, flowids=nil, requestid=nil)
+        def initialize(flowgroupid=nil, flowids=nil, approvers=nil, requestid=nil)
           @FlowGroupId = flowgroupid
           @FlowIds = flowids
+          @Approvers = approvers
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowGroupId = params['FlowGroupId']
           @FlowIds = params['FlowIds']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              flowgroupapprovers_tmp = FlowGroupApprovers.new
+              flowgroupapprovers_tmp.deserialize(i)
+              @Approvers << flowgroupapprovers_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1859,15 +1874,18 @@ module TencentCloud
         # @param TaskInfos: 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
         # 如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
         # @type TaskInfos: Array
+        # @param Approvers: 合同组签署方信息
+        # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowGroupId, :FlowIds, :TaskInfos, :RequestId
+        attr_accessor :FlowGroupId, :FlowIds, :TaskInfos, :Approvers, :RequestId
 
-        def initialize(flowgroupid=nil, flowids=nil, taskinfos=nil, requestid=nil)
+        def initialize(flowgroupid=nil, flowids=nil, taskinfos=nil, approvers=nil, requestid=nil)
           @FlowGroupId = flowgroupid
           @FlowIds = flowids
           @TaskInfos = taskinfos
+          @Approvers = approvers
           @RequestId = requestid
         end
 
@@ -1880,6 +1898,14 @@ module TencentCloud
               taskinfo_tmp = TaskInfo.new
               taskinfo_tmp.deserialize(i)
               @TaskInfos << taskinfo_tmp
+            end
+          end
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              flowgroupapprovers_tmp = FlowGroupApprovers.new
+              flowgroupapprovers_tmp.deserialize(i)
+              @Approvers << flowgroupapprovers_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5877,13 +5903,15 @@ module TencentCloud
 
         # 注：`使用此参数需要与flow_ids数量一致并且一一对应, 表示在对应同序号的流程中的参与角色ID`，
         # @type RecipientIds: Array
+        # @param FlowGroupUrlInfo: 合同组相关信息，指定合同组子合同和签署方的信息，用于补充动态签署人。
+        # @type FlowGroupUrlInfo: :class:`Tencentcloud::Essbasic.v20210526.models.FlowGroupUrlInfo`
 
-        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :IdCardType, :IdCardNumber, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides, :RecipientIds
+        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :IdCardType, :IdCardNumber, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides, :RecipientIds, :FlowGroupUrlInfo
         extend Gem::Deprecate
         deprecate :Operator, :none, 2024, 3
         deprecate :Operator=, :none, 2024, 3
 
-        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil, hides=nil, recipientids=nil)
+        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, idcardtype=nil, idcardnumber=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil, hides=nil, recipientids=nil, flowgroupurlinfo=nil)
           @Agent = agent
           @FlowIds = flowids
           @FlowGroupId = flowgroupid
@@ -5901,6 +5929,7 @@ module TencentCloud
           @Operator = operator
           @Hides = hides
           @RecipientIds = recipientids
+          @FlowGroupUrlInfo = flowgroupurlinfo
         end
 
         def deserialize(params)
@@ -5927,6 +5956,10 @@ module TencentCloud
           end
           @Hides = params['Hides']
           @RecipientIds = params['RecipientIds']
+          unless params['FlowGroupUrlInfo'].nil?
+            @FlowGroupUrlInfo = FlowGroupUrlInfo.new
+            @FlowGroupUrlInfo.deserialize(params['FlowGroupUrlInfo'])
+          end
         end
       end
 
@@ -7012,10 +7045,12 @@ module TencentCloud
 
         # 注：`补充个人签署方时，若该用户已在电子签完成实名则可通过指定姓名和证件类型、证件号码完成补充。`
         # @type ApproverIdCardNumber: String
+        # @param FlowId: 合同流程ID，补充合同组子合同动态签署人时必传。
+        # @type FlowId: String
 
-        attr_accessor :RecipientId, :OpenId, :ApproverName, :ApproverMobile, :OrganizationName, :OrganizationOpenId, :NotChannelOrganization, :ApproverIdCardType, :ApproverIdCardNumber
+        attr_accessor :RecipientId, :OpenId, :ApproverName, :ApproverMobile, :OrganizationName, :OrganizationOpenId, :NotChannelOrganization, :ApproverIdCardType, :ApproverIdCardNumber, :FlowId
 
-        def initialize(recipientid=nil, openid=nil, approvername=nil, approvermobile=nil, organizationname=nil, organizationopenid=nil, notchannelorganization=nil, approveridcardtype=nil, approveridcardnumber=nil)
+        def initialize(recipientid=nil, openid=nil, approvername=nil, approvermobile=nil, organizationname=nil, organizationopenid=nil, notchannelorganization=nil, approveridcardtype=nil, approveridcardnumber=nil, flowid=nil)
           @RecipientId = recipientid
           @OpenId = openid
           @ApproverName = approvername
@@ -7025,6 +7060,7 @@ module TencentCloud
           @NotChannelOrganization = notchannelorganization
           @ApproverIdCardType = approveridcardtype
           @ApproverIdCardNumber = approveridcardnumber
+          @FlowId = flowid
         end
 
         def deserialize(params)
@@ -7037,6 +7073,7 @@ module TencentCloud
           @NotChannelOrganization = params['NotChannelOrganization']
           @ApproverIdCardType = params['ApproverIdCardType']
           @ApproverIdCardNumber = params['ApproverIdCardNumber']
+          @FlowId = params['FlowId']
         end
       end
 
@@ -7732,6 +7769,55 @@ module TencentCloud
         end
       end
 
+      # 合同组相关信息，指定合同组子合同和签署方的信息，用于补充动态签署人。
+      class FlowGroupApproverInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID。
+        # @type FlowId: String
+        # @param RecipientId: 签署节点ID，用于生成动态签署人链接完成领取。注：`生成动态签署人补充链接时必传。`
+        # @type RecipientId: String
+
+        attr_accessor :FlowId, :RecipientId
+
+        def initialize(flowid=nil, recipientid=nil)
+          @FlowId = flowid
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RecipientId = params['RecipientId']
+        end
+      end
+
+      # 合同组签署方信息
+      class FlowGroupApprovers < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param Approvers: 签署方信息，包含合同ID和角色ID用于定位RecipientId。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approvers: Array
+
+        attr_accessor :FlowId, :Approvers
+
+        def initialize(flowid=nil, approvers=nil)
+          @FlowId = flowid
+          @Approvers = approvers
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              approveritem_tmp = ApproverItem.new
+              approveritem_tmp.deserialize(i)
+              @Approvers << approveritem_tmp
+            end
+          end
+        end
+      end
+
       # 合同组的配置项信息包括：在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
       class FlowGroupOptions < TencentCloud::Common::AbstractModel
         # @param SelfOrganizationApproverSignEach: 发起方企业经办人（即签署人为发起方企业员工）是否需要对子合同进行独立的意愿确认
@@ -7753,6 +7839,29 @@ module TencentCloud
         def deserialize(params)
           @SelfOrganizationApproverSignEach = params['SelfOrganizationApproverSignEach']
           @OtherApproverSignEach = params['OtherApproverSignEach']
+        end
+      end
+
+      # 合同组相关信息，指定合同组子合同和签署方的信息，用于补充动态签署人。
+      class FlowGroupUrlInfo < TencentCloud::Common::AbstractModel
+        # @param FlowGroupApproverInfos: 合同组子合同和签署方的信息，用于补充动态签署人。
+        # @type FlowGroupApproverInfos: Array
+
+        attr_accessor :FlowGroupApproverInfos
+
+        def initialize(flowgroupapproverinfos=nil)
+          @FlowGroupApproverInfos = flowgroupapproverinfos
+        end
+
+        def deserialize(params)
+          unless params['FlowGroupApproverInfos'].nil?
+            @FlowGroupApproverInfos = []
+            params['FlowGroupApproverInfos'].each do |i|
+              flowgroupapproverinfo_tmp = FlowGroupApproverInfo.new
+              flowgroupapproverinfo_tmp.deserialize(i)
+              @FlowGroupApproverInfos << flowgroupapproverinfo_tmp
+            end
+          end
         end
       end
 

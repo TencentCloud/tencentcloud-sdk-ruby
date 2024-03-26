@@ -727,7 +727,7 @@ module TencentCloud
       class CreateFolderRequest < TencentCloud::Common::AbstractModel
         # @param FolderName: 新建文件夹名
         # @type FolderName: String
-        # @param ParentId: 新建文件夹的父目录ID
+        # @param ParentId: 新建文件夹的父目录ID（根目录为"root"）
         # @type ParentId: String
         # @param FolderType: 文件夹类型，0是任务文件夹，1是依赖文件夹
         # @type FolderType: Integer
