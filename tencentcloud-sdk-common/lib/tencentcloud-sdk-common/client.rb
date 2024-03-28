@@ -87,6 +87,7 @@ module TencentCloud
         req.header['X-TC-Language'] = @profile.language
         req.header['X-TC-Token'] = @credential.token if @credential.token
         req.header['X-TC-Content-SHA256'] = 'UNSIGNED-PAYLOAD' if @profile.unsigned_payload
+        req.header['X-TC-TraceId'] = SecureRandom.uuid
         if req.method == 'GET'
           params = AbstractModel.format_params(nil, params)
           req.data = URI.encode_www_form(params)
