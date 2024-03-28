@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 绑定云存用户
+
+        # @param request: Request instance for BindCloudStorageUser.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BindCloudStorageUserRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BindCloudStorageUserResponse`
+        def BindCloudStorageUser(request)
+          body = send_request('BindCloudStorageUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindCloudStorageUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量绑定子设备
 
         # @param request: Request instance for BindDevices.
@@ -221,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开通云存服务
+
+        # @param request: Request instance for CreateIotVideoCloudStorage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateIotVideoCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateIotVideoCloudStorageResponse`
+        def CreateIotVideoCloudStorage(request)
+          body = send_request('CreateIotVideoCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIotVideoCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 LoRa 自定义频点
 
         # @param request: Request instance for CreateLoRaFrequency.
@@ -399,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云存事件
+
+        # @param request: Request instance for DeleteCloudStorageEvent.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteCloudStorageEventRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteCloudStorageEventResponse`
+        def DeleteCloudStorageEvent(request)
+          body = send_request('DeleteCloudStorageEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudStorageEventResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -725,6 +797,294 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备云存服务详情
+
+        # @param request: Request instance for DescribeCloudStorage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageResponse`
+        def DescribeCloudStorage(request)
+          body = send_request('DescribeCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取具有云存的日期
+
+        # @param request: Request instance for DescribeCloudStorageDate.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageDateRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageDateResponse`
+        def DescribeCloudStorageDate(request)
+          body = send_request('DescribeCloudStorageDate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageDateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取云存事件列表
+
+        # @param request: Request instance for DescribeCloudStorageEvents.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageEventsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageEventsResponse`
+        def DescribeCloudStorageEvents(request)
+          body = send_request('DescribeCloudStorageEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取多个云存事件缩略图
+
+        # @param request: Request instance for DescribeCloudStorageMultiThumbnail.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageMultiThumbnailRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageMultiThumbnailResponse`
+        def DescribeCloudStorageMultiThumbnail(request)
+          body = send_request('DescribeCloudStorageMultiThumbnail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageMultiThumbnailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云存服务详情
+
+        # @param request: Request instance for DescribeCloudStorageOrder.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageOrderRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageOrderResponse`
+        def DescribeCloudStorageOrder(request)
+          body = send_request('DescribeCloudStorageOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云存套餐包消耗详细记录
+
+        # @param request: Request instance for DescribeCloudStoragePackageConsumeDetails.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStoragePackageConsumeDetailsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStoragePackageConsumeDetailsResponse`
+        def DescribeCloudStoragePackageConsumeDetails(request)
+          body = send_request('DescribeCloudStoragePackageConsumeDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStoragePackageConsumeDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云存套餐包消耗统计
+
+        # @param request: Request instance for DescribeCloudStoragePackageConsumeStats.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStoragePackageConsumeStatsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStoragePackageConsumeStatsResponse`
+        def DescribeCloudStoragePackageConsumeStats(request)
+          body = send_request('DescribeCloudStoragePackageConsumeStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStoragePackageConsumeStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备图片流数据
+
+        # @param request: Request instance for DescribeCloudStorageStreamData.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageStreamDataRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageStreamDataResponse`
+        def DescribeCloudStorageStreamData(request)
+          body = send_request('DescribeCloudStorageStreamData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageStreamDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取云存事件缩略图
+
+        # @param request: Request instance for DescribeCloudStorageThumbnail.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageThumbnailRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageThumbnailResponse`
+        def DescribeCloudStorageThumbnail(request)
+          body = send_request('DescribeCloudStorageThumbnail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageThumbnailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量拉取云存事件缩略图
+
+        # @param request: Request instance for DescribeCloudStorageThumbnailList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageThumbnailListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageThumbnailListResponse`
+        def DescribeCloudStorageThumbnailList(request)
+          body = send_request('DescribeCloudStorageThumbnailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageThumbnailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取某一天云存时间轴
+
+        # @param request: Request instance for DescribeCloudStorageTime.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageTimeRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageTimeResponse`
+        def DescribeCloudStorageTime(request)
+          body = send_request('DescribeCloudStorageTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取云存用户列表
+
+        # @param request: Request instance for DescribeCloudStorageUsers.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageUsersRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageUsersResponse`
+        def DescribeCloudStorageUsers(request)
+          body = send_request('DescribeCloudStorageUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查看某个设备的详细信息
 
         # @param request: Request instance for DescribeDevice.
@@ -855,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceLocationSolveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据设备信息拉取有效套餐列表
+
+        # @param request: Request instance for DescribeDevicePackages.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDevicePackagesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDevicePackagesResponse`
+        def DescribeDevicePackages(request)
+          body = send_request('DescribeDevicePackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDevicePackagesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1109,6 +1493,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询套餐消耗记录详情
+
+        # @param request: Request instance for DescribePackageConsumeTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribePackageConsumeTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribePackageConsumeTaskResponse`
+        def DescribePackageConsumeTask(request)
+          body = send_request('DescribePackageConsumeTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackageConsumeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询套餐消耗记录列表
+
+        # @param request: Request instance for DescribePackageConsumeTasks.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribePackageConsumeTasksRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribePackageConsumeTasksResponse`
+        def DescribePackageConsumeTasks(request)
+          body = send_request('DescribePackageConsumeTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackageConsumeTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取围栏列表
 
         # @param request: Request instance for DescribePositionFenceList.
@@ -1335,6 +1767,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GenSingleDeviceSignatureOfPublicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取视频防盗链播放URL
+
+        # @param request: Request instance for GenerateSignedVideoURL.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GenerateSignedVideoURLRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GenerateSignedVideoURLResponse`
+        def GenerateSignedVideoURL(request)
+          body = send_request('GenerateSignedVideoURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateSignedVideoURLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1623,6 +2079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTopicRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 继承云存用户
+
+        # @param request: Request instance for InheritCloudStorageUser.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::InheritCloudStorageUserRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::InheritCloudStorageUserResponse`
+        def InheritCloudStorageUser(request)
+          body = send_request('InheritCloudStorageUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InheritCloudStorageUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2069,6 +2549,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重置云存服务
+
+        # @param request: Request instance for ResetCloudStorage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ResetCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ResetCloudStorageResponse`
+        def ResetCloudStorage(request)
+          body = send_request('ResetCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置云存事件
+
+        # @param request: Request instance for ResetCloudStorageEvent.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ResetCloudStorageEventRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ResetCloudStorageEventResponse`
+        def ResetCloudStorageEvent(request)
+          body = send_request('ResetCloudStorageEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetCloudStorageEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 搜索位置空间
 
         # @param request: Request instance for SearchPositionSpace.
@@ -2127,6 +2655,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转移云存服务
+
+        # @param request: Request instance for TransferCloudStorage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::TransferCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::TransferCloudStorageResponse`
+        def TransferCloudStorage(request)
+          body = send_request('TransferCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferCloudStorageResponse.new
             model.deserialize(response['Response'])
             model
           else

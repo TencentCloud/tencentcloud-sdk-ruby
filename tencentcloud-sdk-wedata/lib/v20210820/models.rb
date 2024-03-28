@@ -32874,10 +32874,52 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TenantId: String
+        # @param SelfDepend: 自依赖类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfDepend: Integer
+        # @param ExecutorGroupId: 资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupId: String
+        # @param ExecutorGroupName: 资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupName: String
+        # @param RunPriority: 优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunPriority: String
+        # @param TryLimit: 可充实次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TryLimit: String
+        # @param RetryAble: 可充实
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryAble: String
+        # @param RetryWait: 重试等待事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryWait: String
+        # @param LastSchedulerCommitTime: 最近提交时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastSchedulerCommitTime: String
+        # @param Notes: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Notes: String
+        # @param Creator: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param UpdateUser: 创建人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateUser: String
+        # @param UpdateUserId: 更新人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateUserId: String
+        # @param YarnQueue: yarn队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YarnQueue: String
+        # @param ExecutionTTL: 可执行的timeToLive
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionTTL: Integer
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime, :ExecutionStartTime, :ExecutionEndTime, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :CreateTime, :UserId, :OwnerId, :TenantId
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime, :ExecutionStartTime, :ExecutionEndTime, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :CreateTime, :UserId, :OwnerId, :TenantId, :SelfDepend, :ExecutorGroupId, :ExecutorGroupName, :RunPriority, :TryLimit, :RetryAble, :RetryWait, :LastSchedulerCommitTime, :Notes, :Creator, :UpdateUser, :UpdateUserId, :YarnQueue, :ExecutionTTL
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil, executionstarttime=nil, executionendtime=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, createtime=nil, userid=nil, ownerid=nil, tenantid=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil, executionstarttime=nil, executionendtime=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, createtime=nil, userid=nil, ownerid=nil, tenantid=nil, selfdepend=nil, executorgroupid=nil, executorgroupname=nil, runpriority=nil, trylimit=nil, retryable=nil, retrywait=nil, lastschedulercommittime=nil, notes=nil, creator=nil, updateuser=nil, updateuserid=nil, yarnqueue=nil, executionttl=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -32912,6 +32954,20 @@ module TencentCloud
           @UserId = userid
           @OwnerId = ownerid
           @TenantId = tenantid
+          @SelfDepend = selfdepend
+          @ExecutorGroupId = executorgroupid
+          @ExecutorGroupName = executorgroupname
+          @RunPriority = runpriority
+          @TryLimit = trylimit
+          @RetryAble = retryable
+          @RetryWait = retrywait
+          @LastSchedulerCommitTime = lastschedulercommittime
+          @Notes = notes
+          @Creator = creator
+          @UpdateUser = updateuser
+          @UpdateUserId = updateuserid
+          @YarnQueue = yarnqueue
+          @ExecutionTTL = executionttl
         end
 
         def deserialize(params)
@@ -32949,6 +33005,20 @@ module TencentCloud
           @UserId = params['UserId']
           @OwnerId = params['OwnerId']
           @TenantId = params['TenantId']
+          @SelfDepend = params['SelfDepend']
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @ExecutorGroupName = params['ExecutorGroupName']
+          @RunPriority = params['RunPriority']
+          @TryLimit = params['TryLimit']
+          @RetryAble = params['RetryAble']
+          @RetryWait = params['RetryWait']
+          @LastSchedulerCommitTime = params['LastSchedulerCommitTime']
+          @Notes = params['Notes']
+          @Creator = params['Creator']
+          @UpdateUser = params['UpdateUser']
+          @UpdateUserId = params['UpdateUserId']
+          @YarnQueue = params['YarnQueue']
+          @ExecutionTTL = params['ExecutionTTL']
         end
       end
 

@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建公司资质申请（1、首次使用接口，建议先在云联络中心控制台查看各个资料模版:https://console.cloud.tencent.com/ccc/enterprise/update。2、参数中图片Url建议使用腾讯云Cos存储的临时链接）
+
+        # @param request: Request instance for CreateCompanyApply.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateCompanyApplyRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateCompanyApplyResponse`
+        def CreateCompanyApply(request)
+          body = send_request('CreateCompanyApply', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCompanyApplyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建话机账号
 
         # @param request: Request instance for CreateExtension.
@@ -569,6 +593,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeChatMessagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询公司资质申请列表
+
+        # @param request: Request instance for DescribeCompanyList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeCompanyListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeCompanyListResponse`
+        def DescribeCompanyList(request)
+          body = send_request('DescribeCompanyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCompanyListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1001,6 +1049,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = HangUpCallResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改公司资质申请，只能修改状态为驳回或待审核的申请单。（1、首次使用接口，建议先在云联络中心控制台查看各个资料模版:https://console.cloud.tencent.com/ccc/enterprise/update。2、参数中图片Url建议使用腾讯云Cos存储的临时链接）
+
+        # @param request: Request instance for ModifyCompanyApply.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ModifyCompanyApplyRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ModifyCompanyApplyResponse`
+        def ModifyCompanyApply(request)
+          body = send_request('ModifyCompanyApply', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCompanyApplyResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -396,7 +396,6 @@ module TencentCloud
       # BatchRegisterTargets返回参数结构体
       class BatchRegisterTargetsResponse < TencentCloud::Common::AbstractModel
         # @param FailListenerIdSet: 绑定失败的监听器ID，如为空表示全部绑定成功。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailListenerIdSet: Array
         # @param Message: 绑定失败错误原因信息。
         # @type Message: String

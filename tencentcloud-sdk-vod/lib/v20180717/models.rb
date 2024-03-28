@@ -5942,9 +5942,7 @@ module TencentCloud
 
       # CreateCLSLogset请求参数结构体
       class CreateCLSLogsetRequest < TencentCloud::Common::AbstractModel
-        # @param CLSRegion: 日志集所属地区：
-        # ap-guangzhou：广州；
-        # ap-singapore：新加坡。
+        # @param CLSRegion: 日志集所属的地域，取值有： <li>ap-guangzhou：广州；</li> <li>ap-beijing：北京；</li> <li>ap-chengdu：成都；</li> <li>ap-chongqing：重庆；</li> <li>ap-nanjing：南京；</li> <li>ap-shanghai：上海；</li> <li>ap-singapore：新加坡。</li>
         # @type CLSRegion: String
 
         attr_accessor :CLSRegion
@@ -5980,9 +5978,7 @@ module TencentCloud
 
       # CreateCLSTopic请求参数结构体
       class CreateCLSTopicRequest < TencentCloud::Common::AbstractModel
-        # @param CLSRegion: 日志集所属地区：
-        # ap-guangzhou：广州；
-        # ap-singapore：新加坡。
+        # @param CLSRegion: 日志集所属的地域，取值有： <li>ap-guangzhou：广州；</li> <li>ap-beijing：北京；</li> <li>ap-chengdu：成都；</li> <li>ap-chongqing：重庆；</li> <li>ap-nanjing：南京；</li> <li>ap-shanghai：上海；</li> <li>ap-singapore：新加坡。</li>
         # @type CLSRegion: String
         # @param TopicName: 日志主题名。
         # @type TopicName: String
@@ -7953,9 +7949,7 @@ module TencentCloud
 
       # DeleteCLSTopic请求参数结构体
       class DeleteCLSTopicRequest < TencentCloud::Common::AbstractModel
-        # @param CLSRegion: 日志集所属地区：
-        # ap-guangzhou：广州；
-        # ap-singapore：新加坡。
+        # @param CLSRegion: 日志集所属的地域，取值有： <li>ap-guangzhou：广州；</li> <li>ap-beijing：北京；</li> <li>ap-chengdu：成都；</li> <li>ap-chongqing：重庆；</li> <li>ap-nanjing：南京；</li> <li>ap-shanghai：上海；</li> <li>ap-singapore：新加坡。</li>
         # @type CLSRegion: String
         # @param TopicId: 日志主题 ID。
         # @type TopicId: String
@@ -9262,9 +9256,7 @@ module TencentCloud
 
       # DescribeCLSLogsets请求参数结构体
       class DescribeCLSLogsetsRequest < TencentCloud::Common::AbstractModel
-        # @param CLSRegion: CLS 日志集所属的地域，取值有：
-        # ap-guangzhou：广州；
-        # ap-singapore：新加坡。
+        # @param CLSRegion: 日志集所属的地域，取值有： <li>ap-guangzhou：广州；</li> <li>ap-beijing：北京；</li> <li>ap-chengdu：成都；</li> <li>ap-chongqing：重庆；</li> <li>ap-nanjing：南京；</li> <li>ap-shanghai：上海；</li> <li>ap-singapore：新加坡。</li>
         # @type CLSRegion: String
 
         attr_accessor :CLSRegion
@@ -9358,9 +9350,7 @@ module TencentCloud
 
       # DescribeCLSTopics请求参数结构体
       class DescribeCLSTopicsRequest < TencentCloud::Common::AbstractModel
-        # @param CLSRegion: 日志集所属地区：
-        # ap-guangzhou：广州；
-        # ap-singapore：新加坡。
+        # @param CLSRegion: 日志集所属的地域，取值有： <li>ap-guangzhou：广州；</li> <li>ap-beijing：北京；</li> <li>ap-chengdu：成都；</li> <li>ap-chongqing：重庆；</li> <li>ap-nanjing：南京；</li> <li>ap-shanghai：上海；</li> <li>ap-singapore：新加坡。</li>
         # @type CLSRegion: String
         # @param LogsetId: 日志主题所属日志集 ID。
         # @type LogsetId: String

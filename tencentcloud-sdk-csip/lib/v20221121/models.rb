@@ -453,7 +453,7 @@ module TencentCloud
         # @type InstanceType: String
         # @param AffectAsset: 影响资产
         # @type AffectAsset: String
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param FirstTime: 首次识别时间
         # @type FirstTime: String
@@ -537,7 +537,7 @@ module TencentCloud
         # @type Port: Integer
         # @param AffectAsset: 影响资产
         # @type AffectAsset: String
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param InstanceType: 资产类型
         # @type InstanceType: String
@@ -625,7 +625,7 @@ module TencentCloud
       class AssetViewVULRisk < TencentCloud::Common::AbstractModel
         # @param AffectAsset: 影响资产
         # @type AffectAsset: String
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param InstanceType: 资产类型
         # @type InstanceType: String
@@ -772,7 +772,7 @@ module TencentCloud
       class AssetViewWeakPassRisk < TencentCloud::Common::AbstractModel
         # @param AffectAsset: 影响资产
         # @type AffectAsset: String
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param InstanceType: 资产类型
         # @type InstanceType: String
@@ -5512,7 +5512,7 @@ module TencentCloud
       class PortViewPortRisk < TencentCloud::Common::AbstractModel
         # @param NoHandleCount: 影响资产
         # @type NoHandleCount: Integer
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param Protocol: 协议
         # @type Protocol: String
@@ -6649,7 +6649,7 @@ module TencentCloud
         # @type RiskId: String
         # @param VULName: 漏洞名称
         # @type VULName: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type RiskLevel: String
         # @param CheckFrom: 识别来源
         # @type CheckFrom: String
@@ -6761,7 +6761,7 @@ module TencentCloud
         # @type Port: String
         # @param NoHandleCount: 影响资产
         # @type NoHandleCount: Integer
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param Component: 组件
         # @type Component: String
@@ -6954,7 +6954,7 @@ module TencentCloud
       class WebsiteRisk < TencentCloud::Common::AbstractModel
         # @param AffectAsset: 影响资产
         # @type AffectAsset: String
-        # @param Level: 风险等级
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
         # @param RecentTime: 最近识别时间
         # @type RecentTime: String

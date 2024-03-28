@@ -123,10 +123,12 @@ module TencentCloud
         # @type Resources: Array
         # @param Tags: 标签列表
         # @type Tags: :class:`Tencentcloud::Cdwpg.v20201230.models.Tag`
+        # @param ProductVersion: 版本
+        # @type ProductVersion: String
 
-        attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags
+        attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags, :ProductVersion
 
-        def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil)
+        def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil, productversion=nil)
           @InstanceName = instancename
           @Zone = zone
           @UserVPCId = uservpcid
@@ -135,6 +137,7 @@ module TencentCloud
           @AdminPassword = adminpassword
           @Resources = resources
           @Tags = tags
+          @ProductVersion = productversion
         end
 
         def deserialize(params)
@@ -159,6 +162,7 @@ module TencentCloud
             @Tags = Tag.new
             @Tags.deserialize(params['Tags'])
           end
+          @ProductVersion = params['ProductVersion']
         end
       end
 

@@ -437,6 +437,144 @@ module TencentCloud
         end
       end
 
+      # 企业资质申请信息
+      class CompanyApplyInfo < TencentCloud::Common::AbstractModel
+        # @param ApplicantType: 申请人身份，0-公司法定代表人，1-经办人（受法定代表人委托）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicantType: Integer
+        # @param CompanyName: 企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyName: String
+        # @param BusinessId: 统一社会信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
+        # @param BusinessIdPicUrl: 营业执照扫描件(加盖公章)。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessIdPicUrl: String
+        # @param CorporationName: 法定代表人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorporationName: String
+        # @param CorporationId: 法定代表人身份证号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorporationId: String
+        # @param CorporationIdPicUrl: 法定代表人身份证正反面扫描件。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorporationIdPicUrl: String
+        # @param BusinessScope: 业务经营范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessScope: String
+        # @param AcceptPicUrl: 电话受理单。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AcceptPicUrl: String
+        # @param NetworkCommitmentPicUrl: 电信入网承诺书。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkCommitmentPicUrl: String
+        # @param CorporationHoldingOnIdPicUrl: 法定代表人手持身份证照，申请人类型为法定代表人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorporationHoldingOnIdPicUrl: String
+        # @param OperatorName: 经办人名称，申请人类型为经办人时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorName: String
+        # @param OperatorId: 经办人证件号码，申请人类型为经办人时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorId: String
+        # @param OperatorIdPicUrl: 经办人身份证正反面扫描件，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorIdPicUrl: String
+        # @param OperatorHoldingOnIdPicUrl: 经办人手持身份证照，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorHoldingOnIdPicUrl: String
+        # @param CommissionPicUrl: 委托授权书，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommissionPicUrl: String
+
+        attr_accessor :ApplicantType, :CompanyName, :BusinessId, :BusinessIdPicUrl, :CorporationName, :CorporationId, :CorporationIdPicUrl, :BusinessScope, :AcceptPicUrl, :NetworkCommitmentPicUrl, :CorporationHoldingOnIdPicUrl, :OperatorName, :OperatorId, :OperatorIdPicUrl, :OperatorHoldingOnIdPicUrl, :CommissionPicUrl
+
+        def initialize(applicanttype=nil, companyname=nil, businessid=nil, businessidpicurl=nil, corporationname=nil, corporationid=nil, corporationidpicurl=nil, businessscope=nil, acceptpicurl=nil, networkcommitmentpicurl=nil, corporationholdingonidpicurl=nil, operatorname=nil, operatorid=nil, operatoridpicurl=nil, operatorholdingonidpicurl=nil, commissionpicurl=nil)
+          @ApplicantType = applicanttype
+          @CompanyName = companyname
+          @BusinessId = businessid
+          @BusinessIdPicUrl = businessidpicurl
+          @CorporationName = corporationname
+          @CorporationId = corporationid
+          @CorporationIdPicUrl = corporationidpicurl
+          @BusinessScope = businessscope
+          @AcceptPicUrl = acceptpicurl
+          @NetworkCommitmentPicUrl = networkcommitmentpicurl
+          @CorporationHoldingOnIdPicUrl = corporationholdingonidpicurl
+          @OperatorName = operatorname
+          @OperatorId = operatorid
+          @OperatorIdPicUrl = operatoridpicurl
+          @OperatorHoldingOnIdPicUrl = operatorholdingonidpicurl
+          @CommissionPicUrl = commissionpicurl
+        end
+
+        def deserialize(params)
+          @ApplicantType = params['ApplicantType']
+          @CompanyName = params['CompanyName']
+          @BusinessId = params['BusinessId']
+          @BusinessIdPicUrl = params['BusinessIdPicUrl']
+          @CorporationName = params['CorporationName']
+          @CorporationId = params['CorporationId']
+          @CorporationIdPicUrl = params['CorporationIdPicUrl']
+          @BusinessScope = params['BusinessScope']
+          @AcceptPicUrl = params['AcceptPicUrl']
+          @NetworkCommitmentPicUrl = params['NetworkCommitmentPicUrl']
+          @CorporationHoldingOnIdPicUrl = params['CorporationHoldingOnIdPicUrl']
+          @OperatorName = params['OperatorName']
+          @OperatorId = params['OperatorId']
+          @OperatorIdPicUrl = params['OperatorIdPicUrl']
+          @OperatorHoldingOnIdPicUrl = params['OperatorHoldingOnIdPicUrl']
+          @CommissionPicUrl = params['CommissionPicUrl']
+        end
+      end
+
+      # 公司资质审核状态信息
+      class CompanyStateInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 申请单ID
+        # @type Id: Integer
+        # @param CompanyName: 公司名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyName: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param CheckTime: 审核时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckTime: Integer
+        # @param CheckMsg: 审核备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckMsg: String
+        # @param State: 审核状态，1-待审核，2-审核通过，3-驳回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param BusinessId: 公司统一社会信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
+
+        attr_accessor :Id, :CompanyName, :CreateTime, :CheckTime, :CheckMsg, :State, :BusinessId
+
+        def initialize(id=nil, companyname=nil, createtime=nil, checktime=nil, checkmsg=nil, state=nil, businessid=nil)
+          @Id = id
+          @CompanyName = companyname
+          @CreateTime = createtime
+          @CheckTime = checktime
+          @CheckMsg = checkmsg
+          @State = state
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CompanyName = params['CompanyName']
+          @CreateTime = params['CreateTime']
+          @CheckTime = params['CheckTime']
+          @CheckMsg = params['CheckMsg']
+          @State = params['State']
+          @BusinessId = params['BusinessId']
+        end
+      end
+
       # CreateAdminURL请求参数结构体
       class CreateAdminURLRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -729,6 +867,45 @@ module TencentCloud
 
         def deserialize(params)
           @ApplicantId = params['ApplicantId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCompanyApply请求参数结构体
+      class CreateCompanyApplyRequest < TencentCloud::Common::AbstractModel
+        # @param CompanyInfo: 企业资质信息
+        # @type CompanyInfo: :class:`Tencentcloud::Ccc.v20200210.models.CompanyApplyInfo`
+
+        attr_accessor :CompanyInfo
+
+        def initialize(companyinfo=nil)
+          @CompanyInfo = companyinfo
+        end
+
+        def deserialize(params)
+          unless params['CompanyInfo'].nil?
+            @CompanyInfo = CompanyApplyInfo.new
+            @CompanyInfo.deserialize(params['CompanyInfo'])
+          end
+        end
+      end
+
+      # CreateCompanyApply返回参数结构体
+      class CreateCompanyApplyResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 申请单ID
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -1610,6 +1787,70 @@ module TencentCloud
               messagebody_tmp = MessageBody.new
               messagebody_tmp.deserialize(i)
               @Messages << messagebody_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCompanyList请求参数结构体
+      class DescribeCompanyListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 分页尺寸，上限 100
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+        # @param CompanyName: 公司名称
+        # @type CompanyName: Array
+        # @param State: 审核状态，1-待审核，2-审核通过，3-驳回
+        # @type State: Array
+        # @param ApplyID: 申请ID
+        # @type ApplyID: Array
+
+        attr_accessor :PageSize, :PageNumber, :CompanyName, :State, :ApplyID
+
+        def initialize(pagesize=nil, pagenumber=nil, companyname=nil, state=nil, applyid=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @CompanyName = companyname
+          @State = state
+          @ApplyID = applyid
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @CompanyName = params['CompanyName']
+          @State = params['State']
+          @ApplyID = params['ApplyID']
+        end
+      end
+
+      # DescribeCompanyList返回参数结构体
+      class DescribeCompanyListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param CompanyInfo: 企业资质审核信息
+        # @type CompanyInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CompanyInfo, :RequestId
+
+        def initialize(totalcount=nil, companyinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CompanyInfo = companyinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CompanyInfo'].nil?
+            @CompanyInfo = []
+            params['CompanyInfo'].each do |i|
+              companystateinfo_tmp = CompanyStateInfo.new
+              companystateinfo_tmp.deserialize(i)
+              @CompanyInfo << companystateinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3072,6 +3313,45 @@ module TencentCloud
               @Messages << message_tmp
             end
           end
+        end
+      end
+
+      # ModifyCompanyApply请求参数结构体
+      class ModifyCompanyApplyRequest < TencentCloud::Common::AbstractModel
+        # @param ApplyId: 申请单ID(只能修改状态为“驳回”或者“待审核”的申请单)
+        # @type ApplyId: Integer
+        # @param CompanyInfo: 企业资质信息
+        # @type CompanyInfo: :class:`Tencentcloud::Ccc.v20200210.models.CompanyApplyInfo`
+
+        attr_accessor :ApplyId, :CompanyInfo
+
+        def initialize(applyid=nil, companyinfo=nil)
+          @ApplyId = applyid
+          @CompanyInfo = companyinfo
+        end
+
+        def deserialize(params)
+          @ApplyId = params['ApplyId']
+          unless params['CompanyInfo'].nil?
+            @CompanyInfo = CompanyApplyInfo.new
+            @CompanyInfo.deserialize(params['CompanyInfo'])
+          end
+        end
+      end
+
+      # ModifyCompanyApply返回参数结构体
+      class ModifyCompanyApplyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

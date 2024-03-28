@@ -10257,18 +10257,24 @@ module TencentCloud
         # @type CosRemainQuota: Float
         # @param CosQuotaUnit: COS存储量单位，例如TB。
         # @type CosQuotaUnit: String
+        # @param DBUnbindNum: db月解绑次数
+        # @type DBUnbindNum: Integer
+        # @param COSUnbindNum: cos月解绑次数
+        # @type COSUnbindNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DspaId, :DbTotalQuota, :CosTotalQuota, :DbRemainQuota, :CosRemainQuota, :CosQuotaUnit, :RequestId
+        attr_accessor :DspaId, :DbTotalQuota, :CosTotalQuota, :DbRemainQuota, :CosRemainQuota, :CosQuotaUnit, :DBUnbindNum, :COSUnbindNum, :RequestId
 
-        def initialize(dspaid=nil, dbtotalquota=nil, costotalquota=nil, dbremainquota=nil, cosremainquota=nil, cosquotaunit=nil, requestid=nil)
+        def initialize(dspaid=nil, dbtotalquota=nil, costotalquota=nil, dbremainquota=nil, cosremainquota=nil, cosquotaunit=nil, dbunbindnum=nil, cosunbindnum=nil, requestid=nil)
           @DspaId = dspaid
           @DbTotalQuota = dbtotalquota
           @CosTotalQuota = costotalquota
           @DbRemainQuota = dbremainquota
           @CosRemainQuota = cosremainquota
           @CosQuotaUnit = cosquotaunit
+          @DBUnbindNum = dbunbindnum
+          @COSUnbindNum = cosunbindnum
           @RequestId = requestid
         end
 
@@ -10279,6 +10285,8 @@ module TencentCloud
           @DbRemainQuota = params['DbRemainQuota']
           @CosRemainQuota = params['CosRemainQuota']
           @CosQuotaUnit = params['CosQuotaUnit']
+          @DBUnbindNum = params['DBUnbindNum']
+          @COSUnbindNum = params['COSUnbindNum']
           @RequestId = params['RequestId']
         end
       end

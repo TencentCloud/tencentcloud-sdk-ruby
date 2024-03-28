@@ -2532,6 +2532,53 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheus请求参数结构体
+      class CreatePrometheusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka实例id
+        # @type InstanceId: String
+        # @param VpcId: vpc地址
+        # @type VpcId: String
+        # @param SubnetId: 子网地址
+        # @type SubnetId: String
+
+        attr_accessor :InstanceId, :VpcId, :SubnetId
+
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # CreatePrometheus返回参数结构体
+      class CreatePrometheusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 打通普罗米修斯
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.PrometheusResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = PrometheusResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRoute请求参数结构体
       class CreateRouteRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例唯一id
@@ -5054,7 +5101,7 @@ module TencentCloud
       class DescribeGroupInfoRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: （过滤条件）按照实例 ID 过滤。
         # @type InstanceId: String
-        # @param GroupList: Kafka 消费分组，Consumer-group，这里是数组形式，格式：GroupList.0=xxx&GroupList.1=yyy。
+        # @param GroupList: Kafka 消费分组，Consumer-group，这里是数组形式，示例：["xxx","yyy"]
         # @type GroupList: Array
 
         attr_accessor :InstanceId, :GroupList
@@ -5394,6 +5441,49 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = InstanceResponse.new
             @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheus请求参数结构体
+      class DescribePrometheusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka实例Id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribePrometheus返回参数结构体
+      class DescribePrometheusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: Prometheus监控映射列表
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              prometheusdto_tmp = PrometheusDTO.new
+              prometheusdto_tmp.deserialize(i)
+              @Result << prometheusdto_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -9938,6 +10028,57 @@ module TencentCloud
         def deserialize(params)
           @ServiceVip = params['ServiceVip']
           @UniqVpcId = params['UniqVpcId']
+        end
+      end
+
+      # 普罗米修斯打通的vipVport
+      class PrometheusDTO < TencentCloud::Common::AbstractModel
+        # @param Type: export类型（jmx_export\node_export）
+        # @type Type: String
+        # @param SourceIp: vip
+        # @type SourceIp: String
+        # @param SourcePort: vport
+        # @type SourcePort: Integer
+
+        attr_accessor :Type, :SourceIp, :SourcePort
+
+        def initialize(type=nil, sourceip=nil, sourceport=nil)
+          @Type = type
+          @SourceIp = sourceip
+          @SourcePort = sourceport
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SourceIp = params['SourceIp']
+          @SourcePort = params['SourcePort']
+        end
+      end
+
+      # Prometheus 监控返回
+      class PrometheusResult < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回的code，0为正常，非0为错误
+        # @type ReturnCode: String
+        # @param ReturnMessage: 成功消息
+        # @type ReturnMessage: String
+        # @param Data: 操作型返回的Data数据,可能有flowId等
+        # @type Data: :class:`Tencentcloud::Ckafka.v20190819.models.OperateResponseData`
+
+        attr_accessor :ReturnCode, :ReturnMessage, :Data
+
+        def initialize(returncode=nil, returnmessage=nil, data=nil)
+          @ReturnCode = returncode
+          @ReturnMessage = returnmessage
+          @Data = data
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMessage = params['ReturnMessage']
+          unless params['Data'].nil?
+            @Data = OperateResponseData.new
+            @Data.deserialize(params['Data'])
+          end
         end
       end
 

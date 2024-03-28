@@ -1204,7 +1204,7 @@ module TencentCloud
         # @type ServiceCategory: String
         # @param Command: 服务的启动命令
         # @type Command: String
-        # @param ServiceEIP: 是否开启TIONE内网访问外部
+        # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
 
         attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP
@@ -6069,16 +6069,20 @@ module TencentCloud
         # @param ImageName: 镜像名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageName: String
+        # @param SupportDataPipeline: 是否支持数据构建
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDataPipeline: Boolean
 
-        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName
+        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline
 
-        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil)
+        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil)
           @ImageType = imagetype
           @ImageUrl = imageurl
           @RegistryRegion = registryregion
           @RegistryId = registryid
           @AllowSaveAllContent = allowsaveallcontent
           @ImageName = imagename
+          @SupportDataPipeline = supportdatapipeline
         end
 
         def deserialize(params)
@@ -6088,6 +6092,7 @@ module TencentCloud
           @RegistryId = params['RegistryId']
           @AllowSaveAllContent = params['AllowSaveAllContent']
           @ImageName = params['ImageName']
+          @SupportDataPipeline = params['SupportDataPipeline']
         end
       end
 
@@ -7098,7 +7103,7 @@ module TencentCloud
         # @type ModelTurboEnable: Boolean
         # @param Command: 服务的启动命令
         # @type Command: String
-        # @param ServiceEIP: 是否开启TIONE内网访问外部
+        # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
 
         attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP

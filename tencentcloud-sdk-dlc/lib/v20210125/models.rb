@@ -10539,6 +10539,11 @@ module TencentCloud
         # @type SmartPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicy`
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
+        extend Gem::Deprecate
+        deprecate :GovernPolicy, :none, 2024, 3
+        deprecate :GovernPolicy=, :none, 2024, 3
+        deprecate :DbGovernPolicyIsDisable, :none, 2024, 3
+        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 3
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename

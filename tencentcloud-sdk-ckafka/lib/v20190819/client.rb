@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加普罗米修斯监控1
+
+        # @param request: Request instance for CreatePrometheus.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreatePrometheusRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreatePrometheusResponse`
+        def CreatePrometheus(request)
+          body = send_request('CreatePrometheus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrometheusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加实例路由
 
         # @param request: Request instance for CreateRoute.
@@ -1287,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例Prometheus信息
+
+        # @param request: Request instance for DescribePrometheus.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribePrometheusRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribePrometheusResponse`
+        def DescribePrometheus(request)
+          body = send_request('DescribePrometheus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusResponse.new
             model.deserialize(response['Response'])
             model
           else
