@@ -3512,12 +3512,24 @@ module TencentCloud
 
       # DescribeBuildInImages请求参数结构体
       class DescribeBuildInImagesRequest < TencentCloud::Common::AbstractModel
+        # @param ImageFilters: 镜像过滤器
+        # @type ImageFilters: Array
 
+        attr_accessor :ImageFilters
 
-        def initialize()
+        def initialize(imagefilters=nil)
+          @ImageFilters = imagefilters
         end
 
         def deserialize(params)
+          unless params['ImageFilters'].nil?
+            @ImageFilters = []
+            params['ImageFilters'].each do |i|
+              imagefilter_tmp = ImageFIlter.new
+              imagefilter_tmp.deserialize(i)
+              @ImageFilters << imagefilter_tmp
+            end
+          end
         end
       end
 
@@ -6051,6 +6063,30 @@ module TencentCloud
         end
       end
 
+      # 镜像列表过滤
+      class ImageFIlter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段名称
+        # @type Name: String
+        # @param Values: 过滤值
+        # @type Values: Array
+        # @param Negative: 是否反选
+        # @type Negative: Boolean
+
+        attr_accessor :Name, :Values, :Negative
+
+        def initialize(name=nil, values=nil, negative=nil)
+          @Name = name
+          @Values = values
+          @Negative = negative
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @Negative = params['Negative']
+        end
+      end
+
       # 镜像描述信息
       class ImageInfo < TencentCloud::Common::AbstractModel
         # @param ImageType: 镜像类型：TCR为腾讯云TCR镜像; CCR为腾讯云TCR个人版镜像，PreSet为平台预置镜像
@@ -6297,10 +6333,16 @@ module TencentCloud
         # @type SpecFeatures: Array
         # @param CvmInstanceId: 纳管cvmid
         # @type CvmInstanceId: String
+        # @param ErrCode: 部署失败错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: String
+        # @param ErrMsg: 部署失败错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
 
-        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures, :CvmInstanceId
+        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures, :CvmInstanceId, :ErrCode, :ErrMsg
 
-        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil, cvminstanceid=nil)
+        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil, cvminstanceid=nil, errcode=nil, errmsg=nil)
           @InstanceId = instanceid
           @UsedResource = usedresource
           @TotalResource = totalresource
@@ -6313,6 +6355,8 @@ module TencentCloud
           @SpecAlias = specalias
           @SpecFeatures = specfeatures
           @CvmInstanceId = cvminstanceid
+          @ErrCode = errcode
+          @ErrMsg = errmsg
         end
 
         def deserialize(params)
@@ -6334,6 +6378,8 @@ module TencentCloud
           @SpecAlias = params['SpecAlias']
           @SpecFeatures = params['SpecFeatures']
           @CvmInstanceId = params['CvmInstanceId']
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
         end
       end
 

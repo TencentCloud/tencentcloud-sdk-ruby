@@ -1057,6 +1057,33 @@ module TencentCloud
         end
       end
 
+      # 自定义消息
+      class CustomMsgContent < TencentCloud::Common::AbstractModel
+        # @param Data: 自定义消息数据。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param Desc: 自定义消息描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Ext: 扩展字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ext: String
+
+        attr_accessor :Data, :Desc, :Ext
+
+        def initialize(data=nil, desc=nil, ext=nil)
+          @Data = data
+          @Desc = desc
+          @Ext = ext
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Desc = params['Desc']
+          @Ext = params['Ext']
+        end
+      end
+
       # DeleteAppCustomContent请求参数结构体
       class DeleteAppCustomContentRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID。
@@ -3461,19 +3488,27 @@ module TencentCloud
         # @param ImageMessage: 图片消息URL。 message type为1时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageMessage: String
+        # @param CustomMessage: 自定义消息内容。message type为2时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomMessage: :class:`Tencentcloud::Lcic.v20220817.models.CustomMsgContent`
 
-        attr_accessor :MessageType, :TextMessage, :ImageMessage
+        attr_accessor :MessageType, :TextMessage, :ImageMessage, :CustomMessage
 
-        def initialize(messagetype=nil, textmessage=nil, imagemessage=nil)
+        def initialize(messagetype=nil, textmessage=nil, imagemessage=nil, custommessage=nil)
           @MessageType = messagetype
           @TextMessage = textmessage
           @ImageMessage = imagemessage
+          @CustomMessage = custommessage
         end
 
         def deserialize(params)
           @MessageType = params['MessageType']
           @TextMessage = params['TextMessage']
           @ImageMessage = params['ImageMessage']
+          unless params['CustomMessage'].nil?
+            @CustomMessage = CustomMsgContent.new
+            @CustomMessage.deserialize(params['CustomMessage'])
+          end
         end
       end
 
@@ -3808,6 +3843,7 @@ module TencentCloud
         # TIMTextElem（文本消息）
         # TIMFaceElem（表情消息）
         # TIMImageElem（图像消息）
+        # TIMCustomElem（自定义消息）
         # @type MsgType: String
         # @param TextMsgContent: 文本消息，当MsgType 为TIMTextElem（文本消息）必选。
         # @type TextMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.TextMsgContent`
@@ -3815,14 +3851,17 @@ module TencentCloud
         # @type FaceMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.FaceMsgContent`
         # @param ImageMsgContent: 图像消息，当MsgType为TIMImageElem（图像消息）必选。
         # @type ImageMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.ImageMsgContent`
+        # @param CustomMsgContent: 自定义消息，TIMCustomElem（自定义消息）必选。
+        # @type CustomMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.CustomMsgContent`
 
-        attr_accessor :MsgType, :TextMsgContent, :FaceMsgContent, :ImageMsgContent
+        attr_accessor :MsgType, :TextMsgContent, :FaceMsgContent, :ImageMsgContent, :CustomMsgContent
 
-        def initialize(msgtype=nil, textmsgcontent=nil, facemsgcontent=nil, imagemsgcontent=nil)
+        def initialize(msgtype=nil, textmsgcontent=nil, facemsgcontent=nil, imagemsgcontent=nil, custommsgcontent=nil)
           @MsgType = msgtype
           @TextMsgContent = textmsgcontent
           @FaceMsgContent = facemsgcontent
           @ImageMsgContent = imagemsgcontent
+          @CustomMsgContent = custommsgcontent
         end
 
         def deserialize(params)
@@ -3838,6 +3877,10 @@ module TencentCloud
           unless params['ImageMsgContent'].nil?
             @ImageMsgContent = ImageMsgContent.new
             @ImageMsgContent.deserialize(params['ImageMsgContent'])
+          end
+          unless params['CustomMsgContent'].nil?
+            @CustomMsgContent = CustomMsgContent.new
+            @CustomMsgContent.deserialize(params['CustomMsgContent'])
           end
         end
       end

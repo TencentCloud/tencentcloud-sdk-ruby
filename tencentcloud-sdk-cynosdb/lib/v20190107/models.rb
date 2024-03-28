@@ -11422,6 +11422,169 @@ module TencentCloud
         end
       end
 
+      # RollbackToNewCluster请求参数结构体
+      class RollbackToNewClusterRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param OriginalClusterId: 回档时，传入源集群ID，用于查找源poolId
+        # @type OriginalClusterId: String
+        # @param ClusterName: 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）
+        # @type ClusterName: String
+        # @param UniqVpcId: 所属VPC网络ID
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 所属子网ID
+        # @type UniqSubnetId: String
+        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @type AutoVoucher: Integer
+        # @param DbMode: Db类型
+        # 当DbType为MYSQL时可选(默认NORMAL)：
+        # <li>NORMAL</li>
+        # <li>SERVERLESS</li>
+        # @type DbMode: String
+        # @param MinCpu: 当DbMode为SEVERLESS时必填
+        # cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @type MinCpu: Float
+        # @param MaxCpu: 当DbMode为SEVERLESS时必填：
+        # cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @type MaxCpu: Float
+        # @param AutoPause: 当DbMode为SEVERLESS时，指定集群是否自动暂停，可选范围
+        # <li>yes</li>
+        # <li>no</li>
+        # 默认值:yes
+        # @type AutoPause: String
+        # @param AutoPauseDelay: 当DbMode为SEVERLESS时，指定集群自动暂停的延迟，单位秒，可选范围[600,691200]
+        # 默认值:600
+        # @type AutoPauseDelay: Integer
+        # @param SecurityGroupIds: 安全组id数组
+        # @type SecurityGroupIds: Array
+        # @param AlarmPolicyIds: 告警策略Id数组
+        # @type AlarmPolicyIds: Array
+        # @param ClusterParams: 参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感
+        # @type ClusterParams: Array
+        # @param DealMode: 0-下单并支付 1-下单
+        # @type DealMode: Integer
+        # @param ParamTemplateId: 参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID
+        # @type ParamTemplateId: Integer
+        # @param ResourceTags: 集群创建需要绑定的tag数组信息
+        # @type ResourceTags: Array
+        # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
+        # @type InstanceInitInfos: Array
+        # @param RollbackId: 快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效
+        # @type RollbackId: Integer
+        # @param ExpectTime: 时间点回档，指定时间；快照回档，快照时间
+        # @type ExpectTime: String
+
+        attr_accessor :Zone, :OriginalClusterId, :ClusterName, :UniqVpcId, :UniqSubnetId, :AutoVoucher, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :ResourceTags, :InstanceInitInfos, :RollbackId, :ExpectTime
+
+        def initialize(zone=nil, originalclusterid=nil, clustername=nil, uniqvpcid=nil, uniqsubnetid=nil, autovoucher=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, resourcetags=nil, instanceinitinfos=nil, rollbackid=nil, expecttime=nil)
+          @Zone = zone
+          @OriginalClusterId = originalclusterid
+          @ClusterName = clustername
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @AutoVoucher = autovoucher
+          @DbMode = dbmode
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @AutoPause = autopause
+          @AutoPauseDelay = autopausedelay
+          @SecurityGroupIds = securitygroupids
+          @AlarmPolicyIds = alarmpolicyids
+          @ClusterParams = clusterparams
+          @DealMode = dealmode
+          @ParamTemplateId = paramtemplateid
+          @ResourceTags = resourcetags
+          @InstanceInitInfos = instanceinitinfos
+          @RollbackId = rollbackid
+          @ExpectTime = expecttime
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @OriginalClusterId = params['OriginalClusterId']
+          @ClusterName = params['ClusterName']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @AutoVoucher = params['AutoVoucher']
+          @DbMode = params['DbMode']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @AutoPause = params['AutoPause']
+          @AutoPauseDelay = params['AutoPauseDelay']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @AlarmPolicyIds = params['AlarmPolicyIds']
+          unless params['ClusterParams'].nil?
+            @ClusterParams = []
+            params['ClusterParams'].each do |i|
+              paramitem_tmp = ParamItem.new
+              paramitem_tmp.deserialize(i)
+              @ClusterParams << paramitem_tmp
+            end
+          end
+          @DealMode = params['DealMode']
+          @ParamTemplateId = params['ParamTemplateId']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          unless params['InstanceInitInfos'].nil?
+            @InstanceInitInfos = []
+            params['InstanceInitInfos'].each do |i|
+              instanceinitinfo_tmp = InstanceInitInfo.new
+              instanceinitinfo_tmp.deserialize(i)
+              @InstanceInitInfos << instanceinitinfo_tmp
+            end
+          end
+          @RollbackId = params['RollbackId']
+          @ExpectTime = params['ExpectTime']
+        end
+      end
+
+      # RollbackToNewCluster返回参数结构体
+      class RollbackToNewClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TranId: 冻结流水ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param DealNames: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
+        # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIds: Array
+        # @param BigDealIds: 大订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranId, :DealNames, :ResourceIds, :ClusterIds, :BigDealIds, :RequestId
+
+        def initialize(tranid=nil, dealnames=nil, resourceids=nil, clusterids=nil, bigdealids=nil, requestid=nil)
+          @TranId = tranid
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @ClusterIds = clusterids
+          @BigDealIds = bigdealids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @ClusterIds = params['ClusterIds']
+          @BigDealIds = params['BigDealIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 审计规则的规则过滤条件
       class RuleFilters < TencentCloud::Common::AbstractModel
         # @param Type: 审计规则过滤条件的参数名称。可选值：host – 客户端 IP；user – 数据库账户；dbName – 数据库名称；sqlType-SQL类型；sql-sql语句；affectRows -影响行数；sentRows-返回行数；checkRows-扫描行数；execTime-执行时间。

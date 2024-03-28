@@ -469,7 +469,14 @@ module TencentCloud
         # @param OutputStorage: 转自适应码流后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 转自适应码流后，manifest 文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}.{format}`。
+        # @param OutputObjectPath: 转自适应码流后，manifest 文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：{inputName}_adaptiveDynamicStreaming_{definition}.{format}。
         # @type OutputObjectPath: String
         # @param SubStreamObjectName: 转自适应码流后，子流文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}_{subStreamNumber}.{format}`。
         # @type SubStreamObjectName: String
@@ -3779,7 +3786,14 @@ module TencentCloud
         # @param OutputStorage: 转动图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 转动图后文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_animatedGraphic_{definition}.{format}`。
+        # @param OutputObjectPath: 转动图后文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：`{inputName}_animatedGraphic_{definition}.{format}`。
         # @type OutputObjectPath: String
 
         attr_accessor :Definition, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath
@@ -4137,20 +4151,20 @@ module TencentCloud
         # 当不需要对音频进行转码时，可选值为：
         # <li>copy。</li>
         # 当外层参数 Container 为 mp3 时，可选值为：
-        # <li>libmp3lame。</li>
+        # <li>mp3。</li>
         # 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         # <li>flac。</li>
         # 当外层参数 Container 为 m4a 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame；</li>
+        # <li>aac；</li>
+        # <li>mp3；</li>
         # <li>ac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        # <li>libfdk_aac：更适合 mp4；</li>
-        # <li>libmp3lame：更适合 flv；</li>
+        # <li>aac：更适合 mp4；</li>
+        # <li>mp3：更适合 flv；</li>
         # <li>mp2。</li>
         # 当外层参数 Container 为 hls 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame。</li>
+        # <li>aac；</li>
+        # <li>mp3。</li>
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
         # 当取值为 0，表示音频码率和原始音频保持一致。
@@ -4192,20 +4206,20 @@ module TencentCloud
         # 当不需要对音频进行转码时，可选值为：
         # <li>copy。</li>
         # 当外层参数 Container 为 mp3 时，可选值为：
-        # <li>libmp3lame。</li>
+        # <li>mp3。</li>
         # 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         # <li>flac。</li>
         # 当外层参数 Container 为 m4a 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame；</li>
+        # <li>aac；</li>
+        # <li>mp3；</li>
         # <li>ac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        # <li>libfdk_aac：更适合 mp4；</li>
-        # <li>libmp3lame：更适合 flv；</li>
+        # <li>aac：更适合 mp4；</li>
+        # <li>mp3：更适合 flv；</li>
         # <li>mp2。</li>
         # 当外层参数 Container 为 hls 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame。</li>
+        # <li>aac；</li>
+        # <li>mp3。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codec: String
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
@@ -11719,7 +11733,7 @@ module TencentCloud
         # <li>HDR10</li>
         # <li>HLG</li>
         # 默认值：HDR10。
-        # 注意：video的编码方式需要为libx265；
+        # 注意：video的编码方式需要为h265；
         # 注意：视频编码位深为10。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
@@ -11832,7 +11846,14 @@ module TencentCloud
         # @param OutputStorage: 截取雪碧图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 截取雪碧图后，雪碧图图片文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}_{number}.{format}`。
+        # @param OutputObjectPath: 截取雪碧图后，雪碧图图片文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}_{number}.{format}`。
         # @type OutputObjectPath: String
         # @param WebVttObjectName: 截取雪碧图后，Web VTT 文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_imageSprite_{definition}.{format}`。
         # @type WebVttObjectName: String
@@ -17893,7 +17914,14 @@ module TencentCloud
         # @param OutputStorage: 采样截图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 采样截图后图片文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_sampleSnapshot_{definition}_{number}.{format}`。
+        # @param OutputObjectPath: 采样截图后图片文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：`{inputName}_sampleSnapshot_{definition}_{number}.{format}`。
         # @type OutputObjectPath: String
         # @param ObjectNumberFormat: 采样截图后输出路径中的`{number}`变量的规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -18499,7 +18527,14 @@ module TencentCloud
         # @param OutputStorage: 时间点截图后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 时间点截图后图片文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_snapshotByTimeOffset_{definition}_{number}.{format}`。
+        # @param OutputObjectPath: 时间点截图后图片文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：`{inputName}_snapshotByTimeOffset_{definition}_{number}.{format}`。
         # @type OutputObjectPath: String
         # @param ObjectNumberFormat: 时间点截图后输出路径中的`{number}`变量的规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -19356,7 +19391,14 @@ module TencentCloud
         # @param OutputStorage: 转码后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 转码后主文件的输出路径，可以为相对路径或者绝对路径。如果不填，则默认为相对路径：`{inputName}_transcode_{definition}.{format}`。
+        # @param OutputObjectPath: 转码后主文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：`{inputName}_transcode_{definition}.{format}`。
         # @type OutputObjectPath: String
         # @param SegmentObjectName: 转码后分片文件的输出路径（转码 HLS 时 ts 的路径），只能为相对路径。如果不填，则默认为：`{inputName}_transcode_{definition}_{number}.{format}`。
         # @type SegmentObjectName: String
@@ -19969,8 +20011,8 @@ module TencentCloud
       # 视频流配置参数
       class VideoTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 视频流的编码格式，可选值：
-        # <li>libx264：H.264 编码</li>
-        # <li>libx265：H.265 编码</li>
+        # <li>h264：H.264 编码</li>
+        # <li>h265：H.265 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         # 注意：av1 编码容器目前只支持 mp4 。
@@ -20048,8 +20090,8 @@ module TencentCloud
       # 视频流配置参数
       class VideoTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
         # @param Codec: 视频流的编码格式，可选值：
-        # <li>libx264：H.264 编码</li>
-        # <li>libx265：H.265 编码</li>
+        # <li>h264：H.264 编码</li>
+        # <li>h265：H.265 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         # 注意：av1 编码容器目前只支持 mp4 。

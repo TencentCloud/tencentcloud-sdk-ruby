@@ -174,10 +174,10 @@ module TencentCloud
         # @param ZoneName: 可用区：资源所属可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
-        # @param ResourceId: 资源ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @param ResourceId: 资源ID：不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID； 若该产品被分拆，则展示产品分拆后的分拆项 ID，如 COS 桶 ID，CDN 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空
+        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空；若该产品被分拆，则展示分拆产品分拆后的分拆项资源别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param InstanceType: 实例类型编码
@@ -331,6 +331,11 @@ module TencentCloud
         # @type AllocationType: Integer
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :BusinessCodeName, :PayMode, :PayModeName, :ProjectId, :ProjectName, :RegionId, :RegionName, :ZoneId, :ZoneName, :ResourceId, :ResourceName, :InstanceType, :InstanceTypeName, :SplitItemId, :SplitItemName, :ProductCode, :ProductCodeName, :ActionType, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentCode, :ComponentCodeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :SplitRatio, :TotalCost, :RITimeSpan, :RICost, :SPCost, :Discount, :BlendedDiscount, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :Tag, :RegionType, :RegionTypeName, :ItemCode, :ItemCodeName, :AssociatedOrder, :PriceInfo, :Formula, :FormulaUrl, :RealTotalMeasure, :DeductedMeasure, :ComponentConfig, :AllocationType
+        extend Gem::Deprecate
+        deprecate :SplitItemId, :none, 2024, 3
+        deprecate :SplitItemId=, :none, 2024, 3
+        deprecate :SplitItemName, :none, 2024, 3
+        deprecate :SplitItemName=, :none, 2024, 3
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, businesscodename=nil, paymode=nil, paymodename=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, resourceid=nil, resourcename=nil, instancetype=nil, instancetypename=nil, splititemid=nil, splititemname=nil, productcode=nil, productcodename=nil, actiontype=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentcode=nil, componentcodename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, splitratio=nil, totalcost=nil, ritimespan=nil, ricost=nil, spcost=nil, discount=nil, blendeddiscount=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, tag=nil, regiontype=nil, regiontypename=nil, itemcode=nil, itemcodename=nil, associatedorder=nil, priceinfo=nil, formula=nil, formulaurl=nil, realtotalmeasure=nil, deductedmeasure=nil, componentconfig=nil, allocationtype=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1014,10 +1019,10 @@ module TencentCloud
         # @param InstanceTypeName: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。常规实例默认展示“-”
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeName: String
-        # @param ResourceId: 资源ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @param ResourceId: 资源ID：不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID； 若该产品被分拆，则展示产品分拆后的分拆项 ID，如 COS 桶 ID，CDN 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空
+        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空；若该产品被分拆，则展示分拆产品分拆后的分拆项资源别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param Tag: 分账标签：资源绑定的标签
@@ -1144,6 +1149,11 @@ module TencentCloud
         # @type ComponentConfig: String
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ItemCodeName, :ComponentCode, :ComponentCodeName, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :RealTotalMeasure, :DeductedMeasure, :Discount, :BlendedDiscount, :PriceInfo, :Formula, :FormulaUrl, :ComponentConfig
+        extend Gem::Deprecate
+        deprecate :SplitItemId, :none, 2024, 3
+        deprecate :SplitItemId=, :none, 2024, 3
+        deprecate :SplitItemName, :none, 2024, 3
+        deprecate :SplitItemName=, :none, 2024, 3
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, itemcodename=nil, componentcode=nil, componentcodename=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, realtotalmeasure=nil, deductedmeasure=nil, discount=nil, blendeddiscount=nil, priceinfo=nil, formula=nil, formulaurl=nil, componentconfig=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1343,10 +1353,10 @@ module TencentCloud
         # @param InstanceTypeName: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。常规实例默认展示“-”
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeName: String
-        # @param ResourceId: 资源ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @param ResourceId: 资源ID：不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID； 若该产品被分拆，则展示产品分拆后的分拆项 ID，如 COS 桶 ID，CDN 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空
+        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空；若该产品被分拆，则展示分拆产品分拆后的分拆项资源别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param Tag: 分账标签：资源绑定的标签
@@ -1414,6 +1424,11 @@ module TencentCloud
         # @type ComponentConfig: String
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :ComponentConfig
+        extend Gem::Deprecate
+        deprecate :SplitItemId, :none, 2024, 3
+        deprecate :SplitItemId=, :none, 2024, 3
+        deprecate :SplitItemName, :none, 2024, 3
+        deprecate :SplitItemName=, :none, 2024, 3
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, componentconfig=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -3478,10 +3493,13 @@ module TencentCloud
         # @param TransferPayAmount: 分成金
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
+        # @param RegionName: 地域名称（仅在地域汇总总展示）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionName: String
 
-        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :Trend, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount
+        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :Trend, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TransferPayAmount, :RegionName
 
-        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, trend=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil)
+        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, trend=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, transferpayamount=nil, regionname=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
           @RealTotalCost = realtotalcost
@@ -3490,6 +3508,7 @@ module TencentCloud
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @TransferPayAmount = transferpayamount
+          @RegionName = regionname
         end
 
         def deserialize(params)
@@ -3504,6 +3523,7 @@ module TencentCloud
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @TransferPayAmount = params['TransferPayAmount']
+          @RegionName = params['RegionName']
         end
       end
 
@@ -3581,15 +3601,31 @@ module TencentCloud
         # @type Trend: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTrend`
         # @param Business: 产品消费详情
         # @type Business: Array
+        # @param CashPayAmount: 现金
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CashPayAmount: String
+        # @param VoucherPayAmount: 代金券
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoucherPayAmount: String
+        # @param IncentivePayAmount: 赠送金
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncentivePayAmount: String
+        # @param TransferPayAmount: 分成金
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferPayAmount: String
 
-        attr_accessor :RegionId, :RegionName, :RealTotalCost, :Trend, :Business
+        attr_accessor :RegionId, :RegionName, :RealTotalCost, :Trend, :Business, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount
 
-        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, trend=nil, business=nil)
+        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, trend=nil, business=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil)
           @RegionId = regionid
           @RegionName = regionname
           @RealTotalCost = realtotalcost
           @Trend = trend
           @Business = business
+          @CashPayAmount = cashpayamount
+          @VoucherPayAmount = voucherpayamount
+          @IncentivePayAmount = incentivepayamount
+          @TransferPayAmount = transferpayamount
         end
 
         def deserialize(params)
@@ -3608,6 +3644,10 @@ module TencentCloud
               @Business << consumptionbusinesssummarydataitem_tmp
             end
           end
+          @CashPayAmount = params['CashPayAmount']
+          @VoucherPayAmount = params['VoucherPayAmount']
+          @IncentivePayAmount = params['IncentivePayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
         end
       end
 
@@ -3722,10 +3762,61 @@ module TencentCloud
         # @param TransferPayAmount: 分成金
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferPayAmount: String
+        # @param PayerUin: 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayerUin: String
+        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUin: String
+        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateUin: String
+        # @param ProductCode: 子产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCode: String
+        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCodeName: String
+        # @param RegionType: 地域类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionType: String
+        # @param RegionTypeName: 地域类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionTypeName: String
+        # @param Extend1: 扩展字段1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extend1: String
+        # @param Extend2: 扩展字段2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extend2: String
+        # @param Extend3: 扩展字段3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extend3: String
+        # @param Extend4: 扩展字段4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extend4: String
+        # @param Extend5: 扩展字段5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extend5: String
+        # @param InstanceType: 实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceTypeName: 实例类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTypeName: String
+        # @param PayTime: 扣费时间：结算扣费时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayTime: String
+        # @param ZoneName: 可用区：资源所属可用区，如广州三区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneName: String
+        # @param ComponentConfig: 配置描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentConfig: String
 
-        attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount
+        attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :PayerUin, :OwnerUin, :OperateUin, :ProductCode, :ProductCodeName, :RegionType, :RegionTypeName, :Extend1, :Extend2, :Extend3, :Extend4, :Extend5, :InstanceType, :InstanceTypeName, :PayTime, :ZoneName, :ComponentConfig
 
-        def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil)
+        def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, payeruin=nil, owneruin=nil, operateuin=nil, productcode=nil, productcodename=nil, regiontype=nil, regiontypename=nil, extend1=nil, extend2=nil, extend3=nil, extend4=nil, extend5=nil, instancetype=nil, instancetypename=nil, paytime=nil, zonename=nil, componentconfig=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @RealTotalCost = realtotalcost
@@ -3748,6 +3839,23 @@ module TencentCloud
           @VoucherPayAmount = voucherpayamount
           @IncentivePayAmount = incentivepayamount
           @TransferPayAmount = transferpayamount
+          @PayerUin = payeruin
+          @OwnerUin = owneruin
+          @OperateUin = operateuin
+          @ProductCode = productcode
+          @ProductCodeName = productcodename
+          @RegionType = regiontype
+          @RegionTypeName = regiontypename
+          @Extend1 = extend1
+          @Extend2 = extend2
+          @Extend3 = extend3
+          @Extend4 = extend4
+          @Extend5 = extend5
+          @InstanceType = instancetype
+          @InstanceTypeName = instancetypename
+          @PayTime = paytime
+          @ZoneName = zonename
+          @ComponentConfig = componentconfig
         end
 
         def deserialize(params)
@@ -3773,6 +3881,23 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @TransferPayAmount = params['TransferPayAmount']
+          @PayerUin = params['PayerUin']
+          @OwnerUin = params['OwnerUin']
+          @OperateUin = params['OperateUin']
+          @ProductCode = params['ProductCode']
+          @ProductCodeName = params['ProductCodeName']
+          @RegionType = params['RegionType']
+          @RegionTypeName = params['RegionTypeName']
+          @Extend1 = params['Extend1']
+          @Extend2 = params['Extend2']
+          @Extend3 = params['Extend3']
+          @Extend4 = params['Extend4']
+          @Extend5 = params['Extend5']
+          @InstanceType = params['InstanceType']
+          @InstanceTypeName = params['InstanceTypeName']
+          @PayTime = params['PayTime']
+          @ZoneName = params['ZoneName']
+          @ComponentConfig = params['ComponentConfig']
         end
       end
 
@@ -4798,7 +4923,7 @@ module TencentCloud
       class DescribeAllocationBillDetailRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为1000
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
         # @type Offset: Integer
         # @param Month: 账单月份，格式为2024-02，不传默认当前月
         # @type Month: String
@@ -4842,7 +4967,7 @@ module TencentCloud
         # @type ComponentCodes: Array
         # @param ItemCodes: 组件名称编码，用作筛选
         # @type ItemCodes: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名、分拆项id和分拆项名称
+        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
         # @type SearchKey: String
         # @param ProjectIds: 项目ID，用作筛选
         # @type ProjectIds: Array
@@ -5216,7 +5341,7 @@ module TencentCloud
       class DescribeAllocationSummaryByItemRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为1000
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
         # @type Offset: Integer
         # @param Month: 账单月份，格式为2024-02，不传默认当前月
         # @type Month: String
@@ -5266,7 +5391,7 @@ module TencentCloud
         # @type ComponentCodes: Array
         # @param ItemCodes: 组件名称编码，用作筛选
         # @type ItemCodes: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名、分拆项id和分拆项名称
+        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
         # @type SearchKey: String
         # @param ProjectIds: 项目ID，用作筛选
         # @type ProjectIds: Array
@@ -5378,7 +5503,7 @@ module TencentCloud
       class DescribeAllocationSummaryByResourceRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为1000
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
         # @type Offset: Integer
         # @param Month: 账单月份，格式为2024-02，不传默认当前月
         # @type Month: String
@@ -5424,7 +5549,7 @@ module TencentCloud
         # @type InstanceTypes: Array
         # @param Tag: 标签，用作筛选
         # @type Tag: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名、分拆项id和分拆项名称
+        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
         # @type SearchKey: String
         # @param ProjectIds: 项目ID，用作筛选
         # @type ProjectIds: Array
@@ -7719,7 +7844,7 @@ module TencentCloud
       class DescribeGatherResourceRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为1000
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，以此类推
         # @type Offset: Integer
         # @param Month: 账单月份，格式为2024-02，不传默认当前月
         # @type Month: String
@@ -7756,7 +7881,7 @@ module TencentCloud
         # @type OperateUins: Array
         # @param OwnerUins: 使用者UIN，用作筛选
         # @type OwnerUins: Array
-        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名、分拆项id和分拆项名称
+        # @param SearchKey: 模糊搜索：支持标签、资源id、资源别名
         # @type SearchKey: String
         # @param Tag: 标签，用作筛选
         # @type Tag: Array
@@ -8582,10 +8707,10 @@ module TencentCloud
         # @param InstanceTypeName: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。常规实例默认展示“-”
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeName: String
-        # @param ResourceId: 资源ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @param ResourceId: 资源ID：不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID； 若该产品被分拆，则展示产品分拆后的分拆项 ID，如 COS 桶 ID，CDN 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空
+        # @param ResourceName: 实例名称：用户在控制台为资源设置的名称，如未设置默认为空；若该产品被分拆，则展示分拆产品分拆后的分拆项资源别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param TreeNodeUniqKey: 分账单元唯一标识
@@ -8686,6 +8811,11 @@ module TencentCloud
         # @type SplitItemName: String
 
         attr_accessor :PayerUin, :OwnerUin, :OperateUin, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :TreeNodeUniqKey, :TreeNodeUniqKeyName, :RuleId, :RuleName, :BusinessCode, :BusinessCodeName, :ItemCode, :ItemCodeName, :RegionId, :RegionName, :Tag, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :AllocationType, :BelongTreeNodeUniqKey, :BelongRule, :OtherTreeNodeUniqKeys, :OtherRules, :ProjectId, :ProjectName, :ProductCode, :ProductCodeName, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :SplitItemId, :SplitItemName
+        extend Gem::Deprecate
+        deprecate :SplitItemId, :none, 2024, 3
+        deprecate :SplitItemId=, :none, 2024, 3
+        deprecate :SplitItemName, :none, 2024, 3
+        deprecate :SplitItemName=, :none, 2024, 3
 
         def initialize(payeruin=nil, owneruin=nil, operateuin=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, treenodeuniqkey=nil, treenodeuniqkeyname=nil, ruleid=nil, rulename=nil, businesscode=nil, businesscodename=nil, itemcode=nil, itemcodename=nil, regionid=nil, regionname=nil, tag=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, allocationtype=nil, belongtreenodeuniqkey=nil, belongrule=nil, othertreenodeuniqkeys=nil, otherrules=nil, projectid=nil, projectname=nil, productcode=nil, productcodename=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, splititemid=nil, splititemname=nil)
           @PayerUin = payeruin

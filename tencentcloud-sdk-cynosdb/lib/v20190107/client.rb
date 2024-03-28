@@ -2957,6 +2957,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 回档到新集群
+
+        # @param request: Request instance for RollbackToNewCluster.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::RollbackToNewClusterRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::RollbackToNewClusterResponse`
+        def RollbackToNewCluster(request)
+          body = send_request('RollbackToNewCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackToNewClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(SearchClusterDatabases)搜索集群数据库列表
 
         # @param request: Request instance for SearchClusterDatabases.

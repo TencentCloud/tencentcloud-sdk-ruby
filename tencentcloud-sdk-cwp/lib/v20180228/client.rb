@@ -728,6 +728,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ModifyEventAttackStatus 接口替代
+
         # 删除网络攻击日志
 
         # @param request: Request instance for DeleteAttackLogs.
@@ -9273,6 +9275,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # ExportAttackEvents接口替代
 
         # 导出网络攻击日志
 

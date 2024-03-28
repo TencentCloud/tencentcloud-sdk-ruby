@@ -381,10 +381,12 @@ module TencentCloud
         # @type Vport: String
         # @param VpcId: 腾讯云私有网络标识
         # @type VpcId: String
+        # @param OperationAuthLimit: 操作权限限制
+        # @type OperationAuthLimit: Array
 
-        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId
+        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :OperationAuthLimit
 
-        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil)
+        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, operationauthlimit=nil)
           @DbHost = dbhost
           @DbPort = dbport
           @ServiceType = servicetype
@@ -404,6 +406,7 @@ module TencentCloud
           @Vip = vip
           @Vport = vport
           @VpcId = vpcid
+          @OperationAuthLimit = operationauthlimit
         end
 
         def deserialize(params)
@@ -426,6 +429,7 @@ module TencentCloud
           @Vip = params['Vip']
           @Vport = params['Vport']
           @VpcId = params['VpcId']
+          @OperationAuthLimit = params['OperationAuthLimit']
         end
       end
 
@@ -571,16 +575,19 @@ module TencentCloud
         # @type IsApply: Boolean
         # @param DefaultPanelType: 默认看板
         # @type DefaultPanelType: Integer
+        # @param ManagePlatform: 管理平台
+        # @type ManagePlatform: String
 
-        attr_accessor :Name, :ColorCode, :Logo, :Mark, :IsApply, :DefaultPanelType
+        attr_accessor :Name, :ColorCode, :Logo, :Mark, :IsApply, :DefaultPanelType, :ManagePlatform
 
-        def initialize(name=nil, colorcode=nil, logo=nil, mark=nil, isapply=nil, defaultpaneltype=nil)
+        def initialize(name=nil, colorcode=nil, logo=nil, mark=nil, isapply=nil, defaultpaneltype=nil, manageplatform=nil)
           @Name = name
           @ColorCode = colorcode
           @Logo = logo
           @Mark = mark
           @IsApply = isapply
           @DefaultPanelType = defaultpaneltype
+          @ManagePlatform = manageplatform
         end
 
         def deserialize(params)
@@ -590,6 +597,7 @@ module TencentCloud
           @Mark = params['Mark']
           @IsApply = params['IsApply']
           @DefaultPanelType = params['DefaultPanelType']
+          @ManagePlatform = params['ManagePlatform']
         end
       end
 
@@ -2171,10 +2179,12 @@ module TencentCloud
         # @type DefaultPanelType: Integer
         # @param PanelScope: 2
         # @type PanelScope: String
+        # @param ManagePlatform: 项目管理平台
+        # @type ManagePlatform: String
 
-        attr_accessor :Id, :Name, :ColorCode, :Logo, :Mark, :IsApply, :Seed, :DefaultPanelType, :PanelScope
+        attr_accessor :Id, :Name, :ColorCode, :Logo, :Mark, :IsApply, :Seed, :DefaultPanelType, :PanelScope, :ManagePlatform
 
-        def initialize(id=nil, name=nil, colorcode=nil, logo=nil, mark=nil, isapply=nil, seed=nil, defaultpaneltype=nil, panelscope=nil)
+        def initialize(id=nil, name=nil, colorcode=nil, logo=nil, mark=nil, isapply=nil, seed=nil, defaultpaneltype=nil, panelscope=nil, manageplatform=nil)
           @Id = id
           @Name = name
           @ColorCode = colorcode
@@ -2184,6 +2194,7 @@ module TencentCloud
           @Seed = seed
           @DefaultPanelType = defaultpaneltype
           @PanelScope = panelscope
+          @ManagePlatform = manageplatform
         end
 
         def deserialize(params)
@@ -2196,6 +2207,7 @@ module TencentCloud
           @Seed = params['Seed']
           @DefaultPanelType = params['DefaultPanelType']
           @PanelScope = params['PanelScope']
+          @ManagePlatform = params['ManagePlatform']
         end
       end
 

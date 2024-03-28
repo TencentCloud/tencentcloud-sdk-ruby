@@ -5227,6 +5227,8 @@ module TencentCloud
 
         # 注：`该姓名需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该姓名会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人名字传入将不会生效`
         # @type ProxyOperatorName: String
+        # @param ProxyOperatorMobile: 子客企业员工的手机码,  支持国内手机号11位数字(无需加+86前缀或其他字符)。注：`该手机号需要和Agent.ProxyOperator.OpenId相匹配,  当员工完成认证后该手机号会和Agent.ProxyOperator.OpenId一一绑定, 若员工已认证加入企业，这里修改经办人手机号传入将不会生效`
+        # @type ProxyOperatorMobile: String
         # @param Module: Web控制台登录后进入的功能模块,  支持的模块包括：
         # <ul>
         # <li> **空值** :(默认)企业中心模块</li>
@@ -5279,16 +5281,17 @@ module TencentCloud
         # 注意：`目前仅支持 H5 和 PC`。
         # @type AutoJumpUrl: String
 
-        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator, :ProxyOperatorIdCardNumber, :AutoJumpUrl
+        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :ProxyOperatorMobile, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator, :ProxyOperatorIdCardNumber, :AutoJumpUrl
         extend Gem::Deprecate
         deprecate :Operator, :none, 2024, 3
         deprecate :Operator=, :none, 2024, 3
 
-        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, _module=nil, moduleid=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, operator=nil, proxyoperatoridcardnumber=nil, autojumpurl=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, proxyoperatormobile=nil, _module=nil, moduleid=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, operator=nil, proxyoperatoridcardnumber=nil, autojumpurl=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @UniformSocialCreditCode = uniformsocialcreditcode
           @ProxyOperatorName = proxyoperatorname
+          @ProxyOperatorMobile = proxyoperatormobile
           @Module = _module
           @ModuleId = moduleid
           @MenuStatus = menustatus
@@ -5308,6 +5311,7 @@ module TencentCloud
           @ProxyOrganizationName = params['ProxyOrganizationName']
           @UniformSocialCreditCode = params['UniformSocialCreditCode']
           @ProxyOperatorName = params['ProxyOperatorName']
+          @ProxyOperatorMobile = params['ProxyOperatorMobile']
           @Module = params['Module']
           @ModuleId = params['ModuleId']
           @MenuStatus = params['MenuStatus']

@@ -3054,19 +3054,24 @@ module TencentCloud
         # @type CategoryName: String
         # @param ParentCategoryId: 父分类ID,如果为0则没有父分类
         # @type ParentCategoryId: Integer
+        # @param ItemCount: 子分类下检测项总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemCount: Integer
 
-        attr_accessor :CategoryId, :CategoryName, :ParentCategoryId
+        attr_accessor :CategoryId, :CategoryName, :ParentCategoryId, :ItemCount
 
-        def initialize(categoryid=nil, categoryname=nil, parentcategoryid=nil)
+        def initialize(categoryid=nil, categoryname=nil, parentcategoryid=nil, itemcount=nil)
           @CategoryId = categoryid
           @CategoryName = categoryname
           @ParentCategoryId = parentcategoryid
+          @ItemCount = itemcount
         end
 
         def deserialize(params)
           @CategoryId = params['CategoryId']
           @CategoryName = params['CategoryName']
           @ParentCategoryId = params['ParentCategoryId']
+          @ItemCount = params['ItemCount']
         end
       end
 
@@ -3760,6 +3765,41 @@ module TencentCloud
               baselinecustomruleidname_tmp = BaselineCustomRuleIdName.new
               baselinecustomruleidname_tmp.deserialize(i)
               @RelatedCustomRuleInfo << baselinecustomruleidname_tmp
+            end
+          end
+        end
+      end
+
+      # 基线检测项分类树状结构
+      class BaselineItemsCategory < TencentCloud::Common::AbstractModel
+        # @param ParentCategoryId: 基线检测项父分类id
+        # @type ParentCategoryId: Integer
+        # @param ParentCategoryName: 基线检测项父分类名称
+        # @type ParentCategoryName: String
+        # @param CategoryCount: 基线检测项子分类数目
+        # @type CategoryCount: Integer
+        # @param CategoryLists: 基线检测项子分类列表
+        # @type CategoryLists: Array
+
+        attr_accessor :ParentCategoryId, :ParentCategoryName, :CategoryCount, :CategoryLists
+
+        def initialize(parentcategoryid=nil, parentcategoryname=nil, categorycount=nil, categorylists=nil)
+          @ParentCategoryId = parentcategoryid
+          @ParentCategoryName = parentcategoryname
+          @CategoryCount = categorycount
+          @CategoryLists = categorylists
+        end
+
+        def deserialize(params)
+          @ParentCategoryId = params['ParentCategoryId']
+          @ParentCategoryName = params['ParentCategoryName']
+          @CategoryCount = params['CategoryCount']
+          unless params['CategoryLists'].nil?
+            @CategoryLists = []
+            params['CategoryLists'].each do |i|
+              baselinecategory_tmp = BaselineCategory.new
+              baselinecategory_tmp.deserialize(i)
+              @CategoryLists << baselinecategory_tmp
             end
           end
         end
@@ -6520,18 +6560,22 @@ module TencentCloud
       class CreateSearchTemplateResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0：成功，非0：失败
         # @type Status: Integer
+        # @param Message: 失败原因
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :Message, :RequestId
 
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, message=nil, requestid=nil)
           @Status = status
+          @Message = message
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -13353,14 +13397,18 @@ module TencentCloud
         # @type List: Array
         # @param Total: 总条目数
         # @type Total: Integer
+        # @param CategoryList: 基线分类列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :Total, :RequestId
+        attr_accessor :List, :Total, :CategoryList, :RequestId
 
-        def initialize(list=nil, total=nil, requestid=nil)
+        def initialize(list=nil, total=nil, categorylist=nil, requestid=nil)
           @List = list
           @Total = total
+          @CategoryList = categorylist
           @RequestId = requestid
         end
 
@@ -13374,6 +13422,14 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          unless params['CategoryList'].nil?
+            @CategoryList = []
+            params['CategoryList'].each do |i|
+              baselineitemscategory_tmp = BaselineItemsCategory.new
+              baselineitemscategory_tmp.deserialize(i)
+              @CategoryList << baselineitemscategory_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -31408,17 +31464,22 @@ module TencentCloud
         # @type ItemId: Integer
         # @param ItemName: 名称
         # @type ItemName: String
+        # @param CustomItemValues: 自定义阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomItemValues: Array
 
-        attr_accessor :ItemId, :ItemName
+        attr_accessor :ItemId, :ItemName, :CustomItemValues
 
-        def initialize(itemid=nil, itemname=nil)
+        def initialize(itemid=nil, itemname=nil, customitemvalues=nil)
           @ItemId = itemid
           @ItemName = itemname
+          @CustomItemValues = customitemvalues
         end
 
         def deserialize(params)
           @ItemId = params['ItemId']
           @ItemName = params['ItemName']
+          @CustomItemValues = params['CustomItemValues']
         end
       end
 
@@ -33458,13 +33519,22 @@ module TencentCloud
         # @type SelectAll: Integer
         # @param Filters: <li>ItemName - string - 是否必填：否 - 项名称</li>
         # @type Filters: Array
+        # @param IdType: 0:检测项，1:检测项分类
+        # @type IdType: Integer
+        # @param ExcludeIds: 需要排除的检测项id
+        # @type ExcludeIds: Array
+        # @param CategoryIds: 勾选的检测项分类
+        # @type CategoryIds: Array
 
-        attr_accessor :Data, :SelectAll, :Filters
+        attr_accessor :Data, :SelectAll, :Filters, :IdType, :ExcludeIds, :CategoryIds
 
-        def initialize(data=nil, selectall=nil, filters=nil)
+        def initialize(data=nil, selectall=nil, filters=nil, idtype=nil, excludeids=nil, categoryids=nil)
           @Data = data
           @SelectAll = selectall
           @Filters = filters
+          @IdType = idtype
+          @ExcludeIds = excludeids
+          @CategoryIds = categoryids
         end
 
         def deserialize(params)
@@ -33481,6 +33551,9 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @IdType = params['IdType']
+          @ExcludeIds = params['ExcludeIds']
+          @CategoryIds = params['CategoryIds']
         end
       end
 

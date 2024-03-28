@@ -9016,7 +9016,7 @@ module TencentCloud
 
       # DescribeDataCheckStat请求参数结构体
       class DescribeDataCheckStatRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: Project id
+        # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param BeginDate: 开始时间，时间戳到秒
         # @type BeginDate: String
@@ -12016,9 +12016,9 @@ module TencentCloud
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param PageNumber: 页数
+        # @param PageNumber: 页数:默认1
         # @type PageNumber: Integer
-        # @param PageSize: 分页大小
+        # @param PageSize: 分页大小,默认最小10
         # @type PageSize: Integer
         # @param Filters: 过滤条件
         # @type Filters: Array
@@ -14182,7 +14182,7 @@ module TencentCloud
 
       # DescribeRuleDimStat请求参数结构体
       class DescribeRuleDimStatRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: Project Id
+        # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param BeginDate: 开始时间，时间戳到秒
         # @type BeginDate: String
@@ -14505,7 +14505,7 @@ module TencentCloud
 
       # DescribeRuleExecStat请求参数结构体
       class DescribeRuleExecStatRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: ProjectId 值
+        # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param BeginDate: 开始时间，时间戳到秒
         # @type BeginDate: String
@@ -17866,7 +17866,7 @@ module TencentCloud
 
       # DescribeTopTableStat请求参数结构体
       class DescribeTopTableStatRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: Project Id
+        # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param BeginDate: 开始时间，时间戳到秒
         # @type BeginDate: String
@@ -17913,7 +17913,7 @@ module TencentCloud
 
       # DescribeTrendStat请求参数结构体
       class DescribeTrendStatRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: Project id
+        # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param BeginDate: 开始时间，时间戳到秒
         # @type BeginDate: String
@@ -19549,10 +19549,25 @@ module TencentCloud
         # @param FilePath: 文件相对路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePath: String
+        # @param Expire: 是否过期(1.已过期 2.未过期)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expire: Integer
+        # @param DatasourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DbTableName: 库名+表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbTableName: String
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param RuleExecId: 规则执行id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleExecId: Integer
 
-        attr_accessor :ExportTaskId, :TaskType, :OperatorId, :OperatorName, :CreateTime, :Status, :SchedulerTaskId, :SchedulerCurRunDate, :FilePath
+        attr_accessor :ExportTaskId, :TaskType, :OperatorId, :OperatorName, :CreateTime, :Status, :SchedulerTaskId, :SchedulerCurRunDate, :FilePath, :Expire, :DatasourceName, :DbTableName, :RuleName, :RuleExecId
 
-        def initialize(exporttaskid=nil, tasktype=nil, operatorid=nil, operatorname=nil, createtime=nil, status=nil, schedulertaskid=nil, schedulercurrundate=nil, filepath=nil)
+        def initialize(exporttaskid=nil, tasktype=nil, operatorid=nil, operatorname=nil, createtime=nil, status=nil, schedulertaskid=nil, schedulercurrundate=nil, filepath=nil, expire=nil, datasourcename=nil, dbtablename=nil, rulename=nil, ruleexecid=nil)
           @ExportTaskId = exporttaskid
           @TaskType = tasktype
           @OperatorId = operatorid
@@ -19562,6 +19577,11 @@ module TencentCloud
           @SchedulerTaskId = schedulertaskid
           @SchedulerCurRunDate = schedulercurrundate
           @FilePath = filepath
+          @Expire = expire
+          @DatasourceName = datasourcename
+          @DbTableName = dbtablename
+          @RuleName = rulename
+          @RuleExecId = ruleexecid
         end
 
         def deserialize(params)
@@ -19574,6 +19594,11 @@ module TencentCloud
           @SchedulerTaskId = params['SchedulerTaskId']
           @SchedulerCurRunDate = params['SchedulerCurRunDate']
           @FilePath = params['FilePath']
+          @Expire = params['Expire']
+          @DatasourceName = params['DatasourceName']
+          @DbTableName = params['DbTableName']
+          @RuleName = params['RuleName']
+          @RuleExecId = params['RuleExecId']
         end
       end
 
@@ -27572,10 +27597,13 @@ module TencentCloud
         # @param MonitorStatus: 监控是否开启.0false,1true
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorStatus: Integer
+        # @param TriggerCondition: 触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerCondition: String
 
-        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus
+        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus, :TriggerCondition
 
-        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil)
+        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil, triggercondition=nil)
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
           @TableId = tableid
@@ -27619,6 +27647,7 @@ module TencentCloud
           @DatasourceId = datasourceid
           @DatabaseId = databaseid
           @MonitorStatus = monitorstatus
+          @TriggerCondition = triggercondition
         end
 
         def deserialize(params)
@@ -27677,6 +27706,7 @@ module TencentCloud
           @DatasourceId = params['DatasourceId']
           @DatabaseId = params['DatabaseId']
           @MonitorStatus = params['MonitorStatus']
+          @TriggerCondition = params['TriggerCondition']
         end
       end
 
@@ -28367,10 +28397,13 @@ module TencentCloud
         # @param EngineType: 实际执行引擎
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineType: String
+        # @param RuleExecResultVOList: 规则执行结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleExecResultVOList: Array
 
-        attr_accessor :RuleGroupExecId, :RuleGroupId, :TriggerType, :ExecTime, :Status, :AlarmRuleCount, :TotalRuleCount, :TableOwnerName, :TableName, :TableId, :DatabaseId, :DatasourceId, :Permission, :ExecDetail, :EngineType
+        attr_accessor :RuleGroupExecId, :RuleGroupId, :TriggerType, :ExecTime, :Status, :AlarmRuleCount, :TotalRuleCount, :TableOwnerName, :TableName, :TableId, :DatabaseId, :DatasourceId, :Permission, :ExecDetail, :EngineType, :RuleExecResultVOList
 
-        def initialize(rulegroupexecid=nil, rulegroupid=nil, triggertype=nil, exectime=nil, status=nil, alarmrulecount=nil, totalrulecount=nil, tableownername=nil, tablename=nil, tableid=nil, databaseid=nil, datasourceid=nil, permission=nil, execdetail=nil, enginetype=nil)
+        def initialize(rulegroupexecid=nil, rulegroupid=nil, triggertype=nil, exectime=nil, status=nil, alarmrulecount=nil, totalrulecount=nil, tableownername=nil, tablename=nil, tableid=nil, databaseid=nil, datasourceid=nil, permission=nil, execdetail=nil, enginetype=nil, ruleexecresultvolist=nil)
           @RuleGroupExecId = rulegroupexecid
           @RuleGroupId = rulegroupid
           @TriggerType = triggertype
@@ -28386,6 +28419,7 @@ module TencentCloud
           @Permission = permission
           @ExecDetail = execdetail
           @EngineType = enginetype
+          @RuleExecResultVOList = ruleexecresultvolist
         end
 
         def deserialize(params)
@@ -28404,6 +28438,14 @@ module TencentCloud
           @Permission = params['Permission']
           @ExecDetail = params['ExecDetail']
           @EngineType = params['EngineType']
+          unless params['RuleExecResultVOList'].nil?
+            @RuleExecResultVOList = []
+            params['RuleExecResultVOList'].each do |i|
+              ruleexecresult_tmp = RuleExecResult.new
+              ruleexecresult_tmp.deserialize(i)
+              @RuleExecResultVOList << ruleexecresult_tmp
+            end
+          end
         end
       end
 

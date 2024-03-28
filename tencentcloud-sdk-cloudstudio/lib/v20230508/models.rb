@@ -19,26 +19,34 @@ module TencentCloud
     module V20230508
       # CreateWorkspace请求参数结构体
       class CreateWorkspaceRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 工作空间名称
+        # @param Name: 工作空间名称, 长度限制 2~64
         # @type Name: String
-        # @param Description: 工作空间描述
+        # @param Description: 工作空间描述, 长度限制 0~255
         # @type Description: String
         # @param Specs: 工作空间规格。Standard: 2C4G, Calculation: 4C8G, Profession: 8C16G. 默认是 Standard。
         # @type Specs: String
-        # @param Image: 工作空间基础镜像名称, 默认会使用 All In One 镜像
+        # @param Image: 工作空间基础镜像名称, 默认会使用 All In One 镜像, 长度限制 1~255
         # @type Image: String
         # @param Repository: Git 仓库. 工作空间启动时会自动克隆该仓库
         # @type Repository: :class:`Tencentcloud::Cloudstudio.v20230508.models.GitRepository`
         # @param Envs: 环境变量. 会被注入到工作空间中
         # @type Envs: Array
-        # @param Extensions: 预装插件. 工作空间启动时, 会自动安装这些插件
+        # @param Extensions: 预装插件. 工作空间启动时, 会自动安装这些插件。长度限制: 0~10
         # @type Extensions: Array
         # @param Lifecycle: 工作空间生命周期钩子.  分为三个阶段 init, start, destroy. 分别表示工作空间数据初始化阶段, 工作空间启动阶段, 工作空间关闭阶段.  用户可以自定义 shell 命令.
         # @type Lifecycle: :class:`Tencentcloud::Cloudstudio.v20230508.models.LifeCycle`
+        # @param AppId: 应用名称
+        # @type AppId: Integer
+        # @param Uin: 用户UIN
+        # @type Uin: String
+        # @param UniqVpcId: VPCID
+        # @type UniqVpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
 
-        attr_accessor :Name, :Description, :Specs, :Image, :Repository, :Envs, :Extensions, :Lifecycle
+        attr_accessor :Name, :Description, :Specs, :Image, :Repository, :Envs, :Extensions, :Lifecycle, :AppId, :Uin, :UniqVpcId, :SubnetId
 
-        def initialize(name=nil, description=nil, specs=nil, image=nil, repository=nil, envs=nil, extensions=nil, lifecycle=nil)
+        def initialize(name=nil, description=nil, specs=nil, image=nil, repository=nil, envs=nil, extensions=nil, lifecycle=nil, appid=nil, uin=nil, uniqvpcid=nil, subnetid=nil)
           @Name = name
           @Description = description
           @Specs = specs
@@ -47,6 +55,10 @@ module TencentCloud
           @Envs = envs
           @Extensions = extensions
           @Lifecycle = lifecycle
+          @AppId = appid
+          @Uin = uin
+          @UniqVpcId = uniqvpcid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -71,6 +83,10 @@ module TencentCloud
             @Lifecycle = LifeCycle.new
             @Lifecycle.deserialize(params['Lifecycle'])
           end
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @UniqVpcId = params['UniqVpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 

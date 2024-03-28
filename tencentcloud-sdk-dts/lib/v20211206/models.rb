@@ -3844,10 +3844,16 @@ module TencentCloud
         # @param CcnOwnerUin: 数据库为跨账号云联网下的实例时、表示云联网所属主账号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnOwnerUin: String
+        # @param ChildInstanceId: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildInstanceId: String
+        # @param ChildInstanceType: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的类型、比如：只读实例传ro、读写实例传rw
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildInstanceType: String
 
-        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin
+        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ChildInstanceId, :ChildInstanceType
 
-        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil)
+        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil, childinstanceid=nil, childinstancetype=nil)
           @Region = region
           @Role = role
           @DbKernel = dbkernel
@@ -3875,6 +3881,8 @@ module TencentCloud
           @EncryptConn = encryptconn
           @DatabaseNetEnv = databasenetenv
           @CcnOwnerUin = ccnowneruin
+          @ChildInstanceId = childinstanceid
+          @ChildInstanceType = childinstancetype
         end
 
         def deserialize(params)
@@ -3905,6 +3913,8 @@ module TencentCloud
           @EncryptConn = params['EncryptConn']
           @DatabaseNetEnv = params['DatabaseNetEnv']
           @CcnOwnerUin = params['CcnOwnerUin']
+          @ChildInstanceId = params['ChildInstanceId']
+          @ChildInstanceType = params['ChildInstanceType']
         end
       end
 
@@ -3958,10 +3968,16 @@ module TencentCloud
         # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。 tdpg必填参数：PgDatabase-订阅的库名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAttr: Array
+        # @param ChildInstanceId: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildInstanceId: String
+        # @param ChildInstanceType: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的类型、比如：只读实例传ro、读写实例传rw
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildInstanceType: String
 
-        attr_accessor :DatabaseRegion, :User, :Password, :InstanceId, :CvmInstanceId, :UniqDcgId, :CcnId, :UniqVpnGwId, :VpcId, :SubnetId, :HostName, :Port, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ExtraAttr
+        attr_accessor :DatabaseRegion, :User, :Password, :InstanceId, :CvmInstanceId, :UniqDcgId, :CcnId, :UniqVpnGwId, :VpcId, :SubnetId, :HostName, :Port, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ExtraAttr, :ChildInstanceId, :ChildInstanceType
 
-        def initialize(databaseregion=nil, user=nil, password=nil, instanceid=nil, cvminstanceid=nil, uniqdcgid=nil, ccnid=nil, uniqvpngwid=nil, vpcid=nil, subnetid=nil, hostname=nil, port=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil, extraattr=nil)
+        def initialize(databaseregion=nil, user=nil, password=nil, instanceid=nil, cvminstanceid=nil, uniqdcgid=nil, ccnid=nil, uniqvpngwid=nil, vpcid=nil, subnetid=nil, hostname=nil, port=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil, extraattr=nil, childinstanceid=nil, childinstancetype=nil)
           @DatabaseRegion = databaseregion
           @User = user
           @Password = password
@@ -3978,6 +3994,8 @@ module TencentCloud
           @DatabaseNetEnv = databasenetenv
           @CcnOwnerUin = ccnowneruin
           @ExtraAttr = extraattr
+          @ChildInstanceId = childinstanceid
+          @ChildInstanceType = childinstancetype
         end
 
         def deserialize(params)
@@ -4004,6 +4022,8 @@ module TencentCloud
               @ExtraAttr << keyvaluepairoption_tmp
             end
           end
+          @ChildInstanceId = params['ChildInstanceId']
+          @ChildInstanceType = params['ChildInstanceType']
         end
       end
 
