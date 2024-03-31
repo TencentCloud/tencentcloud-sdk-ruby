@@ -2927,8 +2927,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 3
-        deprecate :TaskId=, :none, 2024, 3
+        deprecate :TaskId, :none, 2024, 4
+        deprecate :TaskId=, :none, 2024, 4
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -5219,10 +5219,12 @@ module TencentCloud
         # @type NewFile: Boolean
         # @param FilesSize: 必填项，文件大小，与 Files 字段对应
         # @type FilesSize: Array
+        # @param FileMd5: 必填项，资源的Md5值（COS中的ETag）
+        # @type FileMd5: String
 
-        attr_accessor :ProjectId, :Files, :FilePath, :CosBucketName, :CosRegion, :NewFile, :FilesSize
+        attr_accessor :ProjectId, :Files, :FilePath, :CosBucketName, :CosRegion, :NewFile, :FilesSize, :FileMd5
 
-        def initialize(projectid=nil, files=nil, filepath=nil, cosbucketname=nil, cosregion=nil, newfile=nil, filessize=nil)
+        def initialize(projectid=nil, files=nil, filepath=nil, cosbucketname=nil, cosregion=nil, newfile=nil, filessize=nil, filemd5=nil)
           @ProjectId = projectid
           @Files = files
           @FilePath = filepath
@@ -5230,6 +5232,7 @@ module TencentCloud
           @CosRegion = cosregion
           @NewFile = newfile
           @FilesSize = filessize
+          @FileMd5 = filemd5
         end
 
         def deserialize(params)
@@ -5240,6 +5243,7 @@ module TencentCloud
           @CosRegion = params['CosRegion']
           @NewFile = params['NewFile']
           @FilesSize = params['FilesSize']
+          @FileMd5 = params['FileMd5']
         end
       end
 
@@ -10247,12 +10251,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 3
-        deprecate :EventType=, :none, 2024, 3
-        deprecate :EventBroadcastType, :none, 2024, 3
-        deprecate :EventBroadcastType=, :none, 2024, 3
-        deprecate :Status, :none, 2024, 3
-        deprecate :Status=, :none, 2024, 3
+        deprecate :EventType, :none, 2024, 4
+        deprecate :EventType=, :none, 2024, 4
+        deprecate :EventBroadcastType, :none, 2024, 4
+        deprecate :EventBroadcastType=, :none, 2024, 4
+        deprecate :Status, :none, 2024, 4
+        deprecate :Status=, :none, 2024, 4
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -18365,8 +18369,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 3
-        deprecate :DimType=, :none, 2024, 3
+        deprecate :DimType, :none, 2024, 4
+        deprecate :DimType=, :none, 2024, 4
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -24940,8 +24944,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2024, 3
-        deprecate :InCharge=, :none, 2024, 3
+        deprecate :InCharge, :none, 2024, 4
+        deprecate :InCharge=, :none, 2024, 4
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -30570,10 +30574,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2024, 3
-        deprecate :SourceObjectDataTypeName=, :none, 2024, 3
-        deprecate :SourceObjectValue, :none, 2024, 3
-        deprecate :SourceObjectValue=, :none, 2024, 3
+        deprecate :SourceObjectDataTypeName, :none, 2024, 4
+        deprecate :SourceObjectDataTypeName=, :none, 2024, 4
+        deprecate :SourceObjectValue, :none, 2024, 4
+        deprecate :SourceObjectValue=, :none, 2024, 4
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename

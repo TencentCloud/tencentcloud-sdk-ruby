@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 3
-        deprecate :Idcard=, :none, 2024, 3
+        deprecate :Idcard, :none, 2024, 4
+        deprecate :Idcard=, :none, 2024, 4
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -2027,13 +2027,13 @@ module TencentCloud
         # @param DeviceInfoTag: 描述当前请求所在设备的风险标签，详情如下： 01-设备疑似被Root/设备疑似越狱 02-设备疑似被注入 03-设备疑似为模拟器 04-设备疑似存在风险操作 05-摄像头疑似被劫持 06-疑似黑产设备
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceInfoTag: String
-        # @param DeviceInfoLevel: 描述当前请求所在设备的风险等级，共4级，详情如下： 1 - 安全 2 - 低风险 3 - 中风险 4 - 高危 ，-1表示未获取到风险等级
+        # @param DeviceInfoLevel: 描述当前请求所在设备的风险等级，共4级，详情如下： 1 - 低风险 2 - 中风险 3 - 高风险 4 - 攻击 ，-1表示未获取到风险等级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceInfoLevel: Integer
         # @param OpenId: 设备id标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
-        # @param CameraInfoLevel: 描述当前请求所在设备的相机指纹风险等级，共4级，详情如下： 1 - 安全 2 - 低风险 3 - 中风险 4 - 高危 ，-1表示未获取到风险等级
+        # @param CameraInfoLevel: 描述当前请求所在设备的相机指纹风险等级，共4级，详情如下： 1 - 低风险 2 - 中风险 3 - 高风险 4 - 攻击 ，-1表示未获取到风险等级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CameraInfoLevel: Integer
         # @param CameraInfoTag: 描述当前请求所在设备的相机指纹风险标签，详情如下： 01-设备疑似被Root/设备疑似越狱 02-设备疑似被注入 03-设备疑似为模拟器 04-设备疑似存在风险操作 05-摄像头疑似被劫持 06-疑似黑产设备，空表示没有相机指纹风险
@@ -2777,8 +2777,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 3
-        deprecate :AsrResultSimilarity=, :none, 2024, 3
+        deprecate :AsrResultSimilarity, :none, 2024, 4
+        deprecate :AsrResultSimilarity=, :none, 2024, 4
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

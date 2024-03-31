@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2024, 3
-        deprecate :CosTocken=, :none, 2024, 3
+        deprecate :CosTocken, :none, 2024, 4
+        deprecate :CosTocken=, :none, 2024, 4
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -1771,7 +1771,9 @@ module TencentCloud
         #     "3": "虚假销售（男女保健美容减肥产品、电子产品、虚假广告、违法销售）",
         #     "4": "恶意文件（病毒文件，木马文件，恶意apk文件的下载链接以及站点，挂马网站）",
         #     "5": "博彩网站（博彩网站，在线赌博网站）",
-        #     "6": "色情网站（涉嫌传播色情内容，提供色情服务的网站）"
+        #     "6": "色情网站（涉嫌传播色情内容，提供色情服务的网站）"，
+        #     "7": "风险网站（弱类型，传播垃圾信息的网站，如果客户端有阻断，不建议使用这个网站）"，
+        #     "8": "违法网站（根据法律法规不能传播的内容，以及侵犯知识产权的类型）"
         #   }
         # @type EvilClass: Integer
         # @param EvilType: 该字段暂为空
@@ -2334,12 +2336,12 @@ module TencentCloud
 
         attr_accessor :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :SeperateDex, :Db, :DexSig, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiQemuRoot, :AntiAssets, :AntiScreenshot, :AntiSSL, :SetFile, :FileSign, :AntiRoot
         extend Gem::Deprecate
-        deprecate :SeperateDex, :none, 2024, 3
-        deprecate :SeperateDex=, :none, 2024, 3
-        deprecate :DexSig, :none, 2024, 3
-        deprecate :DexSig=, :none, 2024, 3
-        deprecate :AntiQemuRoot, :none, 2024, 3
-        deprecate :AntiQemuRoot=, :none, 2024, 3
+        deprecate :SeperateDex, :none, 2024, 4
+        deprecate :SeperateDex=, :none, 2024, 4
+        deprecate :DexSig, :none, 2024, 4
+        deprecate :DexSig=, :none, 2024, 4
+        deprecate :AntiQemuRoot, :none, 2024, 4
+        deprecate :AntiQemuRoot=, :none, 2024, 4
 
         def initialize(apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, seperatedex=nil, db=nil, dexsig=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiqemuroot=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, setfile=nil, filesign=nil, antiroot=nil)
           @ApkSizeOpt = apksizeopt
