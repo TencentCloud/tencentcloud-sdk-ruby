@@ -701,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceEvents）用于查询 Redis 实例事件信息。
+
+        # @param request: Request instance for DescribeInstanceEvents.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceEventsRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstanceEventsResponse`
+        def DescribeInstanceEvents(request)
+          body = send_request('DescribeInstanceEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见[查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
 
         # @param request: Request instance for DescribeInstanceMonitorBigKey.
@@ -1815,6 +1839,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceAvailabilityZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceEvent）用于修改实例的运维事件的执行计划。
+
+        # @param request: Request instance for ModifyInstanceEvent.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceEventRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstanceEventResponse`
+        def ModifyInstanceEvent(request)
+          body = send_request('ModifyInstanceEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceEventResponse.new
             model.deserialize(response['Response'])
             model
           else

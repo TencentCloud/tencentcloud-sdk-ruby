@@ -1944,6 +1944,89 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceEvents请求参数结构体
+      class DescribeInstanceEventsRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutionStartDate: 配置查询事件执行计划的起始日期。
+        # @type ExecutionStartDate: String
+        # @param ExecutionEndDate: 配置查询事件执行计划的结束日期。
+        # @type ExecutionEndDate: String
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param PageSize: 输出每页显示事件的数量，默认：10。
+        # @type PageSize: Integer
+        # @param PageNo: 配置查询事件的输出页码，即支持根据PageNo（页码）与 PageSize （每页输出数量）查询某一页的事件。默认：1。
+        # @type PageNo: Integer
+        # @param Status: 事件当前状态。
+        # - Waiting：未到达执行日期或不在维护时间窗内的事件。
+        # - Running：在维护时间窗内，正在执行维护的事件。
+        # - Finished：已全部完成维护的事件。
+        # - Canceled：已取消执行的事件。
+        # @type Status: Array
+        # @param EventTypes: 事件类型，当前仅支持配置实例迁移、资源腾挪、机房裁撤相关的运维操作。该参数仅支持配置为 **InstanceMigration**。
+        # @type EventTypes: Array
+        # @param Grades: 配置查询事件等级。事件等级根据其影响严重程度和紧急程度进行分级，由重至轻依次为关键、重要、中等、一般。
+        # - Critical：关键
+        # - High：重要
+        # - Middle：中等
+        # - Low：一般
+        # @type Grades: Array
+
+        attr_accessor :ExecutionStartDate, :ExecutionEndDate, :InstanceId, :PageSize, :PageNo, :Status, :EventTypes, :Grades
+
+        def initialize(executionstartdate=nil, executionenddate=nil, instanceid=nil, pagesize=nil, pageno=nil, status=nil, eventtypes=nil, grades=nil)
+          @ExecutionStartDate = executionstartdate
+          @ExecutionEndDate = executionenddate
+          @InstanceId = instanceid
+          @PageSize = pagesize
+          @PageNo = pageno
+          @Status = status
+          @EventTypes = eventtypes
+          @Grades = grades
+        end
+
+        def deserialize(params)
+          @ExecutionStartDate = params['ExecutionStartDate']
+          @ExecutionEndDate = params['ExecutionEndDate']
+          @InstanceId = params['InstanceId']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+          @Status = params['Status']
+          @EventTypes = params['EventTypes']
+          @Grades = params['Grades']
+        end
+      end
+
+      # DescribeInstanceEvents返回参数结构体
+      class DescribeInstanceEventsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RedisInstanceEvents: 实例事件信息
+        # @type RedisInstanceEvents: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RedisInstanceEvents, :RequestId
+
+        def initialize(totalcount=nil, redisinstanceevents=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RedisInstanceEvents = redisinstanceevents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RedisInstanceEvents'].nil?
+            @RedisInstanceEvents = []
+            params['RedisInstanceEvents'].each do |i|
+              redisinstanceevent_tmp = RedisInstanceEvent.new
+              redisinstanceevent_tmp.deserialize(i)
+              @RedisInstanceEvents << redisinstanceevent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceMonitorBigKey请求参数结构体
       class DescribeInstanceMonitorBigKeyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -5641,6 +5724,64 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceEvent请求参数结构体
+      class ModifyInstanceEventRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param EventId: 事件 ID。请通过 DescribeInstanceEvents 获取需修改的事件 ID。
+        # @type EventId: Integer
+        # @param StartTime: 修改事件执行的计划开始时间。
+        # @type StartTime: String
+        # @param EndTime: 修改事件计划执行的结束时间。开始时间配置之后，结束时间只能选择在开始时间之后的 30 分钟、1 小时、1.5 小时、2 小时和 3 小时之内。
+        # @type EndTime: String
+        # @param ExecutionDate: 修改事件执行计划的开始日期。
+        # @type ExecutionDate: String
+        # @param Status: 修改事件的运行状态。该参数当前仅支持设置为 **Canceled**， 即取消执行当前事件。可通过 DescribeInstanceEvents 接口查询当前事件的运行状态与事件级别。
+        # - 事件级别为Critical（关键）或 High（重要）类事件不支持取消。即严重的事件必须执行，不可取消。
+        # - 仅运行状态为 Waiting （待执行的事件）的事件，才能执行取消操作。
+        # @type Status: String
+
+        attr_accessor :InstanceId, :EventId, :StartTime, :EndTime, :ExecutionDate, :Status
+
+        def initialize(instanceid=nil, eventid=nil, starttime=nil, endtime=nil, executiondate=nil, status=nil)
+          @InstanceId = instanceid
+          @EventId = eventid
+          @StartTime = starttime
+          @EndTime = endtime
+          @ExecutionDate = executiondate
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EventId = params['EventId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ExecutionDate = params['ExecutionDate']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyInstanceEvent返回参数结构体
+      class ModifyInstanceEventResponse < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件 ID。
+        # @type EventId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventId, :RequestId
+
+        def initialize(eventid=nil, requestid=nil)
+          @EventId = eventid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceParams请求参数结构体
       class ModifyInstanceParamsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -6409,6 +6550,91 @@ module TencentCloud
           @Createtime = params['Createtime']
           @PayMode = params['PayMode']
           @NetType = params['NetType']
+        end
+      end
+
+      # 实例事件信息
+      class RedisInstanceEvent < TencentCloud::Common::AbstractModel
+        # @param ID: 事件 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param InstanceId: 实例 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Type: 事件类型，当前仅支持配置实例迁移、资源腾挪、机房裁撤相关的运维操作。该参数仅支持配置为 **InstanceMigration**。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Grade: 事件等级根据其影响严重程度和紧急程度进行分级，由重至轻依次为关键、重要、中等、一般。
+        # - Critical：关键
+        # - High：重要
+        # - Middle：中等
+        # - Low：一般
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Grade: String
+        # @param ExecutionDate: 事件计划执行日期。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionDate: String
+        # @param StartTime: 事件计划执行开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 事件计划执行结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param LatestExecutionDate: 运维事件最迟执行的日期，即该事件必须在该日期之前完成，否则可能会对业务产生影响。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestExecutionDate: String
+        # @param Status: 事件当前状态。
+        # - Waiting：未到达执行日期或不在维护时间窗内的事件。
+        # - Running：在维护时间窗内，正在执行维护的事件。
+        # - Finished：已全部完成维护的事件。
+        # - Canceled：已取消执行的事件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param TaskEndTime: 事件执行任务完成时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskEndTime: String
+        # @param EffectInfo: 事件影响信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectInfo: String
+        # @param InitialExecutionDate: 事件最初计划执行日期。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitialExecutionDate: String
+
+        attr_accessor :ID, :InstanceId, :InstanceName, :Type, :Grade, :ExecutionDate, :StartTime, :EndTime, :LatestExecutionDate, :Status, :TaskEndTime, :EffectInfo, :InitialExecutionDate
+
+        def initialize(id=nil, instanceid=nil, instancename=nil, type=nil, grade=nil, executiondate=nil, starttime=nil, endtime=nil, latestexecutiondate=nil, status=nil, taskendtime=nil, effectinfo=nil, initialexecutiondate=nil)
+          @ID = id
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Type = type
+          @Grade = grade
+          @ExecutionDate = executiondate
+          @StartTime = starttime
+          @EndTime = endtime
+          @LatestExecutionDate = latestexecutiondate
+          @Status = status
+          @TaskEndTime = taskendtime
+          @EffectInfo = effectinfo
+          @InitialExecutionDate = initialexecutiondate
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Type = params['Type']
+          @Grade = params['Grade']
+          @ExecutionDate = params['ExecutionDate']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LatestExecutionDate = params['LatestExecutionDate']
+          @Status = params['Status']
+          @TaskEndTime = params['TaskEndTime']
+          @EffectInfo = params['EffectInfo']
+          @InitialExecutionDate = params['InitialExecutionDate']
         end
       end
 

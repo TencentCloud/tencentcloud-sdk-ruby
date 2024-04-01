@@ -404,8 +404,9 @@ module TencentCloud
         # @param InstanceName: 实例名称
         # @type InstanceName: String
         # @param DataSpec: 数据节点
+        # SpecName从DescribeSpec接口中返回的DataSpec.Name获取
         # @type DataSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
-        # @param Tags: 标签列表
+        # @param Tags: 标签列表（废弃）
         # @type Tags: :class:`Tencentcloud::Cdwch.v20200915.models.Tag`
         # @param ClsLogSetId: 日志主题ID
         # @type ClsLogSetId: String
@@ -416,11 +417,17 @@ module TencentCloud
         # @param HAZk: 是否是ZK高可用
         # @type HAZk: Boolean
         # @param CommonSpec: ZK节点
+        # SpecName从DescribeSpec接口中返回的CommonSpec.Name（ZK节点）获取
         # @type CommonSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
+        # @param TagItems: 标签列表
+        # @type TagItems: Array
 
-        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec
+        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
+        extend Gem::Deprecate
+        deprecate :Tags, :none, 2024, 4
+        deprecate :Tags=, :none, 2024, 4
 
-        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil)
+        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
           @Zone = zone
           @HaFlag = haflag
           @UserVPCId = uservpcid
@@ -435,6 +442,7 @@ module TencentCloud
           @MountDiskType = mountdisktype
           @HAZk = hazk
           @CommonSpec = commonspec
+          @TagItems = tagitems
         end
 
         def deserialize(params)
@@ -463,6 +471,14 @@ module TencentCloud
           unless params['CommonSpec'].nil?
             @CommonSpec = NodeSpec.new
             @CommonSpec.deserialize(params['CommonSpec'])
+          end
+          unless params['TagItems'].nil?
+            @TagItems = []
+            params['TagItems'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagItems << tag_tmp
+            end
           end
         end
       end

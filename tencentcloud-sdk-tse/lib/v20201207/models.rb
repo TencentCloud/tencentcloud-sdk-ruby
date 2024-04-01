@@ -393,16 +393,49 @@ module TencentCloud
         # @param ServiceName: 归属服务名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
+        # @param RuleType: 灰度规则类别
+        # Standard｜Lane
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param MatchType: 全链路灰度策略多个条件之间的匹配方式，与AND，或OR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchType: String
+        # @param GroupId: 泳道组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 泳道组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param LaneId: 泳道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneId: String
+        # @param LaneName: 泳道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneName: String
+        # @param MatchMode: 泳道匹配规则：严格STRICT｜宽松PERMISSIVE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchMode: String
+        # @param LaneTag: 泳道标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneTag: String
 
-        attr_accessor :Priority, :Enabled, :ConditionList, :BalancedServiceList, :ServiceId, :ServiceName
+        attr_accessor :Priority, :Enabled, :ConditionList, :BalancedServiceList, :ServiceId, :ServiceName, :RuleType, :MatchType, :GroupId, :GroupName, :LaneId, :LaneName, :MatchMode, :LaneTag
 
-        def initialize(priority=nil, enabled=nil, conditionlist=nil, balancedservicelist=nil, serviceid=nil, servicename=nil)
+        def initialize(priority=nil, enabled=nil, conditionlist=nil, balancedservicelist=nil, serviceid=nil, servicename=nil, ruletype=nil, matchtype=nil, groupid=nil, groupname=nil, laneid=nil, lanename=nil, matchmode=nil, lanetag=nil)
           @Priority = priority
           @Enabled = enabled
           @ConditionList = conditionlist
           @BalancedServiceList = balancedservicelist
           @ServiceId = serviceid
           @ServiceName = servicename
+          @RuleType = ruletype
+          @MatchType = matchtype
+          @GroupId = groupid
+          @GroupName = groupname
+          @LaneId = laneid
+          @LaneName = lanename
+          @MatchMode = matchmode
+          @LaneTag = lanetag
         end
 
         def deserialize(params)
@@ -426,6 +459,14 @@ module TencentCloud
           end
           @ServiceId = params['ServiceId']
           @ServiceName = params['ServiceName']
+          @RuleType = params['RuleType']
+          @MatchType = params['MatchType']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @LaneId = params['LaneId']
+          @LaneName = params['LaneName']
+          @MatchMode = params['MatchMode']
+          @LaneTag = params['LaneTag']
         end
       end
 
@@ -666,24 +707,15 @@ module TencentCloud
         # @type Enabled: Boolean
         # @param QpsThresholds: qps阈值
         # @type QpsThresholds: Array
-        # @param LimitBy: 限流依据
-        # ip service consumer credential path header
-        # @type LimitBy: String
-        # @param ResponseType: 响应策略
-        # url请求转发
-        # text 响应配置
-        # default 直接返回
-        # @type ResponseType: String
-        # @param HideClientHeaders: 是否隐藏限流客户端响应头
-        # @type HideClientHeaders: Boolean
-        # @param IsDelay: 是否开启请求排队
-        # @type IsDelay: Boolean
         # @param Path: 需要进行流量控制的请求路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param Header: 需要进行流量控制的请求头Key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Header: String
+        # @param LimitBy: 限流依据
+        # ip service consumer credential path header
+        # @type LimitBy: String
         # @param ExternalRedis: 外部redis配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalRedis: :class:`Tencentcloud::Tse.v20201207.models.ExternalRedis`
@@ -701,25 +733,42 @@ module TencentCloud
         # @param RateLimitResponseUrl: 请求转发地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitResponseUrl: String
+        # @param ResponseType: 响应策略
+        # url请求转发
+        # text 响应配置
+        # default 直接返回
+        # @type ResponseType: String
+        # @param HideClientHeaders: 是否隐藏限流客户端响应头
+        # @type HideClientHeaders: Boolean
         # @param LineUpTime: 排队时间
         # @type LineUpTime: Integer
+        # @param IsDelay: 是否开启请求排队
+        # @type IsDelay: Boolean
+        # @param BasicLimitQpsThresholds: 基础限流
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasicLimitQpsThresholds: Array
+        # @param LimitRules: 参数限流的规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitRules: Array
 
-        attr_accessor :Enabled, :QpsThresholds, :LimitBy, :ResponseType, :HideClientHeaders, :IsDelay, :Path, :Header, :ExternalRedis, :Policy, :RateLimitResponse, :RateLimitResponseUrl, :LineUpTime
+        attr_accessor :Enabled, :QpsThresholds, :Path, :Header, :LimitBy, :ExternalRedis, :Policy, :RateLimitResponse, :RateLimitResponseUrl, :ResponseType, :HideClientHeaders, :LineUpTime, :IsDelay, :BasicLimitQpsThresholds, :LimitRules
 
-        def initialize(enabled=nil, qpsthresholds=nil, limitby=nil, responsetype=nil, hideclientheaders=nil, isdelay=nil, path=nil, header=nil, externalredis=nil, policy=nil, ratelimitresponse=nil, ratelimitresponseurl=nil, lineuptime=nil)
+        def initialize(enabled=nil, qpsthresholds=nil, path=nil, header=nil, limitby=nil, externalredis=nil, policy=nil, ratelimitresponse=nil, ratelimitresponseurl=nil, responsetype=nil, hideclientheaders=nil, lineuptime=nil, isdelay=nil, basiclimitqpsthresholds=nil, limitrules=nil)
           @Enabled = enabled
           @QpsThresholds = qpsthresholds
-          @LimitBy = limitby
-          @ResponseType = responsetype
-          @HideClientHeaders = hideclientheaders
-          @IsDelay = isdelay
           @Path = path
           @Header = header
+          @LimitBy = limitby
           @ExternalRedis = externalredis
           @Policy = policy
           @RateLimitResponse = ratelimitresponse
           @RateLimitResponseUrl = ratelimitresponseurl
+          @ResponseType = responsetype
+          @HideClientHeaders = hideclientheaders
           @LineUpTime = lineuptime
+          @IsDelay = isdelay
+          @BasicLimitQpsThresholds = basiclimitqpsthresholds
+          @LimitRules = limitrules
         end
 
         def deserialize(params)
@@ -732,12 +781,9 @@ module TencentCloud
               @QpsThresholds << qpsthreshold_tmp
             end
           end
-          @LimitBy = params['LimitBy']
-          @ResponseType = params['ResponseType']
-          @HideClientHeaders = params['HideClientHeaders']
-          @IsDelay = params['IsDelay']
           @Path = params['Path']
           @Header = params['Header']
+          @LimitBy = params['LimitBy']
           unless params['ExternalRedis'].nil?
             @ExternalRedis = ExternalRedis.new
             @ExternalRedis.deserialize(params['ExternalRedis'])
@@ -748,7 +794,26 @@ module TencentCloud
             @RateLimitResponse.deserialize(params['RateLimitResponse'])
           end
           @RateLimitResponseUrl = params['RateLimitResponseUrl']
+          @ResponseType = params['ResponseType']
+          @HideClientHeaders = params['HideClientHeaders']
           @LineUpTime = params['LineUpTime']
+          @IsDelay = params['IsDelay']
+          unless params['BasicLimitQpsThresholds'].nil?
+            @BasicLimitQpsThresholds = []
+            params['BasicLimitQpsThresholds'].each do |i|
+              qpsthreshold_tmp = QpsThreshold.new
+              qpsthreshold_tmp.deserialize(i)
+              @BasicLimitQpsThresholds << qpsthreshold_tmp
+            end
+          end
+          unless params['LimitRules'].nil?
+            @LimitRules = []
+            params['LimitRules'].each do |i|
+              limitrule_tmp = LimitRule.new
+              limitrule_tmp.deserialize(i)
+              @LimitRules << limitrule_tmp
+            end
+          end
         end
       end
 
@@ -783,8 +848,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2024, 3
-        deprecate :MaxReplicas=, :none, 2024, 3
+        deprecate :MaxReplicas, :none, 2024, 4
+        deprecate :MaxReplicas=, :none, 2024, 4
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -846,16 +911,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 3
-        deprecate :Enabled=, :none, 2024, 3
-        deprecate :CreateTime, :none, 2024, 3
-        deprecate :CreateTime=, :none, 2024, 3
-        deprecate :ModifyTime, :none, 2024, 3
-        deprecate :ModifyTime=, :none, 2024, 3
-        deprecate :StrategyId, :none, 2024, 3
-        deprecate :StrategyId=, :none, 2024, 3
-        deprecate :AutoScalerId, :none, 2024, 3
-        deprecate :AutoScalerId=, :none, 2024, 3
+        deprecate :Enabled, :none, 2024, 4
+        deprecate :Enabled=, :none, 2024, 4
+        deprecate :CreateTime, :none, 2024, 4
+        deprecate :CreateTime=, :none, 2024, 4
+        deprecate :ModifyTime, :none, 2024, 4
+        deprecate :ModifyTime=, :none, 2024, 4
+        deprecate :StrategyId, :none, 2024, 4
+        deprecate :StrategyId=, :none, 2024, 4
+        deprecate :AutoScalerId, :none, 2024, 4
+        deprecate :AutoScalerId=, :none, 2024, 4
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -984,14 +1049,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 3
-        deprecate :Enabled=, :none, 2024, 3
-        deprecate :CreateTime, :none, 2024, 3
-        deprecate :CreateTime=, :none, 2024, 3
-        deprecate :ModifyTime, :none, 2024, 3
-        deprecate :ModifyTime=, :none, 2024, 3
-        deprecate :StrategyId, :none, 2024, 3
-        deprecate :StrategyId=, :none, 2024, 3
+        deprecate :Enabled, :none, 2024, 4
+        deprecate :Enabled=, :none, 2024, 4
+        deprecate :CreateTime, :none, 2024, 4
+        deprecate :CreateTime=, :none, 2024, 4
+        deprecate :ModifyTime, :none, 2024, 4
+        deprecate :ModifyTime=, :none, 2024, 4
+        deprecate :StrategyId, :none, 2024, 4
+        deprecate :StrategyId=, :none, 2024, 4
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1686,10 +1751,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2024, 3
-        deprecate :CronScalerConfig=, :none, 2024, 3
-        deprecate :MaxReplicas, :none, 2024, 3
-        deprecate :MaxReplicas=, :none, 2024, 3
+        deprecate :CronScalerConfig, :none, 2024, 4
+        deprecate :CronScalerConfig=, :none, 2024, 4
+        deprecate :MaxReplicas, :none, 2024, 4
+        deprecate :MaxReplicas=, :none, 2024, 4
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1733,8 +1798,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2024, 3
-        deprecate :Result=, :none, 2024, 3
+        deprecate :Result, :none, 2024, 4
+        deprecate :Result=, :none, 2024, 4
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1809,10 +1874,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2024, 3
-        deprecate :Key=, :none, 2024, 3
-        deprecate :Crt, :none, 2024, 3
-        deprecate :Crt=, :none, 2024, 3
+        deprecate :Key, :none, 2024, 4
+        deprecate :Key=, :none, 2024, 4
+        deprecate :Crt, :none, 2024, 4
+        deprecate :Crt=, :none, 2024, 4
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2140,8 +2205,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 3
-        deprecate :ForceHttps=, :none, 2024, 3
+        deprecate :ForceHttps, :none, 2024, 4
+        deprecate :ForceHttps=, :none, 2024, 4
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -4037,16 +4102,19 @@ module TencentCloud
         # @type GatewayId: String
         # @param ServiceId: 服务 ID
         # @type ServiceId: String
+        # @param RuleType: 灰度规则类别 Standard｜Lane
+        # @type RuleType: String
         # @param Limit: 列表数量
         # @type Limit: Integer
         # @param Offset: 列表offset
         # @type Offset: Integer
 
-        attr_accessor :GatewayId, :ServiceId, :Limit, :Offset
+        attr_accessor :GatewayId, :ServiceId, :RuleType, :Limit, :Offset
 
-        def initialize(gatewayid=nil, serviceid=nil, limit=nil, offset=nil)
+        def initialize(gatewayid=nil, serviceid=nil, ruletype=nil, limit=nil, offset=nil)
           @GatewayId = gatewayid
           @ServiceId = serviceid
+          @RuleType = ruletype
           @Limit = limit
           @Offset = offset
         end
@@ -4054,6 +4122,7 @@ module TencentCloud
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @ServiceId = params['ServiceId']
+          @RuleType = params['RuleType']
           @Limit = params['Limit']
           @Offset = params['Offset']
         end
@@ -6551,8 +6620,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2024, 3
-        deprecate :Type=, :none, 2024, 3
+        deprecate :Type, :none, 2024, 4
+        deprecate :Type=, :none, 2024, 4
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -7876,6 +7945,28 @@ module TencentCloud
         end
       end
 
+      # Key/Value结构
+      class KeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 条件的Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 条件的Value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # Kong网关主动健康检查配置
       class KongActiveHealthCheck < TencentCloud::Common::AbstractModel
         # @param HealthyInterval: 主动健康检查健康探测间隔，单位：秒，0表示不开启
@@ -7937,8 +8028,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2024, 3
-        deprecate :Pages=, :none, 2024, 3
+        deprecate :Pages, :none, 2024, 4
+        deprecate :Pages=, :none, 2024, 4
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -8096,8 +8187,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 3
-        deprecate :ForceHttps=, :none, 2024, 3
+        deprecate :ForceHttps, :none, 2024, 4
+        deprecate :ForceHttps=, :none, 2024, 4
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id
@@ -8352,10 +8443,13 @@ module TencentCloud
         # @param CvmInstanceName: CVM实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CvmInstanceName: String
+        # @param Tags: target标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source, :CvmInstanceId, :CvmInstanceName
+        attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source, :CvmInstanceId, :CvmInstanceName, :Tags
 
-        def initialize(host=nil, port=nil, weight=nil, health=nil, createdtime=nil, source=nil, cvminstanceid=nil, cvminstancename=nil)
+        def initialize(host=nil, port=nil, weight=nil, health=nil, createdtime=nil, source=nil, cvminstanceid=nil, cvminstancename=nil, tags=nil)
           @Host = host
           @Port = port
           @Weight = weight
@@ -8364,6 +8458,7 @@ module TencentCloud
           @Source = source
           @CvmInstanceId = cvminstanceid
           @CvmInstanceName = cvminstancename
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -8375,6 +8470,7 @@ module TencentCloud
           @Source = params['Source']
           @CvmInstanceId = params['CvmInstanceId']
           @CvmInstanceName = params['CvmInstanceName']
+          @Tags = params['Tags']
         end
       end
 
@@ -8560,6 +8656,54 @@ module TencentCloud
         end
       end
 
+      # 参数限流的规则
+      class LimitRule < TencentCloud::Common::AbstractModel
+        # @param Filters: 请求匹配条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filters: Array
+        # @param LimitBy: 参数限流依据组合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitBy: Array
+        # @param QpsThresholds: 限流阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QpsThresholds: Array
+
+        attr_accessor :Filters, :LimitBy, :QpsThresholds
+
+        def initialize(filters=nil, limitby=nil, qpsthresholds=nil)
+          @Filters = filters
+          @LimitBy = limitby
+          @QpsThresholds = qpsthresholds
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              rulefilter_tmp = RuleFilter.new
+              rulefilter_tmp.deserialize(i)
+              @Filters << rulefilter_tmp
+            end
+          end
+          unless params['LimitBy'].nil?
+            @LimitBy = []
+            params['LimitBy'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @LimitBy << keyvalue_tmp
+            end
+          end
+          unless params['QpsThresholds'].nil?
+            @QpsThresholds = []
+            params['QpsThresholds'].each do |i|
+              qpsthreshold_tmp = QpsThreshold.new
+              qpsthreshold_tmp.deserialize(i)
+              @QpsThresholds << qpsthreshold_tmp
+            end
+          end
+        end
+      end
+
       # 获取云原生API网关实例列表响应结果。
       class ListCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数。
@@ -8704,10 +8848,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2024, 3
-        deprecate :CronScalerConfig=, :none, 2024, 3
-        deprecate :MaxReplicas, :none, 2024, 3
-        deprecate :MaxReplicas=, :none, 2024, 3
+        deprecate :CronScalerConfig, :none, 2024, 4
+        deprecate :CronScalerConfig=, :none, 2024, 4
+        deprecate :MaxReplicas, :none, 2024, 4
+        deprecate :MaxReplicas=, :none, 2024, 4
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -8831,10 +8975,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2024, 3
-        deprecate :Name=, :none, 2024, 3
-        deprecate :BindDomains, :none, 2024, 3
-        deprecate :BindDomains=, :none, 2024, 3
+        deprecate :Name, :none, 2024, 4
+        deprecate :Name=, :none, 2024, 4
+        deprecate :BindDomains, :none, 2024, 4
+        deprecate :BindDomains=, :none, 2024, 4
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -9018,8 +9162,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 3
-        deprecate :ForceHttps=, :none, 2024, 3
+        deprecate :ForceHttps, :none, 2024, 4
+        deprecate :ForceHttps=, :none, 2024, 4
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -10230,6 +10374,28 @@ module TencentCloud
           @Hosts = params['Hosts']
           @ServiceName = params['ServiceName']
           @ServiceId = params['ServiceId']
+        end
+      end
+
+      # 限流规则的Filter
+      class RuleFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 限流条件的Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Values: 限流条件的Values
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
         end
       end
 

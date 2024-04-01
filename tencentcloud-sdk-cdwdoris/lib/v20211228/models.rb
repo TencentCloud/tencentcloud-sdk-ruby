@@ -101,8 +101,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 3
-        deprecate :FileKeyValues=, :none, 2024, 3
+        deprecate :FileKeyValues, :none, 2024, 4
+        deprecate :FileKeyValues=, :none, 2024, 4
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -202,10 +202,14 @@ module TencentCloud
         # @type HaType: Integer
         # @param CaseSensitive: 表名大小写是否敏感，0：敏感；1：不敏感，以小写进行比较；2：不敏感，表名改为以小写存储
         # @type CaseSensitive: Integer
+        # @param EnableMultiZones: 是否开启多可用区
+        # @type EnableMultiZones: Boolean
+        # @param UserMultiZoneInfos: 开启多可用区后，用户的所有可用区和子网信息
+        # @type UserMultiZoneInfos: :class:`Tencentcloud::Cdwdoris.v20211228.models.NetworkInfo`
 
-        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive
+        attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos
 
-        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil)
+        def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil)
           @Zone = zone
           @FeSpec = fespec
           @BeSpec = bespec
@@ -219,6 +223,8 @@ module TencentCloud
           @Tags = tags
           @HaType = hatype
           @CaseSensitive = casesensitive
+          @EnableMultiZones = enablemultizones
+          @UserMultiZoneInfos = usermultizoneinfos
         end
 
         def deserialize(params)
@@ -251,6 +257,11 @@ module TencentCloud
           end
           @HaType = params['HaType']
           @CaseSensitive = params['CaseSensitive']
+          @EnableMultiZones = params['EnableMultiZones']
+          unless params['UserMultiZoneInfos'].nil?
+            @UserMultiZoneInfos = NetworkInfo.new
+            @UserMultiZoneInfos.deserialize(params['UserMultiZoneInfos'])
+          end
         end
       end
 
@@ -1260,13 +1271,19 @@ module TencentCloud
         # @param BindSGs: 已绑定的安全组信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindSGs: Array
+        # @param EnableMultiZones: 是否为多可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMultiZones: Boolean
+        # @param UserNetworkInfos: 用户可用区和子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserNetworkInfos: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 3
-        deprecate :IfExistCatalog=, :none, 2024, 3
+        deprecate :IfExistCatalog, :none, 2024, 4
+        deprecate :IfExistCatalog=, :none, 2024, 4
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -1310,6 +1327,8 @@ module TencentCloud
           @CaseSensitive = casesensitive
           @IsWhiteSGs = iswhitesgs
           @BindSGs = bindsgs
+          @EnableMultiZones = enablemultizones
+          @UserNetworkInfos = usernetworkinfos
         end
 
         def deserialize(params)
@@ -1369,6 +1388,8 @@ module TencentCloud
           @CaseSensitive = params['CaseSensitive']
           @IsWhiteSGs = params['IsWhiteSGs']
           @BindSGs = params['BindSGs']
+          @EnableMultiZones = params['EnableMultiZones']
+          @UserNetworkInfos = params['UserNetworkInfos']
         end
       end
 
@@ -1468,6 +1489,33 @@ module TencentCloud
         end
       end
 
+      # 网络信息
+      class NetworkInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param SubnetId: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param SubnetIpNum: 当前子网可用ip数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIpNum: Integer
+
+        attr_accessor :Zone, :SubnetId, :SubnetIpNum
+
+        def initialize(zone=nil, subnetid=nil, subnetipnum=nil)
+          @Zone = zone
+          @SubnetId = subnetid
+          @SubnetIpNum = subnetipnum
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @SubnetId = params['SubnetId']
+          @SubnetIpNum = params['SubnetIpNum']
+        end
+      end
+
       # NodeInfo
       class NodeInfo < TencentCloud::Common::AbstractModel
         # @param Ip: 用户IP
@@ -1476,17 +1524,42 @@ module TencentCloud
         # @param Status: 节点状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param NodeName: 节点角色名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param ComponentName: 组件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentName: String
+        # @param NodeRole: 节点角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeRole: String
+        # @param LastRestartTime: 节点上次重启的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastRestartTime: String
+        # @param Zone: 节点所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
 
-        attr_accessor :Ip, :Status
+        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone
 
-        def initialize(ip=nil, status=nil)
+        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil)
           @Ip = ip
           @Status = status
+          @NodeName = nodename
+          @ComponentName = componentname
+          @NodeRole = noderole
+          @LastRestartTime = lastrestarttime
+          @Zone = zone
         end
 
         def deserialize(params)
           @Ip = params['Ip']
           @Status = params['Status']
+          @NodeName = params['NodeName']
+          @ComponentName = params['ComponentName']
+          @NodeRole = params['NodeRole']
+          @LastRestartTime = params['LastRestartTime']
+          @Zone = params['Zone']
         end
       end
 

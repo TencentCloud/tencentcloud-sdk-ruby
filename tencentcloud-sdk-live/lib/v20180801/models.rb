@@ -11357,13 +11357,16 @@ module TencentCloud
         # @param RemoveWatermark: 是否去除水印。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoveWatermark: Boolean
+        # @param CosStore: 是否存储至cos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosStore: Integer
         # @param FlvSpecialParam: FLV 录制定制参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlvSpecialParam: :class:`Tencentcloud::Live.v20180801.models.FlvSpecialParam`
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :RemoveWatermark, :FlvSpecialParam
+        attr_accessor :TemplateId, :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :RemoveWatermark, :CosStore, :FlvSpecialParam
 
-        def initialize(templateid=nil, templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil, removewatermark=nil, flvspecialparam=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil, removewatermark=nil, cosstore=nil, flvspecialparam=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -11375,6 +11378,7 @@ module TencentCloud
           @HlsSpecialParam = hlsspecialparam
           @Mp3Param = mp3param
           @RemoveWatermark = removewatermark
+          @CosStore = cosstore
           @FlvSpecialParam = flvspecialparam
         end
 
@@ -11408,6 +11412,7 @@ module TencentCloud
             @Mp3Param.deserialize(params['Mp3Param'])
           end
           @RemoveWatermark = params['RemoveWatermark']
+          @CosStore = params['CosStore']
           unless params['FlvSpecialParam'].nil?
             @FlvSpecialParam = FlvSpecialParam.new
             @FlvSpecialParam.deserialize(params['FlvSpecialParam'])

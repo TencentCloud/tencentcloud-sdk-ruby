@@ -1991,10 +1991,20 @@ module TencentCloud
         # @type VpcInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
         # @param TimeSpan: 购买时长，月为单位
         # @type TimeSpan: Integer
+        # @param SupportsMigrateToCloud: 是否用于迁移上云，默认为false
+        # @type SupportsMigrateToCloud: Boolean
+        # @param EnablePublic: 是否开启公网
+        # @type EnablePublic: Boolean
+        # @param Bandwidth: 公网带宽，在开启公网情况下为必传字段
+        # @type Bandwidth: Integer
+        # @param IpRules: 公网白名单
+        # @type IpRules: Array
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :Name, :Spec, :NodeCount, :StorageSize, :ZoneIds, :VpcInfo, :TimeSpan
+        attr_accessor :Name, :Spec, :NodeCount, :StorageSize, :ZoneIds, :VpcInfo, :TimeSpan, :SupportsMigrateToCloud, :EnablePublic, :Bandwidth, :IpRules, :Tags
 
-        def initialize(name=nil, spec=nil, nodecount=nil, storagesize=nil, zoneids=nil, vpcinfo=nil, timespan=nil)
+        def initialize(name=nil, spec=nil, nodecount=nil, storagesize=nil, zoneids=nil, vpcinfo=nil, timespan=nil, supportsmigratetocloud=nil, enablepublic=nil, bandwidth=nil, iprules=nil, tags=nil)
           @Name = name
           @Spec = spec
           @NodeCount = nodecount
@@ -2002,6 +2012,11 @@ module TencentCloud
           @ZoneIds = zoneids
           @VpcInfo = vpcinfo
           @TimeSpan = timespan
+          @SupportsMigrateToCloud = supportsmigratetocloud
+          @EnablePublic = enablepublic
+          @Bandwidth = bandwidth
+          @IpRules = iprules
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2015,6 +2030,25 @@ module TencentCloud
             @VpcInfo.deserialize(params['VpcInfo'])
           end
           @TimeSpan = params['TimeSpan']
+          @SupportsMigrateToCloud = params['SupportsMigrateToCloud']
+          @EnablePublic = params['EnablePublic']
+          @Bandwidth = params['Bandwidth']
+          unless params['IpRules'].nil?
+            @IpRules = []
+            params['IpRules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @IpRules << publicaccessrule_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5717,8 +5751,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 3
-        deprecate :QueryDlqMsg=, :none, 2024, 3
+        deprecate :QueryDlqMsg, :none, 2024, 4
+        deprecate :QueryDlqMsg=, :none, 2024, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -5823,8 +5857,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 3
-        deprecate :QueryDLQMsg=, :none, 2024, 3
+        deprecate :QueryDLQMsg, :none, 2024, 4
+        deprecate :QueryDLQMsg=, :none, 2024, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -6568,8 +6602,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 3
-        deprecate :QueryDlqMsg=, :none, 2024, 3
+        deprecate :QueryDlqMsg, :none, 2024, 4
+        deprecate :QueryDlqMsg=, :none, 2024, 4
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid

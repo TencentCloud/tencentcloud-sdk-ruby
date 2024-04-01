@@ -696,13 +696,16 @@ module TencentCloud
         # @param DeLogoTask: 视频内容分析去水印任务的查询结果，当任务类型为 DeLogo 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeLogoTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoResult`
+        # @param HeadTailTask: 视频内容分析片头片尾任务的查询结果，当任务类型为 HeadTailRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadTailTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHeadTailResult`
         # @param DescriptionTask: 视频内容分析摘要任务的查询结果，当任务类型为 Description 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescriptionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :DescriptionTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :HeadTailTask, :DescriptionTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, descriptiontask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, headtailtask=nil, descriptiontask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -710,6 +713,7 @@ module TencentCloud
           @FrameTagTask = frametagtask
           @HighlightTask = highlighttask
           @DeLogoTask = delogotask
+          @HeadTailTask = headtailtask
           @DescriptionTask = descriptiontask
         end
 
@@ -738,6 +742,10 @@ module TencentCloud
           unless params['DeLogoTask'].nil?
             @DeLogoTask = AiAnalysisTaskDelLogoResult.new
             @DeLogoTask.deserialize(params['DeLogoTask'])
+          end
+          unless params['HeadTailTask'].nil?
+            @HeadTailTask = AiAnalysisTaskHeadTailResult.new
+            @HeadTailTask.deserialize(params['HeadTailTask'])
           end
           unless params['DescriptionTask'].nil?
             @DescriptionTask = AiAnalysisTaskDescriptionResult.new
@@ -1150,6 +1158,83 @@ module TencentCloud
           end
           unless params['Output'].nil?
             @Output = AiAnalysisTaskFrameTagOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 片头片尾任务输入类型
+      class AiAnalysisTaskHeadTailInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 片头片尾识别模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 片头片尾结果信息
+      class AiAnalysisTaskHeadTailOutput < TencentCloud::Common::AbstractModel
+        # @param HeadTimeOffset: 片头pts。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadTimeOffset: Float
+        # @param TailTimeOffset: 片尾pts。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TailTimeOffset: Float
+
+        attr_accessor :HeadTimeOffset, :TailTimeOffset
+
+        def initialize(headtimeoffset=nil, tailtimeoffset=nil)
+          @HeadTimeOffset = headtimeoffset
+          @TailTimeOffset = tailtimeoffset
+        end
+
+        def deserialize(params)
+          @HeadTimeOffset = params['HeadTimeOffset']
+          @TailTimeOffset = params['TailTimeOffset']
+        end
+      end
+
+      # 片头片尾结果类型
+      class AiAnalysisTaskHeadTailResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 片头片尾任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHeadTailInput`
+        # @param Output: 片头片尾任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHeadTailOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskHeadTailInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskHeadTailOutput.new
             @Output.deserialize(params['Output'])
           end
         end
@@ -1686,8 +1771,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 3
-        deprecate :OutputStorage=, :none, 2024, 3
+        deprecate :OutputStorage, :none, 2024, 4
+        deprecate :OutputStorage=, :none, 2024, 4
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset

@@ -73,10 +73,6 @@ module TencentCloud
         # @type SessionId: String
         # @param VoiceName: 音色名称
         # @type VoiceName: String
-        # @param SampleRate: 音频采样率：
-
-        # 16000：16k
-        # @type SampleRate: Integer
         # @param VoiceGender: 音色性别:
 
         # 1-male
@@ -87,31 +83,34 @@ module TencentCloud
 
         # 1-中文
         # @type VoiceLanguage: Integer
-        # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
-        # @type Codec: String
         # @param AudioIdList: 音频ID集合
         # @type AudioIdList: Array
+        # @param SampleRate: 音频采样率：
+
+        # 16000：16k
+        # @type SampleRate: Integer
+        # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
+        # @type Codec: String
         # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。
         # 回调采用POST请求方式，Content-Type为application/json，回调数据格式如下:{"TaskId":"xxxxxxxxxxxxxx","Status":2,"StatusStr":"success","VoiceType":xxxxx,"ErrorMsg":""}
         # @type CallbackUrl: String
         # @param ModelType: 模型类型 1:在线 2:离线  默认为1
         # @type ModelType: Integer
-        # @param TaskType: 任务类型 0:轻量版复刻
-        # 默认为0
+        # @param TaskType: 复刻类型。 0 - 轻量版声音复刻（默认）。
         # @type TaskType: Integer
-        # @param VPRAudioId: 校验音频ID
+        # @param VPRAudioId: 校验音频ID。
         # @type VPRAudioId: String
 
-        attr_accessor :SessionId, :VoiceName, :SampleRate, :VoiceGender, :VoiceLanguage, :Codec, :AudioIdList, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId
+        attr_accessor :SessionId, :VoiceName, :VoiceGender, :VoiceLanguage, :AudioIdList, :SampleRate, :Codec, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId
 
-        def initialize(sessionid=nil, voicename=nil, samplerate=nil, voicegender=nil, voicelanguage=nil, codec=nil, audioidlist=nil, callbackurl=nil, modeltype=nil, tasktype=nil, vpraudioid=nil)
+        def initialize(sessionid=nil, voicename=nil, voicegender=nil, voicelanguage=nil, audioidlist=nil, samplerate=nil, codec=nil, callbackurl=nil, modeltype=nil, tasktype=nil, vpraudioid=nil)
           @SessionId = sessionid
           @VoiceName = voicename
-          @SampleRate = samplerate
           @VoiceGender = voicegender
           @VoiceLanguage = voicelanguage
-          @Codec = codec
           @AudioIdList = audioidlist
+          @SampleRate = samplerate
+          @Codec = codec
           @CallbackUrl = callbackurl
           @ModelType = modeltype
           @TaskType = tasktype
@@ -121,11 +120,11 @@ module TencentCloud
         def deserialize(params)
           @SessionId = params['SessionId']
           @VoiceName = params['VoiceName']
-          @SampleRate = params['SampleRate']
           @VoiceGender = params['VoiceGender']
           @VoiceLanguage = params['VoiceLanguage']
-          @Codec = params['Codec']
           @AudioIdList = params['AudioIdList']
+          @SampleRate = params['SampleRate']
+          @Codec = params['Codec']
           @CallbackUrl = params['CallbackUrl']
           @ModelType = params['ModelType']
           @TaskType = params['TaskType']
@@ -200,7 +199,7 @@ module TencentCloud
         # @param StatusStr: 任务状态，waiting：任务等待，doing：任务执行中，success：任务成功，failed：任务失败。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusStr: String
-        # @param VoiceType: 音色id
+        # @param VoiceType: 音色id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceType: Integer
         # @param ErrorMsg: 失败原因说明。
@@ -255,30 +254,30 @@ module TencentCloud
         # @type TextId: String
         # @param AudioData: 语音数据 要使用base64编码(采用python语言时注意读取文件时需要转成base64字符串编码，例如：str(base64.b64encode(open("input.aac", mode="rb").read()), encoding='utf-8') )。
         # @type AudioData: String
-        # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
-        # @type Codec: String
         # @param TypeId: 1:环境检测 2:音质检测
         # @type TypeId: Integer
+        # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
+        # @type Codec: String
         # @param SampleRate: 音频采样率：
 
         # 16000：16k（默认）
         # @type SampleRate: Integer
 
-        attr_accessor :TextId, :AudioData, :Codec, :TypeId, :SampleRate
+        attr_accessor :TextId, :AudioData, :TypeId, :Codec, :SampleRate
 
-        def initialize(textid=nil, audiodata=nil, codec=nil, typeid=nil, samplerate=nil)
+        def initialize(textid=nil, audiodata=nil, typeid=nil, codec=nil, samplerate=nil)
           @TextId = textid
           @AudioData = audiodata
-          @Codec = codec
           @TypeId = typeid
+          @Codec = codec
           @SampleRate = samplerate
         end
 
         def deserialize(params)
           @TextId = params['TextId']
           @AudioData = params['AudioData']
-          @Codec = params['Codec']
           @TypeId = params['TypeId']
+          @Codec = params['Codec']
           @SampleRate = params['SampleRate']
         end
       end

@@ -21,14 +21,14 @@ module TencentCloud
       class CreateTtsTaskRequest < TencentCloud::Common::AbstractModel
         # @param Text: 合成语音的源文本，按UTF-8编码统一计算，最多支持10万字符
         # @type Text: String
-        # @param ModelType: 模型类型，1-默认模型。
-        # @type ModelType: Integer
         # @param Volume: 音量大小，范围：[0，10]，分别对应11个等级的音量，默认为0，代表正常音量。没有静音选项。
         # @type Volume: Float
         # @param Speed: 语速，范围：[-2，2]，分别对应不同语速：<li>-2代表0.6倍</li><li>-1代表0.8倍</li><li>0代表1.0倍（默认）</li><li>1代表1.2倍</li><li>2代表1.5倍</li>如果需要更细化的语速，可以保留小数点后 2 位，例如0.5/1.25/2.81等。<br>参数值与实际语速转换，可参考[代码示例](https://sdk-1300466766.cos.ap-shanghai.myqcloud.com/sample/speed_sample.tar.gz)
         # @type Speed: Float
         # @param ProjectId: 项目id，用户自定义，默认为0。
         # @type ProjectId: Integer
+        # @param ModelType: 模型类型，1-默认模型。
+        # @type ModelType: Integer
         # @param VoiceType: 音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
         # @type VoiceType: Integer
         # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li><li>3-日文</li>
@@ -48,14 +48,14 @@ module TencentCloud
         # @param EmotionIntensity: 控制合成音频情感程度，取值范围为[50,200],默认为100；只有EmotionCategory不为空时生效。
         # @type EmotionIntensity: Integer
 
-        attr_accessor :Text, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl, :EnableSubtitle, :VoiceoverDialogueSplit, :EmotionCategory, :EmotionIntensity
+        attr_accessor :Text, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl, :EnableSubtitle, :VoiceoverDialogueSplit, :EmotionCategory, :EmotionIntensity
 
-        def initialize(text=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil, enablesubtitle=nil, voiceoverdialoguesplit=nil, emotioncategory=nil, emotionintensity=nil)
+        def initialize(text=nil, volume=nil, speed=nil, projectid=nil, modeltype=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil, enablesubtitle=nil, voiceoverdialoguesplit=nil, emotioncategory=nil, emotionintensity=nil)
           @Text = text
-          @ModelType = modeltype
           @Volume = volume
           @Speed = speed
           @ProjectId = projectid
+          @ModelType = modeltype
           @VoiceType = voicetype
           @PrimaryLanguage = primarylanguage
           @SampleRate = samplerate
@@ -69,10 +69,10 @@ module TencentCloud
 
         def deserialize(params)
           @Text = params['Text']
-          @ModelType = params['ModelType']
           @Volume = params['Volume']
           @Speed = params['Speed']
           @ProjectId = params['ProjectId']
+          @ModelType = params['ModelType']
           @VoiceType = params['VoiceType']
           @PrimaryLanguage = params['PrimaryLanguage']
           @SampleRate = params['SampleRate']
