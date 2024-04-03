@@ -1533,8 +1533,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2024, 3
-        deprecate :Option=, :none, 2024, 3
+        deprecate :Option, :none, 2024, 4
+        deprecate :Option=, :none, 2024, 4
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1592,12 +1592,14 @@ module TencentCloud
         # @type Name: String
         # @param EnvironmentId: 投递环境ID。
         # @type EnvironmentId: String
-        # @param InputBase64: 任务输入JSON。需要进行base64编码。
-        # @type InputBase64: String
         # @param ProjectId: 项目ID。（不填使用指定地域下的默认项目）
         # @type ProjectId: String
         # @param Description: 任务批次描述。
         # @type Description: String
+        # @param InputCosUri: 任务输入COS地址。（InputBase64和InputCosUri必选其一）
+        # @type InputCosUri: String
+        # @param InputBase64: 任务输入JSON。需要进行base64编码。（InputBase64和InputCosUri必选其一）
+        # @type InputBase64: String
         # @param TableId: 批量投递表格ID，不填表示单例投递。
         # @type TableId: String
         # @param TableRowUuids: 批量投递表格行UUID。不填表示表格全部行。
@@ -1612,16 +1614,21 @@ module TencentCloud
         # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
         # @param WorkDir: 工作目录，使用缓存卷内的相对路径 (暂时仅支持Nextflow)
         # @type WorkDir: String
+        # @param AccessMode: 访问模式，不填默认私有。取值范围
+        # - PRIVATE：私有应用
+        # - PUBLIC：公共应用
+        # @type AccessMode: String
 
-        attr_accessor :ApplicationId, :Name, :EnvironmentId, :InputBase64, :ProjectId, :Description, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir
+        attr_accessor :ApplicationId, :Name, :EnvironmentId, :ProjectId, :Description, :InputCosUri, :InputBase64, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir, :AccessMode
 
-        def initialize(applicationid=nil, name=nil, environmentid=nil, inputbase64=nil, projectid=nil, description=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil)
+        def initialize(applicationid=nil, name=nil, environmentid=nil, projectid=nil, description=nil, inputcosuri=nil, inputbase64=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil, accessmode=nil)
           @ApplicationId = applicationid
           @Name = name
           @EnvironmentId = environmentid
-          @InputBase64 = inputbase64
           @ProjectId = projectid
           @Description = description
+          @InputCosUri = inputcosuri
+          @InputBase64 = inputbase64
           @TableId = tableid
           @TableRowUuids = tablerowuuids
           @CacheClearDelay = cachecleardelay
@@ -1629,15 +1636,17 @@ module TencentCloud
           @Option = option
           @NFOption = nfoption
           @WorkDir = workdir
+          @AccessMode = accessmode
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @Name = params['Name']
           @EnvironmentId = params['EnvironmentId']
-          @InputBase64 = params['InputBase64']
           @ProjectId = params['ProjectId']
           @Description = params['Description']
+          @InputCosUri = params['InputCosUri']
+          @InputBase64 = params['InputBase64']
           @TableId = params['TableId']
           @TableRowUuids = params['TableRowUuids']
           @CacheClearDelay = params['CacheClearDelay']
@@ -1651,6 +1660,7 @@ module TencentCloud
             @NFOption.deserialize(params['NFOption'])
           end
           @WorkDir = params['WorkDir']
+          @AccessMode = params['AccessMode']
         end
       end
 

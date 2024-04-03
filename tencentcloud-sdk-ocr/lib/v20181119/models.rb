@@ -1473,18 +1473,22 @@ module TencentCloud
         # @param Level: 元素层级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
+        # @param InsetImageName: 入参开启EnableInsetImage后返回，表示在InsetImagePackage中的内嵌图片名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsetImageName: String
         # @param Elements: 嵌套的文档元素信息，一般包含的是文档内嵌入图片的文字识别结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Elements: Array
 
-        attr_accessor :Index, :Type, :Text, :Polygon, :Level, :Elements
+        attr_accessor :Index, :Type, :Text, :Polygon, :Level, :InsetImageName, :Elements
 
-        def initialize(index=nil, type=nil, text=nil, polygon=nil, level=nil, elements=nil)
+        def initialize(index=nil, type=nil, text=nil, polygon=nil, level=nil, insetimagename=nil, elements=nil)
           @Index = index
           @Type = type
           @Text = text
           @Polygon = polygon
           @Level = level
+          @InsetImageName = insetimagename
           @Elements = elements
         end
 
@@ -1497,6 +1501,7 @@ module TencentCloud
             @Polygon.deserialize(params['Polygon'])
           end
           @Level = params['Level']
+          @InsetImageName = params['InsetImageName']
           unless params['Elements'].nil?
             @Elements = []
             params['Elements'].each do |i|
@@ -1539,8 +1544,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
         extend Gem::Deprecate
-        deprecate :Angle, :none, 2024, 3
-        deprecate :Angle=, :none, 2024, 3
+        deprecate :Angle, :none, 2024, 4
+        deprecate :Angle=, :none, 2024, 4
 
         def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
           @PageNumber = pagenumber
@@ -3114,8 +3119,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 3
-        deprecate :Angel=, :none, 2024, 3
+        deprecate :Angel, :none, 2024, 4
+        deprecate :Angel=, :none, 2024, 4
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3225,8 +3230,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 3
-        deprecate :Angel=, :none, 2024, 3
+        deprecate :Angel, :none, 2024, 4
+        deprecate :Angel=, :none, 2024, 4
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections

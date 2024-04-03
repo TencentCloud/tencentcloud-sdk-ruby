@@ -1439,6 +1439,37 @@ module TencentCloud
         end
       end
 
+      # DescribeTldList请求参数结构体
+      class DescribeTldListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTldList返回参数结构体
+      class DescribeTldListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 支持的后缀列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @List = params['List']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取域名基础信息
       class DomainBaseInfo < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名资源ID。

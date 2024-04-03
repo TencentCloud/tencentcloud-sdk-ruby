@@ -1709,15 +1709,17 @@ module TencentCloud
         # @type HlsSpecialParam: :class:`Tencentcloud::Live.v20180801.models.HlsSpecialParam`
         # @param Mp3Param: Mp3录制参数，开启Mp3录制时设置。
         # @type Mp3Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
+        # @param CosStore: 是否存储至 cos，值为 1 时表示存储至 cos。
+        # @type CosStore: Integer
         # @param RemoveWatermark: 是否去除水印，类型为慢直播时此参数无效。
         # 如果为false，则录制水印流或转码流；如果为true，则录制原始流。
         # @type RemoveWatermark: Boolean
         # @param FlvSpecialParam: FLV 录制特殊参数。
         # @type FlvSpecialParam: :class:`Tencentcloud::Live.v20180801.models.FlvSpecialParam`
 
-        attr_accessor :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :RemoveWatermark, :FlvSpecialParam
+        attr_accessor :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :CosStore, :RemoveWatermark, :FlvSpecialParam
 
-        def initialize(templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil, removewatermark=nil, flvspecialparam=nil)
+        def initialize(templatename=nil, description=nil, flvparam=nil, hlsparam=nil, mp4param=nil, aacparam=nil, isdelaylive=nil, hlsspecialparam=nil, mp3param=nil, cosstore=nil, removewatermark=nil, flvspecialparam=nil)
           @TemplateName = templatename
           @Description = description
           @FlvParam = flvparam
@@ -1727,6 +1729,7 @@ module TencentCloud
           @IsDelayLive = isdelaylive
           @HlsSpecialParam = hlsspecialparam
           @Mp3Param = mp3param
+          @CosStore = cosstore
           @RemoveWatermark = removewatermark
           @FlvSpecialParam = flvspecialparam
         end
@@ -1759,6 +1762,7 @@ module TencentCloud
             @Mp3Param = RecordParam.new
             @Mp3Param.deserialize(params['Mp3Param'])
           end
+          @CosStore = params['CosStore']
           @RemoveWatermark = params['RemoveWatermark']
           unless params['FlvSpecialParam'].nil?
             @FlvSpecialParam = FlvSpecialParam.new

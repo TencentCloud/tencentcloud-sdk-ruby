@@ -978,6 +978,53 @@ module TencentCloud
         end
       end
 
+      # BatchDeleteDevice请求参数结构体
+      class BatchDeleteDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间id
+        # @type WorkspaceId: Integer
+        # @param WIDSet: 设备wid数组列表
+        # @type WIDSet: Array
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+
+        attr_accessor :WorkspaceId, :WIDSet, :ApplicationToken
+
+        def initialize(workspaceid=nil, widset=nil, applicationtoken=nil)
+          @WorkspaceId = workspaceid
+          @WIDSet = widset
+          @ApplicationToken = applicationtoken
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @WIDSet = params['WIDSet']
+          @ApplicationToken = params['ApplicationToken']
+        end
+      end
+
+      # BatchDeleteDevice返回参数结构体
+      class BatchDeleteDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回请求结果
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.EmptyRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = EmptyRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchKillAlarm请求参数结构体
       class BatchKillAlarmRequest < TencentCloud::Common::AbstractModel
         # @param BeginTime: 告警开始时间，必填,时间戳秒
@@ -1763,6 +1810,53 @@ module TencentCloud
           @Key = params['Key']
           @Name = params['Name']
           @Val = params['Val']
+        end
+      end
+
+      # DeleteDeviceGroup请求参数结构体
+      class DeleteDeviceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 设备分组的id
+        # @type Id: Integer
+        # @param WorkspaceId: 工作空间的id
+        # @type WorkspaceId: Integer
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+
+        attr_accessor :Id, :WorkspaceId, :ApplicationToken
+
+        def initialize(id=nil, workspaceid=nil, applicationtoken=nil)
+          @Id = id
+          @WorkspaceId = workspaceid
+          @ApplicationToken = applicationtoken
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @WorkspaceId = params['WorkspaceId']
+          @ApplicationToken = params['ApplicationToken']
+        end
+      end
+
+      # DeleteDeviceGroup返回参数结构体
+      class DeleteDeviceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无返回信息
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.EmptyRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = EmptyRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2608,6 +2702,77 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = DescribeCityWorkspaceListRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceGroupList请求参数结构体
+      class DescribeDeviceGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+        # @param WorkspaceId: 工作空间ID
+        # @type WorkspaceId: Integer
+        # @param GroupId: 分组id, 不传默认全部
+        # @type GroupId: Integer
+
+        attr_accessor :ApplicationToken, :WorkspaceId, :GroupId
+
+        def initialize(applicationtoken=nil, workspaceid=nil, groupid=nil)
+          @ApplicationToken = applicationtoken
+          @WorkspaceId = workspaceid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ApplicationToken = params['ApplicationToken']
+          @WorkspaceId = params['WorkspaceId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # 设备分组信息
+      class DescribeDeviceGroupListRes < TencentCloud::Common::AbstractModel
+        # @param List: 设备分组list
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :List
+
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              describegroupinfo_tmp = DescribeGroupInfo.new
+              describegroupinfo_tmp.deserialize(i)
+              @List << describegroupinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDeviceGroupList返回参数结构体
+      class DescribeDeviceGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 分组信息
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.DescribeDeviceGroupListRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeDeviceGroupListRes.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -3467,6 +3632,36 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 分组信息实体类
+      class DescribeGroupInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 分组
+        # @type Id: Integer
+        # @param Name: 设备分组名称
+        # @type Name: String
+        # @param Description: 分组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ParentId: 分组父级ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+
+        attr_accessor :Id, :Name, :Description, :ParentId
+
+        def initialize(id=nil, name=nil, description=nil, parentid=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @ParentId = parentid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ParentId = params['ParentId']
         end
       end
 
@@ -6154,6 +6349,158 @@ module TencentCloud
         end
       end
 
+      # 设备自定义值修改信息入参
+      class ModifyDeviceFieldInfo < TencentCloud::Common::AbstractModel
+        # @param WID: 设备id
+        # @type WID: String
+        # @param Key: 自定义字段key
+        # @type Key: String
+        # @param Val: 自定义字段值
+        # @type Val: String
+
+        attr_accessor :WID, :Key, :Val
+
+        def initialize(wid=nil, key=nil, val=nil)
+          @WID = wid
+          @Key = key
+          @Val = val
+        end
+
+        def deserialize(params)
+          @WID = params['WID']
+          @Key = params['Key']
+          @Val = params['Val']
+        end
+      end
+
+      # ModifyDeviceField请求参数结构体
+      class ModifyDeviceFieldRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间id
+        # @type WorkspaceId: Integer
+        # @param Set: 设备自定义字段修改信息集合
+        # @type Set: Array
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+
+        attr_accessor :WorkspaceId, :Set, :ApplicationToken
+
+        def initialize(workspaceid=nil, set=nil, applicationtoken=nil)
+          @WorkspaceId = workspaceid
+          @Set = set
+          @ApplicationToken = applicationtoken
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Set'].nil?
+            @Set = []
+            params['Set'].each do |i|
+              modifydevicefieldinfo_tmp = ModifyDeviceFieldInfo.new
+              modifydevicefieldinfo_tmp.deserialize(i)
+              @Set << modifydevicefieldinfo_tmp
+            end
+          end
+          @ApplicationToken = params['ApplicationToken']
+        end
+      end
+
+      # ModifyDeviceField返回参数结构体
+      class ModifyDeviceFieldResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回请求结果
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.EmptyRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = EmptyRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备组修改信息入参
+      class ModifyDeviceGroupInfo < TencentCloud::Common::AbstractModel
+        # @param WID: 设备id
+        # @type WID: String
+        # @param GroupId: 设备分组id
+        # @type GroupId: Integer
+
+        attr_accessor :WID, :GroupId
+
+        def initialize(wid=nil, groupid=nil)
+          @WID = wid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @WID = params['WID']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # ModifyDeviceGroup请求参数结构体
+      class ModifyDeviceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间id
+        # @type WorkspaceId: Integer
+        # @param Set: 设备组修改信息集合
+        # @type Set: Array
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+
+        attr_accessor :WorkspaceId, :Set, :ApplicationToken
+
+        def initialize(workspaceid=nil, set=nil, applicationtoken=nil)
+          @WorkspaceId = workspaceid
+          @Set = set
+          @ApplicationToken = applicationtoken
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Set'].nil?
+            @Set = []
+            params['Set'].each do |i|
+              modifydevicegroupinfo_tmp = ModifyDeviceGroupInfo.new
+              modifydevicegroupinfo_tmp.deserialize(i)
+              @Set << modifydevicegroupinfo_tmp
+            end
+          end
+          @ApplicationToken = params['ApplicationToken']
+        end
+      end
+
+      # ModifyDeviceGroup返回参数结构体
+      class ModifyDeviceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回请求结果
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.EmptyRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = EmptyRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDeviceName请求参数结构体
       class ModifyDeviceNameRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间id
@@ -6187,6 +6534,80 @@ module TencentCloud
 
       # ModifyDeviceName返回参数结构体
       class ModifyDeviceNameResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回请求结果
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.EmptyRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = EmptyRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备标签修改信息入参
+      class ModifyDeviceTagInfo < TencentCloud::Common::AbstractModel
+        # @param WID: 设备id
+        # @type WID: String
+        # @param NameSet: 设备标签名称集合
+        # @type NameSet: Array
+
+        attr_accessor :WID, :NameSet
+
+        def initialize(wid=nil, nameset=nil)
+          @WID = wid
+          @NameSet = nameset
+        end
+
+        def deserialize(params)
+          @WID = params['WID']
+          @NameSet = params['NameSet']
+        end
+      end
+
+      # ModifyDeviceTag请求参数结构体
+      class ModifyDeviceTagRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间id
+        # @type WorkspaceId: Integer
+        # @param Set: 设备标签修改信息集合
+        # @type Set: Array
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+
+        attr_accessor :WorkspaceId, :Set, :ApplicationToken
+
+        def initialize(workspaceid=nil, set=nil, applicationtoken=nil)
+          @WorkspaceId = workspaceid
+          @Set = set
+          @ApplicationToken = applicationtoken
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Set'].nil?
+            @Set = []
+            params['Set'].each do |i|
+              modifydevicetaginfo_tmp = ModifyDeviceTagInfo.new
+              modifydevicetaginfo_tmp.deserialize(i)
+              @Set << modifydevicetaginfo_tmp
+            end
+          end
+          @ApplicationToken = params['ApplicationToken']
+        end
+      end
+
+      # ModifyDeviceTag返回参数结构体
+      class ModifyDeviceTagResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回请求结果
         # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.EmptyRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -6707,6 +7128,82 @@ module TencentCloud
               @ActionInfoSet << actionobj_tmp
             end
           end
+        end
+      end
+
+      # SaveDeviceGroup请求参数结构体
+      class SaveDeviceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 分组名称
+        # @type Name: String
+        # @param Description: 分组描述
+        # @type Description: String
+        # @param WorkspaceId: 空间id
+        # @type WorkspaceId: Integer
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+        # @param Id: 分组id, 携带则为修改, 不携带则为新增
+        # @type Id: Integer
+        # @param ParentId: 分组父级id
+        # @type ParentId: Integer
+
+        attr_accessor :Name, :Description, :WorkspaceId, :ApplicationToken, :Id, :ParentId
+
+        def initialize(name=nil, description=nil, workspaceid=nil, applicationtoken=nil, id=nil, parentid=nil)
+          @Name = name
+          @Description = description
+          @WorkspaceId = workspaceid
+          @ApplicationToken = applicationtoken
+          @Id = id
+          @ParentId = parentid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @WorkspaceId = params['WorkspaceId']
+          @ApplicationToken = params['ApplicationToken']
+          @Id = params['Id']
+          @ParentId = params['ParentId']
+        end
+      end
+
+      # 保存or修改设备分组回包
+      class SaveDeviceGroupRes < TencentCloud::Common::AbstractModel
+        # @param Id: 保存or修改设备分组回包信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # SaveDeviceGroup返回参数结构体
+      class SaveDeviceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 新增/修改的设备分组记录的id
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.SaveDeviceGroupRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = SaveDeviceGroupRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

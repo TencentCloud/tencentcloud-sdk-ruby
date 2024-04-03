@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除设备
+
+        # @param request: Request instance for BatchDeleteDevice.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::BatchDeleteDeviceRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::BatchDeleteDeviceResponse`
+        def BatchDeleteDevice(request)
+          body = send_request('BatchDeleteDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量消警
 
         # @param request: Request instance for BatchKillAlarm.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateApplicationTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除设备分组
+
+        # @param request: Request instance for DeleteDeviceGroup.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::DeleteDeviceGroupRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::DeleteDeviceGroupResponse`
+        def DeleteDeviceGroup(request)
+          body = send_request('DeleteDeviceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -495,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCityWorkspaceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设备分组列表
+
+        # @param request: Request instance for DescribeDeviceGroupList.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::DescribeDeviceGroupListRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::DescribeDeviceGroupListResponse`
+        def DescribeDeviceGroupList(request)
+          body = send_request('DescribeDeviceGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceGroupListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1301,6 +1373,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改设备自定义字段值
+
+        # @param request: Request instance for ModifyDeviceField.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::ModifyDeviceFieldRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::ModifyDeviceFieldResponse`
+        def ModifyDeviceField(request)
+          body = send_request('ModifyDeviceField', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceFieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改设备组
+
+        # @param request: Request instance for ModifyDeviceGroup.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::ModifyDeviceGroupRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::ModifyDeviceGroupResponse`
+        def ModifyDeviceGroup(request)
+          body = send_request('ModifyDeviceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量修改设备名字
 
         # @param request: Request instance for ModifyDeviceName.
@@ -1325,6 +1445,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改设备标签
+
+        # @param request: Request instance for ModifyDeviceTag.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::ModifyDeviceTagRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::ModifyDeviceTagResponse`
+        def ModifyDeviceTag(request)
+          body = send_request('ModifyDeviceTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 上报应用消息
 
         # @param request: Request instance for ReportAppMessage.
@@ -1335,6 +1479,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReportAppMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设备分组新增/修改
+
+        # @param request: Request instance for SaveDeviceGroup.
+        # @type request: :class:`Tencentcloud::weilingwith::V20230427::SaveDeviceGroupRequest`
+        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::SaveDeviceGroupResponse`
+        def SaveDeviceGroup(request)
+          body = send_request('SaveDeviceGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SaveDeviceGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
