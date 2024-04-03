@@ -3379,14 +3379,17 @@ module TencentCloud
         # @type QueueNum: Integer
         # @param Remark: 备注信息
         # @type Remark: String
+        # @param MsgTTL: 消息保留时长
+        # @type MsgTTL: Integer
 
-        attr_accessor :InstanceId, :Topic, :QueueNum, :Remark
+        attr_accessor :InstanceId, :Topic, :QueueNum, :Remark, :MsgTTL
 
-        def initialize(instanceid=nil, topic=nil, queuenum=nil, remark=nil)
+        def initialize(instanceid=nil, topic=nil, queuenum=nil, remark=nil, msgttl=nil)
           @InstanceId = instanceid
           @Topic = topic
           @QueueNum = queuenum
           @Remark = remark
+          @MsgTTL = msgttl
         end
 
         def deserialize(params)
@@ -3394,6 +3397,7 @@ module TencentCloud
           @Topic = params['Topic']
           @QueueNum = params['QueueNum']
           @Remark = params['Remark']
+          @MsgTTL = params['MsgTTL']
         end
       end
 
