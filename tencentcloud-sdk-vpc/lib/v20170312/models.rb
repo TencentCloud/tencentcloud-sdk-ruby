@@ -358,10 +358,13 @@ module TencentCloud
         # @param RenewFlag: 当前EIP是否自动续费，只有按月带宽预付费的EIP才会显示该字段，具体值示例如下:
         # <li>NOTIFY_AND_MANUAL_RENEW:正常续费</li><li>NOTIFY_AND_AUTO_RENEW:自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW:到期不续费 </li>
         # @type RenewFlag: String
+        # @param BandwidthPackageId: 当前公网IP所关联的带宽包ID，如果该公网IP未使用带宽包计费，则返回为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthPackageId: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId, :RenewFlag
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId, :RenewFlag, :BandwidthPackageId
 
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil, renewflag=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil, renewflag=nil, bandwidthpackageid=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -386,6 +389,7 @@ module TencentCloud
           @Egress = egress
           @AntiDDoSPackageId = antiddospackageid
           @RenewFlag = renewflag
+          @BandwidthPackageId = bandwidthpackageid
         end
 
         def deserialize(params)
@@ -423,6 +427,7 @@ module TencentCloud
           @Egress = params['Egress']
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
           @RenewFlag = params['RenewFlag']
+          @BandwidthPackageId = params['BandwidthPackageId']
         end
       end
 
@@ -14351,8 +14356,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 3
-        deprecate :IntegrityAlgorith=, :none, 2024, 3
+        deprecate :IntegrityAlgorith, :none, 2024, 4
+        deprecate :IntegrityAlgorith=, :none, 2024, 4
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm

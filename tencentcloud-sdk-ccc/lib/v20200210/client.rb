@@ -727,6 +727,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询IVR音频文件列表信息
+
+        # @param request: Request instance for DescribeIvrAudioList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeIvrAudioListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeIvrAudioListResponse`
+        def DescribeIvrAudioList(request)
+          body = send_request('DescribeIvrAudioList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIvrAudioListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询号码列表
 
         # @param request: Request instance for DescribeNumbers.
@@ -1313,6 +1337,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdatePredictiveDialingCampaignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传IVR中使用的音频文件，每日上传文件限制50个。（参数中音频文件Url建议使用腾讯云Cos存储的临时链接）
+
+        # @param request: Request instance for UploadIvrAudio.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::UploadIvrAudioRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::UploadIvrAudioResponse`
+        def UploadIvrAudio(request)
+          body = send_request('UploadIvrAudio', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadIvrAudioResponse.new
             model.deserialize(response['Response'])
             model
           else

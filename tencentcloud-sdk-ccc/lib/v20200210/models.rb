@@ -81,6 +81,38 @@ module TencentCloud
         end
       end
 
+      # 音频文件审核信息
+      class AudioFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 文件ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileId: Integer
+        # @param CustomFileName: 文件别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomFileName: String
+        # @param AudioFileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioFileName: String
+        # @param Status: 审核状态，0-未审核，1-审核通过，2-审核拒绝
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :FileId, :CustomFileName, :AudioFileName, :Status
+
+        def initialize(fileid=nil, customfilename=nil, audiofilename=nil, status=nil)
+          @FileId = fileid
+          @CustomFileName = customfilename
+          @AudioFileName = audiofilename
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @CustomFileName = params['CustomFileName']
+          @AudioFileName = params['AudioFileName']
+          @Status = params['Status']
+        end
+      end
+
       # 外呼任务被叫信息
       class AutoCalloutTaskCalleeInfo < TencentCloud::Common::AbstractModel
         # @param Callee: 被叫号码
@@ -203,8 +235,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2024, 3
-        deprecate :SkillGroupList=, :none, 2024, 3
+        deprecate :SkillGroupList, :none, 2024, 4
+        deprecate :SkillGroupList=, :none, 2024, 4
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -779,8 +811,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 3
-        deprecate :Uui=, :none, 2024, 3
+        deprecate :Uui, :none, 2024, 4
+        deprecate :Uui=, :none, 2024, 4
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -1737,8 +1769,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 3
-        deprecate :InstanceId=, :none, 2024, 3
+        deprecate :InstanceId, :none, 2024, 4
+        deprecate :InstanceId=, :none, 2024, 4
 
         def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @InstanceId = instanceid
@@ -2067,8 +2099,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 3
-        deprecate :InstanceId=, :none, 2024, 3
+        deprecate :InstanceId, :none, 2024, 4
+        deprecate :InstanceId=, :none, 2024, 4
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -2105,8 +2137,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2024, 3
-        deprecate :IMCdrs=, :none, 2024, 3
+        deprecate :IMCdrs, :none, 2024, 4
+        deprecate :IMCdrs=, :none, 2024, 4
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -2131,6 +2163,73 @@ module TencentCloud
               imcdrinfo_tmp = IMCdrInfo.new
               imcdrinfo_tmp.deserialize(i)
               @IMCdrList << imcdrinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIvrAudioList请求参数结构体
+      class DescribeIvrAudioListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param PageSize: 分页尺寸，上限 50
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+        # @param CustomFileName: 文件别名
+        # @type CustomFileName: Array
+        # @param AudioFileName: 文件名
+        # @type AudioFileName: Array
+        # @param FileId: 文件ID
+        # @type FileId: Array
+
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :CustomFileName, :AudioFileName, :FileId
+
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, customfilename=nil, audiofilename=nil, fileid=nil)
+          @SdkAppId = sdkappid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @CustomFileName = customfilename
+          @AudioFileName = audiofilename
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @CustomFileName = params['CustomFileName']
+          @AudioFileName = params['AudioFileName']
+          @FileId = params['FileId']
+        end
+      end
+
+      # DescribeIvrAudioList返回参数结构体
+      class DescribeIvrAudioListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param FileInfo: 文件信息
+        # @type FileInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :FileInfo, :RequestId
+
+        def initialize(totalcount=nil, fileinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @FileInfo = fileinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['FileInfo'].nil?
+            @FileInfo = []
+            params['FileInfo'].each do |i|
+              audiofileinfo_tmp = AudioFileInfo.new
+              audiofileinfo_tmp.deserialize(i)
+              @FileInfo << audiofileinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2541,8 +2640,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 3
-        deprecate :TelCdrs=, :none, 2024, 3
+        deprecate :TelCdrs, :none, 2024, 4
+        deprecate :TelCdrs=, :none, 2024, 4
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -2807,8 +2906,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2024, 3
-        deprecate :VoipCallInCount=, :none, 2024, 3
+        deprecate :VoipCallInCount, :none, 2024, 4
+        deprecate :VoipCallInCount=, :none, 2024, 4
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -2856,8 +2955,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 3
-        deprecate :InstanceId=, :none, 2024, 3
+        deprecate :InstanceId, :none, 2024, 4
+        deprecate :InstanceId=, :none, 2024, 4
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -2899,8 +2998,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 3
-        deprecate :TelCdrs=, :none, 2024, 3
+        deprecate :TelCdrs, :none, 2024, 4
+        deprecate :TelCdrs=, :none, 2024, 4
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4526,8 +4625,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 3
-        deprecate :Uui=, :none, 2024, 3
+        deprecate :Uui, :none, 2024, 4
+        deprecate :Uui=, :none, 2024, 4
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller
@@ -4838,6 +4937,103 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 上传音频文件信息
+      class UploadAudioInfo < TencentCloud::Common::AbstractModel
+        # @param CustomFileName: 文件别名（可重复）
+        # @type CustomFileName: String
+        # @param AudioUrl: 音频文件链接。(支持mp3和wav格式，文件不超过5MB)
+        # @type AudioUrl: String
+
+        attr_accessor :CustomFileName, :AudioUrl
+
+        def initialize(customfilename=nil, audiourl=nil)
+          @CustomFileName = customfilename
+          @AudioUrl = audiourl
+        end
+
+        def deserialize(params)
+          @CustomFileName = params['CustomFileName']
+          @AudioUrl = params['AudioUrl']
+        end
+      end
+
+      # 上传音频文件失败信息
+      class UploadIvrAudioFailedInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FailedMsg: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMsg: String
+
+        attr_accessor :FileName, :FailedMsg
+
+        def initialize(filename=nil, failedmsg=nil)
+          @FileName = filename
+          @FailedMsg = failedmsg
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FailedMsg = params['FailedMsg']
+        end
+      end
+
+      # UploadIvrAudio请求参数结构体
+      class UploadIvrAudioRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param AudioList: 音频文件列表
+        # @type AudioList: Array
+
+        attr_accessor :SdkAppId, :AudioList
+
+        def initialize(sdkappid=nil, audiolist=nil)
+          @SdkAppId = sdkappid
+          @AudioList = audiolist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['AudioList'].nil?
+            @AudioList = []
+            params['AudioList'].each do |i|
+              uploadaudioinfo_tmp = UploadAudioInfo.new
+              uploadaudioinfo_tmp.deserialize(i)
+              @AudioList << uploadaudioinfo_tmp
+            end
+          end
+        end
+      end
+
+      # UploadIvrAudio返回参数结构体
+      class UploadIvrAudioResponse < TencentCloud::Common::AbstractModel
+        # @param FailedFileList: 上传失败的文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedFileList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedFileList, :RequestId
+
+        def initialize(failedfilelist=nil, requestid=nil)
+          @FailedFileList = failedfilelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedFileList'].nil?
+            @FailedFileList = []
+            params['FailedFileList'].each do |i|
+              uploadivraudiofailedinfo_tmp = UploadIvrAudioFailedInfo.new
+              uploadivraudiofailedinfo_tmp.deserialize(i)
+              @FailedFileList << uploadivraudiofailedinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

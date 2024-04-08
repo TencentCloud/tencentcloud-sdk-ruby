@@ -11265,10 +11265,19 @@ module TencentCloud
         # @param ClassId: 点播应用分类
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassId: Integer
+        # @param CosBucketName: 存储至 cos 的 bucket 桶名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucketName: String
+        # @param CosBucketRegion: 存储至 cos 的 bucket 区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucketRegion: String
+        # @param CosBucketPath: 存储至 cos 的 bucket 路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucketPath: String
 
-        attr_accessor :RecordInterval, :StorageTime, :Enable, :VodSubAppId, :VodFileName, :Procedure, :StorageMode, :ClassId
+        attr_accessor :RecordInterval, :StorageTime, :Enable, :VodSubAppId, :VodFileName, :Procedure, :StorageMode, :ClassId, :CosBucketName, :CosBucketRegion, :CosBucketPath
 
-        def initialize(recordinterval=nil, storagetime=nil, enable=nil, vodsubappid=nil, vodfilename=nil, procedure=nil, storagemode=nil, classid=nil)
+        def initialize(recordinterval=nil, storagetime=nil, enable=nil, vodsubappid=nil, vodfilename=nil, procedure=nil, storagemode=nil, classid=nil, cosbucketname=nil, cosbucketregion=nil, cosbucketpath=nil)
           @RecordInterval = recordinterval
           @StorageTime = storagetime
           @Enable = enable
@@ -11277,6 +11286,9 @@ module TencentCloud
           @Procedure = procedure
           @StorageMode = storagemode
           @ClassId = classid
+          @CosBucketName = cosbucketname
+          @CosBucketRegion = cosbucketregion
+          @CosBucketPath = cosbucketpath
         end
 
         def deserialize(params)
@@ -11288,6 +11300,9 @@ module TencentCloud
           @Procedure = params['Procedure']
           @StorageMode = params['StorageMode']
           @ClassId = params['ClassId']
+          @CosBucketName = params['CosBucketName']
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketPath = params['CosBucketPath']
         end
       end
 
