@@ -896,15 +896,19 @@ module TencentCloud
         # @type Remark: String
         # @param CallbackUrl: 任务执行结果回调URL，仅支持http和https。回调格式&内容详见: [TI-ONE 接口回调说明](https://cloud.tencent.com/document/product/851/84292)
         # @type CallbackUrl: String
+        # @param StartCmdBase64: 以Base64方式编码的启动命令。假设启动命令是/app/run.sh，则此处输入参数应该为L2FwcC9ydW4uc2g=。
+        # @type StartCmdBase64: String
 
-        attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark, :CallbackUrl
+        attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark, :CallbackUrl, :StartCmdBase64
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2024, 3
-        deprecate :JobType=, :none, 2024, 3
-        deprecate :CronInfo, :none, 2024, 3
-        deprecate :CronInfo=, :none, 2024, 3
+        deprecate :JobType, :none, 2024, 4
+        deprecate :JobType=, :none, 2024, 4
+        deprecate :CronInfo, :none, 2024, 4
+        deprecate :CronInfo=, :none, 2024, 4
+        deprecate :StartCmd, :none, 2024, 4
+        deprecate :StartCmd=, :none, 2024, 4
 
-        def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil, callbackurl=nil)
+        def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil, callbackurl=nil, startcmdbase64=nil)
           @BatchTaskName = batchtaskname
           @ChargeType = chargetype
           @ResourceConfigInfo = resourceconfiginfo
@@ -924,6 +928,7 @@ module TencentCloud
           @SubnetId = subnetid
           @Remark = remark
           @CallbackUrl = callbackurl
+          @StartCmdBase64 = startcmdbase64
         end
 
         def deserialize(params)
@@ -985,6 +990,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Remark = params['Remark']
           @CallbackUrl = params['CallbackUrl']
+          @StartCmdBase64 = params['StartCmdBase64']
         end
       end
 
@@ -1202,14 +1208,16 @@ module TencentCloud
         # @type ModelTurboEnable: Boolean
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
-        # @param Command: 服务的启动命令
+        # @param Command: 服务的启动命令，如遇特殊字符导致配置失败，可使用CommandBase64参数
         # @type Command: String
         # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
+        # @param CommandBase64: 服务的启动命令，以base64格式进行输入
+        # @type CommandBase64: String
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -1241,6 +1249,7 @@ module TencentCloud
           @ServiceCategory = servicecategory
           @Command = command
           @ServiceEIP = serviceeip
+          @CommandBase64 = commandbase64
         end
 
         def deserialize(params)
@@ -1323,6 +1332,7 @@ module TencentCloud
             @ServiceEIP = ServiceEIP.new
             @ServiceEIP.deserialize(params['ServiceEIP'])
           end
+          @CommandBase64 = params['CommandBase64']
         end
       end
 
@@ -7147,14 +7157,16 @@ module TencentCloud
         # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
         # @param ModelTurboEnable: 是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。默认不开启
         # @type ModelTurboEnable: Boolean
-        # @param Command: 服务的启动命令
+        # @param Command: 服务的启动命令，如遇特殊字符导致配置失败，可使用CommandBase64参数
         # @type Command: String
         # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
+        # @param CommandBase64: 服务的启动命令，以base64格式进行输入
+        # @type CommandBase64: String
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -7178,6 +7190,7 @@ module TencentCloud
           @ModelTurboEnable = modelturboenable
           @Command = command
           @ServiceEIP = serviceeip
+          @CommandBase64 = commandbase64
         end
 
         def deserialize(params)
@@ -7245,6 +7258,7 @@ module TencentCloud
             @ServiceEIP = ServiceEIP.new
             @ServiceEIP.deserialize(params['ServiceEIP'])
           end
+          @CommandBase64 = params['CommandBase64']
         end
       end
 
@@ -9039,10 +9053,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2024, 3
-        deprecate :ServiceLimit=, :none, 2024, 3
-        deprecate :ScheduledAction, :none, 2024, 3
-        deprecate :ScheduledAction=, :none, 2024, 3
+        deprecate :ServiceLimit, :none, 2024, 4
+        deprecate :ServiceLimit=, :none, 2024, 4
+        deprecate :ScheduledAction, :none, 2024, 4
+        deprecate :ScheduledAction=, :none, 2024, 4
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil)
           @ServiceGroupId = servicegroupid
@@ -9500,10 +9514,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2024, 3
-        deprecate :PodList=, :none, 2024, 3
-        deprecate :Pods, :none, 2024, 3
-        deprecate :Pods=, :none, 2024, 3
+        deprecate :PodList, :none, 2024, 4
+        deprecate :PodList=, :none, 2024, 4
+        deprecate :Pods, :none, 2024, 4
+        deprecate :Pods=, :none, 2024, 4
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil)
           @Replicas = replicas
@@ -11103,8 +11117,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2024, 3
-        deprecate :StatefulSetCondition=, :none, 2024, 3
+        deprecate :StatefulSetCondition, :none, 2024, 4
+        deprecate :StatefulSetCondition=, :none, 2024, 4
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

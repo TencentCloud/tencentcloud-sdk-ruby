@@ -5015,13 +5015,17 @@ module TencentCloud
         # @param FailedFileList: 上传失败的文件列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedFileList: Array
+        # @param SuccessFileList: 上传成功文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessFileList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FailedFileList, :RequestId
+        attr_accessor :FailedFileList, :SuccessFileList, :RequestId
 
-        def initialize(failedfilelist=nil, requestid=nil)
+        def initialize(failedfilelist=nil, successfilelist=nil, requestid=nil)
           @FailedFileList = failedfilelist
+          @SuccessFileList = successfilelist
           @RequestId = requestid
         end
 
@@ -5032,6 +5036,14 @@ module TencentCloud
               uploadivraudiofailedinfo_tmp = UploadIvrAudioFailedInfo.new
               uploadivraudiofailedinfo_tmp.deserialize(i)
               @FailedFileList << uploadivraudiofailedinfo_tmp
+            end
+          end
+          unless params['SuccessFileList'].nil?
+            @SuccessFileList = []
+            params['SuccessFileList'].each do |i|
+              audiofileinfo_tmp = AudioFileInfo.new
+              audiofileinfo_tmp.deserialize(i)
+              @SuccessFileList << audiofileinfo_tmp
             end
           end
           @RequestId = params['RequestId']

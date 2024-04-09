@@ -668,6 +668,8 @@ module TencentCloud
         # -1:查无记录
         # -2:引擎未知错误
         # -3:引擎服务异常
+        # -4:姓名校验不通过
+        # -5:手机号码不合法
         # @type Result: String
         # @param Description: 业务结果描述
         # @type Description: String

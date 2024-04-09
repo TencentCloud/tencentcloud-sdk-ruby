@@ -758,6 +758,8 @@ module TencentCloud
         # @type RunMode: String
         # @param ExpectRunTime: 期待启动时间，当RunMode取值为Timed时，此值必填，形如："2006-01-02 15:04:05"
         # @type ExpectRunTime: String
+        # @param SrcConnectType: 源端tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，SrcInfos中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。
+        # @type SrcConnectType: String
         # @param SrcInfo: 源端信息，单节点数据库使用，且SrcNodeType传single
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
         # @param SrcInfos: 源端信息，多节点数据库使用，且SrcNodeType传cluster
@@ -775,9 +777,9 @@ module TencentCloud
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
         # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcInfo, :SrcInfos, :SrcNodeType, :DstInfo, :DstInfos, :DstNodeType, :Options, :AutoRetryTimeRangeMinutes
+        attr_accessor :JobId, :SrcAccessType, :DstAccessType, :Objects, :JobName, :JobMode, :RunMode, :ExpectRunTime, :SrcConnectType, :SrcInfo, :SrcInfos, :SrcNodeType, :DstInfo, :DstInfos, :DstNodeType, :Options, :AutoRetryTimeRangeMinutes
 
-        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcinfo=nil, srcinfos=nil, srcnodetype=nil, dstinfo=nil, dstinfos=nil, dstnodetype=nil, options=nil, autoretrytimerangeminutes=nil)
+        def initialize(jobid=nil, srcaccesstype=nil, dstaccesstype=nil, objects=nil, jobname=nil, jobmode=nil, runmode=nil, expectruntime=nil, srcconnecttype=nil, srcinfo=nil, srcinfos=nil, srcnodetype=nil, dstinfo=nil, dstinfos=nil, dstnodetype=nil, options=nil, autoretrytimerangeminutes=nil)
           @JobId = jobid
           @SrcAccessType = srcaccesstype
           @DstAccessType = dstaccesstype
@@ -786,6 +788,7 @@ module TencentCloud
           @JobMode = jobmode
           @RunMode = runmode
           @ExpectRunTime = expectruntime
+          @SrcConnectType = srcconnecttype
           @SrcInfo = srcinfo
           @SrcInfos = srcinfos
           @SrcNodeType = srcnodetype
@@ -808,6 +811,7 @@ module TencentCloud
           @JobMode = params['JobMode']
           @RunMode = params['RunMode']
           @ExpectRunTime = params['ExpectRunTime']
+          @SrcConnectType = params['SrcConnectType']
           unless params['SrcInfo'].nil?
             @SrcInfo = Endpoint.new
             @SrcInfo.deserialize(params['SrcInfo'])
@@ -1447,10 +1451,13 @@ module TencentCloud
         # @param DatabaseNetEnv: 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseNetEnv: String
+        # @param ConnectType: tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，Info中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，Info中需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectType: String
 
-        attr_accessor :Region, :AccessType, :DatabaseType, :NodeType, :Info, :Supplier, :ExtraAttr, :DatabaseNetEnv
+        attr_accessor :Region, :AccessType, :DatabaseType, :NodeType, :Info, :Supplier, :ExtraAttr, :DatabaseNetEnv, :ConnectType
 
-        def initialize(region=nil, accesstype=nil, databasetype=nil, nodetype=nil, info=nil, supplier=nil, extraattr=nil, databasenetenv=nil)
+        def initialize(region=nil, accesstype=nil, databasetype=nil, nodetype=nil, info=nil, supplier=nil, extraattr=nil, databasenetenv=nil, connecttype=nil)
           @Region = region
           @AccessType = accesstype
           @DatabaseType = databasetype
@@ -1459,6 +1466,7 @@ module TencentCloud
           @Supplier = supplier
           @ExtraAttr = extraattr
           @DatabaseNetEnv = databasenetenv
+          @ConnectType = connecttype
         end
 
         def deserialize(params)
@@ -1484,12 +1492,13 @@ module TencentCloud
             end
           end
           @DatabaseNetEnv = params['DatabaseNetEnv']
+          @ConnectType = params['ConnectType']
         end
       end
 
       # 数据库信息
       class DBInfo < TencentCloud::Common::AbstractModel
-        # @param Role: 表示节点角色，针对分布式数据库，如mongodb中的mongos节点。如数据库是tdsql，枚举值为：proxy、set
+        # @param Role: 表示节点角色，针对分布式数据库，如mongodb中的mongos节点。tdsqlmysql的可选项：proxy表示节点类型为主机，set表示节点类型为节点。proxy类型必须填在数组第一项。tdsqlmysql类型的源/目标配置必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param DbKernel: 内核版本，针对mariadb的不同内核版本等
@@ -1549,7 +1558,7 @@ module TencentCloud
         # @param TmpToken: 临时Token，可通过 获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpToken: String
-        # @param SetId: tdsql分片id。tdsql set节点必填
+        # @param SetId: tdsql的分片id。如节点类型为set必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetId: String
 

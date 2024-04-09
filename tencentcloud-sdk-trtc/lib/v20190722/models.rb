@@ -3985,16 +3985,19 @@ module TencentCloud
         # @param RecordId: 当对重复任务敏感时，请关注此值： 为了避免任务在短时间内重复发起，导致任务重复
         # 传入录制RecordId来标识此次任务， 小于32字节，若携带RecordId发起两次以上的开始录制请求，任务只会启动一个，第二个报错FailedOperation.TaskExist。注意StartWebRecord调用失败时而非FailedOperation.TaskExist错误，请更换RecordId重新发起。
         # @type RecordId: String
+        # @param PublishCdnParams: 若您想要推流到CDN，可以使用PublishCdnParams.N参数设置，支持最多同时推流到10个CDN地址。若转推地址是腾讯云CDN时，请将IsTencentCdn明确设置为1
+        # @type PublishCdnParams: Array
 
-        attr_accessor :RecordUrl, :MaxDurationLimit, :StorageParams, :WebRecordVideoParams, :SdkAppId, :RecordId
+        attr_accessor :RecordUrl, :MaxDurationLimit, :StorageParams, :WebRecordVideoParams, :SdkAppId, :RecordId, :PublishCdnParams
 
-        def initialize(recordurl=nil, maxdurationlimit=nil, storageparams=nil, webrecordvideoparams=nil, sdkappid=nil, recordid=nil)
+        def initialize(recordurl=nil, maxdurationlimit=nil, storageparams=nil, webrecordvideoparams=nil, sdkappid=nil, recordid=nil, publishcdnparams=nil)
           @RecordUrl = recordurl
           @MaxDurationLimit = maxdurationlimit
           @StorageParams = storageparams
           @WebRecordVideoParams = webrecordvideoparams
           @SdkAppId = sdkappid
           @RecordId = recordid
+          @PublishCdnParams = publishcdnparams
         end
 
         def deserialize(params)
@@ -4010,6 +4013,14 @@ module TencentCloud
           end
           @SdkAppId = params['SdkAppId']
           @RecordId = params['RecordId']
+          unless params['PublishCdnParams'].nil?
+            @PublishCdnParams = []
+            params['PublishCdnParams'].each do |i|
+              mcupublishcdnparam_tmp = McuPublishCdnParam.new
+              mcupublishcdnparam_tmp.deserialize(i)
+              @PublishCdnParams << mcupublishcdnparam_tmp
+            end
+          end
         end
       end
 

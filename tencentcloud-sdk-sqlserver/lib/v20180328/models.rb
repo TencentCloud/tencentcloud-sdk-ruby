@@ -2567,8 +2567,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2024, 3
-        deprecate :IsFulltextEnabled=, :none, 2024, 3
+        deprecate :IsFulltextEnabled, :none, 2024, 4
+        deprecate :IsFulltextEnabled=, :none, 2024, 4
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -4264,12 +4264,14 @@ module TencentCloud
         # @type SSLConfig: :class:`Tencentcloud::Sqlserver.v20180328.models.SSLConfig`
         # @param DrReadableInfo: 备机只读信息
         # @type DrReadableInfo: :class:`Tencentcloud::Sqlserver.v20180328.models.DrReadableInfo`
+        # @param OldVipList: 等待回收的IP列表
+        # @type OldVipList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -4281,6 +4283,7 @@ module TencentCloud
           @TDEConfig = tdeconfig
           @SSLConfig = sslconfig
           @DrReadableInfo = drreadableinfo
+          @OldVipList = oldviplist
           @RequestId = requestid
         end
 
@@ -4304,6 +4307,14 @@ module TencentCloud
           unless params['DrReadableInfo'].nil?
             @DrReadableInfo = DrReadableInfo.new
             @DrReadableInfo.deserialize(params['DrReadableInfo'])
+          end
+          unless params['OldVipList'].nil?
+            @OldVipList = []
+            params['OldVipList'].each do |i|
+              oldvip_tmp = OldVip.new
+              oldvip_tmp.deserialize(i)
+              @OldVipList << oldvip_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -6590,8 +6601,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2024, 3
-        deprecate :Slowlogs=, :none, 2024, 3
+        deprecate :Slowlogs, :none, 2024, 4
+        deprecate :Slowlogs=, :none, 2024, 4
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6800,8 +6811,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 3
-        deprecate :XCosSecurityToken=, :none, 2024, 3
+        deprecate :XCosSecurityToken, :none, 2024, 4
+        deprecate :XCosSecurityToken=, :none, 2024, 4
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -6879,8 +6890,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 3
-        deprecate :XCosSecurityToken=, :none, 2024, 3
+        deprecate :XCosSecurityToken, :none, 2024, 4
+        deprecate :XCosSecurityToken=, :none, 2024, 4
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8168,8 +8179,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2024, 3
-        deprecate :Errno=, :none, 2024, 3
+        deprecate :Errno, :none, 2024, 4
+        deprecate :Errno=, :none, 2024, 4
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
@@ -9412,6 +9423,31 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用于返回实例存在的未回收的ip数量
+      class OldVip < TencentCloud::Common::AbstractModel
+        # @param Vip: 未回收的旧ip
+        # @type Vip: String
+        # @param RecycleTime: ip回收时间
+        # @type RecycleTime: String
+        # @param OldIpRetainTime: 旧IP保留时间小时数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldIpRetainTime: Integer
+
+        attr_accessor :Vip, :RecycleTime, :OldIpRetainTime
+
+        def initialize(vip=nil, recycletime=nil, oldipretaintime=nil)
+          @Vip = vip
+          @RecycleTime = recycletime
+          @OldIpRetainTime = oldipretaintime
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @RecycleTime = params['RecycleTime']
+          @OldIpRetainTime = params['OldIpRetainTime']
         end
       end
 
