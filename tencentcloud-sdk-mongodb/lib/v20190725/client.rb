@@ -533,6 +533,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于发起按 Key 闪回任务，依据数据的闪回 Key（默认为 id）对数据进行极速回档，快速恢复业务。
+        # **说明：按 Key 闪回于2023年09月11日正式进行公测，在此期间，该接口仅对公测用户开放。**
+
+        # @param request: Request instance for FlashBackDBInstance.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::FlashBackDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::FlashBackDBInstanceResponse`
+        def FlashBackDBInstance(request)
+          body = send_request('FlashBackDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FlashBackDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在所有mongos上执行FlushRouterConfig命令
 
         # @param request: Request instance for FlushInstanceRouterConfig.

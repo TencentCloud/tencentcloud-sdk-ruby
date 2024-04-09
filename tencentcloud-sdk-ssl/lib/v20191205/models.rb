@@ -1470,14 +1470,17 @@ module TencentCloud
         # 1： 域名https已开启。
         # 0： 域名https已关闭。
         # @type Status: Integer
+        # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
+        # @type IsCache: Integer
 
-        attr_accessor :CertificateId, :InstanceIdList, :ResourceType, :Status
+        attr_accessor :CertificateId, :InstanceIdList, :ResourceType, :Status, :IsCache
 
-        def initialize(certificateid=nil, instanceidlist=nil, resourcetype=nil, status=nil)
+        def initialize(certificateid=nil, instanceidlist=nil, resourcetype=nil, status=nil, iscache=nil)
           @CertificateId = certificateid
           @InstanceIdList = instanceidlist
           @ResourceType = resourcetype
           @Status = status
+          @IsCache = iscache
         end
 
         def deserialize(params)
@@ -1485,6 +1488,7 @@ module TencentCloud
           @InstanceIdList = params['InstanceIdList']
           @ResourceType = params['ResourceType']
           @Status = params['Status']
+          @IsCache = params['IsCache']
         end
       end
 
@@ -6119,8 +6123,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 3
-        deprecate :Regions=, :none, 2024, 3
+        deprecate :Regions, :none, 2024, 4
+        deprecate :Regions=, :none, 2024, 4
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

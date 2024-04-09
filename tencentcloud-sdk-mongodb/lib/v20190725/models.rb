@@ -1829,6 +1829,144 @@ module TencentCloud
         end
       end
 
+      # 按key回档，用于筛选数据的键值对
+      class FBKeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 用于按key回档过滤的key
+        # @type Key: String
+        # @param Value: 用于按key回档过滤的value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # FlashBackDBInstance请求参数结构体
+      class FlashBackDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 开启按 Key 回档的实例 ID。
+        # @type InstanceId: String
+        # @param TargetFlashbackTime: 源数据想恢复到的时间。
+        # @type TargetFlashbackTime: String
+        # @param TargetDatabases: 源数据所在的库表信息。
+        # @type TargetDatabases: Array
+        # @param TargetInstanceId: 数据最终写入的实例 ID。
+        # @type TargetInstanceId: String
+
+        attr_accessor :InstanceId, :TargetFlashbackTime, :TargetDatabases, :TargetInstanceId
+
+        def initialize(instanceid=nil, targetflashbacktime=nil, targetdatabases=nil, targetinstanceid=nil)
+          @InstanceId = instanceid
+          @TargetFlashbackTime = targetflashbacktime
+          @TargetDatabases = targetdatabases
+          @TargetInstanceId = targetinstanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TargetFlashbackTime = params['TargetFlashbackTime']
+          unless params['TargetDatabases'].nil?
+            @TargetDatabases = []
+            params['TargetDatabases'].each do |i|
+              flashbackdatabase_tmp = FlashbackDatabase.new
+              flashbackdatabase_tmp.deserialize(i)
+              @TargetDatabases << flashbackdatabase_tmp
+            end
+          end
+          @TargetInstanceId = params['TargetInstanceId']
+        end
+      end
+
+      # FlashBackDBInstance返回参数结构体
+      class FlashBackDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 回档数据异步任务 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 按key回档，源数据所在的表
+      class FlashbackCollection < TencentCloud::Common::AbstractModel
+        # @param CollectionName: 按key回档指定的集合名
+        # @type CollectionName: String
+        # @param TargetResultCollectionName: 按key回档到的目标集合名
+        # @type TargetResultCollectionName: String
+        # @param FilterKey: 上传到cos的文件的value所对应的key值
+        # @type FilterKey: String
+        # @param KeyValues: 用于按key回档过滤的键值对
+        # @type KeyValues: Array
+
+        attr_accessor :CollectionName, :TargetResultCollectionName, :FilterKey, :KeyValues
+
+        def initialize(collectionname=nil, targetresultcollectionname=nil, filterkey=nil, keyvalues=nil)
+          @CollectionName = collectionname
+          @TargetResultCollectionName = targetresultcollectionname
+          @FilterKey = filterkey
+          @KeyValues = keyvalues
+        end
+
+        def deserialize(params)
+          @CollectionName = params['CollectionName']
+          @TargetResultCollectionName = params['TargetResultCollectionName']
+          @FilterKey = params['FilterKey']
+          unless params['KeyValues'].nil?
+            @KeyValues = []
+            params['KeyValues'].each do |i|
+              fbkeyvalue_tmp = FBKeyValue.new
+              fbkeyvalue_tmp.deserialize(i)
+              @KeyValues << fbkeyvalue_tmp
+            end
+          end
+        end
+      end
+
+      # 按key回档，源数据所在的库表
+      class FlashbackDatabase < TencentCloud::Common::AbstractModel
+        # @param DBName: 按key回档源数据所在库
+        # @type DBName: String
+        # @param Collections: 按key回档的集群数组
+        # @type Collections: Array
+
+        attr_accessor :DBName, :Collections
+
+        def initialize(dbname=nil, collections=nil)
+          @DBName = dbname
+          @Collections = collections
+        end
+
+        def deserialize(params)
+          @DBName = params['DBName']
+          unless params['Collections'].nil?
+            @Collections = []
+            params['Collections'].each do |i|
+              flashbackcollection_tmp = FlashbackCollection.new
+              flashbackcollection_tmp.deserialize(i)
+              @Collections << flashbackcollection_tmp
+            end
+          end
+        end
+      end
+
       # FlushInstanceRouterConfig请求参数结构体
       class FlushInstanceRouterConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

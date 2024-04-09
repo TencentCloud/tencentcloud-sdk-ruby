@@ -915,6 +915,7 @@ module TencentCloud
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放)
+        # 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
@@ -933,8 +934,8 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 3
-        deprecate :RecordLang=, :none, 2024, 3
+        deprecate :RecordLang, :none, 2024, 4
+        deprecate :RecordLang=, :none, 2024, 4
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
           @Name = name
@@ -2174,6 +2175,7 @@ module TencentCloud
         # @param IsGradingRequiredPostClass: 该房间是否开启了课后评分功能。0：未开启  1：开启
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
         # @param VideoDuration: 录制时长
         # @type VideoDuration: Integer
@@ -3701,6 +3703,7 @@ module TencentCloud
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 （预留参数、暂未开放)
+        # 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
         # @param RecordLayout: 录制模板。仅可修改还未开始的房间。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
@@ -3719,8 +3722,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 3
-        deprecate :RecordLang=, :none, 2024, 3
+        deprecate :RecordLang, :none, 2024, 4
+        deprecate :RecordLang=, :none, 2024, 4
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil)
           @RoomId = roomid
@@ -4042,6 +4045,7 @@ module TencentCloud
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
@@ -4060,8 +4064,8 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 3
-        deprecate :RecordLang=, :none, 2024, 3
+        deprecate :RecordLang, :none, 2024, 4
+        deprecate :RecordLang=, :none, 2024, 4
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
           @Name = name
@@ -4179,6 +4183,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
+        # 注：大班课的布局(layout)只有三分屏
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
