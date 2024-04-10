@@ -99,8 +99,10 @@ module TencentCloud
         # @type Name: String
         # @param Description: 热词表描述，长度在0-1000之间
         # @type Description: String
-        # @param WordWeights: 词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10个汉字或30个英文字符，权重为[1,11]之间整数，数组长度不大于1000
-        # 注意: 热词权重设置为11时，当前热词将升级为超级热词，建议仅将重要且必须生效的热词设置到11，设置过多权重为11的热词将影响整体字准率。
+        # @param WordWeights: 词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10个汉字或30个英文字符，权重为[1,11]之间整数或者100，数组长度不大于1000
+        # 注意:
+        # - 热词权重设置为11时，当前热词将升级为超级热词，建议仅将重要且必须生效的热词设置到11，设置过多权重为11的热词将影响整体字准率。
+        # - 热词权重设置为100时，当前热词开启热词增强同音替换功能（仅支持8k_zh,16k_zh），举例：热词配置“蜜制|100”时，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。建议仅将重要且必须生效的热词设置到100，设置过多权重为100的热词将影响整体字准率。
         # @type WordWeights: Array
         # @param WordWeightStr: 词权重文件（纯文本文件）的二进制base64编码，以行分隔，每行的格式为word|weight，即以英文符号|为分割，左边为词，右边为权重，如：你好|5。
         # 当用户传此参数（参数长度大于0），即以此参数解析词权重，WordWeights会被忽略
@@ -254,8 +256,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 3
-        deprecate :TagInfos=, :none, 2024, 3
+        deprecate :TagInfos, :none, 2024, 4
+        deprecate :TagInfos=, :none, 2024, 4
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -452,6 +454,9 @@ module TencentCloud
         # @type Extra: String
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra
+        extend Gem::Deprecate
+        deprecate :ReinforceHotword, :none, 2024, 4
+        deprecate :ReinforceHotword=, :none, 2024, 4
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil)
           @EngineModelType = enginemodeltype
@@ -872,8 +877,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 3
-        deprecate :TagInfos=, :none, 2024, 3
+        deprecate :TagInfos, :none, 2024, 4
+        deprecate :TagInfos=, :none, 2024, 4
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1257,7 +1262,7 @@ module TencentCloud
         # @param ReinforceHotword: 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
         # @type ReinforceHotword: Integer
         # @param HotwordList: 临时热词表：该参数用于提升识别准确率。
-        # 单个热词限制："热词|权重"，单个热词不超过30个字符（最多10个汉字），权重1-11，如：“腾讯云|5” 或 “ASR|11”；
+        # 单个热词限制："热词|权重"，单个热词不超过30个字符（最多10个汉字），权重1-11或者100，如：“腾讯云|5” 或 “ASR|11”；
         # 临时热词表限制：多个热词用英文逗号分割，最多支持128个热词，如：“腾讯云|10,语音识别|5,ASR|11”；
         # 参数 hotword_list（热词表） 与 hotword_id（临时热词表） 区别：
         # hotword_id：热词表。需要先在控制台或接口创建热词表，获得对应hotword_id传入参数来使用热词功能；
@@ -1265,18 +1270,21 @@ module TencentCloud
         # 注意：
         # • 如果同时传入了 hotword_id 和 hotword_list，会优先使用 hotword_list；
         # • 热词权重设置为11时，当前热词将升级为超级热词，建议仅将重要且必须生效的热词设置到11，设置过多权重为11的热词将影响整体字准率。
+        # • 热词权重设置为100时，当前热词开启热词增强同音替换功能（仅支持8k_zh,16k_zh），举例：热词配置“蜜制|100”时，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。建议仅将重要且必须生效的热词设置到100，设置过多权重为100的热词将影响整体字准率。
         # @type HotwordList: String
         # @param InputSampleRate: 支持pcm格式的8k音频在与引擎采样率不匹配的情况下升采样到16k后识别，能有效提升识别准确率。仅支持：8000。如：传入 8000 ，则pcm音频采样率为8k，当引擎选用16k_zh， 那么该8k采样率的pcm音频可以在16k_zh引擎下正常识别。 注：此参数仅适用于pcm格式音频，不传入值将维持默认状态，即默认调用的引擎采样率等于pcm音频采样率。
         # @type InputSampleRate: Integer
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2024, 3
-        deprecate :ProjectId=, :none, 2024, 3
-        deprecate :SubServiceType, :none, 2024, 3
-        deprecate :SubServiceType=, :none, 2024, 3
-        deprecate :UsrAudioKey, :none, 2024, 3
-        deprecate :UsrAudioKey=, :none, 2024, 3
+        deprecate :ProjectId, :none, 2024, 4
+        deprecate :ProjectId=, :none, 2024, 4
+        deprecate :SubServiceType, :none, 2024, 4
+        deprecate :SubServiceType=, :none, 2024, 4
+        deprecate :UsrAudioKey, :none, 2024, 4
+        deprecate :UsrAudioKey=, :none, 2024, 4
+        deprecate :ReinforceHotword, :none, 2024, 4
+        deprecate :ReinforceHotword=, :none, 2024, 4
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype
@@ -1526,7 +1534,7 @@ module TencentCloud
         # @type VocabId: String
         # @param Name: 热词表名称，长度在1-255之间
         # @type Name: String
-        # @param WordWeights: 词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10个汉字或30个英文字符，权重为[1,11]之间整数，数组长度不大于1000
+        # @param WordWeights: 词权重数组，包含全部的热词和对应的权重。每个热词的长度不大于10个汉字或30个英文字符，权重为[1,11]之间整数或100，数组长度不大于1000
         # @type WordWeights: Array
         # @param WordWeightStr: 词权重文件（纯文本文件）的二进制base64编码，以行分隔，每行的格式为word|weight，即以英文符号|为分割，左边为词，右边为权重，如：你好|5。
         # 当用户传此参数（参数长度大于0），即以此参数解析词权重，WordWeights会被忽略

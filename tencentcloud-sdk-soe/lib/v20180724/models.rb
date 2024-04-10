@@ -459,7 +459,7 @@ module TencentCloud
         # @type SessionId: String
         # @param SoeAppId: 业务应用ID，与账号应用APPID无关，是用来方便客户管理服务的参数，新的 SoeAppId 可以在[控制台](https://console.cloud.tencent.com/soe)【应用管理】下新建。如果没有新建SoeAppId，请勿填入该参数，否则会报欠费错误。使用指南：[业务应用](https://cloud.tencent.com/document/product/884/78824#.E4.B8.9A.E5.8A.A1.E5.BA.94.E7.94.A8)
         # @type SoeAppId: String
-        # @param IsLongLifeSession: 长效session标识，当该参数为1时，session的持续时间为300s，但会一定程度上影响第一个数据包的返回速度。当InitOralProcess接口调用时此项为1时，此项必填1才可生效。
+        # @param IsLongLifeSession: 长效session标识，当该参数为1时，session的持续时间为300s，但会一定程度上影响第一个数据包的返回速度。当InitOralProcess接口和TransmitOralProcess接口的IsLongLifeSession均为1时，才可生效。
         # @type IsLongLifeSession: Integer
         # @param IsQuery: 查询标识，当该参数为1时，该请求为查询请求，请求返回该 Session 的评估结果。
         # @type IsQuery: Integer
@@ -656,8 +656,8 @@ module TencentCloud
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword, :COSBucketURL
         extend Gem::Deprecate
-        deprecate :StorageMode, :none, 2024, 3
-        deprecate :StorageMode=, :none, 2024, 3
+        deprecate :StorageMode, :none, 2024, 4
+        deprecate :StorageMode=, :none, 2024, 4
 
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil, cosbucketurl=nil)
           @SeqId = seqid
@@ -738,8 +738,8 @@ module TencentCloud
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         extend Gem::Deprecate
-        deprecate :AudioUrl, :none, 2024, 3
-        deprecate :AudioUrl=, :none, 2024, 3
+        deprecate :AudioUrl, :none, 2024, 4
+        deprecate :AudioUrl=, :none, 2024, 4
 
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy

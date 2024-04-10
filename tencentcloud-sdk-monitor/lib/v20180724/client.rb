@@ -3199,30 +3199,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 发送自定义消息告警
-
-        # @param request: Request instance for SendCustomAlarmMsg.
-        # @type request: :class:`Tencentcloud::monitor::V20180724::SendCustomAlarmMsgRequest`
-        # @rtype: :class:`Tencentcloud::monitor::V20180724::SendCustomAlarmMsgResponse`
-        def SendCustomAlarmMsg(request)
-          body = send_request('SendCustomAlarmMsg', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SendCustomAlarmMsgResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 设置一个策略为该告警策略类型、该项目的默认告警策略。
         # 同一项目下相同的告警策略类型，就会被设置为非默认。
 

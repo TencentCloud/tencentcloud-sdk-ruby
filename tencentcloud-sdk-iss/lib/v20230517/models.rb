@@ -2461,10 +2461,16 @@ module TencentCloud
         # @param Manufacturer: 设备厂商
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
+        # @param AudioSwitch: 音频关开（0：关闭；1：开启）关闭时丢弃音频
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioSwitch: Integer
+        # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeSwitch: Integer
 
-        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer
+        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch
 
-        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil)
+        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil)
           @DeviceId = deviceid
           @Code = code
           @Name = name
@@ -2491,6 +2497,8 @@ module TencentCloud
           @Username = username
           @Region = region
           @Manufacturer = manufacturer
+          @AudioSwitch = audioswitch
+          @SubscribeSwitch = subscribeswitch
         end
 
         def deserialize(params)
@@ -2520,6 +2528,8 @@ module TencentCloud
           @Username = params['Username']
           @Region = params['Region']
           @Manufacturer = params['Manufacturer']
+          @AudioSwitch = params['AudioSwitch']
+          @SubscribeSwitch = params['SubscribeSwitch']
         end
       end
 
@@ -7423,10 +7433,14 @@ module TencentCloud
         # @type Username: String
         # @param ProtocolType: 网关设备接入协议（仅网关接入支持）
         # @type ProtocolType: Integer
+        # @param AudioSwitch: 音频关开（0：关闭；1：开启）默认开启，关闭时丢弃音频
+        # @type AudioSwitch: Integer
+        # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
+        # @type SubscribeSwitch: Integer
 
-        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType
+        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType, :AudioSwitch, :SubscribeSwitch
 
-        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil)
+        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil, audioswitch=nil, subscribeswitch=nil)
           @DeviceId = deviceid
           @Name = name
           @TransportProtocol = transportprotocol
@@ -7436,6 +7450,8 @@ module TencentCloud
           @Port = port
           @Username = username
           @ProtocolType = protocoltype
+          @AudioSwitch = audioswitch
+          @SubscribeSwitch = subscribeswitch
         end
 
         def deserialize(params)
@@ -7448,6 +7464,8 @@ module TencentCloud
           @Port = params['Port']
           @Username = params['Username']
           @ProtocolType = params['ProtocolType']
+          @AudioSwitch = params['AudioSwitch']
+          @SubscribeSwitch = params['SubscribeSwitch']
         end
       end
 

@@ -1880,15 +1880,23 @@ module TencentCloud
       class DescribeWebRecordRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 开始页面录制时返回的任务id
         # @type TaskId: String
+        # @param SdkAppId: 发起页面录制时传递的SdkAppId
+        # @type SdkAppId: Integer
+        # @param RecordId: 发起录制时传递的RecordId, 传入此值时需要传递SdkAppId
+        # @type RecordId: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :SdkAppId, :RecordId
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, sdkappid=nil, recordid=nil)
           @TaskId = taskid
+          @SdkAppId = sdkappid
+          @RecordId = recordid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @SdkAppId = params['SdkAppId']
+          @RecordId = params['RecordId']
         end
       end
 
@@ -3974,7 +3982,7 @@ module TencentCloud
       class StartWebRecordRequest < TencentCloud::Common::AbstractModel
         # @param RecordUrl: 需要录制的网页URL
         # @type RecordUrl: String
-        # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[0, 36000], 默认 36000s(10 小时)
+        # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[1800, 36000], 默认 36000s(10 小时)
         # @type MaxDurationLimit: Integer
         # @param StorageParams: 云存储相关的参数，目前支持腾讯云对象存储，不支持第三方云存储以及VOD
         # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`

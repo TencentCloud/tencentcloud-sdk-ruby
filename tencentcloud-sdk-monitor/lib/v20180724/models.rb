@@ -13384,46 +13384,6 @@ module TencentCloud
         end
       end
 
-      # SendCustomAlarmMsg请求参数结构体
-      class SendCustomAlarmMsgRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 接口模块名，当前取值monitor
-        # @type Module: String
-        # @param PolicyId: 消息策略ID，在自定义消息页面配置
-        # @type PolicyId: String
-        # @param Msg: 用户想要发送的自定义消息内容
-        # @type Msg: String
-
-        attr_accessor :Module, :PolicyId, :Msg
-
-        def initialize(_module=nil, policyid=nil, msg=nil)
-          @Module = _module
-          @PolicyId = policyid
-          @Msg = msg
-        end
-
-        def deserialize(params)
-          @Module = params['Module']
-          @PolicyId = params['PolicyId']
-          @Msg = params['Msg']
-        end
-      end
-
-      # SendCustomAlarmMsg返回参数结构体
-      class SendCustomAlarmMsgResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # Prometheus 服务发现信息
       class ServiceDiscoveryItem < TencentCloud::Common::AbstractModel
         # @param Name: 服务发现名称
