@@ -767,14 +767,14 @@ module TencentCloud
 
       # CreateServerlessInstance请求参数结构体
       class CreateServerlessInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param IndexName: 索引名，需以-AppId结尾
+        # @type IndexName: String
         # @param Zone: 可用区
         # @type Zone: String
         # @param VpcId: 私有网络ID
         # @type VpcId: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
-        # @param IndexName: 索引名，需以-AppId结尾
-        # @type IndexName: String
         # @param IndexMetaJson: 创建的索引元数据JSON，如mappings、settings
         # @type IndexMetaJson: String
         # @param SpaceId: 创建索引的空间ID
@@ -792,13 +792,13 @@ module TencentCloud
         # @param KibanaWhiteIpList: kibana公网白名单
         # @type KibanaWhiteIpList: Array
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :IndexName, :IndexMetaJson, :SpaceId, :Username, :Password, :ServerlessDi, :AutoGetIp, :TagList, :KibanaWhiteIpList
+        attr_accessor :IndexName, :Zone, :VpcId, :SubnetId, :IndexMetaJson, :SpaceId, :Username, :Password, :ServerlessDi, :AutoGetIp, :TagList, :KibanaWhiteIpList
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, indexname=nil, indexmetajson=nil, spaceid=nil, username=nil, password=nil, serverlessdi=nil, autogetip=nil, taglist=nil, kibanawhiteiplist=nil)
+        def initialize(indexname=nil, zone=nil, vpcid=nil, subnetid=nil, indexmetajson=nil, spaceid=nil, username=nil, password=nil, serverlessdi=nil, autogetip=nil, taglist=nil, kibanawhiteiplist=nil)
+          @IndexName = indexname
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
-          @IndexName = indexname
           @IndexMetaJson = indexmetajson
           @SpaceId = spaceid
           @Username = username
@@ -810,10 +810,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @IndexName = params['IndexName']
           @Zone = params['Zone']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
-          @IndexName = params['IndexName']
           @IndexMetaJson = params['IndexMetaJson']
           @SpaceId = params['SpaceId']
           @Username = params['Username']

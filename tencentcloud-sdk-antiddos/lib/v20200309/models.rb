@@ -657,10 +657,13 @@ module TencentCloud
         # @param PlanCntFlag: 是否是商业模式优化-普惠版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanCntFlag: Integer
+        # @param SuperPackFlag: 是否为超级高防包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperPackFlag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :FreeServiceBandwidth, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag, :PlanCntFlag
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :FreeServiceBandwidth, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag, :PlanCntFlag, :SuperPackFlag
 
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, freeservicebandwidth=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil, basicplusflag=nil, plancntflag=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, freeservicebandwidth=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil, basicplusflag=nil, plancntflag=nil, superpackflag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -684,6 +687,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @BasicPlusFlag = basicplusflag
           @PlanCntFlag = plancntflag
+          @SuperPackFlag = superpackflag
         end
 
         def deserialize(params)
@@ -739,6 +743,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @BasicPlusFlag = params['BasicPlusFlag']
           @PlanCntFlag = params['PlanCntFlag']
+          @SuperPackFlag = params['SuperPackFlag']
         end
       end
 

@@ -1844,7 +1844,7 @@ module TencentCloud
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
         # @param CodePackagePath: COS代码包路径
         # @type CodePackagePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param StartCmdInfo: 启动命令信息，默认为sh start.sh
+        # @param StartCmdInfo: 任务的启动命令，按任务训练模式输入，如遇特殊字符导致配置失败，可使用EncodedStartCmdInfo参数
         # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
         # @param TrainingMode: 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
         # @type TrainingMode: String
@@ -1870,10 +1870,12 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param PreTrainModel: 太极预训练模型ID
         # @type PreTrainModel: :class:`Tencentcloud::Tione.v20211111.models.PreTrainModel`
+        # @param EncodedStartCmdInfo: 编码后的任务启动命令，与StartCmdInfo同时配置时，仅当前参数生效
+        # @type EncodedStartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.EncodedStartCmdInfo`
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :PreTrainModel
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :PreTrainModel, :EncodedStartCmdInfo
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, pretrainmodel=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, pretrainmodel=nil, encodedstartcmdinfo=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1897,6 +1899,7 @@ module TencentCloud
           @DataSource = datasource
           @CallbackUrl = callbackurl
           @PreTrainModel = pretrainmodel
+          @EncodedStartCmdInfo = encodedstartcmdinfo
         end
 
         def deserialize(params)
@@ -1961,6 +1964,10 @@ module TencentCloud
           unless params['PreTrainModel'].nil?
             @PreTrainModel = PreTrainModel.new
             @PreTrainModel.deserialize(params['PreTrainModel'])
+          end
+          unless params['EncodedStartCmdInfo'].nil?
+            @EncodedStartCmdInfo = EncodedStartCmdInfo.new
+            @EncodedStartCmdInfo.deserialize(params['EncodedStartCmdInfo'])
           end
         end
       end
@@ -5569,6 +5576,22 @@ module TencentCloud
           end
           @Labels = params['Labels']
           @FrameType = params['FrameType']
+        end
+      end
+
+      # 编码后的启动命令信息
+      class EncodedStartCmdInfo < TencentCloud::Common::AbstractModel
+        # @param StartCmdInfo: 任务的启动命令，以base64格式输入，注意转换时需要完整输入{"StartCmd":"","PsStartCmd":"","WorkerStartCmd":""}
+        # @type StartCmdInfo: String
+
+        attr_accessor :StartCmdInfo
+
+        def initialize(startcmdinfo=nil)
+          @StartCmdInfo = startcmdinfo
+        end
+
+        def deserialize(params)
+          @StartCmdInfo = params['StartCmdInfo']
         end
       end
 

@@ -141,6 +141,46 @@ module TencentCloud
         end
       end
 
+      # 实例地址信息
+      class AddressInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 地址的资源id标识。
+        # @type ResourceId: String
+        # @param UniqVpcId: 地址所在的vpc。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 地址所在的子网。
+        # @type UniqSubnetId: String
+        # @param Vip: 地址的vip。
+        # @type Vip: String
+        # @param VPort: 地址的端口。
+        # @type VPort: Integer
+        # @param WanDomain: 外网地址域名。
+        # @type WanDomain: String
+        # @param WanPort: 外网地址端口。
+        # @type WanPort: Integer
+
+        attr_accessor :ResourceId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WanDomain, :WanPort
+
+        def initialize(resourceid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, wandomain=nil, wanport=nil)
+          @ResourceId = resourceid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @Vip = vip
+          @VPort = vport
+          @WanDomain = wandomain
+          @WanPort = wanport
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @Vip = params['Vip']
+          @VPort = params['VPort']
+          @WanDomain = params['WanDomain']
+          @WanPort = params['WanPort']
+        end
+      end
+
       # AdjustCdbProxyAddress请求参数结构体
       class AdjustCdbProxyAddressRequest < TencentCloud::Common::AbstractModel
         # @param ProxyGroupId: 代理组ID
@@ -1636,6 +1676,33 @@ module TencentCloud
         end
       end
 
+      # CheckMigrateCluster请求参数结构体
+      class CheckMigrateClusterRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CheckMigrateCluster返回参数结构体
+      class CheckMigrateClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 克隆任务记录。
       class CloneItem < TencentCloud::Common::AbstractModel
         # @param SrcInstanceId: 克隆任务的源实例Id。
@@ -1829,6 +1896,39 @@ module TencentCloud
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 集群版实例节点信息
+      class ClusterNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点id。
+        # @type NodeId: String
+        # @param Role: 节点的角色。
+        # @type Role: String
+        # @param Zone: 节点所在可用区。
+        # @type Zone: String
+        # @param Weight: 节点的权重
+        # @type Weight: Integer
+        # @param Status: 节点状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :NodeId, :Role, :Zone, :Weight, :Status
+
+        def initialize(nodeid=nil, role=nil, zone=nil, weight=nil, status=nil)
+          @NodeId = nodeid
+          @Role = role
+          @Zone = zone
+          @Weight = weight
+          @Status = status
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Role = params['Role']
+          @Zone = params['Zone']
+          @Weight = params['Weight']
+          @Status = params['Status']
         end
       end
 
@@ -5168,6 +5268,79 @@ module TencentCloud
               @Items << cloneitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterInfo请求参数结构体
+      class DescribeClusterInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeClusterInfo返回参数结构体
+      class DescribeClusterInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterName: 实例名称。
+        # @type ClusterName: String
+        # @param ReadWriteAddress: 集群读写地址信息。
+        # @type ReadWriteAddress: :class:`Tencentcloud::Cdb.v20170320.models.AddressInfo`
+        # @param ReadOnlyAddress: 集群只读地址信息。
+        # @type ReadOnlyAddress: Array
+        # @param NodeList: 集群节点列表信息。
+        # @type NodeList: Array
+        # @param ReadonlyLimit: 只读空间保护阈值,单位GB
+        # @type ReadonlyLimit: Integer
+        # @param NodeCount: 实例节点数。
+        # @type NodeCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterName, :ReadWriteAddress, :ReadOnlyAddress, :NodeList, :ReadonlyLimit, :NodeCount, :RequestId
+
+        def initialize(clustername=nil, readwriteaddress=nil, readonlyaddress=nil, nodelist=nil, readonlylimit=nil, nodecount=nil, requestid=nil)
+          @ClusterName = clustername
+          @ReadWriteAddress = readwriteaddress
+          @ReadOnlyAddress = readonlyaddress
+          @NodeList = nodelist
+          @ReadonlyLimit = readonlylimit
+          @NodeCount = nodecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+          unless params['ReadWriteAddress'].nil?
+            @ReadWriteAddress = AddressInfo.new
+            @ReadWriteAddress.deserialize(params['ReadWriteAddress'])
+          end
+          unless params['ReadOnlyAddress'].nil?
+            @ReadOnlyAddress = []
+            params['ReadOnlyAddress'].each do |i|
+              addressinfo_tmp = AddressInfo.new
+              addressinfo_tmp.deserialize(i)
+              @ReadOnlyAddress << addressinfo_tmp
+            end
+          end
+          unless params['NodeList'].nil?
+            @NodeList = []
+            params['NodeList'].each do |i|
+              clusternodeinfo_tmp = ClusterNodeInfo.new
+              clusternodeinfo_tmp.deserialize(i)
+              @NodeList << clusternodeinfo_tmp
+            end
+          end
+          @ReadonlyLimit = params['ReadonlyLimit']
+          @NodeCount = params['NodeCount']
           @RequestId = params['RequestId']
         end
       end
@@ -10687,8 +10860,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 3
-        deprecate :IsSucess=, :none, 2024, 3
+        deprecate :IsSucess, :none, 2024, 4
+        deprecate :IsSucess=, :none, 2024, 4
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

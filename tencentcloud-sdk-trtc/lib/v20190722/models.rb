@@ -2254,6 +2254,30 @@ module TencentCloud
         end
       end
 
+      # 混流自定义渲染参数
+      class McuBackgroundCustomRender < TencentCloud::Common::AbstractModel
+        # @param Width: 自定义渲染画面的宽度，单位为像素值，需大于0，且不能超过子布局的宽。
+        # @type Width: Integer
+        # @param Height: 自定义渲染画面的高度，单位为像素值，需大于0，且不能超过子布局的高。
+        # @type Height: Integer
+        # @param Radius: 自定义渲染画面的圆角半径，单位为像素值，不能超过渲染画面Width和Height最小值的一半，不指定默认为0，表示直角。
+        # @type Radius: Integer
+
+        attr_accessor :Width, :Height, :Radius
+
+        def initialize(width=nil, height=nil, radius=nil)
+          @Width = width
+          @Height = height
+          @Radius = radius
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Radius = params['Radius']
+        end
+      end
+
       # 混流自定义裁剪参数
       class McuCustomCrop < TencentCloud::Common::AbstractModel
         # @param LocationX: 自定义裁剪起始位置的X偏移，单位为像素值，大于等于0。
@@ -2340,15 +2364,17 @@ module TencentCloud
         # @type BackgroundImageUrl: String
         # @param CustomCrop: 客户自定义裁剪，针对原始输入流裁剪
         # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
-        # @param BackgroundRenderMode: 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩。不填默认为3。
+        # @param BackgroundRenderMode: 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩，4为自定义渲染。不填默认为3。
         # @type BackgroundRenderMode: Integer
         # @param TransparentUrl: 子画面的透明模版url，指向一张包含透明通道的模板图片。填写该参数，后台混流时会提取该模板图片的透明通道，将其缩放作为目标画面的透明通道，再和其他画面进行混合。您可以通过透明模版实现目标画面的半透明效果和任意形状裁剪（如圆角、星形、心形等）。 支持png格式。图片大小限制不超过5MB。
         # 注：1，模板图片宽高比应接近目标画面宽高比，以避免缩放适配目标画面时出现模板效果变形；2，透明模版只有RenderMode为0（裁剪）时才生效；3，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，透明模版将不会生效。
         # @type TransparentUrl: String
+        # @param BackgroundCustomRender: 子背景图的自定义渲染参数，当BackgroundRenderMode为4时必须配置。
+        # @type BackgroundCustomRender: :class:`Tencentcloud::Trtc.v20190722.models.McuBackgroundCustomRender`
 
-        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl
+        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl, :BackgroundCustomRender
 
-        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil)
+        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil, backgroundcustomrender=nil)
           @UserMediaStream = usermediastream
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -2361,6 +2387,7 @@ module TencentCloud
           @CustomCrop = customcrop
           @BackgroundRenderMode = backgroundrendermode
           @TransparentUrl = transparenturl
+          @BackgroundCustomRender = backgroundcustomrender
         end
 
         def deserialize(params)
@@ -2382,6 +2409,10 @@ module TencentCloud
           end
           @BackgroundRenderMode = params['BackgroundRenderMode']
           @TransparentUrl = params['TransparentUrl']
+          unless params['BackgroundCustomRender'].nil?
+            @BackgroundCustomRender = McuBackgroundCustomRender.new
+            @BackgroundCustomRender.deserialize(params['BackgroundCustomRender'])
+          end
         end
       end
 

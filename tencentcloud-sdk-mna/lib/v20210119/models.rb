@@ -34,16 +34,33 @@ module TencentCloud
         # @type DataKey: String
         # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
         # @type AccessScope: Integer
+        # @param LicensePayMode: 当付费方为租户时，可选择租户license付费方式：
+        # 0，月度授权
+        # 1，永久授权
+        # 若不传则默认为月度授权。
+        # 当付费方为厂商时，此参数无效
 
-        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey, :AccessScope
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicensePayMode: Integer
+        # @param GroupId: 设备分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 设备分组名称，预留参数，需要分组时传入GroupId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
 
-        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil, accessscope=nil)
+        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey, :AccessScope, :LicensePayMode, :GroupId, :GroupName
+
+        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil, accessscope=nil, licensepaymode=nil, groupid=nil, groupname=nil)
           @Vendor = vendor
           @SN = sn
           @DeviceName = devicename
           @Description = description
           @DataKey = datakey
           @AccessScope = accessscope
+          @LicensePayMode = licensepaymode
+          @GroupId = groupid
+          @GroupName = groupname
         end
 
         def deserialize(params)
@@ -53,6 +70,9 @@ module TencentCloud
           @Description = params['Description']
           @DataKey = params['DataKey']
           @AccessScope = params['AccessScope']
+          @LicensePayMode = params['LicensePayMode']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
         end
       end
 
@@ -123,15 +143,27 @@ module TencentCloud
         # 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入）
         # 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
         # @type AccessScope: Integer
+        # @param LicensePayMode: license付费方式：
+        # 0，月度授权
+        # 1，永久授权
+        # 若不传则默认为月度授权
+        # @type LicensePayMode: Integer
+        # @param GroupName: 设备分组名称，非必选，预留参数，需要分组时传入GroupId
+        # @type GroupName: String
+        # @param GroupId: 设备分组ID，非必选，如果不填写则默认设备无分组
+        # @type GroupId: String
 
-        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted, :AccessScope
+        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted, :AccessScope, :LicensePayMode, :GroupName, :GroupId
 
-        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil, accessscope=nil)
+        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil, accessscope=nil, licensepaymode=nil, groupname=nil, groupid=nil)
           @DeviceName = devicename
           @Remark = remark
           @DataKey = datakey
           @Encrypted = encrypted
           @AccessScope = accessscope
+          @LicensePayMode = licensepaymode
+          @GroupName = groupname
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -140,6 +172,9 @@ module TencentCloud
           @DataKey = params['DataKey']
           @Encrypted = params['Encrypted']
           @AccessScope = params['AccessScope']
+          @LicensePayMode = params['LicensePayMode']
+          @GroupName = params['GroupName']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -568,16 +603,32 @@ module TencentCloud
         # @type Remark: String
         # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
         # @type AccessScope: Integer
+        # @param LicensePayMode: license授权有效期 0：月度授权 1：永久授权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicensePayMode: Integer
+        # @param Payer: 付费方 0：厂商付费 1：客户付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Payer: Integer
+        # @param GroupId: 设备分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 设备分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
 
-        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope
+        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName
 
-        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil)
+        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @CreateTime = createtime
           @LastTime = lasttime
           @Remark = remark
           @AccessScope = accessscope
+          @LicensePayMode = licensepaymode
+          @Payer = payer
+          @GroupId = groupid
+          @GroupName = groupname
         end
 
         def deserialize(params)
@@ -587,6 +638,10 @@ module TencentCloud
           @LastTime = params['LastTime']
           @Remark = params['Remark']
           @AccessScope = params['AccessScope']
+          @LicensePayMode = params['LicensePayMode']
+          @Payer = params['Payer']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
         end
       end
 
@@ -912,10 +967,14 @@ module TencentCloud
         # @type RenewFlag: Boolean
         # @param ModifyStatus: 资源包变更状态，0：未发生变配；1：变配中；2：已变配或已续费
         # @type ModifyStatus: Integer
+        # @param TruncFlag: 流量截断标识。true代表开启流量截断，false代表不开启流量截断
+        # @type TruncFlag: Boolean
+        # @param CapacityRemainPrecise: 流量包精确余量，单位：MB
+        # @type CapacityRemainPrecise: Integer
 
-        attr_accessor :ResourceId, :AppId, :PackageType, :Status, :CreateTime, :ActiveTime, :ExpireTime, :DeviceList, :CapacitySize, :CapacityRemain, :RenewFlag, :ModifyStatus
+        attr_accessor :ResourceId, :AppId, :PackageType, :Status, :CreateTime, :ActiveTime, :ExpireTime, :DeviceList, :CapacitySize, :CapacityRemain, :RenewFlag, :ModifyStatus, :TruncFlag, :CapacityRemainPrecise
 
-        def initialize(resourceid=nil, appid=nil, packagetype=nil, status=nil, createtime=nil, activetime=nil, expiretime=nil, devicelist=nil, capacitysize=nil, capacityremain=nil, renewflag=nil, modifystatus=nil)
+        def initialize(resourceid=nil, appid=nil, packagetype=nil, status=nil, createtime=nil, activetime=nil, expiretime=nil, devicelist=nil, capacitysize=nil, capacityremain=nil, renewflag=nil, modifystatus=nil, truncflag=nil, capacityremainprecise=nil)
           @ResourceId = resourceid
           @AppId = appid
           @PackageType = packagetype
@@ -928,6 +987,8 @@ module TencentCloud
           @CapacityRemain = capacityremain
           @RenewFlag = renewflag
           @ModifyStatus = modifystatus
+          @TruncFlag = truncflag
+          @CapacityRemainPrecise = capacityremainprecise
         end
 
         def deserialize(params)
@@ -943,6 +1004,8 @@ module TencentCloud
           @CapacityRemain = params['CapacityRemain']
           @RenewFlag = params['RenewFlag']
           @ModifyStatus = params['ModifyStatus']
+          @TruncFlag = params['TruncFlag']
+          @CapacityRemainPrecise = params['CapacityRemainPrecise']
         end
       end
 
@@ -1165,7 +1228,7 @@ module TencentCloud
         # @type BeginTime: Integer
         # @param EndTime: 截止时间
         # @type EndTime: Integer
-        # @param Type: 流量种类（1：上行流量，2：下行流量）
+        # @param Type: 流量种类（1：上行流量，2：下行流量，3：上下行总和）
         # @type Type: Integer
         # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
         # @type TimeGranularity: Integer
@@ -1173,10 +1236,12 @@ module TencentCloud
         # @type AccessRegion: String
         # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
         # @type GatewayType: Integer
+        # @param DeviceList: 设备ID列表，用于查询多设备流量，该字段启用时DeviceId可传"-1"
+        # @type DeviceList: Array
 
-        attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList
 
-        def initialize(deviceid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil, devicelist=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
           @EndTime = endtime
@@ -1184,6 +1249,7 @@ module TencentCloud
           @TimeGranularity = timegranularity
           @AccessRegion = accessregion
           @GatewayType = gatewaytype
+          @DeviceList = devicelist
         end
 
         def deserialize(params)
@@ -1194,6 +1260,7 @@ module TencentCloud
           @TimeGranularity = params['TimeGranularity']
           @AccessRegion = params['AccessRegion']
           @GatewayType = params['GatewayType']
+          @DeviceList = params['DeviceList']
         end
       end
 
@@ -1303,7 +1370,7 @@ module TencentCloud
         # @type BeginTime: Integer
         # @param EndTime: 1659515000
         # @type EndTime: Integer
-        # @param Type: 统计流量类型（1：上行流量，2：下行流量）
+        # @param Type: 统计流量类型（1：上行流量，2：下行流量， 3: 上下行总和）
         # @type Type: Integer
         # @param TimeGranularity: 统计时间粒度（1：按小时统计，2：按天统计）
         # @type TimeGranularity: Integer
@@ -1477,16 +1544,22 @@ module TencentCloud
         # @type AccessRegion: String
         # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
         # @type GatewayType: Integer
+        # @param DeviceList: 设备ID列表，最多10个设备，下载多个设备流量和时使用，此时DeviceId可传"-1"
+        # @type DeviceList: Array
+        # @param GroupId: 设备分组ID，若不指定分组则不传，按分组下载数据时使用
+        # @type GroupId: String
 
-        attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity, :AccessRegion, :GatewayType
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList, :GroupId
 
-        def initialize(deviceid=nil, begintime=nil, endtime=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil, devicelist=nil, groupid=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
           @EndTime = endtime
           @TimeGranularity = timegranularity
           @AccessRegion = accessregion
           @GatewayType = gatewaytype
+          @DeviceList = devicelist
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -1496,6 +1569,8 @@ module TencentCloud
           @TimeGranularity = params['TimeGranularity']
           @AccessRegion = params['AccessRegion']
           @GatewayType = params['GatewayType']
+          @DeviceList = params['DeviceList']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -1591,9 +1666,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
         # @param LicenseChargingMode: license计费模式：
-        # 1，租户月付费
+        # 1，租户付费
         # 2，厂商月付费
-        # 3，license永久授权
+        # 3，厂商永久授权
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseChargingMode: Integer
         # @param Description: 设备描述
@@ -1641,6 +1716,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VendorDescription: String
         # @param LicenseChargingMode: license计费模式： 1，租户月付费 2，厂商月付费 3，license永久授权
+        # 注：后续将废弃此参数，新接入请使用LicensePayMode和Payer
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseChargingMode: Integer
         # @param CreateTime: 创建时间
@@ -1649,10 +1725,26 @@ module TencentCloud
         # @param SN: 硬件序列号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SN: String
+        # @param LicensePayMode: license授权有效期
+        # 0：月度授权
+        # 1：永久授权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicensePayMode: Integer
+        # @param Payer: 付费方
+        # 0：客户付费
+        # 1：厂商付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Payer: Integer
+        # @param GroupId: 设备分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 设备分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
 
-        attr_accessor :DeviceId, :DeviceName, :ActiveTime, :LastOnlineTime, :Description, :VendorDescription, :LicenseChargingMode, :CreateTime, :SN
+        attr_accessor :DeviceId, :DeviceName, :ActiveTime, :LastOnlineTime, :Description, :VendorDescription, :LicenseChargingMode, :CreateTime, :SN, :LicensePayMode, :Payer, :GroupId, :GroupName
 
-        def initialize(deviceid=nil, devicename=nil, activetime=nil, lastonlinetime=nil, description=nil, vendordescription=nil, licensechargingmode=nil, createtime=nil, sn=nil)
+        def initialize(deviceid=nil, devicename=nil, activetime=nil, lastonlinetime=nil, description=nil, vendordescription=nil, licensechargingmode=nil, createtime=nil, sn=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @ActiveTime = activetime
@@ -1662,6 +1754,10 @@ module TencentCloud
           @LicenseChargingMode = licensechargingmode
           @CreateTime = createtime
           @SN = sn
+          @LicensePayMode = licensepaymode
+          @Payer = payer
+          @GroupId = groupid
+          @GroupName = groupname
         end
 
         def deserialize(params)
@@ -1674,6 +1770,10 @@ module TencentCloud
           @LicenseChargingMode = params['LicenseChargingMode']
           @CreateTime = params['CreateTime']
           @SN = params['SN']
+          @LicensePayMode = params['LicensePayMode']
+          @Payer = params['Payer']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
         end
       end
 
@@ -1812,10 +1912,12 @@ module TencentCloud
         # 100G：最多绑定3个设备
         # 500G：最多绑定5个设备
         # @type DeviceList: Array
-        # @param AutoRenewFlag: 是否自动续费
+        # @param AutoRenewFlag: 是否自动续费，该选项和流量截断冲突，只能开启一个
         # @type AutoRenewFlag: Boolean
         # @param PackageRegion: 区域标识，0：国内，1：国外
         # @type PackageRegion: Integer
+        # @param FlowTruncFlag: 是否开启流量截断功能，该选项和自动续费冲突
+        # @type FlowTruncFlag: Boolean
         # @param AutoVoucher: 是否自动选择代金券，默认false。
         # 有多张券时的选择策略：按照可支付订单全部金额的券，先到期的券，可抵扣金额最大的券，余额最小的券，现金券 这个优先级进行扣券，且最多只抵扣一张券。
         # @type AutoVoucher: Boolean
@@ -1823,13 +1925,14 @@ module TencentCloud
         # 注：若指定的代金券不符合订单抵扣条件，则正常支付，不扣券
         # @type VoucherIds: Array
 
-        attr_accessor :PackageType, :DeviceList, :AutoRenewFlag, :PackageRegion, :AutoVoucher, :VoucherIds
+        attr_accessor :PackageType, :DeviceList, :AutoRenewFlag, :PackageRegion, :FlowTruncFlag, :AutoVoucher, :VoucherIds
 
-        def initialize(packagetype=nil, devicelist=nil, autorenewflag=nil, packageregion=nil, autovoucher=nil, voucherids=nil)
+        def initialize(packagetype=nil, devicelist=nil, autorenewflag=nil, packageregion=nil, flowtruncflag=nil, autovoucher=nil, voucherids=nil)
           @PackageType = packagetype
           @DeviceList = devicelist
           @AutoRenewFlag = autorenewflag
           @PackageRegion = packageregion
+          @FlowTruncFlag = flowtruncflag
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
         end
@@ -1839,6 +1942,7 @@ module TencentCloud
           @DeviceList = params['DeviceList']
           @AutoRenewFlag = params['AutoRenewFlag']
           @PackageRegion = params['PackageRegion']
+          @FlowTruncFlag = params['FlowTruncFlag']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
         end
@@ -2064,15 +2168,27 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
         # @param LicenseChargingMode: license计费模式： 1，租户月付费 2，厂商月付费 3，license永久授权
+        # 注：设备为租户付费且未激活（未选择月付还是永久付费）时，此参数返回1，仅代表租户付费。后续将废弃此参数，新接入请使用LicensePayMode和Payer
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseChargingMode: Integer
         # @param LastOnlineTime: 最后在线时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastOnlineTime: String
+        # @param LicensePayMode: license授权有效期
+        # 0：月度授权
+        # 1：永久授权
+        # -1：未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicensePayMode: Integer
+        # @param Payer: 付费方
+        # 0：客户付费
+        # 1：厂商付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Payer: Integer
 
-        attr_accessor :HardwareId, :SN, :CreateTime, :Status, :ActiveTime, :Description, :DeviceId, :LicenseChargingMode, :LastOnlineTime
+        attr_accessor :HardwareId, :SN, :CreateTime, :Status, :ActiveTime, :Description, :DeviceId, :LicenseChargingMode, :LastOnlineTime, :LicensePayMode, :Payer
 
-        def initialize(hardwareid=nil, sn=nil, createtime=nil, status=nil, activetime=nil, description=nil, deviceid=nil, licensechargingmode=nil, lastonlinetime=nil)
+        def initialize(hardwareid=nil, sn=nil, createtime=nil, status=nil, activetime=nil, description=nil, deviceid=nil, licensechargingmode=nil, lastonlinetime=nil, licensepaymode=nil, payer=nil)
           @HardwareId = hardwareid
           @SN = sn
           @CreateTime = createtime
@@ -2082,6 +2198,8 @@ module TencentCloud
           @DeviceId = deviceid
           @LicenseChargingMode = licensechargingmode
           @LastOnlineTime = lastonlinetime
+          @LicensePayMode = licensepaymode
+          @Payer = payer
         end
 
         def deserialize(params)
@@ -2094,6 +2212,8 @@ module TencentCloud
           @DeviceId = params['DeviceId']
           @LicenseChargingMode = params['LicenseChargingMode']
           @LastOnlineTime = params['LastOnlineTime']
+          @LicensePayMode = params['LicensePayMode']
+          @Payer = params['Payer']
         end
       end
 

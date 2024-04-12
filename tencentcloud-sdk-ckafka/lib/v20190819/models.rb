@@ -2334,8 +2334,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 3
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 3
+        deprecate :DeleteRouteTimestamp, :none, 2024, 4
+        deprecate :DeleteRouteTimestamp=, :none, 2024, 4
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -11935,8 +11935,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 3
-        deprecate :Exflag=, :none, 2024, 3
+        deprecate :Exflag, :none, 2024, 4
+        deprecate :Exflag=, :none, 2024, 4
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid
