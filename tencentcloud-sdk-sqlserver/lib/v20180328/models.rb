@@ -6509,6 +6509,50 @@ module TencentCloud
         end
       end
 
+      # DescribeRestoreTimeRange请求参数结构体
+      class DescribeRestoreTimeRangeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param TargetInstanceId: 回档的目标实例ID，不填默认回档到原实例
+        # @type TargetInstanceId: String
+
+        attr_accessor :InstanceId, :TargetInstanceId
+
+        def initialize(instanceid=nil, targetinstanceid=nil)
+          @InstanceId = instanceid
+          @TargetInstanceId = targetinstanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TargetInstanceId = params['TargetInstanceId']
+        end
+      end
+
+      # DescribeRestoreTimeRange返回参数结构体
+      class DescribeRestoreTimeRangeResponse < TencentCloud::Common::AbstractModel
+        # @param MinTime: 按照时间点可回档的最小时间
+        # @type MinTime: String
+        # @param MaxTime: 按照时间点可回档的最大时间
+        # @type MaxTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MinTime, :MaxTime, :RequestId
+
+        def initialize(mintime=nil, maxtime=nil, requestid=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRollbackTime请求参数结构体
       class DescribeRollbackTimeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

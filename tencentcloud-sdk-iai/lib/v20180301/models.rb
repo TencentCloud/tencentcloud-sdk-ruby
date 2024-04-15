@@ -1786,6 +1786,7 @@ module TencentCloud
       end
 
       # 五官定位（人脸关键点）具体信息。
+      # ![image](https://iai-face-demo-default-1254418846.cos.ap-guangzhou.myqcloud.com/130pts.jpg)
       class FaceShape < TencentCloud::Common::AbstractModel
         # @param FaceProfile: 描述脸型轮廓的 21 点。
         # @type FaceProfile: Array

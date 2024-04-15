@@ -87,6 +87,42 @@ module TencentCloud
         end
       end
 
+      # BidPreDomains请求参数结构体
+      class BidPreDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+        # @param Price: 价格
+        # @type Price: Integer
+
+        attr_accessor :BusinessId, :Price
+
+        def initialize(businessid=nil, price=nil)
+          @BusinessId = businessid
+          @Price = price
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+          @Price = params['Price']
+        end
+      end
+
+      # BidPreDomains返回参数结构体
+      class BidPreDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 认证资料信息
       class CertificateInfo < TencentCloud::Common::AbstractModel
         # @param CertificateCode: 证件号码。
@@ -1274,11 +1310,67 @@ module TencentCloud
         end
       end
 
+      # DescribeReservedBidInfo请求参数结构体
+      class DescribeReservedBidInfoRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+
+        attr_accessor :BusinessId
+
+        def initialize(businessid=nil)
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+        end
+      end
+
+      # DescribeReservedBidInfo返回参数结构体
+      class DescribeReservedBidInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UpPrice: 竞价领先价格
+        # @type UpPrice: Integer
+        # @param Price: 请求用户当前价格
+        # @type Price: Integer
+        # @param UpUser: 领先用户
+        # @type UpUser: String
+        # @param BidList: 竞价详细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BidList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UpPrice, :Price, :UpUser, :BidList, :RequestId
+
+        def initialize(upprice=nil, price=nil, upuser=nil, bidlist=nil, requestid=nil)
+          @UpPrice = upprice
+          @Price = price
+          @UpUser = upuser
+          @BidList = bidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UpPrice = params['UpPrice']
+          @Price = params['Price']
+          @UpUser = params['UpUser']
+          unless params['BidList'].nil?
+            @BidList = []
+            params['BidList'].each do |i|
+              reservebidinfo_tmp = ReserveBidInfo.new
+              reservebidinfo_tmp.deserialize(i)
+              @BidList << reservebidinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReservedPreDomainInfo请求参数结构体
       class DescribeReservedPreDomainInfoRequest < TencentCloud::Common::AbstractModel
         # @param DomainList: 域名,每次最多支持500条域名查询
         # @type DomainList: Array
-        # @param ReservedStatus: 状态，用于筛选，可不填写(1. 预定成功 2. 预定失败（预定失败Reason字段将会被赋值）3. 域名交割中 4. 域名交割完成)
+        # @param ReservedStatus: 状态，用于筛选，可不填写(1. 成功 2. 失败（失败Reason字段将会被赋值）3. 域名交割中 4. 域名交割完成 5. 预约 6. 竞价)
         # @type ReservedStatus: Integer
         # @param ReservedTimeSort: 根据预约时间排序，仅支持："desc","asc"。
         # @type ReservedTimeSort: String
@@ -2195,6 +2287,38 @@ module TencentCloud
         end
       end
 
+      # 合作商竞价详情
+      class ReserveBidInfo < TencentCloud::Common::AbstractModel
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Price: 出价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Integer
+        # @param BidTime: 出价时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BidTime: String
+        # @param BidStatus: 当前状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BidStatus: String
+
+        attr_accessor :User, :Price, :BidTime, :BidStatus
+
+        def initialize(user=nil, price=nil, bidtime=nil, bidstatus=nil)
+          @User = user
+          @Price = price
+          @BidTime = bidtime
+          @BidStatus = bidstatus
+        end
+
+        def deserialize(params)
+          @User = params['User']
+          @Price = params['Price']
+          @BidTime = params['BidTime']
+          @BidStatus = params['BidStatus']
+        end
+      end
+
       # 查询预释放预约列表域名详情
       class ReservedDomainInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -2252,10 +2376,13 @@ module TencentCloud
         # @param ResourceId: 资源ID，用于删除资源信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
+        # @param BusinessId: 业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
 
-        attr_accessor :Domain, :ReservedStatus, :FailReason, :ChangeOwnerTime, :RegTime, :ExpireTime, :ResourceId
+        attr_accessor :Domain, :ReservedStatus, :FailReason, :ChangeOwnerTime, :RegTime, :ExpireTime, :ResourceId, :BusinessId
 
-        def initialize(domain=nil, reservedstatus=nil, failreason=nil, changeownertime=nil, regtime=nil, expiretime=nil, resourceid=nil)
+        def initialize(domain=nil, reservedstatus=nil, failreason=nil, changeownertime=nil, regtime=nil, expiretime=nil, resourceid=nil, businessid=nil)
           @Domain = domain
           @ReservedStatus = reservedstatus
           @FailReason = failreason
@@ -2263,6 +2390,7 @@ module TencentCloud
           @RegTime = regtime
           @ExpireTime = expiretime
           @ResourceId = resourceid
+          @BusinessId = businessid
         end
 
         def deserialize(params)
@@ -2273,6 +2401,7 @@ module TencentCloud
           @RegTime = params['RegTime']
           @ExpireTime = params['ExpireTime']
           @ResourceId = params['ResourceId']
+          @BusinessId = params['BusinessId']
         end
       end
 

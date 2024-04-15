@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户合作商预释放出价
+
+        # @param request: Request instance for BidPreDomains.
+        # @type request: :class:`Tencentcloud::domain::V20180808::BidPreDomainsRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::BidPreDomainsResponse`
+        def BidPreDomains(request)
+          body = send_request('BidPreDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BidPreDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
 
         # @param request: Request instance for CheckBatchStatus.
@@ -519,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePreDomainListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口用于获取合作商竞价过程中竞价详情数据
+
+        # @param request: Request instance for DescribeReservedBidInfo.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeReservedBidInfoRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeReservedBidInfoResponse`
+        def DescribeReservedBidInfo(request)
+          body = send_request('DescribeReservedBidInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReservedBidInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

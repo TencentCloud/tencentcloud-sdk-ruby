@@ -1997,6 +1997,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeRestoreTimeRange)用于查询按照时间点可回档的时间范围。
+
+        # @param request: Request instance for DescribeRestoreTimeRange.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeRestoreTimeRangeRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeRestoreTimeRangeResponse`
+        def DescribeRestoreTimeRange(request)
+          body = send_request('DescribeRestoreTimeRange', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRestoreTimeRangeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
 
         # @param request: Request instance for DescribeRollbackTime.

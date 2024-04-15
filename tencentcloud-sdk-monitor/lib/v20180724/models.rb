@@ -1335,10 +1335,13 @@ module TencentCloud
         # @param ProductId: 产品ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
+        # @param HierarchicalValue: 告警分级阈值配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HierarchicalValue: :class:`Tencentcloud::Monitor.v20180724.models.AlarmHierarchicalValue`
 
-        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit, :IsAdvanced, :IsOpen, :ProductId
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit, :IsAdvanced, :IsOpen, :ProductId, :HierarchicalValue
 
-        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil, isadvanced=nil, isopen=nil, productid=nil)
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil, isadvanced=nil, isopen=nil, productid=nil, hierarchicalvalue=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
           @AlarmNotifyType = alarmnotifytype
           @CalcType = calctype
@@ -1352,6 +1355,7 @@ module TencentCloud
           @IsAdvanced = isadvanced
           @IsOpen = isopen
           @ProductId = productid
+          @HierarchicalValue = hierarchicalvalue
         end
 
         def deserialize(params)
@@ -1368,6 +1372,10 @@ module TencentCloud
           @IsAdvanced = params['IsAdvanced']
           @IsOpen = params['IsOpen']
           @ProductId = params['ProductId']
+          unless params['HierarchicalValue'].nil?
+            @HierarchicalValue = AlarmHierarchicalValue.new
+            @HierarchicalValue.deserialize(params['HierarchicalValue'])
+          end
         end
       end
 
@@ -9269,15 +9277,19 @@ module TencentCloud
         # @type EventDisplayName: String
         # @param RuleID: 规则ID
         # @type RuleID: String
+        # @param MetricName: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
 
-        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :EventDisplayName, :RuleID
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :EventDisplayName, :RuleID, :MetricName
 
-        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, eventdisplayname=nil, ruleid=nil)
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, eventdisplayname=nil, ruleid=nil, metricname=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
           @AlarmNotifyType = alarmnotifytype
           @EventID = eventid
           @EventDisplayName = eventdisplayname
           @RuleID = ruleid
+          @MetricName = metricname
         end
 
         def deserialize(params)
@@ -9286,6 +9298,7 @@ module TencentCloud
           @EventID = params['EventID']
           @EventDisplayName = params['EventDisplayName']
           @RuleID = params['RuleID']
+          @MetricName = params['MetricName']
         end
       end
 

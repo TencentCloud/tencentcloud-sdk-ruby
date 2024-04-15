@@ -146,10 +146,9 @@ module TencentCloud
         # @param NotifyType: 通知签署方经办人的方式,  有以下途径:
         # <ul><li>  **sms**  :  (默认)短信</li>
         # <li>   **none**   : 不通知</li></ul>
-        # ```
+
         # 注意：
-        # 如果使用的是通过文件发起合同（CreateFlowByFiles），NotifyType必须 是 sms 才会发送短信
-        # ```
+        # `如果使用的是通过文件发起合同（CreateFlowByFiles），NotifyType必须 是 sms 才会发送短信`
         # @type NotifyType: String
         # @param ApproverRole: 收据场景设置签署人角色类型, 可以设置如下****类型****:
         # <ul><li> **1**  :收款人</li>
@@ -536,7 +535,7 @@ module TencentCloud
         # <li>**贵方原生App -> 腾讯电子签H5 -> 贵方原生App** : JumpUrl格式: qianapp://YOUR_CUSTOM_URL，只需满足 qianapp:// 开头的URL即可。`APP实现方，需要拦截Webview地址跳转，发现url是qianapp:// 开头时跳转到原生页面。`APP拦截地址跳转可参考：<a href='https://stackoverflow.com/questions/41693263/android-webview-err-unknown-url-scheme'>Android</a>，<a href='https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/webview/upi-intent-ios/'>IOS</a> </li></ul>
 
         # 成功结果返回：
-        # 若贵方需要在跳转回时通过链接query参数提示开通成功，JumpUrl中的query应携带如下参数：`appendResult=qian`。这样腾讯电子签H5会在跳转回的url后面会添加query参数提示贵方签署成功，比如 qianapp://YOUR_CUSTOM_URL?action=sign&result=success&from=tencent_ess
+        # 若贵方需要在跳转回时通过链接query参数提示开通成功，JumpUrl中的query应携带如下参数：`appendResult=qian`。这样腾讯电子签H5会在跳转回的url后面会添加query参数提示贵方签署成功，例如： qianapp://YOUR_CUSTOM_URL?action=sign&result=success&from=tencent_ess
         # @type JumpUrl: String
 
         attr_accessor :UserInfo, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :CallbackUrl, :VerifyChannels, :LicenseType, :JumpUrl
@@ -1370,6 +1369,86 @@ module TencentCloud
           @FailMessages = params['FailMessages']
           @UrlExpireOn = params['UrlExpireOn']
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBatchOrganizationRegistrationTasks请求参数结构体
+      class CreateBatchOrganizationRegistrationTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param RegistrationOrganizations: 组织机构注册信息。
+        # 一次最多支持10条认证流
+        # @type RegistrationOrganizations: Array
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Endpoint: 要生成链接的类型, 可以选择的值如下:
+
+        # <ul>
+        # <li>(默认)PC: 生成PC端的链接</li>
+        # <li>SHORT_URL: H5跳转到电子签小程序链接的短链形式, 一般用于发送短信中带的链接, 打开后进入腾讯电子签小程序</li>
+        # <li>APP：生成小程序跳转链接</li>
+        # <li>H5：生成H5跳转长链接</li>
+        # <li>SHORT_H5：生成H5跳转短链</li>
+        # </ul>
+        # @type Endpoint: String
+
+        attr_accessor :Operator, :RegistrationOrganizations, :Agent, :Endpoint
+
+        def initialize(operator=nil, registrationorganizations=nil, agent=nil, endpoint=nil)
+          @Operator = operator
+          @RegistrationOrganizations = registrationorganizations
+          @Agent = agent
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['RegistrationOrganizations'].nil?
+            @RegistrationOrganizations = []
+            params['RegistrationOrganizations'].each do |i|
+              registrationorganizationinfo_tmp = RegistrationOrganizationInfo.new
+              registrationorganizationinfo_tmp.deserialize(i)
+              @RegistrationOrganizations << registrationorganizationinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # CreateBatchOrganizationRegistrationTasks返回参数结构体
+      class CreateBatchOrganizationRegistrationTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 生成注册链接的任务Id，
+        # 根据这个id， 调用DescribeBatchOrganizationRegistrationUrls 获取生成的链接，进入认证流程
+        # @type TaskId: String
+        # @param ErrorMessages: 批量生成企业认证链接的详细错误信息，
+        # 顺序与输入参数保持一致。
+        # 若企业认证均成功生成，则不返回错误信息；
+        # 若存在任何错误，则返回具体的错误描述。
+        # @type ErrorMessages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :ErrorMessages, :RequestId
+
+        def initialize(taskid=nil, errormessages=nil, requestid=nil)
+          @TaskId = taskid
+          @ErrorMessages = errormessages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ErrorMessages = params['ErrorMessages']
           @RequestId = params['RequestId']
         end
       end
@@ -3612,6 +3691,33 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationAuthUrl请求参数结构体
+      class CreateOrganizationAuthUrlRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateOrganizationAuthUrl返回参数结构体
+      class CreateOrganizationAuthUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationBatchSignUrl请求参数结构体
       class CreateOrganizationBatchSignUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
@@ -3638,16 +3744,21 @@ module TencentCloud
         # @param Mobile: 员工手机号，必须与姓名一起使用。
         #  如果UserId为空，则此字段不能为空。同时，姓名和手机号码必须与传入合同（FlowId）中的签署人信息一致。
         # @type Mobile: String
+        # @param RecipientIds: 为签署方经办人在签署合同中的参与方ID，必须与参数FlowIds数组一一对应。
+        # 您可以通过查询合同接口（DescribeFlowInfo）查询此参数。
+        # 若传了此参数，则可以不传 UserId, Name, Mobile等参数
+        # @type RecipientIds: Array
 
-        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile
+        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds
 
-        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil)
+        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil)
           @Operator = operator
           @FlowIds = flowids
           @Agent = agent
           @UserId = userid
           @Name = name
           @Mobile = mobile
+          @RecipientIds = recipientids
         end
 
         def deserialize(params)
@@ -3663,6 +3774,7 @@ module TencentCloud
           @UserId = params['UserId']
           @Name = params['Name']
           @Mobile = params['Mobile']
+          @RecipientIds = params['RecipientIds']
         end
       end
 
@@ -7551,7 +7663,7 @@ module TencentCloud
         # @type ApproverIdCardNumber: String
         # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
 
-        # <b>模板发起合同时，该参数为必填项，可以通过[查询模版信息接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/DescribeFlowTemplates)获得。</b>
+        # <b>模板发起合同时，该参数为必填项，可以通过[查询模板信息接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/DescribeFlowTemplates)获得。</b>
         # <b>文件发起合同时，该参数无需传值。</b>
 
         # 如果开发者后续用合同模板发起合同，建议保存此值，在用合同模板发起合同中需此值绑定对应的签署经办人 。
@@ -9673,6 +9785,79 @@ module TencentCloud
           @LegalName = params['LegalName']
           @Uscc = params['Uscc']
           @UnifiedSocialCreditCode = params['UnifiedSocialCreditCode']
+        end
+      end
+
+      # 企业认证信息参数， 需要保证这些参数跟营业执照中的信息一致。
+      class RegistrationOrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationName: 组织机构名称。
+        # 请确认该名称与企业营业执照中注册的名称一致。
+        # 如果名称中包含英文括号()，请使用中文括号（）代替。
+        # @type OrganizationName: String
+        # @param UniformSocialCreditCode: 组织机构企业统一社会信用代码。
+        # 请确认该企业统一社会信用代码与企业营业执照中注册的统一社会信用代码一致。
+        # @type UniformSocialCreditCode: String
+        # @param LegalName: 组织机构法人的姓名。
+        # 请确认该企业统一社会信用代码与企业营业执照中注册的法人姓名一致。
+        # @type LegalName: String
+        # @param Address: 组织机构企业注册地址。
+        # 请确认该企业注册地址与企业营业执照中注册的地址一致。
+        # @type Address: String
+        # @param AdminName: 组织机构超管姓名。
+        # 在注册流程中，必须是超管本人进行操作。
+        # 如果法人做为超管管理组织机构,超管姓名就是法人姓名
+        # @type AdminName: String
+        # @param AdminMobile: 组织机构超管姓名。
+        # 在注册流程中，这个手机号必须跟操作人在电子签注册的个人手机号一致。
+        # @type AdminMobile: String
+        # @param AuthorizationTypes: 可选的此企业允许的授权方式, 可以设置的方式有:
+        # 1：上传授权书
+        # 2：法人授权超管
+        # 5：授权书+对公打款
+
+
+        # 注:
+        # `1. 当前仅支持一种认证方式`
+        # `2. 如果当前的企业类型是政府/事业单位, 则只支持上传授权书+对公打款`
+        # `3. 如果当前操作人是法人,则是法人认证`
+        # @type AuthorizationTypes: Array
+        # @param AdminIdCardNumber: 认证人身份证号
+        # @type AdminIdCardNumber: String
+        # @param AdminIdCardType: 认证人证件类型
+        # 支持以下类型
+        # <ul><li>ID_CARD : 居民身份证  (默认值)</li>
+        # <li>HONGKONG_AND_MACAO : 港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)</li></ul>
+        # @type AdminIdCardType: String
+        # @param BusinessLicense: 营业执照正面照(PNG或JPG) base64格式, 大小不超过5M
+        # @type BusinessLicense: String
+
+        attr_accessor :OrganizationName, :UniformSocialCreditCode, :LegalName, :Address, :AdminName, :AdminMobile, :AuthorizationTypes, :AdminIdCardNumber, :AdminIdCardType, :BusinessLicense
+
+        def initialize(organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, address=nil, adminname=nil, adminmobile=nil, authorizationtypes=nil, adminidcardnumber=nil, adminidcardtype=nil, businesslicense=nil)
+          @OrganizationName = organizationname
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalName = legalname
+          @Address = address
+          @AdminName = adminname
+          @AdminMobile = adminmobile
+          @AuthorizationTypes = authorizationtypes
+          @AdminIdCardNumber = adminidcardnumber
+          @AdminIdCardType = adminidcardtype
+          @BusinessLicense = businesslicense
+        end
+
+        def deserialize(params)
+          @OrganizationName = params['OrganizationName']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalName = params['LegalName']
+          @Address = params['Address']
+          @AdminName = params['AdminName']
+          @AdminMobile = params['AdminMobile']
+          @AuthorizationTypes = params['AuthorizationTypes']
+          @AdminIdCardNumber = params['AdminIdCardNumber']
+          @AdminIdCardType = params['AdminIdCardType']
+          @BusinessLicense = params['BusinessLicense']
         end
       end
 
