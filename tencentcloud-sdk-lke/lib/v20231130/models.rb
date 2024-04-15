@@ -1871,18 +1871,20 @@ module TencentCloud
         # @type Bucket: String
         # @param Region: 对象存储可用区
         # @type Region: String
-        # @param FilePath: 目录
+        # @param FilePath: 文件存储目录
         # @type FilePath: String
         # @param Type: 存储类型
         # @type Type: String
         # @param CorpUin: 主号
         # @type CorpUin: String
+        # @param ImagePath: 图片存储目录
+        # @type ImagePath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Credentials, :ExpiredTime, :StartTime, :Bucket, :Region, :FilePath, :Type, :CorpUin, :RequestId
+        attr_accessor :Credentials, :ExpiredTime, :StartTime, :Bucket, :Region, :FilePath, :Type, :CorpUin, :ImagePath, :RequestId
 
-        def initialize(credentials=nil, expiredtime=nil, starttime=nil, bucket=nil, region=nil, filepath=nil, type=nil, corpuin=nil, requestid=nil)
+        def initialize(credentials=nil, expiredtime=nil, starttime=nil, bucket=nil, region=nil, filepath=nil, type=nil, corpuin=nil, imagepath=nil, requestid=nil)
           @Credentials = credentials
           @ExpiredTime = expiredtime
           @StartTime = starttime
@@ -1891,6 +1893,7 @@ module TencentCloud
           @FilePath = filepath
           @Type = type
           @CorpUin = corpuin
+          @ImagePath = imagepath
           @RequestId = requestid
         end
 
@@ -1906,6 +1909,7 @@ module TencentCloud
           @FilePath = params['FilePath']
           @Type = params['Type']
           @CorpUin = params['CorpUin']
+          @ImagePath = params['ImagePath']
           @RequestId = params['RequestId']
         end
       end

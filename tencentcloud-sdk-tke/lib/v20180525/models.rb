@@ -2410,9 +2410,9 @@ module TencentCloud
       class CreateClusterRouteRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableName: 路由表名称。
         # @type RouteTableName: String
-        # @param DestinationCidrBlock: 目的端CIDR。
+        # @param DestinationCidrBlock: 目的节点的 PodCIDR
         # @type DestinationCidrBlock: String
-        # @param GatewayIp: 下一跳地址。
+        # @param GatewayIp: 下一跳地址，即目的节点的内网 IP 地址
         # @type GatewayIp: String
 
         attr_accessor :RouteTableName, :DestinationCidrBlock, :GatewayIp
@@ -2448,13 +2448,13 @@ module TencentCloud
 
       # CreateClusterRouteTable请求参数结构体
       class CreateClusterRouteTableRequest < TencentCloud::Common::AbstractModel
-        # @param RouteTableName: 路由表名称
+        # @param RouteTableName: 路由表名称，一般为集群ID
         # @type RouteTableName: String
         # @param RouteTableCidrBlock: 路由表CIDR
         # @type RouteTableCidrBlock: String
         # @param VpcId: 路由表绑定的VPC
         # @type VpcId: String
-        # @param IgnoreClusterCidrConflict: 是否忽略CIDR冲突
+        # @param IgnoreClusterCidrConflict: 是否忽略CIDR与 vpc 路由表的冲突， 0 表示不忽略，1表示忽略。默认不忽略
         # @type IgnoreClusterCidrConflict: Integer
 
         attr_accessor :RouteTableName, :RouteTableCidrBlock, :VpcId, :IgnoreClusterCidrConflict
@@ -9788,6 +9788,50 @@ module TencentCloud
         end
       end
 
+      # DescribeSupportedRuntime请求参数结构体
+      class DescribeSupportedRuntimeRequest < TencentCloud::Common::AbstractModel
+        # @param K8sVersion: K8S版本
+        # @type K8sVersion: String
+
+        attr_accessor :K8sVersion
+
+        def initialize(k8sversion=nil)
+          @K8sVersion = k8sversion
+        end
+
+        def deserialize(params)
+          @K8sVersion = params['K8sVersion']
+        end
+      end
+
+      # DescribeSupportedRuntime返回参数结构体
+      class DescribeSupportedRuntimeResponse < TencentCloud::Common::AbstractModel
+        # @param OptionalRuntimes: 可选运行时列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionalRuntimes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OptionalRuntimes, :RequestId
+
+        def initialize(optionalruntimes=nil, requestid=nil)
+          @OptionalRuntimes = optionalruntimes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OptionalRuntimes'].nil?
+            @OptionalRuntimes = []
+            params['OptionalRuntimes'].each do |i|
+              optionalruntimes_tmp = OptionalRuntimes.new
+              optionalruntimes_tmp.deserialize(i)
+              @OptionalRuntimes << optionalruntimes_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTKEEdgeClusterCredential请求参数结构体
       class DescribeTKEEdgeClusterCredentialRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
@@ -13752,6 +13796,60 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterRuntimeConfig请求参数结构体
+      class ModifyClusterRuntimeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID，必填
+        # @type ClusterId: String
+        # @param DstK8SVersion: 当需要修改运行时版本是根据另外的K8S版本获取时，需填写。例如升级校验有冲突后修改场景
+        # @type DstK8SVersion: String
+        # @param ClusterRuntimeConfig: 需要修改集群运行时时填写
+        # @type ClusterRuntimeConfig: :class:`Tencentcloud::Tke.v20180525.models.RuntimeConfig`
+        # @param NodePoolRuntimeConfig: 需要修改节点池运行时时，填需要修改的部分
+        # @type NodePoolRuntimeConfig: Array
+
+        attr_accessor :ClusterId, :DstK8SVersion, :ClusterRuntimeConfig, :NodePoolRuntimeConfig
+
+        def initialize(clusterid=nil, dstk8sversion=nil, clusterruntimeconfig=nil, nodepoolruntimeconfig=nil)
+          @ClusterId = clusterid
+          @DstK8SVersion = dstk8sversion
+          @ClusterRuntimeConfig = clusterruntimeconfig
+          @NodePoolRuntimeConfig = nodepoolruntimeconfig
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DstK8SVersion = params['DstK8SVersion']
+          unless params['ClusterRuntimeConfig'].nil?
+            @ClusterRuntimeConfig = RuntimeConfig.new
+            @ClusterRuntimeConfig.deserialize(params['ClusterRuntimeConfig'])
+          end
+          unless params['NodePoolRuntimeConfig'].nil?
+            @NodePoolRuntimeConfig = []
+            params['NodePoolRuntimeConfig'].each do |i|
+              nodepoolruntime_tmp = NodePoolRuntime.new
+              nodepoolruntime_tmp.deserialize(i)
+              @NodePoolRuntimeConfig << nodepoolruntime_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterRuntimeConfig返回参数结构体
+      class ModifyClusterRuntimeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterVirtualNodePool请求参数结构体
       class ModifyClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -14557,6 +14655,38 @@ module TencentCloud
         end
       end
 
+      # NodePool的运行时配置
+      class NodePoolRuntime < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolId: String
+        # @param RuntimeType: 运行时类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeType: String
+        # @param RuntimeVersion: 运行时版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeVersion: String
+        # @param NodePoolName: 节点池名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolName: String
+
+        attr_accessor :NodePoolId, :RuntimeType, :RuntimeVersion, :NodePoolName
+
+        def initialize(nodepoolid=nil, runtimetype=nil, runtimeversion=nil, nodepoolname=nil)
+          @NodePoolId = nodepoolid
+          @RuntimeType = runtimetype
+          @RuntimeVersion = runtimeversion
+          @NodePoolName = nodepoolname
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @RuntimeType = params['RuntimeType']
+          @RuntimeVersion = params['RuntimeVersion']
+          @NodePoolName = params['NodePoolName']
+        end
+      end
+
       # OIDC认证相关配置
       class OIDCConfigAuthenticationOptions < TencentCloud::Common::AbstractModel
         # @param AutoCreateOIDCConfig: 创建身份提供商
@@ -14581,6 +14711,33 @@ module TencentCloud
           @AutoCreateOIDCConfig = params['AutoCreateOIDCConfig']
           @AutoCreateClientId = params['AutoCreateClientId']
           @AutoInstallPodIdentityWebhookAddon = params['AutoInstallPodIdentityWebhookAddon']
+        end
+      end
+
+      # 可选运行时
+      class OptionalRuntimes < TencentCloud::Common::AbstractModel
+        # @param RuntimeType: 运行时类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeType: String
+        # @param RuntimeVersions: 运行时版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeVersions: Array
+        # @param DefaultVersion: 该类型的默认运行时版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultVersion: String
+
+        attr_accessor :RuntimeType, :RuntimeVersions, :DefaultVersion
+
+        def initialize(runtimetype=nil, runtimeversions=nil, defaultversion=nil)
+          @RuntimeType = runtimetype
+          @RuntimeVersions = runtimeversions
+          @DefaultVersion = defaultversion
+        end
+
+        def deserialize(params)
+          @RuntimeType = params['RuntimeType']
+          @RuntimeVersions = params['RuntimeVersions']
+          @DefaultVersion = params['DefaultVersion']
         end
       end
 
@@ -17055,6 +17212,28 @@ module TencentCloud
 
         def deserialize(params)
           @Enabled = params['Enabled']
+        end
+      end
+
+      # 运行时配置
+      class RuntimeConfig < TencentCloud::Common::AbstractModel
+        # @param RuntimeType: 运行时类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeType: String
+        # @param RuntimeVersion: 运行时版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeVersion: String
+
+        attr_accessor :RuntimeType, :RuntimeVersion
+
+        def initialize(runtimetype=nil, runtimeversion=nil)
+          @RuntimeType = runtimetype
+          @RuntimeVersion = runtimeversion
+        end
+
+        def deserialize(params)
+          @RuntimeType = params['RuntimeType']
+          @RuntimeVersion = params['RuntimeVersion']
         end
       end
 

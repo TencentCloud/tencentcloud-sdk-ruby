@@ -3581,6 +3581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据K8S版本获取可选运行时版本
+
+        # @param request: Request instance for DescribeSupportedRuntime.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeSupportedRuntimeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeSupportedRuntimeResponse`
+        def DescribeSupportedRuntime(request)
+          body = send_request('DescribeSupportedRuntime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSupportedRuntimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取边缘计算集群的认证信息
 
         # @param request: Request instance for DescribeTKEEdgeClusterCredential.
@@ -4407,6 +4431,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterNodePoolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群及节点池纬度运行时配置
+
+        # @param request: Request instance for ModifyClusterRuntimeConfig.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterRuntimeConfigRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyClusterRuntimeConfigResponse`
+        def ModifyClusterRuntimeConfig(request)
+          body = send_request('ModifyClusterRuntimeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterRuntimeConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

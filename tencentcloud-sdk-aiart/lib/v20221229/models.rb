@@ -204,18 +204,21 @@ module TencentCloud
         # @type ResultImage: Array
         # @param ResultDetails: 结果 detail 数组，Success 代表成功。
         # @type ResultDetails: Array
+        # @param RevisedPrompt: 对应 SubmitTextToImageProJob 接口中 Revise 参数。开启扩写时，返回扩写后的 prompt 文本。 如果关闭扩写，将直接返回原始输入的 prompt。
+        # @type RevisedPrompt: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobStatusCode, :JobStatusMsg, :JobErrorCode, :JobErrorMsg, :ResultImage, :ResultDetails, :RequestId
+        attr_accessor :JobStatusCode, :JobStatusMsg, :JobErrorCode, :JobErrorMsg, :ResultImage, :ResultDetails, :RevisedPrompt, :RequestId
 
-        def initialize(jobstatuscode=nil, jobstatusmsg=nil, joberrorcode=nil, joberrormsg=nil, resultimage=nil, resultdetails=nil, requestid=nil)
+        def initialize(jobstatuscode=nil, jobstatusmsg=nil, joberrorcode=nil, joberrormsg=nil, resultimage=nil, resultdetails=nil, revisedprompt=nil, requestid=nil)
           @JobStatusCode = jobstatuscode
           @JobStatusMsg = jobstatusmsg
           @JobErrorCode = joberrorcode
           @JobErrorMsg = joberrormsg
           @ResultImage = resultimage
           @ResultDetails = resultdetails
+          @RevisedPrompt = revisedprompt
           @RequestId = requestid
         end
 
@@ -226,6 +229,7 @@ module TencentCloud
           @JobErrorMsg = params['JobErrorMsg']
           @ResultImage = params['ResultImage']
           @ResultDetails = params['ResultDetails']
+          @RevisedPrompt = params['RevisedPrompt']
           @RequestId = params['RequestId']
         end
       end
@@ -274,15 +278,21 @@ module TencentCloud
         # engine1
         # engine2
         # @type Engine: String
+        # @param Revise: prompt 扩写开关。1为开启，0为关闭，不传默认开启。
+        # 开启扩写后，将自动扩写原始输入的 prompt 并使用扩写后的 prompt 生成图片，返回生成图片结果时将一并返回扩写后的 prompt 文本。
+        # 如果关闭扩写，将直接使用原始输入的 prompt 生成图片。
+        # 建议开启，在多数场景下可提升生成图片效果、丰富生成图片细节。
+        # @type Revise: Integer
 
-        attr_accessor :Prompt, :Style, :Resolution, :LogoAdd, :Engine
+        attr_accessor :Prompt, :Style, :Resolution, :LogoAdd, :Engine, :Revise
 
-        def initialize(prompt=nil, style=nil, resolution=nil, logoadd=nil, engine=nil)
+        def initialize(prompt=nil, style=nil, resolution=nil, logoadd=nil, engine=nil, revise=nil)
           @Prompt = prompt
           @Style = style
           @Resolution = resolution
           @LogoAdd = logoadd
           @Engine = engine
+          @Revise = revise
         end
 
         def deserialize(params)
@@ -291,6 +301,7 @@ module TencentCloud
           @Resolution = params['Resolution']
           @LogoAdd = params['LogoAdd']
           @Engine = params['Engine']
+          @Revise = params['Revise']
         end
       end
 

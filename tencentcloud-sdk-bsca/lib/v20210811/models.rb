@@ -414,11 +414,14 @@ module TencentCloud
       class DescribeKBComponentVulnerabilityRequest < TencentCloud::Common::AbstractModel
         # @param PURL: 组件的PURL，其中Name和Version为必填字段
         # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
+        # @param Language: 语言，ZH或EN
+        # @type Language: String
 
-        attr_accessor :PURL
+        attr_accessor :PURL, :Language
 
-        def initialize(purl=nil)
+        def initialize(purl=nil, language=nil)
           @PURL = purl
+          @Language = language
         end
 
         def deserialize(params)
@@ -426,6 +429,7 @@ module TencentCloud
             @PURL = PURL.new
             @PURL.deserialize(params['PURL'])
           end
+          @Language = params['Language']
         end
       end
 
@@ -515,14 +519,17 @@ module TencentCloud
         # @type CNVDID: Array
         # @param CNNVDID: 根据CNNVD ID查询（不能与其他参数同时存在）
         # @type CNNVDID: Array
+        # @param Language: 语言，ZH或EN
+        # @type Language: String
 
-        attr_accessor :CVEID, :VulID, :CNVDID, :CNNVDID
+        attr_accessor :CVEID, :VulID, :CNVDID, :CNNVDID, :Language
 
-        def initialize(cveid=nil, vulid=nil, cnvdid=nil, cnnvdid=nil)
+        def initialize(cveid=nil, vulid=nil, cnvdid=nil, cnnvdid=nil, language=nil)
           @CVEID = cveid
           @VulID = vulid
           @CNVDID = cnvdid
           @CNNVDID = cnnvdid
+          @Language = language
         end
 
         def deserialize(params)
@@ -530,6 +537,7 @@ module TencentCloud
           @VulID = params['VulID']
           @CNVDID = params['CNVDID']
           @CNNVDID = params['CNNVDID']
+          @Language = params['Language']
         end
       end
 

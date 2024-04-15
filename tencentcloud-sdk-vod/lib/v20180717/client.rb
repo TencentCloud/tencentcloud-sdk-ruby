@@ -728,7 +728,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于创建点播子应用。
+        # 该接口用于创建点播应用。
 
         # @param request: Request instance for CreateSubAppId.
         # @type request: :class:`Tencentcloud::vod::V20180717::CreateSubAppIdRequest`
@@ -2666,7 +2666,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于获取当前账号的子应用列表，包含主应用。
+        # 该接口用于获取当前账号的应用列表。
 
         # @param request: Request instance for DescribeSubAppIds.
         # @type request: :class:`Tencentcloud::vod::V20180717::DescribeSubAppIdsRequest`

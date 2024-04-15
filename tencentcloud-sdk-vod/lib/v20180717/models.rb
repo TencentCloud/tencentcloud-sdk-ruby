@@ -3956,7 +3956,7 @@ module TencentCloud
       class ApplyUploadRequest < TencentCloud::Common::AbstractModel
         # @param MediaType: 媒体类型，可选值请参考 [上传能力综述](/document/product/266/9760#.E6.96.87.E4.BB.B6.E7.B1.BB.E5.9E.8B)。
         # @type MediaType: String
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param MediaName: 媒体名称。
         # @type MediaName: String
@@ -7321,9 +7321,9 @@ module TencentCloud
 
       # CreateSubAppId请求参数结构体
       class CreateSubAppIdRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 子应用名称，长度限制：40个字符。
+        # @param Name: 应用名称，长度限制：40个字符。
         # @type Name: String
-        # @param Description: 子应用简介，长度限制： 300个字符。
+        # @param Description: 应用简介，长度限制： 300个字符。
         # @type Description: String
 
         attr_accessor :Name, :Description
@@ -7341,7 +7341,7 @@ module TencentCloud
 
       # CreateSubAppId返回参数结构体
       class CreateSubAppIdResponse < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 新创建的子应用 ID。
+        # @param SubAppId: 新创建的应用 ID。
         # @type SubAppId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8244,7 +8244,7 @@ module TencentCloud
       class DeleteMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件的唯一标识。
         # @type FileId: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param DeleteParts: 指定本次需要删除的部分。默认值为 "[]", 表示删除媒体及其对应的全部视频处理文件。
         # @type DeleteParts: Array
@@ -8875,7 +8875,7 @@ module TencentCloud
 
       # DescribeAdaptiveDynamicStreamingTemplates请求参数结构体
       class DescribeAdaptiveDynamicStreamingTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Definitions: 转自适应码流模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
@@ -11460,8 +11460,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，需大于开始日期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type EndTime: String
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Interval: 统计时间粒度，有效值：
         # <li>Minute：以5分钟为粒度。</li>
@@ -11476,7 +11475,7 @@ module TencentCloud
         # <li>DeepArchiveStorage：深度归档存储。</li>
         # <li>DeletedInfrequentStorage：低频存储提前删除量。</li>
         # <li>DeletedArchiveStorage：归档提前删除量。</li>
-        # <li>DeletedDeepArchiveStorage：深度归档提前删除量。
+        # <li>DeletedDeepArchiveStorage：深度归档提前删除量。</li>
         # <li>ArchiveStandardRetrieval：归档标准取回量。</li>
         # <li>ArchiveExpeditedRetrieval：归档快速取回量。</li>
         # <li>ArchiveBulkRetrieval：归档批量取回量。</li>
@@ -11584,9 +11583,9 @@ module TencentCloud
 
       # DescribeSubAppIds请求参数结构体
       class DescribeSubAppIdsRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 子应用名称。
+        # @param Name: 应用名称。
         # @type Name: String
-        # @param Tags: 标签信息，查询指定标签的子应用列表。
+        # @param Tags: 标签信息，查询指定标签的应用列表。
         # @type Tags: Array
         # @param Offset: 分页拉取的起始偏移量。默认值：0。
         # @type Offset: Integer
@@ -11619,9 +11618,9 @@ module TencentCloud
 
       # DescribeSubAppIds返回参数结构体
       class DescribeSubAppIdsResponse < TencentCloud::Common::AbstractModel
-        # @param SubAppIdInfoSet: 子应用信息集合。
+        # @param SubAppIdInfoSet: 应用信息集合。
         # @type SubAppIdInfoSet: Array
-        # @param TotalCount: 子应用总数量。
+        # @param TotalCount: 应用总数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21757,7 +21756,7 @@ module TencentCloud
       class PushUrlCacheRequest < TencentCloud::Common::AbstractModel
         # @param Urls: 预热的 URL 列表，单次最多指定20个 URL。
         # @type Urls: Array
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Urls, :SubAppId
@@ -23792,7 +23791,7 @@ module TencentCloud
       class RestoreMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileIds: 媒体文件唯一标识列表，最大长度：100。
         # @type FileIds: Array
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param RestoreDay: 解冻出的临时媒体文件的可访问持续时长，必须大于0，单位为“天”。
         # @type RestoreDay: Integer
@@ -23885,7 +23884,7 @@ module TencentCloud
       class ReviewAudioVideoRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
         # @type FileId: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param ReviewContents: 审核的内容，可选值有：
         # <li>Media：原始音视频；</li>
@@ -24950,7 +24949,7 @@ module TencentCloud
       class SetCLSPushTargetRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名。
         # @type Domain: String
-        # @param SubAppId: 点播应用 ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param ChineseMainlandCLSTargetInfo: 要设置的中国大陆地区的日志推送目标。
         # @type ChineseMainlandCLSTargetInfo: :class:`Tencentcloud::Vod.v20180717.models.AreaCLSTargetInfo`
@@ -28139,7 +28138,7 @@ module TencentCloud
       class WeChatMiniProgramPublishRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID。
         # @type FileId: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param SourceDefinition: 发布视频所对应的转码模板 ID，为0代表原始视频。
         # @type SourceDefinition: Integer

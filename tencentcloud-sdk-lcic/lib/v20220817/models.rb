@@ -708,10 +708,12 @@ module TencentCloud
         # 2. 自动翻页：移除PPT上所有自动翻页设置，并设置为单击鼠标翻页
         # 3. 已损坏音视频：移除PPT上对损坏音视频的引用
         # @type AutoHandleUnsupportedElement: Boolean
+        # @param MinScaleResolution: 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率。示例：1280x720，注意分辨率宽高中间为英文字母"xyz"的"x"
+        # @type MinScaleResolution: String
 
-        attr_accessor :SdkAppId, :DocumentUrl, :DocumentName, :Owner, :TranscodeType, :Permission, :DocumentType, :DocumentSize, :AutoHandleUnsupportedElement
+        attr_accessor :SdkAppId, :DocumentUrl, :DocumentName, :Owner, :TranscodeType, :Permission, :DocumentType, :DocumentSize, :AutoHandleUnsupportedElement, :MinScaleResolution
 
-        def initialize(sdkappid=nil, documenturl=nil, documentname=nil, owner=nil, transcodetype=nil, permission=nil, documenttype=nil, documentsize=nil, autohandleunsupportedelement=nil)
+        def initialize(sdkappid=nil, documenturl=nil, documentname=nil, owner=nil, transcodetype=nil, permission=nil, documenttype=nil, documentsize=nil, autohandleunsupportedelement=nil, minscaleresolution=nil)
           @SdkAppId = sdkappid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -721,6 +723,7 @@ module TencentCloud
           @DocumentType = documenttype
           @DocumentSize = documentsize
           @AutoHandleUnsupportedElement = autohandleunsupportedelement
+          @MinScaleResolution = minscaleresolution
         end
 
         def deserialize(params)
@@ -733,6 +736,7 @@ module TencentCloud
           @DocumentType = params['DocumentType']
           @DocumentSize = params['DocumentSize']
           @AutoHandleUnsupportedElement = params['AutoHandleUnsupportedElement']
+          @MinScaleResolution = params['MinScaleResolution']
         end
       end
 
@@ -1622,12 +1626,16 @@ module TencentCloud
         # @type Pages: Integer
         # @param Preview: 课件预览地址
         # @type Preview: String
+        # @param Resolution: 文档的分辨率
+        # @type Resolution: String
+        # @param MinScaleResolution: 转码后文档的最小分辨率，和创建文档时传入的参数一致。
+        # @type MinScaleResolution: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Preview, :RequestId
+        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Preview, :Resolution, :MinScaleResolution, :RequestId
 
-        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, preview=nil, requestid=nil)
+        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, preview=nil, resolution=nil, minscaleresolution=nil, requestid=nil)
           @DocumentId = documentid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -1644,6 +1652,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @Pages = pages
           @Preview = preview
+          @Resolution = resolution
+          @MinScaleResolution = minscaleresolution
           @RequestId = requestid
         end
 
@@ -1664,6 +1674,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Pages = params['Pages']
           @Preview = params['Preview']
+          @Resolution = params['Resolution']
+          @MinScaleResolution = params['MinScaleResolution']
           @RequestId = params['RequestId']
         end
       end
@@ -2630,10 +2642,16 @@ module TencentCloud
         # @param Preview: 课件预览地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Preview: String
+        # @param Resolution: 文档的分辨率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resolution: String
+        # @param MinScaleResolution: 转码后文档的最小分辨率，和创建文档时传入的参数一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinScaleResolution: String
 
-        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Width, :Height, :Cover, :Preview
+        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Width, :Height, :Cover, :Preview, :Resolution, :MinScaleResolution
 
-        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, width=nil, height=nil, cover=nil, preview=nil)
+        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, width=nil, height=nil, cover=nil, preview=nil, resolution=nil, minscaleresolution=nil)
           @DocumentId = documentid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -2653,6 +2671,8 @@ module TencentCloud
           @Height = height
           @Cover = cover
           @Preview = preview
+          @Resolution = resolution
+          @MinScaleResolution = minscaleresolution
         end
 
         def deserialize(params)
@@ -2675,6 +2695,8 @@ module TencentCloud
           @Height = params['Height']
           @Cover = params['Cover']
           @Preview = params['Preview']
+          @Resolution = params['Resolution']
+          @MinScaleResolution = params['MinScaleResolution']
         end
       end
 

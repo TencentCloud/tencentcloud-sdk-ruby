@@ -8287,32 +8287,32 @@ module TencentCloud
         # @type ThaiName: String
         # @param EnFirstName: 英文姓名
         # @type EnFirstName: String
-        # @param Address: 地址
-        # @type Address: String
-        # @param Birthday: 出生日期
-        # @type Birthday: String
-        # @param IssueDate: 签发日期
-        # @type IssueDate: String
-        # @param ExpirationDate: 到期日期
-        # @type ExpirationDate: String
         # @param EnLastName: 英文姓名
         # @type EnLastName: String
+        # @param IssueDate: 泰文签发日期
+        # @type IssueDate: String
+        # @param ExpirationDate: 泰文到期日期
+        # @type ExpirationDate: String
+        # @param Birthday: 泰文出生日期
+        # @type Birthday: String
+        # @param Address: 地址
+        # @type Address: String
         # @param PortraitImage: 证件人像照片抠取
         # @type PortraitImage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :Address, :Birthday, :IssueDate, :ExpirationDate, :EnLastName, :PortraitImage, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :Birthday, :Address, :PortraitImage, :RequestId
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, address=nil, birthday=nil, issuedate=nil, expirationdate=nil, enlastname=nil, portraitimage=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, birthday=nil, address=nil, portraitimage=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
-          @Address = address
-          @Birthday = birthday
+          @EnLastName = enlastname
           @IssueDate = issuedate
           @ExpirationDate = expirationdate
-          @EnLastName = enlastname
+          @Birthday = birthday
+          @Address = address
           @PortraitImage = portraitimage
           @RequestId = requestid
         end
@@ -8321,11 +8321,11 @@ module TencentCloud
           @ID = params['ID']
           @ThaiName = params['ThaiName']
           @EnFirstName = params['EnFirstName']
-          @Address = params['Address']
-          @Birthday = params['Birthday']
+          @EnLastName = params['EnLastName']
           @IssueDate = params['IssueDate']
           @ExpirationDate = params['ExpirationDate']
-          @EnLastName = params['EnLastName']
+          @Birthday = params['Birthday']
+          @Address = params['Address']
           @PortraitImage = params['PortraitImage']
           @RequestId = params['RequestId']
         end

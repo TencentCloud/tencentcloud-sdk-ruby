@@ -480,7 +480,7 @@ module TencentCloud
         # @param BusinessId: 统一社会信用代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
-        # @param BusinessIdPicUrl: 营业执照扫描件(加盖公章)。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param BusinessIdPicUrl: 营业执照扫描件(加盖公章)。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessIdPicUrl: String
         # @param CorporationName: 法定代表人名称
@@ -489,19 +489,19 @@ module TencentCloud
         # @param CorporationId: 法定代表人身份证号码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationId: String
-        # @param CorporationIdPicUrl: 法定代表人身份证正反面扫描件。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param CorporationIdPicUrl: 法定代表人身份证正反面扫描件。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationIdPicUrl: String
         # @param BusinessScope: 业务经营范围
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessScope: String
-        # @param AcceptPicUrl: 电话受理单。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param AcceptPicUrl: 电话受理单。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AcceptPicUrl: String
-        # @param NetworkCommitmentPicUrl: 电信入网承诺书。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param NetworkCommitmentPicUrl: 电信入网承诺书。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkCommitmentPicUrl: String
-        # @param CorporationHoldingOnIdPicUrl: 法定代表人手持身份证照，申请人类型为法定代表人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param CorporationHoldingOnIdPicUrl: 法定代表人手持身份证照，申请人类型为法定代表人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationHoldingOnIdPicUrl: String
         # @param OperatorName: 经办人名称，申请人类型为经办人时必填。
@@ -510,13 +510,13 @@ module TencentCloud
         # @param OperatorId: 经办人证件号码，申请人类型为经办人时必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorId: String
-        # @param OperatorIdPicUrl: 经办人身份证正反面扫描件，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param OperatorIdPicUrl: 经办人身份证正反面扫描件，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorIdPicUrl: String
-        # @param OperatorHoldingOnIdPicUrl: 经办人手持身份证照，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param OperatorHoldingOnIdPicUrl: 经办人手持身份证照，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorHoldingOnIdPicUrl: String
-        # @param CommissionPicUrl: 委托授权书，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模版参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # @param CommissionPicUrl: 委托授权书，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommissionPicUrl: String
 
@@ -2863,9 +2863,9 @@ module TencentCloud
 
       # DescribeTelCallInfo请求参数结构体
       class DescribeTelCallInfoRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStamp: 起始时间戳，Unix 时间戳(查询维度仅支持天，比如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
+        # @param StartTimeStamp: 起始时间戳，Unix 时间戳(查询维度仅支持天，例如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
         # @type StartTimeStamp: Integer
-        # @param EndTimeStamp: 结束时间戳，Unix 时间戳，查询时间范围最大为90天(查询维度仅支持天，比如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
+        # @param EndTimeStamp: 结束时间戳，Unix 时间戳，查询时间范围最大为90天(查询维度仅支持天，例如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
         # @type EndTimeStamp: Integer
         # @param SdkAppIdList: 应用ID列表，多个ID时，返回值为多个ID使用总和
         # @type SdkAppIdList: Array

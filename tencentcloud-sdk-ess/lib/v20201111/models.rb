@@ -3693,27 +3693,150 @@ module TencentCloud
 
       # CreateOrganizationAuthUrl请求参数结构体
       class CreateOrganizationAuthUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param AuthorizationTypes: 指定授权方式 支持多选:
+        # 1-上传授权书方式
+        # 2- 法人授权方式
+        # 3- 法人身份认证方式
+        # @type AuthorizationTypes: Array
+        # @param OrganizationName: 企业名称
+        # EndPointType=“H5”或者"SHORT_H5"时，该参数必填
+        # @type OrganizationName: String
+        # @param UniformSocialCreditCode: 企业统一社会信用代码
+        # @type UniformSocialCreditCode: String
+        # @param LegalName: 法人姓名
+        # @type LegalName: String
+        # @param AutoJumpUrl: 认证完成跳转链接
+        # @type AutoJumpUrl: String
+        # @param OrganizationAddress: 营业执照企业地址
+        # 示例：xx省xx市xx县/区xx街道
+        # @type OrganizationAddress: String
+        # @param AdminName: 认证人姓名
+        # @type AdminName: String
+        # @param AdminMobile: 认证人手机号
+        # @type AdminMobile: String
+        # @param AdminIdCardNumber: 认证人身份证号
+        # @type AdminIdCardNumber: String
+        # @param AdminIdCardType: 认证人证件类型
+        # 支持以下类型
+        # <ul><li>ID_CARD : 居民身份证  (默认值)</li>
+        # <li>HONGKONG_AND_MACAO : 港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)</li></ul>
+        # @type AdminIdCardType: String
+        # @param UniformSocialCreditCodeSame: 营业执照的社会信用代码保持一致
+        # false 关闭-默认
+        # true 开启
+        # @type UniformSocialCreditCodeSame: Boolean
+        # @param LegalNameSame: 法人姓名保持一致
+        # false 关闭-默认
+        # true 开启
+        # @type LegalNameSame: Boolean
+        # @param AdminNameSame: 认证人姓名一致
+        # false 关闭-默认
+        # true 开启
+        # 注意：
+        # 开启后在认证过程前会校验拦截
+        # @type AdminNameSame: Boolean
+        # @param AdminIdCardNumberSame: 认证人居民身份证件号一致
+        # false 关闭-默认
+        # true 开启
+        # 注意：
+        # 开启后在认证过程前会校验拦截
+        # @type AdminIdCardNumberSame: Boolean
+        # @param AdminMobileSame: 认证人手机号一致
+        # false 关闭-默认
+        # true 开启
+        # 注意：
+        # 开启后在认证过程前会校验拦截
+        # @type AdminMobileSame: Boolean
+        # @param OrganizationNameSame: 企业名称保持一致
+        # false 关闭-默认
+        # true 开启
+        # @type OrganizationNameSame: Boolean
+        # @param BusinessLicense: 营业执照正面照(PNG或JPG) base64格式, 大小不超过5M
+        # @type BusinessLicense: String
+        # @param Endpoint: 跳转链接类型：
+        # "PC"-PC端认证链接
+        # "APP"-全屏或半屏跳转小程序链接
+        # “H5”-H5页面认证链接 "SHORT_H5"- H5认证短链
+        # "SHORT_URL"- 跳转小程序短链
+        # @type Endpoint: String
 
+        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint
 
-        def initialize()
+        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil)
+          @Operator = operator
+          @AuthorizationTypes = authorizationtypes
+          @OrganizationName = organizationname
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalName = legalname
+          @AutoJumpUrl = autojumpurl
+          @OrganizationAddress = organizationaddress
+          @AdminName = adminname
+          @AdminMobile = adminmobile
+          @AdminIdCardNumber = adminidcardnumber
+          @AdminIdCardType = adminidcardtype
+          @UniformSocialCreditCodeSame = uniformsocialcreditcodesame
+          @LegalNameSame = legalnamesame
+          @AdminNameSame = adminnamesame
+          @AdminIdCardNumberSame = adminidcardnumbersame
+          @AdminMobileSame = adminmobilesame
+          @OrganizationNameSame = organizationnamesame
+          @BusinessLicense = businesslicense
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @AuthorizationTypes = params['AuthorizationTypes']
+          @OrganizationName = params['OrganizationName']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalName = params['LegalName']
+          @AutoJumpUrl = params['AutoJumpUrl']
+          @OrganizationAddress = params['OrganizationAddress']
+          @AdminName = params['AdminName']
+          @AdminMobile = params['AdminMobile']
+          @AdminIdCardNumber = params['AdminIdCardNumber']
+          @AdminIdCardType = params['AdminIdCardType']
+          @UniformSocialCreditCodeSame = params['UniformSocialCreditCodeSame']
+          @LegalNameSame = params['LegalNameSame']
+          @AdminNameSame = params['AdminNameSame']
+          @AdminIdCardNumberSame = params['AdminIdCardNumberSame']
+          @AdminMobileSame = params['AdminMobileSame']
+          @OrganizationNameSame = params['OrganizationNameSame']
+          @BusinessLicense = params['BusinessLicense']
+          @Endpoint = params['Endpoint']
         end
       end
 
       # CreateOrganizationAuthUrl返回参数结构体
       class CreateOrganizationAuthUrlResponse < TencentCloud::Common::AbstractModel
+        # @param AuthUrl: “H5”-H5长连接
+        # "SHORT_H5"- H5短链
+        # "APP"-小程序
+        # "PC"-PC浏览器
+        # 链接有效期统一30天
+        # @type AuthUrl: String
+        # @param ExpiredTime: 链接过期时间戳
+        # @type ExpiredTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AuthUrl, :ExpiredTime, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(authurl=nil, expiredtime=nil, requestid=nil)
+          @AuthUrl = authurl
+          @ExpiredTime = expiredtime
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @AuthUrl = params['AuthUrl']
+          @ExpiredTime = params['ExpiredTime']
           @RequestId = params['RequestId']
         end
       end
