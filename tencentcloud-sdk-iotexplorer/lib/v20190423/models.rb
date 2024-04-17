@@ -405,6 +405,65 @@ module TencentCloud
         end
       end
 
+      # 云存 AI 服务任务信息
+      class CloudStorageAIServiceTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 云存 AI 服务任务 ID
+        # @type TaskId: String
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param StartTime: 对应云存视频的起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 对应云存视频的结束时间
+        # @type EndTime: Integer
+        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空）
+        # @type Status: Integer
+        # @param Result: 任务结果
+        # @type Result: String
+        # @param ServiceType: 云存 AI 服务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceType: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+
+        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :StartTime, :EndTime, :Status, :Result, :ServiceType, :CreateTime, :UpdateTime
+
+        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, starttime=nil, endtime=nil, status=nil, result=nil, servicetype=nil, createtime=nil, updatetime=nil)
+          @TaskId = taskid
+          @ProductId = productid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Result = result
+          @ServiceType = servicetype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Result = params['Result']
+          @ServiceType = params['ServiceType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 云存事件
       class CloudStorageEvent < TencentCloud::Common::AbstractModel
         # @param StartTime: 事件起始时间（Unix 时间戳，秒级
@@ -1823,6 +1882,171 @@ module TencentCloud
               bindproductinfo_tmp = BindProductInfo.new
               bindproductinfo_tmp.deserialize(i)
               @Products << bindproductinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageAIServiceCallback请求参数结构体
+      class DescribeCloudStorageAIServiceCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeCloudStorageAIServiceCallback返回参数结构体
+      class DescribeCloudStorageAIServiceCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 推送类型。http：HTTP 回调
+        # @type Type: String
+        # @param CallbackUrl: HTTP 回调 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackUrl: String
+        # @param CallbackToken: HTTP 回调鉴权 Token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :CallbackUrl, :CallbackToken, :RequestId
+
+        def initialize(type=nil, callbackurl=nil, callbacktoken=nil, requestid=nil)
+          @Type = type
+          @CallbackUrl = callbackurl
+          @CallbackToken = callbacktoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @CallbackUrl = params['CallbackUrl']
+          @CallbackToken = params['CallbackToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageAIService请求参数结构体
+      class DescribeCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 云存 AI 服务类型。可选值：PackageDetect
+        # @type ServiceType: String
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # DescribeCloudStorageAIService返回参数结构体
+      class DescribeCloudStorageAIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Enabled: 启用状态
+        # @type Enabled: Boolean
+        # @param ROI: 视频分析区域
+        # @type ROI: String
+        # @param Config: 云存 AI 服务的配置参数
+        # @type Config: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Enabled, :ROI, :Config, :RequestId
+
+        def initialize(enabled=nil, roi=nil, config=nil, requestid=nil)
+          @Enabled = enabled
+          @ROI = roi
+          @Config = config
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @ROI = params['ROI']
+          @Config = params['Config']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageAIServiceTasks请求参数结构体
+      class DescribeCloudStorageAIServiceTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 云存 AI 服务类型。可选值：PackageDetect
+        # @type ServiceType: String
+        # @param Limit: 分页拉取数量
+        # @type Limit: Integer
+        # @param Offset: 分页拉取偏移
+        # @type Offset: Integer
+        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空；不传则查询全部状态的任务）
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Limit, :Offset, :Status
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, limit=nil, offset=nil, status=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeCloudStorageAIServiceTasks返回参数结构体
+      class DescribeCloudStorageAIServiceTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+        # @param Total: 任务数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :Total, :RequestId
+
+        def initialize(tasks=nil, total=nil, requestid=nil)
+          @Tasks = tasks
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              cloudstorageaiservicetask_tmp = CloudStorageAIServiceTask.new
+              cloudstorageaiservicetask_tmp.deserialize(i)
+              @Tasks << cloudstorageaiservicetask_tmp
             end
           end
           @Total = params['Total']
@@ -3647,6 +3871,46 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProductCloudStorageAIService请求参数结构体
+      class DescribeProductCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeProductCloudStorageAIService返回参数结构体
+      class DescribeProductCloudStorageAIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Enabled: 开通状态
+        # @type Enabled: Boolean
+        # @param Available: 当前账号是否可开通
+        # @type Available: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Enabled, :Available, :RequestId
+
+        def initialize(enabled=nil, available=nil, requestid=nil)
+          @Enabled = enabled
+          @Available = available
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Available = params['Available']
           @RequestId = params['RequestId']
         end
       end
@@ -5824,6 +6088,98 @@ module TencentCloud
         end
       end
 
+      # ModifyCloudStorageAIServiceCallback请求参数结构体
+      class ModifyCloudStorageAIServiceCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Type: 推送类型。http：HTTP 回调
+        # @type Type: String
+        # @param CallbackUrl: HTTP 回调 URL
+        # @type CallbackUrl: String
+        # @param CallbackToken: HTTP 回调鉴权 Token
+        # @type CallbackToken: String
+
+        attr_accessor :ProductId, :Type, :CallbackUrl, :CallbackToken
+
+        def initialize(productid=nil, type=nil, callbackurl=nil, callbacktoken=nil)
+          @ProductId = productid
+          @Type = type
+          @CallbackUrl = callbackurl
+          @CallbackToken = callbacktoken
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Type = params['Type']
+          @CallbackUrl = params['CallbackUrl']
+          @CallbackToken = params['CallbackToken']
+        end
+      end
+
+      # ModifyCloudStorageAIServiceCallback返回参数结构体
+      class ModifyCloudStorageAIServiceCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudStorageAIService请求参数结构体
+      class ModifyCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 云存 AI 服务类型。可选值：PackageDetect
+        # @type ServiceType: String
+        # @param Enabled: 启用状态
+        # @type Enabled: Boolean
+        # @param ROI: 视频分析区域
+        # @type ROI: String
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Enabled, :ROI
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, enabled=nil, roi=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @Enabled = enabled
+          @ROI = roi
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @Enabled = params['Enabled']
+          @ROI = params['ROI']
+        end
+      end
+
+      # ModifyCloudStorageAIService返回参数结构体
+      class ModifyCloudStorageAIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFenceBind请求参数结构体
       class ModifyFenceBindRequest < TencentCloud::Common::AbstractModel
         # @param FenceId: 围栏Id
@@ -6109,6 +6465,42 @@ module TencentCloud
 
       # ModifyPositionSpace返回参数结构体
       class ModifyPositionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyProductCloudStorageAIService请求参数结构体
+      class ModifyProductCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Enabled: 开通状态
+        # @type Enabled: Boolean
+
+        attr_accessor :ProductId, :Enabled
+
+        def initialize(productid=nil, enabled=nil)
+          @ProductId = productid
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # ModifyProductCloudStorageAIService返回参数结构体
+      class ModifyProductCloudStorageAIServiceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

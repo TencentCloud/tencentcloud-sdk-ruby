@@ -429,7 +429,7 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Page: 分页查询当前页数，从1开始递增
         # @type Page: Integer
-        # @param Limit: 每页数据量，最大1000
+        # @param Limit: 每页数据量，最大200
         # @type Limit: Integer
         # @param Permission: 课件权限。[0]：获取owner的私有课件；[1]：获取owner的公开课件; [0,1]：则获取owner的私有课件和公开课件；[2]：获取owner的私有课件和所有人(包括owner)的公开课件
         # @type Permission: Array
@@ -871,7 +871,7 @@ module TencentCloud
         # 2 高清
         # 3 全高清
         # @type Resolution: Integer
-        # @param MaxMicNumber: 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。取值范围[0,16]，当取值为0时表示当前课堂/直播，不支持连麦互动。
+        # @param MaxMicNumber: 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。
         # @type MaxMicNumber: Integer
         # @param SubType: 房间子类型，可以有以下取值：
         # videodoc 文档+视频
@@ -2145,7 +2145,7 @@ module TencentCloud
         # 2 高清
         # 3 全高清
         # @type Resolution: Integer
-        # @param MaxMicNumber: 最大连麦人数（不包括老师）。取值范围[0, 16]
+        # @param MaxMicNumber: 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。
         # @type MaxMicNumber: Integer
         # @param AutoMic: 进入课堂时是否自动连麦。可以有以下取值：
         # 0 不自动连麦（需要手动申请上麦，默认值）
@@ -3687,8 +3687,7 @@ module TencentCloud
         # 3 全高清
         # 直播开始后不允许修改。
         # @type Resolution: Integer
-        # @param MaxMicNumber: 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。
-        # 取值范围[0,16]，当取值为0时表示当前课堂/直播，不支持连麦互动。
+        # @param MaxMicNumber: 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。
         # @type MaxMicNumber: Integer
         # @param AutoMic: 进入房间时是否自动连麦。可以有以下取值：
         # 0 不自动连麦（默认值）
@@ -4034,7 +4033,7 @@ module TencentCloud
         # @type EndTime: Integer
         # @param Resolution: 分辨率。可以有如下取值： 1 标清 2 高清 3 全高清
         # @type Resolution: Integer
-        # @param MaxMicNumber: 最大连麦人数（不包括老师）。取值范围[0, 16]
+        # @param MaxMicNumber: 设置房间/课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。
         # @type MaxMicNumber: Integer
         # @param SubType: 房间子类型，可以有以下取值： videodoc 文档+视频 video 纯视频
         # @type SubType: String

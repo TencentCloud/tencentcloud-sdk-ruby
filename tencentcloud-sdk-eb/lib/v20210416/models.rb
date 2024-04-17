@@ -944,15 +944,27 @@ module TencentCloud
         # @param Time: 事件发生的毫秒时间戳，
         # time.Now().UnixNano()/1e6
         # @type Time: Integer
+        # @param Region: 事件的地域信息，没有则默认是EB所在的地域信息
+        # @type Region: String
+        # @param Status: 用于描述事件状态，非必须，默认是""
+        # @type Status: String
+        # @param Id: 事件的唯一id，用户侧主动上传则需要保证风格一致
+        # @type Id: String
+        # @param TagList: 标签列表
+        # @type TagList: Array
 
-        attr_accessor :Source, :Data, :Type, :Subject, :Time
+        attr_accessor :Source, :Data, :Type, :Subject, :Time, :Region, :Status, :Id, :TagList
 
-        def initialize(source=nil, data=nil, type=nil, subject=nil, time=nil)
+        def initialize(source=nil, data=nil, type=nil, subject=nil, time=nil, region=nil, status=nil, id=nil, taglist=nil)
           @Source = source
           @Data = data
           @Type = type
           @Subject = subject
           @Time = time
+          @Region = region
+          @Status = status
+          @Id = id
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -961,6 +973,17 @@ module TencentCloud
           @Type = params['Type']
           @Subject = params['Subject']
           @Time = params['Time']
+          @Region = params['Region']
+          @Status = params['Status']
+          @Id = params['Id']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -2223,6 +2246,26 @@ module TencentCloud
         def deserialize(params)
           @ClusterType = params['ClusterType']
           @ClusterEndPoint = params['ClusterEndPoint']
+        end
+      end
+
+      # 事件总线资源标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签名称
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

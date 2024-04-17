@@ -930,6 +930,33 @@ module TencentCloud
         end
       end
 
+      # 云数据库资源项
+      class CloudResourceItem < TencentCloud::Common::AbstractModel
+        # @param Region: 资源所处地域。
+        # @type Region: String
+        # @param Items: 	云上资源列表。
+        # @type Items: Array
+
+        attr_accessor :Region, :Items
+
+        def initialize(region=nil, items=nil)
+          @Region = region
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              dspacloudresourcemeta_tmp = DspaCloudResourceMeta.new
+              dspacloudresourcemeta_tmp.deserialize(i)
+              @Items << dspacloudresourcemeta_tmp
+            end
+          end
+        end
+      end
+
       # 模板详情
       class ComplianceGroupDetail < TencentCloud::Common::AbstractModel
         # @param Id: 模板id
@@ -1076,6 +1103,26 @@ module TencentCloud
           @SensitiveBucketNums = params['SensitiveBucketNums']
           @FileNums = params['FileNums']
           @SensitiveFileNums = params['SensitiveFileNums']
+        end
+      end
+
+      # cos桶资源项
+      class CosBucketItem < TencentCloud::Common::AbstractModel
+        # @param Region: 资源所处地域。
+        # @type Region: String
+        # @param Buckets: COS桶列表。
+        # @type Buckets: Array
+
+        attr_accessor :Region, :Buckets
+
+        def initialize(region=nil, buckets=nil)
+          @Region = region
+          @Buckets = buckets
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Buckets = params['Buckets']
         end
       end
 
@@ -1756,25 +1803,41 @@ module TencentCloud
 
       # CreateDSPACosMetaResources请求参数结构体
       class CreateDSPACosMetaResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceRegion: 资源所处地域。
-        # @type ResourceRegion: String
         # @param DspaId: DSPA实例ID。
         # @type DspaId: String
+        # @param ResourceRegion: 资源所处地域。
+        # @type ResourceRegion: String
         # @param Buckets: COS桶列表
         # @type Buckets: Array
+        # @param CosBucketItems: 必填，COS资源列表
+        # @type CosBucketItems: Array
 
-        attr_accessor :ResourceRegion, :DspaId, :Buckets
+        attr_accessor :DspaId, :ResourceRegion, :Buckets, :CosBucketItems
+        extend Gem::Deprecate
+        deprecate :ResourceRegion, :none, 2024, 4
+        deprecate :ResourceRegion=, :none, 2024, 4
+        deprecate :Buckets, :none, 2024, 4
+        deprecate :Buckets=, :none, 2024, 4
 
-        def initialize(resourceregion=nil, dspaid=nil, buckets=nil)
-          @ResourceRegion = resourceregion
+        def initialize(dspaid=nil, resourceregion=nil, buckets=nil, cosbucketitems=nil)
           @DspaId = dspaid
+          @ResourceRegion = resourceregion
           @Buckets = buckets
+          @CosBucketItems = cosbucketitems
         end
 
         def deserialize(params)
-          @ResourceRegion = params['ResourceRegion']
           @DspaId = params['DspaId']
+          @ResourceRegion = params['ResourceRegion']
           @Buckets = params['Buckets']
+          unless params['CosBucketItems'].nil?
+            @CosBucketItems = []
+            params['CosBucketItems'].each do |i|
+              cosbucketitem_tmp = CosBucketItem.new
+              cosbucketitem_tmp.deserialize(i)
+              @CosBucketItems << cosbucketitem_tmp
+            end
+          end
         end
       end
 
@@ -1808,16 +1871,28 @@ module TencentCloud
         # @type UpdateId: String
         # @param Items: 云上资源列表。
         # @type Items: Array
+        # @param CloudResourceItems: 必填，云数据库资源列表。
+        # @type CloudResourceItems: Array
 
-        attr_accessor :DspaId, :MetaType, :ResourceRegion, :UpdateStatus, :UpdateId, :Items
+        attr_accessor :DspaId, :MetaType, :ResourceRegion, :UpdateStatus, :UpdateId, :Items, :CloudResourceItems
+        extend Gem::Deprecate
+        deprecate :ResourceRegion, :none, 2024, 4
+        deprecate :ResourceRegion=, :none, 2024, 4
+        deprecate :UpdateStatus, :none, 2024, 4
+        deprecate :UpdateStatus=, :none, 2024, 4
+        deprecate :UpdateId, :none, 2024, 4
+        deprecate :UpdateId=, :none, 2024, 4
+        deprecate :Items, :none, 2024, 4
+        deprecate :Items=, :none, 2024, 4
 
-        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil)
+        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil, cloudresourceitems=nil)
           @DspaId = dspaid
           @MetaType = metatype
           @ResourceRegion = resourceregion
           @UpdateStatus = updatestatus
           @UpdateId = updateid
           @Items = items
+          @CloudResourceItems = cloudresourceitems
         end
 
         def deserialize(params)
@@ -1832,6 +1907,14 @@ module TencentCloud
               dspacloudresourcemeta_tmp = DspaCloudResourceMeta.new
               dspacloudresourcemeta_tmp.deserialize(i)
               @Items << dspacloudresourcemeta_tmp
+            end
+          end
+          unless params['CloudResourceItems'].nil?
+            @CloudResourceItems = []
+            params['CloudResourceItems'].each do |i|
+              cloudresourceitem_tmp = CloudResourceItem.new
+              cloudresourceitem_tmp.deserialize(i)
+              @CloudResourceItems << cloudresourceitem_tmp
             end
           end
         end
@@ -1851,6 +1934,11 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :UpdateId, :MetaType, :DspaId, :ResourceRegion, :RequestId
+        extend Gem::Deprecate
+        deprecate :UpdateId, :none, 2024, 4
+        deprecate :UpdateId=, :none, 2024, 4
+        deprecate :ResourceRegion, :none, 2024, 4
+        deprecate :ResourceRegion=, :none, 2024, 4
 
         def initialize(updateid=nil, metatype=nil, dspaid=nil, resourceregion=nil, requestid=nil)
           @UpdateId = updateid

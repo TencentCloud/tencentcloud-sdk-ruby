@@ -981,16 +981,19 @@ module TencentCloud
         # 1，表示开启Http3。
         # 默认不开启Http3。可以通过SetDomainHttp3开启。
         # @type Http3Supported: Integer
+        # @param IsDefaultServer: 是否作为默认域名，默认为“否”
+        # @type IsDefaultServer: Boolean
 
-        attr_accessor :ListenerId, :Domain, :CertificateId, :ClientCertificateId, :PolyClientCertificateIds, :Http3Supported
+        attr_accessor :ListenerId, :Domain, :CertificateId, :ClientCertificateId, :PolyClientCertificateIds, :Http3Supported, :IsDefaultServer
 
-        def initialize(listenerid=nil, domain=nil, certificateid=nil, clientcertificateid=nil, polyclientcertificateids=nil, http3supported=nil)
+        def initialize(listenerid=nil, domain=nil, certificateid=nil, clientcertificateid=nil, polyclientcertificateids=nil, http3supported=nil, isdefaultserver=nil)
           @ListenerId = listenerid
           @Domain = domain
           @CertificateId = certificateid
           @ClientCertificateId = clientcertificateid
           @PolyClientCertificateIds = polyclientcertificateids
           @Http3Supported = http3supported
+          @IsDefaultServer = isdefaultserver
         end
 
         def deserialize(params)
@@ -1000,6 +1003,7 @@ module TencentCloud
           @ClientCertificateId = params['ClientCertificateId']
           @PolyClientCertificateIds = params['PolyClientCertificateIds']
           @Http3Supported = params['Http3Supported']
+          @IsDefaultServer = params['IsDefaultServer']
         end
       end
 
@@ -5045,10 +5049,13 @@ module TencentCloud
         # 1表示启用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Http3Supported: Integer
+        # @param IsDefaultServer: 是否为默认域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefaultServer: Boolean
 
-        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus, :Http3Supported
+        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus, :Http3Supported, :IsDefaultServer
 
-        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil, http3supported=nil)
+        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil, http3supported=nil, isdefaultserver=nil)
           @Domain = domain
           @RuleSet = ruleset
           @CertificateId = certificateid
@@ -5070,6 +5077,7 @@ module TencentCloud
           @DomainStatus = domainstatus
           @BanStatus = banstatus
           @Http3Supported = http3supported
+          @IsDefaultServer = isdefaultserver
         end
 
         def deserialize(params)
@@ -5115,6 +5123,7 @@ module TencentCloud
           @DomainStatus = params['DomainStatus']
           @BanStatus = params['BanStatus']
           @Http3Supported = params['Http3Supported']
+          @IsDefaultServer = params['IsDefaultServer']
         end
       end
 
@@ -5731,16 +5740,19 @@ module TencentCloud
         # 携带该字段时并且ClientCertificateId=default，表示使用监听器证书；
         # 其他情况，使用该ClientCertificateId或PolyClientCertificateIds指定的证书。
         # @type PolyClientCertificateIds: Array
+        # @param IsDefaultServer: 是否作为默认域名，默认为“否”
+        # @type IsDefaultServer: Boolean
 
-        attr_accessor :ListenerId, :OldDomain, :NewDomain, :CertificateId, :ClientCertificateId, :PolyClientCertificateIds
+        attr_accessor :ListenerId, :OldDomain, :NewDomain, :CertificateId, :ClientCertificateId, :PolyClientCertificateIds, :IsDefaultServer
 
-        def initialize(listenerid=nil, olddomain=nil, newdomain=nil, certificateid=nil, clientcertificateid=nil, polyclientcertificateids=nil)
+        def initialize(listenerid=nil, olddomain=nil, newdomain=nil, certificateid=nil, clientcertificateid=nil, polyclientcertificateids=nil, isdefaultserver=nil)
           @ListenerId = listenerid
           @OldDomain = olddomain
           @NewDomain = newdomain
           @CertificateId = certificateid
           @ClientCertificateId = clientcertificateid
           @PolyClientCertificateIds = polyclientcertificateids
+          @IsDefaultServer = isdefaultserver
         end
 
         def deserialize(params)
@@ -5750,6 +5762,7 @@ module TencentCloud
           @CertificateId = params['CertificateId']
           @ClientCertificateId = params['ClientCertificateId']
           @PolyClientCertificateIds = params['PolyClientCertificateIds']
+          @IsDefaultServer = params['IsDefaultServer']
         end
       end
 

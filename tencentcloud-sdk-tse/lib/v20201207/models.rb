@@ -2592,11 +2592,15 @@ module TencentCloud
         # - 1：自动续费
         # @type PrepaidRenewFlag: Integer
         # @param EngineRegionInfos: 跨地域部署的引擎地域配置详情
+        # zk标准版没有跨地域部署，请不要填写
         # @type EngineRegionInfos: Array
+        # @param StorageOption: zk专业版至多有两个盘，且磁盘的容量在50-3200之间
+        # 如果只有一个磁盘，storageCapacity与storageOption里面的capacity应该一致
+        # @type StorageOption: Array
 
-        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos
+        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos, :StorageOption
 
-        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil)
+        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil, storageoption=nil)
           @EngineType = enginetype
           @EngineVersion = engineversion
           @EngineProductVersion = engineproductversion
@@ -2613,6 +2617,7 @@ module TencentCloud
           @PrepaidPeriod = prepaidperiod
           @PrepaidRenewFlag = prepaidrenewflag
           @EngineRegionInfos = engineregioninfos
+          @StorageOption = storageoption
         end
 
         def deserialize(params)
@@ -2654,6 +2659,14 @@ module TencentCloud
               engineregioninfo_tmp = EngineRegionInfo.new
               engineregioninfo_tmp.deserialize(i)
               @EngineRegionInfos << engineregioninfo_tmp
+            end
+          end
+          unless params['StorageOption'].nil?
+            @StorageOption = []
+            params['StorageOption'].each do |i|
+              storageoption_tmp = StorageOption.new
+              storageoption_tmp.deserialize(i)
+              @StorageOption << storageoption_tmp
             end
           end
         end

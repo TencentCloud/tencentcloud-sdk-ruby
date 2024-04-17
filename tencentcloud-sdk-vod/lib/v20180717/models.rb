@@ -9306,7 +9306,7 @@ module TencentCloud
       class DescribeCLSPushTargetsRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 点播域名。
         # @type Domains: Array
-        # @param SubAppId: 点播应用 ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Domains, :SubAppId
@@ -9983,7 +9983,7 @@ module TencentCloud
 
       # DescribeEventConfig请求参数结构体
       class DescribeEventConfigRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -23791,10 +23791,10 @@ module TencentCloud
       class RestoreMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileIds: 媒体文件唯一标识列表，最大长度：100。
         # @type FileIds: Array
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
-        # @type SubAppId: Integer
         # @param RestoreDay: 解冻出的临时媒体文件的可访问持续时长，必须大于0，单位为“天”。
         # @type RestoreDay: Integer
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
         # @param RestoreTier: 解冻模式。当媒体文件当前的存储类型为归档存储时，有以下取值：
         # <li>极速模式：Expedited，解冻任务在5分钟后完成。</li>
         # <li>标准模式：Standard，解冻任务在5小时后完成 。</li>
@@ -23804,19 +23804,19 @@ module TencentCloud
         # <li>批量模式：Bulk，解冻任务在48小时后完成。</li>
         # @type RestoreTier: String
 
-        attr_accessor :FileIds, :SubAppId, :RestoreDay, :RestoreTier
+        attr_accessor :FileIds, :RestoreDay, :SubAppId, :RestoreTier
 
-        def initialize(fileids=nil, subappid=nil, restoreday=nil, restoretier=nil)
+        def initialize(fileids=nil, restoreday=nil, subappid=nil, restoretier=nil)
           @FileIds = fileids
-          @SubAppId = subappid
           @RestoreDay = restoreday
+          @SubAppId = subappid
           @RestoreTier = restoretier
         end
 
         def deserialize(params)
           @FileIds = params['FileIds']
-          @SubAppId = params['SubAppId']
           @RestoreDay = params['RestoreDay']
+          @SubAppId = params['SubAppId']
           @RestoreTier = params['RestoreTier']
         end
       end

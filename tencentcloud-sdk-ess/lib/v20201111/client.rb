@@ -1574,6 +1574,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过此接口（DescribeBillUsage）查询该企业的套餐套餐使用情况。
+
+        # @param request: Request instance for DescribeBillUsage.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeBillUsageRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeBillUsageResponse`
+        def DescribeBillUsage(request)
+          body = send_request('DescribeBillUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过此接口（DescribeBillUsageDetail）查询该企业的套餐消耗详情。
 
         # @param request: Request instance for DescribeBillUsageDetail.

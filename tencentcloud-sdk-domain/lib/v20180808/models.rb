@@ -1337,16 +1337,28 @@ module TencentCloud
         # @param BidList: 竞价详细数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BidList: Array
+        # @param BidEndTime: 竞价结束时间
+        # @type BidEndTime: String
+        # @param IsUp: 是否领先
+        # @type IsUp: Boolean
+        # @param NextPrice: 下次出价金额
+        # @type NextPrice: Integer
+        # @param Status: 状态：1. 等待竞价 2.竞价中 3.竞价结束
+        # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UpPrice, :Price, :UpUser, :BidList, :RequestId
+        attr_accessor :UpPrice, :Price, :UpUser, :BidList, :BidEndTime, :IsUp, :NextPrice, :Status, :RequestId
 
-        def initialize(upprice=nil, price=nil, upuser=nil, bidlist=nil, requestid=nil)
+        def initialize(upprice=nil, price=nil, upuser=nil, bidlist=nil, bidendtime=nil, isup=nil, nextprice=nil, status=nil, requestid=nil)
           @UpPrice = upprice
           @Price = price
           @UpUser = upuser
           @BidList = bidlist
+          @BidEndTime = bidendtime
+          @IsUp = isup
+          @NextPrice = nextprice
+          @Status = status
           @RequestId = requestid
         end
 
@@ -1362,6 +1374,10 @@ module TencentCloud
               @BidList << reservebidinfo_tmp
             end
           end
+          @BidEndTime = params['BidEndTime']
+          @IsUp = params['IsUp']
+          @NextPrice = params['NextPrice']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

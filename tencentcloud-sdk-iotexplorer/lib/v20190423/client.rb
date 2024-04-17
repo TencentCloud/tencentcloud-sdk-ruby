@@ -821,6 +821,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定设备的云存 AI 服务开通状态与参数配置
+
+        # @param request: Request instance for DescribeCloudStorageAIService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceResponse`
+        def DescribeCloudStorageAIService(request)
+          body = send_request('DescribeCloudStorageAIService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageAIServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云存AI分析回调配置
+
+        # @param request: Request instance for DescribeCloudStorageAIServiceCallback.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceCallbackRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceCallbackResponse`
+        def DescribeCloudStorageAIServiceCallback(request)
+          body = send_request('DescribeCloudStorageAIServiceCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageAIServiceCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定设备的云存 AI 分析任务列表
+
+        # @param request: Request instance for DescribeCloudStorageAIServiceTasks.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceTasksRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceTasksResponse`
+        def DescribeCloudStorageAIServiceTasks(request)
+          body = send_request('DescribeCloudStorageAIServiceTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageAIServiceTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取具有云存的日期
 
         # @param request: Request instance for DescribeCloudStorageDate.
@@ -1565,6 +1637,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定产品的云存 AI 服务开通状态
+
+        # @param request: Request instance for DescribeProductCloudStorageAIService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeProductCloudStorageAIServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeProductCloudStorageAIServiceResponse`
+        def DescribeProductCloudStorageAIService(request)
+          body = send_request('DescribeProductCloudStorageAIService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductCloudStorageAIServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询项目详情
 
         # @param request: Request instance for DescribeProject.
@@ -2189,6 +2285,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改指定设备的云存 AI 服务开通状态与参数配置
+
+        # @param request: Request instance for ModifyCloudStorageAIService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyCloudStorageAIServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyCloudStorageAIServiceResponse`
+        def ModifyCloudStorageAIService(request)
+          body = send_request('ModifyCloudStorageAIService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudStorageAIServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云存AI分析回调配置
+
+        # @param request: Request instance for ModifyCloudStorageAIServiceCallback.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyCloudStorageAIServiceCallbackRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyCloudStorageAIServiceCallbackResponse`
+        def ModifyCloudStorageAIServiceCallback(request)
+          body = send_request('ModifyCloudStorageAIServiceCallback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudStorageAIServiceCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新围栏绑定信息
 
         # @param request: Request instance for ModifyFenceBind.
@@ -2319,6 +2463,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPositionSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改指定产品的云存 AI 服务开通状态
+
+        # @param request: Request instance for ModifyProductCloudStorageAIService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyProductCloudStorageAIServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyProductCloudStorageAIServiceResponse`
+        def ModifyProductCloudStorageAIService(request)
+          body = send_request('ModifyProductCloudStorageAIService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProductCloudStorageAIServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

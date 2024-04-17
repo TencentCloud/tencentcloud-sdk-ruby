@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 绑定策略
+
+        # @param request: Request instance for AttachPolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AttachPolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AttachPolicyResponse`
+        def AttachPolicy(request)
+          body = send_request('AttachPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定组织成员和组织管理员子账号的授权关系
 
         # @param request: Request instance for BindOrganizationMemberAuthAccount.
@@ -365,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一个特殊类型的策略，你可以关联到企业组织Root节点、企业单元或者企业的成员账号。
+
+        # @param request: Request instance for CreatePolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CreatePolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CreatePolicyResponse`
+        def CreatePolicy(request)
+          body = send_request('CreatePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除成员账号
 
         # @param request: Request instance for DeleteAccount.
@@ -519,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteOrganizationNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除策略
+
+        # @param request: Request instance for DeletePolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeletePolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeletePolicyResponse`
+        def DeletePolicy(request)
+          body = send_request('DeletePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -869,6 +941,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribePolicy）可用于查询查看策略详情。
+
+        # @param request: Request instance for DescribePolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribePolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribePolicyResponse`
+        def DescribePolicy(request)
+          body = send_request('DescribePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePolicyConfig）可用于查询企业组织策略配置
+
+        # @param request: Request instance for DescribePolicyConfig.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribePolicyConfigRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribePolicyConfigResponse`
+        def DescribePolicyConfig(request)
+          body = send_request('DescribePolicyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePolicyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取可共享地域列表
 
         # @param request: Request instance for DescribeShareAreas.
@@ -965,6 +1085,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解绑策略
+
+        # @param request: Request instance for DetachPolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DetachPolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DetachPolicyResponse`
+        def DetachPolicy(request)
+          body = send_request('DetachPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用策略类型
+
+        # @param request: Request instance for DisablePolicyType.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DisablePolicyTypeRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DisablePolicyTypeResponse`
+        def DisablePolicyType(request)
+          body = send_request('DisablePolicyType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisablePolicyTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用策略类型
+
+        # @param request: Request instance for EnablePolicyType.
+        # @type request: :class:`Tencentcloud::organization::V20210331::EnablePolicyTypeRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::EnablePolicyTypeResponse`
+        def EnablePolicyType(request)
+          body = send_request('EnablePolicyType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnablePolicyTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取组织成员访问身份列表
 
         # @param request: Request instance for ListOrganizationIdentity.
@@ -975,6 +1167,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListOrganizationIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ListPolicies）可用于查询查看策略列表数据
+
+        # @param request: Request instance for ListPolicies.
+        # @type request: :class:`Tencentcloud::organization::V20210331::ListPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::ListPoliciesResponse`
+        def ListPolicies(request)
+          body = send_request('ListPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ListPoliciesForTarget）查询目标关联的策略列表
+
+        # @param request: Request instance for ListPoliciesForTarget.
+        # @type request: :class:`Tencentcloud::organization::V20210331::ListPoliciesForTargetRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::ListPoliciesForTargetResponse`
+        def ListPoliciesForTarget(request)
+          body = send_request('ListPoliciesForTarget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPoliciesForTargetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ListTargetsForPolicy）查询某个指定策略关联的目标列表
+
+        # @param request: Request instance for ListTargetsForPolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::ListTargetsForPolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::ListTargetsForPolicyResponse`
+        def ListTargetsForPolicy(request)
+          body = send_request('ListTargetsForPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTargetsForPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1119,6 +1383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateOrganizationNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑策略
+
+        # @param request: Request instance for UpdatePolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdatePolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdatePolicyResponse`
+        def UpdatePolicy(request)
+          body = send_request('UpdatePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdatePolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

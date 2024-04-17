@@ -228,8 +228,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 3
-        deprecate :InstanceGrpId=, :none, 2024, 3
+        deprecate :InstanceGrpId, :none, 2024, 4
+        deprecate :InstanceGrpId=, :none, 2024, 4
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1008,8 +1008,8 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 3
-        deprecate :InstanceGrpId=, :none, 2024, 3
+        deprecate :InstanceGrpId, :none, 2024, 4
+        deprecate :InstanceGrpId=, :none, 2024, 4
 
         def initialize(id=nil, appid=nil, clusterid=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil)
           @ID = id
@@ -1315,8 +1315,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 3
-        deprecate :InstanceGrpId=, :none, 2024, 3
+        deprecate :InstanceGrpId, :none, 2024, 4
+        deprecate :InstanceGrpId=, :none, 2024, 4
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -5158,8 +5158,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2024, 3
-        deprecate :InstanceGrpInfoList=, :none, 2024, 3
+        deprecate :InstanceGrpInfoList, :none, 2024, 4
+        deprecate :InstanceGrpInfoList=, :none, 2024, 4
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5481,8 +5481,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 3
-        deprecate :InstanceId=, :none, 2024, 3
+        deprecate :InstanceId, :none, 2024, 4
+        deprecate :InstanceId=, :none, 2024, 4
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -9394,8 +9394,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 3
-        deprecate :InstanceGrpId=, :none, 2024, 3
+        deprecate :InstanceGrpId, :none, 2024, 4
+        deprecate :InstanceGrpId=, :none, 2024, 4
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -9910,8 +9910,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 3
-        deprecate :InstanceGrpId=, :none, 2024, 3
+        deprecate :InstanceGrpId, :none, 2024, 4
+        deprecate :InstanceGrpId=, :none, 2024, 4
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -12053,10 +12053,38 @@ module TencentCloud
         # @type SqlTemplate: String
         # @param SqlMd5: sql语句md5
         # @type SqlMd5: String
+        # @param SyncReadCountRemote: 远程读取次数
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncReadCountRemote: Integer
+        # @param SyncReadBytesRemote: 远程读取的字节数
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncReadBytesRemote: Integer
+        # @param SyncReadTimeRemote: 远程读取所花费的时间（微秒）
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncReadTimeRemote: Integer
+        # @param SyncWriteCountRemote: 远程写入次数
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncWriteCountRemote: Integer
+        # @param SyncWriteBytesRemote: 远程写入的字节数。
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncWriteBytesRemote: Integer
+        # @param SyncWriteTimeRemote: 远程写入所花费的时间（微秒）。
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncWriteTimeRemote: Integer
+        # @param TrxCommitDelay: 事务提交延迟（微秒）
+        # 数据库内核版本大于3.1.12
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrxCommitDelay: Integer
 
-        attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :SqlTemplate, :SqlMd5
+        attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :SqlTemplate, :SqlMd5, :SyncReadCountRemote, :SyncReadBytesRemote, :SyncReadTimeRemote, :SyncWriteCountRemote, :SyncWriteBytesRemote, :SyncWriteTimeRemote, :TrxCommitDelay
 
-        def initialize(timestamp=nil, querytime=nil, sqltext=nil, userhost=nil, username=nil, database=nil, locktime=nil, rowsexamined=nil, rowssent=nil, sqltemplate=nil, sqlmd5=nil)
+        def initialize(timestamp=nil, querytime=nil, sqltext=nil, userhost=nil, username=nil, database=nil, locktime=nil, rowsexamined=nil, rowssent=nil, sqltemplate=nil, sqlmd5=nil, syncreadcountremote=nil, syncreadbytesremote=nil, syncreadtimeremote=nil, syncwritecountremote=nil, syncwritebytesremote=nil, syncwritetimeremote=nil, trxcommitdelay=nil)
           @Timestamp = timestamp
           @QueryTime = querytime
           @SqlText = sqltext
@@ -12068,6 +12096,13 @@ module TencentCloud
           @RowsSent = rowssent
           @SqlTemplate = sqltemplate
           @SqlMd5 = sqlmd5
+          @SyncReadCountRemote = syncreadcountremote
+          @SyncReadBytesRemote = syncreadbytesremote
+          @SyncReadTimeRemote = syncreadtimeremote
+          @SyncWriteCountRemote = syncwritecountremote
+          @SyncWriteBytesRemote = syncwritebytesremote
+          @SyncWriteTimeRemote = syncwritetimeremote
+          @TrxCommitDelay = trxcommitdelay
         end
 
         def deserialize(params)
@@ -12082,6 +12117,13 @@ module TencentCloud
           @RowsSent = params['RowsSent']
           @SqlTemplate = params['SqlTemplate']
           @SqlMd5 = params['SqlMd5']
+          @SyncReadCountRemote = params['SyncReadCountRemote']
+          @SyncReadBytesRemote = params['SyncReadBytesRemote']
+          @SyncReadTimeRemote = params['SyncReadTimeRemote']
+          @SyncWriteCountRemote = params['SyncWriteCountRemote']
+          @SyncWriteBytesRemote = params['SyncWriteBytesRemote']
+          @SyncWriteTimeRemote = params['SyncWriteTimeRemote']
+          @TrxCommitDelay = params['TrxCommitDelay']
         end
       end
 

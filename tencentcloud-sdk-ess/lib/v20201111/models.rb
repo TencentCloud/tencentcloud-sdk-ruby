@@ -5590,6 +5590,73 @@ module TencentCloud
         end
       end
 
+      # DescribeBillUsage请求参数结构体
+      class DescribeBillUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于90天
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间字符串，格式为yyyymmdd,时间跨度不能大于90天
+        # @type EndTime: String
+        # @param QuotaType: 查询的套餐类型 （选填 ）不传则查询所有套餐；目前支持:<ul><li>**CloudEnterprise**: 企业版合同</li><li>**SingleSignature**: 单方签章</li><li>**CloudProve**: 签署报告</li><li>**CloudOnlineSign**: 腾讯会议在线签约</li><li>**ChannelWeCard**: 微工卡</li><li>**SignFlow**: 合同套餐</li><li>**SignFace**: 签署意愿（人脸识别）</li><li>**SignPassword**: 签署意愿（密码）</li><li>**SignSMS**: 签署意愿（短信）</li><li>**PersonalEssAuth**: 签署人实名（腾讯电子签认证）</li><li>**PersonalThirdAuth**: 签署人实名（信任第三方认证）</li><li>**OrgEssAuth**: 签署企业实名</li><li>**FlowNotify**: 短信通知</li><li>**AuthService**: 企业工商信息查询</li></ul>
+        # @type QuotaType: String
+        # @param DisplaySubEnterprise: 是否展示集团子企业的明细，默认否
+        # @type DisplaySubEnterprise: Boolean
+
+        attr_accessor :StartTime, :EndTime, :QuotaType, :DisplaySubEnterprise
+
+        def initialize(starttime=nil, endtime=nil, quotatype=nil, displaysubenterprise=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @QuotaType = quotatype
+          @DisplaySubEnterprise = displaysubenterprise
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QuotaType = params['QuotaType']
+          @DisplaySubEnterprise = params['DisplaySubEnterprise']
+        end
+      end
+
+      # DescribeBillUsage返回参数结构体
+      class DescribeBillUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Summary: 企业套餐余额及使用情况
+        # @type Summary: Array
+        # @param SubOrgSummary: 集团子企业套餐使用情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubOrgSummary: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Summary, :SubOrgSummary, :RequestId
+
+        def initialize(summary=nil, suborgsummary=nil, requestid=nil)
+          @Summary = summary
+          @SubOrgSummary = suborgsummary
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Summary'].nil?
+            @Summary = []
+            params['Summary'].each do |i|
+              orgbillsummary_tmp = OrgBillSummary.new
+              orgbillsummary_tmp.deserialize(i)
+              @Summary << orgbillsummary_tmp
+            end
+          end
+          unless params['SubOrgSummary'].nil?
+            @SubOrgSummary = []
+            params['SubOrgSummary'].each do |i|
+              suborgbillsummary_tmp = SubOrgBillSummary.new
+              suborgbillsummary_tmp.deserialize(i)
+              @SubOrgSummary << suborgbillsummary_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCancelFlowsTask请求参数结构体
       class DescribeCancelFlowsTaskRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -9523,6 +9590,51 @@ module TencentCloud
         end
       end
 
+      # 企业套餐余额情况
+      class OrgBillSummary < TencentCloud::Common::AbstractModel
+        # @param Total: 套餐总数
+        # @type Total: Integer
+        # @param Used: 套餐使用数
+        # @type Used: Integer
+        # @param Available: 套餐剩余数
+        # @type Available: Integer
+        # @param QuotaType: 套餐类型
+        # 对应关系如下:
+        # <ul>
+        # <li>**CloudEnterprise**: 企业版合同</li>
+        # <li>**SingleSignature**: 单方签章</li>
+        # <li>**CloudProve**: 签署报告</li>
+        # <li>**CloudOnlineSign**: 腾讯会议在线签约</li>
+        # <li>**ChannelWeCard**: 微工卡</li>
+        # <li>**SignFlow**: 合同套餐</li>
+        # <li>**SignFace**: 签署意愿（人脸识别）</li>
+        # <li>**SignPassword**: 签署意愿（密码）</li>
+        # <li>**SignSMS**: 签署意愿（短信）</li>
+        # <li>**PersonalEssAuth**: 签署人实名（腾讯电子签认证）</li>
+        # <li>**PersonalThirdAuth**: 签署人实名（信任第三方认证）</li>
+        # <li>**OrgEssAuth**: 签署企业实名</li>
+        # <li>**FlowNotify**: 短信通知</li>
+        # <li>**AuthService**: 企业工商信息查询</li>
+        # </ul>
+        # @type QuotaType: String
+
+        attr_accessor :Total, :Used, :Available, :QuotaType
+
+        def initialize(total=nil, used=nil, available=nil, quotatype=nil)
+          @Total = total
+          @Used = used
+          @Available = available
+          @QuotaType = quotatype
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Used = params['Used']
+          @Available = params['Available']
+          @QuotaType = params['QuotaType']
+        end
+      end
+
       # 机构信息
       class OrganizationInfo < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 机构在平台的编号，内部字段，暂未开放
@@ -10435,6 +10547,70 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 子企业套餐使用情况
+      class SubOrgBillSummary < TencentCloud::Common::AbstractModel
+        # @param OrganizationName: 子企业名称
+        # @type OrganizationName: String
+        # @param Usage: 
+        # @type Usage: Array
+
+        attr_accessor :OrganizationName, :Usage
+
+        def initialize(organizationname=nil, usage=nil)
+          @OrganizationName = organizationname
+          @Usage = usage
+        end
+
+        def deserialize(params)
+          @OrganizationName = params['OrganizationName']
+          unless params['Usage'].nil?
+            @Usage = []
+            params['Usage'].each do |i|
+              suborgbillusage_tmp = SubOrgBillUsage.new
+              suborgbillusage_tmp.deserialize(i)
+              @Usage << suborgbillusage_tmp
+            end
+          end
+        end
+      end
+
+      # 集团子企业使用集团主企业的套餐使用情况
+      class SubOrgBillUsage < TencentCloud::Common::AbstractModel
+        # @param Used: 套餐使用数
+        # @type Used: Integer
+        # @param QuotaType: 套餐类型
+        # 对应关系如下:
+        # <ul>
+        # <li>**CloudEnterprise**: 企业版合同</li>
+        # <li>**SingleSignature**: 单方签章</li>
+        # <li>**CloudProve**: 签署报告</li>
+        # <li>**CloudOnlineSign**: 腾讯会议在线签约</li>
+        # <li>**ChannelWeCard**: 微工卡</li>
+        # <li>**SignFlow**: 合同套餐</li>
+        # <li>**SignFace**: 签署意愿（人脸识别）</li>
+        # <li>**SignPassword**: 签署意愿（密码）</li>
+        # <li>**SignSMS**: 签署意愿（短信）</li>
+        # <li>**PersonalEssAuth**: 签署人实名（腾讯电子签认证）</li>
+        # <li>**PersonalThirdAuth**: 签署人实名（信任第三方认证）</li>
+        # <li>**OrgEssAuth**: 签署企业实名</li>
+        # <li>**FlowNotify**: 短信通知</li>
+        # <li>**AuthService**: 企业工商信息查询</li>
+        # </ul>
+        # @type QuotaType: String
+
+        attr_accessor :Used, :QuotaType
+
+        def initialize(used=nil, quotatype=nil)
+          @Used = used
+          @QuotaType = quotatype
+        end
+
+        def deserialize(params)
+          @Used = params['Used']
+          @QuotaType = params['QuotaType']
         end
       end
 

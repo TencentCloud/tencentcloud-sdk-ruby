@@ -322,7 +322,7 @@ module TencentCloud
         # @type InputImageFaceRect: :class:`Tencentcloud::Facefusion.v20220927.models.FaceRect`
         # @param TemplateFaceID: 素材人脸ID，不填默认取最大人脸。
         # @type TemplateFaceID: String
-        # @param TemplateFaceRect: 模版中人脸位置信息(人脸框)，不填默认取最大人脸。此字段仅适用于图片融合自定义模版素材场景。
+        # @param TemplateFaceRect: 模板中人脸位置信息(人脸框)，不填默认取最大人脸。此字段仅适用于图片融合自定义模板素材场景。
         # @type TemplateFaceRect: :class:`Tencentcloud::Facefusion.v20220927.models.FaceRect`
 
         attr_accessor :Image, :Url, :InputImageFaceRect, :TemplateFaceID, :TemplateFaceRect

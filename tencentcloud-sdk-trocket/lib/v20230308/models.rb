@@ -2322,38 +2322,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTopicStatsOp请求参数结构体
-      class DescribeTopicStatsOpRequest < TencentCloud::Common::AbstractModel
-        # @param Topic: 主题
-        # @type Topic: String
-
-        attr_accessor :Topic
-
-        def initialize(topic=nil)
-          @Topic = topic
-        end
-
-        def deserialize(params)
-          @Topic = params['Topic']
-        end
-      end
-
-      # DescribeTopicStatsOp返回参数结构体
-      class DescribeTopicStatsOpResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 接入点信息
       class Endpoint < TencentCloud::Common::AbstractModel
         # @param Type: 接入点类型，枚举值如下

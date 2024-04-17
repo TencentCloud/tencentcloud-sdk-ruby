@@ -14484,6 +14484,9 @@ module TencentCloud
         # @param DesiredNodesNum: 期望的节点数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredNodesNum: Integer
+        # @param RuntimeConfig: 运行时描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeConfig: :class:`Tencentcloud::Tke.v20180525.models.RuntimeConfig`
         # @param NodePoolOs: 节点池osName
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePoolOs: String
@@ -14524,9 +14527,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreStartUserScript: String
 
-        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :Annotations, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection, :ExtraArgs, :GPUArgs, :DockerGraphPath, :DataDisks, :Unschedulable, :PreStartUserScript
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :Annotations, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :RuntimeConfig, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection, :ExtraArgs, :GPUArgs, :DockerGraphPath, :DataDisks, :Unschedulable, :PreStartUserScript
 
-        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, annotations=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil, extraargs=nil, gpuargs=nil, dockergraphpath=nil, datadisks=nil, unschedulable=nil, prestartuserscript=nil)
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, annotations=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, runtimeconfig=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil, extraargs=nil, gpuargs=nil, dockergraphpath=nil, datadisks=nil, unschedulable=nil, prestartuserscript=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @ClusterInstanceId = clusterinstanceid
@@ -14541,6 +14544,7 @@ module TencentCloud
           @MaxNodesNum = maxnodesnum
           @MinNodesNum = minnodesnum
           @DesiredNodesNum = desirednodesnum
+          @RuntimeConfig = runtimeconfig
           @NodePoolOs = nodepoolos
           @OsCustomizeType = oscustomizetype
           @ImageId = imageid
@@ -14595,6 +14599,10 @@ module TencentCloud
           @MaxNodesNum = params['MaxNodesNum']
           @MinNodesNum = params['MinNodesNum']
           @DesiredNodesNum = params['DesiredNodesNum']
+          unless params['RuntimeConfig'].nil?
+            @RuntimeConfig = RuntimeConfig.new
+            @RuntimeConfig.deserialize(params['RuntimeConfig'])
+          end
           @NodePoolOs = params['NodePoolOs']
           @OsCustomizeType = params['OsCustomizeType']
           @ImageId = params['ImageId']

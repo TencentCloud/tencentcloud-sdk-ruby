@@ -252,6 +252,50 @@ module TencentCloud
         end
       end
 
+      # AttachPolicy请求参数结构体
+      class AttachPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TargetId: 绑定策略目标ID。成员Uin或部门ID
+        # @type TargetId: Integer
+        # @param TargetType: 目标类型。取值范围：NODE-部门、MEMBER-成员
+        # @type TargetType: String
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type Type: String
+
+        attr_accessor :TargetId, :TargetType, :PolicyId, :Type
+
+        def initialize(targetid=nil, targettype=nil, policyid=nil, type=nil)
+          @TargetId = targetid
+          @TargetType = targettype
+          @PolicyId = policyid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @TargetType = params['TargetType']
+          @PolicyId = params['PolicyId']
+          @Type = params['Type']
+        end
+      end
+
+      # AttachPolicy返回参数结构体
+      class AttachPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 互信主体主要信息
       class AuthNode < TencentCloud::Common::AbstractModel
         # @param RelationId: 互信主体关系ID
@@ -699,6 +743,55 @@ module TencentCloud
         end
       end
 
+      # CreatePolicy请求参数结构体
+      class CreatePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 策略名。
+        # 长度为1~128个字符，可以包含汉字、英文字母、数字和下划线（_）
+        # @type Name: String
+        # @param Content: 策略内容。参考CAM策略语法
+        # @type Content: String
+        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type Type: String
+        # @param Description: 策略描述。
+        # @type Description: String
+
+        attr_accessor :Name, :Content, :Type, :Description
+
+        def initialize(name=nil, content=nil, type=nil, description=nil)
+          @Name = name
+          @Content = content
+          @Type = type
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Content = params['Content']
+          @Type = params['Type']
+          @Description = params['Description']
+        end
+      end
+
+      # CreatePolicy返回参数结构体
+      class CreatePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID
+        # @type PolicyId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :RequestId
+
+        def initialize(policyid=nil, requestid=nil)
+          @PolicyId = policyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAccount请求参数结构体
       class DeleteAccountRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -908,6 +1001,42 @@ module TencentCloud
 
       # DeleteOrganization返回参数结构体
       class DeleteOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePolicy请求参数结构体
+      class DeletePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 需要删除的策略ID。可以调用[ListPolicies](https://tcloud4api.woa.com/document/product/1128/79356?!preview&!document=1)获取
+        # @type PolicyId: Integer
+        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type Type: String
+
+        attr_accessor :PolicyId, :Type
+
+        def initialize(policyid=nil, type=nil)
+          @PolicyId = policyid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @Type = params['Type']
+        end
+      end
+
+      # DeletePolicy返回参数结构体
+      class DeletePolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1321,7 +1450,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param MemberUin: 成员Uin。
         # @type MemberUin: Integer
-        # @param PolicyId: 策略ID。可以通过[DescribeOrganizationMemberPolicies](https://cloud.tencent.com/document/product/850/82935)
+        # @param PolicyId: 策略ID。可以通过[DescribeOrganizationMemberPolicies](https://cloud.tencent.com/document/product/850/82935)获取
         # @type PolicyId: Integer
 
         attr_accessor :Offset, :Limit, :MemberUin, :PolicyId
@@ -1816,6 +1945,119 @@ module TencentCloud
         end
       end
 
+      # DescribePolicyConfig请求参数结构体
+      class DescribePolicyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param OrganizationId: 企业组织Id。可以调用[DescribeOrganization](https://cloud.tencent.com/document/product/850/67059)获取
+        # @type OrganizationId: Integer
+        # @param Type: 策略类型。默认值0，取值范围：0-服务控制策略、1-标签策略
+        # @type Type: Integer
+
+        attr_accessor :OrganizationId, :Type
+
+        def initialize(organizationid=nil, type=nil)
+          @OrganizationId = organizationid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @OrganizationId = params['OrganizationId']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribePolicyConfig返回参数结构体
+      class DescribePolicyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 开启状态。0-未开启、1-开启
+        # @type Status: Integer
+        # @param Type: 策略类型。SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type Type: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Type, :RequestId
+
+        def initialize(status=nil, type=nil, requestid=nil)
+          @Status = status
+          @Type = type
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Type = params['Type']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePolicy请求参数结构体
+      class DescribePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id。
+        # @type PolicyId: Integer
+        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type PolicyType: String
+
+        attr_accessor :PolicyId, :PolicyType
+
+        def initialize(policyid=nil, policytype=nil)
+          @PolicyId = policyid
+          @PolicyType = policytype
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyType = params['PolicyType']
+        end
+      end
+
+      # DescribePolicy返回参数结构体
+      class DescribePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id。
+        # @type PolicyId: Integer
+        # @param PolicyName: 策略名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param Type: 策略类型。1-自定义 2-预设策略
+        # @type Type: Integer
+        # @param Description: 策略描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PolicyDocument: 策略文档。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDocument: String
+        # @param UpdateTime: 策略更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param AddTime: 策略创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :PolicyName, :Type, :Description, :PolicyDocument, :UpdateTime, :AddTime, :RequestId
+
+        def initialize(policyid=nil, policyname=nil, type=nil, description=nil, policydocument=nil, updatetime=nil, addtime=nil, requestid=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @Type = type
+          @Description = description
+          @PolicyDocument = policydocument
+          @UpdateTime = updatetime
+          @AddTime = addtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @Type = params['Type']
+          @Description = params['Description']
+          @PolicyDocument = params['PolicyDocument']
+          @UpdateTime = params['UpdateTime']
+          @AddTime = params['AddTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeShareAreas请求参数结构体
       class DescribeShareAreasRequest < TencentCloud::Common::AbstractModel
         # @param Lang: 国际站：en，国内站：zh
@@ -1870,7 +2112,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制数目。取值范围：1~50。
         # @type Limit: Integer
-        # @param SearchKey: 搜索关键字。支持成员uin搜索。
+        # @param SearchKey: 搜索关键字。支持成员Uin搜索。
         # @type SearchKey: String
 
         attr_accessor :UnitId, :Area, :Offset, :Limit, :SearchKey
@@ -2055,6 +2297,122 @@ module TencentCloud
         end
       end
 
+      # DetachPolicy请求参数结构体
+      class DetachPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TargetId: 解绑策略目标ID。成员Uin或部门ID
+        # @type TargetId: Integer
+        # @param TargetType: 目标类型。取值范围：NODE-部门、MEMBER-成员
+        # @type TargetType: String
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type Type: String
+
+        attr_accessor :TargetId, :TargetType, :PolicyId, :Type
+
+        def initialize(targetid=nil, targettype=nil, policyid=nil, type=nil)
+          @TargetId = targetid
+          @TargetType = targettype
+          @PolicyId = policyid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @TargetType = params['TargetType']
+          @PolicyId = params['PolicyId']
+          @Type = params['Type']
+        end
+      end
+
+      # DetachPolicy返回参数结构体
+      class DetachPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisablePolicyType请求参数结构体
+      class DisablePolicyTypeRequest < TencentCloud::Common::AbstractModel
+        # @param OrganizationId: 企业组织Id。可以调用[DescribeOrganization](https://cloud.tencent.com/document/product/850/67059)获取
+        # @type OrganizationId: Integer
+        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type PolicyType: String
+
+        attr_accessor :OrganizationId, :PolicyType
+
+        def initialize(organizationid=nil, policytype=nil)
+          @OrganizationId = organizationid
+          @PolicyType = policytype
+        end
+
+        def deserialize(params)
+          @OrganizationId = params['OrganizationId']
+          @PolicyType = params['PolicyType']
+        end
+      end
+
+      # DisablePolicyType返回参数结构体
+      class DisablePolicyTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnablePolicyType请求参数结构体
+      class EnablePolicyTypeRequest < TencentCloud::Common::AbstractModel
+        # @param OrganizationId: 企业组织Id。可以调用[DescribeOrganization](https://cloud.tencent.com/document/product/850/67059)获取
+        # @type OrganizationId: Integer
+        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type PolicyType: String
+
+        attr_accessor :OrganizationId, :PolicyType
+
+        def initialize(organizationid=nil, policytype=nil)
+          @OrganizationId = organizationid
+          @PolicyType = policytype
+        end
+
+        def deserialize(params)
+          @OrganizationId = params['OrganizationId']
+          @PolicyType = params['PolicyType']
+        end
+      end
+
+      # EnablePolicyType返回参数结构体
+      class EnablePolicyTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 组织身份策略
       class IdentityPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyId: CAM预设策略ID。PolicyType 为预设策略时有效且必选
@@ -2144,6 +2502,328 @@ module TencentCloud
               orgidentity_tmp = OrgIdentity.new
               orgidentity_tmp.deserialize(i)
               @Items << orgidentity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询目标关联的SCP策略列表
+      class ListPoliciesForTarget < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 策略Id
+        # @type StrategyId: Integer
+        # @param StrategyName: 策略名称
+        # @type StrategyName: String
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Uin: 关联的账号或节点
+        # @type Uin: Integer
+        # @param Type: 关联类型 1-节点 2-用户
+        # @type Type: Integer
+        # @param AddTime: 策略创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param UpdateTime: 策略更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Name: 部门名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param AttachTime: 策略绑定时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachTime: String
+
+        attr_accessor :StrategyId, :StrategyName, :Remark, :Uin, :Type, :AddTime, :UpdateTime, :Name, :AttachTime
+
+        def initialize(strategyid=nil, strategyname=nil, remark=nil, uin=nil, type=nil, addtime=nil, updatetime=nil, name=nil, attachtime=nil)
+          @StrategyId = strategyid
+          @StrategyName = strategyname
+          @Remark = remark
+          @Uin = uin
+          @Type = type
+          @AddTime = addtime
+          @UpdateTime = updatetime
+          @Name = name
+          @AttachTime = attachtime
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @StrategyName = params['StrategyName']
+          @Remark = params['Remark']
+          @Uin = params['Uin']
+          @Type = params['Type']
+          @AddTime = params['AddTime']
+          @UpdateTime = params['UpdateTime']
+          @Name = params['Name']
+          @AttachTime = params['AttachTime']
+        end
+      end
+
+      # ListPoliciesForTarget请求参数结构体
+      class ListPoliciesForTargetRequest < TencentCloud::Common::AbstractModel
+        # @param TargetId: 账号uin或者节点id。
+        # @type TargetId: Integer
+        # @param Rp: 每页数量。默认值是 20，必须大于 0 且小于或等于 200
+        # @type Rp: Integer
+        # @param Page: 页码。默认值是 1，从 1开始，不能大于 200
+        # @type Page: Integer
+        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type PolicyType: String
+        # @param Keyword: 搜索关键字。按照策略名称搜索
+        # @type Keyword: String
+
+        attr_accessor :TargetId, :Rp, :Page, :PolicyType, :Keyword
+
+        def initialize(targetid=nil, rp=nil, page=nil, policytype=nil, keyword=nil)
+          @TargetId = targetid
+          @Rp = rp
+          @Page = page
+          @PolicyType = policytype
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @Rp = params['Rp']
+          @Page = params['Page']
+          @PolicyType = params['PolicyType']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListPoliciesForTarget返回参数结构体
+      class ListPoliciesForTargetResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNum: 总数。
+        # @type TotalNum: Integer
+        # @param List: 目标关联的策略列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNum, :List, :RequestId
+
+        def initialize(totalnum=nil, list=nil, requestid=nil)
+          @TotalNum = totalnum
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNum = params['TotalNum']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              listpoliciesfortarget_tmp = ListPoliciesForTarget.new
+              listpoliciesfortarget_tmp.deserialize(i)
+              @List << listpoliciesfortarget_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListPolicies请求参数结构体
+      class ListPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param Rp: 每页数量。默认值是 20，必须大于 0 且小于或等于 200
+        # @type Rp: Integer
+        # @param Page: 页码。默认值是 1，从 1开始，不能大于 200
+        # @type Page: Integer
+        # @param Scope: 查询范围。取值范围： All-获取所有策略、QCS-只获取预设策略、Local-只获取自定义策略，默认值：All
+        # @type Scope: String
+        # @param Keyword: 搜索关键字。按照策略名搜索
+        # @type Keyword: String
+        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type PolicyType: String
+
+        attr_accessor :Rp, :Page, :Scope, :Keyword, :PolicyType
+
+        def initialize(rp=nil, page=nil, scope=nil, keyword=nil, policytype=nil)
+          @Rp = rp
+          @Page = page
+          @Scope = scope
+          @Keyword = keyword
+          @PolicyType = policytype
+        end
+
+        def deserialize(params)
+          @Rp = params['Rp']
+          @Page = params['Page']
+          @Scope = params['Scope']
+          @Keyword = params['Keyword']
+          @PolicyType = params['PolicyType']
+        end
+      end
+
+      # ListPolicies返回参数结构体
+      class ListPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNum: 策略总数
+        # @type TotalNum: Integer
+        # @param List: 策略列表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNum, :List, :RequestId
+
+        def initialize(totalnum=nil, list=nil, requestid=nil)
+          @TotalNum = totalnum
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNum = params['TotalNum']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              listpolicynode_tmp = ListPolicyNode.new
+              listpolicynode_tmp.deserialize(i)
+              @List << listpolicynode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 企业组织策略列表
+      class ListPolicyNode < TencentCloud::Common::AbstractModel
+        # @param AddTime: 策略创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param AttachedTimes: 策略绑定次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachedTimes: Integer
+        # @param Description: 策略描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PolicyName: 策略名称
+        # @type PolicyName: String
+        # @param PolicyId: 策略Id
+        # @type PolicyId: Integer
+        # @param UpdateTime: 策略更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Type: 策略类型 1-自定义 2-预设
+        # @type Type: Integer
+
+        attr_accessor :AddTime, :AttachedTimes, :Description, :PolicyName, :PolicyId, :UpdateTime, :Type
+
+        def initialize(addtime=nil, attachedtimes=nil, description=nil, policyname=nil, policyid=nil, updatetime=nil, type=nil)
+          @AddTime = addtime
+          @AttachedTimes = attachedtimes
+          @Description = description
+          @PolicyName = policyname
+          @PolicyId = policyid
+          @UpdateTime = updatetime
+          @Type = type
+        end
+
+        def deserialize(params)
+          @AddTime = params['AddTime']
+          @AttachedTimes = params['AttachedTimes']
+          @Description = params['Description']
+          @PolicyName = params['PolicyName']
+          @PolicyId = params['PolicyId']
+          @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
+        end
+      end
+
+      # 查询某个指定SCP策略关联的目标列表
+      class ListTargetsForPolicyNode < TencentCloud::Common::AbstractModel
+        # @param Uin: scp账号uin或节点Id
+        # @type Uin: Integer
+        # @param RelatedType: 关联类型 1-节点关联 2-用户关联
+        # @type RelatedType: Integer
+        # @param Name: 账号或者节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param AddTime: 绑定时间
+        # @type AddTime: String
+
+        attr_accessor :Uin, :RelatedType, :Name, :AddTime
+
+        def initialize(uin=nil, relatedtype=nil, name=nil, addtime=nil)
+          @Uin = uin
+          @RelatedType = relatedtype
+          @Name = name
+          @AddTime = addtime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @RelatedType = params['RelatedType']
+          @Name = params['Name']
+          @AddTime = params['AddTime']
+        end
+      end
+
+      # ListTargetsForPolicy请求参数结构体
+      class ListTargetsForPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略Id。
+        # @type PolicyId: Integer
+        # @param Rp: 每页数量。默认值是 20，必须大于 0 且小于或等于 200
+        # @type Rp: Integer
+        # @param Page: 页码。默认值是 1，从 1开始，不能大于 200
+        # @type Page: Integer
+        # @param TargetType: 策略类型。取值范围：All-全部、User-用户、Node-节点
+        # @type TargetType: String
+        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type PolicyType: String
+        # @param Keyword: 按照多个策略id搜索，空格隔开。
+        # @type Keyword: String
+
+        attr_accessor :PolicyId, :Rp, :Page, :TargetType, :PolicyType, :Keyword
+
+        def initialize(policyid=nil, rp=nil, page=nil, targettype=nil, policytype=nil, keyword=nil)
+          @PolicyId = policyid
+          @Rp = rp
+          @Page = page
+          @TargetType = targettype
+          @PolicyType = policytype
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @Rp = params['Rp']
+          @Page = params['Page']
+          @TargetType = params['TargetType']
+          @PolicyType = params['PolicyType']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListTargetsForPolicy返回参数结构体
+      class ListTargetsForPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNum: 总数。
+        # @type TotalNum: Integer
+        # @param List: 指定SCP策略关联目标列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNum, :List, :RequestId
+
+        def initialize(totalnum=nil, list=nil, requestid=nil)
+          @TotalNum = totalnum
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNum = params['TotalNum']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              listtargetsforpolicynode_tmp = ListTargetsForPolicyNode.new
+              listtargetsforpolicynode_tmp.deserialize(i)
+              @List << listtargetsforpolicynode_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3190,6 +3870,54 @@ module TencentCloud
 
       # UpdateOrganizationNode返回参数结构体
       class UpdateOrganizationNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdatePolicy请求参数结构体
+      class UpdatePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 需要编辑的策略ID。可以调用[ListPolicies](https://tcloud4api.woa.com/document/product/1128/79356?!preview&!document=1)获取
+        # @type PolicyId: Integer
+        # @param Description: 策略描述。
+        # @type Description: String
+        # @param Content: 策略内容。参考CAM策略语法
+        # @type Content: String
+        # @param Name: 策略名。长度为1~128个字符，可以包含汉字、英文字母、数字和下划线（_）
+        # @type Name: String
+        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @type Type: String
+
+        attr_accessor :PolicyId, :Description, :Content, :Name, :Type
+
+        def initialize(policyid=nil, description=nil, content=nil, name=nil, type=nil)
+          @PolicyId = policyid
+          @Description = description
+          @Content = content
+          @Name = name
+          @Type = type
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @Description = params['Description']
+          @Content = params['Content']
+          @Name = params['Name']
+          @Type = params['Type']
+        end
+      end
+
+      # UpdatePolicy返回参数结构体
+      class UpdatePolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

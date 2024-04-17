@@ -119,95 +119,6 @@ module TencentCloud
         end
       end
 
-      # 告警信息
-      class AlarmDsVO < TencentCloud::Common::AbstractModel
-        # @param AlarmId: 告警策略id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmId: String
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param Status: 告警是否生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param AlarmType: 告警类别，目前支持失败告警，超时告警
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmType: String
-        # @param AlarmWay: 告警方式 ，目前支持email提醒，短信提醒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmWay: String
-        # @param Creator: 告警创建人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Creator: String
-        # @param AlarmRecipient: 告警接收人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmRecipient: String
-        # @param AlarmRecipientId: 告警接收人ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmRecipientId: String
-        # @param ModifyTime: 告警修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ModifyTime: String
-        # @param LastFailTime: 最近失败告警实例数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastFailTime: String
-        # @param LastOverTime: 最近超时告警实例数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastOverTime: String
-        # @param LastAlarmTime: 最新告警时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastAlarmTime: String
-        # @param AlarmExt: AlarmExt信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmExt: Array
-        # @param CreateTime: 告警创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-
-        attr_accessor :AlarmId, :TaskId, :Status, :AlarmType, :AlarmWay, :Creator, :AlarmRecipient, :AlarmRecipientId, :ModifyTime, :LastFailTime, :LastOverTime, :LastAlarmTime, :AlarmExt, :CreateTime
-
-        def initialize(alarmid=nil, taskid=nil, status=nil, alarmtype=nil, alarmway=nil, creator=nil, alarmrecipient=nil, alarmrecipientid=nil, modifytime=nil, lastfailtime=nil, lastovertime=nil, lastalarmtime=nil, alarmext=nil, createtime=nil)
-          @AlarmId = alarmid
-          @TaskId = taskid
-          @Status = status
-          @AlarmType = alarmtype
-          @AlarmWay = alarmway
-          @Creator = creator
-          @AlarmRecipient = alarmrecipient
-          @AlarmRecipientId = alarmrecipientid
-          @ModifyTime = modifytime
-          @LastFailTime = lastfailtime
-          @LastOverTime = lastovertime
-          @LastAlarmTime = lastalarmtime
-          @AlarmExt = alarmext
-          @CreateTime = createtime
-        end
-
-        def deserialize(params)
-          @AlarmId = params['AlarmId']
-          @TaskId = params['TaskId']
-          @Status = params['Status']
-          @AlarmType = params['AlarmType']
-          @AlarmWay = params['AlarmWay']
-          @Creator = params['Creator']
-          @AlarmRecipient = params['AlarmRecipient']
-          @AlarmRecipientId = params['AlarmRecipientId']
-          @ModifyTime = params['ModifyTime']
-          @LastFailTime = params['LastFailTime']
-          @LastOverTime = params['LastOverTime']
-          @LastAlarmTime = params['LastAlarmTime']
-          unless params['AlarmExt'].nil?
-            @AlarmExt = []
-            params['AlarmExt'].each do |i|
-              alarmextdsvo_tmp = AlarmExtDsVO.new
-              alarmextdsvo_tmp.deserialize(i)
-              @AlarmExt << alarmextdsvo_tmp
-            end
-          end
-          @CreateTime = params['CreateTime']
-        end
-      end
-
       # 告警事件详情
       class AlarmEventInfo < TencentCloud::Common::AbstractModel
         # @param AlarmId: 告警ID
@@ -338,43 +249,6 @@ module TencentCloud
           @MonitorObjectId = params['MonitorObjectId']
           @MonitorObjectName = params['MonitorObjectName']
           @Threshold = params['Threshold']
-        end
-      end
-
-      # AlarmExtVO信息
-      class AlarmExtDsVO < TencentCloud::Common::AbstractModel
-        # @param AlarmId: 告警策略ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmId: String
-        # @param PropName: 扩展字段key
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PropName: String
-        # @param PropValue: 扩展字段value
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PropValue: String
-        # @param CreateTime: 告警创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ModifyTime: String
-
-        attr_accessor :AlarmId, :PropName, :PropValue, :CreateTime, :ModifyTime
-
-        def initialize(alarmid=nil, propname=nil, propvalue=nil, createtime=nil, modifytime=nil)
-          @AlarmId = alarmid
-          @PropName = propname
-          @PropValue = propvalue
-          @CreateTime = createtime
-          @ModifyTime = modifytime
-        end
-
-        def deserialize(params)
-          @AlarmId = params['AlarmId']
-          @PropName = params['PropName']
-          @PropValue = params['PropValue']
-          @CreateTime = params['CreateTime']
-          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -548,28 +422,6 @@ module TencentCloud
         end
       end
 
-      # 告警规则
-      class AlarmRuleDto < TencentCloud::Common::AbstractModel
-        # @param AlarmRuleId: 告警规则id
-        # @type AlarmRuleId: String
-        # @param AlarmLevelType: 重要;
-        # 紧急;
-        # 普通
-        # @type AlarmLevelType: String
-
-        attr_accessor :AlarmRuleId, :AlarmLevelType
-
-        def initialize(alarmruleid=nil, alarmleveltype=nil)
-          @AlarmRuleId = alarmruleid
-          @AlarmLevelType = alarmleveltype
-        end
-
-        def deserialize(params)
-          @AlarmRuleId = params['AlarmRuleId']
-          @AlarmLevelType = params['AlarmLevelType']
-        end
-      end
-
       # 审批列表信息
       class Apply < TencentCloud::Common::AbstractModel
         # @param ApplicantId: 申请人id
@@ -728,649 +580,6 @@ module TencentCloud
         end
       end
 
-      # AttributeItemVO参数
-      class AttributeItemDsVO < TencentCloud::Common::AbstractModel
-        # @param Key: Key值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Key: String
-        # @param Value: Value值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Value: String
-        # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Description: String
-
-        attr_accessor :Key, :Value, :Description
-
-        def initialize(key=nil, value=nil, description=nil)
-          @Key = key
-          @Value = value
-          @Description = description
-        end
-
-        def deserialize(params)
-          @Key = params['Key']
-          @Value = params['Value']
-          @Description = params['Description']
-        end
-      end
-
-      # BaselineDetailResponse
-      class BaselineDetailResponse < TencentCloud::Common::AbstractModel
-        # @param BaselineDto: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineDto: :class:`Tencentcloud::Wedata.v20210820.models.BaselineDto`
-        # @param BaselineCreateAlarmRuleRequest: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineCreateAlarmRuleRequest: :class:`Tencentcloud::Wedata.v20210820.models.CreateAlarmRuleRequest`
-        # @param IsNewAlarm: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsNewAlarm: Boolean
-
-        attr_accessor :BaselineDto, :BaselineCreateAlarmRuleRequest, :IsNewAlarm
-
-        def initialize(baselinedto=nil, baselinecreatealarmrulerequest=nil, isnewalarm=nil)
-          @BaselineDto = baselinedto
-          @BaselineCreateAlarmRuleRequest = baselinecreatealarmrulerequest
-          @IsNewAlarm = isnewalarm
-        end
-
-        def deserialize(params)
-          unless params['BaselineDto'].nil?
-            @BaselineDto = BaselineDto.new
-            @BaselineDto.deserialize(params['BaselineDto'])
-          end
-          unless params['BaselineCreateAlarmRuleRequest'].nil?
-            @BaselineCreateAlarmRuleRequest = CreateAlarmRuleRequest.new
-            @BaselineCreateAlarmRuleRequest.deserialize(params['BaselineCreateAlarmRuleRequest'])
-          end
-          @IsNewAlarm = params['IsNewAlarm']
-        end
-      end
-
-      # 基线实例
-      class BaselineDto < TencentCloud::Common::AbstractModel
-        # @param Id: 基线id
-        # @type Id: Integer
-        # @param BaselineName: 基线名称
-        # @type BaselineName: String
-        # @param BaselineType: 天基线/小时基线
-        # @type BaselineType: String
-        # @param CreateTime: 基线创建时间
-        # @type CreateTime: String
-        # @param PromiseTasks: 保障任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PromiseTasks: Array
-        # @param AlarmRule: 告警规则
-        # @type AlarmRule: :class:`Tencentcloud::Wedata.v20210820.models.AlarmRuleDto`
-        # @param BaselineStatus: 基线状态，待提交, 运行中，停止
-        # @type BaselineStatus: String
-        # @param LatestBaselineInstanceStatus: 最新基线实例运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LatestBaselineInstanceStatus: String
-        # @param WarningMargin: 预警余量/单位分钟
-        # @type WarningMargin: Integer
-        # @param PromiseTime: 承诺时间
-        # @type PromiseTime: String
-        # @param InChargeUin: 责任人uin
-        # @type InChargeUin: String
-        # @param InChargeName: 责任人名称
-        # @type InChargeName: String
-        # @param UserUin: 当前用户uin
-        # @type UserUin: String
-        # @param UserName: 当前用户名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserName: String
-        # @param OwnerUin: 主账号uin
-        # @type OwnerUin: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param AppId: 租户id
-        # @type AppId: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-
-        attr_accessor :Id, :BaselineName, :BaselineType, :CreateTime, :PromiseTasks, :AlarmRule, :BaselineStatus, :LatestBaselineInstanceStatus, :WarningMargin, :PromiseTime, :InChargeUin, :InChargeName, :UserUin, :UserName, :OwnerUin, :ProjectId, :AppId, :UpdateTime
-
-        def initialize(id=nil, baselinename=nil, baselinetype=nil, createtime=nil, promisetasks=nil, alarmrule=nil, baselinestatus=nil, latestbaselineinstancestatus=nil, warningmargin=nil, promisetime=nil, inchargeuin=nil, inchargename=nil, useruin=nil, username=nil, owneruin=nil, projectid=nil, appid=nil, updatetime=nil)
-          @Id = id
-          @BaselineName = baselinename
-          @BaselineType = baselinetype
-          @CreateTime = createtime
-          @PromiseTasks = promisetasks
-          @AlarmRule = alarmrule
-          @BaselineStatus = baselinestatus
-          @LatestBaselineInstanceStatus = latestbaselineinstancestatus
-          @WarningMargin = warningmargin
-          @PromiseTime = promisetime
-          @InChargeUin = inchargeuin
-          @InChargeName = inchargename
-          @UserUin = useruin
-          @UserName = username
-          @OwnerUin = owneruin
-          @ProjectId = projectid
-          @AppId = appid
-          @UpdateTime = updatetime
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @BaselineName = params['BaselineName']
-          @BaselineType = params['BaselineType']
-          @CreateTime = params['CreateTime']
-          unless params['PromiseTasks'].nil?
-            @PromiseTasks = []
-            params['PromiseTasks'].each do |i|
-              baselinetaskdto_tmp = BaselineTaskDto.new
-              baselinetaskdto_tmp.deserialize(i)
-              @PromiseTasks << baselinetaskdto_tmp
-            end
-          end
-          unless params['AlarmRule'].nil?
-            @AlarmRule = AlarmRuleDto.new
-            @AlarmRule.deserialize(params['AlarmRule'])
-          end
-          @BaselineStatus = params['BaselineStatus']
-          @LatestBaselineInstanceStatus = params['LatestBaselineInstanceStatus']
-          @WarningMargin = params['WarningMargin']
-          @PromiseTime = params['PromiseTime']
-          @InChargeUin = params['InChargeUin']
-          @InChargeName = params['InChargeName']
-          @UserUin = params['UserUin']
-          @UserName = params['UserName']
-          @OwnerUin = params['OwnerUin']
-          @ProjectId = params['ProjectId']
-          @AppId = params['AppId']
-          @UpdateTime = params['UpdateTime']
-        end
-      end
-
-      # 基线实例
-      class BaselineInstanceVo < TencentCloud::Common::AbstractModel
-        # @param Id: 基线实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: Integer
-        # @param BaselineId: 基线id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineId: Integer
-        # @param BaselineName: 基线名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineName: String
-        # @param BaselineType: 基线类型，D: 天基线 / H 小时基线
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineType: String
-        # @param BaselineDataTime: 基线实例数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineDataTime: String
-        # @param CreateTime: 基线实例生成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param EstimatedEndTime: 基线实例预计完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EstimatedEndTime: String
-        # @param BaselineInstanceStatus: 基线实例状态，P:暂停/ SF:安全/ WN:预警/ BL:破线 / TF:任务失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineInstanceStatus: String
-        # @param InChargeUin: 责任人uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InChargeUin: String
-        # @param InChargeName: 责任人名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InChargeName: String
-        # @param WarningMargin: 预警余量/单位分钟
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WarningMargin: Integer
-        # @param PromiseTime: 承诺时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PromiseTime: String
-        # @param AlarmLevel: 告警级别 N: 普通 / I重要 / E: 紧急
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmLevel: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param IsReady: 基线实例ready状态。NEW_GENERATED_INSTANCE:产生实例/RENDER_DAG:渲染DAG/CALCULATE_PATH:计算路径/COMPLETE:完成
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsReady: String
-        # @param ShardKey: 该基线由哪个机器处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ShardKey: String
-        # @param ExceptionalTaskInstances: 异常任务实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExceptionalTaskInstances: Array
-        # @param TaskInstances: 关联的所有任务实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskInstances: Array
-        # @param CriticalStartTime: 任务实例DAG整体启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CriticalStartTime: String
-        # @param CriticalTaskInstances: 基线实例上的关键任务实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CriticalTaskInstances: Array
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param BaselineTaskInstances: 基线实例与保障任务实例映射
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineTaskInstances: Array
-        # @param AppId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppId: String
-        # @param OwnerUin: 主账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerUin: String
-        # @param UserUin: 当前用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserUin: String
-
-        attr_accessor :Id, :BaselineId, :BaselineName, :BaselineType, :BaselineDataTime, :CreateTime, :EstimatedEndTime, :BaselineInstanceStatus, :InChargeUin, :InChargeName, :WarningMargin, :PromiseTime, :AlarmLevel, :ProjectId, :IsReady, :ShardKey, :ExceptionalTaskInstances, :TaskInstances, :CriticalStartTime, :CriticalTaskInstances, :UpdateTime, :BaselineTaskInstances, :AppId, :OwnerUin, :UserUin
-
-        def initialize(id=nil, baselineid=nil, baselinename=nil, baselinetype=nil, baselinedatatime=nil, createtime=nil, estimatedendtime=nil, baselineinstancestatus=nil, inchargeuin=nil, inchargename=nil, warningmargin=nil, promisetime=nil, alarmlevel=nil, projectid=nil, isready=nil, shardkey=nil, exceptionaltaskinstances=nil, taskinstances=nil, criticalstarttime=nil, criticaltaskinstances=nil, updatetime=nil, baselinetaskinstances=nil, appid=nil, owneruin=nil, useruin=nil)
-          @Id = id
-          @BaselineId = baselineid
-          @BaselineName = baselinename
-          @BaselineType = baselinetype
-          @BaselineDataTime = baselinedatatime
-          @CreateTime = createtime
-          @EstimatedEndTime = estimatedendtime
-          @BaselineInstanceStatus = baselineinstancestatus
-          @InChargeUin = inchargeuin
-          @InChargeName = inchargename
-          @WarningMargin = warningmargin
-          @PromiseTime = promisetime
-          @AlarmLevel = alarmlevel
-          @ProjectId = projectid
-          @IsReady = isready
-          @ShardKey = shardkey
-          @ExceptionalTaskInstances = exceptionaltaskinstances
-          @TaskInstances = taskinstances
-          @CriticalStartTime = criticalstarttime
-          @CriticalTaskInstances = criticaltaskinstances
-          @UpdateTime = updatetime
-          @BaselineTaskInstances = baselinetaskinstances
-          @AppId = appid
-          @OwnerUin = owneruin
-          @UserUin = useruin
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @BaselineId = params['BaselineId']
-          @BaselineName = params['BaselineName']
-          @BaselineType = params['BaselineType']
-          @BaselineDataTime = params['BaselineDataTime']
-          @CreateTime = params['CreateTime']
-          @EstimatedEndTime = params['EstimatedEndTime']
-          @BaselineInstanceStatus = params['BaselineInstanceStatus']
-          @InChargeUin = params['InChargeUin']
-          @InChargeName = params['InChargeName']
-          @WarningMargin = params['WarningMargin']
-          @PromiseTime = params['PromiseTime']
-          @AlarmLevel = params['AlarmLevel']
-          @ProjectId = params['ProjectId']
-          @IsReady = params['IsReady']
-          @ShardKey = params['ShardKey']
-          unless params['ExceptionalTaskInstances'].nil?
-            @ExceptionalTaskInstances = []
-            params['ExceptionalTaskInstances'].each do |i|
-              baselinetaskinstancedto_tmp = BaselineTaskInstanceDto.new
-              baselinetaskinstancedto_tmp.deserialize(i)
-              @ExceptionalTaskInstances << baselinetaskinstancedto_tmp
-            end
-          end
-          unless params['TaskInstances'].nil?
-            @TaskInstances = []
-            params['TaskInstances'].each do |i|
-              baselinetaskinstancedto_tmp = BaselineTaskInstanceDto.new
-              baselinetaskinstancedto_tmp.deserialize(i)
-              @TaskInstances << baselinetaskinstancedto_tmp
-            end
-          end
-          @CriticalStartTime = params['CriticalStartTime']
-          unless params['CriticalTaskInstances'].nil?
-            @CriticalTaskInstances = []
-            params['CriticalTaskInstances'].each do |i|
-              baselinetaskinstancedto_tmp = BaselineTaskInstanceDto.new
-              baselinetaskinstancedto_tmp.deserialize(i)
-              @CriticalTaskInstances << baselinetaskinstancedto_tmp
-            end
-          end
-          @UpdateTime = params['UpdateTime']
-          unless params['BaselineTaskInstances'].nil?
-            @BaselineTaskInstances = []
-            params['BaselineTaskInstances'].each do |i|
-              baselinetaskinstancedto_tmp = BaselineTaskInstanceDto.new
-              baselinetaskinstancedto_tmp.deserialize(i)
-              @BaselineTaskInstances << baselinetaskinstancedto_tmp
-            end
-          end
-          @AppId = params['AppId']
-          @OwnerUin = params['OwnerUin']
-          @UserUin = params['UserUin']
-        end
-      end
-
-      # 基线关联任务
-      class BaselineTaskDto < TencentCloud::Common::AbstractModel
-        # @param Id: 变更记录id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: Integer
-        # @param BaselineId: 基线id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineId: Integer
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param EstimatedCostTime: 任务运行平均时间/单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EstimatedCostTime: Integer
-        # @param UpstreamTaskIds: 上游实例id,多个实例用,分开
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpstreamTaskIds: :class:`Tencentcloud::Wedata.v20210820.models.StringListNode`
-        # @param DownstreamTaskIds: 下游实例id,多个实例用,分开
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownstreamTaskIds: :class:`Tencentcloud::Wedata.v20210820.models.StringListNode`
-        # @param IsPromiseTask: 否是保障任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsPromiseTask: Boolean
-        # @param UserUin: 当前用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserUin: String
-        # @param OwnerUin: 主账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerUin: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param AppId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppId: String
-        # @param WorkflowName: 工作流名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowName: String
-        # @param WorkflowId: 工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowId: String
-        # @param TaskCycle: 任务周期类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskCycle: String
-        # @param TaskInChargeUin: 任务负责人名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskInChargeUin: String
-        # @param TaskInChargeName: 任务负责人uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskInChargeName: String
-        # @param AccessBenchmark: 任务准入基准
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AccessBenchmark: String
-        # @param AccessBenchmarkDesc: 任务准入基准诊断信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AccessBenchmarkDesc: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-
-        attr_accessor :Id, :BaselineId, :TaskId, :TaskName, :EstimatedCostTime, :UpstreamTaskIds, :DownstreamTaskIds, :IsPromiseTask, :UserUin, :OwnerUin, :ProjectId, :AppId, :WorkflowName, :WorkflowId, :TaskCycle, :TaskInChargeUin, :TaskInChargeName, :AccessBenchmark, :AccessBenchmarkDesc, :CreateTime, :UpdateTime
-
-        def initialize(id=nil, baselineid=nil, taskid=nil, taskname=nil, estimatedcosttime=nil, upstreamtaskids=nil, downstreamtaskids=nil, ispromisetask=nil, useruin=nil, owneruin=nil, projectid=nil, appid=nil, workflowname=nil, workflowid=nil, taskcycle=nil, taskinchargeuin=nil, taskinchargename=nil, accessbenchmark=nil, accessbenchmarkdesc=nil, createtime=nil, updatetime=nil)
-          @Id = id
-          @BaselineId = baselineid
-          @TaskId = taskid
-          @TaskName = taskname
-          @EstimatedCostTime = estimatedcosttime
-          @UpstreamTaskIds = upstreamtaskids
-          @DownstreamTaskIds = downstreamtaskids
-          @IsPromiseTask = ispromisetask
-          @UserUin = useruin
-          @OwnerUin = owneruin
-          @ProjectId = projectid
-          @AppId = appid
-          @WorkflowName = workflowname
-          @WorkflowId = workflowid
-          @TaskCycle = taskcycle
-          @TaskInChargeUin = taskinchargeuin
-          @TaskInChargeName = taskinchargename
-          @AccessBenchmark = accessbenchmark
-          @AccessBenchmarkDesc = accessbenchmarkdesc
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @BaselineId = params['BaselineId']
-          @TaskId = params['TaskId']
-          @TaskName = params['TaskName']
-          @EstimatedCostTime = params['EstimatedCostTime']
-          unless params['UpstreamTaskIds'].nil?
-            @UpstreamTaskIds = StringListNode.new
-            @UpstreamTaskIds.deserialize(params['UpstreamTaskIds'])
-          end
-          unless params['DownstreamTaskIds'].nil?
-            @DownstreamTaskIds = StringListNode.new
-            @DownstreamTaskIds.deserialize(params['DownstreamTaskIds'])
-          end
-          @IsPromiseTask = params['IsPromiseTask']
-          @UserUin = params['UserUin']
-          @OwnerUin = params['OwnerUin']
-          @ProjectId = params['ProjectId']
-          @AppId = params['AppId']
-          @WorkflowName = params['WorkflowName']
-          @WorkflowId = params['WorkflowId']
-          @TaskCycle = params['TaskCycle']
-          @TaskInChargeUin = params['TaskInChargeUin']
-          @TaskInChargeName = params['TaskInChargeName']
-          @AccessBenchmark = params['AccessBenchmark']
-          @AccessBenchmarkDesc = params['AccessBenchmarkDesc']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-        end
-      end
-
-      # BaselineTaskInfo
-      class BaselineTaskInfo < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param TaskName: 任务名称
-        # @type TaskName: String
-        # @param TaskId: 任务id
-        # @type TaskId: String
-        # @param TaskCycle: 任务调度周期
-        # @type TaskCycle: String
-        # @param WorkflowName: 工作流名称
-        # @type WorkflowName: String
-        # @param WorkflowId: 工作流id
-        # @type WorkflowId: String
-        # @param TaskInChargeName: 任务责任人名称
-        # @type TaskInChargeName: String
-        # @param TaskInChargeUin: 任务责任人id
-        # @type TaskInChargeUin: String
-
-        attr_accessor :ProjectId, :TaskName, :TaskId, :TaskCycle, :WorkflowName, :WorkflowId, :TaskInChargeName, :TaskInChargeUin
-
-        def initialize(projectid=nil, taskname=nil, taskid=nil, taskcycle=nil, workflowname=nil, workflowid=nil, taskinchargename=nil, taskinchargeuin=nil)
-          @ProjectId = projectid
-          @TaskName = taskname
-          @TaskId = taskid
-          @TaskCycle = taskcycle
-          @WorkflowName = workflowname
-          @WorkflowId = workflowid
-          @TaskInChargeName = taskinchargename
-          @TaskInChargeUin = taskinchargeuin
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskName = params['TaskName']
-          @TaskId = params['TaskId']
-          @TaskCycle = params['TaskCycle']
-          @WorkflowName = params['WorkflowName']
-          @WorkflowId = params['WorkflowId']
-          @TaskInChargeName = params['TaskInChargeName']
-          @TaskInChargeUin = params['TaskInChargeUin']
-        end
-      end
-
-      # 基线实例
-      class BaselineTaskInstanceDto < TencentCloud::Common::AbstractModel
-        # @param Id: 任务实例变更记录id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: Integer
-        # @param BaselineInstanceId: 基线实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineInstanceId: Integer
-        # @param BaselineType: 基线周期, D: 天 / H: 小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineType: String
-        # @param BaselineDataTime: 数据时间/基线实例应该应该生成的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineDataTime: String
-        # @param UpstreamInstanceIds: 上游实例id,多个实例用,分开.格式为taskId_curRunDate
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpstreamInstanceIds: String
-        # @param DownstreamInstanceIds: 下游实例id,多个实例用,分开.格式为taskId_curRunDate
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownstreamInstanceIds: String
-        # @param IsPromiseTask: 是否是保障任务的实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsPromiseTask: Boolean
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param CurRunDate: 任务实例的数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CurRunDate: String
-        # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param InCriticalPath: 是否在关键路径上，1表示在，0表示不在
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCriticalPath: Integer
-        # @param InFirstLevel: 是否在DAG首层
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InFirstLevel: Boolean
-        # @param EstimatedCostTime: 实例预计耗时/单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EstimatedCostTime: Integer
-        # @param ActualCostTime: 实例实际耗时/单位秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ActualCostTime: Integer
-        # @param LatestStartTime: 预计最晚开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LatestStartTime: String
-        # @param ActualStartTime: 实际开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ActualStartTime: String
-        # @param EstimatedEndTime: 预计完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EstimatedEndTime: String
-        # @param LatestEndTime: 最晚完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LatestEndTime: String
-        # @param ActualEndTime: 实际完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ActualEndTime: String
-        # @param TaskInstanceStatus: 实例运行状态
-        # WAITINT_TO_RUN:等待运行 / RUNNING: 正在运行 / COMPLETED: 执行成功 / FAILED: 执行失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskInstanceStatus: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param ShardKey: 该基线由哪个机器处理
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ShardKey: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param UserUin: 当前用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserUin: String
-        # @param OwnerUin: 主账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerUin: String
-        # @param AppId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppId: String
-        # @param CriticalDependency: 关键路径依赖
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CriticalDependency: String
-
-        attr_accessor :Id, :BaselineInstanceId, :BaselineType, :BaselineDataTime, :UpstreamInstanceIds, :DownstreamInstanceIds, :IsPromiseTask, :TaskId, :CurRunDate, :TaskName, :InCriticalPath, :InFirstLevel, :EstimatedCostTime, :ActualCostTime, :LatestStartTime, :ActualStartTime, :EstimatedEndTime, :LatestEndTime, :ActualEndTime, :TaskInstanceStatus, :ProjectId, :ShardKey, :CreateTime, :UpdateTime, :UserUin, :OwnerUin, :AppId, :CriticalDependency
-
-        def initialize(id=nil, baselineinstanceid=nil, baselinetype=nil, baselinedatatime=nil, upstreaminstanceids=nil, downstreaminstanceids=nil, ispromisetask=nil, taskid=nil, currundate=nil, taskname=nil, incriticalpath=nil, infirstlevel=nil, estimatedcosttime=nil, actualcosttime=nil, lateststarttime=nil, actualstarttime=nil, estimatedendtime=nil, latestendtime=nil, actualendtime=nil, taskinstancestatus=nil, projectid=nil, shardkey=nil, createtime=nil, updatetime=nil, useruin=nil, owneruin=nil, appid=nil, criticaldependency=nil)
-          @Id = id
-          @BaselineInstanceId = baselineinstanceid
-          @BaselineType = baselinetype
-          @BaselineDataTime = baselinedatatime
-          @UpstreamInstanceIds = upstreaminstanceids
-          @DownstreamInstanceIds = downstreaminstanceids
-          @IsPromiseTask = ispromisetask
-          @TaskId = taskid
-          @CurRunDate = currundate
-          @TaskName = taskname
-          @InCriticalPath = incriticalpath
-          @InFirstLevel = infirstlevel
-          @EstimatedCostTime = estimatedcosttime
-          @ActualCostTime = actualcosttime
-          @LatestStartTime = lateststarttime
-          @ActualStartTime = actualstarttime
-          @EstimatedEndTime = estimatedendtime
-          @LatestEndTime = latestendtime
-          @ActualEndTime = actualendtime
-          @TaskInstanceStatus = taskinstancestatus
-          @ProjectId = projectid
-          @ShardKey = shardkey
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @UserUin = useruin
-          @OwnerUin = owneruin
-          @AppId = appid
-          @CriticalDependency = criticaldependency
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @BaselineInstanceId = params['BaselineInstanceId']
-          @BaselineType = params['BaselineType']
-          @BaselineDataTime = params['BaselineDataTime']
-          @UpstreamInstanceIds = params['UpstreamInstanceIds']
-          @DownstreamInstanceIds = params['DownstreamInstanceIds']
-          @IsPromiseTask = params['IsPromiseTask']
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-          @TaskName = params['TaskName']
-          @InCriticalPath = params['InCriticalPath']
-          @InFirstLevel = params['InFirstLevel']
-          @EstimatedCostTime = params['EstimatedCostTime']
-          @ActualCostTime = params['ActualCostTime']
-          @LatestStartTime = params['LatestStartTime']
-          @ActualStartTime = params['ActualStartTime']
-          @EstimatedEndTime = params['EstimatedEndTime']
-          @LatestEndTime = params['LatestEndTime']
-          @ActualEndTime = params['ActualEndTime']
-          @TaskInstanceStatus = params['TaskInstanceStatus']
-          @ProjectId = params['ProjectId']
-          @ShardKey = params['ShardKey']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @UserUin = params['UserUin']
-          @OwnerUin = params['OwnerUin']
-          @AppId = params['AppId']
-          @CriticalDependency = params['CriticalDependency']
-        end
-      end
-
       # BatchCreateIntegrationTaskAlarms请求参数结构体
       class BatchCreateIntegrationTaskAlarmsRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
@@ -1456,108 +665,11 @@ module TencentCloud
         end
       end
 
-      # BatchCreateTaskVersionDs使用的TaskVersionDsDTO
-      class BatchCreateTaskVersionDsDTOLite < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param VersionRemark: 版本备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VersionRemark: String
-        # @param TaskInfo: 任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskInfo: :class:`Tencentcloud::Wedata.v20210820.models.TaskDsDTOLiteV2`
-
-        attr_accessor :TaskId, :VersionRemark, :TaskInfo
-
-        def initialize(taskid=nil, versionremark=nil, taskinfo=nil)
-          @TaskId = taskid
-          @VersionRemark = versionremark
-          @TaskInfo = taskinfo
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @VersionRemark = params['VersionRemark']
-          unless params['TaskInfo'].nil?
-            @TaskInfo = TaskDsDTOLiteV2.new
-            @TaskInfo.deserialize(params['TaskInfo'])
-          end
-        end
-      end
-
-      # BatchCreateTaskVersionDs请求参数结构体
-      class BatchCreateTaskVersionDsRequest < TencentCloud::Common::AbstractModel
-        # @param TaskVersionDTOs: 任务版本信息
-        # @type TaskVersionDTOs: Array
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param AutoRun: 是否自动运行
-        # @type AutoRun: Boolean
-        # @param AlarmWays: 告警方式:email-邮件;sms-短信;wecom-企业微信
-        # @type AlarmWays: String
-        # @param AlarmRecipientTypes: 告警对象:1-项目管理员，2-任务责任人
-        # @type AlarmRecipientTypes: String
-        # @param NeedCheckParentSubmitted: 是否需要校验父任务已经提交到调度
-        # @type NeedCheckParentSubmitted: Boolean
-
-        attr_accessor :TaskVersionDTOs, :ProjectId, :AutoRun, :AlarmWays, :AlarmRecipientTypes, :NeedCheckParentSubmitted
-
-        def initialize(taskversiondtos=nil, projectid=nil, autorun=nil, alarmways=nil, alarmrecipienttypes=nil, needcheckparentsubmitted=nil)
-          @TaskVersionDTOs = taskversiondtos
-          @ProjectId = projectid
-          @AutoRun = autorun
-          @AlarmWays = alarmways
-          @AlarmRecipientTypes = alarmrecipienttypes
-          @NeedCheckParentSubmitted = needcheckparentsubmitted
-        end
-
-        def deserialize(params)
-          unless params['TaskVersionDTOs'].nil?
-            @TaskVersionDTOs = []
-            params['TaskVersionDTOs'].each do |i|
-              batchcreatetaskversiondsdtolite_tmp = BatchCreateTaskVersionDsDTOLite.new
-              batchcreatetaskversiondsdtolite_tmp.deserialize(i)
-              @TaskVersionDTOs << batchcreatetaskversiondsdtolite_tmp
-            end
-          end
-          @ProjectId = params['ProjectId']
-          @AutoRun = params['AutoRun']
-          @AlarmWays = params['AlarmWays']
-          @AlarmRecipientTypes = params['AlarmRecipientTypes']
-          @NeedCheckParentSubmitted = params['NeedCheckParentSubmitted']
-        end
-      end
-
-      # BatchCreateTaskVersionDs返回参数结构体
-      class BatchCreateTaskVersionDsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResultDs`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResultDs.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # BatchDeleteIntegrationTasks请求参数结构体
       class BatchDeleteIntegrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
         # @type TaskIds: Array
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，201为实时任务，202为离线任务
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
@@ -1667,117 +779,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = BatchOperationOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # BatchDeleteTasksDs请求参数结构体
-      class BatchDeleteTasksDsRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 批量删除的任务TaskId
-        # @type TaskIdList: Array
-        # @param DeleteMode: true : 删除后下游任务可正常运行
-        # false：删除后下游任务不可运行
-        # @type DeleteMode: Boolean
-        # @param OperateInform: true：通知下游任务责任人
-        # false:  不通知下游任务责任人
-        # @type OperateInform: Boolean
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param DeleteScript: true: 删除任务引用的脚本
-        # false: 不删除任务引用的脚本
-        # @type DeleteScript: Boolean
-
-        attr_accessor :TaskIdList, :DeleteMode, :OperateInform, :ProjectId, :DeleteScript
-
-        def initialize(taskidlist=nil, deletemode=nil, operateinform=nil, projectid=nil, deletescript=nil)
-          @TaskIdList = taskidlist
-          @DeleteMode = deletemode
-          @OperateInform = operateinform
-          @ProjectId = projectid
-          @DeleteScript = deletescript
-        end
-
-        def deserialize(params)
-          @TaskIdList = params['TaskIdList']
-          @DeleteMode = params['DeleteMode']
-          @OperateInform = params['OperateInform']
-          @ProjectId = params['ProjectId']
-          @DeleteScript = params['DeleteScript']
-        end
-      end
-
-      # BatchDeleteTasksDs返回参数结构体
-      class BatchDeleteTasksDsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回批量操作成功个数、失败个数、操作总数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # BatchDeleteTasksNew请求参数结构体
-      class BatchDeleteTasksNewRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 批量删除的任务TaskId
-        # @type TaskIdList: Array
-        # @param DeleteMode: true : 删除后下游任务可正常运行
-        # false：删除后下游任务不可运行
-        # @type DeleteMode: Boolean
-        # @param EnableNotify: true：通知下游任务责任人
-        # false:  不通知下游任务责任人
-        # @type EnableNotify: Boolean
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :TaskIdList, :DeleteMode, :EnableNotify, :ProjectId
-
-        def initialize(taskidlist=nil, deletemode=nil, enablenotify=nil, projectid=nil)
-          @TaskIdList = taskidlist
-          @DeleteMode = deletemode
-          @EnableNotify = enablenotify
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @TaskIdList = params['TaskIdList']
-          @DeleteMode = params['DeleteMode']
-          @EnableNotify = params['EnableNotify']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # BatchDeleteTasksNew返回参数结构体
-      class BatchDeleteTasksNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回批量操作成功个数、失败个数、操作总数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResult.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -1903,7 +904,7 @@ module TencentCloud
       class BatchMakeUpIntegrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
         # @type TaskIds: Array
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，201为实时任务，202为离线任务
         # @type TaskType: Integer
         # @param StartTime: 补数据开始时间
         # @type StartTime: String
@@ -1963,7 +964,7 @@ module TencentCloud
       class BatchModifyOpsOwnersRequest < TencentCloud::Common::AbstractModel
         # @param TaskIdList: 需要更新责任人的TaskId数组
         # @type TaskIdList: Array
-        # @param Owners: 需要更新的责任人
+        # @param Owners: 需要更新的责任人userId信息，多个责任人用;连接
         # @type Owners: String
         # @param ProjectId: 项目Id
         # @type ProjectId: String
@@ -2007,53 +1008,6 @@ module TencentCloud
         end
       end
 
-      # BatchModifyOwnersNew请求参数结构体
-      class BatchModifyOwnersNewRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 需要更新责任人的TaskId数组
-        # @type TaskIdList: Array
-        # @param Owners: 需要更新的责任人
-        # @type Owners: String
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :TaskIdList, :Owners, :ProjectId
-
-        def initialize(taskidlist=nil, owners=nil, projectid=nil)
-          @TaskIdList = taskidlist
-          @Owners = owners
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @TaskIdList = params['TaskIdList']
-          @Owners = params['Owners']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # BatchModifyOwnersNew返回参数结构体
-      class BatchModifyOwnersNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回批量操作成功个数、失败个数、操作总数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 批量操作的结果返回
       class BatchOperateResult < TencentCloud::Common::AbstractModel
         # @param SuccessCount: 批量操作成功数
@@ -2075,33 +1029,6 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
-        end
-      end
-
-      # BatchOperateResultDs
-      class BatchOperateResultDs < TencentCloud::Common::AbstractModel
-        # @param Result: result
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: Boolean
-        # @param ErrorId: errorId
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ErrorId: String
-        # @param ErrorDesc: errorDesc
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ErrorDesc: String
-
-        attr_accessor :Result, :ErrorId, :ErrorDesc
-
-        def initialize(result=nil, errorid=nil, errordesc=nil)
-          @Result = result
-          @ErrorId = errorid
-          @ErrorDesc = errordesc
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @ErrorId = params['ErrorId']
-          @ErrorDesc = params['ErrorDesc']
         end
       end
 
@@ -2414,7 +1341,7 @@ module TencentCloud
 
       # BatchStartIntegrationTasks请求参数结构体
       class BatchStartIntegrationTasksRequest < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，201为实时任务，202为离线任务
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
@@ -2483,7 +1410,7 @@ module TencentCloud
       class BatchStopIntegrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
         # @type TaskIds: Array
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，201为实时任务，202为离线任务
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
@@ -2578,49 +1505,6 @@ module TencentCloud
         end
       end
 
-      # BatchStopTasksNew请求参数结构体
-      class BatchStopTasksNewRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 批量停止任务的TaskId
-        # @type TaskIdList: Array
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :TaskIdList, :ProjectId
-
-        def initialize(taskidlist=nil, projectid=nil)
-          @TaskIdList = taskidlist
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @TaskIdList = params['TaskIdList']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # BatchStopTasksNew返回参数结构体
-      class BatchStopTasksNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回批量操作成功个数、失败个数、操作总数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # BatchStopWorkflowsByIds请求参数结构体
       class BatchStopWorkflowsByIdsRequest < TencentCloud::Common::AbstractModel
         # @param WorkflowIds: 工作流id列表
@@ -2669,7 +1553,7 @@ module TencentCloud
       class BatchSuspendIntegrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
         # @type TaskIds: Array
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，201为实时任务，202为离线任务
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
@@ -2789,37 +1673,6 @@ module TencentCloud
         end
       end
 
-      # BooleanResponse
-      class BooleanResponse < TencentCloud::Common::AbstractModel
-        # @param Success: 是否成功
-        # @type Success: Boolean
-        # @param Message: 失败返回提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Message: String
-        # @param BaselineId: 基线Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineId: Integer
-        # @param Code: 错误码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Code: String
-
-        attr_accessor :Success, :Message, :BaselineId, :Code
-
-        def initialize(success=nil, message=nil, baselineid=nil, code=nil)
-          @Success = success
-          @Message = message
-          @BaselineId = baselineid
-          @Code = code
-        end
-
-        def deserialize(params)
-          @Success = params['Success']
-          @Message = params['Message']
-          @BaselineId = params['BaselineId']
-          @Code = params['Code']
-        end
-      end
-
       # 实时任务同步速度 字节/s
       class BytesSpeed < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型
@@ -2849,62 +1702,6 @@ module TencentCloud
               speedvalue_tmp = SpeedValue.new
               speedvalue_tmp.deserialize(i)
               @Values << speedvalue_tmp
-            end
-          end
-        end
-      end
-
-      # CandidateDsDTo
-      class CandidateDsDTo < TencentCloud::Common::AbstractModel
-        # @param Value: 取值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Value: String
-        # @param ValueDesc: 取值描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ValueDesc: String
-
-        attr_accessor :Value, :ValueDesc
-
-        def initialize(value=nil, valuedesc=nil)
-          @Value = value
-          @ValueDesc = valuedesc
-        end
-
-        def deserialize(params)
-          @Value = params['Value']
-          @ValueDesc = params['ValueDesc']
-        end
-      end
-
-      # 画布所需的信息
-      class CanvasInfo < TencentCloud::Common::AbstractModel
-        # @param TasksList: 画布任务信息
-        # @type TasksList: Array
-        # @param LinksList: 画布任务链接信息
-        # @type LinksList: Array
-
-        attr_accessor :TasksList, :LinksList
-
-        def initialize(taskslist=nil, linkslist=nil)
-          @TasksList = taskslist
-          @LinksList = linkslist
-        end
-
-        def deserialize(params)
-          unless params['TasksList'].nil?
-            @TasksList = []
-            params['TasksList'].each do |i|
-              taskcanvasinfo_tmp = TaskCanvasInfo.new
-              taskcanvasinfo_tmp.deserialize(i)
-              @TasksList << taskcanvasinfo_tmp
-            end
-          end
-          unless params['LinksList'].nil?
-            @LinksList = []
-            params['LinksList'].each do |i|
-              tasklinkinfo_tmp = TaskLinkInfo.new
-              tasklinkinfo_tmp.deserialize(i)
-              @LinksList << tasklinkinfo_tmp
             end
           end
         end
@@ -2952,100 +1749,6 @@ module TencentCloud
       # CheckAlarmRegularNameExist返回参数结构体
       class CheckAlarmRegularNameExistResponse < TencentCloud::Common::AbstractModel
         # @param Data: 是否重名
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CheckDuplicateRuleName请求参数结构体
-      class CheckDuplicateRuleNameRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param RuleGroupId: 规则组Id
-        # @type RuleGroupId: Integer
-        # @param Name: 规则名称
-        # @type Name: String
-        # @param RuleId: 规则Id
-        # @type RuleId: Integer
-
-        attr_accessor :ProjectId, :RuleGroupId, :Name, :RuleId
-
-        def initialize(projectid=nil, rulegroupid=nil, name=nil, ruleid=nil)
-          @ProjectId = projectid
-          @RuleGroupId = rulegroupid
-          @Name = name
-          @RuleId = ruleid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @RuleGroupId = params['RuleGroupId']
-          @Name = params['Name']
-          @RuleId = params['RuleId']
-        end
-      end
-
-      # CheckDuplicateRuleName返回参数结构体
-      class CheckDuplicateRuleNameResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 规则名称是否重复
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CheckDuplicateTemplateName请求参数结构体
-      class CheckDuplicateTemplateNameRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 规则模板ID
-        # @type TemplateId: Integer
-        # @param Name: 模板名称
-        # @type Name: String
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :TemplateId, :Name, :ProjectId
-
-        def initialize(templateid=nil, name=nil, projectid=nil)
-          @TemplateId = templateid
-          @Name = name
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @TemplateId = params['TemplateId']
-          @Name = params['Name']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # CheckDuplicateTemplateName返回参数结构体
-      class CheckDuplicateTemplateNameResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否重名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3305,55 +2008,6 @@ module TencentCloud
         end
       end
 
-      # 任务实例集合
-      class CollectionTaskOpsDto < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param TotalPage: 总页面数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalPage: Integer
-        # @param PageCount: 当前页面数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageCount: Integer
-        # @param PageNumber: 页码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageNumber: Integer
-        # @param PageSize: 每页数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageSize: Integer
-        # @param Items: 任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Items: Array
-
-        attr_accessor :TotalCount, :TotalPage, :PageCount, :PageNumber, :PageSize, :Items
-
-        def initialize(totalcount=nil, totalpage=nil, pagecount=nil, pagenumber=nil, pagesize=nil, items=nil)
-          @TotalCount = totalcount
-          @TotalPage = totalpage
-          @PageCount = pagecount
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Items = items
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          @TotalPage = params['TotalPage']
-          @PageCount = params['PageCount']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              taskopsdto_tmp = TaskOpsDto.new
-              taskopsdto_tmp.deserialize(i)
-              @Items << taskopsdto_tmp
-            end
-          end
-        end
-      end
-
       # 列血缘聚合信息
       class ColumnAggregationLineage < TencentCloud::Common::AbstractModel
         # @param TableName: 表名
@@ -3512,6 +2166,90 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Scale = params['Scale']
+        end
+      end
+
+      # ColumnItem
+      class ColumnData < TencentCloud::Common::AbstractModel
+        # @param EventName: ColumnName1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
+        # @param EventProjectName: ColumnName1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventProjectName: String
+        # @param Type: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param CurRunDate: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurRunDate: String
+        # @param TaskId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param State: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param EventType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventType: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param ProjectName: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+
+        attr_accessor :EventName, :EventProjectName, :Type, :CurRunDate, :TaskId, :State, :EventType, :TaskName, :ProjectName, :ProjectId
+
+        def initialize(eventname=nil, eventprojectname=nil, type=nil, currundate=nil, taskid=nil, state=nil, eventtype=nil, taskname=nil, projectname=nil, projectid=nil)
+          @EventName = eventname
+          @EventProjectName = eventprojectname
+          @Type = type
+          @CurRunDate = currundate
+          @TaskId = taskid
+          @State = state
+          @EventType = eventtype
+          @TaskName = taskname
+          @ProjectName = projectname
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventProjectName = params['EventProjectName']
+          @Type = params['Type']
+          @CurRunDate = params['CurRunDate']
+          @TaskId = params['TaskId']
+          @State = params['State']
+          @EventType = params['EventType']
+          @TaskName = params['TaskName']
+          @ProjectName = params['ProjectName']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # ColumnItem
+      class ColumnItem < TencentCloud::Common::AbstractModel
+        # @param ColumnName: ColumnName1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param ColumnRef: ColumnName1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnRef: String
+
+        attr_accessor :ColumnName, :ColumnRef
+
+        def initialize(columnname=nil, columnref=nil)
+          @ColumnName = columnname
+          @ColumnRef = columnref
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+          @ColumnRef = params['ColumnRef']
         end
       end
 
@@ -3728,59 +2466,6 @@ module TencentCloud
         end
       end
 
-      # CommitExportTask请求参数结构体
-      class CommitExportTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param RuleExecId: 规则执行Id
-        # @type RuleExecId: Integer
-        # @param ExportType: 导出类型(1.全部,2.触发行,3.通过行)
-        # @type ExportType: Integer
-        # @param ExecutorGroupId: 执行资源组id
-        # @type ExecutorGroupId: String
-        # @param QueueName: 计算资源队列
-        # @type QueueName: String
-
-        attr_accessor :ProjectId, :RuleExecId, :ExportType, :ExecutorGroupId, :QueueName
-
-        def initialize(projectid=nil, ruleexecid=nil, exporttype=nil, executorgroupid=nil, queuename=nil)
-          @ProjectId = projectid
-          @RuleExecId = ruleexecid
-          @ExportType = exporttype
-          @ExecutorGroupId = executorgroupid
-          @QueueName = queuename
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @RuleExecId = params['RuleExecId']
-          @ExportType = params['ExportType']
-          @ExecutorGroupId = params['ExecutorGroupId']
-          @QueueName = params['QueueName']
-        end
-      end
-
-      # CommitExportTask返回参数结构体
-      class CommitExportTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 提交结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CommitIntegrationTask请求参数结构体
       class CommitIntegrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -3836,62 +2521,6 @@ module TencentCloud
       class CommitIntegrationTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 操作成功与否标识
         # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CommitRuleGroupExecResult请求参数结构体
-      class CommitRuleGroupExecResultRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param RuleGroupExecId: 规则组执行ID
-        # @type RuleGroupExecId: Integer
-        # @param RuleGroupState: 规则组执行状态
-        # @type RuleGroupState: String
-        # @param RuleExecResults: 规则执行结果集合
-        # @type RuleExecResults: Array
-
-        attr_accessor :ProjectId, :RuleGroupExecId, :RuleGroupState, :RuleExecResults
-
-        def initialize(projectid=nil, rulegroupexecid=nil, rulegroupstate=nil, ruleexecresults=nil)
-          @ProjectId = projectid
-          @RuleGroupExecId = rulegroupexecid
-          @RuleGroupState = rulegroupstate
-          @RuleExecResults = ruleexecresults
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @RuleGroupExecId = params['RuleGroupExecId']
-          @RuleGroupState = params['RuleGroupState']
-          unless params['RuleExecResults'].nil?
-            @RuleExecResults = []
-            params['RuleExecResults'].each do |i|
-              runnerruleexecresult_tmp = RunnerRuleExecResult.new
-              runnerruleexecresult_tmp.deserialize(i)
-              @RuleExecResults << runnerruleexecresult_tmp
-            end
-          end
-        end
-      end
-
-      # CommitRuleGroupExecResult返回参数结构体
-      class CommitRuleGroupExecResultResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4014,7 +2643,7 @@ module TencentCloud
 
       # 返回命令id
       class CommonIdOpsDto < TencentCloud::Common::AbstractModel
-        # @param Id: 返回命令id
+        # @param Id: 返回补录计划id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
 
@@ -4199,6 +2828,48 @@ module TencentCloud
         end
       end
 
+      # Content
+      class Content < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param Diagnose: 诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Diagnose: String
+        # @param Reason: 理由
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Operation: 操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operation: String
+        # @param Url: 链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :TaskId, :TaskName, :Diagnose, :Reason, :Operation, :Url
+
+        def initialize(taskid=nil, taskname=nil, diagnose=nil, reason=nil, operation=nil, url=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @Diagnose = diagnose
+          @Reason = reason
+          @Operation = operation
+          @Url = url
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @Diagnose = params['Diagnose']
+          @Reason = params['Reason']
+          @Operation = params['Operation']
+          @Url = params['Url']
+        end
+      end
+
       # CountOpsInstanceState请求参数结构体
       class CountOpsInstanceStateRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -4236,183 +2907,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = TaskInstanceCountDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateAlarmRuleRequest
-      class CreateAlarmRuleRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param CreatorId: 创建人名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreatorId: String
-        # @param Creator: 创建人uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Creator: String
-        # @param RuleName: 规则名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleName: String
-        # @param MonitorType: 监控类型,1.task、2.workflow、3.project、4.baseline（默认为1.任务）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MonitorType: Integer
-        # @param MonitorObjectIds: 监控对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MonitorObjectIds: Array
-        # @param AlarmTypes: 告警类型，1.失败告警、2.超时告警、3.成功告警、4.基线破线、5.基线预警、6.基线任务失败（默认1.失败告警）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmTypes: Array
-        # @param AlarmLevel: 告警级别，1.普通、2.重要、3.紧急（默认1.普通）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmLevel: Integer
-        # @param AlarmWays: 告警方式,1.邮件，2.短信，3.微信，4.语音，5.企业微信，6.Http，7.企业微信群；告警方式code列表（默认1.邮件）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmWays: Array
-        # @param AlarmRecipientType: 告警接收人类型：1.指定人员，2.任务责任人，3.值班表（默认1.指定人员）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmRecipientType: Integer
-        # @param AlarmRecipients: 告警接收人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmRecipients: Array
-        # @param AlarmRecipientIds: 告警接收人ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmRecipientIds: Array
-        # @param ExtInfo: 扩展信息, 1.预计运行耗时（默认），2.预计完成时间，3.预计调度时间，4.周期内未完成；取值类型：1.指定指，2.历史均值（默认1.指定指）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExtInfo: String
-
-        attr_accessor :ProjectId, :CreatorId, :Creator, :RuleName, :MonitorType, :MonitorObjectIds, :AlarmTypes, :AlarmLevel, :AlarmWays, :AlarmRecipientType, :AlarmRecipients, :AlarmRecipientIds, :ExtInfo
-
-        def initialize(projectid=nil, creatorid=nil, creator=nil, rulename=nil, monitortype=nil, monitorobjectids=nil, alarmtypes=nil, alarmlevel=nil, alarmways=nil, alarmrecipienttype=nil, alarmrecipients=nil, alarmrecipientids=nil, extinfo=nil)
-          @ProjectId = projectid
-          @CreatorId = creatorid
-          @Creator = creator
-          @RuleName = rulename
-          @MonitorType = monitortype
-          @MonitorObjectIds = monitorobjectids
-          @AlarmTypes = alarmtypes
-          @AlarmLevel = alarmlevel
-          @AlarmWays = alarmways
-          @AlarmRecipientType = alarmrecipienttype
-          @AlarmRecipients = alarmrecipients
-          @AlarmRecipientIds = alarmrecipientids
-          @ExtInfo = extinfo
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @CreatorId = params['CreatorId']
-          @Creator = params['Creator']
-          @RuleName = params['RuleName']
-          @MonitorType = params['MonitorType']
-          @MonitorObjectIds = params['MonitorObjectIds']
-          @AlarmTypes = params['AlarmTypes']
-          @AlarmLevel = params['AlarmLevel']
-          @AlarmWays = params['AlarmWays']
-          @AlarmRecipientType = params['AlarmRecipientType']
-          @AlarmRecipients = params['AlarmRecipients']
-          @AlarmRecipientIds = params['AlarmRecipientIds']
-          @ExtInfo = params['ExtInfo']
-        end
-      end
-
-      # CreateBaseline请求参数结构体
-      class CreateBaselineRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param BaselineName: 基线名称
-        # @type BaselineName: String
-        # @param BaselineType: D或者H；分别表示天基线和小时基线
-        # @type BaselineType: String
-        # @param CreateUin: 创建人id
-        # @type CreateUin: String
-        # @param CreateName: 创建人名称
-        # @type CreateName: String
-        # @param InChargeUin: 基线负责人id
-        # @type InChargeUin: String
-        # @param InChargeName: 基线负责人名称
-        # @type InChargeName: String
-        # @param PromiseTasks: 保障任务
-        # @type PromiseTasks: Array
-        # @param PromiseTime: 保障时间
-        # @type PromiseTime: String
-        # @param WarningMargin: 告警余量/分钟
-        # @type WarningMargin: Integer
-        # @param IsNewAlarm: 1
-        # @type IsNewAlarm: Boolean
-        # @param AlarmRuleDto: 现有告警规则信息
-        # @type AlarmRuleDto: :class:`Tencentcloud::Wedata.v20210820.models.AlarmRuleDto`
-        # @param BaselineCreateAlarmRuleRequest: 新增告警规则描述
-        # @type BaselineCreateAlarmRuleRequest: :class:`Tencentcloud::Wedata.v20210820.models.CreateAlarmRuleRequest`
-
-        attr_accessor :ProjectId, :BaselineName, :BaselineType, :CreateUin, :CreateName, :InChargeUin, :InChargeName, :PromiseTasks, :PromiseTime, :WarningMargin, :IsNewAlarm, :AlarmRuleDto, :BaselineCreateAlarmRuleRequest
-
-        def initialize(projectid=nil, baselinename=nil, baselinetype=nil, createuin=nil, createname=nil, inchargeuin=nil, inchargename=nil, promisetasks=nil, promisetime=nil, warningmargin=nil, isnewalarm=nil, alarmruledto=nil, baselinecreatealarmrulerequest=nil)
-          @ProjectId = projectid
-          @BaselineName = baselinename
-          @BaselineType = baselinetype
-          @CreateUin = createuin
-          @CreateName = createname
-          @InChargeUin = inchargeuin
-          @InChargeName = inchargename
-          @PromiseTasks = promisetasks
-          @PromiseTime = promisetime
-          @WarningMargin = warningmargin
-          @IsNewAlarm = isnewalarm
-          @AlarmRuleDto = alarmruledto
-          @BaselineCreateAlarmRuleRequest = baselinecreatealarmrulerequest
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @BaselineName = params['BaselineName']
-          @BaselineType = params['BaselineType']
-          @CreateUin = params['CreateUin']
-          @CreateName = params['CreateName']
-          @InChargeUin = params['InChargeUin']
-          @InChargeName = params['InChargeName']
-          unless params['PromiseTasks'].nil?
-            @PromiseTasks = []
-            params['PromiseTasks'].each do |i|
-              baselinetaskinfo_tmp = BaselineTaskInfo.new
-              baselinetaskinfo_tmp.deserialize(i)
-              @PromiseTasks << baselinetaskinfo_tmp
-            end
-          end
-          @PromiseTime = params['PromiseTime']
-          @WarningMargin = params['WarningMargin']
-          @IsNewAlarm = params['IsNewAlarm']
-          unless params['AlarmRuleDto'].nil?
-            @AlarmRuleDto = AlarmRuleDto.new
-            @AlarmRuleDto.deserialize(params['AlarmRuleDto'])
-          end
-          unless params['BaselineCreateAlarmRuleRequest'].nil?
-            @BaselineCreateAlarmRuleRequest = CreateAlarmRuleRequest.new
-            @BaselineCreateAlarmRuleRequest.deserialize(params['BaselineCreateAlarmRuleRequest'])
-          end
-        end
-      end
-
-      # CreateBaseline返回参数结构体
-      class CreateBaselineResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否成功
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BooleanResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BooleanResponse.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -4631,54 +3125,6 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateFolder请求参数结构体
-      class CreateFolderRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param FolderName: 文件夹名称
-        # @type FolderName: String
-        # @param ParentsFolderId: 父文件夹ID
-        # @type ParentsFolderId: String
-
-        attr_accessor :ProjectId, :FolderName, :ParentsFolderId
-
-        def initialize(projectid=nil, foldername=nil, parentsfolderid=nil)
-          @ProjectId = projectid
-          @FolderName = foldername
-          @ParentsFolderId = parentsfolderid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @FolderName = params['FolderName']
-          @ParentsFolderId = params['ParentsFolderId']
-        end
-      end
-
-      # CreateFolder返回参数结构体
-      class CreateFolderResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 文件夹Id，null则创建失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CommonId`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = CommonId.new
-            @Data.deserialize(params['Data'])
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -4928,13 +3374,13 @@ module TencentCloud
 
       # CreateOfflineTask请求参数结构体
       class CreateOfflineTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目/工作
+        # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param CycleStep: 1
+        # @param CycleStep: 间隔，可选，默认1。非空。默认 1
         # @type CycleStep: Integer
-        # @param DelayTime: 0
+        # @param DelayTime: 延时执行时间，单位分钟
         # @type DelayTime: Integer
-        # @param EndTime: 2099-12-31 00:00:00
+        # @param EndTime: 任务结束数据时间。非空。默认当前时间
         # @type EndTime: String
         # @param Notes: 备注
         # @type Notes: String
@@ -4944,7 +3390,7 @@ module TencentCloud
         # @type TaskName: String
         # @param TypeId: 跟之前调用调度接口保持一致27
         # @type TypeId: Integer
-        # @param TaskAction: 默认 ""
+        # @param TaskAction: 时间指定，如月任务指定1，3号，则填入 1，3。非空。默认 "" 月任务：如具体1，3号则写 "1,3"，指定月末不可和具体号数一起输入，仅能为 "L"
         # @type TaskAction: String
         # @param TaskMode: 区分画布和表单
         # @type TaskMode: String
@@ -5046,13 +3492,13 @@ module TencentCloud
         # @type SameSelfDependType: Boolean
         # @param SourceTaskCycle: 补录实例原始周期类型
         # @type SourceTaskCycle: String
-        # @param SchedulerResourceGroup: 重新指定的调度资源组ID
+        # @param SchedulerResourceGroup: 补录指定的调度资源组（ID） 为空则表示使用任务原有调度执行资源组
         # @type SchedulerResourceGroup: String
-        # @param IntegrationResourceGroup: 重新指定的集成资源组ID
+        # @param IntegrationResourceGroup: 补录指定的集成资源组（ID） 为空则表示使用任务原有集成执行资源组
         # @type IntegrationResourceGroup: String
-        # @param SchedulerResourceGroupName: 重新指定的调度资源组名称
+        # @param SchedulerResourceGroupName: 补录指定的调度资源组名称 为空则表示使用任务原有调度执行资源组
         # @type SchedulerResourceGroupName: String
-        # @param IntegrationResourceGroupName: 重新指定的集成资源组名称
+        # @param IntegrationResourceGroupName: 补录指定的集成资源组名称 为空则表示使用任务原有集成执行资源组
         # @type IntegrationResourceGroupName: String
 
         attr_accessor :ProjectId, :MakeName, :TaskIdList, :MakeDatetimeList, :ProjectIdent, :CheckParent, :CheckParentType, :ProjectName, :SelfDependence, :ParallelNum, :SameCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :CreatorId, :Creator, :Remark, :SameSelfDependType, :SourceTaskCycle, :SchedulerResourceGroup, :IntegrationResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroupName
@@ -5143,123 +3589,6 @@ module TencentCloud
             @Data = CommonIdOpsDto.new
             @Data.deserialize(params['Data'])
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateOrUpdateResource请求参数结构体
-      class CreateOrUpdateResourceRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID，必填项
-        # @type ProjectId: String
-        # @param Files: 文件名，必填项
-        # @type Files: Array
-        # @param FilePath: 必填项，文件所属路径，资源管理根路径为 /datastudio/resource/项目ID/文件夹名
-        # @type FilePath: String
-        # @param CosBucketName: cos存储桶名字
-        # @type CosBucketName: String
-        # @param CosRegion: cos所属地域
-        # @type CosRegion: String
-        # @param NewFile: 是否为新文件，新增为 true，更新为 false
-        # @type NewFile: Boolean
-        # @param FilesSize: 必填项，文件大小，与 Files 字段对应
-        # @type FilesSize: Array
-        # @param FileMd5: 必填项，资源的Md5值（COS中的ETag）
-        # @type FileMd5: String
-
-        attr_accessor :ProjectId, :Files, :FilePath, :CosBucketName, :CosRegion, :NewFile, :FilesSize, :FileMd5
-
-        def initialize(projectid=nil, files=nil, filepath=nil, cosbucketname=nil, cosregion=nil, newfile=nil, filessize=nil, filemd5=nil)
-          @ProjectId = projectid
-          @Files = files
-          @FilePath = filepath
-          @CosBucketName = cosbucketname
-          @CosRegion = cosregion
-          @NewFile = newfile
-          @FilesSize = filessize
-          @FileMd5 = filemd5
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @Files = params['Files']
-          @FilePath = params['FilePath']
-          @CosBucketName = params['CosBucketName']
-          @CosRegion = params['CosRegion']
-          @NewFile = params['NewFile']
-          @FilesSize = params['FilesSize']
-          @FileMd5 = params['FileMd5']
-        end
-      end
-
-      # CreateOrUpdateResource返回参数结构体
-      class CreateOrUpdateResourceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 响应数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              userfiledto_tmp = UserFileDTO.new
-              userfiledto_tmp.deserialize(i)
-              @Data << userfiledto_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateResourcePath请求参数结构体
-      class CreateResourcePathRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 文件夹名称，如 aaa
-        # @type Name: String
-        # @param FilePath: 文件夹所属父目录，请注意，根目录为 /datastudio/resource
-        # @type FilePath: String
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-
-        attr_accessor :Name, :FilePath, :ProjectId
-
-        def initialize(name=nil, filepath=nil, projectid=nil)
-          @Name = name
-          @FilePath = filepath
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @FilePath = params['FilePath']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # CreateResourcePath返回参数结构体
-      class CreateResourcePathResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 新建成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -5526,7 +3855,7 @@ module TencentCloud
         # @type WorkflowId: String
         # @param TaskName: 任务名
         # @type TaskName: String
-        # @param TaskType: 26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40CDW PG，92MapReduce
+        # @param TaskType: 26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40TCHouse-P，92MapReduce
         # @type TaskType: Integer
         # @param TaskExt: 扩展属性
         # @type TaskExt: Array
@@ -5597,10 +3926,12 @@ module TencentCloud
         # @type AlarmWays: String
         # @param AlarmRecipientTypes: 告警对象:1-项目管理员，2-任务责任人
         # @type AlarmRecipientTypes: String
+        # @param EnableCheckTaskCycleLink: 是否需要校验循环依赖，默认为 true，如果使用了 CheckTaskCycleLink 和 CheckTaskCycleConfiguration 两个接口校验成功可以传 false，后台服务器不再做校验
+        # @type EnableCheckTaskCycleLink: Boolean
 
-        attr_accessor :Task, :NeedCheckParentSubmitted, :AutoRun, :ProjectId, :RequestFromSource, :AlarmWays, :AlarmRecipientTypes
+        attr_accessor :Task, :NeedCheckParentSubmitted, :AutoRun, :ProjectId, :RequestFromSource, :AlarmWays, :AlarmRecipientTypes, :EnableCheckTaskCycleLink
 
-        def initialize(task=nil, needcheckparentsubmitted=nil, autorun=nil, projectid=nil, requestfromsource=nil, alarmways=nil, alarmrecipienttypes=nil)
+        def initialize(task=nil, needcheckparentsubmitted=nil, autorun=nil, projectid=nil, requestfromsource=nil, alarmways=nil, alarmrecipienttypes=nil, enablechecktaskcyclelink=nil)
           @Task = task
           @NeedCheckParentSubmitted = needcheckparentsubmitted
           @AutoRun = autorun
@@ -5608,6 +3939,7 @@ module TencentCloud
           @RequestFromSource = requestfromsource
           @AlarmWays = alarmways
           @AlarmRecipientTypes = alarmrecipienttypes
+          @EnableCheckTaskCycleLink = enablechecktaskcyclelink
         end
 
         def deserialize(params)
@@ -5621,12 +3953,13 @@ module TencentCloud
           @RequestFromSource = params['RequestFromSource']
           @AlarmWays = params['AlarmWays']
           @AlarmRecipientTypes = params['AlarmRecipientTypes']
+          @EnableCheckTaskCycleLink = params['EnableCheckTaskCycleLink']
         end
       end
 
       # CreateTaskVersionDs返回参数结构体
       class CreateTaskVersionDsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 1
+        # @param Data: 版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5645,35 +3978,38 @@ module TencentCloud
         end
       end
 
-      # CreateWorkflow请求参数结构体
-      class CreateWorkflowRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
+      # CreateWorkflowDs请求参数结构体
+      class CreateWorkflowDsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
         # @type ProjectId: String
         # @param WorkflowName: 工作流名称
         # @type WorkflowName: String
-        # @param FolderId: 所属文件夹id
+        # @param FolderId: 文件夹ID
         # @type FolderId: String
+        # @param WorkflowDesc: 工作流描述
+        # @type WorkflowDesc: String
 
-        attr_accessor :ProjectId, :WorkflowName, :FolderId
+        attr_accessor :ProjectId, :WorkflowName, :FolderId, :WorkflowDesc
 
-        def initialize(projectid=nil, workflowname=nil, folderid=nil)
+        def initialize(projectid=nil, workflowname=nil, folderid=nil, workflowdesc=nil)
           @ProjectId = projectid
           @WorkflowName = workflowname
           @FolderId = folderid
+          @WorkflowDesc = workflowdesc
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @WorkflowName = params['WorkflowName']
           @FolderId = params['FolderId']
+          @WorkflowDesc = params['WorkflowDesc']
         end
       end
 
-      # CreateWorkflow返回参数结构体
-      class CreateWorkflowResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回工作流Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CommonId`
+      # CreateWorkflowDs返回参数结构体
+      class CreateWorkflowDsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 工作流ID
+        # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5685,10 +4021,7 @@ module TencentCloud
         end
 
         def deserialize(params)
-          unless params['Data'].nil?
-            @Data = CommonId.new
-            @Data.deserialize(params['Data'])
-          end
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -5707,7 +4040,7 @@ module TencentCloud
         # @type SkipEventListening: Boolean
         # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
         # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
+        # @param SearchCondition: 查询条件,当前接口需要把要查询的示例信息放在该字段
         # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
         # @param OptType: 访问类型
         # @type OptType: String
@@ -6123,10 +4456,13 @@ module TencentCloud
         # @param OriginSchemaName: schema名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginSchemaName: String
+        # @param DsEnvType: 0或者未返回.未定义，1.生产 2.开发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DsEnvType: Integer
 
-        attr_accessor :DatasourceName, :DatasourceId, :DatabaseName, :DatabaseId, :InstanceId, :DatasourceType, :OriginDatabaseName, :OriginSchemaName
+        attr_accessor :DatasourceName, :DatasourceId, :DatabaseName, :DatabaseId, :InstanceId, :DatasourceType, :OriginDatabaseName, :OriginSchemaName, :DsEnvType
 
-        def initialize(datasourcename=nil, datasourceid=nil, databasename=nil, databaseid=nil, instanceid=nil, datasourcetype=nil, origindatabasename=nil, originschemaname=nil)
+        def initialize(datasourcename=nil, datasourceid=nil, databasename=nil, databaseid=nil, instanceid=nil, datasourcetype=nil, origindatabasename=nil, originschemaname=nil, dsenvtype=nil)
           @DatasourceName = datasourcename
           @DatasourceId = datasourceid
           @DatabaseName = databasename
@@ -6135,6 +4471,7 @@ module TencentCloud
           @DatasourceType = datasourcetype
           @OriginDatabaseName = origindatabasename
           @OriginSchemaName = originschemaname
+          @DsEnvType = dsenvtype
         end
 
         def deserialize(params)
@@ -6146,6 +4483,7 @@ module TencentCloud
           @DatasourceType = params['DatasourceType']
           @OriginDatabaseName = params['OriginDatabaseName']
           @OriginSchemaName = params['OriginSchemaName']
+          @DsEnvType = params['DsEnvType']
         end
       end
 
@@ -6283,10 +4621,13 @@ module TencentCloud
         # @param Version: 数据源版本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param ParamsString: 数据源附带参数信息Params json字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamsString: String
 
-        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version
+        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version, :ParamsString
 
-        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil)
+        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil, paramsstring=nil)
           @DatabaseNames = databasenames
           @Description = description
           @ID = id
@@ -6296,6 +4637,7 @@ module TencentCloud
           @Type = type
           @ClusterId = clusterid
           @Version = version
+          @ParamsString = paramsstring
         end
 
         def deserialize(params)
@@ -6308,77 +4650,7 @@ module TencentCloud
           @Type = params['Type']
           @ClusterId = params['ClusterId']
           @Version = params['Version']
-        end
-      end
-
-      # 任务运维数据源类型信息
-      class DatasourceTypeByTaskType < TencentCloud::Common::AbstractModel
-        # @param TypeId: 类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TypeId: Integer
-        # @param CandidateTexts: 可选数据源列表文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CandidateTexts: String
-        # @param CandidateValues: 可选数据源列表取值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CandidateValues: String
-
-        attr_accessor :TypeId, :CandidateTexts, :CandidateValues
-
-        def initialize(typeid=nil, candidatetexts=nil, candidatevalues=nil)
-          @TypeId = typeid
-          @CandidateTexts = candidatetexts
-          @CandidateValues = candidatevalues
-        end
-
-        def deserialize(params)
-          @TypeId = params['TypeId']
-          @CandidateTexts = params['CandidateTexts']
-          @CandidateValues = params['CandidateValues']
-        end
-      end
-
-      # DeleteBaseline请求参数结构体
-      class DeleteBaselineRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineId: 基线id
-        # @type BaselineId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :BaselineId, :ProjectId
-
-        def initialize(baselineid=nil, projectid=nil)
-          @BaselineId = baselineid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @BaselineId = params['BaselineId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DeleteBaseline返回参数结构体
-      class DeleteBaselineResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BooleanResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BooleanResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
+          @ParamsString = params['ParamsString']
         end
       end
 
@@ -6540,6 +4812,8 @@ module TencentCloud
         # @param ResourceIds: 资源ID
         # @type ResourceIds: Array
         # @param UseStatus: 使用状态
+        # - true
+        # - false
         # @type UseStatus: String
         # @param FilePaths: 文件路径
         # @type FilePaths: Array
@@ -6626,46 +4900,6 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteFolder请求参数结构体
-      class DeleteFolderRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param FolderId: 文件夹ID
-        # @type FolderId: String
-
-        attr_accessor :ProjectId, :FolderId
-
-        def initialize(projectid=nil, folderid=nil)
-          @ProjectId = projectid
-          @FolderId = folderid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @FolderId = params['FolderId']
-        end
-      end
-
-      # DeleteFolder返回参数结构体
-      class DeleteFolderResponse < TencentCloud::Common::AbstractModel
-        # @param Data: true代表删除成功，false代表删除失败
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -6854,12 +5088,21 @@ module TencentCloud
 
       # DeleteProjectUsers请求参数结构体
       class DeleteProjectUsersRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param UserIds: 用户ID列表
+        # @type UserIds: Array
 
+        attr_accessor :ProjectId, :UserIds
 
-        def initialize()
+        def initialize(projectid=nil, userids=nil)
+          @ProjectId = projectid
+          @UserIds = userids
         end
 
         def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserIds = params['UserIds']
         end
       end
 
@@ -7265,59 +5508,6 @@ module TencentCloud
         end
       end
 
-      # DeleteWorkflowNew请求参数结构体
-      class DeleteWorkflowNewRequest < TencentCloud::Common::AbstractModel
-        # @param WorkFlowId: 工作流id
-        # @type WorkFlowId: String
-        # @param DeleteMode: true : 删除后下游任务可正常运行
-        # false：删除后下游任务不可运行
-        # @type DeleteMode: Boolean
-        # @param EnableNotify: true：通知下游任务责任人
-        # false:  不通知下游任务责任人
-        # @type EnableNotify: Boolean
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :WorkFlowId, :DeleteMode, :EnableNotify, :ProjectId
-
-        def initialize(workflowid=nil, deletemode=nil, enablenotify=nil, projectid=nil)
-          @WorkFlowId = workflowid
-          @DeleteMode = deletemode
-          @EnableNotify = enablenotify
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @WorkFlowId = params['WorkFlowId']
-          @DeleteMode = params['DeleteMode']
-          @EnableNotify = params['EnableNotify']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DeleteWorkflowNew返回参数结构体
-      class DeleteWorkflowNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回删除结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.OperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 依赖配置
       class DependencyConfig < TencentCloud::Common::AbstractModel
         # @param DependConfType: 仅五种周期运行依赖配置： HOUR,DAY,WEEK,MONTH,YEAR,CRONTAB,MINUTE
@@ -7356,69 +5546,6 @@ module TencentCloud
             @SonTask = TaskInnerInfo.new
             @SonTask.deserialize(params['SonTask'])
           end
-        end
-      end
-
-      # 依赖配置无循环递归属性
-      class DependencyConfigDsDTONoRecurV2 < TencentCloud::Common::AbstractModel
-        # @param ParentTask: ParentTask任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParentTask: :class:`Tencentcloud::Wedata.v20210820.models.TaskDsDTONoRecurV2`
-        # @param SonTask: SonTask任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SonTask: :class:`Tencentcloud::Wedata.v20210820.models.TaskDsDTONoRecurV2`
-        # @param MainCyclicConfig: the dependency config
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MainCyclicConfig: String
-        # @param SubordinateCyclicConfig: SubordinateCyclicConfig配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubordinateCyclicConfig: String
-        # @param DependencyStrategy: DependencyStrategy策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyStrategy: :class:`Tencentcloud::Wedata.v20210820.models.DependencyStrategyDs`
-
-        attr_accessor :ParentTask, :SonTask, :MainCyclicConfig, :SubordinateCyclicConfig, :DependencyStrategy
-
-        def initialize(parenttask=nil, sontask=nil, maincyclicconfig=nil, subordinatecyclicconfig=nil, dependencystrategy=nil)
-          @ParentTask = parenttask
-          @SonTask = sontask
-          @MainCyclicConfig = maincyclicconfig
-          @SubordinateCyclicConfig = subordinatecyclicconfig
-          @DependencyStrategy = dependencystrategy
-        end
-
-        def deserialize(params)
-          unless params['ParentTask'].nil?
-            @ParentTask = TaskDsDTONoRecurV2.new
-            @ParentTask.deserialize(params['ParentTask'])
-          end
-          unless params['SonTask'].nil?
-            @SonTask = TaskDsDTONoRecurV2.new
-            @SonTask.deserialize(params['SonTask'])
-          end
-          @MainCyclicConfig = params['MainCyclicConfig']
-          @SubordinateCyclicConfig = params['SubordinateCyclicConfig']
-          unless params['DependencyStrategy'].nil?
-            @DependencyStrategy = DependencyStrategyDs.new
-            @DependencyStrategy.deserialize(params['DependencyStrategy'])
-          end
-        end
-      end
-
-      # 依赖配置策略
-      class DependencyStrategyDs < TencentCloud::Common::AbstractModel
-        # @param PollingNullStrategy: 等待（默认策略）或 执行
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PollingNullStrategy: String
-
-        attr_accessor :PollingNullStrategy
-
-        def initialize(pollingnullstrategy=nil)
-          @PollingNullStrategy = pollingnullstrategy
-        end
-
-        def deserialize(params)
-          @PollingNullStrategy = params['PollingNullStrategy']
         end
       end
 
@@ -7728,100 +5855,6 @@ module TencentCloud
         end
       end
 
-      # DescribeAllTaskType请求参数结构体
-      class DescribeAllTaskTypeRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-
-        attr_accessor :ProjectId
-
-        def initialize(projectid=nil)
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeAllTaskType返回参数结构体
-      class DescribeAllTaskTypeResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              tasktypeopsdto_tmp = TaskTypeOpsDto.new
-              tasktypeopsdto_tmp.deserialize(i)
-              @Data << tasktypeopsdto_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAllUsedVersionSon请求参数结构体
-      class DescribeAllUsedVersionSonRequest < TencentCloud::Common::AbstractModel
-        # @param SearchCondition: 搜索条件
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceSearchCondition`
-        # @param PageNumber: 页码
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-
-        attr_accessor :SearchCondition, :PageNumber, :PageSize
-
-        def initialize(searchcondition=nil, pagenumber=nil, pagesize=nil)
-          @SearchCondition = searchcondition
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceSearchCondition.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeAllUsedVersionSon返回参数结构体
-      class DescribeAllUsedVersionSonResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CollectionTaskOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = CollectionTaskOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 申请列表
       class DescribeApply < TencentCloud::Common::AbstractModel
         # @param Rows: 申请列表详情
@@ -7969,377 +6002,6 @@ module TencentCloud
               approvetype_tmp.deserialize(i)
               @Data << approvetype_tmp
             end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBaselineAllTaskDag请求参数结构体
-      class DescribeBaselineAllTaskDagRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineId: 基线id
-        # @type BaselineId: String
-        # @param ProjectId: 1
-        # @type ProjectId: String
-        # @param BaselineTaskId: 1
-        # @type BaselineTaskId: String
-
-        attr_accessor :BaselineId, :ProjectId, :BaselineTaskId
-
-        def initialize(baselineid=nil, projectid=nil, baselinetaskid=nil)
-          @BaselineId = baselineid
-          @ProjectId = projectid
-          @BaselineTaskId = baselinetaskid
-        end
-
-        def deserialize(params)
-          @BaselineId = params['BaselineId']
-          @ProjectId = params['ProjectId']
-          @BaselineTaskId = params['BaselineTaskId']
-        end
-      end
-
-      # DescribeBaselineAllTaskDag返回参数结构体
-      class DescribeBaselineAllTaskDagResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 基线
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeBaselineTaskDagResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DescribeBaselineTaskDagResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBaselineById请求参数结构体
-      class DescribeBaselineByIdRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineId: 无
-        # @type BaselineId: String
-        # @param ProjectId: 1
-        # @type ProjectId: String
-
-        attr_accessor :BaselineId, :ProjectId
-
-        def initialize(baselineid=nil, projectid=nil)
-          @BaselineId = baselineid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @BaselineId = params['BaselineId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeBaselineById返回参数结构体
-      class DescribeBaselineByIdResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 租户id
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BaselineDetailResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BaselineDetailResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBaselineInstanceDag请求参数结构体
-      class DescribeBaselineInstanceDagRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineInstanceId: 基线实例id
-        # @type BaselineInstanceId: Integer
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param UpstreamInstanceIds: 要展开的上游实例id，格式为 taskIdA_curRunDate1,taskIdB_curRunDate2
-        # @type UpstreamInstanceIds: String
-        # @param Level: 向上展开层级
-        # @type Level: Integer
-        # @param PromiseTaskId: 保障任务id
-        # @type PromiseTaskId: String
-
-        attr_accessor :BaselineInstanceId, :ProjectId, :UpstreamInstanceIds, :Level, :PromiseTaskId
-
-        def initialize(baselineinstanceid=nil, projectid=nil, upstreaminstanceids=nil, level=nil, promisetaskid=nil)
-          @BaselineInstanceId = baselineinstanceid
-          @ProjectId = projectid
-          @UpstreamInstanceIds = upstreaminstanceids
-          @Level = level
-          @PromiseTaskId = promisetaskid
-        end
-
-        def deserialize(params)
-          @BaselineInstanceId = params['BaselineInstanceId']
-          @ProjectId = params['ProjectId']
-          @UpstreamInstanceIds = params['UpstreamInstanceIds']
-          @Level = params['Level']
-          @PromiseTaskId = params['PromiseTaskId']
-        end
-      end
-
-      # DescribeBaselineInstanceDag返回参数结构体
-      class DescribeBaselineInstanceDagResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 基线实例dag
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BaselineInstanceVo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BaselineInstanceVo.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBaselineInstanceGantt请求参数结构体
-      class DescribeBaselineInstanceGanttRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineInstanceId: 基线实例id
-        # @type BaselineInstanceId: Integer
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param PromiseTaskId: 保障任务id
-        # @type PromiseTaskId: String
-
-        attr_accessor :BaselineInstanceId, :ProjectId, :PromiseTaskId
-
-        def initialize(baselineinstanceid=nil, projectid=nil, promisetaskid=nil)
-          @BaselineInstanceId = baselineinstanceid
-          @ProjectId = projectid
-          @PromiseTaskId = promisetaskid
-        end
-
-        def deserialize(params)
-          @BaselineInstanceId = params['BaselineInstanceId']
-          @ProjectId = params['ProjectId']
-          @PromiseTaskId = params['PromiseTaskId']
-        end
-      end
-
-      # DescribeBaselineInstanceGantt返回参数结构体
-      class DescribeBaselineInstanceGanttResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 基线实例，带有关键任务实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BaselineInstanceVo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BaselineInstanceVo.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBaselineInstances请求参数结构体
-      class DescribeBaselineInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 分页页码
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-        # @param Filters: 过滤字段
-        # @type Filters: Array
-
-        attr_accessor :PageNumber, :PageSize, :Filters
-
-        def initialize(pagenumber=nil, pagesize=nil, filters=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # 分页查询实例响应
-      class DescribeBaselineInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param BaselineInstances: 基线实例数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineInstances: Array
-        # @param TotalCount: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-
-        attr_accessor :BaselineInstances, :TotalCount
-
-        def initialize(baselineinstances=nil, totalcount=nil)
-          @BaselineInstances = baselineinstances
-          @TotalCount = totalcount
-        end
-
-        def deserialize(params)
-          unless params['BaselineInstances'].nil?
-            @BaselineInstances = []
-            params['BaselineInstances'].each do |i|
-              baselineinstancevo_tmp = BaselineInstanceVo.new
-              baselineinstancevo_tmp.deserialize(i)
-              @BaselineInstances << baselineinstancevo_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-        end
-      end
-
-      # DescribeBaselineResponse
-      class DescribeBaselineResponse < TencentCloud::Common::AbstractModel
-        # @param Baselines: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Baselines: Array
-        # @param TotalCount: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-
-        attr_accessor :Baselines, :TotalCount
-
-        def initialize(baselines=nil, totalcount=nil)
-          @Baselines = baselines
-          @TotalCount = totalcount
-        end
-
-        def deserialize(params)
-          unless params['Baselines'].nil?
-            @Baselines = []
-            params['Baselines'].each do |i|
-              baselinedto_tmp = BaselineDto.new
-              baselinedto_tmp.deserialize(i)
-              @Baselines << baselinedto_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-        end
-      end
-
-      # DescribeBaselineTaskDagResponse
-      class DescribeBaselineTaskDagResponse < TencentCloud::Common::AbstractModel
-        # @param Baseline: 基线
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Baseline: :class:`Tencentcloud::Wedata.v20210820.models.BaselineDto`
-        # @param BaselineTaskDag: 基线任务dag
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineTaskDag: Array
-
-        attr_accessor :Baseline, :BaselineTaskDag
-
-        def initialize(baseline=nil, baselinetaskdag=nil)
-          @Baseline = baseline
-          @BaselineTaskDag = baselinetaskdag
-        end
-
-        def deserialize(params)
-          unless params['Baseline'].nil?
-            @Baseline = BaselineDto.new
-            @Baseline.deserialize(params['Baseline'])
-          end
-          unless params['BaselineTaskDag'].nil?
-            @BaselineTaskDag = []
-            params['BaselineTaskDag'].each do |i|
-              baselinetaskdto_tmp = BaselineTaskDto.new
-              baselinetaskdto_tmp.deserialize(i)
-              @BaselineTaskDag << baselinetaskdto_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeBaselines请求参数结构体
-      class DescribeBaselinesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 无
-        # @type Filters: Array
-        # @param PageNumber: 页面下标
-        # @type PageNumber: Integer
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-
-        attr_accessor :Filters, :PageNumber, :PageSize
-
-        def initialize(filters=nil, pagenumber=nil, pagesize=nil)
-          @Filters = filters
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeBaselines返回参数结构体
-      class DescribeBaselinesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 基线列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeBaselineResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DescribeBaselineResponse.new
-            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -8613,42 +6275,6 @@ module TencentCloud
         end
       end
 
-      # DescribeBelongTo请求参数结构体
-      class DescribeBelongToRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :ProjectId
-
-        def initialize(projectid=nil)
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeBelongTo返回参数结构体
-      class DescribeBelongToResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 所属任务/基线
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeColumnLineage请求参数结构体
       class DescribeColumnLineageRequest < TencentCloud::Common::AbstractModel
         # @param Direction: 查询方向，INPUT,OUTPUT,BOTH枚举值
@@ -8805,58 +6431,6 @@ module TencentCloud
         end
       end
 
-      # DescribeDataBases请求参数结构体
-      class DescribeDataBasesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param DatasourceId: 数据源id
-        # @type DatasourceId: String
-        # @param DsTypes: 数据源类型
-        # @type DsTypes: Array
-
-        attr_accessor :ProjectId, :DatasourceId, :DsTypes
-
-        def initialize(projectid=nil, datasourceid=nil, dstypes=nil)
-          @ProjectId = projectid
-          @DatasourceId = datasourceid
-          @DsTypes = dstypes
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @DatasourceId = params['DatasourceId']
-          @DsTypes = params['DsTypes']
-        end
-      end
-
-      # DescribeDataBases返回参数结构体
-      class DescribeDataBasesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据来源数据数据库列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              databaseinfo_tmp = DatabaseInfo.new
-              databaseinfo_tmp.deserialize(i)
-              @Data << databaseinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDataCheckStat请求参数结构体
       class DescribeDataCheckStatRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -8899,62 +6473,6 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = DataCheckStat.new
             @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDataObjects请求参数结构体
-      class DescribeDataObjectsRequest < TencentCloud::Common::AbstractModel
-        # @param DatasourceId: 数据来源ID
-        # @type DatasourceId: String
-        # @param TableId: 数据表ID
-        # @type TableId: String
-        # @param RuleGroupId: 质量规则组ID
-        # @type RuleGroupId: Integer
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-
-        attr_accessor :DatasourceId, :TableId, :RuleGroupId, :ProjectId
-
-        def initialize(datasourceid=nil, tableid=nil, rulegroupid=nil, projectid=nil)
-          @DatasourceId = datasourceid
-          @TableId = tableid
-          @RuleGroupId = rulegroupid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @DatasourceId = params['DatasourceId']
-          @TableId = params['TableId']
-          @RuleGroupId = params['RuleGroupId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeDataObjects返回参数结构体
-      class DescribeDataObjectsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据对象列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              sourceobject_tmp = SourceObject.new
-              sourceobject_tmp.deserialize(i)
-              @Data << sourceobject_tmp
-            end
           end
           @RequestId = params['RequestId']
         end
@@ -9104,115 +6622,6 @@ module TencentCloud
         end
       end
 
-      # DescribeDataSourceWithoutInfo请求参数结构体
-      class DescribeDataSourceWithoutInfoRequest < TencentCloud::Common::AbstractModel
-        # @param OrderFields: 1
-        # @type OrderFields: Array
-        # @param Filters: 1
-        # @type Filters: Array
-
-        attr_accessor :OrderFields, :Filters
-
-        def initialize(orderfields=nil, filters=nil)
-          @OrderFields = orderfields
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          unless params['OrderFields'].nil?
-            @OrderFields = []
-            params['OrderFields'].each do |i|
-              orderfield_tmp = OrderField.new
-              orderfield_tmp.deserialize(i)
-              @OrderFields << orderfield_tmp
-            end
-          end
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeDataSourceWithoutInfo返回参数结构体
-      class DescribeDataSourceWithoutInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              datasourceinfo_tmp = DataSourceInfo.new
-              datasourceinfo_tmp.deserialize(i)
-              @Data << datasourceinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDataTypes请求参数结构体
-      class DescribeDataTypesRequest < TencentCloud::Common::AbstractModel
-        # @param DatasourceType: 数据源类型，MYSQL|HIVE|KAFKA|POSTGRE|TCHouse-P|ORACLE|SQLSERVER|FTP|HDFS|ICEBERG|HBASE|TDSQL|TDSQLC|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DORIS|CKAFKA|MONGODB|FTP_FILE|HDFS_FILE|DTS_KAFKA|REST_API|FILE|TIDB|SYBASE|TCHOUSE_X 等
-        # @type DatasourceType: String
-        # @param ProjectId: 项目ID。
-        # @type ProjectId: String
-
-        attr_accessor :DatasourceType, :ProjectId
-
-        def initialize(datasourcetype=nil, projectid=nil)
-          @DatasourceType = datasourcetype
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @DatasourceType = params['DatasourceType']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeDataTypes返回参数结构体
-      class DescribeDataTypesResponse < TencentCloud::Common::AbstractModel
-        # @param TypeInfoSet: 字段类型列表。
-        # @type TypeInfoSet: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TypeInfoSet, :RequestId
-
-        def initialize(typeinfoset=nil, requestid=nil)
-          @TypeInfoSet = typeinfoset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['TypeInfoSet'].nil?
-            @TypeInfoSet = []
-            params['TypeInfoSet'].each do |i|
-              label_tmp = Label.new
-              label_tmp.deserialize(i)
-              @TypeInfoSet << label_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDatabaseInfoList请求参数结构体
       class DescribeDatabaseInfoListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤参数
@@ -9243,6 +6652,7 @@ module TencentCloud
       # DescribeDatabaseInfoList返回参数结构体
       class DescribeDatabaseInfoListResponse < TencentCloud::Common::AbstractModel
         # @param DatabaseInfo: 数据库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseInfo: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9333,15 +6743,19 @@ module TencentCloud
       class DescribeDatasourceRequest < TencentCloud::Common::AbstractModel
         # @param Id: 对象唯一ID
         # @type Id: Integer
+        # @param Env: production：生产，development开发
+        # @type Env: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :Env
 
-        def initialize(id=nil)
+        def initialize(id=nil, env=nil)
           @Id = id
+          @Env = env
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @Env = params['Env']
         end
       end
 
@@ -9364,54 +6778,6 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = DataSourceInfo.new
             @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDependOpsTaskList请求参数结构体
-      class DescribeDependOpsTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
-        # @type TaskId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :TaskId, :ProjectId
-
-        def initialize(taskid=nil, projectid=nil)
-          @TaskId = taskid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeDependOpsTaskList返回参数结构体
-      class DescribeDependOpsTaskListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              taskopsdto_tmp = TaskOpsDto.new
-              taskopsdto_tmp.deserialize(i)
-              @Data << taskopsdto_tmp
-            end
           end
           @RequestId = params['RequestId']
         end
@@ -9517,129 +6883,6 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDependTasksNew请求参数结构体
-      class DescribeDependTasksNewRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
-        # @type TaskId: String
-        # @param Deep: 上游/下游层级1-6级
-        # @type Deep: Integer
-        # @param Up: 1: 表示查询上游节点；0:表示查询下游节点；2：表示查询上游和下游节点
-        # @type Up: Integer
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param WorkflowId: 任务工作流id
-        # @type WorkflowId: String
-
-        attr_accessor :TaskId, :Deep, :Up, :ProjectId, :WorkflowId
-
-        def initialize(taskid=nil, deep=nil, up=nil, projectid=nil, workflowid=nil)
-          @TaskId = taskid
-          @Deep = deep
-          @Up = up
-          @ProjectId = projectid
-          @WorkflowId = workflowid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @Deep = params['Deep']
-          @Up = params['Up']
-          @ProjectId = params['ProjectId']
-          @WorkflowId = params['WorkflowId']
-        end
-      end
-
-      # DescribeDependTasksNew返回参数结构体
-      class DescribeDependTasksNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 画布任务和链接信息
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CanvasInfo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = CanvasInfo.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDiagnosticInfoByBaselineId请求参数结构体
-      class DescribeDiagnosticInfoByBaselineIdRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineId: 基线id
-        # @type BaselineId: String
-        # @param ProjectId: 1
-        # @type ProjectId: String
-
-        attr_accessor :BaselineId, :ProjectId
-
-        def initialize(baselineid=nil, projectid=nil)
-          @BaselineId = baselineid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @BaselineId = params['BaselineId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeDiagnosticInfoByBaselineId返回参数结构体
-      class DescribeDiagnosticInfoByBaselineIdResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 基线任务dag
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeDiagnosticInfoResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DescribeDiagnosticInfoResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDiagnosticInfoResponse
-      class DescribeDiagnosticInfoResponse < TencentCloud::Common::AbstractModel
-        # @param BaselineTasks: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BaselineTasks: Array
-
-        attr_accessor :BaselineTasks
-
-        def initialize(baselinetasks=nil)
-          @BaselineTasks = baselinetasks
-        end
-
-        def deserialize(params)
-          unless params['BaselineTasks'].nil?
-            @BaselineTasks = []
-            params['BaselineTasks'].each do |i|
-              baselinetaskdto_tmp = BaselineTaskDto.new
-              baselinetaskdto_tmp.deserialize(i)
-              @BaselineTasks << baselinetaskdto_tmp
-            end
-          end
         end
       end
 
@@ -9790,110 +7033,6 @@ module TencentCloud
         end
       end
 
-      # DescribeDrInstanceScriptContent请求参数结构体
-      class DescribeDrInstanceScriptContentRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param TaskSource: 任务来源 ADHOC || WORKFLOW
-        # @type TaskSource: String
-        # @param RecordId: 试运行记录id
-        # @type RecordId: Integer
-        # @param SonRecordId: 试运行子记录id
-        # @type SonRecordId: Integer
-
-        attr_accessor :ProjectId, :TaskSource, :RecordId, :SonRecordId
-
-        def initialize(projectid=nil, tasksource=nil, recordid=nil, sonrecordid=nil)
-          @ProjectId = projectid
-          @TaskSource = tasksource
-          @RecordId = recordid
-          @SonRecordId = sonrecordid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskSource = params['TaskSource']
-          @RecordId = params['RecordId']
-          @SonRecordId = params['SonRecordId']
-        end
-      end
-
-      # DescribeDrInstanceScriptContent返回参数结构体
-      class DescribeDrInstanceScriptContentResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DrInstanceOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DrInstanceOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDrSonInstance请求参数结构体
-      class DescribeDrSonInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param TaskSource: 任务来源 ADHOC || WORKFLOW
-        # @type TaskSource: String
-        # @param RecordId: 试运行记录id
-        # @type RecordId: Integer
-
-        attr_accessor :ProjectId, :TaskSource, :RecordId
-
-        def initialize(projectid=nil, tasksource=nil, recordid=nil)
-          @ProjectId = projectid
-          @TaskSource = tasksource
-          @RecordId = recordid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskSource = params['TaskSource']
-          @RecordId = params['RecordId']
-        end
-      end
-
-      # DescribeDrSonInstance返回参数结构体
-      class DescribeDrSonInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              drinstanceopsdto_tmp = DrInstanceOpsDto.new
-              drinstanceopsdto_tmp.deserialize(i)
-              @Data << drinstanceopsdto_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDsFolderTree请求参数结构体
       class DescribeDsFolderTreeRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -9991,7 +7130,9 @@ module TencentCloud
         # @type WorkflowId: String
         # @param TaskId: 任务id
         # @type TaskId: String
-        # @param DisplayType:  classification:分类展示  catalog:目录展示
+        # @param DisplayType: 任务展示形式, 示例取值
+        # -    classification:分类展示
+        # -    catalog:目录展示
         # @type DisplayType: String
 
         attr_accessor :ProjectId, :FolderId, :WorkflowId, :TaskId, :DisplayType
@@ -10214,85 +7355,6 @@ module TencentCloud
         end
       end
 
-      # DescribeEventDetail请求参数结构体
-      class DescribeEventDetailRequest < TencentCloud::Common::AbstractModel
-        # @param EventId: 事件id
-        # @type EventId: Integer
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :EventId, :ProjectId
-
-        def initialize(eventid=nil, projectid=nil)
-          @EventId = eventid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @EventId = params['EventId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeEventDetail返回参数结构体
-      class DescribeEventDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 事件详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.EventDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = EventDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeEventIsAlarmTypes请求参数结构体
-      class DescribeEventIsAlarmTypesRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeEventIsAlarmTypes返回参数结构体
-      class DescribeEventIsAlarmTypesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否告警.取值范围
-
-        # - yes : 表示告警
-
-        # - no : 表示不告警
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeEvent请求参数结构体
       class DescribeEventRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -10337,103 +7399,6 @@ module TencentCloud
         end
       end
 
-      # DescribeEventTypes请求参数结构体
-      class DescribeEventTypesRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeEventTypes返回参数结构体
-      class DescribeEventTypesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 事件类型
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeEvents请求参数结构体
-      class DescribeEventsRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 分页页码
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-        # @param Filters: 过滤字段
-        # @type Filters: Array
-        # @param OrderFields: 排序字段
-        # @type OrderFields: Array
-
-        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields
-
-        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Filters = filters
-          @OrderFields = orderfields
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          unless params['OrderFields'].nil?
-            @OrderFields = []
-            params['OrderFields'].each do |i|
-              orderfield_tmp = OrderField.new
-              orderfield_tmp.deserialize(i)
-              @OrderFields << orderfield_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeEvents返回参数结构体
-      class DescribeEventsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 事件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.EventPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = EventPage.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeExecStrategy请求参数结构体
       class DescribeExecStrategyRequest < TencentCloud::Common::AbstractModel
         # @param RuleGroupId: 规则组Id
@@ -10472,126 +7437,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = RuleGroupExecStrategy.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeFathers请求参数结构体
-      class DescribeFathersRequest < TencentCloud::Common::AbstractModel
-        # @param Instances: 实例列表
-        # @type Instances: Array
-        # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
-        # @type CheckFather: Boolean
-        # @param RerunType: 重跑类型, 1: 自身; 3: 孩子; 2: 自身以及孩子
-        # @type RerunType: String
-        # @param DependentWay: 实例依赖方式, 1: 自依赖; 2: 任务依赖; 3: 自依赖及父子依赖
-        # @type DependentWay: String
-        # @param SkipEventListening: 重跑忽略事件监听与否
-        # @type SkipEventListening: Boolean
-        # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
-        # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
-        # @param OptType: 访问类型
-        # @type OptType: String
-        # @param OperatorName: 操作者名称
-        # @type OperatorName: String
-        # @param OperatorId: 操作者id
-        # @type OperatorId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标志
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # @type ProjectName: String
-        # @param PageIndex: 索引页码
-        # @type PageIndex: Integer
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-        # @param Count: 数据总数
-        # @type Count: Integer
-        # @param RequestBaseInfo: 基础请求信息
-        # @type RequestBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.ProjectBaseInfoOpsRequest`
-        # @param IsCount: 是否计算总数
-        # @type IsCount: Boolean
-
-        attr_accessor :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :SearchCondition, :OptType, :OperatorName, :OperatorId, :ProjectId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
-
-        def initialize(instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, searchcondition=nil, opttype=nil, operatorname=nil, operatorid=nil, projectid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
-          @Instances = instances
-          @CheckFather = checkfather
-          @RerunType = reruntype
-          @DependentWay = dependentway
-          @SkipEventListening = skipeventlistening
-          @SonInstanceType = soninstancetype
-          @SearchCondition = searchcondition
-          @OptType = opttype
-          @OperatorName = operatorname
-          @OperatorId = operatorid
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @Count = count
-          @RequestBaseInfo = requestbaseinfo
-          @IsCount = iscount
-        end
-
-        def deserialize(params)
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceopsdto_tmp = InstanceOpsDto.new
-              instanceopsdto_tmp.deserialize(i)
-              @Instances << instanceopsdto_tmp
-            end
-          end
-          @CheckFather = params['CheckFather']
-          @RerunType = params['RerunType']
-          @DependentWay = params['DependentWay']
-          @SkipEventListening = params['SkipEventListening']
-          @SonInstanceType = params['SonInstanceType']
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceApiOpsRequest.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
-          @OptType = params['OptType']
-          @OperatorName = params['OperatorName']
-          @OperatorId = params['OperatorId']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          @Count = params['Count']
-          unless params['RequestBaseInfo'].nil?
-            @RequestBaseInfo = ProjectBaseInfoOpsRequest.new
-            @RequestBaseInfo.deserialize(params['RequestBaseInfo'])
-          end
-          @IsCount = params['IsCount']
-        end
-      end
-
-      # DescribeFathers返回参数结构体
-      class DescribeFathersResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CollectionInstanceOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = CollectionInstanceOpsDto.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -10669,97 +7514,6 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 文件夹分页信息
-      class DescribeFolderListData < TencentCloud::Common::AbstractModel
-        # @param Items: 文件夹信息列表
-        # @type Items: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-        # @param PageNumber: 页号
-        # @type PageNumber: Integer
-        # @param PageSize: 页大小
-        # @type PageSize: Integer
-
-        attr_accessor :Items, :TotalCount, :PageNumber, :PageSize
-
-        def initialize(items=nil, totalcount=nil, pagenumber=nil, pagesize=nil)
-          @Items = items
-          @TotalCount = totalcount
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              folder_tmp = Folder.new
-              folder_tmp.deserialize(i)
-              @Items << folder_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeFolderList请求参数结构体
-      class DescribeFolderListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param ParentsFolderId: 文件夹ID
-        # @type ParentsFolderId: String
-        # @param KeyWords: 关键字
-        # @type KeyWords: String
-        # @param PageNumber: 页码，默认1
-        # @type PageNumber: Integer
-        # @param PageSize: 页大小，默认10
-        # @type PageSize: Integer
-
-        attr_accessor :ProjectId, :ParentsFolderId, :KeyWords, :PageNumber, :PageSize
-
-        def initialize(projectid=nil, parentsfolderid=nil, keywords=nil, pagenumber=nil, pagesize=nil)
-          @ProjectId = projectid
-          @ParentsFolderId = parentsfolderid
-          @KeyWords = keywords
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @ParentsFolderId = params['ParentsFolderId']
-          @KeyWords = params['KeyWords']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeFolderList返回参数结构体
-      class DescribeFolderListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeFolderListData`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DescribeFolderListData.new
-            @Data.deserialize(params['Data'])
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -10912,10 +7666,10 @@ module TencentCloud
 
       # DescribeFunctionTypes返回参数结构体
       class DescribeFunctionTypesResponse < TencentCloud::Common::AbstractModel
-        # @param Types: 无
+        # @param Types: 类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Types: Array
-        # @param ErrorMessage: 无
+        # @param ErrorMessage: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -11411,245 +8165,13 @@ module TencentCloud
         end
       end
 
-      # DescribeInstanceLogs请求参数结构体
-      class DescribeInstanceLogsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param CurRunDate: 数据时间
-        # @type CurRunDate: String
-
-        attr_accessor :ProjectId, :TaskId, :CurRunDate
-
-        def initialize(projectid=nil, taskid=nil, currundate=nil)
-          @ProjectId = projectid
-          @TaskId = taskid
-          @CurRunDate = currundate
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-        end
-      end
-
-      # DescribeInstanceLogs返回参数结构体
-      class DescribeInstanceLogsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回日志列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              instancelog_tmp = InstanceLog.new
-              instancelog_tmp.deserialize(i)
-              @Data << instancelog_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeInstancesInfoWithTaskInfo请求参数结构体
-      class DescribeInstancesInfoWithTaskInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Instances: 实例列表
-        # @type Instances: Array
-        # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
-        # @type CheckFather: Boolean
-        # @param RerunType: 重跑类型, 1: 自身; 3: 孩子; 2: 自身以及孩子
-        # @type RerunType: String
-        # @param DependentWay: 实例依赖方式, 1: 自依赖; 2: 任务依赖; 3: 自依赖及父子依赖
-        # @type DependentWay: String
-        # @param SkipEventListening: 重跑忽略事件监听与否
-        # @type SkipEventListening: Boolean
-        # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
-        # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
-        # @param OptType: 访问类型
-        # @type OptType: String
-        # @param OperatorName: 操作者名称
-        # @type OperatorName: String
-        # @param OperatorId: 操作者id
-        # @type OperatorId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标志
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # @type ProjectName: String
-        # @param PageIndex: 索引页码
-        # @type PageIndex: Integer
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-        # @param Count: 数据总数
-        # @type Count: Integer
-        # @param RequestBaseInfo: 基础请求信息
-        # @type RequestBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.ProjectBaseInfoOpsRequest`
-        # @param IsCount: 是否计算总数
-        # @type IsCount: Boolean
-
-        attr_accessor :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :SearchCondition, :OptType, :OperatorName, :OperatorId, :ProjectId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
-
-        def initialize(instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, searchcondition=nil, opttype=nil, operatorname=nil, operatorid=nil, projectid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
-          @Instances = instances
-          @CheckFather = checkfather
-          @RerunType = reruntype
-          @DependentWay = dependentway
-          @SkipEventListening = skipeventlistening
-          @SonInstanceType = soninstancetype
-          @SearchCondition = searchcondition
-          @OptType = opttype
-          @OperatorName = operatorname
-          @OperatorId = operatorid
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @Count = count
-          @RequestBaseInfo = requestbaseinfo
-          @IsCount = iscount
-        end
-
-        def deserialize(params)
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceopsdto_tmp = InstanceOpsDto.new
-              instanceopsdto_tmp.deserialize(i)
-              @Instances << instanceopsdto_tmp
-            end
-          end
-          @CheckFather = params['CheckFather']
-          @RerunType = params['RerunType']
-          @DependentWay = params['DependentWay']
-          @SkipEventListening = params['SkipEventListening']
-          @SonInstanceType = params['SonInstanceType']
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceApiOpsRequest.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
-          @OptType = params['OptType']
-          @OperatorName = params['OperatorName']
-          @OperatorId = params['OperatorId']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          @Count = params['Count']
-          unless params['RequestBaseInfo'].nil?
-            @RequestBaseInfo = ProjectBaseInfoOpsRequest.new
-            @RequestBaseInfo.deserialize(params['RequestBaseInfo'])
-          end
-          @IsCount = params['IsCount']
-        end
-      end
-
-      # DescribeInstancesInfoWithTaskInfo返回参数结构体
-      class DescribeInstancesInfoWithTaskInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              instanceopsdto_tmp = InstanceOpsDto.new
-              instanceopsdto_tmp.deserialize(i)
-              @Data << instanceopsdto_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeInstances请求参数结构体
-      class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param PageNumber: 页数:默认1
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小,默认最小10
-        # @type PageSize: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-
-        attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters
-
-        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, filters=nil)
-          @ProjectId = projectid
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeInstances返回参数结构体
-      class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: Json 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeIntegrationNode请求参数结构体
       class DescribeIntegrationNodeRequest < TencentCloud::Common::AbstractModel
         # @param Id: 节点id
         # @type Id: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，201为实时任务，202为离线任务
         # @type TaskType: Integer
 
         attr_accessor :Id, :ProjectId, :TaskType
@@ -12093,7 +8615,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param TaskType: 201. stream, 202. offline 默认实时
+        # @param TaskType: 201. 实时同步, 202. 离线同步 默认实时
         # @type TaskType: Integer
 
         attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields, :StartTime, :EndTime, :TaskType
@@ -12242,76 +8764,6 @@ module TencentCloud
         end
       end
 
-      # DescribeMonitorsByPage请求参数结构体
-      class DescribeMonitorsByPageRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-        # @param OrderFields: 排序条件
-        # @type OrderFields: Array
-        # @param PageNumber: 分页序号
-        # @type PageNumber: Integer
-
-        attr_accessor :ProjectId, :PageSize, :Filters, :OrderFields, :PageNumber
-
-        def initialize(projectid=nil, pagesize=nil, filters=nil, orderfields=nil, pagenumber=nil)
-          @ProjectId = projectid
-          @PageSize = pagesize
-          @Filters = filters
-          @OrderFields = orderfields
-          @PageNumber = pagenumber
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          unless params['OrderFields'].nil?
-            @OrderFields = []
-            params['OrderFields'].each do |i|
-              orderfield_tmp = OrderField.new
-              orderfield_tmp.deserialize(i)
-              @OrderFields << orderfield_tmp
-            end
-          end
-          @PageNumber = params['PageNumber']
-        end
-      end
-
-      # DescribeMonitorsByPage返回参数结构体
-      class DescribeMonitorsByPageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 分页查询结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupMonitorPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleGroupMonitorPage.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeOfflineTaskToken请求参数结构体
       class DescribeOfflineTaskTokenRequest < TencentCloud::Common::AbstractModel
 
@@ -12344,114 +8796,6 @@ module TencentCloud
         def deserialize(params)
           @Token = params['Token']
           @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOperateOpsTaskDatasource请求参数结构体
-      class DescribeOperateOpsTaskDatasourceRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param TaskType: 任务类型ID
-        # @type TaskType: Integer
-        # @param ServiceKind: 数据源来源/去向
-        # @type ServiceKind: String
-        # @param ServiceType: 数据源类型
-        # @type ServiceType: String
-
-        attr_accessor :ProjectId, :TaskType, :ServiceKind, :ServiceType
-
-        def initialize(projectid=nil, tasktype=nil, servicekind=nil, servicetype=nil)
-          @ProjectId = projectid
-          @TaskType = tasktype
-          @ServiceKind = servicekind
-          @ServiceType = servicetype
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskType = params['TaskType']
-          @ServiceKind = params['ServiceKind']
-          @ServiceType = params['ServiceType']
-        end
-      end
-
-      # DescribeOperateOpsTaskDatasource返回参数结构体
-      class DescribeOperateOpsTaskDatasourceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              simpledatasourceinfo_tmp = SimpleDataSourceInfo.new
-              simpledatasourceinfo_tmp.deserialize(i)
-              @Data << simpledatasourceinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOperateOpsTaskDatasourceType请求参数结构体
-      class DescribeOperateOpsTaskDatasourceTypeRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param TaskType: 任务类型ID
-        # @type TaskType: Integer
-        # @param ServiceKind: 数据源来源/去向
-        # @type ServiceKind: String
-
-        attr_accessor :ProjectId, :TaskType, :ServiceKind
-
-        def initialize(projectid=nil, tasktype=nil, servicekind=nil)
-          @ProjectId = projectid
-          @TaskType = tasktype
-          @ServiceKind = servicekind
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskType = params['TaskType']
-          @ServiceKind = params['ServiceKind']
-        end
-      end
-
-      # DescribeOperateOpsTaskDatasourceType返回参数结构体
-      class DescribeOperateOpsTaskDatasourceTypeResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              datasourcetypebytasktype_tmp = DatasourceTypeByTaskType.new
-              datasourcetypebytasktype_tmp.deserialize(i)
-              @Data << datasourcetypebytasktype_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -12502,10 +8846,12 @@ module TencentCloud
         # @type ExecutorGroupIdList: String
         # @param TaskTags: 任务标签
         # @type TaskTags: Array
+        # @param KeyWord: 查询关键字
+        # @type KeyWord: String
 
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord
 
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil)
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil)
           @ProjectId = projectid
           @FolderIdList = folderidlist
           @WorkFlowIdList = workflowidlist
@@ -12528,6 +8874,7 @@ module TencentCloud
           @AlarmType = alarmtype
           @ExecutorGroupIdList = executorgroupidlist
           @TaskTags = tasktags
+          @KeyWord = keyword
         end
 
         def deserialize(params)
@@ -12560,6 +8907,7 @@ module TencentCloud
               @TaskTags << tasktag_tmp
             end
           end
+          @KeyWord = params['KeyWord']
         end
       end
 
@@ -12580,121 +8928,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = OpsTaskInfoPage.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOperateTasks请求参数结构体
-      class DescribeOperateTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param FolderIdList: 文件夹id，多个文件夹以逗号分隔
-        # @type FolderIdList: String
-        # @param WorkFlowIdList: 工作流id，多个工作流id之间以英文字符逗号分隔
-        # @type WorkFlowIdList: String
-        # @param WorkFlowNameList: 工作流名称，多个工作流名称之间以英文字符逗号分隔
-        # @type WorkFlowNameList: String
-        # @param TaskNameList: 任务名称，多个任务名称之间以英文字符逗号分隔
-        # @type TaskNameList: String
-        # @param TaskIdList: 任务id，多个任务id之间以英文字符逗号分隔
-        # @type TaskIdList: String
-        # @param PageNumber: 页号
-        # @type PageNumber: String
-        # @param PageSize: 分页大小
-        # @type PageSize: String
-        # @param SortItem: 排序字段，支持字段为FirstSubmitTime和FirstRunTime，标识最近提交和首次执行事件
-        # @type SortItem: String
-        # @param SortType: 排序类型。两种取值 DESC、ASC
-        # @type SortType: String
-        # @param InChargeList: 责任人，多个责任人之间以英文字符逗号分隔
-        # @type InChargeList: String
-        # @param TaskTypeIdList: 任务类型Id字符串，多个任务类型id之间以英文字符逗号分隔
-        # @type TaskTypeIdList: String
-        # @param StatusList: 任务状态字符串，多个任务状态之间以英文字符逗号分隔
-        # @type StatusList: String
-        # @param TaskCycleUnitList: 任务周期类型字符串，多个任务周期之间以英文字符逗号分隔
-        # @type TaskCycleUnitList: String
-        # @param ProductNameList: 任务所属产品类型
-        # @type ProductNameList: String
-        # @param SourceServiceId: 数据源id或（仅针对离线同步任务）来源数据源id
-        # @type SourceServiceId: String
-        # @param SourceServiceType: 数据源类型或（仅针对离线同步任务）来源数据源类型
-        # @type SourceServiceType: String
-        # @param TargetServiceId: （仅针对离线同步任务）目标数据源id
-        # @type TargetServiceId: String
-        # @param TargetServiceType: （仅针对离线同步任务）目标数据源类型
-        # @type TargetServiceType: String
-        # @param AlarmType: 告警类型，多个类型以逗号分隔
-        # @type AlarmType: String
-
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType
-
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil)
-          @ProjectId = projectid
-          @FolderIdList = folderidlist
-          @WorkFlowIdList = workflowidlist
-          @WorkFlowNameList = workflownamelist
-          @TaskNameList = tasknamelist
-          @TaskIdList = taskidlist
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @SortItem = sortitem
-          @SortType = sorttype
-          @InChargeList = inchargelist
-          @TaskTypeIdList = tasktypeidlist
-          @StatusList = statuslist
-          @TaskCycleUnitList = taskcycleunitlist
-          @ProductNameList = productnamelist
-          @SourceServiceId = sourceserviceid
-          @SourceServiceType = sourceservicetype
-          @TargetServiceId = targetserviceid
-          @TargetServiceType = targetservicetype
-          @AlarmType = alarmtype
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @FolderIdList = params['FolderIdList']
-          @WorkFlowIdList = params['WorkFlowIdList']
-          @WorkFlowNameList = params['WorkFlowNameList']
-          @TaskNameList = params['TaskNameList']
-          @TaskIdList = params['TaskIdList']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          @SortItem = params['SortItem']
-          @SortType = params['SortType']
-          @InChargeList = params['InChargeList']
-          @TaskTypeIdList = params['TaskTypeIdList']
-          @StatusList = params['StatusList']
-          @TaskCycleUnitList = params['TaskCycleUnitList']
-          @ProductNameList = params['ProductNameList']
-          @SourceServiceId = params['SourceServiceId']
-          @SourceServiceType = params['SourceServiceType']
-          @TargetServiceId = params['TargetServiceId']
-          @TargetServiceType = params['TargetServiceType']
-          @AlarmType = params['AlarmType']
-        end
-      end
-
-      # DescribeOperateTasks返回参数结构体
-      class DescribeOperateTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 任务列表信息
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TaskInfoPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = TaskInfoPage.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -13031,14 +9264,19 @@ module TencentCloud
         # @type Name: String
         # @param DisplayName: 展示名称
         # @type DisplayName: String
+        # @param EnvType: 标准模式开发环境：DEV
+        # 标准模式生产环境：PROD
+        # 简单模式：ALL
+        # @type EnvType: String
 
-        attr_accessor :Type, :ProjectId, :Name, :DisplayName
+        attr_accessor :Type, :ProjectId, :Name, :DisplayName, :EnvType
 
-        def initialize(type=nil, projectid=nil, name=nil, displayname=nil)
+        def initialize(type=nil, projectid=nil, name=nil, displayname=nil, envtype=nil)
           @Type = type
           @ProjectId = projectid
           @Name = name
           @DisplayName = displayname
+          @EnvType = envtype
         end
 
         def deserialize(params)
@@ -13046,15 +9284,16 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @Name = params['Name']
           @DisplayName = params['DisplayName']
+          @EnvType = params['EnvType']
         end
       end
 
       # DescribeOrganizationalFunctions返回参数结构体
       class DescribeOrganizationalFunctionsResponse < TencentCloud::Common::AbstractModel
-        # @param Content: 无
+        # @param Content: 函数信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
-        # @param ErrorMessage: 无
+        # @param ErrorMessage: 操作失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -13078,69 +9317,6 @@ module TencentCloud
             end
           end
           @ErrorMessage = params['ErrorMessage']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeProdTasks请求参数结构体
-      class DescribeProdTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-        # @param PageNumber: 分页序号
-        # @type PageNumber: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-
-        attr_accessor :ProjectId, :PageSize, :PageNumber, :Filters
-
-        def initialize(projectid=nil, pagesize=nil, pagenumber=nil, filters=nil)
-          @ProjectId = projectid
-          @PageSize = pagesize
-          @PageNumber = pagenumber
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PageSize = params['PageSize']
-          @PageNumber = params['PageNumber']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeProdTasks返回参数结构体
-      class DescribeProdTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 生产调度任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              prodschedulertask_tmp = ProdSchedulerTask.new
-              prodschedulertask_tmp.deserialize(i)
-              @Data << prodschedulertask_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -13335,7 +9511,7 @@ module TencentCloud
       class DescribeRealTimeTaskInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 实时任务id
         # @type TaskId: String
-        # @param ProjectId: 工程id
+        # @param ProjectId: 项目id
         # @type ProjectId: String
 
         attr_accessor :TaskId, :ProjectId
@@ -13457,7 +9633,7 @@ module TencentCloud
 
       # DescribeRealTimeTaskSpeed请求参数结构体
       class DescribeRealTimeTaskSpeedRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 无
+        # @param TaskId: 任务id
         # @type TaskId: String
         # @param StartTime: 带毫秒的时间戳
         # @type StartTime: Integer
@@ -13465,7 +9641,7 @@ module TencentCloud
         # @type EndTime: Integer
         # @param Granularity: 粒度，1或者5
         # @type Granularity: Integer
-        # @param ProjectId: 无
+        # @param ProjectId: 项目id
         # @type ProjectId: String
 
         attr_accessor :TaskId, :StartTime, :EndTime, :Granularity, :ProjectId
@@ -13532,65 +9708,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRelatedInstances请求参数结构体
-      class DescribeRelatedInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param CurRunDate: 数据时间，格式yyyy-MM-dd HH:mm:ss
-        # @type CurRunDate: String
-        # @param TaskId: 任务id
-        # @type TaskId: Integer
-        # @param Depth: 距离当前任务的层级距离，-1表示取父节点，1表示子节点
-        # @type Depth: Integer
-        # @param PageNumber: 页号，默认为1
-        # @type PageNumber: Integer
-        # @param PageSize: 页大小，默认为10，最大不超过200
-        # @type PageSize: Integer
-
-        attr_accessor :ProjectId, :CurRunDate, :TaskId, :Depth, :PageNumber, :PageSize
-
-        def initialize(projectid=nil, currundate=nil, taskid=nil, depth=nil, pagenumber=nil, pagesize=nil)
-          @ProjectId = projectid
-          @CurRunDate = currundate
-          @TaskId = taskid
-          @Depth = depth
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @CurRunDate = params['CurRunDate']
-          @TaskId = params['TaskId']
-          @Depth = params['Depth']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeRelatedInstances返回参数结构体
-      class DescribeRelatedInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeTaskInstancesData`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DescribeTaskInstancesData.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeResourceManagePathTrees请求参数结构体
       class DescribeResourceManagePathTreesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -13648,58 +9765,6 @@ module TencentCloud
               resourcepathtree_tmp = ResourcePathTree.new
               resourcepathtree_tmp.deserialize(i)
               @Data << resourcepathtree_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRuleDataSources请求参数结构体
-      class DescribeRuleDataSourcesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param DatasourceId: 数据来源Id
-        # @type DatasourceId: String
-        # @param DsTypes: 数据源类型
-        # @type DsTypes: Array
-
-        attr_accessor :ProjectId, :DatasourceId, :DsTypes
-
-        def initialize(projectid=nil, datasourceid=nil, dstypes=nil)
-          @ProjectId = projectid
-          @DatasourceId = datasourceid
-          @DsTypes = dstypes
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @DatasourceId = params['DatasourceId']
-          @DsTypes = params['DsTypes']
-        end
-      end
-
-      # DescribeRuleDataSources返回参数结构体
-      class DescribeRuleDataSourcesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据源列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              databaseinfo_tmp = DatabaseInfo.new
-              databaseinfo_tmp.deserialize(i)
-              @Data << databaseinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -13797,98 +9862,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRuleExecExportResult请求参数结构体
-      class DescribeRuleExecExportResultRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param RuleExecId: 规则执行id
-        # @type RuleExecId: Integer
-
-        attr_accessor :ProjectId, :RuleExecId
-
-        def initialize(projectid=nil, ruleexecid=nil)
-          @ProjectId = projectid
-          @RuleExecId = ruleexecid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @RuleExecId = params['RuleExecId']
-        end
-      end
-
-      # DescribeRuleExecExportResult返回参数结构体
-      class DescribeRuleExecExportResultResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 导出结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleExecExportResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleExecExportResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRuleExecHistory请求参数结构体
-      class DescribeRuleExecHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则Id
-        # @type RuleId: Integer
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :RuleId, :ProjectId
-
-        def initialize(ruleid=nil, projectid=nil)
-          @RuleId = ruleid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @RuleId = params['RuleId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeRuleExecHistory返回参数结构体
-      class DescribeRuleExecHistoryResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 规则执行结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              ruleexecresult_tmp = RuleExecResult.new
-              ruleexecresult_tmp.deserialize(i)
-              @Data << ruleexecresult_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeRuleExecLog请求参数结构体
       class DescribeRuleExecLogRequest < TencentCloud::Common::AbstractModel
         # @param RuleExecId: 规则执行Id
@@ -13931,54 +9904,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = RuleExecLog.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRuleExecResultsByPage请求参数结构体
-      class DescribeRuleExecResultsByPageRequest < TencentCloud::Common::AbstractModel
-        # @param RuleGroupExecId: 执行规则组ID
-        # @type RuleGroupExecId: Integer
-        # @param PageNumber: page number
-        # @type PageNumber: Integer
-        # @param PageSize: page size
-        # @type PageSize: Integer
-
-        attr_accessor :RuleGroupExecId, :PageNumber, :PageSize
-
-        def initialize(rulegroupexecid=nil, pagenumber=nil, pagesize=nil)
-          @RuleGroupExecId = rulegroupexecid
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          @RuleGroupExecId = params['RuleGroupExecId']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeRuleExecResultsByPage返回参数结构体
-      class DescribeRuleExecResultsByPageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: results
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleExecResultPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleExecResultPage.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -14124,76 +10049,6 @@ module TencentCloud
 
       # DescribeRuleGroupExecResultsByPage返回参数结构体
       class DescribeRuleGroupExecResultsByPageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 规则组执行结果列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupExecResultPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleGroupExecResultPage.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRuleGroupExecResultsByPageWithoutAuth请求参数结构体
-      class DescribeRuleGroupExecResultsByPageWithoutAuthRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 分页序号
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-        # @param Filters: 过滤条件，指定表ID过滤字段为 TableIds
-        # @type Filters: Array
-        # @param OrderFields: 排序字段
-        # @type OrderFields: Array
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-
-        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields, :ProjectId
-
-        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, projectid=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Filters = filters
-          @OrderFields = orderfields
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          unless params['OrderFields'].nil?
-            @OrderFields = []
-            params['OrderFields'].each do |i|
-              orderfield_tmp = OrderField.new
-              orderfield_tmp.deserialize(i)
-              @OrderFields << orderfield_tmp
-            end
-          end
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeRuleGroupExecResultsByPageWithoutAuth返回参数结构体
-      class DescribeRuleGroupExecResultsByPageWithoutAuthResponse < TencentCloud::Common::AbstractModel
         # @param Data: 规则组执行结果列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupExecResultPage`
@@ -14426,65 +10281,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRuleHistoryByPage请求参数结构体
-      class DescribeRuleHistoryByPageRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param PageNumber: 分页序号
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-
-        attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters
-
-        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, filters=nil)
-          @ProjectId = projectid
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeRuleHistoryByPage返回参数结构体
-      class DescribeRuleHistoryByPageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 规则组操作历史列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleHistoryPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleHistoryPage.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeRule请求参数结构体
       class DescribeRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 质量规则ID
@@ -14523,76 +10319,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = Rule.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRuleTablesByPage请求参数结构体
-      class DescribeRuleTablesByPageRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param PageSize: 分页序号
-        # @type PageSize: Integer
-        # @param PageNumber: 分页大小
-        # @type PageNumber: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-        # @param OrderFields: 排序条件
-        # @type OrderFields: Array
-
-        attr_accessor :ProjectId, :PageSize, :PageNumber, :Filters, :OrderFields
-
-        def initialize(projectid=nil, pagesize=nil, pagenumber=nil, filters=nil, orderfields=nil)
-          @ProjectId = projectid
-          @PageSize = pagesize
-          @PageNumber = pagenumber
-          @Filters = filters
-          @OrderFields = orderfields
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PageSize = params['PageSize']
-          @PageNumber = params['PageNumber']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          unless params['OrderFields'].nil?
-            @OrderFields = []
-            params['OrderFields'].each do |i|
-              orderfield_tmp = OrderField.new
-              orderfield_tmp.deserialize(i)
-              @OrderFields << orderfield_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeRuleTablesByPage返回参数结构体
-      class DescribeRuleTablesByPageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 表列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleGroupPage.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -14890,50 +10616,6 @@ module TencentCloud
         end
       end
 
-      # DescribeScheduleInstance请求参数结构体
-      class DescribeScheduleInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 基线id
-        # @type TaskId: String
-        # @param CurRunDate: 任务实例数据时间
-        # @type CurRunDate: String
-
-        attr_accessor :TaskId, :CurRunDate
-
-        def initialize(taskid=nil, currundate=nil)
-          @TaskId = taskid
-          @CurRunDate = currundate
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-        end
-      end
-
-      # DescribeScheduleInstance返回参数结构体
-      class DescribeScheduleInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 基线实例中的调度任务实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.InstanceOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = InstanceOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeScheduleInstances请求参数结构体
       class DescribeScheduleInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Instances: 实例列表
@@ -15138,9 +10820,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日前：2023-03-20
         # @type EndTime: String
-        # @param TaskType: 1
+        # @param TaskType: 任务类型
         # @type TaskType: Integer
-        # @param InCharge: 1
+        # @param InCharge: 责任人
         # @type InCharge: String
         # @param WorkflowId: 工作流ID
         # @type WorkflowId: String
@@ -15270,7 +10952,7 @@ module TencentCloud
       class DescribeSchedulerTaskTypeCntRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param InCharge: 1
+        # @param InCharge: 责任人
         # @type InCharge: String
 
         attr_accessor :ProjectId, :InCharge
@@ -15309,126 +10991,6 @@ module TencentCloud
               tasktypecnt_tmp.deserialize(i)
               @Data << tasktypecnt_tmp
             end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeSonInstances请求参数结构体
-      class DescribeSonInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Instances: 实例列表
-        # @type Instances: Array
-        # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
-        # @type CheckFather: Boolean
-        # @param RerunType: 重跑类型, 1: 自身; 3: 孩子; 2: 自身以及孩子
-        # @type RerunType: String
-        # @param DependentWay: 实例依赖方式, 1: 自依赖; 2: 任务依赖; 3: 自依赖及父子依赖
-        # @type DependentWay: String
-        # @param SkipEventListening: 重跑忽略事件监听与否
-        # @type SkipEventListening: Boolean
-        # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
-        # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
-        # @param OptType: 访问类型
-        # @type OptType: String
-        # @param OperatorName: 操作者名称
-        # @type OperatorName: String
-        # @param OperatorId: 操作者id
-        # @type OperatorId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标志
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # @type ProjectName: String
-        # @param PageIndex: 索引页码
-        # @type PageIndex: Integer
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-        # @param Count: 数据总数
-        # @type Count: Integer
-        # @param RequestBaseInfo: 基础请求信息
-        # @type RequestBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.ProjectBaseInfoOpsRequest`
-        # @param IsCount: 是否计算总数
-        # @type IsCount: Boolean
-
-        attr_accessor :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :SearchCondition, :OptType, :OperatorName, :OperatorId, :ProjectId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
-
-        def initialize(instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, searchcondition=nil, opttype=nil, operatorname=nil, operatorid=nil, projectid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
-          @Instances = instances
-          @CheckFather = checkfather
-          @RerunType = reruntype
-          @DependentWay = dependentway
-          @SkipEventListening = skipeventlistening
-          @SonInstanceType = soninstancetype
-          @SearchCondition = searchcondition
-          @OptType = opttype
-          @OperatorName = operatorname
-          @OperatorId = operatorid
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @Count = count
-          @RequestBaseInfo = requestbaseinfo
-          @IsCount = iscount
-        end
-
-        def deserialize(params)
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceopsdto_tmp = InstanceOpsDto.new
-              instanceopsdto_tmp.deserialize(i)
-              @Instances << instanceopsdto_tmp
-            end
-          end
-          @CheckFather = params['CheckFather']
-          @RerunType = params['RerunType']
-          @DependentWay = params['DependentWay']
-          @SkipEventListening = params['SkipEventListening']
-          @SonInstanceType = params['SonInstanceType']
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceApiOpsRequest.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
-          @OptType = params['OptType']
-          @OperatorName = params['OperatorName']
-          @OperatorId = params['OperatorId']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          @Count = params['Count']
-          unless params['RequestBaseInfo'].nil?
-            @RequestBaseInfo = ProjectBaseInfoOpsRequest.new
-            @RequestBaseInfo.deserialize(params['RequestBaseInfo'])
-          end
-          @IsCount = params['IsCount']
-        end
-      end
-
-      # DescribeSonInstances返回参数结构体
-      class DescribeSonInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果集
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.CollectionInstanceOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = CollectionInstanceOpsDto.new
-            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -16179,7 +11741,7 @@ module TencentCloud
 
       # DescribeTableSchemaInfo返回参数结构体
       class DescribeTableSchemaInfoResponse < TencentCloud::Common::AbstractModel
-        # @param SchemaInfoList: 123
+        # @param SchemaInfoList: 查询到的SchemaInfo信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -16469,13 +12031,13 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param AggregationUnit: 无
+        # @param AggregationUnit: 聚合单元，H小时
         # @type AggregationUnit: String
-        # @param CycleUnit: 无
+        # @param CycleUnit: 周期
         # @type CycleUnit: String
-        # @param Status: 无
+        # @param Status: 状态
         # @type Status: String
-        # @param InCharge: 无
+        # @param InCharge: 责任人
         # @type InCharge: String
         # @param WorkflowId: 工作流ID
         # @type WorkflowId: String
@@ -16587,267 +12149,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTaskInstanceReportDetail请求参数结构体
-      class DescribeTaskInstanceReportDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: WeData项目ID
-        # @type ProjectId: String
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param CurRunDate: 任务实例数据时间
-        # @type CurRunDate: String
-        # @param IssueDate: 任务实例运行时间
-        # @type IssueDate: String
-
-        attr_accessor :ProjectId, :TaskId, :CurRunDate, :IssueDate
-
-        def initialize(projectid=nil, taskid=nil, currundate=nil, issuedate=nil)
-          @ProjectId = projectid
-          @TaskId = taskid
-          @CurRunDate = currundate
-          @IssueDate = issuedate
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-          @IssueDate = params['IssueDate']
-        end
-      end
-
-      # DescribeTaskInstanceReportDetail返回参数结构体
-      class DescribeTaskInstanceReportDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Summary: 任务实例运行指标概览
-        # @type Summary: :class:`Tencentcloud::Wedata.v20210820.models.InstanceReportSummary`
-        # @param ReadNode: 任务实例读取节点运行指标
-        # @type ReadNode: :class:`Tencentcloud::Wedata.v20210820.models.InstanceReportReadNode`
-        # @param WriteNode: 任务实例写入节点运行指标
-        # @type WriteNode: :class:`Tencentcloud::Wedata.v20210820.models.InstanceReportWriteNode`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Summary, :ReadNode, :WriteNode, :RequestId
-
-        def initialize(summary=nil, readnode=nil, writenode=nil, requestid=nil)
-          @Summary = summary
-          @ReadNode = readnode
-          @WriteNode = writenode
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Summary'].nil?
-            @Summary = InstanceReportSummary.new
-            @Summary.deserialize(params['Summary'])
-          end
-          unless params['ReadNode'].nil?
-            @ReadNode = InstanceReportReadNode.new
-            @ReadNode.deserialize(params['ReadNode'])
-          end
-          unless params['WriteNode'].nil?
-            @WriteNode = InstanceReportWriteNode.new
-            @WriteNode.deserialize(params['WriteNode'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTaskInstance请求参数结构体
-      class DescribeTaskInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: WeData项目ID
-        # @type ProjectId: String
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param CurRunDate: 任务实例数据时间
-        # @type CurRunDate: String
-        # @param IssueDate: 任务实例运行时间
-        # @type IssueDate: String
-
-        attr_accessor :ProjectId, :TaskId, :CurRunDate, :IssueDate
-
-        def initialize(projectid=nil, taskid=nil, currundate=nil, issuedate=nil)
-          @ProjectId = projectid
-          @TaskId = taskid
-          @CurRunDate = currundate
-          @IssueDate = issuedate
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-          @IssueDate = params['IssueDate']
-        end
-      end
-
-      # DescribeTaskInstance返回参数结构体
-      class DescribeTaskInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param TaskInstanceDetail: 任务实例详情
-        # @type TaskInstanceDetail: :class:`Tencentcloud::Wedata.v20210820.models.TaskInstanceDetail`
-        # @param Data: 任务实例详情。与TaskInstanceDetail相同含义，优先取Data，Data为空时，取TaskInstanceDetail
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TaskInstanceDetail`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskInstanceDetail, :Data, :RequestId
-
-        def initialize(taskinstancedetail=nil, data=nil, requestid=nil)
-          @TaskInstanceDetail = taskinstancedetail
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['TaskInstanceDetail'].nil?
-            @TaskInstanceDetail = TaskInstanceDetail.new
-            @TaskInstanceDetail.deserialize(params['TaskInstanceDetail'])
-          end
-          unless params['Data'].nil?
-            @Data = TaskInstanceDetail.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 查询任务实例列表
-      class DescribeTaskInstancesData < TencentCloud::Common::AbstractModel
-        # @param Items: 实例列表
-        # @type Items: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-        # @param PageNumber: 页号
-        # @type PageNumber: Integer
-        # @param PageSize: 页大小
-        # @type PageSize: Integer
-
-        attr_accessor :Items, :TotalCount, :PageNumber, :PageSize
-
-        def initialize(items=nil, totalcount=nil, pagenumber=nil, pagesize=nil)
-          @Items = items
-          @TotalCount = totalcount
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              taskinstanceinfo_tmp = TaskInstanceInfo.new
-              taskinstanceinfo_tmp.deserialize(i)
-              @Items << taskinstanceinfo_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeTaskInstances请求参数结构体
-      class DescribeTaskInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param PageNumber: 页号，默认为1
-        # @type PageNumber: Integer
-        # @param PageSize: 页大小，默认为10，最大不超过200
-        # @type PageSize: Integer
-        # @param WorkflowIdList: 工作流id列表
-        # @type WorkflowIdList: Array
-        # @param WorkflowNameList: 工作流名称列表，支持模糊搜索
-        # @type WorkflowNameList: Array
-        # @param DateFrom: 起始数据时间，格式yyyy-MM-dd HH:mm:ss
-        # @type DateFrom: String
-        # @param DateTo: 结束数据时间，格式yyyy-MM-dd HH:mm:ss
-        # @type DateTo: String
-        # @param TaskIdList: 任务id列表
-        # @type TaskIdList: Array
-        # @param TaskNameList: 任务名称列表，支持模糊搜索
-        # @type TaskNameList: Array
-        # @param InChargeList: 责任人名称列表
-        # @type InChargeList: Array
-        # @param TaskTypeIdList: 任务类型码列表，26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40CDW PG，92MapReduce
-        # @type TaskTypeIdList: Array
-        # @param StateList: 实例状态列表，0等待事件，1等待上游，2等待运行，3运行中，4正在终止，5失败重试，6失败，7成功
-        # @type StateList: Array
-        # @param TaskCycleUnitList: 周期类型列表，I分钟，H小时，D天，W周，M月，Y年，O一次性，C crontab
-        # @type TaskCycleUnitList: Array
-        # @param InstanceType: 实例类型，0补录实例，1周期实例，2非周期实例
-        # @type InstanceType: Integer
-        # @param OrderFields: 排序字段信息列表，ScheduleDateTime / CostTime / StartTime / EndTime
-        # @type OrderFields: Array
-
-        attr_accessor :ProjectId, :PageNumber, :PageSize, :WorkflowIdList, :WorkflowNameList, :DateFrom, :DateTo, :TaskIdList, :TaskNameList, :InChargeList, :TaskTypeIdList, :StateList, :TaskCycleUnitList, :InstanceType, :OrderFields
-
-        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, workflowidlist=nil, workflownamelist=nil, datefrom=nil, dateto=nil, taskidlist=nil, tasknamelist=nil, inchargelist=nil, tasktypeidlist=nil, statelist=nil, taskcycleunitlist=nil, instancetype=nil, orderfields=nil)
-          @ProjectId = projectid
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @WorkflowIdList = workflowidlist
-          @WorkflowNameList = workflownamelist
-          @DateFrom = datefrom
-          @DateTo = dateto
-          @TaskIdList = taskidlist
-          @TaskNameList = tasknamelist
-          @InChargeList = inchargelist
-          @TaskTypeIdList = tasktypeidlist
-          @StateList = statelist
-          @TaskCycleUnitList = taskcycleunitlist
-          @InstanceType = instancetype
-          @OrderFields = orderfields
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          @WorkflowIdList = params['WorkflowIdList']
-          @WorkflowNameList = params['WorkflowNameList']
-          @DateFrom = params['DateFrom']
-          @DateTo = params['DateTo']
-          @TaskIdList = params['TaskIdList']
-          @TaskNameList = params['TaskNameList']
-          @InChargeList = params['InChargeList']
-          @TaskTypeIdList = params['TaskTypeIdList']
-          @StateList = params['StateList']
-          @TaskCycleUnitList = params['TaskCycleUnitList']
-          @InstanceType = params['InstanceType']
-          unless params['OrderFields'].nil?
-            @OrderFields = []
-            params['OrderFields'].each do |i|
-              orderfield_tmp = OrderField.new
-              orderfield_tmp.deserialize(i)
-              @OrderFields << orderfield_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeTaskInstances返回参数结构体
-      class DescribeTaskInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeTaskInstancesData`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = DescribeTaskInstancesData.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeTaskLockStatus请求参数结构体
       class DescribeTaskLockStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -16891,161 +12192,6 @@ module TencentCloud
             @TaskLockStatus = TaskLockStatus.new
             @TaskLockStatus.deserialize(params['TaskLockStatus'])
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTaskReportDetailList请求参数结构体
-      class DescribeTaskReportDetailListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: WeData项目id
-        # @type ProjectId: String
-        # @param TaskId: 任务Id
-        # @type TaskId: String
-        # @param BeginDate: 统计周期的开始日期，格式为 yyyy-MM-dd
-        # @type BeginDate: String
-        # @param EndDate: 统计周期的结束日期，格式为 yyyy-MM-dd
-        # @type EndDate: String
-        # @param StateList: 任务状态，多个状态用逗号连接
-        # @type StateList: String
-        # @param SortItem: 排序字段名
-        # @type SortItem: String
-        # @param SortType: 升序或降序，传ASC或DESC
-        # @type SortType: String
-        # @param PageIndex: 页数，从1开始
-        # @type PageIndex: Integer
-        # @param PageSize: 每页的记录条数，默认10条
-        # @type PageSize: Integer
-
-        attr_accessor :ProjectId, :TaskId, :BeginDate, :EndDate, :StateList, :SortItem, :SortType, :PageIndex, :PageSize
-
-        def initialize(projectid=nil, taskid=nil, begindate=nil, enddate=nil, statelist=nil, sortitem=nil, sorttype=nil, pageindex=nil, pagesize=nil)
-          @ProjectId = projectid
-          @TaskId = taskid
-          @BeginDate = begindate
-          @EndDate = enddate
-          @StateList = statelist
-          @SortItem = sortitem
-          @SortType = sorttype
-          @PageIndex = pageindex
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskId = params['TaskId']
-          @BeginDate = params['BeginDate']
-          @EndDate = params['EndDate']
-          @StateList = params['StateList']
-          @SortItem = params['SortItem']
-          @SortType = params['SortType']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-        end
-      end
-
-      # DescribeTaskReportDetailList返回参数结构体
-      class DescribeTaskReportDetailListResponse < TencentCloud::Common::AbstractModel
-        # @param PageIndex: 页码，从1开始
-        # @type PageIndex: Integer
-        # @param PageSize: 每页的记录数
-        # @type PageSize: Integer
-        # @param TotalCount: 总记录数
-        # @type TotalCount: Integer
-        # @param TotalPage: 总页数
-        # @type TotalPage: Integer
-        # @param Items: 任务运行指标
-        # @type Items: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :PageIndex, :PageSize, :TotalCount, :TotalPage, :Items, :RequestId
-
-        def initialize(pageindex=nil, pagesize=nil, totalcount=nil, totalpage=nil, items=nil, requestid=nil)
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @TotalCount = totalcount
-          @TotalPage = totalpage
-          @Items = items
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          @TotalCount = params['TotalCount']
-          @TotalPage = params['TotalPage']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              taskreportdetail_tmp = TaskReportDetail.new
-              taskreportdetail_tmp.deserialize(i)
-              @Items << taskreportdetail_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTaskReport请求参数结构体
-      class DescribeTaskReportRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
-        # @type TaskId: String
-        # @param BeginDate: 统计周期的开始日期，格式为 yyyy-MM-dd
-        # @type BeginDate: String
-        # @param EndDate: 统计周期的结束日期，格式为 yyyy-MM-dd
-        # @type EndDate: String
-        # @param ProjectId: WeData项目id
-        # @type ProjectId: String
-
-        attr_accessor :TaskId, :BeginDate, :EndDate, :ProjectId
-
-        def initialize(taskid=nil, begindate=nil, enddate=nil, projectid=nil)
-          @TaskId = taskid
-          @BeginDate = begindate
-          @EndDate = enddate
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @BeginDate = params['BeginDate']
-          @EndDate = params['EndDate']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeTaskReport返回参数结构体
-      class DescribeTaskReportResponse < TencentCloud::Common::AbstractModel
-        # @param TotalReadRecords: 总读取条数
-        # @type TotalReadRecords: Integer
-        # @param TotalReadBytes: 总读取字节数，单位为Byte
-        # @type TotalReadBytes: Integer
-        # @param TotalWriteRecords: 总写入条数
-        # @type TotalWriteRecords: Integer
-        # @param TotalWriteBytes: 总写入字节数，单位为Byte
-        # @type TotalWriteBytes: Integer
-        # @param TotalErrorRecords: 总脏数据条数
-        # @type TotalErrorRecords: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalReadRecords, :TotalReadBytes, :TotalWriteRecords, :TotalWriteBytes, :TotalErrorRecords, :RequestId
-
-        def initialize(totalreadrecords=nil, totalreadbytes=nil, totalwriterecords=nil, totalwritebytes=nil, totalerrorrecords=nil, requestid=nil)
-          @TotalReadRecords = totalreadrecords
-          @TotalReadBytes = totalreadbytes
-          @TotalWriteRecords = totalwriterecords
-          @TotalWriteBytes = totalwritebytes
-          @TotalErrorRecords = totalerrorrecords
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalReadRecords = params['TotalReadRecords']
-          @TotalReadBytes = params['TotalReadBytes']
-          @TotalWriteRecords = params['TotalWriteRecords']
-          @TotalWriteBytes = params['TotalWriteBytes']
-          @TotalErrorRecords = params['TotalErrorRecords']
           @RequestId = params['RequestId']
         end
       end
@@ -17244,65 +12390,6 @@ module TencentCloud
               dimensioncount_tmp.deserialize(i)
               @Data << dimensioncount_tmp
             end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTemplateHistory请求参数结构体
-      class DescribeTemplateHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 分页序号
-        # @type PageNumber: Integer
-        # @param PageSize: 分页大小
-        # @type PageSize: Integer
-        # @param Filters: 过滤条件
-        # @type Filters: Array
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-
-        attr_accessor :PageNumber, :PageSize, :Filters, :ProjectId
-
-        def initialize(pagenumber=nil, pagesize=nil, filters=nil, projectid=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Filters = filters
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeTemplateHistory返回参数结构体
-      class DescribeTemplateHistoryResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 分页记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.RuleTemplateHistoryPage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = RuleTemplateHistoryPage.new
-            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -17631,50 +12718,6 @@ module TencentCloud
         end
       end
 
-      # DescribeWorkflowOpsCanvasInfo请求参数结构体
-      class DescribeWorkflowOpsCanvasInfoRequest < TencentCloud::Common::AbstractModel
-        # @param WorkflowId: 工作流id
-        # @type WorkflowId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :WorkflowId, :ProjectId
-
-        def initialize(workflowid=nil, projectid=nil)
-          @WorkflowId = workflowid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @WorkflowId = params['WorkflowId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # DescribeWorkflowOpsCanvasInfo返回参数结构体
-      class DescribeWorkflowOpsCanvasInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 删除结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.WorkflowCanvasOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = WorkflowCanvasOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeWorkflowTaskCount请求参数结构体
       class DescribeWorkflowTaskCountRequest < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 工作流列表
@@ -17719,8 +12762,8 @@ module TencentCloud
         end
       end
 
-      # DiagnosePlus请求参数结构体
-      class DiagnosePlusRequest < TencentCloud::Common::AbstractModel
+      # DiagnosePro请求参数结构体
+      class DiagnoseProRequest < TencentCloud::Common::AbstractModel
         # @param Instances: 实例列表
         # @type Instances: Array
         # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
@@ -17733,7 +12776,7 @@ module TencentCloud
         # @type SkipEventListening: Boolean
         # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
         # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
+        # @param SearchCondition: 查询条件（当前接口TaskId和CurRunDate需要填充在该字段方可诊断）
         # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
         # @param OptType: 访问类型
         # @type OptType: String
@@ -17816,10 +12859,10 @@ module TencentCloud
         end
       end
 
-      # DiagnosePlus返回参数结构体
-      class DiagnosePlusResponse < TencentCloud::Common::AbstractModel
+      # DiagnosePro返回参数结构体
+      class DiagnoseProResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果
-        # @type Data: String
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DiagnoseRep`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -17831,8 +12874,39 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = DiagnoseRep.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DiagnoseRep
+      class DiagnoseRep < TencentCloud::Common::AbstractModel
+        # @param Content: 诊断信息内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: :class:`Tencentcloud::Wedata.v20210820.models.Content`
+        # @param Table: 诊断结果相关信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: :class:`Tencentcloud::Wedata.v20210820.models.Table`
+
+        attr_accessor :Content, :Table
+
+        def initialize(content=nil, table=nil)
+          @Content = content
+          @Table = table
+        end
+
+        def deserialize(params)
+          unless params['Content'].nil?
+            @Content = Content.new
+            @Content.deserialize(params['Content'])
+          end
+          unless params['Table'].nil?
+            @Table = Table.new
+            @Table.deserialize(params['Table'])
+          end
         end
       end
 
@@ -18327,111 +13401,6 @@ module TencentCloud
         end
       end
 
-      # EditBaseline请求参数结构体
-      class EditBaselineRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param BaselineName: 基线名称
-        # @type BaselineName: String
-        # @param BaselineType: D或者H；分别表示天基线和小时基线
-        # @type BaselineType: String
-        # @param InChargeUin: 基线负责人id
-        # @type InChargeUin: String
-        # @param InChargeName: 基线负责人名称
-        # @type InChargeName: String
-        # @param PromiseTasks: 保障任务
-        # @type PromiseTasks: Array
-        # @param PromiseTime: 保障时间
-        # @type PromiseTime: String
-        # @param WarningMargin: 告警余量/分钟
-        # @type WarningMargin: Integer
-        # @param BaselineId: 基线id
-        # @type BaselineId: String
-        # @param UpdateUin: 更新人id
-        # @type UpdateUin: String
-        # @param UpdateName: 更新人名字
-        # @type UpdateName: String
-        # @param IsNewAlarm: 无
-        # @type IsNewAlarm: Boolean
-        # @param AlarmRuleDto: 现有告警规则信息
-        # @type AlarmRuleDto: :class:`Tencentcloud::Wedata.v20210820.models.AlarmRuleDto`
-        # @param BaselineModifyAlarmRuleRequest: 告警更新请求
-        # @type BaselineModifyAlarmRuleRequest: :class:`Tencentcloud::Wedata.v20210820.models.ModifyAlarmRuleRequest`
-
-        attr_accessor :ProjectId, :BaselineName, :BaselineType, :InChargeUin, :InChargeName, :PromiseTasks, :PromiseTime, :WarningMargin, :BaselineId, :UpdateUin, :UpdateName, :IsNewAlarm, :AlarmRuleDto, :BaselineModifyAlarmRuleRequest
-
-        def initialize(projectid=nil, baselinename=nil, baselinetype=nil, inchargeuin=nil, inchargename=nil, promisetasks=nil, promisetime=nil, warningmargin=nil, baselineid=nil, updateuin=nil, updatename=nil, isnewalarm=nil, alarmruledto=nil, baselinemodifyalarmrulerequest=nil)
-          @ProjectId = projectid
-          @BaselineName = baselinename
-          @BaselineType = baselinetype
-          @InChargeUin = inchargeuin
-          @InChargeName = inchargename
-          @PromiseTasks = promisetasks
-          @PromiseTime = promisetime
-          @WarningMargin = warningmargin
-          @BaselineId = baselineid
-          @UpdateUin = updateuin
-          @UpdateName = updatename
-          @IsNewAlarm = isnewalarm
-          @AlarmRuleDto = alarmruledto
-          @BaselineModifyAlarmRuleRequest = baselinemodifyalarmrulerequest
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @BaselineName = params['BaselineName']
-          @BaselineType = params['BaselineType']
-          @InChargeUin = params['InChargeUin']
-          @InChargeName = params['InChargeName']
-          unless params['PromiseTasks'].nil?
-            @PromiseTasks = []
-            params['PromiseTasks'].each do |i|
-              baselinetaskinfo_tmp = BaselineTaskInfo.new
-              baselinetaskinfo_tmp.deserialize(i)
-              @PromiseTasks << baselinetaskinfo_tmp
-            end
-          end
-          @PromiseTime = params['PromiseTime']
-          @WarningMargin = params['WarningMargin']
-          @BaselineId = params['BaselineId']
-          @UpdateUin = params['UpdateUin']
-          @UpdateName = params['UpdateName']
-          @IsNewAlarm = params['IsNewAlarm']
-          unless params['AlarmRuleDto'].nil?
-            @AlarmRuleDto = AlarmRuleDto.new
-            @AlarmRuleDto.deserialize(params['AlarmRuleDto'])
-          end
-          unless params['BaselineModifyAlarmRuleRequest'].nil?
-            @BaselineModifyAlarmRuleRequest = ModifyAlarmRuleRequest.new
-            @BaselineModifyAlarmRuleRequest.deserialize(params['BaselineModifyAlarmRuleRequest'])
-          end
-        end
-      end
-
-      # EditBaseline返回参数结构体
-      class EditBaselineResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BooleanResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BooleanResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 事件连续时间实例信息
       class EventBatchCaseDTO < TencentCloud::Common::AbstractModel
         # @param CaseId: 事件实例id
@@ -18764,91 +13733,6 @@ module TencentCloud
         end
       end
 
-      # 智能运维事件详情
-      class EventDto < TencentCloud::Common::AbstractModel
-        # @param Id: 事件id
-        # @type Id: Integer
-        # @param InstanceId: 基线、任务实例id
-        # @type InstanceId: String
-        # @param EventTime: 产生事件时间
-        # @type EventTime: String
-        # @param EventName: 事件名称
-        # @type EventName: String
-        # @param EventStatus: 事件状态.取值范围:
-
-        # - new:表示新建
-
-        # - processing:表示处理中
-        # @type EventStatus: String
-        # @param EventType: 事件类别/(基线or任务).取值范围:
-
-        # - baseline: 表示基线
-
-        # - task: 表示任务
-        # @type EventType: String
-        # @param IsAlarm: 是否告警
-        # @type IsAlarm: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param BelongTo: 所属任务/基线的名称
-        # @type BelongTo: String
-        # @param BaselineId: 基线、任务id
-        # @type BaselineId: Integer
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param AppId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppId: String
-        # @param UserUin: 当前用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserUin: String
-        # @param OwnerUin: 主账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerUin: String
-
-        attr_accessor :Id, :InstanceId, :EventTime, :EventName, :EventStatus, :EventType, :IsAlarm, :ProjectId, :BelongTo, :BaselineId, :CreateTime, :UpdateTime, :AppId, :UserUin, :OwnerUin
-
-        def initialize(id=nil, instanceid=nil, eventtime=nil, eventname=nil, eventstatus=nil, eventtype=nil, isalarm=nil, projectid=nil, belongto=nil, baselineid=nil, createtime=nil, updatetime=nil, appid=nil, useruin=nil, owneruin=nil)
-          @Id = id
-          @InstanceId = instanceid
-          @EventTime = eventtime
-          @EventName = eventname
-          @EventStatus = eventstatus
-          @EventType = eventtype
-          @IsAlarm = isalarm
-          @ProjectId = projectid
-          @BelongTo = belongto
-          @BaselineId = baselineid
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @AppId = appid
-          @UserUin = useruin
-          @OwnerUin = owneruin
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @InstanceId = params['InstanceId']
-          @EventTime = params['EventTime']
-          @EventName = params['EventName']
-          @EventStatus = params['EventStatus']
-          @EventType = params['EventType']
-          @IsAlarm = params['IsAlarm']
-          @ProjectId = params['ProjectId']
-          @BelongTo = params['BelongTo']
-          @BaselineId = params['BaselineId']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @AppId = params['AppId']
-          @UserUin = params['UserUin']
-          @OwnerUin = params['OwnerUin']
-        end
-      end
-
       # 事件监听器
       class EventListenerOpsDto < TencentCloud::Common::AbstractModel
         # @param EventName: 事件名称
@@ -18974,116 +13858,6 @@ module TencentCloud
               @EventCases << eventcaseopsdto_tmp
             end
           end
-        end
-      end
-
-      # 智能运维事件分页查询
-      class EventPage < TencentCloud::Common::AbstractModel
-        # @param EventsResponse: 事件详情集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EventsResponse: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-
-        attr_accessor :EventsResponse, :TotalCount
-
-        def initialize(eventsresponse=nil, totalcount=nil)
-          @EventsResponse = eventsresponse
-          @TotalCount = totalcount
-        end
-
-        def deserialize(params)
-          unless params['EventsResponse'].nil?
-            @EventsResponse = []
-            params['EventsResponse'].each do |i|
-              eventdto_tmp = EventDto.new
-              eventdto_tmp.deserialize(i)
-              @EventsResponse << eventdto_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-        end
-      end
-
-      # 数据导出任务详情
-      class ExportTaskInfo < TencentCloud::Common::AbstractModel
-        # @param ExportTaskId: 导出任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExportTaskId: Integer
-        # @param TaskType: 导出任务类型(1.全部,2.触发行,3.通过行)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskType: Integer
-        # @param OperatorId: 任务创建人 id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OperatorId: Integer
-        # @param OperatorName: 任务创建人昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OperatorName: String
-        # @param CreateTime: 任务创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param Status: 导出状态(1.已提交 2.导出中 3.导出成功 4.导出失败)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param SchedulerTaskId: 调度任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SchedulerTaskId: String
-        # @param SchedulerCurRunDate: 调度时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SchedulerCurRunDate: String
-        # @param FilePath: 文件相对路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FilePath: String
-        # @param Expire: 是否过期(1.已过期 2.未过期)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Expire: Integer
-        # @param DatasourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DatasourceName: String
-        # @param DbTableName: 库名+表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DbTableName: String
-        # @param RuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleName: String
-        # @param RuleExecId: 规则执行id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleExecId: Integer
-
-        attr_accessor :ExportTaskId, :TaskType, :OperatorId, :OperatorName, :CreateTime, :Status, :SchedulerTaskId, :SchedulerCurRunDate, :FilePath, :Expire, :DatasourceName, :DbTableName, :RuleName, :RuleExecId
-
-        def initialize(exporttaskid=nil, tasktype=nil, operatorid=nil, operatorname=nil, createtime=nil, status=nil, schedulertaskid=nil, schedulercurrundate=nil, filepath=nil, expire=nil, datasourcename=nil, dbtablename=nil, rulename=nil, ruleexecid=nil)
-          @ExportTaskId = exporttaskid
-          @TaskType = tasktype
-          @OperatorId = operatorid
-          @OperatorName = operatorname
-          @CreateTime = createtime
-          @Status = status
-          @SchedulerTaskId = schedulertaskid
-          @SchedulerCurRunDate = schedulercurrundate
-          @FilePath = filepath
-          @Expire = expire
-          @DatasourceName = datasourcename
-          @DbTableName = dbtablename
-          @RuleName = rulename
-          @RuleExecId = ruleexecid
-        end
-
-        def deserialize(params)
-          @ExportTaskId = params['ExportTaskId']
-          @TaskType = params['TaskType']
-          @OperatorId = params['OperatorId']
-          @OperatorName = params['OperatorName']
-          @CreateTime = params['CreateTime']
-          @Status = params['Status']
-          @SchedulerTaskId = params['SchedulerTaskId']
-          @SchedulerCurRunDate = params['SchedulerCurRunDate']
-          @FilePath = params['FilePath']
-          @Expire = params['Expire']
-          @DatasourceName = params['DatasourceName']
-          @DbTableName = params['DbTableName']
-          @RuleName = params['RuleName']
-          @RuleExecId = params['RuleExecId']
         end
       end
 
@@ -19217,38 +13991,6 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 文件夹信息
-      class Folder < TencentCloud::Common::AbstractModel
-        # @param Id: 文件ID
-        # @type Id: String
-        # @param Name: 文件夹名称
-        # @type Name: String
-        # @param CreateTime: 创建时间
-        # @type CreateTime: String
-        # @param ProjectId: 所属项目id
-        # @type ProjectId: String
-        # @param UpdateTime: 更新时间
-        # @type UpdateTime: String
-
-        attr_accessor :Id, :Name, :CreateTime, :ProjectId, :UpdateTime
-
-        def initialize(id=nil, name=nil, createtime=nil, projectid=nil, updatetime=nil)
-          @Id = id
-          @Name = name
-          @CreateTime = createtime
-          @ProjectId = projectid
-          @UpdateTime = updatetime
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @Name = params['Name']
-          @CreateTime = params['CreateTime']
-          @ProjectId = params['ProjectId']
-          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -19407,176 +14149,6 @@ module TencentCloud
         end
       end
 
-      # ForceSucInstances请求参数结构体
-      class ForceSucInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param Instances: 实例嵌套集合
-        # @type Instances: Array
-
-        attr_accessor :ProjectId, :Instances
-
-        def initialize(projectid=nil, instances=nil)
-          @ProjectId = projectid
-          @Instances = instances
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceinfo_tmp = InstanceInfo.new
-              instanceinfo_tmp.deserialize(i)
-              @Instances << instanceinfo_tmp
-            end
-          end
-        end
-      end
-
-      # ForceSucInstances返回参数结构体
-      class ForceSucInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回实例批量终止结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.OperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ForceSucScheduleInstances请求参数结构体
-      class ForceSucScheduleInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Instances: 实例列表
-        # @type Instances: Array
-        # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
-        # @type CheckFather: Boolean
-        # @param RerunType: 重跑类型, 1: 自身; 3: 孩子; 2: 自身以及孩子
-        # @type RerunType: String
-        # @param DependentWay: 实例依赖方式, 1: 自依赖; 2: 任务依赖; 3: 自依赖及父子依赖
-        # @type DependentWay: String
-        # @param SkipEventListening: 重跑忽略事件监听与否
-        # @type SkipEventListening: Boolean
-        # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
-        # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
-        # @param OptType: 访问类型
-        # @type OptType: String
-        # @param OperatorName: 操作者名称
-        # @type OperatorName: String
-        # @param OperatorId: 操作者id
-        # @type OperatorId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标志
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # @type ProjectName: String
-        # @param PageIndex: 索引页码
-        # @type PageIndex: Integer
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-        # @param Count: 数据总数
-        # @type Count: Integer
-        # @param RequestBaseInfo: 基础请求信息
-        # @type RequestBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.ProjectBaseInfoOpsRequest`
-        # @param IsCount: 是否计算总数
-        # @type IsCount: Boolean
-
-        attr_accessor :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :SearchCondition, :OptType, :OperatorName, :OperatorId, :ProjectId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
-
-        def initialize(instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, searchcondition=nil, opttype=nil, operatorname=nil, operatorid=nil, projectid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
-          @Instances = instances
-          @CheckFather = checkfather
-          @RerunType = reruntype
-          @DependentWay = dependentway
-          @SkipEventListening = skipeventlistening
-          @SonInstanceType = soninstancetype
-          @SearchCondition = searchcondition
-          @OptType = opttype
-          @OperatorName = operatorname
-          @OperatorId = operatorid
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @Count = count
-          @RequestBaseInfo = requestbaseinfo
-          @IsCount = iscount
-        end
-
-        def deserialize(params)
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceopsdto_tmp = InstanceOpsDto.new
-              instanceopsdto_tmp.deserialize(i)
-              @Instances << instanceopsdto_tmp
-            end
-          end
-          @CheckFather = params['CheckFather']
-          @RerunType = params['RerunType']
-          @DependentWay = params['DependentWay']
-          @SkipEventListening = params['SkipEventListening']
-          @SonInstanceType = params['SonInstanceType']
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceApiOpsRequest.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
-          @OptType = params['OptType']
-          @OperatorName = params['OperatorName']
-          @OperatorId = params['OperatorId']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          @Count = params['Count']
-          unless params['RequestBaseInfo'].nil?
-            @RequestBaseInfo = ProjectBaseInfoOpsRequest.new
-            @RequestBaseInfo.deserialize(params['RequestBaseInfo'])
-          end
-          @IsCount = params['IsCount']
-        end
-      end
-
-      # ForceSucScheduleInstances返回参数结构体
-      class ForceSucScheduleInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResultOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResultOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # FreezeOpsTasks请求参数结构体
       class FreezeOpsTasksRequest < TencentCloud::Common::AbstractModel
         # @param Tasks: 任务列表
@@ -19620,45 +14192,6 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # FreezeTasksByMultiWorkflow请求参数结构体
-      class FreezeTasksByMultiWorkflowRequest < TencentCloud::Common::AbstractModel
-        # @param WorkFlowIds: 工作流Id集合
-        # @type WorkFlowIds: Array
-
-        attr_accessor :WorkFlowIds
-
-        def initialize(workflowids=nil)
-          @WorkFlowIds = workflowids
-        end
-
-        def deserialize(params)
-          @WorkFlowIds = params['WorkFlowIds']
-        end
-      end
-
-      # FreezeTasksByMultiWorkflow返回参数结构体
-      class FreezeTasksByMultiWorkflowResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 操作结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.OperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OperateResult.new
-            @Data.deserialize(params['Data'])
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -19707,56 +14240,6 @@ module TencentCloud
         end
       end
 
-      # FreezeTasks请求参数结构体
-      class FreezeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Tasks: 任务列表
-        # @type Tasks: Array
-        # @param OperateIsInform: 任务操作是否消息通知下游任务责任人
-        # @type OperateIsInform: Boolean
-
-        attr_accessor :Tasks, :OperateIsInform
-
-        def initialize(tasks=nil, operateisinform=nil)
-          @Tasks = tasks
-          @OperateIsInform = operateisinform
-        end
-
-        def deserialize(params)
-          unless params['Tasks'].nil?
-            @Tasks = []
-            params['Tasks'].each do |i|
-              simpletaskinfo_tmp = SimpleTaskInfo.new
-              simpletaskinfo_tmp.deserialize(i)
-              @Tasks << simpletaskinfo_tmp
-            end
-          end
-          @OperateIsInform = params['OperateIsInform']
-        end
-      end
-
-      # FreezeTasks返回参数结构体
-      class FreezeTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 操作结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.OperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 函数资源信息
       class FunctionResource < TencentCloud::Common::AbstractModel
         # @param Path: 资源路径
@@ -19795,11 +14278,11 @@ module TencentCloud
 
       # 函数类型或函数分类
       class FunctionTypeOrKind < TencentCloud::Common::AbstractModel
-        # @param Name: 无
+        # @param Name: 名称
         # @type Name: String
-        # @param ZhName: 无
+        # @param ZhName: 函数分类英文名
         # @type ZhName: String
-        # @param EnName: 无
+        # @param EnName: 函数分类中文名
         # @type EnName: String
 
         attr_accessor :Name, :ZhName, :EnName
@@ -19871,13 +14354,13 @@ module TencentCloud
         # @type MsType: String
         # @param DatasourceId: 数据源id
         # @type DatasourceId: String
-        # @param SourceDatabase: 来源库
+        # @param SourceDatabase: 来源库名
         # @type SourceDatabase: String
-        # @param TableName: 来源表
+        # @param TableName: 来源表名
         # @type TableName: String
         # @param SinkType: 目标表元数据类型(HIVE、GBASE)
         # @type SinkType: String
-        # @param SchemaName: schema名称
+        # @param SchemaName: 源端schema名称
         # @type SchemaName: String
         # @param SourceFieldInfoList: 上游节点的字段信息
         # @type SourceFieldInfoList: Array
@@ -19907,10 +14390,12 @@ module TencentCloud
         # @type UpsertKeys: Array
         # @param TableBaseInfo: dlc表治理信息
         # @type TableBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.TableBaseInfo`
+        # @param SinkSchemaName: 目标端schema名称
+        # @type SinkSchemaName: String
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo, :SinkSchemaName
 
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil, sinkschemaname=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -19934,6 +14419,7 @@ module TencentCloud
           @TargetDatasourceId = targetdatasourceid
           @UpsertKeys = upsertkeys
           @TableBaseInfo = tablebaseinfo
+          @SinkSchemaName = sinkschemaname
         end
 
         def deserialize(params)
@@ -19984,6 +14470,7 @@ module TencentCloud
             @TableBaseInfo = TableBaseInfo.new
             @TableBaseInfo.deserialize(params['TableBaseInfo'])
           end
+          @SinkSchemaName = params['SinkSchemaName']
         end
       end
 
@@ -20082,7 +14569,7 @@ module TencentCloud
       class GetIntegrationNodeColumnSchemaRequest < TencentCloud::Common::AbstractModel
         # @param ColumnContent: 字段示例（json格式）
         # @type ColumnContent: String
-        # @param DatasourceType: 数据源类型
+        # @param DatasourceType: 数据源类型 MYSQL|HIVE|KAFKA|ES|MONGODB|REST_API|SYBASE|TIDB|DORIS|DM|
         # @type DatasourceType: String
 
         attr_accessor :ColumnContent, :DatasourceType
@@ -20438,26 +14925,6 @@ module TencentCloud
         end
       end
 
-      # 实例请求实体
-      class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param CurRunDate: 数据时间
-        # @type CurRunDate: String
-
-        attr_accessor :TaskId, :CurRunDate
-
-        def initialize(taskid=nil, currundate=nil)
-          @TaskId = taskid
-          @CurRunDate = currundate
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-        end
-      end
-
       # 实例生命周期详情
       class InstanceLifeCycleOpsDto < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -20636,56 +15103,6 @@ module TencentCloud
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
           @TryLimit = params['TryLimit']
-        end
-      end
-
-      # 实例日志实体
-      class InstanceLog < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param CurRunDate: 数据时间
-        # @type CurRunDate: String
-        # @param Tries: 尝试运行次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Tries: String
-        # @param LastUpdate: 日志更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastUpdate: String
-        # @param BrokerIp: 日志所在节点
-        # @type BrokerIp: String
-        # @param OriginFileName: 文件名  含全路径
-        # @type OriginFileName: String
-        # @param CreateTime: 日志创建时间
-        # @type CreateTime: String
-        # @param InstanceLogType: 实例日志类型, run: 运行; kill: 终止
-        # @type InstanceLogType: String
-        # @param CostTime: 运行耗时
-        # @type CostTime: Float
-
-        attr_accessor :TaskId, :CurRunDate, :Tries, :LastUpdate, :BrokerIp, :OriginFileName, :CreateTime, :InstanceLogType, :CostTime
-
-        def initialize(taskid=nil, currundate=nil, tries=nil, lastupdate=nil, brokerip=nil, originfilename=nil, createtime=nil, instancelogtype=nil, costtime=nil)
-          @TaskId = taskid
-          @CurRunDate = currundate
-          @Tries = tries
-          @LastUpdate = lastupdate
-          @BrokerIp = brokerip
-          @OriginFileName = originfilename
-          @CreateTime = createtime
-          @InstanceLogType = instancelogtype
-          @CostTime = costtime
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-          @Tries = params['Tries']
-          @LastUpdate = params['LastUpdate']
-          @BrokerIp = params['BrokerIp']
-          @OriginFileName = params['OriginFileName']
-          @CreateTime = params['CreateTime']
-          @InstanceLogType = params['InstanceLogType']
-          @CostTime = params['CostTime']
         end
       end
 
@@ -21265,152 +15682,6 @@ module TencentCloud
               @Items << instanceopsdto_tmp
             end
           end
-        end
-      end
-
-      # 离线任务实例读取节点的运行指标
-      class InstanceReportReadNode < TencentCloud::Common::AbstractModel
-        # @param NodeName: 节点名称
-        # @type NodeName: String
-        # @param DataSource: 数据来源
-        # @type DataSource: String
-        # @param TotalReadRecords: 总条数
-        # @type TotalReadRecords: Integer
-        # @param TotalReadBytes: 总字节数
-        # @type TotalReadBytes: Integer
-        # @param RecordSpeed: 速度（条/秒）
-        # @type RecordSpeed: Integer
-        # @param ByteSpeed: 吞吐（Byte/秒）
-        # @type ByteSpeed: Float
-        # @param TotalErrorRecords: 脏数据条数
-        # @type TotalErrorRecords: Integer
-        # @param WaitWriterTime: 等待数据发送到下游的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WaitWriterTime: Float
-
-        attr_accessor :NodeName, :DataSource, :TotalReadRecords, :TotalReadBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords, :WaitWriterTime
-
-        def initialize(nodename=nil, datasource=nil, totalreadrecords=nil, totalreadbytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil, waitwritertime=nil)
-          @NodeName = nodename
-          @DataSource = datasource
-          @TotalReadRecords = totalreadrecords
-          @TotalReadBytes = totalreadbytes
-          @RecordSpeed = recordspeed
-          @ByteSpeed = bytespeed
-          @TotalErrorRecords = totalerrorrecords
-          @WaitWriterTime = waitwritertime
-        end
-
-        def deserialize(params)
-          @NodeName = params['NodeName']
-          @DataSource = params['DataSource']
-          @TotalReadRecords = params['TotalReadRecords']
-          @TotalReadBytes = params['TotalReadBytes']
-          @RecordSpeed = params['RecordSpeed']
-          @ByteSpeed = params['ByteSpeed']
-          @TotalErrorRecords = params['TotalErrorRecords']
-          @WaitWriterTime = params['WaitWriterTime']
-        end
-      end
-
-      # 离线任务实例运行指标概览
-      class InstanceReportSummary < TencentCloud::Common::AbstractModel
-        # @param TotalReadRecords: 总读取记录数
-        # @type TotalReadRecords: Integer
-        # @param TotalReadBytes: 总读取字节数
-        # @type TotalReadBytes: Integer
-        # @param TotalWriteRecords: 总写入记录数
-        # @type TotalWriteRecords: Integer
-        # @param TotalWriteBytes: 总写入字节数
-        # @type TotalWriteBytes: Integer
-        # @param RecordSpeed: 速率（条/秒）
-        # @type RecordSpeed: Integer
-        # @param ByteSpeed: 流量（Byte/秒）
-        # @type ByteSpeed: Float
-        # @param TotalErrorRecords: 脏数据记录数
-        # @type TotalErrorRecords: Integer
-        # @param TotalErrorBytes: 脏数据字节数
-        # @type TotalErrorBytes: Integer
-        # @param TotalRunDuration: 任务运行总时长
-        # @type TotalRunDuration: Integer
-        # @param BeginRunTime: 任务开始运行时间
-        # @type BeginRunTime: String
-        # @param EndRunTime: 任务结束运行时间
-        # @type EndRunTime: String
-
-        attr_accessor :TotalReadRecords, :TotalReadBytes, :TotalWriteRecords, :TotalWriteBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords, :TotalErrorBytes, :TotalRunDuration, :BeginRunTime, :EndRunTime
-
-        def initialize(totalreadrecords=nil, totalreadbytes=nil, totalwriterecords=nil, totalwritebytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil, totalerrorbytes=nil, totalrunduration=nil, beginruntime=nil, endruntime=nil)
-          @TotalReadRecords = totalreadrecords
-          @TotalReadBytes = totalreadbytes
-          @TotalWriteRecords = totalwriterecords
-          @TotalWriteBytes = totalwritebytes
-          @RecordSpeed = recordspeed
-          @ByteSpeed = bytespeed
-          @TotalErrorRecords = totalerrorrecords
-          @TotalErrorBytes = totalerrorbytes
-          @TotalRunDuration = totalrunduration
-          @BeginRunTime = beginruntime
-          @EndRunTime = endruntime
-        end
-
-        def deserialize(params)
-          @TotalReadRecords = params['TotalReadRecords']
-          @TotalReadBytes = params['TotalReadBytes']
-          @TotalWriteRecords = params['TotalWriteRecords']
-          @TotalWriteBytes = params['TotalWriteBytes']
-          @RecordSpeed = params['RecordSpeed']
-          @ByteSpeed = params['ByteSpeed']
-          @TotalErrorRecords = params['TotalErrorRecords']
-          @TotalErrorBytes = params['TotalErrorBytes']
-          @TotalRunDuration = params['TotalRunDuration']
-          @BeginRunTime = params['BeginRunTime']
-          @EndRunTime = params['EndRunTime']
-        end
-      end
-
-      # 离线任务实例写入节点的运行指标
-      class InstanceReportWriteNode < TencentCloud::Common::AbstractModel
-        # @param NodeName: 节点名称
-        # @type NodeName: String
-        # @param DataSource: 数据来源
-        # @type DataSource: String
-        # @param TotalWriteRecords: 总条数
-        # @type TotalWriteRecords: Integer
-        # @param TotalWriteBytes: 总字节数
-        # @type TotalWriteBytes: Integer
-        # @param RecordSpeed: 速度（条/秒）
-        # @type RecordSpeed: Integer
-        # @param ByteSpeed: 吞吐（Byte/秒）
-        # @type ByteSpeed: Float
-        # @param TotalErrorRecords: 脏数据条数
-        # @type TotalErrorRecords: Integer
-        # @param WaitReaderTime: 等待上游数据发送过来的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WaitReaderTime: Float
-
-        attr_accessor :NodeName, :DataSource, :TotalWriteRecords, :TotalWriteBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords, :WaitReaderTime
-
-        def initialize(nodename=nil, datasource=nil, totalwriterecords=nil, totalwritebytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil, waitreadertime=nil)
-          @NodeName = nodename
-          @DataSource = datasource
-          @TotalWriteRecords = totalwriterecords
-          @TotalWriteBytes = totalwritebytes
-          @RecordSpeed = recordspeed
-          @ByteSpeed = bytespeed
-          @TotalErrorRecords = totalerrorrecords
-          @WaitReaderTime = waitreadertime
-        end
-
-        def deserialize(params)
-          @NodeName = params['NodeName']
-          @DataSource = params['DataSource']
-          @TotalWriteRecords = params['TotalWriteRecords']
-          @TotalWriteBytes = params['TotalWriteBytes']
-          @RecordSpeed = params['RecordSpeed']
-          @ByteSpeed = params['ByteSpeed']
-          @TotalErrorRecords = params['TotalErrorRecords']
-          @WaitReaderTime = params['WaitReaderTime']
         end
       end
 
@@ -22170,56 +16441,6 @@ module TencentCloud
         end
       end
 
-      # KillInstances请求参数结构体
-      class KillInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param Instances: 实例嵌套集合
-        # @type Instances: Array
-
-        attr_accessor :ProjectId, :Instances
-
-        def initialize(projectid=nil, instances=nil)
-          @ProjectId = projectid
-          @Instances = instances
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceinfo_tmp = InstanceInfo.new
-              instanceinfo_tmp.deserialize(i)
-              @Instances << instanceinfo_tmp
-            end
-          end
-        end
-      end
-
-      # KillInstances返回参数结构体
-      class KillInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回实例批量终止结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.OperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # KillOpsMakePlanInstances请求参数结构体
       class KillOpsMakePlanInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -22380,26 +16601,6 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 标签类型
-      class Label < TencentCloud::Common::AbstractModel
-        # @param Value: 类型值。
-        # @type Value: String
-        # @param Text: 类型名称。
-        # @type Text: String
-
-        attr_accessor :Value, :Text
-
-        def initialize(value=nil, text=nil)
-          @Value = value
-          @Text = text
-        end
-
-        def deserialize(params)
-          @Value = params['Value']
-          @Text = params['Text']
         end
       end
 
@@ -22925,279 +17126,6 @@ module TencentCloud
         end
       end
 
-      # MakeUpOpsTasks请求参数结构体
-      class MakeUpOpsTasksRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 补录的当前任务的taskId数组
-        # @type TaskIdList: Array
-        # @param StartTime: 补录开始时间
-        # @type StartTime: String
-        # @param EndTime: 补录结束时间
-        # @type EndTime: String
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param CheckParent: true: 检查父任务实例状态；false: 不检查父任务实例状态
-        # @type CheckParent: Boolean
-
-        attr_accessor :TaskIdList, :StartTime, :EndTime, :ProjectId, :CheckParent
-
-        def initialize(taskidlist=nil, starttime=nil, endtime=nil, projectid=nil, checkparent=nil)
-          @TaskIdList = taskidlist
-          @StartTime = starttime
-          @EndTime = endtime
-          @ProjectId = projectid
-          @CheckParent = checkparent
-        end
-
-        def deserialize(params)
-          @TaskIdList = params['TaskIdList']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @ProjectId = params['ProjectId']
-          @CheckParent = params['CheckParent']
-        end
-      end
-
-      # MakeUpOpsTasks返回参数结构体
-      class MakeUpOpsTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回批量操作成功个数、失败个数、操作总数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperationOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperationOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # MakeUpTasksByWorkflow请求参数结构体
-      class MakeUpTasksByWorkflowRequest < TencentCloud::Common::AbstractModel
-        # @param WorkflowId: 工作流id
-        # @type WorkflowId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param StartTime: 补数据开始时间 格式：2023-03-02 15:00:00
-        # @type StartTime: String
-        # @param EndTime: 补数据结束时间 格式：2023-03-03 15:00:00
-        # @type EndTime: String
-
-        attr_accessor :WorkflowId, :ProjectId, :StartTime, :EndTime
-
-        def initialize(workflowid=nil, projectid=nil, starttime=nil, endtime=nil)
-          @WorkflowId = workflowid
-          @ProjectId = projectid
-          @StartTime = starttime
-          @EndTime = endtime
-        end
-
-        def deserialize(params)
-          @WorkflowId = params['WorkflowId']
-          @ProjectId = params['ProjectId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-        end
-      end
-
-      # MakeUpTasksByWorkflow返回参数结构体
-      class MakeUpTasksByWorkflowResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 补数据结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperationOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperationOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # MakeUpTasksNew请求参数结构体
-      class MakeUpTasksNewRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIdList: 补录的当前任务的taskId数组
-        # @type TaskIdList: Array
-        # @param StartTime: 补录开始时间
-        # @type StartTime: String
-        # @param EndTime: 补录结束时间
-        # @type EndTime: String
-        # @param MakeUpType: 补录选项标识，1表示当前任务；2表示当前及下游任务；3表示下游任务
-        # @type MakeUpType: Integer
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param CheckParent: true: 检查父任务实例状态；false: 不检查父任务实例状态
-        # @type CheckParent: Boolean
-
-        attr_accessor :TaskIdList, :StartTime, :EndTime, :MakeUpType, :ProjectId, :CheckParent
-
-        def initialize(taskidlist=nil, starttime=nil, endtime=nil, makeuptype=nil, projectid=nil, checkparent=nil)
-          @TaskIdList = taskidlist
-          @StartTime = starttime
-          @EndTime = endtime
-          @MakeUpType = makeuptype
-          @ProjectId = projectid
-          @CheckParent = checkparent
-        end
-
-        def deserialize(params)
-          @TaskIdList = params['TaskIdList']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @MakeUpType = params['MakeUpType']
-          @ProjectId = params['ProjectId']
-          @CheckParent = params['CheckParent']
-        end
-      end
-
-      # MakeUpTasksNew返回参数结构体
-      class MakeUpTasksNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回批量操作成功个数、失败个数、操作总数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # MakeUpWorkflowNew请求参数结构体
-      class MakeUpWorkflowNewRequest < TencentCloud::Common::AbstractModel
-        # @param WorkFlowId: 工作流id
-        # @type WorkFlowId: String
-        # @param StartTime: 补录开始时间
-        # @type StartTime: String
-        # @param EndTime: 补录结束时间
-        # @type EndTime: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :WorkFlowId, :StartTime, :EndTime, :ProjectId
-
-        def initialize(workflowid=nil, starttime=nil, endtime=nil, projectid=nil)
-          @WorkFlowId = workflowid
-          @StartTime = starttime
-          @EndTime = endtime
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @WorkFlowId = params['WorkFlowId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # MakeUpWorkflowNew返回参数结构体
-      class MakeUpWorkflowNewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回补录成功或失败的任务数
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyAlarmRuleRequest
-      class ModifyAlarmRuleRequest < TencentCloud::Common::AbstractModel
-        # @param AlarmId: 告警id
-        # @type AlarmId: String
-        # @param RuleName: 规则名字
-        # @type RuleName: String
-        # @param MonitorType: 监控类型,1.task、2.workflow、3.project、4.baseline（默认为1.任务）
-        # @type MonitorType: Integer
-        # @param MonitorObjectIds: 监控对象
-        # @type MonitorObjectIds: Array
-        # @param AlarmTypes: 告警类型，1.失败告警、2.超时告警、3.成功告警、4.基线破线、5.基线预警、6.基线任务失败（默认1.失败告警）
-        # @type AlarmTypes: Array
-        # @param AlarmLevel: 告警级别，1.普通、2.重要、3.紧急（默认1.普通）
-        # @type AlarmLevel: Integer
-        # @param AlarmWays: 告警方式,1.邮件，2.短信，3.微信，4.语音，5.企业微信，6.Http，7.企业微信群；告警方式code列表（默认1.邮件）
-        # @type AlarmWays: Array
-        # @param AlarmRecipientType: 告警接收人类型：1.指定人员，2.任务责任人，3.值班表（默认1.指定人员）
-        # @type AlarmRecipientType: Integer
-        # @param AlarmRecipients: 告警接收人
-        # @type AlarmRecipients: Array
-        # @param AlarmRecipientIds: 告警接收人ID
-        # @type AlarmRecipientIds: Array
-        # @param ExtInfo: 扩展信息, 1.预计运行耗时（默认），2.预计完成时间，3.预计调度时间，4.周期内未完成；取值类型：1.指定指，2.历史均值（默认1.指定指）
-        # @type ExtInfo: String
-
-        attr_accessor :AlarmId, :RuleName, :MonitorType, :MonitorObjectIds, :AlarmTypes, :AlarmLevel, :AlarmWays, :AlarmRecipientType, :AlarmRecipients, :AlarmRecipientIds, :ExtInfo
-
-        def initialize(alarmid=nil, rulename=nil, monitortype=nil, monitorobjectids=nil, alarmtypes=nil, alarmlevel=nil, alarmways=nil, alarmrecipienttype=nil, alarmrecipients=nil, alarmrecipientids=nil, extinfo=nil)
-          @AlarmId = alarmid
-          @RuleName = rulename
-          @MonitorType = monitortype
-          @MonitorObjectIds = monitorobjectids
-          @AlarmTypes = alarmtypes
-          @AlarmLevel = alarmlevel
-          @AlarmWays = alarmways
-          @AlarmRecipientType = alarmrecipienttype
-          @AlarmRecipients = alarmrecipients
-          @AlarmRecipientIds = alarmrecipientids
-          @ExtInfo = extinfo
-        end
-
-        def deserialize(params)
-          @AlarmId = params['AlarmId']
-          @RuleName = params['RuleName']
-          @MonitorType = params['MonitorType']
-          @MonitorObjectIds = params['MonitorObjectIds']
-          @AlarmTypes = params['AlarmTypes']
-          @AlarmLevel = params['AlarmLevel']
-          @AlarmWays = params['AlarmWays']
-          @AlarmRecipientType = params['AlarmRecipientType']
-          @AlarmRecipients = params['AlarmRecipients']
-          @AlarmRecipientIds = params['AlarmRecipientIds']
-          @ExtInfo = params['ExtInfo']
-        end
-      end
-
       # ModifyApproveStatus请求参数结构体
       class ModifyApproveStatusRequest < TencentCloud::Common::AbstractModel
         # @param ApproveIds: 审批单ids
@@ -23245,98 +17173,6 @@ module TencentCloud
               @Data << approvemodify_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyBaselineAlarmStatus请求参数结构体
-      class ModifyBaselineAlarmStatusRequest < TencentCloud::Common::AbstractModel
-        # @param IsAlarm: 是否告警. 取值范围:
-        # - true: 开启告警;
-        # - false: 关闭告警
-        # @type IsAlarm: String
-        # @param Id: 基线实例id
-        # @type Id: Integer
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :IsAlarm, :Id, :ProjectId
-
-        def initialize(isalarm=nil, id=nil, projectid=nil)
-          @IsAlarm = isalarm
-          @Id = id
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @IsAlarm = params['IsAlarm']
-          @Id = params['Id']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # ModifyBaselineAlarmStatus返回参数结构体
-      class ModifyBaselineAlarmStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 成功或失败
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyBaselineTaskAlarmStatus请求参数结构体
-      class ModifyBaselineTaskAlarmStatusRequest < TencentCloud::Common::AbstractModel
-        # @param IsAlarm: 是否告警. 取值范围:
-        # - true: 开启告警;
-        # - false: 关闭告警
-        # @type IsAlarm: String
-        # @param Id: 基线任务实例id
-        # @type Id: Integer
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-
-        attr_accessor :IsAlarm, :Id, :ProjectId
-
-        def initialize(isalarm=nil, id=nil, projectid=nil)
-          @IsAlarm = isalarm
-          @Id = id
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @IsAlarm = params['IsAlarm']
-          @Id = params['Id']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # ModifyBaselineTaskAlarmStatus返回参数结构体
-      class ModifyBaselineTaskAlarmStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 成功或失败
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -23594,10 +17430,12 @@ module TencentCloud
         # @type TableId: String
         # @param ExecEngineType: 运行的执行引擎，不传时会请求该数据源下默认的执行引擎
         # @type ExecEngineType: String
+        # @param TriggerTypes: 触发场景
+        # @type TriggerTypes: Array
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :ProjectId, :StartTime, :EndTime, :CycleType, :CycleStep, :TaskAction, :DelayTime, :DatabaseId, :DatasourceId, :TableId, :ExecEngineType
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :ProjectId, :StartTime, :EndTime, :CycleType, :CycleStep, :TaskAction, :DelayTime, :DatabaseId, :DatasourceId, :TableId, :ExecEngineType, :TriggerTypes
 
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, projectid=nil, starttime=nil, endtime=nil, cycletype=nil, cyclestep=nil, taskaction=nil, delaytime=nil, databaseid=nil, datasourceid=nil, tableid=nil, execenginetype=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, projectid=nil, starttime=nil, endtime=nil, cycletype=nil, cyclestep=nil, taskaction=nil, delaytime=nil, databaseid=nil, datasourceid=nil, tableid=nil, execenginetype=nil, triggertypes=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -23615,6 +17453,7 @@ module TencentCloud
           @DatasourceId = datasourceid
           @TableId = tableid
           @ExecEngineType = execenginetype
+          @TriggerTypes = triggertypes
         end
 
         def deserialize(params)
@@ -23642,6 +17481,7 @@ module TencentCloud
           @DatasourceId = params['DatasourceId']
           @TableId = params['TableId']
           @ExecEngineType = params['ExecEngineType']
+          @TriggerTypes = params['TriggerTypes']
         end
       end
 
@@ -23666,63 +17506,15 @@ module TencentCloud
         end
       end
 
-      # ModifyFolder请求参数结构体
-      class ModifyFolderRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param FolderName: 文件夹名称
-        # @type FolderName: String
-        # @param FolderId: 文件夹Id
-        # @type FolderId: String
-        # @param ParentsFolderId: 父文件夹ID
-        # @type ParentsFolderId: String
-
-        attr_accessor :ProjectId, :FolderName, :FolderId, :ParentsFolderId
-
-        def initialize(projectid=nil, foldername=nil, folderid=nil, parentsfolderid=nil)
-          @ProjectId = projectid
-          @FolderName = foldername
-          @FolderId = folderid
-          @ParentsFolderId = parentsfolderid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @FolderName = params['FolderName']
-          @FolderId = params['FolderId']
-          @ParentsFolderId = params['ParentsFolderId']
-        end
-      end
-
-      # ModifyFolder返回参数结构体
-      class ModifyFolderResponse < TencentCloud::Common::AbstractModel
-        # @param Data: true代表成功，false代表失败
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyIntegrationNode请求参数结构体
       class ModifyIntegrationNodeRequest < TencentCloud::Common::AbstractModel
         # @param NodeInfo: 集成节点信息
         # @type NodeInfo: :class:`Tencentcloud::Wedata.v20210820.models.IntegrationNodeInfo`
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型 "201. stream, 202. offline"
         # @type TaskType: Integer
-        # @param TaskMode: 区分画布模式和表单模式
+        # @param TaskMode: 区分画布模式和表单 "1. 画布, 2. 表单"模式
         # @type TaskMode: Integer
 
         attr_accessor :NodeInfo, :ProjectId, :TaskType, :TaskMode
@@ -24151,7 +17943,7 @@ module TencentCloud
 
       # ModifyTaskAlarmRegular请求参数结构体
       class ModifyTaskAlarmRegularRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: 规则ID
         # @type Id: String
         # @param TaskAlarmInfo: 规则信息
         # @type TaskAlarmInfo: :class:`Tencentcloud::Wedata.v20210820.models.TaskAlarmInfo`
@@ -24394,6 +18186,28 @@ module TencentCloud
         # @param RealFromWorkflowId: 父任务工作流
         # @type RealFromWorkflowId: String
         # @param LinkDependencyType: 父子任务之间的依赖关系
+        #     /** 正常的依赖父任务全部实例  启用**/
+        #     normal_all(1),
+        #     normal_first_one(2),// 正常的依赖父任务 第一个
+        #     normal_last_one(3),// 正常的依赖父任务 最后一个
+        #     normal_any_one(4),// 正常的依赖父任务 任意一个
+        #     normal_specific_one(5),// 正常的依赖父任务 指定的一个
+        #     self(6),// 自身依赖，可能用不到
+
+        #     /** // 非正常的依赖父任务全部实例  启用（向前依赖  明天）**/
+        #     non_normal_all_forward(11),
+        #     non_normal_first_one_forward(12),// 非正常的依赖父任务 第一个
+        #     non_normal_last_one_forward(13),// 非正常的依赖父任务 最后一个
+        #     non_normal_any_one_forward(14),// 非正常的依赖父任务 任意一个
+        #     non_normal_specific_one_forward(15),// 非正常的依赖父任务 指定一个
+
+        #     /** // 非正常的依赖父任务全部实例  启用（向后依赖 昨天） **/
+        #     non_normal_all_backward(21),
+        #     non_normal_first_one_backward(22),// 非正常的依赖父任务 第一个
+        #     non_normal_last_one_backward(23),// 非正常的依赖父任务 最后一个
+        #     non_normal_any_one_backward(24),// 非正常的依赖父任务 任意一个
+        #     non_normal_specific_one_backward(25);// 非正常的依赖父任务 指定一个
+
         # @type LinkDependencyType: String
 
         attr_accessor :ProjectId, :TaskFrom, :TaskTo, :WorkflowId, :RealFromWorkflowId, :LinkDependencyType
@@ -24914,32 +18728,6 @@ module TencentCloud
         end
       end
 
-      # 操作结果
-      class OperateResult < TencentCloud::Common::AbstractModel
-        # @param Result: 操作结果；true表示成功；false表示失败
-        # @type Result: Boolean
-        # @param ErrorId: 错误编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ErrorId: String
-        # @param ErrorDesc: 操作信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ErrorDesc: String
-
-        attr_accessor :Result, :ErrorId, :ErrorDesc
-
-        def initialize(result=nil, errorid=nil, errordesc=nil)
-          @Result = result
-          @ErrorId = errorid
-          @ErrorDesc = errordesc
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @ErrorId = params['ErrorId']
-          @ErrorDesc = params['ErrorDesc']
-        end
-      end
-
       # 操作返回结果
       class OperationOpsDto < TencentCloud::Common::AbstractModel
         # @param Result: 操作是否成功
@@ -25407,10 +19195,13 @@ module TencentCloud
         # @param SubmitTimestamp: 时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitTimestamp: String
+        # @param Tag: 函数tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
 
-        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg, :SchemaName, :CommandFormat, :OwnerName, :SubmitTimestamp
+        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg, :SchemaName, :CommandFormat, :OwnerName, :SubmitTimestamp, :Tag
 
-        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil, schemaname=nil, commandformat=nil, ownername=nil, submittimestamp=nil)
+        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil, schemaname=nil, commandformat=nil, ownername=nil, submittimestamp=nil, tag=nil)
           @Name = name
           @DisplayName = displayname
           @LayerPath = layerpath
@@ -25436,6 +19227,7 @@ module TencentCloud
           @CommandFormat = commandformat
           @OwnerName = ownername
           @SubmitTimestamp = submittimestamp
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -25471,6 +19263,7 @@ module TencentCloud
           @CommandFormat = params['CommandFormat']
           @OwnerName = params['OwnerName']
           @SubmitTimestamp = params['SubmitTimestamp']
+          @Tag = params['Tag']
         end
       end
 
@@ -25533,197 +19326,6 @@ module TencentCloud
         def deserialize(params)
           @ParamKey = params['ParamKey']
           @ParamValue = params['ParamValue']
-        end
-      end
-
-      # 参数参数
-      class ParamInfoDs < TencentCloud::Common::AbstractModel
-        # @param ParamKey: 参数名
-        # @type ParamKey: String
-        # @param ParamValue: 参数值
-        # @type ParamValue: String
-
-        attr_accessor :ParamKey, :ParamValue
-
-        def initialize(paramkey=nil, paramvalue=nil)
-          @ParamKey = paramkey
-          @ParamValue = paramvalue
-        end
-
-        def deserialize(params)
-          @ParamKey = params['ParamKey']
-          @ParamValue = params['ParamValue']
-        end
-      end
-
-      # 任务参数Dto
-      class ParameterTaskDsDto < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param ParamKey: 参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamKey: String
-        # @param ParamDefine: 参数定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamDefine: String
-        # @param ParamValue: 参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamValue: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-
-        attr_accessor :TaskId, :ParamKey, :ParamDefine, :ParamValue, :CreateTime, :UpdateTime
-
-        def initialize(taskid=nil, paramkey=nil, paramdefine=nil, paramvalue=nil, createtime=nil, updatetime=nil)
-          @TaskId = taskid
-          @ParamKey = paramkey
-          @ParamDefine = paramdefine
-          @ParamValue = paramvalue
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @ParamKey = params['ParamKey']
-          @ParamDefine = params['ParamDefine']
-          @ParamValue = params['ParamValue']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-        end
-      end
-
-      # 查询任务输入参数Dto
-      class ParameterTaskInDsDto < TencentCloud::Common::AbstractModel
-        # @param Id: 唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: Integer
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param ParamKey: 参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamKey: String
-        # @param ParamDesc: 参数描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamDesc: String
-        # @param FromTaskId: 父任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FromTaskId: String
-        # @param FromParamKey: 父任务参数key
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FromParamKey: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 升级时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param FromTaskName: 父任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FromTaskName: String
-        # @param FromProjectId: 父任务项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FromProjectId: String
-        # @param FromProjectName: 父任务项目名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FromProjectName: String
-
-        attr_accessor :Id, :TaskId, :ParamKey, :ParamDesc, :FromTaskId, :FromParamKey, :CreateTime, :UpdateTime, :FromTaskName, :FromProjectId, :FromProjectName
-
-        def initialize(id=nil, taskid=nil, paramkey=nil, paramdesc=nil, fromtaskid=nil, fromparamkey=nil, createtime=nil, updatetime=nil, fromtaskname=nil, fromprojectid=nil, fromprojectname=nil)
-          @Id = id
-          @TaskId = taskid
-          @ParamKey = paramkey
-          @ParamDesc = paramdesc
-          @FromTaskId = fromtaskid
-          @FromParamKey = fromparamkey
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @FromTaskName = fromtaskname
-          @FromProjectId = fromprojectid
-          @FromProjectName = fromprojectname
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @TaskId = params['TaskId']
-          @ParamKey = params['ParamKey']
-          @ParamDesc = params['ParamDesc']
-          @FromTaskId = params['FromTaskId']
-          @FromParamKey = params['FromParamKey']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @FromTaskName = params['FromTaskName']
-          @FromProjectId = params['FromProjectId']
-          @FromProjectName = params['FromProjectName']
-        end
-      end
-
-      # 任务参数输出dto
-      class ParameterTaskOutDsDto < TencentCloud::Common::AbstractModel
-        # @param Id: 唯一标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: Integer
-        # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param ParamKey: 参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamKey: String
-        # @param ParamDesc: 参数描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamDesc: String
-        # @param ParamDefine: 参数定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamDefine: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param TaskName: 任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param ProjectName: 项目名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectName: String
-
-        attr_accessor :Id, :TaskId, :ParamKey, :ParamDesc, :ParamDefine, :CreateTime, :UpdateTime, :TaskName, :ProjectId, :ProjectName
-
-        def initialize(id=nil, taskid=nil, paramkey=nil, paramdesc=nil, paramdefine=nil, createtime=nil, updatetime=nil, taskname=nil, projectid=nil, projectname=nil)
-          @Id = id
-          @TaskId = taskid
-          @ParamKey = paramkey
-          @ParamDesc = paramdesc
-          @ParamDefine = paramdefine
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @TaskName = taskname
-          @ProjectId = projectid
-          @ProjectName = projectname
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @TaskId = params['TaskId']
-          @ParamKey = params['ParamKey']
-          @ParamDesc = params['ParamDesc']
-          @ParamDefine = params['ParamDefine']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @TaskName = params['TaskName']
-          @ProjectId = params['ProjectId']
-          @ProjectName = params['ProjectName']
         end
       end
 
@@ -25816,19 +19418,24 @@ module TencentCloud
         # @param TaskName: 生产调度任务名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
+        # @param CycleType: 生产调度任务任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleType: Integer
 
-        attr_accessor :WorkflowId, :TaskId, :TaskName
+        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType
 
-        def initialize(workflowid=nil, taskid=nil, taskname=nil)
+        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil)
           @WorkflowId = workflowid
           @TaskId = taskid
           @TaskName = taskname
+          @CycleType = cycletype
         end
 
         def deserialize(params)
           @WorkflowId = params['WorkflowId']
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+          @CycleType = params['CycleType']
         end
       end
 
@@ -26160,7 +19767,7 @@ module TencentCloud
         # @type EventBroadcastType: String
         # @param TimeUnit: 周期类型为天和小时为HOURS ，周期类型为分钟 ：MINUTES,周期类型为秒：SECONDS
         # @type TimeUnit: String
-        # @param Owner: TBDS 事件所属人
+        # @param Owner: 事件所属人
         # @type Owner: String
         # @param EventType: 事件类型，默认值：TIME_SERIES
         # @type EventType: String
@@ -26272,244 +19879,6 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RerunInstances请求参数结构体
-      class RerunInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param Instances: 实例嵌套集合
-        # @type Instances: Array
-        # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
-        # @type CheckFather: Boolean
-        # @param RerunType: 重跑类型, 1: 自身; 3: 孩子; 2: 自身以及孩子
-        # @type RerunType: String
-        # @param DependentWay: 实例依赖方式, 1: 自依赖; 2: 任务依赖; 3: 自依赖及父子依赖
-        # @type DependentWay: String
-        # @param SkipEventListening: 重跑忽略事件监听与否
-        # @type SkipEventListening: Boolean
-        # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
-        # @type SonInstanceType: String
-
-        attr_accessor :ProjectId, :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType
-
-        def initialize(projectid=nil, instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil)
-          @ProjectId = projectid
-          @Instances = instances
-          @CheckFather = checkfather
-          @RerunType = reruntype
-          @DependentWay = dependentway
-          @SkipEventListening = skipeventlistening
-          @SonInstanceType = soninstancetype
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceinfo_tmp = InstanceInfo.new
-              instanceinfo_tmp.deserialize(i)
-              @Instances << instanceinfo_tmp
-            end
-          end
-          @CheckFather = params['CheckFather']
-          @RerunType = params['RerunType']
-          @DependentWay = params['DependentWay']
-          @SkipEventListening = params['SkipEventListening']
-          @SonInstanceType = params['SonInstanceType']
-        end
-      end
-
-      # RerunInstances返回参数结构体
-      class RerunInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回实例批量终止结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.OperateResult`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = OperateResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RerunOpsMakePlanInstances请求参数结构体
-      class RerunOpsMakePlanInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param PlanId: 补录计划ID
-        # @type PlanId: String
-        # @param InstanceIdList: 补录实例ID集合，为空则重跑整个补录计划失败实例。实例ID格式为"${TASK_ID}_${INSTANCE_DATA_TIME}"，即“任务ID_任务实例数据时间”。
-        # @type InstanceIdList: Array
-
-        attr_accessor :ProjectId, :PlanId, :InstanceIdList
-
-        def initialize(projectid=nil, planid=nil, instanceidlist=nil)
-          @ProjectId = projectid
-          @PlanId = planid
-          @InstanceIdList = instanceidlist
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @PlanId = params['PlanId']
-          @InstanceIdList = params['InstanceIdList']
-        end
-      end
-
-      # RerunOpsMakePlanInstances返回参数结构体
-      class RerunOpsMakePlanInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 操作结果描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResultOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResultOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RerunScheduleInstances请求参数结构体
-      class RerunScheduleInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Instances: 实例列表
-        # @type Instances: Array
-        # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
-        # @type CheckFather: Boolean
-        # @param RerunType: 重跑类型, 1: 自身; 3: 孩子; 2: 自身以及孩子
-        # @type RerunType: String
-        # @param DependentWay: 实例依赖方式, 1: 自依赖; 2: 任务依赖; 3: 自依赖及父子依赖
-        # @type DependentWay: String
-        # @param SkipEventListening: 重跑忽略事件监听与否
-        # @type SkipEventListening: Boolean
-        # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
-        # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
-        # @param OptType: 访问类型
-        # @type OptType: String
-        # @param OperatorName: 操作者名称
-        # @type OperatorName: String
-        # @param OperatorId: 操作者id
-        # @type OperatorId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标志
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # @type ProjectName: String
-        # @param PageIndex: 索引页码
-        # @type PageIndex: Integer
-        # @param PageSize: 页面大小
-        # @type PageSize: Integer
-        # @param Count: 数据总数
-        # @type Count: Integer
-        # @param RequestBaseInfo: 基础请求信息
-        # @type RequestBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.ProjectBaseInfoOpsRequest`
-        # @param IsCount: 是否计算总数
-        # @type IsCount: Boolean
-
-        attr_accessor :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :SearchCondition, :OptType, :OperatorName, :OperatorId, :ProjectId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
-
-        def initialize(instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, searchcondition=nil, opttype=nil, operatorname=nil, operatorid=nil, projectid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
-          @Instances = instances
-          @CheckFather = checkfather
-          @RerunType = reruntype
-          @DependentWay = dependentway
-          @SkipEventListening = skipeventlistening
-          @SonInstanceType = soninstancetype
-          @SearchCondition = searchcondition
-          @OptType = opttype
-          @OperatorName = operatorname
-          @OperatorId = operatorid
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @PageIndex = pageindex
-          @PageSize = pagesize
-          @Count = count
-          @RequestBaseInfo = requestbaseinfo
-          @IsCount = iscount
-        end
-
-        def deserialize(params)
-          unless params['Instances'].nil?
-            @Instances = []
-            params['Instances'].each do |i|
-              instanceopsdto_tmp = InstanceOpsDto.new
-              instanceopsdto_tmp.deserialize(i)
-              @Instances << instanceopsdto_tmp
-            end
-          end
-          @CheckFather = params['CheckFather']
-          @RerunType = params['RerunType']
-          @DependentWay = params['DependentWay']
-          @SkipEventListening = params['SkipEventListening']
-          @SonInstanceType = params['SonInstanceType']
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceApiOpsRequest.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
-          @OptType = params['OptType']
-          @OperatorName = params['OperatorName']
-          @OperatorId = params['OperatorId']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @PageIndex = params['PageIndex']
-          @PageSize = params['PageSize']
-          @Count = params['Count']
-          unless params['RequestBaseInfo'].nil?
-            @RequestBaseInfo = ProjectBaseInfoOpsRequest.new
-            @RequestBaseInfo.deserialize(params['RequestBaseInfo'])
-          end
-          @IsCount = params['IsCount']
-        end
-      end
-
-      # RerunScheduleInstances返回参数结构体
-      class RerunScheduleInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 结果
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResultOpsDto`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BatchOperateResultOpsDto.new
-            @Data.deserialize(params['Data'])
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -26866,10 +20235,13 @@ module TencentCloud
         # @param TriggerCondition: 触发条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerCondition: String
+        # @param DsEnvType: 0或者未返回或者null：未定义，1：生产，2：开发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DsEnvType: Integer
 
-        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus, :TriggerCondition
+        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus, :TriggerCondition, :DsEnvType
 
-        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil, triggercondition=nil)
+        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil, triggercondition=nil, dsenvtype=nil)
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
           @TableId = tableid
@@ -26914,6 +20286,7 @@ module TencentCloud
           @DatabaseId = databaseid
           @MonitorStatus = monitorstatus
           @TriggerCondition = triggercondition
+          @DsEnvType = dsenvtype
         end
 
         def deserialize(params)
@@ -26973,6 +20346,7 @@ module TencentCloud
           @DatabaseId = params['DatabaseId']
           @MonitorStatus = params['MonitorStatus']
           @TriggerCondition = params['TriggerCondition']
+          @DsEnvType = params['DsEnvType']
         end
       end
 
@@ -27103,35 +20477,6 @@ module TencentCloud
           @StatDate = params['StatDate']
           @AlarmCnt = params['AlarmCnt']
           @PipelineCnt = params['PipelineCnt']
-        end
-      end
-
-      # 规则执行结果导出结果
-      class RuleExecExportResult < TencentCloud::Common::AbstractModel
-        # @param RuleExecId: 规则执行id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleExecId: Integer
-        # @param ExportTasks: 导出任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExportTasks: Array
-
-        attr_accessor :RuleExecId, :ExportTasks
-
-        def initialize(ruleexecid=nil, exporttasks=nil)
-          @RuleExecId = ruleexecid
-          @ExportTasks = exporttasks
-        end
-
-        def deserialize(params)
-          @RuleExecId = params['RuleExecId']
-          unless params['ExportTasks'].nil?
-            @ExportTasks = []
-            params['ExportTasks'].each do |i|
-              exporttaskinfo_tmp = ExportTaskInfo.new
-              exporttaskinfo_tmp.deserialize(i)
-              @ExportTasks << exporttaskinfo_tmp
-            end
-          end
         end
       end
 
@@ -27558,10 +20903,13 @@ module TencentCloud
         # @param SubscribeConfig: 是否已配置执行策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeConfig: Boolean
+        # @param DsEnvType: 数据源环境：0或者未返回.未定义，1.生产 2.开发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DsEnvType: Integer
 
-        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig
+        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig, :DsEnvType
 
-        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil)
+        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil, dsenvtype=nil)
           @RuleGroupId = rulegroupid
           @DatasourceId = datasourceid
           @DatasourceName = datasourcename
@@ -27583,6 +20931,7 @@ module TencentCloud
           @CreateTime = createtime
           @StrategyConfig = strategyconfig
           @SubscribeConfig = subscribeconfig
+          @DsEnvType = dsenvtype
         end
 
         def deserialize(params)
@@ -27613,6 +20962,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @StrategyConfig = params['StrategyConfig']
           @SubscribeConfig = params['SubscribeConfig']
+          @DsEnvType = params['DsEnvType']
         end
       end
 
@@ -27794,10 +21144,13 @@ module TencentCloud
         # @param RuleName: 规则名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
+        # @param TriggerTypes: 触发类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerTypes: Array
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes
 
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -27814,6 +21167,7 @@ module TencentCloud
           @ExecPlan = execplan
           @RuleId = ruleid
           @RuleName = rulename
+          @TriggerTypes = triggertypes
         end
 
         def deserialize(params)
@@ -27840,92 +21194,7 @@ module TencentCloud
           @ExecPlan = params['ExecPlan']
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
-        end
-      end
-
-      # 规则组监控业务视图
-      class RuleGroupMonitor < TencentCloud::Common::AbstractModel
-        # @param RuleGroupId: 规则组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleGroupId: Integer
-        # @param TableId: 表guid
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TableId: String
-        # @param DatasourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DatasourceId: Integer
-        # @param DatabaseId: 数据库guid
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DatabaseId: String
-        # @param MonitorType: 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MonitorType: Integer
-        # @param MonitorStatus: 监控状态 0.false 1.true
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MonitorStatus: Integer
-        # @param CreateUserId: 规则组创建人id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateUserId: Integer
-        # @param CreateUserName: 规则组创建人昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateUserName: String
-        # @param CreateTime: 规则创建时间 yyyy-MM-dd HH:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-
-        attr_accessor :RuleGroupId, :TableId, :DatasourceId, :DatabaseId, :MonitorType, :MonitorStatus, :CreateUserId, :CreateUserName, :CreateTime
-
-        def initialize(rulegroupid=nil, tableid=nil, datasourceid=nil, databaseid=nil, monitortype=nil, monitorstatus=nil, createuserid=nil, createusername=nil, createtime=nil)
-          @RuleGroupId = rulegroupid
-          @TableId = tableid
-          @DatasourceId = datasourceid
-          @DatabaseId = databaseid
-          @MonitorType = monitortype
-          @MonitorStatus = monitorstatus
-          @CreateUserId = createuserid
-          @CreateUserName = createusername
-          @CreateTime = createtime
-        end
-
-        def deserialize(params)
-          @RuleGroupId = params['RuleGroupId']
-          @TableId = params['TableId']
-          @DatasourceId = params['DatasourceId']
-          @DatabaseId = params['DatabaseId']
-          @MonitorType = params['MonitorType']
-          @MonitorStatus = params['MonitorStatus']
-          @CreateUserId = params['CreateUserId']
-          @CreateUserName = params['CreateUserName']
-          @CreateTime = params['CreateTime']
-        end
-      end
-
-      # 规则组监控业务分页视图
-      class RuleGroupMonitorPage < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param Items: 记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Items: Array
-
-        attr_accessor :TotalCount, :Items
-
-        def initialize(totalcount=nil, items=nil)
-          @TotalCount = totalcount
-          @Items = items
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              rulegroupmonitor_tmp = RuleGroupMonitor.new
-              rulegroupmonitor_tmp.deserialize(i)
-              @Items << rulegroupmonitor_tmp
-            end
-          end
+          @TriggerTypes = params['TriggerTypes']
         end
       end
 
@@ -28187,72 +21456,6 @@ module TencentCloud
         end
       end
 
-      # 规则操作记录业务
-      class RuleHistory < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RuleId: Integer
-        # @param AlterTime: 变更时间 yyyy-MM-dd HH:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlterTime: String
-        # @param AlterContent: 变更内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlterContent: String
-        # @param OperatorUserId: 操作账号UId
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OperatorUserId: Integer
-        # @param OperatorName: 操作人名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OperatorName: String
-
-        attr_accessor :RuleId, :AlterTime, :AlterContent, :OperatorUserId, :OperatorName
-
-        def initialize(ruleid=nil, altertime=nil, altercontent=nil, operatoruserid=nil, operatorname=nil)
-          @RuleId = ruleid
-          @AlterTime = altertime
-          @AlterContent = altercontent
-          @OperatorUserId = operatoruserid
-          @OperatorName = operatorname
-        end
-
-        def deserialize(params)
-          @RuleId = params['RuleId']
-          @AlterTime = params['AlterTime']
-          @AlterContent = params['AlterContent']
-          @OperatorUserId = params['OperatorUserId']
-          @OperatorName = params['OperatorName']
-        end
-      end
-
-      # 数据质量规则操作历史分页
-      class RuleHistoryPage < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param Items: 规则操作历史列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Items: Array
-
-        attr_accessor :TotalCount, :Items
-
-        def initialize(totalcount=nil, items=nil)
-          @TotalCount = totalcount
-          @Items = items
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              rulehistory_tmp = RuleHistory.new
-              rulehistory_tmp.deserialize(i)
-              @Items << rulehistory_tmp
-            end
-          end
-        end
-      end
-
       # 数据质量规则分页
       class RulePage < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录数
@@ -28388,71 +21591,6 @@ module TencentCloud
             @ResolvedSqlExpression.deserialize(params['ResolvedSqlExpression'])
           end
           @DatasourceTypes = params['DatasourceTypes']
-        end
-      end
-
-      # 规则模版变更历史记录视图
-      class RuleTemplateHistory < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版ID
-        # @type TemplateId: Integer
-        # @param Version: 版本
-        # @type Version: Integer
-        # @param UserId: 用户Id
-        # @type UserId: Integer
-        # @param UserName: 用户昵称
-        # @type UserName: String
-        # @param AlterType: 变更类型1.新增2.修改3.删除
-        # @type AlterType: Integer
-        # @param AlterContent: 变更内容
-        # @type AlterContent: String
-
-        attr_accessor :TemplateId, :Version, :UserId, :UserName, :AlterType, :AlterContent
-
-        def initialize(templateid=nil, version=nil, userid=nil, username=nil, altertype=nil, altercontent=nil)
-          @TemplateId = templateid
-          @Version = version
-          @UserId = userid
-          @UserName = username
-          @AlterType = altertype
-          @AlterContent = altercontent
-        end
-
-        def deserialize(params)
-          @TemplateId = params['TemplateId']
-          @Version = params['Version']
-          @UserId = params['UserId']
-          @UserName = params['UserName']
-          @AlterType = params['AlterType']
-          @AlterContent = params['AlterContent']
-        end
-      end
-
-      # 规则模版分页
-      class RuleTemplateHistoryPage < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总记录数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param Items: 记录列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Items: Array
-
-        attr_accessor :TotalCount, :Items
-
-        def initialize(totalcount=nil, items=nil)
-          @TotalCount = totalcount
-          @Items = items
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              ruletemplatehistory_tmp = RuleTemplateHistory.new
-              ruletemplatehistory_tmp.deserialize(i)
-              @Items << ruletemplatehistory_tmp
-            end
-          end
         end
       end
 
@@ -28723,46 +21861,6 @@ module TencentCloud
         end
       end
 
-      # RunTask请求参数结构体
-      class RunTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
-        # @type ProjectId: String
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-
-        attr_accessor :ProjectId, :TaskId
-
-        def initialize(projectid=nil, taskid=nil)
-          @ProjectId = projectid
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @ProjectId = params['ProjectId']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # RunTask返回参数结构体
-      class RunTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 运行成功或者失败
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # RunTasksByMultiWorkflow请求参数结构体
       class RunTasksByMultiWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -28808,34 +21906,6 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 规则执行结果
-      class RunnerRuleExecResult < TencentCloud::Common::AbstractModel
-        # @param RuleId: rule id
-        # @type RuleId: Integer
-        # @param RuleExecId: rule exec id
-        # @type RuleExecId: Integer
-        # @param State: exec state
-        # @type State: String
-        # @param Data: 结果
-        # @type Data: Array
-
-        attr_accessor :RuleId, :RuleExecId, :State, :Data
-
-        def initialize(ruleid=nil, ruleexecid=nil, state=nil, data=nil)
-          @RuleId = ruleid
-          @RuleExecId = ruleexecid
-          @State = state
-          @Data = data
-        end
-
-        def deserialize(params)
-          @RuleId = params['RuleId']
-          @RuleExecId = params['RuleExecId']
-          @State = params['State']
-          @Data = params['Data']
         end
       end
 
@@ -28913,10 +21983,16 @@ module TencentCloud
         # @type ReturnDesc: String
         # @param Example: 示例
         # @type Example: String
+        # @param ProjectId: 项目id，不支持修改，dlc侧创建函数保存时用
+        # @type ProjectId: String
+        # @param DbName: 数据库名称，不支持修改，dlc侧创建函数保存时用
+        # @type DbName: String
+        # @param Name: 函数名称，不支持修改，dlc侧创建函数保存时用
+        # @type Name: String
 
-        attr_accessor :FunctionId, :Kind, :ClusterIdentifier, :ClassName, :ResourceList, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example
+        attr_accessor :FunctionId, :Kind, :ClusterIdentifier, :ClassName, :ResourceList, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ProjectId, :DbName, :Name
 
-        def initialize(functionid=nil, kind=nil, clusteridentifier=nil, classname=nil, resourcelist=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil)
+        def initialize(functionid=nil, kind=nil, clusteridentifier=nil, classname=nil, resourcelist=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, projectid=nil, dbname=nil, name=nil)
           @FunctionId = functionid
           @Kind = kind
           @ClusterIdentifier = clusteridentifier
@@ -28927,6 +22003,9 @@ module TencentCloud
           @ParamDesc = paramdesc
           @ReturnDesc = returndesc
           @Example = example
+          @ProjectId = projectid
+          @DbName = dbname
+          @Name = name
         end
 
         def deserialize(params)
@@ -28947,6 +22026,9 @@ module TencentCloud
           @ParamDesc = params['ParamDesc']
           @ReturnDesc = params['ReturnDesc']
           @Example = params['Example']
+          @ProjectId = params['ProjectId']
+          @DbName = params['DbName']
+          @Name = params['Name']
         end
       end
 
@@ -29391,7 +22473,7 @@ module TencentCloud
       # 查询实例条件
       class SearchCondition < TencentCloud::Common::AbstractModel
         # @param Instance: 查询框架，必选
-        # @type Instance: :class:`Tencentcloud::Wedata.v20210820.models.SearchConditionInstance`
+        # @type Instance: :class:`Tencentcloud::Wedata.v20210820.models.SearchConditionInstanceNew`
         # @param Keyword: 查询关键字（任务Id精确匹配，任务名称模糊匹配），可选
         # @type Keyword: String
         # @param Sort: 排序顺序（asc，desc）
@@ -29410,7 +22492,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Instance'].nil?
-            @Instance = SearchConditionInstance.new
+            @Instance = SearchConditionInstanceNew.new
             @Instance.deserialize(params['Instance'])
           end
           @Keyword = params['Keyword']
@@ -29419,37 +22501,14 @@ module TencentCloud
         end
       end
 
-      # 查询框架
-      class SearchConditionInstance < TencentCloud::Common::AbstractModel
-        # @param ExecutionSpace: 执行空间 "DRY_RUN"
-        # @type ExecutionSpace: Integer
-        # @param ProductName: 产品名称，可选
-        # @type ProductName: Integer
-        # @param ResourceGroup: 资源组
-        # @type ResourceGroup: Integer
-
-        attr_accessor :ExecutionSpace, :ProductName, :ResourceGroup
-
-        def initialize(executionspace=nil, productname=nil, resourcegroup=nil)
-          @ExecutionSpace = executionspace
-          @ProductName = productname
-          @ResourceGroup = resourcegroup
-        end
-
-        def deserialize(params)
-          @ExecutionSpace = params['ExecutionSpace']
-          @ProductName = params['ProductName']
-          @ResourceGroup = params['ResourceGroup']
-        end
-      end
-
       # 搜索条件
       class SearchConditionInstanceNew < TencentCloud::Common::AbstractModel
-        # @param ExecutionSpace: 执行空间 "DRY_RUN"
+        # @param ExecutionSpace: 执行空间，可选
+        #  "DRY_RUN"
         # @type ExecutionSpace: String
-        # @param ProductName: 产品名称，可选
+        # @param ProductName: 业务产品，可选: <DATA_DEV / DATA_QUALITY / DATA_INTEGRATION，默认DATA_DEV。非空。默认 自身项目
         # @type ProductName: String
-        # @param ResourceGroup: 资源组
+        # @param ResourceGroup: 资源组信息，可选
         # @type ResourceGroup: String
 
         attr_accessor :ExecutionSpace, :ProductName, :ResourceGroup
@@ -29635,138 +22694,6 @@ module TencentCloud
         end
       end
 
-      # 数据源对象
-      class SimpleDataSourceInfo < TencentCloud::Common::AbstractModel
-        # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DatabaseName: String
-        # @param Description: 数据源描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Description: String
-        # @param ID: 数据源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ID: Integer
-        # @param Instance: 数据源引擎的实例ID，如CDB实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Instance: String
-        # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param Region: 数据源引擎所属区域
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Region: String
-        # @param Type: 数据源类型:枚举值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Type: String
-        # @param ClusterId: 数据源所属的集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterId: String
-        # @param AppId: 应用ID AppId
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppId: Integer
-        # @param Category: 数据源类别：绑定引擎、绑定数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Category: String
-        # @param Display: 数据源展示名，为了可视化查看
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Display: String
-        # @param OwnerAccount: 数据源责任人账号ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerAccount: String
-        # @param Status: 数据源数据源的可见性，1为可见、0为不可见。默认为1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param OwnerAccountName: 数据源责任人账号名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerAccountName: String
-        # @param ClusterName: 集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterName: String
-        # @param OwnerProjectId: 归属项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerProjectId: String
-        # @param OwnerProjectName: 归属项目Name
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerProjectName: String
-        # @param OwnerProjectIdent: 归属项目标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerProjectIdent: String
-        # @param Edit: 是否有编辑权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Edit: Boolean
-        # @param Author: 是否有授权权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Author: Boolean
-        # @param Deliver: 是否有转交权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Deliver: Boolean
-        # @param DataSourceStatus: 数据源状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DataSourceStatus: String
-        # @param AuthorityProjectName: 认证项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AuthorityProjectName: String
-        # @param AuthorityUserName: 认证用户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AuthorityUserName: String
-
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :Category, :Display, :OwnerAccount, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :Edit, :Author, :Deliver, :DataSourceStatus, :AuthorityProjectName, :AuthorityUserName
-
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, category=nil, display=nil, owneraccount=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, authorityprojectname=nil, authorityusername=nil)
-          @DatabaseName = databasename
-          @Description = description
-          @ID = id
-          @Instance = instance
-          @Name = name
-          @Region = region
-          @Type = type
-          @ClusterId = clusterid
-          @AppId = appid
-          @Category = category
-          @Display = display
-          @OwnerAccount = owneraccount
-          @Status = status
-          @OwnerAccountName = owneraccountname
-          @ClusterName = clustername
-          @OwnerProjectId = ownerprojectid
-          @OwnerProjectName = ownerprojectname
-          @OwnerProjectIdent = ownerprojectident
-          @Edit = edit
-          @Author = author
-          @Deliver = deliver
-          @DataSourceStatus = datasourcestatus
-          @AuthorityProjectName = authorityprojectname
-          @AuthorityUserName = authorityusername
-        end
-
-        def deserialize(params)
-          @DatabaseName = params['DatabaseName']
-          @Description = params['Description']
-          @ID = params['ID']
-          @Instance = params['Instance']
-          @Name = params['Name']
-          @Region = params['Region']
-          @Type = params['Type']
-          @ClusterId = params['ClusterId']
-          @AppId = params['AppId']
-          @Category = params['Category']
-          @Display = params['Display']
-          @OwnerAccount = params['OwnerAccount']
-          @Status = params['Status']
-          @OwnerAccountName = params['OwnerAccountName']
-          @ClusterName = params['ClusterName']
-          @OwnerProjectId = params['OwnerProjectId']
-          @OwnerProjectName = params['OwnerProjectName']
-          @OwnerProjectIdent = params['OwnerProjectIdent']
-          @Edit = params['Edit']
-          @Author = params['Author']
-          @Deliver = params['Deliver']
-          @DataSourceStatus = params['DataSourceStatus']
-          @AuthorityProjectName = params['AuthorityProjectName']
-          @AuthorityUserName = params['AuthorityUserName']
-        end
-      end
-
       # 简单Task信息
       class SimpleTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -29813,48 +22740,6 @@ module TencentCloud
           @FieldType = params['FieldType']
           @Alias = params['Alias']
           @Comment = params['Comment']
-        end
-      end
-
-      # 数据质量数据对象
-      class SourceObject < TencentCloud::Common::AbstractModel
-        # @param SourceObjectDataTypeName: 源字段详细类型，int、string
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceObjectDataTypeName: String
-        # @param SourceObjectValue: 源字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceObjectValue: String
-        # @param ObjectDataTypeName: 源字段详细类型，int、string
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ObjectDataTypeName: String
-        # @param ObjectValue: 源字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ObjectValue: String
-        # @param ObjectType: 对象类型 1.常量  2.离线表级   3.离线字段级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ObjectType: Integer
-
-        attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
-        extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2024, 4
-        deprecate :SourceObjectDataTypeName=, :none, 2024, 4
-        deprecate :SourceObjectValue, :none, 2024, 4
-        deprecate :SourceObjectValue=, :none, 2024, 4
-
-        def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
-          @SourceObjectDataTypeName = sourceobjectdatatypename
-          @SourceObjectValue = sourceobjectvalue
-          @ObjectDataTypeName = objectdatatypename
-          @ObjectValue = objectvalue
-          @ObjectType = objecttype
-        end
-
-        def deserialize(params)
-          @SourceObjectDataTypeName = params['SourceObjectDataTypeName']
-          @SourceObjectValue = params['SourceObjectValue']
-          @ObjectDataTypeName = params['ObjectDataTypeName']
-          @ObjectValue = params['ObjectValue']
-          @ObjectType = params['ObjectType']
         end
       end
 
@@ -30104,49 +22989,6 @@ module TencentCloud
         end
       end
 
-      # StopBaseline请求参数结构体
-      class StopBaselineRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineId: 1
-        # @type BaselineId: String
-        # @param ProjectId: 1
-        # @type ProjectId: String
-
-        attr_accessor :BaselineId, :ProjectId
-
-        def initialize(baselineid=nil, projectid=nil)
-          @BaselineId = baselineid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @BaselineId = params['BaselineId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # StopBaseline返回参数结构体
-      class StopBaselineResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否操作成功描述
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BooleanResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BooleanResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # StopIntegrationTask请求参数结构体
       class StopIntegrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -30209,66 +23051,6 @@ module TencentCloud
         end
       end
 
-      # string 数组
-      class StringListNode < TencentCloud::Common::AbstractModel
-        # @param PreviewRecord: string数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PreviewRecord: Array
-
-        attr_accessor :PreviewRecord
-
-        def initialize(previewrecord=nil)
-          @PreviewRecord = previewrecord
-        end
-
-        def deserialize(params)
-          @PreviewRecord = params['PreviewRecord']
-        end
-      end
-
-      # SubmitBaseline请求参数结构体
-      class SubmitBaselineRequest < TencentCloud::Common::AbstractModel
-        # @param BaselineId: 1
-        # @type BaselineId: String
-        # @param ProjectId: 1
-        # @type ProjectId: String
-
-        attr_accessor :BaselineId, :ProjectId
-
-        def initialize(baselineid=nil, projectid=nil)
-          @BaselineId = baselineid
-          @ProjectId = projectid
-        end
-
-        def deserialize(params)
-          @BaselineId = params['BaselineId']
-          @ProjectId = params['ProjectId']
-        end
-      end
-
-      # SubmitBaseline返回参数结构体
-      class SubmitBaselineResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否操作成功描述
-        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BooleanResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = BooleanResponse.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # SubmitCustomFunction请求参数结构体
       class SubmitCustomFunctionRequest < TencentCloud::Common::AbstractModel
         # @param FunctionId: 函数唯一标识
@@ -30302,7 +23084,7 @@ module TencentCloud
         # @param FunctionId: 函数唯一标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FunctionId: String
-        # @param ErrorMessage: 无
+        # @param ErrorMessage: 错误提示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -30719,6 +23501,42 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Table
+      class Table < TencentCloud::Common::AbstractModel
+        # @param Column: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Column: Array
+        # @param Data: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Column, :Data
+
+        def initialize(column=nil, data=nil)
+          @Column = column
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Column'].nil?
+            @Column = []
+            params['Column'].each do |i|
+              columnitem_tmp = ColumnItem.new
+              columnitem_tmp.deserialize(i)
+              @Column << columnitem_tmp
+            end
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              columndata_tmp = ColumnData.new
+              columndata_tmp.deserialize(i)
+              @Data << columndata_tmp
+            end
+          end
         end
       end
 
@@ -31698,10 +24516,13 @@ module TencentCloud
         # @param LastPeriodRatio: 表环比
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastPeriodRatio: Float
+        # @param DsEnvType: 0或者未返回或者null：未定义，1：生产，2：开发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DsEnvType: Integer
 
-        attr_accessor :DatabaseId, :DatabaseName, :TableId, :TableName, :OwnerUserId, :OwnerUserName, :DatabaseScore, :TableScore, :LastPeriodRatio
+        attr_accessor :DatabaseId, :DatabaseName, :TableId, :TableName, :OwnerUserId, :OwnerUserName, :DatabaseScore, :TableScore, :LastPeriodRatio, :DsEnvType
 
-        def initialize(databaseid=nil, databasename=nil, tableid=nil, tablename=nil, owneruserid=nil, ownerusername=nil, databasescore=nil, tablescore=nil, lastperiodratio=nil)
+        def initialize(databaseid=nil, databasename=nil, tableid=nil, tablename=nil, owneruserid=nil, ownerusername=nil, databasescore=nil, tablescore=nil, lastperiodratio=nil, dsenvtype=nil)
           @DatabaseId = databaseid
           @DatabaseName = databasename
           @TableId = tableid
@@ -31711,6 +24532,7 @@ module TencentCloud
           @DatabaseScore = databasescore
           @TableScore = tablescore
           @LastPeriodRatio = lastperiodratio
+          @DsEnvType = dsenvtype
         end
 
         def deserialize(params)
@@ -31723,6 +24545,7 @@ module TencentCloud
           @DatabaseScore = params['DatabaseScore']
           @TableScore = params['TableScore']
           @LastPeriodRatio = params['LastPeriodRatio']
+          @DsEnvType = params['DsEnvType']
         end
       end
 
@@ -32024,1380 +24847,6 @@ module TencentCloud
           @CycleUnit = params['CycleUnit']
           @ReportTime = params['ReportTime']
           @Count = params['Count']
-        end
-      end
-
-      # 任务信息
-      class TaskCanvasInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param WorkflowId: 工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowName: String
-        # @param ProjectName: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectName: String
-        # @param ProjectIdent: 项目标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectIdent: String
-        # @param Status: 任务状态，'Y','F','O','T','INVALID' 分别表示调度中、已停止、已暂停、停止中、已失效
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: String
-        # @param TaskTypeId: 任务类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeId: Integer
-        # @param TaskTypeDesc: 任务类型描述，其中任务类型id和任务类型描述的对应的关系为
-        # 20	通用数据同步任务
-        # 21	JDBC SQL
-        # 22	Tbase
-        # 25	数据ETL
-        # 30	Python
-        # 31	PySpark
-        # 34	Hive SQL
-        # 35	Shell
-        # 36	Spark SQL
-        # 37	HDFS到HBase
-        # 38	SHELL
-        # 39	Spark
-        # 45	DATA_QUALITY
-        # 55	THIVE到MYSQL
-        # 56	THIVE到PG
-        # 66	HDFS到PG
-        # 67	HDFS到Oracle
-        # 68	HDFS到MYSQL
-        # 69	FTP到HDFS
-        # 70	HIVE SQL
-        # 72	HIVE到HDFS
-        # 75	HDFS到HIVE
-        # 81	PYTHONSQL脚本
-        # 82	SPARKSCALA计算
-        # 83	虫洞任务
-        # 84	校验对账文件
-        # 85	HDFS到THIVE
-        # 86	TDW到HDFS
-        # 87	HDFS到TDW
-        # 88	校验对账文件
-        # 91	FLINK任务
-        # 92	MapReduce
-        # 98	custom topology
-        # 99	kafkatoHDFS
-        # 100	kafkatoHbase
-        # 101	MYSQL导入至HIVE(DX)
-        # 104	MYSQL到HIVE
-        # 105	HIVE到MYSQL
-        # 106	SQL SERVER到HIVE
-        # 107	HIVE到SQL SERVER
-        # 108	ORACLE到HIVE
-        # 109	HIVE到ORACLE
-        # 111	HIVE到MYSQL(NEW)
-        # 112	HIVE到PG
-        # 113	HIVE到PHOENIX
-        # 118	MYSQL到HDFS
-        # 119	PG到HDFS
-        # 120	ORACLE到HDFS
-        # 121	数据质量
-        # 10000	自定义业务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeDesc: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param FolderName: 文件夹名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderName: String
-        # @param FolderId: 文件夹id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderId: String
-        # @param FirstSubmitTime: 最近提交时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FirstSubmitTime: String
-        # @param FirstRunTime: 首次运行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FirstRunTime: String
-        # @param ScheduleDesc: 调度计划展示描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ScheduleDesc: String
-        # @param InCharge: 负责人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCharge: String
-        # @param CycleUnit: 调度周期类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CycleUnit: String
-        # @param LeftCoordinate: 画布x轴坐标点
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LeftCoordinate: Float
-        # @param TopCoordinate: 画布y轴坐标点
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TopCoordinate: Float
-        # @param VirtualFlag: 跨工作流虚拟任务标识；true标识跨工作流任务；false标识本工作流任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualFlag: Boolean
-        # @param TaskAction: 弹性周期配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskAction: String
-        # @param DelayTime: 延迟时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DelayTime: Integer
-        # @param ExecutionStartTime: 执行开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionEndTime: String
-        # @param Layer: 层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Layer: String
-        # @param SourceServiceId: 来源数据源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServiceId: String
-        # @param SourceServiceType: 来源数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServiceType: String
-        # @param TargetServiceId: 目标数据源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServiceId: String
-        # @param TargetServiceType: 目标数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServiceType: String
-        # @param AlarmType: 任务告警类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AlarmType: String
-        # @param CreateTime: 任务创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UserId: UserId
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserId: String
-        # @param OwnerId: OwnerId
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerId: String
-        # @param TenantId: TenantId
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TenantId: String
-        # @param SelfDepend: 自依赖类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SelfDepend: Integer
-        # @param ExecutorGroupId: 资源组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutorGroupId: String
-        # @param ExecutorGroupName: 资源组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutorGroupName: String
-        # @param RunPriority: 优先级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RunPriority: String
-        # @param TryLimit: 可充实次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TryLimit: String
-        # @param RetryAble: 可充实
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryAble: String
-        # @param RetryWait: 重试等待事件
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryWait: String
-        # @param LastSchedulerCommitTime: 最近提交时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastSchedulerCommitTime: String
-        # @param Notes: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Notes: String
-        # @param Creator: 创建人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Creator: String
-        # @param UpdateUser: 创建人id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateUser: String
-        # @param UpdateUserId: 更新人id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateUserId: String
-        # @param YarnQueue: yarn队列
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type YarnQueue: String
-        # @param ExecutionTTL: 可执行的timeToLive
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionTTL: Integer
-
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime, :ExecutionStartTime, :ExecutionEndTime, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :CreateTime, :UserId, :OwnerId, :TenantId, :SelfDepend, :ExecutorGroupId, :ExecutorGroupName, :RunPriority, :TryLimit, :RetryAble, :RetryWait, :LastSchedulerCommitTime, :Notes, :Creator, :UpdateUser, :UpdateUserId, :YarnQueue, :ExecutionTTL
-
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil, executionstarttime=nil, executionendtime=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, createtime=nil, userid=nil, ownerid=nil, tenantid=nil, selfdepend=nil, executorgroupid=nil, executorgroupname=nil, runpriority=nil, trylimit=nil, retryable=nil, retrywait=nil, lastschedulercommittime=nil, notes=nil, creator=nil, updateuser=nil, updateuserid=nil, yarnqueue=nil, executionttl=nil)
-          @TaskId = taskid
-          @TaskName = taskname
-          @WorkflowId = workflowid
-          @WorkflowName = workflowname
-          @ProjectName = projectname
-          @ProjectIdent = projectident
-          @Status = status
-          @TaskTypeId = tasktypeid
-          @TaskTypeDesc = tasktypedesc
-          @ProjectId = projectid
-          @FolderName = foldername
-          @FolderId = folderid
-          @FirstSubmitTime = firstsubmittime
-          @FirstRunTime = firstruntime
-          @ScheduleDesc = scheduledesc
-          @InCharge = incharge
-          @CycleUnit = cycleunit
-          @LeftCoordinate = leftcoordinate
-          @TopCoordinate = topcoordinate
-          @VirtualFlag = virtualflag
-          @TaskAction = taskaction
-          @DelayTime = delaytime
-          @ExecutionStartTime = executionstarttime
-          @ExecutionEndTime = executionendtime
-          @Layer = layer
-          @SourceServiceId = sourceserviceid
-          @SourceServiceType = sourceservicetype
-          @TargetServiceId = targetserviceid
-          @TargetServiceType = targetservicetype
-          @AlarmType = alarmtype
-          @CreateTime = createtime
-          @UserId = userid
-          @OwnerId = ownerid
-          @TenantId = tenantid
-          @SelfDepend = selfdepend
-          @ExecutorGroupId = executorgroupid
-          @ExecutorGroupName = executorgroupname
-          @RunPriority = runpriority
-          @TryLimit = trylimit
-          @RetryAble = retryable
-          @RetryWait = retrywait
-          @LastSchedulerCommitTime = lastschedulercommittime
-          @Notes = notes
-          @Creator = creator
-          @UpdateUser = updateuser
-          @UpdateUserId = updateuserid
-          @YarnQueue = yarnqueue
-          @ExecutionTTL = executionttl
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskName = params['TaskName']
-          @WorkflowId = params['WorkflowId']
-          @WorkflowName = params['WorkflowName']
-          @ProjectName = params['ProjectName']
-          @ProjectIdent = params['ProjectIdent']
-          @Status = params['Status']
-          @TaskTypeId = params['TaskTypeId']
-          @TaskTypeDesc = params['TaskTypeDesc']
-          @ProjectId = params['ProjectId']
-          @FolderName = params['FolderName']
-          @FolderId = params['FolderId']
-          @FirstSubmitTime = params['FirstSubmitTime']
-          @FirstRunTime = params['FirstRunTime']
-          @ScheduleDesc = params['ScheduleDesc']
-          @InCharge = params['InCharge']
-          @CycleUnit = params['CycleUnit']
-          @LeftCoordinate = params['LeftCoordinate']
-          @TopCoordinate = params['TopCoordinate']
-          @VirtualFlag = params['VirtualFlag']
-          @TaskAction = params['TaskAction']
-          @DelayTime = params['DelayTime']
-          @ExecutionStartTime = params['ExecutionStartTime']
-          @ExecutionEndTime = params['ExecutionEndTime']
-          @Layer = params['Layer']
-          @SourceServiceId = params['SourceServiceId']
-          @SourceServiceType = params['SourceServiceType']
-          @TargetServiceId = params['TargetServiceId']
-          @TargetServiceType = params['TargetServiceType']
-          @AlarmType = params['AlarmType']
-          @CreateTime = params['CreateTime']
-          @UserId = params['UserId']
-          @OwnerId = params['OwnerId']
-          @TenantId = params['TenantId']
-          @SelfDepend = params['SelfDepend']
-          @ExecutorGroupId = params['ExecutorGroupId']
-          @ExecutorGroupName = params['ExecutorGroupName']
-          @RunPriority = params['RunPriority']
-          @TryLimit = params['TryLimit']
-          @RetryAble = params['RetryAble']
-          @RetryWait = params['RetryWait']
-          @LastSchedulerCommitTime = params['LastSchedulerCommitTime']
-          @Notes = params['Notes']
-          @Creator = params['Creator']
-          @UpdateUser = params['UpdateUser']
-          @UpdateUserId = params['UpdateUserId']
-          @YarnQueue = params['YarnQueue']
-          @ExecutionTTL = params['ExecutionTTL']
-        end
-      end
-
-      # TaskDsDTO 减少嵌套层数
-      class TaskDsDTOLiteV2 < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param VirtualTaskId: 虚拟任务标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualTaskId: String
-        # @param VirtualFlag: 虚拟任务标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualFlag: Boolean
-        # @param TaskName: 任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param WorkflowId: 工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowId: String
-        # @param RealWorkflowId: 真实工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealWorkflowId: String
-        # @param WorkflowName: 工作流名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowName: String
-        # @param FolderId: 文件夹id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderId: String
-        # @param FolderName: 文件夹名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderName: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param LastUpdate: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastUpdate: String
-        # @param Status: 任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: String
-        # @param InCharge: 责任人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCharge: String
-        # @param InChargeId: 责任人用户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InChargeId: String
-        # @param StartTime: 生效日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StartTime: String
-        # @param EndTime: 结束日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EndTime: String
-        # @param ExecutionStartTime: 执行时间左闭区间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionEndTime: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectName: String
-        # @param CycleType: 周期类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CycleType: String
-        # @param CycleStep: 步长
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CycleStep: Integer
-        # @param CrontabExpression: 对于crontab类型调度配置其为用户输入 对于周期类型调度配置其为系统计算
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CrontabExpression: String
-        # @param DelayTime: 延时调度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DelayTime: Integer
-        # @param StartupTime: 延时执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StartupTime: Integer
-        # @param RetryWait: 重试等待时间,单位分钟
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryWait: Integer
-        # @param Retriable: 是否可重试
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Retriable: Integer
-        # @param TaskAction: 调度扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskAction: String
-        # @param TryLimit: 运行次数限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TryLimit: Integer
-        # @param RunPriority: 运行优先级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RunPriority: Integer
-        # @param TaskType: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeDsVO`
-        # @param BrokerIp: 指定的运行节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BrokerIp: String
-        # @param ClusterId: 集群name
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterId: String
-        # @param MinDateTime: 最小数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MinDateTime: String
-        # @param MaxDateTime: 最大数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MaxDateTime: String
-        # @param ExecutionTTL: 运行耗时超时时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionTTL: Integer
-        # @param SelfDepend: 是否自身依赖 是1 否2 并行3
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SelfDepend: String
-        # @param LeftCoordinate: LeftCoordinate坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LeftCoordinate: Float
-        # @param TopCoordinate: TopCoordinate坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TopCoordinate: Float
-        # @param TaskExt: TaskExt信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskExt: :class:`Tencentcloud::Wedata.v20210820.models.TaskExtDsVO`
-        # @param Properties: taskExt 导入导出json使用 private Map  properties;
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Properties: String
-        # @param Notes: 任务备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Notes: String
-        # @param InstanceInitStrategy: 实例生成策略 T+1 表示当前周期生成上一周期数据时间任务实例 默认T+1 T+0 表示当前周期生成当前周期数据时间任务实例 T-1
-        #      * 表示当前周期生成下一周期数据时间任务实例
-        #      *
-        #      * service不做默认策略处理, 下沉到数据初始化默认T+1, service涉及到多个更新task的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InstanceInitStrategy: String
-        # @param YarnQueue: 资源池队列名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type YarnQueue: String
-        # @param Alarms: 任务告警信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Alarms: Array
-        # @param Alarm: alarmDTO 导入导出json使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Alarm: String
-        # @param ScriptChange: 任务脚本是否发生变化
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ScriptChange: Boolean
-        # @param Submit: 任务版本是否已提交
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Submit: Boolean
-        # @param LastSchedulerCommitTime: 最新调度计划变更时间 仅生产态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastSchedulerCommitTime: String
-        # @param NormalizedJobStartTime: 仅生产态存储于生产态序列化任务信息, 减少base CPU重复密集计算
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NormalizedJobStartTime: String
-        # @param RecoverFreezeStartTime: 启动暂停的任务时，选择不补录中间实例，通过此字段来标识从哪个时间开始生成实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RecoverFreezeStartTime: String
-        # @param SourceServer: 源数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServer: String
-        # @param TargetServer: 目标数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServer: String
-        # @param Tasks: 父子节点树
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Tasks: Array
-        # @param Creater: 创建者
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Creater: String
-        # @param DependencyRel: 分支，依赖关系，and/or, 默认and
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyRel: String
-        # @param DependencyWorkflow: 是否支持工作流依赖 yes / no 默认 no
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyWorkflow: String
-        # @param EventListenerConfig: 支持事件监听器配置导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EventListenerConfig: String
-        # @param EventPublisherConfig: 支持事件触发器配置导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EventPublisherConfig: String
-        # @param DependencyConfigList: 依赖配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyConfigList: Array
-        # @param VirtualTaskStatus: 虚拟任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualTaskStatus: String
-        # @param RecycleTips: 回收站还原提示语
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RecycleTips: String
-        # @param RecycleUser: 回收站所属用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RecycleUser: String
-        # @param NewOrUpdate: 新增 或 修改
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NewOrUpdate: String
-        # @param Params: 任务上游依赖信息 用于发布管理导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Params: Array
-        # @param TaskLinkInfo: 任务上游依赖信息 用于发布管理导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskLinkInfo: Array
-        # @param ImportResult: 导入结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImportResult: Boolean
-        # @param ImportErrMsg: 导入失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImportErrMsg: String
-        # @param ContentType: 任务内容 全部内容 配置内容 资源内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ContentType: String
-        # @param TaskAutoSubmit: 是否导入提交运行
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskAutoSubmit: Boolean
-        # @param ProductName: 上层产品 数据质量 / 数据开发 / ...
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProductName: String
-        # @param OwnId: 创建者帐号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnId: String
-        # @param UserId: 子账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserId: String
-        # @param TenantId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TenantId: String
-        # @param UpdateUser: 最后修改的人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateUser: String
-        # @param UpdateTime: 最后修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param UpdateUserId: 最后修改的人的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateUserId: String
-        # @param SchedulerDesc: 调度计划
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SchedulerDesc: String
-        # @param ResourceGroup: 资源组
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResourceGroup: String
-        # @param VersionDesc: 版本提交说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VersionDesc: String
-        # @param LinkId: 编排-删除添加的链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LinkId: String
-        # @param UserFileId: 脚本引用关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserFileId: String
-        # @param SourceServiceId: 来源数据源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServiceId: String
-        # @param SourceServiceType: 来源数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServiceType: String
-        # @param TargetServiceId: 去向数据源ID（离线同步）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServiceId: String
-        # @param TargetServiceType: 去向数据源类型（离线同步）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServiceType: String
-        # @param ParamInList: TaskInputParam输入参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamInList: Array
-        # @param ParamOutList: TaskOutputParam输出参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamOutList: Array
-
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList
-
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil)
-          @TaskId = taskid
-          @VirtualTaskId = virtualtaskid
-          @VirtualFlag = virtualflag
-          @TaskName = taskname
-          @WorkflowId = workflowid
-          @RealWorkflowId = realworkflowid
-          @WorkflowName = workflowname
-          @FolderId = folderid
-          @FolderName = foldername
-          @CreateTime = createtime
-          @LastUpdate = lastupdate
-          @Status = status
-          @InCharge = incharge
-          @InChargeId = inchargeid
-          @StartTime = starttime
-          @EndTime = endtime
-          @ExecutionStartTime = executionstarttime
-          @ExecutionEndTime = executionendtime
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @CycleType = cycletype
-          @CycleStep = cyclestep
-          @CrontabExpression = crontabexpression
-          @DelayTime = delaytime
-          @StartupTime = startuptime
-          @RetryWait = retrywait
-          @Retriable = retriable
-          @TaskAction = taskaction
-          @TryLimit = trylimit
-          @RunPriority = runpriority
-          @TaskType = tasktype
-          @BrokerIp = brokerip
-          @ClusterId = clusterid
-          @MinDateTime = mindatetime
-          @MaxDateTime = maxdatetime
-          @ExecutionTTL = executionttl
-          @SelfDepend = selfdepend
-          @LeftCoordinate = leftcoordinate
-          @TopCoordinate = topcoordinate
-          @TaskExt = taskext
-          @Properties = properties
-          @Notes = notes
-          @InstanceInitStrategy = instanceinitstrategy
-          @YarnQueue = yarnqueue
-          @Alarms = alarms
-          @Alarm = alarm
-          @ScriptChange = scriptchange
-          @Submit = submit
-          @LastSchedulerCommitTime = lastschedulercommittime
-          @NormalizedJobStartTime = normalizedjobstarttime
-          @RecoverFreezeStartTime = recoverfreezestarttime
-          @SourceServer = sourceserver
-          @TargetServer = targetserver
-          @Tasks = tasks
-          @Creater = creater
-          @DependencyRel = dependencyrel
-          @DependencyWorkflow = dependencyworkflow
-          @EventListenerConfig = eventlistenerconfig
-          @EventPublisherConfig = eventpublisherconfig
-          @DependencyConfigList = dependencyconfiglist
-          @VirtualTaskStatus = virtualtaskstatus
-          @RecycleTips = recycletips
-          @RecycleUser = recycleuser
-          @NewOrUpdate = neworupdate
-          @Params = params
-          @TaskLinkInfo = tasklinkinfo
-          @ImportResult = importresult
-          @ImportErrMsg = importerrmsg
-          @ContentType = contenttype
-          @TaskAutoSubmit = taskautosubmit
-          @ProductName = productname
-          @OwnId = ownid
-          @UserId = userid
-          @TenantId = tenantid
-          @UpdateUser = updateuser
-          @UpdateTime = updatetime
-          @UpdateUserId = updateuserid
-          @SchedulerDesc = schedulerdesc
-          @ResourceGroup = resourcegroup
-          @VersionDesc = versiondesc
-          @LinkId = linkid
-          @UserFileId = userfileid
-          @SourceServiceId = sourceserviceid
-          @SourceServiceType = sourceservicetype
-          @TargetServiceId = targetserviceid
-          @TargetServiceType = targetservicetype
-          @ParamInList = paraminlist
-          @ParamOutList = paramoutlist
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @VirtualTaskId = params['VirtualTaskId']
-          @VirtualFlag = params['VirtualFlag']
-          @TaskName = params['TaskName']
-          @WorkflowId = params['WorkflowId']
-          @RealWorkflowId = params['RealWorkflowId']
-          @WorkflowName = params['WorkflowName']
-          @FolderId = params['FolderId']
-          @FolderName = params['FolderName']
-          @CreateTime = params['CreateTime']
-          @LastUpdate = params['LastUpdate']
-          @Status = params['Status']
-          @InCharge = params['InCharge']
-          @InChargeId = params['InChargeId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @ExecutionStartTime = params['ExecutionStartTime']
-          @ExecutionEndTime = params['ExecutionEndTime']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @CycleType = params['CycleType']
-          @CycleStep = params['CycleStep']
-          @CrontabExpression = params['CrontabExpression']
-          @DelayTime = params['DelayTime']
-          @StartupTime = params['StartupTime']
-          @RetryWait = params['RetryWait']
-          @Retriable = params['Retriable']
-          @TaskAction = params['TaskAction']
-          @TryLimit = params['TryLimit']
-          @RunPriority = params['RunPriority']
-          unless params['TaskType'].nil?
-            @TaskType = TaskTypeDsVO.new
-            @TaskType.deserialize(params['TaskType'])
-          end
-          @BrokerIp = params['BrokerIp']
-          @ClusterId = params['ClusterId']
-          @MinDateTime = params['MinDateTime']
-          @MaxDateTime = params['MaxDateTime']
-          @ExecutionTTL = params['ExecutionTTL']
-          @SelfDepend = params['SelfDepend']
-          @LeftCoordinate = params['LeftCoordinate']
-          @TopCoordinate = params['TopCoordinate']
-          unless params['TaskExt'].nil?
-            @TaskExt = TaskExtDsVO.new
-            @TaskExt.deserialize(params['TaskExt'])
-          end
-          @Properties = params['Properties']
-          @Notes = params['Notes']
-          @InstanceInitStrategy = params['InstanceInitStrategy']
-          @YarnQueue = params['YarnQueue']
-          unless params['Alarms'].nil?
-            @Alarms = []
-            params['Alarms'].each do |i|
-              alarmdsvo_tmp = AlarmDsVO.new
-              alarmdsvo_tmp.deserialize(i)
-              @Alarms << alarmdsvo_tmp
-            end
-          end
-          @Alarm = params['Alarm']
-          @ScriptChange = params['ScriptChange']
-          @Submit = params['Submit']
-          @LastSchedulerCommitTime = params['LastSchedulerCommitTime']
-          @NormalizedJobStartTime = params['NormalizedJobStartTime']
-          @RecoverFreezeStartTime = params['RecoverFreezeStartTime']
-          @SourceServer = params['SourceServer']
-          @TargetServer = params['TargetServer']
-          unless params['Tasks'].nil?
-            @Tasks = []
-            params['Tasks'].each do |i|
-              taskdsdtonorecurv2_tmp = TaskDsDTONoRecurV2.new
-              taskdsdtonorecurv2_tmp.deserialize(i)
-              @Tasks << taskdsdtonorecurv2_tmp
-            end
-          end
-          @Creater = params['Creater']
-          @DependencyRel = params['DependencyRel']
-          @DependencyWorkflow = params['DependencyWorkflow']
-          @EventListenerConfig = params['EventListenerConfig']
-          @EventPublisherConfig = params['EventPublisherConfig']
-          unless params['DependencyConfigList'].nil?
-            @DependencyConfigList = []
-            params['DependencyConfigList'].each do |i|
-              dependencyconfigdsdtonorecurv2_tmp = DependencyConfigDsDTONoRecurV2.new
-              dependencyconfigdsdtonorecurv2_tmp.deserialize(i)
-              @DependencyConfigList << dependencyconfigdsdtonorecurv2_tmp
-            end
-          end
-          @VirtualTaskStatus = params['VirtualTaskStatus']
-          @RecycleTips = params['RecycleTips']
-          @RecycleUser = params['RecycleUser']
-          @NewOrUpdate = params['NewOrUpdate']
-          unless params['Params'].nil?
-            @Params = []
-            params['Params'].each do |i|
-              parametertaskdsdto_tmp = ParameterTaskDsDto.new
-              parametertaskdsdto_tmp.deserialize(i)
-              @Params << parametertaskdsdto_tmp
-            end
-          end
-          unless params['TaskLinkInfo'].nil?
-            @TaskLinkInfo = []
-            params['TaskLinkInfo'].each do |i|
-              tasklinkdsdto_tmp = TaskLinkDsDTO.new
-              tasklinkdsdto_tmp.deserialize(i)
-              @TaskLinkInfo << tasklinkdsdto_tmp
-            end
-          end
-          @ImportResult = params['ImportResult']
-          @ImportErrMsg = params['ImportErrMsg']
-          @ContentType = params['ContentType']
-          @TaskAutoSubmit = params['TaskAutoSubmit']
-          @ProductName = params['ProductName']
-          @OwnId = params['OwnId']
-          @UserId = params['UserId']
-          @TenantId = params['TenantId']
-          @UpdateUser = params['UpdateUser']
-          @UpdateTime = params['UpdateTime']
-          @UpdateUserId = params['UpdateUserId']
-          @SchedulerDesc = params['SchedulerDesc']
-          @ResourceGroup = params['ResourceGroup']
-          @VersionDesc = params['VersionDesc']
-          @LinkId = params['LinkId']
-          @UserFileId = params['UserFileId']
-          @SourceServiceId = params['SourceServiceId']
-          @SourceServiceType = params['SourceServiceType']
-          @TargetServiceId = params['TargetServiceId']
-          @TargetServiceType = params['TargetServiceType']
-          unless params['ParamInList'].nil?
-            @ParamInList = []
-            params['ParamInList'].each do |i|
-              parametertaskindsdto_tmp = ParameterTaskInDsDto.new
-              parametertaskindsdto_tmp.deserialize(i)
-              @ParamInList << parametertaskindsdto_tmp
-            end
-          end
-          unless params['ParamOutList'].nil?
-            @ParamOutList = []
-            params['ParamOutList'].each do |i|
-              parametertaskoutdsdto_tmp = ParameterTaskOutDsDto.new
-              parametertaskoutdsdto_tmp.deserialize(i)
-              @ParamOutList << parametertaskoutdsdto_tmp
-            end
-          end
-        end
-      end
-
-      # 任务信息无循环递归属性
-      class TaskDsDTONoRecurV2 < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param VirtualTaskId: 虚拟任务标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualTaskId: String
-        # @param VirtualFlag: 虚拟任务标记
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualFlag: Boolean
-        # @param TaskName: 任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param WorkflowId: 工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowId: String
-        # @param RealWorkflowId: 真实工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealWorkflowId: String
-        # @param WorkflowName: 工作流名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowName: String
-        # @param FolderId: 文件夹id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderId: String
-        # @param FolderName: 文件夹名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderName: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param LastUpdate: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastUpdate: String
-        # @param Status: 任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: String
-        # @param InCharge: 责任人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCharge: String
-        # @param InChargeId: 责任人用户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InChargeId: String
-        # @param StartTime: 生效日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StartTime: String
-        # @param EndTime: 结束日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EndTime: String
-        # @param ExecutionStartTime: 执行时间左闭区间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionEndTime: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param ProjectIdent: 项目标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectName: String
-        # @param CycleType: 周期类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CycleType: String
-        # @param CycleStep: 步长
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CycleStep: Integer
-        # @param CrontabExpression: 对于crontab类型调度配置其为用户输入 对于周期类型调度配置其为系统计算
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CrontabExpression: String
-        # @param DelayTime: 延时调度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DelayTime: Integer
-        # @param StartupTime: 延时执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StartupTime: Integer
-        # @param RetryWait: 重试等待时间,单位分钟
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryWait: Integer
-        # @param Retriable: 是否可重试
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Retriable: Integer
-        # @param TaskAction: 调度扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskAction: String
-        # @param TryLimit: 运行次数限制
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TryLimit: Integer
-        # @param RunPriority: 运行优先级
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RunPriority: Integer
-        # @param TaskType: 任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeDsVO`
-        # @param BrokerIp: 指定的运行节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BrokerIp: String
-        # @param ClusterId: 集群name
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterId: String
-        # @param MinDateTime: 最小数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MinDateTime: String
-        # @param MaxDateTime: 最大数据时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MaxDateTime: String
-        # @param ExecutionTTL: 运行耗时超时时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionTTL: Integer
-        # @param SelfDepend: 是否自身依赖 是1 否2 并行3
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SelfDepend: Integer
-        # @param LeftCoordinate: LeftCoordinate坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LeftCoordinate: Float
-        # @param TopCoordinate: TopCoordinate坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TopCoordinate: Float
-        # @param TaskExt: TaskExt信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskExt: :class:`Tencentcloud::Wedata.v20210820.models.TaskExtDsVO`
-        # @param Properties: taskExt 导入导出json使用 private Map  properties;
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Properties: String
-        # @param Notes: 任务备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Notes: String
-        # @param InstanceInitStrategy: 实例生成策略 T+1 表示当前周期生成上一周期数据时间任务实例 默认T+1 T+0 表示当前周期生成当前周期数据时间任务实例 T-1
-        #      * 表示当前周期生成下一周期数据时间任务实例
-        #      *
-        #      * service不做默认策略处理, 下沉到数据初始化默认T+1, service涉及到多个更新task的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InstanceInitStrategy: String
-        # @param YarnQueue: 资源池队列名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type YarnQueue: String
-        # @param Alarms: 任务告警信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Alarms: Array
-        # @param Alarm: alarmDTO 导入导出json使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Alarm: String
-        # @param ScriptChange: 任务脚本是否发生变化
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ScriptChange: Boolean
-        # @param Submit: 任务版本是否已提交
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Submit: Boolean
-        # @param LastSchedulerCommitTime: 最新调度计划变更时间 仅生产态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LastSchedulerCommitTime: String
-        # @param NormalizedJobStartTime: 仅生产态存储于生产态序列化任务信息, 减少base CPU重复密集计算
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NormalizedJobStartTime: String
-        # @param RecoverFreezeStartTime: 启动暂停的任务时，选择不补录中间实例，通过此字段来标识从哪个时间开始生成实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RecoverFreezeStartTime: String
-        # @param SourceServer: 源数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServer: String
-        # @param TargetServer: 目标数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServer: String
-        # @param Tasks: 父子节点树
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Tasks: Array
-        # @param Creater: 创建者
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Creater: String
-        # @param DependencyRel: 分支，依赖关系，and/or, 默认and
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyRel: String
-        # @param DependencyWorkflow: 是否支持工作流依赖 yes / no 默认 no
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyWorkflow: String
-        # @param EventListenerConfig: 支持事件监听器配置导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EventListenerConfig: String
-        # @param EventPublisherConfig: 支持事件触发器配置导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EventPublisherConfig: String
-        # @param DependencyConfigList: 依赖配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DependencyConfigList: Array
-        # @param VirtualTaskStatus: 虚拟任务状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VirtualTaskStatus: String
-        # @param RecycleTips: 回收站还原提示语
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RecycleTips: String
-        # @param RecycleUser: 回收站所属用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RecycleUser: String
-        # @param NewOrUpdate: 新增 或 修改
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NewOrUpdate: String
-        # @param Params: 任务上游依赖信息 用于发布管理导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Params: Array
-        # @param TaskLinkInfo: 任务上游依赖信息 用于发布管理导入导出
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskLinkInfo: Array
-        # @param ImportResult: 导入结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImportResult: Boolean
-        # @param ImportErrMsg: 导入失败原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImportErrMsg: String
-        # @param ContentType: 任务内容 全部内容 配置内容 资源内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ContentType: String
-        # @param TaskAutoSubmit: 是否导入提交运行
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskAutoSubmit: Boolean
-        # @param ProductName: 上层产品 数据质量 / 数据开发 / ...
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProductName: String
-        # @param OwnId: 创建者帐号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnId: String
-        # @param UserId: 子账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserId: String
-        # @param TenantId: 租户id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TenantId: String
-        # @param UpdateUser: 最后修改的人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateUser: String
-        # @param UpdateTime: 最后修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param UpdateUserId: 最后修改的人的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateUserId: String
-        # @param SchedulerDesc: 调度计划
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SchedulerDesc: String
-        # @param ResourceGroup: 资源组
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResourceGroup: String
-        # @param VersionDesc: 版本提交说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VersionDesc: String
-        # @param LinkId: 编排-删除添加的链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LinkId: String
-        # @param UserFileId: 脚本引用关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserFileId: String
-        # @param SourceServiceId: 来源数据源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServiceId: String
-        # @param SourceServiceType: 来源数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServiceType: String
-        # @param TargetServiceId: 去向数据源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServiceId: String
-        # @param TargetServiceType: 去向数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServiceType: String
-        # @param ParamInList: 输入参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamInList: Array
-        # @param ParamOutList: 输出参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamOutList: Array
-
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList
-
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil)
-          @TaskId = taskid
-          @VirtualTaskId = virtualtaskid
-          @VirtualFlag = virtualflag
-          @TaskName = taskname
-          @WorkflowId = workflowid
-          @RealWorkflowId = realworkflowid
-          @WorkflowName = workflowname
-          @FolderId = folderid
-          @FolderName = foldername
-          @CreateTime = createtime
-          @LastUpdate = lastupdate
-          @Status = status
-          @InCharge = incharge
-          @InChargeId = inchargeid
-          @StartTime = starttime
-          @EndTime = endtime
-          @ExecutionStartTime = executionstarttime
-          @ExecutionEndTime = executionendtime
-          @ProjectId = projectid
-          @ProjectIdent = projectident
-          @ProjectName = projectname
-          @CycleType = cycletype
-          @CycleStep = cyclestep
-          @CrontabExpression = crontabexpression
-          @DelayTime = delaytime
-          @StartupTime = startuptime
-          @RetryWait = retrywait
-          @Retriable = retriable
-          @TaskAction = taskaction
-          @TryLimit = trylimit
-          @RunPriority = runpriority
-          @TaskType = tasktype
-          @BrokerIp = brokerip
-          @ClusterId = clusterid
-          @MinDateTime = mindatetime
-          @MaxDateTime = maxdatetime
-          @ExecutionTTL = executionttl
-          @SelfDepend = selfdepend
-          @LeftCoordinate = leftcoordinate
-          @TopCoordinate = topcoordinate
-          @TaskExt = taskext
-          @Properties = properties
-          @Notes = notes
-          @InstanceInitStrategy = instanceinitstrategy
-          @YarnQueue = yarnqueue
-          @Alarms = alarms
-          @Alarm = alarm
-          @ScriptChange = scriptchange
-          @Submit = submit
-          @LastSchedulerCommitTime = lastschedulercommittime
-          @NormalizedJobStartTime = normalizedjobstarttime
-          @RecoverFreezeStartTime = recoverfreezestarttime
-          @SourceServer = sourceserver
-          @TargetServer = targetserver
-          @Tasks = tasks
-          @Creater = creater
-          @DependencyRel = dependencyrel
-          @DependencyWorkflow = dependencyworkflow
-          @EventListenerConfig = eventlistenerconfig
-          @EventPublisherConfig = eventpublisherconfig
-          @DependencyConfigList = dependencyconfiglist
-          @VirtualTaskStatus = virtualtaskstatus
-          @RecycleTips = recycletips
-          @RecycleUser = recycleuser
-          @NewOrUpdate = neworupdate
-          @Params = params
-          @TaskLinkInfo = tasklinkinfo
-          @ImportResult = importresult
-          @ImportErrMsg = importerrmsg
-          @ContentType = contenttype
-          @TaskAutoSubmit = taskautosubmit
-          @ProductName = productname
-          @OwnId = ownid
-          @UserId = userid
-          @TenantId = tenantid
-          @UpdateUser = updateuser
-          @UpdateTime = updatetime
-          @UpdateUserId = updateuserid
-          @SchedulerDesc = schedulerdesc
-          @ResourceGroup = resourcegroup
-          @VersionDesc = versiondesc
-          @LinkId = linkid
-          @UserFileId = userfileid
-          @SourceServiceId = sourceserviceid
-          @SourceServiceType = sourceservicetype
-          @TargetServiceId = targetserviceid
-          @TargetServiceType = targetservicetype
-          @ParamInList = paraminlist
-          @ParamOutList = paramoutlist
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @VirtualTaskId = params['VirtualTaskId']
-          @VirtualFlag = params['VirtualFlag']
-          @TaskName = params['TaskName']
-          @WorkflowId = params['WorkflowId']
-          @RealWorkflowId = params['RealWorkflowId']
-          @WorkflowName = params['WorkflowName']
-          @FolderId = params['FolderId']
-          @FolderName = params['FolderName']
-          @CreateTime = params['CreateTime']
-          @LastUpdate = params['LastUpdate']
-          @Status = params['Status']
-          @InCharge = params['InCharge']
-          @InChargeId = params['InChargeId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @ExecutionStartTime = params['ExecutionStartTime']
-          @ExecutionEndTime = params['ExecutionEndTime']
-          @ProjectId = params['ProjectId']
-          @ProjectIdent = params['ProjectIdent']
-          @ProjectName = params['ProjectName']
-          @CycleType = params['CycleType']
-          @CycleStep = params['CycleStep']
-          @CrontabExpression = params['CrontabExpression']
-          @DelayTime = params['DelayTime']
-          @StartupTime = params['StartupTime']
-          @RetryWait = params['RetryWait']
-          @Retriable = params['Retriable']
-          @TaskAction = params['TaskAction']
-          @TryLimit = params['TryLimit']
-          @RunPriority = params['RunPriority']
-          unless params['TaskType'].nil?
-            @TaskType = TaskTypeDsVO.new
-            @TaskType.deserialize(params['TaskType'])
-          end
-          @BrokerIp = params['BrokerIp']
-          @ClusterId = params['ClusterId']
-          @MinDateTime = params['MinDateTime']
-          @MaxDateTime = params['MaxDateTime']
-          @ExecutionTTL = params['ExecutionTTL']
-          @SelfDepend = params['SelfDepend']
-          @LeftCoordinate = params['LeftCoordinate']
-          @TopCoordinate = params['TopCoordinate']
-          unless params['TaskExt'].nil?
-            @TaskExt = TaskExtDsVO.new
-            @TaskExt.deserialize(params['TaskExt'])
-          end
-          @Properties = params['Properties']
-          @Notes = params['Notes']
-          @InstanceInitStrategy = params['InstanceInitStrategy']
-          @YarnQueue = params['YarnQueue']
-          unless params['Alarms'].nil?
-            @Alarms = []
-            params['Alarms'].each do |i|
-              alarmdsvo_tmp = AlarmDsVO.new
-              alarmdsvo_tmp.deserialize(i)
-              @Alarms << alarmdsvo_tmp
-            end
-          end
-          @Alarm = params['Alarm']
-          @ScriptChange = params['ScriptChange']
-          @Submit = params['Submit']
-          @LastSchedulerCommitTime = params['LastSchedulerCommitTime']
-          @NormalizedJobStartTime = params['NormalizedJobStartTime']
-          @RecoverFreezeStartTime = params['RecoverFreezeStartTime']
-          @SourceServer = params['SourceServer']
-          @TargetServer = params['TargetServer']
-          @Tasks = params['Tasks']
-          @Creater = params['Creater']
-          @DependencyRel = params['DependencyRel']
-          @DependencyWorkflow = params['DependencyWorkflow']
-          @EventListenerConfig = params['EventListenerConfig']
-          @EventPublisherConfig = params['EventPublisherConfig']
-          @DependencyConfigList = params['DependencyConfigList']
-          @VirtualTaskStatus = params['VirtualTaskStatus']
-          @RecycleTips = params['RecycleTips']
-          @RecycleUser = params['RecycleUser']
-          @NewOrUpdate = params['NewOrUpdate']
-          unless params['Params'].nil?
-            @Params = []
-            params['Params'].each do |i|
-              parametertaskdsdto_tmp = ParameterTaskDsDto.new
-              parametertaskdsdto_tmp.deserialize(i)
-              @Params << parametertaskdsdto_tmp
-            end
-          end
-          unless params['TaskLinkInfo'].nil?
-            @TaskLinkInfo = []
-            params['TaskLinkInfo'].each do |i|
-              tasklinkdsdto_tmp = TaskLinkDsDTO.new
-              tasklinkdsdto_tmp.deserialize(i)
-              @TaskLinkInfo << tasklinkdsdto_tmp
-            end
-          end
-          @ImportResult = params['ImportResult']
-          @ImportErrMsg = params['ImportErrMsg']
-          @ContentType = params['ContentType']
-          @TaskAutoSubmit = params['TaskAutoSubmit']
-          @ProductName = params['ProductName']
-          @OwnId = params['OwnId']
-          @UserId = params['UserId']
-          @TenantId = params['TenantId']
-          @UpdateUser = params['UpdateUser']
-          @UpdateTime = params['UpdateTime']
-          @UpdateUserId = params['UpdateUserId']
-          @SchedulerDesc = params['SchedulerDesc']
-          @ResourceGroup = params['ResourceGroup']
-          @VersionDesc = params['VersionDesc']
-          @LinkId = params['LinkId']
-          @UserFileId = params['UserFileId']
-          @SourceServiceId = params['SourceServiceId']
-          @SourceServiceType = params['SourceServiceType']
-          @TargetServiceId = params['TargetServiceId']
-          @TargetServiceType = params['TargetServiceType']
-          unless params['ParamInList'].nil?
-            @ParamInList = []
-            params['ParamInList'].each do |i|
-              parametertaskindsdto_tmp = ParameterTaskInDsDto.new
-              parametertaskindsdto_tmp.deserialize(i)
-              @ParamInList << parametertaskindsdto_tmp
-            end
-          end
-          unless params['ParamOutList'].nil?
-            @ParamOutList = []
-            params['ParamOutList'].each do |i|
-              parametertaskoutdsdto_tmp = ParameterTaskOutDsDto.new
-              parametertaskoutdsdto_tmp.deserialize(i)
-              @ParamOutList << parametertaskoutdsdto_tmp
-            end
-          end
-        end
-      end
-
-      # 属性配置
-      class TaskExtDsVO < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param Properties: 任务属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Properties: Array
-        # @param DryRunExtAttributes: 任务试运行扩展业务属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DryRunExtAttributes: Array
-        # @param DryRunParameter: 任务试运行动态传参
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DryRunParameter: Array
-
-        attr_accessor :TaskId, :Properties, :DryRunExtAttributes, :DryRunParameter
-
-        def initialize(taskid=nil, properties=nil, dryrunextattributes=nil, dryrunparameter=nil)
-          @TaskId = taskid
-          @Properties = properties
-          @DryRunExtAttributes = dryrunextattributes
-          @DryRunParameter = dryrunparameter
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          unless params['Properties'].nil?
-            @Properties = []
-            params['Properties'].each do |i|
-              paraminfods_tmp = ParamInfoDs.new
-              paraminfods_tmp.deserialize(i)
-              @Properties << paraminfods_tmp
-            end
-          end
-          unless params['DryRunExtAttributes'].nil?
-            @DryRunExtAttributes = []
-            params['DryRunExtAttributes'].each do |i|
-              attributeitemdsvo_tmp = AttributeItemDsVO.new
-              attributeitemdsvo_tmp.deserialize(i)
-              @DryRunExtAttributes << attributeitemdsvo_tmp
-            end
-          end
-          unless params['DryRunParameter'].nil?
-            @DryRunParameter = []
-            params['DryRunParameter'].each do |i|
-              attributeitemdsvo_tmp = AttributeItemDsVO.new
-              attributeitemdsvo_tmp.deserialize(i)
-              @DryRunParameter << attributeitemdsvo_tmp
-            end
-          end
         end
       end
 
@@ -33769,49 +25218,6 @@ module TencentCloud
         end
       end
 
-      # 任务分页查询
-      class TaskInfoPage < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 页号
-        # @type PageNumber: Integer
-        # @param PageSize: 页大小
-        # @type PageSize: Integer
-        # @param Items: 工作流列表信息
-        # @type Items: Array
-        # @param TotalPage: 总页数
-        # @type TotalPage: Integer
-        # @param PageCount: 页数
-        # @type PageCount: Integer
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-
-        attr_accessor :PageNumber, :PageSize, :Items, :TotalPage, :PageCount, :TotalCount
-
-        def initialize(pagenumber=nil, pagesize=nil, items=nil, totalpage=nil, pagecount=nil, totalcount=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @Items = items
-          @TotalPage = totalpage
-          @PageCount = pagecount
-          @TotalCount = totalcount
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              taskcanvasinfo_tmp = TaskCanvasInfo.new
-              taskcanvasinfo_tmp.deserialize(i)
-              @Items << taskcanvasinfo_tmp
-            end
-          end
-          @TotalPage = params['TotalPage']
-          @PageCount = params['PageCount']
-          @TotalCount = params['TotalCount']
-        end
-      end
-
       # 任务属性
       class TaskInnerInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -33891,344 +25297,6 @@ module TencentCloud
         end
       end
 
-      # 离线任务实例详情
-      class TaskInstanceDetail < TencentCloud::Common::AbstractModel
-        # @param TaskRunId: 实例id
-        # @type TaskRunId: String
-        # @param TaskId: 任务id
-        # @type TaskId: String
-        # @param CurRunDate: 实例数据运行时间
-        # @type CurRunDate: String
-        # @param IssueDate: 实例实际运行时间
-        # @type IssueDate: String
-        # @param InlongTaskId: InLong任务Id
-        # @type InlongTaskId: String
-        # @param ExecutorGroupId: 执行资源组id
-        # @type ExecutorGroupId: String
-        # @param TaskRunType: 任务类型(1 调试运行,2 调度执行)
-        # @type TaskRunType: Integer
-        # @param State: 任务状态(1 正在执行,2 成功,3 失败,4 等待终止,5 正在终止,6 已终止,7 终止失败,9 等待执行)
-        # @type State: Integer
-        # @param StartTime: 实例开始运行时间，格式：yyyy-MM-dd HH:mm:ss
-        # @type StartTime: String
-        # @param EndTime: 实例结束运行时间，格式：yyyy-MM-dd HH:mm:ss
-        # @type EndTime: String
-        # @param BrokerIp: Broker IP
-        # @type BrokerIp: String
-        # @param PodName: 运行实例的EKS Pod名称
-        # @type PodName: String
-        # @param NextRunDate: 下一个调度周期的数据运行时间
-        # @type NextRunDate: String
-        # @param CreateUin: 创建者的账号Id
-        # @type CreateUin: Integer
-        # @param OperatorUin: 操作者的账号Id
-        # @type OperatorUin: Integer
-        # @param OwnerUin: 拥有者的账号Id
-        # @type OwnerUin: Integer
-        # @param AppId: App Id
-        # @type AppId: Integer
-        # @param ProjectId: WeData项目id
-        # @type ProjectId: String
-        # @param CreateTime: 创建时间
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # @type UpdateTime: String
-        # @param TaskName: 任务名称
-        # @type TaskName: String
-
-        attr_accessor :TaskRunId, :TaskId, :CurRunDate, :IssueDate, :InlongTaskId, :ExecutorGroupId, :TaskRunType, :State, :StartTime, :EndTime, :BrokerIp, :PodName, :NextRunDate, :CreateUin, :OperatorUin, :OwnerUin, :AppId, :ProjectId, :CreateTime, :UpdateTime, :TaskName
-
-        def initialize(taskrunid=nil, taskid=nil, currundate=nil, issuedate=nil, inlongtaskid=nil, executorgroupid=nil, taskruntype=nil, state=nil, starttime=nil, endtime=nil, brokerip=nil, podname=nil, nextrundate=nil, createuin=nil, operatoruin=nil, owneruin=nil, appid=nil, projectid=nil, createtime=nil, updatetime=nil, taskname=nil)
-          @TaskRunId = taskrunid
-          @TaskId = taskid
-          @CurRunDate = currundate
-          @IssueDate = issuedate
-          @InlongTaskId = inlongtaskid
-          @ExecutorGroupId = executorgroupid
-          @TaskRunType = taskruntype
-          @State = state
-          @StartTime = starttime
-          @EndTime = endtime
-          @BrokerIp = brokerip
-          @PodName = podname
-          @NextRunDate = nextrundate
-          @CreateUin = createuin
-          @OperatorUin = operatoruin
-          @OwnerUin = owneruin
-          @AppId = appid
-          @ProjectId = projectid
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @TaskName = taskname
-        end
-
-        def deserialize(params)
-          @TaskRunId = params['TaskRunId']
-          @TaskId = params['TaskId']
-          @CurRunDate = params['CurRunDate']
-          @IssueDate = params['IssueDate']
-          @InlongTaskId = params['InlongTaskId']
-          @ExecutorGroupId = params['ExecutorGroupId']
-          @TaskRunType = params['TaskRunType']
-          @State = params['State']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @BrokerIp = params['BrokerIp']
-          @PodName = params['PodName']
-          @NextRunDate = params['NextRunDate']
-          @CreateUin = params['CreateUin']
-          @OperatorUin = params['OperatorUin']
-          @OwnerUin = params['OwnerUin']
-          @AppId = params['AppId']
-          @ProjectId = params['ProjectId']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @TaskName = params['TaskName']
-        end
-      end
-
-      # 任务实例信息
-      class TaskInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param WorkflowId: 工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowName: String
-        # @param ProjectName: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectName: String
-        # @param ProjectIdent: 项目标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectIdent: String
-        # @param State: 实例状态，0等待事件，1等待上游，2等待运行，3运行中，4正在终止，5失败重试，6失败，7成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type State: Integer
-        # @param TaskTypeId: 任务类型id，26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40CDW PG，92MapReduce
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeId: Integer
-        # @param TaskTypeDesc: 任务类型描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeDesc: String
-        # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param FolderName: 文件夹名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderName: String
-        # @param FolderId: 文件夹id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FolderId: String
-        # @param SchedulerDesc: 调度计划展示描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SchedulerDesc: String
-        # @param InCharge: 负责人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCharge: String
-        # @param CycleType: 调度周期类型，I分钟，H小时，D天，W周，M月，Y年，O一次性，C crontab
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CycleType: String
-        # @param StartTime: 实例开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StartTime: String
-        # @param EndTime: 实例结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EndTime: String
-        # @param InstanceType: 实例类型，0补录实例，1周期实例，2非周期实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InstanceType: Integer
-        # @param TryLimit: 最大重试次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TryLimit: Integer
-        # @param Tries: 当前重试次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Tries: Integer
-        # @param SchedulerDateTime: 计划调度时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SchedulerDateTime: String
-        # @param CostTime: 运行耗时
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CostTime: String
-
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :State, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :SchedulerDesc, :InCharge, :CycleType, :StartTime, :EndTime, :InstanceType, :TryLimit, :Tries, :SchedulerDateTime, :CostTime
-
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, state=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, schedulerdesc=nil, incharge=nil, cycletype=nil, starttime=nil, endtime=nil, instancetype=nil, trylimit=nil, tries=nil, schedulerdatetime=nil, costtime=nil)
-          @TaskId = taskid
-          @TaskName = taskname
-          @WorkflowId = workflowid
-          @WorkflowName = workflowname
-          @ProjectName = projectname
-          @ProjectIdent = projectident
-          @State = state
-          @TaskTypeId = tasktypeid
-          @TaskTypeDesc = tasktypedesc
-          @ProjectId = projectid
-          @FolderName = foldername
-          @FolderId = folderid
-          @SchedulerDesc = schedulerdesc
-          @InCharge = incharge
-          @CycleType = cycletype
-          @StartTime = starttime
-          @EndTime = endtime
-          @InstanceType = instancetype
-          @TryLimit = trylimit
-          @Tries = tries
-          @SchedulerDateTime = schedulerdatetime
-          @CostTime = costtime
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskName = params['TaskName']
-          @WorkflowId = params['WorkflowId']
-          @WorkflowName = params['WorkflowName']
-          @ProjectName = params['ProjectName']
-          @ProjectIdent = params['ProjectIdent']
-          @State = params['State']
-          @TaskTypeId = params['TaskTypeId']
-          @TaskTypeDesc = params['TaskTypeDesc']
-          @ProjectId = params['ProjectId']
-          @FolderName = params['FolderName']
-          @FolderId = params['FolderId']
-          @SchedulerDesc = params['SchedulerDesc']
-          @InCharge = params['InCharge']
-          @CycleType = params['CycleType']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @InstanceType = params['InstanceType']
-          @TryLimit = params['TryLimit']
-          @Tries = params['Tries']
-          @SchedulerDateTime = params['SchedulerDateTime']
-          @CostTime = params['CostTime']
-        end
-      end
-
-      # Task Link 信息
-      class TaskLinkDsDTO < TencentCloud::Common::AbstractModel
-        # @param TaskTo: TaskTo信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTo: String
-        # @param TaskFrom: TaskFrom信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskFrom: String
-        # @param LinkType: LinkType信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LinkType: String
-        # @param LinkKey: key
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LinkKey: String
-        # @param Id: LinkId信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: String
-        # @param InCharge: 责任人
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCharge: String
-        # @param LinkDependencyType: 父子任务之间的依赖关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LinkDependencyType: String
-        # @param Offset: 父子任务之间依赖偏移量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Offset: Integer
-        # @param WorkflowId: 工作流id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WorkflowId: String
-        # @param RealFromTaskId: 实体任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealFromTaskId: String
-        # @param RealFromTaskName: 实体任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealFromTaskName: String
-        # @param RealFromWorkflowId: 实体任务所属工作流
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealFromWorkflowId: String
-        # @param RealFromWorkflowName: 实体任务所属工作流名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealFromWorkflowName: String
-        # @param RealProjectId: 实体任务所属项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealProjectId: String
-        # @param RealProjectIdent: 实体任务所属项目标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealProjectIdent: String
-        # @param RealProjectName: 实体任务所属项目名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealProjectName: String
-
-        attr_accessor :TaskTo, :TaskFrom, :LinkType, :LinkKey, :Id, :InCharge, :LinkDependencyType, :Offset, :WorkflowId, :RealFromTaskId, :RealFromTaskName, :RealFromWorkflowId, :RealFromWorkflowName, :RealProjectId, :RealProjectIdent, :RealProjectName
-
-        def initialize(taskto=nil, taskfrom=nil, linktype=nil, linkkey=nil, id=nil, incharge=nil, linkdependencytype=nil, offset=nil, workflowid=nil, realfromtaskid=nil, realfromtaskname=nil, realfromworkflowid=nil, realfromworkflowname=nil, realprojectid=nil, realprojectident=nil, realprojectname=nil)
-          @TaskTo = taskto
-          @TaskFrom = taskfrom
-          @LinkType = linktype
-          @LinkKey = linkkey
-          @Id = id
-          @InCharge = incharge
-          @LinkDependencyType = linkdependencytype
-          @Offset = offset
-          @WorkflowId = workflowid
-          @RealFromTaskId = realfromtaskid
-          @RealFromTaskName = realfromtaskname
-          @RealFromWorkflowId = realfromworkflowid
-          @RealFromWorkflowName = realfromworkflowname
-          @RealProjectId = realprojectid
-          @RealProjectIdent = realprojectident
-          @RealProjectName = realprojectname
-        end
-
-        def deserialize(params)
-          @TaskTo = params['TaskTo']
-          @TaskFrom = params['TaskFrom']
-          @LinkType = params['LinkType']
-          @LinkKey = params['LinkKey']
-          @Id = params['Id']
-          @InCharge = params['InCharge']
-          @LinkDependencyType = params['LinkDependencyType']
-          @Offset = params['Offset']
-          @WorkflowId = params['WorkflowId']
-          @RealFromTaskId = params['RealFromTaskId']
-          @RealFromTaskName = params['RealFromTaskName']
-          @RealFromWorkflowId = params['RealFromWorkflowId']
-          @RealFromWorkflowName = params['RealFromWorkflowName']
-          @RealProjectId = params['RealProjectId']
-          @RealProjectIdent = params['RealProjectIdent']
-          @RealProjectName = params['RealProjectName']
-        end
-      end
-
-      # 任务依赖的边信息
-      class TaskLinkInfo < TencentCloud::Common::AbstractModel
-        # @param TaskTo: 下游任务id
-        # @type TaskTo: String
-        # @param TaskFrom: 上游任务id
-        # @type TaskFrom: String
-        # @param LinkType: 依赖边类型 1、“real_real”表示任务->任务；2、"virtual_real" 跨工作流任务->任务
-        # @type LinkType: String
-        # @param LinkId: 依赖边id
-        # @type LinkId: String
-
-        attr_accessor :TaskTo, :TaskFrom, :LinkType, :LinkId
-
-        def initialize(taskto=nil, taskfrom=nil, linktype=nil, linkid=nil)
-          @TaskTo = taskto
-          @TaskFrom = taskfrom
-          @LinkType = linktype
-          @LinkId = linkid
-        end
-
-        def deserialize(params)
-          @TaskTo = params['TaskTo']
-          @TaskFrom = params['TaskFrom']
-          @LinkType = params['LinkType']
-          @LinkId = params['LinkId']
-        end
-      end
-
       # 任务锁的状态
       class TaskLockStatus < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -34299,7 +25367,7 @@ module TencentCloud
 
       # TaskLog返回参数结构体
       class TaskLogResponse < TencentCloud::Common::AbstractModel
-        # @param LogContentList: 详细日志
+        # @param LogContentList: 任务详细日志
         # @type LogContentList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -34752,66 +25820,6 @@ module TencentCloud
         end
       end
 
-      # 离线任务统计指标明细
-      class TaskReportDetail < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param InstanceId: 任务实例ID
-        # @type InstanceId: String
-        # @param CurRunDate: 实例数据运行时间
-        # @type CurRunDate: String
-        # @param IssueDate: 实例实际下发时间
-        # @type IssueDate: String
-        # @param TaskState: 任务状态码。1 正在执行,2 成功,3 失败,4 等待终止,5 正在终止,6 已终止,7 终止失败,9 等待执行。
-        # @type TaskState: String
-        # @param TotalReadRecords: 总读取条数
-        # @type TotalReadRecords: Integer
-        # @param TotalReadBytes: 总读取字节数
-        # @type TotalReadBytes: Integer
-        # @param TotalWriteRecords: 总写入条数
-        # @type TotalWriteRecords: Integer
-        # @param TotalWriteBytes: 总写入字节数
-        # @type TotalWriteBytes: Integer
-        # @param RecordSpeed: 写入速度（条/秒）
-        # @type RecordSpeed: Integer
-        # @param ByteSpeed: 吞吐（Byte/秒）
-        # @type ByteSpeed: Float
-        # @param TotalErrorRecords: 脏数据条数
-        # @type TotalErrorRecords: Integer
-
-        attr_accessor :TaskId, :InstanceId, :CurRunDate, :IssueDate, :TaskState, :TotalReadRecords, :TotalReadBytes, :TotalWriteRecords, :TotalWriteBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords
-
-        def initialize(taskid=nil, instanceid=nil, currundate=nil, issuedate=nil, taskstate=nil, totalreadrecords=nil, totalreadbytes=nil, totalwriterecords=nil, totalwritebytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil)
-          @TaskId = taskid
-          @InstanceId = instanceid
-          @CurRunDate = currundate
-          @IssueDate = issuedate
-          @TaskState = taskstate
-          @TotalReadRecords = totalreadrecords
-          @TotalReadBytes = totalreadbytes
-          @TotalWriteRecords = totalwriterecords
-          @TotalWriteBytes = totalwritebytes
-          @RecordSpeed = recordspeed
-          @ByteSpeed = bytespeed
-          @TotalErrorRecords = totalerrorrecords
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @InstanceId = params['InstanceId']
-          @CurRunDate = params['CurRunDate']
-          @IssueDate = params['IssueDate']
-          @TaskState = params['TaskState']
-          @TotalReadRecords = params['TotalReadRecords']
-          @TotalReadBytes = params['TotalReadBytes']
-          @TotalWriteRecords = params['TotalWriteRecords']
-          @TotalWriteBytes = params['TotalWriteBytes']
-          @RecordSpeed = params['RecordSpeed']
-          @ByteSpeed = params['ByteSpeed']
-          @TotalErrorRecords = params['TotalErrorRecords']
-        end
-      end
-
       # 任务执行脚本
       class TaskScriptContent < TencentCloud::Common::AbstractModel
         # @param ScriptContent: 脚本内容 base64编码
@@ -34873,284 +25881,6 @@ module TencentCloud
           @Number = params['Number']
           @TaskType = params['TaskType']
           @TypeName = params['TypeName']
-        end
-      end
-
-      # 任务类型
-      class TaskTypeDsVO < TencentCloud::Common::AbstractModel
-        # @param TypeId: 任务类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TypeId: Integer
-        # @param TypeDesc: TypeDesc描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TypeDesc: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param SourceServerType: 服务器类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceServerType: String
-        # @param TargetServerType: 目标服务器类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TargetServerType: String
-        # @param RunJarName: RunJarName名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RunJarName: String
-        # @param KillAble: Killable参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type KillAble: Integer
-        # @param TypeSort: TypeSort类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TypeSort: String
-        # @param InCharge: InCharge参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InCharge: String
-        # @param BrokerParallelism: 节点对应任务类型运行上限（暂时不考虑）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BrokerParallelism: Integer
-        # @param TaskParallelism: 每个任务运行上限（暂时不考虑
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskParallelism: Integer
-        # @param DoRedoParallelism: 补录和重跑上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DoRedoParallelism: Integer
-        # @param DowngradePriorityTries: 0 为不可创建任务; >0 可创建任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DowngradePriorityTries: Integer
-        # @param RetryWait: 重试等待时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryWait: Integer
-        # @param RetryLimit: 重试次数（在任务属性配置中设置）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryLimit: Integer
-        # @param DefaultAliveWait: DefaultAliveWait参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DefaultAliveWait: Integer
-        # @param PollingSeconds: PollingSeconds秒数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PollingSeconds: Integer
-        # @param ParamList: 参数列表xml
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParamList: String
-        # @param TaskTypeExtension: TaskTypeExts参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeExtension: Array
-        # @param FileType: 对应文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FileType: String
-        # @param SelectFilePath: 是否选择脚本路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SelectFilePath: Boolean
-        # @param ExcludeCommonLib: classpath是否要排除掉common-lib，默认是0不排除
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExcludeCommonLib: Boolean
-        # @param PostHooks: runner任务完成后需要触发的hook
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PostHooks: String
-
-        attr_accessor :TypeId, :TypeDesc, :CreateTime, :SourceServerType, :TargetServerType, :RunJarName, :KillAble, :TypeSort, :InCharge, :BrokerParallelism, :TaskParallelism, :DoRedoParallelism, :DowngradePriorityTries, :RetryWait, :RetryLimit, :DefaultAliveWait, :PollingSeconds, :ParamList, :TaskTypeExtension, :FileType, :SelectFilePath, :ExcludeCommonLib, :PostHooks
-
-        def initialize(typeid=nil, typedesc=nil, createtime=nil, sourceservertype=nil, targetservertype=nil, runjarname=nil, killable=nil, typesort=nil, incharge=nil, brokerparallelism=nil, taskparallelism=nil, doredoparallelism=nil, downgradeprioritytries=nil, retrywait=nil, retrylimit=nil, defaultalivewait=nil, pollingseconds=nil, paramlist=nil, tasktypeextension=nil, filetype=nil, selectfilepath=nil, excludecommonlib=nil, posthooks=nil)
-          @TypeId = typeid
-          @TypeDesc = typedesc
-          @CreateTime = createtime
-          @SourceServerType = sourceservertype
-          @TargetServerType = targetservertype
-          @RunJarName = runjarname
-          @KillAble = killable
-          @TypeSort = typesort
-          @InCharge = incharge
-          @BrokerParallelism = brokerparallelism
-          @TaskParallelism = taskparallelism
-          @DoRedoParallelism = doredoparallelism
-          @DowngradePriorityTries = downgradeprioritytries
-          @RetryWait = retrywait
-          @RetryLimit = retrylimit
-          @DefaultAliveWait = defaultalivewait
-          @PollingSeconds = pollingseconds
-          @ParamList = paramlist
-          @TaskTypeExtension = tasktypeextension
-          @FileType = filetype
-          @SelectFilePath = selectfilepath
-          @ExcludeCommonLib = excludecommonlib
-          @PostHooks = posthooks
-        end
-
-        def deserialize(params)
-          @TypeId = params['TypeId']
-          @TypeDesc = params['TypeDesc']
-          @CreateTime = params['CreateTime']
-          @SourceServerType = params['SourceServerType']
-          @TargetServerType = params['TargetServerType']
-          @RunJarName = params['RunJarName']
-          @KillAble = params['KillAble']
-          @TypeSort = params['TypeSort']
-          @InCharge = params['InCharge']
-          @BrokerParallelism = params['BrokerParallelism']
-          @TaskParallelism = params['TaskParallelism']
-          @DoRedoParallelism = params['DoRedoParallelism']
-          @DowngradePriorityTries = params['DowngradePriorityTries']
-          @RetryWait = params['RetryWait']
-          @RetryLimit = params['RetryLimit']
-          @DefaultAliveWait = params['DefaultAliveWait']
-          @PollingSeconds = params['PollingSeconds']
-          @ParamList = params['ParamList']
-          unless params['TaskTypeExtension'].nil?
-            @TaskTypeExtension = []
-            params['TaskTypeExtension'].each do |i|
-              tasktypeextparamdsvo_tmp = TaskTypeExtParamDsVO.new
-              tasktypeextparamdsvo_tmp.deserialize(i)
-              @TaskTypeExtension << tasktypeextparamdsvo_tmp
-            end
-          end
-          @FileType = params['FileType']
-          @SelectFilePath = params['SelectFilePath']
-          @ExcludeCommonLib = params['ExcludeCommonLib']
-          @PostHooks = params['PostHooks']
-        end
-      end
-
-      # 属性类型扩展
-      class TaskTypeExtDsVO < TencentCloud::Common::AbstractModel
-        # @param TypeId: 类型ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TypeId: Integer
-        # @param PropName: 属性名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PropName: String
-        # @param PropLabel: 属性标签(ui展示用)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PropLabel: String
-        # @param DefaultFlag: 缺省标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DefaultFlag: Integer
-        # @param VisibleFlag: 可视标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VisibleFlag: Integer
-        # @param PropDesc: 属性描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PropDesc: String
-        # @param RankId: 排列id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RankId: Integer
-        # @param InputType: 控件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InputType: String
-        # @param ValueType: 值类型(integer，string)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ValueType: String
-        # @param DefaultValue: 缺省值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DefaultValue: String
-        # @param CandidateValues: 候选值列表(，分隔)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CandidateValues: String
-        # @param IsMandatory: 是否必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsMandatory: Integer
-        # @param MaxValue: 最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MaxValue: Integer
-        # @param MinValue: 最小值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MinValue: Integer
-        # @param ConfLevel: 配置等级(1-普通，2-高级，3-管理员)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ConfLevel: Integer
-        # @param CandidateTexts: 候选文本列表(，分隔)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CandidateTexts: String
-        # @param CopyKey: 复制时是否需要修改
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CopyKey: Integer
-        # @param Regex: 字段正则表达式校验
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Regex: String
-        # @param Tip: 字段正则表达式校验证提示tip
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Tip: String
-        # @param Candidates: 可选值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Candidates: Array
-
-        attr_accessor :TypeId, :PropName, :PropLabel, :DefaultFlag, :VisibleFlag, :PropDesc, :RankId, :InputType, :ValueType, :DefaultValue, :CandidateValues, :IsMandatory, :MaxValue, :MinValue, :ConfLevel, :CandidateTexts, :CopyKey, :Regex, :Tip, :Candidates
-
-        def initialize(typeid=nil, propname=nil, proplabel=nil, defaultflag=nil, visibleflag=nil, propdesc=nil, rankid=nil, inputtype=nil, valuetype=nil, defaultvalue=nil, candidatevalues=nil, ismandatory=nil, maxvalue=nil, minvalue=nil, conflevel=nil, candidatetexts=nil, copykey=nil, regex=nil, tip=nil, candidates=nil)
-          @TypeId = typeid
-          @PropName = propname
-          @PropLabel = proplabel
-          @DefaultFlag = defaultflag
-          @VisibleFlag = visibleflag
-          @PropDesc = propdesc
-          @RankId = rankid
-          @InputType = inputtype
-          @ValueType = valuetype
-          @DefaultValue = defaultvalue
-          @CandidateValues = candidatevalues
-          @IsMandatory = ismandatory
-          @MaxValue = maxvalue
-          @MinValue = minvalue
-          @ConfLevel = conflevel
-          @CandidateTexts = candidatetexts
-          @CopyKey = copykey
-          @Regex = regex
-          @Tip = tip
-          @Candidates = candidates
-        end
-
-        def deserialize(params)
-          @TypeId = params['TypeId']
-          @PropName = params['PropName']
-          @PropLabel = params['PropLabel']
-          @DefaultFlag = params['DefaultFlag']
-          @VisibleFlag = params['VisibleFlag']
-          @PropDesc = params['PropDesc']
-          @RankId = params['RankId']
-          @InputType = params['InputType']
-          @ValueType = params['ValueType']
-          @DefaultValue = params['DefaultValue']
-          @CandidateValues = params['CandidateValues']
-          @IsMandatory = params['IsMandatory']
-          @MaxValue = params['MaxValue']
-          @MinValue = params['MinValue']
-          @ConfLevel = params['ConfLevel']
-          @CandidateTexts = params['CandidateTexts']
-          @CopyKey = params['CopyKey']
-          @Regex = params['Regex']
-          @Tip = params['Tip']
-          unless params['Candidates'].nil?
-            @Candidates = []
-            params['Candidates'].each do |i|
-              candidatedsdto_tmp = CandidateDsDTo.new
-              candidatedsdto_tmp.deserialize(i)
-              @Candidates << candidatedsdto_tmp
-            end
-          end
-        end
-      end
-
-      # TaskTypeExts参数
-      class TaskTypeExtParamDsVO < TencentCloud::Common::AbstractModel
-        # @param TaskTypeExtKey: TaskTypeExts的Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeExtKey: String
-        # @param TaskTypeExtValue: TaskTypeExts的Value
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskTypeExtValue: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeExtDsVO`
-
-        attr_accessor :TaskTypeExtKey, :TaskTypeExtValue
-
-        def initialize(tasktypeextkey=nil, tasktypeextvalue=nil)
-          @TaskTypeExtKey = tasktypeextkey
-          @TaskTypeExtValue = tasktypeextvalue
-        end
-
-        def deserialize(params)
-          @TaskTypeExtKey = params['TaskTypeExtKey']
-          unless params['TaskTypeExtValue'].nil?
-            @TaskTypeExtValue = TaskTypeExtDsVO.new
-            @TaskTypeExtValue.deserialize(params['TaskTypeExtValue'])
-          end
         end
       end
 
@@ -35574,113 +26304,6 @@ module TencentCloud
             @ScriptInfo.deserialize(params['ScriptInfo'])
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 用户文件信息
-      class UserFileDTO < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResourceId: String
-        # @param FileName: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FileName: String
-        # @param FileExtensionType: 文件类型，如 jar zip 等
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FileExtensionType: String
-        # @param FileUploadType: 文件上传类型，资源管理为 resource
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FileUploadType: String
-        # @param Md5Value: 文件MD5值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Md5Value: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-        # @param Size: 文件大小，单位为字节
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Size: Integer
-        # @param LocalPath: 本地路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LocalPath: String
-        # @param LocalTmpPath: 本地临时路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LocalTmpPath: String
-        # @param RemotePath: 远程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RemotePath: String
-        # @param OwnerName: 文件拥有者名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnerName: String
-        # @param Owner: 文件拥有者uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Owner: String
-        # @param PathDepth: 文件深度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PathDepth: String
-        # @param ProjectId: 项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProjectId: String
-        # @param ExtraInfo: 附加信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExtraInfo: String
-        # @param ZipPath: 本地临时压缩文件绝对路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ZipPath: String
-        # @param Bucket: 文件所属存储桶
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Bucket: String
-        # @param Region: 文件所属存储桶的地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Region: String
-
-        attr_accessor :ResourceId, :FileName, :FileExtensionType, :FileUploadType, :Md5Value, :CreateTime, :UpdateTime, :Size, :LocalPath, :LocalTmpPath, :RemotePath, :OwnerName, :Owner, :PathDepth, :ProjectId, :ExtraInfo, :ZipPath, :Bucket, :Region
-
-        def initialize(resourceid=nil, filename=nil, fileextensiontype=nil, fileuploadtype=nil, md5value=nil, createtime=nil, updatetime=nil, size=nil, localpath=nil, localtmppath=nil, remotepath=nil, ownername=nil, owner=nil, pathdepth=nil, projectid=nil, extrainfo=nil, zippath=nil, bucket=nil, region=nil)
-          @ResourceId = resourceid
-          @FileName = filename
-          @FileExtensionType = fileextensiontype
-          @FileUploadType = fileuploadtype
-          @Md5Value = md5value
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-          @Size = size
-          @LocalPath = localpath
-          @LocalTmpPath = localtmppath
-          @RemotePath = remotepath
-          @OwnerName = ownername
-          @Owner = owner
-          @PathDepth = pathdepth
-          @ProjectId = projectid
-          @ExtraInfo = extrainfo
-          @ZipPath = zippath
-          @Bucket = bucket
-          @Region = region
-        end
-
-        def deserialize(params)
-          @ResourceId = params['ResourceId']
-          @FileName = params['FileName']
-          @FileExtensionType = params['FileExtensionType']
-          @FileUploadType = params['FileUploadType']
-          @Md5Value = params['Md5Value']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
-          @Size = params['Size']
-          @LocalPath = params['LocalPath']
-          @LocalTmpPath = params['LocalTmpPath']
-          @RemotePath = params['RemotePath']
-          @OwnerName = params['OwnerName']
-          @Owner = params['Owner']
-          @PathDepth = params['PathDepth']
-          @ProjectId = params['ProjectId']
-          @ExtraInfo = params['ExtraInfo']
-          @ZipPath = params['ZipPath']
-          @Bucket = params['Bucket']
-          @Region = params['Region']
         end
       end
 
