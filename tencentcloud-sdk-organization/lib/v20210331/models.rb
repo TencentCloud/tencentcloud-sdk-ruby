@@ -1017,7 +1017,7 @@ module TencentCloud
 
       # DeletePolicy请求参数结构体
       class DeletePolicyRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 需要删除的策略ID。可以调用[ListPolicies](https://tcloud4api.woa.com/document/product/1128/79356?!preview&!document=1)获取
+        # @param PolicyId: 需要删除的策略ID。可以调用[ListPolicies](https://cloud.tencent.com/document/product/850/105311)获取
         # @type PolicyId: Integer
         # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
         # @type Type: String
@@ -3886,7 +3886,7 @@ module TencentCloud
 
       # UpdatePolicy请求参数结构体
       class UpdatePolicyRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 需要编辑的策略ID。可以调用[ListPolicies](https://tcloud4api.woa.com/document/product/1128/79356?!preview&!document=1)获取
+        # @param PolicyId: 需要编辑的策略ID。可以调用[ListPolicies](https://cloud.tencent.com/document/product/850/105311)获取
         # @type PolicyId: Integer
         # @param Description: 策略描述。
         # @type Description: String

@@ -884,10 +884,15 @@ module TencentCloud
         # @type ProductVersion: String
         # @param RedisClusterId: 独享集群 ID。当**ProductVersion**设置为**cdc**时，该参数必须设置。
         # @type RedisClusterId: String
+        # @param AlarmPolicyList: 告警策略 ID 数组。
 
-        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId, :DryRun, :ProductVersion, :RedisClusterId
+        # - 请登录[腾讯云可观测平台-告警管理-策略管理](https://console.cloud.tencent.com/monitor/alarm/policy)获取告警策略 ID。
+        # - 若不配置该参数，则绑定默认告警策略。默认告警策略具体信息，请登录[腾讯云可观测平台-告警管理-策略管理](https://console.cloud.tencent.com/monitor/alarm/policy)查看。
+        # @type AlarmPolicyList: Array
 
-        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil, zonename=nil, templateid=nil, dryrun=nil, productversion=nil, redisclusterid=nil)
+        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId, :DryRun, :ProductVersion, :RedisClusterId, :AlarmPolicyList
+
+        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil, zonename=nil, templateid=nil, dryrun=nil, productversion=nil, redisclusterid=nil, alarmpolicylist=nil)
           @TypeId = typeid
           @MemSize = memsize
           @GoodsNum = goodsnum
@@ -913,6 +918,7 @@ module TencentCloud
           @DryRun = dryrun
           @ProductVersion = productversion
           @RedisClusterId = redisclusterid
+          @AlarmPolicyList = alarmpolicylist
         end
 
         def deserialize(params)
@@ -955,6 +961,7 @@ module TencentCloud
           @DryRun = params['DryRun']
           @ProductVersion = params['ProductVersion']
           @RedisClusterId = params['RedisClusterId']
+          @AlarmPolicyList = params['AlarmPolicyList']
         end
       end
 

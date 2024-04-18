@@ -2093,30 +2093,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例状态周期增长趋势
-
-        # @param request: Request instance for DescribeInstanceByCycleReport.
-        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeInstanceByCycleReportRequest`
-        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeInstanceByCycleReportResponse`
-        def DescribeInstanceByCycleReport(request)
-          body = send_request('DescribeInstanceByCycleReport', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeInstanceByCycleReportResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 日志获取详情页面
 
         # @param request: Request instance for DescribeInstanceLastLog.
@@ -3728,31 +3704,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-        # 查询任务具体详情
-
-        # @param request: Request instance for DescribeTaskDetail.
-        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskDetailRequest`
-        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTaskDetailResponse`
-        def DescribeTaskDetail(request)
-          body = send_request('DescribeTaskDetail', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTaskDetailResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查看任务锁状态信息
 
         # @param request: Request instance for DescribeTaskLockStatus.
@@ -3811,31 +3762,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTaskScriptResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-        # 根据工作流分页查询任务
-
-        # @param request: Request instance for DescribeTasksByPage.
-        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTasksByPageRequest`
-        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTasksByPageResponse`
-        def DescribeTasksByPage(request)
-          body = send_request('DescribeTasksByPage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTasksByPageResponse.new
             model.deserialize(response['Response'])
             model
           else

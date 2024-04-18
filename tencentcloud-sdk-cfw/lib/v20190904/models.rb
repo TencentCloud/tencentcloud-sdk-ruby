@@ -5318,19 +5318,38 @@ module TencentCloud
         # @type Width: Integer
         # @param CfwInstance: 防火墙实例id
         # @type CfwInstance: String
+        # @param ElasticSwitch: 弹性开关 1打开 0 关闭
+        # @type ElasticSwitch: Integer
+        # @param ElasticBandwidth: 弹性带宽上限，单位Mbps
+        # @type ElasticBandwidth: Integer
+        # @param Tags: 按量计费标签
+        # @type Tags: Array
 
-        attr_accessor :FwType, :Width, :CfwInstance
+        attr_accessor :FwType, :Width, :CfwInstance, :ElasticSwitch, :ElasticBandwidth, :Tags
 
-        def initialize(fwtype=nil, width=nil, cfwinstance=nil)
+        def initialize(fwtype=nil, width=nil, cfwinstance=nil, elasticswitch=nil, elasticbandwidth=nil, tags=nil)
           @FwType = fwtype
           @Width = width
           @CfwInstance = cfwinstance
+          @ElasticSwitch = elasticswitch
+          @ElasticBandwidth = elasticbandwidth
+          @Tags = tags
         end
 
         def deserialize(params)
           @FwType = params['FwType']
           @Width = params['Width']
           @CfwInstance = params['CfwInstance']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticBandwidth = params['ElasticBandwidth']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -7653,10 +7672,32 @@ module TencentCloud
         # @param ZoneBak: 实例备所在可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneBak: String
+        # @param ReserveTime: 引擎预约升级时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveTime: String
+        # @param ReserveVersion: 引擎预约升级版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveVersion: String
+        # @param ReserveVersionState: 引擎预约升级版本状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveVersionState: String
+        # @param ElasticSwitch: 弹性开关
+        # 1 打开
+        # 0 关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticSwitch: Integer
+        # @param ElasticBandwidth: 弹性带宽，单位Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBandwidth: Integer
+        # @param IsFirstAfterPay: 是否首次开通按量付费
+        # 1 是
+        # 0 不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFirstAfterPay: Integer
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate, :TrafficMode, :Zone, :ZoneBak
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate, :TrafficMode, :Zone, :ZoneBak, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay
 
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil, trafficmode=nil, zone=nil, zonebak=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil, trafficmode=nil, zone=nil, zonebak=nil, reservetime=nil, reserveversion=nil, reserveversionstate=nil, elasticswitch=nil, elasticbandwidth=nil, isfirstafterpay=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -7680,6 +7721,12 @@ module TencentCloud
           @TrafficMode = trafficmode
           @Zone = zone
           @ZoneBak = zonebak
+          @ReserveTime = reservetime
+          @ReserveVersion = reserveversion
+          @ReserveVersionState = reserveversionstate
+          @ElasticSwitch = elasticswitch
+          @ElasticBandwidth = elasticbandwidth
+          @IsFirstAfterPay = isfirstafterpay
         end
 
         def deserialize(params)
@@ -7706,6 +7753,12 @@ module TencentCloud
           @TrafficMode = params['TrafficMode']
           @Zone = params['Zone']
           @ZoneBak = params['ZoneBak']
+          @ReserveTime = params['ReserveTime']
+          @ReserveVersion = params['ReserveVersion']
+          @ReserveVersionState = params['ReserveVersionState']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticBandwidth = params['ElasticBandwidth']
+          @IsFirstAfterPay = params['IsFirstAfterPay']
         end
       end
 
@@ -9020,6 +9073,26 @@ module TencentCloud
         end
       end
 
+      # 标签信息
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 目标key
+        # @type TagKey: String
+        # @param TagValue: 目标值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 地址模板列表数据
       class TemplateListInfo < TencentCloud::Common::AbstractModel
         # @param Uuid: 模板ID
@@ -9443,10 +9516,30 @@ module TencentCloud
         # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficMode: String
+        # @param ReserveTime: 引擎预约升级时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveTime: String
+        # @param ReserveVersion: 预约引擎升级版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveVersion: String
+        # @param ReserveVersionState: 引擎预约升级版本状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveVersionState: String
+        # @param ElasticSwitch: 弹性开关 1打开 0关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticSwitch: Integer
+        # @param ElasticBandwidth: 弹性带宽，单位Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBandwidth: Integer
+        # @param IsFirstAfterPay: 是否首次开通按量付费
+        # 1 是
+        # 0 不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFirstAfterPay: Integer
 
-        attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable, :TrafficMode
+        attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable, :TrafficMode, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay
 
-        def initialize(fwinsname=nil, fwinsid=nil, fwmode=nil, joininsnum=nil, fwswitchnum=nil, status=nil, time=nil, ccnid=nil, ccnname=nil, peerconnectionid=nil, peerconnectionname=nil, fwcvmlst=nil, joininslst=nil, fwgateway=nil, fwgroupid=nil, ruleused=nil, rulemax=nil, width=nil, uservpcwidth=nil, joininsidlst=nil, flowmax=nil, engineversion=nil, updateenable=nil, trafficmode=nil)
+        def initialize(fwinsname=nil, fwinsid=nil, fwmode=nil, joininsnum=nil, fwswitchnum=nil, status=nil, time=nil, ccnid=nil, ccnname=nil, peerconnectionid=nil, peerconnectionname=nil, fwcvmlst=nil, joininslst=nil, fwgateway=nil, fwgroupid=nil, ruleused=nil, rulemax=nil, width=nil, uservpcwidth=nil, joininsidlst=nil, flowmax=nil, engineversion=nil, updateenable=nil, trafficmode=nil, reservetime=nil, reserveversion=nil, reserveversionstate=nil, elasticswitch=nil, elasticbandwidth=nil, isfirstafterpay=nil)
           @FwInsName = fwinsname
           @FwInsId = fwinsid
           @FwMode = fwmode
@@ -9471,6 +9564,12 @@ module TencentCloud
           @EngineVersion = engineversion
           @UpdateEnable = updateenable
           @TrafficMode = trafficmode
+          @ReserveTime = reservetime
+          @ReserveVersion = reserveversion
+          @ReserveVersionState = reserveversionstate
+          @ElasticSwitch = elasticswitch
+          @ElasticBandwidth = elasticbandwidth
+          @IsFirstAfterPay = isfirstafterpay
         end
 
         def deserialize(params)
@@ -9519,6 +9618,12 @@ module TencentCloud
           @EngineVersion = params['EngineVersion']
           @UpdateEnable = params['UpdateEnable']
           @TrafficMode = params['TrafficMode']
+          @ReserveTime = params['ReserveTime']
+          @ReserveVersion = params['ReserveVersion']
+          @ReserveVersionState = params['ReserveVersionState']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticBandwidth = params['ElasticBandwidth']
+          @IsFirstAfterPay = params['IsFirstAfterPay']
         end
       end
 

@@ -8536,18 +8536,22 @@ module TencentCloud
         # @type ClusterId: String
         # @param ClusterType: 集群类型(可不填)
         # @type ClusterType: String
-        # @param Filters: 过滤条件，当前支持
-        # Name=state
-        # Value=up, down, unknown
+        # @param Filters: 过滤条件，支持Name=ServiceMonitor/PodMonitor/Probe/RawJob/Job, Value为采集配置名称；Name=Health, Value=up, down, unknown；Name=EndPoint, Value为EndPoint地址
         # @type Filters: Array
+        # @param Offset: targets偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: targets返回数量，默认为20，最大值200
+        # @type Limit: Integer
 
-        attr_accessor :InstanceId, :ClusterId, :ClusterType, :Filters
+        attr_accessor :InstanceId, :ClusterId, :ClusterType, :Filters, :Offset, :Limit
 
-        def initialize(instanceid=nil, clusterid=nil, clustertype=nil, filters=nil)
+        def initialize(instanceid=nil, clusterid=nil, clustertype=nil, filters=nil, offset=nil, limit=nil)
           @InstanceId = instanceid
           @ClusterId = clusterid
           @ClusterType = clustertype
           @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
@@ -8562,6 +8566,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 

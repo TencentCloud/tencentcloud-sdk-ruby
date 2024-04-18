@@ -947,7 +947,7 @@ module TencentCloud
 
       # CreateJob请求参数结构体
       class CreateJobRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
+        # @param Name: 作业名称，允许输入长度小于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
         # @type Name: String
         # @param JobType: 作业的类型，1 表示 SQL 作业，2 表示 JAR 作业
         # @type JobType: Integer

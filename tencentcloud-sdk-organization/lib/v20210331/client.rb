@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建一个特殊类型的策略，你可以关联到企业组织Root节点、企业单元或者企业的成员账号。
+        # 创建一个特殊类型的策略，您可以关联到企业组织Root节点、企业部门节点或者企业的成员账号。
 
         # @param request: Request instance for CreatePolicy.
         # @type request: :class:`Tencentcloud::organization::V20210331::CreatePolicyRequest`

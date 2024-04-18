@@ -2237,12 +2237,17 @@ module TencentCloud
 
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param LoadType: 通过该参数指定不同压测网络环境，在不同网络环境下，PTS可用的地域不一样
+        # @type LoadType: Integer
 
+        attr_accessor :LoadType
 
-        def initialize()
+        def initialize(loadtype=nil)
+          @LoadType = loadtype
         end
 
         def deserialize(params)
+          @LoadType = params['LoadType']
         end
       end
 
@@ -3630,7 +3635,7 @@ module TencentCloud
         # @param VpcLoadDistribution: 压力来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcLoadDistribution: :class:`Tencentcloud::Pts.v20210728.models.VpcLoadDistribution`
-        # @param GeoRegionsLoadDistribution: 压力分布
+        # @param GeoRegionsLoadDistribution: 多地域压力分布
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeoRegionsLoadDistribution: Array
 

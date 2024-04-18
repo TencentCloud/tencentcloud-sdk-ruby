@@ -1982,6 +1982,98 @@ module TencentCloud
         end
       end
 
+      # DescribeServerlessInstances请求参数结构体
+      class DescribeServerlessInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 索引集群ID
+        # @type InstanceIds: Array
+        # @param IndexNames: 索引名
+        # @type IndexNames: Array
+        # @param Offset: 分页起始位置
+        # @type Offset: Integer
+        # @param Limit: 一页展示数量
+        # @type Limit: Integer
+        # @param OrderBy: 排序字段，支持索引名：IndexName、索引存储量：IndexStorage、索引创建时间：IndexCreateTime
+        # @type OrderBy: String
+        # @param IndexStatusList: 过滤索引状态
+        # @type IndexStatusList: Array
+        # @param Order: 排序顺序，支持asc、desc，默认为desc
+        # @type Order: String
+        # @param SpaceIds: 索引空间ID列表
+        # @type SpaceIds: Array
+        # @param DiSourceTypes: 数据链路数据源类型
+        # @type DiSourceTypes: Array
+        # @param TagList: 标签信息
+        # @type TagList: Array
+
+        attr_accessor :InstanceIds, :IndexNames, :Offset, :Limit, :OrderBy, :IndexStatusList, :Order, :SpaceIds, :DiSourceTypes, :TagList
+
+        def initialize(instanceids=nil, indexnames=nil, offset=nil, limit=nil, orderby=nil, indexstatuslist=nil, order=nil, spaceids=nil, disourcetypes=nil, taglist=nil)
+          @InstanceIds = instanceids
+          @IndexNames = indexnames
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @IndexStatusList = indexstatuslist
+          @Order = order
+          @SpaceIds = spaceids
+          @DiSourceTypes = disourcetypes
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @IndexNames = params['IndexNames']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @IndexStatusList = params['IndexStatusList']
+          @Order = params['Order']
+          @SpaceIds = params['SpaceIds']
+          @DiSourceTypes = params['DiSourceTypes']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeServerlessInstances返回参数结构体
+      class DescribeServerlessInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param IndexMetaFields: 索引元数据字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexMetaFields: Array
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IndexMetaFields, :TotalCount, :RequestId
+
+        def initialize(indexmetafields=nil, totalcount=nil, requestid=nil)
+          @IndexMetaFields = indexmetafields
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IndexMetaFields'].nil?
+            @IndexMetaFields = []
+            params['IndexMetaFields'].each do |i|
+              serverlessindexmetafield_tmp = ServerlessIndexMetaField.new
+              serverlessindexmetafield_tmp.deserialize(i)
+              @IndexMetaFields << serverlessindexmetafield_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServerlessSpaceUser请求参数结构体
       class DescribeServerlessSpaceUserRequest < TencentCloud::Common::AbstractModel
         # @param SpaceId: 空间的ID
@@ -5123,6 +5215,204 @@ module TencentCloud
             @DiSourceTke = DiSourceTke.new
             @DiSourceTke.deserialize(params['DiSourceTke'])
           end
+        end
+      end
+
+      # 索引元数据字段
+      class ServerlessIndexMetaField < TencentCloud::Common::AbstractModel
+        # @param AppId: 索引所属集群APP ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param IndexName: 索引名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexName: String
+        # @param IndexDocs: 索引文档数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexDocs: Integer
+        # @param IndexStorage: 索引存储大小，单位Byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexStorage: Integer
+        # @param IndexCreateTime: 索引创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexCreateTime: String
+        # @param InstanceId: 索引实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param IndexOptionsField: 索引自治字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexOptionsField: :class:`Tencentcloud::Es.v20180416.models.ServerlessIndexOptionsField`
+        # @param IndexSettingsField: 索引配置字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexSettingsField: :class:`Tencentcloud::Es.v20180416.models.ServerlessIndexSettingsField`
+        # @param IndexNetworkField: 索引所属连接相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexNetworkField: :class:`Tencentcloud::Es.v20180416.models.ServerlessIndexNetworkField`
+        # @param KibanaUrl: Kibana公网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaUrl: String
+        # @param KibanaPrivateUrl: Kibana内网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaPrivateUrl: String
+        # @param IndexAccessUrl: 索引内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexAccessUrl: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param SpaceId: 索引空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceId: String
+        # @param SpaceName: 索引空间名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceName: String
+        # @param StorageType: 存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: Integer
+        # @param TagList: 标签信息
+        # @type TagList: Array
+
+        attr_accessor :AppId, :IndexName, :IndexDocs, :IndexStorage, :IndexCreateTime, :InstanceId, :IndexOptionsField, :IndexSettingsField, :IndexNetworkField, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :Status, :SpaceId, :SpaceName, :StorageType, :TagList
+
+        def initialize(appid=nil, indexname=nil, indexdocs=nil, indexstorage=nil, indexcreatetime=nil, instanceid=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexnetworkfield=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, status=nil, spaceid=nil, spacename=nil, storagetype=nil, taglist=nil)
+          @AppId = appid
+          @IndexName = indexname
+          @IndexDocs = indexdocs
+          @IndexStorage = indexstorage
+          @IndexCreateTime = indexcreatetime
+          @InstanceId = instanceid
+          @IndexOptionsField = indexoptionsfield
+          @IndexSettingsField = indexsettingsfield
+          @IndexNetworkField = indexnetworkfield
+          @KibanaUrl = kibanaurl
+          @KibanaPrivateUrl = kibanaprivateurl
+          @IndexAccessUrl = indexaccessurl
+          @Status = status
+          @SpaceId = spaceid
+          @SpaceName = spacename
+          @StorageType = storagetype
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @IndexName = params['IndexName']
+          @IndexDocs = params['IndexDocs']
+          @IndexStorage = params['IndexStorage']
+          @IndexCreateTime = params['IndexCreateTime']
+          @InstanceId = params['InstanceId']
+          unless params['IndexOptionsField'].nil?
+            @IndexOptionsField = ServerlessIndexOptionsField.new
+            @IndexOptionsField.deserialize(params['IndexOptionsField'])
+          end
+          unless params['IndexSettingsField'].nil?
+            @IndexSettingsField = ServerlessIndexSettingsField.new
+            @IndexSettingsField.deserialize(params['IndexSettingsField'])
+          end
+          unless params['IndexNetworkField'].nil?
+            @IndexNetworkField = ServerlessIndexNetworkField.new
+            @IndexNetworkField.deserialize(params['IndexNetworkField'])
+          end
+          @KibanaUrl = params['KibanaUrl']
+          @KibanaPrivateUrl = params['KibanaPrivateUrl']
+          @IndexAccessUrl = params['IndexAccessUrl']
+          @Status = params['Status']
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
+          @StorageType = params['StorageType']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+        end
+      end
+
+      # Serverless实例，网络、索引、kibana等连接信息
+      class ServerlessIndexNetworkField < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param VpcUid: vpc唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcUid: String
+        # @param SubnetUid: 子网唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetUid: String
+        # @param Username: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Password: 密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+
+        attr_accessor :Region, :Zone, :VpcUid, :SubnetUid, :Username, :Password
+
+        def initialize(region=nil, zone=nil, vpcuid=nil, subnetuid=nil, username=nil, password=nil)
+          @Region = region
+          @Zone = zone
+          @VpcUid = vpcuid
+          @SubnetUid = subnetuid
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @VpcUid = params['VpcUid']
+          @SubnetUid = params['SubnetUid']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
+      # 索引自治字段
+      class ServerlessIndexOptionsField < TencentCloud::Common::AbstractModel
+        # @param ExpireMaxAge: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireMaxAge: String
+        # @param TimestampField: 时间分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimestampField: String
+
+        attr_accessor :ExpireMaxAge, :TimestampField
+
+        def initialize(expiremaxage=nil, timestampfield=nil)
+          @ExpireMaxAge = expiremaxage
+          @TimestampField = timestampfield
+        end
+
+        def deserialize(params)
+          @ExpireMaxAge = params['ExpireMaxAge']
+          @TimestampField = params['TimestampField']
+        end
+      end
+
+      # 索引配置字段
+      class ServerlessIndexSettingsField < TencentCloud::Common::AbstractModel
+        # @param NumberOfShards: 索引主分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumberOfShards: String
+        # @param RefreshInterval: 索引刷新频率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefreshInterval: String
+
+        attr_accessor :NumberOfShards, :RefreshInterval
+
+        def initialize(numberofshards=nil, refreshinterval=nil)
+          @NumberOfShards = numberofshards
+          @RefreshInterval = refreshinterval
+        end
+
+        def deserialize(params)
+          @NumberOfShards = params['NumberOfShards']
+          @RefreshInterval = params['RefreshInterval']
         end
       end
 
