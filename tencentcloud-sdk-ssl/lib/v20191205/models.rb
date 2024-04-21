@@ -1456,6 +1456,45 @@ module TencentCloud
         end
       end
 
+      # 批量删除证书异步任务结果
+      class DeleteTaskResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param CertId: 证书ID
+        # @type CertId: String
+        # @param Status: 异步查询结果： 0表示任务进行中、 1表示任务成功、 2表示任务失败、3表示未授权服务角色导致任务失败、4表示有未解绑的云资源导致任务失败、5表示查询关联云资源超时导致任务失败
+        # @type Status: Integer
+        # @param Error: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
+        # @param CacheTime: 当前结果缓存时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheTime: String
+        # @param Domains: 包含的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: Array
+
+        attr_accessor :TaskId, :CertId, :Status, :Error, :CacheTime, :Domains
+
+        def initialize(taskid=nil, certid=nil, status=nil, error=nil, cachetime=nil, domains=nil)
+          @TaskId = taskid
+          @CertId = certid
+          @Status = status
+          @Error = error
+          @CacheTime = cachetime
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @CertId = params['CertId']
+          @Status = params['Status']
+          @Error = params['Error']
+          @CacheTime = params['CacheTime']
+          @Domains = params['Domains']
+        end
+      end
+
       # DeployCertificateInstance请求参数结构体
       class DeployCertificateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
@@ -2731,6 +2770,50 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeleteCertificatesTaskResult请求参数结构体
+      class DescribeDeleteCertificatesTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: DeleteCertificates接口返回的任务ID， 最大支持100个
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # DescribeDeleteCertificatesTaskResult返回参数结构体
+      class DescribeDeleteCertificatesTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param DeleteTaskResult: 批量删除证书异步任务结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteTaskResult: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeleteTaskResult, :RequestId
+
+        def initialize(deletetaskresult=nil, requestid=nil)
+          @DeleteTaskResult = deletetaskresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeleteTaskResult'].nil?
+            @DeleteTaskResult = []
+            params['DeleteTaskResult'].each do |i|
+              deletetaskresult_tmp = DeleteTaskResult.new
+              deletetaskresult_tmp.deserialize(i)
+              @DeleteTaskResult << deletetaskresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

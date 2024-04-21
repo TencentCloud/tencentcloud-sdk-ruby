@@ -9618,10 +9618,12 @@ module TencentCloud
         # @param BackupToUrl: 新的目标地址。传空值，则取消该地址的推流。
         # 传入新值，则替换原有地址。
         # @type BackupToUrl: String
+        # @param BackupVodUrl: 点播垫片文件地址。注意：用于在主源拉不到时自动兜底到垫片文件，切到垫片文件后，每次播完垫片会尝试拉主源，如果主源恢复则自动切回主源。可根据需要的轮询检查时长来传入对应时长的垫片文件。
+        # @type BackupVodUrl: String
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :SpecifyTaskId, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :BackupToUrl
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :SpecifyTaskId, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :BackupToUrl, :BackupVodUrl
 
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, specifytaskid=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, backuptourl=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, specifytaskid=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, backuptourl=nil, backupvodurl=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -9642,6 +9644,7 @@ module TencentCloud
           @WatermarkList = watermarklist
           @VodLocalMode = vodlocalmode
           @BackupToUrl = backuptourl
+          @BackupVodUrl = backupvodurl
         end
 
         def deserialize(params)
@@ -9672,6 +9675,7 @@ module TencentCloud
           end
           @VodLocalMode = params['VodLocalMode']
           @BackupToUrl = params['BackupToUrl']
+          @BackupVodUrl = params['BackupVodUrl']
         end
       end
 

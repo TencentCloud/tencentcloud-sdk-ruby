@@ -488,10 +488,15 @@ module TencentCloud
         # @param DrmInfo: Drm信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrmInfo: :class:`Tencentcloud::Mps.v20190612.models.DrmInfo`
+        # @param DefinitionType: 自适应转码模板类型：
+        # Common：音视频类型
+        # PureAudio：纯音频类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefinitionType: String
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo
+        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil)
+        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @OutputStorage = outputstorage
@@ -500,6 +505,7 @@ module TencentCloud
           @SegmentObjectName = segmentobjectname
           @AddOnSubtitles = addonsubtitles
           @DrmInfo = drminfo
+          @DefinitionType = definitiontype
         end
 
         def deserialize(params)
@@ -531,6 +537,7 @@ module TencentCloud
             @DrmInfo = DrmInfo.new
             @DrmInfo.deserialize(params['DrmInfo'])
           end
+          @DefinitionType = params['DefinitionType']
         end
       end
 
@@ -564,10 +571,13 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
+        # @param PureAudio: 是否为纯音频，0表示视频，1表示纯音频
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PureAudio: Integer
 
-        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime, :PureAudio
 
-        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil, pureaudio=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -578,6 +588,7 @@ module TencentCloud
           @DisableHigherVideoResolution = disablehighervideoresolution
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @PureAudio = pureaudio
         end
 
         def deserialize(params)
@@ -598,15 +609,16 @@ module TencentCloud
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @PureAudio = params['PureAudio']
         end
       end
 
       # 自适应转码流参数模板
       class AdaptiveStreamTemplate < TencentCloud::Common::AbstractModel
-        # @param Video: 视频参数信息。
-        # @type Video: :class:`Tencentcloud::Mps.v20190612.models.VideoTemplateInfo`
         # @param Audio: 音频参数信息。
         # @type Audio: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfo`
+        # @param Video: 视频参数信息。
+        # @type Video: :class:`Tencentcloud::Mps.v20190612.models.VideoTemplateInfo`
         # @param RemoveAudio: 是否移除音频流，取值范围：
         # <li>0：否，</li>
         # <li>1：是。</li>
@@ -616,23 +628,23 @@ module TencentCloud
         # <li>1：是。</li>
         # @type RemoveVideo: Integer
 
-        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo
+        attr_accessor :Audio, :Video, :RemoveAudio, :RemoveVideo
 
-        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil)
-          @Video = video
+        def initialize(audio=nil, video=nil, removeaudio=nil, removevideo=nil)
           @Audio = audio
+          @Video = video
           @RemoveAudio = removeaudio
           @RemoveVideo = removevideo
         end
 
         def deserialize(params)
-          unless params['Video'].nil?
-            @Video = VideoTemplateInfo.new
-            @Video.deserialize(params['Video'])
-          end
           unless params['Audio'].nil?
             @Audio = AudioTemplateInfo.new
             @Audio.deserialize(params['Audio'])
+          end
+          unless params['Video'].nil?
+            @Video = VideoTemplateInfo.new
+            @Video.deserialize(params['Video'])
           end
           @RemoveAudio = params['RemoveAudio']
           @RemoveVideo = params['RemoveVideo']
@@ -5793,16 +5805,28 @@ module TencentCloud
         # @type DisableHigherVideoResolution: Integer
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param PureAudio: 是否为纯音频，0表示视频模版，1表示纯音频模版
+        # 当值为1：
+        # 1. StreamInfos.N.RemoveVideo=1
+        # 2. StreamInfos.N.RemoveAudio=0
+        # 3. StreamInfos.N.Video.Codec=copy
 
-        attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment
+        # 当值为0：
 
-        def initialize(format=nil, streaminfos=nil, name=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil)
+        # 1. StreamInfos.N.Video.Codec不能为copy
+        # 2. StreamInfos.N.Video.Fps不能为null
+        # @type PureAudio: Integer
+
+        attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :PureAudio
+
+        def initialize(format=nil, streaminfos=nil, name=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, pureaudio=nil)
           @Format = format
           @StreamInfos = streaminfos
           @Name = name
           @DisableHigherVideoBitrate = disablehighervideobitrate
           @DisableHigherVideoResolution = disablehighervideoresolution
           @Comment = comment
+          @PureAudio = pureaudio
         end
 
         def deserialize(params)
@@ -5819,6 +5843,7 @@ module TencentCloud
           @DisableHigherVideoBitrate = params['DisableHigherVideoBitrate']
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @Comment = params['Comment']
+          @PureAudio = params['PureAudio']
         end
       end
 
@@ -8072,14 +8097,17 @@ module TencentCloud
         # <li>Preset：系统预置模板；</li>
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
+        # @param PureAudio: 是否为纯音频，0表示视频，1表示纯音频
+        # @type PureAudio: Integer
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :PureAudio
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, pureaudio=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @PureAudio = pureaudio
         end
 
         def deserialize(params)
@@ -8087,6 +8115,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @PureAudio = params['PureAudio']
         end
       end
 
@@ -14861,10 +14890,21 @@ module TencentCloud
         # @type StreamInfos: Array
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param PureAudio: 是否为纯音频，0表示视频模版，1表示纯音频模版
+        # 当值为1：
+        # 1. StreamInfos.N.RemoveVideo=1
+        # 2. StreamInfos.N.RemoveAudio=0
+        # 3. StreamInfos.N.Video.Codec=copy
 
-        attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment
+        # 当值为0：
 
-        def initialize(definition=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil)
+        # 1. StreamInfos.N.Video.Codec不能为copy
+        # 2. StreamInfos.N.Video.Fps不能为null
+        # @type PureAudio: Integer
+
+        attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :PureAudio
+
+        def initialize(definition=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil, pureaudio=nil)
           @Definition = definition
           @Name = name
           @Format = format
@@ -14872,6 +14912,7 @@ module TencentCloud
           @DisableHigherVideoResolution = disablehighervideoresolution
           @StreamInfos = streaminfos
           @Comment = comment
+          @PureAudio = pureaudio
         end
 
         def deserialize(params)
@@ -14889,6 +14930,7 @@ module TencentCloud
             end
           end
           @Comment = params['Comment']
+          @PureAudio = params['PureAudio']
         end
       end
 
@@ -19386,7 +19428,7 @@ module TencentCloud
         # <li>simkai.ttf：可以支持中文和英文；</li>
         # <li>arial.ttf：仅支持英文。</li>
         # @type FontType: String
-        # @param FontSize: 字体大小，格式：Npx，N 为数值。
+        # @param FontSize: 字体大小，格式：Npx，N 为数值。N的取值范围：[0,1] 和 [8, 4096]
         # @type FontSize: String
         # @param FontColor: 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。
         # @type FontColor: String
@@ -19395,14 +19437,18 @@ module TencentCloud
         # <li>1：完全不透明</li>
         # 默认值：1。
         # @type FontAlpha: Float
+        # @param TextContent: 文字内容，长度不超过100个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextContent: String
 
-        attr_accessor :FontType, :FontSize, :FontColor, :FontAlpha
+        attr_accessor :FontType, :FontSize, :FontColor, :FontAlpha, :TextContent
 
-        def initialize(fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil)
+        def initialize(fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, textcontent=nil)
           @FontType = fonttype
           @FontSize = fontsize
           @FontColor = fontcolor
           @FontAlpha = fontalpha
+          @TextContent = textcontent
         end
 
         def deserialize(params)
@@ -19410,6 +19456,7 @@ module TencentCloud
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
           @FontAlpha = params['FontAlpha']
+          @TextContent = params['TextContent']
         end
       end
 
@@ -19419,7 +19466,7 @@ module TencentCloud
         # <li>simkai.ttf：可以支持中文和英文；</li>
         # <li>arial.ttf：仅支持英文。</li>
         # @type FontType: String
-        # @param FontSize: 字体大小，格式：Npx，N 为数值。
+        # @param FontSize: 字体大小，格式：Npx，N 为数值。N的取值范围：[0,1] 和 [8, 4096]
         # @type FontSize: String
         # @param FontColor: 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。
         # @type FontColor: String
@@ -19427,14 +19474,17 @@ module TencentCloud
         # <li>0：完全透明</li>
         # <li>1：完全不透明</li>
         # @type FontAlpha: Float
+        # @param TextContent: 文字内容，长度不超过100个字符。
+        # @type TextContent: String
 
-        attr_accessor :FontType, :FontSize, :FontColor, :FontAlpha
+        attr_accessor :FontType, :FontSize, :FontColor, :FontAlpha, :TextContent
 
-        def initialize(fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil)
+        def initialize(fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, textcontent=nil)
           @FontType = fonttype
           @FontSize = fontsize
           @FontColor = fontcolor
           @FontAlpha = fontalpha
+          @TextContent = textcontent
         end
 
         def deserialize(params)
@@ -19442,6 +19492,7 @@ module TencentCloud
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
           @FontAlpha = params['FontAlpha']
+          @TextContent = params['TextContent']
         end
       end
 
@@ -20096,6 +20147,7 @@ module TencentCloud
       # 视频流配置参数
       class VideoTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 视频流的编码格式，可选值：
+        # <li>copy：纯音频模版</li>
         # <li>h264：H.264 编码</li>
         # <li>h265：H.265 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
@@ -20301,11 +20353,13 @@ module TencentCloud
         # <li>不填或填0，表示水印从画面开始就出现；</li>
         # <li>当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；</li>
         # <li>当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。</li>
+        # 注：只用于视频场景，截图不支持。
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: 水印的结束时间偏移，单位：秒。
         # <li>不填或填0，表示水印持续到画面结束；</li>
         # <li>当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；</li>
         # <li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>
+        # 注：只用于视频场景，截图不支持。
         # @type EndTimeOffset: Float
 
         attr_accessor :Definition, :RawParameter, :TextContent, :SvgContent, :StartTimeOffset, :EndTimeOffset

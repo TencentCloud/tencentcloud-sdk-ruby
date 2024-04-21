@@ -1368,12 +1368,18 @@ module TencentCloud
         # @type DisconnectTime: Integer
         # @param MQTTClientSubscriptions: 客户端的订阅列表
         # @type MQTTClientSubscriptions: Array
+        # @param Inbound: 服务端到客户端的流量统计
+        # @type Inbound: :class:`Tencentcloud::Trocket.v20230308.models.StatisticsReport`
+        # @param OutBound: 客户端到服务端的流量统计
+        # @type OutBound: :class:`Tencentcloud::Trocket.v20230308.models.StatisticsReport`
+        # @param CleanSession: cleansession标志
+        # @type CleanSession: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClientId, :ClientAddress, :ProtocolVersion, :Keepalive, :ConnectionStatus, :CreateTime, :ConnectTime, :DisconnectTime, :MQTTClientSubscriptions, :RequestId
+        attr_accessor :ClientId, :ClientAddress, :ProtocolVersion, :Keepalive, :ConnectionStatus, :CreateTime, :ConnectTime, :DisconnectTime, :MQTTClientSubscriptions, :Inbound, :OutBound, :CleanSession, :RequestId
 
-        def initialize(clientid=nil, clientaddress=nil, protocolversion=nil, keepalive=nil, connectionstatus=nil, createtime=nil, connecttime=nil, disconnecttime=nil, mqttclientsubscriptions=nil, requestid=nil)
+        def initialize(clientid=nil, clientaddress=nil, protocolversion=nil, keepalive=nil, connectionstatus=nil, createtime=nil, connecttime=nil, disconnecttime=nil, mqttclientsubscriptions=nil, inbound=nil, outbound=nil, cleansession=nil, requestid=nil)
           @ClientId = clientid
           @ClientAddress = clientaddress
           @ProtocolVersion = protocolversion
@@ -1383,6 +1389,9 @@ module TencentCloud
           @ConnectTime = connecttime
           @DisconnectTime = disconnecttime
           @MQTTClientSubscriptions = mqttclientsubscriptions
+          @Inbound = inbound
+          @OutBound = outbound
+          @CleanSession = cleansession
           @RequestId = requestid
         end
 
@@ -1403,6 +1412,15 @@ module TencentCloud
               @MQTTClientSubscriptions << mqttclientsubscription_tmp
             end
           end
+          unless params['Inbound'].nil?
+            @Inbound = StatisticsReport.new
+            @Inbound.deserialize(params['Inbound'])
+          end
+          unless params['OutBound'].nil?
+            @OutBound = StatisticsReport.new
+            @OutBound.deserialize(params['OutBound'])
+          end
+          @CleanSession = params['CleanSession']
           @RequestId = params['RequestId']
         end
       end
@@ -1433,16 +1451,24 @@ module TencentCloud
         # @type Bandwidth: Integer
         # @param Rules: 公网访问规则
         # @type Rules: Array
+        # @param Status: 公网状态：
+        #     NORMAL-正常
+        #     CLOSING-关闭中
+        #     MODIFYING-修改中
+        #     CREATING-开启中
+        #     CLOSE-关闭
+        # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Endpoints, :InstanceId, :Bandwidth, :Rules, :RequestId
+        attr_accessor :Endpoints, :InstanceId, :Bandwidth, :Rules, :Status, :RequestId
 
-        def initialize(endpoints=nil, instanceid=nil, bandwidth=nil, rules=nil, requestid=nil)
+        def initialize(endpoints=nil, instanceid=nil, bandwidth=nil, rules=nil, status=nil, requestid=nil)
           @Endpoints = endpoints
           @InstanceId = instanceid
           @Bandwidth = bandwidth
           @Rules = rules
+          @Status = status
           @RequestId = requestid
         end
 
@@ -1465,6 +1491,7 @@ module TencentCloud
               @Rules << publicaccessrule_tmp
             end
           end
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -2672,16 +2699,20 @@ module TencentCloud
         # @param Port: 端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
+        # @param Ip: 接入点ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
 
-        attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port
+        attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port, :Ip
 
-        def initialize(type=nil, url=nil, vpcid=nil, subnetid=nil, host=nil, port=nil)
+        def initialize(type=nil, url=nil, vpcid=nil, subnetid=nil, host=nil, port=nil, ip=nil)
           @Type = type
           @Url = url
           @VpcId = vpcid
           @SubnetId = subnetid
           @Host = host
           @Port = port
+          @Ip = ip
         end
 
         def deserialize(params)
@@ -2691,6 +2722,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Host = params['Host']
           @Port = params['Port']
+          @Ip = params['Ip']
         end
       end
 
@@ -3385,6 +3417,33 @@ module TencentCloud
         end
       end
 
+      # MQTT客户端监控
+      class PacketStatistics < TencentCloud::Common::AbstractModel
+        # @param MessageType: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageType: String
+        # @param Qos: 服务质量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qos: Integer
+        # @param Count: 指标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :MessageType, :Qos, :Count
+
+        def initialize(messagetype=nil, qos=nil, count=nil)
+          @MessageType = messagetype
+          @Qos = qos
+          @Count = count
+        end
+
+        def deserialize(params)
+          @MessageType = params['MessageType']
+          @Qos = params['Qos']
+          @Count = params['Count']
+        end
+      end
+
       # 公网访问安全规则
       class PublicAccessRule < TencentCloud::Common::AbstractModel
         # @param IpRule: ip网段信息
@@ -3558,6 +3617,35 @@ module TencentCloud
           @Imported = params['Imported']
           @Namespace = params['Namespace']
           @ImportStatus = params['ImportStatus']
+        end
+      end
+
+      # MQTT客户端数据流量统计
+      class StatisticsReport < TencentCloud::Common::AbstractModel
+        # @param Bytes: 字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bytes: Integer
+        # @param Items: 监控指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Bytes, :Items
+
+        def initialize(bytes=nil, items=nil)
+          @Bytes = bytes
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Bytes = params['Bytes']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              packetstatistics_tmp = PacketStatistics.new
+              packetstatistics_tmp.deserialize(i)
+              @Items << packetstatistics_tmp
+            end
+          end
         end
       end
 

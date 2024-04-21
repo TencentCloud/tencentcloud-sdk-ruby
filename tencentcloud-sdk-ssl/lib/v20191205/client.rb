@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询批量删除任务结果
+
+        # @param request: Request instance for DescribeDeleteCertificatesTaskResult.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeDeleteCertificatesTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeDeleteCertificatesTaskResultResponse`
+        def DescribeDeleteCertificatesTaskResult(request)
+          body = send_request('DescribeDeleteCertificatesTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeleteCertificatesTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 证书查询关联资源， 最新查询接口请使用CreateCertificateBindResourceSyncTask， 可以查询更多支持的云资源
 
         # @param request: Request instance for DescribeDeployedResources.

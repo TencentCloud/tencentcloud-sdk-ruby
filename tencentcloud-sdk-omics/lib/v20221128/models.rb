@@ -1612,16 +1612,18 @@ module TencentCloud
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
         # @param NFOption: Nextflow运行选项。
         # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
-        # @param WorkDir: 工作目录，使用缓存卷内的相对路径 (暂时仅支持Nextflow)
+        # @param WorkDir: 工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
         # @type WorkDir: String
         # @param AccessMode: 访问模式，不填默认私有。取值范围
         # - PRIVATE：私有应用
         # - PUBLIC：公共应用
         # @type AccessMode: String
+        # @param VolumeIds: 缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
+        # @type VolumeIds: Array
 
-        attr_accessor :ApplicationId, :Name, :EnvironmentId, :ProjectId, :Description, :InputCosUri, :InputBase64, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir, :AccessMode
+        attr_accessor :ApplicationId, :Name, :EnvironmentId, :ProjectId, :Description, :InputCosUri, :InputBase64, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir, :AccessMode, :VolumeIds
 
-        def initialize(applicationid=nil, name=nil, environmentid=nil, projectid=nil, description=nil, inputcosuri=nil, inputbase64=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil, accessmode=nil)
+        def initialize(applicationid=nil, name=nil, environmentid=nil, projectid=nil, description=nil, inputcosuri=nil, inputbase64=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil, accessmode=nil, volumeids=nil)
           @ApplicationId = applicationid
           @Name = name
           @EnvironmentId = environmentid
@@ -1637,6 +1639,7 @@ module TencentCloud
           @NFOption = nfoption
           @WorkDir = workdir
           @AccessMode = accessmode
+          @VolumeIds = volumeids
         end
 
         def deserialize(params)
@@ -1661,6 +1664,7 @@ module TencentCloud
           end
           @WorkDir = params['WorkDir']
           @AccessMode = params['AccessMode']
+          @VolumeIds = params['VolumeIds']
         end
       end
 
@@ -2022,12 +2026,14 @@ module TencentCloud
         # @type InputCosUri: String
         # @param CacheClearDelay: 任务缓存清理时间（小时）。不填或0表示不清理。
         # @type CacheClearDelay: Integer
-        # @param WorkDir: 工作目录，使用缓存卷内的相对路径 (暂时仅支持Nextflow)
+        # @param WorkDir: 工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
         # @type WorkDir: String
+        # @param VolumeIds: 缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
+        # @type VolumeIds: Array
 
-        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay, :WorkDir
+        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay, :WorkDir, :VolumeIds
 
-        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil, workdir=nil)
+        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil, workdir=nil, volumeids=nil)
           @Name = name
           @EnvironmentId = environmentid
           @GitSource = gitsource
@@ -2039,6 +2045,7 @@ module TencentCloud
           @InputCosUri = inputcosuri
           @CacheClearDelay = cachecleardelay
           @WorkDir = workdir
+          @VolumeIds = volumeids
         end
 
         def deserialize(params)
@@ -2059,6 +2066,7 @@ module TencentCloud
           @InputCosUri = params['InputCosUri']
           @CacheClearDelay = params['CacheClearDelay']
           @WorkDir = params['WorkDir']
+          @VolumeIds = params['VolumeIds']
         end
       end
 

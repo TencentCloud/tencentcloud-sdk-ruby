@@ -567,8 +567,8 @@ module TencentCloud
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 3
-        deprecate :SessTime=, :none, 2024, 3
+        deprecate :SessTime, :none, 2024, 4
+        deprecate :SessTime=, :none, 2024, 4
 
         def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Cmd = cmd
@@ -3834,8 +3834,8 @@ module TencentCloud
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 3
-        deprecate :SessTime=, :none, 2024, 3
+        deprecate :SessTime, :none, 2024, 4
+        deprecate :SessTime=, :none, 2024, 4
 
         def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Time = time

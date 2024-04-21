@@ -154,17 +154,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param SlaveZone: 从可用区
         # @type SlaveZone: String
+        # @param BinlogSyncWay: binlog同步方式。默认值：async。可选值：sync、semisync、async
+        # @type BinlogSyncWay: String
 
-        attr_accessor :ClusterId, :SlaveZone
+        attr_accessor :ClusterId, :SlaveZone, :BinlogSyncWay
 
-        def initialize(clusterid=nil, slavezone=nil)
+        def initialize(clusterid=nil, slavezone=nil, binlogsyncway=nil)
           @ClusterId = clusterid
           @SlaveZone = slavezone
+          @BinlogSyncWay = binlogsyncway
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @SlaveZone = params['SlaveZone']
+          @BinlogSyncWay = params['BinlogSyncWay']
         end
       end
 
@@ -1477,14 +1481,22 @@ module TencentCloud
         # @param NewSlaveZone: 新从可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewSlaveZone: Array
+        # @param NewSlaveZoneAttr: 新从可用区属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewSlaveZoneAttr: Array
+        # @param OldSlaveZoneAttr: 旧可用区属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldSlaveZoneAttr: Array
 
-        attr_accessor :OldMasterZone, :OldSlaveZone, :NewMasterZone, :NewSlaveZone
+        attr_accessor :OldMasterZone, :OldSlaveZone, :NewMasterZone, :NewSlaveZone, :NewSlaveZoneAttr, :OldSlaveZoneAttr
 
-        def initialize(oldmasterzone=nil, oldslavezone=nil, newmasterzone=nil, newslavezone=nil)
+        def initialize(oldmasterzone=nil, oldslavezone=nil, newmasterzone=nil, newslavezone=nil, newslavezoneattr=nil, oldslavezoneattr=nil)
           @OldMasterZone = oldmasterzone
           @OldSlaveZone = oldslavezone
           @NewMasterZone = newmasterzone
           @NewSlaveZone = newslavezone
+          @NewSlaveZoneAttr = newslavezoneattr
+          @OldSlaveZoneAttr = oldslavezoneattr
         end
 
         def deserialize(params)
@@ -1492,6 +1504,22 @@ module TencentCloud
           @OldSlaveZone = params['OldSlaveZone']
           @NewMasterZone = params['NewMasterZone']
           @NewSlaveZone = params['NewSlaveZone']
+          unless params['NewSlaveZoneAttr'].nil?
+            @NewSlaveZoneAttr = []
+            params['NewSlaveZoneAttr'].each do |i|
+              slavezoneattritem_tmp = SlaveZoneAttrItem.new
+              slavezoneattritem_tmp.deserialize(i)
+              @NewSlaveZoneAttr << slavezoneattritem_tmp
+            end
+          end
+          unless params['OldSlaveZoneAttr'].nil?
+            @OldSlaveZoneAttr = []
+            params['OldSlaveZoneAttr'].each do |i|
+              slavezoneattritem_tmp = SlaveZoneAttrItem.new
+              slavezoneattritem_tmp.deserialize(i)
+              @OldSlaveZoneAttr << slavezoneattritem_tmp
+            end
+          end
         end
       end
 
@@ -2857,10 +2885,13 @@ module TencentCloud
         # @param NetworkType: 节点网络类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
+        # @param SlaveZoneAttr: 备可用区属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZoneAttr: Array
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -2910,6 +2941,7 @@ module TencentCloud
           @ResourcePackages = resourcepackages
           @RenewFlag = renewflag
           @NetworkType = networktype
+          @SlaveZoneAttr = slavezoneattr
         end
 
         def deserialize(params)
@@ -3000,6 +3032,14 @@ module TencentCloud
           end
           @RenewFlag = params['RenewFlag']
           @NetworkType = params['NetworkType']
+          unless params['SlaveZoneAttr'].nil?
+            @SlaveZoneAttr = []
+            params['SlaveZoneAttr'].each do |i|
+              slavezoneattritem_tmp = SlaveZoneAttrItem.new
+              slavezoneattritem_tmp.deserialize(i)
+              @SlaveZoneAttr << slavezoneattritem_tmp
+            end
+          end
         end
       end
 
@@ -8701,19 +8741,23 @@ module TencentCloud
         # @type OldSlaveZone: String
         # @param NewSlaveZone: 新从可用区
         # @type NewSlaveZone: String
+        # @param BinlogSyncWay: binlog同步方式。默认值：async。可选值：sync、semisync、async
+        # @type BinlogSyncWay: String
 
-        attr_accessor :ClusterId, :OldSlaveZone, :NewSlaveZone
+        attr_accessor :ClusterId, :OldSlaveZone, :NewSlaveZone, :BinlogSyncWay
 
-        def initialize(clusterid=nil, oldslavezone=nil, newslavezone=nil)
+        def initialize(clusterid=nil, oldslavezone=nil, newslavezone=nil, binlogsyncway=nil)
           @ClusterId = clusterid
           @OldSlaveZone = oldslavezone
           @NewSlaveZone = newslavezone
+          @BinlogSyncWay = binlogsyncway
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @OldSlaveZone = params['OldSlaveZone']
           @NewSlaveZone = params['NewSlaveZone']
+          @BinlogSyncWay = params['BinlogSyncWay']
         end
       end
 
@@ -11999,6 +12043,28 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 可用区属性项
+      class SlaveZoneAttrItem < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param BinlogSyncWay: binlog同步方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BinlogSyncWay: String
+
+        attr_accessor :Zone, :BinlogSyncWay
+
+        def initialize(zone=nil, binlogsyncway=nil)
+          @Zone = zone
+          @BinlogSyncWay = binlogsyncway
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @BinlogSyncWay = params['BinlogSyncWay']
         end
       end
 

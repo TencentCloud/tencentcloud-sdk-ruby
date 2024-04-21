@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询目标关联的有效策略
+
+        # @param request: Request instance for DescribeEffectivePolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeEffectivePolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeEffectivePolicyResponse`
+        def DescribeEffectivePolicy(request)
+          body = send_request('DescribeEffectivePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEffectivePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取企业组织信息
 
         # @param request: Request instance for DescribeOrganization.
@@ -1143,6 +1167,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnablePolicyTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取成员标签检测不合规资源列表
+
+        # @param request: Request instance for ListNonCompliantResource.
+        # @type request: :class:`Tencentcloud::organization::V20210331::ListNonCompliantResourceRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::ListNonCompliantResourceResponse`
+        def ListNonCompliantResource(request)
+          body = send_request('ListNonCompliantResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListNonCompliantResourceResponse.new
             model.deserialize(response['Response'])
             model
           else

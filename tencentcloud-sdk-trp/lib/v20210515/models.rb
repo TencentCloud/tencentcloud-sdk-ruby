@@ -209,8 +209,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2024, 3
-        deprecate :Ext=, :none, 2024, 3
+        deprecate :Ext, :none, 2024, 4
+        deprecate :Ext=, :none, 2024, 4
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -2598,8 +2598,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2024, 3
-        deprecate :Products=, :none, 2024, 3
+        deprecate :Products, :none, 2024, 4
+        deprecate :Products=, :none, 2024, 4
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3010,8 +3010,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2024, 3
-        deprecate :Value=, :none, 2024, 3
+        deprecate :Value, :none, 2024, 4
+        deprecate :Value=, :none, 2024, 4
 
         def initialize(value=nil)
           @Value = value

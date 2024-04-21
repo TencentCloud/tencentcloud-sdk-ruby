@@ -1181,6 +1181,46 @@ module TencentCloud
         end
       end
 
+      # DescribeEffectivePolicy请求参数结构体
+      class DescribeEffectivePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TargetId: 账号uin或者节点id。
+        # @type TargetId: Integer
+
+        attr_accessor :TargetId
+
+        def initialize(targetid=nil)
+          @TargetId = targetid
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+        end
+      end
+
+      # DescribeEffectivePolicy返回参数结构体
+      class DescribeEffectivePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param EffectivePolicy: 有效策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectivePolicy: :class:`Tencentcloud::Organization.v20210331.models.EffectivePolicy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EffectivePolicy, :RequestId
+
+        def initialize(effectivepolicy=nil, requestid=nil)
+          @EffectivePolicy = effectivepolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EffectivePolicy'].nil?
+            @EffectivePolicy = EffectivePolicy.new
+            @EffectivePolicy.deserialize(params['EffectivePolicy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganizationAuthNode请求参数结构体
       class DescribeOrganizationAuthNodeRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
@@ -2377,6 +2417,30 @@ module TencentCloud
         end
       end
 
+      # 有效策略。
+      class EffectivePolicy < TencentCloud::Common::AbstractModel
+        # @param TargetId: 目标ID。
+        # @type TargetId: Integer
+        # @param PolicyContent: 有效策略内容。
+        # @type PolicyContent: String
+        # @param LastUpdatedTimestamp: 有效策略更新时间。
+        # @type LastUpdatedTimestamp: Integer
+
+        attr_accessor :TargetId, :PolicyContent, :LastUpdatedTimestamp
+
+        def initialize(targetid=nil, policycontent=nil, lastupdatedtimestamp=nil)
+          @TargetId = targetid
+          @PolicyContent = policycontent
+          @LastUpdatedTimestamp = lastupdatedtimestamp
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @PolicyContent = params['PolicyContent']
+          @LastUpdatedTimestamp = params['LastUpdatedTimestamp']
+        end
+      end
+
       # EnablePolicyType请求参数结构体
       class EnablePolicyTypeRequest < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 企业组织Id。可以调用[DescribeOrganization](https://cloud.tencent.com/document/product/850/67059)获取
@@ -2440,6 +2504,68 @@ module TencentCloud
           @PolicyName = params['PolicyName']
           @PolicyType = params['PolicyType']
           @PolicyDocument = params['PolicyDocument']
+        end
+      end
+
+      # ListNonCompliantResource请求参数结构体
+      class ListNonCompliantResourceRequest < TencentCloud::Common::AbstractModel
+        # @param MaxResults: 限制数目。取值范围：1~50。
+        # @type MaxResults: Integer
+        # @param MemberUin: 成员Uin。
+        # @type MemberUin: Integer
+        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
+        # 如果是第一次请求，设置为空。
+        # @type PaginationToken: String
+        # @param TagKey: 标签键。
+        # @type TagKey: String
+
+        attr_accessor :MaxResults, :MemberUin, :PaginationToken, :TagKey
+
+        def initialize(maxresults=nil, memberuin=nil, paginationtoken=nil, tagkey=nil)
+          @MaxResults = maxresults
+          @MemberUin = memberuin
+          @PaginationToken = paginationtoken
+          @TagKey = tagkey
+        end
+
+        def deserialize(params)
+          @MaxResults = params['MaxResults']
+          @MemberUin = params['MemberUin']
+          @PaginationToken = params['PaginationToken']
+          @TagKey = params['TagKey']
+        end
+      end
+
+      # ListNonCompliantResource返回参数结构体
+      class ListNonCompliantResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 资源及标签合规信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PaginationToken: 获取的下一页的Token值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaginationToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :PaginationToken, :RequestId
+
+        def initialize(items=nil, paginationtoken=nil, requestid=nil)
+          @Items = items
+          @PaginationToken = paginationtoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              resourcetagmapping_tmp = ResourceTagMapping.new
+              resourcetagmapping_tmp.deserialize(i)
+              @Items << resourcetagmapping_tmp
+            end
+          end
+          @PaginationToken = params['PaginationToken']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3563,6 +3689,44 @@ module TencentCloud
         end
       end
 
+      # 资源及关联的标签
+      class ResourceTagMapping < TencentCloud::Common::AbstractModel
+        # @param Resource: 资源六段式。腾讯云使用资源六段式描述一个资源。
+        # 例如：qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param ComplianceDetails: 合规详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplianceDetails: :class:`Tencentcloud::Organization.v20210331.models.TagComplianceDetails`
+        # @param Tags: 资源标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :Resource, :ComplianceDetails, :Tags
+
+        def initialize(resource=nil, compliancedetails=nil, tags=nil)
+          @Resource = resource
+          @ComplianceDetails = compliancedetails
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          unless params['ComplianceDetails'].nil?
+            @ComplianceDetails = TagComplianceDetails.new
+            @ComplianceDetails.deserialize(params['ComplianceDetails'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+        end
+      end
+
       # 共享地域
       class ShareArea < TencentCloud::Common::AbstractModel
         # @param Name: 地域名称。
@@ -3689,6 +3853,55 @@ module TencentCloud
           @SharedMemberNum = params['SharedMemberNum']
           @SharedMemberUseNum = params['SharedMemberUseNum']
           @ShareManagerUin = params['ShareManagerUin']
+        end
+      end
+
+      # 标签合规信息
+      class TagComplianceDetails < TencentCloud::Common::AbstractModel
+        # @param ComplianceStatus: 合规状态。true-合规，false-不合规
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplianceStatus: Boolean
+        # @param KeysWithNonCompliantValues: 值不合规的标签键列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeysWithNonCompliantValues: Array
+        # @param NonCompliantKeys: 键不合规的标签键列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonCompliantKeys: Array
+
+        attr_accessor :ComplianceStatus, :KeysWithNonCompliantValues, :NonCompliantKeys
+
+        def initialize(compliancestatus=nil, keyswithnoncompliantvalues=nil, noncompliantkeys=nil)
+          @ComplianceStatus = compliancestatus
+          @KeysWithNonCompliantValues = keyswithnoncompliantvalues
+          @NonCompliantKeys = noncompliantkeys
+        end
+
+        def deserialize(params)
+          @ComplianceStatus = params['ComplianceStatus']
+          @KeysWithNonCompliantValues = params['KeysWithNonCompliantValues']
+          @NonCompliantKeys = params['NonCompliantKeys']
+        end
+      end
+
+      # 标签键值对
+      class Tags < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

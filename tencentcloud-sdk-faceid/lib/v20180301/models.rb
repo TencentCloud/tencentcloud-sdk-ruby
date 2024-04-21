@@ -3620,6 +3620,10 @@ module TencentCloud
         # @type Name: String
         # @param Phone: 手机号
         # @type Phone: String
+        # @param VerifyMode: 验证模式（详版/简版）。简版与详版价格不一致，详见[价格说明](https://cloud.tencent.com/document/product/1007/84321)。
+
+        # 枚举值：0（简版），1（详版）。默认值为0。
+        # @type VerifyMode: String
         # @param CiphertextBlob: 有加密需求的用户，传入kms的CiphertextBlob，关于数据加密可查阅 <a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
         # @type CiphertextBlob: String
         # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的IdCard，Name，Phone中的一个或多个。
@@ -3627,12 +3631,13 @@ module TencentCloud
         # @param Iv: 有加密需求的用户，传入CBC加密的初始向量。
         # @type Iv: String
 
-        attr_accessor :IdCard, :Name, :Phone, :CiphertextBlob, :EncryptList, :Iv
+        attr_accessor :IdCard, :Name, :Phone, :VerifyMode, :CiphertextBlob, :EncryptList, :Iv
 
-        def initialize(idcard=nil, name=nil, phone=nil, ciphertextblob=nil, encryptlist=nil, iv=nil)
+        def initialize(idcard=nil, name=nil, phone=nil, verifymode=nil, ciphertextblob=nil, encryptlist=nil, iv=nil)
           @IdCard = idcard
           @Name = name
           @Phone = phone
+          @VerifyMode = verifymode
           @CiphertextBlob = ciphertextblob
           @EncryptList = encryptlist
           @Iv = iv
@@ -3642,6 +3647,7 @@ module TencentCloud
           @IdCard = params['IdCard']
           @Name = params['Name']
           @Phone = params['Phone']
+          @VerifyMode = params['VerifyMode']
           @CiphertextBlob = params['CiphertextBlob']
           @EncryptList = params['EncryptList']
           @Iv = params['Iv']
@@ -3666,15 +3672,30 @@ module TencentCloud
         # @param Isp: 运营商名称。
         # 取值范围为["","移动","电信","联通"]
         # @type Isp: String
+        # @param ResultDetail: 业务结果详细信息。（当VerifyMode配置"详版"，且Result为"-4: 三要素信息不一致"时返回）
+
+        # 枚举值：
+
+        # 手机号码与姓名一致，与身份证号不一致；
+
+        # 手机号码身份证号一致，与姓名不一致；
+
+        # 手机号码与姓名和身份证号均不一致；
+
+        # 姓名和身份证号不一致；
+
+        # 其他不一致。
+        # @type ResultDetail: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :Description, :Isp, :RequestId
+        attr_accessor :Result, :Description, :Isp, :ResultDetail, :RequestId
 
-        def initialize(result=nil, description=nil, isp=nil, requestid=nil)
+        def initialize(result=nil, description=nil, isp=nil, resultdetail=nil, requestid=nil)
           @Result = result
           @Description = description
           @Isp = isp
+          @ResultDetail = resultdetail
           @RequestId = requestid
         end
 
@@ -3682,6 +3703,7 @@ module TencentCloud
           @Result = params['Result']
           @Description = params['Description']
           @Isp = params['Isp']
+          @ResultDetail = params['ResultDetail']
           @RequestId = params['RequestId']
         end
       end

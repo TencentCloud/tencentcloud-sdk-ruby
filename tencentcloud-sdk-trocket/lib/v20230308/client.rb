@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除实例
+        # 删除MQTT实例
 
         # @param request: Request instance for DeleteMQTTInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteMQTTInstanceRequest`
@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除主题
+        # 删除MQTT主题
 
         # @param request: Request instance for DeleteMQTTTopic.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteMQTTTopicRequest`
@@ -716,7 +716,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 非对外接口，获取产品售卖规格
+        # 获取产品售卖规格
 
         # @param request: Request instance for DescribeMQTTProductSKUList.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMQTTProductSKUListRequest`
@@ -992,7 +992,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为MQTT实例创建公网接入点
+        # 更新MQTT实例公网接入点
 
         # @param request: Request instance for ModifyMQTTInsPublicEndpoint.
         # @type request: :class:`Tencentcloud::trocket::V20230308::ModifyMQTTInsPublicEndpointRequest`
