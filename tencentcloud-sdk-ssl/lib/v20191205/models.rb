@@ -3134,25 +3134,36 @@ module TencentCloud
       class DescribeHostCosInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型 cos
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型 cos
+        # @type ResourceType: String
+        # @param OldCertificateId: 原证书ID
+        # @type OldCertificateId: String
+        # @param Offset: 分页偏移量，从0开始。
+        # @type Offset: Integer
+        # @param Limit: 每页数量，默认10。
+        # @type Limit: Integer
+        # @param AsyncCache: 是否异步
+        # @type AsyncCache: Integer
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
+          @OldCertificateId = oldcertificateid
+          @Offset = offset
+          @Limit = limit
+          @AsyncCache = asynccache
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3162,6 +3173,11 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
+          @OldCertificateId = params['OldCertificateId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @AsyncCache = params['AsyncCache']
         end
       end
 

@@ -822,6 +822,7 @@ module TencentCloud
         end
 
         # 获取特征向量
+        # 本接口有单账号调用上限控制，如您有提高并发限制的需求请 [联系我们](https://cloud.tencent.com/act/event/Online_service) 。
 
         # @param request: Request instance for GetEmbedding.
         # @type request: :class:`Tencentcloud::lke::V20231130::GetEmbeddingRequest`
@@ -1590,6 +1591,7 @@ module TencentCloud
         end
 
         # 多轮改写
+        # 本接口有单账号调用上限控制，如您有提高并发限制的需求请 [联系我们](https://cloud.tencent.com/act/event/Online_service) 。
 
         # @param request: Request instance for QueryRewrite.
         # @type request: :class:`Tencentcloud::lke::V20231130::QueryRewriteRequest`

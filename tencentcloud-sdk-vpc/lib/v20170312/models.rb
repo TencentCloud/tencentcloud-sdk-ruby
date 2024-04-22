@@ -8675,10 +8675,12 @@ module TencentCloud
         # @type OrderField: String
         # @param OrderDirection: 排序方法。顺序：`ASC`，倒序：`DESC`。默认值`DESC`。
         # @type OrderDirection: String
+        # @param PrivateIpAddress: VPC内部IPv4地址，精确匹配
+        # @type PrivateIpAddress: String
 
-        attr_accessor :TimePoint, :VpnId, :DirectConnectGatewayId, :PeeringConnectionId, :NatId, :Offset, :Limit, :OrderField, :OrderDirection
+        attr_accessor :TimePoint, :VpnId, :DirectConnectGatewayId, :PeeringConnectionId, :NatId, :Offset, :Limit, :OrderField, :OrderDirection, :PrivateIpAddress
 
-        def initialize(timepoint=nil, vpnid=nil, directconnectgatewayid=nil, peeringconnectionid=nil, natid=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
+        def initialize(timepoint=nil, vpnid=nil, directconnectgatewayid=nil, peeringconnectionid=nil, natid=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil, privateipaddress=nil)
           @TimePoint = timepoint
           @VpnId = vpnid
           @DirectConnectGatewayId = directconnectgatewayid
@@ -8688,6 +8690,7 @@ module TencentCloud
           @Limit = limit
           @OrderField = orderfield
           @OrderDirection = orderdirection
+          @PrivateIpAddress = privateipaddress
         end
 
         def deserialize(params)
@@ -8700,6 +8703,7 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderField = params['OrderField']
           @OrderDirection = params['OrderDirection']
+          @PrivateIpAddress = params['PrivateIpAddress']
         end
       end
 
@@ -13307,7 +13311,7 @@ module TencentCloud
         # @type VpnGatewayId: String
         # @param VpnConnectionId: VPN通道实例ID。形如：vpnx-f49l6u0z。
         # @type VpnConnectionId: String
-        # @param CustomerGatewayVendor: 对端网关厂商信息对象，可通过[DescribeCustomerGatewayVendors](https://cloud.tencent.com/document/api/215/17513)获取。
+        # @param CustomerGatewayVendor: 对端网关厂商信息对象，可通过[DescribeCustomerGatewayVendors](https://cloud.tencent.com/document/api/215/17517)获取。
         # @type CustomerGatewayVendor: :class:`Tencentcloud::Vpc.v20170312.models.CustomerGatewayVendor`
         # @param InterfaceName: 通道接入设备物理接口名称。
         # @type InterfaceName: String
@@ -17439,8 +17443,8 @@ module TencentCloud
         # @param CreatedTime: NAT网关创建的时间。
         # @type CreatedTime: String
         # @param State: NAT网关的状态。
-        #  'PENDING'：生产中，'DELETING'：删除中，'AVAILABLE'：运行中，'UPDATING'：升级中，
-        # ‘FAILED’：失败。
+        #  'PENDING'：生产中，'DELETING'：删除中/子实例关闭中，'AVAILABLE'：运行中，'UPDATING'：升级中，
+        # ‘PENDFAILURE’：创建失败，‘DELETEFAILURE：删除失败，‘DENIED’：子实例关闭中
         # @type State: String
         # @param InternetMaxBandwidthOut: 网关最大外网出带宽(单位:Mbps)。
         # @type InternetMaxBandwidthOut: Integer

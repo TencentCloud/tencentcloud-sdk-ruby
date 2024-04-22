@@ -332,11 +332,11 @@ module TencentCloud
         end
       end
 
-      # token 使用计数。
+      # Token 使用计数。
       class EmbeddingUsage < TencentCloud::Common::AbstractModel
-        # @param PromptTokens: 输入Token数。
+        # @param PromptTokens: 输入 Token 数。
         # @type PromptTokens: Integer
-        # @param TotalTokens: 总Token数。
+        # @param TotalTokens: 总 Token 数。
         # @type TotalTokens: Integer
 
         attr_accessor :PromptTokens, :TotalTokens
@@ -488,13 +488,13 @@ module TencentCloud
         end
       end
 
-      # token 数量
+      # Token 数量
       class Usage < TencentCloud::Common::AbstractModel
-        # @param PromptTokens: 输入 token 数量。
+        # @param PromptTokens: 输入 Token 数量。
         # @type PromptTokens: Integer
-        # @param CompletionTokens: 输出 token 数量。
+        # @param CompletionTokens: 输出 Token 数量。
         # @type CompletionTokens: Integer
-        # @param TotalTokens: 总 token 数量。
+        # @param TotalTokens: 总 Token 数量。
         # @type TotalTokens: Integer
 
         attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens

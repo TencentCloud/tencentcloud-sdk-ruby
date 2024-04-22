@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 告警中心全量告警列表接口
+
+        # @param request: Request instance for DescribeAlertList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAlertListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAlertListResponse`
+        def DescribeAlertList(request)
+          body = send_request('DescribeAlertList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAlertListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取资产视角的漏洞风险列表
 
         # @param request: Request instance for DescribeAssetViewVulRiskList.

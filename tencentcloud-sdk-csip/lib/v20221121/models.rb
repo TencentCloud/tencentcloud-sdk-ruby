@@ -48,6 +48,541 @@ module TencentCloud
         end
       end
 
+      # 告警下拉字段
+      class AlertExtraInfo < TencentCloud::Common::AbstractModel
+        # @param RelateEvent: 相关攻击事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelateEvent: :class:`Tencentcloud::Csip.v20221121.models.RelatedEvent`
+        # @param LeakContent: 泄漏内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeakContent: String
+        # @param LeakAPI: 泄漏API
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeakAPI: String
+        # @param SecretID: secretID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretID: String
+        # @param Rule: 命中规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: String
+        # @param RuleDesc: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleDesc: String
+        # @param ProtocolPort: 协议端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolPort: String
+        # @param AttackContent: 攻击内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackContent: String
+        # @param AttackIPProfile: 攻击IP画像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackIPProfile: String
+        # @param AttackIPTags: 攻击IP标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackIPTags: String
+        # @param RequestMethod: 请求方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestMethod: String
+        # @param HttpLog: HTTP日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpLog: String
+        # @param AttackDomain: 被攻击域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackDomain: String
+        # @param FilePath: 文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePath: String
+        # @param UserAgent: user_agent
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAgent: String
+        # @param RequestHeaders: 请求头
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestHeaders: String
+        # @param LoginUserName: 登录用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginUserName: String
+        # @param VulnerabilityName: 漏洞名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulnerabilityName: String
+        # @param CVE: 公共漏洞和暴露
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVE: String
+        # @param ServiceProcess: 服务进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceProcess: String
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileSize: 文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: String
+        # @param FileMD5: 文件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMD5: String
+        # @param FileLastAccessTime: 文件最近访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileLastAccessTime: String
+        # @param FileModifyTime: 文件修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileModifyTime: String
+        # @param RecentAccessTime: 最近访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecentAccessTime: String
+        # @param RecentModifyTime: 最近修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecentModifyTime: String
+        # @param VirusName: 病毒名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusName: String
+        # @param VirusFileTags: 病毒文件标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusFileTags: String
+        # @param BehavioralCharacteristics: 行为特征
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BehavioralCharacteristics: String
+        # @param ProcessNamePID: 进程名（PID）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessNamePID: String
+        # @param ProcessPath: 进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessPath: String
+        # @param ProcessCommandLine: 进程命令行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessCommandLine: String
+        # @param ProcessPermissions: 进程权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessPermissions: String
+        # @param ExecutedCommand: 执行命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutedCommand: String
+        # @param AffectedFileName: 受影响文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectedFileName: String
+        # @param DecoyPath: 诱饵路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DecoyPath: String
+        # @param MaliciousProcessFileSize: 恶意进程文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaliciousProcessFileSize: String
+        # @param MaliciousProcessFileMD5: 恶意进程文件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaliciousProcessFileMD5: String
+        # @param MaliciousProcessNamePID: 恶意进程名（PID）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaliciousProcessNamePID: String
+        # @param MaliciousProcessPath: 恶意进程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaliciousProcessPath: String
+        # @param MaliciousProcessStartTime: 恶意进程启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaliciousProcessStartTime: String
+        # @param CommandContent: 命令内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommandContent: String
+        # @param StartupUser: 启动用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartupUser: String
+        # @param UserGroup: 用户所属组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroup: String
+        # @param NewPermissions: 新增权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewPermissions: String
+        # @param ParentProcess: 父进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentProcess: String
+        # @param ClassName: 类名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassName: String
+        # @param ClassLoader: 所属类加载器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassLoader: String
+        # @param ClassFileSize: 类文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassFileSize: String
+        # @param ClassFileMD5: 类文件MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassFileMD5: String
+        # @param ParentClassName: 父类名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentClassName: String
+        # @param InheritedInterface: 继承接口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InheritedInterface: String
+        # @param Comment: 注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param PayloadContent: 载荷内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayloadContent: String
+        # @param CallbackAddressPortrait: 回连地址画像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackAddressPortrait: String
+        # @param CallbackAddressTag: 回连地址标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackAddressTag: String
+        # @param ProcessMD5: 进程MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessMD5: String
+        # @param FilePermission: 文件权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePermission: String
+        # @param FromLogAnalysisData: 来源于日志分析的信息字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromLogAnalysisData: Array
+        # @param HitProbe: 命中探针
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitProbe: String
+        # @param HitHoneyPot: 命中蜜罐
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitHoneyPot: String
+        # @param CommandList: 命令列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommandList: String
+        # @param AttackEventDesc: 攻击事件描述
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackEventDesc: String
+        # @param ProcessInfo: 进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessInfo: String
+        # @param UserNameAndPwd: 使用用户名&密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserNameAndPwd: String
+        # @param StrategyID: 主机防护策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyID: String
+        # @param StrategyName: 主机防护策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
+        # @param HitStrategy: 主机防护命中策略，是策略ID和策略名称的组合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitStrategy: String
+
+        attr_accessor :RelateEvent, :LeakContent, :LeakAPI, :SecretID, :Rule, :RuleDesc, :ProtocolPort, :AttackContent, :AttackIPProfile, :AttackIPTags, :RequestMethod, :HttpLog, :AttackDomain, :FilePath, :UserAgent, :RequestHeaders, :LoginUserName, :VulnerabilityName, :CVE, :ServiceProcess, :FileName, :FileSize, :FileMD5, :FileLastAccessTime, :FileModifyTime, :RecentAccessTime, :RecentModifyTime, :VirusName, :VirusFileTags, :BehavioralCharacteristics, :ProcessNamePID, :ProcessPath, :ProcessCommandLine, :ProcessPermissions, :ExecutedCommand, :AffectedFileName, :DecoyPath, :MaliciousProcessFileSize, :MaliciousProcessFileMD5, :MaliciousProcessNamePID, :MaliciousProcessPath, :MaliciousProcessStartTime, :CommandContent, :StartupUser, :UserGroup, :NewPermissions, :ParentProcess, :ClassName, :ClassLoader, :ClassFileSize, :ClassFileMD5, :ParentClassName, :InheritedInterface, :Comment, :PayloadContent, :CallbackAddressPortrait, :CallbackAddressTag, :ProcessMD5, :FilePermission, :FromLogAnalysisData, :HitProbe, :HitHoneyPot, :CommandList, :AttackEventDesc, :ProcessInfo, :UserNameAndPwd, :StrategyID, :StrategyName, :HitStrategy
+
+        def initialize(relateevent=nil, leakcontent=nil, leakapi=nil, secretid=nil, rule=nil, ruledesc=nil, protocolport=nil, attackcontent=nil, attackipprofile=nil, attackiptags=nil, requestmethod=nil, httplog=nil, attackdomain=nil, filepath=nil, useragent=nil, requestheaders=nil, loginusername=nil, vulnerabilityname=nil, cve=nil, serviceprocess=nil, filename=nil, filesize=nil, filemd5=nil, filelastaccesstime=nil, filemodifytime=nil, recentaccesstime=nil, recentmodifytime=nil, virusname=nil, virusfiletags=nil, behavioralcharacteristics=nil, processnamepid=nil, processpath=nil, processcommandline=nil, processpermissions=nil, executedcommand=nil, affectedfilename=nil, decoypath=nil, maliciousprocessfilesize=nil, maliciousprocessfilemd5=nil, maliciousprocessnamepid=nil, maliciousprocesspath=nil, maliciousprocessstarttime=nil, commandcontent=nil, startupuser=nil, usergroup=nil, newpermissions=nil, parentprocess=nil, classname=nil, classloader=nil, classfilesize=nil, classfilemd5=nil, parentclassname=nil, inheritedinterface=nil, comment=nil, payloadcontent=nil, callbackaddressportrait=nil, callbackaddresstag=nil, processmd5=nil, filepermission=nil, fromloganalysisdata=nil, hitprobe=nil, hithoneypot=nil, commandlist=nil, attackeventdesc=nil, processinfo=nil, usernameandpwd=nil, strategyid=nil, strategyname=nil, hitstrategy=nil)
+          @RelateEvent = relateevent
+          @LeakContent = leakcontent
+          @LeakAPI = leakapi
+          @SecretID = secretid
+          @Rule = rule
+          @RuleDesc = ruledesc
+          @ProtocolPort = protocolport
+          @AttackContent = attackcontent
+          @AttackIPProfile = attackipprofile
+          @AttackIPTags = attackiptags
+          @RequestMethod = requestmethod
+          @HttpLog = httplog
+          @AttackDomain = attackdomain
+          @FilePath = filepath
+          @UserAgent = useragent
+          @RequestHeaders = requestheaders
+          @LoginUserName = loginusername
+          @VulnerabilityName = vulnerabilityname
+          @CVE = cve
+          @ServiceProcess = serviceprocess
+          @FileName = filename
+          @FileSize = filesize
+          @FileMD5 = filemd5
+          @FileLastAccessTime = filelastaccesstime
+          @FileModifyTime = filemodifytime
+          @RecentAccessTime = recentaccesstime
+          @RecentModifyTime = recentmodifytime
+          @VirusName = virusname
+          @VirusFileTags = virusfiletags
+          @BehavioralCharacteristics = behavioralcharacteristics
+          @ProcessNamePID = processnamepid
+          @ProcessPath = processpath
+          @ProcessCommandLine = processcommandline
+          @ProcessPermissions = processpermissions
+          @ExecutedCommand = executedcommand
+          @AffectedFileName = affectedfilename
+          @DecoyPath = decoypath
+          @MaliciousProcessFileSize = maliciousprocessfilesize
+          @MaliciousProcessFileMD5 = maliciousprocessfilemd5
+          @MaliciousProcessNamePID = maliciousprocessnamepid
+          @MaliciousProcessPath = maliciousprocesspath
+          @MaliciousProcessStartTime = maliciousprocessstarttime
+          @CommandContent = commandcontent
+          @StartupUser = startupuser
+          @UserGroup = usergroup
+          @NewPermissions = newpermissions
+          @ParentProcess = parentprocess
+          @ClassName = classname
+          @ClassLoader = classloader
+          @ClassFileSize = classfilesize
+          @ClassFileMD5 = classfilemd5
+          @ParentClassName = parentclassname
+          @InheritedInterface = inheritedinterface
+          @Comment = comment
+          @PayloadContent = payloadcontent
+          @CallbackAddressPortrait = callbackaddressportrait
+          @CallbackAddressTag = callbackaddresstag
+          @ProcessMD5 = processmd5
+          @FilePermission = filepermission
+          @FromLogAnalysisData = fromloganalysisdata
+          @HitProbe = hitprobe
+          @HitHoneyPot = hithoneypot
+          @CommandList = commandlist
+          @AttackEventDesc = attackeventdesc
+          @ProcessInfo = processinfo
+          @UserNameAndPwd = usernameandpwd
+          @StrategyID = strategyid
+          @StrategyName = strategyname
+          @HitStrategy = hitstrategy
+        end
+
+        def deserialize(params)
+          unless params['RelateEvent'].nil?
+            @RelateEvent = RelatedEvent.new
+            @RelateEvent.deserialize(params['RelateEvent'])
+          end
+          @LeakContent = params['LeakContent']
+          @LeakAPI = params['LeakAPI']
+          @SecretID = params['SecretID']
+          @Rule = params['Rule']
+          @RuleDesc = params['RuleDesc']
+          @ProtocolPort = params['ProtocolPort']
+          @AttackContent = params['AttackContent']
+          @AttackIPProfile = params['AttackIPProfile']
+          @AttackIPTags = params['AttackIPTags']
+          @RequestMethod = params['RequestMethod']
+          @HttpLog = params['HttpLog']
+          @AttackDomain = params['AttackDomain']
+          @FilePath = params['FilePath']
+          @UserAgent = params['UserAgent']
+          @RequestHeaders = params['RequestHeaders']
+          @LoginUserName = params['LoginUserName']
+          @VulnerabilityName = params['VulnerabilityName']
+          @CVE = params['CVE']
+          @ServiceProcess = params['ServiceProcess']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @FileMD5 = params['FileMD5']
+          @FileLastAccessTime = params['FileLastAccessTime']
+          @FileModifyTime = params['FileModifyTime']
+          @RecentAccessTime = params['RecentAccessTime']
+          @RecentModifyTime = params['RecentModifyTime']
+          @VirusName = params['VirusName']
+          @VirusFileTags = params['VirusFileTags']
+          @BehavioralCharacteristics = params['BehavioralCharacteristics']
+          @ProcessNamePID = params['ProcessNamePID']
+          @ProcessPath = params['ProcessPath']
+          @ProcessCommandLine = params['ProcessCommandLine']
+          @ProcessPermissions = params['ProcessPermissions']
+          @ExecutedCommand = params['ExecutedCommand']
+          @AffectedFileName = params['AffectedFileName']
+          @DecoyPath = params['DecoyPath']
+          @MaliciousProcessFileSize = params['MaliciousProcessFileSize']
+          @MaliciousProcessFileMD5 = params['MaliciousProcessFileMD5']
+          @MaliciousProcessNamePID = params['MaliciousProcessNamePID']
+          @MaliciousProcessPath = params['MaliciousProcessPath']
+          @MaliciousProcessStartTime = params['MaliciousProcessStartTime']
+          @CommandContent = params['CommandContent']
+          @StartupUser = params['StartupUser']
+          @UserGroup = params['UserGroup']
+          @NewPermissions = params['NewPermissions']
+          @ParentProcess = params['ParentProcess']
+          @ClassName = params['ClassName']
+          @ClassLoader = params['ClassLoader']
+          @ClassFileSize = params['ClassFileSize']
+          @ClassFileMD5 = params['ClassFileMD5']
+          @ParentClassName = params['ParentClassName']
+          @InheritedInterface = params['InheritedInterface']
+          @Comment = params['Comment']
+          @PayloadContent = params['PayloadContent']
+          @CallbackAddressPortrait = params['CallbackAddressPortrait']
+          @CallbackAddressTag = params['CallbackAddressTag']
+          @ProcessMD5 = params['ProcessMD5']
+          @FilePermission = params['FilePermission']
+          unless params['FromLogAnalysisData'].nil?
+            @FromLogAnalysisData = []
+            params['FromLogAnalysisData'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @FromLogAnalysisData << keyvalue_tmp
+            end
+          end
+          @HitProbe = params['HitProbe']
+          @HitHoneyPot = params['HitHoneyPot']
+          @CommandList = params['CommandList']
+          @AttackEventDesc = params['AttackEventDesc']
+          @ProcessInfo = params['ProcessInfo']
+          @UserNameAndPwd = params['UserNameAndPwd']
+          @StrategyID = params['StrategyID']
+          @StrategyName = params['StrategyName']
+          @HitStrategy = params['HitStrategy']
+        end
+      end
+
+      # 告警中心全量告警列表数据
+      class AlertInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 告警ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 告警名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Source: 告警来源
+        # CFW:云防火墙
+        # WAF:Web应用防火墙
+        # CWP:主机安全
+        # CSIP:云安全中心
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Level: 告警等级
+        # 1:提示
+        # 2:低危
+        # 3:中危
+        # 4:高危
+        # 5:严重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Attacker: 攻击者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Attacker: :class:`Tencentcloud::Csip.v20221121.models.RoleInfo`
+        # @param Victim: 受害者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Victim: :class:`Tencentcloud::Csip.v20221121.models.RoleInfo`
+        # @param EvidenceData: 证据数据(比如攻击内容等)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvidenceData: String
+        # @param EvidenceLocation: 证据位置(比如协议端口)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvidenceLocation: String
+        # @param EvidencePath: 证据路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvidencePath: String
+        # @param CreateTime: 首次告警时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 最近告警时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Count: 告警次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param UrgentSuggestion: 紧急缓解建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrgentSuggestion: String
+        # @param RemediationSuggestion: 根治建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemediationSuggestion: String
+        # @param Status: 处理状态
+        # 0：未处置，1：已忽略，2：已处置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ProcessType: 告警处理类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessType: String
+        # @param Type: 告警大类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SubType: 告警小类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubType: String
+        # @param ExtraInfo: 下拉字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: :class:`Tencentcloud::Csip.v20221121.models.AlertExtraInfo`
+        # @param Key: 聚合字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Date: 告警日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param AppID: appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: String
+        # @param NickName: 账户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NickName: String
+        # @param Uin: 账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param Action: 行为
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: Integer
+        # @param RiskInvestigation: 风险排查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskInvestigation: String
+        # @param RiskTreatment: 风险处置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskTreatment: String
+
+        attr_accessor :ID, :Name, :Source, :Level, :Attacker, :Victim, :EvidenceData, :EvidenceLocation, :EvidencePath, :CreateTime, :UpdateTime, :Count, :UrgentSuggestion, :RemediationSuggestion, :Status, :ProcessType, :Type, :SubType, :ExtraInfo, :Key, :Date, :AppID, :NickName, :Uin, :Action, :RiskInvestigation, :RiskTreatment
+
+        def initialize(id=nil, name=nil, source=nil, level=nil, attacker=nil, victim=nil, evidencedata=nil, evidencelocation=nil, evidencepath=nil, createtime=nil, updatetime=nil, count=nil, urgentsuggestion=nil, remediationsuggestion=nil, status=nil, processtype=nil, type=nil, subtype=nil, extrainfo=nil, key=nil, date=nil, appid=nil, nickname=nil, uin=nil, action=nil, riskinvestigation=nil, risktreatment=nil)
+          @ID = id
+          @Name = name
+          @Source = source
+          @Level = level
+          @Attacker = attacker
+          @Victim = victim
+          @EvidenceData = evidencedata
+          @EvidenceLocation = evidencelocation
+          @EvidencePath = evidencepath
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Count = count
+          @UrgentSuggestion = urgentsuggestion
+          @RemediationSuggestion = remediationsuggestion
+          @Status = status
+          @ProcessType = processtype
+          @Type = type
+          @SubType = subtype
+          @ExtraInfo = extrainfo
+          @Key = key
+          @Date = date
+          @AppID = appid
+          @NickName = nickname
+          @Uin = uin
+          @Action = action
+          @RiskInvestigation = riskinvestigation
+          @RiskTreatment = risktreatment
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Source = params['Source']
+          @Level = params['Level']
+          unless params['Attacker'].nil?
+            @Attacker = RoleInfo.new
+            @Attacker.deserialize(params['Attacker'])
+          end
+          unless params['Victim'].nil?
+            @Victim = RoleInfo.new
+            @Victim.deserialize(params['Victim'])
+          end
+          @EvidenceData = params['EvidenceData']
+          @EvidenceLocation = params['EvidenceLocation']
+          @EvidencePath = params['EvidencePath']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Count = params['Count']
+          @UrgentSuggestion = params['UrgentSuggestion']
+          @RemediationSuggestion = params['RemediationSuggestion']
+          @Status = params['Status']
+          @ProcessType = params['ProcessType']
+          @Type = params['Type']
+          @SubType = params['SubType']
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = AlertExtraInfo.new
+            @ExtraInfo.deserialize(params['ExtraInfo'])
+          end
+          @Key = params['Key']
+          @Date = params['Date']
+          @AppID = params['AppID']
+          @NickName = params['NickName']
+          @Uin = params['Uin']
+          @Action = params['Action']
+          @RiskInvestigation = params['RiskInvestigation']
+          @RiskTreatment = params['RiskTreatment']
+        end
+      end
+
       # 主机资产详情
       class AssetBaseInfoResponse < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc-id
@@ -2100,6 +2635,79 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlertList请求参数结构体
+      class DescribeAlertListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 标签搜索筛选
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param OperatedMemberId: 被调用的集团账号的成员id
+        # @type OperatedMemberId: Array
+        # @param AssetType: 0:默认全部 1:资产ID 2:域名
+        # @type AssetType: Integer
+
+        attr_accessor :Filter, :MemberId, :OperatedMemberId, :AssetType
+
+        def initialize(filter=nil, memberid=nil, operatedmemberid=nil, assettype=nil)
+          @Filter = filter
+          @MemberId = memberid
+          @OperatedMemberId = operatedmemberid
+          @AssetType = assettype
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @MemberId = params['MemberId']
+          @OperatedMemberId = params['OperatedMemberId']
+          @AssetType = params['AssetType']
+        end
+      end
+
+      # DescribeAlertList返回参数结构体
+      class DescribeAlertListResponse < TencentCloud::Common::AbstractModel
+        # @param AlertList: 全量告警列表
+        # @type AlertList: Array
+        # @param AlertTypeCount: 告警大类数量
+        # @type AlertTypeCount: Array
+        # @param TotalCount: 告警总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlertList, :AlertTypeCount, :TotalCount, :RequestId
+
+        def initialize(alertlist=nil, alerttypecount=nil, totalcount=nil, requestid=nil)
+          @AlertList = alertlist
+          @AlertTypeCount = alerttypecount
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AlertList'].nil?
+            @AlertList = []
+            params['AlertList'].each do |i|
+              alertinfo_tmp = AlertInfo.new
+              alertinfo_tmp.deserialize(i)
+              @AlertList << alertinfo_tmp
+            end
+          end
+          unless params['AlertTypeCount'].nil?
+            @AlertTypeCount = []
+            params['AlertTypeCount'].each do |i|
+              tagcount_tmp = TagCount.new
+              tagcount_tmp.deserialize(i)
+              @AlertTypeCount << tagcount_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5373,6 +5981,28 @@ module TencentCloud
         end
       end
 
+      # KeyValue对
+      class KeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyOrganizationAccountStatus请求参数结构体
       class ModifyOrganizationAccountStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 修改集团账号状态，1 开启， 2关闭
@@ -5914,6 +6544,33 @@ module TencentCloud
         end
       end
 
+      # 相关攻击事件结构
+      class RelatedEvent < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventID: String
+        # @param Description: 事件描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RelatedCount: 与事件关联的告警数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedCount: Integer
+
+        attr_accessor :EventID, :Description, :RelatedCount
+
+        def initialize(eventid=nil, description=nil, relatedcount=nil)
+          @EventID = eventid
+          @Description = description
+          @RelatedCount = relatedcount
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+          @Description = params['Description']
+          @RelatedCount = params['RelatedCount']
+        end
+      end
+
       # 报告项key
       class ReportItemKey < TencentCloud::Common::AbstractModel
         # @param TaskLogList: 日志Id列表
@@ -5975,6 +6632,130 @@ module TencentCloud
           @PublicIPDomain = params['PublicIPDomain']
           @InstanceId = params['InstanceId']
           @AppId = params['AppId']
+        end
+      end
+
+      # 告警数据攻击者或受害者信息
+      class RoleInfo < TencentCloud::Common::AbstractModel
+        # @param IP: IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IP: String
+        # @param HostIP: HostIP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIP: String
+        # @param OriginIP: 原始IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginIP: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param InstanceID: 资产ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param Country: 国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Address: 地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param Latitude: 纬度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Latitude: String
+        # @param Longitude: 经度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Longitude: String
+        # @param Info: 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Info: String
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Name: 企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Account: 账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Account: String
+        # @param Family: 家族团伙
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Family: String
+        # @param VirusName: 病毒名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusName: String
+        # @param MD5: MD5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MD5: String
+        # @param FileName: 恶意进程文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param AssetType: 1:主机资产 2:域名资产 3:网络资产
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: Integer
+        # @param FromLogAnalysisData: 来源日志分析的信息字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromLogAnalysisData: Array
+
+        attr_accessor :IP, :HostIP, :OriginIP, :Port, :InstanceID, :City, :Province, :Country, :Address, :Latitude, :Longitude, :Info, :Domain, :Name, :Account, :Family, :VirusName, :MD5, :FileName, :AssetType, :FromLogAnalysisData
+
+        def initialize(ip=nil, hostip=nil, originip=nil, port=nil, instanceid=nil, city=nil, province=nil, country=nil, address=nil, latitude=nil, longitude=nil, info=nil, domain=nil, name=nil, account=nil, family=nil, virusname=nil, md5=nil, filename=nil, assettype=nil, fromloganalysisdata=nil)
+          @IP = ip
+          @HostIP = hostip
+          @OriginIP = originip
+          @Port = port
+          @InstanceID = instanceid
+          @City = city
+          @Province = province
+          @Country = country
+          @Address = address
+          @Latitude = latitude
+          @Longitude = longitude
+          @Info = info
+          @Domain = domain
+          @Name = name
+          @Account = account
+          @Family = family
+          @VirusName = virusname
+          @MD5 = md5
+          @FileName = filename
+          @AssetType = assettype
+          @FromLogAnalysisData = fromloganalysisdata
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @HostIP = params['HostIP']
+          @OriginIP = params['OriginIP']
+          @Port = params['Port']
+          @InstanceID = params['InstanceID']
+          @City = params['City']
+          @Province = params['Province']
+          @Country = params['Country']
+          @Address = params['Address']
+          @Latitude = params['Latitude']
+          @Longitude = params['Longitude']
+          @Info = params['Info']
+          @Domain = params['Domain']
+          @Name = params['Name']
+          @Account = params['Account']
+          @Family = params['Family']
+          @VirusName = params['VirusName']
+          @MD5 = params['MD5']
+          @FileName = params['FileName']
+          @AssetType = params['AssetType']
+          unless params['FromLogAnalysisData'].nil?
+            @FromLogAnalysisData = []
+            params['FromLogAnalysisData'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @FromLogAnalysisData << keyvalue_tmp
+            end
+          end
         end
       end
 

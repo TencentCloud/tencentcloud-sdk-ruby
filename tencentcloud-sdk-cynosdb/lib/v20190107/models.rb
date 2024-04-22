@@ -9046,6 +9046,46 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceUpgradeLimitDays请求参数结构体
+      class ModifyInstanceUpgradeLimitDaysRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param UpgradeLimitDays: 升级限制时间
+        # @type UpgradeLimitDays: Integer
+
+        attr_accessor :ClusterId, :InstanceId, :UpgradeLimitDays
+
+        def initialize(clusterid=nil, instanceid=nil, upgradelimitdays=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+          @UpgradeLimitDays = upgradelimitdays
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+          @UpgradeLimitDays = params['UpgradeLimitDays']
+        end
+      end
+
+      # ModifyInstanceUpgradeLimitDays返回参数结构体
+      class ModifyInstanceUpgradeLimitDaysResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMaintainPeriodConfig请求参数结构体
       class ModifyMaintainPeriodConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

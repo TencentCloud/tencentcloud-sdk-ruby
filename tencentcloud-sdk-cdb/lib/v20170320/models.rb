@@ -2499,10 +2499,12 @@ module TencentCloud
         # @type Desc: String
         # @param ConnectionPoolLimit: 连接池阈值
         # @type ConnectionPoolLimit: Integer
+        # @param ProxyVersion: 指定要购买的 proxy 内核版本。不填则默认发货最新版本的 proxy。
+        # @type ProxyVersion: String
 
-        attr_accessor :InstanceId, :UniqVpcId, :UniqSubnetId, :ProxyNodeCustom, :SecurityGroup, :Desc, :ConnectionPoolLimit
+        attr_accessor :InstanceId, :UniqVpcId, :UniqSubnetId, :ProxyNodeCustom, :SecurityGroup, :Desc, :ConnectionPoolLimit, :ProxyVersion
 
-        def initialize(instanceid=nil, uniqvpcid=nil, uniqsubnetid=nil, proxynodecustom=nil, securitygroup=nil, desc=nil, connectionpoollimit=nil)
+        def initialize(instanceid=nil, uniqvpcid=nil, uniqsubnetid=nil, proxynodecustom=nil, securitygroup=nil, desc=nil, connectionpoollimit=nil, proxyversion=nil)
           @InstanceId = instanceid
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
@@ -2510,6 +2512,7 @@ module TencentCloud
           @SecurityGroup = securitygroup
           @Desc = desc
           @ConnectionPoolLimit = connectionpoollimit
+          @ProxyVersion = proxyversion
         end
 
         def deserialize(params)
@@ -2527,6 +2530,7 @@ module TencentCloud
           @SecurityGroup = params['SecurityGroup']
           @Desc = params['Desc']
           @ConnectionPoolLimit = params['ConnectionPoolLimit']
+          @ProxyVersion = params['ProxyVersion']
         end
       end
 

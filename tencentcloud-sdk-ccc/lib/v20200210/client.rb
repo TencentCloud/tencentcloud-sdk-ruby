@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量查询自动任务外呼
+        # 批量查询自动外呼任务
 
         # @param request: Request instance for DescribeAutoCalloutTasks.
         # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAutoCalloutTasksRequest`
@@ -1145,6 +1145,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyStaffResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改座席的密码
+
+        # @param request: Request instance for ModifyStaffPassword.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ModifyStaffPasswordRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ModifyStaffPasswordResponse`
+        def ModifyStaffPassword(request)
+          body = send_request('ModifyStaffPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStaffPasswordResponse.new
             model.deserialize(response['Response'])
             model
           else

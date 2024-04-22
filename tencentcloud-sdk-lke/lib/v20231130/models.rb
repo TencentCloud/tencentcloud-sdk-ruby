@@ -2372,13 +2372,16 @@ module TencentCloud
       class GetEmbeddingResponse < TencentCloud::Common::AbstractModel
         # @param Data: 特征
         # @type Data: Array
+        # @param Usage: 消耗量，返回TotalToken
+        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :Usage, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, usage=nil, requestid=nil)
           @Data = data
+          @Usage = usage
           @RequestId = requestid
         end
 
@@ -2390,6 +2393,10 @@ module TencentCloud
               embeddingobject_tmp.deserialize(i)
               @Data << embeddingobject_tmp
             end
+          end
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
           end
           @RequestId = params['RequestId']
         end
@@ -4850,10 +4857,13 @@ module TencentCloud
         # @type TaskId: String
         # @param Policy: 切分策略
         # @type Policy: String
-        # @param Operate: 默认值: split
+        # @param Operate: 默认值: parse
         # @type Operate: String
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
+        extend Gem::Deprecate
+        deprecate :Operate, :none, 2024, 4
+        deprecate :Operate=, :none, 2024, 4
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
@@ -5066,16 +5076,19 @@ module TencentCloud
         # @type Url: String
         # @param Reason: 解析失败原因
         # @type Reason: String
+        # @param Usage: 消耗量，输出页数
+        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Name, :Url, :Reason, :RequestId
+        attr_accessor :Status, :Name, :Url, :Reason, :Usage, :RequestId
 
-        def initialize(status=nil, name=nil, url=nil, reason=nil, requestid=nil)
+        def initialize(status=nil, name=nil, url=nil, reason=nil, usage=nil, requestid=nil)
           @Status = status
           @Name = name
           @Url = url
           @Reason = reason
+          @Usage = usage
           @RequestId = requestid
         end
 
@@ -5084,6 +5097,10 @@ module TencentCloud
           @Name = params['Name']
           @Url = params['Url']
           @Reason = params['Reason']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5123,18 +5140,25 @@ module TencentCloud
       class QueryRewriteResponse < TencentCloud::Common::AbstractModel
         # @param Content: 改写结果
         # @type Content: String
+        # @param Usage: 消耗量，返回输入token数，输出token数以及总token数
+        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Content, :RequestId
+        attr_accessor :Content, :Usage, :RequestId
 
-        def initialize(content=nil, requestid=nil)
+        def initialize(content=nil, usage=nil, requestid=nil)
           @Content = content
+          @Usage = usage
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Content = params['Content']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5955,6 +5979,34 @@ module TencentCloud
           @ErrorLink = params['ErrorLink']
           @ErrorLinkText = params['ErrorLinkText']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 消耗量
+      class Usage < TencentCloud::Common::AbstractModel
+        # @param TotalPages: 文档页数
+        # @type TotalPages: Integer
+        # @param InputTokens: 输入token数
+        # @type InputTokens: Integer
+        # @param OutputTokens: 输出token数
+        # @type OutputTokens: Integer
+        # @param TotalTokens: 总token数
+        # @type TotalTokens: Integer
+
+        attr_accessor :TotalPages, :InputTokens, :OutputTokens, :TotalTokens
+
+        def initialize(totalpages=nil, inputtokens=nil, outputtokens=nil, totaltokens=nil)
+          @TotalPages = totalpages
+          @InputTokens = inputtokens
+          @OutputTokens = outputtokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @TotalPages = params['TotalPages']
+          @InputTokens = params['InputTokens']
+          @OutputTokens = params['OutputTokens']
+          @TotalTokens = params['TotalTokens']
         end
       end
 

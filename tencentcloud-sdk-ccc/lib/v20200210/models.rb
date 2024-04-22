@@ -3502,6 +3502,46 @@ module TencentCloud
         end
       end
 
+      # ModifyStaffPassword请求参数结构体
+      class ModifyStaffPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Email: 座席邮箱
+        # @type Email: String
+        # @param Password: 设置的密码
+        # @type Password: String
+
+        attr_accessor :SdkAppId, :Email, :Password
+
+        def initialize(sdkappid=nil, email=nil, password=nil)
+          @SdkAppId = sdkappid
+          @Email = email
+          @Password = password
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Email = params['Email']
+          @Password = params['Password']
+        end
+      end
+
+      # ModifyStaffPassword返回参数结构体
+      class ModifyStaffPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyStaff请求参数结构体
       class ModifyStaffRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID
