@@ -2707,6 +2707,8 @@ module TencentCloud
         # @type ExclusterIds: Array
         # @param TagKeys: 按标签key查询
         # @type TagKeys: Array
+        # @param Tags: 标签
+        # @type Tags: Array
         # @param FilterInstanceType: 实例类型过滤，1-独享实例，2-主实例，3-灾备实例，多个按逗号分隔
         # @type FilterInstanceType: String
         # @param Status: 按实例状态筛选
@@ -2714,9 +2716,9 @@ module TencentCloud
         # @param ExcludeStatus: 排除实例状态
         # @type ExcludeStatus: Array
 
-        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :ExclusterType, :IsFilterExcluster, :ExclusterIds, :TagKeys, :FilterInstanceType, :Status, :ExcludeStatus
+        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :ExclusterType, :IsFilterExcluster, :ExclusterIds, :TagKeys, :Tags, :FilterInstanceType, :Status, :ExcludeStatus
 
-        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, exclustertype=nil, isfilterexcluster=nil, exclusterids=nil, tagkeys=nil, filterinstancetype=nil, status=nil, excludestatus=nil)
+        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, exclustertype=nil, isfilterexcluster=nil, exclusterids=nil, tagkeys=nil, tags=nil, filterinstancetype=nil, status=nil, excludestatus=nil)
           @InstanceIds = instanceids
           @SearchName = searchname
           @SearchKey = searchkey
@@ -2732,6 +2734,7 @@ module TencentCloud
           @IsFilterExcluster = isfilterexcluster
           @ExclusterIds = exclusterids
           @TagKeys = tagkeys
+          @Tags = tags
           @FilterInstanceType = filterinstancetype
           @Status = status
           @ExcludeStatus = excludestatus
@@ -2753,6 +2756,14 @@ module TencentCloud
           @IsFilterExcluster = params['IsFilterExcluster']
           @ExclusterIds = params['ExclusterIds']
           @TagKeys = params['TagKeys']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @FilterInstanceType = params['FilterInstanceType']
           @Status = params['Status']
           @ExcludeStatus = params['ExcludeStatus']
@@ -5729,17 +5740,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param Zone: 切换的目标区域，会自动选择该可用区中延迟最低的节点。
         # @type Zone: String
+        # @param ShardInstanceIds: 指定分片实例id进行切换
+        # @type ShardInstanceIds: Array
 
-        attr_accessor :InstanceId, :Zone
+        attr_accessor :InstanceId, :Zone, :ShardInstanceIds
 
-        def initialize(instanceid=nil, zone=nil)
+        def initialize(instanceid=nil, zone=nil, shardinstanceids=nil)
           @InstanceId = instanceid
           @Zone = zone
+          @ShardInstanceIds = shardinstanceids
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Zone = params['Zone']
+          @ShardInstanceIds = params['ShardInstanceIds']
         end
       end
 
@@ -5804,6 +5819,26 @@ module TencentCloud
           @Database = params['Database']
           @Table = params['Table']
           @Privileges = params['Privileges']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

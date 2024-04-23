@@ -2048,12 +2048,14 @@ module TencentCloud
         # @type IsDcnStrongSyncSupported: Integer
         # @param IsDcnSwitchSupported: 是否支持DCN切换
         # @type IsDcnSwitchSupported: Integer
+        # @param ProxyVersion: proxy版本号
+        # @type ProxyVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :IsPhysicalReplicationSupported, :IsDcnStrongSyncSupported, :IsDcnSwitchSupported, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :IsPhysicalReplicationSupported, :IsDcnStrongSyncSupported, :IsDcnSwitchSupported, :ProxyVersion, :RequestId
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, isphysicalreplicationsupported=nil, isdcnstrongsyncsupported=nil, isdcnswitchsupported=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, isphysicalreplicationsupported=nil, isdcnstrongsyncsupported=nil, isdcnswitchsupported=nil, proxyversion=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2113,6 +2115,7 @@ module TencentCloud
           @IsPhysicalReplicationSupported = isphysicalreplicationsupported
           @IsDcnStrongSyncSupported = isdcnstrongsyncsupported
           @IsDcnSwitchSupported = isdcnswitchsupported
+          @ProxyVersion = proxyversion
           @RequestId = requestid
         end
 
@@ -2203,6 +2206,7 @@ module TencentCloud
           @IsPhysicalReplicationSupported = params['IsPhysicalReplicationSupported']
           @IsDcnStrongSyncSupported = params['IsDcnStrongSyncSupported']
           @IsDcnSwitchSupported = params['IsDcnSwitchSupported']
+          @ProxyVersion = params['ProxyVersion']
           @RequestId = params['RequestId']
         end
       end
@@ -2279,6 +2283,8 @@ module TencentCloud
         # @type ExclusterIds: Array
         # @param TagKeys: 按标签key查询
         # @type TagKeys: Array
+        # @param Tags: 标签
+        # @type Tags: Array
         # @param FilterInstanceType: 实例类型过滤，1-独享实例，2-主实例，3-灾备实例，多个按逗号分隔
         # @type FilterInstanceType: String
         # @param Status: 按照实例状态进行筛选
@@ -2286,9 +2292,9 @@ module TencentCloud
         # @param ExcludeStatus: 排除实例状态
         # @type ExcludeStatus: Array
 
-        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :OriginSerialIds, :IsFilterExcluster, :ExclusterType, :ExclusterIds, :TagKeys, :FilterInstanceType, :Status, :ExcludeStatus
+        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :OriginSerialIds, :IsFilterExcluster, :ExclusterType, :ExclusterIds, :TagKeys, :Tags, :FilterInstanceType, :Status, :ExcludeStatus
 
-        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, originserialids=nil, isfilterexcluster=nil, exclustertype=nil, exclusterids=nil, tagkeys=nil, filterinstancetype=nil, status=nil, excludestatus=nil)
+        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, originserialids=nil, isfilterexcluster=nil, exclustertype=nil, exclusterids=nil, tagkeys=nil, tags=nil, filterinstancetype=nil, status=nil, excludestatus=nil)
           @InstanceIds = instanceids
           @SearchName = searchname
           @SearchKey = searchkey
@@ -2305,6 +2311,7 @@ module TencentCloud
           @ExclusterType = exclustertype
           @ExclusterIds = exclusterids
           @TagKeys = tagkeys
+          @Tags = tags
           @FilterInstanceType = filterinstancetype
           @Status = status
           @ExcludeStatus = excludestatus
@@ -2327,6 +2334,14 @@ module TencentCloud
           @ExclusterType = params['ExclusterType']
           @ExclusterIds = params['ExclusterIds']
           @TagKeys = params['TagKeys']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @FilterInstanceType = params['FilterInstanceType']
           @Status = params['Status']
           @ExcludeStatus = params['ExcludeStatus']
@@ -5397,6 +5412,26 @@ module TencentCloud
           @Database = params['Database']
           @Table = params['Table']
           @Privileges = params['Privileges']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

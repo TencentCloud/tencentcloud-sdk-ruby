@@ -2216,10 +2216,19 @@ module TencentCloud
         # @param Id: 账单记录ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
+        # @param RegionType: 国内国际编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionType: String
+        # @param RegionTypeName: 国内国际：资源所属区域类型（国内、国际）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionTypeName: String
+        # @param ReserveDetail: 备注属性（实例配置）：其他备注信息，如预留实例的预留实例类型和交易类型、CCN 产品的两端地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveDetail: String
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl, :BillDay, :BillMonth, :Id
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl, :BillDay, :BillMonth, :Id, :RegionType, :RegionTypeName, :ReserveDetail
 
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil, billday=nil, billmonth=nil, id=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil, billday=nil, billmonth=nil, id=nil, regiontype=nil, regiontypename=nil, reservedetail=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -2251,6 +2260,9 @@ module TencentCloud
           @BillDay = billday
           @BillMonth = billmonth
           @Id = id
+          @RegionType = regiontype
+          @RegionTypeName = regiontypename
+          @ReserveDetail = reservedetail
         end
 
         def deserialize(params)
@@ -2302,6 +2314,9 @@ module TencentCloud
           @BillDay = params['BillDay']
           @BillMonth = params['BillMonth']
           @Id = params['Id']
+          @RegionType = params['RegionType']
+          @RegionTypeName = params['RegionTypeName']
+          @ReserveDetail = params['ReserveDetail']
         end
       end
 

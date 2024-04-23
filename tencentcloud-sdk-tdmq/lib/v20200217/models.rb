@@ -1733,14 +1733,17 @@ module TencentCloud
         # @type Description: String
         # @param TraceFlag: 消息轨迹开关,true打开,false关闭,默认关闭
         # @type TraceFlag: Boolean
+        # @param MirrorQueuePolicyFlag: 是否创建镜像队列策略，默认值 true
+        # @type MirrorQueuePolicyFlag: Boolean
 
-        attr_accessor :InstanceId, :VirtualHost, :Description, :TraceFlag
+        attr_accessor :InstanceId, :VirtualHost, :Description, :TraceFlag, :MirrorQueuePolicyFlag
 
-        def initialize(instanceid=nil, virtualhost=nil, description=nil, traceflag=nil)
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, traceflag=nil, mirrorqueuepolicyflag=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Description = description
           @TraceFlag = traceflag
+          @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
         end
 
         def deserialize(params)
@@ -1748,6 +1751,7 @@ module TencentCloud
           @VirtualHost = params['VirtualHost']
           @Description = params['Description']
           @TraceFlag = params['TraceFlag']
+          @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
         end
       end
 
@@ -4753,12 +4757,21 @@ module TencentCloud
         # @param Node: 节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Node: String
+        # @param DeadLetterStrategy: 仲裁队列死信一致性策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterStrategy: String
+        # @param QueueLeaderLocator: 仲裁队列的领导者选举策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueLeaderLocator: String
+        # @param QuorumInitialGroupSize: 仲裁队列的初始副本组大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuorumInitialGroupSize: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :RequestId
+        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :DeadLetterStrategy, :QueueLeaderLocator, :QuorumInitialGroupSize, :RequestId
 
-        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, requestid=nil)
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, deadletterstrategy=nil, queueleaderlocator=nil, quoruminitialgroupsize=nil, requestid=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @QueueName = queuename
@@ -4783,6 +4796,9 @@ module TencentCloud
           @MaxInMemoryBytes = maxinmemorybytes
           @CreateTime = createtime
           @Node = node
+          @DeadLetterStrategy = deadletterstrategy
+          @QueueLeaderLocator = queueleaderlocator
+          @QuorumInitialGroupSize = quoruminitialgroupsize
           @RequestId = requestid
         end
 
@@ -4811,6 +4827,9 @@ module TencentCloud
           @MaxInMemoryBytes = params['MaxInMemoryBytes']
           @CreateTime = params['CreateTime']
           @Node = params['Node']
+          @DeadLetterStrategy = params['DeadLetterStrategy']
+          @QueueLeaderLocator = params['QueueLeaderLocator']
+          @QuorumInitialGroupSize = params['QuorumInitialGroupSize']
           @RequestId = params['RequestId']
         end
       end

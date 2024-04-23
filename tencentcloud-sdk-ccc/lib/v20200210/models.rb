@@ -1764,13 +1764,15 @@ module TencentCloud
         # @type Offset: Integer
         # @param Order: 1为从早到晚，2为从晚到早，默认为2
         # @type Order: Integer
-        # @param SessionId: 服务记录 SessionID（必填）
+        # @param SessionId: 服务记录 SessionID
         # @type SessionId: String
 
         attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
         deprecate :InstanceId, :none, 2024, 4
         deprecate :InstanceId=, :none, 2024, 4
+        deprecate :CdrId, :none, 2024, 4
+        deprecate :CdrId=, :none, 2024, 4
 
         def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @InstanceId = instanceid

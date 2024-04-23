@@ -2473,9 +2473,9 @@ module TencentCloud
         # @type DomainName: String
         # @param AppName: 推流路径。
         # @type AppName: String
-        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且EndTime - StartTime不能超过24小时。
+        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且小于当前时间+7天。
         # @type EndTime: Integer
-        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。StartTime不能超过当前时间+6天。
+        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。EndTime - StartTime不能超过24小时。
         # @type StartTime: Integer
         # @param StreamType: 推流类型，默认0。取值：
         # 0-直播推流。
@@ -2539,11 +2539,11 @@ module TencentCloud
         # @type DomainName: String
         # @param AppName: 推流路径。
         # @type AppName: String
-        # @param EndTime: 截图任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且EndTime - StartTime不能超过24小时。
+        # @param EndTime: 截图任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且小于当前时间+7天。
         # @type EndTime: Integer
         # @param TemplateId: 截图模板ID，CreateLiveSnapshotTemplate 返回值。如果传入错误ID，则不拉起截图。
         # @type TemplateId: Integer
-        # @param StartTime: 截图任务开始时间，Unix时间戳。如果不填表示立即启动截图。StartTime不能超过当前时间+6天。
+        # @param StartTime: 截图任务开始时间，Unix时间戳。如果不填表示立即启动截图。EndTime - StartTime不能超过24小时。
         # @type StartTime: Integer
         # @param StreamType: 推流类型，默认0。取值：
         # 0-直播推流。
