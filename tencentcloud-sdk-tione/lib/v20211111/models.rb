@@ -2183,10 +2183,13 @@ module TencentCloud
         # @param CFSTurboSource: 配置TurboFS的数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSTurboSource: :class:`Tencentcloud::Tione.v20211111.models.CFSTurbo`
+        # @param LocalDiskSource: 来自本地磁盘的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalDiskSource: :class:`Tencentcloud::Tione.v20211111.models.LocalDisk`
 
-        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource
+        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource
 
-        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil)
+        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil)
           @MappingPath = mappingpath
           @DataSourceType = datasourcetype
           @DataSetSource = datasetsource
@@ -2195,6 +2198,7 @@ module TencentCloud
           @HDFSSource = hdfssource
           @GooseFSSource = goosefssource
           @CFSTurboSource = cfsturbosource
+          @LocalDiskSource = localdisksource
         end
 
         def deserialize(params)
@@ -2223,6 +2227,10 @@ module TencentCloud
           unless params['CFSTurboSource'].nil?
             @CFSTurboSource = CFSTurbo.new
             @CFSTurboSource.deserialize(params['CFSTurboSource'])
+          end
+          unless params['LocalDiskSource'].nil?
+            @LocalDiskSource = LocalDisk.new
+            @LocalDiskSource.deserialize(params['LocalDiskSource'])
           end
         end
       end
@@ -6469,6 +6477,23 @@ module TencentCloud
               @DefaultInnerCallInfos << defaultinnercallinfo_tmp
             end
           end
+        end
+      end
+
+      # 本地磁盘信息
+      class LocalDisk < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
         end
       end
 

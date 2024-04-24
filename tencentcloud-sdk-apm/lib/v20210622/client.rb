@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用配置信息
+
+        # @param request: Request instance for DescribeGeneralApmApplicationConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeGeneralApmApplicationConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeGeneralApmApplicationConfigResponse`
+        def DescribeGeneralApmApplicationConfig(request)
+          body = send_request('DescribeGeneralApmApplicationConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGeneralApmApplicationConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
         # 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
 
@@ -198,6 +222,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据维度名和过滤条件，查询维度数据.
+
+        # @param request: Request instance for DescribeTagValues.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeTagValuesRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeTagValuesResponse`
+        def DescribeTagValues(request)
+          body = send_request('DescribeTagValues', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTagValuesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改APM实例接口
 
         # @param request: Request instance for ModifyApmInstance.
@@ -208,6 +256,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApmInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对外开放的openApi，客户可以灵活的指定需要修改的字段，再加入需要修改的服务列表.
+
+        # @param request: Request instance for ModifyGeneralApmApplicationConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyGeneralApmApplicationConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyGeneralApmApplicationConfigResponse`
+        def ModifyGeneralApmApplicationConfig(request)
+          body = send_request('ModifyGeneralApmApplicationConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGeneralApmApplicationConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

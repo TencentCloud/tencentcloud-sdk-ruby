@@ -1668,19 +1668,23 @@ module TencentCloud
         # 6:1080P/I；
         # 自定义的19201080等等（需设备支持）（不可以和 StreamType 同时下发））
         # @type Resolution: String
+        # @param IsInternal: 是否内网
+        # @type IsInternal: Boolean
 
-        attr_accessor :ChannelId, :StreamType, :Resolution
+        attr_accessor :ChannelId, :StreamType, :Resolution, :IsInternal
 
-        def initialize(channelid=nil, streamtype=nil, resolution=nil)
+        def initialize(channelid=nil, streamtype=nil, resolution=nil, isinternal=nil)
           @ChannelId = channelid
           @StreamType = streamtype
           @Resolution = resolution
+          @IsInternal = isinternal
         end
 
         def deserialize(params)
           @ChannelId = params['ChannelId']
           @StreamType = params['StreamType']
           @Resolution = params['Resolution']
+          @IsInternal = params['IsInternal']
         end
       end
 
@@ -3593,19 +3597,23 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 回放结束时间，UTC秒数，例如：1662114246，开始和结束时间段最长为一天，且不能跨天
         # @type EndTime: Integer
+        # @param IsInternal: 是否获取内网地址
+        # @type IsInternal: Boolean
 
-        attr_accessor :ChannelId, :StartTime, :EndTime
+        attr_accessor :ChannelId, :StartTime, :EndTime, :IsInternal
 
-        def initialize(channelid=nil, starttime=nil, endtime=nil)
+        def initialize(channelid=nil, starttime=nil, endtime=nil, isinternal=nil)
           @ChannelId = channelid
           @StartTime = starttime
           @EndTime = endtime
+          @IsInternal = isinternal
         end
 
         def deserialize(params)
           @ChannelId = params['ChannelId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @IsInternal = params['IsInternal']
         end
       end
 
@@ -4097,15 +4105,18 @@ module TencentCloud
         # @type FileType: String
         # @param IsRespActualTime: 响应data中是否携带实际下载录像的开始时间与结束时间
         # @type IsRespActualTime: Boolean
+        # @param IsInternal: 是否返回内网下载URL，默认是false，返回公网下载URL，true则返回内网下载URL
+        # @type IsInternal: Boolean
 
-        attr_accessor :ChannelId, :BeginTime, :EndTime, :FileType, :IsRespActualTime
+        attr_accessor :ChannelId, :BeginTime, :EndTime, :FileType, :IsRespActualTime, :IsInternal
 
-        def initialize(channelid=nil, begintime=nil, endtime=nil, filetype=nil, isrespactualtime=nil)
+        def initialize(channelid=nil, begintime=nil, endtime=nil, filetype=nil, isrespactualtime=nil, isinternal=nil)
           @ChannelId = channelid
           @BeginTime = begintime
           @EndTime = endtime
           @FileType = filetype
           @IsRespActualTime = isrespactualtime
+          @IsInternal = isinternal
         end
 
         def deserialize(params)
@@ -4114,6 +4125,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @FileType = params['FileType']
           @IsRespActualTime = params['IsRespActualTime']
+          @IsInternal = params['IsInternal']
         end
       end
 
@@ -5801,15 +5813,18 @@ module TencentCloud
         # @type StreamType: Integer
         # @param Resolution: 分辨率（1:QCIF；2:CIF； 3:4CIF； 4:D1； 5:720P； 6:1080P/I； 自定义的19201080等等（需设备支持）（不可以和 StreamType 同时下发））
         # @type Resolution: String
+        # @param IsInternal: 是否内网
+        # @type IsInternal: Boolean
 
-        attr_accessor :ChannelId, :Start, :End, :StreamType, :Resolution
+        attr_accessor :ChannelId, :Start, :End, :StreamType, :Resolution, :IsInternal
 
-        def initialize(channelid=nil, start=nil, _end=nil, streamtype=nil, resolution=nil)
+        def initialize(channelid=nil, start=nil, _end=nil, streamtype=nil, resolution=nil, isinternal=nil)
           @ChannelId = channelid
           @Start = start
           @End = _end
           @StreamType = streamtype
           @Resolution = resolution
+          @IsInternal = isinternal
         end
 
         def deserialize(params)
@@ -5818,6 +5833,7 @@ module TencentCloud
           @End = params['End']
           @StreamType = params['StreamType']
           @Resolution = params['Resolution']
+          @IsInternal = params['IsInternal']
         end
       end
 

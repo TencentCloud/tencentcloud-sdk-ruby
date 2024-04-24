@@ -2947,6 +2947,54 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceFirmwares请求参数结构体
+      class DescribeDeviceFirmwaresRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeDeviceFirmwares返回参数结构体
+      class DescribeDeviceFirmwaresResponse < TencentCloud::Common::AbstractModel
+        # @param Firmwares: 固件信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Firmwares: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Firmwares, :RequestId
+
+        def initialize(firmwares=nil, requestid=nil)
+          @Firmwares = firmwares
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Firmwares'].nil?
+            @Firmwares = []
+            params['Firmwares'].each do |i|
+              devicefirmwareinfo_tmp = DeviceFirmwareInfo.new
+              devicefirmwareinfo_tmp.deserialize(i)
+              @Firmwares << devicefirmwareinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceLocationSolve请求参数结构体
       class DescribeDeviceLocationSolveRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -4194,6 +4242,30 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Value = params['Value']
+        end
+      end
+
+      # 设备固件信息
+      class DeviceFirmwareInfo < TencentCloud::Common::AbstractModel
+        # @param FwType: 固件类型
+        # @type FwType: String
+        # @param Version: 固件版本
+        # @type Version: String
+        # @param UpdateTime: 最后更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :FwType, :Version, :UpdateTime
+
+        def initialize(fwtype=nil, version=nil, updatetime=nil)
+          @FwType = fwtype
+          @Version = version
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @FwType = params['FwType']
+          @Version = params['Version']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

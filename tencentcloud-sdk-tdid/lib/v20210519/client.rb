@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询凭证模版内容
+        # 查询凭证模板内容
 
         # @param request: Request instance for QueryCPT.
         # @type request: :class:`Tencentcloud::tdid::V20210519::QueryCPTRequest`

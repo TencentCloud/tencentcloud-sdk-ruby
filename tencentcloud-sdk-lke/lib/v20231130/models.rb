@@ -4847,61 +4847,6 @@ module TencentCloud
         end
       end
 
-      # ParseDoc请求参数结构体
-      class ParseDocRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 文件名称(需要包括文件后缀, 最大长度1024字节)
-        # @type Name: String
-        # @param Url: 文件下载链接 (支持的文件类型: docx, txt, markdown, pdf)
-        # @type Url: String
-        # @param TaskId: 任务ID, 用于幂等去重, 业务自行定义(最大长度64字节)
-        # @type TaskId: String
-        # @param Policy: 切分策略
-        # @type Policy: String
-        # @param Operate: 默认值: parse
-        # @type Operate: String
-
-        attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
-        extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 4
-        deprecate :Operate=, :none, 2024, 4
-
-        def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
-          @Name = name
-          @Url = url
-          @TaskId = taskid
-          @Policy = policy
-          @Operate = operate
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Url = params['Url']
-          @TaskId = params['TaskId']
-          @Policy = params['Policy']
-          @Operate = params['Operate']
-        end
-      end
-
-      # ParseDoc返回参数结构体
-      class ParseDocResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :RequestId
-
-        def initialize(taskid=nil, requestid=nil)
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 获取QA分类分组
       class QACate < TencentCloud::Common::AbstractModel
         # @param CateBizId: QA分类的业务ID
@@ -5047,61 +4992,6 @@ module TencentCloud
           @QaBizId = params['QaBizId']
           @Source = params['Source']
           @QueryAnswer = params['QueryAnswer']
-        end
-      end
-
-      # QueryParseDocResult请求参数结构体
-      class QueryParseDocResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # QueryParseDocResult返回参数结构体
-      class QueryParseDocResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 等待 / 执行中 / 成功 / 失败
-        # @type Status: String
-        # @param Name: 解析后的文件内容
-        # @type Name: String
-        # @param Url: 文件下载地址
-        # @type Url: String
-        # @param Reason: 解析失败原因
-        # @type Reason: String
-        # @param Usage: 消耗量，输出页数
-        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Status, :Name, :Url, :Reason, :Usage, :RequestId
-
-        def initialize(status=nil, name=nil, url=nil, reason=nil, usage=nil, requestid=nil)
-          @Status = status
-          @Name = name
-          @Url = url
-          @Reason = reason
-          @Usage = usage
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @Name = params['Name']
-          @Url = params['Url']
-          @Reason = params['Reason']
-          unless params['Usage'].nil?
-            @Usage = Usage.new
-            @Usage.deserialize(params['Usage'])
-          end
-          @RequestId = params['RequestId']
         end
       end
 

@@ -75,6 +75,9 @@ module TencentCloud
         # <li>HTTPS: HTTPS协议回源。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginProtocol: String
+        # @param Certificate: 域名证书信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
         # @param HttpOriginPort: HTTP回源端口。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpOriginPort: Integer
@@ -99,18 +102,16 @@ module TencentCloud
         # @param OwnershipVerification: 当域名需要进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
-        # @param Certificate: 域名证书信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
 
-        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :IPv6Status, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification, :Certificate
+        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :OriginProtocol, :Certificate, :HttpOriginPort, :HttpsOriginPort, :IPv6Status, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification
 
-        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, ipv6status=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil, certificate=nil)
+        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, originprotocol=nil, certificate=nil, httporiginport=nil, httpsoriginport=nil, ipv6status=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @DomainStatus = domainstatus
           @OriginDetail = origindetail
           @OriginProtocol = originprotocol
+          @Certificate = certificate
           @HttpOriginPort = httporiginport
           @HttpsOriginPort = httpsoriginport
           @IPv6Status = ipv6status
@@ -119,7 +120,6 @@ module TencentCloud
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
           @OwnershipVerification = ownershipverification
-          @Certificate = certificate
         end
 
         def deserialize(params)
@@ -131,6 +131,10 @@ module TencentCloud
             @OriginDetail.deserialize(params['OriginDetail'])
           end
           @OriginProtocol = params['OriginProtocol']
+          unless params['Certificate'].nil?
+            @Certificate = AccelerationDomainCertificate.new
+            @Certificate.deserialize(params['Certificate'])
+          end
           @HttpOriginPort = params['HttpOriginPort']
           @HttpsOriginPort = params['HttpsOriginPort']
           @IPv6Status = params['IPv6Status']
@@ -141,10 +145,6 @@ module TencentCloud
           unless params['OwnershipVerification'].nil?
             @OwnershipVerification = OwnershipVerification.new
             @OwnershipVerification.deserialize(params['OwnershipVerification'])
-          end
-          unless params['Certificate'].nil?
-            @Certificate = AccelerationDomainCertificate.new
-            @Certificate.deserialize(params['Certificate'])
           end
         end
       end
@@ -9593,7 +9593,7 @@ module TencentCloud
         # <li>COS：腾讯云 COS 对象存储源站；</li>
         # <li>AWS_S3：AWS S3 对象存储源站；</li>
         # <li>ORIGIN_GROUP：源站组类型源站；</li>
-        #  <li>VODEO：云点播（混合云版）；</li>
+        # <li>VODEO：云点播（混合云版）；</li>
         # <li>SPACE：源站卸载，当前仅白名单开放；</li>
         # <li>LB：负载均衡，当前仅白名单开放。</li>
         # @type OriginType: String
@@ -9610,10 +9610,10 @@ module TencentCloud
         # @type OriginGroupName: String
         # @param BackOriginGroupName: 备用源站组名称，该参数仅当 OriginType = ORIGIN_GROUP 且配置了备用源站组时会生效。
         # @type BackOriginGroupName: String
-        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，该参数仅当源站类型 OriginType = COS 或 AWS_S3 时会生效，取值有：
+        # @param PrivateAccess: 指定是否允许访问私有对象存储源站，该参数仅当源站类型OriginType = COS 或 AWS_S3 时会生效，取值有：
         # <li>on：使用私有鉴权；</li>
         # <li>off：不使用私有鉴权。</li>
-        # 不填写，默认值为off。
+        # 不填写，默认值为 off。
         # @type PrivateAccess: String
         # @param PrivateParameters: 私有鉴权使用参数，该参数仅当源站类型 PrivateAccess = on 时会生效。
         # 注意：此字段可能返回 null，表示取不到有效值。

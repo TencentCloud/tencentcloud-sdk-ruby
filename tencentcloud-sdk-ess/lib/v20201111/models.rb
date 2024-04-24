@@ -1617,10 +1617,12 @@ module TencentCloud
         # <li>**true**: 跳过合同流程列表, 直接进入合同内容页面进行签署</li>
         # </ul>
         # @type JumpToDetail: Boolean
+        # @param FlowBatchUrlInfo: 批量签署合同相关信息，指定合同和签署方的信息，用于补充动态签署人。
+        # @type FlowBatchUrlInfo: :class:`Tencentcloud::Ess.v20201111.models.FlowBatchUrlInfo`
 
-        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail
+        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo
 
-        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil)
+        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil)
           @Operator = operator
           @Name = name
           @Mobile = mobile
@@ -1631,6 +1633,7 @@ module TencentCloud
           @FlowIds = flowids
           @OrganizationName = organizationname
           @JumpToDetail = jumptodetail
+          @FlowBatchUrlInfo = flowbatchurlinfo
         end
 
         def deserialize(params)
@@ -1650,6 +1653,10 @@ module TencentCloud
           @FlowIds = params['FlowIds']
           @OrganizationName = params['OrganizationName']
           @JumpToDetail = params['JumpToDetail']
+          unless params['FlowBatchUrlInfo'].nil?
+            @FlowBatchUrlInfo = FlowBatchUrlInfo.new
+            @FlowBatchUrlInfo.deserialize(params['FlowBatchUrlInfo'])
+          end
         end
       end
 
@@ -7747,6 +7754,49 @@ module TencentCloud
           @ApproverName = params['ApproverName']
           @ApproverMobile = params['ApproverMobile']
           @LongUrl = params['LongUrl']
+        end
+      end
+
+      # 批量签署合同相关信息，指定批量签署合同和签署方的信息，用于补充动态签署人。
+      class FlowBatchApproverInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID。
+        # @type FlowId: String
+        # @param RecipientId: 签署节点ID，用于生成动态签署人链接完成领取。注：`生成动态签署人补充链接时必传。`
+        # @type RecipientId: String
+
+        attr_accessor :FlowId, :RecipientId
+
+        def initialize(flowid=nil, recipientid=nil)
+          @FlowId = flowid
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RecipientId = params['RecipientId']
+        end
+      end
+
+      # 批量签署合同相关信息，指定批量签署合同和签署方的信息，用于补充动态签署人。
+      class FlowBatchUrlInfo < TencentCloud::Common::AbstractModel
+        # @param FlowBatchApproverInfos: 批量签署合同和签署方的信息，用于补充动态签署人。
+        # @type FlowBatchApproverInfos: Array
+
+        attr_accessor :FlowBatchApproverInfos
+
+        def initialize(flowbatchapproverinfos=nil)
+          @FlowBatchApproverInfos = flowbatchapproverinfos
+        end
+
+        def deserialize(params)
+          unless params['FlowBatchApproverInfos'].nil?
+            @FlowBatchApproverInfos = []
+            params['FlowBatchApproverInfos'].each do |i|
+              flowbatchapproverinfo_tmp = FlowBatchApproverInfo.new
+              flowbatchapproverinfo_tmp.deserialize(i)
+              @FlowBatchApproverInfos << flowbatchapproverinfo_tmp
+            end
+          end
         end
       end
 

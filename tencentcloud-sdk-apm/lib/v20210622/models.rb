@@ -103,6 +103,104 @@ module TencentCloud
         end
       end
 
+      # 应用相关的配置列表项
+      class ApmApplicationConfigView < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: 实例ID
+        # @type InstanceKey: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param OperationNameFilter: 接口过滤
+        # @type OperationNameFilter: String
+        # @param ExceptionFilter: 异常过滤
+        # @type ExceptionFilter: String
+        # @param ErrorCodeFilter: 错误码过滤
+        # @type ErrorCodeFilter: String
+        # @param EventEnable: 应用诊断开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventEnable: Boolean
+        # @param UrlConvergenceSwitch: URL收敛开关 0 关 1 开
+        # @type UrlConvergenceSwitch: Integer
+        # @param UrlConvergenceThreshold: URL收敛阈值
+        # @type UrlConvergenceThreshold: Integer
+        # @param UrlConvergence: URL收敛规则正则
+        # @type UrlConvergence: String
+        # @param UrlExclude: URL排除规则正则
+        # @type UrlExclude: String
+        # @param IsRelatedLog: 是否开启日志 0 关 1 开
+        # @type IsRelatedLog: Integer
+        # @param LogSource: 日志来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSource: String
+        # @param LogSet: CLS日志集
+        # @type LogSet: String
+        # @param LogTopicID: 日志主题ID
+        # @type LogTopicID: String
+        # @param SnapshotEnable: 线程剖析开关
+        # @type SnapshotEnable: Boolean
+        # @param SnapshotTimeout: 线程剖析超时阈值
+        # @type SnapshotTimeout: Integer
+        # @param AgentEnable: 探针开启开关
+        # @type AgentEnable: Boolean
+        # @param InstrumentList: 组件列表开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstrumentList: Array
+        # @param TraceSquash: 链路压缩开关
+        # @type TraceSquash: Boolean
+
+        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash
+
+        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil)
+          @InstanceKey = instancekey
+          @ServiceName = servicename
+          @OperationNameFilter = operationnamefilter
+          @ExceptionFilter = exceptionfilter
+          @ErrorCodeFilter = errorcodefilter
+          @EventEnable = eventenable
+          @UrlConvergenceSwitch = urlconvergenceswitch
+          @UrlConvergenceThreshold = urlconvergencethreshold
+          @UrlConvergence = urlconvergence
+          @UrlExclude = urlexclude
+          @IsRelatedLog = isrelatedlog
+          @LogSource = logsource
+          @LogSet = logset
+          @LogTopicID = logtopicid
+          @SnapshotEnable = snapshotenable
+          @SnapshotTimeout = snapshottimeout
+          @AgentEnable = agentenable
+          @InstrumentList = instrumentlist
+          @TraceSquash = tracesquash
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @ServiceName = params['ServiceName']
+          @OperationNameFilter = params['OperationNameFilter']
+          @ExceptionFilter = params['ExceptionFilter']
+          @ErrorCodeFilter = params['ErrorCodeFilter']
+          @EventEnable = params['EventEnable']
+          @UrlConvergenceSwitch = params['UrlConvergenceSwitch']
+          @UrlConvergenceThreshold = params['UrlConvergenceThreshold']
+          @UrlConvergence = params['UrlConvergence']
+          @UrlExclude = params['UrlExclude']
+          @IsRelatedLog = params['IsRelatedLog']
+          @LogSource = params['LogSource']
+          @LogSet = params['LogSet']
+          @LogTopicID = params['LogTopicID']
+          @SnapshotEnable = params['SnapshotEnable']
+          @SnapshotTimeout = params['SnapshotTimeout']
+          @AgentEnable = params['AgentEnable']
+          unless params['InstrumentList'].nil?
+            @InstrumentList = []
+            params['InstrumentList'].each do |i|
+              instrument_tmp = Instrument.new
+              instrument_tmp.deserialize(i)
+              @InstrumentList << instrument_tmp
+            end
+          end
+          @TraceSquash = params['TraceSquash']
+        end
+      end
+
       # 指标维度信息
       class ApmField < TencentCloud::Common::AbstractModel
         # @param CompareVal: 昨日同比指标值，已弃用，不建议使用
@@ -563,6 +661,49 @@ module TencentCloud
         end
       end
 
+      # DescribeGeneralApmApplicationConfig请求参数结构体
+      class DescribeGeneralApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+
+        attr_accessor :ServiceName, :InstanceId
+
+        def initialize(servicename=nil, instanceid=nil)
+          @ServiceName = servicename
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeGeneralApmApplicationConfig返回参数结构体
+      class DescribeGeneralApmApplicationConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ApmApplicationConfigView: 应用配置项
+        # @type ApmApplicationConfigView: :class:`Tencentcloud::Apm.v20210622.models.ApmApplicationConfigView`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApmApplicationConfigView, :RequestId
+
+        def initialize(apmapplicationconfigview=nil, requestid=nil)
+          @ApmApplicationConfigView = apmapplicationconfigview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApmApplicationConfigView'].nil?
+            @ApmApplicationConfigView = ApmApplicationConfigView.new
+            @ApmApplicationConfigView.deserialize(params['ApmApplicationConfigView'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGeneralMetricData请求参数结构体
       class DescribeGeneralMetricDataRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 要过滤的维度信息：
@@ -970,6 +1111,80 @@ module TencentCloud
         end
       end
 
+      # DescribeTagValues请求参数结构体
+      class DescribeTagValuesRequest < TencentCloud::Common::AbstractModel
+        # @param TagKey: 维度名
+        # @type TagKey: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param OrFilters: Or过滤条件
+        # @type OrFilters: Array
+        # @param Type: 使用类型
+        # @type Type: String
+
+        attr_accessor :TagKey, :InstanceId, :EndTime, :Filters, :StartTime, :OrFilters, :Type
+
+        def initialize(tagkey=nil, instanceid=nil, endtime=nil, filters=nil, starttime=nil, orfilters=nil, type=nil)
+          @TagKey = tagkey
+          @InstanceId = instanceid
+          @EndTime = endtime
+          @Filters = filters
+          @StartTime = starttime
+          @OrFilters = orfilters
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @InstanceId = params['InstanceId']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          unless params['OrFilters'].nil?
+            @OrFilters = []
+            params['OrFilters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @OrFilters << filter_tmp
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeTagValues返回参数结构体
+      class DescribeTagValuesResponse < TencentCloud::Common::AbstractModel
+        # @param Values: 维度值列表
+        # @type Values: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Values, :RequestId
+
+        def initialize(values=nil, requestid=nil)
+          @Values = values
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤方式（=, !=, in）
@@ -1011,6 +1226,28 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 组件
+      class Instrument < TencentCloud::Common::AbstractModel
+        # @param Name: 组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Enable: 组件开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+
+        attr_accessor :Name, :Enable
+
+        def initialize(name=nil, enable=nil)
+          @Name = name
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Enable = params['Enable']
         end
       end
 
@@ -1160,6 +1397,57 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGeneralApmApplicationConfig请求参数结构体
+      class ModifyGeneralApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Tags: 需要修改的字段key value分别指定字段名、字段值
+        # @type Tags: Array
+        # @param ServiceNames: 需要修改配置的服务列表名称
+        # @type ServiceNames: Array
+
+        attr_accessor :InstanceId, :Tags, :ServiceNames
+
+        def initialize(instanceid=nil, tags=nil, servicenames=nil)
+          @InstanceId = instanceid
+          @Tags = tags
+          @ServiceNames = servicenames
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          @ServiceNames = params['ServiceNames']
+        end
+      end
+
+      # ModifyGeneralApmApplicationConfig返回参数结构体
+      class ModifyGeneralApmApplicationConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Message: 返回值描述
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Message, :RequestId
+
+        def initialize(message=nil, requestid=nil)
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
