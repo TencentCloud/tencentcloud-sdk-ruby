@@ -2396,7 +2396,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取targets信息
+        # 获取targets信息，在过滤条件中指定job名称时返回targets详情，否则仅返回数量
 
         # @param request: Request instance for DescribePrometheusTargetsTMP.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusTargetsTMPRequest`

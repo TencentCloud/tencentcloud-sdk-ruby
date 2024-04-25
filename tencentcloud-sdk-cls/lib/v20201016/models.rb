@@ -1534,10 +1534,16 @@ module TencentCloud
         # @param ExtractRuleInfo: 见： ExtractRuleInfo 结构描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param TaskType: COS导入任务类型。1：一次性导入任务；2：持续性导入任务。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: Integer
+        # @param Metadata: 元数据。支持 bucket，object。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: Array
 
-        attr_accessor :Id, :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Status, :Enable, :CreateTime, :UpdateTime, :Progress, :Compress, :ExtractRuleInfo
+        attr_accessor :Id, :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Status, :Enable, :CreateTime, :UpdateTime, :Progress, :Compress, :ExtractRuleInfo, :TaskType, :Metadata
 
-        def initialize(id=nil, topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, progress=nil, compress=nil, extractruleinfo=nil)
+        def initialize(id=nil, topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, progress=nil, compress=nil, extractruleinfo=nil, tasktype=nil, metadata=nil)
           @Id = id
           @TopicId = topicid
           @LogsetId = logsetid
@@ -1553,6 +1559,8 @@ module TencentCloud
           @Progress = progress
           @Compress = compress
           @ExtractRuleInfo = extractruleinfo
+          @TaskType = tasktype
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -1574,6 +1582,8 @@ module TencentCloud
             @ExtractRuleInfo = ExtractRuleInfo.new
             @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
           end
+          @TaskType = params['TaskType']
+          @Metadata = params['Metadata']
         end
       end
 
@@ -3174,7 +3184,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param DstResources: 加工任务目的topic_id以及别名
         # @type DstResources: Array
-        # @param EtlContent: 加工逻辑函数
+        # @param EtlContent: 加工逻辑函数。
         # @type EtlContent: String
 
         attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent
@@ -4491,7 +4501,7 @@ module TencentCloud
 
         # 必选：否
 
-        # <br><li> srctopicId
+        # <br><li> topicId
 
         # 按照【源topicId】进行过滤。
         # 类型：String
@@ -5696,37 +5706,57 @@ module TencentCloud
         # @param UnMatchLogKey: 失败日志的key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchLogKey: String
-        # @param Backtracking: 增量采集模式下的回溯数据量，默认-1（全量采集）；其他非负数表示增量采集（从最新的位置，往前采集${Backtracking}字节（Byte）的日志）最大支持1073741824（1G）。
+        # @param Backtracking: 增量采集模式下的回溯数据量，默认：-1（全量采集）；其他非负数表示增量采集（从最新的位置，往前采集${Backtracking}字节（Byte）的日志）最大支持1073741824（1G）。
+        # 注意：
+        # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backtracking: Integer
-        # @param IsGBK: 是否为Gbk编码.   0: 否, 1: 是
+        # @param IsGBK: 是否为Gbk编码。 0：否；1：是。
+        # 注意：
+        # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGBK: Integer
-        # @param JsonStandard: 是否为标准json.   0: 否, 1: 是
+        # @param JsonStandard: 是否为标准json。  0：否； 1：是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonStandard: Integer
         # @param Protocol: syslog传输协议，取值为tcp或者udp。
-        # 该字段适用于：创建采集规则配置、修改采集规则配置
+        # 注意：
+        # - 该字段适用于：创建采集规则配置、修改采集规则配置。
+        # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Address: syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
-        # 该字段适用于：创建采集规则配置、修改采集规则配置
+        # 注意：
+        # - 该字段适用于：创建采集规则配置、修改采集规则配置。
+        # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param ParseProtocol: rfc3164：指定系统日志采集使用RFC3164协议解析日志。
         # rfc5424：指定系统日志采集使用RFC5424协议解析日志。
-        # auto：自动匹配rfc3164或者rfc5424其中一种协议
-        # 该字段适用于：创建采集规则配置、修改采集规则配置
+        # auto：自动匹配rfc3164或者rfc5424其中一种协议。
+        # 注意：
+        # - 该字段适用于：创建采集规则配置、修改采集规则配置
+        # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParseProtocol: String
-        # @param MetadataType: 元数据类型，0: 不使用元数据信息，1:使用机器组元数据，2:使用用户自定义元数据，3:使用采集配置路径，
+        # @param MetadataType: 元数据类型。0: 不使用元数据信息；1:使用机器组元数据；2:使用用户自定义元数据；3:使用采集配置路径。
+        # 注意：
+        # - COS导入不支持此字段。
         # @type MetadataType: Integer
-        # @param PathRegex: 采集配置路径正则表达式，MetadataType为3时必填
+        # @param PathRegex: 采集配置路径正则表达式。
+        # 注意：
+        # - MetadataType为3时必填。
+        # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathRegex: String
-        # @param MetaTags: 用户自定义元数据信息，MetadataType为2时必填
+        # @param MetaTags: 用户自定义元数据信息。
+        # 注意：
+        # - MetadataType为2时必填。
+        # - COS导入不支持此字段。
         # @type MetaTags: Array
-        # @param EventLogRules: Windows事件日志采集
+        # @param EventLogRules: Windows事件日志采集。
+        # 注意：
+        # - COS导入不支持此字段。
         # @type EventLogRules: Array
 
         attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags, :EventLogRules
@@ -6812,7 +6842,11 @@ module TencentCloud
       class MergePartitionRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param PartitionId: 合并的PartitionId
+        # @param PartitionId: 合并的PartitionId（找到下一个分区InclusiveBeginKey与入参PartitionId对应的ExclusiveEndKey相等，且找到的分区必须是读写分区（Staus:readwrite），入参PartitionId与找到的PartitionId设置为只读分区（Status:readonly）,再新建一个新的读写分区） 。[获取分区列表](https://cloud.tencent.com/document/product/614/56469)
+
+        # 1. 入参PartitionId只能是读写分区（Status的值有readonly，readwrite），且能找到入参PartitionId的下一个可读写分区（找到下一个分区InclusiveBeginKey与入参PartitionId对应的ExclusiveEndKey相等）；
+        # 2. 入参PartitionId不能是最后一个分区（PartitionId的ExclusiveEndKey不能是ffffffffffffffffffffffffffffffff）；
+        # 3. topic的分区数量是有限制的（默认50个），合并之后不能超过最大分区，否则不能合并。
         # @type PartitionId: Integer
 
         attr_accessor :TopicId, :PartitionId
@@ -8148,9 +8182,10 @@ module TencentCloud
 
       # 告警策略中监控任务的执行时间点
       class MonitorTime < TencentCloud::Common::AbstractModel
-        # @param Type: 可选值：
-        # <br><li> Period - 周期执行
-        # <br><li> Fixed - 定期执行
+        # @param Type: 执行周期， 可选值：Period；Fixed。
+
+        # - Period：固定频率
+        # - Fixed：固定时间
         # @type Type: String
         # @param Time: 执行的周期，或者定制执行的时间节点。单位为分钟，取值范围为1~1440。
         # @type Time: Integer
@@ -8299,7 +8334,7 @@ module TencentCloud
       class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
         # @param FromTopicId: 日志主题ID
         # @type FromTopicId: String
-        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]，默认：0
         # @type Compression: Integer
         # @param ConsumerContent: kafka协议消费数据格式
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
@@ -8947,7 +8982,7 @@ module TencentCloud
         # @type BucketRegion: String
         # @param Prefix: cos文件所在文件夹的前缀
         # @type Prefix: String
-        # @param Compress: 压缩模式:   "", "gzip", "lzop", "snappy”;   默认""
+        # @param Compress: 压缩模式:   "", "gzip", "lzop", "snappy";   默认""
         # @type Compress: String
 
         attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :Compress
@@ -9080,10 +9115,11 @@ module TencentCloud
         # @type SyntaxRule: Integer
         # @param TopicId: - 要检索分析的日志主题ID，仅能指定一个日志主题。
         # - 如需同时检索多个日志主题，请使用Topics参数。
+        # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
         # @type TopicId: String
         # @param Topics: - 要检索分析的日志主题列表，最大支持20个日志主题。
         # - 检索单个日志主题时请使用TopicId。
-        # - 不能同时使用TopicId和Topics。
+        # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
         # @type Topics: Array
         # @param Limit: 表示单次查询返回的原始日志条数，默认为100，最大值为1000，获取后续日志需使用Context参数
         # 注意：

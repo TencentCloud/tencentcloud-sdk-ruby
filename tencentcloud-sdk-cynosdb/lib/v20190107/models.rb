@@ -2342,7 +2342,7 @@ module TencentCloud
         # @type UniqueVpcId: String
         # @param UniqueSubnetId: 私有网络子网ID，默认与集群子网ID保持一致
         # @type UniqueSubnetId: String
-        # @param ProxyCount: 数据库代理组节点个数
+        # @param ProxyCount: 数据库代理组节点个数（该参数不再建议使用，建议使用ProxyZones)
         # @type ProxyCount: Integer
         # @param ConnectionPoolType: 连接池类型：SessionConnectionPool(会话级别连接池 )
         # @type ConnectionPoolType: String
@@ -2354,7 +2354,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Description: 描述说明
         # @type Description: String
-        # @param ProxyZones: 数据库节点信息
+        # @param ProxyZones: 数据库节点信息（该参数与ProxyCount需要任选一个输入）
         # @type ProxyZones: Array
 
         attr_accessor :ClusterId, :Cpu, :Mem, :UniqueVpcId, :UniqueSubnetId, :ProxyCount, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :ProxyZones
@@ -4961,6 +4961,62 @@ module TencentCloud
               binlogitem_tmp = BinlogItem.new
               binlogitem_tmp.deserialize(i)
               @Binlogs << binlogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChangedParamsAfterUpgrade请求参数结构体
+      class DescribeChangedParamsAfterUpgradeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param DstCpu: 变配后的CPU
+        # @type DstCpu: Integer
+        # @param DstMem: 变配后的MEM，单位G
+        # @type DstMem: Integer
+
+        attr_accessor :InstanceId, :DstCpu, :DstMem
+
+        def initialize(instanceid=nil, dstcpu=nil, dstmem=nil)
+          @InstanceId = instanceid
+          @DstCpu = dstcpu
+          @DstMem = dstmem
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DstCpu = params['DstCpu']
+          @DstMem = params['DstMem']
+        end
+      end
+
+      # DescribeChangedParamsAfterUpgrade返回参数结构体
+      class DescribeChangedParamsAfterUpgradeResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 参数个数
+        # @type TotalCount: Integer
+        # @param Items: 实例参数列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              paramiteminfo_tmp = ParamItemInfo.new
+              paramiteminfo_tmp.deserialize(i)
+              @Items << paramiteminfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -10427,6 +10483,41 @@ module TencentCloud
           @Description = params['Description']
           @IsFunc = params['IsFunc']
           @Func = params['Func']
+        end
+      end
+
+      # 参数变化信息
+      class ParamItemInfo < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamName: String
+        # @param NewValue: 参数新值
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewValue: String
+        # @param OldValue: 参数旧值
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldValue: String
+        # @param ValueFunction: 参数公式
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueFunction: String
+
+        attr_accessor :ParamName, :NewValue, :OldValue, :ValueFunction
+
+        def initialize(paramname=nil, newvalue=nil, oldvalue=nil, valuefunction=nil)
+          @ParamName = paramname
+          @NewValue = newvalue
+          @OldValue = oldvalue
+          @ValueFunction = valuefunction
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @NewValue = params['NewValue']
+          @OldValue = params['OldValue']
+          @ValueFunction = params['ValueFunction']
         end
       end
 

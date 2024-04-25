@@ -56,8 +56,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 3
-        deprecate :BTime=, :none, 2024, 3
+        deprecate :BTime, :none, 2024, 4
+        deprecate :BTime=, :none, 2024, 4
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -4981,10 +4981,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 3
-        deprecate :VtsMin=, :none, 2024, 3
-        deprecate :VtsMax, :none, 2024, 3
-        deprecate :VtsMax=, :none, 2024, 3
+        deprecate :VtsMin, :none, 2024, 4
+        deprecate :VtsMin=, :none, 2024, 4
+        deprecate :VtsMax, :none, 2024, 4
+        deprecate :VtsMax=, :none, 2024, 4
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil)
           @Domain = domain
@@ -5087,10 +5087,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 3
-        deprecate :VtsMin=, :none, 2024, 3
-        deprecate :VtsMax, :none, 2024, 3
-        deprecate :VtsMax=, :none, 2024, 3
+        deprecate :VtsMin, :none, 2024, 4
+        deprecate :VtsMin=, :none, 2024, 4
+        deprecate :VtsMax, :none, 2024, 4
+        deprecate :VtsMax=, :none, 2024, 4
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -8631,8 +8631,8 @@ module TencentCloud
 
         attr_accessor :Period, :TopicId
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 3
-        deprecate :TopicId=, :none, 2024, 3
+        deprecate :TopicId, :none, 2024, 4
+        deprecate :TopicId=, :none, 2024, 4
 
         def initialize(period=nil, topicid=nil)
           @Period = period
@@ -9929,7 +9929,7 @@ module TencentCloud
       class ModifyModuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要设置的domain
         # @type Domain: String
-        # @param WebSecurity: WEB 安全模块开关，0或1
+        # @param WebSecurity: Web 安全模块开关，0或1
         # @type WebSecurity: Integer
         # @param AccessControl: 访问控制模块开关，0或者1
         # @type AccessControl: Integer

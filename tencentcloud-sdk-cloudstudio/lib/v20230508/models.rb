@@ -35,18 +35,20 @@ module TencentCloud
         # @type Extensions: Array
         # @param Lifecycle: 工作空间生命周期钩子.  分为三个阶段 init, start, destroy. 分别表示工作空间数据初始化阶段, 工作空间启动阶段, 工作空间关闭阶段.  用户可以自定义 shell 命令.
         # @type Lifecycle: :class:`Tencentcloud::Cloudstudio.v20230508.models.LifeCycle`
-        # @param AppId: 应用名称
-        # @type AppId: Integer
-        # @param Uin: 用户UIN
-        # @type Uin: String
-        # @param UniqVpcId: VPCID
-        # @type UniqVpcId: String
-        # @param SubnetId: 子网ID
-        # @type SubnetId: String
+        # @param TenantAppId: 应用名称
+        # @type TenantAppId: Integer
+        # @param TenantUin: 用户UIN
+        # @type TenantUin: String
+        # @param TenantUniqVpcId: VPCID
+        # @type TenantUniqVpcId: String
+        # @param TenantSubnetId: 子网ID
+        # @type TenantSubnetId: String
+        # @param Region: 地域
+        # @type Region: String
 
-        attr_accessor :Name, :Description, :Specs, :Image, :Repository, :Envs, :Extensions, :Lifecycle, :AppId, :Uin, :UniqVpcId, :SubnetId
+        attr_accessor :Name, :Description, :Specs, :Image, :Repository, :Envs, :Extensions, :Lifecycle, :TenantAppId, :TenantUin, :TenantUniqVpcId, :TenantSubnetId, :Region
 
-        def initialize(name=nil, description=nil, specs=nil, image=nil, repository=nil, envs=nil, extensions=nil, lifecycle=nil, appid=nil, uin=nil, uniqvpcid=nil, subnetid=nil)
+        def initialize(name=nil, description=nil, specs=nil, image=nil, repository=nil, envs=nil, extensions=nil, lifecycle=nil, tenantappid=nil, tenantuin=nil, tenantuniqvpcid=nil, tenantsubnetid=nil, region=nil)
           @Name = name
           @Description = description
           @Specs = specs
@@ -55,10 +57,11 @@ module TencentCloud
           @Envs = envs
           @Extensions = extensions
           @Lifecycle = lifecycle
-          @AppId = appid
-          @Uin = uin
-          @UniqVpcId = uniqvpcid
-          @SubnetId = subnetid
+          @TenantAppId = tenantappid
+          @TenantUin = tenantuin
+          @TenantUniqVpcId = tenantuniqvpcid
+          @TenantSubnetId = tenantsubnetid
+          @Region = region
         end
 
         def deserialize(params)
@@ -83,10 +86,11 @@ module TencentCloud
             @Lifecycle = LifeCycle.new
             @Lifecycle.deserialize(params['Lifecycle'])
           end
-          @AppId = params['AppId']
-          @Uin = params['Uin']
-          @UniqVpcId = params['UniqVpcId']
-          @SubnetId = params['SubnetId']
+          @TenantAppId = params['TenantAppId']
+          @TenantUin = params['TenantUin']
+          @TenantUniqVpcId = params['TenantUniqVpcId']
+          @TenantSubnetId = params['TenantSubnetId']
+          @Region = params['Region']
         end
       end
 

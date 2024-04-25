@@ -1754,7 +1754,7 @@ module TencentCloud
       class DescribeChatMessagesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID（废弃）
         # @type InstanceId: Integer
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: 应用 ID，可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param CdrId: 服务记录ID（废弃）
         # @type CdrId: String

@@ -2699,6 +2699,10 @@ module TencentCloud
         # @type DeliveryConditions: Array
         # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填表示采样比例为 100%。
         # @type Sample: Integer
+        # @param LogFormat: 日志投递的输出格式。不填表示为默认格式，默认格式逻辑如下：
+        # <li>当 TaskType 取值为 custom_endpoint 时，默认格式为多个 JSON 对象组成的数组，每个 JSON 对象为一条日志；</li>
+        # <li>当 TaskType 取值为 s3 时，默认格式为 JSON Lines；</li>特别地，当 TaskType 取值为 cls 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。
+        # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
         # @param CLS: CLS 的配置信息。当 TaskType 取值为 cls 时，该参数必填。
         # @type CLS: :class:`Tencentcloud::Teo.v20220901.models.CLSTopic`
         # @param CustomEndpoint: 自定义 HTTP 服务的配置信息。当 TaskType 取值为 custom_endpoint 时，该参数必填。
@@ -2706,9 +2710,9 @@ module TencentCloud
         # @param S3: AWS S3 兼容存储桶的配置信息。当 TaskType 取值为 s3 时，该参数必填。
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
 
-        attr_accessor :ZoneId, :TaskName, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :CLS, :CustomEndpoint, :S3
+        attr_accessor :ZoneId, :TaskName, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3
 
-        def initialize(zoneid=nil, taskname=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, cls=nil, customendpoint=nil, s3=nil)
+        def initialize(zoneid=nil, taskname=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil)
           @ZoneId = zoneid
           @TaskName = taskname
           @TaskType = tasktype
@@ -2719,6 +2723,7 @@ module TencentCloud
           @CustomFields = customfields
           @DeliveryConditions = deliveryconditions
           @Sample = sample
+          @LogFormat = logformat
           @CLS = cls
           @CustomEndpoint = customendpoint
           @S3 = s3
@@ -2749,6 +2754,10 @@ module TencentCloud
             end
           end
           @Sample = params['Sample']
+          unless params['LogFormat'].nil?
+            @LogFormat = LogFormat.new
+            @LogFormat.deserialize(params['LogFormat'])
+          end
           unless params['CLS'].nil?
             @CLS = CLSTopic.new
             @CLS.deserialize(params['CLS'])
@@ -3224,8 +3233,8 @@ module TencentCloud
       class DDosProtectionConfig < TencentCloud::Common::AbstractModel
         # @param LevelMainland: 中国大陆地区独立 DDoS 防护的规格。详情请参考 [独立 DDoS 防护相关费用](https://cloud.tencent.com/document/product/1552/94162)
         # <li>PLATFORM：平台默认防护，即不开启独立 DDoS 防护；</li>
-        # <li>BASE30_MAX300：开启独立 DDoS 防护，提供 30 Gbps 保底防护带宽，可配置最高 300 Gpbs 弹性防护带宽；</li>
-        # <li>BASE60_MAX600：开启独立 DDoS 防护，提供 60 Gbps 保底防护带宽，可配置最高 600 Gpbs 弹性防护带宽。</li>不填写参数时，取默认值 PLATFORM。
+        # <li>BASE30_MAX300：开启独立 DDoS 防护，提供 30 Gbps 保底防护带宽以及 300 Gbps 弹性防护带宽；</li>
+        # <li>BASE60_MAX600：开启独立 DDoS 防护，提供 60 Gbps 保底防护带宽以及 600 Gbps 弹性防护带宽。</li>不填写参数时，取默认值 PLATFORM。
         # @type LevelMainland: String
         # @param MaxBandwidthMainland: 中国大陆地区独立 DDoS 防护的弹性防护带宽配置。
         # 仅当开启中国大陆区域独立 DDos 防护时有效（详见 LevelMainland 参数配置），且取值范围有如下限制：
@@ -3235,7 +3244,7 @@ module TencentCloud
         # @type MaxBandwidthMainland: Integer
         # @param LevelOverseas: 全球（除中国大陆以外）地区独立 DDoS 防护的规格。
         # <li>PLATFORM：平台默认防护，即不开启独立 DDoS 防护；</li>
-        # <li>ANYCAST300：开启独立 DDoS 防护，提供合计最大 300 Gbps 防护带宽；</li>
+        # <li>ANYCAST300：开启独立 DDoS 防护，提供 300 Gbps 防护带宽；</li>
         # <li>ANYCAST_ALLIN：开启独立 DDoS 防护，使用全部可用防护资源进行防护。</li>不填写参数时，取默认值 PLATFORM。
         # @type LevelOverseas: String
 
@@ -8134,6 +8143,54 @@ module TencentCloud
         end
       end
 
+      # 实时日志投递的输出格式。您可以直接通过 FormatType 参数使用指定预设日志输出格式（JSON Lines / csv），也可以在预设日志输出格式基础上，通过其他参数来自定义变体输出格式。
+      class LogFormat < TencentCloud::Common::AbstractModel
+        # @param FormatType: 日志投递的预设输出格式类型，取值有：
+        # <li>json：使用预设日志输出格式 JSON Lines，单条日志中的字段以键值对方式呈现；</li>
+        # <li>csv：使用预设日志输出格式 csv，单条日志中仅呈现字段值，不呈现字段名称。</li>
+        # @type FormatType: String
+        # @param BatchPrefix: 在每个日志投递批次之前添加的字符串。每个日志投递批次可能包含多条日志记录。
+        # @type BatchPrefix: String
+        # @param BatchSuffix: 在每个日志投递批次后附加的字符串。
+        # @type BatchSuffix: String
+        # @param RecordPrefix: 在每条日志记录之前添加的字符串。
+        # @type RecordPrefix: String
+        # @param RecordSuffix: 在每条日志记录后附加的字符串。
+        # @type RecordSuffix: String
+        # @param RecordDelimiter: 插入日志记录之间作为分隔符的字符串，取值有：
+        # <li>\n：换行符；</li>
+        # <li>\t：制表符；</li>
+        # <li>，：半角逗号。</li>
+        # @type RecordDelimiter: String
+        # @param FieldDelimiter: 单条日志记录内，插入字段之间作为分隔符的字符串，取值有：
+        # <li>\t：制表符；</li>
+        # <li>，：半角逗号；</li>
+        # <li>;：半角分号。</li>
+        # @type FieldDelimiter: String
+
+        attr_accessor :FormatType, :BatchPrefix, :BatchSuffix, :RecordPrefix, :RecordSuffix, :RecordDelimiter, :FieldDelimiter
+
+        def initialize(formattype=nil, batchprefix=nil, batchsuffix=nil, recordprefix=nil, recordsuffix=nil, recorddelimiter=nil, fielddelimiter=nil)
+          @FormatType = formattype
+          @BatchPrefix = batchprefix
+          @BatchSuffix = batchsuffix
+          @RecordPrefix = recordprefix
+          @RecordSuffix = recordsuffix
+          @RecordDelimiter = recorddelimiter
+          @FieldDelimiter = fielddelimiter
+        end
+
+        def deserialize(params)
+          @FormatType = params['FormatType']
+          @BatchPrefix = params['BatchPrefix']
+          @BatchSuffix = params['BatchSuffix']
+          @RecordPrefix = params['RecordPrefix']
+          @RecordSuffix = params['RecordSuffix']
+          @RecordDelimiter = params['RecordDelimiter']
+          @FieldDelimiter = params['FieldDelimiter']
+        end
+      end
+
       # 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
       class MaxAge < TencentCloud::Common::AbstractModel
         # @param FollowOrigin: 是否遵循源站，取值有：
@@ -8945,14 +9002,16 @@ module TencentCloud
         # @type DeliveryConditions: Array
         # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填保持原有配置。
         # @type Sample: Integer
+        # @param LogFormat: 日志投递的输出格式。不填保持原有配置。
+        # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
         # @param CustomEndpoint: 自定义 HTTP 服务的配置信息，不填保持原有配置。
         # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
         # @param S3: AWS S3 兼容存储桶的配置信息，不填保持原有配置。
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
 
-        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :DeliveryConditions, :Sample, :CustomEndpoint, :S3
+        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :DeliveryConditions, :Sample, :LogFormat, :CustomEndpoint, :S3
 
-        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, customendpoint=nil, s3=nil)
+        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, customendpoint=nil, s3=nil)
           @ZoneId = zoneid
           @TaskId = taskid
           @TaskName = taskname
@@ -8962,6 +9021,7 @@ module TencentCloud
           @CustomFields = customfields
           @DeliveryConditions = deliveryconditions
           @Sample = sample
+          @LogFormat = logformat
           @CustomEndpoint = customendpoint
           @S3 = s3
         end
@@ -8990,6 +9050,10 @@ module TencentCloud
             end
           end
           @Sample = params['Sample']
+          unless params['LogFormat'].nil?
+            @LogFormat = LogFormat.new
+            @LogFormat.deserialize(params['LogFormat'])
+          end
           unless params['CustomEndpoint'].nil?
             @CustomEndpoint = CustomEndpoint.new
             @CustomEndpoint.deserialize(params['CustomEndpoint'])
@@ -10502,6 +10566,11 @@ module TencentCloud
         # @type DeliveryConditions: Array
         # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：605 表示采样比例为 60.5%。
         # @type Sample: Integer
+        # @param LogFormat: 日志投递的输出格式。出参为 null 时表示为默认格式，默认格式逻辑如下：
+        # <li>当 TaskType 取值为 custom_endpoint 时，默认格式为多个 JSON 对象组成的数组，每个 JSON 对象为一条日志；</li>
+        # <li>当 TaskType 取值为 s3 时，默认格式为 JSON Lines。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
         # @param CLS: CLS 的配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLS: :class:`Tencentcloud::Teo.v20220901.models.CLSTopic`
@@ -10516,9 +10585,9 @@ module TencentCloud
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
 
-        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :CLS, :CustomEndpoint, :S3, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3, :CreateTime, :UpdateTime
 
-        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, cls=nil, customendpoint=nil, s3=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil, createtime=nil, updatetime=nil)
           @TaskId = taskid
           @TaskName = taskname
           @DeliveryStatus = deliverystatus
@@ -10530,6 +10599,7 @@ module TencentCloud
           @CustomFields = customfields
           @DeliveryConditions = deliveryconditions
           @Sample = sample
+          @LogFormat = logformat
           @CLS = cls
           @CustomEndpoint = customendpoint
           @S3 = s3
@@ -10563,6 +10633,10 @@ module TencentCloud
             end
           end
           @Sample = params['Sample']
+          unless params['LogFormat'].nil?
+            @LogFormat = LogFormat.new
+            @LogFormat.deserialize(params['LogFormat'])
+          end
           unless params['CLS'].nil?
             @CLS = CLSTopic.new
             @CLS.deserialize(params['CLS'])
@@ -11748,33 +11822,37 @@ module TencentCloud
       class Task < TencentCloud::Common::AbstractModel
         # @param JobId: 任务 ID。
         # @type JobId: String
-        # @param Status: 状态。
-        # @type Status: String
         # @param Target: 资源。
         # @type Target: String
         # @param Type: 任务类型。
         # @type Type: String
+        # @param Status: 状态。取值有：
+        # <li>processing：处理中；</li>
+        # <li>success：成功；</li>
+        # <li> failed：失败；</li>
+        # <li>timeout：超时。</li>
+        # @type Status: String
         # @param CreateTime: 任务创建时间。
         # @type CreateTime: String
         # @param UpdateTime: 任务完成时间。
         # @type UpdateTime: String
 
-        attr_accessor :JobId, :Status, :Target, :Type, :CreateTime, :UpdateTime
+        attr_accessor :JobId, :Target, :Type, :Status, :CreateTime, :UpdateTime
 
-        def initialize(jobid=nil, status=nil, target=nil, type=nil, createtime=nil, updatetime=nil)
+        def initialize(jobid=nil, target=nil, type=nil, status=nil, createtime=nil, updatetime=nil)
           @JobId = jobid
-          @Status = status
           @Target = target
           @Type = type
+          @Status = status
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
 
         def deserialize(params)
           @JobId = params['JobId']
-          @Status = params['Status']
           @Target = params['Target']
           @Type = params['Type']
+          @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end

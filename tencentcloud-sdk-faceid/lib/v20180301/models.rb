@@ -1961,25 +1961,54 @@ module TencentCloud
         # @param Extra: 获取token时透传的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param DeviceInfoTag: 设备风险标签，仅错误码返回1007（设备疑似被劫持）时返回风险标签。标签说明：
-        # 202、5001：设备疑似被Root
-        # 203、5004：设备疑似被注入
-        # 205：设备疑似被Hook
-        # 206：设备疑似虚拟运行环境
-        # 5007、1005：设备疑似摄像头被劫持
-        # 8000：设备疑似存在异常篡改行为
+        # @param DeviceInfoTag: plus版：描述当前请求所在设备的风险标签，详情如下：
+        # 01-设备疑似被Root/设备疑似越狱
+        # 02-设备疑似被注入
+        # 03-设备疑似为模拟器
+        # 04-设备疑似存在风险操作
+        # 05-摄像头疑似被劫持
+        # 06-疑似黑产设备
+        # null-无设备风险
+        # 增强版：此字段不生效，默认为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceInfoTag: String
         # @param RiskInfoTag: 行为风险标签，仅错误码返回1007（设备疑似被劫持）时返回风险标签。标签说明：
         # 02：攻击风险
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskInfoTag: String
+        # @param LivenessInfoTag: plus版：描述当前请求活体阶段被拒绝的详细原因，详情如下：
+        # 01-用户全程闭眼
+        # 02-用户未完成指定动作
+        # 03-疑似翻拍攻击
+        # 04-疑似合成图片
+        # 05-疑似合成视频
+        # 06-疑似合成动作
+        # 07-疑似黑产模版
+        # 08-疑似存在水印
+        # 09-反光校验未通过
+        # 10-最佳帧校验未通过
+        # 11-人脸质量过差
+        # 12-人脸距离不匹配
+        # 13-疑似对抗样本攻击
+        # null-无
+        # 增强版：此字段不生效，默认为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessInfoTag: String
+        # @param DeviceInfoLevel: plus版：描述当前请求所在设备的风险等级，共4级，详情如下：
+        # 1 - 安全
+        # 2 - 低风险
+        # 3 - 中风险
+        # 4 - 高危
+        # null - 未获取到风险等级
+        # 增强版：此字段不生效，默认为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceInfoLevel: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IdCard, :Name, :Result, :Description, :Similarity, :VideoBase64, :BestFrameBase64, :Extra, :DeviceInfoTag, :RiskInfoTag, :RequestId
+        attr_accessor :IdCard, :Name, :Result, :Description, :Similarity, :VideoBase64, :BestFrameBase64, :Extra, :DeviceInfoTag, :RiskInfoTag, :LivenessInfoTag, :DeviceInfoLevel, :RequestId
 
-        def initialize(idcard=nil, name=nil, result=nil, description=nil, similarity=nil, videobase64=nil, bestframebase64=nil, extra=nil, deviceinfotag=nil, riskinfotag=nil, requestid=nil)
+        def initialize(idcard=nil, name=nil, result=nil, description=nil, similarity=nil, videobase64=nil, bestframebase64=nil, extra=nil, deviceinfotag=nil, riskinfotag=nil, livenessinfotag=nil, deviceinfolevel=nil, requestid=nil)
           @IdCard = idcard
           @Name = name
           @Result = result
@@ -1990,6 +2019,8 @@ module TencentCloud
           @Extra = extra
           @DeviceInfoTag = deviceinfotag
           @RiskInfoTag = riskinfotag
+          @LivenessInfoTag = livenessinfotag
+          @DeviceInfoLevel = deviceinfolevel
           @RequestId = requestid
         end
 
@@ -2004,6 +2035,8 @@ module TencentCloud
           @Extra = params['Extra']
           @DeviceInfoTag = params['DeviceInfoTag']
           @RiskInfoTag = params['RiskInfoTag']
+          @LivenessInfoTag = params['LivenessInfoTag']
+          @DeviceInfoLevel = params['DeviceInfoLevel']
           @RequestId = params['RequestId']
         end
       end

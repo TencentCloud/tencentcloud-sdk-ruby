@@ -1133,7 +1133,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ip防护状态查询
+        # IP防护状态查询
 
         # @param request: Request instance for DescribeIPStatusList.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeIPStatusListRequest`

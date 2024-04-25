@@ -13198,6 +13198,37 @@ module TencentCloud
         end
       end
 
+      # 直播流录制结果
+      class LiveStreamRecordResultInfo < TencentCloud::Common::AbstractModel
+        # @param RecordOver: 录制是否结束。
+        # 0：录制未结束，返回单个文件结果
+        # 1：录制结束，返回所有录制文件结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordOver: Integer
+        # @param FileResults: 文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileResults: Array
+
+        attr_accessor :RecordOver, :FileResults
+
+        def initialize(recordover=nil, fileresults=nil)
+          @RecordOver = recordover
+          @FileResults = fileresults
+        end
+
+        def deserialize(params)
+          @RecordOver = params['RecordOver']
+          unless params['FileResults'].nil?
+            @FileResults = []
+            params['FileResults'].each do |i|
+              liverecordfile_tmp = LiveRecordFile.new
+              liverecordfile_tmp.deserialize(i)
+              @FileResults << liverecordfile_tmp
+            end
+          end
+        end
+      end
+
       # 直播 AI 打点识别结果
       class LiveStreamTagRecognitionResult < TencentCloud::Common::AbstractModel
         # @param Id: 打点事件。
@@ -16378,6 +16409,7 @@ module TencentCloud
         # @param NotificationType: 直播流处理结果类型，包含：
         # <li>AiReviewResult：内容审核结果；</li>
         # <li>AiRecognitionResult：内容识别结果；</li>
+        # <li>LiveRecordResult：直播录制结果；</li>
         # <li>ProcessEof：直播流处理结束。</li>
         # @type NotificationType: String
         # @param TaskId: 视频处理任务 ID。
@@ -16397,6 +16429,9 @@ module TencentCloud
         # @param AiQualityControlResultInfo: 媒体质检结果，当 NotificationType 为 AiQualityControlResult 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiQualityControlResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamAiQualityControlResultInfo`
+        # @param LiveRecordResultInfo: 直播录制结果，当 NotificationType 为 LiveRecordResult 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveRecordResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamRecordResultInfo`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
@@ -16404,9 +16439,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NotificationType, :TaskId, :ProcessEofInfo, :AiReviewResultInfo, :AiRecognitionResultInfo, :AiAnalysisResultInfo, :AiQualityControlResultInfo, :SessionId, :SessionContext, :RequestId
+        attr_accessor :NotificationType, :TaskId, :ProcessEofInfo, :AiReviewResultInfo, :AiRecognitionResultInfo, :AiAnalysisResultInfo, :AiQualityControlResultInfo, :LiveRecordResultInfo, :SessionId, :SessionContext, :RequestId
 
-        def initialize(notificationtype=nil, taskid=nil, processeofinfo=nil, aireviewresultinfo=nil, airecognitionresultinfo=nil, aianalysisresultinfo=nil, aiqualitycontrolresultinfo=nil, sessionid=nil, sessioncontext=nil, requestid=nil)
+        def initialize(notificationtype=nil, taskid=nil, processeofinfo=nil, aireviewresultinfo=nil, airecognitionresultinfo=nil, aianalysisresultinfo=nil, aiqualitycontrolresultinfo=nil, liverecordresultinfo=nil, sessionid=nil, sessioncontext=nil, requestid=nil)
           @NotificationType = notificationtype
           @TaskId = taskid
           @ProcessEofInfo = processeofinfo
@@ -16414,6 +16449,7 @@ module TencentCloud
           @AiRecognitionResultInfo = airecognitionresultinfo
           @AiAnalysisResultInfo = aianalysisresultinfo
           @AiQualityControlResultInfo = aiqualitycontrolresultinfo
+          @LiveRecordResultInfo = liverecordresultinfo
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @RequestId = requestid
@@ -16441,6 +16477,10 @@ module TencentCloud
           unless params['AiQualityControlResultInfo'].nil?
             @AiQualityControlResultInfo = LiveStreamAiQualityControlResultInfo.new
             @AiQualityControlResultInfo.deserialize(params['AiQualityControlResultInfo'])
+          end
+          unless params['LiveRecordResultInfo'].nil?
+            @LiveRecordResultInfo = LiveStreamRecordResultInfo.new
+            @LiveRecordResultInfo.deserialize(params['LiveRecordResultInfo'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']

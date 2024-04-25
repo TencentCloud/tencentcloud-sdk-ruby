@@ -941,7 +941,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String

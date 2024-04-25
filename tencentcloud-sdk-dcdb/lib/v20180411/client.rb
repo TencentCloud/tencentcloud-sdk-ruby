@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 取消DCN同步
+        # 本接口（CancelDcnJob）用于取消DCN同步
 
         # @param request: Request instance for CancelDcnJob.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::CancelDcnJobRequest`

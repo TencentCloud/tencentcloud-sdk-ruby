@@ -3730,7 +3730,7 @@ module TencentCloud
         # @type RecordLayout: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
-        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）
+        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）。 目前支持从回放直播模式（伪直播）改为常规模式，不支持从常规模式改为回放直播模式（伪直播）
         # @type LiveType: Integer
         # @param RecordLiveUrl: 伪直播链接
         # @type RecordLiveUrl: String
