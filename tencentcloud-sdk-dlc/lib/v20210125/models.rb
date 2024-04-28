@@ -2083,7 +2083,7 @@ module TencentCloud
         # @type DataEngine: String
         # @param AppFile: spark作业程序包文件路径
         # @type AppFile: String
-        # @param RoleArn: 数据访问策略，CAM Role arn
+        # @param RoleArn: 数据访问策略，CAM Role arn，控制台通过数据作业—>作业配置获取，SDK通过DescribeUserRoles接口获取对应的值；
         # @type RoleArn: Integer
         # @param AppDriverSize: 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         # @type AppDriverSize: String
@@ -9947,7 +9947,7 @@ module TencentCloud
         # @type JobUpdateTime: Integer
         # @param CurrentTaskId: spark作业最近任务ID
         # @type CurrentTaskId: String
-        # @param JobStatus: spark作业最近运行状态
+        # @param JobStatus: spark作业最近运行状态，初始化：0，运行中：1，成功：2，数据写入中： 3， 排队中： 4， 失败： -1， 已删除： -3，已过期： -5
         # @type JobStatus: Integer
         # @param StreamingStat: spark流作业统计
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10000,10 +10000,13 @@ module TencentCloud
         # @param IsSessionStarted: 是否使用session脚本的sql运行任务：false：否，true：是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSessionStarted: Boolean
+        # @param EngineTypeDetail: 引擎详细类型：SparkSQL、PrestoSQL、SparkBatch、StandardSpark、StandardPresto
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineTypeDetail: String
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId, :DataEngineClusterType, :DataEngineImageVersion, :IsInherit, :IsSessionStarted
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId, :DataEngineClusterType, :DataEngineImageVersion, :IsInherit, :IsSessionStarted, :EngineTypeDetail
 
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil, dataengineclustertype=nil, dataengineimageversion=nil, isinherit=nil, issessionstarted=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil, dataengineclustertype=nil, dataengineimageversion=nil, isinherit=nil, issessionstarted=nil, enginetypedetail=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -10045,6 +10048,7 @@ module TencentCloud
           @DataEngineImageVersion = dataengineimageversion
           @IsInherit = isinherit
           @IsSessionStarted = issessionstarted
+          @EngineTypeDetail = enginetypedetail
         end
 
         def deserialize(params)
@@ -10092,6 +10096,7 @@ module TencentCloud
           @DataEngineImageVersion = params['DataEngineImageVersion']
           @IsInherit = params['IsInherit']
           @IsSessionStarted = params['IsSessionStarted']
+          @EngineTypeDetail = params['EngineTypeDetail']
         end
       end
 
@@ -11446,7 +11451,7 @@ module TencentCloud
         # @type DataEngineId: String
         # @param DataEngineConfigPairs: 用户自定义引擎配置项集合。该参数需要传用户需要添加的全部配置项，例如，已有配置项k1:v1，添加k2:v2，需要传[k1:v1,k2:v2]。
         # @type DataEngineConfigPairs: Array
-        # @param SessionResourceTemplate: 作业引擎资源配置模版
+        # @param SessionResourceTemplate: 作业引擎资源配置模板
         # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
         attr_accessor :DataEngineId, :DataEngineConfigPairs, :SessionResourceTemplate

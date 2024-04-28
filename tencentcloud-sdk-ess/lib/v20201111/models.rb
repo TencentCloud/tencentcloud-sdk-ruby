@@ -5509,6 +5509,64 @@ module TencentCloud
         end
       end
 
+      # DescribeBatchOrganizationRegistrationUrls请求参数结构体
+      class DescribeBatchOrganizationRegistrationUrlsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 通过接口CreateBatchOrganizationRegistrationTasks创建企业批量认证链接任得到的任务Id
+        # @type TaskId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :TaskId, :Agent
+
+        def initialize(operator=nil, taskid=nil, agent=nil)
+          @Operator = operator
+          @TaskId = taskid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeBatchOrganizationRegistrationUrls返回参数结构体
+      class DescribeBatchOrganizationRegistrationUrlsResponse < TencentCloud::Common::AbstractModel
+        # @param OrganizationAuthUrls: 企业批量注册链接信息
+        # @type OrganizationAuthUrls: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrganizationAuthUrls, :RequestId
+
+        def initialize(organizationauthurls=nil, requestid=nil)
+          @OrganizationAuthUrls = organizationauthurls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OrganizationAuthUrls'].nil?
+            @OrganizationAuthUrls = []
+            params['OrganizationAuthUrls'].each do |i|
+              organizationauthurl_tmp = OrganizationAuthUrl.new
+              organizationauthurl_tmp.deserialize(i)
+              @OrganizationAuthUrls << organizationauthurl_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillUsageDetail请求参数结构体
       class DescribeBillUsageDetailRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
@@ -9682,6 +9740,33 @@ module TencentCloud
           @Used = params['Used']
           @Available = params['Available']
           @QuotaType = params['QuotaType']
+        end
+      end
+
+      # 企业批量注册链接信息
+      class OrganizationAuthUrl < TencentCloud::Common::AbstractModel
+        # @param AuthUrl: 企业批量注册链接，根据Endpoint的不同设置，返回不同的链接地址。失效时间：7天
+        # 跳转链接, 链接的有效期根据企业,员工状态和终端等有区别, 可以参考下表
+        # <table> <thead> <tr> <th>Endpoint</th> <th>示例</th> <th>链接有效期限</th> </tr> </thead>  <tbody>
+        #  <tr> <td>PC</td> <td>https://qian.tencent.com/console/batch-register?token=yDSx0UUgtjuaf4UEfd2MjCnfI1iuXFE6&orgName=批量认证线上测试企业9</td> <td>7天</td> </tr>
+        # <tr> <td>PC_SHORT_URL</td> <td>https://test.essurl.cn/8gDKUBAWK8</td> <td>7天</td> </tr>
+        # <tr> <td>APP</td> <td>/pages/guide/index?to=REGISTER_ENTERPRISE_FOR_BATCH&urlAuthToken=yDSx0UUgtjuaf4UEfd2MjCnfI1iuXFE6&orgName=批量认证线上测试企业9</td> <td>7天</td> </tr> </tbody> </table>
+        # 注：
+        # `1.创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义`
+        # @type AuthUrl: String
+        # @param ErrorMessage: 企业批量注册的错误信息，例如：企业三要素不通过
+        # @type ErrorMessage: String
+
+        attr_accessor :AuthUrl, :ErrorMessage
+
+        def initialize(authurl=nil, errormessage=nil)
+          @AuthUrl = authurl
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @AuthUrl = params['AuthUrl']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 

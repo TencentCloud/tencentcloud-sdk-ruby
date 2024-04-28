@@ -1542,6 +1542,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解析拆分文档。该接口需开通文档解析原子能力后调用。文档解析原子能力内测中，如有需要请联系架构师或 [联系客服](https://cloud.tencent.com/act/event/Online_service)  。
+
+        # @param request: Request instance for ParseDoc.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ParseDocRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ParseDocResponse`
+        def ParseDoc(request)
+          body = send_request('ParseDoc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ParseDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询文档解析结果。该接口需开通文档解析原子能力后调用。文档解析原子能力内测中，如有需要请联系架构师或[联系客服](https://cloud.tencent.com/act/event/Online_service) 。
+
+        # @param request: Request instance for QueryParseDocResult.
+        # @type request: :class:`Tencentcloud::lke::V20231130::QueryParseDocResultRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::QueryParseDocResultResponse`
+        def QueryParseDocResult(request)
+          body = send_request('QueryParseDocResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryParseDocResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 多轮改写
         # 本接口有单账号调用上限控制，如您有提高并发限制的需求请 [联系我们](https://cloud.tencent.com/act/event/Online_service) 。
 

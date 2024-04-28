@@ -3505,6 +3505,39 @@ module TencentCloud
         end
       end
 
+      # 通用告警详情
+      class GeneralWarnInfo < TencentCloud::Common::AbstractModel
+        # @param IsWarn: 是否存在该告警
+        # @type IsWarn: Boolean
+        # @param Polygon: 告警位置四点坐标
+        # @type Polygon: Array
+        # @param SpecificMatter: 特殊判定，支持包括
+
+        # Finger：由手指导致的不完整，仅在不完整告警中返回
+        # @type SpecificMatter: String
+
+        attr_accessor :IsWarn, :Polygon, :SpecificMatter
+
+        def initialize(iswarn=nil, polygon=nil, specificmatter=nil)
+          @IsWarn = iswarn
+          @Polygon = polygon
+          @SpecificMatter = specificmatter
+        end
+
+        def deserialize(params)
+          @IsWarn = params['IsWarn']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              polygon_tmp = Polygon.new
+              polygon_tmp.deserialize(i)
+              @Polygon << polygon_tmp
+            end
+          end
+          @SpecificMatter = params['SpecificMatter']
+        end
+      end
+
       # GetTaskState请求参数结构体
       class GetTaskStateRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 智慧表单任务唯一身份ID
@@ -7249,6 +7282,100 @@ module TencentCloud
             end
           end
           @TotalPDFCount = params['TotalPDFCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeGeneralTextImageWarn请求参数结构体
+      class RecognizeGeneralTextImageWarnRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param EnablePdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。 示例值：false
+        # @type EnablePdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。 示例值：1
+        # @type PdfPageNumber: Integer
+        # @param Type: 支持的模板类型
+        # - General 通用告警
+        # - LicensePlate 车牌告警
+        # @type Type: String
+
+        attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber, :Type
+
+        def initialize(imageurl=nil, imagebase64=nil, enablepdf=nil, pdfpagenumber=nil, type=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @EnablePdf = enablepdf
+          @PdfPageNumber = pdfpagenumber
+          @Type = type
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @EnablePdf = params['EnablePdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @Type = params['Type']
+        end
+      end
+
+      # RecognizeGeneralTextImageWarn返回参数结构体
+      class RecognizeGeneralTextImageWarnResponse < TencentCloud::Common::AbstractModel
+        # @param Copy: 复印告警信息
+        # @type Copy: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
+        # @param Reprint: 翻拍告警信息
+        # @type Reprint: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
+        # @param Blur: 模糊告警信息
+        # @type Blur: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
+        # @param Reflection: 反光告警信息
+        # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
+        # @param BorderIncomplete: 边框不完整告警信息
+        # @type BorderIncomplete: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Copy, :Reprint, :Blur, :Reflection, :BorderIncomplete, :RequestId
+
+        def initialize(copy=nil, reprint=nil, blur=nil, reflection=nil, borderincomplete=nil, requestid=nil)
+          @Copy = copy
+          @Reprint = reprint
+          @Blur = blur
+          @Reflection = reflection
+          @BorderIncomplete = borderincomplete
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Copy'].nil?
+            @Copy = GeneralWarnInfo.new
+            @Copy.deserialize(params['Copy'])
+          end
+          unless params['Reprint'].nil?
+            @Reprint = GeneralWarnInfo.new
+            @Reprint.deserialize(params['Reprint'])
+          end
+          unless params['Blur'].nil?
+            @Blur = GeneralWarnInfo.new
+            @Blur.deserialize(params['Blur'])
+          end
+          unless params['Reflection'].nil?
+            @Reflection = GeneralWarnInfo.new
+            @Reflection.deserialize(params['Reflection'])
+          end
+          unless params['BorderIncomplete'].nil?
+            @BorderIncomplete = GeneralWarnInfo.new
+            @BorderIncomplete.deserialize(params['BorderIncomplete'])
+          end
           @RequestId = params['RequestId']
         end
       end

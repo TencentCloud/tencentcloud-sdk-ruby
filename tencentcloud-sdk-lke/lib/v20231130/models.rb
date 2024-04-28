@@ -445,12 +445,16 @@ module TencentCloud
         # @param Labels: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
+        # @param Greeting: 欢迎语，200字符以内
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Greeting: String
 
-        attr_accessor :Model, :Labels
+        attr_accessor :Model, :Labels, :Greeting
 
-        def initialize(model=nil, labels=nil)
+        def initialize(model=nil, labels=nil, greeting=nil)
           @Model = model
           @Labels = labels
+          @Greeting = greeting
         end
 
         def deserialize(params)
@@ -466,6 +470,7 @@ module TencentCloud
               @Labels << classifylabel_tmp
             end
           end
+          @Greeting = params['Greeting']
         end
       end
 
@@ -1207,12 +1212,16 @@ module TencentCloud
         # @type BareAnswerInAppeal: Boolean
         # @param AppKey: 应用appKey
         # @type AppKey: String
+        # @param AppStatus: 应用状态，1：未上线，2：运行中，3：停用
+        # @type AppStatus: Integer
+        # @param AppStatusDesc: 状态说明
+        # @type AppStatusDesc: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppBizId, :AppType, :AppTypeDesc, :BaseConfig, :AppConfig, :AvatarInAppeal, :RoleInAppeal, :NameInAppeal, :GreetingInAppeal, :BareAnswerInAppeal, :AppKey, :RequestId
+        attr_accessor :AppBizId, :AppType, :AppTypeDesc, :BaseConfig, :AppConfig, :AvatarInAppeal, :RoleInAppeal, :NameInAppeal, :GreetingInAppeal, :BareAnswerInAppeal, :AppKey, :AppStatus, :AppStatusDesc, :RequestId
 
-        def initialize(appbizid=nil, apptype=nil, apptypedesc=nil, baseconfig=nil, appconfig=nil, avatarinappeal=nil, roleinappeal=nil, nameinappeal=nil, greetinginappeal=nil, bareanswerinappeal=nil, appkey=nil, requestid=nil)
+        def initialize(appbizid=nil, apptype=nil, apptypedesc=nil, baseconfig=nil, appconfig=nil, avatarinappeal=nil, roleinappeal=nil, nameinappeal=nil, greetinginappeal=nil, bareanswerinappeal=nil, appkey=nil, appstatus=nil, appstatusdesc=nil, requestid=nil)
           @AppBizId = appbizid
           @AppType = apptype
           @AppTypeDesc = apptypedesc
@@ -1224,6 +1233,8 @@ module TencentCloud
           @GreetingInAppeal = greetinginappeal
           @BareAnswerInAppeal = bareanswerinappeal
           @AppKey = appkey
+          @AppStatus = appstatus
+          @AppStatusDesc = appstatusdesc
           @RequestId = requestid
         end
 
@@ -1245,6 +1256,8 @@ module TencentCloud
           @GreetingInAppeal = params['GreetingInAppeal']
           @BareAnswerInAppeal = params['BareAnswerInAppeal']
           @AppKey = params['AppKey']
+          @AppStatus = params['AppStatus']
+          @AppStatusDesc = params['AppStatusDesc']
           @RequestId = params['RequestId']
         end
       end
@@ -1847,15 +1860,23 @@ module TencentCloud
       class DescribeStorageCredentialRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 机器人ID
         # @type BotBizId: String
+        # @param FileType: 文件类型
+        # @type FileType: String
+        # @param IsPublic: 权限场景，是否公有权限
+        # @type IsPublic: Boolean
 
-        attr_accessor :BotBizId
+        attr_accessor :BotBizId, :FileType, :IsPublic
 
-        def initialize(botbizid=nil)
+        def initialize(botbizid=nil, filetype=nil, ispublic=nil)
           @BotBizId = botbizid
+          @FileType = filetype
+          @IsPublic = ispublic
         end
 
         def deserialize(params)
           @BotBizId = params['BotBizId']
+          @FileType = params['FileType']
+          @IsPublic = params['IsPublic']
         end
       end
 
@@ -1879,12 +1900,14 @@ module TencentCloud
         # @type CorpUin: String
         # @param ImagePath: 图片存储目录
         # @type ImagePath: String
+        # @param UploadPath: 上传存储目录
+        # @type UploadPath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Credentials, :ExpiredTime, :StartTime, :Bucket, :Region, :FilePath, :Type, :CorpUin, :ImagePath, :RequestId
+        attr_accessor :Credentials, :ExpiredTime, :StartTime, :Bucket, :Region, :FilePath, :Type, :CorpUin, :ImagePath, :UploadPath, :RequestId
 
-        def initialize(credentials=nil, expiredtime=nil, starttime=nil, bucket=nil, region=nil, filepath=nil, type=nil, corpuin=nil, imagepath=nil, requestid=nil)
+        def initialize(credentials=nil, expiredtime=nil, starttime=nil, bucket=nil, region=nil, filepath=nil, type=nil, corpuin=nil, imagepath=nil, uploadpath=nil, requestid=nil)
           @Credentials = credentials
           @ExpiredTime = expiredtime
           @StartTime = starttime
@@ -1894,6 +1917,7 @@ module TencentCloud
           @Type = type
           @CorpUin = corpuin
           @ImagePath = imagepath
+          @UploadPath = uploadpath
           @RequestId = requestid
         end
 
@@ -1910,6 +1934,7 @@ module TencentCloud
           @Type = params['Type']
           @CorpUin = params['CorpUin']
           @ImagePath = params['ImagePath']
+          @UploadPath = params['UploadPath']
           @RequestId = params['RequestId']
         end
       end
@@ -2414,15 +2439,18 @@ module TencentCloud
         # @type LastRecordId: String
         # @param BotAppKey: 机器人AppKey
         # @type BotAppKey: String
+        # @param Scene: 场景, 体验: 1; 正式: 2
+        # @type Scene: Integer
 
-        attr_accessor :Type, :Count, :SessionId, :LastRecordId, :BotAppKey
+        attr_accessor :Type, :Count, :SessionId, :LastRecordId, :BotAppKey, :Scene
 
-        def initialize(type=nil, count=nil, sessionid=nil, lastrecordid=nil, botappkey=nil)
+        def initialize(type=nil, count=nil, sessionid=nil, lastrecordid=nil, botappkey=nil, scene=nil)
           @Type = type
           @Count = count
           @SessionId = sessionid
           @LastRecordId = lastrecordid
           @BotAppKey = botappkey
+          @Scene = scene
         end
 
         def deserialize(params)
@@ -2431,6 +2459,7 @@ module TencentCloud
           @SessionId = params['SessionId']
           @LastRecordId = params['LastRecordId']
           @BotAppKey = params['BotAppKey']
+          @Scene = params['Scene']
         end
       end
 
@@ -2438,13 +2467,17 @@ module TencentCloud
       class GetMsgRecordResponse < TencentCloud::Common::AbstractModel
         # @param Records: 会话记录
         # @type Records: Array
+        # @param SessionDisassociatedTimestamp: session 清除关联上下文时间, 单位 ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionDisassociatedTimestamp: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Records, :RequestId
+        attr_accessor :Records, :SessionDisassociatedTimestamp, :RequestId
 
-        def initialize(records=nil, requestid=nil)
+        def initialize(records=nil, sessiondisassociatedtimestamp=nil, requestid=nil)
           @Records = records
+          @SessionDisassociatedTimestamp = sessiondisassociatedtimestamp
           @RequestId = requestid
         end
 
@@ -2457,6 +2490,7 @@ module TencentCloud
               @Records << msgrecord_tmp
             end
           end
+          @SessionDisassociatedTimestamp = params['SessionDisassociatedTimestamp']
           @RequestId = params['RequestId']
         end
       end
@@ -2817,19 +2851,34 @@ module TencentCloud
         # @param BareAnswer: 未知回复语，300字符以内
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BareAnswer: String
+        # @param ShowQuestionClarify: 是否展示问题澄清开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShowQuestionClarify: Boolean
+        # @param UseQuestionClarify: 是否打开问题澄清
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseQuestionClarify: Boolean
+        # @param QuestionClarifyKeywords: 问题澄清关键词列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuestionClarifyKeywords: Array
 
-        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer
+        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords
 
-        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil)
+        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil)
           @Method = method
           @UseGeneralKnowledge = usegeneralknowledge
           @BareAnswer = bareanswer
+          @ShowQuestionClarify = showquestionclarify
+          @UseQuestionClarify = usequestionclarify
+          @QuestionClarifyKeywords = questionclarifykeywords
         end
 
         def deserialize(params)
           @Method = params['Method']
           @UseGeneralKnowledge = params['UseGeneralKnowledge']
           @BareAnswer = params['BareAnswer']
+          @ShowQuestionClarify = params['ShowQuestionClarify']
+          @UseQuestionClarify = params['UseQuestionClarify']
+          @QuestionClarifyKeywords = params['QuestionClarifyKeywords']
         end
       end
 
@@ -4738,10 +4787,15 @@ module TencentCloud
         # @type Reasons: Array
         # @param IsLlmGenerated: 是否大模型
         # @type IsLlmGenerated: Boolean
+        # @param ImageUrls: 图片链接，可公有读
+        # @type ImageUrls: Array
+        # @param TokenStat: 当次 token 统计信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenStat: :class:`Tencentcloud::Lke.v20231130.models.TokenStat`
 
-        attr_accessor :Content, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :Type, :References, :Reasons, :IsLlmGenerated
+        attr_accessor :Content, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat
 
-        def initialize(content=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil)
+        def initialize(content=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil)
           @Content = content
           @RecordId = recordid
           @RelatedRecordId = relatedrecordid
@@ -4756,6 +4810,8 @@ module TencentCloud
           @References = references
           @Reasons = reasons
           @IsLlmGenerated = isllmgenerated
+          @ImageUrls = imageurls
+          @TokenStat = tokenstat
         end
 
         def deserialize(params)
@@ -4780,6 +4836,11 @@ module TencentCloud
           end
           @Reasons = params['Reasons']
           @IsLlmGenerated = params['IsLlmGenerated']
+          @ImageUrls = params['ImageUrls']
+          unless params['TokenStat'].nil?
+            @TokenStat = TokenStat.new
+            @TokenStat.deserialize(params['TokenStat'])
+          end
         end
       end
 
@@ -4844,6 +4905,93 @@ module TencentCloud
           @Value = params['Value']
           @CharSize = params['CharSize']
           @FileType = params['FileType']
+        end
+      end
+
+      # ParseDoc请求参数结构体
+      class ParseDocRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 文件名称(需要包括文件后缀, 最大长度1024字节)
+        # @type Name: String
+        # @param Url: 文件下载链接 (支持的文件类型: docx, txt, markdown, pdf)
+        # @type Url: String
+        # @param TaskId: 任务ID, 用于幂等去重, 业务自行定义(最大长度64字节)
+        # @type TaskId: String
+        # @param Policy: 切分策略
+        # @type Policy: String
+        # @param Operate: 默认值: parse
+        # @type Operate: String
+
+        attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
+        extend Gem::Deprecate
+        deprecate :Operate, :none, 2024, 4
+        deprecate :Operate=, :none, 2024, 4
+
+        def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
+          @Name = name
+          @Url = url
+          @TaskId = taskid
+          @Policy = policy
+          @Operate = operate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Url = params['Url']
+          @TaskId = params['TaskId']
+          @Policy = params['Policy']
+          @Operate = params['Operate']
+        end
+      end
+
+      # ParseDoc返回参数结构体
+      class ParseDocResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 执行过程信息记录
+      class Procedure < TencentCloud::Common::AbstractModel
+        # @param Name: 执行过程英语名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Title: 中文名, 用于展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Status: 状态常量: 使用中: processing, 成功: success, 失败: failed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Count: 消耗 token 数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :Name, :Title, :Status, :Count
+
+        def initialize(name=nil, title=nil, status=nil, count=nil)
+          @Name = name
+          @Title = title
+          @Status = status
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Title = params['Title']
+          @Status = params['Status']
+          @Count = params['Count']
         end
       end
 
@@ -4992,6 +5140,61 @@ module TencentCloud
           @QaBizId = params['QaBizId']
           @Source = params['Source']
           @QueryAnswer = params['QueryAnswer']
+        end
+      end
+
+      # QueryParseDocResult请求参数结构体
+      class QueryParseDocResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # QueryParseDocResult返回参数结构体
+      class QueryParseDocResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 等待 / 执行中 / 成功 / 失败
+        # @type Status: String
+        # @param Name: 解析后的文件内容
+        # @type Name: String
+        # @param Url: 文件下载地址
+        # @type Url: String
+        # @param Reason: 解析失败原因
+        # @type Reason: String
+        # @param Usage: 消耗量，输出页数
+        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Name, :Url, :Reason, :Usage, :RequestId
+
+        def initialize(status=nil, name=nil, url=nil, reason=nil, usage=nil, requestid=nil)
+          @Status = status
+          @Name = name
+          @Url = url
+          @Reason = reason
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Name = params['Name']
+          @Url = params['Url']
+          @Reason = params['Reason']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5407,15 +5610,19 @@ module TencentCloud
       class ResetSessionRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 会话ID
         # @type SessionId: String
+        # @param IsOnlyEmptyTheDialog: 是否仅清空会话关联
+        # @type IsOnlyEmptyTheDialog: Boolean
 
-        attr_accessor :SessionId
+        attr_accessor :SessionId, :IsOnlyEmptyTheDialog
 
-        def initialize(sessionid=nil)
+        def initialize(sessionid=nil, isonlyemptythedialog=nil)
           @SessionId = sessionid
+          @IsOnlyEmptyTheDialog = isonlyemptythedialog
         end
 
         def deserialize(params)
           @SessionId = params['SessionId']
+          @IsOnlyEmptyTheDialog = params['IsOnlyEmptyTheDialog']
         end
       end
 
@@ -5703,12 +5910,16 @@ module TencentCloud
         # @param Output: 知识摘要输出配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Lke.v20231130.models.SummaryOutput`
+        # @param Greeting: 欢迎语，200字符以内
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Greeting: String
 
-        attr_accessor :Model, :Output
+        attr_accessor :Model, :Output, :Greeting
 
-        def initialize(model=nil, output=nil)
+        def initialize(model=nil, output=nil, greeting=nil)
           @Model = model
           @Output = output
+          @Greeting = greeting
         end
 
         def deserialize(params)
@@ -5720,6 +5931,7 @@ module TencentCloud
             @Output = SummaryOutput.new
             @Output.deserialize(params['Output'])
           end
+          @Greeting = params['Greeting']
         end
       end
 
@@ -5764,6 +5976,80 @@ module TencentCloud
 
         def deserialize(params)
           @CosPath = params['CosPath']
+        end
+      end
+
+      # 当前执行的 token 统计信息
+      class TokenStat < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param RequestId: 请求 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+        # @param RecordId: 对应哪条会话, 会话 ID, 用于回答的消息存储使用, 可提前生成, 保存消息时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param UsedCount: token 已使用数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedCount: Integer
+        # @param FreeCount: 免费 token 数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeCount: Integer
+        # @param OrderCount: 订单总 token 数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderCount: Integer
+        # @param StatusSummary: 当前执行状态汇总, 常量: 使用中: processing, 成功: success, 失败: failed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusSummary: String
+        # @param StatusSummaryTitle: 当前执行状态汇总后中文展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusSummaryTitle: String
+        # @param Elapsed: 当前请求执行时间, 单位 ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Elapsed: Integer
+        # @param TokenCount: 当前请求消耗 token 数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenCount: Integer
+        # @param Procedures: 执行过程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Procedures: Array
+
+        attr_accessor :SessionId, :RequestId, :RecordId, :UsedCount, :FreeCount, :OrderCount, :StatusSummary, :StatusSummaryTitle, :Elapsed, :TokenCount, :Procedures
+
+        def initialize(sessionid=nil, requestid=nil, recordid=nil, usedcount=nil, freecount=nil, ordercount=nil, statussummary=nil, statussummarytitle=nil, elapsed=nil, tokencount=nil, procedures=nil)
+          @SessionId = sessionid
+          @RequestId = requestid
+          @RecordId = recordid
+          @UsedCount = usedcount
+          @FreeCount = freecount
+          @OrderCount = ordercount
+          @StatusSummary = statussummary
+          @StatusSummaryTitle = statussummarytitle
+          @Elapsed = elapsed
+          @TokenCount = tokencount
+          @Procedures = procedures
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+          @RecordId = params['RecordId']
+          @UsedCount = params['UsedCount']
+          @FreeCount = params['FreeCount']
+          @OrderCount = params['OrderCount']
+          @StatusSummary = params['StatusSummary']
+          @StatusSummaryTitle = params['StatusSummaryTitle']
+          @Elapsed = params['Elapsed']
+          @TokenCount = params['TokenCount']
+          unless params['Procedures'].nil?
+            @Procedures = []
+            params['Procedures'].each do |i|
+              procedure_tmp = Procedure.new
+              procedure_tmp.deserialize(i)
+              @Procedures << procedure_tmp
+            end
+          end
         end
       end
 

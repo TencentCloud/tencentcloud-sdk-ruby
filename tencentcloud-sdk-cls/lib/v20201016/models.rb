@@ -2197,10 +2197,14 @@ module TencentCloud
         # @type Compress: String
         # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param TaskType: COS导入任务类型。1：一次性导入任务；2：持续性导入任务。默认为1：一次性导入任务
+        # @type TaskType: Integer
+        # @param Metadata: 元数据。
+        # @type Metadata: Array
 
-        attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Compress, :ExtractRuleInfo
+        attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Compress, :ExtractRuleInfo, :TaskType, :Metadata
 
-        def initialize(topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, compress=nil, extractruleinfo=nil)
+        def initialize(topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, compress=nil, extractruleinfo=nil, tasktype=nil, metadata=nil)
           @TopicId = topicid
           @LogsetId = logsetid
           @Name = name
@@ -2210,6 +2214,8 @@ module TencentCloud
           @LogType = logtype
           @Compress = compress
           @ExtractRuleInfo = extractruleinfo
+          @TaskType = tasktype
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -2225,12 +2231,14 @@ module TencentCloud
             @ExtractRuleInfo = ExtractRuleInfo.new
             @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
           end
+          @TaskType = params['TaskType']
+          @Metadata = params['Metadata']
         end
       end
 
       # CreateCosRecharge返回参数结构体
       class CreateCosRechargeResponse < TencentCloud::Common::AbstractModel
-        # @param Id: cos_recharge记录id
+        # @param Id: COS导入任务id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7510,22 +7518,46 @@ module TencentCloud
 
       # ModifyCosRecharge请求参数结构体
       class ModifyCosRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: COS导入配置ID
+        # @param Id: COS导入配置Id
         # @type Id: String
         # @param TopicId: 日志主题Id
         # @type TopicId: String
         # @param Name: COS导入任务名称
         # @type Name: String
-        # @param Enable: 是否启用:   0： 未启用  ， 1：启用
+        # @param Enable: 任务状态   0： 停用 ， 1：启用
         # @type Enable: Integer
+        # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+        # @type Bucket: String
+        # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
+        # @type BucketRegion: String
+        # @param Prefix: COS文件所在文件夹的前缀
+        # @type Prefix: String
+        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文； 默认为minimalist_log
+        # @type LogType: String
+        # @param Compress: 解析格式。supported: "", "gzip", "lzop", "snappy"; 默认空
+        # @type Compress: String
+        # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
+        # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param TaskType: COS导入任务类型。1：一次性导入任务；2：持续性导入任务。
+        # @type TaskType: Integer
+        # @param Metadata: 元数据。支持 bucket，object。
+        # @type Metadata: Array
 
-        attr_accessor :Id, :TopicId, :Name, :Enable
+        attr_accessor :Id, :TopicId, :Name, :Enable, :Bucket, :BucketRegion, :Prefix, :LogType, :Compress, :ExtractRuleInfo, :TaskType, :Metadata
 
-        def initialize(id=nil, topicid=nil, name=nil, enable=nil)
+        def initialize(id=nil, topicid=nil, name=nil, enable=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, compress=nil, extractruleinfo=nil, tasktype=nil, metadata=nil)
           @Id = id
           @TopicId = topicid
           @Name = name
           @Enable = enable
+          @Bucket = bucket
+          @BucketRegion = bucketregion
+          @Prefix = prefix
+          @LogType = logtype
+          @Compress = compress
+          @ExtractRuleInfo = extractruleinfo
+          @TaskType = tasktype
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -7533,6 +7565,17 @@ module TencentCloud
           @TopicId = params['TopicId']
           @Name = params['Name']
           @Enable = params['Enable']
+          @Bucket = params['Bucket']
+          @BucketRegion = params['BucketRegion']
+          @Prefix = params['Prefix']
+          @LogType = params['LogType']
+          @Compress = params['Compress']
+          unless params['ExtractRuleInfo'].nil?
+            @ExtractRuleInfo = ExtractRuleInfo.new
+            @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
+          end
+          @TaskType = params['TaskType']
+          @Metadata = params['Metadata']
         end
       end
 

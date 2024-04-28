@@ -5447,7 +5447,7 @@ module TencentCloud
         # @param InitType: 同步初始化选项，Data(全量数据初始化)、Structure(结构初始化)、Full(全量数据且结构初始化，默认)、None(仅增量)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitType: String
-        # @param DealOfExistSameTable: 同名表的处理，ReportErrorAfterCheck(前置校验并报错，默认)、InitializeAfterDelete(删除并重新初始化)、ExecuteAfterIgnore(忽略并继续执行)
+        # @param DealOfExistSameTable: 同名表的处理，ReportErrorAfterCheck(前置校验并报错，默认)、ExecuteAfterIgnore(忽略并继续执行)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealOfExistSameTable: String
         # @param ConflictHandleType: 冲突处理选项，ReportError(报错，默认为该值)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖)

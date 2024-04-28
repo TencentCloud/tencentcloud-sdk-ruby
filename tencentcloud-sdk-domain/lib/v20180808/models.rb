@@ -2176,6 +2176,59 @@ module TencentCloud
         end
       end
 
+      # ModifyTemplate请求参数结构体
+      class ModifyTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateInfo: 证件信息
+        # @type CertificateInfo: :class:`Tencentcloud::Domain.v20180808.models.CertificateInfo`
+        # @param ContactInfo: 联系人信息
+        # @type ContactInfo: :class:`Tencentcloud::Domain.v20180808.models.ContactInfo`
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+
+        attr_accessor :CertificateInfo, :ContactInfo, :TemplateId
+
+        def initialize(certificateinfo=nil, contactinfo=nil, templateid=nil)
+          @CertificateInfo = certificateinfo
+          @ContactInfo = contactinfo
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          unless params['CertificateInfo'].nil?
+            @CertificateInfo = CertificateInfo.new
+            @CertificateInfo.deserialize(params['CertificateInfo'])
+          end
+          unless params['ContactInfo'].nil?
+            @ContactInfo = ContactInfo.new
+            @ContactInfo.deserialize(params['ContactInfo'])
+          end
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # ModifyTemplate返回参数结构体
+      class ModifyTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Template: 模板信息
+        # @type Template: :class:`Tencentcloud::Domain.v20180808.models.TemplateInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :RequestId
+
+        def initialize(template=nil, requestid=nil)
+          @Template = template
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = TemplateInfo.new
+            @Template.deserialize(params['Template'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 手机号邮箱列表
       class PhoneEmailData < TencentCloud::Common::AbstractModel
         # @param Code: 手机号或者邮箱

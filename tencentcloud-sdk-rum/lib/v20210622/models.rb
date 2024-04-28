@@ -186,7 +186,7 @@ module TencentCloud
         # @type Tags: Array
         # @param InstanceDesc: 实例描述，(最大长度不超过1024字节)
         # @type InstanceDesc: String
-        # @param CountNum: 每天数据上报量
+        # @param CountNum: 每天数据上报量，（不作量级限制）
         # @type CountNum: String
         # @param PeriodRetain: 数据存储时长计费
         # @type PeriodRetain: String
@@ -268,7 +268,7 @@ module TencentCloud
       class CreateWhitelistRequest < TencentCloud::Common::AbstractModel
         # @param InstanceID: 实例ID：taw-123
         # @type InstanceID: String
-        # @param Remark: 备注
+        # @param Remark: 备注（暂未作字节数限制）
         # @type Remark: String
         # @param WhitelistUin: uin：业务方标识
         # @type WhitelistUin: String
@@ -817,7 +817,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -1061,7 +1061,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -1193,7 +1193,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -1317,7 +1317,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -1497,7 +1497,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -1607,7 +1607,7 @@ module TencentCloud
         # @type ExtSecond: String
         # @param ExtThird: 自定义3
         # @type ExtThird: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Browser: 浏览器
         # @type Browser: String
@@ -1737,7 +1737,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -1853,7 +1853,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 显示是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -2071,7 +2071,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -2195,7 +2195,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -2319,7 +2319,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -2443,7 +2443,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -2567,7 +2567,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # "AIGC代答"产品帮助客户在其AIGC场景下，对于敏感类的问题，不是由客户的大模型机器人来回答，而是我们来进行代答，尽最大可能帮助客户规避风险。
+
+        # @param request: Request instance for AnswerQuestion.
+        # @type request: :class:`Tencentcloud::tms::V20201229::AnswerQuestionRequest`
+        # @rtype: :class:`Tencentcloud::tms::V20201229::AnswerQuestionResponse`
+        def AnswerQuestion(request)
+          body = send_request('AnswerQuestion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AnswerQuestionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 天御文本内容安全定制标签文本审核接口为定制接口，会按照客户定制标签输出审核结果，如需使用请联系商务经理或[在线客服](https://cloud.tencent.com/online-service?from=doc_1125)咨询。
 
         # @param request: Request instance for ModerateText.

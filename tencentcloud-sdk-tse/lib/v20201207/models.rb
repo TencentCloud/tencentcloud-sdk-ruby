@@ -17,6 +17,26 @@
 module TencentCloud
   module Tse
     module V20201207
+      # 云原生网关限流插件参数限流的精确Qps阈值
+      class AccurateQpsThreshold < TencentCloud::Common::AbstractModel
+        # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
+        # @type Unit: String
+        # @param GlobalConfigId: 全局配置ID
+        # @type GlobalConfigId: String
+
+        attr_accessor :Unit, :GlobalConfigId
+
+        def initialize(unit=nil, globalconfigid=nil)
+          @Unit = unit
+          @GlobalConfigId = globalconfigid
+        end
+
+        def deserialize(params)
+          @Unit = params['Unit']
+          @GlobalConfigId = params['GlobalConfigId']
+        end
+      end
+
       # Apollo 环境配置参数
       class ApolloEnvParam < TencentCloud::Common::AbstractModel
         # @param Name: 环境名称
@@ -2597,10 +2617,12 @@ module TencentCloud
         # @param StorageOption: zk专业版至多有两个盘，且磁盘的容量在50-3200之间
         # 如果只有一个磁盘，storageCapacity与storageOption里面的capacity应该一致
         # @type StorageOption: Array
+        # @param AffinityConstraint: ZK引擎实例，可用区分布约束，STRICT:强约束，PERMISSIVE: 弱约束
+        # @type AffinityConstraint: String
 
-        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos, :StorageOption
+        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos, :StorageOption, :AffinityConstraint
 
-        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil, storageoption=nil)
+        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil, storageoption=nil, affinityconstraint=nil)
           @EngineType = enginetype
           @EngineVersion = engineversion
           @EngineProductVersion = engineproductversion
@@ -2618,6 +2640,7 @@ module TencentCloud
           @PrepaidRenewFlag = prepaidrenewflag
           @EngineRegionInfos = engineregioninfos
           @StorageOption = storageoption
+          @AffinityConstraint = affinityconstraint
         end
 
         def deserialize(params)
@@ -2669,6 +2692,7 @@ module TencentCloud
               @StorageOption << storageoption_tmp
             end
           end
+          @AffinityConstraint = params['AffinityConstraint']
         end
       end
 
@@ -6861,7 +6885,8 @@ module TencentCloud
         # @type Replica: Integer
         # @param VpcInfos: 集群网络信息
         # @type VpcInfos: Array
-        # @param MainRegion: 是否为主地域
+        # @param MainRegion: Polaris: 是否为主地域
+        # Zookeeper: 是否为Leader固定地域
         # @type MainRegion: Boolean
         # @param SpecId: 引擎规格ID
         # @type SpecId: String
@@ -8680,13 +8705,17 @@ module TencentCloud
         # @param QpsThresholds: 限流阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QpsThresholds: Array
+        # @param AccurateQpsThresholds: 精确限流阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccurateQpsThresholds: Array
 
-        attr_accessor :Filters, :LimitBy, :QpsThresholds
+        attr_accessor :Filters, :LimitBy, :QpsThresholds, :AccurateQpsThresholds
 
-        def initialize(filters=nil, limitby=nil, qpsthresholds=nil)
+        def initialize(filters=nil, limitby=nil, qpsthresholds=nil, accurateqpsthresholds=nil)
           @Filters = filters
           @LimitBy = limitby
           @QpsThresholds = qpsthresholds
+          @AccurateQpsThresholds = accurateqpsthresholds
         end
 
         def deserialize(params)
@@ -8712,6 +8741,14 @@ module TencentCloud
               qpsthreshold_tmp = QpsThreshold.new
               qpsthreshold_tmp.deserialize(i)
               @QpsThresholds << qpsthreshold_tmp
+            end
+          end
+          unless params['AccurateQpsThresholds'].nil?
+            @AccurateQpsThresholds = []
+            params['AccurateQpsThresholds'].each do |i|
+              accurateqpsthreshold_tmp = AccurateQpsThreshold.new
+              accurateqpsthreshold_tmp.deserialize(i)
+              @AccurateQpsThresholds << accurateqpsthreshold_tmp
             end
           end
         end
