@@ -1507,7 +1507,7 @@ module TencentCloud
 
       # Git凭证
       class GitSecret < TencentCloud::Common::AbstractModel
-        # @param NoSecret: 无秘钥，默认选项
+        # @param NoSecret: 无密钥，默认选项
         # @type NoSecret: Boolean
         # @param Secret: Git用户名密码base64编码后的字符串
         # 编码前的内容应为Json字符串，如

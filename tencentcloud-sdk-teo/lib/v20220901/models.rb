@@ -2522,6 +2522,61 @@ module TencentCloud
         end
       end
 
+      # CreatePlan请求参数结构体
+      class CreatePlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanType: 订阅的套餐类型，取值有：<li> personal：个人版套餐，预付费套餐；</li><li> basic：基础版套餐，预付费套餐；</li><li> standard：标准版套餐，预付费套餐；</li><li> enterprise：企业版套餐，后付费套餐。</li>订阅预付费套餐时，请确保账号内有足够余额，余额不足会产生一个待支付的订单。
+        # 计费概述参考 [Edgeone计费概述](https://cloud.tencent.com/document/product/1552/94156)
+        # 不同套餐区别参考 [Edgeone计费套餐选型对比](https://cloud.tencent.com/document/product/1552/94165)
+        # @type PlanType: String
+        # @param AutoUseVoucher: 是否自动使用代金券，取值有：<li> true：是；</li><li> false：否。</li>该参数仅在 PlanType 为 personal, basic, standard 时有效。
+        # 不填写使用默认值 false。
+        # @type AutoUseVoucher: String
+        # @param PrepaidPlanParam: 订阅预付费套餐参数，PlanType 为 personal, basic, standard 时，可以选填该参数，用于传入套餐的订阅时长和是否开启自动续费。
+        # 不填该参数时，默认开通套餐时长为 1 个月，不开启自动续费。
+        # @type PrepaidPlanParam: :class:`Tencentcloud::Teo.v20220901.models.PrepaidPlanParam`
+
+        attr_accessor :PlanType, :AutoUseVoucher, :PrepaidPlanParam
+
+        def initialize(plantype=nil, autousevoucher=nil, prepaidplanparam=nil)
+          @PlanType = plantype
+          @AutoUseVoucher = autousevoucher
+          @PrepaidPlanParam = prepaidplanparam
+        end
+
+        def deserialize(params)
+          @PlanType = params['PlanType']
+          @AutoUseVoucher = params['AutoUseVoucher']
+          unless params['PrepaidPlanParam'].nil?
+            @PrepaidPlanParam = PrepaidPlanParam.new
+            @PrepaidPlanParam.deserialize(params['PrepaidPlanParam'])
+          end
+        end
+      end
+
+      # CreatePlan返回参数结构体
+      class CreatePlanResponse < TencentCloud::Common::AbstractModel
+        # @param PlanId: 套餐 ID，形如 edgeone-2unuvzjmmn2q。
+        # @type PlanId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlanId, :DealName, :RequestId
+
+        def initialize(planid=nil, dealname=nil, requestid=nil)
+          @PlanId = planid
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrefetchTask请求参数结构体
       class CreatePrefetchTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -3779,6 +3834,7 @@ module TencentCloud
         # <li>EdgeResponseStatusCode：按照 EdgeOne 节点响应返回给客户端的状态码进行过滤。<br>   支持运算符：equal、great、less、great_equal、less_equal<br>   取值范围：任意大于等于 0 的整数</li>
         # <li>OriginResponseStatusCode：按照源站响应状态码进行过滤。<br>   支持运算符：equal、great、less、great_equal、less_equal<br>   取值范围：任意大于等于 -1 的整数</li>
         # <li>SecurityAction：按照请求命中安全规则后的最终处置动作进行过滤。<br>   支持运算符：equal<br>   可选项如下：<br>   -：未知/未命中<br>   Monitor：观察<br>   JSChallenge：JavaScript 挑战<br>   Deny：拦截<br>   Allow：放行<br>   BlockIP：IP 封禁<br>   Redirect：重定向<br>   ReturnCustomPage：返回自定义页面<br>   ManagedChallenge：托管挑战<br>   Silence：静默<br>   LongDelay：长时间等待后响应<br>   ShortDelay：短时间等待后响应</li>
+        # <li>SecurityModule：按照最终处置请求的安全模块名称进行过滤。<br>   支持运算符：equal<br>   可选项如下：<br>   -：未知/未命中<br>   CustomRule：Web防护 - 自定义规则<br>   RateLimitingCustomRule：Web防护 - 速率限制规则<br>   ManagedRule：Web防护 - 托管规则<br>   L7DDoS：Web防护 - CC攻击防护<br>   BotManagement：Bot管理 - Bot基础管理<br>   BotClientReputation：Bot管理 - 客户端画像分析<br>   BotBehaviorAnalysis：Bot管理 - Bot智能分析<br>   BotCustomRule：Bot管理 - 自定义Bot规则<br>   BotActiveDetection：Bot管理 - 主动特征识别</li>
         # @type Conditions: Array
 
         attr_accessor :Conditions
@@ -6512,6 +6568,38 @@ module TencentCloud
         end
       end
 
+      # DestroyPlan请求参数结构体
+      class DestroyPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 套餐 ID，形如 edgeone-2wdo315m2y4c。
+        # @type PlanId: String
+
+        attr_accessor :PlanId
+
+        def initialize(planid=nil)
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # DestroyPlan返回参数结构体
+      class DestroyPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 域名配置信息
       class DetailHost < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -7702,6 +7790,50 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # IncreasePlanQuota请求参数结构体
+      class IncreasePlanQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 套餐 ID, 形如 edgeone-2unuvzjmmn2q。
+        # @type PlanId: String
+        # @param QuotaType: 新增的套餐配额类型，取值有：<li> site：站点数；</li><li> precise_access_control_rule：Web 防护 - 自定义规则 - 精准匹配策略的规则配额；</li><li> rate_limiting_rule：Web 防护 - 速率限制 - 精准速率限制模块的规则配额。</li>
+        # @type QuotaType: String
+        # @param QuotaNumber: 新增的配额个数。单次新增的配额个数上限为 100。
+        # @type QuotaNumber: Integer
+
+        attr_accessor :PlanId, :QuotaType, :QuotaNumber
+
+        def initialize(planid=nil, quotatype=nil, quotanumber=nil)
+          @PlanId = planid
+          @QuotaType = quotatype
+          @QuotaNumber = quotanumber
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @QuotaType = params['QuotaType']
+          @QuotaNumber = params['QuotaNumber']
+        end
+      end
+
+      # IncreasePlanQuota返回参数结构体
+      class IncreasePlanQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8978,6 +9110,45 @@ module TencentCloud
         end
       end
 
+      # ModifyPlan请求参数结构体
+      class ModifyPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 套餐 ID，形如 edgeone-2unuvzjmmn2q。
+        # @type PlanId: String
+        # @param RenewFlag: 预付费套餐自动续费配置。若开启了自动续费，则会在套餐到期前一天自动续费，仅支持个人版，基础版，标准版套餐。不填写表示保持原有配置。
+        # @type RenewFlag: :class:`Tencentcloud::Teo.v20220901.models.RenewFlag`
+
+        attr_accessor :PlanId, :RenewFlag
+
+        def initialize(planid=nil, renewflag=nil)
+          @PlanId = planid
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          unless params['RenewFlag'].nil?
+            @RenewFlag = RenewFlag.new
+            @RenewFlag.deserialize(params['RenewFlag'])
+          end
+        end
+      end
+
+      # ModifyPlan返回参数结构体
+      class ModifyPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRealtimeLogDeliveryTask请求参数结构体
       class ModifyRealtimeLogDeliveryTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -10141,6 +10312,31 @@ module TencentCloud
         end
       end
 
+      # 预付费套餐计费参数
+      class PrepaidPlanParam < TencentCloud::Common::AbstractModel
+        # @param Period: 订阅预付费套餐的周期，单位：月，取值有：1，2，3，4，5，6，7，8，9，10，11，12，24，36。
+
+        # 不填写使用默认值 1。
+        # @type Period: Integer
+        # @param RenewFlag: 预付费套餐的自动续费标志，取值有：
+        # <li> on：开启自动续费；</li>
+        # <li> off：不开启自动续费。</li>
+        # 不填写使用默认值 off，自动续费时，默认续费1个月。
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # 对象存储源站私有鉴权参数
       class PrivateParameter < TencentCloud::Common::AbstractModel
         # @param Name: 私有鉴权参数名称，取值有：
@@ -10651,6 +10847,68 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 预付费套餐自动续费配置项。
+      class RenewFlag < TencentCloud::Common::AbstractModel
+        # @param Switch: 预付费套餐的自动续费标志，取值有：
+        # <li> on：开启自动续费；</li>
+        # <li> off：不开启自动续费。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # RenewPlan请求参数结构体
+      class RenewPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 套餐 ID，形如 edgeone-2unuvzjmmn2q。
+        # @type PlanId: String
+        # @param Period: 续费套餐的时长，单位：月，取值有：1，2，3，4，5，6，7，8，9，10，11，12，24，36。
+        # @type Period: Integer
+        # @param AutoUseVoucher: 是否自动使用代金券，取值有：<li> true：是；</li><li> false：否。</li>不填写使用默认值 false。
+        # @type AutoUseVoucher: String
+
+        attr_accessor :PlanId, :Period, :AutoUseVoucher
+
+        def initialize(planid=nil, period=nil, autousevoucher=nil)
+          @PlanId = planid
+          @Period = period
+          @AutoUseVoucher = autousevoucher
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @Period = params['Period']
+          @AutoUseVoucher = params['AutoUseVoucher']
+        end
+      end
+
+      # RenewPlan返回参数结构体
+      class RenewPlanResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12085,6 +12343,50 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Count = params['Count']
+        end
+      end
+
+      # UpgradePlan请求参数结构体
+      class UpgradePlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 套餐 ID，形如 edgeone-2unuvzjmmn2q。
+        # @type PlanId: String
+        # @param PlanType: 需要升级到的目标套餐版本，取值有：<li> basic：基础版套餐；</li><li> standard：标准版套餐。</li>
+        # @type PlanType: String
+        # @param AutoUseVoucher: 是否自动使用代金券，取值有：<li> true：是；</li><li> false：否。</li>不填写使用默认值 false。
+        # @type AutoUseVoucher: String
+
+        attr_accessor :PlanId, :PlanType, :AutoUseVoucher
+
+        def initialize(planid=nil, plantype=nil, autousevoucher=nil)
+          @PlanId = planid
+          @PlanType = plantype
+          @AutoUseVoucher = autousevoucher
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @PlanType = params['PlanType']
+          @AutoUseVoucher = params['AutoUseVoucher']
+        end
+      end
+
+      # UpgradePlan返回参数结构体
+      class UpgradePlanResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
         end
       end
 

@@ -813,7 +813,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String

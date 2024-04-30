@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于创建仪表盘订阅
+
+        # @param request: Request instance for CreateDashboardSubscribe.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateDashboardSubscribeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateDashboardSubscribeResponse`
+        def CreateDashboardSubscribe(request)
+          body = send_request('CreateDashboardSubscribe', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDashboardSubscribeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建数据加工任务。
 
         # @param request: Request instance for CreateDataTransform.
@@ -711,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteConsumerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于删除仪表盘订阅
+
+        # @param request: Request instance for DeleteDashboardSubscribe.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteDashboardSubscribeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteDashboardSubscribeResponse`
+        def DeleteDashboardSubscribe(request)
+          body = send_request('DeleteDashboardSubscribe', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDashboardSubscribeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1167,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCosRechargesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        #  本接口用于获取仪表盘订阅列表，支持分页
+
+        # @param request: Request instance for DescribeDashboardSubscribes.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeDashboardSubscribesRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeDashboardSubscribesResponse`
+        def DescribeDashboardSubscribes(request)
+          body = send_request('DescribeDashboardSubscribes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDashboardSubscribesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1806,6 +1878,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于修改仪表盘订阅
+
+        # @param request: Request instance for ModifyDashboardSubscribe.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyDashboardSubscribeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyDashboardSubscribeResponse`
+        def ModifyDashboardSubscribe(request)
+          body = send_request('ModifyDashboardSubscribe', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDashboardSubscribeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改数据加工任务
 
         # @param request: Request instance for ModifyDataTransform.
@@ -2152,6 +2248,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchCosRechargeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于预览仪表盘订阅
+
+        # @param request: Request instance for SearchDashboardSubscribe.
+        # @type request: :class:`Tencentcloud::cls::V20201016::SearchDashboardSubscribeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::SearchDashboardSubscribeResponse`
+        def SearchDashboardSubscribe(request)
+          body = send_request('SearchDashboardSubscribe', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchDashboardSubscribeResponse.new
             model.deserialize(response['Response'])
             model
           else

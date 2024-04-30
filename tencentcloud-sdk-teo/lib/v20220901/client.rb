@@ -344,6 +344,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 若您需要使用 Edgeone 产品，您需要通过此接口创建计费套餐。
+        # > 创建套餐后，您需要通过 [CreateZone](https://cloud.tencent.com/document/product/1552/80719) 完成创建站点，绑定套餐的流程，Edgeone 才能正常提供服务。
+
+        # @param request: Request instance for CreatePlan.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreatePlanRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreatePlanResponse`
+        def CreatePlan(request)
+          body = send_request('CreatePlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为未购买套餐的站点购买套餐
 
         # @param request: Request instance for CreatePlanForZone.
@@ -1718,6 +1743,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 当您需要停止 Edgeone 套餐的计费，可以通过该接口销毁计费套餐。
+        # > 销毁计费套餐需要满足以下条件：
+        #     1.套餐已过期（企业版套餐除外）；
+        #     2.套餐下所有站点均已关闭或删除。
+
+        # > 站点状态可以通过 [查询站点列表](https://cloud.tencent.com/document/product/1552/80713) 接口进行查询
+        # 停用站点可以通过 [切换站点状态](https://cloud.tencent.com/document/product/1552/80707) 接口将站点切换至关闭状态
+        # 删除站点可以通过 [删除站点](https://cloud.tencent.com/document/product/1552/80717) 接口将站点删除
+
+        # @param request: Request instance for DestroyPlan.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DestroyPlanRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DestroyPlanResponse`
+        def DestroyPlan(request)
+          body = send_request('DestroyPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DownloadL4Logs）用于下载四层离线日志。
 
         # @param request: Request instance for DownloadL4Logs.
@@ -1776,6 +1832,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = IdentifyZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当您的套餐绑定的站点数，或配置的 Web 防护 - 自定义规则 - 精准匹配策略的规则数，或 Web 防护 - 速率限制 - 精准速率限制模块的规则数达到套餐允许的配额上限，可以通过该接口增购对应配额。
+        # > 该接口该仅支持企业版套餐。
+
+        # @param request: Request instance for IncreasePlanQuota.
+        # @type request: :class:`Tencentcloud::teo::V20220901::IncreasePlanQuotaRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::IncreasePlanQuotaResponse`
+        def IncreasePlanQuota(request)
+          body = send_request('IncreasePlanQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IncreasePlanQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2131,6 +2212,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改套餐配置。目前仅支持修改预付费套餐的自动续费开关。
+
+        # @param request: Request instance for ModifyPlan.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyPlanRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyPlanResponse`
+        def ModifyPlan(request)
+          body = send_request('ModifyPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过本接口修改实时日志投递任务配置。本接口有如下限制：<li>不支持修改实时日志投递任务目的地类型（TaskType）；</li><li>不支持修改数据投递类型（LogType）</li><li>不支持修改数据投递区域（Area）</li><li>当原实时日志投递任务的目的地为腾讯云 CLS 时，不支持修改目的地详细配置，如日志集、日志主题。</li>
 
         # @param request: Request instance for ModifyRealtimeLogDeliveryTask.
@@ -2285,6 +2390,58 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyZoneStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当您的套餐需要延长有效期，可以通过该接口进行续费。套餐续费仅支持个人版，基础版，标准版套餐。
+        # > 费用详情可参考 [套餐费用](https://cloud.tencent.com/document/product/1552/94158)
+
+        # @param request: Request instance for RenewPlan.
+        # @type request: :class:`Tencentcloud::teo::V20220901::RenewPlanRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::RenewPlanResponse`
+        def RenewPlan(request)
+          body = send_request('RenewPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当您需要使用高等级套餐才拥有的功能，可以通过本接口升级套餐，仅支持个人版，基础版套餐进行升级。
+        # > 不同类型 Edgeone 计费套餐区别参考 [Edgeone计费套餐选型对比](https://cloud.tencent.com/document/product/1552/94165)
+        # 计费套餐升级规则以及资费详情参考 [Edgeone计费套餐升配说明](https://cloud.tencent.com/document/product/1552/95291)
+        # 如果需要将套餐升级至企业版，请 [联系我们](https://cloud.tencent.com/online-service)
+
+        # @param request: Request instance for UpgradePlan.
+        # @type request: :class:`Tencentcloud::teo::V20220901::UpgradePlanRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::UpgradePlanResponse`
+        def UpgradePlan(request)
+          body = send_request('UpgradePlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradePlanResponse.new
             model.deserialize(response['Response'])
             model
           else

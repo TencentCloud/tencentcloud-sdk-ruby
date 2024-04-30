@@ -2257,6 +2257,33 @@ module TencentCloud
         end
       end
 
+      # CreateDashboardSubscribe请求参数结构体
+      class CreateDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateDashboardSubscribe返回参数结构体
+      class CreateDashboardSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDataTransform请求参数结构体
       class CreateDataTransformRequest < TencentCloud::Common::AbstractModel
         # @param FuncType: 任务类型. 1: 指定主题；2:动态创建。详情请参考[创建加工任务文档](https://cloud.tencent.com/document/product/614/63940)。
@@ -2265,7 +2292,7 @@ module TencentCloud
         # @type SrcTopicId: String
         # @param Name: 加工任务名称
         # @type Name: String
-        # @param EtlContent: 加工语句
+        # @param EtlContent: 加工语句。[创建加工任务](https://cloud.tencent.com/document/product/614/63940)  [函数总览](https://cloud.tencent.com/document/product/614/70395)
         # @type EtlContent: String
         # @param TaskType: 加工类型。
         # 1：使用源日志主题中的随机数据，进行加工预览；2：使用用户自定义测试数据，进行加工预览；3：创建真实加工任务。
@@ -2643,19 +2670,19 @@ module TencentCloud
       class CreateMachineGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupName: 机器组名字，不能重复
         # @type GroupName: String
-        # @param MachineGroupType: 创建机器组类型，Type为ip，Values中为Ip字符串列表创建机器组，Type为label， Values中为标签字符串列表创建机器组
+        # @param MachineGroupType: 创建机器组类型。Type：ip，Values中为ip字符串列表创建机器组；Type：label，Values中为标签字符串列表创建机器组。
         # @type MachineGroupType: :class:`Tencentcloud::Cls.v20201016.models.MachineGroupTypeInfo`
         # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的机器组。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。
         # @type Tags: Array
-        # @param AutoUpdate: 是否开启机器组自动更新
+        # @param AutoUpdate: 是否开启机器组自动更新。默认false
         # @type AutoUpdate: Boolean
         # @param UpdateStartTime: 升级开始时间，建议业务低峰期升级LogListener
         # @type UpdateStartTime: String
         # @param UpdateEndTime: 升级结束时间，建议业务低峰期升级LogListener
         # @type UpdateEndTime: String
-        # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
+        # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费。默认false
         # @type ServiceLogging: Boolean
-        # @param DelayCleanupTime: 机器组中机器离线清理时间
+        # @param DelayCleanupTime: 机器组中机器离线清理时间。单位：天
         # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
@@ -3455,6 +3482,33 @@ module TencentCloud
 
       # DeleteConsumer返回参数结构体
       class DeleteConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDashboardSubscribe请求参数结构体
+      class DeleteDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteDashboardSubscribe返回参数结构体
+      class DeleteDashboardSubscribeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4414,6 +4468,33 @@ module TencentCloud
         end
       end
 
+      # DescribeDashboardSubscribes请求参数结构体
+      class DescribeDashboardSubscribesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDashboardSubscribes返回参数结构体
+      class DescribeDashboardSubscribesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDashboards请求参数结构体
       class DescribeDashboardsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页的偏移量，默认值为0。
@@ -5358,9 +5439,11 @@ module TencentCloud
       class DescribeShipperTasksRequest < TencentCloud::Common::AbstractModel
         # @param ShipperId: 投递规则ID
         # @type ShipperId: String
-        # @param StartTime: 查询的开始时间戳，支持最近3天的查询， 毫秒
+        # @param StartTime: 查询的开始时间戳，支持最近3天的查询， 毫秒。
+        # StartTime必须小于EndTime
         # @type StartTime: Integer
-        # @param EndTime: 查询的结束时间戳， 毫秒
+        # @param EndTime: 查询的结束时间戳， 毫秒。
+        # StartTime必须小于EndTime
         # @type EndTime: Integer
 
         attr_accessor :ShipperId, :StartTime, :EndTime
@@ -6777,9 +6860,11 @@ module TencentCloud
 
       # 机器组类型描述
       class MachineGroupTypeInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 机器组类型，ip表示该机器组Values中存的是采集机器的IP地址，label表示该机器组Values中存储的是机器的标签
+        # @param Type: 机器组类型。支持 ip 和 label。
+        # - ip：表示该机器组Values中存的是采集机器的ip地址
+        # - label：表示该机器组Values中存储的是机器的标签
         # @type Type: String
-        # @param Values: 机器描述列表
+        # @param Values: 机器描述列表。
         # @type Values: Array
 
         attr_accessor :Type, :Values
@@ -7595,6 +7680,33 @@ module TencentCloud
         end
       end
 
+      # ModifyDashboardSubscribe请求参数结构体
+      class ModifyDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyDashboardSubscribe返回参数结构体
+      class ModifyDashboardSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDataTransform请求参数结构体
       class ModifyDataTransformRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 加工任务id
@@ -7888,7 +8000,7 @@ module TencentCloud
         # @type GroupId: String
         # @param GroupName: 机器组名称
         # @type GroupName: String
-        # @param MachineGroupType: 机器组类型
+        # @param MachineGroupType: 机器组类型。Type：ip，Values中为ip字符串列表机器组；Type：label，Values中为标签字符串列表机器组。
         # @type MachineGroupType: :class:`Tencentcloud::Cls.v20201016.models.MachineGroupTypeInfo`
         # @param Tags: 标签列表
         # @type Tags: Array
@@ -7900,7 +8012,7 @@ module TencentCloud
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
-        # @param DelayCleanupTime: 机器组中机器定期离线清理时间
+        # @param DelayCleanupTime: 机器组中机器定期离线清理时间。单位：天
         # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
@@ -9086,6 +9198,33 @@ module TencentCloud
           @Path = params['Path']
           @Msg = params['Msg']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchDashboardSubscribe请求参数结构体
+      class SearchDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SearchDashboardSubscribe返回参数结构体
+      class SearchDashboardSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
