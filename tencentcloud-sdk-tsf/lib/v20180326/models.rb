@@ -1209,8 +1209,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 3
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 3
+        deprecate :ConfigAssociatedGroups, :none, 2024, 5
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 5
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
@@ -1716,10 +1716,13 @@ module TencentCloud
         # @param KuberneteNativeSecret: native secret
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KuberneteNativeSecret: String
+        # @param EnableLogCollection: 是否开启cls日志功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableLogCollection: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterType, :VpcId, :ClusterStatus, :ClusterCIDR, :ClusterTotalCpu, :ClusterTotalMem, :ClusterUsedCpu, :ClusterUsedMem, :InstanceCount, :RunInstanceCount, :NormalInstanceCount, :DeleteFlag, :CreateTime, :UpdateTime, :TsfRegionId, :TsfRegionName, :TsfZoneId, :TsfZoneName, :DeleteFlagReason, :SubnetId, :ClusterLimitCpu, :ClusterLimitMem, :RunServiceInstanceCount, :OperationInfo, :ClusterVersion, :GroupCount, :RunGroupCount, :StopGroupCount, :AbnormalGroupCount, :ClusterRemarkName, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterType, :VpcId, :ClusterStatus, :ClusterCIDR, :ClusterTotalCpu, :ClusterTotalMem, :ClusterUsedCpu, :ClusterUsedMem, :InstanceCount, :RunInstanceCount, :NormalInstanceCount, :DeleteFlag, :CreateTime, :UpdateTime, :TsfRegionId, :TsfRegionName, :TsfZoneId, :TsfZoneName, :DeleteFlagReason, :SubnetId, :ClusterLimitCpu, :ClusterLimitMem, :RunServiceInstanceCount, :OperationInfo, :ClusterVersion, :GroupCount, :RunGroupCount, :StopGroupCount, :AbnormalGroupCount, :ClusterRemarkName, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret, :EnableLogCollection
 
-        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clustertype=nil, vpcid=nil, clusterstatus=nil, clustercidr=nil, clustertotalcpu=nil, clustertotalmem=nil, clusterusedcpu=nil, clusterusedmem=nil, instancecount=nil, runinstancecount=nil, normalinstancecount=nil, deleteflag=nil, createtime=nil, updatetime=nil, tsfregionid=nil, tsfregionname=nil, tsfzoneid=nil, tsfzonename=nil, deleteflagreason=nil, subnetid=nil, clusterlimitcpu=nil, clusterlimitmem=nil, runserviceinstancecount=nil, operationinfo=nil, clusterversion=nil, groupcount=nil, rungroupcount=nil, stopgroupcount=nil, abnormalgroupcount=nil, clusterremarkname=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clustertype=nil, vpcid=nil, clusterstatus=nil, clustercidr=nil, clustertotalcpu=nil, clustertotalmem=nil, clusterusedcpu=nil, clusterusedmem=nil, instancecount=nil, runinstancecount=nil, normalinstancecount=nil, deleteflag=nil, createtime=nil, updatetime=nil, tsfregionid=nil, tsfregionname=nil, tsfzoneid=nil, tsfzonename=nil, deleteflagreason=nil, subnetid=nil, clusterlimitcpu=nil, clusterlimitmem=nil, runserviceinstancecount=nil, operationinfo=nil, clusterversion=nil, groupcount=nil, rungroupcount=nil, stopgroupcount=nil, abnormalgroupcount=nil, clusterremarkname=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil, enablelogcollection=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -1756,6 +1759,7 @@ module TencentCloud
           @KuberneteApiServer = kuberneteapiserver
           @KuberneteNativeType = kubernetenativetype
           @KuberneteNativeSecret = kubernetenativesecret
+          @EnableLogCollection = enablelogcollection
         end
 
         def deserialize(params)
@@ -1798,6 +1802,7 @@ module TencentCloud
           @KuberneteApiServer = params['KuberneteApiServer']
           @KuberneteNativeType = params['KuberneteNativeType']
           @KuberneteNativeSecret = params['KuberneteNativeSecret']
+          @EnableLogCollection = params['EnableLogCollection']
         end
       end
 
@@ -3345,10 +3350,12 @@ module TencentCloud
         # @type KuberneteNativeSecret: String
         # @param ProgramIdList: 无
         # @type ProgramIdList: Array
+        # @param EnableLogCollection: 是否开启cls日志功能
+        # @type EnableLogCollection: Boolean
 
-        attr_accessor :ClusterName, :ClusterType, :VpcId, :ClusterCIDR, :ClusterDesc, :TsfRegionId, :TsfZoneId, :SubnetId, :ClusterVersion, :MaxNodePodNum, :MaxClusterServiceNum, :ProgramId, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret, :ProgramIdList
+        attr_accessor :ClusterName, :ClusterType, :VpcId, :ClusterCIDR, :ClusterDesc, :TsfRegionId, :TsfZoneId, :SubnetId, :ClusterVersion, :MaxNodePodNum, :MaxClusterServiceNum, :ProgramId, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret, :ProgramIdList, :EnableLogCollection
 
-        def initialize(clustername=nil, clustertype=nil, vpcid=nil, clustercidr=nil, clusterdesc=nil, tsfregionid=nil, tsfzoneid=nil, subnetid=nil, clusterversion=nil, maxnodepodnum=nil, maxclusterservicenum=nil, programid=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil, programidlist=nil)
+        def initialize(clustername=nil, clustertype=nil, vpcid=nil, clustercidr=nil, clusterdesc=nil, tsfregionid=nil, tsfzoneid=nil, subnetid=nil, clusterversion=nil, maxnodepodnum=nil, maxclusterservicenum=nil, programid=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil, programidlist=nil, enablelogcollection=nil)
           @ClusterName = clustername
           @ClusterType = clustertype
           @VpcId = vpcid
@@ -3365,6 +3372,7 @@ module TencentCloud
           @KuberneteNativeType = kubernetenativetype
           @KuberneteNativeSecret = kubernetenativesecret
           @ProgramIdList = programidlist
+          @EnableLogCollection = enablelogcollection
         end
 
         def deserialize(params)
@@ -3384,6 +3392,7 @@ module TencentCloud
           @KuberneteNativeType = params['KuberneteNativeType']
           @KuberneteNativeSecret = params['KuberneteNativeSecret']
           @ProgramIdList = params['ProgramIdList']
+          @EnableLogCollection = params['EnableLogCollection']
         end
       end
 
@@ -14843,14 +14852,20 @@ module TencentCloud
         # @type ClusterDesc: String
         # @param ClusterRemarkName: 备注名
         # @type ClusterRemarkName: String
+        # @param EnableLogCollection: 是否开启cls日志功能
+        # @type EnableLogCollection: Boolean
+        # @param RepairLog: 是否修复cls日志功能
+        # @type RepairLog: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterRemarkName
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterRemarkName, :EnableLogCollection, :RepairLog
 
-        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clusterremarkname=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, clusterremarkname=nil, enablelogcollection=nil, repairlog=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
           @ClusterRemarkName = clusterremarkname
+          @EnableLogCollection = enablelogcollection
+          @RepairLog = repairlog
         end
 
         def deserialize(params)
@@ -14858,6 +14873,8 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @ClusterDesc = params['ClusterDesc']
           @ClusterRemarkName = params['ClusterRemarkName']
+          @EnableLogCollection = params['EnableLogCollection']
+          @RepairLog = params['RepairLog']
         end
       end
 

@@ -580,6 +580,182 @@ module TencentCloud
         end
       end
 
+      # 集群基础信息
+      class BaseClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型，EMR/CDW等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param RegionCn: 地域中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCn: String
+        # @param RegionEn: 地域英文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionEn: String
+        # @param RegionArea: 地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionArea: String
+        # @param Used: 集群是否使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Used: Boolean
+        # @param Status: 集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusInfo: 集群状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusInfo: String
+        # @param StorageType: 集群存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param ComputeType: 集群计算类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputeType: String
+        # @param ClusterResource: 集群资源量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterResource: String
+        # @param ChargeType: 集群付费方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
+        # @param CreateTime: 集群创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExtraConf: 额外配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraConf: String
+        # @param RangerUserName: ranger账号名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RangerUserName: String
+        # @param CdwUserName: cdw账号（用于展示）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdwUserName: String
+
+        attr_accessor :ClusterId, :ClusterType, :ClusterName, :RegionCn, :RegionEn, :RegionArea, :Used, :Status, :StatusInfo, :StorageType, :ComputeType, :ClusterResource, :ChargeType, :CreateTime, :ExtraConf, :RangerUserName, :CdwUserName
+
+        def initialize(clusterid=nil, clustertype=nil, clustername=nil, regioncn=nil, regionen=nil, regionarea=nil, used=nil, status=nil, statusinfo=nil, storagetype=nil, computetype=nil, clusterresource=nil, chargetype=nil, createtime=nil, extraconf=nil, rangerusername=nil, cdwusername=nil)
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+          @ClusterName = clustername
+          @RegionCn = regioncn
+          @RegionEn = regionen
+          @RegionArea = regionarea
+          @Used = used
+          @Status = status
+          @StatusInfo = statusinfo
+          @StorageType = storagetype
+          @ComputeType = computetype
+          @ClusterResource = clusterresource
+          @ChargeType = chargetype
+          @CreateTime = createtime
+          @ExtraConf = extraconf
+          @RangerUserName = rangerusername
+          @CdwUserName = cdwusername
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+          @ClusterName = params['ClusterName']
+          @RegionCn = params['RegionCn']
+          @RegionEn = params['RegionEn']
+          @RegionArea = params['RegionArea']
+          @Used = params['Used']
+          @Status = params['Status']
+          @StatusInfo = params['StatusInfo']
+          @StorageType = params['StorageType']
+          @ComputeType = params['ComputeType']
+          @ClusterResource = params['ClusterResource']
+          @ChargeType = params['ChargeType']
+          @CreateTime = params['CreateTime']
+          @ExtraConf = params['ExtraConf']
+          @RangerUserName = params['RangerUserName']
+          @CdwUserName = params['CdwUserName']
+        end
+      end
+
+      # 租户基础信息
+      class BaseTenant < TencentCloud::Common::AbstractModel
+        # @param TenantId: 租户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: String
+        # @param TenantName: 租户标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantName: String
+        # @param DisplayName: 租户显示名称，一般是中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param OwnerUserId: 租户主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUserId: String
+        # @param Params: 租户的额外配置参数, json格式字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+
+        attr_accessor :TenantId, :TenantName, :DisplayName, :Description, :OwnerUserId, :Params
+
+        def initialize(tenantid=nil, tenantname=nil, displayname=nil, description=nil, owneruserid=nil, params=nil)
+          @TenantId = tenantid
+          @TenantName = tenantname
+          @DisplayName = displayname
+          @Description = description
+          @OwnerUserId = owneruserid
+          @Params = params
+        end
+
+        def deserialize(params)
+          @TenantId = params['TenantId']
+          @TenantName = params['TenantName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @OwnerUserId = params['OwnerUserId']
+          @Params = params['Params']
+        end
+      end
+
+      # 基础用户信息
+      class BaseUser < TencentCloud::Common::AbstractModel
+        # @param UserId: 有云的UIN，全局唯一
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: 用户全局唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param DisplayName: 用户显示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param PhoneNum: 电话号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNum: String
+        # @param Email: 邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+
+        attr_accessor :UserId, :UserName, :DisplayName, :PhoneNum, :Email
+
+        def initialize(userid=nil, username=nil, displayname=nil, phonenum=nil, email=nil)
+          @UserId = userid
+          @UserName = username
+          @DisplayName = displayname
+          @PhoneNum = phonenum
+          @Email = email
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @DisplayName = params['DisplayName']
+          @PhoneNum = params['PhoneNum']
+          @Email = params['Email']
+        end
+      end
+
       # BatchCreateIntegrationTaskAlarms请求参数结构体
       class BatchCreateIntegrationTaskAlarmsRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
@@ -1724,8 +1900,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 4
-        deprecate :TaskId=, :none, 2024, 4
+        deprecate :TaskId, :none, 2024, 5
+        deprecate :TaskId=, :none, 2024, 5
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -7231,12 +7407,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 4
-        deprecate :EventType=, :none, 2024, 4
-        deprecate :EventBroadcastType, :none, 2024, 4
-        deprecate :EventBroadcastType=, :none, 2024, 4
-        deprecate :Status, :none, 2024, 4
-        deprecate :Status=, :none, 2024, 4
+        deprecate :EventType, :none, 2024, 5
+        deprecate :EventType=, :none, 2024, 5
+        deprecate :EventBroadcastType, :none, 2024, 5
+        deprecate :EventBroadcastType=, :none, 2024, 5
+        deprecate :Status, :none, 2024, 5
+        deprecate :Status=, :none, 2024, 5
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -9307,16 +9483,23 @@ module TencentCloud
 
       # DescribeProject返回参数结构体
       class DescribeProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 项目信息
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.Project`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = Project.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12768,8 +12951,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 4
-        deprecate :DimType=, :none, 2024, 4
+        deprecate :DimType, :none, 2024, 5
+        deprecate :DimType=, :none, 2024, 5
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -17902,8 +18085,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2024, 4
-        deprecate :InCharge=, :none, 2024, 4
+        deprecate :InCharge, :none, 2024, 5
+        deprecate :InCharge=, :none, 2024, 5
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -19258,6 +19441,107 @@ module TencentCloud
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
           @CycleType = params['CycleType']
+        end
+      end
+
+      # 项目信息
+      class Project < TencentCloud::Common::AbstractModel
+        # @param TenantId: 项目的所在租户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: String
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 项目标识，英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param DisplayName: 项目显示名称，可以为中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Creator: 创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: :class:`Tencentcloud::Wedata.v20210820.models.BaseUser`
+        # @param Tenant: 租户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tenant: :class:`Tencentcloud::Wedata.v20210820.models.BaseTenant`
+        # @param AdminUsers: 项目的管理员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminUsers: Array
+        # @param Clusters: 项目关联的集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clusters: Array
+        # @param Params: 项目的额外配置参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+        # @param Status: 项目状态：0：禁用，1：启用，-3:禁用中，2：启用中
+        # @type Status: Integer
+        # @param Model: 项目类型，SIMPLE：简单模式 STANDARD：标准模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: String
+
+        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model
+
+        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil)
+          @TenantId = tenantid
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @DisplayName = displayname
+          @Region = region
+          @Description = description
+          @CreateTime = createtime
+          @Creator = creator
+          @Tenant = tenant
+          @AdminUsers = adminusers
+          @Clusters = clusters
+          @Params = params
+          @Status = status
+          @Model = model
+        end
+
+        def deserialize(params)
+          @TenantId = params['TenantId']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @DisplayName = params['DisplayName']
+          @Region = params['Region']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          unless params['Creator'].nil?
+            @Creator = BaseUser.new
+            @Creator.deserialize(params['Creator'])
+          end
+          unless params['Tenant'].nil?
+            @Tenant = BaseTenant.new
+            @Tenant.deserialize(params['Tenant'])
+          end
+          unless params['AdminUsers'].nil?
+            @AdminUsers = []
+            params['AdminUsers'].each do |i|
+              baseuser_tmp = BaseUser.new
+              baseuser_tmp.deserialize(i)
+              @AdminUsers << baseuser_tmp
+            end
+          end
+          unless params['Clusters'].nil?
+            @Clusters = []
+            params['Clusters'].each do |i|
+              baseclusterinfo_tmp = BaseClusterInfo.new
+              baseclusterinfo_tmp.deserialize(i)
+              @Clusters << baseclusterinfo_tmp
+            end
+          end
+          @Params = params['Params']
+          @Status = params['Status']
+          @Model = params['Model']
         end
       end
 

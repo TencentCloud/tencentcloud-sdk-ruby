@@ -5252,9 +5252,9 @@ module TencentCloud
         # @type IntegrityAlgorithm: String
         # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 'NONE'，默认NONE。
         # @type EncryptAlgorithm: String
-        # @param Compress: 是否支持压缩。当前仅支持不支持压缩，默认False。
+        # @param Compress: 是否支持压缩。当前不支持压缩，默认False。
         # @type Compress: Boolean
-        # @param SsoEnabled: 是否开启SSO认证。默认为False
+        # @param SsoEnabled: 是否开启SSO认证。默认为False。该功能当前需要申请开白使用。
         # @type SsoEnabled: Boolean
         # @param AccessPolicyEnabled: 是否开启策略访问控制。默认为False
         # @type AccessPolicyEnabled: Boolean
@@ -12262,7 +12262,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 请求对象个数。
         # @type Limit: Integer
-        # @param SslVpnServerIds: SSL-VPN-SERVER实例ID。形如：vpngwSslServer-12345678。每次请求的实例的上限为100。参数不支持同时指定SslVpnServerIds和Filters。
+        # @param SslVpnServerIds: SSL-VPN-SERVER实例ID。形如：vpns-0p4rj60。每次请求的实例的上限为100。参数不支持同时指定SslVpnServerIds和Filters。
         # @type SslVpnServerIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定SslVpnServerIds和Filters。
         # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
@@ -14360,8 +14360,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 4
-        deprecate :IntegrityAlgorith=, :none, 2024, 4
+        deprecate :IntegrityAlgorith, :none, 2024, 5
+        deprecate :IntegrityAlgorith=, :none, 2024, 5
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -14421,15 +14421,15 @@ module TencentCloud
 
       # InquiryPriceCreateVpnGateway请求参数结构体
       class InquiryPriceCreateVpnGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100；单位：Mbps。
+        # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100, 200, 500, 1000, 3000；单位：Mbps。
         # @type InternetMaxBandwidthOut: Integer
         # @param InstanceChargeType: VPN网关计费模式，PREPAID：表示预付费，即包年包月，POSTPAID_BY_HOUR：表示后付费，即按量计费。默认：POSTPAID_BY_HOUR，如果指定预付费模式，参数InstanceChargePrepaid必填。
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.InstanceChargePrepaid`
-        # @param MaxConnection: SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100；单位：个。
+        # @param MaxConnection: SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100, 200, 500, 1000；单位：个。
         # @type MaxConnection: Integer
-        # @param Type: 查询的VPN类型，支持IPSEC和SSL两种类型，为SSL类型时，MaxConnection参数必传。
+        # @param Type: 查询的VPN类型，支持IPSEC、SSL两种类型，为SSL类型时，MaxConnection参数必传。
         # @type Type: String
 
         attr_accessor :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :MaxConnection, :Type
@@ -14527,7 +14527,7 @@ module TencentCloud
       class InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100；单位：Mbps。
+        # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100, 200, 500, 1000；单位：Mbps。
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :VpnGatewayId, :InternetMaxBandwidthOut
@@ -14545,7 +14545,7 @@ module TencentCloud
 
       # InquiryPriceResetVpnGatewayInternetMaxBandwidth返回参数结构体
       class InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 商品价格。
+        # @param Price: 商品价格。仅支持未过期的预付费网关。
         # @type Price: :class:`Tencentcloud::Vpc.v20170312.models.Price`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17231,7 +17231,7 @@ module TencentCloud
       class ModifyVpnGatewayCcnRoutesRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
-        # @param Routes: 云联网路由（IDC网段）列表。
+        # @param Routes: 云联网路由（IDC网段）列表。其中RouteId可通过[DescribeVpnGatewayCcnRoutes](https://cloud.tencent.com/document/product/215/43514)接口获取。
         # @type Routes: Array
 
         attr_accessor :VpnGatewayId, :Routes
@@ -17343,9 +17343,9 @@ module TencentCloud
         # @type EncryptAlgorithm: String
         # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'。默认NONE
         # @type IntegrityAlgorithm: String
-        # @param Compress: 是否支持压缩。当前仅支持不支持压缩。默认False
+        # @param Compress: 是否支持压缩。当前不支持压缩。默认False。
         # @type Compress: Boolean
-        # @param SsoEnabled: 是否开启SSO认证，默认False
+        # @param SsoEnabled: 是否开启SSO认证。默认为False。该功能当前需要申请开白使用。
         # @type SsoEnabled: Boolean
         # @param SamlData: SAML-DATA
         # @type SamlData: String
@@ -20267,7 +20267,7 @@ module TencentCloud
 
       # SetVpnGatewaysRenewFlag请求参数结构体
       class SetVpnGatewaysRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayIds: VPNGW字符型ID列表。可通过[DescribeVpnGateways](https://cloud.tencent.com/document/api/215/17514)接口返回值VpnGatewaySet中的VpnGatewayId获取。
+        # @param VpnGatewayIds: VPNGW字符型ID列表。可通过[DescribeVpnGateways](https://cloud.tencent.com/document/api/215/17514)接口返回值VpnGatewaySet中的VpnGatewayId获取，只能选择包年包月的VPN实例。
         # @type VpnGatewayIds: Array
         # @param AutoRenewFlag: 自动续费标记 [0, 1, 2]
         # 0表示默认状态(初始状态)， 1表示自动续费，2表示明确不自动续费。
@@ -20622,10 +20622,13 @@ module TencentCloud
         # @type AccessPolicyEnabled: Integer
         # @param AccessPolicy: 策略信息
         # @type AccessPolicy: Array
+        # @param SpName: CAM服务提供商Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpName: String
 
-        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State, :SsoEnabled, :EiamApplicationId, :AccessPolicyEnabled, :AccessPolicy
+        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State, :SsoEnabled, :EiamApplicationId, :AccessPolicyEnabled, :AccessPolicy, :SpName
 
-        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil, ssoenabled=nil, eiamapplicationid=nil, accesspolicyenabled=nil, accesspolicy=nil)
+        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil, ssoenabled=nil, eiamapplicationid=nil, accesspolicyenabled=nil, accesspolicy=nil, spname=nil)
           @VpcId = vpcid
           @SslVpnServerId = sslvpnserverid
           @VpnGatewayId = vpngatewayid
@@ -20645,6 +20648,7 @@ module TencentCloud
           @EiamApplicationId = eiamapplicationid
           @AccessPolicyEnabled = accesspolicyenabled
           @AccessPolicy = accesspolicy
+          @SpName = spname
         end
 
         def deserialize(params)
@@ -20674,6 +20678,7 @@ module TencentCloud
               @AccessPolicy << accesspolicy_tmp
             end
           end
+          @SpName = params['SpName']
         end
       end
 

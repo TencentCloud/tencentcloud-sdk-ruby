@@ -1592,19 +1592,29 @@ module TencentCloud
         # @param Name: 通知渠道组名称。
         # @type Name: String
         # @param Type: 通知类型。可选值：
-        # <li> Trigger - 告警触发 </li>
-        # <li> Recovery - 告警恢复</li>
-        # <li> All - 告警触发和告警恢复</li>
-        # @type Type: String
-        # @param NoticeReceivers: 通知接收对象。
-        # @type NoticeReceivers: Array
-        # @param WebCallbacks: 接口回调信息（包括企业微信）。
-        # @type WebCallbacks: Array
-        # @param NoticeRules: 通知规则。
+        # - Trigger - 告警触发
+        # - Recovery - 告警恢复
+        # - All - 告警触发和告警恢复
+
 
         #  注意:
-
-        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空，NoticeRules是另一组配置，其中rule不许为空，2组配置互斥。
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，必须填写一组配置。
+        # @type Type: String
+        # @param NoticeReceivers: 通知接收对象。
+        #  注意:
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空，NoticeRules是另一组配置，其中rule不许为空，2组配置互斥。
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，必须填写一组配置。
+        # @type NoticeReceivers: Array
+        # @param WebCallbacks: 接口回调信息（包括企业微信）。
+        #  注意:
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空，NoticeRules是另一组配置，其中rule不许为空，2组配置互斥。
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，必须填写一组配置。
+        # @type WebCallbacks: Array
+        # @param NoticeRules: 通知规则。
+        #  注意:
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空，NoticeRules是另一组配置，其中rule不许为空，2组配置互斥。
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，必须填写一组配置。
 
         # @type NoticeRules: Array
 
@@ -2036,7 +2046,7 @@ module TencentCloud
         # @type Name: String
         # @param Output: 采集配置所属日志主题ID即TopicId
         # @type Output: String
-        # @param Path: 日志采集路径,包含文件名
+        # @param Path: 日志采集路径，包含文件名，支持多个路径，多个路径之间英文逗号分隔，文件采集情况下必填
         # @type Path: String
         # @param LogType: 采集的日志类型，默认为minimalist_log。支持以下类型：
         # - json_log代表：JSON-文件日志（详见[使用 JSON 提取模式采集日志](https://cloud.tencent.com/document/product/614/17419)）；
@@ -3485,7 +3495,7 @@ module TencentCloud
 
       # DeleteConfigExtra请求参数结构体
       class DeleteConfigExtraRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigExtraId: 采集规则扩展配置ID
+        # @param ConfigExtraId: 特殊采集规则扩展配置ID
         # @type ConfigExtraId: String
 
         attr_accessor :ConfigExtraId
@@ -4292,7 +4302,27 @@ module TencentCloud
 
       # DescribeConfigExtras请求参数结构体
       class DescribeConfigExtrasRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 支持的key： topicId,name, configExtraId, machineGroupId
+        # @param Filters: name
+        # - 按照【特殊采集配置名称】进行模糊匹配过滤。
+        # - 类型：String
+        # - 必选：否
+
+        # configExtraId
+        # - 按照【特殊采集配置ID】进行过滤。
+        # - 类型：String
+        # - 必选：否
+
+        # topicId
+        # - 按照【日志主题】进行过滤。
+        # - 类型：String
+        # - 必选：否
+
+        # machineGroupId
+        # - 按照【机器组ID】进行过滤。
+        # - 类型：String
+        # - 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为5。
         # @type Filters: Array
         # @param Offset: 分页的偏移量，默认值为0
         # @type Offset: Integer
@@ -5913,7 +5943,7 @@ module TencentCloud
         # @param UnMatchUpLoadSwitch: 解析失败日志是否上传，true表示上传，false表示不上传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchUpLoadSwitch: Boolean
-        # @param UnMatchLogKey: 失败日志的key
+        # @param UnMatchLogKey: 失败日志的key，当UnMatchUpLoadSwitch为true时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchLogKey: String
         # @param Backtracking: 增量采集模式下的回溯数据量，默认：-1（全量采集）；其他非负数表示增量采集（从最新的位置，往前采集${Backtracking}字节（Byte）的日志）最大支持1073741824（1G）。
@@ -5922,20 +5952,23 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backtracking: Integer
         # @param IsGBK: 是否为Gbk编码。 0：否；1：是。
-        # 注意：
+        # 注意
+        # - 目前取0值时，表示UTF-8编码
         # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGBK: Integer
         # @param JsonStandard: 是否为标准json。  0：否； 1：是。
+        # 注
+        # - 标准json指采集器使用业界标准开源解析器进行json解析，非标json指采集器使用CLS自研json解析器进行解析，两种解析器没有本质区别，建议客户使用标准json进行解析。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonStandard: Integer
-        # @param Protocol: syslog传输协议，取值为tcp或者udp。
+        # @param Protocol: syslog传输协议，取值为tcp或者udp，只有在LogType为service_syslog时生效，其余类型无需填写。
         # 注意：
         # - 该字段适用于：创建采集规则配置、修改采集规则配置。
         # - COS导入不支持此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
-        # @param Address: syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
+        # @param Address: syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]，只有在LogType为service_syslog时生效，其余类型无需填写。
         # 注意：
         # - 该字段适用于：创建采集规则配置、修改采集规则配置。
         # - COS导入不支持此字段。
@@ -5944,6 +5977,7 @@ module TencentCloud
         # @param ParseProtocol: rfc3164：指定系统日志采集使用RFC3164协议解析日志。
         # rfc5424：指定系统日志采集使用RFC5424协议解析日志。
         # auto：自动匹配rfc3164或者rfc5424其中一种协议。
+        # 只有在LogType为service_syslog时生效，其余类型无需填写。
         # 注意：
         # - 该字段适用于：创建采集规则配置、修改采集规则配置
         # - COS导入不支持此字段。
@@ -5964,9 +5998,7 @@ module TencentCloud
         # - MetadataType为2时必填。
         # - COS导入不支持此字段。
         # @type MetaTags: Array
-        # @param EventLogRules: Windows事件日志采集。
-        # 注意：
-        # - COS导入不支持此字段。
+        # @param EventLogRules: Windows事件日志采集规则，只有在LogType为windows_event_log时生效，其余类型无需填写。
         # @type EventLogRules: Array
 
         attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags, :EventLogRules
@@ -8523,23 +8555,28 @@ module TencentCloud
       # 告警通知接收者信息
       class NoticeReceiver < TencentCloud::Common::AbstractModel
         # @param ReceiverType: 接受者类型。可选值：
-        # <br><li> Uin - 用户ID
-        # <br><li> Group - 用户组ID
+        # -  Uin - 用户ID
+        # - Group - 用户组ID
         # 暂不支持其余接收者类型。
         # @type ReceiverType: String
         # @param ReceiverIds: 接收者。
+        # 当ReceiverType为Uin时，ReceiverIds的值为用户id。[子用户信息查询](https://cloud.tencent.com/document/product/598/36258)
+        # 当ReceiverType为Group时，ReceiverIds的值为用户组id。[CAM用户组](https://cloud.tencent.com/document/product/598/14985)
         # @type ReceiverIds: Array
         # @param ReceiverChannels: 通知接收渠道。
-        # <br><li> Email - 邮件
-        # <br><li> Sms - 短信
-        # <br><li> WeChat - 微信
-        # <br><li> Phone - 电话
+        # - Email - 邮件
+        # - Sms - 短信
+        # - WeChat - 微信
+        # - Phone - 电话
         # @type ReceiverChannels: Array
         # @param StartTime: 允许接收信息的开始时间。
         # @type StartTime: String
         # @param EndTime: 允许接收信息的结束时间。
         # @type EndTime: String
-        # @param Index: 位序
+        # @param Index: 位序。
+
+        # - 入参无效。
+        # - 出参时有效。
         # @type Index: Integer
 
         attr_accessor :ReceiverType, :ReceiverIds, :ReceiverChannels, :StartTime, :EndTime, :Index
@@ -8571,7 +8608,12 @@ module TencentCloud
         # @param WebCallbacks: 告警通知模板回调信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebCallbacks: Array
-        # @param Rule: 匹配规则。
+        # @param Rule: 匹配规则 JSON串。
+        # `{\"Value\":\"AND\",\"Type\":\"Operation\",\"Children\":[{\"Type\":\"Condition\",\"Value\":\"NotifyType\",\"Children\":[{\"Value\":\"In\",\"Type\":\"Compare\"},{\"Value\":\"[1,2]\",\"Type\":\"Value\"}]}]}
+        # `
+        # 以上示例表示：
+        # 规则：
+        # 通知类型属于告警通知,恢复通知
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: String
 
@@ -10108,15 +10150,17 @@ module TencentCloud
 
       # 回调地址
       class WebCallback < TencentCloud::Common::AbstractModel
-        # @param Url: 回调地址。
+        # @param Url: 回调地址。最大支持1024个字节数。
         # @type Url: String
         # @param CallbackType: 回调的类型。可选值：
-        # <li> WeCom
-        # <li> Http
+        # - WeCom
+        # - Http
+        # - DingTalk
+        # - Lark
         # @type CallbackType: String
         # @param Method: 回调方法。可选值：
-        # <li> POST
-        # <li> PUT
+        # - POST
+        # - PUT
         # 默认值为POST。CallbackType为Http时为必选。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
@@ -10128,7 +10172,9 @@ module TencentCloud
         # 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求内容。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
-        # @param Index: 序号
+        # @param Index: 序号。
+        # - 入参无效。
+        # - 出参有效。
         # @type Index: Integer
 
         attr_accessor :Url, :CallbackType, :Method, :Headers, :Body, :Index

@@ -4756,8 +4756,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 4
-        deprecate :Decription=, :none, 2024, 4
+        deprecate :Decription, :none, 2024, 5
+        deprecate :Decription=, :none, 2024, 5
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -11698,102 +11698,6 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAttackLogInfo请求参数结构体
-      class DescribeAttackLogInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 日志ID
-        # @type Id: Integer
-
-        attr_accessor :Id
-
-        def initialize(id=nil)
-          @Id = id
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-        end
-      end
-
-      # DescribeAttackLogInfo返回参数结构体
-      class DescribeAttackLogInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 日志ID
-        # @type Id: Integer
-        # @param Quuid: 主机ID
-        # @type Quuid: String
-        # @param SrcPort: 攻击来源端口
-        # @type SrcPort: Integer
-        # @param SrcIp: 攻击来源IP
-        # @type SrcIp: String
-        # @param DstPort: 攻击目标端口
-        # @type DstPort: Integer
-        # @param DstIp: 攻击目标IP
-        # @type DstIp: String
-        # @param HttpMethod: 攻击方法
-        # @type HttpMethod: String
-        # @param HttpHost: 攻击目标主机
-        # @type HttpHost: String
-        # @param HttpHead: 攻击头信息
-        # @type HttpHead: String
-        # @param HttpUserAgent: 攻击者浏览器标识
-        # @type HttpUserAgent: String
-        # @param HttpReferer: 请求源
-        # @type HttpReferer: String
-        # @param VulType: 威胁类型
-        # @type VulType: String
-        # @param HttpCgi: 攻击路径
-        # @type HttpCgi: String
-        # @param HttpParam: 攻击参数
-        # @type HttpParam: String
-        # @param CreatedAt: 攻击时间
-        # @type CreatedAt: String
-        # @param HttpContent: 攻击内容
-        # @type HttpContent: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Id, :Quuid, :SrcPort, :SrcIp, :DstPort, :DstIp, :HttpMethod, :HttpHost, :HttpHead, :HttpUserAgent, :HttpReferer, :VulType, :HttpCgi, :HttpParam, :CreatedAt, :HttpContent, :RequestId
-
-        def initialize(id=nil, quuid=nil, srcport=nil, srcip=nil, dstport=nil, dstip=nil, httpmethod=nil, httphost=nil, httphead=nil, httpuseragent=nil, httpreferer=nil, vultype=nil, httpcgi=nil, httpparam=nil, createdat=nil, httpcontent=nil, requestid=nil)
-          @Id = id
-          @Quuid = quuid
-          @SrcPort = srcport
-          @SrcIp = srcip
-          @DstPort = dstport
-          @DstIp = dstip
-          @HttpMethod = httpmethod
-          @HttpHost = httphost
-          @HttpHead = httphead
-          @HttpUserAgent = httpuseragent
-          @HttpReferer = httpreferer
-          @VulType = vultype
-          @HttpCgi = httpcgi
-          @HttpParam = httpparam
-          @CreatedAt = createdat
-          @HttpContent = httpcontent
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @Quuid = params['Quuid']
-          @SrcPort = params['SrcPort']
-          @SrcIp = params['SrcIp']
-          @DstPort = params['DstPort']
-          @DstIp = params['DstIp']
-          @HttpMethod = params['HttpMethod']
-          @HttpHost = params['HttpHost']
-          @HttpHead = params['HttpHead']
-          @HttpUserAgent = params['HttpUserAgent']
-          @HttpReferer = params['HttpReferer']
-          @VulType = params['VulType']
-          @HttpCgi = params['HttpCgi']
-          @HttpParam = params['HttpParam']
-          @CreatedAt = params['CreatedAt']
-          @HttpContent = params['HttpContent']
           @RequestId = params['RequestId']
         end
       end
@@ -28587,8 +28491,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 4
-        deprecate :Fileds=, :none, 2024, 4
+        deprecate :Fileds, :none, 2024, 5
+        deprecate :Fileds=, :none, 2024, 5
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

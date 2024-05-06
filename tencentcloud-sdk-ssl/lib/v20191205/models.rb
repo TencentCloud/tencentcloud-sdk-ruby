@@ -90,13 +90,13 @@ module TencentCloud
         # @type DomainName: String
         # @param ProjectId: 项目 ID。
         # @type ProjectId: Integer
-        # @param PackageType: 证书类型，目前仅支持类型2。2 = TrustAsia TLS RSA CA。
+        # @param PackageType: 证书类型，目前仅支持类型83。83 = TrustAsia C1 DV Free。
         # @type PackageType: String
         # @param ContactEmail: 邮箱。
         # @type ContactEmail: String
         # @param ContactPhone: 手机。
         # @type ContactPhone: String
-        # @param ValidityPeriod: 有效期，默认12个月，目前仅支持12个月。
+        # @param ValidityPeriod: 有效期，默认3个月，目前仅支持3个月。
         # @type ValidityPeriod: String
         # @param CsrEncryptAlgo: 加密算法，支持 RSA及ECC。
         # @type CsrEncryptAlgo: String
@@ -6222,8 +6222,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 4
-        deprecate :Regions=, :none, 2024, 4
+        deprecate :Regions, :none, 2024, 5
+        deprecate :Regions=, :none, 2024, 5
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

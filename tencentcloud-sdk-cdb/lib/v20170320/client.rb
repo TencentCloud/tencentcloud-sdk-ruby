@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭SSL连接功能。
+
+        # @param request: Request instance for CloseSSL.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::CloseSSLRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::CloseSSLResponse`
+        def CloseSSL(request)
+          body = send_request('CloseSSL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseSSLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
 
         # @param request: Request instance for CloseWanService.
@@ -2307,6 +2331,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 SSL 开通情况。如果已经开通 SSL ，会同步返回证书下载链接。
+
+        # @param request: Request instance for DescribeSSLStatus.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeSSLStatusRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeSSLStatusResponse`
+        def DescribeSSLStatus(request)
+          body = send_request('DescribeSSLStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSSLStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
         # 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
 
@@ -3417,6 +3465,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenDBInstanceGTIDResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启SSL连接功能。
+
+        # @param request: Request instance for OpenSSL.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::OpenSSLRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::OpenSSLResponse`
+        def OpenSSL(request)
+          body = send_request('OpenSSL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenSSLResponse.new
             model.deserialize(response['Response'])
             model
           else

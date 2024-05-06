@@ -1027,11 +1027,11 @@ module TencentCloud
 
       # DescribeDataFetchProject请求参数结构体
       class DescribeDataFetchProjectRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，示例值：1625454840
         # @type StartTime: Integer
         # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
         # @type Type: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，示例值：1625454840
         # @type EndTime: Integer
         # @param ID: 项目ID
         # @type ID: Integer
@@ -1043,7 +1043,7 @@ module TencentCloud
         # @type Isp: String
         # @param From: 来源页面
         # @type From: String
-        # @param Level: 日志等级
+        # @param Level: 日志等级（1表示白名单日志，2表示一般日志，4表示错误日志，8表示Promise 错误，16表示Ajax 请求异常，32表示JS 加载异常，64表示图片加载异常，128表示css 加载异常，256表示console.error，512表示音视频资源异常，1024表示retcode 异常，2048表示aegis report，4096表示PV日志，8192表示自定义事件，16384表示小程序 页面不存在，32768表示websocket错误，65536表示js bridge错误）
         # @type Level: String
         # @param Brand: 品牌
         # @type Brand: String
@@ -1057,7 +1057,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
@@ -1951,7 +1951,7 @@ module TencentCloud
         # @type EndTime: Integer
         # @param ID: 项目ID
         # @type ID: Integer
-        # @param ReportType: 上报类型
+        # @param ReportType: 上报类型（custom，event，log，miniProgramData，performance，pv，speed，webvitals）
         # @type ReportType: String
         # @param InstanceID: 实例ID
         # @type InstanceID: String
@@ -2177,7 +2177,7 @@ module TencentCloud
         # @type Isp: String
         # @param From: 来源页面
         # @type From: String
-        # @param Level: 日志等级
+        # @param Level: 日志等级（1表示白名单日志，2表示一般日志，4表示错误日志，8表示Promise 错误，16表示Ajax 请求异常，32表示JS 加载异常，64表示图片加载异常，128表示css 加载异常，256表示console.error，512表示音视频资源异常，1024表示retcode 异常，2048表示aegis report，4096表示PV日志，8192表示自定义事件，16384表示小程序 页面不存在，32768表示websocket错误，65536表示js bridge错误）
         # @type Level: String
         # @param Brand: 品牌
         # @type Brand: String
@@ -2191,7 +2191,7 @@ module TencentCloud
         # @type ExtThird: String
         # @param ExtFirst: 自定义1
         # @type ExtFirst: String
-        # @param NetType: 网络类型
+        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String

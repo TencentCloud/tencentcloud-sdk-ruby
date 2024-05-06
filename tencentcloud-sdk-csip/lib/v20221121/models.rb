@@ -2174,6 +2174,8 @@ module TencentCloud
         # @type ScanItem: Array
         # @param ScanPlanType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义；0,2,3则ScanPlanContent必填
         # @type ScanPlanType: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Assets: 扫描资产信息列表
         # @type Assets: Array
         # @param ScanPlanContent: 扫描计划详情
@@ -2189,13 +2191,14 @@ module TencentCloud
         # @param Tags: 资产标签
         # @type Tags: :class:`Tencentcloud::Csip.v20221121.models.AssetTag`
 
-        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode, :Tags
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :MemberId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode, :Tags
 
-        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil, tags=nil)
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, memberid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil, tags=nil)
           @TaskName = taskname
           @ScanAssetType = scanassettype
           @ScanItem = scanitem
           @ScanPlanType = scanplantype
+          @MemberId = memberid
           @Assets = assets
           @ScanPlanContent = scanplancontent
           @SelfDefiningAssets = selfdefiningassets
@@ -2210,6 +2213,7 @@ module TencentCloud
           @ScanAssetType = params['ScanAssetType']
           @ScanItem = params['ScanItem']
           @ScanPlanType = params['ScanPlanType']
+          @MemberId = params['MemberId']
           unless params['Assets'].nil?
             @Assets = []
             params['Assets'].each do |i|
@@ -2604,11 +2608,14 @@ module TencentCloud
       class DeleteRiskScanTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskIdList: 任务id 列表
         # @type TaskIdList: Array
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
 
-        attr_accessor :TaskIdList
+        attr_accessor :TaskIdList, :MemberId
 
-        def initialize(taskidlist=nil)
+        def initialize(taskidlist=nil, memberid=nil)
           @TaskIdList = taskidlist
+          @MemberId = memberid
         end
 
         def deserialize(params)
@@ -2620,6 +2627,7 @@ module TencentCloud
               @TaskIdList << taskidlistkey_tmp
             end
           end
+          @MemberId = params['MemberId']
         end
       end
 
@@ -3862,19 +3870,23 @@ module TencentCloud
 
       # DescribeRiskCenterAssetViewCFGRiskList请求参数结构体
       class DescribeRiskCenterAssetViewCFGRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -3989,19 +4001,23 @@ module TencentCloud
 
       # DescribeRiskCenterAssetViewPortRiskList请求参数结构体
       class DescribeRiskCenterAssetViewPortRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4105,19 +4121,23 @@ module TencentCloud
 
       # DescribeRiskCenterAssetViewVULRiskList请求参数结构体
       class DescribeRiskCenterAssetViewVULRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4221,19 +4241,23 @@ module TencentCloud
 
       # DescribeRiskCenterAssetViewWeakPasswordRiskList请求参数结构体
       class DescribeRiskCenterAssetViewWeakPasswordRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4337,19 +4361,23 @@ module TencentCloud
 
       # DescribeRiskCenterPortViewPortRiskList请求参数结构体
       class DescribeRiskCenterPortViewPortRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4431,19 +4459,23 @@ module TencentCloud
 
       # DescribeRiskCenterServerRiskList请求参数结构体
       class DescribeRiskCenterServerRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4503,19 +4535,23 @@ module TencentCloud
 
       # DescribeRiskCenterVULViewVULRiskList请求参数结构体
       class DescribeRiskCenterVULViewVULRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4597,19 +4633,23 @@ module TencentCloud
 
       # DescribeRiskCenterWebsiteRiskList请求参数结构体
       class DescribeRiskCenterWebsiteRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4702,16 +4742,20 @@ module TencentCloud
 
       # DescribeScanReportList请求参数结构体
       class DescribeScanReportListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 列表过滤条件
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4758,19 +4802,23 @@ module TencentCloud
 
       # DescribeScanTaskList请求参数结构体
       class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -4984,16 +5032,20 @@ module TencentCloud
 
       # DescribeTaskLogList请求参数结构体
       class DescribeTaskLogListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -5048,21 +5100,25 @@ module TencentCloud
       class DescribeTaskLogURLRequest < TencentCloud::Common::AbstractModel
         # @param Type: 0: 预览， 1: 下载
         # @type Type: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param ReportItemKeyList: 任务报告Id 列表
         # @type ReportItemKeyList: Array
         # @param ReportTaskIdList: 报告中任务id列表
         # @type ReportTaskIdList: Array
 
-        attr_accessor :Type, :ReportItemKeyList, :ReportTaskIdList
+        attr_accessor :Type, :MemberId, :ReportItemKeyList, :ReportTaskIdList
 
-        def initialize(type=nil, reportitemkeylist=nil, reporttaskidlist=nil)
+        def initialize(type=nil, memberid=nil, reportitemkeylist=nil, reporttaskidlist=nil)
           @Type = type
+          @MemberId = memberid
           @ReportItemKeyList = reportitemkeylist
           @ReportTaskIdList = reporttaskidlist
         end
 
         def deserialize(params)
           @Type = params['Type']
+          @MemberId = params['MemberId']
           unless params['ReportItemKeyList'].nil?
             @ReportItemKeyList = []
             params['ReportItemKeyList'].each do |i|
@@ -6047,13 +6103,16 @@ module TencentCloud
         # @type Status: Integer
         # @param Type: 风险类型，0-端口风险， 1-漏洞风险，2-弱口令风险， 3-网站内容风险，4-配置风险，5-风险服务暴露
         # @type Type: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
 
-        attr_accessor :RiskStatusKeys, :Status, :Type
+        attr_accessor :RiskStatusKeys, :Status, :Type, :MemberId
 
-        def initialize(riskstatuskeys=nil, status=nil, type=nil)
+        def initialize(riskstatuskeys=nil, status=nil, type=nil, memberid=nil)
           @RiskStatusKeys = riskstatuskeys
           @Status = status
           @Type = type
+          @MemberId = memberid
         end
 
         def deserialize(params)
@@ -6067,6 +6126,7 @@ module TencentCloud
           end
           @Status = params['Status']
           @Type = params['Type']
+          @MemberId = params['MemberId']
         end
       end
 
@@ -6098,6 +6158,8 @@ module TencentCloud
         # @type ScanPlanType: Integer
         # @param TaskId: 要修改的任务id
         # @type TaskId: String
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Assets: 扫描资产信息列表
         # @type Assets: Array
         # @param ScanPlanContent: 扫描计划详情
@@ -6109,14 +6171,15 @@ module TencentCloud
         # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式，默认标准模式
         # @type TaskMode: Integer
 
-        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :TaskId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :TaskId, :MemberId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode
 
-        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, taskid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil)
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, taskid=nil, memberid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil)
           @TaskName = taskname
           @ScanAssetType = scanassettype
           @ScanItem = scanitem
           @ScanPlanType = scanplantype
           @TaskId = taskid
+          @MemberId = memberid
           @Assets = assets
           @ScanPlanContent = scanplancontent
           @SelfDefiningAssets = selfdefiningassets
@@ -6130,6 +6193,7 @@ module TencentCloud
           @ScanItem = params['ScanItem']
           @ScanPlanType = params['ScanPlanType']
           @TaskId = params['TaskId']
+          @MemberId = params['MemberId']
           unless params['Assets'].nil?
             @Assets = []
             params['Assets'].each do |i|
@@ -7245,11 +7309,14 @@ module TencentCloud
       class StopRiskCenterTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskIdList: 任务id 列表
         # @type TaskIdList: Array
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
 
-        attr_accessor :TaskIdList
+        attr_accessor :TaskIdList, :MemberId
 
-        def initialize(taskidlist=nil)
+        def initialize(taskidlist=nil, memberid=nil)
           @TaskIdList = taskidlist
+          @MemberId = memberid
         end
 
         def deserialize(params)
@@ -7261,6 +7328,7 @@ module TencentCloud
               @TaskIdList << taskidlistkey_tmp
             end
           end
+          @MemberId = params['MemberId']
         end
       end
 

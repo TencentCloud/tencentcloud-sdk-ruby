@@ -1863,6 +1863,46 @@ module TencentCloud
         end
       end
 
+      # CloseSSL请求参数结构体
+      class CloseSSLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。只读组 ID为空时必填。
+        # @type InstanceId: String
+        # @param RoGroupId: 只读组 ID。实例 ID为空时必填。
+        # @type RoGroupId: String
+
+        attr_accessor :InstanceId, :RoGroupId
+
+        def initialize(instanceid=nil, rogroupid=nil)
+          @InstanceId = instanceid
+          @RoGroupId = rogroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RoGroupId = params['RoGroupId']
+        end
+      end
+
+      # CloseSSL返回参数结构体
+      class CloseSSLResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步请求 ID。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseWanService请求参数结构体
       class CloseWanServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -7343,6 +7383,50 @@ module TencentCloud
         end
       end
 
+      # DescribeSSLStatus请求参数结构体
+      class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。只读组 ID为空时必填。
+        # @type InstanceId: String
+        # @param RoGroupId: 只读组 ID。实例 ID为空时必填。
+        # @type RoGroupId: String
+
+        attr_accessor :InstanceId, :RoGroupId
+
+        def initialize(instanceid=nil, rogroupid=nil)
+          @InstanceId = instanceid
+          @RoGroupId = rogroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RoGroupId = params['RoGroupId']
+        end
+      end
+
+      # DescribeSSLStatus返回参数结构体
+      class DescribeSSLStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 是否开通 SSL 。ON 代表开通 ，OFF 代表未开通。
+        # @type Status: String
+        # @param Url: 证书下载链接。
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Url, :RequestId
+
+        def initialize(status=nil, url=nil, requestid=nil)
+          @Status = status
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLogData请求参数结构体
       class DescribeSlowLogDataRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -10749,6 +10833,46 @@ module TencentCloud
         end
       end
 
+      # OpenSSL请求参数结构体
+      class OpenSSLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param RoGroupId: 只读组 ID。
+        # @type RoGroupId: String
+
+        attr_accessor :InstanceId, :RoGroupId
+
+        def initialize(instanceid=nil, rogroupid=nil)
+          @InstanceId = instanceid
+          @RoGroupId = rogroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RoGroupId = params['RoGroupId']
+        end
+      end
+
+      # OpenSSL返回参数结构体
+      class OpenSSLResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步请求 ID。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OpenWanService请求参数结构体
       class OpenWanServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -10864,8 +10988,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 4
-        deprecate :IsSucess=, :none, 2024, 4
+        deprecate :IsSucess, :none, 2024, 5
+        deprecate :IsSucess=, :none, 2024, 5
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

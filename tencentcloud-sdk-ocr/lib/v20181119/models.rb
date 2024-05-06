@@ -1544,8 +1544,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
         extend Gem::Deprecate
-        deprecate :Angle, :none, 2024, 4
-        deprecate :Angle=, :none, 2024, 4
+        deprecate :Angle, :none, 2024, 5
+        deprecate :Angle=, :none, 2024, 5
 
         def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
           @PageNumber = pagenumber
@@ -3119,8 +3119,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 4
-        deprecate :Angel=, :none, 2024, 4
+        deprecate :Angel, :none, 2024, 5
+        deprecate :Angel=, :none, 2024, 5
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3230,8 +3230,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 4
-        deprecate :Angel=, :none, 2024, 4
+        deprecate :Angel, :none, 2024, 5
+        deprecate :Angel=, :none, 2024, 5
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
