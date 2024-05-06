@@ -661,7 +661,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param InstanceIds: 节点列表，空为全部节点
         # @type InstanceIds: Array
-        # @param UpgradeType: 升级类型
+        # @param UpgradeType: 升级类型，枚举值：reset(重装升级，支持大版本和小版本)，hot(原地滚动小版本升级)，major(原地滚动大版本升级)
         # @type UpgradeType: String
         # @param Offset: 分页Offset
         # @type Offset: Integer
@@ -5096,9 +5096,9 @@ module TencentCloud
 
       # DescribeAvailableClusterVersion请求参数结构体
       class DescribeAvailableClusterVersionRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 Id
+        # @param ClusterId: 集群 Id。若只查询某个集群可升级的版本，需填写此项。
         # @type ClusterId: String
-        # @param ClusterIds: 集群 Id 列表
+        # @param ClusterIds: 集群 Id 列表。若查询多个集群可升级的版本，需填写此项。
         # @type ClusterIds: Array
 
         attr_accessor :ClusterId, :ClusterIds
@@ -6029,22 +6029,17 @@ module TencentCloud
       class DescribeClusterNodePoolsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: ClusterId（集群id）
         # @type ClusterId: String
-        # @param Filters: ·  NodePoolsName
+        # @param Filters: · "Name":"NodePoolsName","Values": ["test"]
         #     按照【节点池名】进行过滤。
         #     类型：String
         #     必选：否
 
-        # ·  NodePoolsId
+        # ·  "Name":"NodePoolsId","Values": ["np-d2mb2zb"]
         #     按照【节点池id】进行过滤。
         #     类型：String
         #     必选：否
 
-        # ·  tags
-        #     按照【标签键值对】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  tag:tag-key
+        # ·  "Name":"Tags","Values": ["abc:1"]
         #     按照【标签键值对】进行过滤。
         #     类型：String
         #     必选：否
@@ -6702,45 +6697,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 最大输出条数，默认20，最大为100
         # @type Limit: Integer
-        # @param Filters: ·  ClusterName
-        #     按照【集群名】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  ClusterType
-        #     按照【集群类型】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  ClusterStatus
-        #     按照【集群状态】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  Tags
-        #     按照【标签键值对】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  vpc-id
-        #     按照【VPC】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  tag-key
-        #     按照【标签键】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  tag-value
-        #     按照【标签值】进行过滤。
-        #     类型：String
-        #     必选：否
-
-        # ·  tag:tag-key
-        #     按照【标签键值对】进行过滤。
-        #     类型：String
-        #     必选：否
+        # @param Filters: · "Name":"ClusterName","Values": ["test"] 按照【集群名】进行过滤。 类型：String 必选：否 · "Name":"ClusterType","Values": ["MANAGED_CLUSTER"] 按照【集群类型】进行过滤。 类型：String 必选：否 · "Name":"ClusterStatus","Values": ["Running"] 按照【集群状态】进行过滤。 类型：String 必选：否 · "Name":"ClusterStatus","Values": ["Running"] 按照【集群状态】进行过滤。 类型：String 必选：否 · "Name":"vpc-id","Values": ["vpc-123qajzs"] 按照【VPC】进行过滤。 类型：String 必选：否 · "Name":"tag-key","Values": ["testKey"] 按照【标签键】进行过滤。 类型：String 必选：否 · "Name":"tag-value","Values": ["testValue"] 按照【标签值】进行过滤。 类型：String 必选：否 · "Name":"Tags","Values": ["abc:1"] 按照【标签键值对】进行过滤。 类型：String 必选：否
         # @type Filters: Array
         # @param ClusterType: 集群类型，例如：MANAGED_CLUSTER
         # @type ClusterType: String
@@ -11620,7 +11577,7 @@ module TencentCloud
       class ExistedInstancesPara < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 集群ID
         # @type InstanceIds: Array
-        # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
+        # @param InstanceAdvancedSettings: 实例额外需要设置参数信息（目前后端暂不支持此字段，我们将在未来的版本中实现）
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
         # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         # @type EnhancedService: :class:`Tencentcloud::Tke.v20180525.models.EnhancedService`
@@ -13966,7 +13923,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池id
         # @type NodePoolId: String
-        # @param InstanceTypes: 机型列表
+        # @param InstanceTypes: 机型列表，主实例机型不支持修改
         # @type InstanceTypes: Array
 
         attr_accessor :ClusterId, :NodePoolId, :InstanceTypes
@@ -17294,7 +17251,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param NodeRole: 缩容的实例角色：MASTER,ETCD,MASTER_ETCD
         # @type NodeRole: String
-        # @param InstanceDeleteMode: 实例的保留模式
+        # @param InstanceDeleteMode: 实例删除时的策略：terminate（销毁实例，仅支持按量计费云主机实例） retain （仅移除，保留实例）
         # @type InstanceDeleteMode: String
 
         attr_accessor :InstanceId, :NodeRole, :InstanceDeleteMode

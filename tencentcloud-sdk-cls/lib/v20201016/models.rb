@@ -3153,6 +3153,125 @@ module TencentCloud
         end
       end
 
+      # 仪表盘订阅通知方式
+      class DashboardNoticeMode < TencentCloud::Common::AbstractModel
+        # @param ReceiverType: 仪表盘通知方式。<br>
+        # <li/>Uin：腾讯云用户<br>
+        # <li/>Group：腾讯云用户组<br>
+        # <li/>Email：自定义Email<br>
+        # <li/>WeCom: 企业微信回调
+        # @type ReceiverType: String
+        # @param Values: 知方式对应的值。
+        # <br> <li/> 当ReceiverType不是 Wecom 时，Values必填。
+        # @type Values: Array
+        # @param ReceiverChannels: 仪表盘通知渠道。
+        # <br><li/> 支持：["Email","Sms","WeChat","Phone"]。
+        # <br><li/> 当ReceiverType是 Email 或 Wecom 时，ReceiverChannels不能赋值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverChannels: Array
+        # @param Url: 回调Url。
+        # <br><li/> 当ReceiverType是 Wecom 时，Url必填。
+        # <br><li/> 当ReceiverType不是 Wecom 时，Url不能填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :ReceiverType, :Values, :ReceiverChannels, :Url
+
+        def initialize(receivertype=nil, values=nil, receiverchannels=nil, url=nil)
+          @ReceiverType = receivertype
+          @Values = values
+          @ReceiverChannels = receiverchannels
+          @Url = url
+        end
+
+        def deserialize(params)
+          @ReceiverType = params['ReceiverType']
+          @Values = params['Values']
+          @ReceiverChannels = params['ReceiverChannels']
+          @Url = params['Url']
+        end
+      end
+
+      # 仪表盘订阅相关数据
+      class DashboardSubscribeData < TencentCloud::Common::AbstractModel
+        # @param NoticeModes: 仪表盘订阅通知方式。
+        # @type NoticeModes: Array
+        # @param DashboardTime: 仪表盘订阅时间，为空标识取仪表盘默认的时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DashboardTime: Array
+        # @param TemplateVariables: 仪表盘订阅模板变量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateVariables: Array
+        # @param Timezone: 时区。参考：https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#SHANGHAI
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timezone: String
+        # @param SubscribeLanguage: 语言。 zh 中文、en`英文。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeLanguage: String
+        # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JumpDomain: String
+        # @param JumpUrl: 自定义跳转链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JumpUrl: String
+
+        attr_accessor :NoticeModes, :DashboardTime, :TemplateVariables, :Timezone, :SubscribeLanguage, :JumpDomain, :JumpUrl
+
+        def initialize(noticemodes=nil, dashboardtime=nil, templatevariables=nil, timezone=nil, subscribelanguage=nil, jumpdomain=nil, jumpurl=nil)
+          @NoticeModes = noticemodes
+          @DashboardTime = dashboardtime
+          @TemplateVariables = templatevariables
+          @Timezone = timezone
+          @SubscribeLanguage = subscribelanguage
+          @JumpDomain = jumpdomain
+          @JumpUrl = jumpurl
+        end
+
+        def deserialize(params)
+          unless params['NoticeModes'].nil?
+            @NoticeModes = []
+            params['NoticeModes'].each do |i|
+              dashboardnoticemode_tmp = DashboardNoticeMode.new
+              dashboardnoticemode_tmp.deserialize(i)
+              @NoticeModes << dashboardnoticemode_tmp
+            end
+          end
+          @DashboardTime = params['DashboardTime']
+          unless params['TemplateVariables'].nil?
+            @TemplateVariables = []
+            params['TemplateVariables'].each do |i|
+              dashboardtemplatevariable_tmp = DashboardTemplateVariable.new
+              dashboardtemplatevariable_tmp.deserialize(i)
+              @TemplateVariables << dashboardtemplatevariable_tmp
+            end
+          end
+          @Timezone = params['Timezone']
+          @SubscribeLanguage = params['SubscribeLanguage']
+          @JumpDomain = params['JumpDomain']
+          @JumpUrl = params['JumpUrl']
+        end
+      end
+
+      # 仪表盘订阅模板变量
+      class DashboardTemplateVariable < TencentCloud::Common::AbstractModel
+        # @param Key: key的值
+        # @type Key: String
+        # @param Values: key对应的values取值values
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+        end
+      end
+
       # 仪表盘关联的topic信息
       class DashboardTopicInfo < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题id
@@ -9204,12 +9323,32 @@ module TencentCloud
 
       # SearchDashboardSubscribe请求参数结构体
       class SearchDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param DashboardId: 仪表盘id。
+        # @type DashboardId: String
+        # @param SubscribeData: 仪表盘订阅数据。
+        # @type SubscribeData: :class:`Tencentcloud::Cls.v20201016.models.DashboardSubscribeData`
+        # @param Id: 仪表盘订阅Id。
+        # @type Id: Integer
+        # @param Name: 仪表盘订阅名称。
+        # @type Name: String
 
+        attr_accessor :DashboardId, :SubscribeData, :Id, :Name
 
-        def initialize()
+        def initialize(dashboardid=nil, subscribedata=nil, id=nil, name=nil)
+          @DashboardId = dashboardid
+          @SubscribeData = subscribedata
+          @Id = id
+          @Name = name
         end
 
         def deserialize(params)
+          @DashboardId = params['DashboardId']
+          unless params['SubscribeData'].nil?
+            @SubscribeData = DashboardSubscribeData.new
+            @SubscribeData.deserialize(params['SubscribeData'])
+          end
+          @Id = params['Id']
+          @Name = params['Name']
         end
       end
 

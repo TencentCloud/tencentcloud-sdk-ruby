@@ -3965,7 +3965,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开启加密数据保护
+        # 开启加密数据保护，需要先开启KMS能力，完成KMS授权
 
         # @param request: Request instance for EnableEncryptionProtection.
         # @type request: :class:`Tencentcloud::tke::V20180525::EnableEncryptionProtectionRequest`
@@ -4157,7 +4157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获得节点升级当前的进度
+        # 获得节点升级当前的进度，若集群未处于节点升级状态，则接口会报错：任务未找到。
 
         # @param request: Request instance for GetUpgradeInstanceProgress.
         # @type request: :class:`Tencentcloud::tke::V20180525::GetUpgradeInstanceProgressRequest`
@@ -4877,7 +4877,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 缩容独立集群master节点
+        # 缩容独立集群master节点，本功能为内测能力，使用之前请先提单联系我们。
 
         # @param request: Request instance for ScaleInClusterMaster.
         # @type request: :class:`Tencentcloud::tke::V20180525::ScaleInClusterMasterRequest`
