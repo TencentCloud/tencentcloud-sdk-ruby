@@ -1527,6 +1527,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安全 IP 组的配置信息，包括安全 IP 组的 ID、名称和内容。
+
+        # @param request: Request instance for DescribeSecurityIPGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSecurityIPGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSecurityIPGroupResponse`
+        def DescribeSecurityIPGroup(request)
+          body = send_request('DescribeSecurityIPGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityIPGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口已废弃，将于 2024 年 6 月 30 日停止服务。请使用 [查询安全 IP 组
+        # ](https://cloud.tencent.com/document/product/1552/105866) 接口。
+
         # 查询 IP 组的配置信息，包括 IP 组名称、 IP 组内容、 IP 组归属站点。
 
         # @param request: Request instance for DescribeSecurityIPGroupInfo.

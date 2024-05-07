@@ -1783,8 +1783,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 4
-        deprecate :OutputStorage=, :none, 2024, 4
+        deprecate :OutputStorage, :none, 2024, 5
+        deprecate :OutputStorage=, :none, 2024, 5
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset

@@ -609,7 +609,7 @@ module TencentCloud
         end
       end
 
-      # 单条消息
+      # 会话内容
       class Message < TencentCloud::Common::AbstractModel
         # @param Role: 角色
         # @type Role: String

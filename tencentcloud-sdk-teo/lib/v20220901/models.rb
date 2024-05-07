@@ -5866,6 +5866,55 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityIPGroup请求参数结构体
+      class DescribeSecurityIPGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID ，用于指定查询的站点范围。
+        # @type ZoneId: String
+        # @param GroupIds: 指定安全 IP 组 ID。
+        # <li>提供该参数时，仅查询指定 ID 的安全 IP 组配置；</li>
+        # <li>不传递参数时，返回站点下所有安全 IP 组信息。</li>
+        # @type GroupIds: Array
+
+        attr_accessor :ZoneId, :GroupIds
+
+        def initialize(zoneid=nil, groupids=nil)
+          @ZoneId = zoneid
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DescribeSecurityIPGroup返回参数结构体
+      class DescribeSecurityIPGroupResponse < TencentCloud::Common::AbstractModel
+        # @param IPGroups: 安全 IP 组的详细配置信息。包含每个安全 IP 组的 ID 、名称和 IP / 网段列表信息。
+        # @type IPGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IPGroups, :RequestId
+
+        def initialize(ipgroups=nil, requestid=nil)
+          @IPGroups = ipgroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IPGroups'].nil?
+            @IPGroups = []
+            params['IPGroups'].each do |i|
+              ipgroup_tmp = IPGroup.new
+              ipgroup_tmp.deserialize(i)
+              @IPGroups << ipgroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityTemplateBindings请求参数结构体
       class DescribeSecurityTemplateBindingsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 要查询的站点 ID。

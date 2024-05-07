@@ -11125,24 +11125,24 @@ module TencentCloud
 
       # ModifyPrometheusInstanceAttributes请求参数结构体
       class ModifyPrometheusInstanceAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称
-        # @type InstanceName: String
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
         # @param DataRetentionTime: 存储时长（取值为 15、30、45。此参数不适用于包年包月实例）
         # @type DataRetentionTime: Integer
 
-        attr_accessor :InstanceName, :InstanceId, :DataRetentionTime
+        attr_accessor :InstanceId, :InstanceName, :DataRetentionTime
 
-        def initialize(instancename=nil, instanceid=nil, dataretentiontime=nil)
-          @InstanceName = instancename
+        def initialize(instanceid=nil, instancename=nil, dataretentiontime=nil)
           @InstanceId = instanceid
+          @InstanceName = instancename
           @DataRetentionTime = dataretentiontime
         end
 
         def deserialize(params)
-          @InstanceName = params['InstanceName']
           @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
           @DataRetentionTime = params['DataRetentionTime']
         end
       end
@@ -12059,7 +12059,7 @@ module TencentCloud
       class PrometheusClusterAgentBasic < TencentCloud::Common::AbstractModel
         # @param Region: 集群ID
         # @type Region: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc，分别代表标准集群、弹性集群、边缘集群、注册集群
         # @type ClusterType: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
@@ -12328,7 +12328,7 @@ module TencentCloud
         # <li>0：不自动续费</li>
         # <li>1：开启自动续费</li>
         # <li>2：禁止自动续费</li>
-        # <li>-1：无效</ii>
+        # <li>-1：无效</li>
         # </ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer

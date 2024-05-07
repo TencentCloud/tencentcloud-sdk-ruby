@@ -5770,8 +5770,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 4
-        deprecate :QueryDlqMsg=, :none, 2024, 4
+        deprecate :QueryDlqMsg, :none, 2024, 5
+        deprecate :QueryDlqMsg=, :none, 2024, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -5876,8 +5876,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 4
-        deprecate :QueryDLQMsg=, :none, 2024, 4
+        deprecate :QueryDLQMsg, :none, 2024, 5
+        deprecate :QueryDLQMsg=, :none, 2024, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -6621,8 +6621,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 4
-        deprecate :QueryDlqMsg=, :none, 2024, 4
+        deprecate :QueryDlqMsg, :none, 2024, 5
+        deprecate :QueryDlqMsg=, :none, 2024, 5
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -9411,7 +9411,7 @@ module TencentCloud
         # @type ConsumerNumber: Integer
         # @param ExchangeNumber: Exchang数量
         # @type ExchangeNumber: Integer
-        # @param ExceptionInformation: 集群异常。
+        # @param ExceptionInformation: 集群异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionInformation: String
         # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
@@ -9422,10 +9422,16 @@ module TencentCloud
         # @param MirrorQueuePolicyFlag: 是否开启镜像队列策略。1表示开启，0表示没开启。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MirrorQueuePolicyFlag: Integer
+        # @param MessageConsumeRate: 每秒消费消息数 单位：条/秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageConsumeRate: Float
+        # @param ClusterVersion: 集群版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -9446,6 +9452,8 @@ module TencentCloud
           @ClusterStatus = clusterstatus
           @AutoRenewFlag = autorenewflag
           @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
+          @MessageConsumeRate = messageconsumerate
+          @ClusterVersion = clusterversion
         end
 
         def deserialize(params)
@@ -9476,6 +9484,8 @@ module TencentCloud
           @ClusterStatus = params['ClusterStatus']
           @AutoRenewFlag = params['AutoRenewFlag']
           @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
+          @MessageConsumeRate = params['MessageConsumeRate']
+          @ClusterVersion = params['ClusterVersion']
         end
       end
 
@@ -9661,10 +9671,34 @@ module TencentCloud
         # @param ModifyTime: 修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
+        # @param Durable: 队列是否持久化，true 为持久化，false 为非持久化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Durable: Boolean
+        # @param AutoDelete: 队列是否为自动删除队列，true 为自动删除，false 为非自动删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoDelete: Boolean
+        # @param InstanceId: 队列所属实例 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param VirtualHost: 队列所属虚拟主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualHost: String
+        # @param Node: 队列所在主节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Node: String
+        # @param Policy: 生效的策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: String
+        # @param Arguments: 扩展参数 key-value 对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Arguments: String
+        # @param Exclusive: 是否独占队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exclusive: Boolean
 
-        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :CreateTime, :ModifyTime
+        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :CreateTime, :ModifyTime, :Durable, :AutoDelete, :InstanceId, :VirtualHost, :Node, :Policy, :Arguments, :Exclusive
 
-        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, createtime=nil, modifytime=nil)
+        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, createtime=nil, modifytime=nil, durable=nil, autodelete=nil, instanceid=nil, virtualhost=nil, node=nil, policy=nil, arguments=nil, exclusive=nil)
           @QueueName = queuename
           @Remark = remark
           @ConsumerDetail = consumerdetail
@@ -9674,6 +9708,14 @@ module TencentCloud
           @MessageRateOut = messagerateout
           @CreateTime = createtime
           @ModifyTime = modifytime
+          @Durable = durable
+          @AutoDelete = autodelete
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @Node = node
+          @Policy = policy
+          @Arguments = arguments
+          @Exclusive = exclusive
         end
 
         def deserialize(params)
@@ -9689,6 +9731,14 @@ module TencentCloud
           @MessageRateOut = params['MessageRateOut']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
+          @Durable = params['Durable']
+          @AutoDelete = params['AutoDelete']
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @Node = params['Node']
+          @Policy = params['Policy']
+          @Arguments = params['Arguments']
+          @Exclusive = params['Exclusive']
         end
       end
 
@@ -9868,10 +9918,13 @@ module TencentCloud
         # @param MessageRateOut: 输出消息速率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageRateOut: Float
+        # @param MirrorQueuePolicyFlag: 是否存在镜像队列策略，true 为存在，false 为不存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MirrorQueuePolicyFlag: Boolean
 
-        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut
+        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag
 
-        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil)
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Description = description
@@ -9883,6 +9936,7 @@ module TencentCloud
           @MessageHeapCount = messageheapcount
           @MessageRateIn = messageratein
           @MessageRateOut = messagerateout
+          @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
         end
 
         def deserialize(params)
@@ -9900,6 +9954,7 @@ module TencentCloud
           @MessageHeapCount = params['MessageHeapCount']
           @MessageRateIn = params['MessageRateIn']
           @MessageRateOut = params['MessageRateOut']
+          @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
         end
       end
 

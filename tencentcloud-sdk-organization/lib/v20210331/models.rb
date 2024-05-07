@@ -3643,8 +3643,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 4
-        deprecate :ResourceGrantLast=, :none, 2024, 4
+        deprecate :ResourceGrantLast, :none, 2024, 5
+        deprecate :ResourceGrantLast=, :none, 2024, 5
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -3777,8 +3777,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 4
-        deprecate :ResourceId=, :none, 2024, 4
+        deprecate :ResourceId, :none, 2024, 5
+        deprecate :ResourceId=, :none, 2024, 5
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

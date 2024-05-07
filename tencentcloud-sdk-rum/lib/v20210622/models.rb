@@ -19,7 +19,7 @@ module TencentCloud
     module V20210622
       # CreateProject请求参数结构体
       class CreateProjectRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 创建的项目名(不为空且最长为 200)
+        # @param Name: 应用名称(不为空且最长为 200)
         # @type Name: String
         # @param InstanceID: 业务系统 ID
         # @type InstanceID: String
@@ -33,7 +33,7 @@ module TencentCloud
         # @type Repo: String
         # @param URL: 项目对应网页地址(可选，最长为 256)
         # @type URL: String
-        # @param Desc: 创建的项目描述(可选，最长为 1000)
+        # @param Desc: 应用描述(可选，最长为 1000)
         # @type Desc: String
 
         attr_accessor :Name, :InstanceID, :Rate, :EnableURLGroup, :Type, :Repo, :URL, :Desc
@@ -1285,7 +1285,7 @@ module TencentCloud
       class DescribeDataFetchUrlRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，count40x：40X视图，count50x：50X视图，count5xand4x：40∑50视图，top：资源top视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: allcount：性能视图，pagepv：pv视图，day：14天数据，count40x：40X视图，count50x：50X视图，count5xand4x：40∑50视图，top：资源top视图，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
         # @type Type: String
         # @param EndTime: 结束时间
         # @type EndTime: Integer
@@ -1585,7 +1585,7 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 结束时间
         # @type EndTime: Integer
-        # @param Type: pagepv：性能视图，allcount：性能视图，falls：页面加载瀑布图，samp：首屏时间，day：14天数据，nettype：网络/平台视图，performance：页面性能TOP视图，version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：ISP视图/地区视图/浏览器视图等
+        # @param Type: pagepv：pv视图，allcount：性能视图，falls：页面加载瀑布图，samp：首屏时间，day：14天数据，nettype：网络/平台视图，performance：页面性能TOP视图，version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：ISP视图/地区视图/浏览器视图等
         # @type Type: String
         # @param Level: 日志等级
         # @type Level: String
@@ -2868,7 +2868,7 @@ module TencentCloud
       class DescribeReleaseFileSignRequest < TencentCloud::Common::AbstractModel
         # @param Timeout: 超时时间，不填默认是 5 分钟
         # @type Timeout: Integer
-        # @param FileType: bucket类型，不填默认web，2:app
+        # @param FileType: bucket类型，不填默认1:web，2:app
         # @type FileType: Integer
 
         attr_accessor :Timeout, :FileType
@@ -3665,7 +3665,7 @@ module TencentCloud
       class ModifyProjectRequest < TencentCloud::Common::AbstractModel
         # @param ID: 项目 id
         # @type ID: Integer
-        # @param Name: 项目名(可选，不为空且最长为 200)
+        # @param Name: 应用名称(可选，不为空且最长为 200字符)
         # @type Name: String
         # @param URL: 项目网页地址(可选，最长为 256)
         # @type URL: String
@@ -3679,7 +3679,7 @@ module TencentCloud
         # @type EnableURLGroup: Integer
         # @param Type: 项目类型(可接受值为 "web", "mp", "android", "ios", "node", "hippy", "weex", "viola", "rn")
         # @type Type: String
-        # @param Desc: 项目描述(可选，最长为 1000)
+        # @param Desc: 应用描述(可选，最长为 1000字符)
         # @type Desc: String
 
         attr_accessor :ID, :Name, :URL, :Repo, :InstanceID, :Rate, :EnableURLGroup, :Type, :Desc

@@ -274,9 +274,9 @@ module TencentCloud
         # 0: 字符串类型的RoomId
         # 1: 32位整型的RoomId（默认）
         # @type RoomIdType: Integer
-        # @param MixTranscodeParams: 混流的转码参数，录制模式为混流的时候可以设置。
+        # @param MixTranscodeParams: 合流的转码参数，录制模式为合流的时候可以设置。
         # @type MixTranscodeParams: :class:`Tencentcloud::Trtc.v20190722.models.MixTranscodeParams`
-        # @param MixLayoutParams: 混流的布局参数，录制模式为混流的时候可以设置。
+        # @param MixLayoutParams: 合流的布局参数，录制模式为合流的时候可以设置。
         # @type MixLayoutParams: :class:`Tencentcloud::Trtc.v20190722.models.MixLayoutParams`
         # @param ResourceExpiredHour: 接口可以调用的时效性，从成功开启录制并获得任务ID后开始计算，超时后无法调用查询、更新和停止等接口，但是录制任务不会停止。 参数的单位是小时，默认72小时（3天），最大可设置720小时（30天），最小设置6小时。举例说明：如果不设置该参数，那么开始录制成功后，查询、更新和停止录制的调用时效为72个小时。
         # @type ResourceExpiredHour: Integer
@@ -3297,7 +3297,7 @@ module TencentCloud
       class RecordParams < TencentCloud::Common::AbstractModel
         # @param RecordMode: 录制模式：
         # 1：单流录制，分别录制房间的订阅UserId的音频和视频，将录制文件上传至云存储；
-        # 2：混流录制，将房间内订阅UserId的音视频混录成一个音视频文件，将录制文件上传至云存储；
+        # 2：合流录制，将房间内订阅UserId的音视频混录成一个音视频文件，将录制文件上传至云存储；
         # @type RecordMode: Integer
         # @param MaxIdleTime: 房间内持续没有用户（主播）上行推流的状态超过MaxIdleTime的时长，自动停止录制，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
         # @type MaxIdleTime: Integer
@@ -3312,17 +3312,19 @@ module TencentCloud
 
         # 存储到云点播VOD时此参数无效，存储到VOD时请通过TencentVod（https://cloud.tencent.com/document/api/647/44055#TencentVod）内的MediaType设置。
         # @type OutputFormat: Integer
-        # @param AvMerge: 单流录制模式下，用户的音视频是否合并，0：单流音视频不合并（默认）。1：单流音视频合并成一个ts。混流录制此参数无需设置，默认音视频合并。
+        # @param AvMerge: 单流录制模式下，用户的音视频是否合并，0：单流音视频不合并（默认）。1：单流音视频合并成一个ts。合流录制此参数无需设置，默认音视频合并。
         # @type AvMerge: Integer
         # @param MaxMediaFileDuration: 如果是aac或者mp4文件格式，超过长度限制后，系统会自动拆分视频文件。单位：分钟。默认为1440min（24h），取值范围为1-1440。【单文件限制最大为2G，满足文件大小 >2G 或录制时长度 > 24h任意一个条件，文件都会自动切分】
         # Hls 格式录制此参数不生效。
         # @type MaxMediaFileDuration: Integer
         # @param MediaId: 指定录制主辅流，0：主流+辅流（默认）；1:主流；2:辅流。
         # @type MediaId: Integer
+        # @param FillType: 上行视频停止时，录制的补帧类型，0：补最后一帧 1：补黑帧
+        # @type FillType: Integer
 
-        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration, :MediaId
+        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration, :MediaId, :FillType
 
-        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil, maxmediafileduration=nil, mediaid=nil)
+        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil, maxmediafileduration=nil, mediaid=nil, filltype=nil)
           @RecordMode = recordmode
           @MaxIdleTime = maxidletime
           @StreamType = streamtype
@@ -3331,6 +3333,7 @@ module TencentCloud
           @AvMerge = avmerge
           @MaxMediaFileDuration = maxmediafileduration
           @MediaId = mediaid
+          @FillType = filltype
         end
 
         def deserialize(params)
@@ -3345,6 +3348,7 @@ module TencentCloud
           @AvMerge = params['AvMerge']
           @MaxMediaFileDuration = params['MaxMediaFileDuration']
           @MediaId = params['MediaId']
+          @FillType = params['FillType']
         end
       end
 
@@ -4969,7 +4973,7 @@ module TencentCloud
         end
       end
 
-      # 页面录制视频参数
+      # 页面录制控制参数
       class WebRecordVideoParams < TencentCloud::Common::AbstractModel
         # @param Width: 录制画面宽度，默认为1280，取值范围[0, 1920]
         # @type Width: Integer
@@ -4977,19 +4981,25 @@ module TencentCloud
         # @type Height: Integer
         # @param Format: 指定输出格式，可选hls,mp4
         # @type Format: String
+        # @param MaxMediaFileDuration: 如果是aac或者mp4文件格式，超过长度限制后，系统会自动拆分视频文件。单位：分钟。默认为1440min（24h），取值范围为1-1440。【单文件限制最大为2G，满足文件大小 >2G 或录制时长度 > 24h任意一个条件，文件都会自动切分】
+        # Hls 格式录制此参数不生效。
+        # 示例值：1440
+        # @type MaxMediaFileDuration: Integer
 
-        attr_accessor :Width, :Height, :Format
+        attr_accessor :Width, :Height, :Format, :MaxMediaFileDuration
 
-        def initialize(width=nil, height=nil, format=nil)
+        def initialize(width=nil, height=nil, format=nil, maxmediafileduration=nil)
           @Width = width
           @Height = height
           @Format = format
+          @MaxMediaFileDuration = maxmediafileduration
         end
 
         def deserialize(params)
           @Width = params['Width']
           @Height = params['Height']
           @Format = params['Format']
+          @MaxMediaFileDuration = params['MaxMediaFileDuration']
         end
       end
 
