@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Waf IP黑白名单新增接口
+
+        # @param request: Request instance for CreateIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateIpAccessControlResponse`
+        def CreateIpAccessControl(request)
+          body = send_request('CreateIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除访问日志导出
 
         # @param request: Request instance for DeleteAccessExport.
@@ -545,6 +569,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf IP黑白名单最新版本删除接口
+
+        # @param request: Request instance for DeleteIpAccessControlV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteIpAccessControlV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteIpAccessControlV2Response`
+        def DeleteIpAccessControlV2(request)
+          body = send_request('DeleteIpAccessControlV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIpAccessControlV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -2123,6 +2171,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导入IP黑白名单
+
+        # @param request: Request instance for ImportIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ImportIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ImportIpAccessControlResponse`
+        def ImportIpAccessControl(request)
+          body = send_request('ImportIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改访问日志保存期限等字段信息
 
         # @param request: Request instance for ModifyAccessPeriod.
@@ -2734,6 +2806,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf IP黑白名单编辑接口
+
+        # @param request: Request instance for ModifyIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyIpAccessControlResponse`
+        def ModifyIpAccessControl(request)
+          body = send_request('ModifyIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyIpAccessControlResponse.new
             model.deserialize(response['Response'])
             model
           else

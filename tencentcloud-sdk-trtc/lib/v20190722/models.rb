@@ -267,7 +267,7 @@ module TencentCloud
         # @type UserSig: String
         # @param RecordParams: 云端录制控制参数。
         # @type RecordParams: :class:`Tencentcloud::Trtc.v20190722.models.RecordParams`
-        # @param StorageParams: 云端录制文件上传到云存储的参数(目前支持云点播VOD和对象存储COS)。点播和对象存储的参数必填其中之一，不支持同时设置点播和对象存储。
+        # @param StorageParams: 云端录制文件上传到云存储的参数（不支持同时设置云点播VOD和对象存储COS）
         # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`
         # @param RoomIdType: TRTC房间号的类型。
         # 【*注意】必须和录制的房间所对应的RoomId类型相同:

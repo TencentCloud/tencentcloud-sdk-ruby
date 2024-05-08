@@ -9604,6 +9604,7 @@ module TencentCloud
         # RealEstateCertificate --不动产权证识别
         # HouseEncumbranceCertificate -- 他权证识别
         # CarInsurance -- 车险保单
+        # MultiRealEstateCertificate -- 房产证、不动产证、产权证等材料合一模板
         # @type ConfigId: String
         # @param EnableSealRecognize: 是否打开印章识别
         # @type EnableSealRecognize: Boolean

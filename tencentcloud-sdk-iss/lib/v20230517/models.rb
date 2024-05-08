@@ -2690,10 +2690,13 @@ module TencentCloud
         # @param AppId: 用户ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
+        # @param CertId: 证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
 
-        attr_accessor :Id, :PlayDomain, :InternalDomain, :HaveCert, :ClusterId, :ClusterName, :AppId
+        attr_accessor :Id, :PlayDomain, :InternalDomain, :HaveCert, :ClusterId, :ClusterName, :AppId, :CertId
 
-        def initialize(id=nil, playdomain=nil, internaldomain=nil, havecert=nil, clusterid=nil, clustername=nil, appid=nil)
+        def initialize(id=nil, playdomain=nil, internaldomain=nil, havecert=nil, clusterid=nil, clustername=nil, appid=nil, certid=nil)
           @Id = id
           @PlayDomain = playdomain
           @InternalDomain = internaldomain
@@ -2701,6 +2704,7 @@ module TencentCloud
           @ClusterId = clusterid
           @ClusterName = clustername
           @AppId = appid
+          @CertId = certid
         end
 
         def deserialize(params)
@@ -2711,6 +2715,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
           @AppId = params['AppId']
+          @CertId = params['CertId']
         end
       end
 

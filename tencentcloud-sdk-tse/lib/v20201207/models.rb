@@ -868,8 +868,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2024, 4
-        deprecate :MaxReplicas=, :none, 2024, 4
+        deprecate :MaxReplicas, :none, 2024, 5
+        deprecate :MaxReplicas=, :none, 2024, 5
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -931,16 +931,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 4
-        deprecate :Enabled=, :none, 2024, 4
-        deprecate :CreateTime, :none, 2024, 4
-        deprecate :CreateTime=, :none, 2024, 4
-        deprecate :ModifyTime, :none, 2024, 4
-        deprecate :ModifyTime=, :none, 2024, 4
-        deprecate :StrategyId, :none, 2024, 4
-        deprecate :StrategyId=, :none, 2024, 4
-        deprecate :AutoScalerId, :none, 2024, 4
-        deprecate :AutoScalerId=, :none, 2024, 4
+        deprecate :Enabled, :none, 2024, 5
+        deprecate :Enabled=, :none, 2024, 5
+        deprecate :CreateTime, :none, 2024, 5
+        deprecate :CreateTime=, :none, 2024, 5
+        deprecate :ModifyTime, :none, 2024, 5
+        deprecate :ModifyTime=, :none, 2024, 5
+        deprecate :StrategyId, :none, 2024, 5
+        deprecate :StrategyId=, :none, 2024, 5
+        deprecate :AutoScalerId, :none, 2024, 5
+        deprecate :AutoScalerId=, :none, 2024, 5
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1069,14 +1069,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 4
-        deprecate :Enabled=, :none, 2024, 4
-        deprecate :CreateTime, :none, 2024, 4
-        deprecate :CreateTime=, :none, 2024, 4
-        deprecate :ModifyTime, :none, 2024, 4
-        deprecate :ModifyTime=, :none, 2024, 4
-        deprecate :StrategyId, :none, 2024, 4
-        deprecate :StrategyId=, :none, 2024, 4
+        deprecate :Enabled, :none, 2024, 5
+        deprecate :Enabled=, :none, 2024, 5
+        deprecate :CreateTime, :none, 2024, 5
+        deprecate :CreateTime=, :none, 2024, 5
+        deprecate :ModifyTime, :none, 2024, 5
+        deprecate :ModifyTime=, :none, 2024, 5
+        deprecate :StrategyId, :none, 2024, 5
+        deprecate :StrategyId=, :none, 2024, 5
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1771,10 +1771,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2024, 4
-        deprecate :CronScalerConfig=, :none, 2024, 4
-        deprecate :MaxReplicas, :none, 2024, 4
-        deprecate :MaxReplicas=, :none, 2024, 4
+        deprecate :CronScalerConfig, :none, 2024, 5
+        deprecate :CronScalerConfig=, :none, 2024, 5
+        deprecate :MaxReplicas, :none, 2024, 5
+        deprecate :MaxReplicas=, :none, 2024, 5
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1818,8 +1818,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2024, 4
-        deprecate :Result=, :none, 2024, 4
+        deprecate :Result, :none, 2024, 5
+        deprecate :Result=, :none, 2024, 5
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1894,10 +1894,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2024, 4
-        deprecate :Key=, :none, 2024, 4
-        deprecate :Crt, :none, 2024, 4
-        deprecate :Crt=, :none, 2024, 4
+        deprecate :Key, :none, 2024, 5
+        deprecate :Key=, :none, 2024, 5
+        deprecate :Crt, :none, 2024, 5
+        deprecate :Crt=, :none, 2024, 5
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2225,8 +2225,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 4
-        deprecate :ForceHttps=, :none, 2024, 4
+        deprecate :ForceHttps, :none, 2024, 5
+        deprecate :ForceHttps=, :none, 2024, 5
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -2537,6 +2537,7 @@ module TencentCloud
         # @type EngineVersion: String
         # @param EngineProductVersion: 引擎的产品版本。参考值：
         # - STANDARD： 标准版
+        # - PROFESSIONAL: 专业版（Zookeeper）/企业版（PolarisMesh）
 
         # 引擎各版本及可选择的规格、节点数说明：
         # apollo - STANDARD版本
@@ -2613,6 +2614,9 @@ module TencentCloud
         # @type PrepaidRenewFlag: Integer
         # @param EngineRegionInfos: 跨地域部署的引擎地域配置详情
         # zk标准版没有跨地域部署，请不要填写
+        # zk专业版跨地域部署开启了固定Leader所在地域，需要满足以下条件
+        # - 固定Leader所在地域当前仅支持跨两个地域
+        # - leader地域的副本数必须是3/2 + 1，5/2+1，7/2+1，也就是 2，3，4
         # @type EngineRegionInfos: Array
         # @param StorageOption: zk专业版至多有两个盘，且磁盘的容量在50-3200之间
         # 如果只有一个磁盘，storageCapacity与storageOption里面的capacity应该一致
@@ -6657,8 +6661,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2024, 4
-        deprecate :Type=, :none, 2024, 4
+        deprecate :Type, :none, 2024, 5
+        deprecate :Type=, :none, 2024, 5
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -8066,8 +8070,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2024, 4
-        deprecate :Pages=, :none, 2024, 4
+        deprecate :Pages, :none, 2024, 5
+        deprecate :Pages=, :none, 2024, 5
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -8225,8 +8229,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 4
-        deprecate :ForceHttps=, :none, 2024, 4
+        deprecate :ForceHttps, :none, 2024, 5
+        deprecate :ForceHttps=, :none, 2024, 5
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id
@@ -8898,10 +8902,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2024, 4
-        deprecate :CronScalerConfig=, :none, 2024, 4
-        deprecate :MaxReplicas, :none, 2024, 4
-        deprecate :MaxReplicas=, :none, 2024, 4
+        deprecate :CronScalerConfig, :none, 2024, 5
+        deprecate :CronScalerConfig=, :none, 2024, 5
+        deprecate :MaxReplicas, :none, 2024, 5
+        deprecate :MaxReplicas=, :none, 2024, 5
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -9025,10 +9029,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2024, 4
-        deprecate :Name=, :none, 2024, 4
-        deprecate :BindDomains, :none, 2024, 4
-        deprecate :BindDomains=, :none, 2024, 4
+        deprecate :Name, :none, 2024, 5
+        deprecate :Name=, :none, 2024, 5
+        deprecate :BindDomains, :none, 2024, 5
+        deprecate :BindDomains=, :none, 2024, 5
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -9212,8 +9216,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 4
-        deprecate :ForceHttps=, :none, 2024, 4
+        deprecate :ForceHttps, :none, 2024, 5
+        deprecate :ForceHttps=, :none, 2024, 5
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid

@@ -56,8 +56,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 4
-        deprecate :BTime=, :none, 2024, 4
+        deprecate :BTime, :none, 2024, 5
+        deprecate :BTime=, :none, 2024, 5
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -2102,6 +2102,72 @@ module TencentCloud
         end
       end
 
+      # CreateIpAccessControl请求参数结构体
+      class CreateIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 具体域名如：test.qcloudwaf.com
+        # 全局域名为：global
+        # @type Domain: String
+        # @param IpList: ip参数列表
+        # @type IpList: Array
+        # @param ActionType: 42为黑名单，40为白名单
+        # @type ActionType: Integer
+        # @param ValidTS: valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
+        # @type ValidTS: Integer
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
+        # @type Edition: String
+        # @param SourceType: 是否为批量防护IP黑白名单，当为批量防护IP黑白名单时，取值为batch，否则为空
+        # @type SourceType: String
+        # @param Note: 备注
+        # @type Note: String
+
+        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note
+
+        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil)
+          @Domain = domain
+          @IpList = iplist
+          @ActionType = actiontype
+          @ValidTS = validts
+          @InstanceId = instanceid
+          @Edition = edition
+          @SourceType = sourcetype
+          @Note = note
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @IpList = params['IpList']
+          @ActionType = params['ActionType']
+          @ValidTS = params['ValidTS']
+          @InstanceId = params['InstanceId']
+          @Edition = params['Edition']
+          @SourceType = params['SourceType']
+          @Note = params['Note']
+        end
+      end
+
+      # CreateIpAccessControl返回参数结构体
+      class CreateIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 新增的规则对应的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 计费下单响应实体
       class DealData < TencentCloud::Common::AbstractModel
         # @param DealNames: 订单号列表，元素个数与请求包的goods数组的元素个数一致，商品详情与订单按顺序对应
@@ -2615,6 +2681,58 @@ module TencentCloud
 
         def deserialize(params)
           @FailedItems = params['FailedItems']
+          @FailedCount = params['FailedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteIpAccessControlV2请求参数结构体
+      class DeleteIpAccessControlV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RuleIds: 规则ID列表，支持批量删除
+        # @type RuleIds: Array
+        # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
+        # @type DeleteAll: Boolean
+        # @param SourceType: batch表示为批量防护的IP黑白名单
+        # @type SourceType: String
+        # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单
+        # @type ActionType: Integer
+
+        attr_accessor :Domain, :RuleIds, :DeleteAll, :SourceType, :ActionType
+
+        def initialize(domain=nil, ruleids=nil, deleteall=nil, sourcetype=nil, actiontype=nil)
+          @Domain = domain
+          @RuleIds = ruleids
+          @DeleteAll = deleteall
+          @SourceType = sourcetype
+          @ActionType = actiontype
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleIds = params['RuleIds']
+          @DeleteAll = params['DeleteAll']
+          @SourceType = params['SourceType']
+          @ActionType = params['ActionType']
+        end
+      end
+
+      # DeleteIpAccessControlV2返回参数结构体
+      class DeleteIpAccessControlV2Response < TencentCloud::Common::AbstractModel
+        # @param FailedCount: 在批量删除的时候表示删除失败的条数
+        # @type FailedCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedCount, :RequestId
+
+        def initialize(failedcount=nil, requestid=nil)
+          @FailedCount = failedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @FailedCount = params['FailedCount']
           @RequestId = params['RequestId']
         end
@@ -4981,10 +5099,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 4
-        deprecate :VtsMin=, :none, 2024, 4
-        deprecate :VtsMax, :none, 2024, 4
-        deprecate :VtsMax=, :none, 2024, 4
+        deprecate :VtsMin, :none, 2024, 5
+        deprecate :VtsMin=, :none, 2024, 5
+        deprecate :VtsMax, :none, 2024, 5
+        deprecate :VtsMax=, :none, 2024, 5
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil)
           @Domain = domain
@@ -5087,10 +5205,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 4
-        deprecate :VtsMin=, :none, 2024, 4
-        deprecate :VtsMax, :none, 2024, 4
-        deprecate :VtsMax=, :none, 2024, 4
+        deprecate :VtsMin, :none, 2024, 5
+        deprecate :VtsMin=, :none, 2024, 5
+        deprecate :VtsMax, :none, 2024, 5
+        deprecate :VtsMax=, :none, 2024, 5
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -7938,6 +8056,58 @@ module TencentCloud
         end
       end
 
+      # ImportIpAccessControl请求参数结构体
+      class ImportIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Data: 导入的IP黑白名单列表
+        # @type Data: Array
+        # @param Domain: 具体域名如：test.qcloudwaf.com
+        # 全局域名为：global
+        # @type Domain: String
+        # @param SourceType: 是否为批量防护IP黑白名单，当为批量防护IP黑白名单时，取值为batch，否则为空
+        # @type SourceType: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+
+        attr_accessor :Data, :Domain, :SourceType, :InstanceId
+
+        def initialize(data=nil, domain=nil, sourcetype=nil, instanceid=nil)
+          @Data = data
+          @Domain = domain
+          @SourceType = sourcetype
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ipaccesscontrolparam_tmp = IpAccessControlParam.new
+              ipaccesscontrolparam_tmp.deserialize(i)
+              @Data << ipaccesscontrolparam_tmp
+            end
+          end
+          @Domain = params['Domain']
+          @SourceType = params['SourceType']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ImportIpAccessControl返回参数结构体
+      class ImportIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 一个实例的详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例唯一ID
@@ -8239,6 +8409,34 @@ module TencentCloud
           @ValidStatus = params['ValidStatus']
           @RuleId = params['RuleId']
           @IpList = params['IpList']
+        end
+      end
+
+      # IP黑白名单参数结构体，主要用于IP黑白名单的导入。
+      class IpAccessControlParam < TencentCloud::Common::AbstractModel
+        # @param IpList: IP列表
+        # @type IpList: Array
+        # @param ValidTs: valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
+        # @type ValidTs: Integer
+        # @param ActionType: 42为黑名单，40为白名单
+        # @type ActionType: Integer
+        # @param Note: 备注
+        # @type Note: String
+
+        attr_accessor :IpList, :ValidTs, :ActionType, :Note
+
+        def initialize(iplist=nil, validts=nil, actiontype=nil, note=nil)
+          @IpList = iplist
+          @ValidTs = validts
+          @ActionType = actiontype
+          @Note = note
+        end
+
+        def deserialize(params)
+          @IpList = params['IpList']
+          @ValidTs = params['ValidTs']
+          @ActionType = params['ActionType']
+          @Note = params['Note']
         end
       end
 
@@ -8631,8 +8829,8 @@ module TencentCloud
 
         attr_accessor :Period, :TopicId
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 4
-        deprecate :TopicId=, :none, 2024, 4
+        deprecate :TopicId, :none, 2024, 5
+        deprecate :TopicId=, :none, 2024, 5
 
         def initialize(period=nil, topicid=nil)
           @Period = period
@@ -9911,6 +10109,71 @@ module TencentCloud
 
       # ModifyInstanceRenewFlag返回参数结构体
       class ModifyInstanceRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIpAccessControl请求参数结构体
+      class ModifyIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 具体域名如：test.qcloudwaf.com
+        # 全局域名为：global
+        # @type Domain: String
+        # @param IpList: ip参数列表
+        # @type IpList: Array
+        # @param ActionType: 42为黑名单，40为白名单
+        # @type ActionType: Integer
+        # @param ValidTS: valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
+        # @type ValidTS: Integer
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
+        # @type Edition: String
+        # @param SourceType: 是否为批量防护IP黑白名单，当为批量防护IP黑白名单时，取值为batch，否则为空
+        # @type SourceType: String
+        # @param Note: 备注
+        # @type Note: String
+
+        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :RuleId, :InstanceId, :Edition, :SourceType, :Note
+
+        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, ruleid=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil)
+          @Domain = domain
+          @IpList = iplist
+          @ActionType = actiontype
+          @ValidTS = validts
+          @RuleId = ruleid
+          @InstanceId = instanceid
+          @Edition = edition
+          @SourceType = sourcetype
+          @Note = note
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @IpList = params['IpList']
+          @ActionType = params['ActionType']
+          @ValidTS = params['ValidTS']
+          @RuleId = params['RuleId']
+          @InstanceId = params['InstanceId']
+          @Edition = params['Edition']
+          @SourceType = params['SourceType']
+          @Note = params['Note']
+        end
+      end
+
+      # ModifyIpAccessControl返回参数结构体
+      class ModifyIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -4766,12 +4766,21 @@ module TencentCloud
         # @param QuorumInitialGroupSize: 仲裁队列的初始副本组大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuorumInitialGroupSize: Integer
+        # @param Exclusive: 是否为独占队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exclusive: Boolean
+        # @param Policy: 生效的策略名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: String
+        # @param Arguments: 扩展参数 key-value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Arguments: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :DeadLetterStrategy, :QueueLeaderLocator, :QuorumInitialGroupSize, :RequestId
+        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :DeadLetterStrategy, :QueueLeaderLocator, :QuorumInitialGroupSize, :Exclusive, :Policy, :Arguments, :RequestId
 
-        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, deadletterstrategy=nil, queueleaderlocator=nil, quoruminitialgroupsize=nil, requestid=nil)
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, deadletterstrategy=nil, queueleaderlocator=nil, quoruminitialgroupsize=nil, exclusive=nil, policy=nil, arguments=nil, requestid=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @QueueName = queuename
@@ -4799,6 +4808,9 @@ module TencentCloud
           @DeadLetterStrategy = deadletterstrategy
           @QueueLeaderLocator = queueleaderlocator
           @QuorumInitialGroupSize = quoruminitialgroupsize
+          @Exclusive = exclusive
+          @Policy = policy
+          @Arguments = arguments
           @RequestId = requestid
         end
 
@@ -4830,6 +4842,9 @@ module TencentCloud
           @DeadLetterStrategy = params['DeadLetterStrategy']
           @QueueLeaderLocator = params['QueueLeaderLocator']
           @QuorumInitialGroupSize = params['QuorumInitialGroupSize']
+          @Exclusive = params['Exclusive']
+          @Policy = params['Policy']
+          @Arguments = params['Arguments']
           @RequestId = params['RequestId']
         end
       end

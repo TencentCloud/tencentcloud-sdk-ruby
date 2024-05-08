@@ -4912,7 +4912,7 @@ module TencentCloud
       class ParseDocRequest < TencentCloud::Common::AbstractModel
         # @param Name: 文件名称(需要包括文件后缀, 最大长度1024字节)
         # @type Name: String
-        # @param Url: 文件下载链接 (支持的文件类型: docx, txt, markdown, pdf)
+        # @param Url: 文件下载链接 (支持的文件类型: docx, txt, markdown, pdf), 该地址需要外网可以直接无状态访问
         # @type Url: String
         # @param TaskId: 任务ID, 用于幂等去重, 业务自行定义(最大长度64字节)
         # @type TaskId: String
@@ -4923,8 +4923,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 4
-        deprecate :Operate=, :none, 2024, 4
+        deprecate :Operate, :none, 2024, 5
+        deprecate :Operate=, :none, 2024, 5
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name

@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建TRTC通话参数
+
+        # @param request: Request instance for CreateTRTCSignaturesWithRoomId.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTRTCSignaturesWithRoomIdRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTRTCSignaturesWithRoomIdResponse`
+        def CreateTRTCSignaturesWithRoomId(request)
+          body = send_request('CreateTRTCSignaturesWithRoomId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTRTCSignaturesWithRoomIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateTopicPolicy）用于创建一个Topic
 
         # @param request: Request instance for CreateTopicPolicy.
@@ -855,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudStorageAIServiceCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定的云存 AI 分析任务
+
+        # @param request: Request instance for DescribeCloudStorageAIServiceTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageAIServiceTaskResponse`
+        def DescribeCloudStorageAIServiceTask(request)
+          body = send_request('DescribeCloudStorageAIServiceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageAIServiceTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1853,6 +1901,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解散TRTC房间
+
+        # @param request: Request instance for DismissRoomByStrRoomIdFromTRTC.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DismissRoomByStrRoomIdFromTRTCRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DismissRoomByStrRoomIdFromTRTCResponse`
+        def DismissRoomByStrRoomIdFromTRTC(request)
+          body = send_request('DismissRoomByStrRoomIdFromTRTC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DismissRoomByStrRoomIdFromTRTCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启用规则
 
         # @param request: Request instance for EnableTopicRule.
@@ -1887,6 +1959,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GenSingleDeviceSignatureOfPublicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云存 AI 分析任务输出文件的下载地址
+
+        # @param request: Request instance for GenerateCloudStorageAIServiceTaskFileURL.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GenerateCloudStorageAIServiceTaskFileURLRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GenerateCloudStorageAIServiceTaskFileURLResponse`
+        def GenerateCloudStorageAIServiceTaskFileURL(request)
+          body = send_request('GenerateCloudStorageAIServiceTaskFileURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateCloudStorageAIServiceTaskFileURLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2727,6 +2823,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReleaseStudioProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # TRTC操作，将用户从房间移出
+
+        # @param request: Request instance for RemoveUserByRoomIdFromTRTC.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::RemoveUserByRoomIdFromTRTCRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::RemoveUserByRoomIdFromTRTCResponse`
+        def RemoveUserByRoomIdFromTRTC(request)
+          body = send_request('RemoveUserByRoomIdFromTRTC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveUserByRoomIdFromTRTCResponse.new
             model.deserialize(response['Response'])
             model
           else

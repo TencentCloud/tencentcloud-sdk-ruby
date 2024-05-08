@@ -1031,9 +1031,9 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param BundleId: 套餐ID。可以通过调用 [查询套餐](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
+        # @param BundleId: 套餐ID。可以通过调用 [DescribeBundles](https://cloud.tencent.com/document/api/1207/47575) 接口获取。
         # @type BundleId: String
-        # @param BlueprintId: 镜像ID。可以通过调用 [查询镜像信息](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
+        # @param BlueprintId: 镜像ID。可以通过调用 [DescribeBlueprints](https://cloud.tencent.com/document/api/1207/47689) 接口获取。
         # @type BlueprintId: String
         # @param InstanceChargePrepaid: 当前实例仅支持预付费模式，即包年包月相关参数设置，单位（月）。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
@@ -1440,7 +1440,7 @@ module TencentCloud
 
       # DeleteSnapshots请求参数结构体
       class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotIds: 要删除的快照 ID 列表，可通过 DescribeSnapshots 查询。
+        # @param SnapshotIds: 要删除的快照 ID 列表，可通过 <a href="https://cloud.tencent.com/document/product/1207/54388" target="_blank">DescribeSnapshots</a>查询。
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotIds
@@ -1858,7 +1858,7 @@ module TencentCloud
 
       # DescribeDiskBackupsDeniedActions请求参数结构体
       class DescribeDiskBackupsDeniedActionsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupIds: 云硬盘备份点 ID 列表, 可通过 DescribeDiskBackups 接口查询。
+        # @param DiskBackupIds: 云硬盘备份点 ID 列表, 可通过<a href="https://cloud.tencent.com/document/product/1207/84379" target="_blank">DescribeDiskBackups</a>接口查询。
         # @type DiskBackupIds: Array
 
         attr_accessor :DiskBackupIds
@@ -2035,7 +2035,7 @@ module TencentCloud
 
       # DescribeDiskDiscount请求参数结构体
       class DescribeDiskDiscountRequest < TencentCloud::Common::AbstractModel
-        # @param DiskType: 云硬盘类型, 取值: "CLOUD_PREMIUM"。
+        # @param DiskType: 云硬盘类型, 取值范围: CLOUD_PREMIUM: 高性能云硬盘，CLOUD_SSD: SSD云硬盘
         # @type DiskType: String
         # @param DiskSize: 云硬盘大小。
         # @type DiskSize: Integer
@@ -3631,7 +3631,7 @@ module TencentCloud
 
       # DescribeSnapshotsDeniedActions请求参数结构体
       class DescribeSnapshotsDeniedActionsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotIds: 快照 ID 列表, 可通过 DescribeSnapshots 查询。
+        # @param SnapshotIds: 快照 ID 列表, 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388" target="_blank">DescribeSnapshots</a> 查询。
         # @type SnapshotIds: Array
 
         attr_accessor :SnapshotIds
@@ -6291,7 +6291,7 @@ module TencentCloud
 
       # ModifySnapshotAttribute请求参数结构体
       class ModifySnapshotAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 快照 ID, 可通过 DescribeSnapshots 查询。
+        # @param SnapshotId: 快照 ID, 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388">DescribeSnapshots</a> 查询。
         # @type SnapshotId: String
         # @param SnapshotName: 新的快照名称，最长为 60 个字符。
         # @type SnapshotName: String
@@ -6901,9 +6901,7 @@ module TencentCloud
       class ResetInstancesPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
         # @type InstanceIds: Array
-        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
-        # `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字：0-9<br><li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li>
-        # `WINDOWS` 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字： 0-9<br><li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/<br><li>如果实例即包含 `LINUX_UNIX` 实例又包含 `WINDOWS` 实例，则密码复杂度限制按照 `WINDOWS` 实例的限制。
+        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：</br> `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：</br> <li>小写字母：[a-z]</br></li> <li>大写字母：[A-Z]</br></li> <li>数字：0-9</br></li> <li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li></br> `WINDOWS` 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符</br> <li>小写字母：[a-z]</br></li> <li>大写字母：[A-Z]</br></li> <li>数字： 0-9</br></li> <li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</br></li> <li>如果实例即包含 `LINUX_UNIX` 实例又包含 `WINDOWS` 实例，则密码复杂度限制按照 `WINDOWS` 实例的限制。</li>
         # @type Password: String
         # @param UserName: 待重置密码的实例操作系统用户名。不得超过 64 个字符。
         # @type UserName: String

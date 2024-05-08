@@ -1414,8 +1414,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 4
-        deprecate :DefaultDataEngine=, :none, 2024, 4
+        deprecate :DefaultDataEngine, :none, 2024, 5
+        deprecate :DefaultDataEngine=, :none, 2024, 5
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -2451,14 +2451,17 @@ module TencentCloud
         # @type DatasourceConnectionName: String
         # @param DataEngineName: 数据引擎名称，不填提交到默认集群
         # @type DataEngineName: String
+        # @param ResourceGroupName: 标准spark执行任务resourceGroupName
+        # @type ResourceGroupName: String
 
-        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName, :DataEngineName
+        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName
 
-        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil, dataenginename=nil)
+        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil)
           @Task = task
           @DatabaseName = databasename
           @DatasourceConnectionName = datasourceconnectionname
           @DataEngineName = dataenginename
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -2469,6 +2472,7 @@ module TencentCloud
           @DatabaseName = params['DatabaseName']
           @DatasourceConnectionName = params['DatasourceConnectionName']
           @DataEngineName = params['DataEngineName']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -2554,14 +2558,17 @@ module TencentCloud
         # @type DatasourceConnectionName: String
         # @param DataEngineName: 计算引擎名称，不填任务提交到默认集群
         # @type DataEngineName: String
+        # @param ResourceGroupName: spark集群资源组名称
+        # @type ResourceGroupName: String
 
-        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName
+        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName
 
-        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil)
+        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil)
           @DatabaseName = databasename
           @Tasks = tasks
           @DatasourceConnectionName = datasourceconnectionname
           @DataEngineName = dataenginename
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -2572,6 +2579,7 @@ module TencentCloud
           end
           @DatasourceConnectionName = params['DatasourceConnectionName']
           @DataEngineName = params['DataEngineName']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -3453,10 +3461,16 @@ module TencentCloud
         # @param EngineNetworkId: 引擎网络ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineNetworkId: String
+        # @param EngineResourceGroupCount: 标准引擎关联的资源组个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineResourceGroupCount: Integer
+        # @param EngineResourceUsedCU: 引擎当前使用量（Cu）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineResourceUsedCU: Integer
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU
 
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -3506,6 +3520,8 @@ module TencentCloud
           @EngineGeneration = enginegeneration
           @EngineTypeDetail = enginetypedetail
           @EngineNetworkId = enginenetworkid
+          @EngineResourceGroupCount = engineresourcegroupcount
+          @EngineResourceUsedCU = engineresourceusedcu
         end
 
         def deserialize(params)
@@ -3578,6 +3594,8 @@ module TencentCloud
           @EngineGeneration = params['EngineGeneration']
           @EngineTypeDetail = params['EngineTypeDetail']
           @EngineNetworkId = params['EngineNetworkId']
+          @EngineResourceGroupCount = params['EngineResourceGroupCount']
+          @EngineResourceUsedCU = params['EngineResourceUsedCU']
         end
       end
 
@@ -4810,7 +4828,7 @@ module TencentCloud
 
       # DescribeDataEngineImageVersions请求参数结构体
       class DescribeDataEngineImageVersionsRequest < TencentCloud::Common::AbstractModel
-        # @param EngineType: 引擎类型：SQL、SparkBatch
+        # @param EngineType: 引擎类型：SQL、SparkBatch、StandardSpark、StandardPresto
         # @type EngineType: String
 
         attr_accessor :EngineType
@@ -6505,10 +6523,12 @@ module TencentCloud
         # @type EndTime: String
         # @param DataEngineName: 数据引擎名称，用于筛选
         # @type DataEngineName: String
+        # @param ResourceGroupName: spark引擎资源组名称
+        # @type ResourceGroupName: String
 
-        attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime, :DataEngineName
+        attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime, :DataEngineName, :ResourceGroupName
 
-        def initialize(limit=nil, offset=nil, filters=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, dataenginename=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, dataenginename=nil, resourcegroupname=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
@@ -6517,6 +6537,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @DataEngineName = dataenginename
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -6535,6 +6556,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @DataEngineName = params['DataEngineName']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -10560,10 +10582,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2024, 4
-        deprecate :GovernPolicy=, :none, 2024, 4
-        deprecate :DbGovernPolicyIsDisable, :none, 2024, 4
-        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 4
+        deprecate :GovernPolicy, :none, 2024, 5
+        deprecate :GovernPolicy=, :none, 2024, 5
+        deprecate :DbGovernPolicyIsDisable, :none, 2024, 5
+        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 5
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename
@@ -10905,10 +10927,16 @@ module TencentCloud
         # @param ResultFormat: 结果文件格式：默认为csv
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultFormat: String
+        # @param EngineTypeDetail: 引擎类型，SparkSQL：SparkSQL 引擎；SparkBatch：Spark作业引擎；PrestoSQL：Presto引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineTypeDetail: String
+        # @param ResourceGroupName: spark引擎资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat, :EngineTypeDetail, :ResourceGroupName
 
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil, enginetypedetail=nil, resourcegroupname=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -10950,6 +10978,8 @@ module TencentCloud
           @SparkMonitorMetrics = sparkmonitormetrics
           @PrestoMonitorMetrics = prestomonitormetrics
           @ResultFormat = resultformat
+          @EngineTypeDetail = enginetypedetail
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -11003,6 +11033,8 @@ module TencentCloud
             @PrestoMonitorMetrics.deserialize(params['PrestoMonitorMetrics'])
           end
           @ResultFormat = params['ResultFormat']
+          @EngineTypeDetail = params['EngineTypeDetail']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 

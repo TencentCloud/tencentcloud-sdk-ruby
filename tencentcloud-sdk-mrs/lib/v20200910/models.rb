@@ -302,6 +302,413 @@ module TencentCloud
         end
       end
 
+      # 预防用生物制品说明书
+      class BiologicalProductInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 药品名称，包括通用名和商品名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoName`
+        # @param IngredientAndAppearance: 成份和性状
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IngredientAndAppearance: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoIngredientAndAppearance`
+        # @param VaccinationTarget: 接种对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VaccinationTarget: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoVaccinationTarget`
+        # @param Indications: 作用与用途
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Indications: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoIndications`
+        # @param Brochure: 规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Brochure: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoBrochure`
+        # @param Dosage: 免疫程序和剂量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dosage: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoDosage`
+        # @param AdverseReaction: 不良反应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdverseReaction: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoAdverseReaction`
+        # @param Contraindications: 禁忌情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contraindications: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoContraindications`
+        # @param Precautions: 注意事项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Precautions: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoPrecautions`
+        # @param Storage: 储存条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoStorage`
+        # @param Packaging: 包装信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Packaging: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoPackaging`
+        # @param ValidityPeriod: 有效期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidityPeriod: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoValidityPeriod`
+        # @param ExecutiveStandards: 执行标准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutiveStandards: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoExecutiveStandards`
+        # @param Approval: 批准文号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approval: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoApproval`
+        # @param Manufacturer: 生产企业名称和地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manufacturer: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoManufacturer`
+
+        attr_accessor :Name, :IngredientAndAppearance, :VaccinationTarget, :Indications, :Brochure, :Dosage, :AdverseReaction, :Contraindications, :Precautions, :Storage, :Packaging, :ValidityPeriod, :ExecutiveStandards, :Approval, :Manufacturer
+
+        def initialize(name=nil, ingredientandappearance=nil, vaccinationtarget=nil, indications=nil, brochure=nil, dosage=nil, adversereaction=nil, contraindications=nil, precautions=nil, storage=nil, packaging=nil, validityperiod=nil, executivestandards=nil, approval=nil, manufacturer=nil)
+          @Name = name
+          @IngredientAndAppearance = ingredientandappearance
+          @VaccinationTarget = vaccinationtarget
+          @Indications = indications
+          @Brochure = brochure
+          @Dosage = dosage
+          @AdverseReaction = adversereaction
+          @Contraindications = contraindications
+          @Precautions = precautions
+          @Storage = storage
+          @Packaging = packaging
+          @ValidityPeriod = validityperiod
+          @ExecutiveStandards = executivestandards
+          @Approval = approval
+          @Manufacturer = manufacturer
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = BiologicalProductInfoName.new
+            @Name.deserialize(params['Name'])
+          end
+          unless params['IngredientAndAppearance'].nil?
+            @IngredientAndAppearance = BiologicalProductInfoIngredientAndAppearance.new
+            @IngredientAndAppearance.deserialize(params['IngredientAndAppearance'])
+          end
+          unless params['VaccinationTarget'].nil?
+            @VaccinationTarget = BiologicalProductInfoVaccinationTarget.new
+            @VaccinationTarget.deserialize(params['VaccinationTarget'])
+          end
+          unless params['Indications'].nil?
+            @Indications = BiologicalProductInfoIndications.new
+            @Indications.deserialize(params['Indications'])
+          end
+          unless params['Brochure'].nil?
+            @Brochure = BiologicalProductInfoBrochure.new
+            @Brochure.deserialize(params['Brochure'])
+          end
+          unless params['Dosage'].nil?
+            @Dosage = BiologicalProductInfoDosage.new
+            @Dosage.deserialize(params['Dosage'])
+          end
+          unless params['AdverseReaction'].nil?
+            @AdverseReaction = BiologicalProductInfoAdverseReaction.new
+            @AdverseReaction.deserialize(params['AdverseReaction'])
+          end
+          unless params['Contraindications'].nil?
+            @Contraindications = BiologicalProductInfoContraindications.new
+            @Contraindications.deserialize(params['Contraindications'])
+          end
+          unless params['Precautions'].nil?
+            @Precautions = BiologicalProductInfoPrecautions.new
+            @Precautions.deserialize(params['Precautions'])
+          end
+          unless params['Storage'].nil?
+            @Storage = BiologicalProductInfoStorage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          unless params['Packaging'].nil?
+            @Packaging = BiologicalProductInfoPackaging.new
+            @Packaging.deserialize(params['Packaging'])
+          end
+          unless params['ValidityPeriod'].nil?
+            @ValidityPeriod = BiologicalProductInfoValidityPeriod.new
+            @ValidityPeriod.deserialize(params['ValidityPeriod'])
+          end
+          unless params['ExecutiveStandards'].nil?
+            @ExecutiveStandards = BiologicalProductInfoExecutiveStandards.new
+            @ExecutiveStandards.deserialize(params['ExecutiveStandards'])
+          end
+          unless params['Approval'].nil?
+            @Approval = BiologicalProductInfoApproval.new
+            @Approval.deserialize(params['Approval'])
+          end
+          unless params['Manufacturer'].nil?
+            @Manufacturer = BiologicalProductInfoManufacturer.new
+            @Manufacturer.deserialize(params['Manufacturer'])
+          end
+        end
+      end
+
+      # 不良反应
+      class BiologicalProductInfoAdverseReaction < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 批准文号
+      class BiologicalProductInfoApproval < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 规格
+      class BiologicalProductInfoBrochure < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 禁忌情况
+      class BiologicalProductInfoContraindications < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 免疫程序和剂量
+      class BiologicalProductInfoDosage < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 执行标准
+      class BiologicalProductInfoExecutiveStandards < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 作用与用途
+      class BiologicalProductInfoIndications < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 成份和性状
+      class BiologicalProductInfoIngredientAndAppearance < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 生产企业名称和地址
+      class BiologicalProductInfoManufacturer < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 药品名称，包括通用名和商品名
+      class BiologicalProductInfoName < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param GenericName: 通用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenericName: String
+        # @param BarndName: 品牌名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BarndName: String
+        # @param EnName: 英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnName: String
+        # @param Pinyin: 拼音
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pinyin: String
+
+        attr_accessor :Text, :GenericName, :BarndName, :EnName, :Pinyin
+
+        def initialize(text=nil, genericname=nil, barndname=nil, enname=nil, pinyin=nil)
+          @Text = text
+          @GenericName = genericname
+          @BarndName = barndname
+          @EnName = enname
+          @Pinyin = pinyin
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @GenericName = params['GenericName']
+          @BarndName = params['BarndName']
+          @EnName = params['EnName']
+          @Pinyin = params['Pinyin']
+        end
+      end
+
+      # 包装信息
+      class BiologicalProductInfoPackaging < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 注意事项
+      class BiologicalProductInfoPrecautions < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 储存条件
+      class BiologicalProductInfoStorage < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 接种对象
+      class BiologicalProductInfoVaccinationTarget < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 有效期
+      class BiologicalProductInfoValidityPeriod < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
       # 活检部位
       class BiopsyPart < TencentCloud::Common::AbstractModel
         # @param Value: 值
@@ -1055,6 +1462,663 @@ module TencentCloud
               @BlockTitle << blocktitle_tmp
             end
           end
+        end
+      end
+
+      # 药品说明书消息定义
+      class ChemicalProductInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 药品名称，包括通用名和商品名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoName`
+        # @param ActiveIngredient: 活性成份消息定义，如果是复方制剂，可以不列出每个活性成份的详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveIngredient: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoActiveIngredient`
+        # @param Appearance: 性状
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Appearance: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoAppearance`
+        # @param Indications: 适应症描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Indications: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoIndications`
+        # @param Brochure: 规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Brochure: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoBrochure`
+        # @param Dosage: 用法用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dosage: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoDosage`
+        # @param AdverseReaction: 不良反应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdverseReaction: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoAdverseReaction`
+        # @param Contraindications: 禁忌情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contraindications: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoContraindications`
+        # @param Precautions: 注意事项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Precautions: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPrecautions`
+        # @param PregnancyLactationUse: 孕妇及哺乳期妇女用药
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PregnancyLactationUse: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPregnancyLactationUse`
+        # @param PediatricUse: 儿童用药
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PediatricUse: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPediatricUse`
+        # @param GeriatricUse: 老年用药
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GeriatricUse: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoGeriatricUse`
+        # @param Interactions: 药品的药物相互作用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interactions: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoInteractions`
+        # @param Overdose: 药物过量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Overdose: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoOverdose`
+        # @param ClinicalTrial: 临床试验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClinicalTrial: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoClinicalTrial`
+        # @param PharmacologyToxicology: 药理毒理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PharmacologyToxicology: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPharmacologyToxicology`
+        # @param Pharmacokinetics: 药代动力学
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pharmacokinetics: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPharmacokinetics`
+        # @param Storage: 储存条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoStorage`
+        # @param Packaging: 包装信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Packaging: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPackaging`
+        # @param ValidityPeriod: 有效期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidityPeriod: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoValidityPeriod`
+        # @param ExecutiveStandards: 执行标准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutiveStandards: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoExecutiveStandards`
+        # @param Approval: 批准文号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approval: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoApproval`
+        # @param Manufacturer: 生产企业名称和地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manufacturer: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoManufacturer`
+
+        attr_accessor :Name, :ActiveIngredient, :Appearance, :Indications, :Brochure, :Dosage, :AdverseReaction, :Contraindications, :Precautions, :PregnancyLactationUse, :PediatricUse, :GeriatricUse, :Interactions, :Overdose, :ClinicalTrial, :PharmacologyToxicology, :Pharmacokinetics, :Storage, :Packaging, :ValidityPeriod, :ExecutiveStandards, :Approval, :Manufacturer
+
+        def initialize(name=nil, activeingredient=nil, appearance=nil, indications=nil, brochure=nil, dosage=nil, adversereaction=nil, contraindications=nil, precautions=nil, pregnancylactationuse=nil, pediatricuse=nil, geriatricuse=nil, interactions=nil, overdose=nil, clinicaltrial=nil, pharmacologytoxicology=nil, pharmacokinetics=nil, storage=nil, packaging=nil, validityperiod=nil, executivestandards=nil, approval=nil, manufacturer=nil)
+          @Name = name
+          @ActiveIngredient = activeingredient
+          @Appearance = appearance
+          @Indications = indications
+          @Brochure = brochure
+          @Dosage = dosage
+          @AdverseReaction = adversereaction
+          @Contraindications = contraindications
+          @Precautions = precautions
+          @PregnancyLactationUse = pregnancylactationuse
+          @PediatricUse = pediatricuse
+          @GeriatricUse = geriatricuse
+          @Interactions = interactions
+          @Overdose = overdose
+          @ClinicalTrial = clinicaltrial
+          @PharmacologyToxicology = pharmacologytoxicology
+          @Pharmacokinetics = pharmacokinetics
+          @Storage = storage
+          @Packaging = packaging
+          @ValidityPeriod = validityperiod
+          @ExecutiveStandards = executivestandards
+          @Approval = approval
+          @Manufacturer = manufacturer
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = ChemicalProductInfoName.new
+            @Name.deserialize(params['Name'])
+          end
+          unless params['ActiveIngredient'].nil?
+            @ActiveIngredient = ChemicalProductInfoActiveIngredient.new
+            @ActiveIngredient.deserialize(params['ActiveIngredient'])
+          end
+          unless params['Appearance'].nil?
+            @Appearance = ChemicalProductInfoAppearance.new
+            @Appearance.deserialize(params['Appearance'])
+          end
+          unless params['Indications'].nil?
+            @Indications = ChemicalProductInfoIndications.new
+            @Indications.deserialize(params['Indications'])
+          end
+          unless params['Brochure'].nil?
+            @Brochure = ChemicalProductInfoBrochure.new
+            @Brochure.deserialize(params['Brochure'])
+          end
+          unless params['Dosage'].nil?
+            @Dosage = ChemicalProductInfoDosage.new
+            @Dosage.deserialize(params['Dosage'])
+          end
+          unless params['AdverseReaction'].nil?
+            @AdverseReaction = ChemicalProductInfoAdverseReaction.new
+            @AdverseReaction.deserialize(params['AdverseReaction'])
+          end
+          unless params['Contraindications'].nil?
+            @Contraindications = ChemicalProductInfoContraindications.new
+            @Contraindications.deserialize(params['Contraindications'])
+          end
+          unless params['Precautions'].nil?
+            @Precautions = ChemicalProductInfoPrecautions.new
+            @Precautions.deserialize(params['Precautions'])
+          end
+          unless params['PregnancyLactationUse'].nil?
+            @PregnancyLactationUse = ChemicalProductInfoPregnancyLactationUse.new
+            @PregnancyLactationUse.deserialize(params['PregnancyLactationUse'])
+          end
+          unless params['PediatricUse'].nil?
+            @PediatricUse = ChemicalProductInfoPediatricUse.new
+            @PediatricUse.deserialize(params['PediatricUse'])
+          end
+          unless params['GeriatricUse'].nil?
+            @GeriatricUse = ChemicalProductInfoGeriatricUse.new
+            @GeriatricUse.deserialize(params['GeriatricUse'])
+          end
+          unless params['Interactions'].nil?
+            @Interactions = ChemicalProductInfoInteractions.new
+            @Interactions.deserialize(params['Interactions'])
+          end
+          unless params['Overdose'].nil?
+            @Overdose = ChemicalProductInfoOverdose.new
+            @Overdose.deserialize(params['Overdose'])
+          end
+          unless params['ClinicalTrial'].nil?
+            @ClinicalTrial = ChemicalProductInfoClinicalTrial.new
+            @ClinicalTrial.deserialize(params['ClinicalTrial'])
+          end
+          unless params['PharmacologyToxicology'].nil?
+            @PharmacologyToxicology = ChemicalProductInfoPharmacologyToxicology.new
+            @PharmacologyToxicology.deserialize(params['PharmacologyToxicology'])
+          end
+          unless params['Pharmacokinetics'].nil?
+            @Pharmacokinetics = ChemicalProductInfoPharmacokinetics.new
+            @Pharmacokinetics.deserialize(params['Pharmacokinetics'])
+          end
+          unless params['Storage'].nil?
+            @Storage = ChemicalProductInfoStorage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          unless params['Packaging'].nil?
+            @Packaging = ChemicalProductInfoPackaging.new
+            @Packaging.deserialize(params['Packaging'])
+          end
+          unless params['ValidityPeriod'].nil?
+            @ValidityPeriod = ChemicalProductInfoValidityPeriod.new
+            @ValidityPeriod.deserialize(params['ValidityPeriod'])
+          end
+          unless params['ExecutiveStandards'].nil?
+            @ExecutiveStandards = ChemicalProductInfoExecutiveStandards.new
+            @ExecutiveStandards.deserialize(params['ExecutiveStandards'])
+          end
+          unless params['Approval'].nil?
+            @Approval = ChemicalProductInfoApproval.new
+            @Approval.deserialize(params['Approval'])
+          end
+          unless params['Manufacturer'].nil?
+            @Manufacturer = ChemicalProductInfoManufacturer.new
+            @Manufacturer.deserialize(params['Manufacturer'])
+          end
+        end
+      end
+
+      # 活性成份消息定义，如果是复方制剂，可以不列出每个活性成份的详细信息
+      class ChemicalProductInfoActiveIngredient < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param ChemicalName: 活性成份的化学名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChemicalName: String
+        # @param ChemicalFormula: 活性成份的化学结构式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChemicalFormula: String
+        # @param MolecularFormula: 活性成份的分子式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MolecularFormula: String
+        # @param MolecularWeight: 活性成份的分子量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MolecularWeight: String
+
+        attr_accessor :Text, :ChemicalName, :ChemicalFormula, :MolecularFormula, :MolecularWeight
+
+        def initialize(text=nil, chemicalname=nil, chemicalformula=nil, molecularformula=nil, molecularweight=nil)
+          @Text = text
+          @ChemicalName = chemicalname
+          @ChemicalFormula = chemicalformula
+          @MolecularFormula = molecularformula
+          @MolecularWeight = molecularweight
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @ChemicalName = params['ChemicalName']
+          @ChemicalFormula = params['ChemicalFormula']
+          @MolecularFormula = params['MolecularFormula']
+          @MolecularWeight = params['MolecularWeight']
+        end
+      end
+
+      # 不良反应
+      class ChemicalProductInfoAdverseReaction < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 性状
+      class ChemicalProductInfoAppearance < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 批准文号
+      class ChemicalProductInfoApproval < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 规格
+      class ChemicalProductInfoBrochure < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 临床试验
+      class ChemicalProductInfoClinicalTrial < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 禁忌情况
+      class ChemicalProductInfoContraindications < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 用法用量
+      class ChemicalProductInfoDosage < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 执行标准
+      class ChemicalProductInfoExecutiveStandards < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 老年用药
+      class ChemicalProductInfoGeriatricUse < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 适应症描述
+      class ChemicalProductInfoIndications < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 药品的药物相互作用
+      class ChemicalProductInfoInteractions < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 生产企业名称和地址
+      class ChemicalProductInfoManufacturer < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Name: 企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Address: 生产地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param PostalCode: 邮政编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostalCode: String
+        # @param Phone: 电话，包含区号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param Fax: 传真，包含区号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fax: String
+        # @param Website: 网址，如无则不填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Website: String
+
+        attr_accessor :Text, :Name, :Address, :PostalCode, :Phone, :Fax, :Website
+
+        def initialize(text=nil, name=nil, address=nil, postalcode=nil, phone=nil, fax=nil, website=nil)
+          @Text = text
+          @Name = name
+          @Address = address
+          @PostalCode = postalcode
+          @Phone = phone
+          @Fax = fax
+          @Website = website
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Name = params['Name']
+          @Address = params['Address']
+          @PostalCode = params['PostalCode']
+          @Phone = params['Phone']
+          @Fax = params['Fax']
+          @Website = params['Website']
+        end
+      end
+
+      # 药品名称，包括通用名和商品名
+      class ChemicalProductInfoName < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param GenericName: 通用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenericName: String
+        # @param BarndName: 品牌名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BarndName: String
+        # @param EnName: 英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnName: String
+        # @param Pinyin: 拼音
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pinyin: String
+
+        attr_accessor :Text, :GenericName, :BarndName, :EnName, :Pinyin
+
+        def initialize(text=nil, genericname=nil, barndname=nil, enname=nil, pinyin=nil)
+          @Text = text
+          @GenericName = genericname
+          @BarndName = barndname
+          @EnName = enname
+          @Pinyin = pinyin
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @GenericName = params['GenericName']
+          @BarndName = params['BarndName']
+          @EnName = params['EnName']
+          @Pinyin = params['Pinyin']
+        end
+      end
+
+      # 药物过量
+      class ChemicalProductInfoOverdose < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 包装信息
+      class ChemicalProductInfoPackaging < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 儿童用药
+      class ChemicalProductInfoPediatricUse < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 药代动力学
+      class ChemicalProductInfoPharmacokinetics < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 药理毒理
+      class ChemicalProductInfoPharmacologyToxicology < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 注意事项
+      class ChemicalProductInfoPrecautions < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 孕妇及哺乳期妇女用药
+      class ChemicalProductInfoPregnancyLactationUse < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 储存条件
+      class ChemicalProductInfoStorage < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 有效期
+      class ChemicalProductInfoValidityPeriod < TencentCloud::Common::AbstractModel
+        # @param Text: 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 
@@ -2027,6 +3091,57 @@ module TencentCloud
             end
           end
           @Value = params['Value']
+        end
+      end
+
+      # DrugInstructionObject请求参数结构体
+      class DrugInstructionObjectRequest < TencentCloud::Common::AbstractModel
+        # @param PdfInfo: 药品说明书PDF文件信息(目前只支持传PDF文件的Base64编码字符(PDF文件不能超过10MB，如果超过建议先压缩PDF，再转成base64)
+        # @type PdfInfo: :class:`Tencentcloud::Mrs.v20200910.models.PdfInfo`
+
+        attr_accessor :PdfInfo
+
+        def initialize(pdfinfo=nil)
+          @PdfInfo = pdfinfo
+        end
+
+        def deserialize(params)
+          unless params['PdfInfo'].nil?
+            @PdfInfo = PdfInfo.new
+            @PdfInfo.deserialize(params['PdfInfo'])
+          end
+        end
+      end
+
+      # DrugInstructionObject返回参数结构体
+      class DrugInstructionObjectResponse < TencentCloud::Common::AbstractModel
+        # @param ChemicalProductInfo: 药品说明书消息定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChemicalProductInfo: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfo`
+        # @param BiologicalProductInfo: 预防用生物制品说明书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BiologicalProductInfo: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChemicalProductInfo, :BiologicalProductInfo, :RequestId
+
+        def initialize(chemicalproductinfo=nil, biologicalproductinfo=nil, requestid=nil)
+          @ChemicalProductInfo = chemicalproductinfo
+          @BiologicalProductInfo = biologicalproductinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ChemicalProductInfo'].nil?
+            @ChemicalProductInfo = ChemicalProductInfo.new
+            @ChemicalProductInfo.deserialize(params['ChemicalProductInfo'])
+          end
+          unless params['BiologicalProductInfo'].nil?
+            @BiologicalProductInfo = BiologicalProductInfo.new
+            @BiologicalProductInfo.deserialize(params['BiologicalProductInfo'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4008,8 +5123,8 @@ module TencentCloud
 
         attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis
         extend Gem::Deprecate
-        deprecate :AdmissionDignosis, :none, 2024, 4
-        deprecate :AdmissionDignosis=, :none, 2024, 4
+        deprecate :AdmissionDignosis, :none, 2024, 5
+        deprecate :AdmissionDignosis=, :none, 2024, 5
 
         def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil, admissiondiagnosis=nil)
           @AdmissionTime = admissiontime
@@ -4756,8 +5871,8 @@ module TencentCloud
 
         attr_accessor :TableIndictors, :Version, :TableIndicators
         extend Gem::Deprecate
-        deprecate :TableIndictors, :none, 2024, 4
-        deprecate :TableIndictors=, :none, 2024, 4
+        deprecate :TableIndictors, :none, 2024, 5
+        deprecate :TableIndictors=, :none, 2024, 5
 
         def initialize(tableindictors=nil, version=nil, tableindicators=nil)
           @TableIndictors = tableindictors
@@ -7017,8 +8132,8 @@ module TencentCloud
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2024, 4
-        deprecate :IsthmusThicknese=, :none, 2024, 4
+        deprecate :IsthmusThicknese, :none, 2024, 5
+        deprecate :IsthmusThicknese=, :none, 2024, 5
 
         def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil, isthmusthickness=nil)
           @Part = part
@@ -7609,8 +8724,8 @@ module TencentCloud
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
         extend Gem::Deprecate
-        deprecate :MenstruallHistoryText, :none, 2024, 4
-        deprecate :MenstruallHistoryText=, :none, 2024, 4
+        deprecate :MenstruallHistoryText, :none, 2024, 5
+        deprecate :MenstruallHistoryText=, :none, 2024, 5
 
         def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil, menstrualhistorytext=nil)
           @IncisionHealingText = incisionhealingtext
@@ -8203,8 +9318,8 @@ module TencentCloud
 
         attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
         extend Gem::Deprecate
-        deprecate :Nation, :none, 2024, 4
-        deprecate :Nation=, :none, 2024, 4
+        deprecate :Nation, :none, 2024, 5
+        deprecate :Nation=, :none, 2024, 5
 
         def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil, bedno=nil)
           @Name = name
@@ -10632,8 +11747,8 @@ module TencentCloud
 
         attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays, :AdmissionCondition
         extend Gem::Deprecate
-        deprecate :DmissionCondition, :none, 2024, 4
-        deprecate :DmissionCondition=, :none, 2024, 4
+        deprecate :DmissionCondition, :none, 2024, 5
+        deprecate :DmissionCondition=, :none, 2024, 5
 
         def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil, admissioncondition=nil)
           @DmissionCondition = dmissioncondition
@@ -11216,8 +12331,8 @@ module TencentCloud
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2024, 4
-        deprecate :IsthmusThicknese=, :none, 2024, 4
+        deprecate :IsthmusThicknese, :none, 2024, 5
+        deprecate :IsthmusThicknese=, :none, 2024, 5
 
         def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil, isthmusthickness=nil)
           @Type = type

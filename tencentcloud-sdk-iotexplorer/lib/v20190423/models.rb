@@ -415,36 +415,39 @@ module TencentCloud
         # @type DeviceName: String
         # @param ChannelId: 通道 ID
         # @type ChannelId: Integer
+        # @param ServiceType: 云存 AI 服务类型。可能取值：
+
+        # - `PackageDetect`：包裹检测
+        # - `Highlight`：视频浓缩
+        # @type ServiceType: String
         # @param StartTime: 对应云存视频的起始时间
         # @type StartTime: Integer
         # @param EndTime: 对应云存视频的结束时间
         # @type EndTime: Integer
-        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空）
+        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空；4：执行中）
         # @type Status: Integer
         # @param Result: 任务结果
         # @type Result: String
-        # @param ServiceType: 云存 AI 服务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ServiceType: String
+        # @param Files: 任务输出文件列表
+        # @type Files: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param UpdateTime: 最后更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
 
-        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :StartTime, :EndTime, :Status, :Result, :ServiceType, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :EndTime, :Status, :Result, :Files, :CreateTime, :UpdateTime
 
-        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, starttime=nil, endtime=nil, status=nil, result=nil, servicetype=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, endtime=nil, status=nil, result=nil, files=nil, createtime=nil, updatetime=nil)
           @TaskId = taskid
           @ProductId = productid
           @DeviceName = devicename
           @ChannelId = channelid
+          @ServiceType = servicetype
           @StartTime = starttime
           @EndTime = endtime
           @Status = status
           @Result = result
-          @ServiceType = servicetype
+          @Files = files
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -454,11 +457,12 @@ module TencentCloud
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @ChannelId = params['ChannelId']
+          @ServiceType = params['ServiceType']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Status = params['Status']
           @Result = params['Result']
-          @ServiceType = params['ServiceType']
+          @Files = params['Files']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
@@ -1229,6 +1233,54 @@ module TencentCloud
         end
       end
 
+      # CreateTRTCSignaturesWithRoomId请求参数结构体
+      class CreateTRTCSignaturesWithRoomIdRequest < TencentCloud::Common::AbstractModel
+        # @param TRTCUserIds: TRTC进房间的用户名称数组，数组元素不可重复，最长不超过 10 个。
+        # @type TRTCUserIds: Array
+        # @param RoomId: 房间id
+        # @type RoomId: String
+
+        attr_accessor :TRTCUserIds, :RoomId
+
+        def initialize(trtcuserids=nil, roomid=nil)
+          @TRTCUserIds = trtcuserids
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @TRTCUserIds = params['TRTCUserIds']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # CreateTRTCSignaturesWithRoomId返回参数结构体
+      class CreateTRTCSignaturesWithRoomIdResponse < TencentCloud::Common::AbstractModel
+        # @param TRTCParamList: 返回参数数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TRTCParamList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TRTCParamList, :RequestId
+
+        def initialize(trtcparamlist=nil, requestid=nil)
+          @TRTCParamList = trtcparamlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TRTCParamList'].nil?
+            @TRTCParamList = []
+            params['TRTCParamList'].each do |i|
+              trtcparams_tmp = TRTCParams.new
+              trtcparams_tmp.deserialize(i)
+              @TRTCParamList << trtcparams_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopicPolicy请求参数结构体
       class CreateTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1941,7 +1993,10 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
-        # @param ServiceType: 云存 AI 服务类型。可选值：PackageDetect
+        # @param ServiceType: 云存 AI 服务类型。可选值：
+
+        # - `PackageDetect`：包裹检测
+        # - `Highlight`：视频浓缩
         # @type ServiceType: String
 
         attr_accessor :ProductId, :DeviceName, :ServiceType
@@ -1987,30 +2042,82 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageAIServiceTask请求参数结构体
+      class DescribeCloudStorageAIServiceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeCloudStorageAIServiceTask返回参数结构体
+      class DescribeCloudStorageAIServiceTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfo: 任务信息
+        # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.CloudStorageAIServiceTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfo, :RequestId
+
+        def initialize(taskinfo=nil, requestid=nil)
+          @TaskInfo = taskinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfo'].nil?
+            @TaskInfo = CloudStorageAIServiceTask.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudStorageAIServiceTasks请求参数结构体
       class DescribeCloudStorageAIServiceTasksRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品 ID
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
-        # @param ServiceType: 云存 AI 服务类型。可选值：PackageDetect
+        # @param ServiceType: 云存 AI 服务类型。可选值：
+        # - `PackageDetect`：包裹检测
+        # - `Highlight`：视频浓缩
         # @type ServiceType: String
         # @param Limit: 分页拉取数量
         # @type Limit: Integer
         # @param Offset: 分页拉取偏移
         # @type Offset: Integer
-        # @param Status: 任务状态（1：失败；2：成功但结果为空；3：成功且结果非空；不传则查询全部状态的任务）
+        # @param Status: 任务状态。可选值：
+        # - （不传）：查询全部状态的任务
+        # - `1`：失败
+        # - `2`：成功但结果为空
+        # - `3`：成功且结果非空
+        # - `4`：执行中
         # @type Status: Integer
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param ChannelId: 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType, :Limit, :Offset, :Status
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Limit, :Offset, :Status, :UserId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil, limit=nil, offset=nil, status=nil)
+        def initialize(productid=nil, devicename=nil, servicetype=nil, limit=nil, offset=nil, status=nil, userid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceType = servicetype
           @Limit = limit
           @Offset = offset
           @Status = status
+          @UserId = userid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -2020,6 +2127,8 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Status = params['Status']
+          @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -4573,6 +4682,38 @@ module TencentCloud
         end
       end
 
+      # DismissRoomByStrRoomIdFromTRTC请求参数结构体
+      class DismissRoomByStrRoomIdFromTRTCRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间id
+        # @type RoomId: String
+
+        attr_accessor :RoomId
+
+        def initialize(roomid=nil)
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DismissRoomByStrRoomIdFromTRTC返回参数结构体
+      class DismissRoomByStrRoomIdFromTRTCResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableTopicRule请求参数结构体
       class EnableTopicRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleName: 规则名称
@@ -4919,6 +5060,54 @@ module TencentCloud
             @DeviceSignature = DeviceSignatureInfo.new
             @DeviceSignature.deserialize(params['DeviceSignature'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GenerateCloudStorageAIServiceTaskFileURL请求参数结构体
+      class GenerateCloudStorageAIServiceTaskFileURLRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 产品 ID
+        # @type TaskId: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param ExpireTime: 过期时间 UNIX 时间戳（默认值为当前时间 1 小时后）
+        # @type ExpireTime: Integer
+
+        attr_accessor :TaskId, :FileName, :ExpireTime
+
+        def initialize(taskid=nil, filename=nil, expiretime=nil)
+          @TaskId = taskid
+          @FileName = filename
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @FileName = params['FileName']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # GenerateCloudStorageAIServiceTaskFileURL返回参数结构体
+      class GenerateCloudStorageAIServiceTaskFileURLResponse < TencentCloud::Common::AbstractModel
+        # @param FileURL: 文件下载 URL
+        # @type FileURL: String
+        # @param ExpireTime: 过期时间 UNIX 时间戳
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileURL, :ExpireTime, :RequestId
+
+        def initialize(fileurl=nil, expiretime=nil, requestid=nil)
+          @FileURL = fileurl
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileURL = params['FileURL']
+          @ExpireTime = params['ExpireTime']
           @RequestId = params['RequestId']
         end
       end
@@ -6164,7 +6353,8 @@ module TencentCloud
       class ModifyCloudStorageAIServiceCallbackRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
         # @type ProductId: String
-        # @param Type: 推送类型。http：HTTP 回调
+        # @param Type: 推送类型。可选值：
+        # - `http`：HTTP 回调
         # @type Type: String
         # @param CallbackUrl: HTTP 回调 URL
         # @type CallbackUrl: String
@@ -6210,21 +6400,26 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
-        # @param ServiceType: 云存 AI 服务类型。可选值：PackageDetect
+        # @param ServiceType: 云存 AI 服务类型。可选值：
+        # - `PackageDetect`：包裹检测
+        # - `Highlight`：视频浓缩
         # @type ServiceType: String
         # @param Enabled: 启用状态
         # @type Enabled: Boolean
         # @param ROI: 视频分析区域
         # @type ROI: String
+        # @param Config: 云存 AI 服务的配置参数
+        # @type Config: String
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType, :Enabled, :ROI
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Enabled, :ROI, :Config
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil, enabled=nil, roi=nil)
+        def initialize(productid=nil, devicename=nil, servicetype=nil, enabled=nil, roi=nil, config=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceType = servicetype
           @Enabled = enabled
           @ROI = roi
+          @Config = config
         end
 
         def deserialize(params)
@@ -6233,6 +6428,7 @@ module TencentCloud
           @ServiceType = params['ServiceType']
           @Enabled = params['Enabled']
           @ROI = params['ROI']
+          @Config = params['Config']
         end
       end
 
@@ -7521,6 +7717,42 @@ module TencentCloud
         end
       end
 
+      # RemoveUserByRoomIdFromTRTC请求参数结构体
+      class RemoveUserByRoomIdFromTRTCRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间id
+        # @type RoomId: String
+        # @param TRTCUserIds: 用户名称数组，数组元素不可重复，最长不超过 10 个。
+        # @type TRTCUserIds: Array
+
+        attr_accessor :RoomId, :TRTCUserIds
+
+        def initialize(roomid=nil, trtcuserids=nil)
+          @RoomId = roomid
+          @TRTCUserIds = trtcuserids
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @TRTCUserIds = params['TRTCUserIds']
+        end
+      end
+
+      # RemoveUserByRoomIdFromTRTC返回参数结构体
+      class RemoveUserByRoomIdFromTRTCResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetCloudStorageEvent请求参数结构体
       class ResetCloudStorageEventRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -7801,6 +8033,38 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # TRTC 的参数 可以用来加入房间
+      class TRTCParams < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC入参: TRTC的实例ID
+        # @type SdkAppId: Integer
+        # @param UserId: TRTC入参: 用户加入房间的ID
+        # @type UserId: String
+        # @param UserSig: TRTC入参: 用户的签名用来鉴权
+        # @type UserSig: String
+        # @param StrRoomId: TRTC入参: 加入的TRTC房间名称
+        # @type StrRoomId: String
+        # @param PrivateKey: TRTC入参: 校验TRTC的KEY
+        # @type PrivateKey: String
+
+        attr_accessor :SdkAppId, :UserId, :UserSig, :StrRoomId, :PrivateKey
+
+        def initialize(sdkappid=nil, userid=nil, usersig=nil, strroomid=nil, privatekey=nil)
+          @SdkAppId = sdkappid
+          @UserId = userid
+          @UserSig = usersig
+          @StrRoomId = strroomid
+          @PrivateKey = privatekey
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @StrRoomId = params['StrRoomId']
+          @PrivateKey = params['PrivateKey']
         end
       end
 
