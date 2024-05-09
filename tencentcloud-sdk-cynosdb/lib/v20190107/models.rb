@@ -11204,17 +11204,22 @@ module TencentCloud
         # DISK：存储资源包
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
+        # @param DeductionPriority: 当前资源包绑定在当前实例下的抵扣优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeductionPriority: Integer
 
-        attr_accessor :PackageId, :PackageType
+        attr_accessor :PackageId, :PackageType, :DeductionPriority
 
-        def initialize(packageid=nil, packagetype=nil)
+        def initialize(packageid=nil, packagetype=nil, deductionpriority=nil)
           @PackageId = packageid
           @PackageType = packagetype
+          @DeductionPriority = deductionpriority
         end
 
         def deserialize(params)
           @PackageId = params['PackageId']
           @PackageType = params['PackageType']
+          @DeductionPriority = params['DeductionPriority']
         end
       end
 

@@ -8598,7 +8598,7 @@ module TencentCloud
         # 暂不支持其余接收者类型。
         # @type ReceiverType: String
         # @param ReceiverIds: 接收者。
-        # 当ReceiverType为Uin时，ReceiverIds的值为用户id。[子用户信息查询](https://cloud.tencent.com/document/product/598/36258)
+        # 当ReceiverType为Uin时，ReceiverIds的值为用户uid。[子用户信息查询](https://cloud.tencent.com/document/api/598/53486)
         # 当ReceiverType为Group时，ReceiverIds的值为用户组id。[CAM用户组](https://cloud.tencent.com/document/product/598/14985)
         # @type ReceiverIds: Array
         # @param ReceiverChannels: 通知接收渠道。

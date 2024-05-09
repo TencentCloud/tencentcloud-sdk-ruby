@@ -1615,6 +1615,22 @@ module TencentCloud
         end
       end
 
+      # 节点缓存清除类型取值为 purge_cache_tag 时附带的信息。
+      class CacheTag < TencentCloud::Common::AbstractModel
+        # @param Domains: 待清除缓存的域名列表。
+        # @type Domains: Array
+
+        attr_accessor :Domains
+
+        def initialize(domains=nil)
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+        end
+      end
+
       # https 服务端证书配置
       class CertificateInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID。
@@ -2664,18 +2680,21 @@ module TencentCloud
         # @param EncodeUrl: 若有编码转换，仅清除编码转换后匹配的资源。
         # 若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。
         # @type EncodeUrl: Boolean
+        # @param CacheTag: 节点缓存清除类型取值为 purge_cache_tag 时附带的信息。
+        # @type CacheTag: :class:`Tencentcloud::Teo.v20220901.models.CacheTag`
 
-        attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
+        attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
         deprecate :EncodeUrl, :none, 2024, 5
         deprecate :EncodeUrl=, :none, 2024, 5
 
-        def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
+        def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
           @Type = type
           @Method = method
           @Targets = targets
           @EncodeUrl = encodeurl
+          @CacheTag = cachetag
         end
 
         def deserialize(params)
@@ -2684,6 +2703,10 @@ module TencentCloud
           @Method = params['Method']
           @Targets = params['Targets']
           @EncodeUrl = params['EncodeUrl']
+          unless params['CacheTag'].nil?
+            @CacheTag = CacheTag.new
+            @CacheTag.deserialize(params['CacheTag'])
+          end
         end
       end
 
@@ -12133,6 +12156,11 @@ module TencentCloud
         # @type Target: String
         # @param Type: 任务类型。
         # @type Type: String
+        # @param Method: 节点缓存清除方法，取值有：
+        # <li>invalidate：标记过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；</li>
+        # <li>delete：直接删除节点缓存，用户请求时触发回源拉取资源。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
         # @param Status: 状态。取值有：
         # <li>processing：处理中；</li>
         # <li>success：成功；</li>
@@ -12144,12 +12172,13 @@ module TencentCloud
         # @param UpdateTime: 任务完成时间。
         # @type UpdateTime: String
 
-        attr_accessor :JobId, :Target, :Type, :Status, :CreateTime, :UpdateTime
+        attr_accessor :JobId, :Target, :Type, :Method, :Status, :CreateTime, :UpdateTime
 
-        def initialize(jobid=nil, target=nil, type=nil, status=nil, createtime=nil, updatetime=nil)
+        def initialize(jobid=nil, target=nil, type=nil, method=nil, status=nil, createtime=nil, updatetime=nil)
           @JobId = jobid
           @Target = target
           @Type = type
+          @Method = method
           @Status = status
           @CreateTime = createtime
           @UpdateTime = updatetime
@@ -12159,6 +12188,7 @@ module TencentCloud
           @JobId = params['JobId']
           @Target = params['Target']
           @Type = params['Type']
+          @Method = params['Method']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']

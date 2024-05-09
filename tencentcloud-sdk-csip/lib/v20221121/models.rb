@@ -446,10 +446,10 @@ module TencentCloud
         # @param Victim: 受害者
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Victim: :class:`Tencentcloud::Csip.v20221121.models.RoleInfo`
-        # @param EvidenceData: 证据数据(比如攻击内容等)
+        # @param EvidenceData: 证据数据(例如攻击内容等)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidenceData: String
-        # @param EvidenceLocation: 证据位置(比如协议端口)
+        # @param EvidenceLocation: 证据位置(例如协议端口)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidenceLocation: String
         # @param EvidencePath: 证据路径
@@ -2954,12 +2954,15 @@ module TencentCloud
         # @param AssetMapInstanceTypeList: 资产类型和实例类型的对应关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetMapInstanceTypeList: Array
+        # @param PublicPrivateAttr: 公网内网枚举
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicPrivateAttr: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :AssetMapInstanceTypeList, :RequestId
+        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :AssetMapInstanceTypeList, :PublicPrivateAttr, :RequestId
 
-        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, assetmapinstancetypelist=nil, requestid=nil)
+        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, assetmapinstancetypelist=nil, publicprivateattr=nil, requestid=nil)
           @Total = total
           @Data = data
           @RegionList = regionlist
@@ -2972,6 +2975,7 @@ module TencentCloud
           @ZoneList = zonelist
           @OsList = oslist
           @AssetMapInstanceTypeList = assetmapinstancetypelist
+          @PublicPrivateAttr = publicprivateattr
           @RequestId = requestid
         end
 
@@ -3063,6 +3067,14 @@ module TencentCloud
               assetinstancetypemap_tmp = AssetInstanceTypeMap.new
               assetinstancetypemap_tmp.deserialize(i)
               @AssetMapInstanceTypeList << assetinstancetypemap_tmp
+            end
+          end
+          unless params['PublicPrivateAttr'].nil?
+            @PublicPrivateAttr = []
+            params['PublicPrivateAttr'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @PublicPrivateAttr << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3205,19 +3217,23 @@ module TencentCloud
 
       # DescribeDbAssets请求参数结构体
       class DescribeDbAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param AssetTypes: 资产类型:MYSQL/MARIADB/REDIS/MONGODB/POSTGRES/CTS/ES/KAFKA/COS/CBS/CFS
         # @type AssetTypes: Array
 
-        attr_accessor :Filter, :AssetTypes
+        attr_accessor :MemberId, :Filter, :AssetTypes
 
-        def initialize(filter=nil, assettypes=nil)
+        def initialize(memberid=nil, filter=nil, assettypes=nil)
+          @MemberId = memberid
           @Filter = filter
           @AssetTypes = assettypes
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -3246,18 +3262,22 @@ module TencentCloud
         # @param AppIdList: Appid枚举
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppIdList: Array
+        # @param PublicPrivateAttr: 公网内网枚举
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicPrivateAttr: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :RegionList, :AssetTypeList, :VpcList, :AppIdList, :RequestId
+        attr_accessor :Total, :Data, :RegionList, :AssetTypeList, :VpcList, :AppIdList, :PublicPrivateAttr, :RequestId
 
-        def initialize(total=nil, data=nil, regionlist=nil, assettypelist=nil, vpclist=nil, appidlist=nil, requestid=nil)
+        def initialize(total=nil, data=nil, regionlist=nil, assettypelist=nil, vpclist=nil, appidlist=nil, publicprivateattr=nil, requestid=nil)
           @Total = total
           @Data = data
           @RegionList = regionlist
           @AssetTypeList = assettypelist
           @VpcList = vpclist
           @AppIdList = appidlist
+          @PublicPrivateAttr = publicprivateattr
           @RequestId = requestid
         end
 
@@ -3301,6 +3321,14 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @AppIdList << filterdataobject_tmp
+            end
+          end
+          unless params['PublicPrivateAttr'].nil?
+            @PublicPrivateAttr = []
+            params['PublicPrivateAttr'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @PublicPrivateAttr << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3676,19 +3704,23 @@ module TencentCloud
 
       # DescribeOrganizationUserInfo请求参数结构体
       class DescribeOrganizationUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param NotSupportCloud: 不支持多云
         # @type NotSupportCloud: Boolean
 
-        attr_accessor :Filter, :NotSupportCloud
+        attr_accessor :MemberId, :Filter, :NotSupportCloud
 
-        def initialize(filter=nil, notsupportcloud=nil)
+        def initialize(memberid=nil, filter=nil, notsupportcloud=nil)
+          @MemberId = memberid
           @Filter = filter
           @NotSupportCloud = notsupportcloud
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -3705,14 +3737,22 @@ module TencentCloud
         # @param Data: 集团用户列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
+        # @param JoinTypeLst: 加入方式枚举
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinTypeLst: Array
+        # @param CloudTypeLst: 云厂商枚举
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudTypeLst: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Data, :RequestId
+        attr_accessor :TotalCount, :Data, :JoinTypeLst, :CloudTypeLst, :RequestId
 
-        def initialize(totalcount=nil, data=nil, requestid=nil)
+        def initialize(totalcount=nil, data=nil, jointypelst=nil, cloudtypelst=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
+          @JoinTypeLst = jointypelst
+          @CloudTypeLst = cloudtypelst
           @RequestId = requestid
         end
 
@@ -3724,6 +3764,22 @@ module TencentCloud
               organizationuserinfo_tmp = OrganizationUserInfo.new
               organizationuserinfo_tmp.deserialize(i)
               @Data << organizationuserinfo_tmp
+            end
+          end
+          unless params['JoinTypeLst'].nil?
+            @JoinTypeLst = []
+            params['JoinTypeLst'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @JoinTypeLst << filterdataobject_tmp
+            end
+          end
+          unless params['CloudTypeLst'].nil?
+            @CloudTypeLst = []
+            params['CloudTypeLst'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @CloudTypeLst << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6432,10 +6488,16 @@ module TencentCloud
         # 2 非腾讯云
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcMemberType: Integer
+        # @param SubUserCount: 子账号数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubUserCount: Integer
+        # @param JoinTypeInfo: 加入方式详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinTypeInfo: String
 
-        attr_accessor :Uin, :NickName, :NodeName, :AssetCount, :RiskCount, :AttackCount, :Role, :MemberId, :AppId, :JoinType, :CFWProtect, :WAFProtect, :CWPProtect, :Enable, :CSIPProtect, :QuotaConsumer, :CloudType, :SyncFrequency, :IsExpired, :PermissionList, :AuthType, :TcMemberType
+        attr_accessor :Uin, :NickName, :NodeName, :AssetCount, :RiskCount, :AttackCount, :Role, :MemberId, :AppId, :JoinType, :CFWProtect, :WAFProtect, :CWPProtect, :Enable, :CSIPProtect, :QuotaConsumer, :CloudType, :SyncFrequency, :IsExpired, :PermissionList, :AuthType, :TcMemberType, :SubUserCount, :JoinTypeInfo
 
-        def initialize(uin=nil, nickname=nil, nodename=nil, assetcount=nil, riskcount=nil, attackcount=nil, role=nil, memberid=nil, appid=nil, jointype=nil, cfwprotect=nil, wafprotect=nil, cwpprotect=nil, enable=nil, csipprotect=nil, quotaconsumer=nil, cloudtype=nil, syncfrequency=nil, isexpired=nil, permissionlist=nil, authtype=nil, tcmembertype=nil)
+        def initialize(uin=nil, nickname=nil, nodename=nil, assetcount=nil, riskcount=nil, attackcount=nil, role=nil, memberid=nil, appid=nil, jointype=nil, cfwprotect=nil, wafprotect=nil, cwpprotect=nil, enable=nil, csipprotect=nil, quotaconsumer=nil, cloudtype=nil, syncfrequency=nil, isexpired=nil, permissionlist=nil, authtype=nil, tcmembertype=nil, subusercount=nil, jointypeinfo=nil)
           @Uin = uin
           @NickName = nickname
           @NodeName = nodename
@@ -6458,6 +6520,8 @@ module TencentCloud
           @PermissionList = permissionlist
           @AuthType = authtype
           @TcMemberType = tcmembertype
+          @SubUserCount = subusercount
+          @JoinTypeInfo = jointypeinfo
         end
 
         def deserialize(params)
@@ -6483,6 +6547,8 @@ module TencentCloud
           @PermissionList = params['PermissionList']
           @AuthType = params['AuthType']
           @TcMemberType = params['TcMemberType']
+          @SubUserCount = params['SubUserCount']
+          @JoinTypeInfo = params['JoinTypeInfo']
         end
       end
 

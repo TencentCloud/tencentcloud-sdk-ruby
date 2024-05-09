@@ -665,7 +665,7 @@ module TencentCloud
       class DescribeGeneralApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
         # @param ServiceName: 应用名
         # @type ServiceName: String
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 业务系统ID
         # @type InstanceId: String
 
         attr_accessor :ServiceName, :InstanceId

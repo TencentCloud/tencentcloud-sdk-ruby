@@ -20301,7 +20301,7 @@ module TencentCloud
 
       # DescribePublicProxyInstallCommand请求参数结构体
       class DescribePublicProxyInstallCommandRequest < TencentCloud::Common::AbstractModel
-        # @param Ip: nginx主机ip列表，逗号分隔
+        # @param Ip: nginx主机IP列表，逗号分隔
         # @type Ip: String
 
         attr_accessor :Ip
@@ -28101,7 +28101,7 @@ module TencentCloud
         # <li>ItemName - String - 是否必填：否 - 项名称</li>
         # <li>DetectStatus - int - 是否必填：否 - 检测状态[0:未通过|3:通过|5:检测中]</li>
         # <li>Level - int - 是否必填：否 - 风险等级</li>
-        # <li>StartTime - string - 是否必填：否 - 开时时间</li>
+        # <li>StartTime - string - 是否必填：否 - 开始时间</li>
         # <li>EndTime - string - 是否必填：否 - 结束时间</li>
         # @type Filters: Array
         # @param ExportAll: 0:过滤的结果导出；1:全部导出
@@ -28538,7 +28538,7 @@ module TencentCloud
       class ExportFileTamperRulesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
         # <li>RuleCategory- string- 规则类别  0=系统规则，1=用户规则</li>
-        # <li>Name- String - 规则名称/li>
+        # <li>Name- String - 规则名称</li>
         # @type Filters: Array
 
         attr_accessor :Filters
@@ -31371,19 +31371,24 @@ module TencentCloud
         # @param CustomItemValues: 自定义阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomItemValues: Array
+        # @param CategoryId: 检测项所属分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryId: Integer
 
-        attr_accessor :ItemId, :ItemName, :CustomItemValues
+        attr_accessor :ItemId, :ItemName, :CustomItemValues, :CategoryId
 
-        def initialize(itemid=nil, itemname=nil, customitemvalues=nil)
+        def initialize(itemid=nil, itemname=nil, customitemvalues=nil, categoryid=nil)
           @ItemId = itemid
           @ItemName = itemname
           @CustomItemValues = customitemvalues
+          @CategoryId = categoryid
         end
 
         def deserialize(params)
           @ItemId = params['ItemId']
           @ItemName = params['ItemName']
           @CustomItemValues = params['CustomItemValues']
+          @CategoryId = params['CategoryId']
         end
       end
 

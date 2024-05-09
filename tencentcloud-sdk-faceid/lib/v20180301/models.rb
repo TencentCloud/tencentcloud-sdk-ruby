@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 4
-        deprecate :Idcard=, :none, 2024, 4
+        deprecate :Idcard, :none, 2024, 5
+        deprecate :Idcard=, :none, 2024, 5
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -2812,8 +2812,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 4
-        deprecate :AsrResultSimilarity=, :none, 2024, 4
+        deprecate :AsrResultSimilarity, :none, 2024, 5
+        deprecate :AsrResultSimilarity=, :none, 2024, 5
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3706,18 +3706,12 @@ module TencentCloud
         # 取值范围为["","移动","电信","联通"]
         # @type Isp: String
         # @param ResultDetail: 业务结果详细信息。（当VerifyMode配置"详版"，且Result为"-4: 三要素信息不一致"时返回）
-
         # 枚举值：
-
-        # 手机号码与姓名一致，与身份证号不一致；
-
-        # 手机号码身份证号一致，与姓名不一致；
-
-        # 手机号码与姓名和身份证号均不一致；
-
-        # 姓名和身份证号不一致；
-
-        # 其他不一致。
+        # PhoneIdCardMismatch：手机号码与姓名一致，与身份证号不一致；
+        # PhoneNameMismatch：手机号码身份证号一致，与姓名不一致；
+        # PhoneNameIdCardMismatch：手机号码与姓名和身份证号均不一致；
+        # NameIdCardMismatch：姓名和身份证号不一致；
+        # OtherMismatch：其他不一致；
         # @type ResultDetail: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
