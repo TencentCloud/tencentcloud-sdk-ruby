@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2024, 4
-        deprecate :CosTocken=, :none, 2024, 4
+        deprecate :CosTocken, :none, 2024, 5
+        deprecate :CosTocken=, :none, 2024, 5
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -2336,12 +2336,12 @@ module TencentCloud
 
         attr_accessor :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :SeperateDex, :Db, :DexSig, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiQemuRoot, :AntiAssets, :AntiScreenshot, :AntiSSL, :SetFile, :FileSign, :AntiRoot
         extend Gem::Deprecate
-        deprecate :SeperateDex, :none, 2024, 4
-        deprecate :SeperateDex=, :none, 2024, 4
-        deprecate :DexSig, :none, 2024, 4
-        deprecate :DexSig=, :none, 2024, 4
-        deprecate :AntiQemuRoot, :none, 2024, 4
-        deprecate :AntiQemuRoot=, :none, 2024, 4
+        deprecate :SeperateDex, :none, 2024, 5
+        deprecate :SeperateDex=, :none, 2024, 5
+        deprecate :DexSig, :none, 2024, 5
+        deprecate :DexSig=, :none, 2024, 5
+        deprecate :AntiQemuRoot, :none, 2024, 5
+        deprecate :AntiQemuRoot=, :none, 2024, 5
 
         def initialize(apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, seperatedex=nil, db=nil, dexsig=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiqemuroot=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, setfile=nil, filesign=nil, antiroot=nil)
           @ApkSizeOpt = apksizeopt

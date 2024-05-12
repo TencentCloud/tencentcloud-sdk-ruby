@@ -4827,6 +4827,47 @@ module TencentCloud
         end
       end
 
+      # DescribeLivePadProcessorList请求参数结构体
+      class DescribeLivePadProcessorListRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+
+        attr_accessor :AppName, :PushDomainName
+
+        def initialize(appname=nil, pushdomainname=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+        end
+      end
+
+      # DescribeLivePadProcessorList返回参数结构体
+      class DescribeLivePadProcessorListResponse < TencentCloud::Common::AbstractModel
+        # @param StreamNameList: 当前正在拉取垫片的流名称列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamNameList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StreamNameList, :RequestId
+
+        def initialize(streamnamelist=nil, requestid=nil)
+          @StreamNameList = streamnamelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StreamNameList = params['StreamNameList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLivePadRules请求参数结构体
       class DescribeLivePadRulesRequest < TencentCloud::Common::AbstractModel
 
@@ -11784,6 +11825,55 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopLivePadProcessor请求参数结构体
+      class StopLivePadProcessorRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Operator: 操作人备注信息。
+        # @type Operator: String
+
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Operator
+
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, operator=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+          @StreamName = streamname
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+          @StreamName = params['StreamName']
+          @Operator = params['Operator']
+        end
+      end
+
+      # StopLivePadProcessor返回参数结构体
+      class StopLivePadProcessorResponse < TencentCloud::Common::AbstractModel
+        # @param ResultMessage: 处理结果信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultMessage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultMessage, :RequestId
+
+        def initialize(resultmessage=nil, requestid=nil)
+          @ResultMessage = resultmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultMessage = params['ResultMessage']
           @RequestId = params['RequestId']
         end
       end

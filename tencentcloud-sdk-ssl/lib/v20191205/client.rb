@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取下载证书链接
+
+        # @param request: Request instance for DescribeDownloadCertificateUrl.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeDownloadCertificateUrlRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeDownloadCertificateUrlResponse`
+        def DescribeDownloadCertificateUrl(request)
+          body = send_request('DescribeDownloadCertificateUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDownloadCertificateUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询证书apiGateway云资源部署实例列表
 
         # @param request: Request instance for DescribeHostApiGatewayInstanceList.

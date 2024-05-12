@@ -1798,6 +1798,33 @@ module TencentCloud
         end
       end
 
+      # CreateCLSDelivery请求参数结构体
+      class CreateCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateCLSDelivery返回参数结构体
+      class CreateCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateClusterDatabase请求参数结构体
       class CreateClusterDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -4014,6 +4041,33 @@ module TencentCloud
         end
       end
 
+      # DeleteCLSDelivery请求参数结构体
+      class DeleteCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteCLSDelivery返回参数结构体
+      class DeleteCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClusterDatabase请求参数结构体
       class DeleteClusterDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -5650,6 +5704,33 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceCLSLogDelivery请求参数结构体
+      class DescribeInstanceCLSLogDeliveryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeInstanceCLSLogDelivery返回参数结构体
+      class DescribeInstanceCLSLogDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -12326,6 +12407,60 @@ module TencentCloud
           @SyncWriteBytesRemote = params['SyncWriteBytesRemote']
           @SyncWriteTimeRemote = params['SyncWriteTimeRemote']
           @TrxCommitDelay = params['TrxCommitDelay']
+        end
+      end
+
+      # StartCLSDelivery请求参数结构体
+      class StartCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # StartCLSDelivery返回参数结构体
+      class StartCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopCLSDelivery请求参数结构体
+      class StopCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # StopCLSDelivery返回参数结构体
+      class StopCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

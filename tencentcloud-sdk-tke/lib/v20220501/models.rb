@@ -37,6 +37,33 @@ module TencentCloud
         end
       end
 
+      # 托管节点池运维窗口设置
+      class AutoUpgradeOptions < TencentCloud::Common::AbstractModel
+        # @param AutoUpgradeStartTime: 自动升级开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoUpgradeStartTime: String
+        # @param Duration: 自动升级持续时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param WeeklyPeriod: 运维日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeeklyPeriod: Array
+
+        attr_accessor :AutoUpgradeStartTime, :Duration, :WeeklyPeriod
+
+        def initialize(autoupgradestarttime=nil, duration=nil, weeklyperiod=nil)
+          @AutoUpgradeStartTime = autoupgradestarttime
+          @Duration = duration
+          @WeeklyPeriod = weeklyperiod
+        end
+
+        def deserialize(params)
+          @AutoUpgradeStartTime = params['AutoUpgradeStartTime']
+          @Duration = params['Duration']
+          @WeeklyPeriod = params['WeeklyPeriod']
+        end
+      end
+
       # 自动扩所容的节点
       class AutoscalingAdded < TencentCloud::Common::AbstractModel
         # @param Joining: 正在加入中的节点数量
@@ -62,6 +89,327 @@ module TencentCloud
           @Initializing = params['Initializing']
           @Normal = params['Normal']
           @Total = params['Total']
+        end
+      end
+
+      # 原生节点池创建参数
+      class CreateNativeNodePoolParam < TencentCloud::Common::AbstractModel
+        # @param Scaling: 节点池伸缩配置
+        # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
+        # @param SubnetIds: 子网列表
+        # @type SubnetIds: Array
+        # @param InstanceChargeType: 节点计费类型。PREPAID：包年包月；POSTPAID_BY_HOUR：按量计费（默认）；
+        # @type InstanceChargeType: String
+        # @param SystemDisk: 系统盘配置
+        # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
+        # @param InstanceTypes: 机型列表
+        # @type InstanceTypes: Array
+        # @param SecurityGroupIds: 安全组列表
+        # @type SecurityGroupIds: Array
+        # @param UpgradeSettings: 自动升级配置
+        # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
+        # @param AutoRepair: 是否开启自愈能力
+        # @type AutoRepair: Boolean
+        # @param InstanceChargePrepaid: 包年包月机型计费配置
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
+        # @param Management: 节点池 Management 参数设置
+        # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
+        # @param HealthCheckPolicyName: 故障自愈规则名称
+        # @type HealthCheckPolicyName: String
+        # @param HostNamePattern: 原生节点池hostName模式串
+        # @type HostNamePattern: String
+        # @param KubeletArgs: kubelet 自定义参数
+        # @type KubeletArgs: Array
+        # @param Lifecycle: 预定义脚本
+        # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
+        # @param RuntimeRootDir: 运行时根目录
+        # @type RuntimeRootDir: String
+        # @param EnableAutoscaling: 是否开启弹性伸缩
+        # @type EnableAutoscaling: Boolean
+        # @param Replicas: 期望节点数
+        # @type Replicas: Integer
+        # @param InternetAccessible: 公网带宽设置
+        # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
+        # @param DataDisks: 原生节点池数据盘列表
+        # @type DataDisks: Array
+        # @param KeyIds: 节点池ssh公钥id数组
+        # @type KeyIds: Array
+
+        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :KeyIds
+
+        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, keyids=nil)
+          @Scaling = scaling
+          @SubnetIds = subnetids
+          @InstanceChargeType = instancechargetype
+          @SystemDisk = systemdisk
+          @InstanceTypes = instancetypes
+          @SecurityGroupIds = securitygroupids
+          @UpgradeSettings = upgradesettings
+          @AutoRepair = autorepair
+          @InstanceChargePrepaid = instancechargeprepaid
+          @Management = management
+          @HealthCheckPolicyName = healthcheckpolicyname
+          @HostNamePattern = hostnamepattern
+          @KubeletArgs = kubeletargs
+          @Lifecycle = lifecycle
+          @RuntimeRootDir = runtimerootdir
+          @EnableAutoscaling = enableautoscaling
+          @Replicas = replicas
+          @InternetAccessible = internetaccessible
+          @DataDisks = datadisks
+          @KeyIds = keyids
+        end
+
+        def deserialize(params)
+          unless params['Scaling'].nil?
+            @Scaling = MachineSetScaling.new
+            @Scaling.deserialize(params['Scaling'])
+          end
+          @SubnetIds = params['SubnetIds']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = Disk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          @InstanceTypes = params['InstanceTypes']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['UpgradeSettings'].nil?
+            @UpgradeSettings = MachineUpgradeSettings.new
+            @UpgradeSettings.deserialize(params['UpgradeSettings'])
+          end
+          @AutoRepair = params['AutoRepair']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['Management'].nil?
+            @Management = ManagementConfig.new
+            @Management.deserialize(params['Management'])
+          end
+          @HealthCheckPolicyName = params['HealthCheckPolicyName']
+          @HostNamePattern = params['HostNamePattern']
+          @KubeletArgs = params['KubeletArgs']
+          unless params['Lifecycle'].nil?
+            @Lifecycle = LifecycleConfig.new
+            @Lifecycle.deserialize(params['Lifecycle'])
+          end
+          @RuntimeRootDir = params['RuntimeRootDir']
+          @EnableAutoscaling = params['EnableAutoscaling']
+          @Replicas = params['Replicas']
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
+          @KeyIds = params['KeyIds']
+        end
+      end
+
+      # CreateNodePool请求参数结构体
+      class CreateNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param Type: 节点池类型
+        # @type Type: String
+        # @param Labels: 节点  Labels
+        # @type Labels: Array
+        # @param Taints: 节点污点
+        # @type Taints: Array
+        # @param Tags: 节点标签
+        # @type Tags: Array
+        # @param DeletionProtection: 是否开启删除保护
+        # @type DeletionProtection: Boolean
+        # @param Unschedulable: 节点是否默认不可调度
+        # @type Unschedulable: Boolean
+        # @param Native: 原生节点池创建参数
+        # @type Native: :class:`Tencentcloud::Tke.v20220501.models.CreateNativeNodePoolParam`
+        # @param Annotations: 节点 Annotation 列表
+        # @type Annotations: Array
+
+        attr_accessor :ClusterId, :Name, :Type, :Labels, :Taints, :Tags, :DeletionProtection, :Unschedulable, :Native, :Annotations
+
+        def initialize(clusterid=nil, name=nil, type=nil, labels=nil, taints=nil, tags=nil, deletionprotection=nil, unschedulable=nil, native=nil, annotations=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Type = type
+          @Labels = labels
+          @Taints = taints
+          @Tags = tags
+          @DeletionProtection = deletionprotection
+          @Unschedulable = unschedulable
+          @Native = native
+          @Annotations = annotations
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @Tags << tagspecification_tmp
+            end
+          end
+          @DeletionProtection = params['DeletionProtection']
+          @Unschedulable = params['Unschedulable']
+          unless params['Native'].nil?
+            @Native = CreateNativeNodePoolParam.new
+            @Native.deserialize(params['Native'])
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              annotation_tmp = Annotation.new
+              annotation_tmp.deserialize(i)
+              @Annotations << annotation_tmp
+            end
+          end
+        end
+      end
+
+      # CreateNodePool返回参数结构体
+      class CreateNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池 ID
+        # @type NodePoolId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePoolId, :RequestId
+
+        def initialize(nodepoolid=nil, requestid=nil)
+          @NodePoolId = nodepoolid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述了k8s节点数据盘相关配置与信息。
+      class DataDisk < TencentCloud::Common::AbstractModel
+        # @param DiskType: 云盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param FileSystem: 文件系统(ext3/ext4/xfs)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSystem: String
+        # @param DiskSize: 云盘大小(G）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param AutoFormatAndMount: 是否自动化格式盘并挂载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoFormatAndMount: Boolean
+        # @param DiskPartition: 挂载设备名或分区名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskPartition: String
+        # @param MountTarget: 挂载目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountTarget: String
+        # @param Encrypt: 传入该参数用于创建加密云盘，取值固定为ENCRYPT
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encrypt: String
+        # @param KmsKeyId: 购买加密盘时自定义密钥，当传入该参数时, Encrypt入参不为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKeyId: String
+        # @param SnapshotId: 快照ID，如果传入则根据此快照创建云硬盘，快照类型必须为数据盘快照
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotId: String
+        # @param ThroughputPerformance: 云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputPerformance: Integer
+
+        attr_accessor :DiskType, :FileSystem, :DiskSize, :AutoFormatAndMount, :DiskPartition, :MountTarget, :Encrypt, :KmsKeyId, :SnapshotId, :ThroughputPerformance
+
+        def initialize(disktype=nil, filesystem=nil, disksize=nil, autoformatandmount=nil, diskpartition=nil, mounttarget=nil, encrypt=nil, kmskeyid=nil, snapshotid=nil, throughputperformance=nil)
+          @DiskType = disktype
+          @FileSystem = filesystem
+          @DiskSize = disksize
+          @AutoFormatAndMount = autoformatandmount
+          @DiskPartition = diskpartition
+          @MountTarget = mounttarget
+          @Encrypt = encrypt
+          @KmsKeyId = kmskeyid
+          @SnapshotId = snapshotid
+          @ThroughputPerformance = throughputperformance
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @FileSystem = params['FileSystem']
+          @DiskSize = params['DiskSize']
+          @AutoFormatAndMount = params['AutoFormatAndMount']
+          @DiskPartition = params['DiskPartition']
+          @MountTarget = params['MountTarget']
+          @Encrypt = params['Encrypt']
+          @KmsKeyId = params['KmsKeyId']
+          @SnapshotId = params['SnapshotId']
+          @ThroughputPerformance = params['ThroughputPerformance']
+        end
+      end
+
+      # DeleteNodePool请求参数结构体
+      class DeleteNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池 ID
+        # @type NodePoolId: String
+
+        attr_accessor :ClusterId, :NodePoolId
+
+        def initialize(clusterid=nil, nodepoolid=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+        end
+      end
+
+      # DeleteNodePool返回参数结构体
+      class DeleteNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -227,6 +575,38 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 节点系统盘和数据盘配置
+      class Disk < TencentCloud::Common::AbstractModel
+        # @param DiskType: 云盘类型
+        # @type DiskType: String
+        # @param DiskSize: 云盘大小(G）
+        # @type DiskSize: Integer
+        # @param AutoFormatAndMount: 是否自动化格式盘并挂载
+        # @type AutoFormatAndMount: Boolean
+        # @param FileSystem: 文件系统
+        # @type FileSystem: String
+        # @param MountTarget: 挂载目录
+        # @type MountTarget: String
+
+        attr_accessor :DiskType, :DiskSize, :AutoFormatAndMount, :FileSystem, :MountTarget
+
+        def initialize(disktype=nil, disksize=nil, autoformatandmount=nil, filesystem=nil, mounttarget=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+          @AutoFormatAndMount = autoformatandmount
+          @FileSystem = filesystem
+          @MountTarget = mounttarget
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @AutoFormatAndMount = params['AutoFormatAndMount']
+          @FileSystem = params['FileSystem']
+          @MountTarget = params['MountTarget']
         end
       end
 
@@ -436,6 +816,30 @@ module TencentCloud
         end
       end
 
+      # 包年包月配置
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 后付费计费周期，单位（月）：
+        # 1，2，3，4，5，，6，7， 8，9，10，11，12，24，36，48，60
+        # @type Period: Integer
+        # @param RenewFlag: 预付费续费方式：
+        # - NOTIFY_AND_AUTO_RENEW：通知用户过期，且自动续费 (默认）
+        # - NOTIFY_AND_MANUAL_RENEW：通知用户过期，但不不自动续费
+        # - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知用户过期，也不自动续费
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # 节点自定义参数
       class InstanceExtraArgs < TencentCloud::Common::AbstractModel
         # @param Kubelet: kubelet自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["root-dir=/var/lib/kubelet","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
@@ -450,6 +854,33 @@ module TencentCloud
 
         def deserialize(params)
           @Kubelet = params['Kubelet']
+        end
+      end
+
+      # 数值结构
+      class IntOrString < TencentCloud::Common::AbstractModel
+        # @param Type: 数值类型，0是int,  1是字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param IntVal: 整数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntVal: Integer
+        # @param StrVal: 字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrVal: String
+
+        attr_accessor :Type, :IntVal, :StrVal
+
+        def initialize(type=nil, intval=nil, strval=nil)
+          @Type = type
+          @IntVal = intval
+          @StrVal = strval
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @IntVal = params['IntVal']
+          @StrVal = params['StrVal']
         end
       end
 
@@ -497,6 +928,120 @@ module TencentCloud
         end
       end
 
+      # 节点池自定义脚本
+      class LifecycleConfig < TencentCloud::Common::AbstractModel
+        # @param PreInit: 节点初始化前自定义脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreInit: String
+        # @param PostInit: 节点初始化后自定义脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostInit: String
+
+        attr_accessor :PreInit, :PostInit
+
+        def initialize(preinit=nil, postinit=nil)
+          @PreInit = preinit
+          @PostInit = postinit
+        end
+
+        def deserialize(params)
+          @PreInit = params['PreInit']
+          @PostInit = params['PostInit']
+        end
+      end
+
+      # 节点池弹性伸缩配置
+      class MachineSetScaling < TencentCloud::Common::AbstractModel
+        # @param MinReplicas: 节点池最小副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinReplicas: Integer
+        # @param MaxReplicas: 节点池最大副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReplicas: Integer
+        # @param CreatePolicy: 节点池扩容策略。ZoneEquality：多可用区打散；ZonePriority：首选可用区优先；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatePolicy: String
+
+        attr_accessor :MinReplicas, :MaxReplicas, :CreatePolicy
+
+        def initialize(minreplicas=nil, maxreplicas=nil, createpolicy=nil)
+          @MinReplicas = minreplicas
+          @MaxReplicas = maxreplicas
+          @CreatePolicy = createpolicy
+        end
+
+        def deserialize(params)
+          @MinReplicas = params['MinReplicas']
+          @MaxReplicas = params['MaxReplicas']
+          @CreatePolicy = params['CreatePolicy']
+        end
+      end
+
+      # 托管节点池自动升级配置
+      class MachineUpgradeSettings < TencentCloud::Common::AbstractModel
+        # @param AutoUpgrade: 是否开启自动升级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoUpgrade: Boolean
+        # @param UpgradeOptions: 运维窗口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeOptions: :class:`Tencentcloud::Tke.v20220501.models.AutoUpgradeOptions`
+        # @param Components: 升级项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Components: Array
+        # @param MaxUnavailable: 升级时，最大不可升级的节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxUnavailable: :class:`Tencentcloud::Tke.v20220501.models.IntOrString`
+
+        attr_accessor :AutoUpgrade, :UpgradeOptions, :Components, :MaxUnavailable
+
+        def initialize(autoupgrade=nil, upgradeoptions=nil, components=nil, maxunavailable=nil)
+          @AutoUpgrade = autoupgrade
+          @UpgradeOptions = upgradeoptions
+          @Components = components
+          @MaxUnavailable = maxunavailable
+        end
+
+        def deserialize(params)
+          @AutoUpgrade = params['AutoUpgrade']
+          unless params['UpgradeOptions'].nil?
+            @UpgradeOptions = AutoUpgradeOptions.new
+            @UpgradeOptions.deserialize(params['UpgradeOptions'])
+          end
+          @Components = params['Components']
+          unless params['MaxUnavailable'].nil?
+            @MaxUnavailable = IntOrString.new
+            @MaxUnavailable.deserialize(params['MaxUnavailable'])
+          end
+        end
+      end
+
+      # 托管节点池Management配置
+      class ManagementConfig < TencentCloud::Common::AbstractModel
+        # @param Nameservers: dns 配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nameservers: Array
+        # @param Hosts: hosts 配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hosts: Array
+        # @param KernelArgs: 内核参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KernelArgs: Array
+
+        attr_accessor :Nameservers, :Hosts, :KernelArgs
+
+        def initialize(nameservers=nil, hosts=nil, kernelargs=nil)
+          @Nameservers = nameservers
+          @Hosts = hosts
+          @KernelArgs = kernelargs
+        end
+
+        def deserialize(params)
+          @Nameservers = params['Nameservers']
+          @Hosts = params['Hosts']
+          @KernelArgs = params['KernelArgs']
+        end
+      end
+
       # 手动加入的节点
       class ManuallyAdded < TencentCloud::Common::AbstractModel
         # @param Joining: 加入中的节点数量
@@ -522,6 +1067,105 @@ module TencentCloud
           @Initializing = params['Initializing']
           @Normal = params['Normal']
           @Total = params['Total']
+        end
+      end
+
+      # ModifyNodePool请求参数结构体
+      class ModifyNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池 ID
+        # @type NodePoolId: String
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param Labels: 节点  Labels
+        # @type Labels: Array
+        # @param Taints: 节点污点
+        # @type Taints: Array
+        # @param Tags: 节点标签
+        # @type Tags: Array
+        # @param DeletionProtection: 是否开启删除保护
+        # @type DeletionProtection: Boolean
+        # @param Unschedulable: 节点是否不可调度
+        # @type Unschedulable: Boolean
+        # @param Native: 原生节点池更新参数
+        # @type Native: :class:`Tencentcloud::Tke.v20220501.models.UpdateNativeNodePoolParam`
+        # @param Annotations: 节点 Annotation 列表
+        # @type Annotations: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :Name, :Labels, :Taints, :Tags, :DeletionProtection, :Unschedulable, :Native, :Annotations
+
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, labels=nil, taints=nil, tags=nil, deletionprotection=nil, unschedulable=nil, native=nil, annotations=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Name = name
+          @Labels = labels
+          @Taints = taints
+          @Tags = tags
+          @DeletionProtection = deletionprotection
+          @Unschedulable = unschedulable
+          @Native = native
+          @Annotations = annotations
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Name = params['Name']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @Tags << tagspecification_tmp
+            end
+          end
+          @DeletionProtection = params['DeletionProtection']
+          @Unschedulable = params['Unschedulable']
+          unless params['Native'].nil?
+            @Native = UpdateNativeNodePoolParam.new
+            @Native.deserialize(params['Native'])
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              annotation_tmp = Annotation.new
+              annotation_tmp.deserialize(i)
+              @Annotations << annotation_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNodePool返回参数结构体
+      class ModifyNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -639,22 +1283,137 @@ module TencentCloud
 
       # 原生节点池信息
       class NativeNodePoolInfo < TencentCloud::Common::AbstractModel
+        # @param Scaling: 伸缩配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
         # @param SubnetIds: 子网列表
         # @type SubnetIds: Array
         # @param SecurityGroupIds: 安全组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
+        # @param UpgradeSettings: 自动升级配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
+        # @param AutoRepair: 是否开启自愈能力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRepair: Boolean
+        # @param InstanceChargeType: 节点计费类型
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: 包年包月机型计费配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
+        # @param SystemDisk: 系统盘配置
+        # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
+        # @param KeyIds: 密钥 ID 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyIds: Array
+        # @param Management: Machine 系统配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
+        # @param HealthCheckPolicyName: 故障自愈规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckPolicyName: String
+        # @param HostNamePattern: 原生节点池hostName模式串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostNamePattern: String
+        # @param KubeletArgs: kubelet 自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeletArgs: Array
+        # @param Lifecycle: 预定义脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
+        # @param RuntimeRootDir: 运行时根目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeRootDir: String
+        # @param EnableAutoscaling: 是否开启弹性伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAutoscaling: Boolean
+        # @param InstanceTypes: 机型列表
+        # @type InstanceTypes: Array
+        # @param Replicas: 期望节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replicas: Integer
+        # @param InternetAccessible: 公网带宽设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
+        # @param DataDisks: 原生节点池数据盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisks: Array
 
-        attr_accessor :SubnetIds, :SecurityGroupIds
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :InternetAccessible, :DataDisks
 
-        def initialize(subnetids=nil, securitygroupids=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, keyids=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, internetaccessible=nil, datadisks=nil)
+          @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
+          @UpgradeSettings = upgradesettings
+          @AutoRepair = autorepair
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
+          @SystemDisk = systemdisk
+          @KeyIds = keyids
+          @Management = management
+          @HealthCheckPolicyName = healthcheckpolicyname
+          @HostNamePattern = hostnamepattern
+          @KubeletArgs = kubeletargs
+          @Lifecycle = lifecycle
+          @RuntimeRootDir = runtimerootdir
+          @EnableAutoscaling = enableautoscaling
+          @InstanceTypes = instancetypes
+          @Replicas = replicas
+          @InternetAccessible = internetaccessible
+          @DataDisks = datadisks
         end
 
         def deserialize(params)
+          unless params['Scaling'].nil?
+            @Scaling = MachineSetScaling.new
+            @Scaling.deserialize(params['Scaling'])
+          end
           @SubnetIds = params['SubnetIds']
           @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['UpgradeSettings'].nil?
+            @UpgradeSettings = MachineUpgradeSettings.new
+            @UpgradeSettings.deserialize(params['UpgradeSettings'])
+          end
+          @AutoRepair = params['AutoRepair']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['SystemDisk'].nil?
+            @SystemDisk = Disk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          @KeyIds = params['KeyIds']
+          unless params['Management'].nil?
+            @Management = ManagementConfig.new
+            @Management.deserialize(params['Management'])
+          end
+          @HealthCheckPolicyName = params['HealthCheckPolicyName']
+          @HostNamePattern = params['HostNamePattern']
+          @KubeletArgs = params['KubeletArgs']
+          unless params['Lifecycle'].nil?
+            @Lifecycle = LifecycleConfig.new
+            @Lifecycle.deserialize(params['Lifecycle'])
+          end
+          @RuntimeRootDir = params['RuntimeRootDir']
+          @EnableAutoscaling = params['EnableAutoscaling']
+          @InstanceTypes = params['InstanceTypes']
+          @Replicas = params['Replicas']
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
         end
       end
 
@@ -692,12 +1451,18 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池 ID
         # @type NodePoolId: String
+        # @param Tags: 节点标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param Taints: 节点污点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Taints: Array
         # @param DeletionProtection: 是否开启删除保护
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionProtection: Boolean
+        # @param Unschedulable: 节点是否不可调度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unschedulable: Boolean
         # @param Type: 节点池类型
         # @type Type: String
         # @param Labels: 节点  Labels
@@ -725,13 +1490,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type External: :class:`Tencentcloud::Tke.v20220501.models.ExternalNodePoolInfo`
 
-        attr_accessor :ClusterId, :NodePoolId, :Taints, :DeletionProtection, :Type, :Labels, :LifeState, :CreatedAt, :Name, :Native, :Annotations, :Super, :Regular, :External
+        attr_accessor :ClusterId, :NodePoolId, :Tags, :Taints, :DeletionProtection, :Unschedulable, :Type, :Labels, :LifeState, :CreatedAt, :Name, :Native, :Annotations, :Super, :Regular, :External
 
-        def initialize(clusterid=nil, nodepoolid=nil, taints=nil, deletionprotection=nil, type=nil, labels=nil, lifestate=nil, createdat=nil, name=nil, native=nil, annotations=nil, _super=nil, regular=nil, external=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, tags=nil, taints=nil, deletionprotection=nil, unschedulable=nil, type=nil, labels=nil, lifestate=nil, createdat=nil, name=nil, native=nil, annotations=nil, _super=nil, regular=nil, external=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
+          @Tags = tags
           @Taints = taints
           @DeletionProtection = deletionprotection
+          @Unschedulable = unschedulable
           @Type = type
           @Labels = labels
           @LifeState = lifestate
@@ -747,6 +1514,14 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @NodePoolId = params['NodePoolId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @Tags << tagspecification_tmp
+            end
+          end
           unless params['Taints'].nil?
             @Taints = []
             params['Taints'].each do |i|
@@ -756,6 +1531,7 @@ module TencentCloud
             end
           end
           @DeletionProtection = params['DeletionProtection']
+          @Unschedulable = params['Unschedulable']
           @Type = params['Type']
           unless params['Labels'].nil?
             @Labels = []
@@ -1031,6 +1807,55 @@ module TencentCloud
         end
       end
 
+      # 标签绑定的资源类型，当前支持类型："cluster"
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例，当前仅支持绑定标签到云主机实例。
+      class TagSpecification < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 标签绑定的资源类型，当前支持类型："cluster"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Tags: 标签对列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :ResourceType, :Tags
+
+        def initialize(resourcetype=nil, tags=nil)
+          @ResourceType = resourcetype
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
       # kubernetes Taint
       class Taint < TencentCloud::Common::AbstractModel
         # @param Key: Taint的Key
@@ -1052,6 +1877,121 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Effect = params['Effect']
+        end
+      end
+
+      # 修改原生节点池参数
+      class UpdateNativeNodePoolParam < TencentCloud::Common::AbstractModel
+        # @param Scaling: 伸缩配置
+        # @type Scaling: :class:`Tencentcloud::Tke.v20220501.models.MachineSetScaling`
+        # @param SubnetIds: 子网列表
+        # @type SubnetIds: Array
+        # @param SecurityGroupIds: 安全组列表
+        # @type SecurityGroupIds: Array
+        # @param UpgradeSettings: 自动升级配置
+        # @type UpgradeSettings: :class:`Tencentcloud::Tke.v20220501.models.MachineUpgradeSettings`
+        # @param AutoRepair: 是否开启自愈能力
+        # @type AutoRepair: Boolean
+        # @param InstanceChargeType: 节点计费类型变更
+        # 当前仅支持按量计费转包年包月：
+        # - PREPAID
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: 包年包月机型计费配置
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
+        # @param SystemDisk: 系统盘配置
+        # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
+        # @param Management: Machine 系统配置
+        # @type Management: :class:`Tencentcloud::Tke.v20220501.models.ManagementConfig`
+        # @param HealthCheckPolicyName: 故障自愈规则名称
+        # @type HealthCheckPolicyName: String
+        # @param HostNamePattern: 原生节点池hostName模式串
+        # @type HostNamePattern: String
+        # @param KubeletArgs: kubelet 自定义参数
+        # @type KubeletArgs: Array
+        # @param Lifecycle: 预定义脚本
+        # @type Lifecycle: :class:`Tencentcloud::Tke.v20220501.models.LifecycleConfig`
+        # @param RuntimeRootDir: 运行时根目录
+        # @type RuntimeRootDir: String
+        # @param EnableAutoscaling: 是否开启弹性伸缩
+        # @type EnableAutoscaling: Boolean
+        # @param InstanceTypes: 机型列表
+        # @type InstanceTypes: Array
+        # @param Replicas: 期望节点数
+        # @type Replicas: Integer
+        # @param DataDisks: 数据盘列表
+        # @type DataDisks: Array
+        # @param KeyIds: ssh公钥id数组
+        # @type KeyIds: Array
+
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :DataDisks, :KeyIds
+
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, datadisks=nil, keyids=nil)
+          @Scaling = scaling
+          @SubnetIds = subnetids
+          @SecurityGroupIds = securitygroupids
+          @UpgradeSettings = upgradesettings
+          @AutoRepair = autorepair
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
+          @SystemDisk = systemdisk
+          @Management = management
+          @HealthCheckPolicyName = healthcheckpolicyname
+          @HostNamePattern = hostnamepattern
+          @KubeletArgs = kubeletargs
+          @Lifecycle = lifecycle
+          @RuntimeRootDir = runtimerootdir
+          @EnableAutoscaling = enableautoscaling
+          @InstanceTypes = instancetypes
+          @Replicas = replicas
+          @DataDisks = datadisks
+          @KeyIds = keyids
+        end
+
+        def deserialize(params)
+          unless params['Scaling'].nil?
+            @Scaling = MachineSetScaling.new
+            @Scaling.deserialize(params['Scaling'])
+          end
+          @SubnetIds = params['SubnetIds']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['UpgradeSettings'].nil?
+            @UpgradeSettings = MachineUpgradeSettings.new
+            @UpgradeSettings.deserialize(params['UpgradeSettings'])
+          end
+          @AutoRepair = params['AutoRepair']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['SystemDisk'].nil?
+            @SystemDisk = Disk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['Management'].nil?
+            @Management = ManagementConfig.new
+            @Management.deserialize(params['Management'])
+          end
+          @HealthCheckPolicyName = params['HealthCheckPolicyName']
+          @HostNamePattern = params['HostNamePattern']
+          @KubeletArgs = params['KubeletArgs']
+          unless params['Lifecycle'].nil?
+            @Lifecycle = LifecycleConfig.new
+            @Lifecycle.deserialize(params['Lifecycle'])
+          end
+          @RuntimeRootDir = params['RuntimeRootDir']
+          @EnableAutoscaling = params['EnableAutoscaling']
+          @InstanceTypes = params['InstanceTypes']
+          @Replicas = params['Replicas']
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
+          @KeyIds = params['KeyIds']
         end
       end
 

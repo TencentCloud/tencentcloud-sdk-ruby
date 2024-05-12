@@ -2865,6 +2865,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDownloadCertificateUrl请求参数结构体
+      class DescribeDownloadCertificateUrlRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+        # @param ServiceType: 下载的服务类型: nginx tomcat apache iis jks other root
+        # @type ServiceType: String
+
+        attr_accessor :CertificateId, :ServiceType
+
+        def initialize(certificateid=nil, servicetype=nil)
+          @CertificateId = certificateid
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # DescribeDownloadCertificateUrl返回参数结构体
+      class DescribeDownloadCertificateUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadCertificateUrl: 下载链接
+        # @type DownloadCertificateUrl: String
+        # @param DownloadFilename: 下载文件的名称
+        # @type DownloadFilename: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadCertificateUrl, :DownloadFilename, :RequestId
+
+        def initialize(downloadcertificateurl=nil, downloadfilename=nil, requestid=nil)
+          @DownloadCertificateUrl = downloadcertificateurl
+          @DownloadFilename = downloadfilename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadCertificateUrl = params['DownloadCertificateUrl']
+          @DownloadFilename = params['DownloadFilename']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHostApiGatewayInstanceList请求参数结构体
       class DescribeHostApiGatewayInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID

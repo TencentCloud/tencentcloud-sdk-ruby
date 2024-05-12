@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建日志投递
+
+        # @param request: Request instance for CreateCLSDelivery.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateCLSDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateCLSDeliveryResponse`
+        def CreateCLSDelivery(request)
+          body = send_request('CreateCLSDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCLSDeliveryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据库
 
         # @param request: Request instance for CreateClusterDatabase.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除日志投递
+
+        # @param request: Request instance for DeleteCLSDelivery.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteCLSDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteCLSDeliveryResponse`
+        def DeleteCLSDelivery(request)
+          body = send_request('DeleteCLSDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCLSDeliveryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1263,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例日志投递信息
+
+        # @param request: Request instance for DescribeInstanceCLSLogDelivery.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceCLSLogDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceCLSLogDeliveryResponse`
+        def DescribeInstanceCLSLogDelivery(request)
+          body = send_request('DescribeInstanceCLSLogDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceCLSLogDeliveryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3087,6 +3159,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启日志投递
+
+        # @param request: Request instance for StartCLSDelivery.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::StartCLSDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::StartCLSDeliveryResponse`
+        def StartCLSDelivery(request)
+          body = send_request('StartCLSDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartCLSDeliveryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止日志投递
+
+        # @param request: Request instance for StopCLSDelivery.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::StopCLSDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::StopCLSDeliveryResponse`
+        def StopCLSDelivery(request)
+          body = send_request('StopCLSDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopCLSDeliveryResponse.new
             model.deserialize(response['Response'])
             model
           else

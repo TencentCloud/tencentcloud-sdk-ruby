@@ -5216,6 +5216,9 @@ module TencentCloud
         # @param LatestOperationRequestId: 实例最新操作的唯一请求 ID。
         # 注意：此字段可能返回 空值，表示取不到有效值。
         # @type LatestOperationRequestId: String
+        # @param LatestOperationStartedTime: 实例最新操作的开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationStartedTime: String
         # @param IsolatedTime: 隔离时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5244,9 +5247,9 @@ module TencentCloud
         # @param InitInvocationId: 创建实例后自动执行TAT命令的调用ID。
         # @type InitInvocationId: String
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :InitInvocationId
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :LatestOperationStartedTime, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :InitInvocationId
 
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, initinvocationid=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, latestoperationstartedtime=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, initinvocationid=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -5265,6 +5268,7 @@ module TencentCloud
           @LatestOperation = latestoperation
           @LatestOperationState = latestoperationstate
           @LatestOperationRequestId = latestoperationrequestid
+          @LatestOperationStartedTime = latestoperationstartedtime
           @IsolatedTime = isolatedtime
           @CreatedTime = createdtime
           @ExpiredTime = expiredtime
@@ -5305,6 +5309,7 @@ module TencentCloud
           @LatestOperation = params['LatestOperation']
           @LatestOperationState = params['LatestOperationState']
           @LatestOperationRequestId = params['LatestOperationRequestId']
+          @LatestOperationStartedTime = params['LatestOperationStartedTime']
           @IsolatedTime = params['IsolatedTime']
           @CreatedTime = params['CreatedTime']
           @ExpiredTime = params['ExpiredTime']

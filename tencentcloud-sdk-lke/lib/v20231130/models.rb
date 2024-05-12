@@ -4761,6 +4761,9 @@ module TencentCloud
       class MsgRecord < TencentCloud::Common::AbstractModel
         # @param Content: 内容
         # @type Content: String
+        # @param SessionId: 当前记录所对应的 Session ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
         # @param RecordId: 记录ID
         # @type RecordId: String
         # @param RelatedRecordId: 关联记录ID
@@ -4779,6 +4782,9 @@ module TencentCloud
         # @type Score: Integer
         # @param CanRating: 是否评分
         # @type CanRating: Boolean
+        # @param CanFeedback: 是否展示反馈按钮
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanFeedback: Boolean
         # @param Type: 记录类型
         # @type Type: Integer
         # @param References: 引用来源
@@ -4792,11 +4798,21 @@ module TencentCloud
         # @param TokenStat: 当次 token 统计信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TokenStat: :class:`Tencentcloud::Lke.v20231130.models.TokenStat`
+        # @param ReplyMethod: 回复方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplyMethod: Integer
+        # @param OptionCards: 选项卡, 用于多轮对话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionCards: Array
+        # @param TaskFlow: 任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskFlow: :class:`Tencentcloud::Lke.v20231130.models.TaskFlowInfo`
 
-        attr_accessor :Content, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat
+        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow
 
-        def initialize(content=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil)
+        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil)
           @Content = content
+          @SessionId = sessionid
           @RecordId = recordid
           @RelatedRecordId = relatedrecordid
           @IsFromSelf = isfromself
@@ -4806,16 +4822,21 @@ module TencentCloud
           @HasRead = hasread
           @Score = score
           @CanRating = canrating
+          @CanFeedback = canfeedback
           @Type = type
           @References = references
           @Reasons = reasons
           @IsLlmGenerated = isllmgenerated
           @ImageUrls = imageurls
           @TokenStat = tokenstat
+          @ReplyMethod = replymethod
+          @OptionCards = optioncards
+          @TaskFlow = taskflow
         end
 
         def deserialize(params)
           @Content = params['Content']
+          @SessionId = params['SessionId']
           @RecordId = params['RecordId']
           @RelatedRecordId = params['RelatedRecordId']
           @IsFromSelf = params['IsFromSelf']
@@ -4825,6 +4846,7 @@ module TencentCloud
           @HasRead = params['HasRead']
           @Score = params['Score']
           @CanRating = params['CanRating']
+          @CanFeedback = params['CanFeedback']
           @Type = params['Type']
           unless params['References'].nil?
             @References = []
@@ -4840,6 +4862,12 @@ module TencentCloud
           unless params['TokenStat'].nil?
             @TokenStat = TokenStat.new
             @TokenStat.deserialize(params['TokenStat'])
+          end
+          @ReplyMethod = params['ReplyMethod']
+          @OptionCards = params['OptionCards']
+          unless params['TaskFlow'].nil?
+            @TaskFlow = TaskFlowInfo.new
+            @TaskFlow.deserialize(params['TaskFlow'])
           end
         end
       end
@@ -5959,6 +5987,47 @@ module TencentCloud
           @Method = params['Method']
           @Requirement = params['Requirement']
           @RequireCommand = params['RequireCommand']
+        end
+      end
+
+      # 任务流程信息
+      class TaskFlowInfo < TencentCloud::Common::AbstractModel
+        # @param TaskFlowId: 任务流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskFlowId: String
+        # @param TaskFlowName: 任务流程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskFlowName: String
+        # @param QueryRewrite: Query 重写结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryRewrite: String
+        # @param HitIntent: 命中意图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitIntent: String
+        # @param Type: 任务流程回复类型
+        # 0: 任务流回复
+        # 1: 任务流静默
+        # 2: 任务流拉回话术
+        # 3: 任务流自定义回复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+
+        attr_accessor :TaskFlowId, :TaskFlowName, :QueryRewrite, :HitIntent, :Type
+
+        def initialize(taskflowid=nil, taskflowname=nil, queryrewrite=nil, hitintent=nil, type=nil)
+          @TaskFlowId = taskflowid
+          @TaskFlowName = taskflowname
+          @QueryRewrite = queryrewrite
+          @HitIntent = hitintent
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TaskFlowId = params['TaskFlowId']
+          @TaskFlowName = params['TaskFlowName']
+          @QueryRewrite = params['QueryRewrite']
+          @HitIntent = params['HitIntent']
+          @Type = params['Type']
         end
       end
 

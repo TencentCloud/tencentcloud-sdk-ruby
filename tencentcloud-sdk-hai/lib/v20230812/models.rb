@@ -566,7 +566,7 @@ module TencentCloud
         # @param CreateTime: 实例创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param MaxOutBandwidth: 公网出带宽上限，默认5Mbps
+        # @param MaxOutBandwidth: 公网出带宽上限，默认10Mbps
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxOutBandwidth: String
         # @param MaxFreeTraffic: 每月免费流量，默认500G
