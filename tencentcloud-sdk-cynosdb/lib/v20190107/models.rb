@@ -1192,6 +1192,52 @@ module TencentCloud
         end
       end
 
+      # CLS日志投递配置
+      class CLSInfo < TencentCloud::Common::AbstractModel
+        # @param TopicOperation: 日志主题操作：可选create,reuse。
+        # create:新增日志主题，使用TopicName创建日志主题。
+        # reuse:使用已有日志主题，使用TopicId指定日志主题。
+        # 不允许使用已有日志主题且新建日志集的组合。
+        # @type TopicOperation: String
+        # @param GroupOperation: 日志集操作：可选create,reuse。
+        # create:新增日志集，使用GroupName创建日志集。
+        # reuse:使用已有日志集，使用GroupId指定日志集。
+        # 不允许使用已有日志主题且新建日志集的组合。
+        # @type GroupOperation: String
+        # @param Region: 日志投递地域
+        # @type Region: String
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param TopicName: 日志主题name
+        # @type TopicName: String
+        # @param GroupId: 日志集id
+        # @type GroupId: String
+        # @param GroupName: 日志集name
+        # @type GroupName: String
+
+        attr_accessor :TopicOperation, :GroupOperation, :Region, :TopicId, :TopicName, :GroupId, :GroupName
+
+        def initialize(topicoperation=nil, groupoperation=nil, region=nil, topicid=nil, topicname=nil, groupid=nil, groupname=nil)
+          @TopicOperation = topicoperation
+          @GroupOperation = groupoperation
+          @Region = region
+          @TopicId = topicid
+          @TopicName = topicname
+          @GroupId = groupid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @TopicOperation = params['TopicOperation']
+          @GroupOperation = params['GroupOperation']
+          @Region = params['Region']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+        end
+      end
+
       # CloseAuditService请求参数结构体
       class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -1800,27 +1846,47 @@ module TencentCloud
 
       # CreateCLSDelivery请求参数结构体
       class CreateCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param CLSInfoList: 日志投递配置
+        # @type CLSInfoList: Array
 
+        attr_accessor :InstanceId, :CLSInfoList
 
-        def initialize()
+        def initialize(instanceid=nil, clsinfolist=nil)
+          @InstanceId = instanceid
+          @CLSInfoList = clsinfolist
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['CLSInfoList'].nil?
+            @CLSInfoList = []
+            params['CLSInfoList'].each do |i|
+              clsinfo_tmp = CLSInfo.new
+              clsinfo_tmp.deserialize(i)
+              @CLSInfoList << clsinfo_tmp
+            end
+          end
         end
       end
 
       # CreateCLSDelivery返回参数结构体
       class CreateCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务id
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -4043,27 +4109,40 @@ module TencentCloud
 
       # DeleteCLSDelivery请求参数结构体
       class DeleteCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param CLSTopicIds: 日志主题id
+        # @type CLSTopicIds: Array
 
+        attr_accessor :InstanceId, :CLSTopicIds
 
-        def initialize()
+        def initialize(instanceid=nil, clstopicids=nil)
+          @InstanceId = instanceid
+          @CLSTopicIds = clstopicids
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CLSTopicIds = params['CLSTopicIds']
         end
       end
 
       # DeleteCLSDelivery返回参数结构体
       class DeleteCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务id
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -5710,27 +5789,47 @@ module TencentCloud
 
       # DescribeInstanceCLSLogDelivery请求参数结构体
       class DescribeInstanceCLSLogDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
 
+        attr_accessor :InstanceId
 
-        def initialize()
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
         end
       end
 
       # DescribeInstanceCLSLogDelivery返回参数结构体
       class DescribeInstanceCLSLogDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param InstanceCLSDeliveryInfos: 实例投递信息
+        # @type InstanceCLSDeliveryInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :InstanceCLSDeliveryInfos, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, instanceclsdeliveryinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceCLSDeliveryInfos = instanceclsdeliveryinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceCLSDeliveryInfos'].nil?
+            @InstanceCLSDeliveryInfos = []
+            params['InstanceCLSDeliveryInfos'].each do |i|
+              instanceclsdeliveryinfo_tmp = InstanceCLSDeliveryInfo.new
+              instanceclsdeliveryinfo_tmp.deserialize(i)
+              @InstanceCLSDeliveryInfos << instanceclsdeliveryinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7775,6 +7874,64 @@ module TencentCloud
           end
           @RealStorage = params['RealStorage']
           @RuleTemplateIds = params['RuleTemplateIds']
+        end
+      end
+
+      # 实例日志投递信息
+      class InstanceCLSDeliveryInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例name
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param TopicId: 日志主题id
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 日志主题name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param GroupId: 日志集id
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 日志集name
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Region: 日志投递地域
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Status: 投递状态creating,running,offlining,offlined
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :InstanceId, :InstanceName, :TopicId, :TopicName, :GroupId, :GroupName, :Region, :Status
+
+        def initialize(instanceid=nil, instancename=nil, topicid=nil, topicname=nil, groupid=nil, groupname=nil, region=nil, status=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @TopicId = topicid
+          @TopicName = topicname
+          @GroupId = groupid
+          @GroupName = groupname
+          @Region = region
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Region = params['Region']
+          @Status = params['Status']
         end
       end
 
@@ -12412,54 +12569,80 @@ module TencentCloud
 
       # StartCLSDelivery请求参数结构体
       class StartCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param CLSTopicIds: 开通的日志主题id
+        # @type CLSTopicIds: Array
 
+        attr_accessor :InstanceId, :CLSTopicIds
 
-        def initialize()
+        def initialize(instanceid=nil, clstopicids=nil)
+          @InstanceId = instanceid
+          @CLSTopicIds = clstopicids
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CLSTopicIds = params['CLSTopicIds']
         end
       end
 
       # StartCLSDelivery返回参数结构体
       class StartCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务id
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
 
       # StopCLSDelivery请求参数结构体
       class StopCLSDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param CLSTopicIds: 日志主题id
+        # @type CLSTopicIds: Array
 
+        attr_accessor :InstanceId, :CLSTopicIds
 
-        def initialize()
+        def initialize(instanceid=nil, clstopicids=nil)
+          @InstanceId = instanceid
+          @CLSTopicIds = clstopicids
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CLSTopicIds = params['CLSTopicIds']
         end
       end
 
       # StopCLSDelivery返回参数结构体
       class StopCLSDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务id
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

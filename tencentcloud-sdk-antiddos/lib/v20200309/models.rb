@@ -3300,9 +3300,9 @@ module TencentCloud
       class DescribeBgpBizTrendRequest < TencentCloud::Common::AbstractModel
         # @param Business: DDoS防护子产品代号（bgp-multip表示高防包）
         # @type Business: String
-        # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”
+        # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”，注意该时间必须为5分钟的倍数
         # @type StartTime: String
-        # @param EndTime: 统计结束时间。 例：“2020-09-22 00:00:00”
+        # @param EndTime: 统计结束时间。 例：“2020-09-22 00:00:00”，注意该时间必须为5分钟的倍数
         # @type EndTime: String
         # @param MetricName: 统计纬度，可取值intraffic, outtraffic, inpkg, outpkg
         # @type MetricName: String

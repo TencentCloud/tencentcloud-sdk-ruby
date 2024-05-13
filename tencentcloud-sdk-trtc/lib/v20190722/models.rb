@@ -2754,10 +2754,12 @@ module TencentCloud
         # @type DynamicPosType: Integer
         # @param ZOrder: 水印在输出时的层级，不填默认为0。
         # @type ZOrder: Integer
+        # @param Font: 水印字体，不填默认为Tencent。支持设置以下值： Tencent （默认） SourceHanSans
+        # @type Font: String
 
-        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor, :DynamicPosType, :ZOrder
+        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor, :DynamicPosType, :ZOrder, :Font
 
-        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil, dynamicpostype=nil, zorder=nil)
+        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil, dynamicpostype=nil, zorder=nil, font=nil)
           @Text = text
           @WaterMarkWidth = watermarkwidth
           @WaterMarkHeight = watermarkheight
@@ -2768,6 +2770,7 @@ module TencentCloud
           @BackGroundColor = backgroundcolor
           @DynamicPosType = dynamicpostype
           @ZOrder = zorder
+          @Font = font
         end
 
         def deserialize(params)
@@ -2781,6 +2784,7 @@ module TencentCloud
           @BackGroundColor = params['BackGroundColor']
           @DynamicPosType = params['DynamicPosType']
           @ZOrder = params['ZOrder']
+          @Font = params['Font']
         end
       end
 

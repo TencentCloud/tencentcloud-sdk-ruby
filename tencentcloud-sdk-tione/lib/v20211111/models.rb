@@ -512,6 +512,23 @@ module TencentCloud
         end
       end
 
+      # CBS存储配置
+      class CBSConfig < TencentCloud::Common::AbstractModel
+        # @param VolumeSizeInGB: 存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSizeInGB: Integer
+
+        attr_accessor :VolumeSizeInGB
+
+        def initialize(volumesizeingb=nil)
+          @VolumeSizeInGB = volumesizeingb
+        end
+
+        def deserialize(params)
+          @VolumeSizeInGB = params['VolumeSizeInGB']
+        end
+      end
+
       # CFS存储的配置
       class CFSConfig < TencentCloud::Common::AbstractModel
         # @param Id: cfs的实例的ID
@@ -2186,10 +2203,13 @@ module TencentCloud
         # @param LocalDiskSource: 来自本地磁盘的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDiskSource: :class:`Tencentcloud::Tione.v20211111.models.LocalDisk`
+        # @param CBSSource: CBS配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CBSSource: :class:`Tencentcloud::Tione.v20211111.models.CBSConfig`
 
-        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource
+        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource
 
-        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil)
+        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil)
           @MappingPath = mappingpath
           @DataSourceType = datasourcetype
           @DataSetSource = datasetsource
@@ -2199,6 +2219,7 @@ module TencentCloud
           @GooseFSSource = goosefssource
           @CFSTurboSource = cfsturbosource
           @LocalDiskSource = localdisksource
+          @CBSSource = cbssource
         end
 
         def deserialize(params)
@@ -2231,6 +2252,10 @@ module TencentCloud
           unless params['LocalDiskSource'].nil?
             @LocalDiskSource = LocalDisk.new
             @LocalDiskSource.deserialize(params['LocalDiskSource'])
+          end
+          unless params['CBSSource'].nil?
+            @CBSSource = CBSConfig.new
+            @CBSSource.deserialize(params['CBSSource'])
           end
         end
       end

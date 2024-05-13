@@ -8991,7 +8991,7 @@ module TencentCloud
         # @param ResourceRegion: 资源所在地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
-        # @param DataSourceType: 无
+        # @param DataSourceType: 数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
 

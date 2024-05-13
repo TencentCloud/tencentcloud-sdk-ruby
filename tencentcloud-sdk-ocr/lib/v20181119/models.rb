@@ -2381,7 +2381,7 @@ module TencentCloud
 
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
-        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅数据加密 文档。
+        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅[敏感数据加密指引](https://cloud.tencent.com/document/product/866/106048)文档。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CiphertextBlob: String
         # @param Iv: 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
@@ -3604,10 +3604,10 @@ module TencentCloud
 
       # HKIDCardOCR请求参数结构体
       class HKIDCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param DetectFake: 是否鉴伪。
-        # @type DetectFake: Boolean
         # @param ReturnHeadImage: 是否返回人像照片。
         # @type ReturnHeadImage: Boolean
+        # @param DetectFake: 是否鉴伪。
+        # @type DetectFake: Boolean
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -3619,18 +3619,21 @@ module TencentCloud
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
 
-        attr_accessor :DetectFake, :ReturnHeadImage, :ImageBase64, :ImageUrl
+        attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
+        extend Gem::Deprecate
+        deprecate :DetectFake, :none, 2024, 5
+        deprecate :DetectFake=, :none, 2024, 5
 
-        def initialize(detectfake=nil, returnheadimage=nil, imagebase64=nil, imageurl=nil)
-          @DetectFake = detectfake
+        def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
+          @DetectFake = detectfake
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
         end
 
         def deserialize(params)
-          @DetectFake = params['DetectFake']
           @ReturnHeadImage = params['ReturnHeadImage']
+          @DetectFake = params['DetectFake']
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
         end
@@ -3674,12 +3677,25 @@ module TencentCloud
         # -9102：证照复印件告警
         # -9103：证照翻拍告警
         # @type WarningCode: Array
+        # @param WarnCardInfos: 告警码
+        # -9101 证件边框不完整告警
+        # -9102 证件复印件告警
+        # -9103 证件翻拍告警
+        # -9107 证件反光告警
+        # -9108 证件模糊告警
+        # -9109 告警能力未开通
+        # @type WarnCardInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :RequestId
+        attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
+        extend Gem::Deprecate
+        deprecate :FakeDetectResult, :none, 2024, 5
+        deprecate :FakeDetectResult=, :none, 2024, 5
+        deprecate :WarningCode, :none, 2024, 5
+        deprecate :WarningCode=, :none, 2024, 5
 
-        def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, requestid=nil)
+        def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
           @EnName = enname
           @TelexCode = telexcode
@@ -3693,6 +3709,7 @@ module TencentCloud
           @FakeDetectResult = fakedetectresult
           @HeadImage = headimage
           @WarningCode = warningcode
+          @WarnCardInfos = warncardinfos
           @RequestId = requestid
         end
 
@@ -3710,6 +3727,7 @@ module TencentCloud
           @FakeDetectResult = params['FakeDetectResult']
           @HeadImage = params['HeadImage']
           @WarningCode = params['WarningCode']
+          @WarnCardInfos = params['WarnCardInfos']
           @RequestId = params['RequestId']
         end
       end
@@ -4688,12 +4706,23 @@ module TencentCloud
         # @type Type: String
         # @param Birthday: 出生日期（目前该字段仅支持IKAD劳工证、MyKad 身份证）
         # @type Birthday: String
+        # @param WarnCardInfos: 告警码
+        # -9101 证件边框不完整告警
+        # -9102 证件复印件告警
+        # -9103 证件翻拍告警
+        # -9107 证件反光告警
+        # -9108 证件模糊告警
+        # -9109 告警能力未开通
+        # @type WarnCardInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :RequestId
+        attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :WarnCardInfos, :RequestId
+        extend Gem::Deprecate
+        deprecate :Warn, :none, 2024, 5
+        deprecate :Warn=, :none, 2024, 5
 
-        def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, requestid=nil)
+        def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, warncardinfos=nil, requestid=nil)
           @ID = id
           @Name = name
           @Address = address
@@ -4703,6 +4732,7 @@ module TencentCloud
           @AdvancedInfo = advancedinfo
           @Type = type
           @Birthday = birthday
+          @WarnCardInfos = warncardinfos
           @RequestId = requestid
         end
 
@@ -4716,6 +4746,7 @@ module TencentCloud
           @AdvancedInfo = params['AdvancedInfo']
           @Type = params['Type']
           @Birthday = params['Birthday']
+          @WarnCardInfos = params['WarnCardInfos']
           @RequestId = params['RequestId']
         end
       end
@@ -7544,12 +7575,20 @@ module TencentCloud
         # @type Provinsi: String
         # @param Kota: 城市，Scene为V2时支持识别
         # @type Kota: String
+        # @param WarnCardInfos: 告警码
+        # -9101 证件边框不完整告警
+        # -9102 证件复印件告警
+        # -9103 证件翻拍告警
+        # -9107 证件反光告警
+        # -9108 证件模糊告警
+        # -9109 告警能力未开通
+        # @type WarnCardInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NIK, :Nama, :TempatTglLahir, :JenisKelamin, :GolDarah, :Alamat, :RTRW, :KelDesa, :Kecamatan, :Agama, :StatusPerkawinan, :Perkerjaan, :KewargaNegaraan, :BerlakuHingga, :IssuedDate, :Photo, :Provinsi, :Kota, :RequestId
+        attr_accessor :NIK, :Nama, :TempatTglLahir, :JenisKelamin, :GolDarah, :Alamat, :RTRW, :KelDesa, :Kecamatan, :Agama, :StatusPerkawinan, :Perkerjaan, :KewargaNegaraan, :BerlakuHingga, :IssuedDate, :Photo, :Provinsi, :Kota, :WarnCardInfos, :RequestId
 
-        def initialize(nik=nil, nama=nil, tempattgllahir=nil, jeniskelamin=nil, goldarah=nil, alamat=nil, rtrw=nil, keldesa=nil, kecamatan=nil, agama=nil, statusperkawinan=nil, perkerjaan=nil, kewarganegaraan=nil, berlakuhingga=nil, issueddate=nil, photo=nil, provinsi=nil, kota=nil, requestid=nil)
+        def initialize(nik=nil, nama=nil, tempattgllahir=nil, jeniskelamin=nil, goldarah=nil, alamat=nil, rtrw=nil, keldesa=nil, kecamatan=nil, agama=nil, statusperkawinan=nil, perkerjaan=nil, kewarganegaraan=nil, berlakuhingga=nil, issueddate=nil, photo=nil, provinsi=nil, kota=nil, warncardinfos=nil, requestid=nil)
           @NIK = nik
           @Nama = nama
           @TempatTglLahir = tempattgllahir
@@ -7568,6 +7607,7 @@ module TencentCloud
           @Photo = photo
           @Provinsi = provinsi
           @Kota = kota
+          @WarnCardInfos = warncardinfos
           @RequestId = requestid
         end
 
@@ -7590,6 +7630,7 @@ module TencentCloud
           @Photo = params['Photo']
           @Provinsi = params['Provinsi']
           @Kota = params['Kota']
+          @WarnCardInfos = params['WarnCardInfos']
           @RequestId = params['RequestId']
         end
       end
@@ -8426,12 +8467,20 @@ module TencentCloud
         # @type Address: String
         # @param PortraitImage: 证件人像照片抠取
         # @type PortraitImage: String
+        # @param WarnCardInfos: 告警码
+        # -9101 证件边框不完整告警
+        # -9102 证件复印件告警
+        # -9103 证件翻拍告警
+        # -9107 证件反光告警
+        # -9108 证件模糊告警
+        # -9109 告警能力未开通
+        # @type WarnCardInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :Birthday, :Address, :PortraitImage, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :Birthday, :Address, :PortraitImage, :WarnCardInfos, :RequestId
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, birthday=nil, address=nil, portraitimage=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, birthday=nil, address=nil, portraitimage=nil, warncardinfos=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -8441,6 +8490,7 @@ module TencentCloud
           @Birthday = birthday
           @Address = address
           @PortraitImage = portraitimage
+          @WarnCardInfos = warncardinfos
           @RequestId = requestid
         end
 
@@ -8454,6 +8504,7 @@ module TencentCloud
           @Birthday = params['Birthday']
           @Address = params['Address']
           @PortraitImage = params['PortraitImage']
+          @WarnCardInfos = params['WarnCardInfos']
           @RequestId = params['RequestId']
         end
       end

@@ -710,10 +710,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 4
-        deprecate :Ftitle=, :none, 2024, 4
-        deprecate :Config, :none, 2024, 4
-        deprecate :Config=, :none, 2024, 4
+        deprecate :Ftitle, :none, 2024, 5
+        deprecate :Ftitle=, :none, 2024, 5
+        deprecate :Config, :none, 2024, 5
+        deprecate :Config=, :none, 2024, 5
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -3538,10 +3538,19 @@ module TencentCloud
         # @param PerNodePeakMemoryBytesSum: 单节点内存峰值和(Bytes)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PerNodePeakMemoryBytesSum: Integer
+        # @param BackendsCount: 后端个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackendsCount: Integer
+        # @param FragmentInstancesCount: fragment数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentInstancesCount: Integer
+        # @param RemainingFragmentCount: 剩余未完成Fragment数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainingFragmentCount: Integer
 
-        attr_accessor :Statement, :Id, :StartTime, :Duration, :EndTime, :State, :RowsFetched, :User, :DefaultDB, :Coordinator, :MaxNodePeakMemoryUsage, :QueryType, :ScanHDFSRows, :ScanKUDURows, :ScanRowsTotal, :TotalBytesRead, :TotalBytesSent, :TotalCpuTime, :TotalInnerBytesSent, :TotalScanBytesSent, :EstimatedPerHostMemBytes, :NumRowsFetchedFromCache, :SessionId, :PerNodePeakMemoryBytesSum
+        attr_accessor :Statement, :Id, :StartTime, :Duration, :EndTime, :State, :RowsFetched, :User, :DefaultDB, :Coordinator, :MaxNodePeakMemoryUsage, :QueryType, :ScanHDFSRows, :ScanKUDURows, :ScanRowsTotal, :TotalBytesRead, :TotalBytesSent, :TotalCpuTime, :TotalInnerBytesSent, :TotalScanBytesSent, :EstimatedPerHostMemBytes, :NumRowsFetchedFromCache, :SessionId, :PerNodePeakMemoryBytesSum, :BackendsCount, :FragmentInstancesCount, :RemainingFragmentCount
 
-        def initialize(statement=nil, id=nil, starttime=nil, duration=nil, endtime=nil, state=nil, rowsfetched=nil, user=nil, defaultdb=nil, coordinator=nil, maxnodepeakmemoryusage=nil, querytype=nil, scanhdfsrows=nil, scankudurows=nil, scanrowstotal=nil, totalbytesread=nil, totalbytessent=nil, totalcputime=nil, totalinnerbytessent=nil, totalscanbytessent=nil, estimatedperhostmembytes=nil, numrowsfetchedfromcache=nil, sessionid=nil, pernodepeakmemorybytessum=nil)
+        def initialize(statement=nil, id=nil, starttime=nil, duration=nil, endtime=nil, state=nil, rowsfetched=nil, user=nil, defaultdb=nil, coordinator=nil, maxnodepeakmemoryusage=nil, querytype=nil, scanhdfsrows=nil, scankudurows=nil, scanrowstotal=nil, totalbytesread=nil, totalbytessent=nil, totalcputime=nil, totalinnerbytessent=nil, totalscanbytessent=nil, estimatedperhostmembytes=nil, numrowsfetchedfromcache=nil, sessionid=nil, pernodepeakmemorybytessum=nil, backendscount=nil, fragmentinstancescount=nil, remainingfragmentcount=nil)
           @Statement = statement
           @Id = id
           @StartTime = starttime
@@ -3566,6 +3575,9 @@ module TencentCloud
           @NumRowsFetchedFromCache = numrowsfetchedfromcache
           @SessionId = sessionid
           @PerNodePeakMemoryBytesSum = pernodepeakmemorybytessum
+          @BackendsCount = backendscount
+          @FragmentInstancesCount = fragmentinstancescount
+          @RemainingFragmentCount = remainingfragmentcount
         end
 
         def deserialize(params)
@@ -3593,6 +3605,9 @@ module TencentCloud
           @NumRowsFetchedFromCache = params['NumRowsFetchedFromCache']
           @SessionId = params['SessionId']
           @PerNodePeakMemoryBytesSum = params['PerNodePeakMemoryBytesSum']
+          @BackendsCount = params['BackendsCount']
+          @FragmentInstancesCount = params['FragmentInstancesCount']
+          @RemainingFragmentCount = params['RemainingFragmentCount']
         end
       end
 

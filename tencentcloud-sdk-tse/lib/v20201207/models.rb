@@ -675,10 +675,16 @@ module TencentCloud
         # @param Status: 状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param Weight: 节点权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param IsDefaultWeight: 是否默认权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefaultWeight: Boolean
 
-        attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status
+        attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status, :Weight, :IsDefaultWeight
 
-        def initialize(nodeid=nil, nodeip=nil, zoneid=nil, zone=nil, groupid=nil, groupname=nil, status=nil)
+        def initialize(nodeid=nil, nodeip=nil, zoneid=nil, zone=nil, groupid=nil, groupname=nil, status=nil, weight=nil, isdefaultweight=nil)
           @NodeId = nodeid
           @NodeIp = nodeip
           @ZoneId = zoneid
@@ -686,6 +692,8 @@ module TencentCloud
           @GroupId = groupid
           @GroupName = groupname
           @Status = status
+          @Weight = weight
+          @IsDefaultWeight = isdefaultweight
         end
 
         def deserialize(params)
@@ -696,6 +704,8 @@ module TencentCloud
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
           @Status = params['Status']
+          @Weight = params['Weight']
+          @IsDefaultWeight = params['IsDefaultWeight']
         end
       end
 
@@ -10029,10 +10039,13 @@ module TencentCloud
         # @param SubnetIds: 子网id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: String
+        # @param DefaultWeight: 分组默认权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultWeight: Integer
 
-        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds
+        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds, :DefaultWeight
 
-        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil)
+        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil, defaultweight=nil)
           @GroupId = groupid
           @Name = name
           @Description = description
@@ -10045,6 +10058,7 @@ module TencentCloud
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @ModifyTime = modifytime
           @SubnetIds = subnetids
+          @DefaultWeight = defaultweight
         end
 
         def deserialize(params)
@@ -10066,6 +10080,7 @@ module TencentCloud
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @ModifyTime = params['ModifyTime']
           @SubnetIds = params['SubnetIds']
+          @DefaultWeight = params['DefaultWeight']
         end
       end
 

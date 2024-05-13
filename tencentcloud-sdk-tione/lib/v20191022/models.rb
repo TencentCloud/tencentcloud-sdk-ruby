@@ -2111,48 +2111,6 @@ module TencentCloud
         end
       end
 
-      # UpdateNotebookLifecycleScript请求参数结构体
-      class UpdateNotebookLifecycleScriptRequest < TencentCloud::Common::AbstractModel
-        # @param NotebookLifecycleScriptsName: notebook生命周期脚本名称
-        # @type NotebookLifecycleScriptsName: String
-        # @param CreateScript: 创建脚本，base64编码
-        # base64后的脚本长度不能超过16384个字符
-        # @type CreateScript: String
-        # @param StartScript: 启动脚本，base64编码
-        # base64后的脚本长度不能超过16384个字符
-        # @type StartScript: String
-
-        attr_accessor :NotebookLifecycleScriptsName, :CreateScript, :StartScript
-
-        def initialize(notebooklifecyclescriptsname=nil, createscript=nil, startscript=nil)
-          @NotebookLifecycleScriptsName = notebooklifecyclescriptsname
-          @CreateScript = createscript
-          @StartScript = startscript
-        end
-
-        def deserialize(params)
-          @NotebookLifecycleScriptsName = params['NotebookLifecycleScriptsName']
-          @CreateScript = params['CreateScript']
-          @StartScript = params['StartScript']
-        end
-      end
-
-      # UpdateNotebookLifecycleScript返回参数结构体
-      class UpdateNotebookLifecycleScriptResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # VPC配置
       class VpcConfig < TencentCloud::Common::AbstractModel
         # @param SecurityGroupIds: 安全组id

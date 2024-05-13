@@ -7862,14 +7862,17 @@ module TencentCloud
         # @type ListenerId: String
         # @param LocationId: 转发规则ID
         # @type LocationId: String
+        # @param Weight: 目标组权重，范围[0, 100]。仅绑定v2目标组时生效，如果不存在，则默认为10。
+        # @type Weight: Integer
 
-        attr_accessor :LoadBalancerId, :TargetGroupId, :ListenerId, :LocationId
+        attr_accessor :LoadBalancerId, :TargetGroupId, :ListenerId, :LocationId, :Weight
 
-        def initialize(loadbalancerid=nil, targetgroupid=nil, listenerid=nil, locationid=nil)
+        def initialize(loadbalancerid=nil, targetgroupid=nil, listenerid=nil, locationid=nil, weight=nil)
           @LoadBalancerId = loadbalancerid
           @TargetGroupId = targetgroupid
           @ListenerId = listenerid
           @LocationId = locationid
+          @Weight = weight
         end
 
         def deserialize(params)
@@ -7877,6 +7880,7 @@ module TencentCloud
           @TargetGroupId = params['TargetGroupId']
           @ListenerId = params['ListenerId']
           @LocationId = params['LocationId']
+          @Weight = params['Weight']
         end
       end
 

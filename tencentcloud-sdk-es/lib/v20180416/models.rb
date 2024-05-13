@@ -5464,10 +5464,13 @@ module TencentCloud
         # @param AppId: 空间所属appid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
+        # @param KibanaLanguage: //默认en， 可选zh-CN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaLanguage: String
 
-        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId
+        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage
 
-        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil)
+        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil)
           @SpaceId = spaceid
           @SpaceName = spacename
           @Status = status
@@ -5485,6 +5488,7 @@ module TencentCloud
           @EnableKibanaPublicAccess = enablekibanapublicaccess
           @EnableKibanaPrivateAccess = enablekibanaprivateaccess
           @AppId = appid
+          @KibanaLanguage = kibanalanguage
         end
 
         def deserialize(params)
@@ -5518,6 +5522,7 @@ module TencentCloud
           @EnableKibanaPublicAccess = params['EnableKibanaPublicAccess']
           @EnableKibanaPrivateAccess = params['EnableKibanaPrivateAccess']
           @AppId = params['AppId']
+          @KibanaLanguage = params['KibanaLanguage']
         end
       end
 
