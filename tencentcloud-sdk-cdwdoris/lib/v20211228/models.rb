@@ -956,15 +956,27 @@ module TencentCloud
         # @type EndTime: String
         # @param DurationMs: 排序参数
         # @type DurationMs: String
+        # @param Sql: 查询sql
+        # @type Sql: String
+        # @param ReadRows: 排序参数
+        # @type ReadRows: String
+        # @param ResultBytes: 排序参数
+        # @type ResultBytes: String
+        # @param MemoryUsage: 排序参数
+        # @type MemoryUsage: String
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
           @EndTime = endtime
           @DurationMs = durationms
+          @Sql = sql
+          @ReadRows = readrows
+          @ResultBytes = resultbytes
+          @MemoryUsage = memoryusage
         end
 
         def deserialize(params)
@@ -973,6 +985,10 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @DurationMs = params['DurationMs']
+          @Sql = params['Sql']
+          @ReadRows = params['ReadRows']
+          @ResultBytes = params['ResultBytes']
+          @MemoryUsage = params['MemoryUsage']
         end
       end
 
@@ -1018,10 +1034,18 @@ module TencentCloud
         # @type IsQuery: Integer
         # @param CatalogName: catalog名称
         # @type CatalogName: Array
+        # @param Sql: sql名
+        # @type Sql: String
+        # @param ReadRows: ReadRows排序字段
+        # @type ReadRows: String
+        # @param ResultBytes: ResultBytes排序字段
+        # @type ResultBytes: String
+        # @param MemoryUsage: MemoryUsage排序字段
+        # @type MemoryUsage: String
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :PageSize, :PageNum, :DurationMs, :DbName, :IsQuery, :CatalogName, :Sql, :ReadRows, :ResultBytes, :MemoryUsage
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, pagesize=nil, pagenum=nil, durationms=nil, dbname=nil, isquery=nil, catalogname=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -1032,6 +1056,10 @@ module TencentCloud
           @DbName = dbname
           @IsQuery = isquery
           @CatalogName = catalogname
+          @Sql = sql
+          @ReadRows = readrows
+          @ResultBytes = resultbytes
+          @MemoryUsage = memoryusage
         end
 
         def deserialize(params)
@@ -1045,6 +1073,10 @@ module TencentCloud
           @DbName = params['DbName']
           @IsQuery = params['IsQuery']
           @CatalogName = params['CatalogName']
+          @Sql = params['Sql']
+          @ReadRows = params['ReadRows']
+          @ResultBytes = params['ResultBytes']
+          @MemoryUsage = params['MemoryUsage']
         end
       end
 

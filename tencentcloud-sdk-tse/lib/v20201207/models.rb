@@ -2628,15 +2628,20 @@ module TencentCloud
         # - 固定Leader所在地域当前仅支持跨两个地域
         # - leader地域的副本数必须是3/2 + 1，5/2+1，7/2+1，也就是 2，3，4
         # @type EngineRegionInfos: Array
+        # @param StorageType: zk标准版请填CLOUD_PREMIUM，zk标准版无法选择磁盘类型和磁盘容量，默认为CLOUD_PREMIUM
+        # zk专业版可以为：CLOUD_SSD,CLOUD_SSD_PLUS,CLOUD_PREMIUM
+        # @type StorageType: String
+        # @param StorageCapacity: zk标准版请填50，zk标准版无法选择磁盘类型和磁盘容量，磁盘容量默认为50
+        # @type StorageCapacity: Integer
         # @param StorageOption: zk专业版至多有两个盘，且磁盘的容量在50-3200之间
         # 如果只有一个磁盘，storageCapacity与storageOption里面的capacity应该一致
         # @type StorageOption: Array
         # @param AffinityConstraint: ZK引擎实例，可用区分布约束，STRICT:强约束，PERMISSIVE: 弱约束
         # @type AffinityConstraint: String
 
-        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos, :StorageOption, :AffinityConstraint
+        attr_accessor :EngineType, :EngineVersion, :EngineProductVersion, :EngineRegion, :EngineName, :TradeType, :EngineResourceSpec, :EngineNodeNum, :VpcId, :SubnetId, :ApolloEnvParams, :EngineTags, :EngineAdmin, :PrepaidPeriod, :PrepaidRenewFlag, :EngineRegionInfos, :StorageType, :StorageCapacity, :StorageOption, :AffinityConstraint
 
-        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil, storageoption=nil, affinityconstraint=nil)
+        def initialize(enginetype=nil, engineversion=nil, engineproductversion=nil, engineregion=nil, enginename=nil, tradetype=nil, engineresourcespec=nil, enginenodenum=nil, vpcid=nil, subnetid=nil, apolloenvparams=nil, enginetags=nil, engineadmin=nil, prepaidperiod=nil, prepaidrenewflag=nil, engineregioninfos=nil, storagetype=nil, storagecapacity=nil, storageoption=nil, affinityconstraint=nil)
           @EngineType = enginetype
           @EngineVersion = engineversion
           @EngineProductVersion = engineproductversion
@@ -2653,6 +2658,8 @@ module TencentCloud
           @PrepaidPeriod = prepaidperiod
           @PrepaidRenewFlag = prepaidrenewflag
           @EngineRegionInfos = engineregioninfos
+          @StorageType = storagetype
+          @StorageCapacity = storagecapacity
           @StorageOption = storageoption
           @AffinityConstraint = affinityconstraint
         end
@@ -2698,6 +2705,8 @@ module TencentCloud
               @EngineRegionInfos << engineregioninfo_tmp
             end
           end
+          @StorageType = params['StorageType']
+          @StorageCapacity = params['StorageCapacity']
           unless params['StorageOption'].nil?
             @StorageOption = []
             params['StorageOption'].each do |i|
