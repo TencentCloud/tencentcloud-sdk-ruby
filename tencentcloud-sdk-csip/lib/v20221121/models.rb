@@ -6418,6 +6418,50 @@ module TencentCloud
         end
       end
 
+      # 该结构体用来传入告警的key，以更新告警的status
+      class NewAlertKey < TencentCloud::Common::AbstractModel
+        # @param AppId: 需要更改的用户appid
+        # @type AppId: String
+        # @param Type: 告警类别
+        # @type Type: String
+        # @param SubType: 告警子类别
+        # @type SubType: String
+        # @param Source: 告警来源
+        # @type Source: String
+        # @param Name: 告警名称
+        # @type Name: String
+        # @param Key: 告警key
+        # @type Key: String
+        # @param Date: 时间
+        # @type Date: String
+        # @param Status: 状态
+        # @type Status: Integer
+
+        attr_accessor :AppId, :Type, :SubType, :Source, :Name, :Key, :Date, :Status
+
+        def initialize(appid=nil, type=nil, subtype=nil, source=nil, name=nil, key=nil, date=nil, status=nil)
+          @AppId = appid
+          @Type = type
+          @SubType = subtype
+          @Source = source
+          @Name = name
+          @Key = key
+          @Date = date
+          @Status = status
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @Type = params['Type']
+          @SubType = params['SubType']
+          @Source = params['Source']
+          @Name = params['Name']
+          @Key = params['Key']
+          @Date = params['Date']
+          @Status = params['Status']
+        end
+      end
+
       # 集团账号成员详情
       class OrganizationUserInfo < TencentCloud::Common::AbstractModel
         # @param Uin: 成员账号Uin
@@ -7867,6 +7911,67 @@ module TencentCloud
           @LogId = params['LogId']
           @TaskLogName = params['TaskLogName']
           @AppId = params['AppId']
+        end
+      end
+
+      # UpdateAlertStatusList请求参数结构体
+      class UpdateAlertStatusListRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 告警ID列表
+        # @type ID: Array
+        # @param OperateType: 操作类型
+        # 1:撤销处置
+        # 2:标记为已处置
+        # 3:标记忽略
+        # 4:取消标记处置
+        # 5:取消标记忽略
+        # @type OperateType: Integer
+        # @param OperatedMemberId: 被调用的集团账号的成员id
+        # @type OperatedMemberId: Array
+
+        attr_accessor :ID, :OperateType, :OperatedMemberId
+
+        def initialize(id=nil, operatetype=nil, operatedmemberid=nil)
+          @ID = id
+          @OperateType = operatetype
+          @OperatedMemberId = operatedmemberid
+        end
+
+        def deserialize(params)
+          unless params['ID'].nil?
+            @ID = []
+            params['ID'].each do |i|
+              newalertkey_tmp = NewAlertKey.new
+              newalertkey_tmp.deserialize(i)
+              @ID << newalertkey_tmp
+            end
+          end
+          @OperateType = params['OperateType']
+          @OperatedMemberId = params['OperatedMemberId']
+        end
+      end
+
+      # UpdateAlertStatusList返回参数结构体
+      class UpdateAlertStatusListResponse < TencentCloud::Common::AbstractModel
+        # @param Msg: 结果信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Code: 结果代码
+        # @type Code: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Msg, :Code, :RequestId
+
+        def initialize(msg=nil, code=nil, requestid=nil)
+          @Msg = msg
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
         end
       end
 

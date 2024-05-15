@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量告警状态处理接口
+
+        # @param request: Request instance for UpdateAlertStatusList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::UpdateAlertStatusListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::UpdateAlertStatusListResponse`
+        def UpdateAlertStatusList(request)
+          body = send_request('UpdateAlertStatusList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAlertStatusListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

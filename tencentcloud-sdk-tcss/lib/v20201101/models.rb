@@ -3662,8 +3662,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2024, 4
-        deprecate :Component=, :none, 2024, 4
+        deprecate :Component, :none, 2024, 5
+        deprecate :Component=, :none, 2024, 5
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4116,8 +4116,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 4
-        deprecate :All=, :none, 2024, 4
+        deprecate :All, :none, 2024, 5
+        deprecate :All=, :none, 2024, 5
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4276,8 +4276,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 4
-        deprecate :All=, :none, 2024, 4
+        deprecate :All, :none, 2024, 5
+        deprecate :All=, :none, 2024, 5
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil)
           @Enable = enable
@@ -4349,8 +4349,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 4
-        deprecate :All=, :none, 2024, 4
+        deprecate :All, :none, 2024, 5
+        deprecate :All=, :none, 2024, 5
 
         def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil)
           @All = all
@@ -9515,8 +9515,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 4
-        deprecate :SentiveInfoCnt=, :none, 2024, 4
+        deprecate :SentiveInfoCnt, :none, 2024, 5
+        deprecate :SentiveInfoCnt=, :none, 2024, 5
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10610,8 +10610,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 4
-        deprecate :All=, :none, 2024, 4
+        deprecate :All, :none, 2024, 5
+        deprecate :All=, :none, 2024, 5
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, requestid=nil)
           @Enable = enable
@@ -13374,6 +13374,80 @@ module TencentCloud
         end
       end
 
+      # DescribeEventEscapeImageList请求参数结构体
+      class DescribeEventEscapeImageListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤参数:
+        # EventType: 事件类型(MOUNT_SENSITIVE_PTAH:敏感路径挂载 PRIVILEGE_CONTAINER_START:特权容器)
+        # Status: 事件状态(EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略)
+        # ImageID: 镜像id
+        # ImageName:镜像名称
+        # @type Filters: Array
+        # @param Order: 升序降序,asc desc
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeEventEscapeImageList返回参数结构体
+      class DescribeEventEscapeImageListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 风险容器镜像列表
+        # @type List: Array
+        # @param TotalCount: 事件总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              eventescapeimageinfo_tmp = EventEscapeImageInfo.new
+              eventescapeimageinfo_tmp.deserialize(i)
+              @List << eventescapeimageinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExportJobDownloadURL请求参数结构体
       class DescribeExportJobDownloadURLRequest < TencentCloud::Common::AbstractModel
         # @param JobID: 任务ID
@@ -14000,8 +14074,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 4
-        deprecate :All=, :none, 2024, 4
+        deprecate :All, :none, 2024, 5
+        deprecate :All=, :none, 2024, 5
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, requestid=nil)
           @Enable = enable
@@ -21385,6 +21459,73 @@ module TencentCloud
         end
       end
 
+      # 风险容器信息
+      class EventEscapeImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: 镜像id，用于跳转
+        # @type ImageId: String
+        # @param UniqueKey: 唯一值
+        # @type UniqueKey: String
+        # @param EventType: 事件类型
+        #    ESCAPE_CGROUPS：利用cgroup机制逃逸
+        #    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
+        #    ESCAPE_DOCKER_API：访问Docker API接口逃逸
+        #    ESCAPE_VUL_OCCURRED：逃逸漏洞利用
+        #    MOUNT_SENSITIVE_PTAH：敏感路径挂载
+        #    PRIVILEGE_CONTAINER_START：特权容器
+        #    PRIVILEGE：程序提权逃逸
+        # @type EventType: String
+        # @param OriginEventType: 原始事件类型
+        # @type OriginEventType: String
+        # @param ImageName: 镜像名
+        # @type ImageName: String
+        # @param ContainerCount: 容器数量
+        # @type ContainerCount: Integer
+        # @param FoundTime: 生成时间
+        # @type FoundTime: String
+        # @param LatestFoundTime: 最近生成时间
+        # @type LatestFoundTime: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param Status: 状态，EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略
+        # @type Status: String
+        # @param Description: 风险描述
+        # @type Description: String
+        # @param Solution: 解决方案
+        # @type Solution: String
+
+        attr_accessor :ImageId, :UniqueKey, :EventType, :OriginEventType, :ImageName, :ContainerCount, :FoundTime, :LatestFoundTime, :EventCount, :Status, :Description, :Solution
+
+        def initialize(imageid=nil, uniquekey=nil, eventtype=nil, origineventtype=nil, imagename=nil, containercount=nil, foundtime=nil, latestfoundtime=nil, eventcount=nil, status=nil, description=nil, solution=nil)
+          @ImageId = imageid
+          @UniqueKey = uniquekey
+          @EventType = eventtype
+          @OriginEventType = origineventtype
+          @ImageName = imagename
+          @ContainerCount = containercount
+          @FoundTime = foundtime
+          @LatestFoundTime = latestfoundtime
+          @EventCount = eventcount
+          @Status = status
+          @Description = description
+          @Solution = solution
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @UniqueKey = params['UniqueKey']
+          @EventType = params['EventType']
+          @OriginEventType = params['OriginEventType']
+          @ImageName = params['ImageName']
+          @ContainerCount = params['ContainerCount']
+          @FoundTime = params['FoundTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @EventCount = params['EventCount']
+          @Status = params['Status']
+          @Description = params['Description']
+          @Solution = params['Solution']
+        end
+      end
+
       # 导出任务详情
       class ExportJobInfo < TencentCloud::Common::AbstractModel
         # @param JobID: 任务ID
@@ -21986,8 +22127,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 4
-        deprecate :SentiveInfoCnt=, :none, 2024, 4
+        deprecate :SentiveInfoCnt, :none, 2024, 5
+        deprecate :SentiveInfoCnt=, :none, 2024, 5
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil)
           @ImageDigest = imagedigest
@@ -27939,8 +28080,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 4
-        deprecate :All=, :none, 2024, 4
+        deprecate :All, :none, 2024, 5
+        deprecate :All=, :none, 2024, 5
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil)
           @ScanPeriod = scanperiod

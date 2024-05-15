@@ -3992,6 +3992,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeRiskContainerImageList查询风险容器镜像列表
+
+        # @param request: Request instance for DescribeEventEscapeImageList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeEventEscapeImageListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeEventEscapeImageListResponse`
+        def DescribeEventEscapeImageList(request)
+          body = send_request('DescribeEventEscapeImageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEventEscapeImageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询导出任务下载URL
 
         # @param request: Request instance for DescribeExportJobDownloadURL.
