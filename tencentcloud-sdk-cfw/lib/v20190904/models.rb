@@ -3735,7 +3735,7 @@ module TencentCloud
 
       # DescribeIPStatusList返回参数结构体
       class DescribeIPStatusListResponse < TencentCloud::Common::AbstractModel
-        # @param StatusList: ip状态信息
+        # @param StatusList: IP状态信息
         # @type StatusList: Array
         # @param ReturnCode: 状态码
         # @type ReturnCode: Integer

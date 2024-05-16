@@ -10307,7 +10307,7 @@ module TencentCloud
         # @type Filters: Array
         # @param ImageInfo: 镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageInfo`
-        # @param Id: 镜像标识Id
+        # @param Id: 必填参数，镜像唯一ID，可通过DescribeAssetImageRegistryList接口获取
         # @type Id: Integer
 
         attr_accessor :ExportField, :Limit, :Offset, :Filters, :ImageInfo, :Id
@@ -10374,7 +10374,7 @@ module TencentCloud
         # @type Filters: Array
         # @param ImageInfo: 镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageInfo`
-        # @param Id: 镜像标识Id
+        # @param Id: 必填参数，镜像唯一ID，可通过DescribeAssetImageRegistryList接口获取
         # @type Id: Integer
 
         attr_accessor :Limit, :Offset, :Filters, :ImageInfo, :Id

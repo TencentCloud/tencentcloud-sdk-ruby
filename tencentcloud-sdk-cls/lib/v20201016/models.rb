@@ -2214,11 +2214,11 @@ module TencentCloud
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
-        # @param Prefix: COS文件所在文件夹的前缀
-        # @type Prefix: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
         # 默认为minimalist_log
         # @type LogType: String
+        # @param Prefix: COS文件所在文件夹的前缀。默认为空，投递存储桶下所有的文件。
+        # @type Prefix: String
         # @param Compress: supported: "", "gzip", "lzop", "snappy"; 默认空
         # @type Compress: String
         # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
@@ -2228,16 +2228,16 @@ module TencentCloud
         # @param Metadata: 元数据。
         # @type Metadata: Array
 
-        attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :LogType, :Compress, :ExtractRuleInfo, :TaskType, :Metadata
+        attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :LogType, :Prefix, :Compress, :ExtractRuleInfo, :TaskType, :Metadata
 
-        def initialize(topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, logtype=nil, compress=nil, extractruleinfo=nil, tasktype=nil, metadata=nil)
+        def initialize(topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, logtype=nil, prefix=nil, compress=nil, extractruleinfo=nil, tasktype=nil, metadata=nil)
           @TopicId = topicid
           @LogsetId = logsetid
           @Name = name
           @Bucket = bucket
           @BucketRegion = bucketregion
-          @Prefix = prefix
           @LogType = logtype
+          @Prefix = prefix
           @Compress = compress
           @ExtractRuleInfo = extractruleinfo
           @TaskType = tasktype
@@ -2250,8 +2250,8 @@ module TencentCloud
           @Name = params['Name']
           @Bucket = params['Bucket']
           @BucketRegion = params['BucketRegion']
-          @Prefix = params['Prefix']
           @LogType = params['LogType']
+          @Prefix = params['Prefix']
           @Compress = params['Compress']
           unless params['ExtractRuleInfo'].nil?
             @ExtractRuleInfo = ExtractRuleInfo.new
@@ -7799,7 +7799,7 @@ module TencentCloud
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
-        # @param Prefix: COS文件所在文件夹的前缀
+        # @param Prefix: COS文件所在文件夹的前缀。为空串时投递存储桶下所有的文件。
         # @type Prefix: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文； 默认为minimalist_log
         # @type LogType: String
@@ -9397,7 +9397,7 @@ module TencentCloud
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
-        # @param Prefix: cos文件所在文件夹的前缀
+        # @param Prefix: COS文件所在文件夹的前缀。默认为空，投递存储桶下所有的文件。
         # @type Prefix: String
         # @param Compress: 压缩模式:   "", "gzip", "lzop", "snappy";   默认""
         # @type Compress: String

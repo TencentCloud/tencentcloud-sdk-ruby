@@ -318,6 +318,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询监控概览页指标数据
+
+        # @param request: Request instance for DescribeEmrOverviewMetrics.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeEmrOverviewMetricsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeEmrOverviewMetricsResponse`
+        def DescribeEmrOverviewMetrics(request)
+          body = send_request('DescribeEmrOverviewMetrics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEmrOverviewMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Hbase表级监控数据概览接口
+
+        # @param request: Request instance for DescribeHBaseTableOverview.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeHBaseTableOverviewRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeHBaseTableOverviewResponse`
+        def DescribeHBaseTableOverview(request)
+          body = send_request('DescribeHBaseTableOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHBaseTableOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取hive查询信息
 
         # @param request: Request instance for DescribeHiveQueries.

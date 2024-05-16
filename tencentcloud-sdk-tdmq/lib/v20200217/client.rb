@@ -1109,6 +1109,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口很久之前已删除，需下线
+
         # 枚举cmq死信队列源队列
 
         # @param request: Request instance for DescribeCmqDeadLetterSourceQueues.

@@ -2047,6 +2047,151 @@ module TencentCloud
         end
       end
 
+      # DescribeEmrOverviewMetrics请求参数结构体
+      class DescribeEmrOverviewMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param End: 结束时间
+        # @type End: Integer
+        # @param Metric: 指标名
+        # @type Metric: String
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param Downsample: 粒度 30s-max 1m-max 1h-max等
+        # @type Downsample: String
+        # @param Start: 起始时间，画饼状图时不传
+        # @type Start: Integer
+        # @param Aggregator: 聚合方法，扩展用，这里目前不用传
+        # @type Aggregator: String
+        # @param Tags: 指标要查询的具体type 如："{"type":"CapacityTotal|CapacityRemaining"}"
+        # @type Tags: String
+
+        attr_accessor :End, :Metric, :InstanceId, :Downsample, :Start, :Aggregator, :Tags
+
+        def initialize(_end=nil, metric=nil, instanceid=nil, downsample=nil, start=nil, aggregator=nil, tags=nil)
+          @End = _end
+          @Metric = metric
+          @InstanceId = instanceid
+          @Downsample = downsample
+          @Start = start
+          @Aggregator = aggregator
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @End = params['End']
+          @Metric = params['Metric']
+          @InstanceId = params['InstanceId']
+          @Downsample = params['Downsample']
+          @Start = params['Start']
+          @Aggregator = params['Aggregator']
+          @Tags = params['Tags']
+        end
+      end
+
+      # DescribeEmrOverviewMetrics返回参数结构体
+      class DescribeEmrOverviewMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 指标数据明细
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              overviewmetricdata_tmp = OverviewMetricData.new
+              overviewmetricdata_tmp.deserialize(i)
+              @Result << overviewmetricdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHBaseTableOverview请求参数结构体
+      class DescribeHBaseTableOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Offset: 分页查询编号偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页查询时的分页大小，最小1，最大100
+        # @type Limit: Integer
+        # @param Table: 表名称，模糊匹配
+        # @type Table: String
+        # @param OrderField: 排序的字段，有默认值
+        # @type OrderField: String
+        # @param OrderType: 默认为降序，asc代表升序，desc代表降序
+        # @type OrderType: String
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Table, :OrderField, :OrderType
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, table=nil, orderfield=nil, ordertype=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Table = table
+          @OrderField = orderfield
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Table = params['Table']
+          @OrderField = params['OrderField']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # DescribeHBaseTableOverview返回参数结构体
+      class DescribeHBaseTableOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TableMonitorList: 概览数据数组
+        # @type TableMonitorList: Array
+        # @param TotalCount: 概览数据数组长度
+        # @type TotalCount: Integer
+        # @param SchemaList: 表schema信息
+        # @type SchemaList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableMonitorList, :TotalCount, :SchemaList, :RequestId
+
+        def initialize(tablemonitorlist=nil, totalcount=nil, schemalist=nil, requestid=nil)
+          @TableMonitorList = tablemonitorlist
+          @TotalCount = totalcount
+          @SchemaList = schemalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableMonitorList'].nil?
+            @TableMonitorList = []
+            params['TableMonitorList'].each do |i|
+              overviewrow_tmp = OverviewRow.new
+              overviewrow_tmp.deserialize(i)
+              @TableMonitorList << overviewrow_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          unless params['SchemaList'].nil?
+            @SchemaList = []
+            params['SchemaList'].each do |i|
+              tableschemaitem_tmp = TableSchemaItem.new
+              tableschemaitem_tmp.deserialize(i)
+              @SchemaList << tableschemaitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHiveQueries请求参数结构体
       class DescribeHiveQueriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -3980,10 +4125,14 @@ module TencentCloud
         # @type RouterCount: Integer
         # @param MasterCount: 扩容的Master节点数量。
         # @type MasterCount: Integer
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount
+        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount, :ResourceBaseType, :ComputeResourceId
 
-        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil)
+        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil, resourcebasetype=nil, computeresourceid=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @ZoneId = zoneid
@@ -3994,6 +4143,8 @@ module TencentCloud
           @Currency = currency
           @RouterCount = routercount
           @MasterCount = mastercount
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
         end
 
         def deserialize(params)
@@ -4007,6 +4158,8 @@ module TencentCloud
           @Currency = params['Currency']
           @RouterCount = params['RouterCount']
           @MasterCount = params['MasterCount']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
         end
       end
 
@@ -4492,6 +4645,28 @@ module TencentCloud
             @MetaDBInfo = CustomMetaInfo.new
             @MetaDBInfo.deserialize(params['MetaDBInfo'])
           end
+        end
+      end
+
+      # 指标tag
+      class MetricTags < TencentCloud::Common::AbstractModel
+        # @param Unit: 指标单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Type: 指标Type
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Unit, :Type
+
+        def initialize(unit=nil, type=nil)
+          @Unit = unit
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Unit = params['Unit']
+          @Type = params['Type']
         end
       end
 
@@ -5511,6 +5686,87 @@ module TencentCloud
           @Cpu = params['Cpu']
           @DiskSize = params['DiskSize']
           @InstanceType = params['InstanceType']
+        end
+      end
+
+      # 概览数据
+      class OverviewMetricData < TencentCloud::Common::AbstractModel
+        # @param Metric: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metric: String
+        # @param First: 第一个数据时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type First: Integer
+        # @param Last: 最后一个数据时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Last: Integer
+        # @param Interval: 采样点时间间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param DataPoints: 采样点数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataPoints: Array
+        # @param Tags: 指标tags
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: :class:`Tencentcloud::Emr.v20190103.models.MetricTags`
+
+        attr_accessor :Metric, :First, :Last, :Interval, :DataPoints, :Tags
+
+        def initialize(metric=nil, first=nil, last=nil, interval=nil, datapoints=nil, tags=nil)
+          @Metric = metric
+          @First = first
+          @Last = last
+          @Interval = interval
+          @DataPoints = datapoints
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Metric = params['Metric']
+          @First = params['First']
+          @Last = params['Last']
+          @Interval = params['Interval']
+          @DataPoints = params['DataPoints']
+          unless params['Tags'].nil?
+            @Tags = MetricTags.new
+            @Tags.deserialize(params['Tags'])
+          end
+        end
+      end
+
+      # Hbase的TableMetric Overview返回
+      class OverviewRow < TencentCloud::Common::AbstractModel
+        # @param Table: 表名字
+        # @type Table: String
+        # @param ReadRequestCount: 读请求次数
+        # @type ReadRequestCount: Float
+        # @param WriteRequestCount: 写请求次数
+        # @type WriteRequestCount: Float
+        # @param MemstoreSize: 当前memstore的size
+        # @type MemstoreSize: Float
+        # @param StoreFileSize: 当前region中StroreFile的size
+        # @type StoreFileSize: Float
+        # @param Operation: regions，点击可跳转
+        # @type Operation: String
+
+        attr_accessor :Table, :ReadRequestCount, :WriteRequestCount, :MemstoreSize, :StoreFileSize, :Operation
+
+        def initialize(table=nil, readrequestcount=nil, writerequestcount=nil, memstoresize=nil, storefilesize=nil, operation=nil)
+          @Table = table
+          @ReadRequestCount = readrequestcount
+          @WriteRequestCount = writerequestcount
+          @MemstoreSize = memstoresize
+          @StoreFileSize = storefilesize
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @Table = params['Table']
+          @ReadRequestCount = params['ReadRequestCount']
+          @WriteRequestCount = params['WriteRequestCount']
+          @MemstoreSize = params['MemstoreSize']
+          @StoreFileSize = params['StoreFileSize']
+          @Operation = params['Operation']
         end
       end
 
@@ -6958,10 +7214,14 @@ module TencentCloud
         # @type ScaleOutServiceConfAssign: String
         # @param AutoRenew: 0表示关闭自动续费，1表示开启自动续费
         # @type AutoRenew: Integer
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR,类型为EMR时,InstanceId生效,类型为ComputeResource时,使用ComputeResourceId标识
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId
 
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -6988,6 +7248,8 @@ module TencentCloud
           @SubnetId = subnetid
           @ScaleOutServiceConfAssign = scaleoutserviceconfassign
           @AutoRenew = autorenew
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
         end
 
         def deserialize(params)
@@ -7037,6 +7299,8 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @ScaleOutServiceConfAssign = params['ScaleOutServiceConfAssign']
           @AutoRenew = params['AutoRenew']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
         end
       end
 
@@ -7495,6 +7759,45 @@ module TencentCloud
         end
       end
 
+      # 表格schema信息
+      class TableSchemaItem < TencentCloud::Common::AbstractModel
+        # @param Name: 列标识
+        # @type Name: String
+        # @param Sortable: 是否可按该列排序
+        # @type Sortable: Boolean
+        # @param WithFilter: 是否可筛选
+        # @type WithFilter: Boolean
+        # @param Candidates: 筛选的候选集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Candidates: Array
+        # @param Clickable: 是否可点击
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clickable: Boolean
+        # @param Title: 展示的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+
+        attr_accessor :Name, :Sortable, :WithFilter, :Candidates, :Clickable, :Title
+
+        def initialize(name=nil, sortable=nil, withfilter=nil, candidates=nil, clickable=nil, title=nil)
+          @Name = name
+          @Sortable = sortable
+          @WithFilter = withfilter
+          @Candidates = candidates
+          @Clickable = clickable
+          @Title = title
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Sortable = params['Sortable']
+          @WithFilter = params['WithFilter']
+          @Candidates = params['Candidates']
+          @Clickable = params['Clickable']
+          @Title = params['Title']
+        end
+      end
+
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -7579,17 +7882,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param ResourceIds: 销毁节点ID。该参数为预留参数，用户无需配置。
         # @type ResourceIds: Array
+        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR,类型为EMR时,InstanceId生效,类型为ComputeResource时,使用ComputeResourceId标识
+        # @type ResourceBaseType: String
+        # @param ComputeResourceId: 计算资源ID
+        # @type ComputeResourceId: String
 
-        attr_accessor :InstanceId, :ResourceIds
+        attr_accessor :InstanceId, :ResourceIds, :ResourceBaseType, :ComputeResourceId
 
-        def initialize(instanceid=nil, resourceids=nil)
+        def initialize(instanceid=nil, resourceids=nil, resourcebasetype=nil, computeresourceid=nil)
           @InstanceId = instanceid
           @ResourceIds = resourceids
+          @ResourceBaseType = resourcebasetype
+          @ComputeResourceId = computeresourceid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ResourceIds = params['ResourceIds']
+          @ResourceBaseType = params['ResourceBaseType']
+          @ComputeResourceId = params['ComputeResourceId']
         end
       end
 

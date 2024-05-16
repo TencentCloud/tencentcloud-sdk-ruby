@@ -286,13 +286,13 @@ module TencentCloud
         # @param Remark: 策略备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param OperateOwnerUin: 策略关联操作者主帐号
+        # @param OperateOwnerUin: 策略关联操作者主账号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateOwnerUin: String
-        # @param OperateUin: 策略关联操作者ID，如果UinType为0表示子帐号Uin，如果UinType为1表示角色ID
+        # @param OperateUin: 策略关联操作者ID，如果UinType为0表示子账号Uin，如果UinType为1表示角色ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUin: String
-        # @param OperateUinType: UinType为0表示OperateUin字段是子帐号Uin，如果UinType为1表示OperateUin字段是角色ID
+        # @param OperateUinType: UinType为0表示OperateUin字段是子账号Uin，如果UinType为1表示OperateUin字段是角色ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUinType: Integer
         # @param Deactived: 是否已下线
@@ -703,30 +703,30 @@ module TencentCloud
       class CreateOIDCConfigRequest < TencentCloud::Common::AbstractModel
         # @param IdentityUrl: 身份提供商URL
         # @type IdentityUrl: String
-        # @param IdentityKey: 签名公钥，需要base64
-        # @type IdentityKey: String
         # @param ClientId: 客户端ID
         # @type ClientId: Array
         # @param Name: 名称
         # @type Name: String
+        # @param IdentityKey: 签名公钥，需要base64
+        # @type IdentityKey: String
         # @param Description: 描述
         # @type Description: String
 
-        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :Name, :Description
+        attr_accessor :IdentityUrl, :ClientId, :Name, :IdentityKey, :Description
 
-        def initialize(identityurl=nil, identitykey=nil, clientid=nil, name=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, name=nil, identitykey=nil, description=nil)
           @IdentityUrl = identityurl
-          @IdentityKey = identitykey
           @ClientId = clientid
           @Name = name
+          @IdentityKey = identitykey
           @Description = description
         end
 
         def deserialize(params)
           @IdentityUrl = params['IdentityUrl']
-          @IdentityKey = params['IdentityKey']
           @ClientId = params['ClientId']
           @Name = params['Name']
+          @IdentityKey = params['IdentityKey']
           @Description = params['Description']
         end
       end
@@ -1005,8 +1005,6 @@ module TencentCloud
         # @param IdentityUrl: 身份提供商URL。OpenID Connect身份提供商标识。
         # 对应企业IdP提供的Openid-configuration中"issuer"字段的值。
         # @type IdentityUrl: String
-        # @param IdentityKey: 签名公钥，需要base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的帐号安全，建议您定期轮换签名公钥。
-        # @type IdentityKey: String
         # @param ClientId: 客户端ID，在OpenID Connect身份提供商注册的客户端ID。
         # @type ClientId: String
         # @param AuthorizationEndpoint: 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值。
@@ -1017,33 +1015,35 @@ module TencentCloud
         # @type ResponseMode: String
         # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段
         # @type MappingFiled: String
+        # @param IdentityKey: 签名公钥，需要base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的账号安全，建议您定期轮换签名公钥。
+        # @type IdentityKey: String
         # @param Scope: 授权请求Scope。openid; email;profile。授权请求信息范围。默认必选openid。
         # @type Scope: Array
         # @param Description: 描述
         # @type Description: String
 
-        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :Scope, :Description
+        attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description
 
-        def initialize(identityurl=nil, identitykey=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, scope=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, identitykey=nil, scope=nil, description=nil)
           @IdentityUrl = identityurl
-          @IdentityKey = identitykey
           @ClientId = clientid
           @AuthorizationEndpoint = authorizationendpoint
           @ResponseType = responsetype
           @ResponseMode = responsemode
           @MappingFiled = mappingfiled
+          @IdentityKey = identitykey
           @Scope = scope
           @Description = description
         end
 
         def deserialize(params)
           @IdentityUrl = params['IdentityUrl']
-          @IdentityKey = params['IdentityKey']
           @ClientId = params['ClientId']
           @AuthorizationEndpoint = params['AuthorizationEndpoint']
           @ResponseType = params['ResponseType']
           @ResponseMode = params['ResponseMode']
           @MappingFiled = params['MappingFiled']
+          @IdentityKey = params['IdentityKey']
           @Scope = params['Scope']
           @Description = params['Description']
         end
@@ -2130,7 +2130,7 @@ module TencentCloud
 
       # GetCustomMFATokenInfo返回参数结构体
       class GetCustomMFATokenInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Uin: 自定义多因子验证Token对应的帐号Id
+        # @param Uin: 自定义多因子验证Token对应的账号Id
         # @type Uin: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3920,11 +3920,11 @@ module TencentCloud
 
       # 登录和敏感操作flag
       class LoginActionMfaFlag < TencentCloud::Common::AbstractModel
-        # @param Phone: 是否设置手机号为登陆和敏感操作安全校验方式， 1: 设置，0: 不设置
+        # @param Phone: 是否设置手机号为登录和敏感操作安全校验方式， 1: 设置，0: 不设置
         # @type Phone: Integer
-        # @param Stoken: 是否设置软token为登陆和敏感操作安全校验方式， 1: 设置，0: 不设置
+        # @param Stoken: 是否设置软token为登录和敏感操作安全校验方式， 1: 设置，0: 不设置
         # @type Stoken: Integer
-        # @param Wechat: 是否设置微信为登陆和敏感操作安全校验方式， 1: 设置，0: 不设置
+        # @param Wechat: 是否设置微信为登录和敏感操作安全校验方式， 1: 设置，0: 不设置
         # @type Wechat: Integer
 
         attr_accessor :Phone, :Stoken, :Wechat
@@ -4764,30 +4764,30 @@ module TencentCloud
       class UpdateOIDCConfigRequest < TencentCloud::Common::AbstractModel
         # @param IdentityUrl: 身份提供商URL
         # @type IdentityUrl: String
-        # @param IdentityKey: 签名公钥，需要base64
-        # @type IdentityKey: String
         # @param ClientId: 客户端ID
         # @type ClientId: Array
         # @param Name: 名称
         # @type Name: String
+        # @param IdentityKey: 签名公钥，需要base64
+        # @type IdentityKey: String
         # @param Description: 描述
         # @type Description: String
 
-        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :Name, :Description
+        attr_accessor :IdentityUrl, :ClientId, :Name, :IdentityKey, :Description
 
-        def initialize(identityurl=nil, identitykey=nil, clientid=nil, name=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, name=nil, identitykey=nil, description=nil)
           @IdentityUrl = identityurl
-          @IdentityKey = identitykey
           @ClientId = clientid
           @Name = name
+          @IdentityKey = identitykey
           @Description = description
         end
 
         def deserialize(params)
           @IdentityUrl = params['IdentityUrl']
-          @IdentityKey = params['IdentityKey']
           @ClientId = params['ClientId']
           @Name = params['Name']
+          @IdentityKey = params['IdentityKey']
           @Description = params['Description']
         end
       end
@@ -4986,8 +4986,6 @@ module TencentCloud
         # @param IdentityUrl: 身份提供商URL。OpenID Connect身份提供商标识。
         # 对应企业IdP提供的Openid-configuration中"issuer"字段的值，该URL必须以https开头，符合标准URL格式，不允许带有query参数（以?标识）、fragment片段（以#标识）和登录信息（以@标识）。
         # @type IdentityUrl: String
-        # @param IdentityKey: RSA签名公钥，JWKS格式，需要进行base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的账号安全，建议您定期轮换签名公钥。
-        # @type IdentityKey: String
         # @param ClientId: 客户端ID，在OpenID Connect身份提供商注册的客户端ID，允许英文字母、数字、特殊字符.-_:/，不能以特殊字符.-_:/开头，单个客户端ID最大64个字符。
         # @type ClientId: String
         # @param AuthorizationEndpoint: 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值，该URL必须以https开头，符合标准URL格式，不允许带有query参数（以?标识）、fragment片段（以#标识）和登录信息（以@标识）。
@@ -4996,35 +4994,37 @@ module TencentCloud
         # @type ResponseType: String
         # @param ResponseMode: 授权请求Response mode。授权请求返回模式，有form_post和fragment两种可选模式，推荐选择form_post模式。
         # @type ResponseMode: String
-        # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段,仅支持英文字母、数宇、汉字、符号@、＆_[]-的组合，1-255个中文或英文字符
+        # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段,仅支持英文字母、数字、汉字、符号@、＆_[]-的组合，1-255个中文或英文字符
         # @type MappingFiled: String
+        # @param IdentityKey: RSA签名公钥，JWKS格式，需要进行base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的账号安全，建议您定期轮换签名公钥。
+        # @type IdentityKey: String
         # @param Scope: 授权请求Scope。有openid; email;profile三种。代表授权请求信息范围openid表示请求访问用户的身份信息，email表示请求访问用户的电子邮件地址，profile表示请求访问用户的基本信息。默认必选openid。
         # @type Scope: Array
         # @param Description: 描述，长度为1~255个英文或中文字符，默认值为空。
         # @type Description: String
 
-        attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :Scope, :Description
+        attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description
 
-        def initialize(identityurl=nil, identitykey=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, scope=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, identitykey=nil, scope=nil, description=nil)
           @IdentityUrl = identityurl
-          @IdentityKey = identitykey
           @ClientId = clientid
           @AuthorizationEndpoint = authorizationendpoint
           @ResponseType = responsetype
           @ResponseMode = responsemode
           @MappingFiled = mappingfiled
+          @IdentityKey = identitykey
           @Scope = scope
           @Description = description
         end
 
         def deserialize(params)
           @IdentityUrl = params['IdentityUrl']
-          @IdentityKey = params['IdentityKey']
           @ClientId = params['ClientId']
           @AuthorizationEndpoint = params['AuthorizationEndpoint']
           @ResponseType = params['ResponseType']
           @ResponseMode = params['ResponseMode']
           @MappingFiled = params['MappingFiled']
+          @IdentityKey = params['IdentityKey']
           @Scope = params['Scope']
           @Description = params['Description']
         end

@@ -1700,10 +1700,12 @@ module TencentCloud
         # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisConnectParam`
         # @param KafkaConnectParam: Kafka配置，Type为 KAFKA 时必填
         # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
+        # @param MqttConnectParam: MQTT配置，Type为 MQTT 时必填
+        # @type MqttConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttConnectParam`
 
-        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam, :KafkaConnectParam
+        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam
 
-        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
+        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil)
           @ResourceName = resourcename
           @Type = type
           @Description = description
@@ -1717,6 +1719,7 @@ module TencentCloud
           @SQLServerConnectParam = sqlserverconnectparam
           @DorisConnectParam = dorisconnectparam
           @KafkaConnectParam = kafkaconnectparam
+          @MqttConnectParam = mqttconnectparam
         end
 
         def deserialize(params)
@@ -1762,6 +1765,10 @@ module TencentCloud
           unless params['KafkaConnectParam'].nil?
             @KafkaConnectParam = KafkaConnectParam.new
             @KafkaConnectParam.deserialize(params['KafkaConnectParam'])
+          end
+          unless params['MqttConnectParam'].nil?
+            @MqttConnectParam = MqttConnectParam.new
+            @MqttConnectParam.deserialize(params['MqttConnectParam'])
           end
         end
       end
@@ -8781,10 +8788,12 @@ module TencentCloud
         # @type DorisConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.DorisModifyConnectParam`
         # @param KafkaConnectParam: Kafka配置，Type为 KAFKA 时必填
         # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
+        # @param MqttConnectParam: MQTT配置，Type为 MQTT 时必填
+        # @type MqttConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam
 
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -8800,6 +8809,7 @@ module TencentCloud
           @CtsdbConnectParam = ctsdbconnectparam
           @DorisConnectParam = dorisconnectparam
           @KafkaConnectParam = kafkaconnectparam
+          @MqttConnectParam = mqttconnectparam
         end
 
         def deserialize(params)
@@ -8850,6 +8860,10 @@ module TencentCloud
           unless params['KafkaConnectParam'].nil?
             @KafkaConnectParam = KafkaConnectParam.new
             @KafkaConnectParam.deserialize(params['KafkaConnectParam'])
+          end
+          unless params['MqttConnectParam'].nil?
+            @MqttConnectParam = MqttConnectParam.new
+            @MqttConnectParam.deserialize(params['MqttConnectParam'])
           end
         end
       end

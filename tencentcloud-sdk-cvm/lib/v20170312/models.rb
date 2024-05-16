@@ -576,6 +576,27 @@ module TencentCloud
         end
       end
 
+      # 描述了实例CPU拓扑结构的相关信息。
+      class CpuTopology < TencentCloud::Common::AbstractModel
+        # @param CoreCount: 决定启用的CPU物理核心数。
+        # @type CoreCount: Integer
+        # @param ThreadPerCore: 每核心线程数。该参数决定是否开启或关闭超线程。<br><li>1 表示关闭超线程 </li><br><li>2 表示开启超线程</li>
+        #  不设置时，实例使用默认的超线程策略。开关超线程请参考文档：[开启与关闭超线程](https://cloud.tencent.com/document/product/213/103798)。
+        # @type ThreadPerCore: Integer
+
+        attr_accessor :CoreCount, :ThreadPerCore
+
+        def initialize(corecount=nil, threadpercore=nil)
+          @CoreCount = corecount
+          @ThreadPerCore = threadpercore
+        end
+
+        def deserialize(params)
+          @CoreCount = params['CoreCount']
+          @ThreadPerCore = params['ThreadPerCore']
+        end
+      end
+
       # CreateDisasterRecoverGroup请求参数结构体
       class CreateDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
@@ -8037,6 +8058,8 @@ module TencentCloud
         # 如果检查通过，则返回RequestId.
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
+        # @param CpuTopology: 描述了实例CPU拓扑结构的相关信息。若不指定该参数，则按系统资源情况决定。
+        # @type CpuTopology: :class:`Tencentcloud::Cvm.v20170312.models.CpuTopology`
         # @param CamRoleName: CAM角色名称。可通过[`DescribeRoleList`](https://cloud.tencent.com/document/product/598/13887)接口返回值中的`roleName`获取。
         # @type CamRoleName: String
         # @param HpcClusterId: 高性能计算集群ID。若创建的实例为高性能计算实例，需指定实例放置的集群，否则不可指定。
@@ -8050,9 +8073,9 @@ module TencentCloud
         # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><br><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br><br>默认取值：false。
         # @type DisableApiTermination: Boolean
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :DisableApiTermination
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :DisableApiTermination
 
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, disableapitermination=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, disableapitermination=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @Placement = placement
@@ -8075,6 +8098,7 @@ module TencentCloud
           @InstanceMarketOptions = instancemarketoptions
           @UserData = userdata
           @DryRun = dryrun
+          @CpuTopology = cputopology
           @CamRoleName = camrolename
           @HpcClusterId = hpcclusterid
           @LaunchTemplate = launchtemplate
@@ -8147,6 +8171,10 @@ module TencentCloud
           end
           @UserData = params['UserData']
           @DryRun = params['DryRun']
+          unless params['CpuTopology'].nil?
+            @CpuTopology = CpuTopology.new
+            @CpuTopology.deserialize(params['CpuTopology'])
+          end
           @CamRoleName = params['CamRoleName']
           @HpcClusterId = params['HpcClusterId']
           unless params['LaunchTemplate'].nil?

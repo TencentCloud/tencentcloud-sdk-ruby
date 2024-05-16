@@ -25148,10 +25148,12 @@ module TencentCloud
         # @type SourceContext: String
         # @param SessionContext: 会话上下文，用于透传用户请求信息，当指定 Procedure 参数后，[任务流状态变更回调](/document/product/266/9636) 将返回该字段值，最长 1000 个字符。仅 IsPersistence 为 1 时有效。
         # @type SessionContext: String
+        # @param ExtInfo: 保留字段，特殊用途时使用。 示例值：""
+        # @type ExtInfo: String
 
-        attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext
+        attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :ExtInfo
 
-        def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil)
+        def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, extinfo=nil)
           @Url = url
           @SubAppId = subappid
           @StartTimeOffset = starttimeoffset
@@ -25162,6 +25164,7 @@ module TencentCloud
           @ClassId = classid
           @SourceContext = sourcecontext
           @SessionContext = sessioncontext
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -25175,6 +25178,7 @@ module TencentCloud
           @ClassId = params['ClassId']
           @SourceContext = params['SourceContext']
           @SessionContext = params['SessionContext']
+          @ExtInfo = params['ExtInfo']
         end
       end
 

@@ -1852,7 +1852,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param RangeDays: 时间段天数，截止日期为当日，默认为7天。
         # @type RangeDays: Integer
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"mongodb" - 云数据库 MongoDB，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :RangeDays, :Product

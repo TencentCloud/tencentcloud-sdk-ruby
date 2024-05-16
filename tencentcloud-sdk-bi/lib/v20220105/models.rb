@@ -493,10 +493,50 @@ module TencentCloud
         # @type UserId: String
         # @param TicketNum: 访问次数限制，限制范围1-99999，为空则不设置访问次数限制
         # @type TicketNum: Integer
+        # @param GlobalParam: 全局筛选参数 报表过滤条件的全局参数。 格式为JSON格式的字符串
+        # **目前仅支持字符类型页面参数绑定到全局参数
+        # **
+        # [
+        #     {
+        #         "ParamKey": "name",  //页面参数名称
+        #         "JoinType": "AND",     // 连接方式,目前仅支持AND
+        #         "WhereList": [
+        #             {
+        #                 "Operator": "-neq",   // 操作符，参考以下说明
+        #                 "Value": [                   //操作值，单值数组只传一个值
+        #                     "zZWJMD",
+        #                     "ZzVGHX",
+        #                     "湖南省",
+        #                     "河北省"
+        #                 ]
+        #             }
+        #         ]
+        #     },
+        #     {
+        #         "ParamKey": "genderParam",
+        #         "JoinType": "AND",
+        #         "WhereList": [
+        #             {
+        #                 "Operator": "-neq",
+        #                 "Value": [
+        #                     "男"
+        #                 ]
+        #             }
+        #         ]
+        #     }
+        # ]
 
-        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum
 
-        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil)
+
+        # Operator 目前支持
+        # -neq  不等于!=操作符
+        # -eq  等于=操作符
+        # -is     in操作符
+        # @type GlobalParam: String
+
+        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam
+
+        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil)
           @ProjectId = projectid
           @PageId = pageid
           @Scope = scope
@@ -505,6 +545,7 @@ module TencentCloud
           @UserCorpId = usercorpid
           @UserId = userid
           @TicketNum = ticketnum
+          @GlobalParam = globalparam
         end
 
         def deserialize(params)
@@ -516,6 +557,7 @@ module TencentCloud
           @UserCorpId = params['UserCorpId']
           @UserId = params['UserId']
           @TicketNum = params['TicketNum']
+          @GlobalParam = params['GlobalParam']
         end
       end
 
@@ -1773,10 +1815,13 @@ module TencentCloud
         # @param TicketNum: 访问次数限制，限制范围1-99999，为空则不设置访问次数限制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TicketNum: Integer
+        # @param GlobalParam: 全局参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalParam: String
 
-        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum
+        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam
 
-        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil)
+        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil)
           @Id = id
           @BIToken = bitoken
           @ProjectId = projectid
@@ -1791,6 +1836,7 @@ module TencentCloud
           @UserCorpId = usercorpid
           @UserId = userid
           @TicketNum = ticketnum
+          @GlobalParam = globalparam
         end
 
         def deserialize(params)
@@ -1808,6 +1854,7 @@ module TencentCloud
           @UserCorpId = params['UserCorpId']
           @UserId = params['UserId']
           @TicketNum = params['TicketNum']
+          @GlobalParam = params['GlobalParam']
         end
       end
 
