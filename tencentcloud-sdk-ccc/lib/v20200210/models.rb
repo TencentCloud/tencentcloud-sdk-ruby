@@ -492,15 +492,27 @@ module TencentCloud
         # @param CorporationIdPicUrl: 法定代表人身份证正反面扫描件。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationIdPicUrl: String
-        # @param BusinessScope: 业务经营范围
+        # @param NetworkCommitmentPicUrl: 安全合规使用承诺书。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BusinessScope: String
+        # @type NetworkCommitmentPicUrl: String
+        # @param IsEqualTencentCloud: 是否与腾讯云账号的资质一致,0-不一致,1-一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEqualTencentCloud: Integer
+        # @param CorporationMobile: 法定代表人手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorporationMobile: String
+        # @param CorporationMobilePicUrl: 法定代表人手机号码实名认证。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorporationMobilePicUrl: String
+        # @param UseDescribeFileUrl: 通话话术。(支持doc、docx格式的文档不超过50MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseDescribeFileUrl: String
+        # @param CompanyAuthLetterPicUrl: 公司授权函。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyAuthLetterPicUrl: String
         # @param AcceptPicUrl: 电话受理单。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AcceptPicUrl: String
-        # @param NetworkCommitmentPicUrl: 电信入网承诺书。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NetworkCommitmentPicUrl: String
         # @param CorporationHoldingOnIdPicUrl: 法定代表人手持身份证照，申请人类型为法定代表人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationHoldingOnIdPicUrl: String
@@ -519,10 +531,19 @@ module TencentCloud
         # @param CommissionPicUrl: 委托授权书，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommissionPicUrl: String
+        # @param OperatorMobile: 经办人手机号，申请人类型为经办人时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorMobile: String
+        # @param OperatorEmail: 经办人邮箱，申请人类型为经办人时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorEmail: String
+        # @param OperatorMobilePicUrl: 经办人手机号码实名认证，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorMobilePicUrl: String
 
-        attr_accessor :ApplicantType, :CompanyName, :BusinessId, :BusinessIdPicUrl, :CorporationName, :CorporationId, :CorporationIdPicUrl, :BusinessScope, :AcceptPicUrl, :NetworkCommitmentPicUrl, :CorporationHoldingOnIdPicUrl, :OperatorName, :OperatorId, :OperatorIdPicUrl, :OperatorHoldingOnIdPicUrl, :CommissionPicUrl
+        attr_accessor :ApplicantType, :CompanyName, :BusinessId, :BusinessIdPicUrl, :CorporationName, :CorporationId, :CorporationIdPicUrl, :NetworkCommitmentPicUrl, :IsEqualTencentCloud, :CorporationMobile, :CorporationMobilePicUrl, :UseDescribeFileUrl, :CompanyAuthLetterPicUrl, :AcceptPicUrl, :CorporationHoldingOnIdPicUrl, :OperatorName, :OperatorId, :OperatorIdPicUrl, :OperatorHoldingOnIdPicUrl, :CommissionPicUrl, :OperatorMobile, :OperatorEmail, :OperatorMobilePicUrl
 
-        def initialize(applicanttype=nil, companyname=nil, businessid=nil, businessidpicurl=nil, corporationname=nil, corporationid=nil, corporationidpicurl=nil, businessscope=nil, acceptpicurl=nil, networkcommitmentpicurl=nil, corporationholdingonidpicurl=nil, operatorname=nil, operatorid=nil, operatoridpicurl=nil, operatorholdingonidpicurl=nil, commissionpicurl=nil)
+        def initialize(applicanttype=nil, companyname=nil, businessid=nil, businessidpicurl=nil, corporationname=nil, corporationid=nil, corporationidpicurl=nil, networkcommitmentpicurl=nil, isequaltencentcloud=nil, corporationmobile=nil, corporationmobilepicurl=nil, usedescribefileurl=nil, companyauthletterpicurl=nil, acceptpicurl=nil, corporationholdingonidpicurl=nil, operatorname=nil, operatorid=nil, operatoridpicurl=nil, operatorholdingonidpicurl=nil, commissionpicurl=nil, operatormobile=nil, operatoremail=nil, operatormobilepicurl=nil)
           @ApplicantType = applicanttype
           @CompanyName = companyname
           @BusinessId = businessid
@@ -530,15 +551,22 @@ module TencentCloud
           @CorporationName = corporationname
           @CorporationId = corporationid
           @CorporationIdPicUrl = corporationidpicurl
-          @BusinessScope = businessscope
-          @AcceptPicUrl = acceptpicurl
           @NetworkCommitmentPicUrl = networkcommitmentpicurl
+          @IsEqualTencentCloud = isequaltencentcloud
+          @CorporationMobile = corporationmobile
+          @CorporationMobilePicUrl = corporationmobilepicurl
+          @UseDescribeFileUrl = usedescribefileurl
+          @CompanyAuthLetterPicUrl = companyauthletterpicurl
+          @AcceptPicUrl = acceptpicurl
           @CorporationHoldingOnIdPicUrl = corporationholdingonidpicurl
           @OperatorName = operatorname
           @OperatorId = operatorid
           @OperatorIdPicUrl = operatoridpicurl
           @OperatorHoldingOnIdPicUrl = operatorholdingonidpicurl
           @CommissionPicUrl = commissionpicurl
+          @OperatorMobile = operatormobile
+          @OperatorEmail = operatoremail
+          @OperatorMobilePicUrl = operatormobilepicurl
         end
 
         def deserialize(params)
@@ -549,15 +577,22 @@ module TencentCloud
           @CorporationName = params['CorporationName']
           @CorporationId = params['CorporationId']
           @CorporationIdPicUrl = params['CorporationIdPicUrl']
-          @BusinessScope = params['BusinessScope']
-          @AcceptPicUrl = params['AcceptPicUrl']
           @NetworkCommitmentPicUrl = params['NetworkCommitmentPicUrl']
+          @IsEqualTencentCloud = params['IsEqualTencentCloud']
+          @CorporationMobile = params['CorporationMobile']
+          @CorporationMobilePicUrl = params['CorporationMobilePicUrl']
+          @UseDescribeFileUrl = params['UseDescribeFileUrl']
+          @CompanyAuthLetterPicUrl = params['CompanyAuthLetterPicUrl']
+          @AcceptPicUrl = params['AcceptPicUrl']
           @CorporationHoldingOnIdPicUrl = params['CorporationHoldingOnIdPicUrl']
           @OperatorName = params['OperatorName']
           @OperatorId = params['OperatorId']
           @OperatorIdPicUrl = params['OperatorIdPicUrl']
           @OperatorHoldingOnIdPicUrl = params['OperatorHoldingOnIdPicUrl']
           @CommissionPicUrl = params['CommissionPicUrl']
+          @OperatorMobile = params['OperatorMobile']
+          @OperatorEmail = params['OperatorEmail']
+          @OperatorMobilePicUrl = params['OperatorMobilePicUrl']
         end
       end
 
@@ -583,10 +618,13 @@ module TencentCloud
         # @param BusinessId: 公司统一社会信用代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: Integer
 
-        attr_accessor :Id, :CompanyName, :CreateTime, :CheckTime, :CheckMsg, :State, :BusinessId
+        attr_accessor :Id, :CompanyName, :CreateTime, :CheckTime, :CheckMsg, :State, :BusinessId, :ModifyTime
 
-        def initialize(id=nil, companyname=nil, createtime=nil, checktime=nil, checkmsg=nil, state=nil, businessid=nil)
+        def initialize(id=nil, companyname=nil, createtime=nil, checktime=nil, checkmsg=nil, state=nil, businessid=nil, modifytime=nil)
           @Id = id
           @CompanyName = companyname
           @CreateTime = createtime
@@ -594,6 +632,7 @@ module TencentCloud
           @CheckMsg = checkmsg
           @State = state
           @BusinessId = businessid
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -604,6 +643,7 @@ module TencentCloud
           @CheckMsg = params['CheckMsg']
           @State = params['State']
           @BusinessId = params['BusinessId']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
