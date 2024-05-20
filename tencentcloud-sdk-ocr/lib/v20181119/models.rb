@@ -8461,8 +8461,18 @@ module TencentCloud
         # @type IssueDate: String
         # @param ExpirationDate: 泰文到期日期
         # @type ExpirationDate: String
+        # @param EnIssueDate: 英文签发日期
+        # @type EnIssueDate: String
+        # @param EnExpirationDate: 英文到期日期
+        # @type EnExpirationDate: String
         # @param Birthday: 泰文出生日期
         # @type Birthday: String
+        # @param EnBirthday: 英文出生日期
+        # @type EnBirthday: String
+        # @param Religion: 宗教信仰
+        # @type Religion: String
+        # @param SerialNumber: 序列号
+        # @type SerialNumber: String
         # @param Address: 地址
         # @type Address: String
         # @param PortraitImage: 证件人像照片抠取
@@ -8478,16 +8488,21 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :Birthday, :Address, :PortraitImage, :WarnCardInfos, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :PortraitImage, :WarnCardInfos, :RequestId
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, birthday=nil, address=nil, portraitimage=nil, warncardinfos=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, portraitimage=nil, warncardinfos=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
           @EnLastName = enlastname
           @IssueDate = issuedate
           @ExpirationDate = expirationdate
+          @EnIssueDate = enissuedate
+          @EnExpirationDate = enexpirationdate
           @Birthday = birthday
+          @EnBirthday = enbirthday
+          @Religion = religion
+          @SerialNumber = serialnumber
           @Address = address
           @PortraitImage = portraitimage
           @WarnCardInfos = warncardinfos
@@ -8501,7 +8516,12 @@ module TencentCloud
           @EnLastName = params['EnLastName']
           @IssueDate = params['IssueDate']
           @ExpirationDate = params['ExpirationDate']
+          @EnIssueDate = params['EnIssueDate']
+          @EnExpirationDate = params['EnExpirationDate']
           @Birthday = params['Birthday']
+          @EnBirthday = params['EnBirthday']
+          @Religion = params['Religion']
+          @SerialNumber = params['SerialNumber']
           @Address = params['Address']
           @PortraitImage = params['PortraitImage']
           @WarnCardInfos = params['WarnCardInfos']

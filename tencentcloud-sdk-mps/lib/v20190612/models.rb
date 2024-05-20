@@ -687,7 +687,7 @@ module TencentCloud
         # <li>Tag：智能标签</li>
         # <li>FrameTag：智能按帧标签</li>
         # <li>Highlight：智能精彩集锦</li>
-        # <li>DeLogo：智能去水印</li>
+        # <li>DeLogo：智能擦除</li>
         # <li>Description：大模型摘要</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
@@ -705,7 +705,7 @@ module TencentCloud
         # @param HighlightTask: 视频内容分析集锦任务的查询结果，当任务类型为 Highlight时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighlightTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHighlightResult`
-        # @param DeLogoTask: 视频内容分析去水印任务的查询结果，当任务类型为 DeLogo 时有效。
+        # @param DeLogoTask: 视频内容分析智能擦除任务的查询结果，当任务类型为 DeLogo 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeLogoTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoResult`
         # @param HeadTailTask: 视频内容分析片头片尾任务的查询结果，当任务类型为 HeadTailRecognition 时有效。
@@ -937,9 +937,9 @@ module TencentCloud
         end
       end
 
-      # 智能去水印任务输入类型
+      # 智能擦除任务输入类型
       class AiAnalysisTaskDelLogoInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频智能去水印模板 ID。
+        # @param Definition: 视频智能擦除模板 ID。
         # @type Definition: Integer
 
         attr_accessor :Definition
@@ -953,11 +953,11 @@ module TencentCloud
         end
       end
 
-      # 智能去水印结果信息
+      # 智能擦除结果信息
       class AiAnalysisTaskDelLogoOutput < TencentCloud::Common::AbstractModel
-        # @param Path: 去水印后文件的路径。
+        # @param Path: 擦除后文件的路径。
         # @type Path: String
-        # @param OutputStorage: 去水印后文件的存储位置。
+        # @param OutputStorage: 擦除后文件的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
         attr_accessor :Path, :OutputStorage
@@ -976,7 +976,7 @@ module TencentCloud
         end
       end
 
-      # 智能去水印结果类型
+      # 智能擦除结果类型
       class AiAnalysisTaskDelLogoResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
@@ -984,9 +984,9 @@ module TencentCloud
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
-        # @param Input: 智能去水印任务输入。
+        # @param Input: 智能擦除任务输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoInput`
-        # @param Output: 智能去水印任务输出。
+        # @param Output: 智能擦除任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoOutput`
 

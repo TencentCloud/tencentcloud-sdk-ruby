@@ -395,7 +395,7 @@ module TencentCloud
         end
       end
 
-      # DSPA评估模版
+      # DSPA评估模板
       class AssessmentTemplate < TencentCloud::Common::AbstractModel
         # @param Id: id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1391,13 +1391,13 @@ module TencentCloud
       class CreateDSPAAssessmentRiskTemplateRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # @type TemplateName: String
         # @param RiskLevelId: 风险等级id
         # @type RiskLevelId: Integer
         # @param RiskIdList: 风险id列表
         # @type RiskIdList: Array
-        # @param TemplateDescription: 模版描述
+        # @param TemplateDescription: 模板描述
         # @type TemplateDescription: String
 
         attr_accessor :DspaId, :TemplateName, :RiskLevelId, :RiskIdList, :TemplateDescription
@@ -5128,12 +5128,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 结果集个数限制。默认为20，最大值为100
         # @type Limit: Integer
-        # @param Filters: 过滤项。
-        # 支持模糊搜索：（TemplateId，TemplateName）
-        # 支持过滤：
-        # Source：模版来源，system / user
-        # UseType：模版类型，auto，semi-auto，law等
-        # Status：模版启用状态，draft / launched
+        # @param Filters: 过滤项。支持模糊搜索：（TemplateId，TemplateName）支持过滤：Source：模板来源，system / userUseType：模板类型，auto，semi-auto，law等Status：模板启用状态，draft / launched
         # @type Filters: Array
 
         attr_accessor :DspaId, :Offset, :Limit, :Filters

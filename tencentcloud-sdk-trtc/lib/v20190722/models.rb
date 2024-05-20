@@ -482,6 +482,46 @@ module TencentCloud
         end
       end
 
+      # DescribeAITranscription请求参数结构体
+      class DescribeAITranscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识AI转录任务。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAITranscription返回参数结构体
+      class DescribeAITranscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间。
+        # @type StartTime: String
+        # @param Status: 转录任务状态。
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :Status, :RequestId
+
+        def initialize(starttime=nil, status=nil, requestid=nil)
+          @StartTime = starttime
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCallDetailInfo请求参数结构体
       class DescribeCallDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
@@ -3295,6 +3335,40 @@ module TencentCloud
         end
       end
 
+      # 语音识别使用的配置
+      class RecognizeConfig < TencentCloud::Common::AbstractModel
+        # @param Language: 支持的语言，目前支持语言如下：
+        #     Chinese = "zh"
+        #     Chinese_TW = "zh-TW"
+        #     English = "en"
+        #     Vietnamese = "vi"
+        #     Japanese = "ja"
+        #     Korean = "ko"
+        #     Indonesia = "id"
+        #     Thai = "th"
+        #     Portuguese = "pt"
+        #     Turkish = "tr"
+        #     Arabic = "ar"
+        #     Spanish = "es"
+        #     Hindi = "hi"
+        #     French = "fr"
+        # @type Language: String
+        # @param TranslationLanguage: 选填，如果填写，则会启用翻译，不填则忽略。支持语言同Language字段。
+        # @type TranslationLanguage: String
+
+        attr_accessor :Language, :TranslationLanguage
+
+        def initialize(language=nil, translationlanguage=nil)
+          @Language = language
+          @TranslationLanguage = translationlanguage
+        end
+
+        def deserialize(params)
+          @Language = params['Language']
+          @TranslationLanguage = params['TranslationLanguage']
+        end
+      end
+
       # 云端录制控制参数。
       class RecordParams < TencentCloud::Common::AbstractModel
         # @param RecordMode: 录制模式：
@@ -3720,6 +3794,64 @@ module TencentCloud
         end
       end
 
+      # StartAITranscription请求参数结构体
+      class StartAITranscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，使用该sdkappid开启任务。
+        # @type SdkAppId: Integer
+        # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，使用该roomid开启任务。
+        # @type RoomId: String
+        # @param TranscriptionParams: 启动转录机器人和鉴权的参数。
+        # @type TranscriptionParams: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionParams`
+        # @param RoomIdType: TRTC房间号的类型，0代表数字房间号，1代表字符串房间号。不填默认是数字房间号。
+        # @type RoomIdType: Integer
+        # @param RecognizeConfig: 语音识别配置
+        # @type RecognizeConfig: :class:`Tencentcloud::Trtc.v20190722.models.RecognizeConfig`
+
+        attr_accessor :SdkAppId, :RoomId, :TranscriptionParams, :RoomIdType, :RecognizeConfig
+
+        def initialize(sdkappid=nil, roomid=nil, transcriptionparams=nil, roomidtype=nil, recognizeconfig=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @TranscriptionParams = transcriptionparams
+          @RoomIdType = roomidtype
+          @RecognizeConfig = recognizeconfig
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          unless params['TranscriptionParams'].nil?
+            @TranscriptionParams = TranscriptionParams.new
+            @TranscriptionParams.deserialize(params['TranscriptionParams'])
+          end
+          @RoomIdType = params['RoomIdType']
+          unless params['RecognizeConfig'].nil?
+            @RecognizeConfig = RecognizeConfig.new
+            @RecognizeConfig.deserialize(params['RecognizeConfig'])
+          end
+        end
+      end
+
+      # StartAITranscription返回参数结构体
+      class StartAITranscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 用于唯一标识转录任务。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartMCUMixTranscodeByStrRoomId请求参数结构体
       class StartMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -4112,6 +4244,38 @@ module TencentCloud
         end
       end
 
+      # StopAITranscription请求参数结构体
+      class StopAITranscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识转录任务。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopAITranscription返回参数结构体
+      class StopAITranscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopMCUMixTranscodeByStrRoomId请求参数结构体
       class StopMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -4379,6 +4543,33 @@ module TencentCloud
         end
       end
 
+      # SummarizeTranscription请求参数结构体
+      class SummarizeTranscriptionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SummarizeTranscription返回参数结构体
+      class SummarizeTranscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # TRTC数据大盘/实时监控 API接口数据出参
       class TRTCDataResp < TencentCloud::Common::AbstractModel
         # @param StatementID: StatementID值，监控仪表盘下固定为0。
@@ -4514,6 +4705,47 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Value = params['Value']
+        end
+      end
+
+      # AI转录参数
+      class TranscriptionParams < TencentCloud::Common::AbstractModel
+        # @param UserId: 转录机器人的UserId，用于进房发起转录任务。【注意】这个UserId不能与当前房间内的主播观众[UserId](https://cloud.tencent.com/document/product/647/46351#userid)重复。如果一个房间发起多个转录任务时，机器人的userid也不能相互重复，否则会中断前一个任务。需要保证转录机器人UserId在房间内唯一。
+        # @type UserId: String
+        # @param UserSig: 转录机器人UserId对应的校验签名，即UserId和UserSig相当于转录机器人进房的登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
+        # @type UserSig: String
+        # @param IMAdminUserId: IM[管理员账户](
+        # https://cloud.tencent.com/document/product/269/31999#app-.E7.AE.A1.E7.90.86.E5.91.98)，如果填写，后台下发消息会使用IM通道，而不是TRTC自定义消息。
+        # @type IMAdminUserId: String
+        # @param IMAdminUserSig: IM管理员账户生成的签名，用于向特定群组发送消息。如果填写，后台下发消息会使用IM通道，而不是TRTC自定义消息。必须和IM管理员的UserId一起填写。
+        # @type IMAdminUserSig: String
+        # @param MaxIdleTime: 房间内推流用户全部退出后超过MaxIdleTime秒，后台自动关闭转录任务，默认值是60s。
+        # @type MaxIdleTime: Integer
+        # @param TranscriptionMode: 1表示机器人只订阅单个人的流，0表示机器人订阅整个房间的流，如果不填默认订阅整个房间的流。
+        # @type TranscriptionMode: Integer
+        # @param TargetUserId: TranscriptionMode为1时必填，机器人只会拉该userid的流，忽略房间里其他用户。
+        # @type TargetUserId: String
+
+        attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId
+
+        def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil)
+          @UserId = userid
+          @UserSig = usersig
+          @IMAdminUserId = imadminuserid
+          @IMAdminUserSig = imadminusersig
+          @MaxIdleTime = maxidletime
+          @TranscriptionMode = transcriptionmode
+          @TargetUserId = targetuserid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @IMAdminUserId = params['IMAdminUserId']
+          @IMAdminUserSig = params['IMAdminUserSig']
+          @MaxIdleTime = params['MaxIdleTime']
+          @TranscriptionMode = params['TranscriptionMode']
+          @TargetUserId = params['TargetUserId']
         end
       end
 

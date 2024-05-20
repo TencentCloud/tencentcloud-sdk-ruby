@@ -136,6 +136,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询AI转录状态
+
+        # @param request: Request instance for DescribeAITranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeAITranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeAITranscriptionResponse`
+        def DescribeAITranscription(request)
+          body = send_request('DescribeAITranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAITranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定时间内的用户列表及用户通话质量数据，最大可查询14天内数据。DataType 不为null，查询起止时间不超过1个小时，查询用户不超过6个，支持跨天查询。DataType为null时，查询起止时间不超过4个小时， 默认查询6个用户，同时支持每页查询100以内用户个数（PageSize不超过100）。接口用于查询质量问题，不推荐作为计费使用。（同老接口DescribeCallDetail）
         # **注意**：
         # 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
@@ -983,6 +1007,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 这个接口调用后，后台会启动机器人，实时进行语音识别并下发字幕和会议记录。
+
+        # @param request: Request instance for StartAITranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StartAITranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StartAITranscriptionResponse`
+        def StartAITranscription(request)
+          body = send_request('StartAITranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartAITranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口说明：启动云端混流，并指定混流画面中各路画面的布局位置。
 
         # TRTC 的一个房间中可能会同时存在多路音视频流，您可以通过此 API 接口，通知腾讯云服务端将多路视频画面合成一路，并指定每一路画面的位置，同时将多路声音进行混音，最终形成一路音视频流，以便用于录制和直播观看。房间销毁后混流自动结束。
@@ -1241,6 +1289,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 停止AI转录
+
+        # @param request: Request instance for StopAITranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StopAITranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StopAITranscriptionResponse`
+        def StopAITranscription(request)
+          body = send_request('StopAITranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopAITranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口说明：结束云端混流
 
         # @param request: Request instance for StopMCUMixTranscode.
@@ -1347,6 +1419,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopWebRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对转录的文本进行总结
+
+        # @param request: Request instance for SummarizeTranscription.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::SummarizeTranscriptionRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::SummarizeTranscriptionResponse`
+        def SummarizeTranscription(request)
+          body = send_request('SummarizeTranscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SummarizeTranscriptionResponse.new
             model.deserialize(response['Response'])
             model
           else
