@@ -11510,6 +11510,43 @@ module TencentCloud
         end
       end
 
+      # DisableLaneRule请求参数结构体
+      class DisableLaneRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 泳道规则ID
+        # @type RuleId: String
+
+        attr_accessor :RuleId
+
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DisableLaneRule返回参数结构体
+      class DisableLaneRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作状态。成功：true，失败：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableTaskFlow请求参数结构体
       class DisableTaskFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 工作流 ID
@@ -11757,6 +11794,43 @@ module TencentCloud
       # DraftApiGroup返回参数结构体
       class DraftApiGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: true: 成功, false: 失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableLaneRule请求参数结构体
+      class EnableLaneRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 泳道规则ID
+        # @type RuleId: String
+
+        attr_accessor :RuleId
+
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # EnableLaneRule返回参数结构体
+      class EnableLaneRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作状态。成功：true，失败：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15154,7 +15228,7 @@ module TencentCloud
 
       # ModifyLaneRule返回参数结构体
       class ModifyLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作状态
+        # @param Result: 操作状态。成功：true，失败：false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

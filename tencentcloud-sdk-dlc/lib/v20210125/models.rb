@@ -6448,6 +6448,100 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskLog请求参数结构体
+      class DescribeTaskLogRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 列表返回的Id
+        # @type TaskId: String
+        # @param StartTime: 开始运行时间，unix时间戳（毫秒）
+        # @type StartTime: Integer
+        # @param EndTime: 结束运行时间，unix时间戳（毫秒）
+        # @type EndTime: Integer
+        # @param Limit: 分页大小，最大1000，配合Context一起使用
+        # @type Limit: Integer
+        # @param Context: 下一次分页参数，第一次传空。透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
+        # @type Context: String
+        # @param Asc: 是否升序排列，true:升序排序，false:倒序，默认false，倒序排列
+        # @type Asc: Boolean
+        # @param Filters: 预览日志的通用过滤条件
+        # @type Filters: Array
+        # @param BatchId: SparkSQL任务唯一ID
+        # @type BatchId: String
+
+        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context, :Asc, :Filters, :BatchId
+
+        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil, asc=nil, filters=nil, batchid=nil)
+          @TaskId = taskid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Context = context
+          @Asc = asc
+          @Filters = filters
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Context = params['Context']
+          @Asc = params['Asc']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # DescribeTaskLog返回参数结构体
+      class DescribeTaskLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 下一次分页参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+        # @param ListOver: 是否获取完结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListOver: Boolean
+        # @param Results: 日志详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param LogUrl: 日志url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :ListOver, :Results, :LogUrl, :RequestId
+
+        def initialize(context=nil, listover=nil, results=nil, logurl=nil, requestid=nil)
+          @Context = context
+          @ListOver = listover
+          @Results = results
+          @LogUrl = logurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              joblogresult_tmp = JobLogResult.new
+              joblogresult_tmp.deserialize(i)
+              @Results << joblogresult_tmp
+            end
+          end
+          @LogUrl = params['LogUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskResult请求参数结构体
       class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一ID

@@ -1949,6 +1949,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeTaskLog）用于获取spark 作业任务日志详情
+
+        # @param request: Request instance for DescribeTaskLog.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTaskLogRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeTaskLogResponse`
+        def DescribeTaskLog(request)
+          body = send_request('DescribeTaskLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询任务结果
 
         # @param request: Request instance for DescribeTaskResult.

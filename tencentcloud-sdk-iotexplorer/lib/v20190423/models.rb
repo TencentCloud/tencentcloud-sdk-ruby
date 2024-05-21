@@ -1184,10 +1184,14 @@ module TencentCloud
         # @type ProductDesc: String
         # @param ProjectId: 产品的项目ID
         # @type ProjectId: String
+        # @param Rate: 平均传输速率
+        # @type Rate: String
+        # @param Period: 期限
+        # @type Period: String
 
-        attr_accessor :ProductName, :CategoryId, :ProductType, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :ProjectId
+        attr_accessor :ProductName, :CategoryId, :ProductType, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :ProjectId, :Rate, :Period
 
-        def initialize(productname=nil, categoryid=nil, producttype=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, projectid=nil)
+        def initialize(productname=nil, categoryid=nil, producttype=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, projectid=nil, rate=nil, period=nil)
           @ProductName = productname
           @CategoryId = categoryid
           @ProductType = producttype
@@ -1196,6 +1200,8 @@ module TencentCloud
           @DataProtocol = dataprotocol
           @ProductDesc = productdesc
           @ProjectId = projectid
+          @Rate = rate
+          @Period = period
         end
 
         def deserialize(params)
@@ -1207,6 +1213,8 @@ module TencentCloud
           @DataProtocol = params['DataProtocol']
           @ProductDesc = params['ProductDesc']
           @ProjectId = params['ProjectId']
+          @Rate = params['Rate']
+          @Period = params['Period']
         end
       end
 
@@ -7349,10 +7357,16 @@ module TencentCloud
         # @param DeviceCount: 设备数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCount: Integer
+        # @param Rate: 平均传输速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rate: String
+        # @param Period: 有效期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: String
 
-        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount
+        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount, :Rate, :Period
 
-        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil)
+        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil, rate=nil, period=nil)
           @ProductId = productid
           @ProductName = productname
           @CategoryId = categoryid
@@ -7372,6 +7386,8 @@ module TencentCloud
           @CreatorNickName = creatornickname
           @BindStrategy = bindstrategy
           @DeviceCount = devicecount
+          @Rate = rate
+          @Period = period
         end
 
         def deserialize(params)
@@ -7394,6 +7410,8 @@ module TencentCloud
           @CreatorNickName = params['CreatorNickName']
           @BindStrategy = params['BindStrategy']
           @DeviceCount = params['DeviceCount']
+          @Rate = params['Rate']
+          @Period = params['Period']
         end
       end
 

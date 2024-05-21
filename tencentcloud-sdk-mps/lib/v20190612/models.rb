@@ -202,6 +202,9 @@ module TencentCloud
         # <li>action-image-sprite：雪碧图</li>
         # <li>action-snapshotByTimeOffset: 时间点截图</li>
         # <li>action-adaptive-substream：自适应码流</li>
+
+
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityType: String
         # @param ReardriveIndex: 后驱节点索引数组

@@ -1229,12 +1229,14 @@ module TencentCloud
         # @type Command: String
         # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
-        # @param CommandBase64: 服务的启动命令，以base64格式进行输入
+        # @param CommandBase64: 服务的启动命令，以base64格式进行输入，与Command同时配置时，仅当前参数生效
         # @type CommandBase64: String
+        # @param ServicePort: 服务端口，仅在非内置镜像时生效，默认8501。不支持输入8501-8510,6006,9092
+        # @type ServicePort: Integer
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -1267,6 +1269,7 @@ module TencentCloud
           @Command = command
           @ServiceEIP = serviceeip
           @CommandBase64 = commandbase64
+          @ServicePort = serviceport
         end
 
         def deserialize(params)
@@ -1350,6 +1353,7 @@ module TencentCloud
             @ServiceEIP.deserialize(params['ServiceEIP'])
           end
           @CommandBase64 = params['CommandBase64']
+          @ServicePort = params['ServicePort']
         end
       end
 
@@ -6155,7 +6159,7 @@ module TencentCloud
 
       # 镜像描述信息
       class ImageInfo < TencentCloud::Common::AbstractModel
-        # @param ImageType: 镜像类型：TCR为腾讯云TCR镜像; CCR为腾讯云TCR个人版镜像，PreSet为平台预置镜像
+        # @param ImageType: 镜像类型：TCR为腾讯云TCR镜像; CCR为腾讯云TCR个人版镜像，PreSet为平台预置镜像，CUSTOM为第三方自定义镜像
         # @type ImageType: String
         # @param ImageUrl: 镜像地址
         # @type ImageUrl: String
@@ -6174,10 +6178,13 @@ module TencentCloud
         # @param SupportDataPipeline: 是否支持数据构建
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataPipeline: Boolean
+        # @param ImageSecret: 镜像仓库用户名密码信息(仅当ImageType为CUSTOM第三方镜像的时候需要)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageSecret: :class:`Tencentcloud::Tione.v20211111.models.ImageSecret`
 
-        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline
+        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline, :ImageSecret
 
-        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil)
+        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil, imagesecret=nil)
           @ImageType = imagetype
           @ImageUrl = imageurl
           @RegistryRegion = registryregion
@@ -6185,6 +6192,7 @@ module TencentCloud
           @AllowSaveAllContent = allowsaveallcontent
           @ImageName = imagename
           @SupportDataPipeline = supportdatapipeline
+          @ImageSecret = imagesecret
         end
 
         def deserialize(params)
@@ -6195,6 +6203,37 @@ module TencentCloud
           @AllowSaveAllContent = params['AllowSaveAllContent']
           @ImageName = params['ImageName']
           @SupportDataPipeline = params['SupportDataPipeline']
+          unless params['ImageSecret'].nil?
+            @ImageSecret = ImageSecret.new
+            @ImageSecret.deserialize(params['ImageSecret'])
+          end
+        end
+      end
+
+      # 自定义镜像仓库凭据
+      class ImageSecret < TencentCloud::Common::AbstractModel
+        # @param KeyId: 用于加密密码的KMS公钥ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyId: String
+        # @param Username: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Password: 密码,base64编码； 当keyId不为空时，密码是加密后的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+
+        attr_accessor :KeyId, :Username, :Password
+
+        def initialize(keyid=nil, username=nil, password=nil)
+          @KeyId = keyid
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @Username = params['Username']
+          @Password = params['Password']
         end
       end
 
@@ -7234,12 +7273,14 @@ module TencentCloud
         # @type Command: String
         # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
-        # @param CommandBase64: 服务的启动命令，以base64格式进行输入
+        # @param CommandBase64: 服务的启动命令，以base64格式进行输入，与Command同时配置时，仅当前参数生效
         # @type CommandBase64: String
+        # @param ServicePort: 服务端口，仅在非内置镜像时生效，默认8501。不支持输入8501-8510,6006,9092
+        # @type ServicePort: Integer
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -7264,6 +7305,7 @@ module TencentCloud
           @Command = command
           @ServiceEIP = serviceeip
           @CommandBase64 = commandbase64
+          @ServicePort = serviceport
         end
 
         def deserialize(params)
@@ -7332,6 +7374,7 @@ module TencentCloud
             @ServiceEIP.deserialize(params['ServiceEIP'])
           end
           @CommandBase64 = params['CommandBase64']
+          @ServicePort = params['ServicePort']
         end
       end
 
@@ -9584,15 +9627,18 @@ module TencentCloud
         # @param ServiceEIP: 开启TIONE内网访问外部设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
+        # @param ServicePort: 服务端口，默认为8501
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServicePort: Integer
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort
         extend Gem::Deprecate
         deprecate :PodList, :none, 2024, 5
         deprecate :PodList=, :none, 2024, 5
         deprecate :Pods, :none, 2024, 5
         deprecate :Pods=, :none, 2024, 5
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -9623,6 +9669,7 @@ module TencentCloud
           @InferCodeInfo = infercodeinfo
           @Command = command
           @ServiceEIP = serviceeip
+          @ServicePort = serviceport
         end
 
         def deserialize(params)
@@ -9713,6 +9760,7 @@ module TencentCloud
             @ServiceEIP = ServiceEIP.new
             @ServiceEIP.deserialize(params['ServiceEIP'])
           end
+          @ServicePort = params['ServicePort']
         end
       end
 

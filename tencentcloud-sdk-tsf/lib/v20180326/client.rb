@@ -3776,6 +3776,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 禁用泳道规则
+
+        # @param request: Request instance for DisableLaneRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DisableLaneRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DisableLaneRuleResponse`
+        def DisableLaneRule(request)
+          body = send_request('DisableLaneRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableLaneRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停用任务
 
         # @param request: Request instance for DisableTask.
@@ -3930,6 +3954,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DraftApiGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用泳道规则
+
+        # @param request: Request instance for EnableLaneRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::EnableLaneRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::EnableLaneRuleResponse`
+        def EnableLaneRule(request)
+          body = send_request('EnableLaneRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableLaneRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
