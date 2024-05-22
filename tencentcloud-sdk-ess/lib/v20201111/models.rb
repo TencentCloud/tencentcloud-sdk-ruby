@@ -10334,9 +10334,11 @@ module TencentCloud
         # @param AdminName: 组织机构超管姓名。
         # 在注册流程中，必须是超管本人进行操作。
         # 如果法人做为超管管理组织机构,超管姓名就是法人姓名
+        # 如果入参中传递超管授权书PowerOfAttorneys，则此参数为必填参数。
         # @type AdminName: String
-        # @param AdminMobile: 组织机构超管姓名。
+        # @param AdminMobile: 组织机构超管手机号。
         # 在注册流程中，这个手机号必须跟操作人在电子签注册的个人手机号一致。
+        # 如果入参中传递超管授权书PowerOfAttorneys，则此参数为必填参数
         # @type AdminMobile: String
         # @param AuthorizationTypes: 可选的此企业允许的授权方式, 可以设置的方式有:
         # 1：上传授权书
@@ -10349,7 +10351,7 @@ module TencentCloud
         # `2. 如果当前的企业类型是政府/事业单位, 则只支持上传授权书+对公打款`
         # `3. 如果当前操作人是法人,则是法人认证`
         # @type AuthorizationTypes: Array
-        # @param AdminIdCardNumber: 认证人身份证号
+        # @param AdminIdCardNumber: 认证人身份证号，如果入参中传递超管授权书PowerOfAttorneys，则此参数为必填参数
         # @type AdminIdCardNumber: String
         # @param AdminIdCardType: 认证人证件类型
         # 支持以下类型
@@ -10359,10 +10361,16 @@ module TencentCloud
         # @type AdminIdCardType: String
         # @param BusinessLicense: 营业执照正面照(PNG或JPG) base64格式, 大小不超过5M
         # @type BusinessLicense: String
+        # @param PowerOfAttorneys: 授权书(PNG或JPG或PDF) base64格式, 大小不超过8M 。
+        # p.s. 如果上传授权书 ，需遵循以下条件
+        # 1. 超管的信息（超管姓名，超管身份证，超管手机号）必须为必填参数。
+        # 2. 超管的个人身份必须在电子签已经实名。
+        # 2. 认证方式AuthorizationTypes必须只能是上传授权书方式
+        # @type PowerOfAttorneys: Array
 
-        attr_accessor :OrganizationName, :UniformSocialCreditCode, :LegalName, :Address, :AdminName, :AdminMobile, :AuthorizationTypes, :AdminIdCardNumber, :AdminIdCardType, :BusinessLicense
+        attr_accessor :OrganizationName, :UniformSocialCreditCode, :LegalName, :Address, :AdminName, :AdminMobile, :AuthorizationTypes, :AdminIdCardNumber, :AdminIdCardType, :BusinessLicense, :PowerOfAttorneys
 
-        def initialize(organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, address=nil, adminname=nil, adminmobile=nil, authorizationtypes=nil, adminidcardnumber=nil, adminidcardtype=nil, businesslicense=nil)
+        def initialize(organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, address=nil, adminname=nil, adminmobile=nil, authorizationtypes=nil, adminidcardnumber=nil, adminidcardtype=nil, businesslicense=nil, powerofattorneys=nil)
           @OrganizationName = organizationname
           @UniformSocialCreditCode = uniformsocialcreditcode
           @LegalName = legalname
@@ -10373,6 +10381,7 @@ module TencentCloud
           @AdminIdCardNumber = adminidcardnumber
           @AdminIdCardType = adminidcardtype
           @BusinessLicense = businesslicense
+          @PowerOfAttorneys = powerofattorneys
         end
 
         def deserialize(params)
@@ -10386,6 +10395,7 @@ module TencentCloud
           @AdminIdCardNumber = params['AdminIdCardNumber']
           @AdminIdCardType = params['AdminIdCardType']
           @BusinessLicense = params['BusinessLicense']
+          @PowerOfAttorneys = params['PowerOfAttorneys']
         end
       end
 

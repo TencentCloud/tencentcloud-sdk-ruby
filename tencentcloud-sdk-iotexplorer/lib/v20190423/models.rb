@@ -8395,6 +8395,50 @@ module TencentCloud
         end
       end
 
+      # UpdateDeviceTWeCallAuthorizeStatus请求参数结构体
+      class UpdateDeviceTWeCallAuthorizeStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Status: TweCall授权状态：0未授权，1已授权
+        # @type Status: Integer
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param WechatOpenId: 微信用户的openId
+        # @type WechatOpenId: String
+
+        attr_accessor :Status, :ProductId, :DeviceName, :WechatOpenId
+
+        def initialize(status=nil, productid=nil, devicename=nil, wechatopenid=nil)
+          @Status = status
+          @ProductId = productid
+          @DeviceName = devicename
+          @WechatOpenId = wechatopenid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @WechatOpenId = params['WechatOpenId']
+        end
+      end
+
+      # UpdateDeviceTWeCallAuthorizeStatus返回参数结构体
+      class UpdateDeviceTWeCallAuthorizeStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateDevicesEnableState请求参数结构体
       class UpdateDevicesEnableStateRequest < TencentCloud::Common::AbstractModel
         # @param DevicesItems: 多个设备标识

@@ -10280,19 +10280,24 @@ module TencentCloud
         # @type SourceIp: String
         # @param SourcePort: vport
         # @type SourcePort: Integer
+        # @param BrokerIp: broker地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerIp: String
 
-        attr_accessor :Type, :SourceIp, :SourcePort
+        attr_accessor :Type, :SourceIp, :SourcePort, :BrokerIp
 
-        def initialize(type=nil, sourceip=nil, sourceport=nil)
+        def initialize(type=nil, sourceip=nil, sourceport=nil, brokerip=nil)
           @Type = type
           @SourceIp = sourceip
           @SourcePort = sourceport
+          @BrokerIp = brokerip
         end
 
         def deserialize(params)
           @Type = params['Type']
           @SourceIp = params['SourceIp']
           @SourcePort = params['SourcePort']
+          @BrokerIp = params['BrokerIp']
         end
       end
 

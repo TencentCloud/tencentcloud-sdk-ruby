@@ -53,54 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量创建模型加速任务
-
-        # @param request: Request instance for CreateBatchModelAccTasks.
-        # @type request: :class:`Tencentcloud::tione::V20211111::CreateBatchModelAccTasksRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateBatchModelAccTasksResponse`
-        def CreateBatchModelAccTasks(request)
-          body = send_request('CreateBatchModelAccTasks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateBatchModelAccTasksResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建批量预测任务
-
-        # @param request: Request instance for CreateBatchTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::CreateBatchTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateBatchTaskResponse`
-        def CreateBatchTask(request)
-          body = send_request('CreateBatchTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateBatchTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建数据集
 
         # @param request: Request instance for CreateDataset.
@@ -173,54 +125,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 保存镜像
-
-        # @param request: Request instance for CreateNotebookImage.
-        # @type request: :class:`Tencentcloud::tione::V20211111::CreateNotebookImageRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateNotebookImageResponse`
-        def CreateNotebookImage(request)
-          body = send_request('CreateNotebookImage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateNotebookImageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 保存优化模型
-
-        # @param request: Request instance for CreateOptimizedModel.
-        # @type request: :class:`Tencentcloud::tione::V20211111::CreateOptimizedModelRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateOptimizedModelResponse`
-        def CreateOptimizedModel(request)
-          body = send_request('CreateOptimizedModel', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateOptimizedModelResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 生成Notebook访问链接
 
         # @param request: Request instance for CreatePresignedNotebookUrl.
@@ -269,54 +173,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建模型训练任务
-
-        # @param request: Request instance for CreateTrainingTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::CreateTrainingTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateTrainingTaskResponse`
-        def CreateTrainingTask(request)
-          body = send_request('CreateTrainingTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateTrainingTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除批量预测任务
-
-        # @param request: Request instance for DeleteBatchTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteBatchTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteBatchTaskResponse`
-        def DeleteBatchTask(request)
-          body = send_request('DeleteBatchTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteBatchTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除数据集
 
         # @param request: Request instance for DeleteDataset.
@@ -327,30 +183,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDatasetResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除模型加速任务
-
-        # @param request: Request instance for DeleteModelAccelerateTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteModelAccelerateTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteModelAccelerateTaskResponse`
-        def DeleteModelAccelerateTask(request)
-          body = send_request('DeleteModelAccelerateTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteModelAccelerateTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -437,30 +269,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除notebook镜像保存记录
-
-        # @param request: Request instance for DeleteNotebookImageRecord.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteNotebookImageRecordRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteNotebookImageRecordResponse`
-        def DeleteNotebookImageRecord(request)
-          body = send_request('DeleteNotebookImageRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteNotebookImageRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除模型
 
         # @param request: Request instance for DeleteTrainingModel.
@@ -495,126 +303,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTrainingModelVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除训练任务
-
-        # @param request: Request instance for DeleteTrainingTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteTrainingTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteTrainingTaskResponse`
-        def DeleteTrainingTask(request)
-          body = send_request('DeleteTrainingTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteTrainingTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 列举API
-
-        # @param request: Request instance for DescribeAPIConfigs.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeAPIConfigsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeAPIConfigsResponse`
-        def DescribeAPIConfigs(request)
-          body = send_request('DescribeAPIConfigs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAPIConfigsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询批量预测任务
-
-        # @param request: Request instance for DescribeBatchTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBatchTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBatchTaskResponse`
-        def DescribeBatchTask(request)
-          body = send_request('DescribeBatchTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBatchTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询批量预测任务实例列表
-
-        # @param request: Request instance for DescribeBatchTaskInstances.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBatchTaskInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBatchTaskInstancesResponse`
-        def DescribeBatchTaskInstances(request)
-          body = send_request('DescribeBatchTaskInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBatchTaskInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询批量预测任务列表信息
-
-        # @param request: Request instance for DescribeBatchTasks.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBatchTasksRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBatchTasksResponse`
-        def DescribeBatchTasks(request)
-          body = send_request('DescribeBatchTasks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBatchTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -701,54 +389,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeBillingSpecs)用于查询计费项列表
-
-        # @param request: Request instance for DescribeBillingSpecs.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsResponse`
-        def DescribeBillingSpecs(request)
-          body = send_request('DescribeBillingSpecs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBillingSpecsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
-
-        # @param request: Request instance for DescribeBillingSpecsPrice.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsPriceRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsPriceResponse`
-        def DescribeBillingSpecsPrice(request)
-          body = send_request('DescribeBillingSpecsPrice', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBillingSpecsPriceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取内置镜像列表
 
         # @param request: Request instance for DescribeBuildInImages.
@@ -759,54 +399,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBuildInImagesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询结构化数据集详情
-
-        # @param request: Request instance for DescribeDatasetDetailStructured.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeDatasetDetailStructuredRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeDatasetDetailStructuredResponse`
-        def DescribeDatasetDetailStructured(request)
-          body = send_request('DescribeDatasetDetailStructured', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDatasetDetailStructuredResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询非结构化数据集详情
-
-        # @param request: Request instance for DescribeDatasetDetailUnstructured.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeDatasetDetailUnstructuredRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeDatasetDetailUnstructuredResponse`
-        def DescribeDatasetDetailUnstructured(request)
-          body = send_request('DescribeDatasetDetailUnstructured', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDatasetDetailUnstructuredResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -845,30 +437,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取任务式建模训练任务，Notebook，在线服务和批量预测任务的事件API
-
-        # @param request: Request instance for DescribeEvents.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeEventsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeEventsResponse`
-        def DescribeEvents(request)
-          body = send_request('DescribeEvents', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEventsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询推理镜像模板
 
         # @param request: Request instance for DescribeInferTemplates.
@@ -893,78 +461,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询最近上报的训练自定义指标
-
-        # @param request: Request instance for DescribeLatestTrainingMetrics.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeLatestTrainingMetricsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeLatestTrainingMetricsResponse`
-        def DescribeLatestTrainingMetrics(request)
-          body = send_request('DescribeLatestTrainingMetrics', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLatestTrainingMetricsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取任务式建模训练任务，Notebook，在线服务和批量预测任务的日志API
-
-        # @param request: Request instance for DescribeLogs.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeLogsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeLogsResponse`
-        def DescribeLogs(request)
-          body = send_request('DescribeLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLogsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询模型加速引擎版本列表
-
-        # @param request: Request instance for DescribeModelAccEngineVersions.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelAccEngineVersionsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelAccEngineVersionsResponse`
-        def DescribeModelAccEngineVersions(request)
-          body = send_request('DescribeModelAccEngineVersions', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeModelAccEngineVersionsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询模型优化任务详情
 
         # @param request: Request instance for DescribeModelAccelerateTask.
@@ -975,30 +471,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeModelAccelerateTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询模型加速任务列表
-
-        # @param request: Request instance for DescribeModelAccelerateTasks.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelAccelerateTasksRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelAccelerateTasksResponse`
-        def DescribeModelAccelerateTasks(request)
-          body = send_request('DescribeModelAccelerateTasks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeModelAccelerateTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1133,30 +605,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 展示服务的历史版本
-
-        # @param request: Request instance for DescribeModelServiceHistory.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelServiceHistoryRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelServiceHistoryResponse`
-        def DescribeModelServiceHistory(request)
-          body = send_request('DescribeModelServiceHistory', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeModelServiceHistoryResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于查询模型服务能否开启热更新
 
         # @param request: Request instance for DescribeModelServiceHotUpdated.
@@ -1167,30 +615,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeModelServiceHotUpdatedResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询多个服务
-
-        # @param request: Request instance for DescribeModelServices.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeModelServicesRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeModelServicesResponse`
-        def DescribeModelServices(request)
-          body = send_request('DescribeModelServices', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeModelServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1229,54 +653,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询镜像kernel
-
-        # @param request: Request instance for DescribeNotebookImageKernels.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeNotebookImageKernelsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeNotebookImageKernelsResponse`
-        def DescribeNotebookImageKernels(request)
-          body = send_request('DescribeNotebookImageKernels', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeNotebookImageKernelsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查看notebook镜像保存记录
-
-        # @param request: Request instance for DescribeNotebookImageRecords.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeNotebookImageRecordsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeNotebookImageRecordsResponse`
-        def DescribeNotebookImageRecords(request)
-          body = send_request('DescribeNotebookImageRecords', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeNotebookImageRecordsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # Notebook列表
 
         # @param request: Request instance for DescribeNotebooks.
@@ -1287,54 +663,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNotebooksResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 训练框架列表
-
-        # @param request: Request instance for DescribeTrainingFrameworks.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeTrainingFrameworksRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeTrainingFrameworksResponse`
-        def DescribeTrainingFrameworks(request)
-          body = send_request('DescribeTrainingFrameworks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTrainingFrameworksResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询训练自定义指标
-
-        # @param request: Request instance for DescribeTrainingMetrics.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeTrainingMetricsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeTrainingMetricsResponse`
-        def DescribeTrainingMetrics(request)
-          body = send_request('DescribeTrainingMetrics', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTrainingMetricsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1383,30 +711,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTrainingModelVersionsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 模型列表
-
-        # @param request: Request instance for DescribeTrainingModels.
-        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeTrainingModelsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeTrainingModelsResponse`
-        def DescribeTrainingModels(request)
-          body = send_request('DescribeTrainingModels', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTrainingModelsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1517,102 +821,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
-
-        # @param request: Request instance for ModifyModelServicePartialConfig.
-        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyModelServicePartialConfigRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyModelServicePartialConfigResponse`
-        def ModifyModelServicePartialConfig(request)
-          body = send_request('ModifyModelServicePartialConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyModelServicePartialConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改Notebook
-
-        # @param request: Request instance for ModifyNotebook.
-        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyNotebookRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyNotebookResponse`
-        def ModifyNotebook(request)
-          body = send_request('ModifyNotebook', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyNotebookResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改Notebook标签
-
-        # @param request: Request instance for ModifyNotebookTags.
-        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyNotebookTagsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyNotebookTagsResponse`
-        def ModifyNotebookTags(request)
-          body = send_request('ModifyNotebookTags', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyNotebookTagsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 更新推理服务组流量分配
-
-        # @param request: Request instance for ModifyServiceGroupWeights.
-        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyServiceGroupWeightsRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyServiceGroupWeightsResponse`
-        def ModifyServiceGroupWeights(request)
-          body = send_request('ModifyServiceGroupWeights', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyServiceGroupWeightsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 上报训练自定义指标
 
         # @param request: Request instance for PushTrainingMetrics.
@@ -1623,30 +831,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PushTrainingMetricsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 重启模型加速任务
-
-        # @param request: Request instance for RestartModelAccelerateTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::RestartModelAccelerateTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::RestartModelAccelerateTaskResponse`
-        def RestartModelAccelerateTask(request)
-          body = send_request('RestartModelAccelerateTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RestartModelAccelerateTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1709,78 +893,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启动模型训练任务
-
-        # @param request: Request instance for StartTrainingTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::StartTrainingTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::StartTrainingTaskResponse`
-        def StartTrainingTask(request)
-          body = send_request('StartTrainingTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StartTrainingTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 停止批量预测任务
-
-        # @param request: Request instance for StopBatchTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::StopBatchTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::StopBatchTaskResponse`
-        def StopBatchTask(request)
-          body = send_request('StopBatchTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StopBatchTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 停止保存镜像
-
-        # @param request: Request instance for StopCreatingImage.
-        # @type request: :class:`Tencentcloud::tione::V20211111::StopCreatingImageRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::StopCreatingImageResponse`
-        def StopCreatingImage(request)
-          body = send_request('StopCreatingImage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StopCreatingImageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 停止模型加速任务
 
         # @param request: Request instance for StopModelAccelerateTask.
@@ -1815,30 +927,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopNotebookResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 停止模型训练任务
-
-        # @param request: Request instance for StopTrainingTask.
-        # @type request: :class:`Tencentcloud::tione::V20211111::StopTrainingTaskRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::StopTrainingTaskResponse`
-        def StopTrainingTask(request)
-          body = send_request('StopTrainingTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StopTrainingTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
