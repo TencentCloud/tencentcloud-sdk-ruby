@@ -963,6 +963,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过此接口，创建子企业激活记录，集团企业管理员可针对未激活的成员企业进行激活。
+        # 激活子企业时请保证子企业 lisence 充足。
+        # 这个操作与页面端激活成员企业操作类似
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/c4e76fbac92e4ce451a03601c964793b.png)
+
+        # p.s.
+        # 此接口只能用于激活，不能用于续期。
+
+        # @param request: Request instance for CreateIntegrationSubOrganizationActiveRecord.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateIntegrationSubOrganizationActiveRecordRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateIntegrationSubOrganizationActiveRecordResponse`
+        def CreateIntegrationSubOrganizationActiveRecord(request)
+          body = send_request('CreateIntegrationSubOrganizationActiveRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIntegrationSubOrganizationActiveRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于赋予员工指定的角色权限，如需解绑请使用 DeleteIntegrationRoleUsers 接口。
 
         # @param request: Request instance for CreateIntegrationUserRoles.
@@ -1068,6 +1098,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateOrganizationBatchSignUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 生成集团加入链接，分享至子企业超管或者法人，子企业管理员可通过链接加入集团。
+        # 注意:调用当前接口的企业 必须为集团企业。如何成为集团企业可以参考下面的文档[集团操作文档](https://qian.tencent.com/document/86707)
+
+        # @param request: Request instance for CreateOrganizationGroupInvitationLink.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateOrganizationGroupInvitationLinkRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateOrganizationGroupInvitationLinkResponse`
+        def CreateOrganizationGroupInvitationLink(request)
+          body = send_request('CreateOrganizationGroupInvitationLink', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrganizationGroupInvitationLinkResponse.new
             model.deserialize(response['Response'])
             model
           else

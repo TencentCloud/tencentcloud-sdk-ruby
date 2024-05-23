@@ -7629,19 +7629,31 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 用于分页
         # @type Limit: Integer
+        # @param ClusterIds: 用于通过集群id过滤被绑定集群
+        # @type ClusterIds: Array
+        # @param ClusterTypes: 用于通过集群类型过滤被绑定集群
+        # @type ClusterTypes: Array
+        # @param ClusterName: 用于通过名称搜索被绑定集群
+        # @type ClusterName: String
 
-        attr_accessor :InstanceId, :Offset, :Limit
+        attr_accessor :InstanceId, :Offset, :Limit, :ClusterIds, :ClusterTypes, :ClusterName
 
-        def initialize(instanceid=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, clusterids=nil, clustertypes=nil, clustername=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
+          @ClusterIds = clusterids
+          @ClusterTypes = clustertypes
+          @ClusterName = clustername
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ClusterIds = params['ClusterIds']
+          @ClusterTypes = params['ClusterTypes']
+          @ClusterName = params['ClusterName']
         end
       end
 

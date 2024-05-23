@@ -620,7 +620,7 @@ module TencentCloud
 
       # 会话内容
       class Message < TencentCloud::Common::AbstractModel
-        # @param Role: 角色
+        # @param Role: 角色，可选值包括 system、user、assistant。
         # @type Role: String
         # @param Content: 文本内容
         # @type Content: String

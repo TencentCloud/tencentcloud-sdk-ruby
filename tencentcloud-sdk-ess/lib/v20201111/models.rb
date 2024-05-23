@@ -3508,6 +3508,49 @@ module TencentCloud
         end
       end
 
+      # CreateIntegrationSubOrganizationActiveRecord请求参数结构体
+      class CreateIntegrationSubOrganizationActiveRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param SubOrganizationIds: 待激活成员企业ID集合
+        # @type SubOrganizationIds: Array
+
+        attr_accessor :Operator, :SubOrganizationIds
+
+        def initialize(operator=nil, suborganizationids=nil)
+          @Operator = operator
+          @SubOrganizationIds = suborganizationids
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @SubOrganizationIds = params['SubOrganizationIds']
+        end
+      end
+
+      # CreateIntegrationSubOrganizationActiveRecord返回参数结构体
+      class CreateIntegrationSubOrganizationActiveRecordResponse < TencentCloud::Common::AbstractModel
+        # @param FailedSubOrganizationIds: 激活失败的成员企业ID集合
+        # @type FailedSubOrganizationIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedSubOrganizationIds, :RequestId
+
+        def initialize(failedsuborganizationids=nil, requestid=nil)
+          @FailedSubOrganizationIds = failedsuborganizationids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedSubOrganizationIds = params['FailedSubOrganizationIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateIntegrationUserRoles请求参数结构体
       class CreateIntegrationUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
@@ -3930,6 +3973,72 @@ module TencentCloud
         def deserialize(params)
           @SignUrl = params['SignUrl']
           @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOrganizationGroupInvitationLink请求参数结构体
+      class CreateOrganizationGroupInvitationLinkRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ExpireTime: 到期时间（以秒为单位的时间戳），其上限为30天的有效期限。
+        # @type ExpireTime: Integer
+
+        attr_accessor :Operator, :ExpireTime
+
+        def initialize(operator=nil, expiretime=nil)
+          @Operator = operator
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # CreateOrganizationGroupInvitationLink返回参数结构体
+      class CreateOrganizationGroupInvitationLinkResponse < TencentCloud::Common::AbstractModel
+        # @param Link: 加入集团二维码链接，子企业的管理员可以直接扫码进入。
+        # 注意:1. 该链接有效期时间为ExpireTime，同时需要注意保密，不要外泄给无关用户。2. 该链接不支持小程序嵌入，仅支持<b>移动端浏览器</b>打开。3. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
+        # @type Link: String
+        # @param ExpireTime: 到期时间（以秒为单位的时间戳）
+        # @type ExpireTime: Integer
+        # @param JumpUrl: 加入集团短链接。
+        # 注意:
+        # 1. 该链接有效期时间为ExpireTime，同时需要注意保密，不要外泄给无关用户。
+        # 2. 该链接不支持小程序嵌入，仅支持<b>移动端浏览器</b>打开。
+        # 3. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
+        # @type JumpUrl: String
+        # @param MiniAppPath: 腾讯电子签小程序加入集团链接。
+
+        # <li>小程序和APP集成使用</li>
+        # <li>得到的链接类似于`pages/guide?shortKey=yDw***k1xFc5`, 用法可以参考：<a href="https://qian.tencent.com/developers/company/openwxminiprogram" target="_blank">跳转电子签小程序</a></li>
+
+
+        # 注： <font color="red">生成的链路后面不能再增加参数</font>
+        # @type MiniAppPath: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Link, :ExpireTime, :JumpUrl, :MiniAppPath, :RequestId
+
+        def initialize(link=nil, expiretime=nil, jumpurl=nil, miniapppath=nil, requestid=nil)
+          @Link = link
+          @ExpireTime = expiretime
+          @JumpUrl = jumpurl
+          @MiniAppPath = miniapppath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Link = params['Link']
+          @ExpireTime = params['ExpireTime']
+          @JumpUrl = params['JumpUrl']
+          @MiniAppPath = params['MiniAppPath']
           @RequestId = params['RequestId']
         end
       end

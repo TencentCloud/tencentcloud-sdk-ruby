@@ -1906,7 +1906,7 @@ module TencentCloud
       class DescribeDiagDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param IsSupported: 是否是DBbrain支持的实例，固定传 true。
         # @type IsSupported: Boolean
-        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"cynosdb" - 云数据库 TDSQL-C for MySQL，"dbbrain-mysql" - 自建 MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"cynosdb" - 云数据库 TDSQL-C for MySQL，"dbbrain-mysql" - 自建 MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
         # @param Offset: 分页参数，偏移量。
         # @type Offset: Integer
@@ -2484,6 +2484,66 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisBigKeyAnalysisTasks请求参数结构体
+      class DescribeRedisBigKeyAnalysisTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Limit: 查询数目，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :Product, :InstanceId, :Limit, :Offset
+
+        def initialize(product=nil, instanceid=nil, limit=nil, offset=nil)
+          @Product = product
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeRedisBigKeyAnalysisTasks返回参数结构体
+      class DescribeRedisBigKeyAnalysisTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 任务总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Tasks: 任务列表。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              redisbigkeytask_tmp = RedisBigKeyTask.new
+              redisbigkeytask_tmp.deserialize(i)
+              @Tasks << redisbigkeytask_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3922,14 +3982,18 @@ module TencentCloud
         # @param ShardNum: 分片节点数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardNum: String
+        # @param AnalysisTopKey: 是否开启大key周期性分析，仅redis产品有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisTopKey: String
 
-        attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters, :ShardNum
+        attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters, :ShardNum, :AnalysisTopKey
 
-        def initialize(dailyinspection=nil, overviewdisplay=nil, keydelimiters=nil, shardnum=nil)
+        def initialize(dailyinspection=nil, overviewdisplay=nil, keydelimiters=nil, shardnum=nil, analysistopkey=nil)
           @DailyInspection = dailyinspection
           @OverviewDisplay = overviewdisplay
           @KeyDelimiters = keydelimiters
           @ShardNum = shardnum
+          @AnalysisTopKey = analysistopkey
         end
 
         def deserialize(params)
@@ -3937,6 +4001,7 @@ module TencentCloud
           @OverviewDisplay = params['OverviewDisplay']
           @KeyDelimiters = params['KeyDelimiters']
           @ShardNum = params['ShardNum']
+          @AnalysisTopKey = params['AnalysisTopKey']
         end
       end
 
@@ -4397,7 +4462,7 @@ module TencentCloud
         # @type InstanceConfs: :class:`Tencentcloud::Dbbrain.v20210527.models.InstanceConfs`
         # @param Regions: 生效实例地域，取值为"All"，代表全地域。
         # @type Regions: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"redis" - 云数据库 Redis。
         # @type Product: String
         # @param InstanceIds: 指定更改巡检状态的实例ID。
         # @type InstanceIds: Array
@@ -4908,6 +4973,46 @@ module TencentCloud
         def deserialize(params)
           @UinName = params['UinName']
           @Uin = params['Uin']
+        end
+      end
+
+      # Redis大Key分析任务详情。
+      class RedisBigKeyTask < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务请求 ID。
+        # @type AsyncRequestId: Integer
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: String
+        # @param StartTime: 任务开始时间。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间。
+        # @type EndTime: String
+        # @param TaskStatus: 任务状态。
+        # @type TaskStatus: String
+        # @param Progress: 任务执行进度。
+        # @type Progress: Integer
+        # @param ShardIds: 任务包含的分片节点序号列表。
+        # @type ShardIds: Array
+
+        attr_accessor :AsyncRequestId, :CreateTime, :StartTime, :EndTime, :TaskStatus, :Progress, :ShardIds
+
+        def initialize(asyncrequestid=nil, createtime=nil, starttime=nil, endtime=nil, taskstatus=nil, progress=nil, shardids=nil)
+          @AsyncRequestId = asyncrequestid
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskStatus = taskstatus
+          @Progress = progress
+          @ShardIds = shardids
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskStatus = params['TaskStatus']
+          @Progress = params['Progress']
+          @ShardIds = params['ShardIds']
         end
       end
 

@@ -12595,6 +12595,7 @@ module TencentCloud
         # <li>AsrFullTextRecognition：语音全文识别，</li>
         # <li>OcrFullTextRecognition：文本全文识别。</li>
         # <li>TransTextRecognition：语音翻译。</li>
+        # <li>ObjectRecognition：目标检测。</li>
         # <li>TagRecognition：精彩打点。</li>
         # @type Type: String
         # @param FaceRecognitionResultSet: 人脸识别结果，当 Type 为
@@ -12614,13 +12615,15 @@ module TencentCloud
         # @type OcrFullTextRecognitionResultSet: Array
         # @param TransTextRecognitionResultSet: 翻译结果，当Type 为 TransTextRecognition 时有效。
         # @type TransTextRecognitionResultSet: Array
+        # @param ObjectRecognitionResultSet: 目标检测结果，当Type为 ObjectRecognition 时有效。
+        # @type ObjectRecognitionResultSet: Array
         # @param TagRecognitionResultSet: 打点结果，当Type 为 TagRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagRecognitionResultSet: Array
 
-        attr_accessor :Type, :FaceRecognitionResultSet, :AsrWordsRecognitionResultSet, :OcrWordsRecognitionResultSet, :AsrFullTextRecognitionResultSet, :OcrFullTextRecognitionResultSet, :TransTextRecognitionResultSet, :TagRecognitionResultSet
+        attr_accessor :Type, :FaceRecognitionResultSet, :AsrWordsRecognitionResultSet, :OcrWordsRecognitionResultSet, :AsrFullTextRecognitionResultSet, :OcrFullTextRecognitionResultSet, :TransTextRecognitionResultSet, :ObjectRecognitionResultSet, :TagRecognitionResultSet
 
-        def initialize(type=nil, facerecognitionresultset=nil, asrwordsrecognitionresultset=nil, ocrwordsrecognitionresultset=nil, asrfulltextrecognitionresultset=nil, ocrfulltextrecognitionresultset=nil, transtextrecognitionresultset=nil, tagrecognitionresultset=nil)
+        def initialize(type=nil, facerecognitionresultset=nil, asrwordsrecognitionresultset=nil, ocrwordsrecognitionresultset=nil, asrfulltextrecognitionresultset=nil, ocrfulltextrecognitionresultset=nil, transtextrecognitionresultset=nil, objectrecognitionresultset=nil, tagrecognitionresultset=nil)
           @Type = type
           @FaceRecognitionResultSet = facerecognitionresultset
           @AsrWordsRecognitionResultSet = asrwordsrecognitionresultset
@@ -12628,6 +12631,7 @@ module TencentCloud
           @AsrFullTextRecognitionResultSet = asrfulltextrecognitionresultset
           @OcrFullTextRecognitionResultSet = ocrfulltextrecognitionresultset
           @TransTextRecognitionResultSet = transtextrecognitionresultset
+          @ObjectRecognitionResultSet = objectrecognitionresultset
           @TagRecognitionResultSet = tagrecognitionresultset
         end
 
@@ -12679,6 +12683,14 @@ module TencentCloud
               livestreamtranstextrecognitionresult_tmp = LiveStreamTransTextRecognitionResult.new
               livestreamtranstextrecognitionresult_tmp.deserialize(i)
               @TransTextRecognitionResultSet << livestreamtranstextrecognitionresult_tmp
+            end
+          end
+          unless params['ObjectRecognitionResultSet'].nil?
+            @ObjectRecognitionResultSet = []
+            params['ObjectRecognitionResultSet'].each do |i|
+              livestreamobjectrecognitionresult_tmp = LiveStreamObjectRecognitionResult.new
+              livestreamobjectrecognitionresult_tmp.deserialize(i)
+              @ObjectRecognitionResultSet << livestreamobjectrecognitionresult_tmp
             end
           end
           unless params['TagRecognitionResultSet'].nil?
@@ -13076,6 +13088,38 @@ module TencentCloud
           @Type = params['Type']
           @StartPtsTime = params['StartPtsTime']
           @EndPtsTime = params['EndPtsTime']
+          @Confidence = params['Confidence']
+          @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
+      # 直播 AI 物体识别结果
+      class LiveStreamObjectRecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Name: 识别的物体名称。
+        # @type Name: String
+        # @param StartPtsOffset: 识别片段起始的 PTS 时间，单位：秒。
+        # @type StartPtsOffset: Float
+        # @param EndPtsOffset: 识别片段终止的 PTS 时间，单位：秒。
+        # @type EndPtsOffset: Float
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param AreaCoordSet: 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :Name, :StartPtsOffset, :EndPtsOffset, :Confidence, :AreaCoordSet
+
+        def initialize(name=nil, startptsoffset=nil, endptsoffset=nil, confidence=nil, areacoordset=nil)
+          @Name = name
+          @StartPtsOffset = startptsoffset
+          @EndPtsOffset = endptsoffset
+          @Confidence = confidence
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @StartPtsOffset = params['StartPtsOffset']
+          @EndPtsOffset = params['EndPtsOffset']
           @Confidence = params['Confidence']
           @AreaCoordSet = params['AreaCoordSet']
         end

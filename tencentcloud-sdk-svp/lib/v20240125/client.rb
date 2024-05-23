@@ -53,6 +53,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询节省计划抵扣明细
+
+        # @param request: Request instance for DescribeSavingPlanDeduct.
+        # @type request: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanDeductRequest`
+        # @rtype: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanDeductResponse`
+        def DescribeSavingPlanDeduct(request)
+          body = send_request('DescribeSavingPlanDeduct', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSavingPlanDeductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查用当前用户明细节省计划总览查询时段内的使用情况
+
+        # @param request: Request instance for DescribeSavingPlanOverview.
+        # @type request: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanOverviewRequest`
+        # @rtype: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanOverviewResponse`
+        def DescribeSavingPlanOverview(request)
+          body = send_request('DescribeSavingPlanOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSavingPlanOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查用当前用户明细节省计划查询时段内的使用情况
+
+        # @param request: Request instance for DescribeSavingPlanUsage.
+        # @type request: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanUsageRequest`
+        # @rtype: :class:`Tencentcloud::svp::V20240125::DescribeSavingPlanUsageResponse`
+        def DescribeSavingPlanUsage(request)
+          body = send_request('DescribeSavingPlanUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSavingPlanUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

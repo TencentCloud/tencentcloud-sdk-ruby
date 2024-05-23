@@ -2514,20 +2514,24 @@ module TencentCloud
         # @type PrepareFlowUrl: String
         # @param PreviewFlowUrl: 合同发起后预览链接， 注意此时合同并未发起，仅只是展示效果， 有效期为5分钟
         # @type PreviewFlowUrl: String
+        # @param FlowId: 发起的合同临时Id， 只有当点击进入链接，成功发起合同后， 此Id才有效
+        # @type FlowId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PrepareFlowUrl, :PreviewFlowUrl, :RequestId
+        attr_accessor :PrepareFlowUrl, :PreviewFlowUrl, :FlowId, :RequestId
 
-        def initialize(prepareflowurl=nil, previewflowurl=nil, requestid=nil)
+        def initialize(prepareflowurl=nil, previewflowurl=nil, flowid=nil, requestid=nil)
           @PrepareFlowUrl = prepareflowurl
           @PreviewFlowUrl = previewflowurl
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @PrepareFlowUrl = params['PrepareFlowUrl']
           @PreviewFlowUrl = params['PreviewFlowUrl']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

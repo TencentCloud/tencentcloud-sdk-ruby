@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加数据优化资源
+
+        # @param request: Request instance for AddOptimizerEngines.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AddOptimizerEnginesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AddOptimizerEnginesResponse`
+        def AddOptimizerEngines(request)
+          body = send_request('AddOptimizerEngines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddOptimizerEnginesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加用户到工作组
 
         # @param request: Request instance for AddUsersToWorkGroup.
@@ -2007,6 +2031,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（DescribeTasksCostInfo）用于查询任务消耗
+
+        # @param request: Request instance for DescribeTasksCostInfo.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTasksCostInfoRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeTasksCostInfoResponse`
+        def DescribeTasksCostInfo(request)
+          body = send_request('DescribeTasksCostInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTasksCostInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
