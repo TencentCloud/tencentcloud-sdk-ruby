@@ -9283,10 +9283,13 @@ module TencentCloud
         # 1: 开启自动续费
         # 2: 明确不自动续费
         # @type RenewFlag: Integer
+        # @param Channel: 实例渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Channel: String
 
-        attr_accessor :DspaId, :DspaName, :DspaDescription, :DBAuthCount, :CosBindCount, :InstanceVersion, :Status, :ExpiredAt, :AppId, :TrialVersion, :TrialEndAt, :DbTotalQuota, :CosTotalQuota, :CosQuotaUnit, :RenewFlag
+        attr_accessor :DspaId, :DspaName, :DspaDescription, :DBAuthCount, :CosBindCount, :InstanceVersion, :Status, :ExpiredAt, :AppId, :TrialVersion, :TrialEndAt, :DbTotalQuota, :CosTotalQuota, :CosQuotaUnit, :RenewFlag, :Channel
 
-        def initialize(dspaid=nil, dspaname=nil, dspadescription=nil, dbauthcount=nil, cosbindcount=nil, instanceversion=nil, status=nil, expiredat=nil, appid=nil, trialversion=nil, trialendat=nil, dbtotalquota=nil, costotalquota=nil, cosquotaunit=nil, renewflag=nil)
+        def initialize(dspaid=nil, dspaname=nil, dspadescription=nil, dbauthcount=nil, cosbindcount=nil, instanceversion=nil, status=nil, expiredat=nil, appid=nil, trialversion=nil, trialendat=nil, dbtotalquota=nil, costotalquota=nil, cosquotaunit=nil, renewflag=nil, channel=nil)
           @DspaId = dspaid
           @DspaName = dspaname
           @DspaDescription = dspadescription
@@ -9302,6 +9305,7 @@ module TencentCloud
           @CosTotalQuota = costotalquota
           @CosQuotaUnit = cosquotaunit
           @RenewFlag = renewflag
+          @Channel = channel
         end
 
         def deserialize(params)
@@ -9320,6 +9324,7 @@ module TencentCloud
           @CosTotalQuota = params['CosTotalQuota']
           @CosQuotaUnit = params['CosQuotaUnit']
           @RenewFlag = params['RenewFlag']
+          @Channel = params['Channel']
         end
       end
 

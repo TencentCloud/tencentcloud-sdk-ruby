@@ -202,6 +202,8 @@ module TencentCloud
         # @type Memory: Integer
         # @param ReadOnlyCount: 新增只读实例数，取值范围为(0,15]
         # @type ReadOnlyCount: Integer
+        # @param DeviceType: 实例机器类型
+        # @type DeviceType: String
         # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
         # @type InstanceGrpId: String
         # @param VpcId: 所属VPC网络ID。
@@ -230,16 +232,17 @@ module TencentCloud
         # @param UpgradeProxy: proxy同步升级
         # @type UpgradeProxy: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeProxy`
 
-        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
+        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
         deprecate :InstanceGrpId, :none, 2024, 5
         deprecate :InstanceGrpId=, :none, 2024, 5
 
-        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
+        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Memory = memory
           @ReadOnlyCount = readonlycount
+          @DeviceType = devicetype
           @InstanceGrpId = instancegrpid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -260,6 +263,7 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @ReadOnlyCount = params['ReadOnlyCount']
+          @DeviceType = params['DeviceType']
           @InstanceGrpId = params['InstanceGrpId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
@@ -1433,10 +1437,16 @@ module TencentCloud
         # @param ServerlessStatus: serverless实例子状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerlessStatus: String
+        # @param InstanceTasks: 实例任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTasks: Array
+        # @param InstanceDeviceType: 实例机器类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceDeviceType: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -1450,6 +1460,8 @@ module TencentCloud
           @MaintainDuration = maintainduration
           @MaintainWeekDays = maintainweekdays
           @ServerlessStatus = serverlessstatus
+          @InstanceTasks = instancetasks
+          @InstanceDeviceType = instancedevicetype
         end
 
         def deserialize(params)
@@ -1466,6 +1478,15 @@ module TencentCloud
           @MaintainDuration = params['MaintainDuration']
           @MaintainWeekDays = params['MaintainWeekDays']
           @ServerlessStatus = params['ServerlessStatus']
+          unless params['InstanceTasks'].nil?
+            @InstanceTasks = []
+            params['InstanceTasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @InstanceTasks << objecttask_tmp
+            end
+          end
+          @InstanceDeviceType = params['InstanceDeviceType']
         end
       end
 
@@ -3286,10 +3307,13 @@ module TencentCloud
         # @param InstanceAbility: 当前实例支持的能力
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
+        # @param DeviceType: 实例机器类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -3344,6 +3368,7 @@ module TencentCloud
           @ResourcePackages = resourcepackages
           @InstanceIndexMode = instanceindexmode
           @InstanceAbility = instanceability
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
@@ -3432,6 +3457,7 @@ module TencentCloud
             @InstanceAbility = InstanceAbility.new
             @InstanceAbility.deserialize(params['InstanceAbility'])
           end
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -6099,17 +6125,21 @@ module TencentCloud
         # @type DbType: String
         # @param IncludeZoneStocks: 是否需要返回可用区信息
         # @type IncludeZoneStocks: Boolean
+        # @param DeviceType: 实例机器类型
+        # @type DeviceType: String
 
-        attr_accessor :DbType, :IncludeZoneStocks
+        attr_accessor :DbType, :IncludeZoneStocks, :DeviceType
 
-        def initialize(dbtype=nil, includezonestocks=nil)
+        def initialize(dbtype=nil, includezonestocks=nil, devicetype=nil)
           @DbType = dbtype
           @IncludeZoneStocks = includezonestocks
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
           @DbType = params['DbType']
           @IncludeZoneStocks = params['IncludeZoneStocks']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -7549,6 +7579,8 @@ module TencentCloud
         # @type InstancePayMode: String
         # @param StoragePayMode: 存储购买类型，可选值为：PREPAID, POSTPAID
         # @type StoragePayMode: String
+        # @param DeviceType: 实例设备类型
+        # @type DeviceType: String
         # @param Cpu: CPU核数，PREPAID与POSTPAID实例类型必传
         # @type Cpu: Integer
         # @param Memory: 内存大小，单位G，PREPAID与POSTPAID实例类型必传
@@ -7562,13 +7594,14 @@ module TencentCloud
         # @param TimeUnit: 时长单位，可选值为：m,d。PREPAID购买类型必传
         # @type TimeUnit: String
 
-        attr_accessor :Zone, :GoodsNum, :InstancePayMode, :StoragePayMode, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit
+        attr_accessor :Zone, :GoodsNum, :InstancePayMode, :StoragePayMode, :DeviceType, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit
 
-        def initialize(zone=nil, goodsnum=nil, instancepaymode=nil, storagepaymode=nil, cpu=nil, memory=nil, ccu=nil, storagelimit=nil, timespan=nil, timeunit=nil)
+        def initialize(zone=nil, goodsnum=nil, instancepaymode=nil, storagepaymode=nil, devicetype=nil, cpu=nil, memory=nil, ccu=nil, storagelimit=nil, timespan=nil, timeunit=nil)
           @Zone = zone
           @GoodsNum = goodsnum
           @InstancePayMode = instancepaymode
           @StoragePayMode = storagepaymode
+          @DeviceType = devicetype
           @Cpu = cpu
           @Memory = memory
           @Ccu = ccu
@@ -7582,6 +7615,7 @@ module TencentCloud
           @GoodsNum = params['GoodsNum']
           @InstancePayMode = params['InstancePayMode']
           @StoragePayMode = params['StoragePayMode']
+          @DeviceType = params['DeviceType']
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @Ccu = params['Ccu']
@@ -7953,10 +7987,12 @@ module TencentCloud
         # @type MinRoCpu: Float
         # @param MaxRoCpu: Serverless实例最大规格
         # @type MaxRoCpu: Float
+        # @param DeviceType: 实例机器类型
+        # @type DeviceType: String
 
-        attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount, :MinRoCount, :MaxRoCount, :MinRoCpu, :MaxRoCpu
+        attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount, :MinRoCount, :MaxRoCount, :MinRoCpu, :MaxRoCpu, :DeviceType
 
-        def initialize(cpu=nil, memory=nil, instancetype=nil, instancecount=nil, minrocount=nil, maxrocount=nil, minrocpu=nil, maxrocpu=nil)
+        def initialize(cpu=nil, memory=nil, instancetype=nil, instancecount=nil, minrocount=nil, maxrocount=nil, minrocpu=nil, maxrocpu=nil, devicetype=nil)
           @Cpu = cpu
           @Memory = memory
           @InstanceType = instancetype
@@ -7965,6 +8001,7 @@ module TencentCloud
           @MaxRoCount = maxrocount
           @MinRoCpu = minrocpu
           @MaxRoCpu = maxrocpu
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
@@ -7976,6 +8013,7 @@ module TencentCloud
           @MaxRoCount = params['MaxRoCount']
           @MinRoCpu = params['MinRoCpu']
           @MaxRoCpu = params['MaxRoCpu']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -9212,18 +9250,26 @@ module TencentCloud
         # @type OldMemory: Integer
         # @param OldStorageLimit: 变配前存储上限
         # @type OldStorageLimit: Integer
+        # @param OldDeviceType: 变配前实例机器类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldDeviceType: String
+        # @param DeviceType: 变配后实例机器类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
         # @param UpgradeType: 升级方式。升级完成后切换或维护时间内切换
         # @type UpgradeType: String
 
-        attr_accessor :Cpu, :Memory, :StorageLimit, :OldCpu, :OldMemory, :OldStorageLimit, :UpgradeType
+        attr_accessor :Cpu, :Memory, :StorageLimit, :OldCpu, :OldMemory, :OldStorageLimit, :OldDeviceType, :DeviceType, :UpgradeType
 
-        def initialize(cpu=nil, memory=nil, storagelimit=nil, oldcpu=nil, oldmemory=nil, oldstoragelimit=nil, upgradetype=nil)
+        def initialize(cpu=nil, memory=nil, storagelimit=nil, oldcpu=nil, oldmemory=nil, oldstoragelimit=nil, olddevicetype=nil, devicetype=nil, upgradetype=nil)
           @Cpu = cpu
           @Memory = memory
           @StorageLimit = storagelimit
           @OldCpu = oldcpu
           @OldMemory = oldmemory
           @OldStorageLimit = oldstoragelimit
+          @OldDeviceType = olddevicetype
+          @DeviceType = devicetype
           @UpgradeType = upgradetype
         end
 
@@ -9234,6 +9280,8 @@ module TencentCloud
           @OldCpu = params['OldCpu']
           @OldMemory = params['OldMemory']
           @OldStorageLimit = params['OldStorageLimit']
+          @OldDeviceType = params['OldDeviceType']
+          @DeviceType = params['DeviceType']
           @UpgradeType = params['UpgradeType']
         end
       end
@@ -11846,14 +11894,20 @@ module TencentCloud
         # @type Zone: String
         # @param OriginalClusterId: 回档时，传入源集群ID，用于查找源poolId
         # @type OriginalClusterId: String
-        # @param ClusterName: 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）
-        # @type ClusterName: String
         # @param UniqVpcId: 所属VPC网络ID
         # @type UniqVpcId: String
         # @param UniqSubnetId: 所属子网ID
         # @type UniqSubnetId: String
+        # @param ClusterName: 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）
+        # @type ClusterName: String
+        # @param RollbackId: 快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效
+        # @type RollbackId: Integer
+        # @param ExpectTime: 时间点回档，指定时间；快照回档，快照时间
+        # @type ExpectTime: String
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer
+        # @param ResourceTags: 集群创建需要绑定的tag数组信息
+        # @type ResourceTags: Array
         # @param DbMode: Db类型
         # 当DbType为MYSQL时可选(默认NORMAL)：
         # <li>NORMAL</li>
@@ -11879,28 +11933,27 @@ module TencentCloud
         # @type AlarmPolicyIds: Array
         # @param ClusterParams: 参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感
         # @type ClusterParams: Array
-        # @param DealMode: 0-下单并支付 1-下单
-        # @type DealMode: Integer
         # @param ParamTemplateId: 参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID
         # @type ParamTemplateId: Integer
-        # @param ResourceTags: 集群创建需要绑定的tag数组信息
-        # @type ResourceTags: Array
         # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
         # @type InstanceInitInfos: Array
-        # @param RollbackId: 快照回档，表示snapshotId；时间点回档，表示queryId，为0，表示需要判断时间点是否有效
-        # @type RollbackId: Integer
-        # @param ExpectTime: 时间点回档，指定时间；快照回档，快照时间
-        # @type ExpectTime: String
+        # @param DealMode: 0-下单并支付 1-下单
+        # @type DealMode: Integer
+        # @param PayMode: 计算节点付费模式：0-按量计费，1-预付费
+        # @type PayMode: Integer
 
-        attr_accessor :Zone, :OriginalClusterId, :ClusterName, :UniqVpcId, :UniqSubnetId, :AutoVoucher, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :ResourceTags, :InstanceInitInfos, :RollbackId, :ExpectTime
+        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode
 
-        def initialize(zone=nil, originalclusterid=nil, clustername=nil, uniqvpcid=nil, uniqsubnetid=nil, autovoucher=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, resourcetags=nil, instanceinitinfos=nil, rollbackid=nil, expecttime=nil)
+        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil)
           @Zone = zone
           @OriginalClusterId = originalclusterid
-          @ClusterName = clustername
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
+          @ClusterName = clustername
+          @RollbackId = rollbackid
+          @ExpectTime = expecttime
           @AutoVoucher = autovoucher
+          @ResourceTags = resourcetags
           @DbMode = dbmode
           @MinCpu = mincpu
           @MaxCpu = maxcpu
@@ -11909,21 +11962,29 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @AlarmPolicyIds = alarmpolicyids
           @ClusterParams = clusterparams
-          @DealMode = dealmode
           @ParamTemplateId = paramtemplateid
-          @ResourceTags = resourcetags
           @InstanceInitInfos = instanceinitinfos
-          @RollbackId = rollbackid
-          @ExpectTime = expecttime
+          @DealMode = dealmode
+          @PayMode = paymode
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @OriginalClusterId = params['OriginalClusterId']
-          @ClusterName = params['ClusterName']
           @UniqVpcId = params['UniqVpcId']
           @UniqSubnetId = params['UniqSubnetId']
+          @ClusterName = params['ClusterName']
+          @RollbackId = params['RollbackId']
+          @ExpectTime = params['ExpectTime']
           @AutoVoucher = params['AutoVoucher']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @DbMode = params['DbMode']
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
@@ -11939,16 +12000,7 @@ module TencentCloud
               @ClusterParams << paramitem_tmp
             end
           end
-          @DealMode = params['DealMode']
           @ParamTemplateId = params['ParamTemplateId']
-          unless params['ResourceTags'].nil?
-            @ResourceTags = []
-            params['ResourceTags'].each do |i|
-              tag_tmp = Tag.new
-              tag_tmp.deserialize(i)
-              @ResourceTags << tag_tmp
-            end
-          end
           unless params['InstanceInitInfos'].nil?
             @InstanceInitInfos = []
             params['InstanceInitInfos'].each do |i|
@@ -11957,8 +12009,8 @@ module TencentCloud
               @InstanceInitInfos << instanceinitinfo_tmp
             end
           end
-          @RollbackId = params['RollbackId']
-          @ExpectTime = params['ExpectTime']
+          @DealMode = params['DealMode']
+          @PayMode = params['PayMode']
         end
       end
 
@@ -13067,6 +13119,8 @@ module TencentCloud
         # @type Memory: Integer
         # @param UpgradeType: 升级类型：upgradeImmediate，upgradeInMaintain
         # @type UpgradeType: String
+        # @param DeviceType: 实例机器类型
+        # @type DeviceType: String
         # @param StorageLimit: 该参数已废弃
         # @type StorageLimit: Integer
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
@@ -13080,13 +13134,14 @@ module TencentCloud
         # @param UpgradeProxy: proxy同步升级
         # @type UpgradeProxy: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeProxy`
 
-        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType, :DealMode, :UpgradeMode, :UpgradeProxy
+        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :DeviceType, :StorageLimit, :AutoVoucher, :DbType, :DealMode, :UpgradeMode, :UpgradeProxy
 
-        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil, upgrademode=nil, upgradeproxy=nil)
+        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, devicetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil, upgrademode=nil, upgradeproxy=nil)
           @InstanceId = instanceid
           @Cpu = cpu
           @Memory = memory
           @UpgradeType = upgradetype
+          @DeviceType = devicetype
           @StorageLimit = storagelimit
           @AutoVoucher = autovoucher
           @DbType = dbtype
@@ -13100,6 +13155,7 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @UpgradeType = params['UpgradeType']
+          @DeviceType = params['DeviceType']
           @StorageLimit = params['StorageLimit']
           @AutoVoucher = params['AutoVoucher']
           @DbType = params['DbType']

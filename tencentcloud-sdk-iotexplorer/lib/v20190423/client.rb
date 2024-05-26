@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 激活
+
+        # @param request: Request instance for ActivateTWeCallLicense.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ActivateTWeCallLicenseRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ActivateTWeCallLicenseResponse`
+        def ActivateTWeCallLicense(request)
+          body = send_request('ActivateTWeCallLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateTWeCallLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分配License
+
+        # @param request: Request instance for AssignTWeCallLicense.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::AssignTWeCallLicenseRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::AssignTWeCallLicenseResponse`
+        def AssignTWeCallLicense(request)
+          body = send_request('AssignTWeCallLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssignTWeCallLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定云存用户
 
         # @param request: Request instance for BindCloudStorageUser.
@@ -135,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CallDeviceActionSyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取消分配
+
+        # @param request: Request instance for CancelAssignTWeCallLicense.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CancelAssignTWeCallLicenseRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CancelAssignTWeCallLicenseResponse`
+        def CancelAssignTWeCallLicense(request)
+          body = send_request('CancelAssignTWeCallLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelAssignTWeCallLicenseResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2021,6 +2093,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询小程序列表
+
+        # @param request: Request instance for GetAuthMiniProgramAppList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetAuthMiniProgramAppListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetAuthMiniProgramAppListResponse`
+        def GetAuthMiniProgramAppList(request)
+          body = send_request('GetAuthMiniProgramAppList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAuthMiniProgramAppListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出量产数据列表信息。
 
         # @param request: Request instance for GetBatchProductionsList.
@@ -2271,6 +2367,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetStudioProductListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询激活状态
+
+        # @param request: Request instance for GetTWeCallActiveStatus.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeCallActiveStatusRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeCallActiveStatusResponse`
+        def GetTWeCallActiveStatus(request)
+          body = send_request('GetTWeCallActiveStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTWeCallActiveStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询TWeCall包列表
+
+        # @param request: Request instance for GetTWeCallPkgList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeCallPkgListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeCallPkgListResponse`
+        def GetTWeCallPkgList(request)
+          body = send_request('GetTWeCallPkgList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTWeCallPkgListResponse.new
             model.deserialize(response['Response'])
             model
           else

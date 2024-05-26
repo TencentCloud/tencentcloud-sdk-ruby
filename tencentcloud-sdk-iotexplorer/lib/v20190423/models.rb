@@ -17,6 +17,53 @@
 module TencentCloud
   module Iotexplorer
     module V20190423
+      # ActivateTWeCallLicense请求参数结构体
+      class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param PkgType: voip类型
+        # @type PkgType: Integer
+        # @param MiniProgramAppId: appId
+        # @type MiniProgramAppId: String
+        # @param DeviceList: 设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
+
+        def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
+          @PkgType = pkgtype
+          @MiniProgramAppId = miniprogramappid
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          @PkgType = params['PkgType']
+          @MiniProgramAppId = params['MiniProgramAppId']
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              twecallinfo_tmp = TWeCallInfo.new
+              twecallinfo_tmp.deserialize(i)
+              @DeviceList << twecallinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ActivateTWeCallLicense返回参数结构体
+      class ActivateTWeCallLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云api直接绑定设备出参
       class AppDeviceInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 产品ID/设备名
@@ -66,6 +113,88 @@ module TencentCloud
           @DeviceType = params['DeviceType']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # AssignTWeCallLicense请求参数结构体
+      class AssignTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param PkgType: voip类型
+        # @type PkgType: Integer
+        # @param MiniProgramAppId: appId
+        # @type MiniProgramAppId: String
+        # @param DeductNum: License数
+        # @type DeductNum: Integer
+
+        attr_accessor :PkgType, :MiniProgramAppId, :DeductNum
+
+        def initialize(pkgtype=nil, miniprogramappid=nil, deductnum=nil)
+          @PkgType = pkgtype
+          @MiniProgramAppId = miniprogramappid
+          @DeductNum = deductnum
+        end
+
+        def deserialize(params)
+          @PkgType = params['PkgType']
+          @MiniProgramAppId = params['MiniProgramAppId']
+          @DeductNum = params['DeductNum']
+        end
+      end
+
+      # AssignTWeCallLicense返回参数结构体
+      class AssignTWeCallLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 授权小程序信息
+      class AuthMiniProgramAppInfo < TencentCloud::Common::AbstractModel
+        # @param MiniProgramAppId: 小程序APPID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MiniProgramAppId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param MiniProgramName: 小程序名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MiniProgramName: String
+        # @param LicenseNum: 激活码数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseNum: Integer
+        # @param IotAppId: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IotAppId: String
+        # @param IotAppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IotAppName: String
+
+        attr_accessor :MiniProgramAppId, :CreateTime, :MiniProgramName, :LicenseNum, :IotAppId, :IotAppName
+
+        def initialize(miniprogramappid=nil, createtime=nil, miniprogramname=nil, licensenum=nil, iotappid=nil, iotappname=nil)
+          @MiniProgramAppId = miniprogramappid
+          @CreateTime = createtime
+          @MiniProgramName = miniprogramname
+          @LicenseNum = licensenum
+          @IotAppId = iotappid
+          @IotAppName = iotappname
+        end
+
+        def deserialize(params)
+          @MiniProgramAppId = params['MiniProgramAppId']
+          @CreateTime = params['CreateTime']
+          @MiniProgramName = params['MiniProgramName']
+          @LicenseNum = params['LicenseNum']
+          @IotAppId = params['IotAppId']
+          @IotAppName = params['IotAppName']
         end
       end
 
@@ -401,6 +530,38 @@ module TencentCloud
           @ClientToken = params['ClientToken']
           @OutputParams = params['OutputParams']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelAssignTWeCallLicense请求参数结构体
+      class CancelAssignTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param PkgId: 订单号
+        # @type PkgId: String
+
+        attr_accessor :PkgId
+
+        def initialize(pkgid=nil)
+          @PkgId = pkgid
+        end
+
+        def deserialize(params)
+          @PkgId = params['PkgId']
+        end
+      end
+
+      # CancelAssignTWeCallLicense返回参数结构体
+      class CancelAssignTWeCallLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5164,6 +5325,61 @@ module TencentCloud
         end
       end
 
+      # GetAuthMiniProgramAppList请求参数结构体
+      class GetAuthMiniProgramAppListRequest < TencentCloud::Common::AbstractModel
+        # @param MiniProgramAppId: appId
+        # @type MiniProgramAppId: String
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param Limit: 每页大小
+        # @type Limit: Integer
+
+        attr_accessor :MiniProgramAppId, :Offset, :Limit
+
+        def initialize(miniprogramappid=nil, offset=nil, limit=nil)
+          @MiniProgramAppId = miniprogramappid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @MiniProgramAppId = params['MiniProgramAppId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetAuthMiniProgramAppList返回参数结构体
+      class GetAuthMiniProgramAppListResponse < TencentCloud::Common::AbstractModel
+        # @param MiniProgramList: 小程序列表
+        # @type MiniProgramList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MiniProgramList, :Total, :RequestId
+
+        def initialize(miniprogramlist=nil, total=nil, requestid=nil)
+          @MiniProgramList = miniprogramlist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MiniProgramList'].nil?
+            @MiniProgramList = []
+            params['MiniProgramList'].each do |i|
+              authminiprogramappinfo_tmp = AuthMiniProgramAppInfo.new
+              authminiprogramappinfo_tmp.deserialize(i)
+              @MiniProgramList << authminiprogramappinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetBatchProductionsList请求参数结构体
       class GetBatchProductionsListRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -5803,6 +6019,123 @@ module TencentCloud
               productentry_tmp = ProductEntry.new
               productentry_tmp.deserialize(i)
               @Products << productentry_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTWeCallActiveStatus请求参数结构体
+      class GetTWeCallActiveStatusRequest < TencentCloud::Common::AbstractModel
+        # @param MiniProgramAppId: appId
+        # @type MiniProgramAppId: String
+        # @param DeviceList: 设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :MiniProgramAppId, :DeviceList
+
+        def initialize(miniprogramappid=nil, devicelist=nil)
+          @MiniProgramAppId = miniprogramappid
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          @MiniProgramAppId = params['MiniProgramAppId']
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              twecallinfo_tmp = TWeCallInfo.new
+              twecallinfo_tmp.deserialize(i)
+              @DeviceList << twecallinfo_tmp
+            end
+          end
+        end
+      end
+
+      # GetTWeCallActiveStatus返回参数结构体
+      class GetTWeCallActiveStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TWeCallActiveInfos: 激活状态
+        # @type TWeCallActiveInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TWeCallActiveInfos, :RequestId
+
+        def initialize(twecallactiveinfos=nil, requestid=nil)
+          @TWeCallActiveInfos = twecallactiveinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TWeCallActiveInfos'].nil?
+            @TWeCallActiveInfos = []
+            params['TWeCallActiveInfos'].each do |i|
+              twecallactiveinfo_tmp = TWeCallActiveInfo.new
+              twecallactiveinfo_tmp.deserialize(i)
+              @TWeCallActiveInfos << twecallactiveinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTWeCallPkgList请求参数结构体
+      class GetTWeCallPkgListRequest < TencentCloud::Common::AbstractModel
+        # @param MiniProgramAppId: appId
+        # @type MiniProgramAppId: String
+        # @param PkgType: 类型
+        # @type PkgType: Array
+        # @param Status: 状态
+        # @type Status: Array
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页数据大小
+        # @type Limit: Integer
+
+        attr_accessor :MiniProgramAppId, :PkgType, :Status, :Offset, :Limit
+
+        def initialize(miniprogramappid=nil, pkgtype=nil, status=nil, offset=nil, limit=nil)
+          @MiniProgramAppId = miniprogramappid
+          @PkgType = pkgtype
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @MiniProgramAppId = params['MiniProgramAppId']
+          @PkgType = params['PkgType']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetTWeCallPkgList返回参数结构体
+      class GetTWeCallPkgListResponse < TencentCloud::Common::AbstractModel
+        # @param TWeCallPkgList: 激活状态
+        # @type TWeCallPkgList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TWeCallPkgList, :Total, :RequestId
+
+        def initialize(twecallpkglist=nil, total=nil, requestid=nil)
+          @TWeCallPkgList = twecallpkglist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TWeCallPkgList'].nil?
+            @TWeCallPkgList = []
+            params['TWeCallPkgList'].each do |i|
+              twecallpkginfo_tmp = TWeCallPkgInfo.new
+              twecallpkginfo_tmp.deserialize(i)
+              @TWeCallPkgList << twecallpkginfo_tmp
             end
           end
           @Total = params['Total']
@@ -8083,6 +8416,107 @@ module TencentCloud
           @UserSig = params['UserSig']
           @StrRoomId = params['StrRoomId']
           @PrivateKey = params['PrivateKey']
+        end
+      end
+
+      # TWeCall设备激活信息
+      class TWeCallActiveInfo < TencentCloud::Common::AbstractModel
+        # @param ModelId: 小程序ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param Sn: Sn信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sn: String
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+
+        attr_accessor :ModelId, :Sn, :ExpireTime
+
+        def initialize(modelid=nil, sn=nil, expiretime=nil)
+          @ModelId = modelid
+          @Sn = sn
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @Sn = params['Sn']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # TWeCall信息
+      class TWeCallInfo < TencentCloud::Common::AbstractModel
+        # @param ModelId: 小程序ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param Sn: Sn信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sn: String
+        # @param ActiveNum: 激活数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveNum: Integer
+
+        attr_accessor :ModelId, :Sn, :ActiveNum
+
+        def initialize(modelid=nil, sn=nil, activenum=nil)
+          @ModelId = modelid
+          @Sn = sn
+          @ActiveNum = activenum
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @Sn = params['Sn']
+          @ActiveNum = params['ActiveNum']
+        end
+      end
+
+      # TWeCall设备信息
+      class TWeCallPkgInfo < TencentCloud::Common::AbstractModel
+        # @param PkgId: 包ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgId: String
+        # @param PkgType: 包类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgType: Integer
+        # @param CreateTime: 生效时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param LicenseUsedNum: 已使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseUsedNum: Integer
+        # @param LicenseTotalNum: 总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseTotalNum: Integer
+
+        attr_accessor :PkgId, :PkgType, :CreateTime, :ExpireTime, :Status, :LicenseUsedNum, :LicenseTotalNum
+
+        def initialize(pkgid=nil, pkgtype=nil, createtime=nil, expiretime=nil, status=nil, licenseusednum=nil, licensetotalnum=nil)
+          @PkgId = pkgid
+          @PkgType = pkgtype
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @Status = status
+          @LicenseUsedNum = licenseusednum
+          @LicenseTotalNum = licensetotalnum
+        end
+
+        def deserialize(params)
+          @PkgId = params['PkgId']
+          @PkgType = params['PkgType']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @Status = params['Status']
+          @LicenseUsedNum = params['LicenseUsedNum']
+          @LicenseTotalNum = params['LicenseTotalNum']
         end
       end
 

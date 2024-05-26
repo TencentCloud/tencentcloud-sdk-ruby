@@ -3082,19 +3082,24 @@ module TencentCloud
         # @param Path: GooseFSx实例需要挂载的路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
+        # @param NameSpace: GooseFS命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameSpace: String
 
-        attr_accessor :Id, :Type, :Path
+        attr_accessor :Id, :Type, :Path, :NameSpace
 
-        def initialize(id=nil, type=nil, path=nil)
+        def initialize(id=nil, type=nil, path=nil, namespace=nil)
           @Id = id
           @Type = type
           @Path = path
+          @NameSpace = namespace
         end
 
         def deserialize(params)
           @Id = params['Id']
           @Type = params['Type']
           @Path = params['Path']
+          @NameSpace = params['NameSpace']
         end
       end
 

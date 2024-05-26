@@ -1172,6 +1172,50 @@ module TencentCloud
         end
       end
 
+      # DeleteRedisBigKeyAnalysisTasks请求参数结构体
+      class DeleteRedisBigKeyAnalysisTasksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param AsyncRequestIds: 待删除的异步任务ID列表。
+        # @type AsyncRequestIds: Array
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :AsyncRequestIds, :Product
+
+        def initialize(instanceid=nil, asyncrequestids=nil, product=nil)
+          @InstanceId = instanceid
+          @AsyncRequestIds = asyncrequestids
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AsyncRequestIds = params['AsyncRequestIds']
+          @Product = params['Product']
+        end
+      end
+
+      # DeleteRedisBigKeyAnalysisTasks返回参数结构体
+      class DeleteRedisBigKeyAnalysisTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态值，为0时代表正常处理。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSecurityAuditLogExportTasks请求参数结构体
       class DeleteSecurityAuditLogExportTasksRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。

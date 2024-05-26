@@ -964,10 +964,12 @@ module TencentCloud
         # @type ResultBytes: String
         # @param MemoryUsage: 排序参数
         # @type MemoryUsage: String
+        # @param IsQuery: IsQuery条件
+        # @type IsQuery: Integer
 
-        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage
+        attr_accessor :InstanceId, :QueryDurationMs, :StartTime, :EndTime, :DurationMs, :Sql, :ReadRows, :ResultBytes, :MemoryUsage, :IsQuery
 
-        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil)
+        def initialize(instanceid=nil, querydurationms=nil, starttime=nil, endtime=nil, durationms=nil, sql=nil, readrows=nil, resultbytes=nil, memoryusage=nil, isquery=nil)
           @InstanceId = instanceid
           @QueryDurationMs = querydurationms
           @StartTime = starttime
@@ -977,6 +979,7 @@ module TencentCloud
           @ReadRows = readrows
           @ResultBytes = resultbytes
           @MemoryUsage = memoryusage
+          @IsQuery = isquery
         end
 
         def deserialize(params)
@@ -989,6 +992,7 @@ module TencentCloud
           @ReadRows = params['ReadRows']
           @ResultBytes = params['ResultBytes']
           @MemoryUsage = params['MemoryUsage']
+          @IsQuery = params['IsQuery']
         end
       end
 

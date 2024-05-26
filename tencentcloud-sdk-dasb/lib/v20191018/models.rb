@@ -491,6 +491,162 @@ module TencentCloud
         end
       end
 
+      # 查询改密计划详情
+      class ChangePwdTaskDetail < TencentCloud::Common::AbstractModel
+        # @param Device: 资产信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Device: :class:`Tencentcloud::Dasb.v20191018.models.Device`
+        # @param Account: 资产账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Account: String
+        # @param LastChangeStatus: 上次改密结果。0-未改密  1-改密成功 2-改密失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastChangeStatus: Integer
+
+        attr_accessor :Device, :Account, :LastChangeStatus
+
+        def initialize(device=nil, account=nil, lastchangestatus=nil)
+          @Device = device
+          @Account = account
+          @LastChangeStatus = lastchangestatus
+        end
+
+        def deserialize(params)
+          unless params['Device'].nil?
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
+          end
+          @Account = params['Account']
+          @LastChangeStatus = params['LastChangeStatus']
+        end
+      end
+
+      # 修改密码任务信息
+      class ChangePwdTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param OperationId: 任务id
+        # @type OperationId: String
+        # @param TaskName: 任务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param Department: 所属部门信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
+        # @param ChangeMethod: 改密方式。1：使用执行账号。2：修改自身密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChangeMethod: Integer
+        # @param RunAccount: 执行账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunAccount: String
+        # @param AuthGenerationStrategy: 密码生成策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthGenerationStrategy: Integer
+        # @param PasswordLength: 密码长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PasswordLength: Integer
+        # @param SmallLetter: 包含小写字母
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmallLetter: Integer
+        # @param BigLetter: 包含大写字母
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigLetter: Integer
+        # @param Digit: 包含数字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Digit: Integer
+        # @param Symbol: 包含的特殊字符，base64
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Symbol: String
+        # @param CompleteNotify: 改密完成通知。0-通知，1-不通知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompleteNotify: Integer
+        # @param NotifyEmails: 通知人邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyEmails: Array
+        # @param FilePassword: 加密附件密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePassword: String
+        # @param AccountSet: 需要改密的账户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountSet: Array
+        # @param DeviceSet: 需要改密的主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceSet: Array
+        # @param Type: 任务类型：4手动，5自动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Period: 周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param FirstTime: 首次执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstTime: String
+        # @param NextTime: 下次执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextTime: String
+
+        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime
+
+        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil)
+          @Id = id
+          @OperationId = operationid
+          @TaskName = taskname
+          @Department = department
+          @ChangeMethod = changemethod
+          @RunAccount = runaccount
+          @AuthGenerationStrategy = authgenerationstrategy
+          @PasswordLength = passwordlength
+          @SmallLetter = smallletter
+          @BigLetter = bigletter
+          @Digit = digit
+          @Symbol = symbol
+          @CompleteNotify = completenotify
+          @NotifyEmails = notifyemails
+          @FilePassword = filepassword
+          @AccountSet = accountset
+          @DeviceSet = deviceset
+          @Type = type
+          @Period = period
+          @FirstTime = firsttime
+          @NextTime = nexttime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @OperationId = params['OperationId']
+          @TaskName = params['TaskName']
+          unless params['Department'].nil?
+            @Department = Department.new
+            @Department.deserialize(params['Department'])
+          end
+          @ChangeMethod = params['ChangeMethod']
+          @RunAccount = params['RunAccount']
+          @AuthGenerationStrategy = params['AuthGenerationStrategy']
+          @PasswordLength = params['PasswordLength']
+          @SmallLetter = params['SmallLetter']
+          @BigLetter = params['BigLetter']
+          @Digit = params['Digit']
+          @Symbol = params['Symbol']
+          @CompleteNotify = params['CompleteNotify']
+          @NotifyEmails = params['NotifyEmails']
+          @FilePassword = params['FilePassword']
+          @AccountSet = params['AccountSet']
+          unless params['DeviceSet'].nil?
+            @DeviceSet = []
+            params['DeviceSet'].each do |i|
+              device_tmp = Device.new
+              device_tmp.deserialize(i)
+              @DeviceSet << device_tmp
+            end
+          end
+          @Type = params['Type']
+          @Period = params['Period']
+          @FirstTime = params['FirstTime']
+          @NextTime = params['NextTime']
+        end
+      end
+
       # 高危命令模板
       class CmdTemplate < TencentCloud::Common::AbstractModel
         # @param Id: 高危命令模板ID
@@ -781,6 +937,115 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateChangePwdTask请求参数结构体
+      class CreateChangePwdTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名
+        # @type TaskName: String
+        # @param DeviceIdSet: 资产id数组
+        # @type DeviceIdSet: Array
+        # @param AccountSet: 修改的账户数组
+        # @type AccountSet: Array
+        # @param ChangeMethod: 改密方式。1：使用执行账号修改密码；2：修改自身密码
+        # @type ChangeMethod: Integer
+        # @param AuthGenerationStrategy: 认证生成方式。 1:自动生成相同密码 2:自动生成不同密码 3:手动指定相同密码
+        # @type AuthGenerationStrategy: Integer
+        # @param RunAccount: 执行账号
+        # @type RunAccount: String
+        # @param Password: 手动指定密码时必传
+        # @type Password: String
+        # @param PasswordLength: 密码限制长度，长度大于 12 位
+        # @type PasswordLength: Integer
+        # @param SmallLetter: 密码包含小写字母。0：否，1：是
+        # @type SmallLetter: Integer
+        # @param BigLetter: 密码包含大写字母。0：否，1：是
+        # @type BigLetter: Integer
+        # @param Digit: 密码包含数字。0：否，1：是
+        # @type Digit: Integer
+        # @param Symbol: 密码包含的特殊字符（base64编码），包含：^[-_#();%~!+=]*$
+        # @type Symbol: String
+        # @param CompleteNotify: 改密完成通知。0：不通知
+        #   1：通知
+        # @type CompleteNotify: Integer
+        # @param NotifyEmails: 通知邮箱
+        # @type NotifyEmails: Array
+        # @param FilePassword: 加密压缩文件密码
+        # @type FilePassword: String
+        # @param DepartmentId: 所属部门id。“1.2.3”
+        # @type DepartmentId: String
+        # @param Type: 任务类型  4-手工执行  5-周期自动执行
+        # @type Type: Integer
+        # @param Period: 执行周期，单位天（大于等于 1，小于等于 365）
+        # @type Period: Integer
+        # @param FirstTime: 周期任务首次执行时间
+        # @type FirstTime: String
+
+        attr_accessor :TaskName, :DeviceIdSet, :AccountSet, :ChangeMethod, :AuthGenerationStrategy, :RunAccount, :Password, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :DepartmentId, :Type, :Period, :FirstTime
+
+        def initialize(taskname=nil, deviceidset=nil, accountset=nil, changemethod=nil, authgenerationstrategy=nil, runaccount=nil, password=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, departmentid=nil, type=nil, period=nil, firsttime=nil)
+          @TaskName = taskname
+          @DeviceIdSet = deviceidset
+          @AccountSet = accountset
+          @ChangeMethod = changemethod
+          @AuthGenerationStrategy = authgenerationstrategy
+          @RunAccount = runaccount
+          @Password = password
+          @PasswordLength = passwordlength
+          @SmallLetter = smallletter
+          @BigLetter = bigletter
+          @Digit = digit
+          @Symbol = symbol
+          @CompleteNotify = completenotify
+          @NotifyEmails = notifyemails
+          @FilePassword = filepassword
+          @DepartmentId = departmentid
+          @Type = type
+          @Period = period
+          @FirstTime = firsttime
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @DeviceIdSet = params['DeviceIdSet']
+          @AccountSet = params['AccountSet']
+          @ChangeMethod = params['ChangeMethod']
+          @AuthGenerationStrategy = params['AuthGenerationStrategy']
+          @RunAccount = params['RunAccount']
+          @Password = params['Password']
+          @PasswordLength = params['PasswordLength']
+          @SmallLetter = params['SmallLetter']
+          @BigLetter = params['BigLetter']
+          @Digit = params['Digit']
+          @Symbol = params['Symbol']
+          @CompleteNotify = params['CompleteNotify']
+          @NotifyEmails = params['NotifyEmails']
+          @FilePassword = params['FilePassword']
+          @DepartmentId = params['DepartmentId']
+          @Type = params['Type']
+          @Period = params['Period']
+          @FirstTime = params['FirstTime']
+        end
+      end
+
+      # CreateChangePwdTask返回参数结构体
+      class CreateChangePwdTaskResponse < TencentCloud::Common::AbstractModel
+        # @param OperationId: 任务id
+        # @type OperationId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperationId, :RequestId
+
+        def initialize(operationid=nil, requestid=nil)
+          @OperationId = operationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OperationId = params['OperationId']
           @RequestId = params['RequestId']
         end
       end
@@ -1116,6 +1381,38 @@ module TencentCloud
 
       # DeleteAcls返回参数结构体
       class DeleteAclsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteChangePwdTask请求参数结构体
+      class DeleteChangePwdTaskRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 改密任务id列表
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteChangePwdTask返回参数结构体
+      class DeleteChangePwdTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1635,6 +1932,145 @@ module TencentCloud
             @Status = AssetSyncStatus.new
             @Status.deserialize(params['Status'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChangePwdTaskDetail请求参数结构体
+      class DescribeChangePwdTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param OperationId: 改密任务Id
+        # @type OperationId: String
+        # @param DepartmentId: 所属部门ID，如：“1.2.3”
+        # @type DepartmentId: String
+        # @param Filters: 过滤数组，支持：InstanceId 资产ID，DeviceName 资产名称，Ip 内外IP，Account 资产账号，LastChangeStatus 上次改密状态。
+        # @type Filters: Array
+        # @param Offset: 分页偏移位置，默认0
+        # @type Offset: Integer
+        # @param Limit: 每页条目。默认20
+        # @type Limit: Integer
+
+        attr_accessor :OperationId, :DepartmentId, :Filters, :Offset, :Limit
+
+        def initialize(operationid=nil, departmentid=nil, filters=nil, offset=nil, limit=nil)
+          @OperationId = operationid
+          @DepartmentId = departmentid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @OperationId = params['OperationId']
+          @DepartmentId = params['DepartmentId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeChangePwdTaskDetail返回参数结构体
+      class DescribeChangePwdTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Details: 任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Details, :RequestId
+
+        def initialize(totalcount=nil, details=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              changepwdtaskdetail_tmp = ChangePwdTaskDetail.new
+              changepwdtaskdetail_tmp.deserialize(i)
+              @Details << changepwdtaskdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChangePwdTask请求参数结构体
+      class DescribeChangePwdTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤数组。过滤数组。Name支持以下值: OperationId 任务ID TaskName 任务名
+        # @type Filters: Array
+        # @param DepartmentId: 所属部门ID
+        # @type DepartmentId: String
+        # @param Offset: 分页偏移量，默认0
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，默认20
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :DepartmentId, :Offset, :Limit
+
+        def initialize(filters=nil, departmentid=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @DepartmentId = departmentid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @DepartmentId = params['DepartmentId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeChangePwdTask返回参数结构体
+      class DescribeChangePwdTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param TotalCount: 任务总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :TotalCount, :RequestId
+
+        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+          @Tasks = tasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              changepwdtaskinfo_tmp = ChangePwdTaskInfo.new
+              changepwdtaskinfo_tmp.deserialize(i)
+              @Tasks << changepwdtaskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2926,6 +3362,118 @@ module TencentCloud
         end
       end
 
+      # ModifyChangePwdTask请求参数结构体
+      class ModifyChangePwdTaskRequest < TencentCloud::Common::AbstractModel
+        # @param OperationId: 改密任务id
+        # @type OperationId: String
+        # @param DeviceIdSet: 改密资产id列表
+        # @type DeviceIdSet: Array
+        # @param AccountSet: 改密资产的账号列表
+        # @type AccountSet: Array
+        # @param ModifyType: 修改类型：1：修改任务信息  2：关联任务资产账号
+        # @type ModifyType: Integer
+        # @param ChangeMethod: 改密方式。1：使用执行账号修改密码；2：修改自身密码
+        # @type ChangeMethod: Integer
+        # @param AuthGenerationStrategy: 密码生成方式。 1:自动生成相同密码 2:自动生成不同密码 3:手动指定相同密码
+        # @type AuthGenerationStrategy: Integer
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param DepartmentId: 所属部门ID，"1,2,3"
+        # @type DepartmentId: String
+        # @param RunAccount: 任务的执行账号
+        # @type RunAccount: String
+        # @param Password: 密码，手动指定密码时必传。
+        # @type Password: String
+        # @param PasswordLength: 密码限制长度，自动生成密码必传。
+        # @type PasswordLength: Integer
+        # @param SmallLetter: 密码包含小写字母，0：否，1：是。
+        # @type SmallLetter: Integer
+        # @param BigLetter: 密码包含大写字母，0：否，1：是。
+        # @type BigLetter: Integer
+        # @param Digit: 密码包含数字，0：否，1：是。
+        # @type Digit: Integer
+        # @param Symbol: 密码包含的特殊字符（base64编码），包含：^[-_#();%~!+=]*$
+        # @type Symbol: String
+        # @param CompleteNotify: 改密完成通知。0：不通知 1：通知
+        # @type CompleteNotify: Integer
+        # @param NotifyEmails: 通知邮箱
+        # @type NotifyEmails: Array
+        # @param FilePassword: 加密压缩文件密码
+        # @type FilePassword: String
+        # @param Type: 任务类型， 4：手工执行  5：周期自动执行
+        # @type Type: Integer
+        # @param Period: 周期任务周期，单位天（大于等于 1，小于等于 365）
+        # @type Period: Integer
+        # @param FirstTime: 周期任务首次执行时间
+        # @type FirstTime: String
+
+        attr_accessor :OperationId, :DeviceIdSet, :AccountSet, :ModifyType, :ChangeMethod, :AuthGenerationStrategy, :TaskName, :DepartmentId, :RunAccount, :Password, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :Type, :Period, :FirstTime
+
+        def initialize(operationid=nil, deviceidset=nil, accountset=nil, modifytype=nil, changemethod=nil, authgenerationstrategy=nil, taskname=nil, departmentid=nil, runaccount=nil, password=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, type=nil, period=nil, firsttime=nil)
+          @OperationId = operationid
+          @DeviceIdSet = deviceidset
+          @AccountSet = accountset
+          @ModifyType = modifytype
+          @ChangeMethod = changemethod
+          @AuthGenerationStrategy = authgenerationstrategy
+          @TaskName = taskname
+          @DepartmentId = departmentid
+          @RunAccount = runaccount
+          @Password = password
+          @PasswordLength = passwordlength
+          @SmallLetter = smallletter
+          @BigLetter = bigletter
+          @Digit = digit
+          @Symbol = symbol
+          @CompleteNotify = completenotify
+          @NotifyEmails = notifyemails
+          @FilePassword = filepassword
+          @Type = type
+          @Period = period
+          @FirstTime = firsttime
+        end
+
+        def deserialize(params)
+          @OperationId = params['OperationId']
+          @DeviceIdSet = params['DeviceIdSet']
+          @AccountSet = params['AccountSet']
+          @ModifyType = params['ModifyType']
+          @ChangeMethod = params['ChangeMethod']
+          @AuthGenerationStrategy = params['AuthGenerationStrategy']
+          @TaskName = params['TaskName']
+          @DepartmentId = params['DepartmentId']
+          @RunAccount = params['RunAccount']
+          @Password = params['Password']
+          @PasswordLength = params['PasswordLength']
+          @SmallLetter = params['SmallLetter']
+          @BigLetter = params['BigLetter']
+          @Digit = params['Digit']
+          @Symbol = params['Symbol']
+          @CompleteNotify = params['CompleteNotify']
+          @NotifyEmails = params['NotifyEmails']
+          @FilePassword = params['FilePassword']
+          @Type = params['Type']
+          @Period = params['Period']
+          @FirstTime = params['FirstTime']
+        end
+      end
+
+      # ModifyChangePwdTask返回参数结构体
+      class ModifyChangePwdTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCmdTemplate请求参数结构体
       class ModifyCmdTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 模板名，最长32字符，不能包含空白字符
@@ -3551,6 +4099,73 @@ module TencentCloud
           @PackageBandwidth = params['PackageBandwidth']
           @PackageNode = params['PackageNode']
           @LogDeliveryArgs = params['LogDeliveryArgs']
+        end
+      end
+
+      # 立即执行改密任务的入参
+      class RunChangePwdTaskDetail < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 资产id
+        # @type DeviceId: Integer
+        # @param Account: 资产账号
+        # @type Account: String
+
+        attr_accessor :DeviceId, :Account
+
+        def initialize(deviceid=nil, account=nil)
+          @DeviceId = deviceid
+          @Account = account
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Account = params['Account']
+        end
+      end
+
+      # RunChangePwdTask请求参数结构体
+      class RunChangePwdTaskRequest < TencentCloud::Common::AbstractModel
+        # @param OperationId: 任务Id
+        # @type OperationId: String
+        # @param DepartmentId: 部门id
+        # @type DepartmentId: String
+        # @param Details: 改密任务详情
+        # @type Details: Array
+
+        attr_accessor :OperationId, :DepartmentId, :Details
+
+        def initialize(operationid=nil, departmentid=nil, details=nil)
+          @OperationId = operationid
+          @DepartmentId = departmentid
+          @Details = details
+        end
+
+        def deserialize(params)
+          @OperationId = params['OperationId']
+          @DepartmentId = params['DepartmentId']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              runchangepwdtaskdetail_tmp = RunChangePwdTaskDetail.new
+              runchangepwdtaskdetail_tmp.deserialize(i)
+              @Details << runchangepwdtaskdetail_tmp
+            end
+          end
+        end
+      end
+
+      # RunChangePwdTask返回参数结构体
+      class RunChangePwdTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

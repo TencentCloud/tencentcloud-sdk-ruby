@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建修改密码任务
+
+        # @param request: Request instance for CreateChangePwdTask.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::CreateChangePwdTaskRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::CreateChangePwdTaskResponse`
+        def CreateChangePwdTask(request)
+          body = send_request('CreateChangePwdTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChangePwdTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建高危命令模板
 
         # @param request: Request instance for CreateCmdTemplate.
@@ -351,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAclsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除改密任务
+
+        # @param request: Request instance for DeleteChangePwdTask.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DeleteChangePwdTaskRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DeleteChangePwdTaskResponse`
+        def DeleteChangePwdTask(request)
+          body = send_request('DeleteChangePwdTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteChangePwdTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -615,6 +663,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAssetSyncStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询改密任务列表
+
+        # @param request: Request instance for DescribeChangePwdTask.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeChangePwdTaskRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeChangePwdTaskResponse`
+        def DescribeChangePwdTask(request)
+          body = send_request('DescribeChangePwdTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChangePwdTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询改密任务详情
+
+        # @param request: Request instance for DescribeChangePwdTaskDetail.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::DescribeChangePwdTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::DescribeChangePwdTaskDetailResponse`
+        def DescribeChangePwdTaskDetail(request)
+          body = send_request('DescribeChangePwdTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChangePwdTaskDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -965,6 +1061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新修改密码任务
+
+        # @param request: Request instance for ModifyChangePwdTask.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ModifyChangePwdTaskRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ModifyChangePwdTaskResponse`
+        def ModifyChangePwdTask(request)
+          body = send_request('ModifyChangePwdTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyChangePwdTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改高危命令模板
 
         # @param request: Request instance for ModifyCmdTemplate.
@@ -1191,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 执行改密任务
+
+        # @param request: Request instance for RunChangePwdTask.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::RunChangePwdTaskRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::RunChangePwdTaskResponse`
+        def RunChangePwdTask(request)
+          body = send_request('RunChangePwdTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunChangePwdTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

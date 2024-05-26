@@ -8274,6 +8274,46 @@ module TencentCloud
         end
       end
 
+      # ListTaskJobLogName请求参数结构体
+      class ListTaskJobLogNameRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 查询的taskId
+        # @type TaskId: String
+        # @param BatchId: SparkSQL批任务唯一ID
+        # @type BatchId: String
+
+        attr_accessor :TaskId, :BatchId
+
+        def initialize(taskid=nil, batchid=nil)
+          @TaskId = taskid
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # ListTaskJobLogName返回参数结构体
+      class ListTaskJobLogNameResponse < TencentCloud::Common::AbstractModel
+        # @param Names: 日志名称列表
+        # @type Names: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Names, :RequestId
+
+        def initialize(names=nil, requestid=nil)
+          @Names = names
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Names = params['Names']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 元数据加锁内容
       class LockComponentInfo < TencentCloud::Common::AbstractModel
         # @param DbName: 数据库名称
