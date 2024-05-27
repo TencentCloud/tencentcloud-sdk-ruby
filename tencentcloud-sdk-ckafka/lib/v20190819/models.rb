@@ -10283,14 +10283,22 @@ module TencentCloud
         # @param BrokerIp: broker地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerIp: String
+        # @param VpcId: VPC ID信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
 
-        attr_accessor :Type, :SourceIp, :SourcePort, :BrokerIp
+        attr_accessor :Type, :SourceIp, :SourcePort, :BrokerIp, :VpcId, :SubnetId
 
-        def initialize(type=nil, sourceip=nil, sourceport=nil, brokerip=nil)
+        def initialize(type=nil, sourceip=nil, sourceport=nil, brokerip=nil, vpcid=nil, subnetid=nil)
           @Type = type
           @SourceIp = sourceip
           @SourcePort = sourceport
           @BrokerIp = brokerip
+          @VpcId = vpcid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -10298,6 +10306,8 @@ module TencentCloud
           @SourceIp = params['SourceIp']
           @SourcePort = params['SourcePort']
           @BrokerIp = params['BrokerIp']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 

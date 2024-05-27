@@ -2816,7 +2816,7 @@ module TencentCloud
         # @type EndTime: String
         # @param StartTime: 开始时间
         # @type StartTime: String
-        # @param Dimension: 获取day：d，   获取min则不填
+        # @param Dimension: 对PV指标的查询维度。获取day：d，   获取min则不填。
         # @type Dimension: String
 
         attr_accessor :ProjectId, :EndTime, :StartTime, :Dimension
@@ -3304,11 +3304,11 @@ module TencentCloud
         # @type AreaIds: Array
         # @param AreaKeys: 片区Key
         # @type AreaKeys: Array
-        # @param Limit: 分页Limit
+        # @param Limit: 分页Limit，默认根据AreaKeys和AreaStatuses参数查询所有。
         # @type Limit: Integer
         # @param AreaStatuses: 片区状态(1=有效，2=无效)
         # @type AreaStatuses: Array
-        # @param Offset: 分页Offset
+        # @param Offset: 分页Offset，默认根据AreaKeys和AreaStatuses参数查询所有。
         # @type Offset: Integer
 
         attr_accessor :AreaIds, :AreaKeys, :Limit, :AreaStatuses, :Offset

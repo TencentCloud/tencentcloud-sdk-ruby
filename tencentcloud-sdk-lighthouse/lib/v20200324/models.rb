@@ -230,9 +230,9 @@ module TencentCloud
 
       # AttachDisks请求参数结构体
       class AttachDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
         # @param RenewFlag: 自动续费标识。取值范围：
 
@@ -2090,7 +2090,7 @@ module TencentCloud
 
       # DescribeDisksDeniedActions请求参数结构体
       class DescribeDisksDeniedActionsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds
@@ -2133,7 +2133,7 @@ module TencentCloud
 
       # DescribeDisks请求参数结构体
       class DescribeDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。
         # @type DiskIds: Array
         # @param Filters: 过滤器列表。
         # disk-id
@@ -2234,7 +2234,7 @@ module TencentCloud
 
       # DescribeDisksReturnable请求参数结构体
       class DescribeDisksReturnableRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 10。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -3811,7 +3811,7 @@ module TencentCloud
 
       # DetachCcn请求参数结构体
       class DetachCcnRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网实例ID。
+        # @param CcnId: 云联网实例ID。可通过[DescribeCcnAttachedInstances](https://cloud.tencent.com/document/product/1207/58797)接口返回值中的CcnId获取。
         # @type CcnId: String
 
         attr_accessor :CcnId
@@ -3843,7 +3843,7 @@ module TencentCloud
 
       # DetachDisks请求参数结构体
       class DetachDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds
@@ -5038,7 +5038,7 @@ module TencentCloud
 
       # InquirePriceRenewDisks请求参数结构体
       class InquirePriceRenewDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 1。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
         # @param RenewDiskChargePrepaid: 续费云硬盘包年包月相关参数设置。
         # @type RenewDiskChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.RenewDiskChargePrepaid`
@@ -5818,7 +5818,7 @@ module TencentCloud
 
       # ModifyDisksAttribute请求参数结构体
       class ModifyDisksAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
         # @param DiskName: 云硬盘名称。
         # @type DiskName: String
@@ -5890,9 +5890,15 @@ module TencentCloud
 
       # ModifyDisksRenewFlag请求参数结构体
       class ModifyDisksRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。每次批量请求云硬盘的上限为 100。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @param RenewFlag: 自动续费标识。取值范围：
+
+        # - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        # - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        # - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+
+        # 若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         # @type RenewFlag: String
 
         attr_accessor :DiskIds, :RenewFlag
@@ -6744,7 +6750,7 @@ module TencentCloud
 
       # ResetAttachCcn请求参数结构体
       class ResetAttachCcnRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网实例ID。
+        # @param CcnId: 云联网实例ID。可通过[DescribeCcnAttachedInstances](https://cloud.tencent.com/document/product/1207/58797)接口返回值中的CcnId获取。
         # @type CcnId: String
 
         attr_accessor :CcnId

@@ -17,6 +17,38 @@
 module TencentCloud
   module Domain
     module V20180808
+      # 用于域名预释放详情页面
+      class AuctionInfo < TencentCloud::Common::AbstractModel
+        # @param Bidder: 竞拍人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bidder: String
+        # @param AuctionTime: 竞拍时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuctionTime: String
+        # @param AuctionPrice: 竞拍价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuctionPrice: Float
+        # @param Status: 状态 up: 领先 down: 落后
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Bidder, :AuctionTime, :AuctionPrice, :Status
+
+        def initialize(bidder=nil, auctiontime=nil, auctionprice=nil, status=nil)
+          @Bidder = bidder
+          @AuctionTime = auctiontime
+          @AuctionPrice = auctionprice
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Bidder = params['Bidder']
+          @AuctionTime = params['AuctionTime']
+          @AuctionPrice = params['AuctionPrice']
+          @Status = params['Status']
+        end
+      end
+
       # BatchModifyDomainInfo请求参数结构体
       class BatchModifyDomainInfoRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 批量修改的域名。
@@ -87,6 +119,75 @@ module TencentCloud
         end
       end
 
+      # BidDetailPage请求参数结构体
+      class BidDetailPageRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+
+        attr_accessor :BusinessId
+
+        def initialize(businessid=nil)
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+        end
+      end
+
+      # BidDetailPage返回参数结构体
+      class BidDetailPageResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param CurrentPrice: 当前域名价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentPrice: Float
+        # @param BidPrice: 用户上次出价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BidPrice: Float
+        # @param CurrentPriceScope: 当前加价幅度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentPriceScope: Float
+        # @param PriceScope: 加价幅度区间配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceScope: Array
+        # @param DepositPrice: 用户当前已经支付了的保证金
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DepositPrice: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :CurrentPrice, :BidPrice, :CurrentPriceScope, :PriceScope, :DepositPrice, :RequestId
+
+        def initialize(domain=nil, currentprice=nil, bidprice=nil, currentpricescope=nil, pricescope=nil, depositprice=nil, requestid=nil)
+          @Domain = domain
+          @CurrentPrice = currentprice
+          @BidPrice = bidprice
+          @CurrentPriceScope = currentpricescope
+          @PriceScope = pricescope
+          @DepositPrice = depositprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @CurrentPrice = params['CurrentPrice']
+          @BidPrice = params['BidPrice']
+          @CurrentPriceScope = params['CurrentPriceScope']
+          unless params['PriceScope'].nil?
+            @PriceScope = []
+            params['PriceScope'].each do |i|
+              pricescopeconf_tmp = PriceScopeConf.new
+              pricescopeconf_tmp.deserialize(i)
+              @PriceScope << pricescopeconf_tmp
+            end
+          end
+          @DepositPrice = params['DepositPrice']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BidPreDomains请求参数结构体
       class BidPreDomainsRequest < TencentCloud::Common::AbstractModel
         # @param BusinessId: 业务ID
@@ -119,6 +220,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BiddingPreRelease请求参数结构体
+      class BiddingPreReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+        # @param Price: 价格
+        # @type Price: Float
+
+        attr_accessor :BusinessId, :Price
+
+        def initialize(businessid=nil, price=nil)
+          @BusinessId = businessid
+          @Price = price
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+          @Price = params['Price']
+        end
+      end
+
+      # BiddingPreRelease返回参数结构体
+      class BiddingPreReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param IsNeedPay: 是否需要额外支付
+        # @type IsNeedPay: Boolean
+        # @param BillingParam: 计费请求参数，以Json字符串的形式进行返回。
+        # @type BillingParam: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsNeedPay, :BillingParam, :RequestId
+
+        def initialize(isneedpay=nil, billingparam=nil, requestid=nil)
+          @IsNeedPay = isneedpay
+          @BillingParam = billingparam
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsNeedPay = params['IsNeedPay']
+          @BillingParam = params['BillingParam']
           @RequestId = params['RequestId']
         end
       end
@@ -698,6 +843,33 @@ module TencentCloud
         end
       end
 
+      # DeleteBidding请求参数结构体
+      class DeleteBiddingRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteBidding返回参数结构体
+      class DeleteBiddingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCustomDnsHost请求参数结构体
       class DeleteCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
@@ -838,6 +1010,63 @@ module TencentCloud
         end
       end
 
+      # DescribeAuctionList请求参数结构体
+      class DescribeAuctionListRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+        # @param Limit: 条数，默认10条
+        # @type Limit: Integer
+        # @param OffSet: 偏移量
+        # @type OffSet: Integer
+
+        attr_accessor :BusinessId, :Limit, :OffSet
+
+        def initialize(businessid=nil, limit=nil, offset=nil)
+          @BusinessId = businessid
+          @Limit = limit
+          @OffSet = offset
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+          @Limit = params['Limit']
+          @OffSet = params['OffSet']
+        end
+      end
+
+      # DescribeAuctionList返回参数结构体
+      class DescribeAuctionListResponse < TencentCloud::Common::AbstractModel
+        # @param AuctionList: 竞拍详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuctionList: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuctionList, :TotalCount, :RequestId
+
+        def initialize(auctionlist=nil, totalcount=nil, requestid=nil)
+          @AuctionList = auctionlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuctionList'].nil?
+            @AuctionList = []
+            params['AuctionList'].each do |i|
+              auctioninfo_tmp = AuctionInfo.new
+              auctioninfo_tmp.deserialize(i)
+              @AuctionList << auctioninfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBatchOperationLogDetails请求参数结构体
       class DescribeBatchOperationLogDetailsRequest < TencentCloud::Common::AbstractModel
         # @param LogId: 日志ID。
@@ -942,6 +1171,237 @@ module TencentCloud
               @DomainBatchLogSet << domainbatchlogset_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBiddingAppointDetail请求参数结构体
+      class DescribeBiddingAppointDetailRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBiddingAppointDetail返回参数结构体
+      class DescribeBiddingAppointDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Status:  1 已预约，2 竞价中，3 等待出价 4 等待支付 5 失败 6 转移中，7 转移成功 8 持有者索回
+        # @type Status: Integer
+        # @param BiddingBondRefund: 预约保证金是否已经退回
+        # yes：退回 no: 未退回
+        # @type BiddingBondRefund: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :BiddingBondRefund, :RequestId
+
+        def initialize(status=nil, biddingbondrefund=nil, requestid=nil)
+          @Status = status
+          @BiddingBondRefund = biddingbondrefund
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @BiddingBondRefund = params['BiddingBondRefund']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBiddingAppointList请求参数结构体
+      class DescribeBiddingAppointListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param Status: 状态： 1 已预约 9 预约持有者索回
+        # @type Status: Array
+        # @param SortField: 排序字段：AppointEndTime 预约结束时间
+        # @type SortField: String
+        # @param SortOrder: 排序规则：asc升序，desc降序
+        # @type SortOrder: String
+
+        attr_accessor :PageSize, :Status, :SortField, :SortOrder
+
+        def initialize(pagesize=nil, status=nil, sortfield=nil, sortorder=nil)
+          @PageSize = pagesize
+          @Status = status
+          @SortField = sortfield
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @Status = params['Status']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeBiddingAppointList返回参数结构体
+      class DescribeBiddingAppointListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBiddingDetail请求参数结构体
+      class DescribeBiddingDetailRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBiddingDetail返回参数结构体
+      class DescribeBiddingDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBiddingList请求参数结构体
+      class DescribeBiddingListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param Status: 2 竞价中  3 等待出价  4 交易失败  10 竞价阶段持有者赎回
+        # @type Status: Array
+        # @param SortField: 排序字段：BiddingEndTime 竞价结束时间
+        # BiddingPrice 我的价格
+        # @type SortField: String
+        # @param SortOrder: 排序规则：asc升序，desc降序
+        # @type SortOrder: String
+
+        attr_accessor :PageSize, :Status, :SortField, :SortOrder
+
+        def initialize(pagesize=nil, status=nil, sortfield=nil, sortorder=nil)
+          @PageSize = pagesize
+          @Status = status
+          @SortField = sortfield
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @Status = params['Status']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeBiddingList返回参数结构体
+      class DescribeBiddingListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBiddingSuccessfulDetail请求参数结构体
+      class DescribeBiddingSuccessfulDetailRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBiddingSuccessfulDetail返回参数结构体
+      class DescribeBiddingSuccessfulDetailResponse < TencentCloud::Common::AbstractModel
+        # @param BiddingBondRefund: 保证金，是否退款，yes表示退款，no表示不退款
+        # @type BiddingBondRefund: String
+        # @param Status: 状态：1 竞价中，2 待出价，3 竞价失败， 4 等待支付 5 等待转移， 6 转移中，7 交易成功，8 持有者索回，9 已违约
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BiddingBondRefund, :Status, :RequestId
+
+        def initialize(biddingbondrefund=nil, status=nil, requestid=nil)
+          @BiddingBondRefund = biddingbondrefund
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BiddingBondRefund = params['BiddingBondRefund']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBiddingSuccessfulList请求参数结构体
+      class DescribeBiddingSuccessfulListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param Status: 状态：5 等待支付 6 等待转移， 7 转移中，8 交易成功，11 尾款阶段持有者索回，12 已违约
+        # @type Status: Array
+        # @param SortField: 排序字段：SuccessfulTime 预约结束时间
+        # @type SortField: String
+        # @param SortOrder: 排序规则：asc升序，desc降序
+        # @type SortOrder: String
+
+        attr_accessor :PageSize, :Status, :SortField, :SortOrder
+
+        def initialize(pagesize=nil, status=nil, sortfield=nil, sortorder=nil)
+          @PageSize = pagesize
+          @Status = status
+          @SortField = sortfield
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @Status = params['Status']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeBiddingSuccessfulList返回参数结构体
+      class DescribeBiddingSuccessfulListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1192,6 +1652,62 @@ module TencentCloud
         end
       end
 
+      # DescribePayWaitDetail请求参数结构体
+      class DescribePayWaitDetailRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+
+        attr_accessor :BusinessId
+
+        def initialize(businessid=nil)
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+        end
+      end
+
+      # DescribePayWaitDetail返回参数结构体
+      class DescribePayWaitDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: 域名类型
+        # @type Status: String
+        # @param EndTime: 支付结束时间
+        # @type EndTime: String
+        # @param RegTime: 域名注册时间
+        # @type RegTime: String
+        # @param Price: 域名成交价格
+        # @type Price: Float
+        # @param RetDeposit: 待退还保证金
+        # @type RetDeposit: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :Status, :EndTime, :RegTime, :Price, :RetDeposit, :RequestId
+
+        def initialize(domain=nil, status=nil, endtime=nil, regtime=nil, price=nil, retdeposit=nil, requestid=nil)
+          @Domain = domain
+          @Status = status
+          @EndTime = endtime
+          @RegTime = regtime
+          @Price = price
+          @RetDeposit = retdeposit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @EndTime = params['EndTime']
+          @RegTime = params['RegTime']
+          @Price = params['Price']
+          @RetDeposit = params['RetDeposit']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePhoneEmailList请求参数结构体
       class DescribePhoneEmailListRequest < TencentCloud::Common::AbstractModel
         # @param Type: 0：所有类型  1：手机  2：邮箱，默认0
@@ -1251,6 +1767,59 @@ module TencentCloud
         end
       end
 
+      # DescribePreAuctionList请求参数结构体
+      class DescribePreAuctionListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 条数
+        # @type PageSize: Integer
+
+        attr_accessor :PageNumber, :PageSize
+
+        def initialize(pagenumber=nil, pagesize=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribePreAuctionList返回参数结构体
+      class DescribePreAuctionListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param PreAuctionList: 预释放竞价列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreAuctionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PreAuctionList, :RequestId
+
+        def initialize(totalcount=nil, preauctionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PreAuctionList = preauctionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PreAuctionList'].nil?
+            @PreAuctionList = []
+            params['PreAuctionList'].each do |i|
+              preauctioninfo_tmp = PreAuctionInfo.new
+              preauctioninfo_tmp.deserialize(i)
+              @PreAuctionList << preauctioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePreDomainList请求参数结构体
       class DescribePreDomainListRequest < TencentCloud::Common::AbstractModel
         # @param Page: 页码
@@ -1306,6 +1875,139 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePreReleaseList请求参数结构体
+      class DescribePreReleaseListRequest < TencentCloud::Common::AbstractModel
+        # @param Keywords: 关键词
+        # @type Keywords: String
+        # @param DomainStart: 搜索关键字，开头
+        # @type DomainStart: Boolean
+        # @param DomainEnd: 搜索关键字结尾
+        # @type DomainEnd: Boolean
+        # @param Sort: 排序
+        # @type Sort: Integer
+        # @param PriceStart: 起始价格
+        # @type PriceStart: Float
+        # @param PriceEnd: 结束价格
+        # @type PriceEnd: Float
+        # @param LengthStart: 起始域名长度
+        # @type LengthStart: Integer
+        # @param LengthEnd: 结束域名长度
+        # @type LengthEnd: Integer
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 没页显示数
+        # @type PageSize: Integer
+        # @param Suffix: 后缀
+        # @type Suffix: Array
+        # @param ClassOne: 一级分类
+        # @type ClassOne: Integer
+        # @param ClassTwo: 二级分类
+        # @type ClassTwo: Array
+        # @param ClassThree: 三级分类
+        # @type ClassThree: Array
+        # @param ClassFour: 四级分类
+        # @type ClassFour: Array
+        # @param FilterStart: 排除关键字，开头
+        # @type FilterStart: Boolean
+        # @param FilterEnd: 排除关键字，结尾
+        # @type FilterEnd: Boolean
+        # @param FilterWords: 排除关键字
+        # @type FilterWords: String
+        # @param TransType: 交易类型
+        # @type TransType: Integer
+        # @param IsTop: 搜索白金域名
+        # @type IsTop: Boolean
+        # @param EndTimeSort: 结束时间排序啊 desc:倒序 asc:正序
+        # @type EndTimeSort: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Keywords, :DomainStart, :DomainEnd, :Sort, :PriceStart, :PriceEnd, :LengthStart, :LengthEnd, :PageNumber, :PageSize, :Suffix, :ClassOne, :ClassTwo, :ClassThree, :ClassFour, :FilterStart, :FilterEnd, :FilterWords, :TransType, :IsTop, :EndTimeSort, :EndTime
+
+        def initialize(keywords=nil, domainstart=nil, domainend=nil, sort=nil, pricestart=nil, priceend=nil, lengthstart=nil, lengthend=nil, pagenumber=nil, pagesize=nil, suffix=nil, classone=nil, classtwo=nil, classthree=nil, classfour=nil, filterstart=nil, filterend=nil, filterwords=nil, transtype=nil, istop=nil, endtimesort=nil, endtime=nil)
+          @Keywords = keywords
+          @DomainStart = domainstart
+          @DomainEnd = domainend
+          @Sort = sort
+          @PriceStart = pricestart
+          @PriceEnd = priceend
+          @LengthStart = lengthstart
+          @LengthEnd = lengthend
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Suffix = suffix
+          @ClassOne = classone
+          @ClassTwo = classtwo
+          @ClassThree = classthree
+          @ClassFour = classfour
+          @FilterStart = filterstart
+          @FilterEnd = filterend
+          @FilterWords = filterwords
+          @TransType = transtype
+          @IsTop = istop
+          @EndTimeSort = endtimesort
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Keywords = params['Keywords']
+          @DomainStart = params['DomainStart']
+          @DomainEnd = params['DomainEnd']
+          @Sort = params['Sort']
+          @PriceStart = params['PriceStart']
+          @PriceEnd = params['PriceEnd']
+          @LengthStart = params['LengthStart']
+          @LengthEnd = params['LengthEnd']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Suffix = params['Suffix']
+          @ClassOne = params['ClassOne']
+          @ClassTwo = params['ClassTwo']
+          @ClassThree = params['ClassThree']
+          @ClassFour = params['ClassFour']
+          @FilterStart = params['FilterStart']
+          @FilterEnd = params['FilterEnd']
+          @FilterWords = params['FilterWords']
+          @TransType = params['TransType']
+          @IsTop = params['IsTop']
+          @EndTimeSort = params['EndTimeSort']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribePreReleaseList返回参数结构体
+      class DescribePreReleaseListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param PreReleaseList: 预释放列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreReleaseList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PreReleaseList, :RequestId
+
+        def initialize(totalcount=nil, prereleaselist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PreReleaseList = prereleaselist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PreReleaseList'].nil?
+            @PreReleaseList = []
+            params['PreReleaseList'].each do |i|
+              prereleaseinfo_tmp = PreReleaseInfo.new
+              prereleaseinfo_tmp.deserialize(i)
+              @PreReleaseList << prereleaseinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1574,6 +2276,82 @@ module TencentCloud
 
         def deserialize(params)
           @List = params['List']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnPreDomainDetail请求参数结构体
+      class DescribeUnPreDomainDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeUnPreDomainDetail返回参数结构体
+      class DescribeUnPreDomainDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param PreCount: 预约人数
+        # @type PreCount: Integer
+        # @param RegTime: 域名注册时间
+        # @type RegTime: String
+        # @param DeleteTime: 域名删除时间
+        # @type DeleteTime: String
+        # @param ExpireTime: 到期时间
+        # @type ExpireTime: String
+        # @param Status: 域名状态
+        # @type Status: String
+        # @param CurrentPrice: 域名价格
+        # @type CurrentPrice: Float
+        # @param AppointBondPrice: 域名保证金
+        # @type AppointBondPrice: Float
+        # @param IsAppoint: 是否已经预约
+        # @type IsAppoint: Boolean
+        # @param BusinessId: 业务ID
+        # @type BusinessId: String
+        # @param IsDomainUser: 是否为原持有者域名
+        # @type IsDomainUser: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :PreCount, :RegTime, :DeleteTime, :ExpireTime, :Status, :CurrentPrice, :AppointBondPrice, :IsAppoint, :BusinessId, :IsDomainUser, :RequestId
+
+        def initialize(domain=nil, precount=nil, regtime=nil, deletetime=nil, expiretime=nil, status=nil, currentprice=nil, appointbondprice=nil, isappoint=nil, businessid=nil, isdomainuser=nil, requestid=nil)
+          @Domain = domain
+          @PreCount = precount
+          @RegTime = regtime
+          @DeleteTime = deletetime
+          @ExpireTime = expiretime
+          @Status = status
+          @CurrentPrice = currentprice
+          @AppointBondPrice = appointbondprice
+          @IsAppoint = isappoint
+          @BusinessId = businessid
+          @IsDomainUser = isdomainuser
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @PreCount = params['PreCount']
+          @RegTime = params['RegTime']
+          @DeleteTime = params['DeleteTime']
+          @ExpireTime = params['ExpireTime']
+          @Status = params['Status']
+          @CurrentPrice = params['CurrentPrice']
+          @AppointBondPrice = params['AppointBondPrice']
+          @IsAppoint = params['IsAppoint']
+          @BusinessId = params['BusinessId']
+          @IsDomainUser = params['IsDomainUser']
           @RequestId = params['RequestId']
         end
       end
@@ -2257,6 +3035,110 @@ module TencentCloud
         end
       end
 
+      # 预释放竞价列表
+      class PreAuctionInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param BiddingTime: 竞价倒计时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BiddingTime: String
+        # @param BidCount: 出价次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BidCount: Integer
+        # @param Price: 当前价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Float
+        # @param Op: 用户操作 bid：出价 "noAction"：无法操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Op: String
+        # @param BusinessId: 业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
+
+        attr_accessor :Domain, :BiddingTime, :BidCount, :Price, :Op, :BusinessId
+
+        def initialize(domain=nil, biddingtime=nil, bidcount=nil, price=nil, op=nil, businessid=nil)
+          @Domain = domain
+          @BiddingTime = biddingtime
+          @BidCount = bidcount
+          @Price = price
+          @Op = op
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @BiddingTime = params['BiddingTime']
+          @BidCount = params['BidCount']
+          @Price = params['Price']
+          @Op = params['Op']
+          @BusinessId = params['BusinessId']
+        end
+      end
+
+      # 预释放列表信息
+      class PreReleaseInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param ReservationTime: 预订倒计时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReservationTime: String
+        # @param RegTime: 域名注册时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegTime: String
+        # @param DelTime: 域名删除时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelTime: String
+        # @param CurrentPeople: 当前人数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentPeople: Integer
+        # @param Price: 当前价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Float
+        # @param IsFollow: 是否收藏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFollow: Boolean
+        # @param IsAppoint: 是否已经预约
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAppoint: Boolean
+        # @param BusinessId: 业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
+        # @param IsDomainUser: 是否为原持有者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDomainUser: Boolean
+
+        attr_accessor :Domain, :ReservationTime, :RegTime, :DelTime, :CurrentPeople, :Price, :IsFollow, :IsAppoint, :BusinessId, :IsDomainUser
+
+        def initialize(domain=nil, reservationtime=nil, regtime=nil, deltime=nil, currentpeople=nil, price=nil, isfollow=nil, isappoint=nil, businessid=nil, isdomainuser=nil)
+          @Domain = domain
+          @ReservationTime = reservationtime
+          @RegTime = regtime
+          @DelTime = deltime
+          @CurrentPeople = currentpeople
+          @Price = price
+          @IsFollow = isfollow
+          @IsAppoint = isappoint
+          @BusinessId = businessid
+          @IsDomainUser = isdomainuser
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @ReservationTime = params['ReservationTime']
+          @RegTime = params['RegTime']
+          @DelTime = params['DelTime']
+          @CurrentPeople = params['CurrentPeople']
+          @Price = params['Price']
+          @IsFollow = params['IsFollow']
+          @IsAppoint = params['IsAppoint']
+          @BusinessId = params['BusinessId']
+          @IsDomainUser = params['IsDomainUser']
+        end
+      end
+
       # 域名价格信息
       class PriceInfo < TencentCloud::Common::AbstractModel
         # @param Tld: 域名后缀，例如.com
@@ -2286,6 +3168,38 @@ module TencentCloud
           @Price = params['Price']
           @RealPrice = params['RealPrice']
           @Operation = params['Operation']
+        end
+      end
+
+      # 预释放价格区间配置
+      class PriceScopeConf < TencentCloud::Common::AbstractModel
+        # @param MaxPrice: 最高价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPrice: Float
+        # @param MinPrice: 最低价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinPrice: Float
+        # @param Price: 价格幅度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Float
+        # @param DepositPrice: 保证金
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DepositPrice: Float
+
+        attr_accessor :MaxPrice, :MinPrice, :Price, :DepositPrice
+
+        def initialize(maxprice=nil, minprice=nil, price=nil, depositprice=nil)
+          @MaxPrice = maxprice
+          @MinPrice = minprice
+          @Price = price
+          @DepositPrice = depositprice
+        end
+
+        def deserialize(params)
+          @MaxPrice = params['MaxPrice']
+          @MinPrice = params['MinPrice']
+          @Price = params['Price']
+          @DepositPrice = params['DepositPrice']
         end
       end
 

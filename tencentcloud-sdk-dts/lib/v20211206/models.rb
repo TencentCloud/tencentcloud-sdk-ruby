@@ -1341,11 +1341,11 @@ module TencentCloud
       class CreateSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param PayMode: 付款类型, 如：PrePay(表示包年包月)、PostPay(表示按时按量)
         # @type PayMode: String
-        # @param SrcDatabaseType: 源端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql等
+        # @param SrcDatabaseType: 源端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql,tdstore等
         # @type SrcDatabaseType: String
         # @param SrcRegion: 源端数据库所在地域,如ap-guangzhou
         # @type SrcRegion: String
-        # @param DstDatabaseType: 目标端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql,kafka等
+        # @param DstDatabaseType: 目标端数据库类型,如mysql,cynosdbmysql,tdapg,tdpg,tdsqlmysql,kafka,tdstore等
         # @type DstDatabaseType: String
         # @param DstRegion: 目标端数据库所在地域,如ap-guangzhou
         # @type DstRegion: String

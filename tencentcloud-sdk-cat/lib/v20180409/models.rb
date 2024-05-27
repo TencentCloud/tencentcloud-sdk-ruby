@@ -1253,7 +1253,7 @@ module TencentCloud
       class UpdateProbeTaskAttributesRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID
         # @type TaskId: String
-        # @param Name: 任务名
+        # @param Name: 任务名，该参数为空时不作任何修改。
         # @type Name: String
 
         attr_accessor :TaskId, :Name

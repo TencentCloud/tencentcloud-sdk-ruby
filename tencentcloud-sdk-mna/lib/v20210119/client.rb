@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据AppId查询用户设置的流量告警信息，包括阈值，回调url和key
+
+        # @param request: Request instance for GetFlowAlarmInfo.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetFlowAlarmInfoRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetFlowAlarmInfoResponse`
+        def GetFlowAlarmInfo(request)
+          body = send_request('GetFlowAlarmInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFlowAlarmInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取流量包列表
 
         # @param request: Request instance for GetFlowPackages.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetFlowStatisticResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取指定分组，指定时间数据流量使用情况
+
+        # @param request: Request instance for GetFlowStatisticByGroup.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticByGroupRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticByGroupResponse`
+        def GetFlowStatisticByGroup(request)
+          body = send_request('GetFlowStatisticByGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFlowStatisticByGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

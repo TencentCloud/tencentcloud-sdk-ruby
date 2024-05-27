@@ -129,7 +129,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Progress: 翻译进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
 
         attr_accessor :TaskId, :Status, :FileData, :Message, :Progress

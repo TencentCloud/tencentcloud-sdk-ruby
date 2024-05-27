@@ -1157,6 +1157,48 @@ module TencentCloud
         end
       end
 
+      # GetFlowAlarmInfo请求参数结构体
+      class GetFlowAlarmInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetFlowAlarmInfo返回参数结构体
+      class GetFlowAlarmInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AlarmValue: 流量包的告警阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmValue: Integer
+        # @param NotifyUrl: 告警通知回调url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyUrl: String
+        # @param CallbackKey: 告警通知回调key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackKey: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlarmValue, :NotifyUrl, :CallbackKey, :RequestId
+
+        def initialize(alarmvalue=nil, notifyurl=nil, callbackkey=nil, requestid=nil)
+          @AlarmValue = alarmvalue
+          @NotifyUrl = notifyurl
+          @CallbackKey = callbackkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AlarmValue = params['AlarmValue']
+          @NotifyUrl = params['NotifyUrl']
+          @CallbackKey = params['CallbackKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetFlowPackages请求参数结构体
       class GetFlowPackagesRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 页码，从1开始
@@ -1216,6 +1258,85 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFlowStatisticByGroup请求参数结构体
+      class GetFlowStatisticByGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param BeginTime: 开始查找时间
+        # @type BeginTime: Integer
+        # @param EndTime: 截止时间
+        # @type EndTime: Integer
+        # @param Type: 流量种类（1：上行流量，2：下行流量， 3: 上下行总和）
+        # @type Type: Integer
+        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @type TimeGranularity: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @type AccessRegion: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
+
+        attr_accessor :GroupId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType
+
+        def initialize(groupid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
+          @GroupId = groupid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Type = type
+          @TimeGranularity = timegranularity
+          @AccessRegion = accessregion
+          @GatewayType = gatewaytype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @TimeGranularity = params['TimeGranularity']
+          @AccessRegion = params['AccessRegion']
+          @GatewayType = params['GatewayType']
+        end
+      end
+
+      # GetFlowStatisticByGroup返回参数结构体
+      class GetFlowStatisticByGroupResponse < TencentCloud::Common::AbstractModel
+        # @param NetDetails: 流量详细信息
+        # @type NetDetails: Array
+        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @type MaxValue: Float
+        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @type AvgValue: Float
+        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @type TotalValue: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetDetails, :MaxValue, :AvgValue, :TotalValue, :RequestId
+
+        def initialize(netdetails=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil, requestid=nil)
+          @NetDetails = netdetails
+          @MaxValue = maxvalue
+          @AvgValue = avgvalue
+          @TotalValue = totalvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NetDetails'].nil?
+            @NetDetails = []
+            params['NetDetails'].each do |i|
+              netdetails_tmp = NetDetails.new
+              netdetails_tmp.deserialize(i)
+              @NetDetails << netdetails_tmp
+            end
+          end
+          @MaxValue = params['MaxValue']
+          @AvgValue = params['AvgValue']
+          @TotalValue = params['TotalValue']
           @RequestId = params['RequestId']
         end
       end

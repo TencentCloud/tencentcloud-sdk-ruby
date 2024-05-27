@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于用户详情页出价请求
+
+        # @param request: Request instance for BidDetailPage.
+        # @type request: :class:`Tencentcloud::domain::V20180808::BidDetailPageRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::BidDetailPageResponse`
+        def BidDetailPage(request)
+          body = send_request('BidDetailPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BidDetailPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户合作商预释放出价
 
         # @param request: Request instance for BidPreDomains.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = BidPreDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于出价界面出价请求
+
+        # @param request: Request instance for BiddingPreRelease.
+        # @type request: :class:`Tencentcloud::domain::V20180808::BiddingPreReleaseRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::BiddingPreReleaseResponse`
+        def BiddingPreRelease(request)
+          body = send_request('BiddingPreRelease', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BiddingPreReleaseResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除记录。
+
+        # @param request: Request instance for DeleteBidding.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DeleteBiddingRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DeleteBiddingResponse`
+        def DeleteBidding(request)
+          body = send_request('DeleteBidding', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBiddingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除自定义DNS Host
 
         # @param request: Request instance for DeleteCustomDnsHost.
@@ -341,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户控制台获取竞价列表
+
+        # @param request: Request instance for DescribeAuctionList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeAuctionListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeAuctionListResponse`
+        def DescribeAuctionList(request)
+          body = send_request('DescribeAuctionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuctionListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
 
         # @param request: Request instance for DescribeBatchOperationLogDetails.
@@ -375,6 +471,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBatchOperationLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 我预约的域名-预约详情。
+
+        # @param request: Request instance for DescribeBiddingAppointDetail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBiddingAppointDetailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBiddingAppointDetailResponse`
+        def DescribeBiddingAppointDetail(request)
+          body = send_request('DescribeBiddingAppointDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBiddingAppointDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 我预定的域名。
+
+        # @param request: Request instance for DescribeBiddingAppointList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBiddingAppointListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBiddingAppointListResponse`
+        def DescribeBiddingAppointList(request)
+          body = send_request('DescribeBiddingAppointList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBiddingAppointListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 我竞价的域名-竞价详情。
+
+        # @param request: Request instance for DescribeBiddingDetail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBiddingDetailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBiddingDetailResponse`
+        def DescribeBiddingDetail(request)
+          body = send_request('DescribeBiddingDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBiddingDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 我竞价的域名。
+
+        # @param request: Request instance for DescribeBiddingList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBiddingListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBiddingListResponse`
+        def DescribeBiddingList(request)
+          body = send_request('DescribeBiddingList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBiddingListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 我得标的域名-得标详情。
+
+        # @param request: Request instance for DescribeBiddingSuccessfulDetail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBiddingSuccessfulDetailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBiddingSuccessfulDetailResponse`
+        def DescribeBiddingSuccessfulDetail(request)
+          body = send_request('DescribeBiddingSuccessfulDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBiddingSuccessfulDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 我得标的域名。
+
+        # @param request: Request instance for DescribeBiddingSuccessfulList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBiddingSuccessfulListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBiddingSuccessfulListResponse`
+        def DescribeBiddingSuccessfulList(request)
+          body = send_request('DescribeBiddingSuccessfulList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBiddingSuccessfulListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -509,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 等待支付详情接口
+
+        # @param request: Request instance for DescribePayWaitDetail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribePayWaitDetailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribePayWaitDetailResponse`
+        def DescribePayWaitDetail(request)
+          body = send_request('DescribePayWaitDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePayWaitDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取已验证的手机邮箱列表
 
         # @param request: Request instance for DescribePhoneEmailList.
@@ -533,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于预释放竞价列表数据查询
+
+        # @param request: Request instance for DescribePreAuctionList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribePreAuctionListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribePreAuctionListResponse`
+        def DescribePreAuctionList(request)
+          body = send_request('DescribePreAuctionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePreAuctionListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户服务商提前获取预释放域名数据，查询数据根据结束时间进行倒序。
 
         # @param request: Request instance for DescribePreDomainList.
@@ -543,6 +831,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePreDomainListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口用于预释放页面查询
+
+        # @param request: Request instance for DescribePreReleaseList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribePreReleaseListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribePreReleaseListResponse`
+        def DescribePreReleaseList(request)
+          body = send_request('DescribePreReleaseList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePreReleaseListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -663,6 +975,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTldListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预释放未预约域名详情接口
+
+        # @param request: Request instance for DescribeUnPreDomainDetail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeUnPreDomainDetailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeUnPreDomainDetailResponse`
+        def DescribeUnPreDomainDetail(request)
+          body = send_request('DescribeUnPreDomainDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnPreDomainDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
