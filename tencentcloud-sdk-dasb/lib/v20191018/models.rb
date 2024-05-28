@@ -647,6 +647,23 @@ module TencentCloud
         end
       end
 
+      # 负载均衡
+      class Clb < TencentCloud::Common::AbstractModel
+        # @param ClbIp: 负载均衡IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClbIp: String
+
+        attr_accessor :ClbIp
+
+        def initialize(clbip=nil)
+          @ClbIp = clbip
+        end
+
+        def deserialize(params)
+          @ClbIp = params['ClbIp']
+        end
+      end
+
       # 高危命令模板
       class CmdTemplate < TencentCloud::Common::AbstractModel
         # @param Id: 高危命令模板ID
@@ -2657,19 +2674,27 @@ module TencentCloud
         # @type VpcId: String
         # @param ResourceIds: 资源ID集合，当传入ID集合时忽略 ApCode 和 VpcId
         # @type ResourceIds: Array
+        # @param Limit: 每页条目数量
+        # @type Limit: Integer
+        # @param Offset: 分页偏移位置
+        # @type Offset: Integer
 
-        attr_accessor :ApCode, :VpcId, :ResourceIds
+        attr_accessor :ApCode, :VpcId, :ResourceIds, :Limit, :Offset
 
-        def initialize(apcode=nil, vpcid=nil, resourceids=nil)
+        def initialize(apcode=nil, vpcid=nil, resourceids=nil, limit=nil, offset=nil)
           @ApCode = apcode
           @VpcId = vpcid
           @ResourceIds = resourceids
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @ApCode = params['ApCode']
           @VpcId = params['VpcId']
           @ResourceIds = params['ResourceIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -2677,13 +2702,17 @@ module TencentCloud
       class DescribeResourcesResponse < TencentCloud::Common::AbstractModel
         # @param ResourceSet: 堡垒机资源列表
         # @type ResourceSet: Array
+        # @param TotalCount: 堡垒机资源数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceSet, :RequestId
+        attr_accessor :ResourceSet, :TotalCount, :RequestId
 
-        def initialize(resourceset=nil, requestid=nil)
+        def initialize(resourceset=nil, totalcount=nil, requestid=nil)
           @ResourceSet = resourceset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -2696,6 +2725,7 @@ module TencentCloud
               @ResourceSet << resource_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4034,10 +4064,13 @@ module TencentCloud
         # @param LogDeliveryArgs: 日志投递规格信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogDeliveryArgs: String
+        # @param ClbSet: 堡垒机资源LB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClbSet: Array
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4067,6 +4100,7 @@ module TencentCloud
           @PackageBandwidth = packagebandwidth
           @PackageNode = packagenode
           @LogDeliveryArgs = logdeliveryargs
+          @ClbSet = clbset
         end
 
         def deserialize(params)
@@ -4099,6 +4133,14 @@ module TencentCloud
           @PackageBandwidth = params['PackageBandwidth']
           @PackageNode = params['PackageNode']
           @LogDeliveryArgs = params['LogDeliveryArgs']
+          unless params['ClbSet'].nil?
+            @ClbSet = []
+            params['ClbSet'].each do |i|
+              clb_tmp = Clb.new
+              clb_tmp.deserialize(i)
+              @ClbSet << clb_tmp
+            end
+          end
         end
       end
 

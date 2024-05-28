@@ -4064,7 +4064,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 任务运维-批量冻结任务
+        # 任务运维-批量暂停任务
 
         # @param request: Request instance for FreezeOpsTasks.
         # @type request: :class:`Tencentcloud::wedata::V20210820::FreezeOpsTasksRequest`

@@ -1644,17 +1644,21 @@ module TencentCloud
         # @type TaskIdList: Array
         # @param ProjectId: 项目Id
         # @type ProjectId: String
+        # @param KillInstance: 是否终止已生成的实例
+        # @type KillInstance: Boolean
 
-        attr_accessor :TaskIdList, :ProjectId
+        attr_accessor :TaskIdList, :ProjectId, :KillInstance
 
-        def initialize(taskidlist=nil, projectid=nil)
+        def initialize(taskidlist=nil, projectid=nil, killinstance=nil)
           @TaskIdList = taskidlist
           @ProjectId = projectid
+          @KillInstance = killinstance
         end
 
         def deserialize(params)
           @TaskIdList = params['TaskIdList']
           @ProjectId = params['ProjectId']
+          @KillInstance = params['KillInstance']
         end
       end
 
@@ -1687,17 +1691,21 @@ module TencentCloud
         # @type WorkflowIds: Array
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param KillInstance: 是否终止已生成的实例
+        # @type KillInstance: Boolean
 
-        attr_accessor :WorkflowIds, :ProjectId
+        attr_accessor :WorkflowIds, :ProjectId, :KillInstance
 
-        def initialize(workflowids=nil, projectid=nil)
+        def initialize(workflowids=nil, projectid=nil, killinstance=nil)
           @WorkflowIds = workflowids
           @ProjectId = projectid
+          @KillInstance = killinstance
         end
 
         def deserialize(params)
           @WorkflowIds = params['WorkflowIds']
           @ProjectId = params['ProjectId']
+          @KillInstance = params['KillInstance']
         end
       end
 
@@ -3321,10 +3329,12 @@ module TencentCloud
         # @type Type: String
         # @param Incharge: 责任人
         # @type Incharge: String
+        # @param SchemaName: schema名称
+        # @type SchemaName: String
 
-        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Type, :Incharge
+        attr_accessor :DatasourceId, :Database, :DDLSql, :Privilege, :ProjectId, :Type, :Incharge, :SchemaName
 
-        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, type=nil, incharge=nil)
+        def initialize(datasourceid=nil, database=nil, ddlsql=nil, privilege=nil, projectid=nil, type=nil, incharge=nil, schemaname=nil)
           @DatasourceId = datasourceid
           @Database = database
           @DDLSql = ddlsql
@@ -3332,6 +3342,7 @@ module TencentCloud
           @ProjectId = projectid
           @Type = type
           @Incharge = incharge
+          @SchemaName = schemaname
         end
 
         def deserialize(params)
@@ -3342,6 +3353,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @Type = params['Type']
           @Incharge = params['Incharge']
+          @SchemaName = params['SchemaName']
         end
       end
 
@@ -4800,10 +4812,13 @@ module TencentCloud
         # @param ParamsString: 数据源附带参数信息Params json字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamsString: String
+        # @param Category: 区分数据源类型自定义源还是系统源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
 
-        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version, :ParamsString
+        attr_accessor :DatabaseNames, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :Version, :ParamsString, :Category
 
-        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil, paramsstring=nil)
+        def initialize(databasenames=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, version=nil, paramsstring=nil, category=nil)
           @DatabaseNames = databasenames
           @Description = description
           @ID = id
@@ -4814,6 +4829,7 @@ module TencentCloud
           @ClusterId = clusterid
           @Version = version
           @ParamsString = paramsstring
+          @Category = category
         end
 
         def deserialize(params)
@@ -4827,6 +4843,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Version = params['Version']
           @ParamsString = params['ParamsString']
+          @Category = params['Category']
         end
       end
 
@@ -8968,10 +8985,14 @@ module TencentCloud
         # @type TaskTags: Array
         # @param KeyWord: 查询关键字
         # @type KeyWord: String
+        # @param InitStrategy: 实例生成方式
+        # @type InitStrategy: String
+        # @param RequestResourceTypes: 额外请求的资源类型
+        # @type RequestResourceTypes: Array
 
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord, :InitStrategy, :RequestResourceTypes
 
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil)
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil, initstrategy=nil, requestresourcetypes=nil)
           @ProjectId = projectid
           @FolderIdList = folderidlist
           @WorkFlowIdList = workflowidlist
@@ -8995,6 +9016,8 @@ module TencentCloud
           @ExecutorGroupIdList = executorgroupidlist
           @TaskTags = tasktags
           @KeyWord = keyword
+          @InitStrategy = initstrategy
+          @RequestResourceTypes = requestresourcetypes
         end
 
         def deserialize(params)
@@ -9028,6 +9051,8 @@ module TencentCloud
             end
           end
           @KeyWord = params['KeyWord']
+          @InitStrategy = params['InitStrategy']
+          @RequestResourceTypes = params['RequestResourceTypes']
         end
       end
 
@@ -14182,12 +14207,15 @@ module TencentCloud
         # @type Tasks: Array
         # @param OperateIsInform: 任务操作是否消息通知下游任务责任人
         # @type OperateIsInform: Boolean
+        # @param KillInstance: 是否终止已生成的实例
+        # @type KillInstance: Boolean
 
-        attr_accessor :Tasks, :OperateIsInform
+        attr_accessor :Tasks, :OperateIsInform, :KillInstance
 
-        def initialize(tasks=nil, operateisinform=nil)
+        def initialize(tasks=nil, operateisinform=nil, killinstance=nil)
           @Tasks = tasks
           @OperateIsInform = operateisinform
+          @KillInstance = killinstance
         end
 
         def deserialize(params)
@@ -14200,6 +14228,7 @@ module TencentCloud
             end
           end
           @OperateIsInform = params['OperateIsInform']
+          @KillInstance = params['KillInstance']
         end
       end
 
@@ -14229,17 +14258,21 @@ module TencentCloud
         # @type WorkflowIds: Array
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param KillInstance: 是否终止已生成的实例
+        # @type KillInstance: Boolean
 
-        attr_accessor :WorkflowIds, :ProjectId
+        attr_accessor :WorkflowIds, :ProjectId, :KillInstance
 
-        def initialize(workflowids=nil, projectid=nil)
+        def initialize(workflowids=nil, projectid=nil, killinstance=nil)
           @WorkflowIds = workflowids
           @ProjectId = projectid
+          @KillInstance = killinstance
         end
 
         def deserialize(params)
           @WorkflowIds = params['WorkflowIds']
           @ProjectId = params['ProjectId']
+          @KillInstance = params['KillInstance']
         end
       end
 
@@ -15540,10 +15573,16 @@ module TencentCloud
         # @param RetryAttempts: 自动重试次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryAttempts: Integer
+        # @param DeletedFatherList: 紧急去除的依赖父实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeletedFatherList: Array
+        # @param CirculateInstanceList: 循环依赖关联的实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CirculateInstanceList: Array
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts, :DeletedFatherList, :CirculateInstanceList
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil, deletedfatherlist=nil, circulateinstancelist=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -15604,6 +15643,8 @@ module TencentCloud
           @UserId = userid
           @InstanceLifeCycleOpsDto = instancelifecycleopsdto
           @RetryAttempts = retryattempts
+          @DeletedFatherList = deletedfatherlist
+          @CirculateInstanceList = circulateinstancelist
         end
 
         def deserialize(params)
@@ -15680,6 +15721,15 @@ module TencentCloud
             @InstanceLifeCycleOpsDto.deserialize(params['InstanceLifeCycleOpsDto'])
           end
           @RetryAttempts = params['RetryAttempts']
+          @DeletedFatherList = params['DeletedFatherList']
+          unless params['CirculateInstanceList'].nil?
+            @CirculateInstanceList = []
+            params['CirculateInstanceList'].each do |i|
+              instanceopsdto_tmp = InstanceOpsDto.new
+              instanceopsdto_tmp.deserialize(i)
+              @CirculateInstanceList << instanceopsdto_tmp
+            end
+          end
         end
       end
 
@@ -18988,12 +19038,16 @@ module TencentCloud
         # @type TasksList: Array
         # @param LinksList: 画布任务链接信息
         # @type LinksList: Array
+        # @param CirculateTaskList: 画布循环依赖任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CirculateTaskList: :class:`Tencentcloud::Wedata.v20210820.models.OpsTaskCanvasDto`
 
-        attr_accessor :TasksList, :LinksList
+        attr_accessor :TasksList, :LinksList, :CirculateTaskList
 
-        def initialize(taskslist=nil, linkslist=nil)
+        def initialize(taskslist=nil, linkslist=nil, circulatetasklist=nil)
           @TasksList = taskslist
           @LinksList = linkslist
+          @CirculateTaskList = circulatetasklist
         end
 
         def deserialize(params)
@@ -19012,6 +19066,10 @@ module TencentCloud
               opstasklinkinfodto_tmp.deserialize(i)
               @LinksList << opstasklinkinfodto_tmp
             end
+          end
+          unless params['CirculateTaskList'].nil?
+            @CirculateTaskList = OpsTaskCanvasDto.new
+            @CirculateTaskList.deserialize(params['CirculateTaskList'])
           end
         end
       end
@@ -19069,14 +19127,18 @@ module TencentCloud
         # @type LinkType: String
         # @param LinkId: 依赖边id
         # @type LinkId: String
+        # @param LinkStyle: 为了区分新增的循环依赖新增的类型。默认是normal，循环依赖则是circulate
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LinkStyle: String
 
-        attr_accessor :TaskTo, :TaskFrom, :LinkType, :LinkId
+        attr_accessor :TaskTo, :TaskFrom, :LinkType, :LinkId, :LinkStyle
 
-        def initialize(taskto=nil, taskfrom=nil, linktype=nil, linkid=nil)
+        def initialize(taskto=nil, taskfrom=nil, linktype=nil, linkid=nil, linkstyle=nil)
           @TaskTo = taskto
           @TaskFrom = taskfrom
           @LinkType = linktype
           @LinkId = linkid
+          @LinkStyle = linkstyle
         end
 
         def deserialize(params)
@@ -19084,6 +19146,7 @@ module TencentCloud
           @TaskFrom = params['TaskFrom']
           @LinkType = params['LinkType']
           @LinkId = params['LinkId']
+          @LinkStyle = params['LinkStyle']
         end
       end
 

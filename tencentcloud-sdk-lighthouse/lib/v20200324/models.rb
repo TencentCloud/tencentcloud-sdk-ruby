@@ -138,7 +138,7 @@ module TencentCloud
 
       # AssociateInstancesKeyPairs请求参数结构体
       class AssociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
-        # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
+        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 100。可通过[DescribeKeyPairs](https://cloud.tencent.com/document/api/1207/55540)接口返回值中的KeyId获取。
         # @type KeyIds: Array
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceIds: Array
@@ -174,7 +174,7 @@ module TencentCloud
 
       # AttachCcn请求参数结构体
       class AttachCcnRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网实例ID。
+        # @param CcnId: 云联网实例ID。可通过[DescribeCcnAttachedInstances](https://cloud.tencent.com/document/product/1207/58797)接口返回值中的CcnId获取。
         # @type CcnId: String
 
         attr_accessor :CcnId
@@ -1408,7 +1408,7 @@ module TencentCloud
 
       # DeleteKeyPairs请求参数结构体
       class DeleteKeyPairsRequest < TencentCloud::Common::AbstractModel
-        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 10。
+        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 10。可通过[DescribeKeyPairs](https://cloud.tencent.com/document/api/1207/55540)接口返回值中的KeyId获取。
         # @type KeyIds: Array
 
         attr_accessor :KeyIds
@@ -3093,7 +3093,7 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceIds: Array
         # @param Filters: 过滤器列表。
         # <li>instance-name</li>按照【实例名称】进行过滤。
@@ -3294,7 +3294,7 @@ module TencentCloud
 
       # DescribeKeyPairs请求参数结构体
       class DescribeKeyPairsRequest < TencentCloud::Common::AbstractModel
-        # @param KeyIds: 密钥对 ID 列表。
+        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 100。
         # @type KeyIds: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
@@ -3909,7 +3909,7 @@ module TencentCloud
 
       # DisassociateInstancesKeyPairs请求参数结构体
       class DisassociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
-        # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
+        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 100。可通过[DescribeKeyPairs](https://cloud.tencent.com/document/api/1207/55540)接口返回值中的KeyId获取。
         # @type KeyIds: Array
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceIds: Array
@@ -6660,9 +6660,9 @@ module TencentCloud
 
       # ReplaceFirewallTemplateRule请求参数结构体
       class ReplaceFirewallTemplateRuleRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过 [DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874) 的返回值 TemplateSet 获取。
         # @type TemplateId: String
-        # @param TemplateRuleId: 防火墙模板规则ID。
+        # @param TemplateRuleId: 防火墙模板规则ID。可通过 [DescribeFirewallTemplateRules](https://cloud.tencent.com/document/product/1207/96875) 的返回值 TemplateRuleSet 获取。
         # @type TemplateRuleId: String
         # @param TemplateRule: 替换后的防火墙模板规则。
         # @type TemplateRule: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRule`

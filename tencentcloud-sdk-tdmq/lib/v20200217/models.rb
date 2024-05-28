@@ -9067,16 +9067,20 @@ module TencentCloud
         # 4:跨地域访问，目标集群已经完成异地切回，等待删除状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationType: Integer
+        # @param AccessPointsType: 接入点类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPointsType: String
 
-        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType
+        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType
 
-        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil)
+        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @Endpoint = endpoint
           @InstanceId = instanceid
           @RouteType = routetype
           @OperationType = operationtype
+          @AccessPointsType = accesspointstype
         end
 
         def deserialize(params)
@@ -9086,6 +9090,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @RouteType = params['RouteType']
           @OperationType = params['OperationType']
+          @AccessPointsType = params['AccessPointsType']
         end
       end
 

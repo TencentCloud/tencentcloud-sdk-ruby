@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 购买新实例
+        # 创建 RocketMQ 5.x 集群
 
         # @param request: Request instance for CreateInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::CreateInstanceRequest`

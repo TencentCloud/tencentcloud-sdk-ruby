@@ -1470,10 +1470,12 @@ module TencentCloud
         # @type RecordTemplateId: String
         # @param BackupToUrl: 新的目标地址，用于任务同时推两路场景。
         # @type BackupToUrl: String
+        # @param TranscodeTemplateName: 直播转码模板，使用云直播的转码功能进行转码后再转推出去。转码模板需在云直播控制台创建。
+        # @type TranscodeTemplateName: String
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl, :TranscodeTemplateName
 
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil, transcodetemplatename=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -1497,6 +1499,7 @@ module TencentCloud
           @VodLocalMode = vodlocalmode
           @RecordTemplateId = recordtemplateid
           @BackupToUrl = backuptourl
+          @TranscodeTemplateName = transcodetemplatename
         end
 
         def deserialize(params)
@@ -1530,6 +1533,7 @@ module TencentCloud
           @VodLocalMode = params['VodLocalMode']
           @RecordTemplateId = params['RecordTemplateId']
           @BackupToUrl = params['BackupToUrl']
+          @TranscodeTemplateName = params['TranscodeTemplateName']
         end
       end
 
@@ -10918,10 +10922,13 @@ module TencentCloud
         # @param BackupToUrl: 新增的推流地址。用于单任务推两路场景。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupToUrl: String
+        # @param TranscodeTemplateName: 直播转码模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranscodeTemplateName: String
 
-        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl
+        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl, :TranscodeTemplateName
 
-        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil)
+        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil, transcodetemplatename=nil)
           @TaskId = taskid
           @SourceType = sourcetype
           @SourceUrls = sourceurls
@@ -10951,6 +10958,7 @@ module TencentCloud
           @VodLocalMode = vodlocalmode
           @RecordTemplateId = recordtemplateid
           @BackupToUrl = backuptourl
+          @TranscodeTemplateName = transcodetemplatename
         end
 
         def deserialize(params)
@@ -10993,6 +11001,7 @@ module TencentCloud
           @VodLocalMode = params['VodLocalMode']
           @RecordTemplateId = params['RecordTemplateId']
           @BackupToUrl = params['BackupToUrl']
+          @TranscodeTemplateName = params['TranscodeTemplateName']
         end
       end
 
