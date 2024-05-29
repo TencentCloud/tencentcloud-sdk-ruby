@@ -858,10 +858,13 @@ module TencentCloud
         # @param HierarchicalValue: 告警分级阈值配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HierarchicalValue: :class:`Tencentcloud::Monitor.v20180724.models.AlarmHierarchicalValue`
+        # @param IsLatenessMetric: 是否延迟指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLatenessMetric: Integer
 
-        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId, :ValueMax, :ValueMin, :HierarchicalValue
+        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType, :IsAdvanced, :IsOpen, :ProductId, :ValueMax, :ValueMin, :HierarchicalValue, :IsLatenessMetric
 
-        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil, valuemax=nil, valuemin=nil, hierarchicalvalue=nil)
+        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil, isadvanced=nil, isopen=nil, productid=nil, valuemax=nil, valuemin=nil, hierarchicalvalue=nil, islatenessmetric=nil)
           @MetricName = metricname
           @Period = period
           @Operator = operator
@@ -879,6 +882,7 @@ module TencentCloud
           @ValueMax = valuemax
           @ValueMin = valuemin
           @HierarchicalValue = hierarchicalvalue
+          @IsLatenessMetric = islatenessmetric
         end
 
         def deserialize(params)
@@ -905,6 +909,7 @@ module TencentCloud
             @HierarchicalValue = AlarmHierarchicalValue.new
             @HierarchicalValue.deserialize(params['HierarchicalValue'])
           end
+          @IsLatenessMetric = params['IsLatenessMetric']
         end
       end
 
@@ -10094,10 +10099,13 @@ module TencentCloud
         # @param Periods: 指标触发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Periods: Array
+        # @param IsLatenessMetric: 是否延迟指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLatenessMetric: Integer
 
-        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig, :IsAdvanced, :IsOpen, :ProductId, :Operators, :Periods
+        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig, :IsAdvanced, :IsOpen, :ProductId, :Operators, :Periods, :IsLatenessMetric
 
-        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil, isadvanced=nil, isopen=nil, productid=nil, operators=nil, periods=nil)
+        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil, isadvanced=nil, isopen=nil, productid=nil, operators=nil, periods=nil, islatenessmetric=nil)
           @Namespace = namespace
           @MetricName = metricname
           @Description = description
@@ -10111,6 +10119,7 @@ module TencentCloud
           @ProductId = productid
           @Operators = operators
           @Periods = periods
+          @IsLatenessMetric = islatenessmetric
         end
 
         def deserialize(params)
@@ -10137,6 +10146,7 @@ module TencentCloud
             end
           end
           @Periods = params['Periods']
+          @IsLatenessMetric = params['IsLatenessMetric']
         end
       end
 

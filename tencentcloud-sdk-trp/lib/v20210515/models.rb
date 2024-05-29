@@ -209,8 +209,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2024, 4
-        deprecate :Ext=, :none, 2024, 4
+        deprecate :Ext, :none, 2024, 5
+        deprecate :Ext=, :none, 2024, 5
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -362,10 +362,25 @@ module TencentCloud
         # @param RelateType: 码关系是否预关联
         # 0:否, 1:是
         # @type RelateType: Integer
+        # @param SceneCode: 场景码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneCode: Integer
+        # @param CodeRule: 码规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeRule: String
+        # @param UsedAmount: 已使用码数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedAmount: Integer
+        # @param SerialStart: 开始流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialStart: Integer
+        # @param SerialEnd: 结束流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialEnd: Integer
 
-        attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec, :ProductName, :ProductSpecification, :ProductId, :RelateType
+        attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec, :ProductName, :ProductSpecification, :ProductId, :RelateType, :SceneCode, :CodeRule, :UsedAmount, :SerialStart, :SerialEnd
 
-        def initialize(packid=nil, corpid=nil, merchantid=nil, createtime=nil, updatetime=nil, status=nil, log=nil, createuser=nil, amount=nil, codelength=nil, codetype=nil, cipher=nil, texturl=nil, packurl=nil, merchantname=nil, ruletype=nil, customid=nil, packtype=nil, packlevel=nil, packspec=nil, productname=nil, productspecification=nil, productid=nil, relatetype=nil)
+        def initialize(packid=nil, corpid=nil, merchantid=nil, createtime=nil, updatetime=nil, status=nil, log=nil, createuser=nil, amount=nil, codelength=nil, codetype=nil, cipher=nil, texturl=nil, packurl=nil, merchantname=nil, ruletype=nil, customid=nil, packtype=nil, packlevel=nil, packspec=nil, productname=nil, productspecification=nil, productid=nil, relatetype=nil, scenecode=nil, coderule=nil, usedamount=nil, serialstart=nil, serialend=nil)
           @PackId = packid
           @CorpId = corpid
           @MerchantId = merchantid
@@ -390,6 +405,11 @@ module TencentCloud
           @ProductSpecification = productspecification
           @ProductId = productid
           @RelateType = relatetype
+          @SceneCode = scenecode
+          @CodeRule = coderule
+          @UsedAmount = usedamount
+          @SerialStart = serialstart
+          @SerialEnd = serialend
         end
 
         def deserialize(params)
@@ -424,6 +444,11 @@ module TencentCloud
           @ProductSpecification = params['ProductSpecification']
           @ProductId = params['ProductId']
           @RelateType = params['RelateType']
+          @SceneCode = params['SceneCode']
+          @CodeRule = params['CodeRule']
+          @UsedAmount = params['UsedAmount']
+          @SerialStart = params['SerialStart']
+          @SerialEnd = params['SerialEnd']
         end
       end
 
@@ -599,10 +624,12 @@ module TencentCloud
         # @type ProductId: String
         # @param RelateType: 层级码时是否提前生成关联关系，默认为 1
         # @type RelateType: Integer
+        # @param SceneCode: 场景值
+        # @type SceneCode: Integer
 
-        attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId, :SerialType, :ProductId, :RelateType
+        attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId, :SerialType, :ProductId, :RelateType, :SceneCode
 
-        def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil, serialtype=nil, productid=nil, relatetype=nil)
+        def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil, serialtype=nil, productid=nil, relatetype=nil, scenecode=nil)
           @MerchantId = merchantid
           @CodeLength = codelength
           @CodeType = codetype
@@ -615,6 +642,7 @@ module TencentCloud
           @SerialType = serialtype
           @ProductId = productid
           @RelateType = relatetype
+          @SceneCode = scenecode
         end
 
         def deserialize(params)
@@ -637,6 +665,7 @@ module TencentCloud
           @SerialType = params['SerialType']
           @ProductId = params['ProductId']
           @RelateType = params['RelateType']
+          @SceneCode = params['SceneCode']
         end
       end
 
@@ -757,10 +786,12 @@ module TencentCloud
         # 0: 否, 1:是
         # 默认为1，仅对层级码有效
         # @type RelateType: Integer
+        # @param SceneCode: 场景值
+        # @type SceneCode: Integer
 
-        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId, :SerialType, :ProductId, :RelateType
+        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId, :SerialType, :ProductId, :RelateType, :SceneCode
 
-        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil, serialtype=nil, productid=nil, relatetype=nil)
+        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil, serialtype=nil, productid=nil, relatetype=nil, scenecode=nil)
           @MerchantId = merchantid
           @Amount = amount
           @CorpId = corpid
@@ -773,6 +804,7 @@ module TencentCloud
           @SerialType = serialtype
           @ProductId = productid
           @RelateType = relatetype
+          @SceneCode = scenecode
         end
 
         def deserialize(params)
@@ -802,6 +834,7 @@ module TencentCloud
           @SerialType = params['SerialType']
           @ProductId = params['ProductId']
           @RelateType = params['RelateType']
+          @SceneCode = params['SceneCode']
         end
       end
 
@@ -1816,10 +1849,14 @@ module TencentCloud
         # @type ResType: String
         # @param ResId: 资源ID ResType是 batch 时对应是批次ID, 是 order_in, order_out时，则是订单ID
         # @type ResId: String
+        # @param SceneCode: 应用场景
+        # @type SceneCode: Integer
+        # @param Status: 码包状态
+        # @type Status: String
 
-        attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId, :SerialType, :ResType, :ResId
+        attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId, :SerialType, :ResType, :ResId, :SceneCode, :Status
 
-        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil, serialtype=nil, restype=nil, resid=nil)
+        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil, serialtype=nil, restype=nil, resid=nil, scenecode=nil, status=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
           @Keyword = keyword
@@ -1827,6 +1864,8 @@ module TencentCloud
           @SerialType = serialtype
           @ResType = restype
           @ResId = resid
+          @SceneCode = scenecode
+          @Status = status
         end
 
         def deserialize(params)
@@ -1837,6 +1876,8 @@ module TencentCloud
           @SerialType = params['SerialType']
           @ResType = params['ResType']
           @ResId = params['ResId']
+          @SceneCode = params['SceneCode']
+          @Status = params['Status']
         end
       end
 
@@ -2598,8 +2639,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2024, 4
-        deprecate :Products=, :none, 2024, 4
+        deprecate :Products, :none, 2024, 5
+        deprecate :Products=, :none, 2024, 5
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3010,8 +3051,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2024, 4
-        deprecate :Value=, :none, 2024, 4
+        deprecate :Value, :none, 2024, 5
+        deprecate :Value=, :none, 2024, 5
 
         def initialize(value=nil)
           @Value = value
@@ -3061,17 +3102,22 @@ module TencentCloud
         # @type JobId: Integer
         # @param Status: 执行状态 init:初始化, pending: 执行中, done: 执行成功, error: 执行失败
         # @type Status: String
+        # @param ErrorMessage: 任务错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
 
-        attr_accessor :JobId, :Status
+        attr_accessor :JobId, :Status, :ErrorMessage
 
-        def initialize(jobid=nil, status=nil)
+        def initialize(jobid=nil, status=nil, errormessage=nil)
           @JobId = jobid
           @Status = status
+          @ErrorMessage = errormessage
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @Status = params['Status']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 
@@ -3718,15 +3764,23 @@ module TencentCloud
         # @param CodeParts: 码段配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeParts: Array
+        # @param Unit: 包装单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param SceneCode: 场景值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneCode: Integer
 
-        attr_accessor :Level, :Rate, :Amount, :CustomId, :CodeParts
+        attr_accessor :Level, :Rate, :Amount, :CustomId, :CodeParts, :Unit, :SceneCode
 
-        def initialize(level=nil, rate=nil, amount=nil, customid=nil, codeparts=nil)
+        def initialize(level=nil, rate=nil, amount=nil, customid=nil, codeparts=nil, unit=nil, scenecode=nil)
           @Level = level
           @Rate = rate
           @Amount = amount
           @CustomId = customid
           @CodeParts = codeparts
+          @Unit = unit
+          @SceneCode = scenecode
         end
 
         def deserialize(params)
@@ -3742,6 +3796,8 @@ module TencentCloud
               @CodeParts << codepart_tmp
             end
           end
+          @Unit = params['Unit']
+          @SceneCode = params['SceneCode']
         end
       end
 
@@ -4182,10 +4238,19 @@ module TencentCloud
         # @param ProductName: 产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
+        # @param ProductLogo: 产品Logo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductLogo: String
+        # @param Status: 风险状态
+        # 0: 未知, 1:通过, 2:失败/风险, 3:存疑
+        # @type Status: Integer
+        # @param Verify: 是否开启验证
+        # 0:否, 1:是
+        # @type Verify: Integer
 
-        attr_accessor :LogId, :Openid, :Nickname, :CreateTime, :Code, :CorpId, :MerchantId, :ProductId, :Ip, :Country, :Province, :City, :District, :Unionid, :First, :BatchId, :Type, :MerchantName, :ProductName
+        attr_accessor :LogId, :Openid, :Nickname, :CreateTime, :Code, :CorpId, :MerchantId, :ProductId, :Ip, :Country, :Province, :City, :District, :Unionid, :First, :BatchId, :Type, :MerchantName, :ProductName, :ProductLogo, :Status, :Verify
 
-        def initialize(logid=nil, openid=nil, nickname=nil, createtime=nil, code=nil, corpid=nil, merchantid=nil, productid=nil, ip=nil, country=nil, province=nil, city=nil, district=nil, unionid=nil, first=nil, batchid=nil, type=nil, merchantname=nil, productname=nil)
+        def initialize(logid=nil, openid=nil, nickname=nil, createtime=nil, code=nil, corpid=nil, merchantid=nil, productid=nil, ip=nil, country=nil, province=nil, city=nil, district=nil, unionid=nil, first=nil, batchid=nil, type=nil, merchantname=nil, productname=nil, productlogo=nil, status=nil, verify=nil)
           @LogId = logid
           @Openid = openid
           @Nickname = nickname
@@ -4205,6 +4270,9 @@ module TencentCloud
           @Type = type
           @MerchantName = merchantname
           @ProductName = productname
+          @ProductLogo = productlogo
+          @Status = status
+          @Verify = verify
         end
 
         def deserialize(params)
@@ -4227,6 +4295,9 @@ module TencentCloud
           @Type = params['Type']
           @MerchantName = params['MerchantName']
           @ProductName = params['ProductName']
+          @ProductLogo = params['ProductLogo']
+          @Status = params['Status']
+          @Verify = params['Verify']
         end
       end
 
@@ -4314,10 +4385,19 @@ module TencentCloud
         # @type AgentId: Integer
         # @param Level: 码层级 0: 最小级, 1: 一级, 2: 二级
         # @type Level: Integer
+        # @param PackSpec: 码层级详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackSpec: Array
+        # @param SceneCode: 场景码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneCode: Integer
+        # @param SerialCode: 流水码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialCode: Integer
 
-        attr_accessor :Code, :CorpId, :PackId, :BatchId, :MerchantId, :ProductId, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :AgentId, :Level
+        attr_accessor :Code, :CorpId, :PackId, :BatchId, :MerchantId, :ProductId, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :AgentId, :Level, :PackSpec, :SceneCode, :SerialCode
 
-        def initialize(code=nil, corpid=nil, packid=nil, batchid=nil, merchantid=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, agentid=nil, level=nil)
+        def initialize(code=nil, corpid=nil, packid=nil, batchid=nil, merchantid=nil, productid=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, agentid=nil, level=nil, packspec=nil, scenecode=nil, serialcode=nil)
           @Code = code
           @CorpId = corpid
           @PackId = packid
@@ -4331,6 +4411,9 @@ module TencentCloud
           @ProductName = productname
           @AgentId = agentid
           @Level = level
+          @PackSpec = packspec
+          @SceneCode = scenecode
+          @SerialCode = serialcode
         end
 
         def deserialize(params)
@@ -4347,6 +4430,16 @@ module TencentCloud
           @ProductName = params['ProductName']
           @AgentId = params['AgentId']
           @Level = params['Level']
+          unless params['PackSpec'].nil?
+            @PackSpec = []
+            params['PackSpec'].each do |i|
+              packspec_tmp = PackSpec.new
+              packspec_tmp.deserialize(i)
+              @PackSpec << packspec_tmp
+            end
+          end
+          @SceneCode = params['SceneCode']
+          @SerialCode = params['SerialCode']
         end
       end
 

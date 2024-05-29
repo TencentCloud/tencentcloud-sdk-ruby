@@ -102,9 +102,9 @@ module TencentCloud
 
       # ApplyInstanceSnapshot请求参数结构体
       class ApplyInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/product/1207/47573) 接口返回值中的 InstanceId	获取。
         # @type InstanceId: String
-        # @param SnapshotId: 快照 ID。
+        # @param SnapshotId: 快照 ID。可通过 [DescribeSnapshots](https://cloud.tencent.com/document/product/1207/54388) 接口返回值中的 SnapshotId		获取。
         # @type SnapshotId: String
 
         attr_accessor :InstanceId, :SnapshotId
@@ -991,7 +991,7 @@ module TencentCloud
 
       # CreateInstanceSnapshot请求参数结构体
       class CreateInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 需要创建快照的实例 ID。
+        # @param InstanceId: 需要创建快照的实例 ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/product/1207/47573) 接口返回值中的 InstanceId	获取。
         # @type InstanceId: String
         # @param SnapshotName: 快照名称，最长为 60 个字符。
         # @type SnapshotName: String
@@ -3046,7 +3046,8 @@ module TencentCloud
 
       # DescribeInstancesDiskNum请求参数结构体
       class DescribeInstancesDiskNumRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表。
+        # @param InstanceIds: 实例ID列表。每次请求批量实例的上限为 100。
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/47573">DescribeInstances</a> 接口返回值中的 InstanceId 获取。
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -3367,12 +3368,13 @@ module TencentCloud
 
       # DescribeModifyInstanceBundles请求参数结构体
       class DescribeModifyInstanceBundlesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/1207/47573">DescribeInstances</a> 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
         # @param Filters: 过滤器列表。
         # <li>bundle-id</li>按照【套餐 ID】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过<a href="https://cloud.tencent.com/document/product/1207/47575"> DescribeBundles </a>接口返回值中的 BundleId 获取。
         # <li>support-platform-type</li>按照【系统类型】进行过滤。
         # 取值： LINUX_UNIX（Linux/Unix系统）；WINDOWS（Windows 系统）
         # 类型：String
@@ -3674,22 +3676,30 @@ module TencentCloud
 
       # DescribeSnapshots请求参数结构体
       class DescribeSnapshotsRequest < TencentCloud::Common::AbstractModel
-        # @param SnapshotIds: 要查询快照的 ID 列表。
+        # @param SnapshotIds: 要查询快照的 ID 列表。每次请求批量快照的上限为 100。
+        # 可通过 [DescribeSnapshots](https://cloud.tencent.com/document/product/1207/54388) 接口返回值中的 SnapshotId		获取。
         # 参数不支持同时指定 SnapshotIds 和 Filters。
         # @type SnapshotIds: Array
         # @param Filters: 过滤器列表。
         # <li>snapshot-id</li>按照【快照 ID】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388">DescribeSnapshots</a> 接口返回值中的 SnapshotId 获取。
+
         # <li>disk-id</li>按照【磁盘 ID】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/66093">DescribeDisks</a> 接口返回值中的 DiskId 获取。
+
         # <li>snapshot-name</li>按照【快照名称】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388">DescribeSnapshots</a> 接口返回值中的 SnapshotName 获取。
         # <li>instance-id</li>按照【实例 ID 】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/47573">DescribeInstances</a> 接口返回值中的 InstanceId 获取。
+
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 SnapshotIds 和 Filters。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为 0。
@@ -6660,9 +6670,9 @@ module TencentCloud
 
       # ReplaceFirewallTemplateRule请求参数结构体
       class ReplaceFirewallTemplateRuleRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。可通过 [DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874) 的返回值 TemplateSet 获取。
+        # @param TemplateId: 防火墙模板ID。可通过 [DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874) 接口返回值中的 TemplateId 获取。
         # @type TemplateId: String
-        # @param TemplateRuleId: 防火墙模板规则ID。可通过 [DescribeFirewallTemplateRules](https://cloud.tencent.com/document/product/1207/96875) 的返回值 TemplateRuleSet 获取。
+        # @param TemplateRuleId: 防火墙模板规则ID。可通过 [DescribeFirewallTemplateRules](https://cloud.tencent.com/document/product/1207/96875) 接口返回值中的 TemplateRuleId 获取。
         # @type TemplateRuleId: String
         # @param TemplateRule: 替换后的防火墙模板规则。
         # @type TemplateRule: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRule`
@@ -6782,9 +6792,9 @@ module TencentCloud
 
       # ResetFirewallTemplateRules请求参数结构体
       class ResetFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过 [DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874) 接口返回值中的 TemplateId	获取。
         # @type TemplateId: String
-        # @param TemplateRules: 重置后的防火墙模板规则列表。
+        # @param TemplateRules: 重置后的防火墙模板规则列表。每次请求批量防火墙规则的上限为 100。
         # @type TemplateRules: Array
 
         attr_accessor :TemplateId, :TemplateRules
@@ -6910,7 +6920,7 @@ module TencentCloud
 
       # ResetInstancesPassword请求参数结构体
       class ResetInstancesPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过 <a href="https://cloud.tencent.com/document/product/1207/47573">DescribeInstances</a> 接口返回值中的 InstanceId 获取。
         # @type InstanceIds: Array
         # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：</br> `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：</br> <li>小写字母：[a-z]</br></li> <li>大写字母：[A-Z]</br></li> <li>数字：0-9</br></li> <li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li></br> `WINDOWS` 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符</br> <li>小写字母：[a-z]</br></li> <li>大写字母：[A-Z]</br></li> <li>数字： 0-9</br></li> <li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</br></li> <li>如果实例即包含 `LINUX_UNIX` 实例又包含 `WINDOWS` 实例，则密码复杂度限制按照 `WINDOWS` 实例的限制。</li>
         # @type Password: String

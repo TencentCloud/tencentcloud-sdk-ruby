@@ -5239,7 +5239,7 @@ module TencentCloud
         # @type TaskId: String
         # @param FileName: 文件名
         # @type FileName: String
-        # @param ExpireTime: 过期时间 UNIX 时间戳（默认值为当前时间 1 小时后）
+        # @param ExpireTime: 过期时间 UNIX 时间戳（默认值为当前时间 1 小时后，最大不超过文件所属任务的过期时间）
         # @type ExpireTime: Integer
 
         attr_accessor :TaskId, :FileName, :ExpireTime
@@ -5261,7 +5261,7 @@ module TencentCloud
       class GenerateCloudStorageAIServiceTaskFileURLResponse < TencentCloud::Common::AbstractModel
         # @param FileURL: 文件下载 URL
         # @type FileURL: String
-        # @param ExpireTime: 过期时间 UNIX 时间戳
+        # @param ExpireTime: 过期时间 UNIX 时间戳（最大不超过文件所属任务的过期时间）
         # @type ExpireTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

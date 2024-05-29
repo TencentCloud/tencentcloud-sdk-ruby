@@ -1405,6 +1405,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改域名所属分组
+
+        # @param request: Request instance for ModifyDomainToGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainToGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainToGroupResponse`
+        def ModifyDomainToGroup(request)
+          body = send_request('ModifyDomainToGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainToGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 域名锁定解锁
 
         # @param request: Request instance for ModifyDomainUnlock.

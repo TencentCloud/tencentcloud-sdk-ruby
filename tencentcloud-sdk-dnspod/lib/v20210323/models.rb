@@ -4383,6 +4383,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainToGroup请求参数结构体
+      class ModifyDomainToGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param GroupId: 域名分组ID
+        # @type GroupId: Integer
+        # @param DomainId: 域名ID,域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :GroupId, :DomainId
+
+        def initialize(domain=nil, groupid=nil, domainid=nil)
+          @Domain = domain
+          @GroupId = groupid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @GroupId = params['GroupId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyDomainToGroup返回参数结构体
+      class ModifyDomainToGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDomainUnlock请求参数结构体
       class ModifyDomainUnlockRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

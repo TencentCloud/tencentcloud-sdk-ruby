@@ -11101,37 +11101,37 @@ module TencentCloud
 
       # 规则引擎规则项，Conditions 数组内多个项的关系为 或，内层 Conditions 列表内多个项的关系为 且。
       class Rule < TencentCloud::Common::AbstractModel
-        # @param Actions: 执行的功能。
-        # @type Actions: Array
         # @param Conditions: 执行功能判断条件。
         # 注意：满足该数组内任意一项条件，功能即可执行。
         # @type Conditions: Array
-        # @param SubRules: 嵌套规则。
+        # @param Actions: 执行的功能。注意：Actions 和 SubRules 不可都为空
+        # @type Actions: Array
+        # @param SubRules: 嵌套规则。注意：SubRules 和 Actions 不可都为空
         # @type SubRules: Array
 
-        attr_accessor :Actions, :Conditions, :SubRules
+        attr_accessor :Conditions, :Actions, :SubRules
 
-        def initialize(actions=nil, conditions=nil, subrules=nil)
-          @Actions = actions
+        def initialize(conditions=nil, actions=nil, subrules=nil)
           @Conditions = conditions
+          @Actions = actions
           @SubRules = subrules
         end
 
         def deserialize(params)
-          unless params['Actions'].nil?
-            @Actions = []
-            params['Actions'].each do |i|
-              action_tmp = Action.new
-              action_tmp.deserialize(i)
-              @Actions << action_tmp
-            end
-          end
           unless params['Conditions'].nil?
             @Conditions = []
             params['Conditions'].each do |i|
               ruleandconditions_tmp = RuleAndConditions.new
               ruleandconditions_tmp.deserialize(i)
               @Conditions << ruleandconditions_tmp
+            end
+          end
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              action_tmp = Action.new
+              action_tmp.deserialize(i)
+              @Actions << action_tmp
             end
           end
           unless params['SubRules'].nil?

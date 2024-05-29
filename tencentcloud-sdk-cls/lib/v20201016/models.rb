@@ -5068,27 +5068,44 @@ module TencentCloud
       class DescribeLogContextRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 要查询的日志主题ID
         # @type TopicId: String
-        # @param BTime: 日志时间,  需按照 UTC+8 时区将日志中的Unix时间戳转换为 YYYY-mm-dd HH:MM:SS.FFF 格式的字符串。
+        # @param BTime: 日志时间,  即SearchLog接口返回信息中Results结构体中的Time，需按照 UTC+8 时区将该毫秒级Unix时间戳转换为 YYYY-mm-dd HH:MM:SS.FFF 格式的字符串。
         # @type BTime: String
-        # @param PkgId: 日志包序号。SearchLog接口返回信息中Results结构体中的PkgId。
+        # @param PkgId: 日志包序号，即SearchLog接口返回信息中Results结构体中的PkgId。
         # @type PkgId: String
-        # @param PkgLogId: 日志包内一条日志的序号。
-        # SearchLog接口返回信息中Results结构中的PkgLogId。
+        # @param PkgLogId: 日志包内一条日志的序号，即SearchLog接口返回信息中Results结构中的PkgLogId。
         # @type PkgLogId: Integer
         # @param PrevLogs: 前${PrevLogs}条日志，默认值10。
         # @type PrevLogs: Integer
         # @param NextLogs: 后${NextLogs}条日志，默认值10。
         # @type NextLogs: Integer
+        # @param Query: 检索语句，对日志上下文进行过滤，最大长度为12KB
+        # 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a>构成，不支持SQL语句
+        # @type Query: String
+        # @param From: 上下文检索的开始时间，单位：毫秒级时间戳
+        # 注意：
+        # - From为空时，表示上下文检索的开始时间不做限制
+        # - From和To非空时，From < To
+        # - 暂时仅支持上海 / 弗吉尼亚/ 新加坡地域
+        # @type From: Integer
+        # @param To: 上下文检索的结束时间，单位：毫秒级时间戳。
+        # 注意：
+        # - To为空时，表示上下文检索的结束时间不做限制
+        # - From和To非空时，From < To
+        # - 暂时仅支持上海 / 弗吉尼亚/ 新加坡地域
+        # @type To: Integer
 
-        attr_accessor :TopicId, :BTime, :PkgId, :PkgLogId, :PrevLogs, :NextLogs
+        attr_accessor :TopicId, :BTime, :PkgId, :PkgLogId, :PrevLogs, :NextLogs, :Query, :From, :To
 
-        def initialize(topicid=nil, btime=nil, pkgid=nil, pkglogid=nil, prevlogs=nil, nextlogs=nil)
+        def initialize(topicid=nil, btime=nil, pkgid=nil, pkglogid=nil, prevlogs=nil, nextlogs=nil, query=nil, from=nil, to=nil)
           @TopicId = topicid
           @BTime = btime
           @PkgId = pkgid
           @PkgLogId = pkglogid
           @PrevLogs = prevlogs
           @NextLogs = nextlogs
+          @Query = query
+          @From = from
+          @To = to
         end
 
         def deserialize(params)
@@ -5098,6 +5115,9 @@ module TencentCloud
           @PkgLogId = params['PkgLogId']
           @PrevLogs = params['PrevLogs']
           @NextLogs = params['NextLogs']
+          @Query = params['Query']
+          @From = params['From']
+          @To = params['To']
         end
       end
 

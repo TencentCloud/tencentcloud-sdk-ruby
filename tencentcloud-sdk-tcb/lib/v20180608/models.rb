@@ -6175,6 +6175,8 @@ module TencentCloud
       class DescribeWxGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
         # @type EnvId: String
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
         # @param GatewayName: 服务名称，精确匹配
         # @type GatewayName: String
         # @param Limit: 分页参数
@@ -6182,10 +6184,11 @@ module TencentCloud
         # @param Offset: 分页参数
         # @type Offset: Integer
 
-        attr_accessor :EnvId, :GatewayName, :Limit, :Offset
+        attr_accessor :EnvId, :GatewayId, :GatewayName, :Limit, :Offset
 
-        def initialize(envid=nil, gatewayname=nil, limit=nil, offset=nil)
+        def initialize(envid=nil, gatewayid=nil, gatewayname=nil, limit=nil, offset=nil)
           @EnvId = envid
+          @GatewayId = gatewayid
           @GatewayName = gatewayname
           @Limit = limit
           @Offset = offset
@@ -6193,6 +6196,7 @@ module TencentCloud
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @GatewayId = params['GatewayId']
           @GatewayName = params['GatewayName']
           @Limit = params['Limit']
           @Offset = params['Offset']
@@ -7035,6 +7039,9 @@ module TencentCloud
         # @param AppId: 用户appid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
+        # @param WxAppId: WxAppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WxAppId: String
         # @param EnvId: 环境id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvId: String
@@ -7071,6 +7078,12 @@ module TencentCloud
         # @param Region: 地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param CanRenew: 是否可以续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanRenew: Boolean
+        # @param AutoRenewFlag: 自动续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
         # @param IsolateTime: 隔离时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolateTime: String
@@ -7083,18 +7096,28 @@ module TencentCloud
         # @param UpdateTime: 变更时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param CanDowngrade: 是否可以降配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDowngrade: Boolean
         # @param AllowUncertified: 允许未登录访问
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowUncertified: Integer
         # @param VersionNumLimit: 网关版本限额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionNumLimit: Integer
+        # @param LongAccessId: Donut接入ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LongAccessId: String
+        # @param AccessDomain: Donut接入域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessDomain: String
 
-        attr_accessor :Uin, :AppId, :EnvId, :GatewayId, :GatewayName, :GatewayType, :GatewayDesc, :PackageVersion, :PackageId, :VpcId, :SubnetIds, :Status, :L5Addr, :Region, :IsolateTime, :ExpireTime, :CreateTime, :UpdateTime, :AllowUncertified, :VersionNumLimit
+        attr_accessor :Uin, :AppId, :WxAppId, :EnvId, :GatewayId, :GatewayName, :GatewayType, :GatewayDesc, :PackageVersion, :PackageId, :VpcId, :SubnetIds, :Status, :L5Addr, :Region, :CanRenew, :AutoRenewFlag, :IsolateTime, :ExpireTime, :CreateTime, :UpdateTime, :CanDowngrade, :AllowUncertified, :VersionNumLimit, :LongAccessId, :AccessDomain
 
-        def initialize(uin=nil, appid=nil, envid=nil, gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewaydesc=nil, packageversion=nil, packageid=nil, vpcid=nil, subnetids=nil, status=nil, l5addr=nil, region=nil, isolatetime=nil, expiretime=nil, createtime=nil, updatetime=nil, allowuncertified=nil, versionnumlimit=nil)
+        def initialize(uin=nil, appid=nil, wxappid=nil, envid=nil, gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewaydesc=nil, packageversion=nil, packageid=nil, vpcid=nil, subnetids=nil, status=nil, l5addr=nil, region=nil, canrenew=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil, createtime=nil, updatetime=nil, candowngrade=nil, allowuncertified=nil, versionnumlimit=nil, longaccessid=nil, accessdomain=nil)
           @Uin = uin
           @AppId = appid
+          @WxAppId = wxappid
           @EnvId = envid
           @GatewayId = gatewayid
           @GatewayName = gatewayname
@@ -7107,17 +7130,23 @@ module TencentCloud
           @Status = status
           @L5Addr = l5addr
           @Region = region
+          @CanRenew = canrenew
+          @AutoRenewFlag = autorenewflag
           @IsolateTime = isolatetime
           @ExpireTime = expiretime
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @CanDowngrade = candowngrade
           @AllowUncertified = allowuncertified
           @VersionNumLimit = versionnumlimit
+          @LongAccessId = longaccessid
+          @AccessDomain = accessdomain
         end
 
         def deserialize(params)
           @Uin = params['Uin']
           @AppId = params['AppId']
+          @WxAppId = params['WxAppId']
           @EnvId = params['EnvId']
           @GatewayId = params['GatewayId']
           @GatewayName = params['GatewayName']
@@ -7130,12 +7159,17 @@ module TencentCloud
           @Status = params['Status']
           @L5Addr = params['L5Addr']
           @Region = params['Region']
+          @CanRenew = params['CanRenew']
+          @AutoRenewFlag = params['AutoRenewFlag']
           @IsolateTime = params['IsolateTime']
           @ExpireTime = params['ExpireTime']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @CanDowngrade = params['CanDowngrade']
           @AllowUncertified = params['AllowUncertified']
           @VersionNumLimit = params['VersionNumLimit']
+          @LongAccessId = params['LongAccessId']
+          @AccessDomain = params['AccessDomain']
         end
       end
 
