@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建只是引擎应用，包括：知识管理应用、知识摘要应用、标签提取应用。
+        # 创建知识引擎应用。
 
         # @param request: Request instance for CreateApp.
         # @type request: :class:`Tencentcloud::lke::V20231130::CreateAppRequest`

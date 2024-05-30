@@ -5359,16 +5359,28 @@ module TencentCloud
 
       # DescribeLakeFsInfo返回参数结构体
       class DescribeLakeFsInfoResponse < TencentCloud::Common::AbstractModel
+        # @param LakeFsInfos: 托管存储信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LakeFsInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :LakeFsInfos, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(lakefsinfos=nil, requestid=nil)
+          @LakeFsInfos = lakefsinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['LakeFsInfos'].nil?
+            @LakeFsInfos = []
+            params['LakeFsInfos'].each do |i|
+              lakefsinfo_tmp = LakeFsInfo.new
+              lakefsinfo_tmp.deserialize(i)
+              @LakeFsInfos << lakefsinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8177,6 +8189,34 @@ module TencentCloud
           @Token = params['Token']
           @ExpiredTime = params['ExpiredTime']
           @IssueTime = params['IssueTime']
+        end
+      end
+
+      # 描述DLC托管存储基本信息
+      class LakeFsInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 托管存储名称
+        # @type Name: String
+        # @param Type: 托管存储类型
+        # @type Type: String
+        # @param SpaceUsedSize: 容量
+        # @type SpaceUsedSize: Float
+        # @param CreateTimeStamp: 创建时候的时间戳
+        # @type CreateTimeStamp: Integer
+
+        attr_accessor :Name, :Type, :SpaceUsedSize, :CreateTimeStamp
+
+        def initialize(name=nil, type=nil, spaceusedsize=nil, createtimestamp=nil)
+          @Name = name
+          @Type = type
+          @SpaceUsedSize = spaceusedsize
+          @CreateTimeStamp = createtimestamp
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @SpaceUsedSize = params['SpaceUsedSize']
+          @CreateTimeStamp = params['CreateTimeStamp']
         end
       end
 

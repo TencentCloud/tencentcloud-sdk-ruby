@@ -4273,13 +4273,15 @@ module TencentCloud
         # @param ScanEndTime: 扫描结束时间
         # 02:00 时分
         # @type ScanEndTime: String
+        # @param ExcludeImages: 排除扫描的镜像
+        # @type ExcludeImages: Array
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
         extend Gem::Deprecate
         deprecate :All, :none, 2024, 5
         deprecate :All=, :none, 2024, 5
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -4291,6 +4293,7 @@ module TencentCloud
           @ContainerRunning = containerrunning
           @ScanScope = scanscope
           @ScanEndTime = scanendtime
+          @ExcludeImages = excludeimages
         end
 
         def deserialize(params)
@@ -4305,6 +4308,7 @@ module TencentCloud
           @ContainerRunning = params['ContainerRunning']
           @ScanScope = params['ScanScope']
           @ScanEndTime = params['ScanEndTime']
+          @ExcludeImages = params['ExcludeImages']
         end
       end
 
@@ -10605,15 +10609,18 @@ module TencentCloud
         # @type ScanScope: Integer
         # @param ScanEndTime: 扫描结束时间 02:00 时分
         # @type ScanEndTime: String
+        # @param ExcludeImages: 排除的扫描镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeImages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :RequestId
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :RequestId
         extend Gem::Deprecate
         deprecate :All, :none, 2024, 5
         deprecate :All=, :none, 2024, 5
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, requestid=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, requestid=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -10625,6 +10632,7 @@ module TencentCloud
           @ContainerRunning = containerrunning
           @ScanScope = scanscope
           @ScanEndTime = scanendtime
+          @ExcludeImages = excludeimages
           @RequestId = requestid
         end
 
@@ -10640,6 +10648,7 @@ module TencentCloud
           @ContainerRunning = params['ContainerRunning']
           @ScanScope = params['ScanScope']
           @ScanEndTime = params['ScanEndTime']
+          @ExcludeImages = params['ExcludeImages']
           @RequestId = params['RequestId']
         end
       end
@@ -14069,15 +14078,18 @@ module TencentCloud
         # @type ScanScope: Integer
         # @param Namespace: 命名空间
         # @type Namespace: Array
+        # @param ExcludeImageAssetIds: 排除的镜像资产id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeImageAssetIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :RequestId
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :RequestId
         extend Gem::Deprecate
         deprecate :All, :none, 2024, 5
         deprecate :All=, :none, 2024, 5
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, requestid=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, requestid=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -14091,6 +14103,7 @@ module TencentCloud
           @ContainerRunning = containerrunning
           @ScanScope = scanscope
           @Namespace = namespace
+          @ExcludeImageAssetIds = excludeimageassetids
           @RequestId = requestid
         end
 
@@ -14115,6 +14128,7 @@ module TencentCloud
           @ContainerRunning = params['ContainerRunning']
           @ScanScope = params['ScanScope']
           @Namespace = params['Namespace']
+          @ExcludeImageAssetIds = params['ExcludeImageAssetIds']
           @RequestId = params['RequestId']
         end
       end
@@ -28077,13 +28091,15 @@ module TencentCloud
         # @type RegistryType: Array
         # @param Namespace: 命名空间
         # @type Namespace: Array
+        # @param ExcludeImageAssetIds: 排除的镜像资产id
+        # @type ExcludeImageAssetIds: Array
 
-        attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace
+        attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
         deprecate :All, :none, 2024, 5
         deprecate :All=, :none, 2024, 5
 
-        def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil)
+        def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod
           @Enable = enable
           @ScanTime = scantime
@@ -28097,6 +28113,7 @@ module TencentCloud
           @ScanScope = scanscope
           @RegistryType = registrytype
           @Namespace = namespace
+          @ExcludeImageAssetIds = excludeimageassetids
         end
 
         def deserialize(params)
@@ -28120,6 +28137,7 @@ module TencentCloud
           @ScanScope = params['ScanScope']
           @RegistryType = params['RegistryType']
           @Namespace = params['Namespace']
+          @ExcludeImageAssetIds = params['ExcludeImageAssetIds']
         end
       end
 

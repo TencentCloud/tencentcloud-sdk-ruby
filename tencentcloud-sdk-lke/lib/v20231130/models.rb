@@ -309,9 +309,9 @@ module TencentCloud
       class BaseConfig < TencentCloud::Common::AbstractModel
         # @param Name: 应用名称
         # @type Name: String
-        # @param Avatar: 机器人头像
+        # @param Avatar: 应用头像
         # @type Avatar: String
-        # @param Desc: 机器人描述
+        # @param Desc: 应用描述
         # @type Desc: String
 
         attr_accessor :Name, :Avatar, :Desc
@@ -5780,13 +5780,13 @@ module TencentCloud
 
       # SaveDoc请求参数结构体
       class SaveDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param FileName: 文件名
         # @type FileName: String
         # @param FileType: 文件类型(md|txt|docx|pdf|xlsx)
         # @type FileType: String
-        # @param CosUrl: cos路径
+        # @param CosUrl: 平台cos路径，与DescribeStorageCredential接口查询UploadPath参数保持一致
         # @type CosUrl: String
         # @param ETag: ETag 全称为 Entity Tag，是对象被创建时标识对象内容的信息标签，可用于检查对象的内容是否发生变化
         # @type ETag: String

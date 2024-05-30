@@ -461,17 +461,21 @@ module TencentCloud
         # @type DeviceIdSet: Array
         # @param ResourceId: 堡垒机服务ID
         # @type ResourceId: String
+        # @param DomainId: 网络域ID
+        # @type DomainId: String
 
-        attr_accessor :DeviceIdSet, :ResourceId
+        attr_accessor :DeviceIdSet, :ResourceId, :DomainId
 
-        def initialize(deviceidset=nil, resourceid=nil)
+        def initialize(deviceidset=nil, resourceid=nil, domainid=nil)
           @DeviceIdSet = deviceidset
           @ResourceId = resourceid
+          @DomainId = domainid
         end
 
         def deserialize(params)
           @DeviceIdSet = params['DeviceIdSet']
           @ResourceId = params['ResourceId']
+          @DomainId = params['DomainId']
         end
       end
 
@@ -2992,10 +2996,16 @@ module TencentCloud
         # @param IpPortSet: 数据库资产的多节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpPortSet: Array
+        # @param DomainId: 网络域Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainId: String
+        # @param DomainName: 网络域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainName: String
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -3012,6 +3022,8 @@ module TencentCloud
           @Resource = resource
           @Department = department
           @IpPortSet = ipportset
+          @DomainId = domainid
+          @DomainName = domainname
         end
 
         def deserialize(params)
@@ -3044,6 +3056,8 @@ module TencentCloud
             @Department.deserialize(params['Department'])
           end
           @IpPortSet = params['IpPortSet']
+          @DomainId = params['DomainId']
+          @DomainName = params['DomainName']
         end
       end
 
@@ -3599,14 +3613,17 @@ module TencentCloud
         # @type GroupIdSet: Array
         # @param DepartmentId: 资产所属部门ID
         # @type DepartmentId: String
+        # @param DomainId: 网络域Id
+        # @type DomainId: String
 
-        attr_accessor :Id, :Port, :GroupIdSet, :DepartmentId
+        attr_accessor :Id, :Port, :GroupIdSet, :DepartmentId, :DomainId
 
-        def initialize(id=nil, port=nil, groupidset=nil, departmentid=nil)
+        def initialize(id=nil, port=nil, groupidset=nil, departmentid=nil, domainid=nil)
           @Id = id
           @Port = port
           @GroupIdSet = groupidset
           @DepartmentId = departmentid
+          @DomainId = domainid
         end
 
         def deserialize(params)
@@ -3614,6 +3631,7 @@ module TencentCloud
           @Port = params['Port']
           @GroupIdSet = params['GroupIdSet']
           @DepartmentId = params['DepartmentId']
+          @DomainId = params['DomainId']
         end
       end
 
@@ -4067,10 +4085,16 @@ module TencentCloud
         # @param ClbSet: 堡垒机资源LB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClbSet: Array
+        # @param DomainCount: 网络域个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainCount: Integer
+        # @param UsedDomainCount: 已使用网络域个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedDomainCount: Integer
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4101,6 +4125,8 @@ module TencentCloud
           @PackageNode = packagenode
           @LogDeliveryArgs = logdeliveryargs
           @ClbSet = clbset
+          @DomainCount = domaincount
+          @UsedDomainCount = useddomaincount
         end
 
         def deserialize(params)
@@ -4141,6 +4167,8 @@ module TencentCloud
               @ClbSet << clb_tmp
             end
           end
+          @DomainCount = params['DomainCount']
+          @UsedDomainCount = params['UsedDomainCount']
         end
       end
 

@@ -559,7 +559,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Waf IP黑白名单Delete接口
+        # Waf IP黑白名单Delete接口（建议使用DeleteIpAccessControlV2来替换当前接口）
 
         # @param request: Request instance for DeleteIpAccessControl.
         # @type request: :class:`Tencentcloud::waf::V20180125::DeleteIpAccessControlRequest`
@@ -3276,7 +3276,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Waf IP黑白名单Upsert接口
+        # Waf IP黑白名单Upsert接口（建议使用CreateIpAccessControl、ModifyIpAccessControl来替换当前接口）
 
         # @param request: Request instance for UpsertIpAccessControl.
         # @type request: :class:`Tencentcloud::waf::V20180125::UpsertIpAccessControlRequest`

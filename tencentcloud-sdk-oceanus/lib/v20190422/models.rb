@@ -230,10 +230,19 @@ module TencentCloud
         # @param WebUIType: 0 公网访问 // 1 内网访问
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebUIType: Integer
+        # @param Type: 2 独享集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param SubEks: 子eks集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubEks: :class:`Tencentcloud::Oceanus.v20190422.models.SubEks`
+        # @param AgentSerialId: 上级集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentSerialId: String
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -275,6 +284,9 @@ module TencentCloud
           @Orders = orders
           @SqlGateways = sqlgateways
           @WebUIType = webuitype
+          @Type = type
+          @SubEks = subeks
+          @AgentSerialId = agentserialid
         end
 
         def deserialize(params)
@@ -364,6 +376,12 @@ module TencentCloud
             end
           end
           @WebUIType = params['WebUIType']
+          @Type = params['Type']
+          unless params['SubEks'].nil?
+            @SubEks = SubEks.new
+            @SubEks.deserialize(params['SubEks'])
+          end
+          @AgentSerialId = params['AgentSerialId']
         end
       end
 
@@ -407,10 +425,13 @@ module TencentCloud
         # @type RunningCu: Float
         # @param PayMode: 付费模式
         # @type PayMode: Integer
+        # @param SubEks: 弹性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubEks: :class:`Tencentcloud::Oceanus.v20190422.models.SubEks`
 
-        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode
+        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode, :SubEks
 
-        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil, subeks=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -430,6 +451,7 @@ module TencentCloud
           @FreeCu = freecu
           @RunningCu = runningcu
           @PayMode = paymode
+          @SubEks = subeks
         end
 
         def deserialize(params)
@@ -452,6 +474,10 @@ module TencentCloud
           @FreeCu = params['FreeCu']
           @RunningCu = params['RunningCu']
           @PayMode = params['PayMode']
+          unless params['SubEks'].nil?
+            @SubEks = SubEks.new
+            @SubEks.deserialize(params['SubEks'])
+          end
         end
       end
 
@@ -4670,6 +4696,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 混合计费
+      class SubEks < TencentCloud::Common::AbstractModel
+        # @param SerialId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialId: String
+        # @param CuNum: cu数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CuNum: Integer
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusDesc: 状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param RunningCu: 运行cu
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningCu: Float
+
+        attr_accessor :SerialId, :CuNum, :Status, :StatusDesc, :RunningCu
+
+        def initialize(serialid=nil, cunum=nil, status=nil, statusdesc=nil, runningcu=nil)
+          @SerialId = serialid
+          @CuNum = cunum
+          @Status = status
+          @StatusDesc = statusdesc
+          @RunningCu = runningcu
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @CuNum = params['CuNum']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @RunningCu = params['RunningCu']
         end
       end
 
