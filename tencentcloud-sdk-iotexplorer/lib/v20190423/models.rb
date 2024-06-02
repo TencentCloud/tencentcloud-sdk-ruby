@@ -19,7 +19,7 @@ module TencentCloud
     module V20190423
       # ActivateTWeCallLicense请求参数结构体
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgType: voip类型
+        # @param PkgType: TWecall类型： 1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
         # @type PkgType: Integer
         # @param MiniProgramAppId: appId
         # @type MiniProgramAppId: String
@@ -8451,7 +8451,7 @@ module TencentCloud
         # @param ModelId: 小程序ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
-        # @param Sn: Sn信息
+        # @param Sn: Sn信息，SN格式：产品ID_设备名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sn: String
         # @param ActiveNum: 激活数
