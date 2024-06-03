@@ -3394,17 +3394,25 @@ module TencentCloud
         # @type DomainList: Array
         # @param TemplateId: 模板ID
         # @type TemplateId: String
+        # @param IsAutoPay: 结束后是否自动支付尾款，默认开启 传入1关闭
+        # @type IsAutoPay: Integer
+        # @param IsBidAutoPay: 结束后是否自动进行梯度保证金扣除，默认开启 传入1关闭
+        # @type IsBidAutoPay: Integer
 
-        attr_accessor :DomainList, :TemplateId
+        attr_accessor :DomainList, :TemplateId, :IsAutoPay, :IsBidAutoPay
 
-        def initialize(domainlist=nil, templateid=nil)
+        def initialize(domainlist=nil, templateid=nil, isautopay=nil, isbidautopay=nil)
           @DomainList = domainlist
           @TemplateId = templateid
+          @IsAutoPay = isautopay
+          @IsBidAutoPay = isbidautopay
         end
 
         def deserialize(params)
           @DomainList = params['DomainList']
           @TemplateId = params['TemplateId']
+          @IsAutoPay = params['IsAutoPay']
+          @IsBidAutoPay = params['IsBidAutoPay']
         end
       end
 

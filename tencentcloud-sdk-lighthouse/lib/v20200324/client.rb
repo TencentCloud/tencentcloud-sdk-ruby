@@ -2272,7 +2272,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询删除情况。
+        # 删除实例内的Docker容器，之后可以通过返回的ActivityId调用[DescribeDockerActivities](https://cloud.tencent.com/document/product/1207/95476)接口查询删除情况。
 
         # @param request: Request instance for RemoveDockerContainers.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::RemoveDockerContainersRequest`
@@ -2296,7 +2296,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重命名实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重命名情况。
+        # 重命名实例内的Docker容器，之后可以通过返回的ActivityId调用[DescribeDockerActivities](https://cloud.tencent.com/document/product/1207/95476)接口查询重命名情况。
 
         # @param request: Request instance for RenameDockerContainer.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::RenameDockerContainerRequest`
@@ -2553,7 +2553,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重启实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重启情况。
+        # 重启实例内的Docker容器，之后可以通过返回的ActivityId调用[DescribeDockerActivities](https://cloud.tencent.com/document/product/1207/95476)接口查询重启情况。
 
         # @param request: Request instance for RestartDockerContainers.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::RestartDockerContainersRequest`
@@ -2627,7 +2627,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启动实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询启动情况。
+        # 启动实例内的Docker容器，之后可以通过返回的ActivityId调用[DescribeDockerActivities](https://cloud.tencent.com/document/product/1207/95476)接口查询启动情况。
 
         # @param request: Request instance for StartDockerContainers.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::StartDockerContainersRequest`
@@ -2680,7 +2680,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 停止实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询停止情况。
+        # 停止实例内的Docker容器，之后可以通过返回的ActivityId调用[DescribeDockerActivities](https://cloud.tencent.com/document/product/1207/95476)接口查询停止情况。
 
         # @param request: Request instance for StopDockerContainers.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::StopDockerContainersRequest`

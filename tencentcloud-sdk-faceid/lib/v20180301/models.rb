@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 5
-        deprecate :Idcard=, :none, 2024, 5
+        deprecate :Idcard, :none, 2024, 6
+        deprecate :Idcard=, :none, 2024, 6
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1799,7 +1799,7 @@ module TencentCloud
         # @type IntentionQuestions: Array
         # @param IntentionActions: 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。默认为空，最长可接受150的字符串长度。
         # @type IntentionActions: Array
-        # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
+        # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认开启。
         # @type IntentionRecognition: Boolean
         # @param IsSupportHMTResidentPermitOCR: 是否支持港澳台居住证识别
         # @type IsSupportHMTResidentPermitOCR: Boolean
@@ -2815,8 +2815,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 5
-        deprecate :AsrResultSimilarity=, :none, 2024, 5
+        deprecate :AsrResultSimilarity, :none, 2024, 6
+        deprecate :AsrResultSimilarity=, :none, 2024, 6
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3767,7 +3767,7 @@ module TencentCloud
 
       # RuleId相关配置
       class RuleIdConfig < TencentCloud::Common::AbstractModel
-        # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
+        # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认开启。
         # @type IntentionRecognition: Boolean
         # @param IntentionType: 意愿核身类型，默认为0：
         # 0：问答模式，DetectAuth接口需要传入IntentionQuestions字段；

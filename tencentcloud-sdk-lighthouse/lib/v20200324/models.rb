@@ -55,9 +55,9 @@ module TencentCloud
 
       # ApplyFirewallTemplate请求参数结构体
       class ApplyFirewallTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
-        # @param ApplyInstances: 应用防火墙模板的实例列表。
+        # @param ApplyInstances: 应用防火墙模板的实例列表。列表长度最大值是100。
         # @type ApplyInstances: Array
 
         attr_accessor :TemplateId, :ApplyInstances
@@ -734,9 +734,9 @@ module TencentCloud
 
       # CreateDiskBackup请求参数结构体
       class CreateDiskBackupRequest < TencentCloud::Common::AbstractModel
-        # @param DiskId: 云硬盘 ID。当前只支持数据盘创建备份点。
+        # @param DiskId: 云硬盘ID，可通过 [DescribeDisks](https://cloud.tencent.com/document/api/1207/66093) 接口返回值中的 DiskId 获取。
         # @type DiskId: String
-        # @param DiskBackupName: 云硬盘备份点名称，最大长度90。
+        # @param DiskBackupName: 云硬盘备份点名称，最大长度为 90 。
         # @type DiskBackupName: String
 
         attr_accessor :DiskId, :DiskBackupName
@@ -850,7 +850,7 @@ module TencentCloud
 
       # CreateFirewallRules请求参数结构体
       class CreateFirewallRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/1207/47573) 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
         # @param FirewallRules: 防火墙规则列表。
         # @type FirewallRules: Array
@@ -944,7 +944,7 @@ module TencentCloud
 
       # CreateFirewallTemplateRules请求参数结构体
       class CreateFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
         # @param TemplateRules: 防火墙模板规则列表。
         # @type TemplateRules: Array
@@ -1293,7 +1293,7 @@ module TencentCloud
 
       # DeleteFirewallRules请求参数结构体
       class DeleteFirewallRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/1207/47573) 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
         # @param FirewallRules: 防火墙规则列表。
         # @type FirewallRules: Array
@@ -1340,7 +1340,7 @@ module TencentCloud
 
       # DeleteFirewallTemplate请求参数结构体
       class DeleteFirewallTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -1372,9 +1372,9 @@ module TencentCloud
 
       # DeleteFirewallTemplateRules请求参数结构体
       class DeleteFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
-        # @param TemplateRuleIds: 防火墙模板规则ID列表。
+        # @param TemplateRuleIds: 防火墙模板规则ID列表。可通过[DescribeFirewallTemplateRules](https://cloud.tencent.com/document/product/1207/96875)接口返回值字段TemplateRuleSet获取。
         # @type TemplateRuleIds: Array
 
         attr_accessor :TemplateId, :TemplateRuleIds
@@ -1496,7 +1496,7 @@ module TencentCloud
 
       # DescribeAllScenes请求参数结构体
       class DescribeAllScenesRequest < TencentCloud::Common::AbstractModel
-        # @param SceneIds: 使用场景ID列表。
+        # @param SceneIds: 使用场景ID列表。可通过[DescribeAllScenes](https://cloud.tencent.com/document/product/1207/83513)接口返回值中的SceneId获取。
         # @type SceneIds: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
@@ -1901,7 +1901,7 @@ module TencentCloud
 
       # DescribeDiskBackups请求参数结构体
       class DescribeDiskBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupIds: 要查询云硬盘备份点的ID列表。参数不支持同时指定 DiskBackupIds 和 Filters。
+        # @param DiskBackupIds: 查询的云硬盘备份点ID列表。最大支持 100 个。参数不支持同时指定 DiskBackupIds 和 Filters。
         # @type DiskBackupIds: Array
         # @param Filters: 过滤器列表。
         # <li>disk-backup-id</li>按照【云硬盘备份点 ID】进行过滤。
@@ -1913,16 +1913,17 @@ module TencentCloud
         # <li>disk-backup-state</li>按照【云硬盘备份点状态】进行过滤。
         # 类型：String
         # 必选：否
-        # 取值：参考数据结构[DiskBackup](https://cloud.tencent.com/document/product/1207/47576#DiskBackup)下的DiskBackupState取值。
+        # 取值：参考数据结构
+        # <a href="https://cloud.tencent.com/document/product/1207/47576#DiskBackup">DescribeSnapshots</a> 下的DiskBackupState取值。
         # <li>disk-usage</li>按照【云硬盘类型】进行过滤。
         # 类型：String
         # 必选：否
         # 取值：SYSTEM_DISK或DATA_DISK
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为5。参数不支持同时指定DiskBackupIds 和 Filters。
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为 0。
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Limit: Integer
 
         attr_accessor :DiskBackupIds, :Filters, :Offset, :Limit
@@ -2516,11 +2517,11 @@ module TencentCloud
 
       # DescribeFirewallRules请求参数结构体
       class DescribeFirewallRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/1207/47573) 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
-        # @param Offset: 偏移量，默认为 0。
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit
@@ -2617,9 +2618,9 @@ module TencentCloud
 
       # DescribeFirewallTemplateApplyRecords请求参数结构体
       class DescribeFirewallTemplateApplyRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
-        # @param TaskIds: 应用任务ID列表。
+        # @param TaskIds: 应用防火墙模版任务ID列表。可通过[ApplyFirewallTemplate](https://cloud.tencent.com/document/product/1207/96883)接口返回值TaskId字段获取。
         # @type TaskIds: Array
 
         attr_accessor :TemplateId, :TaskIds
@@ -2699,7 +2700,7 @@ module TencentCloud
 
       # DescribeFirewallTemplateRuleQuota请求参数结构体
       class DescribeFirewallTemplateRuleQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -2798,7 +2799,7 @@ module TencentCloud
 
       # DescribeFirewallTemplates请求参数结构体
       class DescribeFirewallTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateIds: 防火墙模板ID列表。
+        # @param TemplateIds: 防火墙模板ID列表。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。列表长度最大值为100。
         # @type TemplateIds: Array
         # @param Filters: 过滤器列表。
         # <li>template-id</li>按照【防火墙模板所属的ID】进行过滤。
@@ -3578,7 +3579,7 @@ module TencentCloud
 
       # DescribeScenes请求参数结构体
       class DescribeScenesRequest < TencentCloud::Common::AbstractModel
-        # @param SceneIds: 使用场景ID列表。
+        # @param SceneIds: 使用场景ID列表。可通过[DescribeScenes](https://cloud.tencent.com/document/product/1207/83512)接口返回值中的SceneId获取。
         # @type SceneIds: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
@@ -4994,7 +4995,7 @@ module TencentCloud
 
       # InquirePriceCreateInstances请求参数结构体
       class InquirePriceCreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param BundleId: 实例的套餐 ID。
+        # @param BundleId: 实例的套餐 ID。可以通过调用[DescribeBundles](https://cloud.tencent.com/document/api/1207/47575)接口获取。
         # @type BundleId: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
@@ -5792,9 +5793,9 @@ module TencentCloud
 
       # ModifyDiskBackupsAttribute请求参数结构体
       class ModifyDiskBackupsAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param DiskBackupIds: 云硬盘备份点ID列表。
+        # @param DiskBackupIds: 云硬盘备份点ID，可通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379) 接口返回值中的 DiskBackupId 获取。
         # @type DiskBackupIds: Array
-        # @param DiskBackupName: 云硬盘备份点名称，最大长度90。
+        # @param DiskBackupName: 云硬盘备份点名称，最大长度 90 。
         # @type DiskBackupName: String
 
         attr_accessor :DiskBackupIds, :DiskBackupName
@@ -6029,7 +6030,7 @@ module TencentCloud
 
       # ModifyFirewallRuleDescription请求参数结构体
       class ModifyFirewallRuleDescriptionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/1207/47573) 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
         # @param FirewallRule: 防火墙规则。
         # @type FirewallRule: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRule`
@@ -6072,9 +6073,9 @@ module TencentCloud
 
       # ModifyFirewallRules请求参数结构体
       class ModifyFirewallRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。实例的ID可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param FirewallRules: 防火墙规则列表。
+        # @param FirewallRules: 防火墙规则列表。列表长度最大值是100。
         # @type FirewallRules: Array
         # @param FirewallVersion: 防火墙当前版本。用户每次更新防火墙规则时版本会自动加1，防止规则已过期，不填不考虑冲突。
         # @type FirewallVersion: Integer
@@ -6119,9 +6120,9 @@ module TencentCloud
 
       # ModifyFirewallTemplate请求参数结构体
       class ModifyFirewallTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 防火墙模板ID。
+        # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
-        # @param TemplateName: 模板名称。
+        # @param TemplateName: 防火墙模板名称。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateName: String
 
         attr_accessor :TemplateId, :TemplateName
@@ -6462,9 +6463,9 @@ module TencentCloud
 
       # RemoveDockerContainers请求参数结构体
       class RemoveDockerContainersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerIds: 容器ID列表。
+        # @param ContainerIds: 容器ID列表。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerIds: Array
 
         attr_accessor :InstanceId, :ContainerIds
@@ -6502,9 +6503,9 @@ module TencentCloud
 
       # RenameDockerContainer请求参数结构体
       class RenameDockerContainerRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerId: 容器ID。
+        # @param ContainerId: 容器ID。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerId: String
         # @param ContainerName: 容器新的名称。
         # @type ContainerName: String
@@ -6996,9 +6997,9 @@ module TencentCloud
 
       # RestartDockerContainers请求参数结构体
       class RestartDockerContainersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerIds: 容器ID列表。
+        # @param ContainerIds: 容器ID列表。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerIds: Array
 
         attr_accessor :InstanceId, :ContainerIds
@@ -7325,9 +7326,9 @@ module TencentCloud
 
       # StartDockerContainers请求参数结构体
       class StartDockerContainersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerIds: 容器ID列表。
+        # @param ContainerIds: 容器ID列表。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerIds: Array
 
         attr_accessor :InstanceId, :ContainerIds
@@ -7397,9 +7398,9 @@ module TencentCloud
 
       # StopDockerContainers请求参数结构体
       class StopDockerContainersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerIds: 容器ID列表。
+        # @param ContainerIds: 容器ID列表。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerIds: Array
 
         attr_accessor :InstanceId, :ContainerIds
@@ -7516,7 +7517,7 @@ module TencentCloud
 
       # TerminateDisks请求参数结构体
       class TerminateDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskIds: 云硬盘ID列表。
+        # @param DiskIds: 云硬盘ID列表。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。
         # @type DiskIds: Array
 
         attr_accessor :DiskIds

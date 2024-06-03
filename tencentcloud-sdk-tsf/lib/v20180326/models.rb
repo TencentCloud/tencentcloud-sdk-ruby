@@ -1209,8 +1209,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 5
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 5
+        deprecate :ConfigAssociatedGroups, :none, 2024, 6
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 6
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
@@ -1922,10 +1922,15 @@ module TencentCloud
         # @param ConfigCenters: 配置中心发布情况
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigCenters: Array
+        # @param DaulStatus: DUAL_STATUS_WRITE_REGISTRATION_ON 双写&&双注册开启
 
-        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseDesc, :ApplicationId, :ConfigCenters
+        # DUAL_STATUS_WRITE_REGISTRATION_OFF 双写&&双注册关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DaulStatus: String
 
-        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasedesc=nil, applicationid=nil, configcenters=nil)
+        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseDesc, :ApplicationId, :ConfigCenters, :DaulStatus
+
+        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasedesc=nil, applicationid=nil, configcenters=nil, daulstatus=nil)
           @ConfigReleaseId = configreleaseid
           @ConfigId = configid
           @ConfigName = configname
@@ -1940,6 +1945,7 @@ module TencentCloud
           @ReleaseDesc = releasedesc
           @ApplicationId = applicationid
           @ConfigCenters = configcenters
+          @DaulStatus = daulstatus
         end
 
         def deserialize(params)
@@ -1964,6 +1970,7 @@ module TencentCloud
               @ConfigCenters << tsfconfigcenter_tmp
             end
           end
+          @DaulStatus = params['DaulStatus']
         end
       end
 
@@ -5042,15 +5049,19 @@ module TencentCloud
       class DeleteApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
         # @type ApplicationId: String
+        # @param SyncDeleteImageRepository: 是否删除镜像仓库
+        # @type SyncDeleteImageRepository: Boolean
 
-        attr_accessor :ApplicationId
+        attr_accessor :ApplicationId, :SyncDeleteImageRepository
 
-        def initialize(applicationid=nil)
+        def initialize(applicationid=nil, syncdeleteimagerepository=nil)
           @ApplicationId = applicationid
+          @SyncDeleteImageRepository = syncdeleteimagerepository
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
+          @SyncDeleteImageRepository = params['SyncDeleteImageRepository']
         end
       end
 
@@ -9667,10 +9678,12 @@ module TencentCloud
         # @type MicroserviceIdList: Array
         # @param MicroserviceNameList: 搜索的服务名列表
         # @type MicroserviceNameList: Array
+        # @param ConfigCenterInstanceId: 注册中心实例id
+        # @type ConfigCenterInstanceId: String
 
-        attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status, :MicroserviceIdList, :MicroserviceNameList
+        attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status, :MicroserviceIdList, :MicroserviceNameList, :ConfigCenterInstanceId
 
-        def initialize(namespaceid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, status=nil, microserviceidlist=nil, microservicenamelist=nil)
+        def initialize(namespaceid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, status=nil, microserviceidlist=nil, microservicenamelist=nil, configcenterinstanceid=nil)
           @NamespaceId = namespaceid
           @SearchWord = searchword
           @OrderBy = orderby
@@ -9680,6 +9693,7 @@ module TencentCloud
           @Status = status
           @MicroserviceIdList = microserviceidlist
           @MicroserviceNameList = microservicenamelist
+          @ConfigCenterInstanceId = configcenterinstanceid
         end
 
         def deserialize(params)
@@ -9692,6 +9706,7 @@ module TencentCloud
           @Status = params['Status']
           @MicroserviceIdList = params['MicroserviceIdList']
           @MicroserviceNameList = params['MicroserviceNameList']
+          @ConfigCenterInstanceId = params['ConfigCenterInstanceId']
         end
       end
 
@@ -10877,15 +10892,15 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
         # @type Limit: Integer
-        # @param NamespaceId: 命名空间Id
+        # @param NamespaceId: 命名空间Id,此字段，和 NamespaceIdList 或者 MetricDimensionValues 字段包含 namespaceId 维度信息。三者选其一。
         # @type NamespaceId: String
         # @param OrderBy: 排序字段:AvgTimeConsuming[默认]、RequestCount、ErrorRate。实例监控还支持 CpuPercent
         # @type OrderBy: String
         # @param OrderType: 排序方式：ASC:0、DESC:1
         # @type OrderType: Integer
-        # @param EndTime: 开始时间：年月日 时分秒2020-05-12 14:43:12
+        # @param EndTime: 开始时间：年月日 时分秒2020-05-12 14:43:12， 不能为空
         # @type EndTime: String
-        # @param StartTime: 开始时间：年月日 时分秒2020-05-12 14:43:12
+        # @param StartTime: 开始时间：年月日 时分秒2020-05-12 14:43:12， 不能为空
         # @type StartTime: String
         # @param ServiceName: 服务名称
         # @type ServiceName: String
@@ -10899,10 +10914,12 @@ module TencentCloud
         # @type DbName: String
         # @param NamespaceIdList: 命名空间id数组
         # @type NamespaceIdList: Array
+        # @param ConfigCenterInstanceId: 独占配置中心的ID
+        # @type ConfigCenterInstanceId: String
 
-        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName, :NamespaceIdList
+        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName, :NamespaceIdList, :ConfigCenterInstanceId
 
-        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil, namespaceidlist=nil)
+        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil, namespaceidlist=nil, configcenterinstanceid=nil)
           @Type = type
           @TimeStep = timestep
           @Offset = offset
@@ -10918,6 +10935,7 @@ module TencentCloud
           @BucketKey = bucketkey
           @DbName = dbname
           @NamespaceIdList = namespaceidlist
+          @ConfigCenterInstanceId = configcenterinstanceid
         end
 
         def deserialize(params)
@@ -10943,6 +10961,7 @@ module TencentCloud
           @BucketKey = params['BucketKey']
           @DbName = params['DbName']
           @NamespaceIdList = params['NamespaceIdList']
+          @ConfigCenterInstanceId = params['ConfigCenterInstanceId']
         end
       end
 
@@ -18890,15 +18909,23 @@ module TencentCloud
         # @param NamespaceId: 命名空间id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceId: String
+        # @param CurrentVersion: 当前版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentVersion: String
+        # @param TargetVersion: 需要升级的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetVersion: String
 
-        attr_accessor :ConfigType, :ConfigCenterInstanceId, :ConfigCenterInstanceName, :RegionId, :NamespaceId
+        attr_accessor :ConfigType, :ConfigCenterInstanceId, :ConfigCenterInstanceName, :RegionId, :NamespaceId, :CurrentVersion, :TargetVersion
 
-        def initialize(configtype=nil, configcenterinstanceid=nil, configcenterinstancename=nil, regionid=nil, namespaceid=nil)
+        def initialize(configtype=nil, configcenterinstanceid=nil, configcenterinstancename=nil, regionid=nil, namespaceid=nil, currentversion=nil, targetversion=nil)
           @ConfigType = configtype
           @ConfigCenterInstanceId = configcenterinstanceid
           @ConfigCenterInstanceName = configcenterinstancename
           @RegionId = regionid
           @NamespaceId = namespaceid
+          @CurrentVersion = currentversion
+          @TargetVersion = targetversion
         end
 
         def deserialize(params)
@@ -18907,6 +18934,8 @@ module TencentCloud
           @ConfigCenterInstanceName = params['ConfigCenterInstanceName']
           @RegionId = params['RegionId']
           @NamespaceId = params['NamespaceId']
+          @CurrentVersion = params['CurrentVersion']
+          @TargetVersion = params['TargetVersion']
         end
       end
 

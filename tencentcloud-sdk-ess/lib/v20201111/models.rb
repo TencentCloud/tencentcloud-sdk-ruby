@@ -5212,6 +5212,130 @@ module TencentCloud
         end
       end
 
+      # CreateUserMobileChangeUrl请求参数结构体
+      class CreateUserMobileChangeUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param UserId: 如果您要修改企业员工用户ID，传递此用户ID即可，其他参数（Name，UserAccountType，IdCardType，IdCardNumber）将被忽略。如果不传此用户ID，则会使用其他参数来进行链接生成。
+
+        # [点击查看用户ID的获取方式](https://res.ess.tencent.cn/cdn/tsign-developer-center/assets/images/%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84-47eb7105dd300e6dc0c502fba22688ae.png)
+        # @type UserId: String
+        # @param UserAccountType: 要修改手机号用户的类型。
+        # <ul><li>0：员工 （默认）</li><li>1：个人</li>
+        # </ul>
+        # 如果是员工类型，<b>只能修改本方员工，而不能修改其他企业的员工</b>。
+        # 如果是个人类型，可<b>不指定用户身份，生成的是固定的链接，当前登录电子签小程序的用户可进行换绑。</b>
+        # @type UserAccountType: Integer
+        # @param Name: 要修改手机号用户的姓名，请确保填写的姓名为对方的真实姓名，而非昵称等代名。
+
+        # 如果没有传递 userId且 userAccountType 是 0 或者没有传递， 此参数为<b>必填项。</b>
+        # @type Name: String
+        # @param IdCardType: 要修改手机号用户的证件类型，
+        # 目前支持的账号类型如下：
+
+        # <ul><li><b>ID_CARD </b>: （默认）中国大陆居民身份证 </li>
+        # <li><b>HONGKONG_AND_MACAO</b> : 港澳居民来往内地通行证</li>
+        # <li><b>HONGKONG_MACAO_AND_TAIWAN </b>: 港澳台居民居住证(格式同居民身份证)</li></ul>
+        # @type IdCardType: String
+        # @param IdCardNumber: 要修改手机号用户的身份证号码，应符合以下规则
+        # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # 如果没有传递 userId且 userAccountType 是 0 或者没有传递， 此参数为<b>必填项。</b>
+        # @type IdCardNumber: String
+        # @param Endpoint: 要跳转的链接类型
+
+        # <ul>
+        # <li><b>HTTP</b>：（默认）跳转电子签小程序的http_url,短信通知或者H5跳转适合此类型 ，此时返回长链 (默认类型)</li>
+        # <li><b>HTTP_SHORT_URL</b>：跳转电子签小程序的http_url,短信通知或者H5跳转适合此类型，此时返回短链</li>
+        # <li><b>APP</b>：第三方APP或小程序跳转电子签小程序的path, APP或者小程序跳转适合此类型</li>
+        # </ul>
+
+        # @type Endpoint: String
+        # @param UserData: 在用户完成实名认证后，其自定义数据将通过[手机号换绑回调](https://qian.tencent.com/developers/company/callback_types_staffs/#%E5%8D%81%E4%B8%89-%E4%B8%AA%E4%BA%BA%E5%91%98%E5%B7%A5%E6%89%8B%E6%9C%BA%E5%8F%B7%E4%BF%AE%E6%94%B9%E5%90%8E%E5%9B%9E%E8%B0%83)返回，以便用户确认其个人数据信息。请注意，自定义数据的字符长度上限为1000，且必须采用base64编码格式。
+
+        # 请注意：
+        # 此参数仅支持通过[获取c端用户实名链接](https://qian.tencent.com/developers/companyApis/users/CreateUserVerifyUrl)接口实名的用户生效。
+        # @type UserData: String
+
+        attr_accessor :Operator, :Agent, :UserId, :UserAccountType, :Name, :IdCardType, :IdCardNumber, :Endpoint, :UserData
+
+        def initialize(operator=nil, agent=nil, userid=nil, useraccounttype=nil, name=nil, idcardtype=nil, idcardnumber=nil, endpoint=nil, userdata=nil)
+          @Operator = operator
+          @Agent = agent
+          @UserId = userid
+          @UserAccountType = useraccounttype
+          @Name = name
+          @IdCardType = idcardtype
+          @IdCardNumber = idcardnumber
+          @Endpoint = endpoint
+          @UserData = userdata
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @UserId = params['UserId']
+          @UserAccountType = params['UserAccountType']
+          @Name = params['Name']
+          @IdCardType = params['IdCardType']
+          @IdCardNumber = params['IdCardNumber']
+          @Endpoint = params['Endpoint']
+          @UserData = params['UserData']
+        end
+      end
+
+      # CreateUserMobileChangeUrl返回参数结构体
+      class CreateUserMobileChangeUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 腾讯电子签小程序的实名认证链接。
+        # 如果没有传递，默认值是 HTTP。 链接的有效期均是 7 天。
+
+        # - 如果EndPoint是APP，
+        # 得到的链接类似于pages/guide/index?to=MOBILE_CHANGE_INTENTION&shortKey=yDCZHUyOcExAlcOvNod0, 用法可以参考描述中的"跳转到小程序的实现"
+
+        # - 如果EndPoint是HTTP，
+        # 得到的链接类似于https://res.ess.tencent.cn/cdn/h5-activity/jump-mp.html?to=MOBILE_CHANGE_INTENTION&shortKey=yDCZHUyOcChrfpaswT0d，点击后会跳转到腾讯电子签小程序进行签署
+
+        # - 如果EndPoint是HTTP_SHORT_URL，
+        # 得到的链接类似于https://essurl.cn/2n**42Nd，点击后会跳转到腾讯电子签小程序进行签署
+
+
+        # 注： 生成的链路后面不能再增加参数
+        # 示例值：https://essurl.cn/2n**42Nd
+        # @type Url: String
+        # @param ExpireTime: 链接失效期限如下：
+
+        # <ul>
+        # <li>如果指定更换绑定手机号的用户(指定用户ID或姓名等信息)，则设定的链接失效期限为7天后。</li>
+        # <li>如果没有指定更换绑定手机号的用户，则生成通用跳转到个人换手机号的界面，链接不会过期。</li>
+        # </ul>
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :ExpireTime, :RequestId
+
+        def initialize(url=nil, expiretime=nil, requestid=nil)
+          @Url = url
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserVerifyUrl请求参数结构体
       class CreateUserVerifyUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息

@@ -205,13 +205,18 @@ module TencentCloud
         # @param TransSplit: 是否开启事务分离，取值："true" | "false"
         # @type TransSplit: Boolean
         # @param ConnectionPool: 是否开启连接池
+        # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
         # @type ConnectionPool: Boolean
         # @param ProxyAllocation: 读写权重分配。如果 WeightMode 传的是 system ，则传入的权重不生效，由系统分配默认权重。
         # @type ProxyAllocation: Array
+        # @param AutoLoadBalance: 是否开启自适应负载均衡
+        # @type AutoLoadBalance: Boolean
+        # @param AccessMode: 访问模式：就近访问，均衡分配
+        # @type AccessMode: String
 
-        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation
+        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation, :AutoLoadBalance, :AccessMode
 
-        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, proxyaddressid=nil, transsplit=nil, connectionpool=nil, proxyallocation=nil)
+        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, proxyaddressid=nil, transsplit=nil, connectionpool=nil, proxyallocation=nil, autoloadbalance=nil, accessmode=nil)
           @ProxyGroupId = proxygroupid
           @WeightMode = weightmode
           @IsKickOut = iskickout
@@ -224,6 +229,8 @@ module TencentCloud
           @TransSplit = transsplit
           @ConnectionPool = connectionpool
           @ProxyAllocation = proxyallocation
+          @AutoLoadBalance = autoloadbalance
+          @AccessMode = accessmode
         end
 
         def deserialize(params)
@@ -246,6 +253,8 @@ module TencentCloud
               @ProxyAllocation << proxyallocation_tmp
             end
           end
+          @AutoLoadBalance = params['AutoLoadBalance']
+          @AccessMode = params['AccessMode']
         end
       end
 
@@ -2445,6 +2454,7 @@ module TencentCloud
         # @param UniqSubnetId: 私有子网ID
         # @type UniqSubnetId: String
         # @param ConnectionPool: 是否开启连接池
+        # 注意：如需使用数据库代理连接池能力，MySQL 8.0 主实例的内核小版本要大于等于 MySQL 8.0 20230630。
         # @type ConnectionPool: Boolean
         # @param Desc: 描述
         # @type Desc: String
@@ -2456,10 +2466,14 @@ module TencentCloud
         # @type SecurityGroup: Array
         # @param ConnectionPoolType: 连接池类型。可选值 transaction（事务级别连接池），connection（会话级别连接池），ConnectionPool为true时生效。
         # @type ConnectionPoolType: String
+        # @param AutoLoadBalance: 是否自适应负载均衡
+        # @type AutoLoadBalance: Boolean
+        # @param AccessMode: 接入模式
+        # @type AccessMode: String
 
-        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup, :ConnectionPoolType
+        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup, :ConnectionPoolType, :AutoLoadBalance, :AccessMode
 
-        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, transsplit=nil, proxyallocation=nil, uniqvpcid=nil, uniqsubnetid=nil, connectionpool=nil, desc=nil, vip=nil, vport=nil, securitygroup=nil, connectionpooltype=nil)
+        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, transsplit=nil, proxyallocation=nil, uniqvpcid=nil, uniqsubnetid=nil, connectionpool=nil, desc=nil, vip=nil, vport=nil, securitygroup=nil, connectionpooltype=nil, autoloadbalance=nil, accessmode=nil)
           @ProxyGroupId = proxygroupid
           @WeightMode = weightmode
           @IsKickOut = iskickout
@@ -2478,6 +2492,8 @@ module TencentCloud
           @VPort = vport
           @SecurityGroup = securitygroup
           @ConnectionPoolType = connectionpooltype
+          @AutoLoadBalance = autoloadbalance
+          @AccessMode = accessmode
         end
 
         def deserialize(params)
@@ -2506,6 +2522,8 @@ module TencentCloud
           @VPort = params['VPort']
           @SecurityGroup = params['SecurityGroup']
           @ConnectionPoolType = params['ConnectionPoolType']
+          @AutoLoadBalance = params['AutoLoadBalance']
+          @AccessMode = params['AccessMode']
         end
       end
 
@@ -7118,12 +7136,18 @@ module TencentCloud
         # @param SupportReadOnly: 是否支持设置只读
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportReadOnly: Boolean
+        # @param SupportAutoLoadBalance: 是否自动均衡负载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportAutoLoadBalance: Boolean
+        # @param SupportAccessMode: 是否支持接入模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportAccessMode: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProxyVersion, :SupportPool, :PoolMin, :PoolMax, :SupportTransSplit, :SupportPoolMinVersion, :SupportTransSplitMinVersion, :SupportReadOnly, :RequestId
+        attr_accessor :ProxyVersion, :SupportPool, :PoolMin, :PoolMax, :SupportTransSplit, :SupportPoolMinVersion, :SupportTransSplitMinVersion, :SupportReadOnly, :SupportAutoLoadBalance, :SupportAccessMode, :RequestId
 
-        def initialize(proxyversion=nil, supportpool=nil, poolmin=nil, poolmax=nil, supporttranssplit=nil, supportpoolminversion=nil, supporttranssplitminversion=nil, supportreadonly=nil, requestid=nil)
+        def initialize(proxyversion=nil, supportpool=nil, poolmin=nil, poolmax=nil, supporttranssplit=nil, supportpoolminversion=nil, supporttranssplitminversion=nil, supportreadonly=nil, supportautoloadbalance=nil, supportaccessmode=nil, requestid=nil)
           @ProxyVersion = proxyversion
           @SupportPool = supportpool
           @PoolMin = poolmin
@@ -7132,6 +7156,8 @@ module TencentCloud
           @SupportPoolMinVersion = supportpoolminversion
           @SupportTransSplitMinVersion = supporttranssplitminversion
           @SupportReadOnly = supportreadonly
+          @SupportAutoLoadBalance = supportautoloadbalance
+          @SupportAccessMode = supportaccessmode
           @RequestId = requestid
         end
 
@@ -7144,6 +7170,8 @@ module TencentCloud
           @SupportPoolMinVersion = params['SupportPoolMinVersion']
           @SupportTransSplitMinVersion = params['SupportTransSplitMinVersion']
           @SupportReadOnly = params['SupportReadOnly']
+          @SupportAutoLoadBalance = params['SupportAutoLoadBalance']
+          @SupportAccessMode = params['SupportAccessMode']
           @RequestId = params['RequestId']
         end
       end
@@ -11008,8 +11036,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 5
-        deprecate :IsSucess=, :none, 2024, 5
+        deprecate :IsSucess, :none, 2024, 6
+        deprecate :IsSucess=, :none, 2024, 6
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -11196,10 +11224,16 @@ module TencentCloud
         # @param ProxyAllocation: 实例读权重分配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyAllocation: Array
+        # @param AccessMode: 接入模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessMode: String
+        # @param AutoLoadBalance: 是否开启自动负载均衡
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoLoadBalance: Boolean
 
-        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation
+        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation, :AccessMode, :AutoLoadBalance
 
-        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil)
+        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil, accessmode=nil, autoloadbalance=nil)
           @ProxyAddressId = proxyaddressid
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
@@ -11216,6 +11250,8 @@ module TencentCloud
           @ConnectionPool = connectionpool
           @Desc = desc
           @ProxyAllocation = proxyallocation
+          @AccessMode = accessmode
+          @AutoLoadBalance = autoloadbalance
         end
 
         def deserialize(params)
@@ -11242,6 +11278,8 @@ module TencentCloud
               @ProxyAllocation << proxyallocation_tmp
             end
           end
+          @AccessMode = params['AccessMode']
+          @AutoLoadBalance = params['AutoLoadBalance']
         end
       end
 
@@ -11374,10 +11412,16 @@ module TencentCloud
         # @param Zone: 实例所属可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
+        # @param InstNodeId: 实例节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstNodeId: String
+        # @param InstNodeRole: 节点角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstNodeRole: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :Status, :Weight, :Region, :Zone
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :Status, :Weight, :Region, :Zone, :InstNodeId, :InstNodeRole
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, status=nil, weight=nil, region=nil, zone=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, status=nil, weight=nil, region=nil, zone=nil, instnodeid=nil, instnoderole=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -11385,6 +11429,8 @@ module TencentCloud
           @Weight = weight
           @Region = region
           @Zone = zone
+          @InstNodeId = instnodeid
+          @InstNodeRole = instnoderole
         end
 
         def deserialize(params)
@@ -11395,6 +11441,8 @@ module TencentCloud
           @Weight = params['Weight']
           @Region = params['Region']
           @Zone = params['Zone']
+          @InstNodeId = params['InstNodeId']
+          @InstNodeRole = params['InstNodeRole']
         end
       end
 

@@ -56,8 +56,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 5
-        deprecate :BTime=, :none, 2024, 5
+        deprecate :BTime, :none, 2024, 6
+        deprecate :BTime=, :none, 2024, 6
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -1032,6 +1032,30 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @BillingItem = params['BillingItem']
           @IsAPISecurityTrial = params['IsAPISecurityTrial']
+        end
+      end
+
+      # api列表
+      class ApiSecKey < TencentCloud::Common::AbstractModel
+        # @param ApiName: api名称
+        # @type ApiName: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Method: 请求方法
+        # @type Method: String
+
+        attr_accessor :ApiName, :Domain, :Method
+
+        def initialize(apiname=nil, domain=nil, method=nil)
+          @ApiName = apiname
+          @Domain = domain
+          @Method = method
+        end
+
+        def deserialize(params)
+          @ApiName = params['ApiName']
+          @Domain = params['Domain']
+          @Method = params['Method']
         end
       end
 
@@ -5253,10 +5277,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 5
-        deprecate :VtsMin=, :none, 2024, 5
-        deprecate :VtsMax, :none, 2024, 5
-        deprecate :VtsMax=, :none, 2024, 5
+        deprecate :VtsMin, :none, 2024, 6
+        deprecate :VtsMin=, :none, 2024, 6
+        deprecate :VtsMax, :none, 2024, 6
+        deprecate :VtsMax=, :none, 2024, 6
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil)
           @Domain = domain
@@ -5359,10 +5383,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 5
-        deprecate :VtsMin=, :none, 2024, 5
-        deprecate :VtsMax, :none, 2024, 5
-        deprecate :VtsMax=, :none, 2024, 5
+        deprecate :VtsMin, :none, 2024, 6
+        deprecate :VtsMin=, :none, 2024, 6
+        deprecate :VtsMax, :none, 2024, 6
+        deprecate :VtsMax=, :none, 2024, 6
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -9116,8 +9140,8 @@ module TencentCloud
 
         attr_accessor :Period, :TopicId
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 5
-        deprecate :TopicId=, :none, 2024, 5
+        deprecate :TopicId, :none, 2024, 6
+        deprecate :TopicId=, :none, 2024, 6
 
         def initialize(period=nil, topicid=nil)
           @Period = period
@@ -9391,6 +9415,69 @@ module TencentCloud
           @Count = params['Count']
           @UnSupportedList = params['UnSupportedList']
           @FailDomainList = params['FailDomainList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApiSecEventChange请求参数结构体
+      class ModifyApiSecEventChangeRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 变更状态，1:新发现，2，确认中，3，已确认，4，已下线，5，已忽略
+        # @type Mode: String
+        # @param UserName: 处理人
+        # @type UserName: String
+        # @param Remark: 备注，有长度显示1k
+        # @type Remark: String
+        # @param EventIdList: 批量操作的事件列表
+        # @type EventIdList: Array
+        # @param ApiNameList: 批量操作的api列表
+        # @type ApiNameList: Array
+        # @param IsDelete: 判断是否删除，包括删除事件和删除资产
+        # @type IsDelete: Boolean
+        # @param UpdateApiRemark: 判断是否是更新api的备注，更新api备注的时候，为true
+        # @type UpdateApiRemark: Boolean
+
+        attr_accessor :Mode, :UserName, :Remark, :EventIdList, :ApiNameList, :IsDelete, :UpdateApiRemark
+
+        def initialize(mode=nil, username=nil, remark=nil, eventidlist=nil, apinamelist=nil, isdelete=nil, updateapiremark=nil)
+          @Mode = mode
+          @UserName = username
+          @Remark = remark
+          @EventIdList = eventidlist
+          @ApiNameList = apinamelist
+          @IsDelete = isdelete
+          @UpdateApiRemark = updateapiremark
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @UserName = params['UserName']
+          @Remark = params['Remark']
+          @EventIdList = params['EventIdList']
+          unless params['ApiNameList'].nil?
+            @ApiNameList = []
+            params['ApiNameList'].each do |i|
+              apiseckey_tmp = ApiSecKey.new
+              apiseckey_tmp.deserialize(i)
+              @ApiNameList << apiseckey_tmp
+            end
+          end
+          @IsDelete = params['IsDelete']
+          @UpdateApiRemark = params['UpdateApiRemark']
+        end
+      end
+
+      # ModifyApiSecEventChange返回参数结构体
+      class ModifyApiSecEventChangeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -2339,6 +2339,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # api安全状态变更接口
+
+        # @param request: Request instance for ModifyApiSecEventChange.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyApiSecEventChangeRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyApiSecEventChangeResponse`
+        def ModifyApiSecEventChange(request)
+          body = send_request('ModifyApiSecEventChange', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiSecEventChangeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改防护域名的地域封禁状态
 
         # @param request: Request instance for ModifyAreaBanStatus.
