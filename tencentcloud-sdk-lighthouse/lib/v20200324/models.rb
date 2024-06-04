@@ -2290,9 +2290,9 @@ module TencentCloud
 
       # DescribeDockerActivities请求参数结构体
       class DescribeDockerActivitiesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ActivityIds: Docker活动ID列表。
+        # @param ActivityIds: Docker活动ID列表。可通过[DescribeDockerActivities](https://cloud.tencent.com/document/product/1207/95476)接口返回值中的ActivityId获取。
         # @type ActivityIds: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
@@ -2400,9 +2400,9 @@ module TencentCloud
 
       # DescribeDockerContainerDetail请求参数结构体
       class DescribeDockerContainerDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerId: 容器ID。
+        # @param ContainerId: 容器ID。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerId: String
 
         attr_accessor :InstanceId, :ContainerId
@@ -2440,9 +2440,9 @@ module TencentCloud
 
       # DescribeDockerContainers请求参数结构体
       class DescribeDockerContainersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerIds: 容器ID列表。
+        # @param ContainerIds: 容器ID列表。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerIds: Array
         # @param Limit: 返回数量，默认为 20，最大值为 100。
         # @type Limit: Integer

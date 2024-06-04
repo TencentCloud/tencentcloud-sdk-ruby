@@ -271,7 +271,7 @@ module TencentCloud
         end
       end
 
-      # 网路信息
+      # 网络信息
       class Network < TencentCloud::Common::AbstractModel
         # @param VpcId: VpcId(VPC网络下有效)
         # 注意：此字段可能返回 null，表示取不到有效值。

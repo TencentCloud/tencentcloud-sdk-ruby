@@ -415,19 +415,23 @@ module TencentCloud
         # @type UserId: String
         # @param MusicId: 歌曲 Id
         # @type MusicId: String
+        # @param RoomId: 房间Id
+        # @type RoomId: String
 
-        attr_accessor :AppName, :UserId, :MusicId
+        attr_accessor :AppName, :UserId, :MusicId, :RoomId
 
-        def initialize(appname=nil, userid=nil, musicid=nil)
+        def initialize(appname=nil, userid=nil, musicid=nil, roomid=nil)
           @AppName = appname
           @UserId = userid
           @MusicId = musicid
+          @RoomId = roomid
         end
 
         def deserialize(params)
           @AppName = params['AppName']
           @UserId = params['UserId']
           @MusicId = params['MusicId']
+          @RoomId = params['RoomId']
         end
       end
 
@@ -1874,6 +1878,7 @@ module TencentCloud
         # @param Type: 音频类型，取值有：
         # <li>Original：原唱</li>
         # <li>Accompaniment：伴奏</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Type
@@ -1917,6 +1922,7 @@ module TencentCloud
         # <li>Order：顺序播放</li>
         # <li>RepeatSingle：单曲循环</li>
         # <li>Shuffle：随机播放</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlayMode: String
 
         attr_accessor :PlayMode

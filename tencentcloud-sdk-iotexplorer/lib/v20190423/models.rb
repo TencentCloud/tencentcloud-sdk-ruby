@@ -5156,10 +5156,13 @@ module TencentCloud
         # @param CreatorNickName: 创建者昵称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorNickName: String
+        # @param UserDefined: 固件用户自定义配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDefined: String
 
-        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId, :FwType, :CreateUserId, :CreatorNickName
+        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId, :FwType, :CreateUserId, :CreatorNickName, :UserDefined
 
-        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil, fwtype=nil, createuserid=nil, creatornickname=nil)
+        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil, fwtype=nil, createuserid=nil, creatornickname=nil, userdefined=nil)
           @Version = version
           @Md5sum = md5sum
           @CreateTime = createtime
@@ -5170,6 +5173,7 @@ module TencentCloud
           @FwType = fwtype
           @CreateUserId = createuserid
           @CreatorNickName = creatornickname
+          @UserDefined = userdefined
         end
 
         def deserialize(params)
@@ -5183,6 +5187,7 @@ module TencentCloud
           @FwType = params['FwType']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+          @UserDefined = params['UserDefined']
         end
       end
 

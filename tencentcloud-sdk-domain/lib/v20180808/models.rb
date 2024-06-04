@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type LengthEnd: Integer
         # @param PageNumber: 页码
         # @type PageNumber: Integer
-        # @param PageSize: 没页显示数
+        # @param PageSize: 每页显示数
         # @type PageSize: Integer
         # @param Suffix: 后缀
         # @type Suffix: Array
