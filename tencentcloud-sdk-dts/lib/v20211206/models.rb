@@ -3100,6 +3100,8 @@ module TencentCloud
         # @type SubscribeName: String
         # @param InstanceId: 订阅的云上数据库实例的 ID，精确匹配
         # @type InstanceId: String
+        # @param Topic: 订阅的topicName
+        # @type Topic: String
         # @param PayType: 计费模式筛选，可能的值：0-包年包月，1-按量计费
         # @type PayType: Integer
         # @param Product: 订阅的数据库产品，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)
@@ -3117,12 +3119,13 @@ module TencentCloud
         # @param TagFilters: tag 过滤条件，多个 TagFilter 之间关系为且
         # @type TagFilters: Array
 
-        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
+        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :Topic, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
 
-        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
+        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, topic=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @InstanceId = instanceid
+          @Topic = topic
           @PayType = paytype
           @Product = product
           @Status = status
@@ -3137,6 +3140,7 @@ module TencentCloud
           @SubscribeId = params['SubscribeId']
           @SubscribeName = params['SubscribeName']
           @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
           @PayType = params['PayType']
           @Product = params['Product']
           @Status = params['Status']

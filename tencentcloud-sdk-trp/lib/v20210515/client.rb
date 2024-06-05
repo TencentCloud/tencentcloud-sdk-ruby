@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量上链接口
+
+        # @param request: Request instance for CreateChainBatch.
+        # @type request: :class:`Tencentcloud::trp::V20210515::CreateChainBatchRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::CreateChainBatchResponse`
+        def CreateChainBatch(request)
+          body = send_request('CreateChainBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新增批次
 
         # @param request: Request instance for CreateCodeBatch.

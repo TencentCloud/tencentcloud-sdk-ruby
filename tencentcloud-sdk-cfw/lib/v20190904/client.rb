@@ -725,6 +725,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口废弃
+
         # 删除防火墙实例
 
         # @param request: Request instance for DeleteVpcInstance.
@@ -1469,7 +1471,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeSourceAsset-查询资产组全部资产信息
+        # DescribeSourceAsset-查询全部资产信息
 
         # @param request: Request instance for DescribeSourceAsset.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeSourceAssetRequest`

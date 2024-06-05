@@ -27,16 +27,18 @@ module TencentCloud
         # @type DBPrivileges: Array
         # @param Remark: 账号备注信息
         # @type Remark: String
-        # @param IsAdmin: 是否为管理员账户，当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false，等价于AccountType=L3
+        # @param IsAdmin: 是否为管理员账户，当值为true 等价于单节点AccountType=L0，双节点AccountType=L1，当值为false，等价于AccountType=L3
         # @type IsAdmin: Boolean
         # @param Authentication: win-windows鉴权,sql-sqlserver鉴权，不填默认值为sql-sqlserver鉴权
         # @type Authentication: String
         # @param AccountType: 账号类型，IsAdmin的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
         # @type AccountType: String
+        # @param IsCam: 是否开启CAM验证
+        # @type IsCam: Boolean
 
-        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication, :AccountType
+        attr_accessor :UserName, :Password, :DBPrivileges, :Remark, :IsAdmin, :Authentication, :AccountType, :IsCam
 
-        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil, accounttype=nil)
+        def initialize(username=nil, password=nil, dbprivileges=nil, remark=nil, isadmin=nil, authentication=nil, accounttype=nil, iscam=nil)
           @UserName = username
           @Password = password
           @DBPrivileges = dbprivileges
@@ -44,6 +46,7 @@ module TencentCloud
           @IsAdmin = isadmin
           @Authentication = authentication
           @AccountType = accounttype
+          @IsCam = iscam
         end
 
         def deserialize(params)
@@ -61,10 +64,11 @@ module TencentCloud
           @IsAdmin = params['IsAdmin']
           @Authentication = params['Authentication']
           @AccountType = params['AccountType']
+          @IsCam = params['IsCam']
         end
       end
 
-      # 账户信息详情
+      # 账号信息详情
       class AccountDetail < TencentCloud::Common::AbstractModel
         # @param Name: 账户名
         # @type Name: String
@@ -84,6 +88,8 @@ module TencentCloud
         # @type Dbs: Array
         # @param IsAdmin: 是否为管理员账户
         # @type IsAdmin: Boolean
+        # @param IsCam: 是否为cam托管账户
+        # @type IsCam: Boolean
         # @param Authentication: win-windows鉴权,sql-sqlserver鉴权
         # @type Authentication: String
         # @param Host: win-windows鉴权账户需要host
@@ -91,9 +97,9 @@ module TencentCloud
         # @param AccountType: 账号类型。L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限
         # @type AccountType: String
 
-        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin, :Authentication, :Host, :AccountType
+        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin, :IsCam, :Authentication, :Host, :AccountType
 
-        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil, authentication=nil, host=nil, accounttype=nil)
+        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil, iscam=nil, authentication=nil, host=nil, accounttype=nil)
           @Name = name
           @Remark = remark
           @CreateTime = createtime
@@ -103,6 +109,7 @@ module TencentCloud
           @InternalStatus = internalstatus
           @Dbs = dbs
           @IsAdmin = isadmin
+          @IsCam = iscam
           @Authentication = authentication
           @Host = host
           @AccountType = accounttype
@@ -125,6 +132,7 @@ module TencentCloud
             end
           end
           @IsAdmin = params['IsAdmin']
+          @IsCam = params['IsCam']
           @Authentication = params['Authentication']
           @Host = params['Host']
           @AccountType = params['AccountType']
@@ -2567,8 +2575,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2024, 4
-        deprecate :IsFulltextEnabled=, :none, 2024, 4
+        deprecate :IsFulltextEnabled, :none, 2024, 6
+        deprecate :IsFulltextEnabled=, :none, 2024, 6
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -6645,8 +6653,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2024, 4
-        deprecate :Slowlogs=, :none, 2024, 4
+        deprecate :Slowlogs, :none, 2024, 6
+        deprecate :Slowlogs=, :none, 2024, 6
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6855,8 +6863,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 4
-        deprecate :XCosSecurityToken=, :none, 2024, 4
+        deprecate :XCosSecurityToken, :none, 2024, 6
+        deprecate :XCosSecurityToken=, :none, 2024, 6
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -6934,8 +6942,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 4
-        deprecate :XCosSecurityToken=, :none, 2024, 4
+        deprecate :XCosSecurityToken, :none, 2024, 6
+        deprecate :XCosSecurityToken=, :none, 2024, 6
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8223,8 +8231,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2024, 4
-        deprecate :Errno=, :none, 2024, 4
+        deprecate :Errno, :none, 2024, 6
+        deprecate :Errno=, :none, 2024, 6
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno

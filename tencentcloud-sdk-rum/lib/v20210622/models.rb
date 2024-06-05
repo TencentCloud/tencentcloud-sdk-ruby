@@ -3612,7 +3612,7 @@ module TencentCloud
       class ModifyProjectLimitRequest < TencentCloud::Common::AbstractModel
         # @param ProjectID: 项目ID
         # @type ProjectID: Integer
-        # @param ProjectInterface: 项目接口
+        # @param ProjectInterface: 取值为[log speed performance webvitals pv event custom miniProgramData]其中之一
         # @type ProjectInterface: String
         # @param ReportRate: 上报比例   10代表10%
         # @type ReportRate: Integer

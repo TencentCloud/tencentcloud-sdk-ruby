@@ -234,8 +234,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 5
-        deprecate :InstanceGrpId=, :none, 2024, 5
+        deprecate :InstanceGrpId, :none, 2024, 6
+        deprecate :InstanceGrpId=, :none, 2024, 6
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1016,8 +1016,8 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 5
-        deprecate :InstanceGrpId=, :none, 2024, 5
+        deprecate :InstanceGrpId, :none, 2024, 6
+        deprecate :InstanceGrpId=, :none, 2024, 6
 
         def initialize(id=nil, appid=nil, clusterid=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil)
           @ID = id
@@ -1369,8 +1369,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 5
-        deprecate :InstanceGrpId=, :none, 2024, 5
+        deprecate :InstanceGrpId, :none, 2024, 6
+        deprecate :InstanceGrpId=, :none, 2024, 6
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -5413,8 +5413,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2024, 5
-        deprecate :InstanceGrpInfoList=, :none, 2024, 5
+        deprecate :InstanceGrpInfoList, :none, 2024, 6
+        deprecate :InstanceGrpInfoList=, :none, 2024, 6
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5736,8 +5736,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 5
-        deprecate :InstanceId=, :none, 2024, 5
+        deprecate :InstanceId, :none, 2024, 6
+        deprecate :InstanceId=, :none, 2024, 6
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -9820,8 +9820,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 5
-        deprecate :InstanceGrpId=, :none, 2024, 5
+        deprecate :InstanceGrpId, :none, 2024, 6
+        deprecate :InstanceGrpId=, :none, 2024, 6
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -10336,8 +10336,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 5
-        deprecate :InstanceGrpId=, :none, 2024, 5
+        deprecate :InstanceGrpId, :none, 2024, 6
+        deprecate :InstanceGrpId=, :none, 2024, 6
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -10561,10 +10561,13 @@ module TencentCloud
         # @param ModifiableInfo: 参数是否可修改
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiableInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifiableInfo`
+        # @param FuncPattern: 支持公式的参数的默认公式样式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FuncPattern: String
 
-        attr_accessor :ParamName, :ParamType, :SupportFunc, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :IsGlobal, :MatchType, :MatchValue, :IsFunc, :Func, :ModifiableInfo
+        attr_accessor :ParamName, :ParamType, :SupportFunc, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :IsGlobal, :MatchType, :MatchValue, :IsFunc, :Func, :ModifiableInfo, :FuncPattern
 
-        def initialize(paramname=nil, paramtype=nil, supportfunc=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, isglobal=nil, matchtype=nil, matchvalue=nil, isfunc=nil, func=nil, modifiableinfo=nil)
+        def initialize(paramname=nil, paramtype=nil, supportfunc=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, isglobal=nil, matchtype=nil, matchvalue=nil, isfunc=nil, func=nil, modifiableinfo=nil, funcpattern=nil)
           @ParamName = paramname
           @ParamType = paramtype
           @SupportFunc = supportfunc
@@ -10581,6 +10584,7 @@ module TencentCloud
           @IsFunc = isfunc
           @Func = func
           @ModifiableInfo = modifiableinfo
+          @FuncPattern = funcpattern
         end
 
         def deserialize(params)
@@ -10603,6 +10607,7 @@ module TencentCloud
             @ModifiableInfo = ModifiableInfo.new
             @ModifiableInfo.deserialize(params['ModifiableInfo'])
           end
+          @FuncPattern = params['FuncPattern']
         end
       end
 
@@ -10738,10 +10743,13 @@ module TencentCloud
         # @param Func: 参数配置公式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Func: String
+        # @param FuncPattern: 支持公式的参数的默认公式样式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FuncPattern: String
 
-        attr_accessor :CurrentValue, :Default, :EnumValue, :IsGlobal, :Max, :Min, :NeedReboot, :ParamName, :ParamType, :Description, :IsFunc, :Func
+        attr_accessor :CurrentValue, :Default, :EnumValue, :IsGlobal, :Max, :Min, :NeedReboot, :ParamName, :ParamType, :Description, :IsFunc, :Func, :FuncPattern
 
-        def initialize(currentvalue=nil, default=nil, enumvalue=nil, isglobal=nil, max=nil, min=nil, needreboot=nil, paramname=nil, paramtype=nil, description=nil, isfunc=nil, func=nil)
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, isglobal=nil, max=nil, min=nil, needreboot=nil, paramname=nil, paramtype=nil, description=nil, isfunc=nil, func=nil, funcpattern=nil)
           @CurrentValue = currentvalue
           @Default = default
           @EnumValue = enumvalue
@@ -10754,6 +10762,7 @@ module TencentCloud
           @Description = description
           @IsFunc = isfunc
           @Func = func
+          @FuncPattern = funcpattern
         end
 
         def deserialize(params)
@@ -10769,6 +10778,7 @@ module TencentCloud
           @Description = params['Description']
           @IsFunc = params['IsFunc']
           @Func = params['Func']
+          @FuncPattern = params['FuncPattern']
         end
       end
 

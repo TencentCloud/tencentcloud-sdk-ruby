@@ -13037,10 +13037,13 @@ module TencentCloud
         # @type JoinTableNumber: Integer
         # @param Score: 评分
         # @type Score: Float
+        # @param UserIdStr: 设置人idStr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIdStr: String
 
-        attr_accessor :Name, :Weight, :UserId, :UserName, :UpdateTime, :JoinTableNumber, :Score
+        attr_accessor :Name, :Weight, :UserId, :UserName, :UpdateTime, :JoinTableNumber, :Score, :UserIdStr
 
-        def initialize(name=nil, weight=nil, userid=nil, username=nil, updatetime=nil, jointablenumber=nil, score=nil)
+        def initialize(name=nil, weight=nil, userid=nil, username=nil, updatetime=nil, jointablenumber=nil, score=nil, useridstr=nil)
           @Name = name
           @Weight = weight
           @UserId = userid
@@ -13048,6 +13051,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @JoinTableNumber = jointablenumber
           @Score = score
+          @UserIdStr = useridstr
         end
 
         def deserialize(params)
@@ -13058,6 +13062,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @JoinTableNumber = params['JoinTableNumber']
           @Score = params['Score']
+          @UserIdStr = params['UserIdStr']
         end
       end
 
@@ -21710,10 +21715,13 @@ module TencentCloud
         # @param DatasourceTypes: 支持的数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceTypes: Array
+        # @param UserIdStr: 创建人IdStr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIdStr: String
 
-        attr_accessor :RuleTemplateId, :Name, :Description, :Type, :SourceObjectType, :SourceObjectDataType, :SourceContent, :SourceEngineTypes, :QualityDim, :CompareType, :CitationCount, :UserId, :UserName, :UpdateTime, :WhereFlag, :MultiSourceFlag, :SqlExpression, :SubQualityDim, :ResolvedSqlExpression, :DatasourceTypes
+        attr_accessor :RuleTemplateId, :Name, :Description, :Type, :SourceObjectType, :SourceObjectDataType, :SourceContent, :SourceEngineTypes, :QualityDim, :CompareType, :CitationCount, :UserId, :UserName, :UpdateTime, :WhereFlag, :MultiSourceFlag, :SqlExpression, :SubQualityDim, :ResolvedSqlExpression, :DatasourceTypes, :UserIdStr
 
-        def initialize(ruletemplateid=nil, name=nil, description=nil, type=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourcecontent=nil, sourceenginetypes=nil, qualitydim=nil, comparetype=nil, citationcount=nil, userid=nil, username=nil, updatetime=nil, whereflag=nil, multisourceflag=nil, sqlexpression=nil, subqualitydim=nil, resolvedsqlexpression=nil, datasourcetypes=nil)
+        def initialize(ruletemplateid=nil, name=nil, description=nil, type=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourcecontent=nil, sourceenginetypes=nil, qualitydim=nil, comparetype=nil, citationcount=nil, userid=nil, username=nil, updatetime=nil, whereflag=nil, multisourceflag=nil, sqlexpression=nil, subqualitydim=nil, resolvedsqlexpression=nil, datasourcetypes=nil, useridstr=nil)
           @RuleTemplateId = ruletemplateid
           @Name = name
           @Description = description
@@ -21734,6 +21742,7 @@ module TencentCloud
           @SubQualityDim = subqualitydim
           @ResolvedSqlExpression = resolvedsqlexpression
           @DatasourceTypes = datasourcetypes
+          @UserIdStr = useridstr
         end
 
         def deserialize(params)
@@ -21760,6 +21769,7 @@ module TencentCloud
             @ResolvedSqlExpression.deserialize(params['ResolvedSqlExpression'])
           end
           @DatasourceTypes = params['DatasourceTypes']
+          @UserIdStr = params['UserIdStr']
         end
       end
 
@@ -23593,17 +23603,22 @@ module TencentCloud
         # @param ReceiverName: 接收人名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverName: String
+        # @param ReceiverUserIdStr: 接收人Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverUserIdStr: String
 
-        attr_accessor :ReceiverUserId, :ReceiverName
+        attr_accessor :ReceiverUserId, :ReceiverName, :ReceiverUserIdStr
 
-        def initialize(receiveruserid=nil, receivername=nil)
+        def initialize(receiveruserid=nil, receivername=nil, receiveruseridstr=nil)
           @ReceiverUserId = receiveruserid
           @ReceiverName = receivername
+          @ReceiverUserIdStr = receiveruseridstr
         end
 
         def deserialize(params)
           @ReceiverUserId = params['ReceiverUserId']
           @ReceiverName = params['ReceiverName']
+          @ReceiverUserIdStr = params['ReceiverUserIdStr']
         end
       end
 

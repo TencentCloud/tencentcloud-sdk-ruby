@@ -6199,6 +6199,58 @@ module TencentCloud
         end
       end
 
+      # GetWechatDeviceTicket请求参数结构体
+      class GetWechatDeviceTicketRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 产品名称
+        # @type DeviceName: String
+        # @param IsThirdApp: 是否第三方小程序
+        # @type IsThirdApp: Integer
+        # @param ModelId: 模板ID
+        # @type ModelId: String
+
+        attr_accessor :ProductId, :DeviceName, :IsThirdApp, :ModelId
+
+        def initialize(productid=nil, devicename=nil, isthirdapp=nil, modelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @IsThirdApp = isthirdapp
+          @ModelId = modelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @IsThirdApp = params['IsThirdApp']
+          @ModelId = params['ModelId']
+        end
+      end
+
+      # GetWechatDeviceTicket返回参数结构体
+      class GetWechatDeviceTicketResponse < TencentCloud::Common::AbstractModel
+        # @param WXDeviceInfo: 微信设备信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WXDeviceInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.WXDeviceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WXDeviceInfo, :RequestId
+
+        def initialize(wxdeviceinfo=nil, requestid=nil)
+          @WXDeviceInfo = wxdeviceinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WXDeviceInfo'].nil?
+            @WXDeviceInfo = WXDeviceInfo.new
+            @WXDeviceInfo.deserialize(params['WXDeviceInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InheritCloudStorageUser请求参数结构体
       class InheritCloudStorageUserRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -9036,6 +9088,58 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 微信硬件设备信息
+      class WXDeviceInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param WXIoTDeviceInfo: 设备信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WXIoTDeviceInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.WXIoTDeviceInfo`
+
+        attr_accessor :DeviceId, :WXIoTDeviceInfo
+
+        def initialize(deviceid=nil, wxiotdeviceinfo=nil)
+          @DeviceId = deviceid
+          @WXIoTDeviceInfo = wxiotdeviceinfo
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          unless params['WXIoTDeviceInfo'].nil?
+            @WXIoTDeviceInfo = WXIoTDeviceInfo.new
+            @WXIoTDeviceInfo.deserialize(params['WXIoTDeviceInfo'])
+          end
+        end
+      end
+
+      # 微信物联网硬件信息
+      class WXIoTDeviceInfo < TencentCloud::Common::AbstractModel
+        # @param SN: sn信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SN: String
+        # @param SNTicket: 票据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SNTicket: String
+        # @param ModelId: 模版ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+
+        attr_accessor :SN, :SNTicket, :ModelId
+
+        def initialize(sn=nil, snticket=nil, modelid=nil)
+          @SN = sn
+          @SNTicket = snticket
+          @ModelId = modelid
+        end
+
+        def deserialize(params)
+          @SN = params['SN']
+          @SNTicket = params['SNTicket']
+          @ModelId = params['ModelId']
         end
       end
 

@@ -457,13 +457,13 @@ module TencentCloud
 
       # Embedding 信息。
       class EmbeddingData < TencentCloud::Common::AbstractModel
-        # @param Embedding: embedding 信息。
+        # @param Embedding: Embedding 信息，目前为 1024 维浮点数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Embedding: Array
-        # @param Index: 下标。
+        # @param Index: 下标，目前不支持批量，因此固定为 0。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Integer
-        # @param Object: embedding
+        # @param Object: 目前固定为 "embedding"。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: String
 

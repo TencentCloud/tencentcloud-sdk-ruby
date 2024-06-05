@@ -3228,20 +3228,24 @@ module TencentCloud
 
       # DescribeAntiFakeRules返回参数结构体
       class DescribeAntiFakeRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
         # @param Data: 返回值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Total, :Data, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
           @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Total = params['Total']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|

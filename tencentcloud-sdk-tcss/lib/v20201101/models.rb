@@ -3662,8 +3662,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2024, 5
-        deprecate :Component=, :none, 2024, 5
+        deprecate :Component, :none, 2024, 6
+        deprecate :Component=, :none, 2024, 6
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4116,8 +4116,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 5
-        deprecate :All=, :none, 2024, 5
+        deprecate :All, :none, 2024, 6
+        deprecate :All=, :none, 2024, 6
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4278,8 +4278,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 5
-        deprecate :All=, :none, 2024, 5
+        deprecate :All, :none, 2024, 6
+        deprecate :All=, :none, 2024, 6
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
           @Enable = enable
@@ -4353,8 +4353,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 5
-        deprecate :All=, :none, 2024, 5
+        deprecate :All, :none, 2024, 6
+        deprecate :All=, :none, 2024, 6
 
         def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil)
           @All = all
@@ -9519,8 +9519,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 5
-        deprecate :SentiveInfoCnt=, :none, 2024, 5
+        deprecate :SentiveInfoCnt, :none, 2024, 6
+        deprecate :SentiveInfoCnt=, :none, 2024, 6
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10617,8 +10617,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 5
-        deprecate :All=, :none, 2024, 5
+        deprecate :All, :none, 2024, 6
+        deprecate :All=, :none, 2024, 6
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, requestid=nil)
           @Enable = enable
@@ -14086,8 +14086,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 5
-        deprecate :All=, :none, 2024, 5
+        deprecate :All, :none, 2024, 6
+        deprecate :All=, :none, 2024, 6
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, requestid=nil)
           @Enable = enable
@@ -22141,8 +22141,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 5
-        deprecate :SentiveInfoCnt=, :none, 2024, 5
+        deprecate :SentiveInfoCnt, :none, 2024, 6
+        deprecate :SentiveInfoCnt=, :none, 2024, 6
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil)
           @ImageDigest = imagedigest
@@ -28096,8 +28096,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 5
-        deprecate :All=, :none, 2024, 5
+        deprecate :All, :none, 2024, 6
+        deprecate :All=, :none, 2024, 6
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod

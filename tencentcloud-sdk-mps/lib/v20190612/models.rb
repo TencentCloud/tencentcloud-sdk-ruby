@@ -1786,8 +1786,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 5
-        deprecate :OutputStorage=, :none, 2024, 5
+        deprecate :OutputStorage, :none, 2024, 6
+        deprecate :OutputStorage=, :none, 2024, 6
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -10176,11 +10176,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型，目前取值有：
-        # <li>WorkflowTask：视频工作流处理任务。</li>
-        # <li>EditMediaTask：视频编辑任务。</li>
-        # <li>LiveStreamProcessTask：直播流处理任务。</li>
-        # <li>ScheduleTask：编排处理任务。</li>
+        # @param TaskType: 任务类型，目前取值有：<li>WorkflowTask：视频工作流处理任务。</li><li>EditMediaTask：视频编辑任务。</li><li>LiveStreamProcessTask：直播流处理任务。</li><li>ScheduleTask：编排处理任务。</li><li>EvaluationTask：评测任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>

@@ -81,6 +81,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 图片人脸融合（专业版）为同步接口，支持自定义美颜、人脸增强、牙齿增强、拉脸等参数，最高支持8K分辨率，有多个模型类型供选择。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">融合接入指引</a>。
+        # 请求频率限制为2次/秒。
+
+        # @param request: Request instance for FuseFaceUltra.
+        # @type request: :class:`Tencentcloud::facefusion::V20220927::FuseFaceUltraRequest`
+        # @rtype: :class:`Tencentcloud::facefusion::V20220927::FuseFaceUltraResponse`
+        def FuseFaceUltra(request)
+          body = send_request('FuseFaceUltra', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FuseFaceUltraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

@@ -119,6 +119,35 @@ module TencentCloud
       end
 
       # 上链数据
+      class Chain < TencentCloud::Common::AbstractModel
+        # @param Code: 码url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param Data: 上链数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Code, :Data
+
+        def initialize(code=nil, data=nil)
+          @Code = code
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              chainvalue_tmp = ChainValue.new
+              chainvalue_tmp.deserialize(i)
+              @Data << chainvalue_tmp
+            end
+          end
+        end
+      end
+
+      # 上链数据
       class ChainData < TencentCloud::Common::AbstractModel
         # @param BlockHash: 区块hash
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -142,6 +171,33 @@ module TencentCloud
           @BlockHash = params['BlockHash']
           @BlockHeight = params['BlockHeight']
           @BlockTime = params['BlockTime']
+        end
+      end
+
+      # 上链数据 key-value
+      class ChainValue < TencentCloud::Common::AbstractModel
+        # @param Label: 标题名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Type: 类型，文字："text"，图片："image"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Value: 值，文字类型："abc"，图片类型：""/images/img.png"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Label, :Type, :Value
+
+        def initialize(label=nil, type=nil, value=nil)
+          @Label = label
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Type = params['Type']
+          @Value = params['Value']
         end
       end
 
@@ -209,8 +265,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2024, 5
-        deprecate :Ext=, :none, 2024, 5
+        deprecate :Ext, :none, 2024, 6
+        deprecate :Ext=, :none, 2024, 6
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -519,6 +575,49 @@ module TencentCloud
             @UsageQuota = UsageQuota.new
             @UsageQuota.deserialize(params['UsageQuota'])
           end
+        end
+      end
+
+      # CreateChainBatch请求参数结构体
+      class CreateChainBatchRequest < TencentCloud::Common::AbstractModel
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+        # @param ChainList: 溯源ID
+        # @type ChainList: Array
+
+        attr_accessor :CorpId, :ChainList
+
+        def initialize(corpid=nil, chainlist=nil)
+          @CorpId = corpid
+          @ChainList = chainlist
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          unless params['ChainList'].nil?
+            @ChainList = []
+            params['ChainList'].each do |i|
+              chain_tmp = Chain.new
+              chain_tmp.deserialize(i)
+              @ChainList << chain_tmp
+            end
+          end
+        end
+      end
+
+      # CreateChainBatch返回参数结构体
+      class CreateChainBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2639,8 +2738,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2024, 5
-        deprecate :Products=, :none, 2024, 5
+        deprecate :Products, :none, 2024, 6
+        deprecate :Products=, :none, 2024, 6
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3051,8 +3150,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2024, 5
-        deprecate :Value=, :none, 2024, 5
+        deprecate :Value, :none, 2024, 6
+        deprecate :Value=, :none, 2024, 6
 
         def initialize(value=nil)
           @Value = value

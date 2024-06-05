@@ -220,6 +220,102 @@ module TencentCloud
         end
       end
 
+      # FuseFaceUltra请求参数结构体
+      class FuseFaceUltraRequest < TencentCloud::Common::AbstractModel
+        # @param RspImgType: 返回融合结果图片方式（url 或 base64) ，二选一。url有效期为1天。
+        # @type RspImgType: String
+        # @param MergeInfos: 用户人脸图片、素材模板图的人脸位置信息。主要用于素材模版中人脸以及用作融合的用户人脸相关信息，两种人脸都需要提供人脸图片，可选择提供人脸框位置，具体见MergeInfo说明
+        # 目前最多支持融合模板图片中的6张人脸。
+        # @type MergeInfos: Array
+        # @param ModelUrl: 素材模版图片的url地址。
+        # ●base64 和 url 必须提供一个，如果都提供以 base64 为准。
+        # ●素材图片限制：图片中面部尺寸大于34 * 34；图片尺寸大于64 * 64，小于8000 * 8000（单边限制）。图片url或者图片 base64 数据，base64 编码后大小不可超过10M（图片编码之后可能会大30%左右，建议合理控制图片大小）
+        # ●图片格式：支持jpg或png
+        # @type ModelUrl: String
+        # @param ModelImage: 素材模版图片base64数据。
+        # ●base64 和 url 必须提供一个，如果都提供以 base64 为准。
+        # ●素材图片限制：图片中面部尺寸大于34 * 34；图片尺寸大于64 * 64，小于8000*8000（单边限制）。图片url或者图片 base64 数据，base64 编码后大小不可超过10M（图片编码之后可能会大30%左右，建议合理控制图片大小）
+        # ●支持图片格式：支持jpg或png
+        # @type ModelImage: String
+        # @param FusionUltraParam: 图片人脸融合（专业版）效果参数。
+        # 可用于设置拉脸、人脸增强、磨皮、牙齿增强等融合效果参数，生成理想的融合效果。不传默认使用接口推荐值。具体见FusionUltraParam说明
+        # @type FusionUltraParam: :class:`Tencentcloud::Facefusion.v20220927.models.FusionUltraParam`
+        # @param LogoAdd: 为融合结果图添加合成标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了人脸融合技术，是AI合成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在融合结果图右下角添加“本图片为AI合成图片”字样，您可根据自身需要替换为其他的Logo图片。
+        # @type LogoParam: :class:`Tencentcloud::Facefusion.v20220927.models.LogoParam`
+        # @param SwapModelType: 融合模型类型参数：默认为1。
+        # 图片人脸融合（专业版）针对不同场景，提供多种模型供选择。如您的产品是泛娱乐场景，推荐使用1；如您主要用于影像场景，推荐使用5。其他模型类型也可以结合您的产品使用场景进行选择，也许会有意想不到的效果
+        # 1：默认泛娱乐场景，画面偏锐。
+        # 2：影视级场景，画面偏自然。
+        # 3：影视级场景，高分辨率，画面偏自然。
+        # 4：影视级场景，高分辨率，画面偏自然。
+        # 5：影视级场景，高分辨率，对闭眼和遮挡更友好。
+        # @type SwapModelType: Integer
+
+        attr_accessor :RspImgType, :MergeInfos, :ModelUrl, :ModelImage, :FusionUltraParam, :LogoAdd, :LogoParam, :SwapModelType
+
+        def initialize(rspimgtype=nil, mergeinfos=nil, modelurl=nil, modelimage=nil, fusionultraparam=nil, logoadd=nil, logoparam=nil, swapmodeltype=nil)
+          @RspImgType = rspimgtype
+          @MergeInfos = mergeinfos
+          @ModelUrl = modelurl
+          @ModelImage = modelimage
+          @FusionUltraParam = fusionultraparam
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+          @SwapModelType = swapmodeltype
+        end
+
+        def deserialize(params)
+          @RspImgType = params['RspImgType']
+          unless params['MergeInfos'].nil?
+            @MergeInfos = []
+            params['MergeInfos'].each do |i|
+              mergeinfo_tmp = MergeInfo.new
+              mergeinfo_tmp.deserialize(i)
+              @MergeInfos << mergeinfo_tmp
+            end
+          end
+          @ModelUrl = params['ModelUrl']
+          @ModelImage = params['ModelImage']
+          unless params['FusionUltraParam'].nil?
+            @FusionUltraParam = FusionUltraParam.new
+            @FusionUltraParam.deserialize(params['FusionUltraParam'])
+          end
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+          @SwapModelType = params['SwapModelType']
+        end
+      end
+
+      # FuseFaceUltra返回参数结构体
+      class FuseFaceUltraResponse < TencentCloud::Common::AbstractModel
+        # @param FusedImage: RspImgType 为 url 时，返回结果的 url， RspImgType 为 base64 时返回 base64 数据。url有效期为1天。
+        # @type FusedImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FusedImage, :RequestId
+
+        def initialize(fusedimage=nil, requestid=nil)
+          @FusedImage = fusedimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FusedImage = params['FusedImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 融合参数
       class FuseParam < TencentCloud::Common::AbstractModel
         # @param ImageCodecParam: 图片编码参数
@@ -236,6 +332,50 @@ module TencentCloud
             @ImageCodecParam = ImageCodecParam.new
             @ImageCodecParam.deserialize(params['ImageCodecParam'])
           end
+        end
+      end
+
+      # 高精度融合参数
+      class FusionUltraParam < TencentCloud::Common::AbstractModel
+        # @param WarpRadio: 拉脸强度。主要用于调整生成结果人脸脸型更像素材模板还是用户人脸。取值越大越像用户人脸。
+        # 取值范围：0-1之间。默认取值0.7。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarpRadio: Float
+        # @param EnhanceRadio: 人脸增强强度。对整个人脸进行增强，增加清晰度，改善质量。当生成的人脸不够清晰，质感不够好的时候可以设置。取值越大增强强度越大。
+        # 取值范围：0-1之间。默认取值1。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceRadio: Float
+        # @param MpRadio: 磨皮强度。当生成脸的图像面部显脏时，可进行设置。
+        # 取值范围：0-1之间。默认取值1。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MpRadio: Float
+        # @param BlurRadio: 人脸模糊开关（暂不支持）
+        # 当生成人脸比较清晰时，将人脸模糊到接近模板的清晰度的程度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlurRadio: Float
+        # @param TeethEnhanceRadio: 牙齿增强开关，默认取值为1
+        # 牙齿增强，修复牙齿。当生成牙齿不好（如牙齿裂开）可以打开此开关
+        # 0：牙齿增强关闭
+        # 1：牙齿增强打开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TeethEnhanceRadio: Float
+
+        attr_accessor :WarpRadio, :EnhanceRadio, :MpRadio, :BlurRadio, :TeethEnhanceRadio
+
+        def initialize(warpradio=nil, enhanceradio=nil, mpradio=nil, blurradio=nil, teethenhanceradio=nil)
+          @WarpRadio = warpradio
+          @EnhanceRadio = enhanceradio
+          @MpRadio = mpradio
+          @BlurRadio = blurradio
+          @TeethEnhanceRadio = teethenhanceradio
+        end
+
+        def deserialize(params)
+          @WarpRadio = params['WarpRadio']
+          @EnhanceRadio = params['EnhanceRadio']
+          @MpRadio = params['MpRadio']
+          @BlurRadio = params['BlurRadio']
+          @TeethEnhanceRadio = params['TeethEnhanceRadio']
         end
       end
 
