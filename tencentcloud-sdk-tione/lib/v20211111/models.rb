@@ -2340,17 +2340,21 @@ module TencentCloud
         # @param IntranetCallInfo: 内网调用信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntranetCallInfo: :class:`Tencentcloud::Tione.v20211111.models.IntranetCallInfo`
+        # @param ServiceCallInfoV2: 基于新网关的服务调用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceCallInfoV2: :class:`Tencentcloud::Tione.v20211111.models.ServiceCallInfoV2`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceCallInfo, :InferGatewayCallInfo, :DefaultNginxGatewayCallInfo, :TJCallInfo, :IntranetCallInfo, :RequestId
+        attr_accessor :ServiceCallInfo, :InferGatewayCallInfo, :DefaultNginxGatewayCallInfo, :TJCallInfo, :IntranetCallInfo, :ServiceCallInfoV2, :RequestId
 
-        def initialize(servicecallinfo=nil, infergatewaycallinfo=nil, defaultnginxgatewaycallinfo=nil, tjcallinfo=nil, intranetcallinfo=nil, requestid=nil)
+        def initialize(servicecallinfo=nil, infergatewaycallinfo=nil, defaultnginxgatewaycallinfo=nil, tjcallinfo=nil, intranetcallinfo=nil, servicecallinfov2=nil, requestid=nil)
           @ServiceCallInfo = servicecallinfo
           @InferGatewayCallInfo = infergatewaycallinfo
           @DefaultNginxGatewayCallInfo = defaultnginxgatewaycallinfo
           @TJCallInfo = tjcallinfo
           @IntranetCallInfo = intranetcallinfo
+          @ServiceCallInfoV2 = servicecallinfov2
           @RequestId = requestid
         end
 
@@ -2374,6 +2378,10 @@ module TencentCloud
           unless params['IntranetCallInfo'].nil?
             @IntranetCallInfo = IntranetCallInfo.new
             @IntranetCallInfo.deserialize(params['IntranetCallInfo'])
+          end
+          unless params['ServiceCallInfoV2'].nil?
+            @ServiceCallInfoV2 = ServiceCallInfoV2.new
+            @ServiceCallInfoV2.deserialize(params['ServiceCallInfoV2'])
           end
           @RequestId = params['RequestId']
         end
@@ -3638,20 +3646,24 @@ module TencentCloud
         # @param ServiceEIPInfo: 共享弹性网卡信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceEIPInfo: Array
-        # @param PrivateLinkInfos: 私有连接信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PrivateLinkInfos: Array
         # @param DefaultInnerCallInfos: 默认内网调用信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultInnerCallInfos: Array
+        # @param PrivateLinkInfos: 私有连接信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateLinkInfos: Array
+        # @param PrivateLinkInfosV2: 基于新网关的私有连接信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateLinkInfosV2: Array
 
-        attr_accessor :IngressPrivateLinkInfo, :ServiceEIPInfo, :PrivateLinkInfos, :DefaultInnerCallInfos
+        attr_accessor :IngressPrivateLinkInfo, :ServiceEIPInfo, :DefaultInnerCallInfos, :PrivateLinkInfos, :PrivateLinkInfosV2
 
-        def initialize(ingressprivatelinkinfo=nil, serviceeipinfo=nil, privatelinkinfos=nil, defaultinnercallinfos=nil)
+        def initialize(ingressprivatelinkinfo=nil, serviceeipinfo=nil, defaultinnercallinfos=nil, privatelinkinfos=nil, privatelinkinfosv2=nil)
           @IngressPrivateLinkInfo = ingressprivatelinkinfo
           @ServiceEIPInfo = serviceeipinfo
-          @PrivateLinkInfos = privatelinkinfos
           @DefaultInnerCallInfos = defaultinnercallinfos
+          @PrivateLinkInfos = privatelinkinfos
+          @PrivateLinkInfosV2 = privatelinkinfosv2
         end
 
         def deserialize(params)
@@ -3667,6 +3679,14 @@ module TencentCloud
               @ServiceEIPInfo << serviceeipinfo_tmp
             end
           end
+          unless params['DefaultInnerCallInfos'].nil?
+            @DefaultInnerCallInfos = []
+            params['DefaultInnerCallInfos'].each do |i|
+              defaultinnercallinfo_tmp = DefaultInnerCallInfo.new
+              defaultinnercallinfo_tmp.deserialize(i)
+              @DefaultInnerCallInfos << defaultinnercallinfo_tmp
+            end
+          end
           unless params['PrivateLinkInfos'].nil?
             @PrivateLinkInfos = []
             params['PrivateLinkInfos'].each do |i|
@@ -3675,12 +3695,12 @@ module TencentCloud
               @PrivateLinkInfos << privatelinkinfo_tmp
             end
           end
-          unless params['DefaultInnerCallInfos'].nil?
-            @DefaultInnerCallInfos = []
-            params['DefaultInnerCallInfos'].each do |i|
-              defaultinnercallinfo_tmp = DefaultInnerCallInfo.new
-              defaultinnercallinfo_tmp.deserialize(i)
-              @DefaultInnerCallInfos << defaultinnercallinfo_tmp
+          unless params['PrivateLinkInfosV2'].nil?
+            @PrivateLinkInfosV2 = []
+            params['PrivateLinkInfosV2'].each do |i|
+              privatelinkinfo_tmp = PrivateLinkInfo.new
+              privatelinkinfo_tmp.deserialize(i)
+              @PrivateLinkInfosV2 << privatelinkinfo_tmp
             end
           end
         end
@@ -5584,10 +5604,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2024, 5
-        deprecate :ServiceLimit=, :none, 2024, 5
-        deprecate :ScheduledAction, :none, 2024, 5
-        deprecate :ScheduledAction=, :none, 2024, 5
+        deprecate :ServiceLimit, :none, 2024, 6
+        deprecate :ServiceLimit=, :none, 2024, 6
+        deprecate :ScheduledAction, :none, 2024, 6
+        deprecate :ScheduledAction=, :none, 2024, 6
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil)
           @ServiceGroupId = servicegroupid
@@ -5721,6 +5741,38 @@ module TencentCloud
           @AppKey = params['AppKey']
           @AppSecret = params['AppSecret']
           @AuthorizationEnable = params['AuthorizationEnable']
+        end
+      end
+
+      # V2版本的服务调用信息
+      class ServiceCallInfoV2 < TencentCloud::Common::AbstractModel
+        # @param ServiceGroupId: 服务组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceGroupId: String
+        # @param InternetEndpoint: 服务的公网调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetEndpoint: String
+        # @param AuthorizationEnable: 鉴权是否开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationEnable: Boolean
+        # @param AuthToken: 鉴权token，仅当AuthorizationEnable为true时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthToken: String
+
+        attr_accessor :ServiceGroupId, :InternetEndpoint, :AuthorizationEnable, :AuthToken
+
+        def initialize(servicegroupid=nil, internetendpoint=nil, authorizationenable=nil, authtoken=nil)
+          @ServiceGroupId = servicegroupid
+          @InternetEndpoint = internetendpoint
+          @AuthorizationEnable = authorizationenable
+          @AuthToken = authtoken
+        end
+
+        def deserialize(params)
+          @ServiceGroupId = params['ServiceGroupId']
+          @InternetEndpoint = params['InternetEndpoint']
+          @AuthorizationEnable = params['AuthorizationEnable']
+          @AuthToken = params['AuthToken']
         end
       end
 
@@ -6011,10 +6063,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2024, 5
-        deprecate :PodList=, :none, 2024, 5
-        deprecate :Pods, :none, 2024, 5
-        deprecate :Pods=, :none, 2024, 5
+        deprecate :PodList, :none, 2024, 6
+        deprecate :PodList=, :none, 2024, 6
+        deprecate :Pods, :none, 2024, 6
+        deprecate :Pods=, :none, 2024, 6
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil)
           @Replicas = replicas
@@ -7021,8 +7073,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2024, 5
-        deprecate :StatefulSetCondition=, :none, 2024, 5
+        deprecate :StatefulSetCondition, :none, 2024, 6
+        deprecate :StatefulSetCondition=, :none, 2024, 6
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

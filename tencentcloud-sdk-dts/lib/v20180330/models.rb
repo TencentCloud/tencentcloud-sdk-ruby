@@ -1754,6 +1754,9 @@ module TencentCloud
         # @type OfflineTime: String
         # @param ConsumeStartTime: 最近一次修改的消费时间起点，如果从未修改则为零值
         # @type ConsumeStartTime: String
+        # @param AutoRenewFlag: 自动续费标识。0-不自动续费，1-自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
         # @param Region: 数据订阅实例所属地域
         # @type Region: String
         # @param PayType: 计费方式，0 - 包年包月，1 - 按量计费
@@ -1773,16 +1776,13 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param AutoRenewFlag: 自动续费标识。0-不自动续费，1-自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AutoRenewFlag: Integer
         # @param SubscribeVersion: 订阅实例版本；txdts-旧版数据订阅,kafka-kafka版本数据订阅
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeVersion: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :AutoRenewFlag, :SubscribeVersion
+        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :AutoRenewFlag, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :SubscribeVersion
 
-        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil, tags=nil, autorenewflag=nil, subscribeversion=nil)
+        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, autorenewflag=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil, tags=nil, subscribeversion=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @ChannelId = channelid
@@ -1796,6 +1796,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @OfflineTime = offlinetime
           @ConsumeStartTime = consumestarttime
+          @AutoRenewFlag = autorenewflag
           @Region = region
           @PayType = paytype
           @Vip = vip
@@ -1805,7 +1806,6 @@ module TencentCloud
           @Status = status
           @SdkConsumedTime = sdkconsumedtime
           @Tags = tags
-          @AutoRenewFlag = autorenewflag
           @SubscribeVersion = subscribeversion
         end
 
@@ -1823,6 +1823,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @OfflineTime = params['OfflineTime']
           @ConsumeStartTime = params['ConsumeStartTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
           @Region = params['Region']
           @PayType = params['PayType']
           @Vip = params['Vip']
@@ -1839,7 +1840,6 @@ module TencentCloud
               @Tags << tagitem_tmp
             end
           end
-          @AutoRenewFlag = params['AutoRenewFlag']
           @SubscribeVersion = params['SubscribeVersion']
         end
       end

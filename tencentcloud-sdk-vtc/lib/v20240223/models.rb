@@ -99,15 +99,21 @@ module TencentCloud
         # @type TaskId: String
         # @param SessionId: 音频翻译结果确认 session
         # @type SessionId: String
+        # @param Status: 视频转译任务状态
+        # @type Status: Integer
+        # @param Message: 视频转译任务信息
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :TaskId, :SessionId, :RequestId
+        attr_accessor :JobId, :TaskId, :SessionId, :Status, :Message, :RequestId
 
-        def initialize(jobid=nil, taskid=nil, sessionid=nil, requestid=nil)
+        def initialize(jobid=nil, taskid=nil, sessionid=nil, status=nil, message=nil, requestid=nil)
           @JobId = jobid
           @TaskId = taskid
           @SessionId = sessionid
+          @Status = status
+          @Message = message
           @RequestId = requestid
         end
 
@@ -115,6 +121,8 @@ module TencentCloud
           @JobId = params['JobId']
           @TaskId = params['TaskId']
           @SessionId = params['SessionId']
+          @Status = params['Status']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end

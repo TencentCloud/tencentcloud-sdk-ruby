@@ -8996,8 +8996,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2024, 5
-        deprecate :DstTopicName=, :none, 2024, 5
+        deprecate :DstTopicName, :none, 2024, 6
+        deprecate :DstTopicName=, :none, 2024, 6
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent

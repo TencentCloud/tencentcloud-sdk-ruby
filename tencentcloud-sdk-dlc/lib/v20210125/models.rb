@@ -667,6 +667,51 @@ module TencentCloud
         end
       end
 
+      # chdfs产品vpc信息
+      class CHDFSProductVpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc id
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcName: vpc名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param VpcCidrBlock: vpc子网信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcCidrBlock: Array
+        # @param RuleId: 规则Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param AccessGroupId: 权限组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessGroupId: String
+
+        attr_accessor :VpcId, :VpcName, :VpcCidrBlock, :RuleId, :AccessGroupId
+
+        def initialize(vpcid=nil, vpcname=nil, vpccidrblock=nil, ruleid=nil, accessgroupid=nil)
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @VpcCidrBlock = vpccidrblock
+          @RuleId = ruleid
+          @AccessGroupId = accessgroupid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          unless params['VpcCidrBlock'].nil?
+            @VpcCidrBlock = []
+            params['VpcCidrBlock'].each do |i|
+              vpccidrblock_tmp = VpcCidrBlock.new
+              vpccidrblock_tmp.deserialize(i)
+              @VpcCidrBlock << vpccidrblock_tmp
+            end
+          end
+          @RuleId = params['RuleId']
+          @AccessGroupId = params['AccessGroupId']
+        end
+      end
+
       # CSV类型数据格式
       class CSV < TencentCloud::Common::AbstractModel
         # @param CodeCompress: 压缩格式，["Snappy", "Gzip", "None"选一]。
@@ -1201,6 +1246,73 @@ module TencentCloud
         def deserialize(params)
           @CosPath = params['CosPath']
           @Permissions = params['Permissions']
+        end
+      end
+
+      # CreateCHDFSBindingProduct请求参数结构体
+      class CreateCHDFSBindingProductRequest < TencentCloud::Common::AbstractModel
+        # @param MountPoint: 需要绑定的元数据加速桶名
+        # @type MountPoint: String
+        # @param BucketType: 桶的类型，分为cos和lakefs
+        # @type BucketType: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param EngineName: 引擎名称，ProductName选择DLC产品时，必传此参数。其他产品可不传
+        # @type EngineName: String
+        # @param VpcInfo: vpc信息，产品名称为other时必传此参数
+        # @type VpcInfo: Array
+
+        attr_accessor :MountPoint, :BucketType, :ProductName, :EngineName, :VpcInfo
+
+        def initialize(mountpoint=nil, buckettype=nil, productname=nil, enginename=nil, vpcinfo=nil)
+          @MountPoint = mountpoint
+          @BucketType = buckettype
+          @ProductName = productname
+          @EngineName = enginename
+          @VpcInfo = vpcinfo
+        end
+
+        def deserialize(params)
+          @MountPoint = params['MountPoint']
+          @BucketType = params['BucketType']
+          @ProductName = params['ProductName']
+          @EngineName = params['EngineName']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfo << vpcinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCHDFSBindingProduct返回参数结构体
+      class CreateCHDFSBindingProductResponse < TencentCloud::Common::AbstractModel
+        # @param MountPointAssociates: 绑定信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountPointAssociates: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MountPointAssociates, :RequestId
+
+        def initialize(mountpointassociates=nil, requestid=nil)
+          @MountPointAssociates = mountpointassociates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MountPointAssociates'].nil?
+            @MountPointAssociates = []
+            params['MountPointAssociates'].each do |i|
+              mountpointassociates_tmp = MountPointAssociates.new
+              mountpointassociates_tmp.deserialize(i)
+              @MountPointAssociates << mountpointassociates_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2775,6 +2887,38 @@ module TencentCloud
         end
       end
 
+      # DLC 数据目录访问权限
+      class DLCCatalogAccess < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPCID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Product: 产品类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Product: String
+        # @param Description: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :VpcId, :Product, :Description, :CreateTime
+
+        def initialize(vpcid=nil, product=nil, description=nil, createtime=nil)
+          @VpcId = vpcid
+          @Product = product
+          @Description = description
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @Product = params['Product']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 迁移列对象
       class DMSColumn < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -4082,6 +4226,61 @@ module TencentCloud
         end
       end
 
+      # DeleteCHDFSBindingProduct请求参数结构体
+      class DeleteCHDFSBindingProductRequest < TencentCloud::Common::AbstractModel
+        # @param MountPoint: 需要解绑的元数据加速桶名
+        # @type MountPoint: String
+        # @param BucketType: 桶的类型，分为cos和lakefs
+        # @type BucketType: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param EngineName: 引擎名称，ProductName选择DLC产品时，必传此参数。其他产品可不传
+        # @type EngineName: String
+        # @param VpcInfo: vpc信息，ProductName选择other时，必传此参数
+        # @type VpcInfo: Array
+
+        attr_accessor :MountPoint, :BucketType, :ProductName, :EngineName, :VpcInfo
+
+        def initialize(mountpoint=nil, buckettype=nil, productname=nil, enginename=nil, vpcinfo=nil)
+          @MountPoint = mountpoint
+          @BucketType = buckettype
+          @ProductName = productname
+          @EngineName = enginename
+          @VpcInfo = vpcinfo
+        end
+
+        def deserialize(params)
+          @MountPoint = params['MountPoint']
+          @BucketType = params['BucketType']
+          @ProductName = params['ProductName']
+          @EngineName = params['EngineName']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfo << vpcinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteCHDFSBindingProduct返回参数结构体
+      class DeleteCHDFSBindingProductResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDataEngine请求参数结构体
       class DeleteDataEngineRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineNames: 删除虚拟集群的名称数组
@@ -4200,6 +4399,33 @@ module TencentCloud
 
       # DeleteSparkApp返回参数结构体
       class DeleteSparkAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteThirdPartyAccessUser请求参数结构体
+      class DeleteThirdPartyAccessUserRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteThirdPartyAccessUser返回参数结构体
+      class DeleteThirdPartyAccessUserResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4353,6 +4579,64 @@ module TencentCloud
           @StoreLocation = params['StoreLocation']
           @HasLakeFs = params['HasLakeFs']
           @LakeFsStatus = params['LakeFsStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDLCCatalogAccess请求参数结构体
+      class DescribeDLCCatalogAccessRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 显示条数
+        # @type Limit: Integer
+        # @param Offset: 记录数量
+        # @type Offset: Integer
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Dlc.v20210125.models.Filter`
+
+        attr_accessor :Limit, :Offset, :Filter
+
+        def initialize(limit=nil, offset=nil, filter=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDLCCatalogAccess返回参数结构体
+      class DescribeDLCCatalogAccessResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Rows: DLCCatalog授权列表
+        # @type Rows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Rows, :RequestId
+
+        def initialize(totalcount=nil, rows=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Rows = rows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              dlccatalogaccess_tmp = DLCCatalogAccess.new
+              dlccatalogaccess_tmp.deserialize(i)
+              @Rows << dlccatalogaccess_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5768,6 +6052,53 @@ module TencentCloud
         end
       end
 
+      # DescribeOtherCHDFSBindingList请求参数结构体
+      class DescribeOtherCHDFSBindingListRequest < TencentCloud::Common::AbstractModel
+        # @param BucketId: 桶名
+        # @type BucketId: String
+
+        attr_accessor :BucketId
+
+        def initialize(bucketid=nil)
+          @BucketId = bucketid
+        end
+
+        def deserialize(params)
+          @BucketId = params['BucketId']
+        end
+      end
+
+      # DescribeOtherCHDFSBindingList返回参数结构体
+      class DescribeOtherCHDFSBindingListResponse < TencentCloud::Common::AbstractModel
+        # @param OtherCHDFSBindingList: 非DLC 产品绑定列表
+        # @type OtherCHDFSBindingList: Array
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OtherCHDFSBindingList, :Total, :RequestId
+
+        def initialize(otherchdfsbindinglist=nil, total=nil, requestid=nil)
+          @OtherCHDFSBindingList = otherchdfsbindinglist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OtherCHDFSBindingList'].nil?
+            @OtherCHDFSBindingList = []
+            params['OtherCHDFSBindingList'].each do |i|
+              otherchdfsbinding_tmp = OtherCHDFSBinding.new
+              otherchdfsbinding_tmp.deserialize(i)
+              @OtherCHDFSBindingList << otherchdfsbinding_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResultDownload请求参数结构体
       class DescribeResultDownloadRequest < TencentCloud::Common::AbstractModel
         # @param DownloadId: 查询任务Id
@@ -6251,6 +6582,37 @@ module TencentCloud
 
         def deserialize(params)
           @StoreLocation = params['StoreLocation']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubUserAccessPolicy请求参数结构体
+      class DescribeSubUserAccessPolicyRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSubUserAccessPolicy返回参数结构体
+      class DescribeSubUserAccessPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyDocument: 子用户访问策略
+        # @type PolicyDocument: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyDocument, :RequestId
+
+        def initialize(policydocument=nil, requestid=nil)
+          @PolicyDocument = policydocument
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyDocument = params['PolicyDocument']
           @RequestId = params['RequestId']
         end
       end
@@ -6800,6 +7162,40 @@ module TencentCloud
           unless params['TasksOverview'].nil?
             @TasksOverview = TasksOverview.new
             @TasksOverview.deserialize(params['TasksOverview'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeThirdPartyAccessUser请求参数结构体
+      class DescribeThirdPartyAccessUserRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeThirdPartyAccessUser返回参数结构体
+      class DescribeThirdPartyAccessUserResponse < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户信息
+        # @type UserInfo: :class:`Tencentcloud::Dlc.v20210125.models.OpendThirdAccessUserInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserInfo, :RequestId
+
+        def initialize(userinfo=nil, requestid=nil)
+          @UserInfo = userinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = OpendThirdAccessUserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -7926,6 +8322,54 @@ module TencentCloud
         end
       end
 
+      # GrantDLCCatalogAccess请求参数结构体
+      class GrantDLCCatalogAccessRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 授权VpcId
+        # @type VpcId: String
+        # @param Product: 产品(EMR|DLC|Doris|Inlong|Wedata)
+        # @type Product: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param VpcUin: VPC所属账号UIN
+        # @type VpcUin: String
+        # @param VpcAppId: VPC所属账号AppId
+        # @type VpcAppId: Integer
+
+        attr_accessor :VpcId, :Product, :Description, :VpcUin, :VpcAppId
+
+        def initialize(vpcid=nil, product=nil, description=nil, vpcuin=nil, vpcappid=nil)
+          @VpcId = vpcid
+          @Product = product
+          @Description = description
+          @VpcUin = vpcuin
+          @VpcAppId = vpcappid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @Product = params['Product']
+          @Description = params['Description']
+          @VpcUin = params['VpcUin']
+          @VpcAppId = params['VpcAppId']
+        end
+      end
+
+      # GrantDLCCatalogAccess返回参数结构体
+      class GrantDLCCatalogAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # hive类型数据源的信息
       class HiveInfo < TencentCloud::Common::AbstractModel
         # @param MetaStoreUrl: hive metastore的地址
@@ -8872,6 +9316,43 @@ module TencentCloud
         end
       end
 
+      # 绑定融合桶信息
+      class MountPointAssociates < TencentCloud::Common::AbstractModel
+        # @param BucketId: 桶Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketId: String
+        # @param VpcId: vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcCidrBlock: 子网地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcCidrBlock: String
+        # @param AccessGroupId: 权限组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessGroupId: String
+        # @param AccessRuleId: 权限规则Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessRuleId: Integer
+
+        attr_accessor :BucketId, :VpcId, :VpcCidrBlock, :AccessGroupId, :AccessRuleId
+
+        def initialize(bucketid=nil, vpcid=nil, vpccidrblock=nil, accessgroupid=nil, accessruleid=nil)
+          @BucketId = bucketid
+          @VpcId = vpcid
+          @VpcCidrBlock = vpccidrblock
+          @AccessGroupId = accessgroupid
+          @AccessRuleId = accessruleid
+        end
+
+        def deserialize(params)
+          @BucketId = params['BucketId']
+          @VpcId = params['VpcId']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @AccessGroupId = params['AccessGroupId']
+          @AccessRuleId = params['AccessRuleId']
+        end
+      end
+
       # Mysql类型数据源信息
       class MysqlInfo < TencentCloud::Common::AbstractModel
         # @param JdbcUrl: 连接mysql的jdbc url
@@ -9296,6 +9777,38 @@ module TencentCloud
         end
       end
 
+      # 开通了第三方访问的用户信息
+      class OpendThirdAccessUserInfo < TencentCloud::Common::AbstractModel
+        # @param Id: id信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Uin: 用户主UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param AppId: 用户AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param CreateTime: 开通时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :Id, :Uin, :AppId, :CreateTime
+
+        def initialize(id=nil, uin=nil, appid=nil, createtime=nil)
+          @Id = id
+          @Uin = uin
+          @AppId = appid
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 数据格式其它类型。
       class Other < TencentCloud::Common::AbstractModel
         # @param Format: 枚举类型，默认值为Json，可选值为[Json, Parquet, ORC, AVRD]之一。
@@ -9309,6 +9822,45 @@ module TencentCloud
 
         def deserialize(params)
           @Format = params['Format']
+        end
+      end
+
+      # 非DLC产品CHDFS绑定
+      class OtherCHDFSBinding < TencentCloud::Common::AbstractModel
+        # @param ProductName: 产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param SuperUser: 用户名称（该字段已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperUser: Array
+        # @param VpcInfo: vpc配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcInfo: Array
+        # @param IsBind: 是否与该桶绑定（该字段已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsBind: Boolean
+
+        attr_accessor :ProductName, :SuperUser, :VpcInfo, :IsBind
+
+        def initialize(productname=nil, superuser=nil, vpcinfo=nil, isbind=nil)
+          @ProductName = productname
+          @SuperUser = superuser
+          @VpcInfo = vpcinfo
+          @IsBind = isbind
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @SuperUser = params['SuperUser']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              chdfsproductvpcinfo_tmp = CHDFSProductVpcInfo.new
+              chdfsproductvpcinfo_tmp.deserialize(i)
+              @VpcInfo << chdfsproductvpcinfo_tmp
+            end
+          end
+          @IsBind = params['IsBind']
         end
       end
 
@@ -9703,6 +10255,33 @@ module TencentCloud
         end
       end
 
+      # RegisterThirdPartyAccessUser请求参数结构体
+      class RegisterThirdPartyAccessUserRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RegisterThirdPartyAccessUser返回参数结构体
+      class RegisterThirdPartyAccessUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RenewDataEngine请求参数结构体
       class RenewDataEngineRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineName: CU队列名称
@@ -9862,6 +10441,38 @@ module TencentCloud
 
       # RestartDataEngine返回参数结构体
       class RestartDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RevokeDLCCatalogAccess请求参数结构体
+      class RevokeDLCCatalogAccessRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VpcID
+        # @type VpcId: String
+
+        attr_accessor :VpcId
+
+        def initialize(vpcid=nil)
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # RevokeDLCCatalogAccess返回参数结构体
+      class RevokeDLCCatalogAccessResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -12191,6 +12802,60 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # VPC子网信息
+      class VpcCidrBlock < TencentCloud::Common::AbstractModel
+        # @param CidrId: 子网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CidrId: String
+        # @param CidrAddr: 子网网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CidrAddr: String
+
+        attr_accessor :CidrId, :CidrAddr
+
+        def initialize(cidrid=nil, cidraddr=nil)
+          @CidrId = cidrid
+          @CidrAddr = cidraddr
+        end
+
+        def deserialize(params)
+          @CidrId = params['CidrId']
+          @CidrAddr = params['CidrAddr']
+        end
+      end
+
+      # vpc信息
+      class VpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcCidrBlock: vpc子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcCidrBlock: String
+        # @param RuleId: 规则Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param AccessGroupId: 权限组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessGroupId: String
+
+        attr_accessor :VpcId, :VpcCidrBlock, :RuleId, :AccessGroupId
+
+        def initialize(vpcid=nil, vpccidrblock=nil, ruleid=nil, accessgroupid=nil)
+          @VpcId = vpcid
+          @VpcCidrBlock = vpccidrblock
+          @RuleId = ruleid
+          @AccessGroupId = accessgroupid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @RuleId = params['RuleId']
+          @AccessGroupId = params['AccessGroupId']
         end
       end
 

@@ -461,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateCHDFSBindingProduct）用于创建元数据加速桶和产品绑定关系
+
+        # @param request: Request instance for CreateCHDFSBindingProduct.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateCHDFSBindingProductRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateCHDFSBindingProductResponse`
+        def CreateCHDFSBindingProduct(request)
+          body = send_request('CreateCHDFSBindingProduct', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCHDFSBindingProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DMS元数据创建库
 
         # @param request: Request instance for CreateDMSDatabase.
@@ -989,6 +1013,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（DeleteCHDFSBindingProduct）用于删除元数据加速桶和产品绑定关系
+
+        # @param request: Request instance for DeleteCHDFSBindingProduct.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteCHDFSBindingProductRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteCHDFSBindingProductResponse`
+        def DeleteCHDFSBindingProduct(request)
+          body = send_request('DeleteCHDFSBindingProduct', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCHDFSBindingProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除数据引擎
 
         # @param request: Request instance for DeleteDataEngine.
@@ -1085,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（RegisterThirdPartyAccessUser）用于移除第三方平台访问
+
+        # @param request: Request instance for DeleteThirdPartyAccessUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteThirdPartyAccessUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteThirdPartyAccessUserResponse`
+        def DeleteThirdPartyAccessUser(request)
+          body = send_request('DeleteThirdPartyAccessUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteThirdPartyAccessUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户
 
         # @param request: Request instance for DeleteUser.
@@ -1167,6 +1239,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAdvancedStoreLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询DLC Catalog授权列表
+
+        # @param request: Request instance for DescribeDLCCatalogAccess.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDLCCatalogAccessRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDLCCatalogAccessResponse`
+        def DescribeDLCCatalogAccess(request)
+          body = send_request('DescribeDLCCatalogAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDLCCatalogAccessResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1709,6 +1805,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（DescribeOtherCHDFSBindingList）用于查询其他产品元数据加速桶绑定列表
+
+        # @param request: Request instance for DescribeOtherCHDFSBindingList.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeOtherCHDFSBindingListRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeOtherCHDFSBindingListResponse`
+        def DescribeOtherCHDFSBindingList(request)
+          body = send_request('DescribeOtherCHDFSBindingList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOtherCHDFSBindingListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询结果下载任务
 
         # @param request: Request instance for DescribeResultDownload.
@@ -1901,6 +2021,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSubUserAccessPolicy）用于开通了第三方平台访问的用户，查询其子用户的访问策略
+
+        # @param request: Request instance for DescribeSubUserAccessPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSubUserAccessPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSubUserAccessPolicyResponse`
+        def DescribeSubUserAccessPolicy(request)
+          body = send_request('DescribeSubUserAccessPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSubUserAccessPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeTable），用于查询单个表的详细信息。
 
         # @param request: Request instance for DescribeTable.
@@ -2055,6 +2199,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTasksCostInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RegisterThirdPartyAccessUser）查询开通第三方平台访问的用户信息
+
+        # @param request: Request instance for DescribeThirdPartyAccessUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeThirdPartyAccessUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeThirdPartyAccessUserResponse`
+        def DescribeThirdPartyAccessUser(request)
+          body = send_request('DescribeThirdPartyAccessUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeThirdPartyAccessUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2453,6 +2621,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 授权访问DLC Catalog
+
+        # @param request: Request instance for GrantDLCCatalogAccess.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GrantDLCCatalogAccessRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GrantDLCCatalogAccessResponse`
+        def GrantDLCCatalogAccess(request)
+          body = send_request('GrantDLCCatalogAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GrantDLCCatalogAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
 
         # @param request: Request instance for ListTaskJobLogDetail.
@@ -2765,6 +2957,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（RegisterThirdPartyAccessUser）用于开通第三方平台访问
+
+        # @param request: Request instance for RegisterThirdPartyAccessUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::RegisterThirdPartyAccessUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::RegisterThirdPartyAccessUserResponse`
+        def RegisterThirdPartyAccessUser(request)
+          body = send_request('RegisterThirdPartyAccessUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RegisterThirdPartyAccessUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 续费数据引擎
 
         # @param request: Request instance for RenewDataEngine.
@@ -2823,6 +3039,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 撤销DLC Catalog访问权限
+
+        # @param request: Request instance for RevokeDLCCatalogAccess.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::RevokeDLCCatalogAccessRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::RevokeDLCCatalogAccessResponse`
+        def RevokeDLCCatalogAccess(request)
+          body = send_request('RevokeDLCCatalogAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RevokeDLCCatalogAccessResponse.new
             model.deserialize(response['Response'])
             model
           else

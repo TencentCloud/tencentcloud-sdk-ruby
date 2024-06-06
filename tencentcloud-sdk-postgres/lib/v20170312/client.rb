@@ -198,8 +198,8 @@ module TencentCloud
         end
 
         # 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
-        # <li>实例创建成功后将自动开机启动，实例状态变为“运行中”。
-        # <li>预付费实例的购买会预先扣除本次实例购买所需金额，按小时后付费实例购买会预先冻结本次实例购买一小时内所需金额，在调用本接口前请确保账户余额充足。
+        # <li>实例创建成功后将自动开机启动，实例状态变为“运行中”。</li>
+        # <li>预付费实例的购买会预先扣除本次实例购买所需金额，按小时后付费实例购买会预先冻结本次实例购买一小时内所需金额，在调用本接口前请确保账户余额充足。</li>
 
         # @param request: Request instance for CreateInstances.
         # @type request: :class:`Tencentcloud::postgres::V20170312::CreateInstancesRequest`
@@ -2061,6 +2061,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据备份集或恢复目标时间，在原实例上恢复数据库相关对象，例如数据库、表。
+
+        # @param request: Request instance for RestoreDBInstanceObjects.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::RestoreDBInstanceObjectsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::RestoreDBInstanceObjectsResponse`
+        def RestoreDBInstanceObjects(request)
+          body = send_request('RestoreDBInstanceObjects', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestoreDBInstanceObjectsResponse.new
             model.deserialize(response['Response'])
             model
           else

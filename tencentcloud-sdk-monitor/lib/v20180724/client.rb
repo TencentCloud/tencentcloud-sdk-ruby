@@ -2224,7 +2224,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  查询Prometheus按量实例用量
+        # 查询Prometheus按量实例用量
 
         # @param request: Request instance for DescribePrometheusInstanceUsage.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusInstanceUsageRequest`

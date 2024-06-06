@@ -1529,7 +1529,7 @@ module TencentCloud
 
       # DescribeInstanceParams请求参数结构体
       class DescribeInstanceParamsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定待查询参数列表的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: 指定待查询参数列表的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1545,15 +1545,15 @@ module TencentCloud
 
       # DescribeInstanceParams返回参数结构体
       class DescribeInstanceParamsResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceEnumParam: 参数值为枚举类型参数集合。
+        # @param InstanceEnumParam: 参数值为枚举类型的参数集合。
         # @type InstanceEnumParam: Array
-        # @param InstanceIntegerParam: 参数值为 Integer 类型参数集合。
+        # @param InstanceIntegerParam: 参数值为 Integer 类型的参数集合。
         # @type InstanceIntegerParam: Array
         # @param InstanceTextParam: 参数值为 Text 类型的参数集合。
         # @type InstanceTextParam: Array
         # @param InstanceMultiParam: 参数值为混合类型的参数集合。
         # @type InstanceMultiParam: Array
-        # @param TotalCount: 当前实例支持修改的参数个数统计 如0
+        # @param TotalCount: 当前实例支持修改的参数数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

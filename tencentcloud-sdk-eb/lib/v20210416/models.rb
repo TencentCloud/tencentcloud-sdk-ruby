@@ -882,16 +882,22 @@ module TencentCloud
       # 描述Es规则目标
       class ESTargetParams < TencentCloud::Common::AbstractModel
         # @param NetMode: 网络连接类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetMode: String
         # @param IndexPrefix: 索引前缀
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexPrefix: String
         # @param RotationInterval: es日志轮换粒度
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationInterval: String
         # @param OutputMode: DTS事件配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputMode: String
         # @param IndexSuffixMode: DTS索引配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexSuffixMode: String
         # @param IndexTemplateType: es模版类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexTemplateType: String
 
         attr_accessor :NetMode, :IndexPrefix, :RotationInterval, :OutputMode, :IndexSuffixMode, :IndexTemplateType
@@ -1610,7 +1616,7 @@ module TencentCloud
       class ListRulesRequest < TencentCloud::Common::AbstractModel
         # @param EventBusId: 事件集ID
         # @type EventBusId: String
-        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
+        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）,name（规则名称）
         # @type OrderBy: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -2060,10 +2066,13 @@ module TencentCloud
       # 云函数参数
       class SCFParams < TencentCloud::Common::AbstractModel
         # @param BatchTimeout: 批量投递最长等待时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchTimeout: Integer
         # @param BatchEventCount: 批量投递最大事件条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchEventCount: Integer
         # @param EnableBatchDelivery: 开启批量投递使能
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableBatchDelivery: Boolean
 
         attr_accessor :BatchTimeout, :BatchEventCount, :EnableBatchDelivery

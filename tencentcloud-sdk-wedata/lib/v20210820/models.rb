@@ -19271,10 +19271,16 @@ module TencentCloud
         # @param Tag: 函数tag
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
+        # @param OperatorUserIdsStr: 操作人 ID 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorUserIdsStr: Array
+        # @param OwnerUserIdsStr: 公有云 Owner ID 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUserIdsStr: Array
 
-        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg, :SchemaName, :CommandFormat, :OwnerName, :SubmitTimestamp, :Tag
+        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg, :SchemaName, :CommandFormat, :OwnerName, :SubmitTimestamp, :Tag, :OperatorUserIdsStr, :OwnerUserIdsStr
 
-        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil, schemaname=nil, commandformat=nil, ownername=nil, submittimestamp=nil, tag=nil)
+        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil, schemaname=nil, commandformat=nil, ownername=nil, submittimestamp=nil, tag=nil, operatoruseridsstr=nil, owneruseridsstr=nil)
           @Name = name
           @DisplayName = displayname
           @LayerPath = layerpath
@@ -19301,6 +19307,8 @@ module TencentCloud
           @OwnerName = ownername
           @SubmitTimestamp = submittimestamp
           @Tag = tag
+          @OperatorUserIdsStr = operatoruseridsstr
+          @OwnerUserIdsStr = owneruseridsstr
         end
 
         def deserialize(params)
@@ -19337,6 +19345,8 @@ module TencentCloud
           @OwnerName = params['OwnerName']
           @SubmitTimestamp = params['SubmitTimestamp']
           @Tag = params['Tag']
+          @OperatorUserIdsStr = params['OperatorUserIdsStr']
+          @OwnerUserIdsStr = params['OwnerUserIdsStr']
         end
       end
 
