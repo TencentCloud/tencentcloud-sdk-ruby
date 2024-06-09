@@ -6309,6 +6309,42 @@ module TencentCloud
         end
       end
 
+      # DescribePublicAddressConfig请求参数结构体
+      class DescribePublicAddressConfigRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param GroupId: 查询该分组的公网信息，不传则查询实例所有的公网负载均衡信息
+        # @type GroupId: String
+
+        attr_accessor :GatewayId, :GroupId
+
+        def initialize(gatewayid=nil, groupid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribePublicAddressConfig返回参数结构体
+      class DescribePublicAddressConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePublicNetwork请求参数结构体
       class DescribePublicNetworkRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。

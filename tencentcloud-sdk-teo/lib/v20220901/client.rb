@@ -272,6 +272,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义错误页面。
+
+        # @param request: Request instance for CreateCustomizeErrorPage.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateCustomizeErrorPageRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateCustomizeErrorPageResponse`
+        def CreateCustomizeErrorPage(request)
+          body = send_request('CreateCustomizeErrorPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomizeErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于创建四层代理实例。
 
         # @param request: Request instance for CreateL4Proxy.
@@ -649,6 +673,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteApplicationProxyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除自定义错误页面。
+
+        # @param request: Request instance for DeleteCustomErrorPage.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteCustomErrorPageRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteCustomErrorPageResponse`
+        def DeleteCustomErrorPage(request)
+          body = send_request('DeleteCustomErrorPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomErrorPageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1057,6 +1105,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeContentQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询自定义错误页列表。
+
+        # @param request: Request instance for DescribeCustomErrorPages.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeCustomErrorPagesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeCustomErrorPagesResponse`
+        def DescribeCustomErrorPages(request)
+          body = send_request('DescribeCustomErrorPages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomErrorPagesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2079,6 +2151,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApplicationProxyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自定义错误页面。
+
+        # @param request: Request instance for ModifyCustomErrorPage.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyCustomErrorPageRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyCustomErrorPageResponse`
+        def ModifyCustomErrorPage(request)
+          body = send_request('ModifyCustomErrorPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomErrorPageResponse.new
             model.deserialize(response['Response'])
             model
           else

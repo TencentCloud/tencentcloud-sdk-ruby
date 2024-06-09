@@ -710,10 +710,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 5
-        deprecate :Ftitle=, :none, 2024, 5
-        deprecate :Config, :none, 2024, 5
-        deprecate :Config=, :none, 2024, 5
+        deprecate :Ftitle, :none, 2024, 6
+        deprecate :Ftitle=, :none, 2024, 6
+        deprecate :Config, :none, 2024, 6
+        deprecate :Config=, :none, 2024, 6
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -7129,15 +7129,19 @@ module TencentCloud
         # @param FlowId: 扩容流程ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
+        # @param TraceId: 查询流程状态，流程额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :ClientToken, :FlowId, :RequestId
+        attr_accessor :InstanceId, :ClientToken, :FlowId, :TraceId, :RequestId
 
-        def initialize(instanceid=nil, clienttoken=nil, flowid=nil, requestid=nil)
+        def initialize(instanceid=nil, clienttoken=nil, flowid=nil, traceid=nil, requestid=nil)
           @InstanceId = instanceid
           @ClientToken = clienttoken
           @FlowId = flowid
+          @TraceId = traceid
           @RequestId = requestid
         end
 
@@ -7145,6 +7149,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @ClientToken = params['ClientToken']
           @FlowId = params['FlowId']
+          @TraceId = params['TraceId']
           @RequestId = params['RequestId']
         end
       end
@@ -7320,17 +7325,21 @@ module TencentCloud
         # @param BillId: 大订单号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillId: String
+        # @param TraceId: 扩容TraceId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :DealNames, :ClientToken, :FlowId, :BillId, :RequestId
+        attr_accessor :InstanceId, :DealNames, :ClientToken, :FlowId, :BillId, :TraceId, :RequestId
 
-        def initialize(instanceid=nil, dealnames=nil, clienttoken=nil, flowid=nil, billid=nil, requestid=nil)
+        def initialize(instanceid=nil, dealnames=nil, clienttoken=nil, flowid=nil, billid=nil, traceid=nil, requestid=nil)
           @InstanceId = instanceid
           @DealNames = dealnames
           @ClientToken = clienttoken
           @FlowId = flowid
           @BillId = billid
+          @TraceId = traceid
           @RequestId = requestid
         end
 
@@ -7340,6 +7349,7 @@ module TencentCloud
           @ClientToken = params['ClientToken']
           @FlowId = params['FlowId']
           @BillId = params['BillId']
+          @TraceId = params['TraceId']
           @RequestId = params['RequestId']
         end
       end

@@ -1304,6 +1304,102 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupDetail请求参数结构体
+      class DescribeBackupDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param BackupId: 备份 ID，可通过接口 [DescribeInstanceBackups](https://cloud.tencent.com/document/product/239/20011) 返回的参数 **RedisBackupSet** 获取。
+        # @type BackupId: String
+
+        attr_accessor :InstanceId, :BackupId
+
+        def initialize(instanceid=nil, backupid=nil)
+          @InstanceId = instanceid
+          @BackupId = backupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupId = params['BackupId']
+        end
+      end
+
+      # DescribeBackupDetail返回参数结构体
+      class DescribeBackupDetailResponse < TencentCloud::Common::AbstractModel
+        # @param BackupId: 备份 ID。
+        # @type BackupId: String
+        # @param StartTime: 备份开始时间。
+        # @type StartTime: String
+        # @param EndTime: 备份结束时间。
+        # @type EndTime: String
+        # @param BackupType: 备份方式。
+
+        # - 1：手动备份。
+        # -  0：自动备份。
+        # @type BackupType: String
+        # @param Status: 备份状态。
+
+        # - 1：备份被其它流程锁定。
+        # - 2：备份正常，没有被任何流程锁定。
+        # - -1：备份已过期。
+        # - 3：备份正在被导出。
+        # - 4：备份导出成功。
+        # @type Status: Integer
+        # @param Remark: 备份的备注信息。
+        # @type Remark: String
+        # @param Locked: 备份是否被锁定。
+
+        # - 0：未被锁定。
+        # - 1：已被锁定。
+        # @type Locked: Integer
+        # @param BackupSize: 备份文件大小。单位：Byte。
+        # @type BackupSize: Integer
+        # @param InstanceType: 实例类型。
+        # @type InstanceType: Integer
+        # @param MemSize: 单分片内存规格大小，单位：MB。
+        # @type MemSize: Integer
+        # @param ShardNum: 分片数量。
+        # @type ShardNum: Integer
+        # @param ReplicasNum: 副本数量。
+        # @type ReplicasNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupId, :StartTime, :EndTime, :BackupType, :Status, :Remark, :Locked, :BackupSize, :InstanceType, :MemSize, :ShardNum, :ReplicasNum, :RequestId
+
+        def initialize(backupid=nil, starttime=nil, endtime=nil, backuptype=nil, status=nil, remark=nil, locked=nil, backupsize=nil, instancetype=nil, memsize=nil, shardnum=nil, replicasnum=nil, requestid=nil)
+          @BackupId = backupid
+          @StartTime = starttime
+          @EndTime = endtime
+          @BackupType = backuptype
+          @Status = status
+          @Remark = remark
+          @Locked = locked
+          @BackupSize = backupsize
+          @InstanceType = instancetype
+          @MemSize = memsize
+          @ShardNum = shardnum
+          @ReplicasNum = replicasnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupId = params['BackupId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @BackupType = params['BackupType']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @Locked = params['Locked']
+          @BackupSize = params['BackupSize']
+          @InstanceType = params['InstanceType']
+          @MemSize = params['MemSize']
+          @ShardNum = params['ShardNum']
+          @ReplicasNum = params['ReplicasNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupDownloadRestriction请求参数结构体
       class DescribeBackupDownloadRestrictionRequest < TencentCloud::Common::AbstractModel
 

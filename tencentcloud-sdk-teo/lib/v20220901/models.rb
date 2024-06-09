@@ -2296,6 +2296,58 @@ module TencentCloud
         end
       end
 
+      # CreateCustomizeErrorPage请求参数结构体
+      class CreateCustomizeErrorPageRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 自定义错误页名称，名称为 2-30 个字符。
+        # @type Name: String
+        # @param ContentType: 自定义错误页面类型，取值有：<li>text/html； </li><li>application/json；</li><li>text/plain；</li><li>text/xml。</li>
+        # @type ContentType: String
+        # @param Description: 自定义错误页面描述，描述不超过 60 个字符。
+        # @type Description: String
+        # @param Content: 自定义错误页面内容，内容不超过 2KB。
+        # @type Content: String
+
+        attr_accessor :ZoneId, :Name, :ContentType, :Description, :Content
+
+        def initialize(zoneid=nil, name=nil, contenttype=nil, description=nil, content=nil)
+          @ZoneId = zoneid
+          @Name = name
+          @ContentType = contenttype
+          @Description = description
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @ContentType = params['ContentType']
+          @Description = params['Description']
+          @Content = params['Content']
+        end
+      end
+
+      # CreateCustomizeErrorPage返回参数结构体
+      class CreateCustomizeErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param PageId: 页面 ID。
+        # @type PageId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageId, :RequestId
+
+        def initialize(pageid=nil, requestid=nil)
+          @PageId = pageid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PageId = params['PageId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateL4Proxy请求参数结构体
       class CreateL4ProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -3166,6 +3218,53 @@ module TencentCloud
         end
       end
 
+      # 自定义错误码页面结构体。
+      class CustomErrorPage < TencentCloud::Common::AbstractModel
+        # @param PageId: 自定义错误页面 ID。
+        # @type PageId: String
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 自定义错误页面名称。
+        # @type Name: String
+        # @param ContentType: 自定义错误页面类型。
+        # @type ContentType: String
+        # @param Description: 自定义错误页面描述。
+        # @type Description: String
+        # @param Content: 自定义错误页面内容。
+        # @type Content: String
+        # @param References: 自定义错误页面引用。
+        # @type References: Array
+
+        attr_accessor :PageId, :ZoneId, :Name, :ContentType, :Description, :Content, :References
+
+        def initialize(pageid=nil, zoneid=nil, name=nil, contenttype=nil, description=nil, content=nil, references=nil)
+          @PageId = pageid
+          @ZoneId = zoneid
+          @Name = name
+          @ContentType = contenttype
+          @Description = description
+          @Content = content
+          @References = references
+        end
+
+        def deserialize(params)
+          @PageId = params['PageId']
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @ContentType = params['ContentType']
+          @Description = params['Description']
+          @Content = params['Content']
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              errorpagereference_tmp = ErrorPageReference.new
+              errorpagereference_tmp.deserialize(i)
+              @References << errorpagereference_tmp
+            end
+          end
+        end
+      end
+
       # 实时日志投递任务中的自定义日志字段。
       class CustomField < TencentCloud::Common::AbstractModel
         # @param Name: 从 HTTP 请求和响应中的指定位置提取数据，取值有：
@@ -3549,6 +3648,42 @@ module TencentCloud
 
       # DeleteApplicationProxyRule返回参数结构体
       class DeleteApplicationProxyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomErrorPage请求参数结构体
+      class DeleteCustomErrorPageRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param PageId: 自定义页面 ID。
+        # @type PageId: String
+
+        attr_accessor :ZoneId, :PageId
+
+        def initialize(zoneid=nil, pageid=nil)
+          @ZoneId = zoneid
+          @PageId = pageid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PageId = params['PageId']
+        end
+      end
+
+      # DeleteCustomErrorPage返回参数结构体
+      class DeleteCustomErrorPageResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4507,6 +4642,76 @@ module TencentCloud
               quota_tmp = Quota.new
               quota_tmp.deserialize(i)
               @PrefetchQuota << quota_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomErrorPages请求参数结构体
+      class DescribeCustomErrorPagesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Filters: 过滤条件，Filters.Values 的上限为20，详细的过滤条件Name值如下：
+        # <li>page-id： 按照页面 ID 进行过滤；</li>
+        # <li>name： 按照页面名称进行过滤；</li>
+        # <li>description：按照页面描述过滤；</li>
+        # <li>content-type：按照页面类型过滤。</li>
+        # @type Filters: Array
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :Filters, :Offset, :Limit
+
+        def initialize(zoneid=nil, filters=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCustomErrorPages返回参数结构体
+      class DescribeCustomErrorPagesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 自定义错误页面总数。
+        # @type TotalCount: Integer
+        # @param ErrorPages: 自定义错误页面数据列表。
+        # @type ErrorPages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ErrorPages, :RequestId
+
+        def initialize(totalcount=nil, errorpages=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ErrorPages = errorpages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ErrorPages'].nil?
+            @ErrorPages = []
+            params['ErrorPages'].each do |i|
+              customerrorpage_tmp = CustomErrorPage.new
+              customerrorpage_tmp.deserialize(i)
+              @ErrorPages << customerrorpage_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7180,6 +7385,22 @@ module TencentCloud
         end
       end
 
+      # 自定义错误页面被引用的来源
+      class ErrorPageReference < TencentCloud::Common::AbstractModel
+        # @param BusinessId: 引用的业务 ID，如自定义拦截规则 ID。
+        # @type BusinessId: String
+
+        attr_accessor :BusinessId
+
+        def initialize(businessid=nil)
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @BusinessId = params['BusinessId']
+        end
+      end
+
       # 例外规则，用于配置需要跳过特定场景的规则
       class ExceptConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 配置开关，取值有：
@@ -8859,6 +9080,58 @@ module TencentCloud
 
       # ModifyApplicationProxyStatus返回参数结构体
       class ModifyApplicationProxyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomErrorPage请求参数结构体
+      class ModifyCustomErrorPageRequest < TencentCloud::Common::AbstractModel
+        # @param PageId: 自定义错误页面 ID。
+        # @type PageId: String
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 自定义错误页名称，名称为2 - 60个字符。
+        # @type Name: String
+        # @param Description: 自定义错误页描述，描述内容不超过60个字符。
+        # @type Description: String
+        # @param ContentType: 自定义错误页面类型，取值有：<li>text/html。 </li><li>application/json。</li><li>plain/text。</li><li>text/xml。</li>
+        # @type ContentType: String
+        # @param Content: 自定义错误页面内容。内容不超过 2KB。
+        # @type Content: String
+
+        attr_accessor :PageId, :ZoneId, :Name, :Description, :ContentType, :Content
+
+        def initialize(pageid=nil, zoneid=nil, name=nil, description=nil, contenttype=nil, content=nil)
+          @PageId = pageid
+          @ZoneId = zoneid
+          @Name = name
+          @Description = description
+          @ContentType = contenttype
+          @Content = content
+        end
+
+        def deserialize(params)
+          @PageId = params['PageId']
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ContentType = params['ContentType']
+          @Content = params['Content']
+        end
+      end
+
+      # ModifyCustomErrorPage返回参数结构体
+      class ModifyCustomErrorPageResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

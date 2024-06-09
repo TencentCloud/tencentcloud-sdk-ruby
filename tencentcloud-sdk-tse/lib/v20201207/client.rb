@@ -1829,6 +1829,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询公网地址信息
+
+        # @param request: Request instance for DescribePublicAddressConfig.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribePublicAddressConfigRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribePublicAddressConfigResponse`
+        def DescribePublicAddressConfig(request)
+          body = send_request('DescribePublicAddressConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePublicAddressConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询云原生API网关实例公网详情
 
         # @param request: Request instance for DescribePublicNetwork.
