@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeBackupRules）用于获取实例自动备份配置信息。
+
+        # @param request: Request instance for DescribeBackupRules.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeBackupRulesRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeBackupRulesResponse`
+        def DescribeBackupRules(request)
+          body = send_request('DescribeBackupRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeClientConnections）用于查询实例客户端连接信息，包括连接 IP 和连接数量。
 
         # @param request: Request instance for DescribeClientConnections.
@@ -519,6 +543,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSpecInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例透明加密的开启状态
+
+        # @param request: Request instance for DescribeTransparentDataEncryptionStatus.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeTransparentDataEncryptionStatusRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeTransparentDataEncryptionStatusResponse`
+        def DescribeTransparentDataEncryptionStatus(request)
+          body = send_request('DescribeTransparentDataEncryptionStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTransparentDataEncryptionStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(EnableTransparentDataEncryption)用于开启云数据库 MongoDB 的透明加密能力。
+
+        # @param request: Request instance for EnableTransparentDataEncryption.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::EnableTransparentDataEncryptionRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::EnableTransparentDataEncryptionResponse`
+        def EnableTransparentDataEncryption(request)
+          body = send_request('EnableTransparentDataEncryption', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableTransparentDataEncryptionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -880,6 +952,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAccountUserPrivilegeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(SetBackupRules)用于设置 MongoDB 云数据库的自动备份规则。
+
+        # @param request: Request instance for SetBackupRules.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::SetBackupRulesRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::SetBackupRulesResponse`
+        def SetBackupRules(request)
+          body = send_request('SetBackupRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetBackupRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

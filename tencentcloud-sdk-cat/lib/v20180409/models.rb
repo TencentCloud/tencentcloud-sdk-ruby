@@ -984,10 +984,13 @@ module TencentCloud
         # @param TagInfoList: 任务当前绑定的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInfoList: Array
+        # @param SubSyncFlag: 是否为同步账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubSyncFlag: Integer
 
-        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :NodeIpType, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState, :TagInfoList
+        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :NodeIpType, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState, :TagInfoList, :SubSyncFlag
 
-        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, nodeiptype=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil, taginfolist=nil)
+        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, nodeiptype=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil, taginfolist=nil, subsyncflag=nil)
           @Name = name
           @TaskId = taskid
           @TaskType = tasktype
@@ -1004,6 +1007,7 @@ module TencentCloud
           @Cron = cron
           @CronState = cronstate
           @TagInfoList = taginfolist
+          @SubSyncFlag = subsyncflag
         end
 
         def deserialize(params)
@@ -1030,6 +1034,7 @@ module TencentCloud
               @TagInfoList << keyvaluepair_tmp
             end
           end
+          @SubSyncFlag = params['SubSyncFlag']
         end
       end
 

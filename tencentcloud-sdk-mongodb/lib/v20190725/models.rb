@@ -1077,6 +1077,52 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupRules请求参数结构体
+      class DescribeBackupRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBackupRules返回参数结构体
+      class DescribeBackupRulesResponse < TencentCloud::Common::AbstractModel
+        # @param BackupSaveTime: 备份数据保留期限。单位为：天。
+        # @type BackupSaveTime: Integer
+        # @param BackupTime: 自动备份开始时间。
+        # @type BackupTime: Integer
+        # @param BackupMethod: 备份方式。
+        # - 0：逻辑备份。
+        # - 1：物理备份。
+        # @type BackupMethod: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupSaveTime, :BackupTime, :BackupMethod, :RequestId
+
+        def initialize(backupsavetime=nil, backuptime=nil, backupmethod=nil, requestid=nil)
+          @BackupSaveTime = backupsavetime
+          @BackupTime = backuptime
+          @BackupMethod = backupmethod
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupSaveTime = params['BackupSaveTime']
+          @BackupTime = params['BackupTime']
+          @BackupMethod = params['BackupMethod']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClientConnections请求参数结构体
       class DescribeClientConnectionsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定待查询的实例ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -1825,6 +1871,100 @@ module TencentCloud
               @SpecInfoList << specificationinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTransparentDataEncryptionStatus请求参数结构体
+      class DescribeTransparentDataEncryptionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeTransparentDataEncryptionStatus返回参数结构体
+      class DescribeTransparentDataEncryptionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TransparentDataEncryptionStatus: 表示是否开启了透明加密。
+        # - close：未开启。
+        # - open：已开启。
+        # @type TransparentDataEncryptionStatus: String
+        # @param KeyInfoList: 已绑定的密钥列表，如未绑定，返回null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransparentDataEncryptionStatus, :KeyInfoList, :RequestId
+
+        def initialize(transparentdataencryptionstatus=nil, keyinfolist=nil, requestid=nil)
+          @TransparentDataEncryptionStatus = transparentdataencryptionstatus
+          @KeyInfoList = keyinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransparentDataEncryptionStatus = params['TransparentDataEncryptionStatus']
+          unless params['KeyInfoList'].nil?
+            @KeyInfoList = []
+            params['KeyInfoList'].each do |i|
+              kmsinfodetail_tmp = KMSInfoDetail.new
+              kmsinfodetail_tmp.deserialize(i)
+              @KeyInfoList << kmsinfodetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableTransparentDataEncryption请求参数结构体
+      class EnableTransparentDataEncryptionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。目前支持通用版本包含：4.4、5.0，云盘版暂不支持。
+        # @type InstanceId: String
+        # @param KmsRegion:  [密钥管理系统（Key Management Service，KMS）](https://cloud.tencent.com/document/product/573/18809)服务所在地域，例如 ap-shanghai。
+        # @type KmsRegion: String
+        # @param KeyId: 密钥 ID。若不设置该参数，不指定具体的密钥 ID，由腾讯云自动生成密钥。
+        # @type KeyId: String
+
+        attr_accessor :InstanceId, :KmsRegion, :KeyId
+
+        def initialize(instanceid=nil, kmsregion=nil, keyid=nil)
+          @InstanceId = instanceid
+          @KmsRegion = kmsregion
+          @KeyId = keyid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KmsRegion = params['KmsRegion']
+          @KeyId = params['KeyId']
+        end
+      end
+
+      # EnableTransparentDataEncryption返回参数结构体
+      class EnableTransparentDataEncryptionResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 开启透明加密的异步流程id，用于查询流程状态。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -2734,6 +2874,48 @@ module TencentCloud
         end
       end
 
+      # KMS密钥信息
+      class KMSInfoDetail < TencentCloud::Common::AbstractModel
+        # @param KeyId: 主密钥 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyId: String
+        # @param KeyName: 主密钥名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyName: String
+        # @param CreateTime: 实例与密钥绑定时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 密钥状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param KeyUsage: 密钥用途。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyUsage: String
+        # @param KeyOrigin: 密钥来源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyOrigin: String
+
+        attr_accessor :KeyId, :KeyName, :CreateTime, :Status, :KeyUsage, :KeyOrigin
+
+        def initialize(keyid=nil, keyname=nil, createtime=nil, status=nil, keyusage=nil, keyorigin=nil)
+          @KeyId = keyid
+          @KeyName = keyname
+          @CreateTime = createtime
+          @Status = status
+          @KeyUsage = keyusage
+          @KeyOrigin = keyorigin
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @KeyName = params['KeyName']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @KeyUsage = params['KeyUsage']
+          @KeyOrigin = params['KeyOrigin']
+        end
+      end
+
       # KillOps请求参数结构体
       class KillOpsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -3476,6 +3658,56 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetBackupRules请求参数结构体
+      class SetBackupRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param BackupMethod: 设置自动备份方式。- 0：逻辑备份。- 1：物理备份。-3：快照备份(仅云盘版支持)。
+        # @type BackupMethod: Integer
+        # @param BackupTime: 设置自动备份开始时间。取值范围为：[0,23]，例如：该参数设置为2，表示02:00开始备份。
+        # @type BackupTime: Integer
+        # @param Notify: 设置自动备份发生错误时，是否发送失败告警。
+        # - true：发送。
+        # - false：不发送。
+        # @type Notify: Boolean
+        # @param BackupRetentionPeriod: 指定备份数据保存天数。默认为 7 天，支持设置为7、30、90、180、365。
+        # @type BackupRetentionPeriod: Integer
+
+        attr_accessor :InstanceId, :BackupMethod, :BackupTime, :Notify, :BackupRetentionPeriod
+
+        def initialize(instanceid=nil, backupmethod=nil, backuptime=nil, notify=nil, backupretentionperiod=nil)
+          @InstanceId = instanceid
+          @BackupMethod = backupmethod
+          @BackupTime = backuptime
+          @Notify = notify
+          @BackupRetentionPeriod = backupretentionperiod
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMethod = params['BackupMethod']
+          @BackupTime = params['BackupTime']
+          @Notify = params['Notify']
+          @BackupRetentionPeriod = params['BackupRetentionPeriod']
+        end
+      end
+
+      # SetBackupRules返回参数结构体
+      class SetBackupRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -539,6 +539,97 @@ module TencentCloud
         end
       end
 
+      # 认证凭据Token
+      class AuthToken < TencentCloud::Common::AbstractModel
+        # @param Token: 认证Token
+        # @type Token: String
+        # @param CurrentTime: 服务器时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentTime: Integer
+        # @param NextRotationTime: 毫秒时间戳，根据轮转周期准确计算得到
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextRotationTime: Integer
+        # @param LastRotationTimeCost: 毫秒，如果轮转失败则为 -1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastRotationTimeCost: Integer
+        # @param RotationStatus: 成功：success
+        # 失败：failed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationStatus: String
+        # @param RotationMessage: 成功：success
+        # 失败：失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationMessage: String
+
+        attr_accessor :Token, :CurrentTime, :NextRotationTime, :LastRotationTimeCost, :RotationStatus, :RotationMessage
+
+        def initialize(token=nil, currenttime=nil, nextrotationtime=nil, lastrotationtimecost=nil, rotationstatus=nil, rotationmessage=nil)
+          @Token = token
+          @CurrentTime = currenttime
+          @NextRotationTime = nextrotationtime
+          @LastRotationTimeCost = lastrotationtimecost
+          @RotationStatus = rotationstatus
+          @RotationMessage = rotationmessage
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @CurrentTime = params['CurrentTime']
+          @NextRotationTime = params['NextRotationTime']
+          @LastRotationTimeCost = params['LastRotationTimeCost']
+          @RotationStatus = params['RotationStatus']
+          @RotationMessage = params['RotationMessage']
+        end
+      end
+
+      # BuildDataFlowAuthToken请求参数结构体
+      class BuildDataFlowAuthTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceRegion: 资源地域
+        # @type ResourceRegion: String
+        # @param ResourceAccount: 资源用户名
+        # @type ResourceAccount: String
+
+        attr_accessor :ResourceId, :ResourceRegion, :ResourceAccount
+
+        def initialize(resourceid=nil, resourceregion=nil, resourceaccount=nil)
+          @ResourceId = resourceid
+          @ResourceRegion = resourceregion
+          @ResourceAccount = resourceaccount
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceRegion = params['ResourceRegion']
+          @ResourceAccount = params['ResourceAccount']
+        end
+      end
+
+      # BuildDataFlowAuthToken返回参数结构体
+      class BuildDataFlowAuthTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Credentials: 认证凭据AuthToken信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Credentials: :class:`Tencentcloud::Cam.v20190116.models.AuthToken`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Credentials, :RequestId
+
+        def initialize(credentials=nil, requestid=nil)
+          @Credentials = credentials
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Credentials'].nil?
+            @Credentials = AuthToken.new
+            @Credentials.deserialize(params['Credentials'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ConsumeCustomMFAToken请求参数结构体
       class ConsumeCustomMFATokenRequest < TencentCloud::Common::AbstractModel
         # @param MFAToken: 自定义多因子验证Token
@@ -2086,8 +2177,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2024, 5
-        deprecate :Idps=, :none, 2024, 5
+        deprecate :Idps, :none, 2024, 6
+        deprecate :Idps=, :none, 2024, 6
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies

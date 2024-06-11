@@ -2465,10 +2465,12 @@ module TencentCloud
         # @param SyntaxRule: 语法规则,  默认值为0。
         # 0：Lucene语法，1：CQL语法。
         # @type SyntaxRule: Integer
+        # @param DerivedFields: 导出字段
+        # @type DerivedFields: Array
 
-        attr_accessor :TopicId, :Count, :Query, :From, :To, :Order, :Format, :SyntaxRule
+        attr_accessor :TopicId, :Count, :Query, :From, :To, :Order, :Format, :SyntaxRule, :DerivedFields
 
-        def initialize(topicid=nil, count=nil, query=nil, from=nil, to=nil, order=nil, format=nil, syntaxrule=nil)
+        def initialize(topicid=nil, count=nil, query=nil, from=nil, to=nil, order=nil, format=nil, syntaxrule=nil, derivedfields=nil)
           @TopicId = topicid
           @Count = count
           @Query = query
@@ -2477,6 +2479,7 @@ module TencentCloud
           @Order = order
           @Format = format
           @SyntaxRule = syntaxrule
+          @DerivedFields = derivedfields
         end
 
         def deserialize(params)
@@ -2488,6 +2491,7 @@ module TencentCloud
           @Order = params['Order']
           @Format = params['Format']
           @SyntaxRule = params['SyntaxRule']
+          @DerivedFields = params['DerivedFields']
         end
       end
 
@@ -5919,10 +5923,13 @@ module TencentCloud
         # @param SyntaxRule: 语法规则。 默认值为0。
         # 0：Lucene语法，1：CQL语法。
         # @type SyntaxRule: Integer
+        # @param DerivedFields: 导出字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DerivedFields: Array
 
-        attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule
+        attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule, :DerivedFields
 
-        def initialize(topicid=nil, exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil, syntaxrule=nil)
+        def initialize(topicid=nil, exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil, syntaxrule=nil, derivedfields=nil)
           @TopicId = topicid
           @ExportId = exportid
           @Query = query
@@ -5937,6 +5944,7 @@ module TencentCloud
           @CosPath = cospath
           @CreateTime = createtime
           @SyntaxRule = syntaxrule
+          @DerivedFields = derivedfields
         end
 
         def deserialize(params)
@@ -5954,6 +5962,7 @@ module TencentCloud
           @CosPath = params['CosPath']
           @CreateTime = params['CreateTime']
           @SyntaxRule = params['SyntaxRule']
+          @DerivedFields = params['DerivedFields']
         end
       end
 

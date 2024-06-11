@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取数据流认证Token
+
+        # @param request: Request instance for BuildDataFlowAuthToken.
+        # @type request: :class:`Tencentcloud::cam::V20190116::BuildDataFlowAuthTokenRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::BuildDataFlowAuthTokenResponse`
+        def BuildDataFlowAuthToken(request)
+          body = send_request('BuildDataFlowAuthToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BuildDataFlowAuthTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 验证自定义多因子Token
 
         # @param request: Request instance for ConsumeCustomMFAToken.
