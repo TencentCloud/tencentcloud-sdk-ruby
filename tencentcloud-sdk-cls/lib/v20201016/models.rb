@@ -8500,10 +8500,12 @@ module TencentCloud
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
+        # @param PartitionCount: 日志主题分区数量
+        # @type PartitionCount: Integer
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :PartitionCount
 
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, partitioncount=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -8514,6 +8516,7 @@ module TencentCloud
           @Describes = describes
           @HotPeriod = hotperiod
           @IsWebTracking = iswebtracking
+          @PartitionCount = partitioncount
         end
 
         def deserialize(params)
@@ -8534,6 +8537,7 @@ module TencentCloud
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
           @IsWebTracking = params['IsWebTracking']
+          @PartitionCount = params['PartitionCount']
         end
       end
 

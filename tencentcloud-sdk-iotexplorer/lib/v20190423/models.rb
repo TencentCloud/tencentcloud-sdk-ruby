@@ -6209,14 +6209,17 @@ module TencentCloud
         # @type IsThirdApp: Integer
         # @param ModelId: 模板ID
         # @type ModelId: String
+        # @param MiniProgramAppId: 小程序APPID
+        # @type MiniProgramAppId: String
 
-        attr_accessor :ProductId, :DeviceName, :IsThirdApp, :ModelId
+        attr_accessor :ProductId, :DeviceName, :IsThirdApp, :ModelId, :MiniProgramAppId
 
-        def initialize(productid=nil, devicename=nil, isthirdapp=nil, modelid=nil)
+        def initialize(productid=nil, devicename=nil, isthirdapp=nil, modelid=nil, miniprogramappid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @IsThirdApp = isthirdapp
           @ModelId = modelid
+          @MiniProgramAppId = miniprogramappid
         end
 
         def deserialize(params)
@@ -6224,6 +6227,7 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @IsThirdApp = params['IsThirdApp']
           @ModelId = params['ModelId']
+          @MiniProgramAppId = params['MiniProgramAppId']
         end
       end
 

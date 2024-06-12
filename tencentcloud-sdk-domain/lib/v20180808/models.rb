@@ -53,7 +53,7 @@ module TencentCloud
       class BatchModifyDomainInfoRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 批量修改的域名。
         # @type Domains: Array
-        # @param TemplateId: 模板ID。
+        # @param TemplateId: 模板ID(可从模板列表接口获取)
         # @type TemplateId: String
         # @param LockTransfer: true： 开启60天内禁止转移注册商锁定
         # false：关闭60天内禁止转移注册商锁定
@@ -866,7 +866,7 @@ module TencentCloud
         # @type Code: String
         # @param Type: 1：手机   2：邮箱
         # @type Type: Integer
-        # @param VerifyCode: 验证码
+        # @param VerifyCode: 验证码(通过SendPhoneEmailCode发送到手机或邮箱的验证码)
         # @type VerifyCode: String
 
         attr_accessor :Code, :Type, :VerifyCode
@@ -1111,7 +1111,7 @@ module TencentCloud
 
       # DeleteTemplate请求参数结构体
       class DeleteTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: 模板ID(可通过模板信息列表获取)
         # @type TemplateId: String
 
         attr_accessor :TemplateId
@@ -1747,7 +1747,7 @@ module TencentCloud
 
       # DescribeCustomDnsHostSet请求参数结构体
       class DescribeCustomDnsHostSetRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名实例ID
+        # @param DomainId: 域名实例ID(域名基本信息或我的域名列表接口可获取)
         # @type DomainId: String
         # @param Limit: 返回数量，默认为20，取值范围[1,100]
         # @type Limit: Integer
@@ -2161,9 +2161,9 @@ module TencentCloud
 
       # DescribePreDomainList请求参数结构体
       class DescribePreDomainListRequest < TencentCloud::Common::AbstractModel
-        # @param Page: 页码
+        # @param Page: 页码，默认为1
         # @type Page: Integer
-        # @param Size: 条数
+        # @param Size: 条数，默认为20
         # @type Size: Integer
         # @param EndTime: 用于结束时间筛选
         # @type EndTime: String

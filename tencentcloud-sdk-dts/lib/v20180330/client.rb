@@ -256,6 +256,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口不再使用
+
         # 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
 
         # @param request: Request instance for DescribeRegionConf.

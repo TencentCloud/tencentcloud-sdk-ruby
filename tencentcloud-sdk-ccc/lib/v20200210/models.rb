@@ -705,7 +705,7 @@ module TencentCloud
         # @type Description: String
         # @param NotAfter: 任务停止时间戳，Unix 秒级时间戳
         # @type NotAfter: Integer
-        # @param Tries: 最大尝试次数
+        # @param Tries: 最大尝试次数，1-3 次
         # @type Tries: Integer
         # @param Variables: 自定义变量（仅高级版支持）
         # @type Variables: Array

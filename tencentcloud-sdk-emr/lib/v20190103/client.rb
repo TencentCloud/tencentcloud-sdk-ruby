@@ -246,6 +246,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询EMR任务运行详情状态
+
+        # @param request: Request instance for DescribeClusterFlowStatusDetail.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeClusterFlowStatusDetailRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeClusterFlowStatusDetailResponse`
+        def DescribeClusterFlowStatusDetail(request)
+          body = send_request('DescribeClusterFlowStatusDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterFlowStatusDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群节点信息
 
         # @param request: Request instance for DescribeClusterNodes.

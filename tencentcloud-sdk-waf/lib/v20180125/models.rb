@@ -3562,6 +3562,37 @@ module TencentCloud
         end
       end
 
+      # DescribeAreaBanSupportAreas请求参数结构体
+      class DescribeAreaBanSupportAreasRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAreaBanSupportAreas返回参数结构体
+      class DescribeAreaBanSupportAreasResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 地域封禁的地域列表，要解析成json后使用
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAttackOverview请求参数结构体
       class DescribeAttackOverviewRequest < TencentCloud::Common::AbstractModel
         # @param FromTime: 查询开始时间
@@ -9472,6 +9503,53 @@ module TencentCloud
 
       # ModifyApiSecEventChange返回参数结构体
       class ModifyApiSecEventChangeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAreaBanAreas请求参数结构体
+      class ModifyAreaBanAreasRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要修改的域名
+        # @type Domain: String
+        # @param Areas: 需要调整的地域信息，一个字符串数组
+        # @type Areas: Array
+        # @param JobType: 定时任务类型
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+
+        attr_accessor :Domain, :Areas, :JobType, :JobDateTime
+
+        def initialize(domain=nil, areas=nil, jobtype=nil, jobdatetime=nil)
+          @Domain = domain
+          @Areas = areas
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Areas = params['Areas']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+        end
+      end
+
+      # ModifyAreaBanAreas返回参数结构体
+      class ModifyAreaBanAreasResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

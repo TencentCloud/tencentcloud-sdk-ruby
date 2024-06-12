@@ -851,6 +851,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取WAF地域封禁支持的地域列表
+
+        # @param request: Request instance for DescribeAreaBanSupportAreas.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAreaBanSupportAreasRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAreaBanSupportAreasResponse`
+        def DescribeAreaBanSupportAreas(request)
+          body = send_request('DescribeAreaBanSupportAreas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAreaBanSupportAreasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 攻击总览
 
         # @param request: Request instance for DescribeAttackOverview.
@@ -2349,6 +2373,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApiSecEventChangeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改地域封禁中的地域信息
+
+        # @param request: Request instance for ModifyAreaBanAreas.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAreaBanAreasRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyAreaBanAreasResponse`
+        def ModifyAreaBanAreas(request)
+          body = send_request('ModifyAreaBanAreas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAreaBanAreasResponse.new
             model.deserialize(response['Response'])
             model
           else

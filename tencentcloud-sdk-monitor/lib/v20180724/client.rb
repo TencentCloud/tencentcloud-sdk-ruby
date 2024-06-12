@@ -1840,7 +1840,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列出可安装的所有 Grafana 插件
+        # 列出可安装的所有 Grafana 插件。
 
         # @param request: Request instance for DescribePluginOverviews.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePluginOverviewsRequest`
@@ -2300,6 +2300,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribePrometheusRecordRules 接口可完全代替该接口。近30天仅有3次调用，且都是报错请求
+
         # 拉取Prometheus聚合规则yaml列表
 
         # @param request: Request instance for DescribePrometheusRecordRuleYaml.
@@ -2468,7 +2470,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 列出 Prometheus 服务可用区
+        # 列出 Prometheus 服务可用区。
 
         # @param request: Request instance for DescribePrometheusZones.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusZonesRequest`

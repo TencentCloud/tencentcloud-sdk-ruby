@@ -1768,6 +1768,109 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterFlowStatusDetail请求参数结构体
+      class DescribeClusterFlowStatusDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR实例ID
+        # @type InstanceId: String
+        # @param FlowParam: 流程相关参数
+        # @type FlowParam: :class:`Tencentcloud::Emr.v20190103.models.FlowParam`
+        # @param NeedExtraDetail: 是否返回任务额外信息
+        # 默认: false
+        # @type NeedExtraDetail: Boolean
+
+        attr_accessor :InstanceId, :FlowParam, :NeedExtraDetail
+
+        def initialize(instanceid=nil, flowparam=nil, needextradetail=nil)
+          @InstanceId = instanceid
+          @FlowParam = flowparam
+          @NeedExtraDetail = needextradetail
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['FlowParam'].nil?
+            @FlowParam = FlowParam.new
+            @FlowParam.deserialize(params['FlowParam'])
+          end
+          @NeedExtraDetail = params['NeedExtraDetail']
+        end
+      end
+
+      # DescribeClusterFlowStatusDetail返回参数结构体
+      class DescribeClusterFlowStatusDetailResponse < TencentCloud::Common::AbstractModel
+        # @param StageDetails: 任务步骤详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StageDetails: Array
+        # @param FlowDesc: 任务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowDesc: Array
+        # @param FlowName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowTotalProgress: 总任务流程进度：
+        # 例如：0.8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowTotalProgress: Float
+        # @param FlowTotalStatus: 定义流程总状态：
+        # 0:初始化，
+        # 1:运行中，
+        # 2:完成，
+        # 3:完成（存在跳过步骤），
+        # -1:失败，
+        # -3:阻塞，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowTotalStatus: Integer
+        # @param FlowExtraDetail: 流程额外信息
+        # NeedExtraDetail为true时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowExtraDetail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StageDetails, :FlowDesc, :FlowName, :FlowTotalProgress, :FlowTotalStatus, :FlowExtraDetail, :RequestId
+
+        def initialize(stagedetails=nil, flowdesc=nil, flowname=nil, flowtotalprogress=nil, flowtotalstatus=nil, flowextradetail=nil, requestid=nil)
+          @StageDetails = stagedetails
+          @FlowDesc = flowdesc
+          @FlowName = flowname
+          @FlowTotalProgress = flowtotalprogress
+          @FlowTotalStatus = flowtotalstatus
+          @FlowExtraDetail = flowextradetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StageDetails'].nil?
+            @StageDetails = []
+            params['StageDetails'].each do |i|
+              stageinfodetail_tmp = StageInfoDetail.new
+              stageinfodetail_tmp.deserialize(i)
+              @StageDetails << stageinfodetail_tmp
+            end
+          end
+          unless params['FlowDesc'].nil?
+            @FlowDesc = []
+            params['FlowDesc'].each do |i|
+              flowparamsdesc_tmp = FlowParamsDesc.new
+              flowparamsdesc_tmp.deserialize(i)
+              @FlowDesc << flowparamsdesc_tmp
+            end
+          end
+          @FlowName = params['FlowName']
+          @FlowTotalProgress = params['FlowTotalProgress']
+          @FlowTotalStatus = params['FlowTotalStatus']
+          unless params['FlowExtraDetail'].nil?
+            @FlowExtraDetail = []
+            params['FlowExtraDetail'].each do |i|
+              flowextradetail_tmp = FlowExtraDetail.new
+              flowextradetail_tmp.deserialize(i)
+              @FlowExtraDetail << flowextradetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterNodes请求参数结构体
       class DescribeClusterNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx
@@ -3497,6 +3600,78 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 流程额外信息
+      class FlowExtraDetail < TencentCloud::Common::AbstractModel
+        # @param Title: 额外信息Title
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Detail: 额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: Array
+
+        attr_accessor :Title, :Detail
+
+        def initialize(title=nil, detail=nil)
+          @Title = title
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              flowparamsdesc_tmp = FlowParamsDesc.new
+              flowparamsdesc_tmp.deserialize(i)
+              @Detail << flowparamsdesc_tmp
+            end
+          end
+        end
+      end
+
+      # FlowParam流程参数
+      class FlowParam < TencentCloud::Common::AbstractModel
+        # @param FKey: 流程参数key
+        # TraceId：通过TraceId查询
+        # FlowId： 通过FlowId查询
+        # @type FKey: String
+        # @param FValue: 参数value
+        # @type FValue: String
+
+        attr_accessor :FKey, :FValue
+
+        def initialize(fkey=nil, fvalue=nil)
+          @FKey = fkey
+          @FValue = fvalue
+        end
+
+        def deserialize(params)
+          @FKey = params['FKey']
+          @FValue = params['FValue']
+        end
+      end
+
+      # 任务参数描述
+      class FlowParamsDesc < TencentCloud::Common::AbstractModel
+        # @param PKey: 参数key
+        # @type PKey: String
+        # @param PValue: 参数value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PValue: String
+
+        attr_accessor :PKey, :PValue
+
+        def initialize(pkey=nil, pvalue=nil)
+          @PKey = pkey
+          @PValue = pvalue
+        end
+
+        def deserialize(params)
+          @PKey = params['PKey']
+          @PValue = params['PValue']
         end
       end
 
@@ -5394,10 +5569,13 @@ module TencentCloud
         # @param ServicesStatus: 各组件状态，Zookeeper:STARTED,ResourceManager:STARTED，STARTED已启动，STOPED已停止
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServicesStatus: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark
 
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -5449,6 +5627,7 @@ module TencentCloud
           @DisableApiTermination = disableapitermination
           @TradeVersion = tradeversion
           @ServicesStatus = servicesstatus
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -5523,6 +5702,7 @@ module TencentCloud
           @DisableApiTermination = params['DisableApiTermination']
           @TradeVersion = params['TradeVersion']
           @ServicesStatus = params['ServicesStatus']
+          @Remark = params['Remark']
         end
       end
 
@@ -7548,6 +7728,89 @@ module TencentCloud
         def deserialize(params)
           @SoftName = params['SoftName']
           @Required = params['Required']
+        end
+      end
+
+      # 任务步骤详情
+      class StageInfoDetail < TencentCloud::Common::AbstractModel
+        # @param Stage: 步骤id
+        # @type Stage: String
+        # @param Name: 步骤名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param IsShow: 是否展示
+        # @type IsShow: Boolean
+        # @param IsSubFlow: 是否子流程
+        # @type IsSubFlow: Boolean
+        # @param SubFlowFlag: 子流程标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubFlowFlag: String
+        # @param Status: 步骤运行状态：0:未开始 1:进行中 2:已完成 3:部分完成  -1:失败
+        # @type Status: Integer
+        # @param Desc: 步骤运行状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Progress: 运行进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Float
+        # @param Starttime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Starttime: String
+        # @param Endtime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endtime: String
+        # @param HadWoodDetail: 是否有详情信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HadWoodDetail: Boolean
+        # @param WoodJobId: Wood子流程Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WoodJobId: Integer
+        # @param LanguageKey: 多语言版本Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LanguageKey: String
+        # @param FailedReason: 如果stage失败，失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReason: String
+        # @param TimeConsuming: 步骤耗时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeConsuming: String
+
+        attr_accessor :Stage, :Name, :IsShow, :IsSubFlow, :SubFlowFlag, :Status, :Desc, :Progress, :Starttime, :Endtime, :HadWoodDetail, :WoodJobId, :LanguageKey, :FailedReason, :TimeConsuming
+
+        def initialize(stage=nil, name=nil, isshow=nil, issubflow=nil, subflowflag=nil, status=nil, desc=nil, progress=nil, starttime=nil, endtime=nil, hadwooddetail=nil, woodjobid=nil, languagekey=nil, failedreason=nil, timeconsuming=nil)
+          @Stage = stage
+          @Name = name
+          @IsShow = isshow
+          @IsSubFlow = issubflow
+          @SubFlowFlag = subflowflag
+          @Status = status
+          @Desc = desc
+          @Progress = progress
+          @Starttime = starttime
+          @Endtime = endtime
+          @HadWoodDetail = hadwooddetail
+          @WoodJobId = woodjobid
+          @LanguageKey = languagekey
+          @FailedReason = failedreason
+          @TimeConsuming = timeconsuming
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @Name = params['Name']
+          @IsShow = params['IsShow']
+          @IsSubFlow = params['IsSubFlow']
+          @SubFlowFlag = params['SubFlowFlag']
+          @Status = params['Status']
+          @Desc = params['Desc']
+          @Progress = params['Progress']
+          @Starttime = params['Starttime']
+          @Endtime = params['Endtime']
+          @HadWoodDetail = params['HadWoodDetail']
+          @WoodJobId = params['WoodJobId']
+          @LanguageKey = params['LanguageKey']
+          @FailedReason = params['FailedReason']
+          @TimeConsuming = params['TimeConsuming']
         end
       end
 
