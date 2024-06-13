@@ -165,19 +165,23 @@ module TencentCloud
         # @type Area: String
         # @param Description: 共享单元描述。最大128个字符。
         # @type Description: String
+        # @param ShareScope: 共享范围。取值：1-仅允许集团组织内共享 2-允许共享给任意账号，默认值：1
+        # @type ShareScope: Integer
 
-        attr_accessor :Name, :Area, :Description
+        attr_accessor :Name, :Area, :Description, :ShareScope
 
-        def initialize(name=nil, area=nil, description=nil)
+        def initialize(name=nil, area=nil, description=nil, sharescope=nil)
           @Name = name
           @Area = area
           @Description = description
+          @ShareScope = sharescope
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Area = params['Area']
           @Description = params['Description']
+          @ShareScope = params['ShareScope']
         end
       end
 
@@ -2980,10 +2984,13 @@ module TencentCloud
         # @param ShareMemberNum: 共享单元成员数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShareMemberNum: Integer
+        # @param ShareScope: 共享范围。取值：1-仅允许集团组织内共享 2-允许共享给任意账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShareScope: Integer
 
-        attr_accessor :UnitId, :Name, :Uin, :OwnerUin, :Area, :Description, :CreateTime, :ShareResourceNum, :ShareMemberNum
+        attr_accessor :UnitId, :Name, :Uin, :OwnerUin, :Area, :Description, :CreateTime, :ShareResourceNum, :ShareMemberNum, :ShareScope
 
-        def initialize(unitid=nil, name=nil, uin=nil, owneruin=nil, area=nil, description=nil, createtime=nil, shareresourcenum=nil, sharemembernum=nil)
+        def initialize(unitid=nil, name=nil, uin=nil, owneruin=nil, area=nil, description=nil, createtime=nil, shareresourcenum=nil, sharemembernum=nil, sharescope=nil)
           @UnitId = unitid
           @Name = name
           @Uin = uin
@@ -2993,6 +3000,7 @@ module TencentCloud
           @CreateTime = createtime
           @ShareResourceNum = shareresourcenum
           @ShareMemberNum = sharemembernum
+          @ShareScope = sharescope
         end
 
         def deserialize(params)
@@ -3005,6 +3013,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ShareResourceNum = params['ShareResourceNum']
           @ShareMemberNum = params['ShareMemberNum']
+          @ShareScope = params['ShareScope']
         end
       end
 
@@ -3643,8 +3652,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 5
-        deprecate :ResourceGrantLast=, :none, 2024, 5
+        deprecate :ResourceGrantLast, :none, 2024, 6
+        deprecate :ResourceGrantLast=, :none, 2024, 6
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -3777,8 +3786,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 5
-        deprecate :ResourceId=, :none, 2024, 5
+        deprecate :ResourceId, :none, 2024, 6
+        deprecate :ResourceId=, :none, 2024, 6
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -4153,19 +4162,23 @@ module TencentCloud
         # @type Name: String
         # @param Description: 共享单元描述。最大128个字符。
         # @type Description: String
+        # @param ShareScope: 共享范围。取值：1-仅允许集团组织内共享 2-允许共享给任意账号，默认值：1
+        # @type ShareScope: Integer
 
-        attr_accessor :UnitId, :Name, :Description
+        attr_accessor :UnitId, :Name, :Description, :ShareScope
 
-        def initialize(unitid=nil, name=nil, description=nil)
+        def initialize(unitid=nil, name=nil, description=nil, sharescope=nil)
           @UnitId = unitid
           @Name = name
           @Description = description
+          @ShareScope = sharescope
         end
 
         def deserialize(params)
           @UnitId = params['UnitId']
           @Name = params['Name']
           @Description = params['Description']
+          @ShareScope = params['ShareScope']
         end
       end
 

@@ -205,8 +205,10 @@ module TencentCloud
       # bgp参数，包括Asn，AuthKey
       class BgpPeer < TencentCloud::Common::AbstractModel
         # @param Asn: 用户侧BGP ASN
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Asn: Integer
         # @param AuthKey: 用户侧BGP密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthKey: String
 
         attr_accessor :Asn, :AuthKey
@@ -648,15 +650,15 @@ module TencentCloud
       class DescribeDirectConnectTunnelsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件:
         # 参数不支持同时指定DirectConnectTunnelIds和Filters。
-        # <li> direct-connect-tunnel-name, 专用通道名称。</li>
-        # <li> direct-connect-tunnel-id, 专用通道实例ID，如dcx-abcdefgh。</li>
-        # <li>direct-connect-id, 物理专线实例ID，如，dc-abcdefgh。</li>
+        # direct-connect-tunnel-name, 专用通道名称。
+        # direct-connect-tunnel-id, 专用通道实例ID，如：dcx-abcdefgh。
+        # direct-connect-id, 物理专线实例ID，如：dc-abcdefgh。
         # @type Filters: Array
-        # @param DirectConnectTunnelIds: 专用通道 ID数组
+        # @param DirectConnectTunnelIds: 专用通道ID数组。
         # @type DirectConnectTunnelIds: Array
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :Filters, :DirectConnectTunnelIds, :Offset, :Limit
@@ -685,9 +687,9 @@ module TencentCloud
 
       # DescribeDirectConnectTunnels返回参数结构体
       class DescribeDirectConnectTunnelsResponse < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelSet: 专用通道列表
+        # @param DirectConnectTunnelSet: 专用通道列表。
         # @type DirectConnectTunnelSet: Array
-        # @param TotalCount: 符合专用通道数量。
+        # @param TotalCount: 专用通道总数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1274,10 +1276,13 @@ module TencentCloud
         # @param CloudAttachId: 高速上云服务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudAttachId: String
+        # @param ShareOrNot: 是否共享通道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShareOrNot: Integer
 
-        attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :TagSet, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :TencentBackupAddress, :SignLaw, :CloudAttachId
+        attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :TagSet, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :TencentBackupAddress, :SignLaw, :CloudAttachId, :ShareOrNot
 
-        def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, tagset=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, tencentbackupaddress=nil, signlaw=nil, cloudattachid=nil)
+        def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, tagset=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, tencentbackupaddress=nil, signlaw=nil, cloudattachid=nil, shareornot=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @DirectConnectId = directconnectid
           @State = state
@@ -1308,6 +1313,7 @@ module TencentCloud
           @TencentBackupAddress = tencentbackupaddress
           @SignLaw = signlaw
           @CloudAttachId = cloudattachid
+          @ShareOrNot = shareornot
         end
 
         def deserialize(params)
@@ -1358,6 +1364,7 @@ module TencentCloud
           @TencentBackupAddress = params['TencentBackupAddress']
           @SignLaw = params['SignLaw']
           @CloudAttachId = params['CloudAttachId']
+          @ShareOrNot = params['ShareOrNot']
         end
       end
 
@@ -2161,6 +2168,7 @@ module TencentCloud
       # 用户侧网段地址
       class RouteFilterPrefix < TencentCloud::Common::AbstractModel
         # @param Cidr: 用户侧网段地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
 
         attr_accessor :Cidr

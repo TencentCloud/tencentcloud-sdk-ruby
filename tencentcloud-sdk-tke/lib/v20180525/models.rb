@@ -1331,8 +1331,10 @@ module TencentCloud
       # 弹性容器集群内网访问LB信息
       class ClusterInternalLB < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启内网访问LB
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param SubnetId: 内网访问LB关联的子网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
 
         attr_accessor :Enabled, :SubnetId
@@ -1545,14 +1547,19 @@ module TencentCloud
       # 弹性容器集群公网访问负载均衡信息
       class ClusterPublicLB < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启公网访问LB
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param AllowFromCidrs: 允许访问的来源CIDR列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowFromCidrs: Array
         # @param SecurityPolicies: 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityPolicies: Array
         # @param ExtraParam: 外网访问相关的扩展参数，格式为json
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraParam: String
         # @param SecurityGroup: 新内外网功能，需要传递安全组
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroup: String
 
         attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies, :ExtraParam, :SecurityGroup
@@ -17485,9 +17492,9 @@ module TencentCloud
         # @type Name: String
         # @param SecurityGroups: 安全组id
         # @type SecurityGroups: Array
-        # @param Os: 系统
+        # @param Os: 系统，默认linux
         # @type Os: String
-        # @param Arch: 硬件架构
+        # @param Arch: 硬件架构，默认amd64
         # @type Arch: String
 
         attr_accessor :SubnetId, :Name, :SecurityGroups, :Os, :Arch

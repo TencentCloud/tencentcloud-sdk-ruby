@@ -101,8 +101,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 5
-        deprecate :FileKeyValues=, :none, 2024, 5
+        deprecate :FileKeyValues, :none, 2024, 6
+        deprecate :FileKeyValues=, :none, 2024, 6
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -1313,13 +1313,19 @@ module TencentCloud
         # @param UserNetworkInfos: 用户可用区和子网信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNetworkInfos: String
+        # @param EnableCoolDown: 是否启用冷热分层。0：未开启 1：已开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCoolDown: Integer
+        # @param CoolDownBucket: 冷热分层使用COS桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoolDownBucket: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 5
-        deprecate :IfExistCatalog=, :none, 2024, 5
+        deprecate :IfExistCatalog, :none, 2024, 6
+        deprecate :IfExistCatalog=, :none, 2024, 6
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -1365,6 +1371,8 @@ module TencentCloud
           @BindSGs = bindsgs
           @EnableMultiZones = enablemultizones
           @UserNetworkInfos = usernetworkinfos
+          @EnableCoolDown = enablecooldown
+          @CoolDownBucket = cooldownbucket
         end
 
         def deserialize(params)
@@ -1426,6 +1434,8 @@ module TencentCloud
           @BindSGs = params['BindSGs']
           @EnableMultiZones = params['EnableMultiZones']
           @UserNetworkInfos = params['UserNetworkInfos']
+          @EnableCoolDown = params['EnableCoolDown']
+          @CoolDownBucket = params['CoolDownBucket']
         end
       end
 

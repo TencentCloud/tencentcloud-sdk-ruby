@@ -225,7 +225,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询专用通道列表。
+        # 查询专用通道列表。
 
         # @param request: Request instance for DescribeDirectConnectTunnels.
         # @type request: :class:`Tencentcloud::dc::V20180410::DescribeDirectConnectTunnelsRequest`

@@ -724,9 +724,9 @@ module TencentCloud
 
       # 命令耗时
       class CommandTake < TencentCloud::Common::AbstractModel
-        # @param Cmd: 命令
+        # @param Cmd: 命令名。
         # @type Cmd: String
-        # @param Took: 耗时
+        # @param Took: 耗时时长。
         # @type Took: Integer
 
         attr_accessor :Cmd, :Took
@@ -2291,9 +2291,13 @@ module TencentCloud
 
       # DescribeInstanceMonitorHotKey请求参数结构体
       class DescribeInstanceMonitorHotKeyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 指定实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param SpanType: 时间范围：1——实时，2——近30分钟，3——近6小时，4——近24小时
+        # @param SpanType: 查询时间范围。
+        # - 1：实时。
+        # - 2：近30分钟。
+        # - 3：近6小时。
+        # - 4：近24小时。
         # @type SpanType: Integer
 
         attr_accessor :InstanceId, :SpanType
@@ -2311,7 +2315,7 @@ module TencentCloud
 
       # DescribeInstanceMonitorHotKey返回参数结构体
       class DescribeInstanceMonitorHotKeyResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 热Key详细信息
+        # @param Data: 热 Key 详细信息。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2381,11 +2385,15 @@ module TencentCloud
 
       # DescribeInstanceMonitorTookDist请求参数结构体
       class DescribeInstanceMonitorTookDistRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param Date: 时间；例如："20190219"
+        # @param Date: 查询时间日期。
         # @type Date: String
-        # @param SpanType: 时间范围：1——实时，2——近30分钟，3——近6小时，4——近24小时
+        # @param SpanType: 时间范围。
+        # - 1：实时。
+        # - 2：近30分钟。
+        # - 3：近6小时。
+        # - 4：近24小时。
         # @type SpanType: Integer
 
         attr_accessor :InstanceId, :Date, :SpanType
@@ -2405,7 +2413,7 @@ module TencentCloud
 
       # DescribeInstanceMonitorTookDist返回参数结构体
       class DescribeInstanceMonitorTookDistResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 时延分布信息
+        # @param Data: 时延分布信息。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2479,9 +2487,13 @@ module TencentCloud
 
       # DescribeInstanceMonitorTopNCmdTook请求参数结构体
       class DescribeInstanceMonitorTopNCmdTookRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param SpanType: 时间范围：1——实时，2——近30分钟，3——近6小时，4——近24小时
+        # @param SpanType: 查询时间范围。
+        # - 1：实时。
+        # - 2：近30分钟。
+        # - 3：近6小时。
+        # - 4：近24小时。
         # @type SpanType: Integer
 
         attr_accessor :InstanceId, :SpanType
@@ -7350,9 +7362,9 @@ module TencentCloud
 
       # 访问命令
       class SourceCommand < TencentCloud::Common::AbstractModel
-        # @param Cmd: 命令
+        # @param Cmd: 命令名称。
         # @type Cmd: String
-        # @param Count: 执行次数
+        # @param Count: 执行次数。
         # @type Count: Integer
 
         attr_accessor :Cmd, :Count

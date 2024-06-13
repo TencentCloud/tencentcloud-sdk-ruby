@@ -821,7 +821,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例热Key
+        # 本接口（DescribeInstanceMonitorHotKey）用于查询实例热Key。
 
         # @param request: Request instance for DescribeInstanceMonitorHotKey.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceMonitorHotKeyRequest`

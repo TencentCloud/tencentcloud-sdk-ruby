@@ -5467,10 +5467,13 @@ module TencentCloud
         # @param KibanaLanguage: //默认en， 可选zh-CN
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaLanguage: String
+        # @param ClusterType: 0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: Integer
 
-        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage
+        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage, :ClusterType
 
-        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil)
+        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil, clustertype=nil)
           @SpaceId = spaceid
           @SpaceName = spacename
           @Status = status
@@ -5489,6 +5492,7 @@ module TencentCloud
           @EnableKibanaPrivateAccess = enablekibanaprivateaccess
           @AppId = appid
           @KibanaLanguage = kibanalanguage
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -5523,6 +5527,7 @@ module TencentCloud
           @EnableKibanaPrivateAccess = params['EnableKibanaPrivateAccess']
           @AppId = params['AppId']
           @KibanaLanguage = params['KibanaLanguage']
+          @ClusterType = params['ClusterType']
         end
       end
 

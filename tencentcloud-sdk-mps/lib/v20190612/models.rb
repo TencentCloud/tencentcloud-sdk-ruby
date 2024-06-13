@@ -711,6 +711,9 @@ module TencentCloud
         # @param DeLogoTask: 视频内容分析智能擦除任务的查询结果，当任务类型为 DeLogo 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeLogoTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoResult`
+        # @param SegmentTask: 视频内容分析拆条任务的查询结果，当任务类型为 SegmentRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskSegmentResult`
         # @param HeadTailTask: 视频内容分析片头片尾任务的查询结果，当任务类型为 HeadTailRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTailTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHeadTailResult`
@@ -718,9 +721,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescriptionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :HeadTailTask, :DescriptionTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, headtailtask=nil, descriptiontask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -728,6 +731,7 @@ module TencentCloud
           @FrameTagTask = frametagtask
           @HighlightTask = highlighttask
           @DeLogoTask = delogotask
+          @SegmentTask = segmenttask
           @HeadTailTask = headtailtask
           @DescriptionTask = descriptiontask
         end
@@ -757,6 +761,10 @@ module TencentCloud
           unless params['DeLogoTask'].nil?
             @DeLogoTask = AiAnalysisTaskDelLogoResult.new
             @DeLogoTask.deserialize(params['DeLogoTask'])
+          end
+          unless params['SegmentTask'].nil?
+            @SegmentTask = AiAnalysisTaskSegmentResult.new
+            @SegmentTask.deserialize(params['SegmentTask'])
           end
           unless params['HeadTailTask'].nil?
             @HeadTailTask = AiAnalysisTaskHeadTailResult.new
@@ -1360,6 +1368,84 @@ module TencentCloud
         def deserialize(params)
           @Definition = params['Definition']
           @ExtendedParameter = params['ExtendedParameter']
+        end
+      end
+
+      # 拆条任务输入类型
+      class AiAnalysisTaskSegmentInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 拆条任务模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能拆条结果信息
+      class AiAnalysisTaskSegmentOutput < TencentCloud::Common::AbstractModel
+        # @param SegmentSet: 智能拆条子片段列表。
+        # @type SegmentSet: Array
+
+        attr_accessor :SegmentSet
+
+        def initialize(segmentset=nil)
+          @SegmentSet = segmentset
+        end
+
+        def deserialize(params)
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              segmentrecognitionitem_tmp = SegmentRecognitionItem.new
+              segmentrecognitionitem_tmp.deserialize(i)
+              @SegmentSet << segmentrecognitionitem_tmp
+            end
+          end
+        end
+      end
+
+      # 拆条结果类型
+      class AiAnalysisTaskSegmentResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 拆条任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskSegmentInput`
+        # @param Output: 拆条任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskSegmentOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskSegmentInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskSegmentOutput.new
+            @Output.deserialize(params['Output'])
+          end
         end
       end
 
@@ -18652,14 +18738,22 @@ module TencentCloud
         # @param SegmentUrl: 拆条片段URL。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentUrl: String
+        # @param Title: 分段标题。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Summary: 分段概要。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :Title, :Summary
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, title=nil, summary=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @SegmentUrl = segmenturl
+          @Title = title
+          @Summary = summary
         end
 
         def deserialize(params)
@@ -18667,6 +18761,8 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @SegmentUrl = params['SegmentUrl']
+          @Title = params['Title']
+          @Summary = params['Summary']
         end
       end
 

@@ -757,14 +757,18 @@ module TencentCloud
         # @param IssueInfo: 签发信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssueInfo: :class:`Tencentcloud::Mrs.v20200910.models.IssueInfo`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :NeonatalInfo, :MotherInfo, :FatherInfo, :IssueInfo
+        attr_accessor :NeonatalInfo, :MotherInfo, :FatherInfo, :IssueInfo, :Page
 
-        def initialize(neonatalinfo=nil, motherinfo=nil, fatherinfo=nil, issueinfo=nil)
+        def initialize(neonatalinfo=nil, motherinfo=nil, fatherinfo=nil, issueinfo=nil, page=nil)
           @NeonatalInfo = neonatalinfo
           @MotherInfo = motherinfo
           @FatherInfo = fatherinfo
           @IssueInfo = issueinfo
+          @Page = page
         end
 
         def deserialize(params)
@@ -784,6 +788,7 @@ module TencentCloud
             @IssueInfo = IssueInfo.new
             @IssueInfo.deserialize(params['IssueInfo'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -1307,16 +1312,20 @@ module TencentCloud
         # @param Location: 左右手臂
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Name, :Item, :Result, :Unit, :Times, :Location
+        attr_accessor :Name, :Item, :Result, :Unit, :Times, :Location, :Page
 
-        def initialize(name=nil, item=nil, result=nil, unit=nil, times=nil, location=nil)
+        def initialize(name=nil, item=nil, result=nil, unit=nil, times=nil, location=nil, page=nil)
           @Name = name
           @Item = item
           @Result = result
           @Unit = unit
           @Times = times
           @Location = location
+          @Page = page
         end
 
         def deserialize(params)
@@ -1341,6 +1350,7 @@ module TencentCloud
             @Location = PhysicalBaseItem.new
             @Location.deserialize(params['Location'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -1436,13 +1446,17 @@ module TencentCloud
         # @param BlockTitle: 检查报告块标题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockTitle: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Desc, :Summary, :BlockTitle
+        attr_accessor :Desc, :Summary, :BlockTitle, :Page
 
-        def initialize(desc=nil, summary=nil, blocktitle=nil)
+        def initialize(desc=nil, summary=nil, blocktitle=nil, page=nil)
           @Desc = desc
           @Summary = summary
           @BlockTitle = blocktitle
+          @Page = page
         end
 
         def deserialize(params)
@@ -1462,6 +1476,7 @@ module TencentCloud
               @BlockTitle << blocktitle_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -2385,12 +2400,16 @@ module TencentCloud
         # @param Version: 版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :CovidItems, :Version
+        attr_accessor :CovidItems, :Version, :Page
 
-        def initialize(coviditems=nil, version=nil)
+        def initialize(coviditems=nil, version=nil, page=nil)
           @CovidItems = coviditems
           @Version = version
+          @Page = page
         end
 
         def deserialize(params)
@@ -2403,6 +2422,7 @@ module TencentCloud
             end
           end
           @Version = params['Version']
+          @Page = params['Page']
         end
       end
 
@@ -2686,12 +2706,16 @@ module TencentCloud
         # @param Diagnosis: 诊断
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnosis: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Advice, :Diagnosis
+        attr_accessor :Advice, :Diagnosis, :Page
 
-        def initialize(advice=nil, diagnosis=nil)
+        def initialize(advice=nil, diagnosis=nil, page=nil)
           @Advice = advice
           @Diagnosis = diagnosis
+          @Page = page
         end
 
         def deserialize(params)
@@ -2707,6 +2731,7 @@ module TencentCloud
               @Diagnosis << diagcertitem_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -2867,15 +2892,19 @@ module TencentCloud
         # @param ParagraphBlock: 文本段落
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParagraphBlock: :class:`Tencentcloud::Mrs.v20200910.models.ParagraphBlock`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :DiseaseHistory, :PersonalHistory, :DrugHistory, :TreatmentRecord, :ParagraphBlock
+        attr_accessor :DiseaseHistory, :PersonalHistory, :DrugHistory, :TreatmentRecord, :ParagraphBlock, :Page
 
-        def initialize(diseasehistory=nil, personalhistory=nil, drughistory=nil, treatmentrecord=nil, paragraphblock=nil)
+        def initialize(diseasehistory=nil, personalhistory=nil, drughistory=nil, treatmentrecord=nil, paragraphblock=nil, page=nil)
           @DiseaseHistory = diseasehistory
           @PersonalHistory = personalhistory
           @DrugHistory = drughistory
           @TreatmentRecord = treatmentrecord
           @ParagraphBlock = paragraphblock
+          @Page = page
         end
 
         def deserialize(params)
@@ -2899,6 +2928,7 @@ module TencentCloud
             @ParagraphBlock = ParagraphBlock.new
             @ParagraphBlock.deserialize(params['ParagraphBlock'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -3451,12 +3481,16 @@ module TencentCloud
         # @param EcgDiagnosis: 心电图诊断
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EcgDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.EcgDiagnosis`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :EcgDescription, :EcgDiagnosis
+        attr_accessor :EcgDescription, :EcgDiagnosis, :Page
 
-        def initialize(ecgdescription=nil, ecgdiagnosis=nil)
+        def initialize(ecgdescription=nil, ecgdiagnosis=nil, page=nil)
           @EcgDescription = ecgdescription
           @EcgDiagnosis = ecgdiagnosis
+          @Page = page
         end
 
         def deserialize(params)
@@ -3468,6 +3502,7 @@ module TencentCloud
             @EcgDiagnosis = EcgDiagnosis.new
             @EcgDiagnosis.deserialize(params['EcgDiagnosis'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -3482,13 +3517,17 @@ module TencentCloud
         # @param Summary: 结论
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.Summary`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :BiopsyPart, :Desc, :Summary
+        attr_accessor :BiopsyPart, :Desc, :Summary, :Page
 
-        def initialize(biopsypart=nil, desc=nil, summary=nil)
+        def initialize(biopsypart=nil, desc=nil, summary=nil, page=nil)
           @BiopsyPart = biopsypart
           @Desc = desc
           @Summary = summary
+          @Page = page
         end
 
         def deserialize(params)
@@ -3504,6 +3543,7 @@ module TencentCloud
             @Summary = Summary.new
             @Summary.deserialize(params['Summary'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -3743,12 +3783,16 @@ module TencentCloud
         # @param Version: 版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :EyeItems, :Version
+        attr_accessor :EyeItems, :Version, :Page
 
-        def initialize(eyeitems=nil, version=nil)
+        def initialize(eyeitems=nil, version=nil, page=nil)
           @EyeItems = eyeitems
           @Version = version
+          @Page = page
         end
 
         def deserialize(params)
@@ -3757,6 +3801,7 @@ module TencentCloud
             @EyeItems.deserialize(params['EyeItems'])
           end
           @Version = params['Version']
+          @Page = params['Page']
         end
       end
 
@@ -4155,15 +4200,19 @@ module TencentCloud
         # @param Fp2NdItems: 病案首页第二页
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fp2NdItems: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :DischargeDiagnosis, :PathologicalDiagnosis, :ClinicalDiagnosis, :DamagePoi, :Fp2NdItems
+        attr_accessor :DischargeDiagnosis, :PathologicalDiagnosis, :ClinicalDiagnosis, :DamagePoi, :Fp2NdItems, :Page
 
-        def initialize(dischargediagnosis=nil, pathologicaldiagnosis=nil, clinicaldiagnosis=nil, damagepoi=nil, fp2nditems=nil)
+        def initialize(dischargediagnosis=nil, pathologicaldiagnosis=nil, clinicaldiagnosis=nil, damagepoi=nil, fp2nditems=nil, page=nil)
           @DischargeDiagnosis = dischargediagnosis
           @PathologicalDiagnosis = pathologicaldiagnosis
           @ClinicalDiagnosis = clinicaldiagnosis
           @DamagePoi = damagepoi
           @Fp2NdItems = fp2nditems
+          @Page = page
         end
 
         def deserialize(params)
@@ -4195,6 +4244,7 @@ module TencentCloud
               @Fp2NdItems << fp2nditem_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -5120,13 +5170,16 @@ module TencentCloud
         # @param AdmissionDiagnosis: 入院诊断
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDiagnosis: String
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis
+        attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis, :Page
         extend Gem::Deprecate
-        deprecate :AdmissionDignosis, :none, 2024, 5
-        deprecate :AdmissionDignosis=, :none, 2024, 5
+        deprecate :AdmissionDignosis, :none, 2024, 6
+        deprecate :AdmissionDignosis=, :none, 2024, 6
 
-        def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil, admissiondiagnosis=nil)
+        def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil, admissiondiagnosis=nil, page=nil)
           @AdmissionTime = admissiontime
           @DischargeTime = dischargetime
           @AdmissionDays = admissiondays
@@ -5136,6 +5189,7 @@ module TencentCloud
           @DischargeDiagnosis = dischargediagnosis
           @DischargeInstruction = dischargeinstruction
           @AdmissionDiagnosis = admissiondiagnosis
+          @Page = page
         end
 
         def deserialize(params)
@@ -5148,6 +5202,7 @@ module TencentCloud
           @DischargeDiagnosis = params['DischargeDiagnosis']
           @DischargeInstruction = params['DischargeInstruction']
           @AdmissionDiagnosis = params['AdmissionDiagnosis']
+          @Page = params['Page']
         end
       end
 
@@ -5661,12 +5716,16 @@ module TencentCloud
         # @param BlockTitle: 检验报告块标题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockTitle: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Indicators, :BlockTitle
+        attr_accessor :Indicators, :BlockTitle, :Page
 
-        def initialize(indicators=nil, blocktitle=nil)
+        def initialize(indicators=nil, blocktitle=nil, page=nil)
           @Indicators = indicators
           @BlockTitle = blocktitle
+          @Page = page
         end
 
         def deserialize(params)
@@ -5686,6 +5745,7 @@ module TencentCloud
               @BlockTitle << blocktitle_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -5868,16 +5928,20 @@ module TencentCloud
         # @param TableIndicators: 检验报告V3结论
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIndicators: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :TableIndictors, :Version, :TableIndicators
+        attr_accessor :TableIndictors, :Version, :TableIndicators, :Page
         extend Gem::Deprecate
-        deprecate :TableIndictors, :none, 2024, 5
-        deprecate :TableIndictors=, :none, 2024, 5
+        deprecate :TableIndictors, :none, 2024, 6
+        deprecate :TableIndictors=, :none, 2024, 6
 
-        def initialize(tableindictors=nil, version=nil, tableindicators=nil)
+        def initialize(tableindictors=nil, version=nil, tableindicators=nil, page=nil)
           @TableIndictors = tableindictors
           @Version = version
           @TableIndicators = tableindicators
+          @Page = page
         end
 
         def deserialize(params)
@@ -5898,6 +5962,7 @@ module TencentCloud
               @TableIndicators << tableindicators_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -6613,13 +6678,17 @@ module TencentCloud
         # @param Result: 结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Name, :Item, :Result
+        attr_accessor :Name, :Item, :Result, :Page
 
-        def initialize(name=nil, item=nil, result=nil)
+        def initialize(name=nil, item=nil, result=nil, page=nil)
           @Name = name
           @Item = item
           @Result = result
+          @Page = page
         end
 
         def deserialize(params)
@@ -6632,6 +6701,7 @@ module TencentCloud
             @Result = PhysicalBaseItem.new
             @Result.deserialize(params['Result'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -6892,13 +6962,17 @@ module TencentCloud
         # @param OcrText: 报告原文
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrText: String
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Desc, :Summary, :OcrText
+        attr_accessor :Desc, :Summary, :OcrText, :Page
 
-        def initialize(desc=nil, summary=nil, ocrtext=nil)
+        def initialize(desc=nil, summary=nil, ocrtext=nil, page=nil)
           @Desc = desc
           @Summary = summary
           @OcrText = ocrtext
+          @Page = page
         end
 
         def deserialize(params)
@@ -6911,6 +6985,7 @@ module TencentCloud
             @Summary.deserialize(params['Summary'])
           end
           @OcrText = params['OcrText']
+          @Page = params['Page']
         end
       end
 
@@ -7045,10 +7120,13 @@ module TencentCloud
         # @type MenstrualMedicalHistory: :class:`Tencentcloud::Mrs.v20200910.models.MenstrualMedicalHistory`
         # @param TreatmentRecord: 诊疗记录
         # @type TreatmentRecord: :class:`Tencentcloud::Mrs.v20200910.models.TreatmentRecord`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Advice, :Diagnosis, :DiseaseMedicalHistory, :PersonalMedicalHistory, :ObstericalMedicalHistory, :FamilyMedicalHistory, :MenstrualMedicalHistory, :TreatmentRecord
+        attr_accessor :Advice, :Diagnosis, :DiseaseMedicalHistory, :PersonalMedicalHistory, :ObstericalMedicalHistory, :FamilyMedicalHistory, :MenstrualMedicalHistory, :TreatmentRecord, :Page
 
-        def initialize(advice=nil, diagnosis=nil, diseasemedicalhistory=nil, personalmedicalhistory=nil, obstericalmedicalhistory=nil, familymedicalhistory=nil, menstrualmedicalhistory=nil, treatmentrecord=nil)
+        def initialize(advice=nil, diagnosis=nil, diseasemedicalhistory=nil, personalmedicalhistory=nil, obstericalmedicalhistory=nil, familymedicalhistory=nil, menstrualmedicalhistory=nil, treatmentrecord=nil, page=nil)
           @Advice = advice
           @Diagnosis = diagnosis
           @DiseaseMedicalHistory = diseasemedicalhistory
@@ -7057,6 +7135,7 @@ module TencentCloud
           @FamilyMedicalHistory = familymedicalhistory
           @MenstrualMedicalHistory = menstrualmedicalhistory
           @TreatmentRecord = treatmentrecord
+          @Page = page
         end
 
         def deserialize(params)
@@ -7096,6 +7175,7 @@ module TencentCloud
             @TreatmentRecord = TreatmentRecord.new
             @TreatmentRecord.deserialize(params['TreatmentRecord'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -7125,10 +7205,13 @@ module TencentCloud
         # @param TreatmentOpinion: 治疗意见
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentOpinion: String
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :DiagnosisTime, :DiagnosisDepartmentName, :DiagnosisDoctorName, :ClinicalDiagnosis, :MainNarration, :PhysicalExamination, :InspectionFindings, :TreatmentOpinion
+        attr_accessor :DiagnosisTime, :DiagnosisDepartmentName, :DiagnosisDoctorName, :ClinicalDiagnosis, :MainNarration, :PhysicalExamination, :InspectionFindings, :TreatmentOpinion, :Page
 
-        def initialize(diagnosistime=nil, diagnosisdepartmentname=nil, diagnosisdoctorname=nil, clinicaldiagnosis=nil, mainnarration=nil, physicalexamination=nil, inspectionfindings=nil, treatmentopinion=nil)
+        def initialize(diagnosistime=nil, diagnosisdepartmentname=nil, diagnosisdoctorname=nil, clinicaldiagnosis=nil, mainnarration=nil, physicalexamination=nil, inspectionfindings=nil, treatmentopinion=nil, page=nil)
           @DiagnosisTime = diagnosistime
           @DiagnosisDepartmentName = diagnosisdepartmentname
           @DiagnosisDoctorName = diagnosisdoctorname
@@ -7137,6 +7220,7 @@ module TencentCloud
           @PhysicalExamination = physicalexamination
           @InspectionFindings = inspectionfindings
           @TreatmentOpinion = treatmentopinion
+          @Page = page
         end
 
         def deserialize(params)
@@ -7148,6 +7232,7 @@ module TencentCloud
           @PhysicalExamination = params['PhysicalExamination']
           @InspectionFindings = params['InspectionFindings']
           @TreatmentOpinion = params['TreatmentOpinion']
+          @Page = params['Page']
         end
       end
 
@@ -8132,8 +8217,8 @@ module TencentCloud
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2024, 5
-        deprecate :IsthmusThicknese=, :none, 2024, 5
+        deprecate :IsthmusThicknese, :none, 2024, 6
+        deprecate :IsthmusThicknese=, :none, 2024, 6
 
         def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil, isthmusthickness=nil)
           @Part = part
@@ -8724,8 +8809,8 @@ module TencentCloud
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
         extend Gem::Deprecate
-        deprecate :MenstruallHistoryText, :none, 2024, 5
-        deprecate :MenstruallHistoryText=, :none, 2024, 5
+        deprecate :MenstruallHistoryText, :none, 2024, 6
+        deprecate :MenstruallHistoryText=, :none, 2024, 6
 
         def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil, menstrualhistorytext=nil)
           @IncisionHealingText = incisionhealingtext
@@ -9150,10 +9235,13 @@ module TencentCloud
         # @param Molecular: 分子病理
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Molecular: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :PathologicalReportType, :Desc, :Summary, :ReportText, :LymphTotal, :LymphNodes, :Ihc, :Clinical, :Precancer, :Malignant, :Benigntumor, :SampleType, :LymphSize, :Molecular
+        attr_accessor :PathologicalReportType, :Desc, :Summary, :ReportText, :LymphTotal, :LymphNodes, :Ihc, :Clinical, :Precancer, :Malignant, :Benigntumor, :SampleType, :LymphSize, :Molecular, :Page
 
-        def initialize(pathologicalreporttype=nil, desc=nil, summary=nil, reporttext=nil, lymphtotal=nil, lymphnodes=nil, ihc=nil, clinical=nil, precancer=nil, malignant=nil, benigntumor=nil, sampletype=nil, lymphsize=nil, molecular=nil)
+        def initialize(pathologicalreporttype=nil, desc=nil, summary=nil, reporttext=nil, lymphtotal=nil, lymphnodes=nil, ihc=nil, clinical=nil, precancer=nil, malignant=nil, benigntumor=nil, sampletype=nil, lymphsize=nil, molecular=nil, page=nil)
           @PathologicalReportType = pathologicalreporttype
           @Desc = desc
           @Summary = summary
@@ -9168,6 +9256,7 @@ module TencentCloud
           @SampleType = sampletype
           @LymphSize = lymphsize
           @Molecular = molecular
+          @Page = page
         end
 
         def deserialize(params)
@@ -9244,6 +9333,7 @@ module TencentCloud
               @Molecular << molecular_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -9318,8 +9408,8 @@ module TencentCloud
 
         attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
         extend Gem::Deprecate
-        deprecate :Nation, :none, 2024, 5
-        deprecate :Nation=, :none, 2024, 5
+        deprecate :Nation, :none, 2024, 6
+        deprecate :Nation=, :none, 2024, 6
 
         def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil, bedno=nil)
           @Name = name
@@ -9698,11 +9788,15 @@ module TencentCloud
         # @param MedicineList: 药品列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicineList: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :MedicineList
+        attr_accessor :MedicineList, :Page
 
-        def initialize(medicinelist=nil)
+        def initialize(medicinelist=nil, page=nil)
           @MedicineList = medicinelist
+          @Page = page
         end
 
         def deserialize(params)
@@ -9714,6 +9808,7 @@ module TencentCloud
               @MedicineList << medicine_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -10125,12 +10220,16 @@ module TencentCloud
         # @param Items: 结论详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Text, :Items
+        attr_accessor :Text, :Items, :Page
 
-        def initialize(text=nil, items=nil)
+        def initialize(text=nil, items=nil, page=nil)
           @Text = text
           @Items = items
+          @Page = page
         end
 
         def deserialize(params)
@@ -10146,6 +10245,7 @@ module TencentCloud
               @Items << baseinfo_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -10458,12 +10558,16 @@ module TencentCloud
         # @param OtherInfo: 其他信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherInfo: :class:`Tencentcloud::Mrs.v20200910.models.OtherInfo`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :SurgeryHistory, :OtherInfo
+        attr_accessor :SurgeryHistory, :OtherInfo, :Page
 
-        def initialize(surgeryhistory=nil, otherinfo=nil)
+        def initialize(surgeryhistory=nil, otherinfo=nil, page=nil)
           @SurgeryHistory = surgeryhistory
           @OtherInfo = otherinfo
+          @Page = page
         end
 
         def deserialize(params)
@@ -10475,6 +10579,7 @@ module TencentCloud
             @OtherInfo = OtherInfo.new
             @OtherInfo.deserialize(params['OtherInfo'])
           end
+          @Page = params['Page']
         end
       end
 
@@ -11506,11 +11611,15 @@ module TencentCloud
         # @param TextTypeList: 文本类型列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeList: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :TextTypeList
+        attr_accessor :TextTypeList, :Page
 
-        def initialize(texttypelist=nil)
+        def initialize(texttypelist=nil, page=nil)
           @TextTypeList = texttypelist
+          @Page = page
         end
 
         def deserialize(params)
@@ -11522,6 +11631,7 @@ module TencentCloud
               @TextTypeList << texttype_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -11607,11 +11717,15 @@ module TencentCloud
         # @param Timeline: 时间轴
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeline: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Timeline
+        attr_accessor :Timeline, :Page
 
-        def initialize(timeline=nil)
+        def initialize(timeline=nil, page=nil)
           @Timeline = timeline
+          @Page = page
         end
 
         def deserialize(params)
@@ -11623,6 +11737,7 @@ module TencentCloud
               @Timeline << timelineevent_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -11747,8 +11862,8 @@ module TencentCloud
 
         attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays, :AdmissionCondition
         extend Gem::Deprecate
-        deprecate :DmissionCondition, :none, 2024, 5
-        deprecate :DmissionCondition=, :none, 2024, 5
+        deprecate :DmissionCondition, :none, 2024, 6
+        deprecate :DmissionCondition=, :none, 2024, 6
 
         def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil, admissioncondition=nil)
           @DmissionCondition = dmissioncondition
@@ -12331,8 +12446,8 @@ module TencentCloud
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2024, 5
-        deprecate :IsthmusThicknese=, :none, 2024, 5
+        deprecate :IsthmusThicknese, :none, 2024, 6
+        deprecate :IsthmusThicknese=, :none, 2024, 6
 
         def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil, isthmusthickness=nil)
           @Type = type
@@ -12828,11 +12943,15 @@ module TencentCloud
         # @param VaccineList: 免疫接种列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VaccineList: Array
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :VaccineList
+        attr_accessor :VaccineList, :Page
 
-        def initialize(vaccinelist=nil)
+        def initialize(vaccinelist=nil, page=nil)
           @VaccineList = vaccinelist
+          @Page = page
         end
 
         def deserialize(params)
@@ -12844,6 +12963,7 @@ module TencentCloud
               @VaccineList << vaccination_tmp
             end
           end
+          @Page = params['Page']
         end
       end
 
@@ -12915,14 +13035,18 @@ module TencentCloud
         # @param Unit: 单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Page: 数据在原PDF文件中的第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
 
-        attr_accessor :Name, :Item, :Result, :Unit
+        attr_accessor :Name, :Item, :Result, :Unit, :Page
 
-        def initialize(name=nil, item=nil, result=nil, unit=nil)
+        def initialize(name=nil, item=nil, result=nil, unit=nil, page=nil)
           @Name = name
           @Item = item
           @Result = result
           @Unit = unit
+          @Page = page
         end
 
         def deserialize(params)
@@ -12939,6 +13063,7 @@ module TencentCloud
             @Unit = PhysicalBaseItem.new
             @Unit.deserialize(params['Unit'])
           end
+          @Page = params['Page']
         end
       end
 
