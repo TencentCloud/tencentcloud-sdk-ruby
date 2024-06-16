@@ -3562,6 +3562,89 @@ module TencentCloud
         end
       end
 
+      # DescribeAreaBanAreas请求参数结构体
+      class DescribeAreaBanAreasRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeAreaBanAreas返回参数结构体
+      class DescribeAreaBanAreasResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 回包内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DescribeAreaBanAreasRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAreaBanAreasRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAreaBanAreas接口的回包
+      class DescribeAreaBanAreasRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 状态 "0"：未开启地域封禁 "1"：开启地域封禁
+        # @type Status: String
+        # @param Source: 数据来源 custom-自定义(默认)、batch-批量防护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Areas: 字符串数据，配置的地域列表
+        # @type Areas: Array
+        # @param JobType: 定时任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobType: String
+        # @param JobDateTime: 定时任务详细配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param CronType: 周期任务配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronType: String
+
+        attr_accessor :Status, :Source, :Areas, :JobType, :JobDateTime, :CronType
+
+        def initialize(status=nil, source=nil, areas=nil, jobtype=nil, jobdatetime=nil, crontype=nil)
+          @Status = status
+          @Source = source
+          @Areas = areas
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @CronType = crontype
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Source = params['Source']
+          @Areas = params['Areas']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @CronType = params['CronType']
+        end
+      end
+
       # DescribeAreaBanSupportAreas请求参数结构体
       class DescribeAreaBanSupportAreasRequest < TencentCloud::Common::AbstractModel
 

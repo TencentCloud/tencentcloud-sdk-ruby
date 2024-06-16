@@ -4557,7 +4557,7 @@ module TencentCloud
 
       # DeleteImageCaches请求参数结构体
       class DeleteImageCachesRequest < TencentCloud::Common::AbstractModel
-        # @param ImageCacheIds: 镜像缓存Id数组
+        # @param ImageCacheIds: 镜像缓存ID数组
         # @type ImageCacheIds: Array
 
         attr_accessor :ImageCacheIds

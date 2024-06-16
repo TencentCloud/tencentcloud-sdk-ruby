@@ -4266,11 +4266,11 @@ module TencentCloud
         # @type RecordUrl: String
         # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[1800, 36000], 默认 36000s(10 小时)
         # @type MaxDurationLimit: Integer
-        # @param StorageParams: 云存储相关的参数，目前支持腾讯云对象存储以及腾讯云云点播VOD，不支持第三方云存储
+        # @param StorageParams: 【必填】云存储相关的参数，目前支持腾讯云对象存储以及腾讯云云点播VOD，不支持第三方云存储
         # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`
         # @param WebRecordVideoParams: 页面录制视频参数
         # @type WebRecordVideoParams: :class:`Tencentcloud::Trtc.v20190722.models.WebRecordVideoParams`
-        # @param SdkAppId: TRTC的SdkAppId
+        # @param SdkAppId: 【必填】TRTC的SdkAppId
         # @type SdkAppId: Integer
         # @param RecordId: 当对重复任务敏感时，请关注此值： 为了避免任务在短时间内重复发起，导致任务重复
         # 传入录制RecordId来标识此次任务， 小于32字节，若携带RecordId发起两次以上的开始录制请求，任务只会启动一个，第二个报错FailedOperation.TaskExist。注意StartWebRecord调用失败时而非FailedOperation.TaskExist错误，请更换RecordId重新发起。

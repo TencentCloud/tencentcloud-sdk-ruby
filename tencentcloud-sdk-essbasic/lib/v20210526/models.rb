@@ -5711,14 +5711,22 @@ module TencentCloud
         # - false: 否（默认）
         #  注：该参数需要开通“基于子客授权第三方应用可文件发起子客自动签署”，请联系运营经理开通
         # @type PlatformAppAuthorization: Boolean
+        # @param SealTypes: 指定印章类型，指定后只能选择该类型的印章进行授权
+        # 支持以下印章类型：
+        # - OFFICIAL : 企业公章
+        # - CONTRACT : 合同专用章
+        # - FINANCE : 财务专用章
+        # - PERSONNEL : 人事专用章
+        # @type SealTypes: Array
 
-        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization
+        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization, :SealTypes
 
-        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil)
+        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil, sealtypes=nil)
           @Agent = agent
           @AuthorizedOrganizationId = authorizedorganizationid
           @AuthorizedOrganizationName = authorizedorganizationname
           @PlatformAppAuthorization = platformappauthorization
+          @SealTypes = sealtypes
         end
 
         def deserialize(params)
@@ -5729,6 +5737,7 @@ module TencentCloud
           @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
           @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
           @PlatformAppAuthorization = params['PlatformAppAuthorization']
+          @SealTypes = params['SealTypes']
         end
       end
 
@@ -5814,8 +5823,12 @@ module TencentCloud
         # <li> **40_30**: 椭圆形印章40mm x 30mm, 当SealStyle是椭圆的时候才有效</li></ul>
         # @type SealSize: String
         # @param TaxIdentifyCode: 企业税号
-        # 注: `1.印章类型SealType是INVOICE类型时，此参数才会生效`
-        # `2.印章类型SealType是INVOICE类型，且该字段没有传入值或传入空时，会取该企业对应的统一社会信用代码作为默认的企业税号`
+
+        # 注:
+        # <ul>
+        # <li>1.印章类型SealType是INVOICE类型时，此参数才会生效</li>
+        # <li>2.印章类型SealType是INVOICE类型，且该字段没有传入值或传入空时，会取该企业对应的统一社会信用代码作为默认的企业税号（<font color="red">如果是通过授权书授权方式认证的企业，此参数必传不能为空</font>）</li>
+        # </ul>
         # @type TaxIdentifyCode: String
 
         attr_accessor :Agent, :SealName, :SealImage, :Operator, :GenerateSource, :SealType, :SealHorizontalText, :SealStyle, :SealSize, :TaxIdentifyCode

@@ -27,19 +27,24 @@ module TencentCloud
         # @param InstanceId: APM 实例，如果创建时传入的参数为空，则表示自动创建 APM 实例。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param NeedDelete: 是否要删除APM实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedDelete: Boolean
 
-        attr_accessor :Enable, :Region, :InstanceId
+        attr_accessor :Enable, :Region, :InstanceId, :NeedDelete
 
-        def initialize(enable=nil, region=nil, instanceid=nil)
+        def initialize(enable=nil, region=nil, instanceid=nil, needdelete=nil)
           @Enable = enable
           @Region = region
           @InstanceId = instanceid
+          @NeedDelete = needdelete
         end
 
         def deserialize(params)
           @Enable = params['Enable']
           @Region = params['Region']
           @InstanceId = params['InstanceId']
+          @NeedDelete = params['NeedDelete']
         end
       end
 
@@ -423,16 +428,22 @@ module TencentCloud
       # 第三方 Prometheus 配置参数
       class CustomPromConfig < TencentCloud::Common::AbstractModel
         # @param Url: Prometheus 访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param AuthType: 认证方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthType: String
         # @param IsPublicAddr: 是否公网地址，缺省为 false
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublicAddr: Boolean
         # @param VpcId: 虚拟网络id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param Username: Prometheus 用户名（用于 basic 认证方式）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
         # @param Password: Prometheus 密码（用于 basic 认证方式）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
 
         attr_accessor :Url, :AuthType, :IsPublicAddr, :VpcId, :Username, :Password
@@ -1205,10 +1216,16 @@ module TencentCloud
         # @param CrossRegionConfig: 负载均衡跨地域配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossRegionConfig: :class:`Tencentcloud::Tcm.v20210413.models.CrossRegionConfig`
+        # @param MasterZoneID: 设置跨可用区容灾时的主可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterZoneID: String
+        # @param SlaveZoneID: 设置跨可用区容灾时的备可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZoneID: String
 
-        attr_accessor :LoadBalancerType, :SubnetId, :InternetChargeType, :InternetMaxBandwidthOut, :ZoneID, :VipIsp, :TgwGroupName, :AddressIPVersion, :Tags, :ExtensiveClusters, :CrossRegionConfig
+        attr_accessor :LoadBalancerType, :SubnetId, :InternetChargeType, :InternetMaxBandwidthOut, :ZoneID, :VipIsp, :TgwGroupName, :AddressIPVersion, :Tags, :ExtensiveClusters, :CrossRegionConfig, :MasterZoneID, :SlaveZoneID
 
-        def initialize(loadbalancertype=nil, subnetid=nil, internetchargetype=nil, internetmaxbandwidthout=nil, zoneid=nil, vipisp=nil, tgwgroupname=nil, addressipversion=nil, tags=nil, extensiveclusters=nil, crossregionconfig=nil)
+        def initialize(loadbalancertype=nil, subnetid=nil, internetchargetype=nil, internetmaxbandwidthout=nil, zoneid=nil, vipisp=nil, tgwgroupname=nil, addressipversion=nil, tags=nil, extensiveclusters=nil, crossregionconfig=nil, masterzoneid=nil, slavezoneid=nil)
           @LoadBalancerType = loadbalancertype
           @SubnetId = subnetid
           @InternetChargeType = internetchargetype
@@ -1220,6 +1237,8 @@ module TencentCloud
           @Tags = tags
           @ExtensiveClusters = extensiveclusters
           @CrossRegionConfig = crossregionconfig
+          @MasterZoneID = masterzoneid
+          @SlaveZoneID = slavezoneid
         end
 
         def deserialize(params)
@@ -1247,6 +1266,8 @@ module TencentCloud
             @CrossRegionConfig = CrossRegionConfig.new
             @CrossRegionConfig.deserialize(params['CrossRegionConfig'])
           end
+          @MasterZoneID = params['MasterZoneID']
+          @SlaveZoneID = params['SlaveZoneID']
         end
       end
 

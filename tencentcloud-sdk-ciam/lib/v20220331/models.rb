@@ -693,7 +693,7 @@ module TencentCloud
       end
 
       # 导入用户信息
-      # 1、UserName，PhoneNumber ，Email ，WechatOpenId ，WechatUnionId ，AlipayUserId ，QqOpenId ，QqUnionId 八个属性中，导入时必须包含其中一个属性并遵守初始化自定义属性的正则表达式规则。UserName，PhoneNumber，Email的正则表达式在控制台的自定义属性中可以查询到。
+      # 1、UserName，PhoneNumber ，Email ，WechatOpenId ，WechatUnionId ，AlipayUserId ，QqOpenId ，QqUnionId ，WeComUserId 九个属性中，导入时必须包含其中一个属性并遵守初始化自定义属性的正则表达式规则。UserName，PhoneNumber，Email的正则表达式在控制台的自定义属性中可以查询到。
       # 2、对于密码的导入，导入的密码支持明文导入，MD5密文导入，SHA1密文导入，BCRYPT密文导入 ，这个需要在PasswordEncryptTypeEnum 字段中指定。
       # 3、IdentityVerified，IdentityVerificationMethod 支持导入，
       # IdentityVerified 为true，IdentityVerificationMethod必传；
@@ -724,6 +724,8 @@ module TencentCloud
         # @type WechatUnionId: String
         # @param AlipayUserId: 支付宝alipayUserId
         # @type AlipayUserId: String
+        # @param WeComUserId: 企业微信weComUserId
+        # @type WeComUserId: String
         # @param Description: 描述
         # @type Description: String
         # @param Birthdate: 生日
@@ -763,9 +765,9 @@ module TencentCloud
         # @param IndexedAttribute5: 索引字段5
         # @type IndexedAttribute5: String
 
-        attr_accessor :UserName, :PhoneNumber, :Email, :ResidentIdentityCard, :Nickname, :Address, :UserGroup, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Birthdate, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Zone, :Password, :CustomizationAttributes, :Salt, :PasswordEncryptTypeEnum, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
+        attr_accessor :UserName, :PhoneNumber, :Email, :ResidentIdentityCard, :Nickname, :Address, :UserGroup, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :WeComUserId, :Description, :Birthdate, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Zone, :Password, :CustomizationAttributes, :Salt, :PasswordEncryptTypeEnum, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
 
-        def initialize(username=nil, phonenumber=nil, email=nil, residentidentitycard=nil, nickname=nil, address=nil, usergroup=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, birthdate=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, zone=nil, password=nil, customizationattributes=nil, salt=nil, passwordencrypttypeenum=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
+        def initialize(username=nil, phonenumber=nil, email=nil, residentidentitycard=nil, nickname=nil, address=nil, usergroup=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, wecomuserid=nil, description=nil, birthdate=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, zone=nil, password=nil, customizationattributes=nil, salt=nil, passwordencrypttypeenum=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserName = username
           @PhoneNumber = phonenumber
           @Email = email
@@ -778,6 +780,7 @@ module TencentCloud
           @WechatOpenId = wechatopenid
           @WechatUnionId = wechatunionid
           @AlipayUserId = alipayuserid
+          @WeComUserId = wecomuserid
           @Description = description
           @Birthdate = birthdate
           @Name = name
@@ -812,6 +815,7 @@ module TencentCloud
           @WechatOpenId = params['WechatOpenId']
           @WechatUnionId = params['WechatUnionId']
           @AlipayUserId = params['AlipayUserId']
+          @WeComUserId = params['WeComUserId']
           @Description = params['Description']
           @Birthdate = params['Birthdate']
           @Name = params['Name']
@@ -1975,6 +1979,9 @@ module TencentCloud
         # @param AlipayUserId: 支付宝的AlipayUserId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlipayUserId: String
+        # @param WeComUserId: 企业微信的WeComUserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeComUserId: String
         # @param Description: 描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
@@ -2039,9 +2046,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexedAttribute5: String
 
-        attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
+        attr_accessor :UserId, :UserName, :PhoneNumber, :Email, :LastSignOn, :CreatedDate, :Status, :UserDataSourceEnum, :Nickname, :Address, :Birthdate, :UserGroups, :LastModifiedDate, :CustomAttributes, :ResidentIdentityCard, :QqOpenId, :QqUnionId, :WechatOpenId, :WechatUnionId, :AlipayUserId, :WeComUserId, :Description, :Name, :Locale, :Gender, :IdentityVerificationMethod, :IdentityVerified, :Job, :Nationality, :Primary, :Zone, :AlreadyFirstLogin, :TenantId, :UserStoreId, :Version, :LockType, :LockTime, :IndexedAttribute1, :IndexedAttribute2, :IndexedAttribute3, :IndexedAttribute4, :IndexedAttribute5
 
-        def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
+        def initialize(userid=nil, username=nil, phonenumber=nil, email=nil, lastsignon=nil, createddate=nil, status=nil, userdatasourceenum=nil, nickname=nil, address=nil, birthdate=nil, usergroups=nil, lastmodifieddate=nil, customattributes=nil, residentidentitycard=nil, qqopenid=nil, qqunionid=nil, wechatopenid=nil, wechatunionid=nil, alipayuserid=nil, wecomuserid=nil, description=nil, name=nil, locale=nil, gender=nil, identityverificationmethod=nil, identityverified=nil, job=nil, nationality=nil, primary=nil, zone=nil, alreadyfirstlogin=nil, tenantid=nil, userstoreid=nil, version=nil, locktype=nil, locktime=nil, indexedattribute1=nil, indexedattribute2=nil, indexedattribute3=nil, indexedattribute4=nil, indexedattribute5=nil)
           @UserId = userid
           @UserName = username
           @PhoneNumber = phonenumber
@@ -2062,6 +2069,7 @@ module TencentCloud
           @WechatOpenId = wechatopenid
           @WechatUnionId = wechatunionid
           @AlipayUserId = alipayuserid
+          @WeComUserId = wecomuserid
           @Description = description
           @Name = name
           @Locale = locale
@@ -2113,6 +2121,7 @@ module TencentCloud
           @WechatOpenId = params['WechatOpenId']
           @WechatUnionId = params['WechatUnionId']
           @AlipayUserId = params['AlipayUserId']
+          @WeComUserId = params['WeComUserId']
           @Description = params['Description']
           @Name = params['Name']
           @Locale = params['Locale']

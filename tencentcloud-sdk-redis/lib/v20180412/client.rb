@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询全球复制支持地域信息
+
+        # @param request: Request instance for DescribeGlobalReplicationArea.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeGlobalReplicationAreaRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeGlobalReplicationAreaResponse`
+        def DescribeGlobalReplicationArea(request)
+          body = send_request('DescribeGlobalReplicationArea', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlobalReplicationAreaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
 
         # @param request: Request instance for DescribeInstanceAccount.
@@ -1061,6 +1085,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceSpecBandwidth）用于查询或计算带宽规格。
+
+        # @param request: Request instance for DescribeInstanceSpecBandwidth.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceSpecBandwidthRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstanceSpecBandwidthResponse`
+        def DescribeInstanceSpecBandwidth(request)
+          body = send_request('DescribeInstanceSpecBandwidth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceSpecBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeInstanceSupportFeature）用于查询实例支持的功能特性。
 
         # @param request: Request instance for DescribeInstanceSupportFeature.
@@ -1311,6 +1359,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReplicationGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询复制组信息
+
+        # @param request: Request instance for DescribeReplicationGroupInstance.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupInstanceRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupInstanceResponse`
+        def DescribeReplicationGroupInstance(request)
+          body = send_request('DescribeReplicationGroupInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReplicationGroupInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2007,6 +2079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改复制组信息
+
+        # @param request: Request instance for ModifyReplicationGroup.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyReplicationGroupRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyReplicationGroupResponse`
+        def ModifyReplicationGroup(request)
+          body = send_request('ModifyReplicationGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReplicationGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

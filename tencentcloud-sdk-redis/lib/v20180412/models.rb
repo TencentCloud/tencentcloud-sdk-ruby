@@ -236,6 +236,28 @@ module TencentCloud
         end
       end
 
+      # 可使用的地域信息
+      class AvailableRegion < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param AvailableZones: 可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableZones: Array
+
+        attr_accessor :Region, :AvailableZones
+
+        def initialize(region=nil, availablezones=nil)
+          @Region = region
+          @AvailableZones = availablezones
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @AvailableZones = params['AvailableZones']
+        end
+      end
+
       # 备份文件下载信息
       class BackupDownloadInfo < TencentCloud::Common::AbstractModel
         # @param FileName: 备份文件名称。
@@ -1754,6 +1776,44 @@ module TencentCloud
         end
       end
 
+      # DescribeGlobalReplicationArea请求参数结构体
+      class DescribeGlobalReplicationAreaRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeGlobalReplicationArea返回参数结构体
+      class DescribeGlobalReplicationAreaResponse < TencentCloud::Common::AbstractModel
+        # @param AvailableRegions: 可用地域信息
+        # @type AvailableRegions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvailableRegions, :RequestId
+
+        def initialize(availableregions=nil, requestid=nil)
+          @AvailableRegions = availableregions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AvailableRegions'].nil?
+            @AvailableRegions = []
+            params['AvailableRegions'].each do |i|
+              availableregion_tmp = AvailableRegion.new
+              availableregion_tmp.deserialize(i)
+              @AvailableRegions << availableregion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceAccount请求参数结构体
       class DescribeInstanceAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -2855,6 +2915,33 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceSpecBandwidth请求参数结构体
+      class DescribeInstanceSpecBandwidthRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeInstanceSpecBandwidth返回参数结构体
+      class DescribeInstanceSpecBandwidthResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceSupportFeature请求参数结构体
       class DescribeInstanceSupportFeatureRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
@@ -3529,6 +3616,60 @@ module TencentCloud
               @InstanceProxySlowLogDetail << instanceproxyslowlogdetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReplicationGroupInstance请求参数结构体
+      class DescribeReplicationGroupInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeReplicationGroupInstance返回参数结构体
+      class DescribeReplicationGroupInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: AppID。
+        # @type AppId: Integer
+        # @param RegionId: 地域数字编号。
+        # @type RegionId: Integer
+        # @param GroupId: 复制组字符串ID。
+        # @type GroupId: String
+        # @param GroupName: 复制组名称。
+        # @type GroupName: String
+        # @param InstanceRole: 实例复制组角色。
+        # - r:  备实例
+        # - rw: 主实例
+        # @type InstanceRole: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :RegionId, :GroupId, :GroupName, :InstanceRole, :RequestId
+
+        def initialize(appid=nil, regionid=nil, groupid=nil, groupname=nil, instancerole=nil, requestid=nil)
+          @AppId = appid
+          @RegionId = regionid
+          @GroupId = groupid
+          @GroupName = groupname
+          @InstanceRole = instancerole
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @RegionId = params['RegionId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @InstanceRole = params['InstanceRole']
           @RequestId = params['RequestId']
         end
       end
@@ -6280,6 +6421,46 @@ module TencentCloud
 
       # ModifyParamTemplate返回参数结构体
       class ModifyParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyReplicationGroup请求参数结构体
+      class ModifyReplicationGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 复制组字符串ID
+        # @type GroupId: String
+        # @param GroupName: 复制组名称
+        # @type GroupName: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :GroupId, :GroupName, :Remark
+
+        def initialize(groupid=nil, groupname=nil, remark=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyReplicationGroup返回参数结构体
+      class ModifyReplicationGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

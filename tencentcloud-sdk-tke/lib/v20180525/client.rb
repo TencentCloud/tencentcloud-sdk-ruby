@@ -2789,6 +2789,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # tdcc接口已迁移至tdcc产品下，tke下的接口下线
+
         # 获取导入第三方集群YAML定义
 
         # @param request: Request instance for DescribeExternalClusterSpec.

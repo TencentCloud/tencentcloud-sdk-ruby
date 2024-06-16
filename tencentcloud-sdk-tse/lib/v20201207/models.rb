@@ -10619,10 +10619,16 @@ module TencentCloud
         # @param StorageOption: 存储额外配置选项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageOption: Array
+        # @param ZookeeperRegionInfo: Zookeeper的额外环境数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZookeeperRegionInfo: :class:`Tencentcloud::Tse.v20201207.models.ZookeeperRegionInfo`
+        # @param DeployMode: 部署架构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployMode: String
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption, :ZookeeperRegionInfo, :DeployMode
 
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil, zookeeperregioninfo=nil, deploymode=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -10657,6 +10663,8 @@ module TencentCloud
           @FeatureVersion = featureversion
           @EnableClientIntranet = enableclientintranet
           @StorageOption = storageoption
+          @ZookeeperRegionInfo = zookeeperregioninfo
+          @DeployMode = deploymode
         end
 
         def deserialize(params)
@@ -10736,6 +10744,11 @@ module TencentCloud
               @StorageOption << storageoption_tmp
             end
           end
+          unless params['ZookeeperRegionInfo'].nil?
+            @ZookeeperRegionInfo = ZookeeperRegionInfo.new
+            @ZookeeperRegionInfo.deserialize(params['ZookeeperRegionInfo'])
+          end
+          @DeployMode = params['DeployMode']
         end
       end
 
@@ -11263,19 +11276,92 @@ module TencentCloud
         # @param IntranetAddress: 内网访问地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntranetAddress: String
+        # @param LbSubnetId: 负载均衡均衡接入点子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LbSubnetId: String
 
-        attr_accessor :VpcId, :SubnetId, :IntranetAddress
+        attr_accessor :VpcId, :SubnetId, :IntranetAddress, :LbSubnetId
 
-        def initialize(vpcid=nil, subnetid=nil, intranetaddress=nil)
+        def initialize(vpcid=nil, subnetid=nil, intranetaddress=nil, lbsubnetid=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @IntranetAddress = intranetaddress
+          @LbSubnetId = lbsubnetid
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @IntranetAddress = params['IntranetAddress']
+          @LbSubnetId = params['LbSubnetId']
+        end
+      end
+
+      # Zookeeper的地域额外信息记录
+      class ZookeeperRegionInfo < TencentCloud::Common::AbstractModel
+        # @param DeployMode: 部署架构信息
+
+        # - SingleRegion: 普通单地域
+        # - MultiRegion: 普通多地域场景
+        # - MasterSlave: 两地域，主备地域场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployMode: String
+        # @param MainRegion: 主地域的额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainRegion: :class:`Tencentcloud::Tse.v20201207.models.ZookeeperRegionMyIdInfo`
+        # @param OtherRegions: 其他地域的额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherRegions: Array
+
+        attr_accessor :DeployMode, :MainRegion, :OtherRegions
+
+        def initialize(deploymode=nil, mainregion=nil, otherregions=nil)
+          @DeployMode = deploymode
+          @MainRegion = mainregion
+          @OtherRegions = otherregions
+        end
+
+        def deserialize(params)
+          @DeployMode = params['DeployMode']
+          unless params['MainRegion'].nil?
+            @MainRegion = ZookeeperRegionMyIdInfo.new
+            @MainRegion.deserialize(params['MainRegion'])
+          end
+          unless params['OtherRegions'].nil?
+            @OtherRegions = []
+            params['OtherRegions'].each do |i|
+              zookeeperregionmyidinfo_tmp = ZookeeperRegionMyIdInfo.new
+              zookeeperregionmyidinfo_tmp.deserialize(i)
+              @OtherRegions << zookeeperregionmyidinfo_tmp
+            end
+          end
+        end
+      end
+
+      # Zookeeper的地域信息的 myid 信息记录
+      class ZookeeperRegionMyIdInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param MyIdStart: myid 的起始号段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MyIdStart: Integer
+        # @param MyIdEnd: myid 的结束号段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MyIdEnd: Integer
+
+        attr_accessor :Region, :MyIdStart, :MyIdEnd
+
+        def initialize(region=nil, myidstart=nil, myidend=nil)
+          @Region = region
+          @MyIdStart = myidstart
+          @MyIdEnd = myidend
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @MyIdStart = params['MyIdStart']
+          @MyIdEnd = params['MyIdEnd']
         end
       end
 

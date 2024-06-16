@@ -9444,10 +9444,13 @@ module TencentCloud
         # @param ClusterVersion: 集群版本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterVersion: String
+        # @param PayMode: 计费模式，0-后付费，1-预付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -9470,6 +9473,7 @@ module TencentCloud
           @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
           @MessageConsumeRate = messageconsumerate
           @ClusterVersion = clusterversion
+          @PayMode = paymode
         end
 
         def deserialize(params)
@@ -9502,6 +9506,7 @@ module TencentCloud
           @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
           @MessageConsumeRate = params['MessageConsumeRate']
           @ClusterVersion = params['ClusterVersion']
+          @PayMode = params['PayMode']
         end
       end
 

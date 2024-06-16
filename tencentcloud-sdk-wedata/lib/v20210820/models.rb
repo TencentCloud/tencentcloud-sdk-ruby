@@ -4035,6 +4035,55 @@ module TencentCloud
         end
       end
 
+      # CreateTaskFolder请求参数结构体
+      class CreateTaskFolderRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param FolderName: 文件夹名称
+        # @type FolderName: String
+        # @param WorkflowId: 工作量ID
+        # @type WorkflowId: String
+        # @param ParentFolderId: 父文件夹ID
+        # @type ParentFolderId: String
+
+        attr_accessor :ProjectId, :FolderName, :WorkflowId, :ParentFolderId
+
+        def initialize(projectid=nil, foldername=nil, workflowid=nil, parentfolderid=nil)
+          @ProjectId = projectid
+          @FolderName = foldername
+          @WorkflowId = workflowid
+          @ParentFolderId = parentfolderid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @FolderName = params['FolderName']
+          @WorkflowId = params['WorkflowId']
+          @ParentFolderId = params['ParentFolderId']
+        end
+      end
+
+      # CreateTaskFolder返回参数结构体
+      class CreateTaskFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务文件夹Id，null则创建失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTask请求参数结构体
       class CreateTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
