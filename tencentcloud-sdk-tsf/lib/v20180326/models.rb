@@ -12304,10 +12304,13 @@ module TencentCloud
         # @param ClusterName: 集群名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
+        # @param ConfigCenters: 配置中心发布详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigCenters: Array
 
-        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseDesc, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName
+        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseDesc, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ConfigCenters
 
-        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasedesc=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil)
+        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasedesc=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, configcenters=nil)
           @ConfigReleaseId = configreleaseid
           @ConfigId = configid
           @ConfigName = configname
@@ -12320,6 +12323,7 @@ module TencentCloud
           @NamespaceName = namespacename
           @ClusterId = clusterid
           @ClusterName = clustername
+          @ConfigCenters = configcenters
         end
 
         def deserialize(params)
@@ -12335,6 +12339,14 @@ module TencentCloud
           @NamespaceName = params['NamespaceName']
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
+          unless params['ConfigCenters'].nil?
+            @ConfigCenters = []
+            params['ConfigCenters'].each do |i|
+              tsfconfigcenter_tmp = TsfConfigCenter.new
+              tsfconfigcenter_tmp.deserialize(i)
+              @ConfigCenters << tsfconfigcenter_tmp
+            end
+          end
         end
       end
 

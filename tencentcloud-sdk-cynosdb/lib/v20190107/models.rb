@@ -11951,10 +11951,20 @@ module TencentCloud
         # @type DealMode: Integer
         # @param PayMode: 计算节点付费模式：0-按量计费，1-预付费
         # @type PayMode: Integer
+        # @param TimeSpan: 时间
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 单位
+        # @type TimeUnit: String
+        # @param RollbackDatabases: 回档库信息
+        # @type RollbackDatabases: Array
+        # @param RollbackTables: 回档表信息
+        # @type RollbackTables: Array
+        # @param OriginalROInstanceList: 原ro实例信息
+        # @type OriginalROInstanceList: Array
 
-        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode
+        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList
 
-        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil)
+        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil)
           @Zone = zone
           @OriginalClusterId = originalclusterid
           @UniqVpcId = uniqvpcid
@@ -11976,6 +11986,11 @@ module TencentCloud
           @InstanceInitInfos = instanceinitinfos
           @DealMode = dealmode
           @PayMode = paymode
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @RollbackDatabases = rollbackdatabases
+          @RollbackTables = rollbacktables
+          @OriginalROInstanceList = originalroinstancelist
         end
 
         def deserialize(params)
@@ -12021,6 +12036,25 @@ module TencentCloud
           end
           @DealMode = params['DealMode']
           @PayMode = params['PayMode']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          unless params['RollbackDatabases'].nil?
+            @RollbackDatabases = []
+            params['RollbackDatabases'].each do |i|
+              rollbackdatabase_tmp = RollbackDatabase.new
+              rollbackdatabase_tmp.deserialize(i)
+              @RollbackDatabases << rollbackdatabase_tmp
+            end
+          end
+          unless params['RollbackTables'].nil?
+            @RollbackTables = []
+            params['RollbackTables'].each do |i|
+              rollbacktable_tmp = RollbackTable.new
+              rollbacktable_tmp.deserialize(i)
+              @RollbackTables << rollbacktable_tmp
+            end
+          end
+          @OriginalROInstanceList = params['OriginalROInstanceList']
         end
       end
 

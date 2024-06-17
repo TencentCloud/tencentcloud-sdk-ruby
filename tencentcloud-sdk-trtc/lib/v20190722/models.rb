@@ -4817,6 +4817,11 @@ module TencentCloud
         # @type TargetUserId: String
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId
+        extend Gem::Deprecate
+        deprecate :IMAdminUserId, :none, 2024, 6
+        deprecate :IMAdminUserId=, :none, 2024, 6
+        deprecate :IMAdminUserSig, :none, 2024, 6
+        deprecate :IMAdminUserSig=, :none, 2024, 6
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil)
           @UserId = userid

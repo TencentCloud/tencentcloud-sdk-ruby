@@ -7703,14 +7703,14 @@ module TencentCloud
       # 个性化参数
       class EmbedUrlOption < TencentCloud::Common::AbstractModel
         # @param ShowFlowDetailComponent: 合同详情预览，允许展示控件信息
-        # <br/>true：允许在合同详情页展示控件
-        # <br/>false：不允许在合同详情页展示控件
-        # <br/>默认false，合同详情页不展示控件
+        # <ul>
+        # <li><b>true</b>：允许在合同详情页展示控件</li>
+        # <li><b>false</b>：（默认）不允许在合同详情页展示控件</li>
+        # </ul>
         # @type ShowFlowDetailComponent: Boolean
         # @param ShowTemplateComponent: 模板预览，允许展示模板控件信息
-        # <br/>true：允许在模板预览页展示控件
-        # <br/>false：不允许在模板预览页展示控件
-        # <br/>默认false，模板预览页不展示控件
+        # <ul><li> <b>true</b> :允许在模板预览页展示控件</li>
+        # <li> <b>false</b> :（默认）不允许在模板预览页展示控件</li></ul>
         # @type ShowTemplateComponent: Boolean
 
         attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent

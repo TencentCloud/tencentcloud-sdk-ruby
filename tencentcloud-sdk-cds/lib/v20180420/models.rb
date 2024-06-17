@@ -137,41 +137,6 @@ module TencentCloud
         end
       end
 
-      # DescribeDasbImageIds请求参数结构体
-      class DescribeDasbImageIdsRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeDasbImageIds返回参数结构体
-      class DescribeDasbImageIdsResponse < TencentCloud::Common::AbstractModel
-        # @param BaseImageId: 基础镜像ID
-        # @type BaseImageId: String
-        # @param AiImageId: AI镜像ID
-        # @type AiImageId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :BaseImageId, :AiImageId, :RequestId
-
-        def initialize(baseimageid=nil, aiimageid=nil, requestid=nil)
-          @BaseImageId = baseimageid
-          @AiImageId = aiimageid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @BaseImageId = params['BaseImageId']
-          @AiImageId = params['AiImageId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDbauditInstanceType请求参数结构体
       class DescribeDbauditInstanceTypeRequest < TencentCloud::Common::AbstractModel
 

@@ -1781,6 +1781,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 历史废弃接口，从云API下线
+
         # 指定时间和集群查询是否可回滚
 
         # @param request: Request instance for DescribeRollbackTimeValidity.

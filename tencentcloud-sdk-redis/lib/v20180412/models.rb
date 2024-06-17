@@ -2821,7 +2821,7 @@ module TencentCloud
 
       # DescribeInstanceSecurityGroup请求参数结构体
       class DescribeInstanceSecurityGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 列表。例如;["crs-f2ho5rsz\n"]
+        # @param InstanceIds: 实例 ID 列表，数组长度限制[0,100]。例如：["crs-f2ho5rsz\n"]
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -3837,7 +3837,7 @@ module TencentCloud
       class DescribeSlowLogResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 慢查询总数。
         # @type TotalCount: Integer
-        # @param InstanceSlowlogDetail: 该参数存在命名不规范问题，建议用参数InstanceSlowLogDetail取代。慢查询详情。
+        # @param InstanceSlowlogDetail: 已废弃，该参数存在命名不规范问题，后续用参数InstanceSlowLogDetail取代。慢查询详情。
         # @type InstanceSlowlogDetail: Array
         # @param InstanceSlowLogDetail: 慢查询详情。
         # @type InstanceSlowLogDetail: Array
@@ -7865,17 +7865,21 @@ module TencentCloud
         # @type NodeId: String
         # @param NodeRole: 节点角色
         # @type NodeRole: String
+        # @param ZoneId: 可用区 ID。
+        # @type ZoneId: Integer
 
-        attr_accessor :NodeId, :NodeRole
+        attr_accessor :NodeId, :NodeRole, :ZoneId
 
-        def initialize(nodeid=nil, noderole=nil)
+        def initialize(nodeid=nil, noderole=nil, zoneid=nil)
           @NodeId = nodeid
           @NodeRole = noderole
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
           @NodeRole = params['NodeRole']
+          @ZoneId = params['ZoneId']
         end
       end
 

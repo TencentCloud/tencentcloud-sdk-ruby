@@ -200,10 +200,17 @@ module TencentCloud
         # @type Status: Integer
         # @param BackupMethod: 备份方法，0-逻辑备份，1-物理备份
         # @type BackupMethod: Integer
+        # @param BackId: 备份记录id
+        # @type BackId: Integer
+        # @param DeleteTime: 备份删除时间
+        # @type DeleteTime: String
+        # @param BackupRegion: 异地备份地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupRegion: String
 
-        attr_accessor :InstanceId, :BackupType, :BackupName, :BackupDesc, :BackupSize, :StartTime, :EndTime, :Status, :BackupMethod
+        attr_accessor :InstanceId, :BackupType, :BackupName, :BackupDesc, :BackupSize, :StartTime, :EndTime, :Status, :BackupMethod, :BackId, :DeleteTime, :BackupRegion
 
-        def initialize(instanceid=nil, backuptype=nil, backupname=nil, backupdesc=nil, backupsize=nil, starttime=nil, endtime=nil, status=nil, backupmethod=nil)
+        def initialize(instanceid=nil, backuptype=nil, backupname=nil, backupdesc=nil, backupsize=nil, starttime=nil, endtime=nil, status=nil, backupmethod=nil, backid=nil, deletetime=nil, backupregion=nil)
           @InstanceId = instanceid
           @BackupType = backuptype
           @BackupName = backupname
@@ -213,6 +220,9 @@ module TencentCloud
           @EndTime = endtime
           @Status = status
           @BackupMethod = backupmethod
+          @BackId = backid
+          @DeleteTime = deletetime
+          @BackupRegion = backupregion
         end
 
         def deserialize(params)
@@ -225,6 +235,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Status = params['Status']
           @BackupMethod = params['BackupMethod']
+          @BackId = params['BackId']
+          @DeleteTime = params['DeleteTime']
+          @BackupRegion = params['BackupRegion']
         end
       end
 

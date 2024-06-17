@@ -29,32 +29,6 @@ module TencentCloud
         end
 
 
-        # 这些接口是传统版堡垒机接口.数审未用到，堡垒机的已全部迁移到dasb下，cds这边预下线
-
-        # 获取镜像列表
-
-        # @param request: Request instance for DescribeDasbImageIds.
-        # @type request: :class:`Tencentcloud::cds::V20180420::DescribeDasbImageIdsRequest`
-        # @rtype: :class:`Tencentcloud::cds::V20180420::DescribeDasbImageIdsResponse`
-        def DescribeDasbImageIds(request)
-          body = send_request('DescribeDasbImageIds', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDasbImageIdsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
 
         # @param request: Request instance for DescribeDbauditInstanceType.

@@ -580,20 +580,28 @@ module TencentCloud
       # 比较表格的Meta信息
       class CompareTablesInfo < TencentCloud::Common::AbstractModel
         # @param SrcTableClusterId: 源表格的集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableClusterId: String
         # @param SrcTableGroupId: 源表格的表格组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableGroupId: String
         # @param SrcTableName: 源表格的表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableName: String
         # @param DstTableClusterId: 目标表格的集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableClusterId: String
         # @param DstTableGroupId: 目标表格的表格组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableGroupId: String
         # @param DstTableName: 目标表格的表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableName: String
         # @param SrcTableInstanceId: 源表格的实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableInstanceId: String
         # @param DstTableInstanceId: 目标表格的实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableInstanceId: String
 
         attr_accessor :SrcTableClusterId, :SrcTableGroupId, :SrcTableName, :DstTableClusterId, :DstTableGroupId, :DstTableName, :SrcTableInstanceId, :DstTableInstanceId
@@ -2600,16 +2608,22 @@ module TencentCloud
       # ckafka地址信息
       class KafkaInfo < TencentCloud::Common::AbstractModel
         # @param Address: Kafka address
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param Topic: Kafka topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topic: String
         # @param User: kafka username
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Password: kafka password
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Instance: ckafka实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instance: String
         # @param IsVpc: 是否走VPC
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVpc: Integer
 
         attr_accessor :Address, :Topic, :User, :Password, :Instance, :IsVpc
@@ -4282,10 +4296,13 @@ module TencentCloud
         # @param SnapshotStatus: 快照状态，0 生成中 1 正常 2 删除中 3 已失效 4 回档使用中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotStatus: Integer
+        # @param ApplicationId: 申请单ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
 
-        attr_accessor :TableGroupId, :TableName, :TaskId, :Error, :SnapshotName, :SnapshotTime, :SnapshotDeadTime, :SnapshotCreateTime, :SnapshotSize, :SnapshotStatus
+        attr_accessor :TableGroupId, :TableName, :TaskId, :Error, :SnapshotName, :SnapshotTime, :SnapshotDeadTime, :SnapshotCreateTime, :SnapshotSize, :SnapshotStatus, :ApplicationId
 
-        def initialize(tablegroupid=nil, tablename=nil, taskid=nil, error=nil, snapshotname=nil, snapshottime=nil, snapshotdeadtime=nil, snapshotcreatetime=nil, snapshotsize=nil, snapshotstatus=nil)
+        def initialize(tablegroupid=nil, tablename=nil, taskid=nil, error=nil, snapshotname=nil, snapshottime=nil, snapshotdeadtime=nil, snapshotcreatetime=nil, snapshotsize=nil, snapshotstatus=nil, applicationid=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
           @TaskId = taskid
@@ -4296,6 +4313,7 @@ module TencentCloud
           @SnapshotCreateTime = snapshotcreatetime
           @SnapshotSize = snapshotsize
           @SnapshotStatus = snapshotstatus
+          @ApplicationId = applicationid
         end
 
         def deserialize(params)
@@ -4312,6 +4330,7 @@ module TencentCloud
           @SnapshotCreateTime = params['SnapshotCreateTime']
           @SnapshotSize = params['SnapshotSize']
           @SnapshotStatus = params['SnapshotStatus']
+          @ApplicationId = params['ApplicationId']
         end
       end
 
@@ -4925,10 +4944,19 @@ module TencentCloud
         # @type Operator: String
         # @param Content: 任务详情
         # @type Content: String
+        # @param TableGroupId: 表格组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableGroupId: String
+        # @param TableGroupName: 表格组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableGroupName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
 
-        attr_accessor :TaskId, :TaskType, :TransId, :ClusterId, :ClusterName, :Progress, :StartTime, :UpdateTime, :Operator, :Content
+        attr_accessor :TaskId, :TaskType, :TransId, :ClusterId, :ClusterName, :Progress, :StartTime, :UpdateTime, :Operator, :Content, :TableGroupId, :TableGroupName, :TableName
 
-        def initialize(taskid=nil, tasktype=nil, transid=nil, clusterid=nil, clustername=nil, progress=nil, starttime=nil, updatetime=nil, operator=nil, content=nil)
+        def initialize(taskid=nil, tasktype=nil, transid=nil, clusterid=nil, clustername=nil, progress=nil, starttime=nil, updatetime=nil, operator=nil, content=nil, tablegroupid=nil, tablegroupname=nil, tablename=nil)
           @TaskId = taskid
           @TaskType = tasktype
           @TransId = transid
@@ -4939,6 +4967,9 @@ module TencentCloud
           @UpdateTime = updatetime
           @Operator = operator
           @Content = content
+          @TableGroupId = tablegroupid
+          @TableGroupName = tablegroupname
+          @TableName = tablename
         end
 
         def deserialize(params)
@@ -4952,6 +4983,9 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Operator = params['Operator']
           @Content = params['Content']
+          @TableGroupId = params['TableGroupId']
+          @TableGroupName = params['TableGroupName']
+          @TableName = params['TableName']
         end
       end
 

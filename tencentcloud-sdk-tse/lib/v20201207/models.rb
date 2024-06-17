@@ -6331,17 +6331,58 @@ module TencentCloud
 
       # DescribePublicAddressConfig返回参数结构体
       class DescribePublicAddressConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 公网地址信息
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribePublicAddressConfigResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribePublicAddressConfigResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取云原生api网关公网地址信息响应结果
+      class DescribePublicAddressConfigResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param ConfigList: 公网地址信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigList: Array
+        # @param TotalCount: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :GatewayId, :ConfigList, :TotalCount
+
+        def initialize(gatewayid=nil, configlist=nil, totalcount=nil)
+          @GatewayId = gatewayid
+          @ConfigList = configlist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          unless params['ConfigList'].nil?
+            @ConfigList = []
+            params['ConfigList'].each do |i|
+              publicaddressconfig_tmp = PublicAddressConfig.new
+              publicaddressconfig_tmp.deserialize(i)
+              @ConfigList << publicaddressconfig_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -10280,6 +10321,43 @@ module TencentCloud
 
         def deserialize(params)
           @IntranetAddress = params['IntranetAddress']
+        end
+      end
+
+      # 公网地址信息
+      class PublicAddressConfig < TencentCloud::Common::AbstractModel
+        # @param Vip: 公网 ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param InternetMaxBandwidthOut: 公网最大带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param GroupId: 公网所属分组 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 公网所属分组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param NetworkId: 公网负载均衡 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkId: String
+
+        attr_accessor :Vip, :InternetMaxBandwidthOut, :GroupId, :GroupName, :NetworkId
+
+        def initialize(vip=nil, internetmaxbandwidthout=nil, groupid=nil, groupname=nil, networkid=nil)
+          @Vip = vip
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @GroupId = groupid
+          @GroupName = groupname
+          @NetworkId = networkid
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @NetworkId = params['NetworkId']
         end
       end
 
