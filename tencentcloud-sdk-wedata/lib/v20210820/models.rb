@@ -18660,6 +18660,59 @@ module TencentCloud
         end
       end
 
+      # MoveTasksToFolder请求参数结构体
+      class MoveTasksToFolderRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
+        # @param TaskFolderId: 任务文件夹ID
+        # @type TaskFolderId: String
+        # @param TaskIds: 任务ID
+        # @type TaskIds: Array
+        # @param VirtualTaskIds: 虚拟任务ID
+        # @type VirtualTaskIds: Array
+
+        attr_accessor :ProjectId, :WorkflowId, :TaskFolderId, :TaskIds, :VirtualTaskIds
+
+        def initialize(projectid=nil, workflowid=nil, taskfolderid=nil, taskids=nil, virtualtaskids=nil)
+          @ProjectId = projectid
+          @WorkflowId = workflowid
+          @TaskFolderId = taskfolderid
+          @TaskIds = taskids
+          @VirtualTaskIds = virtualtaskids
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @WorkflowId = params['WorkflowId']
+          @TaskFolderId = params['TaskFolderId']
+          @TaskIds = params['TaskIds']
+          @VirtualTaskIds = params['VirtualTaskIds']
+        end
+      end
+
+      # MoveTasksToFolder返回参数结构体
+      class MoveTasksToFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: true代表成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 离线实例
       class OfflineInstance < TencentCloud::Common::AbstractModel
         # @param CreateUin: 创建账号sub uin
@@ -19105,7 +19158,7 @@ module TencentCloud
         # @type LinksList: Array
         # @param CirculateTaskList: 画布循环依赖任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CirculateTaskList: :class:`Tencentcloud::Wedata.v20210820.models.OpsTaskCanvasDto`
+        # @type CirculateTaskList: Array
 
         attr_accessor :TasksList, :LinksList, :CirculateTaskList
 
@@ -19133,8 +19186,12 @@ module TencentCloud
             end
           end
           unless params['CirculateTaskList'].nil?
-            @CirculateTaskList = OpsTaskCanvasDto.new
-            @CirculateTaskList.deserialize(params['CirculateTaskList'])
+            @CirculateTaskList = []
+            params['CirculateTaskList'].each do |i|
+              opstaskcanvasdto_tmp = OpsTaskCanvasDto.new
+              opstaskcanvasdto_tmp.deserialize(i)
+              @CirculateTaskList << opstaskcanvasdto_tmp
+            end
           end
         end
       end

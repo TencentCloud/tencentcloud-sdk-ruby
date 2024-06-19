@@ -5371,6 +5371,83 @@ module TencentCloud
         end
       end
 
+      # DescribeVULRiskDetail请求参数结构体
+      class DescribeVULRiskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param RiskId: 风险id
+        # @type RiskId: String
+        # @param PCMGRId: pcMgrId
+        # @type PCMGRId: String
+
+        attr_accessor :MemberId, :RiskId, :PCMGRId
+
+        def initialize(memberid=nil, riskid=nil, pcmgrid=nil)
+          @MemberId = memberid
+          @RiskId = riskid
+          @PCMGRId = pcmgrid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @RiskId = params['RiskId']
+          @PCMGRId = params['PCMGRId']
+        end
+      end
+
+      # DescribeVULRiskDetail返回参数结构体
+      class DescribeVULRiskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceSupport: 安全产品支持情况
+        # @type ServiceSupport: Array
+        # @param VulTrend: 漏洞趋势
+        # @type VulTrend: Array
+        # @param VulData: 漏洞补充信息
+        # @type VulData: :class:`Tencentcloud::Csip.v20221121.models.VULRiskInfo`
+        # @param QuestionId: 小助手问答id
+        # @type QuestionId: String
+        # @param SessionId: 会话id
+        # @type SessionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceSupport, :VulTrend, :VulData, :QuestionId, :SessionId, :RequestId
+
+        def initialize(servicesupport=nil, vultrend=nil, vuldata=nil, questionid=nil, sessionid=nil, requestid=nil)
+          @ServiceSupport = servicesupport
+          @VulTrend = vultrend
+          @VulData = vuldata
+          @QuestionId = questionid
+          @SessionId = sessionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceSupport'].nil?
+            @ServiceSupport = []
+            params['ServiceSupport'].each do |i|
+              servicesupport_tmp = ServiceSupport.new
+              servicesupport_tmp.deserialize(i)
+              @ServiceSupport << servicesupport_tmp
+            end
+          end
+          unless params['VulTrend'].nil?
+            @VulTrend = []
+            params['VulTrend'].each do |i|
+              vultrend_tmp = VulTrend.new
+              vultrend_tmp.deserialize(i)
+              @VulTrend << vultrend_tmp
+            end
+          end
+          unless params['VulData'].nil?
+            @VulData = VULRiskInfo.new
+            @VulData.deserialize(params['VulData'])
+          end
+          @QuestionId = params['QuestionId']
+          @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcAssets请求参数结构体
       class DescribeVpcAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤参数
@@ -5448,6 +5525,117 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @AppIdList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulViewVulRiskList请求参数结构体
+      class DescribeVulViewVulRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
+
+        attr_accessor :MemberId, :Filter, :Tags
+
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
+          @Filter = filter
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVulViewVulRiskList返回参数结构体
+      class DescribeVulViewVulRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Data: 漏洞产视角的漏洞风险列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param LevelLists: 危险等级列表
+        # @type LevelLists: Array
+        # @param FromLists: 来源列表
+        # @type FromLists: Array
+        # @param VULTypeLists: 漏洞类型列表
+        # @type VULTypeLists: Array
+        # @param Tags: tag枚举
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :LevelLists, :FromLists, :VULTypeLists, :Tags, :RequestId
+
+        def initialize(totalcount=nil, data=nil, levellists=nil, fromlists=nil, vultypelists=nil, tags=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @LevelLists = levellists
+          @FromLists = fromlists
+          @VULTypeLists = vultypelists
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              vulviewvulriskdata_tmp = VULViewVULRiskData.new
+              vulviewvulriskdata_tmp.deserialize(i)
+              @Data << vulviewvulriskdata_tmp
+            end
+          end
+          unless params['LevelLists'].nil?
+            @LevelLists = []
+            params['LevelLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @LevelLists << filterdataobject_tmp
+            end
+          end
+          unless params['FromLists'].nil?
+            @FromLists = []
+            params['FromLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @FromLists << filterdataobject_tmp
+            end
+          end
+          unless params['VULTypeLists'].nil?
+            @VULTypeLists = []
+            params['VULTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @VULTypeLists << filterdataobject_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @Tags << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8087,6 +8275,45 @@ module TencentCloud
         end
       end
 
+      # 漏洞风险信息
+      class VULRiskInfo < TencentCloud::Common::AbstractModel
+        # @param Fix: 修复建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fix: String
+        # @param References: 技术参考/参考链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type References: String
+        # @param Describe: 漏洞描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param ImpactComponent: 受影响组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactComponent: Array
+
+        attr_accessor :Fix, :References, :Describe, :ImpactComponent
+
+        def initialize(fix=nil, references=nil, describe=nil, impactcomponent=nil)
+          @Fix = fix
+          @References = references
+          @Describe = describe
+          @ImpactComponent = impactcomponent
+        end
+
+        def deserialize(params)
+          @Fix = params['Fix']
+          @References = params['References']
+          @Describe = params['Describe']
+          unless params['ImpactComponent'].nil?
+            @ImpactComponent = []
+            params['ImpactComponent'].each do |i|
+              vulimpactcomponentinfo_tmp = VulImpactComponentInfo.new
+              vulimpactcomponentinfo_tmp.deserialize(i)
+              @ImpactComponent << vulimpactcomponentinfo_tmp
+            end
+          end
+        end
+      end
+
       # 漏洞视角的漏洞风险对象
       class VULViewVULRisk < TencentCloud::Common::AbstractModel
         # @param Port: 端口
@@ -8199,6 +8426,150 @@ module TencentCloud
         end
       end
 
+      # 漏洞视角的漏洞风险对象
+      class VULViewVULRiskData < TencentCloud::Common::AbstractModel
+        # @param Port: 端口
+        # @type Port: String
+        # @param NoHandleCount: 影响资产
+        # @type NoHandleCount: Integer
+        # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
+        # @type Level: String
+        # @param Component: 组件
+        # @type Component: String
+        # @param RecentTime: 最近识别时间
+        # @type RecentTime: String
+        # @param FirstTime: 首次识别时间
+        # @type FirstTime: String
+        # @param AffectAssetCount: 影响资产数量
+        # @type AffectAssetCount: Integer
+        # @param RiskId: 风险ID
+        # @type RiskId: String
+        # @param From: 扫描来源，具体看接口返回枚举类型
+        # @type From: String
+        # @param Index: 前端索引
+        # @type Index: String
+        # @param VULType: 漏洞类型
+        # @type VULType: String
+        # @param VULName: 漏洞名
+        # @type VULName: String
+        # @param CVE: cve
+        # @type CVE: String
+        # @param Payload: 漏洞payload
+        # @type Payload: String
+        # @param AppName: 漏洞影响组件
+        # @type AppName: String
+        # @param AppVersion: 漏洞影响版本
+        # @type AppVersion: String
+        # @param VULURL: 风险点
+        # @type VULURL: String
+        # @param Nick: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nick: String
+        # @param AppId: 用户appid
+        # @type AppId: String
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param EMGCVulType: 应急漏洞类型，1-应急漏洞，0-非应急漏洞
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EMGCVulType: Integer
+        # @param CVSS: CVSS评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVSS: Float
+        # @param PCMGRId: PCMGRId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PCMGRId: String
+        # @param VulTag: 漏洞标签。搜索时应急 必修传参VulTag=SuggestRepair/EMGCVul
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulTag: Array
+        # @param DisclosureTime: 漏洞披露时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisclosureTime: String
+        # @param AttackHeat: 攻击热度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackHeat: Integer
+        # @param IsSuggest: 是否必修漏洞1是，0不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSuggest: Integer
+        # @param HandleTaskId: 处置任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HandleTaskId: String
+        # @param EngineSource: 引擎来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineSource: String
+        # @param VulRiskId: 新的漏洞风险id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulRiskId: String
+
+        attr_accessor :Port, :NoHandleCount, :Level, :Component, :RecentTime, :FirstTime, :AffectAssetCount, :RiskId, :From, :Index, :VULType, :VULName, :CVE, :Payload, :AppName, :AppVersion, :VULURL, :Nick, :AppId, :Uin, :EMGCVulType, :CVSS, :PCMGRId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId
+
+        def initialize(port=nil, nohandlecount=nil, level=nil, component=nil, recenttime=nil, firsttime=nil, affectassetcount=nil, riskid=nil, from=nil, index=nil, vultype=nil, vulname=nil, cve=nil, payload=nil, appname=nil, appversion=nil, vulurl=nil, nick=nil, appid=nil, uin=nil, emgcvultype=nil, cvss=nil, pcmgrid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil)
+          @Port = port
+          @NoHandleCount = nohandlecount
+          @Level = level
+          @Component = component
+          @RecentTime = recenttime
+          @FirstTime = firsttime
+          @AffectAssetCount = affectassetcount
+          @RiskId = riskid
+          @From = from
+          @Index = index
+          @VULType = vultype
+          @VULName = vulname
+          @CVE = cve
+          @Payload = payload
+          @AppName = appname
+          @AppVersion = appversion
+          @VULURL = vulurl
+          @Nick = nick
+          @AppId = appid
+          @Uin = uin
+          @EMGCVulType = emgcvultype
+          @CVSS = cvss
+          @PCMGRId = pcmgrid
+          @VulTag = vultag
+          @DisclosureTime = disclosuretime
+          @AttackHeat = attackheat
+          @IsSuggest = issuggest
+          @HandleTaskId = handletaskid
+          @EngineSource = enginesource
+          @VulRiskId = vulriskid
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @NoHandleCount = params['NoHandleCount']
+          @Level = params['Level']
+          @Component = params['Component']
+          @RecentTime = params['RecentTime']
+          @FirstTime = params['FirstTime']
+          @AffectAssetCount = params['AffectAssetCount']
+          @RiskId = params['RiskId']
+          @From = params['From']
+          @Index = params['Index']
+          @VULType = params['VULType']
+          @VULName = params['VULName']
+          @CVE = params['CVE']
+          @Payload = params['Payload']
+          @AppName = params['AppName']
+          @AppVersion = params['AppVersion']
+          @VULURL = params['VULURL']
+          @Nick = params['Nick']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @EMGCVulType = params['EMGCVulType']
+          @CVSS = params['CVSS']
+          @PCMGRId = params['PCMGRId']
+          @VulTag = params['VulTag']
+          @DisclosureTime = params['DisclosureTime']
+          @AttackHeat = params['AttackHeat']
+          @IsSuggest = params['IsSuggest']
+          @HandleTaskId = params['HandleTaskId']
+          @EngineSource = params['EngineSource']
+          @VulRiskId = params['VulRiskId']
+        end
+      end
+
       # vpc列表数据
       class Vpc < TencentCloud::Common::AbstractModel
         # @param Subnet: 子网(只支持32位)
@@ -8279,6 +8650,60 @@ module TencentCloud
           @Nick = params['Nick']
           @IsNewAsset = params['IsNewAsset']
           @IsCore = params['IsCore']
+        end
+      end
+
+      # 漏洞影响组件信息
+      class VulImpactComponentInfo < TencentCloud::Common::AbstractModel
+        # @param Component: 组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Component: String
+        # @param Version: 版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+
+        attr_accessor :Component, :Version
+
+        def initialize(component=nil, version=nil)
+          @Component = component
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Component = params['Component']
+          @Version = params['Version']
+        end
+      end
+
+      # 漏洞趋势-攻击趋势、影响用户、影响资产
+      class VulTrend < TencentCloud::Common::AbstractModel
+        # @param AffectAssetCount: 影响的资产数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectAssetCount: Integer
+        # @param AffectUserCount: 影响的用户数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectUserCount: Integer
+        # @param AttackCount: 攻击数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackCount: Integer
+        # @param Date: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+
+        attr_accessor :AffectAssetCount, :AffectUserCount, :AttackCount, :Date
+
+        def initialize(affectassetcount=nil, affectusercount=nil, attackcount=nil, date=nil)
+          @AffectAssetCount = affectassetcount
+          @AffectUserCount = affectusercount
+          @AttackCount = attackcount
+          @Date = date
+        end
+
+        def deserialize(params)
+          @AffectAssetCount = params['AffectAssetCount']
+          @AffectUserCount = params['AffectUserCount']
+          @AttackCount = params['AttackCount']
+          @Date = params['Date']
         end
       end
 

@@ -4763,6 +4763,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编排空间-工作流-移动任务到工作流文件夹
+
+        # @param request: Request instance for MoveTasksToFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::MoveTasksToFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::MoveTasksToFolderResponse`
+        def MoveTasksToFolder(request)
+          body = send_request('MoveTasksToFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MoveTasksToFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该版本只满足广州区部分白名单客户使用]</p>
         # 注册事件
 

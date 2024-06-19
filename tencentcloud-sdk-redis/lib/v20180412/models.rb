@@ -3230,7 +3230,7 @@ module TencentCloud
 
       # DescribeMaintenanceWindow请求参数结构体
       class DescribeMaintenanceWindowRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3246,9 +3246,12 @@ module TencentCloud
 
       # DescribeMaintenanceWindow返回参数结构体
       class DescribeMaintenanceWindowResponse < TencentCloud::Common::AbstractModel
-        # @param StartTime: 维护时间窗起始时间，如：17:00
+        # @param StartTime: 维护时间窗开始时间。取值范围为"00:00-23:00"的任意时间点，如03:24。
         # @type StartTime: String
-        # @param EndTime: 维护时间窗结束时间，如：19:00
+        # @param EndTime: 维护时间窗结束时间。
+        # - 取值范围为"00:00-23:00"的任意时间点，如：04:24。
+        # - 维护时间持续时长最小为30分钟，最大为3小时。
+        # - 结束时间务必是基于开始时间向后的时间。
         # @type EndTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4491,7 +4494,16 @@ module TencentCloud
 
       # InquiryPriceCreateInstance请求参数结构体
       class InquiryPriceCreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param TypeId: 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
+        # @param TypeId: 实例类型。
+        # - 2：Redis 2.8 内存版（标准架构）。
+        # - 6：Redis 4.0 内存版（标准架构）。
+        # - 7：Redis 4.0 内存版（集群架构）。
+        # - 8：Redis 5.0 内存版（标准架构）。
+        # - 9：Redis 5.0 内存版（集群架构）。
+        # - 15：Redis 6.2 内存版（标准架构）。
+        # - 16：Redis 6.2 内存版（集群架构）。
+        # - 17：Redis 7.0 内存版（标准架构）。
+        # - 18：Redis 7.0 内存版（集群架构）。
         # @type TypeId: Integer
         # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
         # TypeId为标准架构时，MemSize是实例总内存容量；TypeId为集群架构时，MemSize是单分片内存容量。
@@ -4500,19 +4512,28 @@ module TencentCloud
         # @type GoodsNum: Integer
         # @param Period: 购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
         # @type Period: Integer
-        # @param BillingMode: 付费方式:0-按量计费，1-包年包月。
+        # @param BillingMode: 付费方式。
+        # - 0：按量计费。
+        # - 1：包年包月。
         # @type BillingMode: Integer
         # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneId: Integer
-        # @param RedisShardNum: 实例分片数量，Redis2.8标准架构、CKV标准架构和Redis2.8单机版、Redis4.0标准架构不需要填写。
+        # @param RedisShardNum: 实例分片数量。
+        # Redis2.8标准架构、CKV标准架构、Redis4.0标准架构无需填写。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 实例副本数量，Redis2.8标准架构、CKV标准架构和Redis2.8单机版不需要填写。
+        # @param RedisReplicasNum: 实例副本数量。
+        # Redis2.8标准架构、CKV标准架构无需填写。
         # @type RedisReplicasNum: Integer
-        # @param ReplicasReadonly: 是否支持副本只读，Redis2.8标准架构、CKV标准架构和Redis2.8单机版不需要填写。
+        # @param ReplicasReadonly: 是否支持副本只读。Redis2.8标准架构、CKV标准架构无需填写。
+        # - true：无需支持副本只读。
+        # - false：需支持。
         # @type ReplicasReadonly: Boolean
         # @param ZoneName: 实例所属的可用区名称，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneName: String
-        # @param ProductVersion: "local"本地盘版，"cloud"云盘版，"cdc"独享集群版，如果不传默认询价为本地盘版本
+        # @param ProductVersion: 部署方式。
+        # - local：本地盘版，默认为 local。
+        # - cloud：云盘版。
+        # - cdc：独享集群版。
         # @type ProductVersion: String
 
         attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :ZoneName, :ProductVersion
@@ -4569,9 +4590,9 @@ module TencentCloud
 
       # InquiryPriceRenewInstance请求参数结构体
       class InquiryPriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 购买时长，单位：月
+        # @param Period: 包年包月实例的购买时长，单位：月。
         # @type Period: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :Period, :InstanceId
@@ -4589,7 +4610,7 @@ module TencentCloud
 
       # InquiryPriceRenewInstance返回参数结构体
       class InquiryPriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格，单位：分
+        # @param Price: 价格，单位：分。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

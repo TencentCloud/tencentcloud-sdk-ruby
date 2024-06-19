@@ -5052,10 +5052,16 @@ module TencentCloud
         # @param IsDefaultServer: 是否为默认域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefaultServer: Boolean
+        # @param TLSCiphers: TLS套件包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSCiphers: String
+        # @param TLSSupportVersion: TLS版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TLSSupportVersion: Array
 
-        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus, :Http3Supported, :IsDefaultServer
+        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus, :Http3Supported, :IsDefaultServer, :TLSCiphers, :TLSSupportVersion
 
-        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil, http3supported=nil, isdefaultserver=nil)
+        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil, http3supported=nil, isdefaultserver=nil, tlsciphers=nil, tlssupportversion=nil)
           @Domain = domain
           @RuleSet = ruleset
           @CertificateId = certificateid
@@ -5078,6 +5084,8 @@ module TencentCloud
           @BanStatus = banstatus
           @Http3Supported = http3supported
           @IsDefaultServer = isdefaultserver
+          @TLSCiphers = tlsciphers
+          @TLSSupportVersion = tlssupportversion
         end
 
         def deserialize(params)
@@ -5124,6 +5132,8 @@ module TencentCloud
           @BanStatus = params['BanStatus']
           @Http3Supported = params['Http3Supported']
           @IsDefaultServer = params['IsDefaultServer']
+          @TLSCiphers = params['TLSCiphers']
+          @TLSSupportVersion = params['TLSSupportVersion']
         end
       end
 

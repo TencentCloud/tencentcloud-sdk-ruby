@@ -845,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取漏洞展开详情
+
+        # @param request: Request instance for DescribeVULRiskDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVULRiskDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVULRiskDetailResponse`
+        def DescribeVULRiskDetail(request)
+          body = send_request('DescribeVULRiskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVULRiskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取vpc列表
 
         # @param request: Request instance for DescribeVpcAssets.
@@ -855,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVpcAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞视角的漏洞风险列表
+
+        # @param request: Request instance for DescribeVulViewVulRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulViewVulRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulViewVulRiskListResponse`
+        def DescribeVulViewVulRiskList(request)
+          body = send_request('DescribeVulViewVulRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulViewVulRiskListResponse.new
             model.deserialize(response['Response'])
             model
           else

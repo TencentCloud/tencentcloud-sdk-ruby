@@ -1181,7 +1181,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
+        # 本接口（DescribeMaintenanceWindow）用于查询实例维护时间窗。在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
 
         # @param request: Request instance for DescribeMaintenanceWindow.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeMaintenanceWindowRequest`
@@ -1661,7 +1661,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例续费价格（包年包月）
+        # 本接口（InquiryPriceRenewInstance）用于查询包年包月计费实例的续费价格。
 
         # @param request: Request instance for InquiryPriceRenewInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::InquiryPriceRenewInstanceRequest`
