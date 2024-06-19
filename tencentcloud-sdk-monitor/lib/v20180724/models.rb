@@ -2903,17 +2903,21 @@ module TencentCloud
         # @type Module: String
         # @param PolicyIds: 告警策略 ID 列表
         # @type PolicyIds: Array
+        # @param PromInsIds: prom的实例id
+        # @type PromInsIds: Array
 
-        attr_accessor :Module, :PolicyIds
+        attr_accessor :Module, :PolicyIds, :PromInsIds
 
-        def initialize(_module=nil, policyids=nil)
+        def initialize(_module=nil, policyids=nil, prominsids=nil)
           @Module = _module
           @PolicyIds = policyids
+          @PromInsIds = prominsids
         end
 
         def deserialize(params)
           @Module = params['Module']
           @PolicyIds = params['PolicyIds']
+          @PromInsIds = params['PromInsIds']
         end
       end
 

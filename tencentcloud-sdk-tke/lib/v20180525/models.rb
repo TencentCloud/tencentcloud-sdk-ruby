@@ -3134,13 +3134,13 @@ module TencentCloud
       class CreateImageCacheRequest < TencentCloud::Common::AbstractModel
         # @param Images: 用于制作镜像缓存的容器镜像列表
         # @type Images: Array
-        # @param SubnetId: 实例所属子网Id
+        # @param SubnetId: 实例所属子网 ID
         # @type SubnetId: String
-        # @param VpcId: 实例所属VPC Id
+        # @param VpcId: 实例所属 VPC ID
         # @type VpcId: String
         # @param ImageCacheName: 镜像缓存名称
         # @type ImageCacheName: String
-        # @param SecurityGroupIds: 安全组Id
+        # @param SecurityGroupIds: 安全组 ID
         # @type SecurityGroupIds: Array
         # @param ImageRegistryCredentials: 镜像仓库凭证数组
         # @type ImageRegistryCredentials: Array
@@ -7844,12 +7844,15 @@ module TencentCloud
         # @param ClaimExpiredDuration: 固定ip回收时间，已安装eniipamd组件才会有值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClaimExpiredDuration: String
+        # @param EnableTrunkingENI: 是否开启了中继网卡模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableTrunkingENI: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnableIPAMD, :EnableCustomizedPodCidr, :DisableVpcCniMode, :Phase, :Reason, :SubnetIds, :ClaimExpiredDuration, :RequestId
+        attr_accessor :EnableIPAMD, :EnableCustomizedPodCidr, :DisableVpcCniMode, :Phase, :Reason, :SubnetIds, :ClaimExpiredDuration, :EnableTrunkingENI, :RequestId
 
-        def initialize(enableipamd=nil, enablecustomizedpodcidr=nil, disablevpccnimode=nil, phase=nil, reason=nil, subnetids=nil, claimexpiredduration=nil, requestid=nil)
+        def initialize(enableipamd=nil, enablecustomizedpodcidr=nil, disablevpccnimode=nil, phase=nil, reason=nil, subnetids=nil, claimexpiredduration=nil, enabletrunkingeni=nil, requestid=nil)
           @EnableIPAMD = enableipamd
           @EnableCustomizedPodCidr = enablecustomizedpodcidr
           @DisableVpcCniMode = disablevpccnimode
@@ -7857,6 +7860,7 @@ module TencentCloud
           @Reason = reason
           @SubnetIds = subnetids
           @ClaimExpiredDuration = claimexpiredduration
+          @EnableTrunkingENI = enabletrunkingeni
           @RequestId = requestid
         end
 
@@ -7868,6 +7872,7 @@ module TencentCloud
           @Reason = params['Reason']
           @SubnetIds = params['SubnetIds']
           @ClaimExpiredDuration = params['ClaimExpiredDuration']
+          @EnableTrunkingENI = params['EnableTrunkingENI']
           @RequestId = params['RequestId']
         end
       end
@@ -8031,6 +8036,61 @@ module TencentCloud
               switch_tmp = Switch.new
               switch_tmp.deserialize(i)
               @SwitchSet << switch_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePodChargeInfo请求参数结构体
+      class DescribePodChargeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Name: Pod名称
+        # @type Name: String
+        # @param Uids: Pod的Uid
+        # @type Uids: Array
+
+        attr_accessor :ClusterId, :Namespace, :Name, :Uids
+
+        def initialize(clusterid=nil, namespace=nil, name=nil, uids=nil)
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @Name = name
+          @Uids = uids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @Name = params['Name']
+          @Uids = params['Uids']
+        end
+      end
+
+      # DescribePodChargeInfo返回参数结构体
+      class DescribePodChargeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ChargeInfoSet: Pod计费信息
+        # @type ChargeInfoSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChargeInfoSet, :RequestId
+
+        def initialize(chargeinfoset=nil, requestid=nil)
+          @ChargeInfoSet = chargeinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ChargeInfoSet'].nil?
+            @ChargeInfoSet = []
+            params['ChargeInfoSet'].each do |i|
+              podchargeinfo_tmp = PodChargeInfo.new
+              podchargeinfo_tmp.deserialize(i)
+              @ChargeInfoSet << podchargeinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14758,6 +14818,60 @@ module TencentCloud
         end
       end
 
+      # Pod计费信息
+      class PodChargeInfo < TencentCloud::Common::AbstractModel
+        # @param StartTime: Pod计费开始时间
+        # @type StartTime: String
+        # @param Uid: Pod的Uid
+        # @type Uid: String
+        # @param Cpu: Pod的CPU
+        # @type Cpu: Float
+        # @param Memory: Pod的内存
+        # @type Memory: Float
+        # @param Type: Pod类型：intel、amd、v100、t4、a10\*gnv4、a10\*gnv4v等。
+        # @type Type: String
+        # @param Gpu: Pod是GPU时，表示GPU卡数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gpu: String
+        # @param ChargeType: 计费类型
+        # PREPAID：Pod调度到包月超级节点
+        # POSTPAID_BY_HOUR：按量计费
+        # RESERVED_INSTANCE：上个周期被预留券抵扣
+        # SPOT：竞价实例
+        # TPOD：特惠实例
+        # @type ChargeType: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Name: Pod名称
+        # @type Name: String
+
+        attr_accessor :StartTime, :Uid, :Cpu, :Memory, :Type, :Gpu, :ChargeType, :Namespace, :Name
+
+        def initialize(starttime=nil, uid=nil, cpu=nil, memory=nil, type=nil, gpu=nil, chargetype=nil, namespace=nil, name=nil)
+          @StartTime = starttime
+          @Uid = uid
+          @Cpu = cpu
+          @Memory = memory
+          @Type = type
+          @Gpu = gpu
+          @ChargeType = chargetype
+          @Namespace = namespace
+          @Name = name
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Uid = params['Uid']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Type = params['Type']
+          @Gpu = params['Gpu']
+          @ChargeType = params['ChargeType']
+          @Namespace = params['Namespace']
+          @Name = params['Name']
+        end
+      end
+
       # 可被预留券抵扣的 Pod 某种规格的抵扣率
       class PodDeductionRate < TencentCloud::Common::AbstractModel
         # @param Cpu: Pod的 CPU
@@ -18376,7 +18490,7 @@ module TencentCloud
 
       # UpdateImageCache请求参数结构体
       class UpdateImageCacheRequest < TencentCloud::Common::AbstractModel
-        # @param ImageCacheId: 镜像缓存Id
+        # @param ImageCacheId: 镜像缓存ID
         # @type ImageCacheId: String
         # @param ImageCacheName: 镜像缓存名称
         # @type ImageCacheName: String

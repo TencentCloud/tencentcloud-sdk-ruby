@@ -538,6 +538,26 @@ module TencentCloud
         end
       end
 
+      # 坐标
+      class Coord < TencentCloud::Common::AbstractModel
+        # @param X: 横坐标
+        # @type X: Integer
+        # @param Y: 纵坐标
+        # @type Y: Integer
+
+        attr_accessor :X, :Y
+
+        def initialize(x=nil, y=nil)
+          @X = x
+          @Y = y
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+        end
+      end
+
       # CreateApp请求参数结构体
       class CreateAppRequest < TencentCloud::Common::AbstractModel
         # @param AppType: 应用类型；knowledge_qa-知识问答管理；summary-知识摘要；classifys-知识标签提取
@@ -820,6 +840,80 @@ module TencentCloud
 
         def deserialize(params)
           @QaBizId = params['QaBizId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建智能文档解析任务的配置信息
+      class CreateReconstructDocumentFlowConfig < TencentCloud::Common::AbstractModel
+        # @param TableResultType: Markdown文件中表格返回的形式
+        # 0，表格以MD形式返回
+        # 1，表格以HTML形式返回
+        # 默认为1
+        # @type TableResultType: String
+
+        attr_accessor :TableResultType
+
+        def initialize(tableresulttype=nil)
+          @TableResultType = tableresulttype
+        end
+
+        def deserialize(params)
+          @TableResultType = params['TableResultType']
+        end
+      end
+
+      # CreateReconstructDocumentFlow请求参数结构体
+      class CreateReconstructDocumentFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type FileBase64: String
+        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type FileUrl: String
+        # @param FileStartPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @type FileStartPageNumber: Integer
+        # @param FileEndPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
+        # @type FileEndPageNumber: Integer
+        # @param Config: 创建智能文档识别任务配置信息
+        # @type Config: :class:`Tencentcloud::Lke.v20231130.models.CreateReconstructDocumentFlowConfig`
+
+        attr_accessor :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
+
+        def initialize(filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
+          @FileBase64 = filebase64
+          @FileUrl = fileurl
+          @FileStartPageNumber = filestartpagenumber
+          @FileEndPageNumber = fileendpagenumber
+          @Config = config
+        end
+
+        def deserialize(params)
+          @FileBase64 = params['FileBase64']
+          @FileUrl = params['FileUrl']
+          @FileStartPageNumber = params['FileStartPageNumber']
+          @FileEndPageNumber = params['FileEndPageNumber']
+          unless params['Config'].nil?
+            @Config = CreateReconstructDocumentFlowConfig.new
+            @Config.deserialize(params['Config'])
+          end
+        end
+      end
+
+      # CreateReconstructDocumentFlow返回参数结构体
+      class CreateReconstructDocumentFlowResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -1995,6 +2089,127 @@ module TencentCloud
         end
       end
 
+      # 文档元素字段
+      class DocumentElement < TencentCloud::Common::AbstractModel
+        # @param Index: 文档元素索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Integer
+        # @param Type: 元素类型，包括paragraph、table、formula、figure、title、header、footer、figure_text
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Text: 元素内容，当type为figure或formula(公式识别关闭)时该字段内容为图片的位置
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Polygon: 元素坐标，左上角(x1, y1)，右上角(x2, y2)，右下角(x3, y3)，左下角(x4, y4)
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Polygon: :class:`Tencentcloud::Lke.v20231130.models.Polygon`
+        # @param Level: 元素层级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param InsetImageName: 入参开启EnableInsetImage后返回，表示在InsetImagePackage中的内嵌图片名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsetImageName: String
+        # @param Elements: 嵌套的文档元素信息，一般包含的是文档内嵌入图片的文字识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Elements: Array
+
+        attr_accessor :Index, :Type, :Text, :Polygon, :Level, :InsetImageName, :Elements
+
+        def initialize(index=nil, type=nil, text=nil, polygon=nil, level=nil, insetimagename=nil, elements=nil)
+          @Index = index
+          @Type = type
+          @Text = text
+          @Polygon = polygon
+          @Level = level
+          @InsetImageName = insetimagename
+          @Elements = elements
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Type = params['Type']
+          @Text = params['Text']
+          unless params['Polygon'].nil?
+            @Polygon = Polygon.new
+            @Polygon.deserialize(params['Polygon'])
+          end
+          @Level = params['Level']
+          @InsetImageName = params['InsetImageName']
+          unless params['Elements'].nil?
+            @Elements = []
+            params['Elements'].each do |i|
+              documentelement_tmp = DocumentElement.new
+              documentelement_tmp.deserialize(i)
+              @Elements << documentelement_tmp
+            end
+          end
+        end
+      end
+
+      # 单页文档识别的内容
+      class DocumentRecognizeInfo < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 输入PDF文件的页码，从1开始。输入图片的话值始终为1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param Angle: 旋转角度
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Angle: Integer
+        # @param Height: AI算法识别处理后的图片高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param Width: AI算法识别处理后的图片宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param OriginHeight: 图片的原始高度，输入PDF文件则表示单页PDF转图片之后的图片高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginHeight: Integer
+        # @param OriginWidth: 图片的原始宽度，输入PDF文件则表示单页PDF转图片之后的图片宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginWidth: Integer
+        # @param Elements: 文档元素信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Elements: Array
+        # @param RotatedAngle: 旋转角度
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotatedAngle: Float
+
+        attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
+
+        def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
+          @PageNumber = pagenumber
+          @Angle = angle
+          @Height = height
+          @Width = width
+          @OriginHeight = originheight
+          @OriginWidth = originwidth
+          @Elements = elements
+          @RotatedAngle = rotatedangle
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @Angle = params['Angle']
+          @Height = params['Height']
+          @Width = params['Width']
+          @OriginHeight = params['OriginHeight']
+          @OriginWidth = params['OriginWidth']
+          unless params['Elements'].nil?
+            @Elements = []
+            params['Elements'].each do |i|
+              documentelement_tmp = DocumentElement.new
+              documentelement_tmp.deserialize(i)
+              @Elements << documentelement_tmp
+            end
+          end
+          @RotatedAngle = params['RotatedAngle']
+        end
+      end
+
       # 向量
       class EmbeddingObject < TencentCloud::Common::AbstractModel
         # @param Embedding: 向量
@@ -2491,6 +2706,57 @@ module TencentCloud
             end
           end
           @SessionDisassociatedTimestamp = params['SessionDisassociatedTimestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetReconstructDocumentResult请求参数结构体
+      class GetReconstructDocumentResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # GetReconstructDocumentResult返回参数结构体
+      class GetReconstructDocumentResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态: Success->执行完成；Processing->执行中；Failed->执行失败；WaitExecute->等待执行；
+        # @type Status: String
+        # @param DocumentRecognizeResultUrl: 输入文件中嵌入的图片中文字内容的识别结果，存储在腾讯云cos的下载地址
+        # @type DocumentRecognizeResultUrl: String
+        # @param FailedPages: 还原失败的页
+        # @type FailedPages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :RequestId
+
+        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, requestid=nil)
+          @Status = status
+          @DocumentRecognizeResultUrl = documentrecognizeresulturl
+          @FailedPages = failedpages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @DocumentRecognizeResultUrl = params['DocumentRecognizeResultUrl']
+          unless params['FailedPages'].nil?
+            @FailedPages = []
+            params['FailedPages'].each do |i|
+              reconstructdocumentfailedpage_tmp = ReconstructDocumentFailedPage.new
+              reconstructdocumentfailedpage_tmp.deserialize(i)
+              @FailedPages << reconstructdocumentfailedpage_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4951,8 +5217,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 5
-        deprecate :Operate=, :none, 2024, 5
+        deprecate :Operate, :none, 2024, 6
+        deprecate :Operate=, :none, 2024, 6
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
@@ -4988,6 +5254,47 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 文本的坐标，以四个顶点坐标表示
+      # 注意：此字段可能返回 null，表示取不到有效值
+      class Polygon < TencentCloud::Common::AbstractModel
+        # @param LeftTop: 左上顶点坐标
+        # @type LeftTop: :class:`Tencentcloud::Lke.v20231130.models.Coord`
+        # @param RightTop: 右上顶点坐标
+        # @type RightTop: :class:`Tencentcloud::Lke.v20231130.models.Coord`
+        # @param RightBottom: 右下顶点坐标
+        # @type RightBottom: :class:`Tencentcloud::Lke.v20231130.models.Coord`
+        # @param LeftBottom: 左下顶点坐标
+        # @type LeftBottom: :class:`Tencentcloud::Lke.v20231130.models.Coord`
+
+        attr_accessor :LeftTop, :RightTop, :RightBottom, :LeftBottom
+
+        def initialize(lefttop=nil, righttop=nil, rightbottom=nil, leftbottom=nil)
+          @LeftTop = lefttop
+          @RightTop = righttop
+          @RightBottom = rightbottom
+          @LeftBottom = leftbottom
+        end
+
+        def deserialize(params)
+          unless params['LeftTop'].nil?
+            @LeftTop = Coord.new
+            @LeftTop.deserialize(params['LeftTop'])
+          end
+          unless params['RightTop'].nil?
+            @RightTop = Coord.new
+            @RightTop.deserialize(params['RightTop'])
+          end
+          unless params['RightBottom'].nil?
+            @RightBottom = Coord.new
+            @RightBottom.deserialize(params['RightBottom'])
+          end
+          unless params['LeftBottom'].nil?
+            @LeftBottom = Coord.new
+            @LeftBottom.deserialize(params['LeftBottom'])
+          end
         end
       end
 
@@ -5324,6 +5631,113 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReconstructDocument配置选项
+      class ReconstructDocumentConfig < TencentCloud::Common::AbstractModel
+        # @param EnableInsetImage: 生成的Markdown中是否嵌入图片
+        # @type EnableInsetImage: Boolean
+
+        attr_accessor :EnableInsetImage
+
+        def initialize(enableinsetimage=nil)
+          @EnableInsetImage = enableinsetimage
+        end
+
+        def deserialize(params)
+          @EnableInsetImage = params['EnableInsetImage']
+        end
+      end
+
+      # 文档解析失败记录
+      class ReconstructDocumentFailedPage < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 失败页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+
+        attr_accessor :PageNumber
+
+        def initialize(pagenumber=nil)
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # ReconstructDocument请求参数结构体
+      class ReconstructDocumentRequest < TencentCloud::Common::AbstractModel
+        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type FileBase64: String
+        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type FileUrl: String
+        # @param FileStartPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @type FileStartPageNumber: Integer
+        # @param FileEndPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
+        # 单次调用，最多支持10页pdf的智能识别。
+        # @type FileEndPageNumber: Integer
+        # @param Config: 配置选项，支持配置是否在生成的Markdown中是否嵌入图片
+        # @type Config: :class:`Tencentcloud::Lke.v20231130.models.ReconstructDocumentConfig`
+
+        attr_accessor :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
+
+        def initialize(filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
+          @FileBase64 = filebase64
+          @FileUrl = fileurl
+          @FileStartPageNumber = filestartpagenumber
+          @FileEndPageNumber = fileendpagenumber
+          @Config = config
+        end
+
+        def deserialize(params)
+          @FileBase64 = params['FileBase64']
+          @FileUrl = params['FileUrl']
+          @FileStartPageNumber = params['FileStartPageNumber']
+          @FileEndPageNumber = params['FileEndPageNumber']
+          unless params['Config'].nil?
+            @Config = ReconstructDocumentConfig.new
+            @Config.deserialize(params['Config'])
+          end
+        end
+      end
+
+      # ReconstructDocument返回参数结构体
+      class ReconstructDocumentResponse < TencentCloud::Common::AbstractModel
+        # @param MarkdownBase64: 识别生成的Markdown文件base64编码的字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkdownBase64: String
+        # @param InsetImagePackage: 输入文件中嵌入的图片放在一个文件夹中打包为.zip压缩文件，识别生成的Markdown文件通过路径关联插入本文件夹中的图片。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsetImagePackage: String
+        # @param DocumentRecognizeInfo: 输入文件中嵌入的图片中文字内容的识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocumentRecognizeInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MarkdownBase64, :InsetImagePackage, :DocumentRecognizeInfo, :RequestId
+
+        def initialize(markdownbase64=nil, insetimagepackage=nil, documentrecognizeinfo=nil, requestid=nil)
+          @MarkdownBase64 = markdownbase64
+          @InsetImagePackage = insetimagepackage
+          @DocumentRecognizeInfo = documentrecognizeinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MarkdownBase64 = params['MarkdownBase64']
+          @InsetImagePackage = params['InsetImagePackage']
+          unless params['DocumentRecognizeInfo'].nil?
+            @DocumentRecognizeInfo = []
+            params['DocumentRecognizeInfo'].each do |i|
+              documentrecognizeinfo_tmp = DocumentRecognizeInfo.new
+              documentrecognizeinfo_tmp.deserialize(i)
+              @DocumentRecognizeInfo << documentrecognizeinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -4016,7 +4016,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例诊断
+        # 实例诊断，用于诊断 INITIAL、DEPENDENCE、ALLOCATED、LAUNCHED、EVENT_LISTENING、BEFORE_ASPECT、EXPIRED、FAILED状态的实例
 
         # @param request: Request instance for DiagnosePro.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DiagnoseProRequest`

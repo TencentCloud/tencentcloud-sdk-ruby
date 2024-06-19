@@ -2213,6 +2213,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看任务概览页
+
+        # @param request: Request instance for DescribeTasksOverview.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeTasksOverviewRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeTasksOverviewResponse`
+        def DescribeTasksOverview(request)
+          body = send_request('DescribeTasksOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTasksOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（RegisterThirdPartyAccessUser）查询开通第三方平台访问的用户信息
 
         # @param request: Request instance for DescribeThirdPartyAccessUser.

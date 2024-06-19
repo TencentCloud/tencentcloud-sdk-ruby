@@ -17,6 +17,30 @@
 module TencentCloud
   module Waf
     module V20180125
+      # DescribeAccessFastAnalysis接口的出参
+      class AccessFieldValueRatioInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 日志条数
+        # @type Count: Integer
+        # @param Ratio: 对应的Value值的百分比
+        # @type Ratio: Float
+        # @param Value: 字段对应的值
+        # @type Value: String
+
+        attr_accessor :Count, :Ratio, :Value
+
+        def initialize(count=nil, ratio=nil, value=nil)
+          @Count = count
+          @Ratio = ratio
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Ratio = params['Ratio']
+          @Value = params['Value']
+        end
+      end
+
       # DescribeAccessIndex
       class AccessFullTextInfo < TencentCloud::Common::AbstractModel
         # @param CaseSensitive: 是否大小写敏感
@@ -3017,8 +3041,6 @@ module TencentCloud
 
       # DescribeAccessFastAnalysis请求参数结构体
       class DescribeAccessFastAnalysisRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
-        # @type TopicId: String
         # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
         # @type From: Integer
         # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
@@ -3027,29 +3049,34 @@ module TencentCloud
         # @type Query: String
         # @param FieldName: 需要分析统计的字段名
         # @type FieldName: String
+        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        # @type TopicId: String
         # @param Sort: 排序字段,升序asc,降序desc，默认降序desc
         # @type Sort: String
         # @param Count: 返回的top数，默认返回top5
         # @type Count: Integer
 
-        attr_accessor :TopicId, :From, :To, :Query, :FieldName, :Sort, :Count
+        attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
+        extend Gem::Deprecate
+        deprecate :TopicId, :none, 2024, 6
+        deprecate :TopicId=, :none, 2024, 6
 
-        def initialize(topicid=nil, from=nil, to=nil, query=nil, fieldname=nil, sort=nil, count=nil)
-          @TopicId = topicid
+        def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
           @To = to
           @Query = query
           @FieldName = fieldname
+          @TopicId = topicid
           @Sort = sort
           @Count = count
         end
 
         def deserialize(params)
-          @TopicId = params['TopicId']
           @From = params['From']
           @To = params['To']
           @Query = params['Query']
           @FieldName = params['FieldName']
+          @TopicId = params['TopicId']
           @Sort = params['Sort']
           @Count = params['Count']
         end
@@ -3057,16 +3084,32 @@ module TencentCloud
 
       # DescribeAccessFastAnalysis返回参数结构体
       class DescribeAccessFastAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param FieldValueRatioInfos: 注意：此字段可能返回 null，表示取不到有效值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldValueRatioInfos: Array
+        # @param TotalCount: 日志条数
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FieldValueRatioInfos, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(fieldvalueratioinfos=nil, totalcount=nil, requestid=nil)
+          @FieldValueRatioInfos = fieldvalueratioinfos
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['FieldValueRatioInfos'].nil?
+            @FieldValueRatioInfos = []
+            params['FieldValueRatioInfos'].each do |i|
+              accessfieldvalueratioinfo_tmp = AccessFieldValueRatioInfo.new
+              accessfieldvalueratioinfo_tmp.deserialize(i)
+              @FieldValueRatioInfos << accessfieldvalueratioinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

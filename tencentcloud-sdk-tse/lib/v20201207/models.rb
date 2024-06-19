@@ -11306,13 +11306,19 @@ module TencentCloud
         # @param UnhealthyHttpStatuses: 异常HTTP状态码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyHttpStatuses: Array
-        # @param IgnoreZeroWeightNodes: 健康检查屏蔽权重为0的节点
+        # @param IgnoreZeroWeightNodes: 健康检查监控上报的数据屏蔽权重为0的节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreZeroWeightNodes: Boolean
+        # @param ZeroWeightHeathCheck: 健康检查支持权重为0节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZeroWeightHeathCheck: Boolean
 
-        attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes
+        attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
+        extend Gem::Deprecate
+        deprecate :IgnoreZeroWeightNodes, :none, 2024, 6
+        deprecate :IgnoreZeroWeightNodes=, :none, 2024, 6
 
-        def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil)
+        def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck
           @ActiveHealthCheck = activehealthcheck
           @EnablePassiveHealthCheck = enablepassivehealthcheck
@@ -11323,6 +11329,7 @@ module TencentCloud
           @HealthyHttpStatuses = healthyhttpstatuses
           @UnhealthyHttpStatuses = unhealthyhttpstatuses
           @IgnoreZeroWeightNodes = ignorezeroweightnodes
+          @ZeroWeightHeathCheck = zeroweightheathcheck
         end
 
         def deserialize(params)
@@ -11342,6 +11349,7 @@ module TencentCloud
           @HealthyHttpStatuses = params['HealthyHttpStatuses']
           @UnhealthyHttpStatuses = params['UnhealthyHttpStatuses']
           @IgnoreZeroWeightNodes = params['IgnoreZeroWeightNodes']
+          @ZeroWeightHeathCheck = params['ZeroWeightHeathCheck']
         end
       end
 

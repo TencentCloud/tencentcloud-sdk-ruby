@@ -1734,6 +1734,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口未使用，废弃录用
+
         # 查询应用关联日志配置项信息
 
         # @param request: Request instance for DescribeApplicationBusinessLogConfig.

@@ -12876,6 +12876,10 @@ module TencentCloud
 
       # DiagnosePro请求参数结构体
       class DiagnoseProRequest < TencentCloud::Common::AbstractModel
+        # @param SearchCondition: 查询条件（当前接口TaskId和CurRunDate需要填充在该字段方可诊断）
+        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
         # @param Instances: 实例列表
         # @type Instances: Array
         # @param CheckFather: 检查父任务类型, true: 检查父任务; false: 不检查父任务
@@ -12888,16 +12892,12 @@ module TencentCloud
         # @type SkipEventListening: Boolean
         # @param SonInstanceType: 下游实例范围 1: 所在工作流 2: 所在项目 3: 所有跨工作流依赖的项目
         # @type SonInstanceType: String
-        # @param SearchCondition: 查询条件（当前接口TaskId和CurRunDate需要填充在该字段方可诊断）
-        # @type SearchCondition: :class:`Tencentcloud::Wedata.v20210820.models.InstanceApiOpsRequest`
         # @param OptType: 访问类型
         # @type OptType: String
         # @param OperatorName: 操作者名称
         # @type OperatorName: String
         # @param OperatorId: 操作者id
         # @type OperatorId: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: String
         # @param ProjectIdent: 项目标志
         # @type ProjectIdent: String
         # @param ProjectName: 项目名称
@@ -12913,20 +12913,20 @@ module TencentCloud
         # @param IsCount: 是否计算总数
         # @type IsCount: Boolean
 
-        attr_accessor :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :SearchCondition, :OptType, :OperatorName, :OperatorId, :ProjectId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
+        attr_accessor :SearchCondition, :ProjectId, :Instances, :CheckFather, :RerunType, :DependentWay, :SkipEventListening, :SonInstanceType, :OptType, :OperatorName, :OperatorId, :ProjectIdent, :ProjectName, :PageIndex, :PageSize, :Count, :RequestBaseInfo, :IsCount
 
-        def initialize(instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, searchcondition=nil, opttype=nil, operatorname=nil, operatorid=nil, projectid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
+        def initialize(searchcondition=nil, projectid=nil, instances=nil, checkfather=nil, reruntype=nil, dependentway=nil, skipeventlistening=nil, soninstancetype=nil, opttype=nil, operatorname=nil, operatorid=nil, projectident=nil, projectname=nil, pageindex=nil, pagesize=nil, count=nil, requestbaseinfo=nil, iscount=nil)
+          @SearchCondition = searchcondition
+          @ProjectId = projectid
           @Instances = instances
           @CheckFather = checkfather
           @RerunType = reruntype
           @DependentWay = dependentway
           @SkipEventListening = skipeventlistening
           @SonInstanceType = soninstancetype
-          @SearchCondition = searchcondition
           @OptType = opttype
           @OperatorName = operatorname
           @OperatorId = operatorid
-          @ProjectId = projectid
           @ProjectIdent = projectident
           @ProjectName = projectname
           @PageIndex = pageindex
@@ -12937,6 +12937,11 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['SearchCondition'].nil?
+            @SearchCondition = InstanceApiOpsRequest.new
+            @SearchCondition.deserialize(params['SearchCondition'])
+          end
+          @ProjectId = params['ProjectId']
           unless params['Instances'].nil?
             @Instances = []
             params['Instances'].each do |i|
@@ -12950,14 +12955,9 @@ module TencentCloud
           @DependentWay = params['DependentWay']
           @SkipEventListening = params['SkipEventListening']
           @SonInstanceType = params['SonInstanceType']
-          unless params['SearchCondition'].nil?
-            @SearchCondition = InstanceApiOpsRequest.new
-            @SearchCondition.deserialize(params['SearchCondition'])
-          end
           @OptType = params['OptType']
           @OperatorName = params['OperatorName']
           @OperatorId = params['OperatorId']
-          @ProjectId = params['ProjectId']
           @ProjectIdent = params['ProjectIdent']
           @ProjectName = params['ProjectName']
           @PageIndex = params['PageIndex']
@@ -25072,10 +25072,13 @@ module TencentCloud
         # @param LarkWebHooks: 飞书群Hook地址，多个hook地址使用,隔开
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LarkWebHooks: String
+        # @param DingDingWebHooks: 钉钉群Hook地址，多个hook地址使用,隔开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DingDingWebHooks: String
 
-        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks
+        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :QuietPeriods, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks, :DingDingWebHooks
 
-        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil)
+        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, quietperiods=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil, dingdingwebhooks=nil)
           @TaskId = taskid
           @RegularName = regularname
           @RegularStatus = regularstatus
@@ -25108,6 +25111,7 @@ module TencentCloud
           @LatestAlarmTime = latestalarmtime
           @Description = description
           @LarkWebHooks = larkwebhooks
+          @DingDingWebHooks = dingdingwebhooks
         end
 
         def deserialize(params)
@@ -25157,6 +25161,7 @@ module TencentCloud
           @LatestAlarmTime = params['LatestAlarmTime']
           @Description = params['Description']
           @LarkWebHooks = params['LarkWebHooks']
+          @DingDingWebHooks = params['DingDingWebHooks']
         end
       end
 

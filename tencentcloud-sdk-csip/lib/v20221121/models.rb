@@ -1396,10 +1396,16 @@ module TencentCloud
         # @param VulRiskId: 新的漏洞风险id(同全网漏洞表的riskid)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulRiskId: String
+        # @param TvdID: 新版漏洞id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TvdID: String
+        # @param IsOneClick: 是否可以一键体检，1-可以，0-不可以
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOneClick: Integer
 
-        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :RecentTime, :FirstTime, :Status, :RiskId, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :VULType, :Port, :AppName, :AppVersion, :VULURL, :VULName, :CVE, :POCId, :From, :CWPVersion, :InstanceUUID, :Payload, :EMGCVulType, :CVSS, :Index, :PCMGRId, :LogId, :TaskId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId
+        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :RecentTime, :FirstTime, :Status, :RiskId, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :VULType, :Port, :AppName, :AppVersion, :VULURL, :VULName, :CVE, :POCId, :From, :CWPVersion, :InstanceUUID, :Payload, :EMGCVulType, :CVSS, :Index, :PCMGRId, :LogId, :TaskId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId, :TvdID, :IsOneClick
 
-        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, recenttime=nil, firsttime=nil, status=nil, riskid=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, vultype=nil, port=nil, appname=nil, appversion=nil, vulurl=nil, vulname=nil, cve=nil, pocid=nil, from=nil, cwpversion=nil, instanceuuid=nil, payload=nil, emgcvultype=nil, cvss=nil, index=nil, pcmgrid=nil, logid=nil, taskid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil)
+        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, recenttime=nil, firsttime=nil, status=nil, riskid=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, vultype=nil, port=nil, appname=nil, appversion=nil, vulurl=nil, vulname=nil, cve=nil, pocid=nil, from=nil, cwpversion=nil, instanceuuid=nil, payload=nil, emgcvultype=nil, cvss=nil, index=nil, pcmgrid=nil, logid=nil, taskid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil, tvdid=nil, isoneclick=nil)
           @AffectAsset = affectasset
           @Level = level
           @InstanceType = instancetype
@@ -1438,6 +1444,8 @@ module TencentCloud
           @HandleTaskId = handletaskid
           @EngineSource = enginesource
           @VulRiskId = vulriskid
+          @TvdID = tvdid
+          @IsOneClick = isoneclick
         end
 
         def deserialize(params)
@@ -1479,6 +1487,8 @@ module TencentCloud
           @HandleTaskId = params['HandleTaskId']
           @EngineSource = params['EngineSource']
           @VulRiskId = params['VulRiskId']
+          @TvdID = params['TvdID']
+          @IsOneClick = params['IsOneClick']
         end
       end
 
@@ -1883,10 +1893,16 @@ module TencentCloud
         # @param AgentCpuPer: CPU使用率百分比
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentCpuPer: Float
+        # @param RealAppid: cvm真正所属的appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealAppid: Integer
+        # @param CloudType: 云资产类型：0：腾讯云，1：aws，2：azure
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: Integer
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset, :CVMAgentStatus, :CVMStatus, :DefenseModel, :TatStatus, :CpuTrend, :MemoryTrend, :AgentStatus, :CloseDefenseCount, :InstanceState, :SecurityGroupIds, :AgentMemRss, :AgentCpuPer
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset, :CVMAgentStatus, :CVMStatus, :DefenseModel, :TatStatus, :CpuTrend, :MemoryTrend, :AgentStatus, :CloseDefenseCount, :InstanceState, :SecurityGroupIds, :AgentMemRss, :AgentCpuPer, :RealAppid, :CloudType
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil, cvmagentstatus=nil, cvmstatus=nil, defensemodel=nil, tatstatus=nil, cputrend=nil, memorytrend=nil, agentstatus=nil, closedefensecount=nil, instancestate=nil, securitygroupids=nil, agentmemrss=nil, agentcpuper=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil, cvmagentstatus=nil, cvmstatus=nil, defensemodel=nil, tatstatus=nil, cputrend=nil, memorytrend=nil, agentstatus=nil, closedefensecount=nil, instancestate=nil, securitygroupids=nil, agentmemrss=nil, agentcpuper=nil, realappid=nil, cloudtype=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -1950,6 +1966,8 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @AgentMemRss = agentmemrss
           @AgentCpuPer = agentcpuper
+          @RealAppid = realappid
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -2037,6 +2055,8 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @AgentMemRss = params['AgentMemRss']
           @AgentCpuPer = params['AgentCpuPer']
+          @RealAppid = params['RealAppid']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -2121,18 +2141,22 @@ module TencentCloud
       class CreateDomainAndIpRequest < TencentCloud::Common::AbstractModel
         # @param Content: 公网IP/域名
         # @type Content: Array
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Tags: 资产标签
         # @type Tags: Array
 
-        attr_accessor :Content, :Tags
+        attr_accessor :Content, :MemberId, :Tags
 
-        def initialize(content=nil, tags=nil)
+        def initialize(content=nil, memberid=nil, tags=nil)
           @Content = content
+          @MemberId = memberid
           @Tags = tags
         end
 
         def deserialize(params)
           @Content = params['Content']
+          @MemberId = params['MemberId']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -2190,10 +2214,12 @@ module TencentCloud
         # @type TaskMode: Integer
         # @param Tags: 资产标签
         # @type Tags: :class:`Tencentcloud::Csip.v20221121.models.AssetTag`
+        # @param FinishWebHook: 任务完成回调webhook地址
+        # @type FinishWebHook: String
 
-        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :MemberId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode, :Tags
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :MemberId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode, :Tags, :FinishWebHook
 
-        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, memberid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil, tags=nil)
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, memberid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil, tags=nil, finishwebhook=nil)
           @TaskName = taskname
           @ScanAssetType = scanassettype
           @ScanItem = scanitem
@@ -2206,6 +2232,7 @@ module TencentCloud
           @TaskAdvanceCFG = taskadvancecfg
           @TaskMode = taskmode
           @Tags = tags
+          @FinishWebHook = finishwebhook
         end
 
         def deserialize(params)
@@ -2234,6 +2261,7 @@ module TencentCloud
             @Tags = AssetTag.new
             @Tags.deserialize(params['Tags'])
           end
+          @FinishWebHook = params['FinishWebHook']
         end
       end
 
@@ -2540,6 +2568,8 @@ module TencentCloud
 
       # DeleteDomainAndIp请求参数结构体
       class DeleteDomainAndIpRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Content: -
         # @type Content: Array
         # @param RetainPath: 是否保留路径配置，1：保留，其他：不保留，默认不传为不保留
@@ -2551,9 +2581,10 @@ module TencentCloud
         # @param Type: 删除类型，取值： ALL， 删除全部，将直接忽略Content的内容；                                           其他值 ,非全部，则Centent必填，  默认为其他值。
         # @type Type: String
 
-        attr_accessor :Content, :RetainPath, :IgnoreAsset, :Tags, :Type
+        attr_accessor :MemberId, :Content, :RetainPath, :IgnoreAsset, :Tags, :Type
 
-        def initialize(content=nil, retainpath=nil, ignoreasset=nil, tags=nil, type=nil)
+        def initialize(memberid=nil, content=nil, retainpath=nil, ignoreasset=nil, tags=nil, type=nil)
+          @MemberId = memberid
           @Content = content
           @RetainPath = retainpath
           @IgnoreAsset = ignoreasset
@@ -2562,6 +2593,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
@@ -6414,10 +6446,12 @@ module TencentCloud
         # @type TaskAdvanceCFG: :class:`Tencentcloud::Csip.v20221121.models.TaskAdvanceCFG`
         # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式，默认标准模式
         # @type TaskMode: Integer
+        # @param FinishWebHook: 任务完成回调webhook地址
+        # @type FinishWebHook: String
 
-        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :TaskId, :MemberId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :TaskId, :MemberId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode, :FinishWebHook
 
-        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, taskid=nil, memberid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil)
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, taskid=nil, memberid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil, finishwebhook=nil)
           @TaskName = taskname
           @ScanAssetType = scanassettype
           @ScanItem = scanitem
@@ -6429,6 +6463,7 @@ module TencentCloud
           @SelfDefiningAssets = selfdefiningassets
           @TaskAdvanceCFG = taskadvancecfg
           @TaskMode = taskmode
+          @FinishWebHook = finishwebhook
         end
 
         def deserialize(params)
@@ -6453,6 +6488,7 @@ module TencentCloud
             @TaskAdvanceCFG.deserialize(params['TaskAdvanceCFG'])
           end
           @TaskMode = params['TaskMode']
+          @FinishWebHook = params['FinishWebHook']
         end
       end
 
@@ -8488,7 +8524,7 @@ module TencentCloud
         # @param AttackHeat: 攻击热度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackHeat: Integer
-        # @param IsSuggest: 是否必修漏洞1是，0不是
+        # @param IsSuggest: 是否必修漏洞，1-是，0-不是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSuggest: Integer
         # @param HandleTaskId: 处置任务id
@@ -8500,10 +8536,16 @@ module TencentCloud
         # @param VulRiskId: 新的漏洞风险id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulRiskId: String
+        # @param TvdID: 新版漏洞id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TvdID: String
+        # @param IsOneClick: 是否可以一键体检，1-可以，0-不可以
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOneClick: Integer
 
-        attr_accessor :Port, :NoHandleCount, :Level, :Component, :RecentTime, :FirstTime, :AffectAssetCount, :RiskId, :From, :Index, :VULType, :VULName, :CVE, :Payload, :AppName, :AppVersion, :VULURL, :Nick, :AppId, :Uin, :EMGCVulType, :CVSS, :PCMGRId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId
+        attr_accessor :Port, :NoHandleCount, :Level, :Component, :RecentTime, :FirstTime, :AffectAssetCount, :RiskId, :From, :Index, :VULType, :VULName, :CVE, :Payload, :AppName, :AppVersion, :VULURL, :Nick, :AppId, :Uin, :EMGCVulType, :CVSS, :PCMGRId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId, :TvdID, :IsOneClick
 
-        def initialize(port=nil, nohandlecount=nil, level=nil, component=nil, recenttime=nil, firsttime=nil, affectassetcount=nil, riskid=nil, from=nil, index=nil, vultype=nil, vulname=nil, cve=nil, payload=nil, appname=nil, appversion=nil, vulurl=nil, nick=nil, appid=nil, uin=nil, emgcvultype=nil, cvss=nil, pcmgrid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil)
+        def initialize(port=nil, nohandlecount=nil, level=nil, component=nil, recenttime=nil, firsttime=nil, affectassetcount=nil, riskid=nil, from=nil, index=nil, vultype=nil, vulname=nil, cve=nil, payload=nil, appname=nil, appversion=nil, vulurl=nil, nick=nil, appid=nil, uin=nil, emgcvultype=nil, cvss=nil, pcmgrid=nil, vultag=nil, disclosuretime=nil, attackheat=nil, issuggest=nil, handletaskid=nil, enginesource=nil, vulriskid=nil, tvdid=nil, isoneclick=nil)
           @Port = port
           @NoHandleCount = nohandlecount
           @Level = level
@@ -8534,6 +8576,8 @@ module TencentCloud
           @HandleTaskId = handletaskid
           @EngineSource = enginesource
           @VulRiskId = vulriskid
+          @TvdID = tvdid
+          @IsOneClick = isoneclick
         end
 
         def deserialize(params)
@@ -8567,6 +8611,8 @@ module TencentCloud
           @HandleTaskId = params['HandleTaskId']
           @EngineSource = params['EngineSource']
           @VulRiskId = params['VulRiskId']
+          @TvdID = params['TvdID']
+          @IsOneClick = params['IsOneClick']
         end
       end
 

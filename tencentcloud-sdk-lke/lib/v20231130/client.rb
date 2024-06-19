@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 文档解析，异步接口。
+
+        # @param request: Request instance for CreateReconstructDocumentFlow.
+        # @type request: :class:`Tencentcloud::lke::V20231130::CreateReconstructDocumentFlowRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::CreateReconstructDocumentFlowResponse`
+        def CreateReconstructDocumentFlow(request)
+          body = send_request('CreateReconstructDocumentFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReconstructDocumentFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建拒答问题
 
         # @param request: Request instance for CreateRejectedQuestion.
@@ -856,6 +880,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetMsgRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取文档解析任务执行结果
+
+        # @param request: Request instance for GetReconstructDocumentResult.
+        # @type request: :class:`Tencentcloud::lke::V20231130::GetReconstructDocumentResultRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::GetReconstructDocumentResultResponse`
+        def GetReconstructDocumentResult(request)
+          body = send_request('GetReconstructDocumentResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetReconstructDocumentResultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1625,6 +1673,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RateMsgRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 支持将图片或PDF文件转换成Markdown格式文件，可解析包括表格、公式、图片、标题、段落、页眉、页脚等内容元素，并将内容智能转换成阅读顺序。
+
+        # @param request: Request instance for ReconstructDocument.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ReconstructDocumentRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ReconstructDocumentResponse`
+        def ReconstructDocument(request)
+          body = send_request('ReconstructDocument', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReconstructDocumentResponse.new
             model.deserialize(response['Response'])
             model
           else

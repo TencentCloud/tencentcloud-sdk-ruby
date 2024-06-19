@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 产品停售，预下线
+
         # 从组件市场选中组件并添加到应用模板列表
 
         # @param request: Request instance for ApplyMarketComponent.
@@ -76,6 +78,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 创建可视化创建应用模板
 
@@ -221,6 +225,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 可视化创建应用
 
         # @param request: Request instance for CreateEdgeUnitApplicationVisualization.
@@ -244,6 +250,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # yaml方式创建应用
 
@@ -461,6 +469,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 删除应用模板
 
         # @param request: Request instance for DeleteApplications.
@@ -580,6 +590,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 删除应用列表
 
@@ -845,6 +857,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 获取应用模板可视化配置信息
 
         # @param request: Request instance for DescribeApplicationVisualization.
@@ -868,6 +882,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 查询应用模板Yaml
 
@@ -893,6 +909,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 检查应用模板的Yaml配置
 
         # @param request: Request instance for DescribeApplicationYamlError.
@@ -916,6 +934,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 获取应用模板列表
 
@@ -1277,6 +1297,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 获取应用事件列表
 
         # @param request: Request instance for DescribeEdgeUnitApplicationEvents.
@@ -1300,6 +1322,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 获取应用日志
 
@@ -1325,6 +1349,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 获取应用容器状态
 
         # @param request: Request instance for DescribeEdgeUnitApplicationPodContainers.
@@ -1348,6 +1374,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 获取应用下Pod状态
 
@@ -1373,6 +1401,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 获取单元可视化配置信息
 
         # @param request: Request instance for DescribeEdgeUnitApplicationVisualization.
@@ -1397,6 +1427,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 获取应用的Yaml配置
 
         # @param request: Request instance for DescribeEdgeUnitApplicationYaml.
@@ -1420,6 +1452,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 检查单元应用的Yaml配置
 
@@ -1468,6 +1502,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 查询边缘集群详情
 
@@ -2093,6 +2129,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品停售，预下线
+
         # 修改应用模板基本信息
 
         # @param request: Request instance for ModifyApplicationBasicInfo.
@@ -2116,6 +2154,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品停售，预下线
 
         # 修改应用模板配置
 

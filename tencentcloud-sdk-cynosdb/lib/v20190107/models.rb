@@ -939,6 +939,9 @@ module TencentCloud
         # @type AppId: Integer
         # @param ClusterId: 集群id
         # @type ClusterId: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
         # @param CreateTime: 任务创建时间
         # @type CreateTime: String
         # @param DelayTime: 延迟执行时间
@@ -1013,16 +1016,21 @@ module TencentCloud
         # @param TaskMaintainInfo: 维护时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskMaintainInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskMaintainInfo`
+        # @param InstanceCLSDeliveryInfos: 实例日志投递信息
 
-        attr_accessor :ID, :AppId, :ClusterId, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCLSDeliveryInfos: Array
+
+        attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos
         extend Gem::Deprecate
         deprecate :InstanceGrpId, :none, 2024, 6
         deprecate :InstanceGrpId=, :none, 2024, 6
 
-        def initialize(id=nil, appid=nil, clusterid=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil)
+        def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil)
           @ID = id
           @AppId = appid
           @ClusterId = clusterid
+          @Region = region
           @CreateTime = createtime
           @DelayTime = delaytime
           @ErrMsg = errmsg
@@ -1054,12 +1062,14 @@ module TencentCloud
           @SwitchClusterLogBin = switchclusterlogbin
           @ModifyInstanceParamsData = modifyinstanceparamsdata
           @TaskMaintainInfo = taskmaintaininfo
+          @InstanceCLSDeliveryInfos = instanceclsdeliveryinfos
         end
 
         def deserialize(params)
           @ID = params['ID']
           @AppId = params['AppId']
           @ClusterId = params['ClusterId']
+          @Region = params['Region']
           @CreateTime = params['CreateTime']
           @DelayTime = params['DelayTime']
           @ErrMsg = params['ErrMsg']
@@ -1124,6 +1134,14 @@ module TencentCloud
           unless params['TaskMaintainInfo'].nil?
             @TaskMaintainInfo = TaskMaintainInfo.new
             @TaskMaintainInfo.deserialize(params['TaskMaintainInfo'])
+          end
+          unless params['InstanceCLSDeliveryInfos'].nil?
+            @InstanceCLSDeliveryInfos = []
+            params['InstanceCLSDeliveryInfos'].each do |i|
+              instanceclsdeliveryinfo_tmp = InstanceCLSDeliveryInfo.new
+              instanceclsdeliveryinfo_tmp.deserialize(i)
+              @InstanceCLSDeliveryInfos << instanceclsdeliveryinfo_tmp
+            end
           end
         end
       end
@@ -7339,6 +7357,62 @@ module TencentCloud
         end
       end
 
+      # 交换实例信息
+      class ExchangeInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param SrcInstanceInfo: 源实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcInstanceInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackInstanceInfo`
+        # @param DstInstanceInfo: 目标实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstInstanceInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackInstanceInfo`
+
+        attr_accessor :SrcInstanceInfo, :DstInstanceInfo
+
+        def initialize(srcinstanceinfo=nil, dstinstanceinfo=nil)
+          @SrcInstanceInfo = srcinstanceinfo
+          @DstInstanceInfo = dstinstanceinfo
+        end
+
+        def deserialize(params)
+          unless params['SrcInstanceInfo'].nil?
+            @SrcInstanceInfo = RollbackInstanceInfo.new
+            @SrcInstanceInfo.deserialize(params['SrcInstanceInfo'])
+          end
+          unless params['DstInstanceInfo'].nil?
+            @DstInstanceInfo = RollbackInstanceInfo.new
+            @DstInstanceInfo.deserialize(params['DstInstanceInfo'])
+          end
+        end
+      end
+
+      # 交换RO组信息
+      class ExchangeRoGroupInfo < TencentCloud::Common::AbstractModel
+        # @param SrcRoGroupInfo: 源RO组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcRoGroupInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackRoGroupInfo`
+        # @param DstRoGroupInfo: 目标RO组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstRoGroupInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackRoGroupInfo`
+
+        attr_accessor :SrcRoGroupInfo, :DstRoGroupInfo
+
+        def initialize(srcrogroupinfo=nil, dstrogroupinfo=nil)
+          @SrcRoGroupInfo = srcrogroupinfo
+          @DstRoGroupInfo = dstrogroupinfo
+        end
+
+        def deserialize(params)
+          unless params['SrcRoGroupInfo'].nil?
+            @SrcRoGroupInfo = RollbackRoGroupInfo.new
+            @SrcRoGroupInfo.deserialize(params['SrcRoGroupInfo'])
+          end
+          unless params['DstRoGroupInfo'].nil?
+            @DstRoGroupInfo = RollbackRoGroupInfo.new
+            @DstRoGroupInfo.deserialize(params['DstRoGroupInfo'])
+          end
+        end
+      end
+
       # ExportInstanceErrorLogs请求参数结构体
       class ExportInstanceErrorLogsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -11759,10 +11833,13 @@ module TencentCloud
         # @param BackupFileName: 备份文件名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupFileName: String
+        # @param RollbackProcess: 回档进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RollbackProcess: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackProcessInfo`
 
-        attr_accessor :Cpu, :Memory, :StorageLimit, :OriginalClusterId, :OriginalClusterName, :RollbackStrategy, :SnapshotTime, :MinCpu, :MaxCpu, :SnapShotId, :RollbackDatabases, :RollbackTables, :BackupFileName
+        attr_accessor :Cpu, :Memory, :StorageLimit, :OriginalClusterId, :OriginalClusterName, :RollbackStrategy, :SnapshotTime, :MinCpu, :MaxCpu, :SnapShotId, :RollbackDatabases, :RollbackTables, :BackupFileName, :RollbackProcess
 
-        def initialize(cpu=nil, memory=nil, storagelimit=nil, originalclusterid=nil, originalclustername=nil, rollbackstrategy=nil, snapshottime=nil, mincpu=nil, maxcpu=nil, snapshotid=nil, rollbackdatabases=nil, rollbacktables=nil, backupfilename=nil)
+        def initialize(cpu=nil, memory=nil, storagelimit=nil, originalclusterid=nil, originalclustername=nil, rollbackstrategy=nil, snapshottime=nil, mincpu=nil, maxcpu=nil, snapshotid=nil, rollbackdatabases=nil, rollbacktables=nil, backupfilename=nil, rollbackprocess=nil)
           @Cpu = cpu
           @Memory = memory
           @StorageLimit = storagelimit
@@ -11776,6 +11853,7 @@ module TencentCloud
           @RollbackDatabases = rollbackdatabases
           @RollbackTables = rollbacktables
           @BackupFileName = backupfilename
+          @RollbackProcess = rollbackprocess
         end
 
         def deserialize(params)
@@ -11806,6 +11884,10 @@ module TencentCloud
             end
           end
           @BackupFileName = params['BackupFileName']
+          unless params['RollbackProcess'].nil?
+            @RollbackProcess = RollbackProcessInfo.new
+            @RollbackProcess.deserialize(params['RollbackProcess'])
+          end
         end
       end
 
@@ -11826,6 +11908,176 @@ module TencentCloud
         def deserialize(params)
           @OldDatabase = params['OldDatabase']
           @NewDatabase = params['NewDatabase']
+        end
+      end
+
+      # 回档实例信息
+      class RollbackInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param UniqVpcId: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+        # @param Vip: vip信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: vport信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Cpu: cpu大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Mem: 内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: Integer
+        # @param StorageLimit: 存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageLimit: Integer
+
+        attr_accessor :ClusterId, :ClusterName, :UniqVpcId, :UniqSubnetId, :Vip, :Vport, :InstanceId, :InstanceName, :Status, :Cpu, :Mem, :StorageLimit
+
+        def initialize(clusterid=nil, clustername=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, instanceid=nil, instancename=nil, status=nil, cpu=nil, mem=nil, storagelimit=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @Vip = vip
+          @Vport = vport
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Status = status
+          @Cpu = cpu
+          @Mem = mem
+          @StorageLimit = storagelimit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @StorageLimit = params['StorageLimit']
+        end
+      end
+
+      # 回档进度详情
+      class RollbackProcessInfo < TencentCloud::Common::AbstractModel
+        # @param IsVipSwitchable: 是否可以交换vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsVipSwitchable: Boolean
+        # @param VipSwitchableTime: vip可交换时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VipSwitchableTime: String
+        # @param ExchangeInstanceInfoList: 交换实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExchangeInstanceInfoList: Array
+        # @param ExchangeRoGroupInfoList: 交换RO组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExchangeRoGroupInfoList: Array
+        # @param CurrentStep: 当前步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStep: String
+        # @param CurrentStepProgress: 当前步骤进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStepProgress: Integer
+        # @param CurrentStepRemainingTime: 当前步骤剩余时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentStepRemainingTime: String
+
+        attr_accessor :IsVipSwitchable, :VipSwitchableTime, :ExchangeInstanceInfoList, :ExchangeRoGroupInfoList, :CurrentStep, :CurrentStepProgress, :CurrentStepRemainingTime
+
+        def initialize(isvipswitchable=nil, vipswitchabletime=nil, exchangeinstanceinfolist=nil, exchangerogroupinfolist=nil, currentstep=nil, currentstepprogress=nil, currentstepremainingtime=nil)
+          @IsVipSwitchable = isvipswitchable
+          @VipSwitchableTime = vipswitchabletime
+          @ExchangeInstanceInfoList = exchangeinstanceinfolist
+          @ExchangeRoGroupInfoList = exchangerogroupinfolist
+          @CurrentStep = currentstep
+          @CurrentStepProgress = currentstepprogress
+          @CurrentStepRemainingTime = currentstepremainingtime
+        end
+
+        def deserialize(params)
+          @IsVipSwitchable = params['IsVipSwitchable']
+          @VipSwitchableTime = params['VipSwitchableTime']
+          unless params['ExchangeInstanceInfoList'].nil?
+            @ExchangeInstanceInfoList = []
+            params['ExchangeInstanceInfoList'].each do |i|
+              exchangeinstanceinfo_tmp = ExchangeInstanceInfo.new
+              exchangeinstanceinfo_tmp.deserialize(i)
+              @ExchangeInstanceInfoList << exchangeinstanceinfo_tmp
+            end
+          end
+          unless params['ExchangeRoGroupInfoList'].nil?
+            @ExchangeRoGroupInfoList = []
+            params['ExchangeRoGroupInfoList'].each do |i|
+              exchangerogroupinfo_tmp = ExchangeRoGroupInfo.new
+              exchangerogroupinfo_tmp.deserialize(i)
+              @ExchangeRoGroupInfoList << exchangerogroupinfo_tmp
+            end
+          end
+          @CurrentStep = params['CurrentStep']
+          @CurrentStepProgress = params['CurrentStepProgress']
+          @CurrentStepRemainingTime = params['CurrentStepRemainingTime']
+        end
+      end
+
+      # 回档RO组信息
+      class RollbackRoGroupInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceGroupId: 实例组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceGroupId: String
+        # @param UniqVpcId: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+        # @param Vip: vip信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: vport信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+
+        attr_accessor :InstanceGroupId, :UniqVpcId, :UniqSubnetId, :Vip, :Vport
+
+        def initialize(instancegroupid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil)
+          @InstanceGroupId = instancegroupid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @Vip = vip
+          @Vport = vport
+        end
+
+        def deserialize(params)
+          @InstanceGroupId = params['InstanceGroupId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
         end
       end
 

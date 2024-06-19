@@ -2935,6 +2935,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询正在运行中Pod的计费信息。可以通过 Namespace 和 Name 来查询某个 Pod 的信息，也可以通过 Pod 的 Uid 批量查询。
+
+        # @param request: Request instance for DescribePodChargeInfo.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribePodChargeInfoRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribePodChargeInfoResponse`
+        def DescribePodChargeInfo(request)
+          body = send_request('DescribePodChargeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePodChargeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询各个规格的 Pod 的抵扣率
 
         # @param request: Request instance for DescribePodDeductionRate.

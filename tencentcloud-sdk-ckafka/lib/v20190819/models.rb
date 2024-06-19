@@ -9282,10 +9282,10 @@ module TencentCloud
         # @type UncleanLeaderElectionEnable: Integer
         # @param RetentionMs: 消息保留时间，单位：ms，当前最小值为60000ms。
         # @type RetentionMs: Integer
-        # @param SegmentMs: Segment 分片滚动的时长，单位：ms，当前最小为86400000ms。
-        # @type SegmentMs: Integer
         # @param MaxMessageBytes: 主题消息最大值，单位为 Byte，最大值为12582912Byte（即12MB）。
         # @type MaxMessageBytes: Integer
+        # @param SegmentMs: Segment 分片滚动的时长，单位：ms，当前最小为300000ms。
+        # @type SegmentMs: Integer
         # @param CleanUpPolicy: 消息删除策略，可以选择delete 或者compact
         # @type CleanUpPolicy: String
         # @param IpWhiteList: Ip白名单列表，配额限制，enableWhileList=1时必选
@@ -9305,9 +9305,9 @@ module TencentCloud
         # @param ReplicaNum: 调整topic副本数
         # @type ReplicaNum: Integer
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate, :ReplicaNum
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :MaxMessageBytes, :SegmentMs, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate, :ReplicaNum
 
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil, replicanum=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, maxmessagebytes=nil, segmentms=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil, replicanum=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -9315,8 +9315,8 @@ module TencentCloud
           @MinInsyncReplicas = mininsyncreplicas
           @UncleanLeaderElectionEnable = uncleanleaderelectionenable
           @RetentionMs = retentionms
-          @SegmentMs = segmentms
           @MaxMessageBytes = maxmessagebytes
+          @SegmentMs = segmentms
           @CleanUpPolicy = cleanuppolicy
           @IpWhiteList = ipwhitelist
           @EnableAclRule = enableaclrule
@@ -9336,8 +9336,8 @@ module TencentCloud
           @MinInsyncReplicas = params['MinInsyncReplicas']
           @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
           @RetentionMs = params['RetentionMs']
-          @SegmentMs = params['SegmentMs']
           @MaxMessageBytes = params['MaxMessageBytes']
+          @SegmentMs = params['SegmentMs']
           @CleanUpPolicy = params['CleanUpPolicy']
           @IpWhiteList = params['IpWhiteList']
           @EnableAclRule = params['EnableAclRule']
@@ -12275,10 +12275,25 @@ module TencentCloud
         # @param PublicNetworkLimit: 公网带宽配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetworkLimit: String
+        # @param RequestId: 请求ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Offset: 分页offset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Limit: 分页limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param ForceCheckTag: 是否必须录入tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceCheckTag: Boolean
 
-        attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical, :PublicNetwork, :PublicNetworkLimit
+        attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical, :PublicNetwork, :PublicNetworkLimit, :RequestId, :Version, :Offset, :Limit, :ForceCheckTag
 
-        def initialize(zonelist=nil, maxbuyinstancenum=nil, maxbandwidth=nil, unitprice=nil, messageprice=nil, clusterinfo=nil, standard=nil, standards2=nil, profession=nil, physical=nil, publicnetwork=nil, publicnetworklimit=nil)
+        def initialize(zonelist=nil, maxbuyinstancenum=nil, maxbandwidth=nil, unitprice=nil, messageprice=nil, clusterinfo=nil, standard=nil, standards2=nil, profession=nil, physical=nil, publicnetwork=nil, publicnetworklimit=nil, requestid=nil, version=nil, offset=nil, limit=nil, forcechecktag=nil)
           @ZoneList = zonelist
           @MaxBuyInstanceNum = maxbuyinstancenum
           @MaxBandwidth = maxbandwidth
@@ -12291,6 +12306,11 @@ module TencentCloud
           @Physical = physical
           @PublicNetwork = publicnetwork
           @PublicNetworkLimit = publicnetworklimit
+          @RequestId = requestid
+          @Version = version
+          @Offset = offset
+          @Limit = limit
+          @ForceCheckTag = forcechecktag
         end
 
         def deserialize(params)
@@ -12326,6 +12346,11 @@ module TencentCloud
           @Physical = params['Physical']
           @PublicNetwork = params['PublicNetwork']
           @PublicNetworkLimit = params['PublicNetworkLimit']
+          @RequestId = params['RequestId']
+          @Version = params['Version']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ForceCheckTag = params['ForceCheckTag']
         end
       end
 
