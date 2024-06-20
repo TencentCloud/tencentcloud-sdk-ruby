@@ -3080,7 +3080,7 @@ module TencentCloud
       class EmrListInstance < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param StatusDesc: 状态描述
+        # @param StatusDesc: 常见状态描述：集群生产中,集群运行中,集群创建中,集群已关闭,集群已删除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
         # @param ClusterName: 集群名字
@@ -3119,7 +3119,7 @@ module TencentCloud
         # @param Zone: 地区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param Status: 状态码
+        # @param Status: 状态码, 取值为-2(集群已删除), -1(集群已关闭), 0(集群生产中), 2(集群运行中), 3(集群创建中)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Tags: 实例标签

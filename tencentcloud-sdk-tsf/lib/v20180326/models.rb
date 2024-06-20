@@ -15740,10 +15740,13 @@ module TencentCloud
         # @param HiddenStatus: 屏蔽状态，hidden 为屏蔽，unhidden 为未屏蔽
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HiddenStatus: String
+        # @param MetaJson: json格式的 meta 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaJson: String
 
-        attr_accessor :InstanceId, :InstanceName, :Port, :LanIp, :WanIp, :InstanceAvailableStatus, :ServiceInstanceStatus, :ApplicationId, :ApplicationName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :GroupId, :GroupName, :InstanceStatus, :HealthCheckUrl, :ClusterType, :ApplicationPackageVersion, :ApplicationType, :ServiceStatus, :RegistrationTime, :LastHeartbeatTime, :RegistrationId, :HiddenStatus
+        attr_accessor :InstanceId, :InstanceName, :Port, :LanIp, :WanIp, :InstanceAvailableStatus, :ServiceInstanceStatus, :ApplicationId, :ApplicationName, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :GroupId, :GroupName, :InstanceStatus, :HealthCheckUrl, :ClusterType, :ApplicationPackageVersion, :ApplicationType, :ServiceStatus, :RegistrationTime, :LastHeartbeatTime, :RegistrationId, :HiddenStatus, :MetaJson
 
-        def initialize(instanceid=nil, instancename=nil, port=nil, lanip=nil, wanip=nil, instanceavailablestatus=nil, serviceinstancestatus=nil, applicationid=nil, applicationname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, groupid=nil, groupname=nil, instancestatus=nil, healthcheckurl=nil, clustertype=nil, applicationpackageversion=nil, applicationtype=nil, servicestatus=nil, registrationtime=nil, lastheartbeattime=nil, registrationid=nil, hiddenstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, port=nil, lanip=nil, wanip=nil, instanceavailablestatus=nil, serviceinstancestatus=nil, applicationid=nil, applicationname=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, groupid=nil, groupname=nil, instancestatus=nil, healthcheckurl=nil, clustertype=nil, applicationpackageversion=nil, applicationtype=nil, servicestatus=nil, registrationtime=nil, lastheartbeattime=nil, registrationid=nil, hiddenstatus=nil, metajson=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Port = port
@@ -15769,6 +15772,7 @@ module TencentCloud
           @LastHeartbeatTime = lastheartbeattime
           @RegistrationId = registrationid
           @HiddenStatus = hiddenstatus
+          @MetaJson = metajson
         end
 
         def deserialize(params)
@@ -15797,6 +15801,7 @@ module TencentCloud
           @LastHeartbeatTime = params['LastHeartbeatTime']
           @RegistrationId = params['RegistrationId']
           @HiddenStatus = params['HiddenStatus']
+          @MetaJson = params['MetaJson']
         end
       end
 

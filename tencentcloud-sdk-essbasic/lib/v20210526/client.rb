@@ -1744,6 +1744,40 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取区块链存证报告查看链接/二维码接口
+
+        # 适用场景：企业员工可以通过此接口生成合同区块链存证报告的查看链接/二维码，以供他人扫码打开腾讯电子签小程序查看。
+
+        # [点击查看区块链存证报告样式](https://qcloudimg.tencent-cloud.cn/raw/47d5e9c2ffa90ad4e27b3cd14095aa08.jpg)
+
+        # 注：
+        # <ul><li>1. 二维码下载链接过期时间为5分钟，请尽快下载保存。二维码/短链的过期时间为<font color="red">7天</font>，超过有效期则不可用。</li>
+        # <li>2. 合同状态需为<font color="red">签署完成</font> 、<font color="red">已解除</font>才能生成报告查看二维码/短链。</li>
+        # <li>3. 调用接口时，需确保接口调用身份拥有此合同的访问数据权限或为合同参与方。</li>
+        # <li>4. 通过扫码或者点击链接，用户无需登录或者鉴权即可查看对应合同的区块链存证报告，请妥善保管好二维码或链接。</li></ul>
+
+        # @param request: Request instance for CreateFlowBlockchainEvidenceUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateFlowBlockchainEvidenceUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateFlowBlockchainEvidenceUrlResponse`
+        def CreateFlowBlockchainEvidenceUrl(request)
+          body = send_request('CreateFlowBlockchainEvidenceUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlowBlockchainEvidenceUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 1. 在使用[通过多文件创建合同组签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowGroupByFiles)或[通过多模板创建合同组签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowGroupByTemplates)创建合同组签署流程时，若指定了参数以下参数为true,则可以调用此接口提交企业内部签署审批结果,即使是自动签署也需要进行审核通过才会进行签署。
         #   - [FlowInfo.NeedSignReview](https://qian.tencent.com/developers/partnerApis/dataTypes/#flowinfo)
         #   - [FlowFileInfo.NeedSignReview](https://qian.tencent.com/developers/partnerApis/dataTypes/#flowfileinfo)
@@ -1845,6 +1879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateFlowsByTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于获取创建法人章二维码图片base64
+
+        # @param request: Request instance for CreateLegalSealQrCode.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateLegalSealQrCodeRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateLegalSealQrCodeResponse`
+        def CreateLegalSealQrCode(request)
+          body = send_request('CreateLegalSealQrCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLegalSealQrCodeResponse.new
             model.deserialize(response['Response'])
             model
           else

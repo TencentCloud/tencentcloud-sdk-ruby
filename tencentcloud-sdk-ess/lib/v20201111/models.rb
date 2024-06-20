@@ -2168,6 +2168,68 @@ module TencentCloud
         end
       end
 
+      # CreateFlowBlockchainEvidenceUrl请求参数结构体
+      class CreateFlowBlockchainEvidenceUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # @type FlowId: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :FlowId, :Agent
+
+        def initialize(operator=nil, flowid=nil, agent=nil)
+          @Operator = operator
+          @FlowId = flowid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateFlowBlockchainEvidenceUrl返回参数结构体
+      class CreateFlowBlockchainEvidenceUrlResponse < TencentCloud::Common::AbstractModel
+        # @param QrCode: 二维码图片下载链接，下载链接有效时间5分钟，请尽快下载保存。
+        # @type QrCode: String
+        # @param Url: 查看短链，可直接点击短链查看报告。
+        # @type Url: String
+        # @param ExpiredOn: 二维码和短链的过期时间戳，过期时间默认为生成链接后7天。
+        # @type ExpiredOn: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrCode, :Url, :ExpiredOn, :RequestId
+
+        def initialize(qrcode=nil, url=nil, expiredon=nil, requestid=nil)
+          @QrCode = qrcode
+          @Url = url
+          @ExpiredOn = expiredon
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrCode = params['QrCode']
+          @Url = params['Url']
+          @ExpiredOn = params['ExpiredOn']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowByFiles请求参数结构体
       class CreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
@@ -3624,6 +3686,61 @@ module TencentCloud
               @FailedCreateRoleData << failedcreateroledata_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLegalSealQrCode请求参数结构体
+      class CreateLegalSealQrCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Organization: 机构信息，暂未开放
+        # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
+
+        attr_accessor :Operator, :Agent, :Organization
+
+        def initialize(operator=nil, agent=nil, organization=nil)
+          @Operator = operator
+          @Agent = agent
+          @Organization = organization
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+        end
+      end
+
+      # CreateLegalSealQrCode返回参数结构体
+      class CreateLegalSealQrCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrcodeBase64: 二维码图片base64值
+        # @type QrcodeBase64: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrcodeBase64, :RequestId
+
+        def initialize(qrcodebase64=nil, requestid=nil)
+          @QrcodeBase64 = qrcodebase64
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrcodeBase64 = params['QrcodeBase64']
           @RequestId = params['RequestId']
         end
       end

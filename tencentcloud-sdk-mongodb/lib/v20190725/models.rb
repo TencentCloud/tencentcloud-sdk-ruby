@@ -3159,6 +3159,85 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceParams请求参数结构体
+      class ModifyInstanceParamsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param InstanceParams: 指定需修改的参数名及值。当前所支持的参数名及对应取值范围，请通过 [DescribeInstanceParams ](https://cloud.tencent.com/document/product/240/65903)获取。
+        # @type InstanceParams: Array
+        # @param ModifyType: 操作类型，包括：
+        # - IMMEDIATELY：立即调整。
+        # - DELAY：延迟调整。可选字段，不配置该参数则默认为立即调整。
+        # @type ModifyType: String
+
+        attr_accessor :InstanceId, :InstanceParams, :ModifyType
+
+        def initialize(instanceid=nil, instanceparams=nil, modifytype=nil)
+          @InstanceId = instanceid
+          @InstanceParams = instanceparams
+          @ModifyType = modifytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['InstanceParams'].nil?
+            @InstanceParams = []
+            params['InstanceParams'].each do |i|
+              modifymongodbparamtype_tmp = ModifyMongoDBParamType.new
+              modifymongodbparamtype_tmp.deserialize(i)
+              @InstanceParams << modifymongodbparamtype_tmp
+            end
+          end
+          @ModifyType = params['ModifyType']
+        end
+      end
+
+      # ModifyInstanceParams返回参数结构体
+      class ModifyInstanceParamsResponse < TencentCloud::Common::AbstractModel
+        # @param Changed: 修改参数配置是否生效。
+        # - true：参数修改后的值已生效。
+        # - false：执行失败。
+        # @type Changed: Boolean
+        # @param TaskId: 该参数暂时无意义(兼容前端保留)。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Changed, :TaskId, :RequestId
+
+        def initialize(changed=nil, taskid=nil, requestid=nil)
+          @Changed = changed
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Changed = params['Changed']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改mongoDB实例，请求参数
+      class ModifyMongoDBParamType < TencentCloud::Common::AbstractModel
+        # @param Key: 需要修改的参数名称，请严格参考通过 DescribeInstanceParams 获取的当前实例支持的参数名。
+        # @type Key: String
+        # @param Value: 需要修改的参数名称对应的值，请严格参考通过 DescribeInstanceParams 获取的参数对应的值的范围。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 修改数据库地址
       class ModifyNetworkAddress < TencentCloud::Common::AbstractModel
         # @param NewIPAddress: 新IP地址。

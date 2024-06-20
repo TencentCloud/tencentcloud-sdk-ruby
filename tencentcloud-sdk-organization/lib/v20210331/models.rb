@@ -17,6 +17,38 @@
 module TencentCloud
   module Organization
     module V20210331
+      # AcceptJoinShareUnitInvitation请求参数结构体
+      class AcceptJoinShareUnitInvitationRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+
+        attr_accessor :UnitId
+
+        def initialize(unitid=nil)
+          @UnitId = unitid
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+        end
+      end
+
+      # AcceptJoinShareUnitInvitation返回参数结构体
+      class AcceptJoinShareUnitInvitationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddOrganizationMemberEmail请求参数结构体
       class AddOrganizationMemberEmailRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -3684,6 +3716,38 @@ module TencentCloud
 
       # QuitOrganization返回参数结构体
       class QuitOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RejectJoinShareUnitInvitation请求参数结构体
+      class RejectJoinShareUnitInvitationRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+
+        attr_accessor :UnitId
+
+        def initialize(unitid=nil)
+          @UnitId = unitid
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+        end
+      end
+
+      # RejectJoinShareUnitInvitation返回参数结构体
+      class RejectJoinShareUnitInvitationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

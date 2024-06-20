@@ -577,10 +577,22 @@ module TencentCloud
         # @param PureAudio: 是否为纯音频，0表示视频，1表示纯音频
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PureAudio: Integer
+        # @param SegmentType: hls 分片类型，可选值：
+        # <li>ts-segment：HLS+TS 切片</li>
+        # <li>ts-byterange：HLS+TS byte range</li>
+        # <li>mp4-segment：HLS+MP4 切片</li>
+        # <li>mp4-byterange：HLS+MP4 byte range</li>
+        # <li>ts-packed-audio：TS+Packed Audio</li>
+        # <li>mp4-packed-audio：MP4+Packed Audio</li>
+        # 默认值：ts-segment
 
-        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime, :PureAudio
+        # 注：自适应码流的hls分片格式已此字段为准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentType: String
 
-        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil, pureaudio=nil)
+        attr_accessor :Definition, :Type, :Name, :Comment, :Format, :StreamInfos, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :CreateTime, :UpdateTime, :PureAudio, :SegmentType
+
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, format=nil, streaminfos=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, createtime=nil, updatetime=nil, pureaudio=nil, segmenttype=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -592,6 +604,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @PureAudio = pureaudio
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -613,6 +626,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @PureAudio = params['PureAudio']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -4344,6 +4358,7 @@ module TencentCloud
         # <li>aac；</li>
         # <li>mp3；</li>
         # <li>ac3。</li>
+        # <li>eac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         # <li>aac：更适合 mp4；</li>
         # <li>mp3：更适合 flv；</li>
@@ -4399,6 +4414,7 @@ module TencentCloud
         # <li>aac；</li>
         # <li>mp3；</li>
         # <li>ac3。</li>
+        # <li>eac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         # <li>aac：更适合 mp4；</li>
         # <li>mp3：更适合 flv；</li>
@@ -5905,10 +5921,13 @@ module TencentCloud
         # 1. StreamInfos.N.Video.Codec不能为copy
         # 2. StreamInfos.N.Video.Fps不能为null
         # @type PureAudio: Integer
+        # @param SegmentType: hls 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
+        # 注：自适应码流的hls分片格式已此字段为准
+        # @type SegmentType: String
 
-        attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :PureAudio
+        attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :PureAudio, :SegmentType
 
-        def initialize(format=nil, streaminfos=nil, name=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, pureaudio=nil)
+        def initialize(format=nil, streaminfos=nil, name=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, comment=nil, pureaudio=nil, segmenttype=nil)
           @Format = format
           @StreamInfos = streaminfos
           @Name = name
@@ -5916,6 +5935,7 @@ module TencentCloud
           @DisableHigherVideoResolution = disablehighervideoresolution
           @Comment = comment
           @PureAudio = pureaudio
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -5933,6 +5953,7 @@ module TencentCloud
           @DisableHigherVideoResolution = params['DisableHigherVideoResolution']
           @Comment = params['Comment']
           @PureAudio = params['PureAudio']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -7180,7 +7201,7 @@ module TencentCloud
 
       # CreateTranscodeTemplate请求参数结构体
       class CreateTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
+        # @param Container: 封装格式，可选值：mp4、flv、hls、ts、webm、mkv、mxf、mov、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
         # @type Container: String
         # @param Name: 转码模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -15061,10 +15082,13 @@ module TencentCloud
         # 1. StreamInfos.N.Video.Codec不能为copy
         # 2. StreamInfos.N.Video.Fps不能为null
         # @type PureAudio: Integer
+        # @param SegmentType: hls 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
+        # 注：自适应码流的hls分片格式已此字段为准
+        # @type SegmentType: String
 
-        attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :PureAudio
+        attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :PureAudio, :SegmentType
 
-        def initialize(definition=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil, pureaudio=nil)
+        def initialize(definition=nil, name=nil, format=nil, disablehighervideobitrate=nil, disablehighervideoresolution=nil, streaminfos=nil, comment=nil, pureaudio=nil, segmenttype=nil)
           @Definition = definition
           @Name = name
           @Format = format
@@ -15073,6 +15097,7 @@ module TencentCloud
           @StreamInfos = streaminfos
           @Comment = comment
           @PureAudio = pureaudio
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -15091,6 +15116,7 @@ module TencentCloud
           end
           @Comment = params['Comment']
           @PureAudio = params['PureAudio']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -20326,15 +20352,22 @@ module TencentCloud
       # 视频流配置参数
       class VideoTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 视频流的编码格式，可选值：
-        # <li>copy：纯音频模版</li>
         # <li>h264：H.264 编码</li>
         # <li>h265：H.265 编码</li>
+        # <li>h266：H.266 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
+        # <li>vp8：VP8 编码</li>
+        # <li>vp9：VP9 编码</li>
+        # <li>mpeg2：MPEG2 编码</li>
+        # <li>dnxhd：DNxHD 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
-        # 注意：av1 编码容器目前只支持 mp4 。
+
+        # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv，mov。
+        # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
+        # 注意：VP8、VP9编码容器目前只支持webm，mkv。
+        # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。
-        # 当取值为 0，表示帧率和原始视频保持一致。
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
         # 注意：自适应码率时取值范围是 [0, 60]
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
@@ -20375,10 +20408,18 @@ module TencentCloud
         # 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）。
         # 如果没有特殊需求，不建议指定该参数。
         # @type Vcrf: Integer
+        # @param SegmentType: hls 分片类型，可选值 ：
+        # <li>6：HLS+TS 切片</li>
+        # <li>2：HLS+TS byte range</li>
+        # <li>7：HLS+MP4 切片</li>
+        # <li>5：HLS+MP4 byte range</li>
+        # 默认值：6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentType: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :SegmentType
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, segmenttype=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -20388,6 +20429,7 @@ module TencentCloud
           @Gop = gop
           @FillType = filltype
           @Vcrf = vcrf
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -20400,6 +20442,7 @@ module TencentCloud
           @Gop = params['Gop']
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
+          @SegmentType = params['SegmentType']
         end
       end
 
@@ -20408,13 +20451,21 @@ module TencentCloud
         # @param Codec: 视频流的编码格式，可选值：
         # <li>h264：H.264 编码</li>
         # <li>h265：H.265 编码</li>
+        # <li>h266：H.266 编码</li>
         # <li>av1：AOMedia Video 1 编码</li>
+        # <li>vp8：VP8 编码</li>
+        # <li>vp9：VP9 编码</li>
+        # <li>mpeg2：MPEG2 编码</li>
+        # <li>dnxhd：DNxHD 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
-        # 注意：av1 编码容器目前只支持 mp4 。
+
+        # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv，mov。
+        # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
+        # 注意：VP8、VP9编码容器目前只支持webm，mkv。
+        # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。
-        # 当取值为 0，表示帧率和原始视频保持一致。
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
@@ -20457,10 +20508,18 @@ module TencentCloud
         # 默认值: 0.   当开启该参数时，将会自适应生成多个不同分辨率，不同码率的码流， 其中VideoTemplate的宽和高为多个码流中的最大分辨率，VideoTemplate中的码率为多个码流中的最高码率， VideoTemplate中的vcrf为多个码流中的最高质量。 当不设置分辨率、码率和vcrf时， ContentAdaptStream 参数生成的最高分辨率为视频源的分辨率，视频质量为接近vmaf95分。 若要开启该参数或了解计费细节, 请联系您的腾讯云商务。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentAdaptStream: Integer
+        # @param SegmentType: hls 分片类型，可选值：
+        # <li>6：HLS+TS 切片</li>
+        # <li>2：HLS+TS byte range</li>
+        # <li>7：HLS+MP4 切片</li>
+        # <li>5：HLS+MP4 byte range</li>
+        # 默认值：6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentType: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream, :SegmentType
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, segmenttype=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -20471,6 +20530,7 @@ module TencentCloud
           @FillType = filltype
           @Vcrf = vcrf
           @ContentAdaptStream = contentadaptstream
+          @SegmentType = segmenttype
         end
 
         def deserialize(params)
@@ -20484,6 +20544,7 @@ module TencentCloud
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @ContentAdaptStream = params['ContentAdaptStream']
+          @SegmentType = params['SegmentType']
         end
       end
 

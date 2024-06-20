@@ -25,19 +25,24 @@ module TencentCloud
         # @type Status: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param Description: 密钥描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :AccessKeyId, :Status, :CreateTime
+        attr_accessor :AccessKeyId, :Status, :CreateTime, :Description
 
-        def initialize(accesskeyid=nil, status=nil, createtime=nil)
+        def initialize(accesskeyid=nil, status=nil, createtime=nil, description=nil)
           @AccessKeyId = accesskeyid
           @Status = status
           @CreateTime = createtime
+          @Description = description
         end
 
         def deserialize(params)
           @AccessKeyId = params['AccessKeyId']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+          @Description = params['Description']
         end
       end
 
@@ -51,14 +56,18 @@ module TencentCloud
         # @type Status: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :AccessKeyId, :SecretAccessKey, :Status, :CreateTime
+        attr_accessor :AccessKeyId, :SecretAccessKey, :Status, :CreateTime, :Description
 
-        def initialize(accesskeyid=nil, secretaccesskey=nil, status=nil, createtime=nil)
+        def initialize(accesskeyid=nil, secretaccesskey=nil, status=nil, createtime=nil, description=nil)
           @AccessKeyId = accesskeyid
           @SecretAccessKey = secretaccesskey
           @Status = status
           @CreateTime = createtime
+          @Description = description
         end
 
         def deserialize(params)
@@ -66,6 +75,7 @@ module TencentCloud
           @SecretAccessKey = params['SecretAccessKey']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+          @Description = params['Description']
         end
       end
 
@@ -666,15 +676,19 @@ module TencentCloud
       class CreateAccessKeyRequest < TencentCloud::Common::AbstractModel
         # @param TargetUin: 指定用户Uin，不填默认为当前用户创建访问密钥
         # @type TargetUin: Integer
+        # @param Description: 密钥描述，长度在1到1024之间，可包含大小写字符，数字以及特殊字符：=,.@:/-。 正则为：[\w+=,.@:/-]*。
+        # @type Description: String
 
-        attr_accessor :TargetUin
+        attr_accessor :TargetUin, :Description
 
-        def initialize(targetuin=nil)
+        def initialize(targetuin=nil, description=nil)
           @TargetUin = targetuin
+          @Description = description
         end
 
         def deserialize(params)
           @TargetUin = params['TargetUin']
+          @Description = params['Description']
         end
       end
 

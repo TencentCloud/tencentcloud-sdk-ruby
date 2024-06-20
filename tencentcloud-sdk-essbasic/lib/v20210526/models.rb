@@ -5428,6 +5428,57 @@ module TencentCloud
         end
       end
 
+      # CreateFlowBlockchainEvidenceUrl请求参数结构体
+      class CreateFlowBlockchainEvidenceUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。  此接口下面信息必填。 <ul> <li>渠道应用标识:  Agent.AppId</li> <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li> <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li> </ul>
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 合同流程ID，为32位字符串。建议开发者妥善保存此流程ID，以便于顺利进行后续操作。可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # @type FlowId: String
+
+        attr_accessor :Agent, :FlowId
+
+        def initialize(agent=nil, flowid=nil)
+          @Agent = agent
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # CreateFlowBlockchainEvidenceUrl返回参数结构体
+      class CreateFlowBlockchainEvidenceUrlResponse < TencentCloud::Common::AbstractModel
+        # @param QrCode: 二维码图片下载链接，下载链接有效时间5分钟，请尽快下载保存。
+        # @type QrCode: String
+        # @param Url: 查看短链，可直接点击短链查看报告。
+        # @type Url: String
+        # @param ExpiredOn: 二维码和短链的过期时间戳，过期时间默认为生成链接后7天。
+        # @type ExpiredOn: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrCode, :Url, :ExpiredOn, :RequestId
+
+        def initialize(qrcode=nil, url=nil, expiredon=nil, requestid=nil)
+          @QrCode = qrcode
+          @Url = url
+          @ExpiredOn = expiredon
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrCode = params['QrCode']
+          @Url = params['Url']
+          @ExpiredOn = params['ExpiredOn']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowGroupSignReview请求参数结构体
       class CreateFlowGroupSignReviewRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -5684,6 +5735,68 @@ module TencentCloud
               @FlowApprovers << flowapproveritem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLegalSealQrCode请求参数结构体
+      class CreateLegalSealQrCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.ProxyOperator.OpenId</li>
+        # </ul>注:
+        # `1. 企业激活时， 此时的Agent.ProxyOrganizationOpenId将会是企业激活后企业的唯一标识，建议开发者保存企业ProxyOrganizationOpenId，后续各项接口调用皆需要此参数。 `
+        # `2. 员工认证时， 此时的Agent.ProxyOperator.OpenId将会是员工认证加入企业后的唯一标识，建议开发者保存此员工的OpenId，后续各项接口调用皆需要此参数。 `
+        # `3. 同渠道应用(Agent.AppId)下，企业唯一标识ProxyOrganizationOpenId需要保持唯一，员工唯一标识OpenId也要保持唯一 (而不是企业下唯一)。 `
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Organization: 企业信息
+        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+
+        attr_accessor :Agent, :Operator, :Organization
+
+        def initialize(agent=nil, operator=nil, organization=nil)
+          @Agent = agent
+          @Operator = operator
+          @Organization = organization
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Organization'].nil?
+            @Organization = OrganizationInfo.new
+            @Organization.deserialize(params['Organization'])
+          end
+        end
+      end
+
+      # CreateLegalSealQrCode返回参数结构体
+      class CreateLegalSealQrCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrcodeBase64: 二维码图片base64值
+        # @type QrcodeBase64: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrcodeBase64, :RequestId
+
+        def initialize(qrcodebase64=nil, requestid=nil)
+          @QrcodeBase64 = qrcodebase64
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrcodeBase64 = params['QrcodeBase64']
           @RequestId = params['RequestId']
         end
       end
@@ -7031,15 +7144,15 @@ module TencentCloud
 
       # 创建嵌入式页面url个性化参数
       class EmbedUrlOption < TencentCloud::Common::AbstractModel
-        # @param ShowFlowDetailComponent: 合同详情页面是否展示合同控件信息
-        # <br/>true:允许在合同详情页展示控件
-        # <br/>false:不允许在合同详情页展示控件
-        # <br/>默认false,在合同详情页不展示控件
+        # @param ShowFlowDetailComponent: 合同详情预览，允许展示控件信息
+        # <ul>
+        # <li><b>true</b>：允许在合同详情页展示控件</li>
+        # <li><b>false</b>：（默认）不允许在合同详情页展示控件</li>
+        # </ul>
         # @type ShowFlowDetailComponent: Boolean
-        # @param ShowTemplateComponent: 模版预览页面是否展示空间信息
-        # <br/>true:允许在模版预览页展示控件
-        # <br/>false:不允许在模版预览页展示控件
-        # <br/>默认false,在模版预览页不展示控件
+        # @param ShowTemplateComponent: 模板预览，允许展示模板控件信息
+        # <ul><li> <b>true</b> :允许在模板预览页展示控件</li>
+        # <li> <b>false</b> :（默认）不允许在模板预览页展示控件</li></ul>
         # @type ShowTemplateComponent: Boolean
 
         attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent

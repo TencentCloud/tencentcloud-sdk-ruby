@@ -2837,6 +2837,226 @@ module TencentCloud
         end
       end
 
+      # 财务票据查验返回结果
+      class FinancialBill < TencentCloud::Common::AbstractModel
+        # @param Code: 票据代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param Number: 票据号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Number: String
+        # @param BuyerTaxID: 缴款人纳税识别号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuyerTaxID: String
+        # @param CheckCode: 校验码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckCode: String
+        # @param Buyer: 缴款人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Buyer: String
+        # @param Date: 开票日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param SellerCompany: 收款单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SellerCompany: String
+        # @param Reviewer: 复核人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reviewer: String
+        # @param Seller: 收款人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Seller: String
+        # @param Title: 票据名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Total: 金额合计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
+        # @param TotalCn: 金额合计中文大写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCn: String
+        # @param RushRedStateCode: 冲红
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RushRedStateCode: String
+        # @param RushRedDate: 冲红日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RushRedDate: String
+        # @param RushRedTime: 冲红时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RushRedTime: String
+        # @param RushRedReason: 冲红原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RushRedReason: String
+        # @param FinancialBillItems: 项目明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinancialBillItems: Array
+        # @param FinancialBillItemDetails: 项目清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinancialBillItemDetails: Array
+
+        attr_accessor :Code, :Number, :BuyerTaxID, :CheckCode, :Buyer, :Date, :SellerCompany, :Reviewer, :Seller, :Title, :Total, :TotalCn, :RushRedStateCode, :RushRedDate, :RushRedTime, :RushRedReason, :FinancialBillItems, :FinancialBillItemDetails
+
+        def initialize(code=nil, number=nil, buyertaxid=nil, checkcode=nil, buyer=nil, date=nil, sellercompany=nil, reviewer=nil, seller=nil, title=nil, total=nil, totalcn=nil, rushredstatecode=nil, rushreddate=nil, rushredtime=nil, rushredreason=nil, financialbillitems=nil, financialbillitemdetails=nil)
+          @Code = code
+          @Number = number
+          @BuyerTaxID = buyertaxid
+          @CheckCode = checkcode
+          @Buyer = buyer
+          @Date = date
+          @SellerCompany = sellercompany
+          @Reviewer = reviewer
+          @Seller = seller
+          @Title = title
+          @Total = total
+          @TotalCn = totalcn
+          @RushRedStateCode = rushredstatecode
+          @RushRedDate = rushreddate
+          @RushRedTime = rushredtime
+          @RushRedReason = rushredreason
+          @FinancialBillItems = financialbillitems
+          @FinancialBillItemDetails = financialbillitemdetails
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Number = params['Number']
+          @BuyerTaxID = params['BuyerTaxID']
+          @CheckCode = params['CheckCode']
+          @Buyer = params['Buyer']
+          @Date = params['Date']
+          @SellerCompany = params['SellerCompany']
+          @Reviewer = params['Reviewer']
+          @Seller = params['Seller']
+          @Title = params['Title']
+          @Total = params['Total']
+          @TotalCn = params['TotalCn']
+          @RushRedStateCode = params['RushRedStateCode']
+          @RushRedDate = params['RushRedDate']
+          @RushRedTime = params['RushRedTime']
+          @RushRedReason = params['RushRedReason']
+          unless params['FinancialBillItems'].nil?
+            @FinancialBillItems = []
+            params['FinancialBillItems'].each do |i|
+              financialbillitem_tmp = FinancialBillItem.new
+              financialbillitem_tmp.deserialize(i)
+              @FinancialBillItems << financialbillitem_tmp
+            end
+          end
+          unless params['FinancialBillItemDetails'].nil?
+            @FinancialBillItemDetails = []
+            params['FinancialBillItemDetails'].each do |i|
+              financialbillitemdetails_tmp = FinancialBillItemDetails.new
+              financialbillitemdetails_tmp.deserialize(i)
+              @FinancialBillItemDetails << financialbillitemdetails_tmp
+            end
+          end
+        end
+      end
+
+      # 财务票据查验返回结果-项目明细
+      class FinancialBillItem < TencentCloud::Common::AbstractModel
+        # @param ItemID: 项目编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemID: String
+        # @param Name: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Quantity: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quantity: String
+        # @param Standard: 规格标准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Standard: String
+        # @param Total: 金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
+        # @param SerialNumber: 项目序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialNumber: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :ItemID, :Name, :Unit, :Quantity, :Standard, :Total, :SerialNumber, :Remark
+
+        def initialize(itemid=nil, name=nil, unit=nil, quantity=nil, standard=nil, total=nil, serialnumber=nil, remark=nil)
+          @ItemID = itemid
+          @Name = name
+          @Unit = unit
+          @Quantity = quantity
+          @Standard = standard
+          @Total = total
+          @SerialNumber = serialnumber
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ItemID = params['ItemID']
+          @Name = params['Name']
+          @Unit = params['Unit']
+          @Quantity = params['Quantity']
+          @Standard = params['Standard']
+          @Total = params['Total']
+          @SerialNumber = params['SerialNumber']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 财务票据查验返回结果-项目清单
+      class FinancialBillItemDetails < TencentCloud::Common::AbstractModel
+        # @param ItemID: 项目编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemID: String
+        # @param Name: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Quantity: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quantity: String
+        # @param Standard: 规格标准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Standard: String
+        # @param Total: 金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
+        # @param SerialNumber: 项目序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialNumber: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :ItemID, :Name, :Unit, :Quantity, :Standard, :Total, :SerialNumber, :Remark
+
+        def initialize(itemid=nil, name=nil, unit=nil, quantity=nil, standard=nil, total=nil, serialnumber=nil, remark=nil)
+          @ItemID = itemid
+          @Name = name
+          @Unit = unit
+          @Quantity = quantity
+          @Standard = standard
+          @Total = total
+          @SerialNumber = serialnumber
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ItemID = params['ItemID']
+          @Name = params['Name']
+          @Unit = params['Unit']
+          @Quantity = params['Quantity']
+          @Standard = params['Standard']
+          @Total = params['Total']
+          @SerialNumber = params['SerialNumber']
+          @Remark = params['Remark']
+        end
+      end
+
       # 机票行程单识别结果
       class FlightInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，支持以下字段：
@@ -12597,12 +12817,12 @@ module TencentCloud
         # @type InvoiceDate: String
         # @param InvoiceCode: 发票代码（10或12 位），全电发票为空。查验未成功超过5次后当日无法再查。
         # @type InvoiceCode: String
-        # @param InvoiceKind: 票种类型 01:增值税专用发票， 02:货运运输业增值税专用发 票， 03:机动车销售统一发票， 04:增值税普通发票， 08:增值税电子专用发票(含全电)， 10:增值税电子普通发票(含全电)， 11:增值税普通发票(卷式)， 14:增值税电子(通行费)发 票， 15:二手车销售统一发票， 32:深圳区块链发票(云南区块链因业务调整现已下线)。
+        # @param InvoiceKind: 票种类型 01:增值税专用发票， 02:货运运输业增值税专用发 票， 03:机动车销售统一发票， 04:增值税普通发票， 08:增值税电子专用发票(含全电)， 10:增值税电子普通发票(含全电)， 11:增值税普通发票(卷式)， 14:增值税电子(通行费)发 票， 15:二手车销售统一发票，16:财务发票， 32:深圳区块链发票(云南区块链因业务调整现已下线)。
         # @type InvoiceKind: String
-        # @param CheckCode: 校验码后 6 位，增值税普通发票、增值税电子普通发票、增值税普通发票(卷式)、增值税电子普通发票(通行费)、全电纸质发票（增值税普通发票）时必填;
+        # @param CheckCode: 校验码后 6 位，增值税普通发票、增值税电子普通发票、增值税普通发票(卷式)、增值税电子普通发票(通行费)、全电纸质发票（增值税普通发票）、财政票据时必填;
         # 区块链为 5 位
         # @type CheckCode: String
-        # @param Amount: 不含税金额，增值税专用发票、增值税电子专用发票、机动车销售统一发票、二手车销售统一发票、区块链发票时必填; 全电发票为价税合计(含税金额)
+        # @param Amount: 不含税金额，增值税专用发票、增值税电子专用发票、机动车销售统一发票、二手车销售统一发票、区块链发票、财政发票时必填; 全电发票为价税合计(含税金额)
         # @type Amount: String
         # @param RegionCode: 地区编码，通用机打电子发票时必填。
         # 广东:4400，浙江:3300
@@ -12659,18 +12879,21 @@ module TencentCloud
         # @type ElectronicTrainTicket: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicTrainTicket`
         # @param ElectronicAirTransport: 全电发票（航空运输电子客票行程单）详细字段信息。
         # @type ElectronicAirTransport: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicAirTransport`
+        # @param FinancialBill: 财政发票详细字段信息
+        # @type FinancialBill: :class:`Tencentcloud::Ocr.v20181119.models.FinancialBill`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :ElectronicTrainTicket, :ElectronicAirTransport, :RequestId
+        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :ElectronicTrainTicket, :ElectronicAirTransport, :FinancialBill, :RequestId
 
-        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, passinvoiceinfolist=nil, electronictrainticket=nil, electronicairtransport=nil, requestid=nil)
+        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, passinvoiceinfolist=nil, electronictrainticket=nil, electronicairtransport=nil, financialbill=nil, requestid=nil)
           @Invoice = invoice
           @VehicleInvoiceInfo = vehicleinvoiceinfo
           @UsedVehicleInvoiceInfo = usedvehicleinvoiceinfo
           @PassInvoiceInfoList = passinvoiceinfolist
           @ElectronicTrainTicket = electronictrainticket
           @ElectronicAirTransport = electronicairtransport
+          @FinancialBill = financialbill
           @RequestId = requestid
         end
 
@@ -12702,6 +12925,10 @@ module TencentCloud
           unless params['ElectronicAirTransport'].nil?
             @ElectronicAirTransport = ElectronicAirTransport.new
             @ElectronicAirTransport.deserialize(params['ElectronicAirTransport'])
+          end
+          unless params['FinancialBill'].nil?
+            @FinancialBill = FinancialBill.new
+            @FinancialBill.deserialize(params['FinancialBill'])
           end
           @RequestId = params['RequestId']
         end

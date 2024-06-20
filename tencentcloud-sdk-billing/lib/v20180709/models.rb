@@ -3828,10 +3828,13 @@ module TencentCloud
         # @param ComponentConfig: 配置描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentConfig: String
+        # @param Tags: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: String
 
-        attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :PayerUin, :OwnerUin, :OperateUin, :ProductCode, :ProductCodeName, :RegionType, :RegionTypeName, :Extend1, :Extend2, :Extend3, :Extend4, :Extend5, :InstanceType, :InstanceTypeName, :PayTime, :ZoneName, :ComponentConfig
+        attr_accessor :ResourceId, :ResourceName, :RealTotalCost, :CashPayAmount, :ProjectId, :ProjectName, :RegionId, :RegionName, :PayMode, :PayModeName, :BusinessCode, :BusinessCodeName, :ConsumptionTypeName, :RealCost, :FeeBeginTime, :FeeEndTime, :DayDiff, :DailyTotalCost, :OrderId, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :PayerUin, :OwnerUin, :OperateUin, :ProductCode, :ProductCodeName, :RegionType, :RegionTypeName, :Extend1, :Extend2, :Extend3, :Extend4, :Extend5, :InstanceType, :InstanceTypeName, :PayTime, :ZoneName, :ComponentConfig, :Tags
 
-        def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, payeruin=nil, owneruin=nil, operateuin=nil, productcode=nil, productcodename=nil, regiontype=nil, regiontypename=nil, extend1=nil, extend2=nil, extend3=nil, extend4=nil, extend5=nil, instancetype=nil, instancetypename=nil, paytime=nil, zonename=nil, componentconfig=nil)
+        def initialize(resourceid=nil, resourcename=nil, realtotalcost=nil, cashpayamount=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, paymode=nil, paymodename=nil, businesscode=nil, businesscodename=nil, consumptiontypename=nil, realcost=nil, feebegintime=nil, feeendtime=nil, daydiff=nil, dailytotalcost=nil, orderid=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, payeruin=nil, owneruin=nil, operateuin=nil, productcode=nil, productcodename=nil, regiontype=nil, regiontypename=nil, extend1=nil, extend2=nil, extend3=nil, extend4=nil, extend5=nil, instancetype=nil, instancetypename=nil, paytime=nil, zonename=nil, componentconfig=nil, tags=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @RealTotalCost = realtotalcost
@@ -3871,6 +3874,7 @@ module TencentCloud
           @PayTime = paytime
           @ZoneName = zonename
           @ComponentConfig = componentconfig
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3913,6 +3917,7 @@ module TencentCloud
           @PayTime = params['PayTime']
           @ZoneName = params['ZoneName']
           @ComponentConfig = params['ComponentConfig']
+          @Tags = params['Tags']
         end
       end
 

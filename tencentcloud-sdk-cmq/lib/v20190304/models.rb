@@ -520,30 +520,31 @@ module TencentCloud
 
       # DescribeQueueDetail请求参数结构体
       class DescribeQueueDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
-        # @type Offset: Integer
-        # @param Limit: 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
-        # @type Limit: Integer
-        # @param Filters: 筛选参数，目前支持QueueName筛选，且仅支持一个关键字
-        # @type Filters: Array
         # @param TagKey: 标签搜索
         # @type TagKey: String
+        # @param Limit: 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
+        # @type Limit: Integer
         # @param QueueName: 精确匹配QueueName
         # @type QueueName: String
+        # @param Filters: 筛选参数，目前支持QueueName筛选，且仅支持一个关键字
+        # @type Filters: Array
+        # @param Offset: 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
+        # @type Offset: Integer
 
-        attr_accessor :Offset, :Limit, :Filters, :TagKey, :QueueName
+        attr_accessor :TagKey, :Limit, :QueueName, :Filters, :Offset
 
-        def initialize(offset=nil, limit=nil, filters=nil, tagkey=nil, queuename=nil)
-          @Offset = offset
-          @Limit = limit
-          @Filters = filters
+        def initialize(tagkey=nil, limit=nil, queuename=nil, filters=nil, offset=nil)
           @TagKey = tagkey
+          @Limit = limit
           @QueueName = queuename
+          @Filters = filters
+          @Offset = offset
         end
 
         def deserialize(params)
-          @Offset = params['Offset']
+          @TagKey = params['TagKey']
           @Limit = params['Limit']
+          @QueueName = params['QueueName']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -552,8 +553,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @TagKey = params['TagKey']
-          @QueueName = params['QueueName']
+          @Offset = params['Offset']
         end
       end
 
@@ -657,30 +657,31 @@ module TencentCloud
 
       # DescribeTopicDetail请求参数结构体
       class DescribeTopicDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0。
-        # @type Offset: Integer
-        # @param Limit: 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
-        # @type Limit: Integer
-        # @param Filters: 目前只支持过滤TopicName ， 且只能填一个过滤值。
-        # @type Filters: Array
         # @param TagKey: 标签匹配。
         # @type TagKey: String
+        # @param Limit: 分页时本页获取队列的个数，如果不传递该参数，则该参数默认为20，最大值为50。
+        # @type Limit: Integer
         # @param TopicName: 精确匹配TopicName。
         # @type TopicName: String
+        # @param Filters: 目前只支持过滤TopicName ， 且只能填一个过滤值。
+        # @type Filters: Array
+        # @param Offset: 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0。
+        # @type Offset: Integer
 
-        attr_accessor :Offset, :Limit, :Filters, :TagKey, :TopicName
+        attr_accessor :TagKey, :Limit, :TopicName, :Filters, :Offset
 
-        def initialize(offset=nil, limit=nil, filters=nil, tagkey=nil, topicname=nil)
-          @Offset = offset
-          @Limit = limit
-          @Filters = filters
+        def initialize(tagkey=nil, limit=nil, topicname=nil, filters=nil, offset=nil)
           @TagKey = tagkey
+          @Limit = limit
           @TopicName = topicname
+          @Filters = filters
+          @Offset = offset
         end
 
         def deserialize(params)
-          @Offset = params['Offset']
+          @TagKey = params['TagKey']
           @Limit = params['Limit']
+          @TopicName = params['TopicName']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -689,8 +690,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @TagKey = params['TagKey']
-          @TopicName = params['TopicName']
+          @Offset = params['Offset']
         end
       end
 

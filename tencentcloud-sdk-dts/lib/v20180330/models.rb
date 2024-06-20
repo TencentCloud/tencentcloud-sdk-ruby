@@ -545,48 +545,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRegionConf请求参数结构体
-      class DescribeRegionConfRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeRegionConf返回参数结构体
-      class DescribeRegionConfResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 可售卖地域的数量
-        # @type TotalCount: Integer
-        # @param Items: 可售卖地域详情
-        # @type Items: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Items, :RequestId
-
-        def initialize(totalcount=nil, items=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Items = items
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              subscriberegionconf_tmp = SubscribeRegionConf.new
-              subscriberegionconf_tmp.deserialize(i)
-              @Items << subscriberegionconf_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeSubscribeConf请求参数结构体
       class DescribeSubscribeConfRequest < TencentCloud::Common::AbstractModel
         # @param SubscribeId: 订阅实例ID
@@ -1868,43 +1826,6 @@ module TencentCloud
           @ObjectsType = params['ObjectsType']
           @DatabaseName = params['DatabaseName']
           @TableNames = params['TableNames']
-        end
-      end
-
-      # 数据订阅地域售卖信息
-      class SubscribeRegionConf < TencentCloud::Common::AbstractModel
-        # @param RegionName: 地域名称，如广州
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RegionName: String
-        # @param Region: 地区标识，如ap-guangzhou
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Region: String
-        # @param Area: 地域名称，如华南地区
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Area: String
-        # @param IsDefaultRegion: 是否为默认地域，0 - 不是，1 - 是的
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IsDefaultRegion: Integer
-        # @param Status: 当前地域的售卖情况，1 - 正常， 2-灰度，3 - 停售
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-
-        attr_accessor :RegionName, :Region, :Area, :IsDefaultRegion, :Status
-
-        def initialize(regionname=nil, region=nil, area=nil, isdefaultregion=nil, status=nil)
-          @RegionName = regionname
-          @Region = region
-          @Area = area
-          @IsDefaultRegion = isdefaultregion
-          @Status = status
-        end
-
-        def deserialize(params)
-          @RegionName = params['RegionName']
-          @Region = params['Region']
-          @Area = params['Area']
-          @IsDefaultRegion = params['IsDefaultRegion']
-          @Status = params['Status']
         end
       end
 

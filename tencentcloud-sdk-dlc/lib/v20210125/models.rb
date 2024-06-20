@@ -605,6 +605,48 @@ module TencentCloud
         end
       end
 
+      # spark session batch SQL的消耗信息
+      class BatchSQLCostInfo < TencentCloud::Common::AbstractModel
+        # @param BatchId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchId: String
+        # @param DataEngineName: 引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineName: String
+        # @param DataEngineId: 引擎id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param Cost: 本次消耗，单位cu
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cost: Float
+        # @param TimeCost: 时间开销，秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeCost: Integer
+        # @param Operator: 操作者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+
+        attr_accessor :BatchId, :DataEngineName, :DataEngineId, :Cost, :TimeCost, :Operator
+
+        def initialize(batchid=nil, dataenginename=nil, dataengineid=nil, cost=nil, timecost=nil, operator=nil)
+          @BatchId = batchid
+          @DataEngineName = dataenginename
+          @DataEngineId = dataengineid
+          @Cost = cost
+          @TimeCost = timecost
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @DataEngineName = params['DataEngineName']
+          @DataEngineId = params['DataEngineId']
+          @Cost = params['Cost']
+          @TimeCost = params['TimeCost']
+          @Operator = params['Operator']
+        end
+      end
+
       # SparkSQL批任务信息
       class BatchSqlTask < TencentCloud::Common::AbstractModel
         # @param TaskId: SQL子任务唯一标识
@@ -6446,6 +6488,50 @@ module TencentCloud
         end
       end
 
+      # DescribeSparkSessionBatchSQLCost请求参数结构体
+      class DescribeSparkSessionBatchSQLCostRequest < TencentCloud::Common::AbstractModel
+        # @param BatchIds: SparkSQL唯一标识
+        # @type BatchIds: Array
+
+        attr_accessor :BatchIds
+
+        def initialize(batchids=nil)
+          @BatchIds = batchids
+        end
+
+        def deserialize(params)
+          @BatchIds = params['BatchIds']
+        end
+      end
+
+      # DescribeSparkSessionBatchSQLCost返回参数结构体
+      class DescribeSparkSessionBatchSQLCostResponse < TencentCloud::Common::AbstractModel
+        # @param CostInfo: 任务消耗
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CostInfo, :RequestId
+
+        def initialize(costinfo=nil, requestid=nil)
+          @CostInfo = costinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CostInfo'].nil?
+            @CostInfo = []
+            params['CostInfo'].each do |i|
+              batchsqlcostinfo_tmp = BatchSQLCostInfo.new
+              batchsqlcostinfo_tmp.deserialize(i)
+              @CostInfo << batchsqlcostinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSparkSessionBatchSQL请求参数结构体
       class DescribeSparkSessionBatchSQLRequest < TencentCloud::Common::AbstractModel
         # @param BatchId: SparkSQL唯一标识
@@ -7070,12 +7156,36 @@ module TencentCloud
 
       # DescribeTasksOverview请求参数结构体
       class DescribeTasksOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Filters: 筛选条件
+        # @type Filters: Array
+        # @param DataEngineName: 引擎名
+        # @type DataEngineName: String
 
+        attr_accessor :StartTime, :EndTime, :Filters, :DataEngineName
 
-        def initialize()
+        def initialize(starttime=nil, endtime=nil, filters=nil, dataenginename=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @DataEngineName = dataenginename
         end
 
         def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @DataEngineName = params['DataEngineName']
         end
       end
 

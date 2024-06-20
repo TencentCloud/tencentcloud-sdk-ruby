@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 接受加入共享单元邀请。
+
+        # @param request: Request instance for AcceptJoinShareUnitInvitation.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AcceptJoinShareUnitInvitationRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AcceptJoinShareUnitInvitationResponse`
+        def AcceptJoinShareUnitInvitation(request)
+          body = send_request('AcceptJoinShareUnitInvitation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AcceptJoinShareUnitInvitationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加组织成员邮箱
 
         # @param request: Request instance for AddOrganizationMemberEmail.
@@ -1335,6 +1359,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QuitOrganizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拒绝加入共享单元邀请。
+
+        # @param request: Request instance for RejectJoinShareUnitInvitation.
+        # @type request: :class:`Tencentcloud::organization::V20210331::RejectJoinShareUnitInvitationRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::RejectJoinShareUnitInvitationResponse`
+        def RejectJoinShareUnitInvitation(request)
+          body = send_request('RejectJoinShareUnitInvitation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RejectJoinShareUnitInvitationResponse.new
             model.deserialize(response['Response'])
             model
           else

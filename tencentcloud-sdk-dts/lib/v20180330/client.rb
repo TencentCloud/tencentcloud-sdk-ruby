@@ -256,32 +256,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口不再使用
-
-        # 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
-
-        # @param request: Request instance for DescribeRegionConf.
-        # @type request: :class:`Tencentcloud::dts::V20180330::DescribeRegionConfRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::DescribeRegionConfResponse`
-        def DescribeRegionConf(request)
-          body = send_request('DescribeRegionConf', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRegionConfResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeSubscribeConf）用于查询订阅实例配置
 
         # @param request: Request instance for DescribeSubscribeConf.

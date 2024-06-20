@@ -11521,6 +11521,75 @@ module TencentCloud
         end
       end
 
+      # RenewClusters请求参数结构体
+      class RenewClustersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param TimeSpan: 续费时长
+        # @type TimeSpan: Float
+        # @param TimeUnit: 时间单位 y,m,d,h,i,s
+        # @type TimeUnit: String
+        # @param DealMode: 交易模式 0-下单并支付 1-下单
+        # @type DealMode: Integer
+
+        attr_accessor :ClusterId, :TimeSpan, :TimeUnit, :DealMode
+
+        def initialize(clusterid=nil, timespan=nil, timeunit=nil, dealmode=nil)
+          @ClusterId = clusterid
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @DealMode = dealmode
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @DealMode = params['DealMode']
+        end
+      end
+
+      # RenewClusters返回参数结构体
+      class RenewClustersResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: 预付费总订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param DealNames: 退款订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param TranId: 冻结流水，一次开通一个冻结流水
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param ResourceIds: 每个订单号对应的发货资源id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
+        # @param ClusterIds: 集群id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealIds, :DealNames, :TranId, :ResourceIds, :ClusterIds, :RequestId
+
+        def initialize(bigdealids=nil, dealnames=nil, tranid=nil, resourceids=nil, clusterids=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @DealNames = dealnames
+          @TranId = tranid
+          @ResourceIds = resourceids
+          @ClusterIds = clusterids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @DealNames = params['DealNames']
+          @TranId = params['TranId']
+          @ResourceIds = params['ResourceIds']
+          @ClusterIds = params['ClusterIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetAccountPassword请求参数结构体
       class ResetAccountPasswordRequest < TencentCloud::Common::AbstractModel
         # @param AccountName: 数据库账号名

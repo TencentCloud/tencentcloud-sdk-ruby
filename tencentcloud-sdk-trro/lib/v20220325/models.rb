@@ -584,7 +584,7 @@ module TencentCloud
 
       # DescribeProjectInfo请求参数结构体
       class DescribeProjectInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 目标项目ID
+        # @param ProjectId: 目标项目ID，必填参数
         # @type ProjectId: String
 
         attr_accessor :ProjectId

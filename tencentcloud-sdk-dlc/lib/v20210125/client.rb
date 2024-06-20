@@ -1973,6 +1973,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSparkSessionBatchSQLCost）用于查询Spark SQL批任务消耗
+
+        # @param request: Request instance for DescribeSparkSessionBatchSQLCost.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkSessionBatchSQLCostRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSparkSessionBatchSQLCostResponse`
+        def DescribeSparkSessionBatchSQLCost(request)
+          body = send_request('DescribeSparkSessionBatchSQLCost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkSessionBatchSQLCostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSparkSessionBatchSqlLog）用于查询Spark SQL批任务日志
 
         # @param request: Request instance for DescribeSparkSessionBatchSqlLog.

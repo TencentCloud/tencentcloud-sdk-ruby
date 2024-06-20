@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 枚举队列
+        # 枚举队列列表
 
         # @param request: Request instance for DescribeQueueDetail.
         # @type request: :class:`Tencentcloud::cmq::V20190304::DescribeQueueDetailRequest`
