@@ -1401,10 +1401,14 @@ module TencentCloud
         # @type Unsubscribe: String
         # @param TriggerType: 邮件触发类型 0:非触发类，默认类型，营销类邮件、非即时类邮件等选择此类型  1:触发类，验证码等即时发送类邮件，若邮件超过一定大小，系统会自动选择非触发类型通道
         # @type TriggerType: Integer
+        # @param SmtpMessageId: smtp头中的Message-Id字段
+        # @type SmtpMessageId: String
+        # @param SmtpHeaders: smtp头中可以设置的其它字段
+        # @type SmtpHeaders: String
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType
+        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType, :SmtpMessageId, :SmtpHeaders
 
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil)
+        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil, smtpmessageid=nil, smtpheaders=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
           @Subject = subject
@@ -1416,6 +1420,8 @@ module TencentCloud
           @Attachments = attachments
           @Unsubscribe = unsubscribe
           @TriggerType = triggertype
+          @SmtpMessageId = smtpmessageid
+          @SmtpHeaders = smtpheaders
         end
 
         def deserialize(params)
@@ -1443,6 +1449,8 @@ module TencentCloud
           end
           @Unsubscribe = params['Unsubscribe']
           @TriggerType = params['TriggerType']
+          @SmtpMessageId = params['SmtpMessageId']
+          @SmtpHeaders = params['SmtpHeaders']
         end
       end
 

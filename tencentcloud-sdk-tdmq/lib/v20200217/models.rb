@@ -10840,10 +10840,16 @@ module TencentCloud
         # @param InstanceStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: Integer
+        # @param ZoneId: 集群所属可用区，表明集群归属的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
+        # @param ZoneIds: 集群节点所在的可用区，若该集群为跨可用区集群，则包含该集群节点所在的多个可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIds: Array
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -10867,6 +10873,8 @@ module TencentCloud
           @VpcId = vpcid
           @SupportMigration = supportmigration
           @InstanceStatus = instancestatus
+          @ZoneId = zoneid
+          @ZoneIds = zoneids
         end
 
         def deserialize(params)
@@ -10900,6 +10908,8 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SupportMigration = params['SupportMigration']
           @InstanceStatus = params['InstanceStatus']
+          @ZoneId = params['ZoneId']
+          @ZoneIds = params['ZoneIds']
         end
       end
 

@@ -2067,6 +2067,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeInstanceUpgradeType)用于查询数据库实例升级类型。
+
+        # @param request: Request instance for DescribeInstanceUpgradeType.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeInstanceUpgradeTypeRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeInstanceUpgradeTypeResponse`
+        def DescribeInstanceUpgradeType(request)
+          body = send_request('DescribeInstanceUpgradeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceUpgradeTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于查询实例本地binlog保留策略。
 
         # @param request: Request instance for DescribeLocalBinlogConfig.

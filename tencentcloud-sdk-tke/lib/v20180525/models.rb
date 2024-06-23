@@ -18751,7 +18751,7 @@ module TencentCloud
         # @type Chart: String
         # @param Values: 自定义参数，覆盖chart 中values.yaml 中的参数
         # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
-        # @param ChartFrom: 制品来源，范围：tke-market 或 other
+        # @param ChartFrom: 制品来源，范围：tke-market 或 other默认值：tke-market。
         # @type ChartFrom: String
         # @param ChartVersion: 制品版本( 从第三方安装时，不传这个参数）
         # @type ChartVersion: String

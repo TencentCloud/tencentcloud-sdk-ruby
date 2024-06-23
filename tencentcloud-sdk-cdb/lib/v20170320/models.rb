@@ -1988,6 +1988,36 @@ module TencentCloud
         end
       end
 
+      # 集群版的节点拓扑配置。
+      class ClusterTopology < TencentCloud::Common::AbstractModel
+        # @param ReadWriteNode: RW 节点拓扑。
+        # @type ReadWriteNode: :class:`Tencentcloud::Cdb.v20170320.models.ReadWriteNode`
+        # @param ReadOnlyNodes: RO 节点拓扑。
+        # @type ReadOnlyNodes: Array
+
+        attr_accessor :ReadWriteNode, :ReadOnlyNodes
+
+        def initialize(readwritenode=nil, readonlynodes=nil)
+          @ReadWriteNode = readwritenode
+          @ReadOnlyNodes = readonlynodes
+        end
+
+        def deserialize(params)
+          unless params['ReadWriteNode'].nil?
+            @ReadWriteNode = ReadWriteNode.new
+            @ReadWriteNode.deserialize(params['ReadWriteNode'])
+          end
+          unless params['ReadOnlyNodes'].nil?
+            @ReadOnlyNodes = []
+            params['ReadOnlyNodes'].each do |i|
+              readonlynode_tmp = ReadonlyNode.new
+              readonlynode_tmp.deserialize(i)
+              @ReadOnlyNodes << readonlynode_tmp
+            end
+          end
+        end
+      end
+
       # 列权限信息
       class ColumnPrivilege < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名
@@ -6811,6 +6841,100 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceUpgradeType请求参数结构体
+      class DescribeInstanceUpgradeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param DstCpu: 目标实例cpu
+        # @type DstCpu: Float
+        # @param DstMemory: 目标实例内存
+        # @type DstMemory: Integer
+        # @param DstDisk: 目标实例磁盘
+        # @type DstDisk: Integer
+        # @param DstVersion: 目标实例版本
+        # @type DstVersion: String
+        # @param DstDeployMode: 目标实例部署模型
+        # @type DstDeployMode: Integer
+        # @param DstProtectMode: 目标实例复制类型
+        # @type DstProtectMode: Integer
+        # @param DstSlaveZone: 目标实例备机1可用区
+        # @type DstSlaveZone: Integer
+        # @param DstBackupZone: 目标实例备机2可用区
+        # @type DstBackupZone: Integer
+        # @param DstCdbType: 目标实例类型
+        # @type DstCdbType: String
+        # @param DstZoneId: 目标实例主可用区
+        # @type DstZoneId: Integer
+        # @param NodeDistribution: 独享集群CDB实例的节点分布情况
+        # @type NodeDistribution: :class:`Tencentcloud::Cdb.v20170320.models.NodeDistribution`
+        # @param ClusterTopology: 集群版的节点拓扑配置
+        # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
+
+        attr_accessor :InstanceId, :DstCpu, :DstMemory, :DstDisk, :DstVersion, :DstDeployMode, :DstProtectMode, :DstSlaveZone, :DstBackupZone, :DstCdbType, :DstZoneId, :NodeDistribution, :ClusterTopology
+
+        def initialize(instanceid=nil, dstcpu=nil, dstmemory=nil, dstdisk=nil, dstversion=nil, dstdeploymode=nil, dstprotectmode=nil, dstslavezone=nil, dstbackupzone=nil, dstcdbtype=nil, dstzoneid=nil, nodedistribution=nil, clustertopology=nil)
+          @InstanceId = instanceid
+          @DstCpu = dstcpu
+          @DstMemory = dstmemory
+          @DstDisk = dstdisk
+          @DstVersion = dstversion
+          @DstDeployMode = dstdeploymode
+          @DstProtectMode = dstprotectmode
+          @DstSlaveZone = dstslavezone
+          @DstBackupZone = dstbackupzone
+          @DstCdbType = dstcdbtype
+          @DstZoneId = dstzoneid
+          @NodeDistribution = nodedistribution
+          @ClusterTopology = clustertopology
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DstCpu = params['DstCpu']
+          @DstMemory = params['DstMemory']
+          @DstDisk = params['DstDisk']
+          @DstVersion = params['DstVersion']
+          @DstDeployMode = params['DstDeployMode']
+          @DstProtectMode = params['DstProtectMode']
+          @DstSlaveZone = params['DstSlaveZone']
+          @DstBackupZone = params['DstBackupZone']
+          @DstCdbType = params['DstCdbType']
+          @DstZoneId = params['DstZoneId']
+          unless params['NodeDistribution'].nil?
+            @NodeDistribution = NodeDistribution.new
+            @NodeDistribution.deserialize(params['NodeDistribution'])
+          end
+          unless params['ClusterTopology'].nil?
+            @ClusterTopology = ClusterTopology.new
+            @ClusterTopology.deserialize(params['ClusterTopology'])
+          end
+        end
+      end
+
+      # DescribeInstanceUpgradeType返回参数结构体
+      class DescribeInstanceUpgradeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param UpgradeType: 实例升级类型
+        # @type UpgradeType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :UpgradeType, :RequestId
+
+        def initialize(instanceid=nil, upgradetype=nil, requestid=nil)
+          @InstanceId = instanceid
+          @UpgradeType = upgradetype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UpgradeType = params['UpgradeType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLocalBinlogConfig请求参数结构体
       class DescribeLocalBinlogConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
@@ -10707,6 +10831,30 @@ module TencentCloud
         end
       end
 
+      # 独享集群CDB实例的节点分布情况
+      class NodeDistribution < TencentCloud::Common::AbstractModel
+        # @param Node: 主实例Master节点所在主机ID或者只读实例所在主机ID
+        # @type Node: String
+        # @param SlaveNodeOne: 主实例第一Slave节点所在主机ID
+        # @type SlaveNodeOne: String
+        # @param SlaveNodeTwo: 主实例第二Slave节点所在主机ID
+        # @type SlaveNodeTwo: String
+
+        attr_accessor :Node, :SlaveNodeOne, :SlaveNodeTwo
+
+        def initialize(node=nil, slavenodeone=nil, slavenodetwo=nil)
+          @Node = node
+          @SlaveNodeOne = slavenodeone
+          @SlaveNodeTwo = slavenodetwo
+        end
+
+        def deserialize(params)
+          @Node = params['Node']
+          @SlaveNodeOne = params['SlaveNodeOne']
+          @SlaveNodeTwo = params['SlaveNodeTwo']
+        end
+      end
+
       # OfflineIsolatedInstances请求参数结构体
       class OfflineIsolatedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -11523,6 +11671,46 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Mem = params['Mem']
           @Region = params['Region']
+          @Zone = params['Zone']
+        end
+      end
+
+      # 集群版 RW 节点的配置。
+      class ReadWriteNode < TencentCloud::Common::AbstractModel
+        # @param Zone: RW 节点所在可用区。
+        # @type Zone: String
+        # @param NodeId: 升级集群版实例时，如果要调整只读节点可用区，需要指定节点id。
+        # @type NodeId: String
+
+        attr_accessor :Zone, :NodeId
+
+        def initialize(zone=nil, nodeid=nil)
+          @Zone = zone
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @NodeId = params['NodeId']
+        end
+      end
+
+      # 集群版的 RO 节点配置。
+      class ReadonlyNode < TencentCloud::Common::AbstractModel
+        # @param IsRandomZone: 是否分布在随机可用区。传入YES表示随机可用区。否则使用Zone指定的可用区。
+        # @type IsRandomZone: String
+        # @param Zone: 指定该节点分布在哪个可用区。
+        # @type Zone: String
+
+        attr_accessor :IsRandomZone, :Zone
+
+        def initialize(israndomzone=nil, zone=nil)
+          @IsRandomZone = israndomzone
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @IsRandomZone = params['IsRandomZone']
           @Zone = params['Zone']
         end
       end

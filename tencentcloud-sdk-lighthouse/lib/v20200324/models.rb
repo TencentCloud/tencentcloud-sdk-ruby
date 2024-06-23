@@ -2620,7 +2620,7 @@ module TencentCloud
       class DescribeFirewallTemplateApplyRecordsRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 防火墙模板ID。可通过[DescribeFirewallTemplates](https://cloud.tencent.com/document/product/1207/96874)接口返回值字段TemplateSet获取。
         # @type TemplateId: String
-        # @param TaskIds: 应用防火墙模版任务ID列表。可通过[ApplyFirewallTemplate](https://cloud.tencent.com/document/product/1207/96883)接口返回值TaskId字段获取。
+        # @param TaskIds: 应用防火墙模板任务ID列表。可通过[ApplyFirewallTemplate](https://cloud.tencent.com/document/product/1207/96883)接口返回值TaskId字段获取。
         # @type TaskIds: Array
 
         attr_accessor :TemplateId, :TaskIds

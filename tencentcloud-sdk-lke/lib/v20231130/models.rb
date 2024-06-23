@@ -139,14 +139,18 @@ module TencentCloud
         # @param AliasName: 模型别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasName: String
+        # @param TokenBalance: token余量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenBalance: Float
 
-        attr_accessor :Name, :Desc, :ContextLimit, :AliasName
+        attr_accessor :Name, :Desc, :ContextLimit, :AliasName, :TokenBalance
 
-        def initialize(name=nil, desc=nil, contextlimit=nil, aliasname=nil)
+        def initialize(name=nil, desc=nil, contextlimit=nil, aliasname=nil, tokenbalance=nil)
           @Name = name
           @Desc = desc
           @ContextLimit = contextlimit
           @AliasName = aliasname
+          @TokenBalance = tokenbalance
         end
 
         def deserialize(params)
@@ -154,6 +158,7 @@ module TencentCloud
           @Desc = params['Desc']
           @ContextLimit = params['ContextLimit']
           @AliasName = params['AliasName']
+          @TokenBalance = params['TokenBalance']
         end
       end
 
@@ -331,7 +336,7 @@ module TencentCloud
 
       # CheckAttributeLabelExist请求参数结构体
       class CheckAttributeLabelExistRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param LabelName: 属性名称
         # @type LabelName: String
@@ -387,7 +392,7 @@ module TencentCloud
 
       # CheckAttributeLabelRefer请求参数结构体
       class CheckAttributeLabelReferRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
@@ -518,15 +523,19 @@ module TencentCloud
         # @param Content: 消息内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
+        # @param FileInfos: 文档信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileInfos: Array
 
-        attr_accessor :RecordBizId, :IsVisitor, :NickName, :Avatar, :Content
+        attr_accessor :RecordBizId, :IsVisitor, :NickName, :Avatar, :Content, :FileInfos
 
-        def initialize(recordbizid=nil, isvisitor=nil, nickname=nil, avatar=nil, content=nil)
+        def initialize(recordbizid=nil, isvisitor=nil, nickname=nil, avatar=nil, content=nil, fileinfos=nil)
           @RecordBizId = recordbizid
           @IsVisitor = isvisitor
           @NickName = nickname
           @Avatar = avatar
           @Content = content
+          @FileInfos = fileinfos
         end
 
         def deserialize(params)
@@ -535,6 +544,14 @@ module TencentCloud
           @NickName = params['NickName']
           @Avatar = params['Avatar']
           @Content = params['Content']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              msgfileinfo_tmp = MsgFileInfo.new
+              msgfileinfo_tmp.deserialize(i)
+              @FileInfos << msgfileinfo_tmp
+            end
+          end
         end
       end
 
@@ -604,7 +621,7 @@ module TencentCloud
 
       # CreateAttributeLabel请求参数结构体
       class CreateAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param AttrKey: 属性标识
         # @type AttrKey: String
@@ -711,7 +728,7 @@ module TencentCloud
 
       # CreateQACate请求参数结构体
       class CreateQACateRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param ParentBizId: 父级业务ID
         # @type ParentBizId: String
@@ -767,7 +784,7 @@ module TencentCloud
 
       # CreateQA请求参数结构体
       class CreateQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param Question: 问题
         # @type Question: String
@@ -865,15 +882,15 @@ module TencentCloud
 
       # CreateReconstructDocumentFlow请求参数结构体
       class CreateReconstructDocumentFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param FileBase64: 文件的 Base64 值。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
         # @type FileBase64: String
-        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param FileUrl: 文件的 Url 地址。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经 Base64 编码后不超过 100M。文件下载时间不超过 15 秒。 支持的图片像素：单边介于20-10000px之间。 文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
+        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。
         # @type FileEndPageNumber: Integer
-        # @param Config: 创建智能文档识别任务配置信息
+        # @param Config: 创建文档解析任务配置信息
         # @type Config: :class:`Tencentcloud::Lke.v20231130.models.CreateReconstructDocumentFlowConfig`
 
         attr_accessor :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
@@ -920,7 +937,7 @@ module TencentCloud
 
       # CreateRejectedQuestion请求参数结构体
       class CreateRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param Question: 拒答问题
 
@@ -1070,7 +1087,7 @@ module TencentCloud
 
       # DeleteAttributeLabel请求参数结构体
       class DeleteAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param AttributeBizIds: 属性ID
         # @type AttributeBizIds: Array
@@ -1116,7 +1133,7 @@ module TencentCloud
       class DeleteDocRequest < TencentCloud::Common::AbstractModel
         # @param DocBizIds: 文档业务ID列表
         # @type DocBizIds: Array
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
 
         attr_accessor :DocBizIds, :BotBizId
@@ -1150,7 +1167,7 @@ module TencentCloud
 
       # DeleteQACate请求参数结构体
       class DeleteQACateRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param CateBizId: 分类业务ID
         # @type CateBizId: String
@@ -1186,7 +1203,7 @@ module TencentCloud
 
       # DeleteQA请求参数结构体
       class DeleteQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param QaBizIds: 问答ID
         # @type QaBizIds: Array
@@ -1222,7 +1239,7 @@ module TencentCloud
 
       # DeleteRejectedQuestion请求参数结构体
       class DeleteRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param RejectedBizIds: 拒答问题来源的数据源唯一id
 
@@ -1358,7 +1375,7 @@ module TencentCloud
 
       # DescribeAttributeLabel请求参数结构体
       class DescribeAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param AttributeBizId: 属性ID
         # @type AttributeBizId: String
@@ -1480,7 +1497,7 @@ module TencentCloud
 
       # DescribeDoc请求参数结构体
       class DescribeDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -1617,7 +1634,7 @@ module TencentCloud
       class DescribeQARequest < TencentCloud::Common::AbstractModel
         # @param QaBizId: QA业务ID
         # @type QaBizId: String
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
 
         attr_accessor :QaBizId, :BotBizId
@@ -1761,7 +1778,7 @@ module TencentCloud
 
       # DescribeRefer请求参数结构体
       class DescribeReferRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param ReferBizIds: 引用ID
         # @type ReferBizIds: Array
@@ -1916,7 +1933,7 @@ module TencentCloud
 
       # DescribeRobotBizIDByAppKey请求参数结构体
       class DescribeRobotBizIDByAppKeyRequest < TencentCloud::Common::AbstractModel
-        # @param AppKey: 机器人appkey
+        # @param AppKey: 应用appkey
         # @type AppKey: String
 
         attr_accessor :AppKey
@@ -1932,7 +1949,7 @@ module TencentCloud
 
       # DescribeRobotBizIDByAppKey返回参数结构体
       class DescribeRobotBizIDByAppKeyResponse < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人业务ID
+        # @param BotBizId: 应用业务ID
         # @type BotBizId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1952,25 +1969,29 @@ module TencentCloud
 
       # DescribeStorageCredential请求参数结构体
       class DescribeStorageCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
-        # @param FileType: 文件类型
+        # @param FileType: 文件类型,正常的文件名类型后缀，例如 xlsx、pdf、 docx、png 等
         # @type FileType: String
-        # @param IsPublic: 权限场景，是否公有权限
+        # @param IsPublic: IsPublic为空用于上传文件时选择场景，当上传为图片文件是IsPublic为true，上传文档文件时场景IsPublic为false
         # @type IsPublic: Boolean
+        # @param TypeKey: 存储类型: offline:离线文件，realtime:实时文件；为空默认为offline
+        # @type TypeKey: String
 
-        attr_accessor :BotBizId, :FileType, :IsPublic
+        attr_accessor :BotBizId, :FileType, :IsPublic, :TypeKey
 
-        def initialize(botbizid=nil, filetype=nil, ispublic=nil)
+        def initialize(botbizid=nil, filetype=nil, ispublic=nil, typekey=nil)
           @BotBizId = botbizid
           @FileType = filetype
           @IsPublic = ispublic
+          @TypeKey = typekey
         end
 
         def deserialize(params)
           @BotBizId = params['BotBizId']
           @FileType = params['FileType']
           @IsPublic = params['IsPublic']
+          @TypeKey = params['TypeKey']
         end
       end
 
@@ -1994,7 +2015,7 @@ module TencentCloud
         # @type CorpUin: String
         # @param ImagePath: 图片存储目录
         # @type ImagePath: String
-        # @param UploadPath: 上传存储目录
+        # @param UploadPath: 上传存储路径，到具体文件
         # @type UploadPath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2035,7 +2056,7 @@ module TencentCloud
 
       # DescribeUnsatisfiedReplyContext请求参数结构体
       class DescribeUnsatisfiedReplyContextRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param ReplyBizId: 回复ID
         # @type ReplyBizId: String
@@ -2228,7 +2249,7 @@ module TencentCloud
 
       # ExportAttributeLabel请求参数结构体
       class ExportAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
@@ -2283,7 +2304,7 @@ module TencentCloud
 
       # ExportQAList请求参数结构体
       class ExportQAListRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param QaBizIds: QA业务ID
         # @type QaBizIds: Array
@@ -2326,7 +2347,7 @@ module TencentCloud
 
       # ExportUnsatisfiedReply请求参数结构体
       class ExportUnsatisfiedReplyRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param ReplyBizIds: 勾选导出ID列表
         # @type ReplyBizIds: Array
@@ -2375,6 +2396,43 @@ module TencentCloud
         end
       end
 
+      # 实时上传的文件信息
+      class FileInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileSize: 文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: String
+        # @param FileUrl: 文件的URL地址，COS地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileUrl: String
+        # @param FileType: 文件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileType: String
+        # @param DocId: 解析后返回的DocID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocId: String
+
+        attr_accessor :FileName, :FileSize, :FileUrl, :FileType, :DocId
+
+        def initialize(filename=nil, filesize=nil, fileurl=nil, filetype=nil, docid=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @FileUrl = fileurl
+          @FileType = filetype
+          @DocId = docid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @FileUrl = params['FileUrl']
+          @FileType = params['FileType']
+          @DocId = params['DocId']
+        end
+      end
+
       # 不满意回复检索过滤
       class Filters < TencentCloud::Common::AbstractModel
         # @param Query: 检索，用户问题或答案
@@ -2397,7 +2455,7 @@ module TencentCloud
 
       # GenerateQA请求参数结构体
       class GenerateQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizIds: 文档ID
         # @type DocBizIds: Array
@@ -2532,19 +2590,23 @@ module TencentCloud
       class GetDocPreviewRequest < TencentCloud::Common::AbstractModel
         # @param DocBizId: 文档业务ID
         # @type DocBizId: String
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
+        # @param TypeKey: 存储类型: offline:离线文件，realtime:实时文件；为空默认为offline
+        # @type TypeKey: String
 
-        attr_accessor :DocBizId, :BotBizId
+        attr_accessor :DocBizId, :BotBizId, :TypeKey
 
-        def initialize(docbizid=nil, botbizid=nil)
+        def initialize(docbizid=nil, botbizid=nil, typekey=nil)
           @DocBizId = docbizid
           @BotBizId = botbizid
+          @TypeKey = typekey
         end
 
         def deserialize(params)
           @DocBizId = params['DocBizId']
           @BotBizId = params['BotBizId']
+          @TypeKey = params['TypeKey']
         end
       end
 
@@ -2652,7 +2714,7 @@ module TencentCloud
         # @type SessionId: String
         # @param LastRecordId: 最后一条记录ID
         # @type LastRecordId: String
-        # @param BotAppKey: 机器人AppKey
+        # @param BotAppKey: 应用AppKey
         # @type BotAppKey: String
         # @param Scene: 场景, 体验: 1; 正式: 2
         # @type Scene: Integer
@@ -2732,7 +2794,7 @@ module TencentCloud
         # @type Status: String
         # @param DocumentRecognizeResultUrl: 输入文件中嵌入的图片中文字内容的识别结果，存储在腾讯云cos的下载地址
         # @type DocumentRecognizeResultUrl: String
-        # @param FailedPages: 还原失败的页
+        # @param FailedPages: 文档解析失败的页码
         # @type FailedPages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2767,7 +2829,7 @@ module TencentCloud
         # @type TaskId: String
         # @param TaskType: 任务类型
         # @type TaskType: String
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
 
         attr_accessor :TaskId, :TaskType, :BotBizId
@@ -2851,7 +2913,7 @@ module TencentCloud
       class GetWsTokenRequest < TencentCloud::Common::AbstractModel
         # @param Type: 接入类型
         # @type Type: Integer
-        # @param BotAppKey: 机器人AppKey
+        # @param BotAppKey: 应用AppKey
         # @type BotAppKey: String
         # @param VisitorBizId: 坐席ID
         # @type VisitorBizId: String
@@ -2886,25 +2948,34 @@ module TencentCloud
       class GetWsTokenResponse < TencentCloud::Common::AbstractModel
         # @param Token: token值
         # @type Token: String
+        # @param Balance: 余额; 余额大于 0 时表示有效.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Balance: Float
+        # @param InputLenLimit: 对话窗输入字符限制
+        # @type InputLenLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Token, :RequestId
+        attr_accessor :Token, :Balance, :InputLenLimit, :RequestId
 
-        def initialize(token=nil, requestid=nil)
+        def initialize(token=nil, balance=nil, inputlenlimit=nil, requestid=nil)
           @Token = token
+          @Balance = balance
+          @InputLenLimit = inputlenlimit
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Token = params['Token']
+          @Balance = params['Balance']
+          @InputLenLimit = params['InputLenLimit']
           @RequestId = params['RequestId']
         end
       end
 
       # GroupQA请求参数结构体
       class GroupQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param QaBizIds: QA业务ID列表
         # @type QaBizIds: Array
@@ -2944,7 +3015,7 @@ module TencentCloud
 
       # 分片高亮内容
       class Highlight < TencentCloud::Common::AbstractModel
-        # @param StartPos: 高亮启始位置
+        # @param StartPos: 高亮起始位置
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartPos: String
@@ -2974,7 +3045,7 @@ module TencentCloud
 
       # IgnoreUnsatisfiedReply请求参数结构体
       class IgnoreUnsatisfiedReplyRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param ReplyBizIds: 不满意回复ID
         # @type ReplyBizIds: Array
@@ -3020,7 +3091,7 @@ module TencentCloud
       class IsTransferIntentRequest < TencentCloud::Common::AbstractModel
         # @param Content: 内容
         # @type Content: String
-        # @param BotAppKey: 机器人appKey
+        # @param BotAppKey: 应用appKey
         # @type BotAppKey: String
 
         attr_accessor :Content, :BotAppKey
@@ -3171,10 +3242,13 @@ module TencentCloud
         # @param DocTopN: 文档最大召回数量, 默认3，限制5
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocTopN: Integer
+        # @param Confidence: 检索置信度，针对文档和问答有效，最小0.01，最大0.99
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Confidence: Float
 
-        attr_accessor :Type, :ReplyFlexibility, :UseSearchEngine, :ShowSearchEngine, :IsEnabled, :QaTopN, :DocTopN
+        attr_accessor :Type, :ReplyFlexibility, :UseSearchEngine, :ShowSearchEngine, :IsEnabled, :QaTopN, :DocTopN, :Confidence
 
-        def initialize(type=nil, replyflexibility=nil, usesearchengine=nil, showsearchengine=nil, isenabled=nil, qatopn=nil, doctopn=nil)
+        def initialize(type=nil, replyflexibility=nil, usesearchengine=nil, showsearchengine=nil, isenabled=nil, qatopn=nil, doctopn=nil, confidence=nil)
           @Type = type
           @ReplyFlexibility = replyflexibility
           @UseSearchEngine = usesearchengine
@@ -3182,6 +3256,7 @@ module TencentCloud
           @IsEnabled = isenabled
           @QaTopN = qatopn
           @DocTopN = doctopn
+          @Confidence = confidence
         end
 
         def deserialize(params)
@@ -3192,6 +3267,7 @@ module TencentCloud
           @IsEnabled = params['IsEnabled']
           @QaTopN = params['QaTopN']
           @DocTopN = params['DocTopN']
+          @Confidence = params['Confidence']
         end
       end
 
@@ -3348,7 +3424,7 @@ module TencentCloud
 
       # ListAttributeLabel请求参数结构体
       class ListAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -3684,7 +3760,7 @@ module TencentCloud
 
       # ListQACate请求参数结构体
       class ListQACateRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
 
         attr_accessor :BotBizId
@@ -3902,7 +3978,7 @@ module TencentCloud
 
       # ListRejectedQuestionPreview请求参数结构体
       class ListRejectedQuestionPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -3977,7 +4053,7 @@ module TencentCloud
 
       # ListRejectedQuestion请求参数结构体
       class ListRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -4115,7 +4191,7 @@ module TencentCloud
 
       # ListReleaseDocPreview请求参数结构体
       class ListReleaseDocPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -4238,7 +4314,7 @@ module TencentCloud
 
       # ListReleaseQAPreview请求参数结构体
       class ListReleaseQAPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -4372,7 +4448,7 @@ module TencentCloud
 
       # ListSelectDoc请求参数结构体
       class ListSelectDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param FileName: 文档名称
         # @type FileName: String
@@ -4423,7 +4499,7 @@ module TencentCloud
 
       # ListUnsatisfiedReply请求参数结构体
       class ListUnsatisfiedReplyRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -4610,7 +4686,7 @@ module TencentCloud
 
       # ModifyAttributeLabel请求参数结构体
       class ModifyAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param AttributeBizId: 属性ID
         # @type AttributeBizId: String
@@ -4681,7 +4757,7 @@ module TencentCloud
 
       # ModifyDocAttrRange请求参数结构体
       class ModifyDocAttrRangeRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizIds: 文档ID
         # @type DocBizIds: Array
@@ -4732,7 +4808,7 @@ module TencentCloud
 
       # ModifyDoc请求参数结构体
       class ModifyDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -4812,7 +4888,7 @@ module TencentCloud
 
       # ModifyQAAttrRange请求参数结构体
       class ModifyQAAttrRangeRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param QaBizIds: 问答ID
         # @type QaBizIds: Array
@@ -4863,7 +4939,7 @@ module TencentCloud
 
       # ModifyQACate请求参数结构体
       class ModifyQACateRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param Name: 分类名称
         # @type Name: String
@@ -4903,7 +4979,7 @@ module TencentCloud
 
       # ModifyQA请求参数结构体
       class ModifyQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param QaBizId: 问答ID
         # @type QaBizId: String
@@ -4982,7 +5058,7 @@ module TencentCloud
 
       # ModifyRejectedQuestion请求参数结构体
       class ModifyRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param Question: 拒答问题
 
@@ -5020,6 +5096,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 文档信息
+      class MsgFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文档名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileSize: 文档大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: String
+        # @param FileUrl: 文档URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileUrl: String
+        # @param FileType: 文档类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileType: String
+        # @param DocId: 文档ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocId: String
+
+        attr_accessor :FileName, :FileSize, :FileUrl, :FileType, :DocId
+
+        def initialize(filename=nil, filesize=nil, fileurl=nil, filetype=nil, docid=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @FileUrl = fileurl
+          @FileType = filetype
+          @DocId = docid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @FileUrl = params['FileUrl']
+          @FileType = params['FileType']
+          @DocId = params['DocId']
         end
       end
 
@@ -5065,6 +5178,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TokenStat: :class:`Tencentcloud::Lke.v20231130.models.TokenStat`
         # @param ReplyMethod: 回复方式
+        # 1:大模型直接回复;
+        # 2:保守回复, 未知问题回复;
+        # 3:拒答问题回复;
+        # 4:敏感回复;
+        # 5:问答对直接回复, 已采纳问答对优先回复;
+        # 6:欢迎语回复;
+        # 7:并发超限回复;
+        # 8:全局干预知识;
+        # 9:任务流程过程回复, 当历史记录中 task_flow.type = 0 时, 为大模型回复;
+        # 10:任务流程答案回复;
+        # 11:搜索引擎回复;
+        # 12:知识润色后回复;
+        # 13:图片理解回复;
+        # 14:实时文档回复;
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplyMethod: Integer
         # @param OptionCards: 选项卡, 用于多轮对话
@@ -5073,10 +5200,13 @@ module TencentCloud
         # @param TaskFlow: 任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskFlow: :class:`Tencentcloud::Lke.v20231130.models.TaskFlowInfo`
+        # @param FileInfos: 用户传入的文件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileInfos: Array
 
-        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow
+        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos
 
-        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil)
+        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil)
           @Content = content
           @SessionId = sessionid
           @RecordId = recordid
@@ -5098,6 +5228,7 @@ module TencentCloud
           @ReplyMethod = replymethod
           @OptionCards = optioncards
           @TaskFlow = taskflow
+          @FileInfos = fileinfos
         end
 
         def deserialize(params)
@@ -5134,6 +5265,14 @@ module TencentCloud
           unless params['TaskFlow'].nil?
             @TaskFlow = TaskFlowInfo.new
             @TaskFlow.deserialize(params['TaskFlow'])
+          end
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              fileinfo_tmp = FileInfo.new
+              fileinfo_tmp.deserialize(i)
+              @FileInfos << fileinfo_tmp
+            end
           end
         end
       end
@@ -5428,7 +5567,7 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: 每页数量
         # @type PageSize: Integer
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param Query: 查询内容
         # @type Query: String
@@ -5593,7 +5732,7 @@ module TencentCloud
 
       # RateMsgRecord请求参数结构体
       class RateMsgRecordRequest < TencentCloud::Common::AbstractModel
-        # @param BotAppKey: 机器人appKey
+        # @param BotAppKey: 应用appKey
         # @type BotAppKey: String
         # @param RecordId: 消息ID
         # @type RecordId: String
@@ -5670,14 +5809,13 @@ module TencentCloud
 
       # ReconstructDocument请求参数结构体
       class ReconstructDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param FileBase64: 文件的 Base64 值。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
         # @type FileBase64: String
-        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param FileUrl: 文件的 Url 地址。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经 Base64 编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型（IsPdf=true）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
-        # 单次调用，最多支持10页pdf的智能识别。
+        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。单次调用，最多支持10页pdf的文档解析。
         # @type FileEndPageNumber: Integer
         # @param Config: 配置选项，支持配置是否在生成的Markdown中是否嵌入图片
         # @type Config: :class:`Tencentcloud::Lke.v20231130.models.ReconstructDocumentConfig`
@@ -6086,7 +6224,7 @@ module TencentCloud
 
       # RetryDocAudit请求参数结构体
       class RetryDocAuditRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -6122,7 +6260,7 @@ module TencentCloud
 
       # RetryDocParse请求参数结构体
       class RetryDocParseRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -6310,7 +6448,7 @@ module TencentCloud
 
       # StopDocParse请求参数结构体
       class StopDocParseRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -6547,7 +6685,7 @@ module TencentCloud
         # @param Question: 用户问题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Question: String
-        # @param Answer: 机器人回复
+        # @param Answer: 应用回复
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Answer: String
         # @param Reasons: 错误类型
@@ -6575,7 +6713,7 @@ module TencentCloud
 
       # UploadAttributeLabel请求参数结构体
       class UploadAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param FileName: 文件名
         # @type FileName: String
@@ -6673,7 +6811,7 @@ module TencentCloud
       class VerifyQARequest < TencentCloud::Common::AbstractModel
         # @param List: 问答列表
         # @type List: Array
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String

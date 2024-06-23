@@ -4204,6 +4204,13 @@ module TencentCloud
         # @type SeekSecond: Integer
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond
+        extend Gem::Deprecate
+        deprecate :VideoEncodeParams, :none, 2024, 6
+        deprecate :VideoEncodeParams=, :none, 2024, 6
+        deprecate :AudioEncodeParams, :none, 2024, 6
+        deprecate :AudioEncodeParams=, :none, 2024, 6
+        deprecate :SourceUrl, :none, 2024, 6
+        deprecate :SourceUrl=, :none, 2024, 6
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil)
           @SdkAppId = sdkappid
