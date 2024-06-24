@@ -3645,6 +3645,84 @@ module TencentCloud
         end
       end
 
+      # DescribeFirmware请求参数结构体
+      class DescribeFirmwareRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件版本号
+        # @type FirmwareVersion: String
+
+        attr_accessor :ProductID, :FirmwareVersion
+
+        def initialize(productid=nil, firmwareversion=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+        end
+      end
+
+      # DescribeFirmware返回参数结构体
+      class DescribeFirmwareResponse < TencentCloud::Common::AbstractModel
+        # @param Version: 固件版本号
+        # @type Version: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Name: 固件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 固件描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Md5sum: 固件Md5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5sum: String
+        # @param Createtime: 固件上传的秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Createtime: Integer
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param FwType: 固件升级模块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: String
+        # @param UserDefined: 固件用户自定义配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDefined: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Version, :ProductId, :Name, :Description, :Md5sum, :Createtime, :ProductName, :FwType, :UserDefined, :RequestId
+
+        def initialize(version=nil, productid=nil, name=nil, description=nil, md5sum=nil, createtime=nil, productname=nil, fwtype=nil, userdefined=nil, requestid=nil)
+          @Version = version
+          @ProductId = productid
+          @Name = name
+          @Description = description
+          @Md5sum = md5sum
+          @Createtime = createtime
+          @ProductName = productname
+          @FwType = fwtype
+          @UserDefined = userdefined
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @ProductId = params['ProductId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Md5sum = params['Md5sum']
+          @Createtime = params['Createtime']
+          @ProductName = params['ProductName']
+          @FwType = params['FwType']
+          @UserDefined = params['UserDefined']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFirmwareTask请求参数结构体
       class DescribeFirmwareTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID

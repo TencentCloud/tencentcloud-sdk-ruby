@@ -555,6 +555,63 @@ module TencentCloud
         end
       end
 
+      # ConvertDocument请求参数结构体
+      class ConvertDocumentRequest < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 图片的 Url 地址。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经 Base64 编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type FileUrl: String
+        # @param FileBase64: 图片的 Base64 值。 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type FileBase64: String
+        # @param FileStartPageNumber: 当传入文件是PDF类型（FileType=PDF）时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @type FileStartPageNumber: Integer
+        # @param FileEndPageNumber: 当传入文件是PDF类型（FileType=PDF）时，用来指定pdf识别的结束页码，识别的页码包含当前值。
+        # 建议一次请求的页面不超过3页。
+        # @type FileEndPageNumber: Integer
+
+        attr_accessor :FileUrl, :FileBase64, :FileStartPageNumber, :FileEndPageNumber
+
+        def initialize(fileurl=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil)
+          @FileUrl = fileurl
+          @FileBase64 = filebase64
+          @FileStartPageNumber = filestartpagenumber
+          @FileEndPageNumber = fileendpagenumber
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @FileBase64 = params['FileBase64']
+          @FileStartPageNumber = params['FileStartPageNumber']
+          @FileEndPageNumber = params['FileEndPageNumber']
+        end
+      end
+
+      # ConvertDocument返回参数结构体
+      class ConvertDocumentResponse < TencentCloud::Common::AbstractModel
+        # @param WordRecognizeInfo: 识别生成的word文件base64编码的字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordRecognizeInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WordRecognizeInfo, :RequestId
+
+        def initialize(wordrecognizeinfo=nil, requestid=nil)
+          @WordRecognizeInfo = wordrecognizeinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WordRecognizeInfo'].nil?
+            @WordRecognizeInfo = []
+            params['WordRecognizeInfo'].each do |i|
+              wordrecognizeinfo_tmp = WordRecognizeInfo.new
+              wordrecognizeinfo_tmp.deserialize(i)
+              @WordRecognizeInfo << wordrecognizeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 坐标
       class Coord < TencentCloud::Common::AbstractModel
         # @param X: 横坐标
@@ -886,9 +943,9 @@ module TencentCloud
         # @type FileBase64: String
         # @param FileUrl: 文件的 Url 地址。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经 Base64 编码后不超过 100M。文件下载时间不超过 15 秒。 支持的图片像素：单边介于20-10000px之间。 文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。默认为1，表示从pdf文件的第1页开始识别。
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。
+        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。默认为100，表示识别到pdf文件的第100页。单次调用最多支持识别100页内容，即FileEndPageNumber-FileStartPageNumber需要不大于100。
         # @type FileEndPageNumber: Integer
         # @param Config: 创建文档解析任务配置信息
         # @type Config: :class:`Tencentcloud::Lke.v20231130.models.CreateReconstructDocumentFlowConfig`
@@ -2489,6 +2546,98 @@ module TencentCloud
         end
       end
 
+      # GetAnswerTypeDataCount请求参数结构体
+      class GetAnswerTypeDataCountRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始日期
+        # @type StartTime: Integer
+        # @param EndTime: 结束日期
+        # @type EndTime: Integer
+        # @param AppBizId: 应用id
+        # @type AppBizId: Array
+        # @param Type: 消息来源(1、分享用户端  2、对话API  3、对话测试  4、应用评测)
+        # @type Type: Integer
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :StartTime, :EndTime, :AppBizId, :Type, :LoginUin, :LoginSubAccountUin
+
+        def initialize(starttime=nil, endtime=nil, appbizid=nil, type=nil, loginuin=nil, loginsubaccountuin=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizId = appbizid
+          @Type = type
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizId = params['AppBizId']
+          @Type = params['Type']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # GetAnswerTypeDataCount返回参数结构体
+      class GetAnswerTypeDataCountResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总消息数
+        # @type Total: Integer
+        # @param ModelReplyCount: 大模型直接回复总数
+        # @type ModelReplyCount: Integer
+        # @param KnowledgeCount: 知识型回复总数
+        # @type KnowledgeCount: Integer
+        # @param TaskFlowCount: 任务流回复总数
+        # @type TaskFlowCount: Integer
+        # @param SearchEngineCount: 搜索引擎回复总数
+        # @type SearchEngineCount: Integer
+        # @param ImageUnderstandingCount: 图片理解回复总数
+        # @type ImageUnderstandingCount: Integer
+        # @param RejectCount: 拒答回复总数
+        # @type RejectCount: Integer
+        # @param SensitiveCount: 敏感回复总数
+        # @type SensitiveCount: Integer
+        # @param ConcurrentLimitCount: 并发超限回复总数
+        # @type ConcurrentLimitCount: Integer
+        # @param UnknownIssuesCount: 未知问题回复总数
+        # @type UnknownIssuesCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :ModelReplyCount, :KnowledgeCount, :TaskFlowCount, :SearchEngineCount, :ImageUnderstandingCount, :RejectCount, :SensitiveCount, :ConcurrentLimitCount, :UnknownIssuesCount, :RequestId
+
+        def initialize(total=nil, modelreplycount=nil, knowledgecount=nil, taskflowcount=nil, searchenginecount=nil, imageunderstandingcount=nil, rejectcount=nil, sensitivecount=nil, concurrentlimitcount=nil, unknownissuescount=nil, requestid=nil)
+          @Total = total
+          @ModelReplyCount = modelreplycount
+          @KnowledgeCount = knowledgecount
+          @TaskFlowCount = taskflowcount
+          @SearchEngineCount = searchenginecount
+          @ImageUnderstandingCount = imageunderstandingcount
+          @RejectCount = rejectcount
+          @SensitiveCount = sensitivecount
+          @ConcurrentLimitCount = concurrentlimitcount
+          @UnknownIssuesCount = unknownissuescount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @ModelReplyCount = params['ModelReplyCount']
+          @KnowledgeCount = params['KnowledgeCount']
+          @TaskFlowCount = params['TaskFlowCount']
+          @SearchEngineCount = params['SearchEngineCount']
+          @ImageUnderstandingCount = params['ImageUnderstandingCount']
+          @RejectCount = params['RejectCount']
+          @SensitiveCount = params['SensitiveCount']
+          @ConcurrentLimitCount = params['ConcurrentLimitCount']
+          @UnknownIssuesCount = params['UnknownIssuesCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAppKnowledgeCount请求参数结构体
       class GetAppKnowledgeCountRequest < TencentCloud::Common::AbstractModel
         # @param Type: 类型：doc-文档；qa-问答对
@@ -2700,6 +2849,86 @@ module TencentCloud
             @Usage = Usage.new
             @Usage.deserialize(params['Usage'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetLikeDataCount请求参数结构体
+      class GetLikeDataCountRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始日期
+        # @type StartTime: Integer
+        # @param EndTime: 结束日期
+        # @type EndTime: Integer
+        # @param AppBizId: 应用id
+        # @type AppBizId: Array
+        # @param Type: 消息来源(1、分享用户端  2、对话API)
+        # @type Type: Integer
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :StartTime, :EndTime, :AppBizId, :Type, :LoginUin, :LoginSubAccountUin
+
+        def initialize(starttime=nil, endtime=nil, appbizid=nil, type=nil, loginuin=nil, loginsubaccountuin=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizId = appbizid
+          @Type = type
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizId = params['AppBizId']
+          @Type = params['Type']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # GetLikeDataCount返回参数结构体
+      class GetLikeDataCountResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 可评价消息数
+        # @type Total: Integer
+        # @param AppraisalTotal: 评价数
+        # @type AppraisalTotal: Integer
+        # @param ParticipationRate: 参评率
+        # @type ParticipationRate: Float
+        # @param LikeTotal: 点赞数
+        # @type LikeTotal: Integer
+        # @param LikeRate: 点赞率
+        # @type LikeRate: Float
+        # @param DislikeTotal: 点踩数
+        # @type DislikeTotal: Integer
+        # @param DislikeRate: 点踩率
+        # @type DislikeRate: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :AppraisalTotal, :ParticipationRate, :LikeTotal, :LikeRate, :DislikeTotal, :DislikeRate, :RequestId
+
+        def initialize(total=nil, appraisaltotal=nil, participationrate=nil, liketotal=nil, likerate=nil, disliketotal=nil, dislikerate=nil, requestid=nil)
+          @Total = total
+          @AppraisalTotal = appraisaltotal
+          @ParticipationRate = participationrate
+          @LikeTotal = liketotal
+          @LikeRate = likerate
+          @DislikeTotal = disliketotal
+          @DislikeRate = dislikerate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @AppraisalTotal = params['AppraisalTotal']
+          @ParticipationRate = params['ParticipationRate']
+          @LikeTotal = params['LikeTotal']
+          @LikeRate = params['LikeRate']
+          @DislikeTotal = params['DislikeTotal']
+          @DislikeRate = params['DislikeRate']
           @RequestId = params['RequestId']
         end
       end
@@ -5813,9 +6042,9 @@ module TencentCloud
         # @type FileBase64: String
         # @param FileUrl: 文件的 Url 地址。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经 Base64 编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type FileUrl: String
-        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。
+        # @param FileStartPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的起始页码，识别的页码包含当前值。默认为1，表示从pdf文件的第1页开始识别。
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。单次调用，最多支持10页pdf的文档解析。
+        # @param FileEndPageNumber: 当传入文件是PDF类型时，用来指定pdf识别的结束页码，识别的页码包含当前值。默认为10，表示识别到pdf文件的第10页。单次调用最多支持识别10页内容，即FileEndPageNumber-FileStartPageNumber需要不大于10。
         # @type FileEndPageNumber: Integer
         # @param Config: 配置选项，支持配置是否在生成的Markdown中是否嵌入图片
         # @type Config: :class:`Tencentcloud::Lke.v20231130.models.ReconstructDocumentConfig`
@@ -6855,6 +7084,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 解析为 word 文档的结果
+      class WordRecognizeInfo < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 输入文件的页码数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param WordBase64: word的base64
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordBase64: String
+
+        attr_accessor :PageNumber, :WordBase64
+
+        def initialize(pagenumber=nil, wordbase64=nil)
+          @PageNumber = pagenumber
+          @WordBase64 = wordbase64
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @WordBase64 = params['WordBase64']
         end
       end
 

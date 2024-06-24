@@ -1598,6 +1598,57 @@ module TencentCloud
         end
       end
 
+      # 声纹组对比结果top数据
+      class VerifyTop < TencentCloud::Common::AbstractModel
+        # @param Score: 相似度打分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: String
+        # @param VoicePrintId: 说话人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoicePrintId: String
+        # @param SpeakerId: 说话人昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpeakerId: String
+
+        attr_accessor :Score, :VoicePrintId, :SpeakerId
+
+        def initialize(score=nil, voiceprintid=nil, speakerid=nil)
+          @Score = score
+          @VoicePrintId = voiceprintid
+          @SpeakerId = speakerid
+        end
+
+        def deserialize(params)
+          @Score = params['Score']
+          @VoicePrintId = params['VoicePrintId']
+          @SpeakerId = params['SpeakerId']
+        end
+      end
+
+      # 说话人验证1:N返回结果
+      class VerifyTopResult < TencentCloud::Common::AbstractModel
+        # @param VerifyTops: 对比打分结果，按照打分降序排列返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyTops: Array
+
+        attr_accessor :VerifyTops
+
+        def initialize(verifytops=nil)
+          @VerifyTops = verifytops
+        end
+
+        def deserialize(params)
+          unless params['VerifyTops'].nil?
+            @VerifyTops = []
+            params['VerifyTops'].each do |i|
+              verifytop_tmp = VerifyTop.new
+              verifytop_tmp.deserialize(i)
+              @VerifyTops << verifytop_tmp
+            end
+          end
+        end
+      end
+
       # [词表内容](https://cloud.tencent.com/document/product/1093/41484#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
       class Vocab < TencentCloud::Common::AbstractModel
         # @param Name: 热词表名称
@@ -1750,26 +1801,49 @@ module TencentCloud
         # @param Total: 总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
+        # @param VoicePrintList: 说话人id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoicePrintList: Array
 
-        attr_accessor :Total
+        attr_accessor :Total, :VoicePrintList
 
-        def initialize(total=nil)
+        def initialize(total=nil, voiceprintlist=nil)
           @Total = total
+          @VoicePrintList = voiceprintlist
         end
 
         def deserialize(params)
           @Total = params['Total']
+          unless params['VoicePrintList'].nil?
+            @VoicePrintList = []
+            params['VoicePrintList'].each do |i|
+              voiceprintbasedata_tmp = VoicePrintBaseData.new
+              voiceprintbasedata_tmp.deserialize(i)
+              @VoicePrintList << voiceprintbasedata_tmp
+            end
+          end
         end
       end
 
       # VoicePrintCount请求参数结构体
       class VoicePrintCountRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID,仅支持大小写字母和下划线的组合，不超过128个字符
+        # @type GroupId: String
+        # @param CountMod: 统计模式
+        # 0: 统计所有声纹数量
+        # 1: 统计指定分组下的声纹数量
+        # @type CountMod: Integer
 
+        attr_accessor :GroupId, :CountMod
 
-        def initialize()
+        def initialize(groupid=nil, countmod=nil)
+          @GroupId = groupid
+          @CountMod = countmod
         end
 
         def deserialize(params)
+          @GroupId = params['GroupId']
+          @CountMod = params['CountMod']
         end
       end
 
@@ -1800,15 +1874,26 @@ module TencentCloud
       class VoicePrintDeleteRequest < TencentCloud::Common::AbstractModel
         # @param VoicePrintId: 说话人id，说话人唯一标识
         # @type VoicePrintId: String
+        # @param GroupId: 说话人分组ID,仅支持大小写字母和下划线的组合，不超过128个字符
+        # @type GroupId: String
+        # @param DelMod: 删除模式:
+        # 0.默认值，删除该条声纹
+        # 1.从分组中删除该条声纹，声纹本身不删除
+        # 2.从声纹库中删除分组，仅删除分组信息，不会真正删除分组中的声纹
+        # @type DelMod: Integer
 
-        attr_accessor :VoicePrintId
+        attr_accessor :VoicePrintId, :GroupId, :DelMod
 
-        def initialize(voiceprintid=nil)
+        def initialize(voiceprintid=nil, groupid=nil, delmod=nil)
           @VoicePrintId = voiceprintid
+          @GroupId = groupid
+          @DelMod = delmod
         end
 
         def deserialize(params)
           @VoicePrintId = params['VoicePrintId']
+          @GroupId = params['GroupId']
+          @DelMod = params['DelMod']
         end
       end
 
@@ -1845,14 +1930,17 @@ module TencentCloud
         # @type Data: String
         # @param SpeakerNick: 说话人昵称  不超过32字节
         # @type SpeakerNick: String
+        # @param GroupId: 分组id, 仅支持大小写字母和下划线的组合，不超过128个字符
+        # @type GroupId: String
 
-        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick
+        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick, :GroupId
 
-        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil)
+        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil, groupid=nil)
           @VoiceFormat = voiceformat
           @SampleRate = samplerate
           @Data = data
           @SpeakerNick = speakernick
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -1860,6 +1948,7 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @Data = params['Data']
           @SpeakerNick = params['SpeakerNick']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -1880,6 +1969,61 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = VoicePrintBaseData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VoicePrintGroupVerify请求参数结构体
+      class VoicePrintGroupVerifyRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @type VoiceFormat: Integer
+        # @param SampleRate: 音频采样率，目前支持16000，单位：Hz，必填
+        # @type SampleRate: Integer
+        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
+        # @type Data: String
+        # @param GroupId: 分组id, 支持数字，字母，下划线，长度不超过128
+        # @type GroupId: String
+        # @param TopN: 返回打分结果降序排列topN, TopN大于0， 小于可创建声纹最大数量
+        # @type TopN: Integer
+
+        attr_accessor :VoiceFormat, :SampleRate, :Data, :GroupId, :TopN
+
+        def initialize(voiceformat=nil, samplerate=nil, data=nil, groupid=nil, topn=nil)
+          @VoiceFormat = voiceformat
+          @SampleRate = samplerate
+          @Data = data
+          @GroupId = groupid
+          @TopN = topn
+        end
+
+        def deserialize(params)
+          @VoiceFormat = params['VoiceFormat']
+          @SampleRate = params['SampleRate']
+          @Data = params['Data']
+          @GroupId = params['GroupId']
+          @TopN = params['TopN']
+        end
+      end
+
+      # VoicePrintGroupVerify返回参数结构体
+      class VoicePrintGroupVerifyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: TopN 返回结果;系统建议打分70分以上为同一个人音色，评分也取决于音频质量、长度等其他原因影响，您可以按照业务需求适当提高或降低分数要求
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VerifyTopResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VerifyTopResult.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

@@ -2164,6 +2164,45 @@ module TencentCloud
         end
       end
 
+      # DescribeProductSKUs请求参数结构体
+      class DescribeProductSKUsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeProductSKUs返回参数结构体
+      class DescribeProductSKUsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 商品配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              productsku_tmp = ProductSKU.new
+              productsku_tmp.deserialize(i)
+              @Data << productsku_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoleList请求参数结构体
       class DescribeRoleListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -3682,6 +3721,111 @@ module TencentCloud
           @MessageType = params['MessageType']
           @Qos = params['Qos']
           @Count = params['Count']
+        end
+      end
+
+      # 价格标签信息
+      class PriceTag < TencentCloud::Common::AbstractModel
+        # @param Name: 计价名称
+        # @type Name: String
+        # @param Step: 步长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: Integer
+
+        attr_accessor :Name, :Step
+
+        def initialize(name=nil, step=nil)
+          @Name = name
+          @Step = step
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Step = params['Step']
+        end
+      end
+
+      # 商品售卖信息
+      class ProductSKU < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 产品类型，
+        # EXPERIMENT，体验版
+        # BASIC，基础版
+        # PRO，专业版
+        # PLATINUM，铂金版
+        # @type InstanceType: String
+        # @param SkuCode: 规格代码
+        # @type SkuCode: String
+        # @param TpsLimit: TPS上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TpsLimit: Integer
+        # @param ScaledTpsLimit: 弹性TPS上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaledTpsLimit: Integer
+        # @param TopicNumLimit: 主题数量上限默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumLimit: Integer
+        # @param GroupNumLimit: 消费组数量上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupNumLimit: Integer
+        # @param DefaultRetention: 默认消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultRetention: Integer
+        # @param RetentionUpperLimit: 可调整消息保留时间上限，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionUpperLimit: Integer
+        # @param RetentionLowerLimit: 可调整消息保留时间下限，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionLowerLimit: Integer
+        # @param MaxMessageDelay: 延时消息最大时长，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxMessageDelay: Integer
+        # @param OnSale: 是否可购买
+        # @type OnSale: Boolean
+        # @param PriceTags: 计费项信息
+        # @type PriceTags: Array
+        # @param TopicNumUpperLimit: 主题数量上限默认最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumUpperLimit: Integer
+
+        attr_accessor :InstanceType, :SkuCode, :TpsLimit, :ScaledTpsLimit, :TopicNumLimit, :GroupNumLimit, :DefaultRetention, :RetentionUpperLimit, :RetentionLowerLimit, :MaxMessageDelay, :OnSale, :PriceTags, :TopicNumUpperLimit
+
+        def initialize(instancetype=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, topicnumlimit=nil, groupnumlimit=nil, defaultretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, maxmessagedelay=nil, onsale=nil, pricetags=nil, topicnumupperlimit=nil)
+          @InstanceType = instancetype
+          @SkuCode = skucode
+          @TpsLimit = tpslimit
+          @ScaledTpsLimit = scaledtpslimit
+          @TopicNumLimit = topicnumlimit
+          @GroupNumLimit = groupnumlimit
+          @DefaultRetention = defaultretention
+          @RetentionUpperLimit = retentionupperlimit
+          @RetentionLowerLimit = retentionlowerlimit
+          @MaxMessageDelay = maxmessagedelay
+          @OnSale = onsale
+          @PriceTags = pricetags
+          @TopicNumUpperLimit = topicnumupperlimit
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @SkuCode = params['SkuCode']
+          @TpsLimit = params['TpsLimit']
+          @ScaledTpsLimit = params['ScaledTpsLimit']
+          @TopicNumLimit = params['TopicNumLimit']
+          @GroupNumLimit = params['GroupNumLimit']
+          @DefaultRetention = params['DefaultRetention']
+          @RetentionUpperLimit = params['RetentionUpperLimit']
+          @RetentionLowerLimit = params['RetentionLowerLimit']
+          @MaxMessageDelay = params['MaxMessageDelay']
+          @OnSale = params['OnSale']
+          unless params['PriceTags'].nil?
+            @PriceTags = []
+            params['PriceTags'].each do |i|
+              pricetag_tmp = PriceTag.new
+              pricetag_tmp.deserialize(i)
+              @PriceTags << pricetag_tmp
+            end
+          end
+          @TopicNumUpperLimit = params['TopicNumUpperLimit']
         end
       end
 

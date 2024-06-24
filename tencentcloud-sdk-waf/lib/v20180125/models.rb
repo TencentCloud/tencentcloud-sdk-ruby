@@ -457,6 +457,57 @@ module TencentCloud
         end
       end
 
+      # AddAreaBanAreas请求参数结构体
+      class AddAreaBanAreasRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要修改的域名
+        # @type Domain: String
+        # @param Areas: 需要新增的封禁地域
+        # @type Areas: Array
+        # @param Edition: waf版本信息，spart-waf或者clb-waf，其他无效，请一定填写
+        # @type Edition: String
+        # @param JobType: 定时任务类型
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+
+        attr_accessor :Domain, :Areas, :Edition, :JobType, :JobDateTime
+
+        def initialize(domain=nil, areas=nil, edition=nil, jobtype=nil, jobdatetime=nil)
+          @Domain = domain
+          @Areas = areas
+          @Edition = edition
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Areas = params['Areas']
+          @Edition = params['Edition']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+        end
+      end
+
+      # AddAreaBanAreas返回参数结构体
+      class AddAreaBanAreasResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddAttackWhiteRule请求参数结构体
       class AddAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

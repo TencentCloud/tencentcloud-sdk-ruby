@@ -640,6 +640,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 说话人验证1:N接口，可以通过传入一段说话人音频，并且指定已存在的groupId, 和返回topN,  接口返回groupId内所有声纹和传入音频声纹比对打分TopN的结果。
+
+        # @param request: Request instance for VoicePrintGroupVerify.
+        # @type request: :class:`Tencentcloud::asr::V20190614::VoicePrintGroupVerifyRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::VoicePrintGroupVerifyResponse`
+        def VoicePrintGroupVerify(request)
+          body = send_request('VoicePrintGroupVerify', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VoicePrintGroupVerifyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于更新和覆盖已注册的音频数据和说话人昵称，更新后原有的音频数据将失效。
 
         # @param request: Request instance for VoicePrintUpdate.

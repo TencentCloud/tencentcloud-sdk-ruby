@@ -8671,7 +8671,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param OrderField: 排序字段。支持 `InPkg` `OutPkg` `InTraffic` `OutTraffic`。默认值`OutTraffic`。
+        # @param OrderField: 排序字段。支持 `InPkg` `OutPkg` `InTraffic` `OutTraffic`，标准型nat额外支持 并发连接数`ConcurrentConnectionCount` 、新建连接速率`NewConnectionRate`。默认值`OutTraffic`。
         # @type OrderField: String
         # @param OrderDirection: 排序方法。顺序：`ASC`，倒序：`DESC`。默认值`DESC`。
         # @type OrderDirection: String
@@ -11386,7 +11386,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param EndPointServiceIds: 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
         # @type EndPointServiceIds: Array
-        # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。</li>
+        # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，哪些终端节点服务授权了该账户。</li>
         # @type IsListAuthorizedEndPointService: Boolean
 
         attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService
@@ -13973,15 +13973,21 @@ module TencentCloud
         # @type InTraffic: Integer
         # @param OutTraffic: 出流量，单位：`Byte`。
         # @type OutTraffic: Integer
+        # @param ConcurrentConnectionCount: 并发连接数。仅标准型nat支持此参数。
+        # @type ConcurrentConnectionCount: Integer
+        # @param NewConnectionRate: 新建连接速率。仅标准型nat支持此参数。
+        # @type NewConnectionRate: Integer
 
-        attr_accessor :PrivateIpAddress, :InPkg, :OutPkg, :InTraffic, :OutTraffic
+        attr_accessor :PrivateIpAddress, :InPkg, :OutPkg, :InTraffic, :OutTraffic, :ConcurrentConnectionCount, :NewConnectionRate
 
-        def initialize(privateipaddress=nil, inpkg=nil, outpkg=nil, intraffic=nil, outtraffic=nil)
+        def initialize(privateipaddress=nil, inpkg=nil, outpkg=nil, intraffic=nil, outtraffic=nil, concurrentconnectioncount=nil, newconnectionrate=nil)
           @PrivateIpAddress = privateipaddress
           @InPkg = inpkg
           @OutPkg = outpkg
           @InTraffic = intraffic
           @OutTraffic = outtraffic
+          @ConcurrentConnectionCount = concurrentconnectioncount
+          @NewConnectionRate = newconnectionrate
         end
 
         def deserialize(params)
@@ -13990,6 +13996,8 @@ module TencentCloud
           @OutPkg = params['OutPkg']
           @InTraffic = params['InTraffic']
           @OutTraffic = params['OutTraffic']
+          @ConcurrentConnectionCount = params['ConcurrentConnectionCount']
+          @NewConnectionRate = params['NewConnectionRate']
         end
       end
 
@@ -14360,8 +14368,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 5
-        deprecate :IntegrityAlgorith=, :none, 2024, 5
+        deprecate :IntegrityAlgorith, :none, 2024, 6
+        deprecate :IntegrityAlgorith=, :none, 2024, 6
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm

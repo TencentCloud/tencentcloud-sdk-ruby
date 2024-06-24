@@ -1541,6 +1541,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询固件信息
+
+        # @param request: Request instance for DescribeFirmware.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareResponse`
+        def DescribeFirmware(request)
+          body = send_request('DescribeFirmware', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirmwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询固件升级任务列表
 
         # @param request: Request instance for DescribeFirmwareTask.

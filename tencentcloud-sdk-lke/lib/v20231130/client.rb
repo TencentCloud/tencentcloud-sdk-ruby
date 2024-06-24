@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口支持图片和PDF转可编辑word格式文件，将文件中的图片、文本、表格等元素识别，并根据位置进行还原。
+
+        # @param request: Request instance for ConvertDocument.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ConvertDocumentRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ConvertDocumentResponse`
+        def ConvertDocument(request)
+          body = send_request('ConvertDocument', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ConvertDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建知识引擎应用。
 
         # @param request: Request instance for CreateApp.
@@ -776,6 +800,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 回答类型数据统计
+
+        # @param request: Request instance for GetAnswerTypeDataCount.
+        # @type request: :class:`Tencentcloud::lke::V20231130::GetAnswerTypeDataCountRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::GetAnswerTypeDataCountResponse`
+        def GetAnswerTypeDataCount(request)
+          body = send_request('GetAnswerTypeDataCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAnswerTypeDataCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取模型列表
 
         # @param request: Request instance for GetAppKnowledgeCount.
@@ -859,6 +907,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetEmbeddingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 点赞点踩数据统计
+
+        # @param request: Request instance for GetLikeDataCount.
+        # @type request: :class:`Tencentcloud::lke::V20231130::GetLikeDataCountRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::GetLikeDataCountResponse`
+        def GetLikeDataCount(request)
+          body = send_request('GetLikeDataCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetLikeDataCountResponse.new
             model.deserialize(response['Response'])
             model
           else

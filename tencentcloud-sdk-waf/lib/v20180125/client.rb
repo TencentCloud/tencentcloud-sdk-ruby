@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加地域封禁中的地域信息
+
+        # @param request: Request instance for AddAreaBanAreas.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddAreaBanAreasRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddAreaBanAreasResponse`
+        def AddAreaBanAreas(request)
+          body = send_request('AddAreaBanAreas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAreaBanAreasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 供用户控制台调用，增加Tiga规则引擎白名单。
 
         # @param request: Request instance for AddAttackWhiteRule.

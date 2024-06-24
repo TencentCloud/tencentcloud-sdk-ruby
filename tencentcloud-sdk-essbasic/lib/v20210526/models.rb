@@ -5758,6 +5758,11 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
 
         attr_accessor :Agent, :Operator, :Organization
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2024, 6
+        deprecate :Operator=, :none, 2024, 6
+        deprecate :Organization, :none, 2024, 6
+        deprecate :Organization=, :none, 2024, 6
 
         def initialize(agent=nil, operator=nil, organization=nil)
           @Agent = agent

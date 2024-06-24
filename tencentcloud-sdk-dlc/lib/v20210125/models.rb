@@ -3812,6 +3812,67 @@ module TencentCloud
         end
       end
 
+      # 引擎规格详情
+      class DataEngineScaleInfo < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param DataEngineName: 引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineName: String
+        # @param ScaleDetail: 引擎规格详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleDetail: Array
+
+        attr_accessor :DataEngineId, :DataEngineName, :ScaleDetail
+
+        def initialize(dataengineid=nil, dataenginename=nil, scaledetail=nil)
+          @DataEngineId = dataengineid
+          @DataEngineName = dataenginename
+          @ScaleDetail = scaledetail
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @DataEngineName = params['DataEngineName']
+          unless params['ScaleDetail'].nil?
+            @ScaleDetail = []
+            params['ScaleDetail'].each do |i|
+              dataenginescaleinfodetail_tmp = DataEngineScaleInfoDetail.new
+              dataenginescaleinfodetail_tmp.deserialize(i)
+              @ScaleDetail << dataenginescaleinfodetail_tmp
+            end
+          end
+        end
+      end
+
+      # 引擎规格详情
+      class DataEngineScaleInfoDetail < TencentCloud::Common::AbstractModel
+        # @param StartTime: 统计开始时间，格式为：yyyy-MM-dd HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间，格式为：yyyy-MM-dd HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CU: 当前统计时间段，引擎规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CU: Integer
+
+        attr_accessor :StartTime, :EndTime, :CU
+
+        def initialize(starttime=nil, endtime=nil, cu=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @CU = cu
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CU = params['CU']
+        end
+      end
+
       # 数据表数据格式。
       class DataFormat < TencentCloud::Common::AbstractModel
         # @param TextFile: 文本格式，TextFile。
@@ -5408,6 +5469,58 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataEnginesScaleDetail请求参数结构体
+      class DescribeDataEnginesScaleDetailRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineNames: 引擎名称列表
+        # @type DataEngineNames: Array
+        # @param StartTime: 开始时间，时间格式：yyyy-MM-dd HH:mm:ss，最长查询一个月内的记录
+        # @type StartTime: String
+        # @param EndTime: 结束时间，时间格式：yyyy-MM-dd HH:mm:ss，最长查询一个月内的记录
+        # @type EndTime: String
+
+        attr_accessor :DataEngineNames, :StartTime, :EndTime
+
+        def initialize(dataenginenames=nil, starttime=nil, endtime=nil)
+          @DataEngineNames = dataenginenames
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @DataEngineNames = params['DataEngineNames']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeDataEnginesScaleDetail返回参数结构体
+      class DescribeDataEnginesScaleDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Scales: 引擎规格统计详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scales: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Scales, :RequestId
+
+        def initialize(scales=nil, requestid=nil)
+          @Scales = scales
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Scales'].nil?
+            @Scales = []
+            params['Scales'].each do |i|
+              dataenginescaleinfo_tmp = DataEngineScaleInfo.new
+              dataenginescaleinfo_tmp.deserialize(i)
+              @Scales << dataenginescaleinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

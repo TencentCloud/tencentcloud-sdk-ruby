@@ -4748,6 +4748,94 @@ module TencentCloud
         end
       end
 
+      # DescribeRabbitMQExchanges请求参数结构体
+      class DescribeRabbitMQExchangesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 id
+        # @type InstanceId: String
+        # @param VirtualHost: vhost 参数
+        # @type VirtualHost: String
+        # @param Offset: 分页 offset
+        # @type Offset: Integer
+        # @param Limit: 分页 limit
+        # @type Limit: Integer
+        # @param SearchWord: 搜索关键词, 支持模糊匹配
+        # @type SearchWord: String
+        # @param ExchangeTypeFilters: 筛选 exchange 类型, 数组中每个元素为选中的过滤类型
+        # @type ExchangeTypeFilters: Array
+        # @param ExchangeCreatorFilters: 筛选 exchange 创建来源,  "system":"系统创建", "user":"用户创建"
+        # @type ExchangeCreatorFilters: Array
+        # @param ExchangeName: exchange 名称，用于精确匹配
+        # @type ExchangeName: String
+        # @param SortElement: 排序依据的字段：
+        # MessageRateInOut - 生产消费速率之和；
+        # MessageRateIn - 生产速率；
+        # MessageRateOut - 消费速率；
+        # @type SortElement: String
+        # @param SortOrder: 排序顺序，ascend 或 descend
+        # @type SortOrder: String
+
+        attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :ExchangeTypeFilters, :ExchangeCreatorFilters, :ExchangeName, :SortElement, :SortOrder
+
+        def initialize(instanceid=nil, virtualhost=nil, offset=nil, limit=nil, searchword=nil, exchangetypefilters=nil, exchangecreatorfilters=nil, exchangename=nil, sortelement=nil, sortorder=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @ExchangeTypeFilters = exchangetypefilters
+          @ExchangeCreatorFilters = exchangecreatorfilters
+          @ExchangeName = exchangename
+          @SortElement = sortelement
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @ExchangeTypeFilters = params['ExchangeTypeFilters']
+          @ExchangeCreatorFilters = params['ExchangeCreatorFilters']
+          @ExchangeName = params['ExchangeName']
+          @SortElement = params['SortElement']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeRabbitMQExchanges返回参数结构体
+      class DescribeRabbitMQExchangesResponse < TencentCloud::Common::AbstractModel
+        # @param ExchangeInfoList: 策略列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExchangeInfoList: Array
+        # @param TotalCount: 策略结果总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExchangeInfoList, :TotalCount, :RequestId
+
+        def initialize(exchangeinfolist=nil, totalcount=nil, requestid=nil)
+          @ExchangeInfoList = exchangeinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ExchangeInfoList'].nil?
+            @ExchangeInfoList = []
+            params['ExchangeInfoList'].each do |i|
+              rabbitmqexchangelistinfo_tmp = RabbitMQExchangeListInfo.new
+              rabbitmqexchangelistinfo_tmp.deserialize(i)
+              @ExchangeInfoList << rabbitmqexchangelistinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRabbitMQNodeList请求参数结构体
       class DescribeRabbitMQNodeListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: rabbitmq集群ID
@@ -9999,6 +10087,96 @@ module TencentCloud
           @PublicDataStreamWhiteList = params['PublicDataStreamWhiteList']
           @PublicControlConsoleWhiteListStatus = params['PublicControlConsoleWhiteListStatus']
           @PublicDataStreamWhiteListStatus = params['PublicDataStreamWhiteListStatus']
+        end
+      end
+
+      # RabbitMQ exchange列表成员信息
+      class RabbitMQExchangeListInfo < TencentCloud::Common::AbstractModel
+        # @param ExchangeName: exchange 名
+        # @type ExchangeName: String
+        # @param Remark: 备注说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param ExchangeType: exchange 类型, 支持 "fanout","direct","topic","headers"
+        # @type ExchangeType: String
+        # @param VirtualHost: VHost参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualHost: String
+        # @param ExchangeCreator: exchange 创建者, "system":"系统创建", "user":"用户创建"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExchangeCreator: String
+        # @param CreateTimeStamp: exchange 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimeStamp: String
+        # @param ModTimeStamp: exchange 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModTimeStamp: String
+        # @param MessageRateIn: 输入消息速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageRateIn: Float
+        # @param MessageRateOut: 输出消息速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageRateOut: Float
+        # @param Durable: 是否为持久化交换机，true 为持久化，false 为非持久化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Durable: Boolean
+        # @param AutoDelete: 是否为自动删除交换机，true 为自动删除，false 为非自动删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoDelete: Boolean
+        # @param Internal: 是否为内部交换机，true 为内部交换机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Internal: Boolean
+        # @param InstanceId: 交换机所属实例 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Policy: 生效的策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: String
+        # @param Arguments: 扩展参数 key-value 对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Arguments: String
+        # @param MessagesDelayed: 未调度的延时消息数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessagesDelayed: Integer
+
+        attr_accessor :ExchangeName, :Remark, :ExchangeType, :VirtualHost, :ExchangeCreator, :CreateTimeStamp, :ModTimeStamp, :MessageRateIn, :MessageRateOut, :Durable, :AutoDelete, :Internal, :InstanceId, :Policy, :Arguments, :MessagesDelayed
+
+        def initialize(exchangename=nil, remark=nil, exchangetype=nil, virtualhost=nil, exchangecreator=nil, createtimestamp=nil, modtimestamp=nil, messageratein=nil, messagerateout=nil, durable=nil, autodelete=nil, internal=nil, instanceid=nil, policy=nil, arguments=nil, messagesdelayed=nil)
+          @ExchangeName = exchangename
+          @Remark = remark
+          @ExchangeType = exchangetype
+          @VirtualHost = virtualhost
+          @ExchangeCreator = exchangecreator
+          @CreateTimeStamp = createtimestamp
+          @ModTimeStamp = modtimestamp
+          @MessageRateIn = messageratein
+          @MessageRateOut = messagerateout
+          @Durable = durable
+          @AutoDelete = autodelete
+          @Internal = internal
+          @InstanceId = instanceid
+          @Policy = policy
+          @Arguments = arguments
+          @MessagesDelayed = messagesdelayed
+        end
+
+        def deserialize(params)
+          @ExchangeName = params['ExchangeName']
+          @Remark = params['Remark']
+          @ExchangeType = params['ExchangeType']
+          @VirtualHost = params['VirtualHost']
+          @ExchangeCreator = params['ExchangeCreator']
+          @CreateTimeStamp = params['CreateTimeStamp']
+          @ModTimeStamp = params['ModTimeStamp']
+          @MessageRateIn = params['MessageRateIn']
+          @MessageRateOut = params['MessageRateOut']
+          @Durable = params['Durable']
+          @AutoDelete = params['AutoDelete']
+          @Internal = params['Internal']
+          @InstanceId = params['InstanceId']
+          @Policy = params['Policy']
+          @Arguments = params['Arguments']
+          @MessagesDelayed = params['MessagesDelayed']
         end
       end
 

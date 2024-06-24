@@ -3702,6 +3702,9 @@ module TencentCloud
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
         attr_accessor :Operator, :Agent, :Organization
+        extend Gem::Deprecate
+        deprecate :Organization, :none, 2024, 6
+        deprecate :Organization=, :none, 2024, 6
 
         def initialize(operator=nil, agent=nil, organization=nil)
           @Operator = operator

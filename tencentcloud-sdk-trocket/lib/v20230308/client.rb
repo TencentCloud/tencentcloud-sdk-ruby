@@ -846,6 +846,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询产品售卖规格，针对 RocketMQ 5.x 集群。
+
+        # @param request: Request instance for DescribeProductSKUs.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeProductSKUsRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeProductSKUsResponse`
+        def DescribeProductSKUs(request)
+          body = send_request('DescribeProductSKUs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductSKUsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询角色列表，Filter参数使用说明如下：
 
         # 1. RoleName，角色名称模糊搜索

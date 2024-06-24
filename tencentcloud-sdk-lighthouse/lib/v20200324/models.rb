@@ -1686,7 +1686,7 @@ module TencentCloud
 
       # DescribeBundleDiscount请求参数结构体
       class DescribeBundleDiscountRequest < TencentCloud::Common::AbstractModel
-        # @param BundleId: 套餐 ID。
+        # @param BundleId: 套餐 ID。可通过[DescribeBundles](https://cloud.tencent.com/document/product/1207/47575)接口返回值中的BundleId获取。
         # @type BundleId: String
 
         attr_accessor :BundleId
@@ -1733,7 +1733,7 @@ module TencentCloud
 
       # DescribeBundles请求参数结构体
       class DescribeBundlesRequest < TencentCloud::Common::AbstractModel
-        # @param BundleIds: 套餐 ID 列表。
+        # @param BundleIds: 套餐 ID 列表。可通过[DescribeBundles](https://cloud.tencent.com/document/product/1207/47575)接口返回值中的BundleId获取。
         # @type BundleIds: Array
         # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Offset: Integer
@@ -3494,7 +3494,7 @@ module TencentCloud
 
       # DescribeResetInstanceBlueprints请求参数结构体
       class DescribeResetInstanceBlueprintsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。可通过 <a href="https://cloud.tencent.com/document/product/1207/47573">DescribeInstances</a> 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
         # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Offset: Integer
@@ -3504,6 +3504,7 @@ module TencentCloud
         # <li>blueprint-id</li>按照【镜像 ID】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/47689">DescribeBlueprints</a> 接口返回值中的 BlueprintId 获取。
         # <li>blueprint-type</li>按照【镜像类型】进行过滤。
         # 取值： APP_OS（应用镜像 ）；PURE_OS（ 系统镜像）；PRIVATE（自定义镜像）。
         # 类型：String
@@ -3515,9 +3516,11 @@ module TencentCloud
         # <li>blueprint-name</li>按照【镜像名称】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/47689">DescribeBlueprints</a> 接口返回值中的 BlueprintName 获取。
         # <li>blueprint-state</li>按照【镜像状态】进行过滤。
         # 类型：String
         # 必选：否
+        # 可通过 <a href="https://cloud.tencent.com/document/product/1207/47689">DescribeBlueprints</a> 接口返回值中的 BlueprintState 获取。
 
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 BlueprintIds 和 Filters 。
         # @type Filters: Array
@@ -5943,9 +5946,9 @@ module TencentCloud
 
       # ModifyDockerContainer请求参数结构体
       class ModifyDockerContainerRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param ContainerId: 容器ID。
+        # @param ContainerId: 容器ID。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerId: String
         # @param Envs: 环境变量列表
         # @type Envs: Array
@@ -6714,11 +6717,11 @@ module TencentCloud
 
       # RerunDockerContainer请求参数结构体
       class RerunDockerContainerRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
         # @param ContainerConfiguration: 重新创建的容器配置。
         # @type ContainerConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.DockerContainerConfiguration`
-        # @param ContainerId: 容器ID。
+        # @param ContainerId: 容器ID。可通过[DescribeDockerContainers](https://cloud.tencent.com/document/product/1207/95473)接口返回值中的ContainerId获取。
         # @type ContainerId: String
 
         attr_accessor :InstanceId, :ContainerConfiguration, :ContainerId
@@ -7037,7 +7040,7 @@ module TencentCloud
 
       # RunDockerContainers请求参数结构体
       class RunDockerContainersRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
         # @param Containers: 要创建的容器列表。
         # @type Containers: Array

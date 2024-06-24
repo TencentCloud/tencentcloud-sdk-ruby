@@ -2452,10 +2452,19 @@ module TencentCloud
         # @type TransparentUrl: String
         # @param BackgroundCustomRender: 子背景图的自定义渲染参数，当BackgroundRenderMode为4时必须配置。
         # @type BackgroundCustomRender: :class:`Tencentcloud::Trtc.v20190722.models.McuBackgroundCustomRender`
+        # @param BackGroundColorMode: 子背景色生效模式，默认值为0表示均不生效。
+        # bit0:占位图缩放是否生效。
+        # bit1:上行流缩放是否生效。
+        # 您可以将相应bit位置1启动生效，例如：
+        # 0(00)表示子背景色不生效。
+        # 1(01)表示子背景色只在占位图缩放时生效。
+        # 2(10)表示子背景色只在上行流缩放时生效。
+        # 3(11)表示子背景色在占位图缩放和上行流缩放时均生效。
+        # @type BackGroundColorMode: Integer
 
-        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl, :BackgroundCustomRender
+        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl, :BackgroundCustomRender, :BackGroundColorMode
 
-        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil, backgroundcustomrender=nil)
+        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil, backgroundcustomrender=nil, backgroundcolormode=nil)
           @UserMediaStream = usermediastream
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -2469,6 +2478,7 @@ module TencentCloud
           @BackgroundRenderMode = backgroundrendermode
           @TransparentUrl = transparenturl
           @BackgroundCustomRender = backgroundcustomrender
+          @BackGroundColorMode = backgroundcolormode
         end
 
         def deserialize(params)
@@ -2494,6 +2504,7 @@ module TencentCloud
             @BackgroundCustomRender = McuBackgroundCustomRender.new
             @BackgroundCustomRender.deserialize(params['BackgroundCustomRender'])
           end
+          @BackGroundColorMode = params['BackGroundColorMode']
         end
       end
 
@@ -2878,7 +2889,7 @@ module TencentCloud
         # @type MediaId: Integer
         # @param ImageLayer: 该画布的图层顺序, 这个值越小表示图层越靠后。默认值为0。
         # @type ImageLayer: Integer
-        # @param SubBackgroundImage: 图片的url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
+        # @param SubBackgroundImage: 图片的url地址， 只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type SubBackgroundImage: String
 
         attr_accessor :Top, :Left, :Width, :Height, :UserId, :Alpha, :RenderMode, :MediaId, :ImageLayer, :SubBackgroundImage
@@ -2915,7 +2926,7 @@ module TencentCloud
         # @param MixLayoutMode: 布局模式:
         # 1：悬浮布局；
         # 2：屏幕分享布局；
-        # 3：九宫格布局（默认）；
+        # 3：九宫格布局；
         # 4：自定义布局；
 
         # 悬浮布局：默认第一个进入房间的主播（也可以指定一个主播）的视频画面会铺满整个屏幕。其他主播的视频画面从左下角开始依次按照进房顺序水平排列，显示为小画面，小画面悬浮于大画面之上。当画面数量小于等于17个时，每行4个（4 x 4排列）。当画面数量大于17个时，重新布局小画面为每行5个（5 x 5）排列。最多支持25个画面，如果用户只发送音频，仍然会占用画面位置。
@@ -2937,13 +2948,13 @@ module TencentCloud
         # 1：辅流（屏幕分享）；
         # 这个位置的MediaId代表的是对应MaxResolutionUserId的主辅路，MixLayoutList内代表的是自定义用户的主辅路。
         # @type MediaId: Integer
-        # @param BackgroundImageUrl: 图片的url地址， 只支持jpg， png，大小限制不超过5M，url不可包含中文。
+        # @param BackgroundImageUrl: 图片的url地址，只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type BackgroundImageUrl: String
         # @param PlaceHolderMode: 设置为1时代表启用占位图功能，0时代表不启用占位图功能，默认为0。启用占位图功能时，在预设位置的用户没有上行视频时可显示对应的占位图。
         # @type PlaceHolderMode: Integer
         # @param BackgroundImageRenderMode: 背景画面宽高比不一致的时候处理方案，与MixLayoufList定义的RenderMode一致。
         # @type BackgroundImageRenderMode: Integer
-        # @param DefaultSubBackgroundImage: 子画面占位图url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
+        # @param DefaultSubBackgroundImage: 子画面占位图url地址，只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type DefaultSubBackgroundImage: String
         # @param WaterMarkList: 水印布局参数， 最多支持25个。
         # @type WaterMarkList: Array
@@ -5221,7 +5232,7 @@ module TencentCloud
 
       # 水印类型为图片的参数列表
       class WaterMarkImage < TencentCloud::Common::AbstractModel
-        # @param WaterMarkUrl: 下载的url地址， 只支持jpg， png，大小限制不超过5M。
+        # @param WaterMarkUrl: 下载的url地址， 只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type WaterMarkUrl: String
         # @param Top: 画布上该画面左上角的 y 轴坐标，取值范围 [0, 2560]，不能超过画布的高。
         # @type Top: Integer
