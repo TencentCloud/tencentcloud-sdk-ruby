@@ -4756,8 +4756,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 5
-        deprecate :Decription=, :none, 2024, 5
+        deprecate :Decription, :none, 2024, 6
+        deprecate :Decription=, :none, 2024, 6
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -6828,42 +6828,6 @@ module TencentCloud
 
       # DeleteAllJavaMemShells返回参数结构体
       class DeleteAllJavaMemShellsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteAttackLogs请求参数结构体
-      class DeleteAttackLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 日志ID数组，最大100条。
-        # @type Ids: Array
-        # @param IsAll: 是否全部删除
-        # @type IsAll: Boolean
-
-        attr_accessor :Ids, :IsAll
-
-        def initialize(ids=nil, isall=nil)
-          @Ids = ids
-          @IsAll = isall
-        end
-
-        def deserialize(params)
-          @Ids = params['Ids']
-          @IsAll = params['IsAll']
-        end
-      end
-
-      # DeleteAttackLogs返回参数结构体
-      class DeleteAttackLogsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -28493,8 +28457,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 5
-        deprecate :Fileds=, :none, 2024, 5
+        deprecate :Fileds, :none, 2024, 6
+        deprecate :Fileds=, :none, 2024, 6
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

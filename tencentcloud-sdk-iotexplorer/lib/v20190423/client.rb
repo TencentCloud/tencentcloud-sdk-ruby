@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CheckFirmwareUpdate）用于查询设备可升级固件版本
+
+        # @param request: Request instance for CheckFirmwareUpdate.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CheckFirmwareUpdateRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CheckFirmwareUpdateResponse`
+        def CheckFirmwareUpdate(request)
+          body = send_request('CheckFirmwareUpdate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckFirmwareUpdateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据设备产品ID、设备名称，设置控制设备的属性数据。
 
         # @param request: Request instance for ControlDeviceData.
@@ -1589,6 +1613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeFirmwareUpdateStatus）用于查询设备固件升级状态及进度。
+
+        # @param request: Request instance for DescribeFirmwareUpdateStatus.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareUpdateStatusRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareUpdateStatusResponse`
+        def DescribeFirmwareUpdateStatus(request)
+          body = send_request('DescribeFirmwareUpdateStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirmwareUpdateStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取网关绑定的子设备列表
 
         # @param request: Request instance for DescribeGatewayBindDevices.
@@ -2943,6 +2991,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PublishBroadcastMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（PublishFirmwareUpdateMessage）用于用户确认升级后，云端向设备发起固件升级请求。
+
+        # @param request: Request instance for PublishFirmwareUpdateMessage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::PublishFirmwareUpdateMessageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::PublishFirmwareUpdateMessageResponse`
+        def PublishFirmwareUpdateMessage(request)
+          body = send_request('PublishFirmwareUpdateMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PublishFirmwareUpdateMessageResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -76,6 +76,195 @@ module TencentCloud
         end
       end
 
+      # 账户分响应对象集合
+      class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
+        # @param Itime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Itime: String
+        # @param Name: 账户组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param IdPathArr: id patch数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdPathArr: Array
+        # @param UserTotal: 该分组下用户总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserTotal: Integer
+        # @param ExtraInfo: 扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param ImportType: 导入类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportType: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Source: 同步数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: Integer
+        # @param MiniIamId: miniIAM id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MiniIamId: String
+        # @param OrgId: 组织id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgId: String
+        # @param ReadOnly: 是否该账户的直接权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadOnly: Boolean
+        # @param ParentId: 父id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+        # @param NamePath: 名称path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamePath: String
+        # @param ParentOrgId: 父组织id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentOrgId: String
+        # @param IdPath: id path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdPath: String
+        # @param Id: 自增id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param IsLeaf: 是否叶子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLeaf: Boolean
+        # @param Utime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Utime: String
+
+        attr_accessor :Itime, :Name, :IdPathArr, :UserTotal, :ExtraInfo, :ImportType, :Description, :Source, :MiniIamId, :OrgId, :ReadOnly, :ParentId, :NamePath, :ParentOrgId, :IdPath, :Id, :IsLeaf, :Utime
+
+        def initialize(itime=nil, name=nil, idpatharr=nil, usertotal=nil, extrainfo=nil, importtype=nil, description=nil, source=nil, miniiamid=nil, orgid=nil, readonly=nil, parentid=nil, namepath=nil, parentorgid=nil, idpath=nil, id=nil, isleaf=nil, utime=nil)
+          @Itime = itime
+          @Name = name
+          @IdPathArr = idpatharr
+          @UserTotal = usertotal
+          @ExtraInfo = extrainfo
+          @ImportType = importtype
+          @Description = description
+          @Source = source
+          @MiniIamId = miniiamid
+          @OrgId = orgid
+          @ReadOnly = readonly
+          @ParentId = parentid
+          @NamePath = namepath
+          @ParentOrgId = parentorgid
+          @IdPath = idpath
+          @Id = id
+          @IsLeaf = isleaf
+          @Utime = utime
+        end
+
+        def deserialize(params)
+          @Itime = params['Itime']
+          @Name = params['Name']
+          @IdPathArr = params['IdPathArr']
+          @UserTotal = params['UserTotal']
+          @ExtraInfo = params['ExtraInfo']
+          @ImportType = params['ImportType']
+          @Description = params['Description']
+          @Source = params['Source']
+          @MiniIamId = params['MiniIamId']
+          @OrgId = params['OrgId']
+          @ReadOnly = params['ReadOnly']
+          @ParentId = params['ParentId']
+          @NamePath = params['NamePath']
+          @ParentOrgId = params['ParentOrgId']
+          @IdPath = params['IdPath']
+          @Id = params['Id']
+          @IsLeaf = params['IsLeaf']
+          @Utime = params['Utime']
+        end
+      end
+
+      # 账户分组详情响应数据
+      class DescribeAccountGroupsPageResp < TencentCloud::Common::AbstractModel
+        # @param Items: 账户分响应对象集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Page: 分页公共对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+
+        attr_accessor :Items, :Page
+
+        def initialize(items=nil, page=nil)
+          @Items = items
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describeaccountgroupsdata_tmp = DescribeAccountGroupsData.new
+              describeaccountgroupsdata_tmp.deserialize(i)
+              @Items << describeaccountgroupsdata_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # DescribeAccountGroups请求参数结构体
+      class DescribeAccountGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Deepin: 搜索范围,0-仅搜直接子组,1-深层搜索(只支持32位)
+        # @type Deepin: Integer
+        # @param Condition: 滤条件、分页参数
+        # <li>Name - String - 是否必填：否 - 操作符: like  - 排序支持：否- 按账号分组过滤。</li>
+        # 排序条件
+        # <li>Itime - string - 是否必填：否 - 排序支持：是 - 按账号分组创建时间排序。</li>
+        # <li>Utime - string - 是否必填：否 - 排序支持：是 - 按账号分组更新时间排序。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param ParentId: 父分组id
+        # @type ParentId: Integer
+
+        attr_accessor :Deepin, :Condition, :ParentId
+
+        def initialize(deepin=nil, condition=nil, parentid=nil)
+          @Deepin = deepin
+          @Condition = condition
+          @ParentId = parentid
+        end
+
+        def deserialize(params)
+          @Deepin = params['Deepin']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @ParentId = params['ParentId']
+        end
+      end
+
+      # DescribeAccountGroups返回参数结构体
+      class DescribeAccountGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 账户分组详情响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAccountGroupsPageResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAccountGroupsPageResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 分页的data数据
       class DescribeDevicesPageRsp < TencentCloud::Common::AbstractModel
         # @param Paging: 数据分页信息
@@ -206,6 +395,263 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeDevicesPageRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 所属组
+      class DescribeLocalAccountAccountGroupsData < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 组Id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: Integer
+
+        attr_accessor :AccountGroupId
+
+        def initialize(accountgroupid=nil)
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+        end
+      end
+
+      # 获取账号列表响应的单个对象
+      class DescribeLocalAccountsData < TencentCloud::Common::AbstractModel
+        # @param Id: uid，数据库中唯一
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param UserId: 账号，登录账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param AccountId: 账号id，同Id字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountId: Integer
+        # @param GroupId: 账号所在的分组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+        # @param GroupName: 账号所在的分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param NamePath: 账号所在的分组名称路径，用英文.分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamePath: String
+        # @param Source: 账号来源,0表示本地账号(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: Integer
+        # @param Status: 账号状态,0禁用，1启用(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Itime: 账号的创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Itime: String
+        # @param Utime: 账号的最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Utime: String
+        # @param ExtraInfo: 账号的扩展信息，包含邮箱、手机号、身份证、职位等信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param RiskLevel: 用户风险等级，枚举：none, low, middle, high
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
+        # @param AccountGroups: 所属组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroups: Array
+        # @param MobileBindNum: 绑定手机端设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MobileBindNum: Integer
+        # @param PcBindNum: 绑定Pc端设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PcBindNum: Integer
+        # @param OnlineStatus: 账号在线状态 1：在线 2：离线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineStatus: Integer
+        # @param ActiveStatus: 账号活跃状态 1：活跃 2：非活跃
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveStatus: Integer
+        # @param LoginTime: 账号登录时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginTime: String
+        # @param LogoutTime: 账号登出时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogoutTime: String
+
+        attr_accessor :Id, :UserId, :UserName, :AccountId, :GroupId, :GroupName, :NamePath, :Source, :Status, :Itime, :Utime, :ExtraInfo, :RiskLevel, :AccountGroups, :MobileBindNum, :PcBindNum, :OnlineStatus, :ActiveStatus, :LoginTime, :LogoutTime
+
+        def initialize(id=nil, userid=nil, username=nil, accountid=nil, groupid=nil, groupname=nil, namepath=nil, source=nil, status=nil, itime=nil, utime=nil, extrainfo=nil, risklevel=nil, accountgroups=nil, mobilebindnum=nil, pcbindnum=nil, onlinestatus=nil, activestatus=nil, logintime=nil, logouttime=nil)
+          @Id = id
+          @UserId = userid
+          @UserName = username
+          @AccountId = accountid
+          @GroupId = groupid
+          @GroupName = groupname
+          @NamePath = namepath
+          @Source = source
+          @Status = status
+          @Itime = itime
+          @Utime = utime
+          @ExtraInfo = extrainfo
+          @RiskLevel = risklevel
+          @AccountGroups = accountgroups
+          @MobileBindNum = mobilebindnum
+          @PcBindNum = pcbindnum
+          @OnlineStatus = onlinestatus
+          @ActiveStatus = activestatus
+          @LoginTime = logintime
+          @LogoutTime = logouttime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @AccountId = params['AccountId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @NamePath = params['NamePath']
+          @Source = params['Source']
+          @Status = params['Status']
+          @Itime = params['Itime']
+          @Utime = params['Utime']
+          @ExtraInfo = params['ExtraInfo']
+          @RiskLevel = params['RiskLevel']
+          unless params['AccountGroups'].nil?
+            @AccountGroups = []
+            params['AccountGroups'].each do |i|
+              describelocalaccountaccountgroupsdata_tmp = DescribeLocalAccountAccountGroupsData.new
+              describelocalaccountaccountgroupsdata_tmp.deserialize(i)
+              @AccountGroups << describelocalaccountaccountgroupsdata_tmp
+            end
+          end
+          @MobileBindNum = params['MobileBindNum']
+          @PcBindNum = params['PcBindNum']
+          @OnlineStatus = params['OnlineStatus']
+          @ActiveStatus = params['ActiveStatus']
+          @LoginTime = params['LoginTime']
+          @LogoutTime = params['LogoutTime']
+        end
+      end
+
+      # 获取账号列表响应的分页对象
+      class DescribeLocalAccountsPage < TencentCloud::Common::AbstractModel
+        # @param Page: 公共分页对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: 获取账号列表响应的单个对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Page, :Items
+
+        def initialize(page=nil, items=nil)
+          @Page = page
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describelocalaccountsdata_tmp = DescribeLocalAccountsData.new
+              describelocalaccountsdata_tmp.deserialize(i)
+              @Items << describelocalaccountsdata_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLocalAccounts请求参数结构体
+      class DescribeLocalAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param Condition: 滤条件、分页参数
+        # <li>UserName - String - 是否必填：否 - 操作符: eq,like  - 排序支持：否- 按账号UserName过滤。</li>
+        # <li>UserId - string - 是否必填：否 - 操作符: eq,like  - 排序支持：否 - 按账号UserNd过滤。</li>
+        # <li>Phone - string - 是否必填：否 - 操作符: eq,like - 排序支持：否 - 按手机号过滤。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param AccountGroupId: 获取账号的分组Id，不传默认获取全部(只支持32位)
+        # @type AccountGroupId: Integer
+        # @param ShowFlag: 是否仅展示当前目录下用户 1： 递归显示 2：仅显示当前目录下用户(只支持32位)
+        # @type ShowFlag: Integer
+
+        attr_accessor :Condition, :AccountGroupId, :ShowFlag
+
+        def initialize(condition=nil, accountgroupid=nil, showflag=nil)
+          @Condition = condition
+          @AccountGroupId = accountgroupid
+          @ShowFlag = showflag
+        end
+
+        def deserialize(params)
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @AccountGroupId = params['AccountGroupId']
+          @ShowFlag = params['ShowFlag']
+        end
+      end
+
+      # DescribeLocalAccounts返回参数结构体
+      class DescribeLocalAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 获取账号列表响应的分页对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeLocalAccountsPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeLocalAccountsPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRootAccountGroup请求参数结构体
+      class DescribeRootAccountGroupRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRootAccountGroup返回参数结构体
+      class DescribeRootAccountGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 账户分组详情响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.GetAccountGroupData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetAccountGroupData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -487,6 +933,103 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+        end
+      end
+
+      # 账户分组详情响应数据
+      class GetAccountGroupData < TencentCloud::Common::AbstractModel
+        # @param NamePath: 分组Namepath
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamePath: String
+        # @param IdPathArr: 分组Id path arr(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdPathArr: Array
+        # @param ExtraInfo: 分组扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param Utime: 最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Utime: String
+        # @param ParentId: 父分组id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+        # @param OrgId: 组织id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgId: String
+        # @param Name: 分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Id: 分组id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Source: 分组导入源(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: Integer
+        # @param IdPath: Id Path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdPath: String
+        # @param Itime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Itime: String
+        # @param ParentOrgId: 父组织id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentOrgId: String
+        # @param Import: 导入信息,json格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Import: String
+        # @param ImportEnable: 是否开启导入架构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportEnable: Boolean
+        # @param ImportType: 导入类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportType: String
+        # @param MiniIamId: miniIAMId，MiniIAM源才有
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MiniIamId: String
+
+        attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :Import, :ImportEnable, :ImportType, :MiniIamId
+
+        def initialize(namepath=nil, idpatharr=nil, extrainfo=nil, utime=nil, parentid=nil, orgid=nil, name=nil, id=nil, description=nil, source=nil, idpath=nil, itime=nil, parentorgid=nil, import=nil, importenable=nil, importtype=nil, miniiamid=nil)
+          @NamePath = namepath
+          @IdPathArr = idpatharr
+          @ExtraInfo = extrainfo
+          @Utime = utime
+          @ParentId = parentid
+          @OrgId = orgid
+          @Name = name
+          @Id = id
+          @Description = description
+          @Source = source
+          @IdPath = idpath
+          @Itime = itime
+          @ParentOrgId = parentorgid
+          @Import = import
+          @ImportEnable = importenable
+          @ImportType = importtype
+          @MiniIamId = miniiamid
+        end
+
+        def deserialize(params)
+          @NamePath = params['NamePath']
+          @IdPathArr = params['IdPathArr']
+          @ExtraInfo = params['ExtraInfo']
+          @Utime = params['Utime']
+          @ParentId = params['ParentId']
+          @OrgId = params['OrgId']
+          @Name = params['Name']
+          @Id = params['Id']
+          @Description = params['Description']
+          @Source = params['Source']
+          @IdPath = params['IdPath']
+          @Itime = params['Itime']
+          @ParentOrgId = params['ParentOrgId']
+          @Import = params['Import']
+          @ImportEnable = params['ImportEnable']
+          @ImportType = params['ImportType']
+          @MiniIamId = params['MiniIamId']
         end
       end
 

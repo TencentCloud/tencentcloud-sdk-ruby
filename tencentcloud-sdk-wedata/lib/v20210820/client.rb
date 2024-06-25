@@ -5368,6 +5368,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 资源管理-上传资源
+
+        # @param request: Request instance for UploadResource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::UploadResourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::UploadResourceResponse`
+        def UploadResource(request)
+          body = send_request('UploadResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

@@ -566,6 +566,52 @@ module TencentCloud
         end
       end
 
+      # CheckFirmwareUpdate请求参数结构体
+      class CheckFirmwareUpdateRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID。
+        # @type ProductId: String
+        # @param DeviceName: 设备名称。
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # CheckFirmwareUpdate返回参数结构体
+      class CheckFirmwareUpdateResponse < TencentCloud::Common::AbstractModel
+        # @param CurrentVersion: 设备当前固件版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentVersion: String
+        # @param DstVersion: 固件可升级版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstVersion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CurrentVersion, :DstVersion, :RequestId
+
+        def initialize(currentversion=nil, dstversion=nil, requestid=nil)
+          @CurrentVersion = currentversion
+          @DstVersion = dstversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CurrentVersion = params['CurrentVersion']
+          @DstVersion = params['DstVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云存 AI 服务任务信息
       class CloudStorageAIServiceTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 云存 AI 服务任务 ID
@@ -3809,6 +3855,72 @@ module TencentCloud
           @OriginalVersion = params['OriginalVersion']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirmwareUpdateStatus请求参数结构体
+      class DescribeFirmwareUpdateStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID。
+        # @type ProductId: String
+        # @param DeviceName: 设备名。
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeFirmwareUpdateStatus返回参数结构体
+      class DescribeFirmwareUpdateStatusResponse < TencentCloud::Common::AbstractModel
+        # @param OriVersion: 升级任务源版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriVersion: String
+        # @param DstVersion: 升级任务目标版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstVersion: String
+        # @param Status: 升级状态：
+
+        # - 0：设备离线。
+        # - 1：待处理。
+        # - 2：消息下发成功。
+        # - 3：下载中。
+        # - 4：烧录中。
+        # - 5：失败。
+        # - 6：升级完成。
+        # - 7：正在处理中。
+        # - 8：等待用户确认。
+        # - 20：下载完成。
+        # @type Status: Integer
+        # @param Percent: 进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriVersion, :DstVersion, :Status, :Percent, :RequestId
+
+        def initialize(oriversion=nil, dstversion=nil, status=nil, percent=nil, requestid=nil)
+          @OriVersion = oriversion
+          @DstVersion = dstversion
+          @Status = status
+          @Percent = percent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriVersion = params['OriVersion']
+          @DstVersion = params['DstVersion']
+          @Status = params['Status']
+          @Percent = params['Percent']
           @RequestId = params['RequestId']
         end
       end
@@ -8065,6 +8177,47 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PublishFirmwareUpdateMessage请求参数结构体
+      class PublishFirmwareUpdateMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品 ID。
+        # @type ProductID: String
+        # @param DeviceName: 设备名称。
+        # @type DeviceName: String
+
+        attr_accessor :ProductID, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductID = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # PublishFirmwareUpdateMessage返回参数结构体
+      class PublishFirmwareUpdateMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 请求状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

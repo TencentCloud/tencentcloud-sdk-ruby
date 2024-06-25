@@ -54,10 +54,13 @@ module TencentCloud
         # @param Mail: 代客邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mail: String
+        # @param TransactionType: 交易类型:交易类型 1-原类型 2-代理型  3-代采型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransactionType: String
 
-        attr_accessor :Uin, :ClientUin, :AgentTime, :ClientFlag, :ClientRemark, :ClientName, :AuthType, :AppId, :LastMonthAmt, :ThisMonthAmt, :HasOverdueBill, :ClientType, :ProjectType, :SalesUin, :SalesName, :Mail
+        attr_accessor :Uin, :ClientUin, :AgentTime, :ClientFlag, :ClientRemark, :ClientName, :AuthType, :AppId, :LastMonthAmt, :ThisMonthAmt, :HasOverdueBill, :ClientType, :ProjectType, :SalesUin, :SalesName, :Mail, :TransactionType
 
-        def initialize(uin=nil, clientuin=nil, agenttime=nil, clientflag=nil, clientremark=nil, clientname=nil, authtype=nil, appid=nil, lastmonthamt=nil, thismonthamt=nil, hasoverduebill=nil, clienttype=nil, projecttype=nil, salesuin=nil, salesname=nil, mail=nil)
+        def initialize(uin=nil, clientuin=nil, agenttime=nil, clientflag=nil, clientremark=nil, clientname=nil, authtype=nil, appid=nil, lastmonthamt=nil, thismonthamt=nil, hasoverduebill=nil, clienttype=nil, projecttype=nil, salesuin=nil, salesname=nil, mail=nil, transactiontype=nil)
           @Uin = uin
           @ClientUin = clientuin
           @AgentTime = agenttime
@@ -74,6 +77,7 @@ module TencentCloud
           @SalesUin = salesuin
           @SalesName = salesname
           @Mail = mail
+          @TransactionType = transactiontype
         end
 
         def deserialize(params)
@@ -93,6 +97,7 @@ module TencentCloud
           @SalesUin = params['SalesUin']
           @SalesName = params['SalesName']
           @Mail = params['Mail']
+          @TransactionType = params['TransactionType']
         end
       end
 

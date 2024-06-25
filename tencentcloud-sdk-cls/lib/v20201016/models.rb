@@ -659,6 +659,33 @@ module TencentCloud
         end
       end
 
+      # 免鉴权信息
+      class AnonymousInfo < TencentCloud::Common::AbstractModel
+        # @param Operations: 操作列表，支持trackLog(JS/HTTP上传日志  )和realtimeProducer(kafka协议上传日志)
+        # @type Operations: Array
+        # @param Conditions: 条件列表
+        # @type Conditions: Array
+
+        attr_accessor :Operations, :Conditions
+
+        def initialize(operations=nil, conditions=nil)
+          @Operations = operations
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          @Operations = params['Operations']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              conditioninfo_tmp = ConditionInfo.new
+              conditioninfo_tmp.deserialize(i)
+              @Conditions << conditioninfo_tmp
+            end
+          end
+        end
+      end
+
       # ApplyConfigToMachineGroup请求参数结构体
       class ApplyConfigToMachineGroupRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集配置ID
@@ -999,6 +1026,30 @@ module TencentCloud
 
         def deserialize(params)
           @Format = params['Format']
+        end
+      end
+
+      # 免鉴权条件信息
+      class ConditionInfo < TencentCloud::Common::AbstractModel
+        # @param Attributes: 条件属性，目前只支持VpcID
+        # @type Attributes: String
+        # @param Rule: 条件规则，1:等于，2:不等于
+        # @type Rule: Integer
+        # @param ConditionValue: 对应条件属性的值
+        # @type ConditionValue: String
+
+        attr_accessor :Attributes, :Rule, :ConditionValue
+
+        def initialize(attributes=nil, rule=nil, conditionvalue=nil)
+          @Attributes = attributes
+          @Rule = rule
+          @ConditionValue = conditionvalue
+        end
+
+        def deserialize(params)
+          @Attributes = params['Attributes']
+          @Rule = params['Rule']
+          @ConditionValue = params['ConditionValue']
         end
       end
 
@@ -3022,10 +3073,12 @@ module TencentCloud
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。默认为false。
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
+        # @param Extends: 日志主题扩展信息
+        # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :IsWebTracking
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :IsWebTracking, :Extends
 
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -3037,6 +3090,7 @@ module TencentCloud
           @Describes = describes
           @HotPeriod = hotperiod
           @IsWebTracking = iswebtracking
+          @Extends = extends
         end
 
         def deserialize(params)
@@ -3058,6 +3112,10 @@ module TencentCloud
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
           @IsWebTracking = params['IsWebTracking']
+          unless params['Extends'].nil?
+            @Extends = TopicExtendInfo.new
+            @Extends.deserialize(params['Extends'])
+          end
         end
       end
 
@@ -10062,6 +10120,26 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 日志主题扩展信息
+      class TopicExtendInfo < TencentCloud::Common::AbstractModel
+        # @param AnonymousAccess: 日志主题免鉴权配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnonymousAccess: :class:`Tencentcloud::Cls.v20201016.models.AnonymousInfo`
+
+        attr_accessor :AnonymousAccess
+
+        def initialize(anonymousaccess=nil)
+          @AnonymousAccess = anonymousaccess
+        end
+
+        def deserialize(params)
+          unless params['AnonymousAccess'].nil?
+            @AnonymousAccess = AnonymousInfo.new
+            @AnonymousAccess.deserialize(params['AnonymousAccess'])
+          end
         end
       end
 

@@ -26345,6 +26345,232 @@ module TencentCloud
         end
       end
 
+      # UploadResource请求参数结构体
+      class UploadResourceRequest < TencentCloud::Common::AbstractModel
+        # @param UploadResourceRequestInfo: 资源上传请求信息
+        # @type UploadResourceRequestInfo: :class:`Tencentcloud::Wedata.v20210820.models.UploadResourceRequestInfo`
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :UploadResourceRequestInfo, :ProjectId
+
+        def initialize(uploadresourcerequestinfo=nil, projectid=nil)
+          @UploadResourceRequestInfo = uploadresourcerequestinfo
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          unless params['UploadResourceRequestInfo'].nil?
+            @UploadResourceRequestInfo = UploadResourceRequestInfo.new
+            @UploadResourceRequestInfo.deserialize(params['UploadResourceRequestInfo'])
+          end
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # 资管管理-上传资源请求
+      class UploadResourceRequestInfo < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param FilePath: 资源路径
+        # @type FilePath: String
+        # @param BucketName: 桶名称
+        # @type BucketName: String
+        # @param Region: 所属地区
+        # @type Region: String
+        # @param NewFile: 是否为新资源
+        # @type NewFile: Boolean
+        # @param FileList: 资源列表
+        # @type FileList: Array
+        # @param FileSizeList: 资源大小列表
+        # @type FileSizeList: Array
+        # @param FileMd5: File Md5（适配私有化，公有云可以不传）
+        # @type FileMd5: String
+
+        attr_accessor :ProjectId, :FilePath, :BucketName, :Region, :NewFile, :FileList, :FileSizeList, :FileMd5
+
+        def initialize(projectid=nil, filepath=nil, bucketname=nil, region=nil, newfile=nil, filelist=nil, filesizelist=nil, filemd5=nil)
+          @ProjectId = projectid
+          @FilePath = filepath
+          @BucketName = bucketname
+          @Region = region
+          @NewFile = newfile
+          @FileList = filelist
+          @FileSizeList = filesizelist
+          @FileMd5 = filemd5
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @FilePath = params['FilePath']
+          @BucketName = params['BucketName']
+          @Region = params['Region']
+          @NewFile = params['NewFile']
+          @FileList = params['FileList']
+          @FileSizeList = params['FileSizeList']
+          @FileMd5 = params['FileMd5']
+        end
+      end
+
+      # UploadResource返回参数结构体
+      class UploadResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 资源文件信息列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              userfiledtonew_tmp = UserFileDTONew.new
+              userfiledtonew_tmp.deserialize(i)
+              @Data << userfiledtonew_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户文件信息
+      class UserFileDTONew < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileExtensionType: 文件类型，如 jar zip 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileExtensionType: String
+        # @param Type: 文件上传类型，资源管理为 resource
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Md5Value: 文件MD5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5Value: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Size: 文件大小，单位为字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param LocalPath: 本地路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalPath: String
+        # @param LocalTempPath: 本地临时路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalTempPath: String
+        # @param RemotePath: 远程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemotePath: String
+        # @param OwnerName: 文件拥有者名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerName: String
+        # @param Owner: 文件拥有者uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param PathDepth: 文件深度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathDepth: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param ZipPath: 本地临时压缩文件绝对路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZipPath: String
+        # @param Bucket: 文件所属存储桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+        # @param Region: 文件所属存储桶的地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param DeleteName: 删除用户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteName: String
+        # @param DeleteOwner: 删除用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteOwner: String
+        # @param Operator: 操作者id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param OperatorName: 操作者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorName: String
+        # @param FullPath: 全路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullPath: String
+
+        attr_accessor :ResourceId, :FileName, :FileExtensionType, :Type, :Md5Value, :CreateTime, :UpdateTime, :Size, :LocalPath, :LocalTempPath, :RemotePath, :OwnerName, :Owner, :PathDepth, :ProjectId, :ExtraInfo, :ZipPath, :Bucket, :Region, :DeleteName, :DeleteOwner, :Operator, :OperatorName, :FullPath
+
+        def initialize(resourceid=nil, filename=nil, fileextensiontype=nil, type=nil, md5value=nil, createtime=nil, updatetime=nil, size=nil, localpath=nil, localtemppath=nil, remotepath=nil, ownername=nil, owner=nil, pathdepth=nil, projectid=nil, extrainfo=nil, zippath=nil, bucket=nil, region=nil, deletename=nil, deleteowner=nil, operator=nil, operatorname=nil, fullpath=nil)
+          @ResourceId = resourceid
+          @FileName = filename
+          @FileExtensionType = fileextensiontype
+          @Type = type
+          @Md5Value = md5value
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Size = size
+          @LocalPath = localpath
+          @LocalTempPath = localtemppath
+          @RemotePath = remotepath
+          @OwnerName = ownername
+          @Owner = owner
+          @PathDepth = pathdepth
+          @ProjectId = projectid
+          @ExtraInfo = extrainfo
+          @ZipPath = zippath
+          @Bucket = bucket
+          @Region = region
+          @DeleteName = deletename
+          @DeleteOwner = deleteowner
+          @Operator = operator
+          @OperatorName = operatorname
+          @FullPath = fullpath
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @FileName = params['FileName']
+          @FileExtensionType = params['FileExtensionType']
+          @Type = params['Type']
+          @Md5Value = params['Md5Value']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Size = params['Size']
+          @LocalPath = params['LocalPath']
+          @LocalTempPath = params['LocalTempPath']
+          @RemotePath = params['RemotePath']
+          @OwnerName = params['OwnerName']
+          @Owner = params['Owner']
+          @PathDepth = params['PathDepth']
+          @ProjectId = params['ProjectId']
+          @ExtraInfo = params['ExtraInfo']
+          @ZipPath = params['ZipPath']
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @DeleteName = params['DeleteName']
+          @DeleteOwner = params['DeleteOwner']
+          @Operator = params['Operator']
+          @OperatorName = params['OperatorName']
+          @FullPath = params['FullPath']
+        end
+      end
+
       # 开发空间-获取数据开发脚本信息响应体
       class UserFileInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID

@@ -794,19 +794,24 @@ module TencentCloud
         # @param PassInputSei: 取值范围[0,1]
         # 填1时，透传原始流的sei
         # @type PassInputSei: Integer
+        # @param UsePictureTransparent: 取值范围[0,1]
+        # 填1时，图片输入中的透明通道生效。
+        # @type UsePictureTransparent: Integer
 
-        attr_accessor :UseMixCropCenter, :AllowCopy, :PassInputSei
+        attr_accessor :UseMixCropCenter, :AllowCopy, :PassInputSei, :UsePictureTransparent
 
-        def initialize(usemixcropcenter=nil, allowcopy=nil, passinputsei=nil)
+        def initialize(usemixcropcenter=nil, allowcopy=nil, passinputsei=nil, usepicturetransparent=nil)
           @UseMixCropCenter = usemixcropcenter
           @AllowCopy = allowcopy
           @PassInputSei = passinputsei
+          @UsePictureTransparent = usepicturetransparent
         end
 
         def deserialize(params)
           @UseMixCropCenter = params['UseMixCropCenter']
           @AllowCopy = params['AllowCopy']
           @PassInputSei = params['PassInputSei']
+          @UsePictureTransparent = params['UsePictureTransparent']
         end
       end
 

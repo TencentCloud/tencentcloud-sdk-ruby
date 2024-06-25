@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 以分页的方式查询账户目录列表,私有化调用path为：/capi/Assets/DescribeAccountGroups
+
+        # @param request: Request instance for DescribeAccountGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeAccountGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeAccountGroupsResponse`
+        def DescribeAccountGroups(request)
+          body = send_request('DescribeAccountGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询满足条件的终端数据详情，私有化调用path为：/capi/Assets/Device/DescribeDevices
 
         # @param request: Request instance for DescribeDevices.
@@ -39,6 +63,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取账号列表，支持分页，模糊搜索，私有化调用path为：/capi/Assets/Account/DescribeLocalAccounts
+
+        # @param request: Request instance for DescribeLocalAccounts.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeLocalAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeLocalAccountsResponse`
+        def DescribeLocalAccounts(request)
+          body = send_request('DescribeLocalAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLocalAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询账户根分组详情，私有化调用path为：capi/Assets/DescribeRootAccountGroup
+
+        # @param request: Request instance for DescribeRootAccountGroup.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeRootAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeRootAccountGroupResponse`
+        def DescribeRootAccountGroup(request)
+          body = send_request('DescribeRootAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRootAccountGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

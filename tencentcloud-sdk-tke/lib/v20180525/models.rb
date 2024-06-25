@@ -15064,19 +15064,23 @@ module TencentCloud
         # @type ClusterId: String
         # @param Describe: 备注
         # @type Describe: String
+        # @param Region: 集群所在地域
+        # @type Region: String
 
-        attr_accessor :ClusterType, :ClusterId, :Describe
+        attr_accessor :ClusterType, :ClusterId, :Describe, :Region
 
-        def initialize(clustertype=nil, clusterid=nil, describe=nil)
+        def initialize(clustertype=nil, clusterid=nil, describe=nil, region=nil)
           @ClusterType = clustertype
           @ClusterId = clusterid
           @Describe = describe
+          @Region = region
         end
 
         def deserialize(params)
           @ClusterType = params['ClusterType']
           @ClusterId = params['ClusterId']
           @Describe = params['Describe']
+          @Region = params['Region']
         end
       end
 

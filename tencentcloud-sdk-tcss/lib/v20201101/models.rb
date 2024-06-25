@@ -2374,7 +2374,7 @@ module TencentCloud
         # @type ClusterNodeNum: Integer
         # @param Region: 集群区域
         # @type Region: String
-        # @param DefenderStatus: 监控组件的状态，为Defender_Uninstall、Defender_Normal、Defender_Error、Defender_Installing
+        # @param DefenderStatus: 防护状态: 已防护: Defended 未防护: UnDefended
         # @type DefenderStatus: String
         # @param ClusterStatus: 集群状态
         # @type ClusterStatus: String
@@ -2423,13 +2423,17 @@ module TencentCloud
         # @param UnInstallAgentNodeCount: 未安装agent节点数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnInstallAgentNodeCount: Integer
-        # @param ChargeCoresCnt: 计费核数
+        # @param ChargeCoresCnt: 计费核数(弹性计费核数+普通计费核数)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeCoresCnt: Integer
+        # @param MasterAddresses: master 地址列表
+        # @type MasterAddresses: Array
+        # @param CoresCnt: 核数
+        # @type CoresCnt: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount, :ChargeCoresCnt
+        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount, :ChargeCoresCnt, :MasterAddresses, :CoresCnt
 
-        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil, chargecorescnt=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil, chargecorescnt=nil, masteraddresses=nil, corescnt=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterVersion = clusterversion
@@ -2456,6 +2460,8 @@ module TencentCloud
           @OffLineNodeCount = offlinenodecount
           @UnInstallAgentNodeCount = uninstallagentnodecount
           @ChargeCoresCnt = chargecorescnt
+          @MasterAddresses = masteraddresses
+          @CoresCnt = corescnt
         end
 
         def deserialize(params)
@@ -2485,6 +2491,8 @@ module TencentCloud
           @OffLineNodeCount = params['OffLineNodeCount']
           @UnInstallAgentNodeCount = params['UnInstallAgentNodeCount']
           @ChargeCoresCnt = params['ChargeCoresCnt']
+          @MasterAddresses = params['MasterAddresses']
+          @CoresCnt = params['CoresCnt']
         end
       end
 
@@ -8844,17 +8852,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li>
-        # <li>HostName - String - 是否必填：否 - 主机名筛选</li>
-        # <li>Group- String - 是否必填：否 - 主机群组搜索</li>
-        # <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
-        # <li>HostID- string - 是否必填：否 - 主机id搜索</li>
-        # <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
-        # <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li>
-        # <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li>
-        # <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
-        # <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
+        # @param Filters: 过滤条件。 <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li> <li>HostName - String - 是否必填：否 - 主机名筛选</li> <li>Group- String - 是否必填：否 - 主机群组搜索</li> <li>HostIP- string - 是否必填：否 - 主机ip搜索</li> <li>HostID- string - 是否必填：否 - 主机id搜索</li> <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li> <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li> <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li> <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li> <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li> <li>NonClusterNode: 是否查询非集群节点(true: 是,false: 否)</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String
@@ -15770,24 +15768,33 @@ module TencentCloud
       class DescribePurchaseStateInfoResponse < TencentCloud::Common::AbstractModel
         # @param State: 0：可申请试用可购买；1：只可购买(含试用审核不通过和试用过期)；2：试用生效中；3：专业版生效中；4：专业版过期
         # @type State: Integer
-        # @param CoresCnt: 总核数
+        # @param AllCoresCnt: 总资源核数 = 总防护核数 + 未防护核数
+        # @type AllCoresCnt: Integer
+        # @param CoresCnt: 总防护核数 =已购核数+ 试用赠送核数 +弹性计费核数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoresCnt: Integer
+        # @param UndefendCoresCnt: 未防护核数(未开启防护资源核数)
+        # @type UndefendCoresCnt: Integer
         # @param AuthorizedCoresCnt: 已购买核数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedCoresCnt: Integer
+        # @param GivenAuthorizedCoresCnt: 试用赠送专业版核心数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GivenAuthorizedCoresCnt: Integer
+        # @param CurrentFlexibleCoresCnt: 当前弹性计费核数数量
+        # @type CurrentFlexibleCoresCnt: Integer
         # @param ImageCnt: 镜像数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCnt: Integer
         # @param AuthorizedImageCnt: 已授权镜像数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedImageCnt: Integer
-        # @param PurchasedAuthorizedCnt: 已购买镜像授权数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PurchasedAuthorizedCnt: Integer
         # @param ExpirationTime: 过期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpirationTime: String
+        # @param PurchasedAuthorizedCnt: 已购买镜像授权数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PurchasedAuthorizedCnt: Integer
         # @param AutomaticRenewal: 0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutomaticRenewal: Integer
@@ -15804,40 +15811,64 @@ module TencentCloud
         # @param InquireKey: 计费key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireKey: String
+        # @param DefendPolicy: 防护策略
+        # @type DefendPolicy: String
+        # @param FlexibleCoresLimit: 弹性计费核数上限
+        # @type FlexibleCoresLimit: Integer
+        # @param DefendClusterCoresCnt: 已防护集群核数
+        # @type DefendClusterCoresCnt: Integer
+        # @param DefendHostCoresCnt: 已防护主机核数
+        # @type DefendHostCoresCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :State, :CoresCnt, :AuthorizedCoresCnt, :ImageCnt, :AuthorizedImageCnt, :PurchasedAuthorizedCnt, :ExpirationTime, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :RequestId
+        attr_accessor :State, :AllCoresCnt, :CoresCnt, :UndefendCoresCnt, :AuthorizedCoresCnt, :GivenAuthorizedCoresCnt, :CurrentFlexibleCoresCnt, :ImageCnt, :AuthorizedImageCnt, :ExpirationTime, :PurchasedAuthorizedCnt, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :DefendPolicy, :FlexibleCoresLimit, :DefendClusterCoresCnt, :DefendHostCoresCnt, :RequestId
 
-        def initialize(state=nil, corescnt=nil, authorizedcorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, purchasedauthorizedcnt=nil, expirationtime=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, requestid=nil)
+        def initialize(state=nil, allcorescnt=nil, corescnt=nil, undefendcorescnt=nil, authorizedcorescnt=nil, givenauthorizedcorescnt=nil, currentflexiblecorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, expirationtime=nil, purchasedauthorizedcnt=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, defendpolicy=nil, flexiblecoreslimit=nil, defendclustercorescnt=nil, defendhostcorescnt=nil, requestid=nil)
           @State = state
+          @AllCoresCnt = allcorescnt
           @CoresCnt = corescnt
+          @UndefendCoresCnt = undefendcorescnt
           @AuthorizedCoresCnt = authorizedcorescnt
+          @GivenAuthorizedCoresCnt = givenauthorizedcorescnt
+          @CurrentFlexibleCoresCnt = currentflexiblecorescnt
           @ImageCnt = imagecnt
           @AuthorizedImageCnt = authorizedimagecnt
-          @PurchasedAuthorizedCnt = purchasedauthorizedcnt
           @ExpirationTime = expirationtime
+          @PurchasedAuthorizedCnt = purchasedauthorizedcnt
           @AutomaticRenewal = automaticrenewal
           @GivenAuthorizedCnt = givenauthorizedcnt
           @BeginTime = begintime
           @SubState = substate
           @InquireKey = inquirekey
+          @DefendPolicy = defendpolicy
+          @FlexibleCoresLimit = flexiblecoreslimit
+          @DefendClusterCoresCnt = defendclustercorescnt
+          @DefendHostCoresCnt = defendhostcorescnt
           @RequestId = requestid
         end
 
         def deserialize(params)
           @State = params['State']
+          @AllCoresCnt = params['AllCoresCnt']
           @CoresCnt = params['CoresCnt']
+          @UndefendCoresCnt = params['UndefendCoresCnt']
           @AuthorizedCoresCnt = params['AuthorizedCoresCnt']
+          @GivenAuthorizedCoresCnt = params['GivenAuthorizedCoresCnt']
+          @CurrentFlexibleCoresCnt = params['CurrentFlexibleCoresCnt']
           @ImageCnt = params['ImageCnt']
           @AuthorizedImageCnt = params['AuthorizedImageCnt']
-          @PurchasedAuthorizedCnt = params['PurchasedAuthorizedCnt']
           @ExpirationTime = params['ExpirationTime']
+          @PurchasedAuthorizedCnt = params['PurchasedAuthorizedCnt']
           @AutomaticRenewal = params['AutomaticRenewal']
           @GivenAuthorizedCnt = params['GivenAuthorizedCnt']
           @BeginTime = params['BeginTime']
           @SubState = params['SubState']
           @InquireKey = params['InquireKey']
+          @DefendPolicy = params['DefendPolicy']
+          @FlexibleCoresLimit = params['FlexibleCoresLimit']
+          @DefendClusterCoresCnt = params['DefendClusterCoresCnt']
+          @DefendHostCoresCnt = params['DefendHostCoresCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -21747,10 +21778,12 @@ module TencentCloud
         # 已防护: Defended
         # 未防护: UnDefended
         # @type DefendStatus: String
+        # @param CoresCnt: 核数
+        # @type CoresCnt: Integer
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID, :ClusterName, :ClusterAccessedStatus, :ChargeCoresCnt, :DefendStatus
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID, :ClusterName, :ClusterAccessedStatus, :ChargeCoresCnt, :DefendStatus, :CoresCnt
 
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil, clustername=nil, clusteraccessedstatus=nil, chargecorescnt=nil, defendstatus=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil, clustername=nil, clusteraccessedstatus=nil, chargecorescnt=nil, defendstatus=nil, corescnt=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -21773,6 +21806,7 @@ module TencentCloud
           @ClusterAccessedStatus = clusteraccessedstatus
           @ChargeCoresCnt = chargecorescnt
           @DefendStatus = defendstatus
+          @CoresCnt = corescnt
         end
 
         def deserialize(params)
@@ -21808,6 +21842,7 @@ module TencentCloud
           @ClusterAccessedStatus = params['ClusterAccessedStatus']
           @ChargeCoresCnt = params['ChargeCoresCnt']
           @DefendStatus = params['DefendStatus']
+          @CoresCnt = params['CoresCnt']
         end
       end
 

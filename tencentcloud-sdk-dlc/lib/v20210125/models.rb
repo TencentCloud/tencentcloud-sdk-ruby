@@ -1409,7 +1409,7 @@ module TencentCloud
       class CreateDMSTableRequest < TencentCloud::Common::AbstractModel
         # @param Asset: 基础对象
         # @type Asset: :class:`Tencentcloud::Dlc.v20210125.models.Asset`
-        # @param Type: 表类型
+        # @param Type: 表类型：EXTERNAL_TABLE, VIRTUAL_VIEW, MATERIALIZED_VIEW
         # @type Type: String
         # @param DbName: 数据库名称
         # @type DbName: String
