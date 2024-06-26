@@ -1741,7 +1741,7 @@ module TencentCloud
         # @type AlarmTargets: Array
         # @param MonitorTime: 监控任务运行时间点。
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
-        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
+        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为2000。
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期，单位是分钟。取值范围是0~1440。
         # @type AlarmPeriod: Integer
@@ -7396,7 +7396,7 @@ module TencentCloud
         # 注意:
         # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
         # @type MultiConditions: Array
-        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
+        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为2000。
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期。单位是分钟。取值范围是0~1440。
         # @type AlarmPeriod: Integer
@@ -8565,12 +8565,14 @@ module TencentCloud
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
+        # @param Extends: 日志主题扩展信息
+        # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
         # @param PartitionCount: 日志主题分区数量
         # @type PartitionCount: Integer
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :PartitionCount
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount
 
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, partitioncount=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -8581,6 +8583,7 @@ module TencentCloud
           @Describes = describes
           @HotPeriod = hotperiod
           @IsWebTracking = iswebtracking
+          @Extends = extends
           @PartitionCount = partitioncount
         end
 
@@ -8602,6 +8605,10 @@ module TencentCloud
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
           @IsWebTracking = params['IsWebTracking']
+          unless params['Extends'].nil?
+            @Extends = TopicExtendInfo.new
+            @Extends.deserialize(params['Extends'])
+          end
           @PartitionCount = params['PartitionCount']
         end
       end
@@ -8624,12 +8631,13 @@ module TencentCloud
 
       # 告警策略中监控任务的执行时间点
       class MonitorTime < TencentCloud::Common::AbstractModel
-        # @param Type: 执行周期， 可选值：Period；Fixed。
+        # @param Type: 执行周期， 可选值：`Period`、`Fixed`。
 
         # - Period：固定频率
         # - Fixed：固定时间
         # @type Type: String
         # @param Time: 执行的周期，或者定制执行的时间节点。单位为分钟，取值范围为1~1440。
+        # 当type为`Period`,`Fixed`时，time字段生效。
         # @type Time: Integer
 
         attr_accessor :Type, :Time
@@ -10242,10 +10250,13 @@ module TencentCloud
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWebTracking: Boolean
+        # @param Extends: 日志主题扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil, extends=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -10264,6 +10275,7 @@ module TencentCloud
           @HotPeriod = hotperiod
           @BizType = biztype
           @IsWebTracking = iswebtracking
+          @Extends = extends
         end
 
         def deserialize(params)
@@ -10292,6 +10304,10 @@ module TencentCloud
           @HotPeriod = params['HotPeriod']
           @BizType = params['BizType']
           @IsWebTracking = params['IsWebTracking']
+          unless params['Extends'].nil?
+            @Extends = TopicExtendInfo.new
+            @Extends.deserialize(params['Extends'])
+          end
         end
       end
 

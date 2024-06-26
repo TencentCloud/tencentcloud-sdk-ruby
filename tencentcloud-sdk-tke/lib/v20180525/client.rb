@@ -749,7 +749,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建prometheus配置
+        # 创建集群采集配置
 
         # @param request: Request instance for CreatePrometheusConfig.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreatePrometheusConfigRequest`
@@ -821,7 +821,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 以Yaml的方式创建聚合规则
+        # 创建聚合规则yaml方式
 
         # @param request: Request instance for CreatePrometheusRecordRuleYaml.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreatePrometheusRecordRuleYamlRequest`
@@ -1445,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除Prometheus配置，如果目标不存在，将返回成功
+        # 删除集群采集配置
 
         # @param request: Request instance for DeletePrometheusConfig.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeletePrometheusConfigRequest`
@@ -1469,7 +1469,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除聚合实例
+        # 删除聚合规则
 
         # @param request: Request instance for DeletePrometheusRecordRuleYaml.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeletePrometheusRecordRuleYamlRequest`
@@ -3175,7 +3175,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 拉取Prometheus配置
+        # 获取集群采集配置
 
         # @param request: Request instance for DescribePrometheusConfig.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribePrometheusConfigRequest`
@@ -4639,7 +4639,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改prometheus配置，如果配置项不存在，则会新增
+        # 修改集群采集配置
 
         # @param request: Request instance for ModifyPrometheusConfig.
         # @type request: :class:`Tencentcloud::tke::V20180525::ModifyPrometheusConfigRequest`
@@ -4687,7 +4687,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 通过yaml的方式修改Prometheus聚合实例
+        # 修改聚合规则yaml方式
 
         # @param request: Request instance for ModifyPrometheusRecordRuleYaml.
         # @type request: :class:`Tencentcloud::tke::V20180525::ModifyPrometheusRecordRuleYamlRequest`

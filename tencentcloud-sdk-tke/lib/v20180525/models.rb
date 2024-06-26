@@ -3373,16 +3373,19 @@ module TencentCloud
         # @type PodMonitors: Array
         # @param RawJobs: prometheus原生Job配置
         # @type RawJobs: Array
+        # @param Probes: Probe 配置
+        # @type Probes: Array
 
-        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes
 
-        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil)
           @InstanceId = instanceid
           @ClusterType = clustertype
           @ClusterId = clusterid
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @Probes = probes
         end
 
         def deserialize(params)
@@ -3411,6 +3414,14 @@ module TencentCloud
               prometheusconfigitem_tmp = PrometheusConfigItem.new
               prometheusconfigitem_tmp.deserialize(i)
               @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          unless params['Probes'].nil?
+            @Probes = []
+            params['Probes'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @Probes << prometheusconfigitem_tmp
             end
           end
         end
@@ -4669,12 +4680,15 @@ module TencentCloud
         # @type Agents: Array
         # @param InstanceId: 实例id
         # @type InstanceId: String
+        # @param Force: 在7天可回收期间，强制解除绑定
+        # @type Force: Boolean
 
-        attr_accessor :Agents, :InstanceId
+        attr_accessor :Agents, :InstanceId, :Force
 
-        def initialize(agents=nil, instanceid=nil)
+        def initialize(agents=nil, instanceid=nil, force=nil)
           @Agents = agents
           @InstanceId = instanceid
+          @Force = force
         end
 
         def deserialize(params)
@@ -4687,6 +4701,7 @@ module TencentCloud
             end
           end
           @InstanceId = params['InstanceId']
+          @Force = params['Force']
         end
       end
 
@@ -4720,16 +4735,19 @@ module TencentCloud
         # @type PodMonitors: Array
         # @param RawJobs: 要删除的RawJobs名字列表
         # @type RawJobs: Array
+        # @param Probes: 要删除的Probe名字列表
+        # @type Probes: Array
 
-        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes
 
-        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil)
           @InstanceId = instanceid
           @ClusterType = clustertype
           @ClusterId = clusterid
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @Probes = probes
         end
 
         def deserialize(params)
@@ -4739,6 +4757,7 @@ module TencentCloud
           @ServiceMonitors = params['ServiceMonitors']
           @PodMonitors = params['PodMonitors']
           @RawJobs = params['RawJobs']
+          @Probes = params['Probes']
         end
       end
 
@@ -8691,16 +8710,19 @@ module TencentCloud
         # @type PodMonitors: Array
         # @param RawJobs: 原生Job
         # @type RawJobs: Array
+        # @param Probes: Probe配置
+        # @type Probes: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :RequestId
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes, :RequestId
 
-        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, requestid=nil)
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil, requestid=nil)
           @Config = config
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @Probes = probes
           @RequestId = requestid
         end
 
@@ -8728,6 +8750,14 @@ module TencentCloud
               prometheusconfigitem_tmp = PrometheusConfigItem.new
               prometheusconfigitem_tmp.deserialize(i)
               @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          unless params['Probes'].nil?
+            @Probes = []
+            params['Probes'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @Probes << prometheusconfigitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14161,16 +14191,19 @@ module TencentCloud
         # @type PodMonitors: Array
         # @param RawJobs: prometheus原生Job配置
         # @type RawJobs: Array
+        # @param Probes: Probes 配置
+        # @type Probes: Array
 
-        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes
 
-        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil)
           @InstanceId = instanceid
           @ClusterType = clustertype
           @ClusterId = clusterid
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @Probes = probes
         end
 
         def deserialize(params)
@@ -14199,6 +14232,14 @@ module TencentCloud
               prometheusconfigitem_tmp = PrometheusConfigItem.new
               prometheusconfigitem_tmp.deserialize(i)
               @RawJobs << prometheusconfigitem_tmp
+            end
+          end
+          unless params['Probes'].nil?
+            @Probes = []
+            params['Probes'].each do |i|
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @Probes << prometheusconfigitem_tmp
             end
           end
         end

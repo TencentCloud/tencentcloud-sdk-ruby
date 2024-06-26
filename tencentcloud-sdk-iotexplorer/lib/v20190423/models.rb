@@ -685,14 +685,18 @@ module TencentCloud
         # @type Thumbnail: String
         # @param EventId: 事件ID
         # @type EventId: String
+        # @param UploadStatus: 事件录像上传状态，Finished: 全部上传成功 Partial: 部分上传成功 Failed: 上传失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadStatus: String
 
-        attr_accessor :StartTime, :EndTime, :Thumbnail, :EventId
+        attr_accessor :StartTime, :EndTime, :Thumbnail, :EventId, :UploadStatus
 
-        def initialize(starttime=nil, endtime=nil, thumbnail=nil, eventid=nil)
+        def initialize(starttime=nil, endtime=nil, thumbnail=nil, eventid=nil, uploadstatus=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Thumbnail = thumbnail
           @EventId = eventid
+          @UploadStatus = uploadstatus
         end
 
         def deserialize(params)
@@ -700,6 +704,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Thumbnail = params['Thumbnail']
           @EventId = params['EventId']
+          @UploadStatus = params['UploadStatus']
         end
       end
 

@@ -376,7 +376,7 @@ module TencentCloud
       class ClusterOverview < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param ClusterStatus: 集群状态。取值范围：<br><li>PENDING：创建中<br><li>INITING：初始化中<br><li>INIT_FAILED：初始化失败<br><li>RUNNING：运行中<br><li>TERMINATING：销毁中
+        # @param ClusterStatus: 集群状态。取值范围：<li>PENDING：创建中</li><li>INITING：初始化中</li><li>INIT_FAILED：初始化失败</li><li>RUNNING：运行中</li><li>TERMINATING：销毁中</li>
         # @type ClusterStatus: String
         # @param ClusterName: 集群名称。
         # @type ClusterName: String
@@ -386,6 +386,9 @@ module TencentCloud
         # @type CreateTime: String
         # @param SchedulerType: 集群调度器。
         # @type SchedulerType: String
+        # @param SchedulerVersion: 集群调度器版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulerVersion: String
         # @param ComputeNodeCount: 计算节点数量。
         # @type ComputeNodeCount: Integer
         # @param ComputeNodeSet: 计算节点概览。
@@ -398,20 +401,21 @@ module TencentCloud
         # @type LoginNodeSet: Array
         # @param LoginNodeCount: 登录节点数量。
         # @type LoginNodeCount: Integer
-        # @param AutoScalingType: 弹性伸缩类型。<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
+        # @param AutoScalingType: 弹性伸缩类型。取值范围：<li>THPC_AS：集群自动扩缩容由THPC产品内部实现。</li><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。</li>
         # @type AutoScalingType: String
         # @param VpcId: 集群所属私有网络ID。
         # @type VpcId: String
 
-        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :SchedulerVersion, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId
 
-        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil)
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, schedulerversion=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
           @ClusterName = clustername
           @Placement = placement
           @CreateTime = createtime
           @SchedulerType = schedulertype
+          @SchedulerVersion = schedulerversion
           @ComputeNodeCount = computenodecount
           @ComputeNodeSet = computenodeset
           @ManagerNodeCount = managernodecount
@@ -432,6 +436,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @SchedulerType = params['SchedulerType']
+          @SchedulerVersion = params['SchedulerVersion']
           @ComputeNodeCount = params['ComputeNodeCount']
           unless params['ComputeNodeSet'].nil?
             @ComputeNodeSet = []
@@ -556,8 +561,13 @@ module TencentCloud
         # @type ComputeNode: :class:`Tencentcloud::Thpc.v20230321.models.ComputeNode`
         # @param ComputeNodeCount: 指定计算节点的数量。默认取值：0。
         # @type ComputeNodeCount: Integer
-        # @param SchedulerType: 调度器类型。默认取值：SLURM。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
+        # @param SchedulerType: 调度器类型。默认取值：SLURM。<li>SGE：SGE调度器。</li><li>SLURM：SLURM调度器。</li>
         # @type SchedulerType: String
+        # @param SchedulerVersion: 创建调度器的版本号，可填写版本号为“latest” 和 各调度器支持的版本号；如果是"latest", 则代表创建的是平台当前支持的该类型调度器最新版本。如果不填写，默认创建的是“latest”版本调度器
+        # 各调度器支持的集群版本：
+        # <li>SLURM：21.08.8、23.11.7</li>
+        # <li>SGE：     8.1.9</li>
+        # @type SchedulerVersion: String
         # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
         # @type ImageId: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
@@ -575,7 +585,7 @@ module TencentCloud
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
         # @param AccountType: 域名字服务类型。默认取值：NIS。
-        # <li>NIS：NIS域名字服务。
+        # <li>NIS：NIS域名字服务。</li>
         # @type AccountType: String
         # @param ClusterName: 集群显示名称。
         # @type ClusterName: String
@@ -587,22 +597,23 @@ module TencentCloud
         # @type LoginNodeCount: Integer
         # @param Tags: 创建集群时同时绑定的标签对说明。
         # @type Tags: Array
-        # @param AutoScalingType: 弹性伸缩类型。默认值：THPC_AS<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
+        # @param AutoScalingType: 弹性伸缩类型。默认值：THPC_AS<li>THPC_AS：集群自动扩缩容由THPC产品内部实现。</li><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。</li>
         # @type AutoScalingType: String
         # @param InitNodeScripts: 节点初始化脚本信息列表。
         # @type InitNodeScripts: Array
         # @param HpcClusterId: 高性能计算集群ID。若创建的实例为高性能计算实例，需指定实例放置的集群，否则不可指定。
         # @type HpcClusterId: String
 
-        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType, :InitNodeScripts, :HpcClusterId
+        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :SchedulerVersion, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType, :InitNodeScripts, :HpcClusterId
 
-        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil, initnodescripts=nil, hpcclusterid=nil)
+        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, schedulerversion=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil, initnodescripts=nil, hpcclusterid=nil)
           @Placement = placement
           @ManagerNode = managernode
           @ManagerNodeCount = managernodecount
           @ComputeNode = computenode
           @ComputeNodeCount = computenodecount
           @SchedulerType = schedulertype
+          @SchedulerVersion = schedulerversion
           @ImageId = imageid
           @VirtualPrivateCloud = virtualprivatecloud
           @LoginSettings = loginsettings
@@ -636,6 +647,7 @@ module TencentCloud
           end
           @ComputeNodeCount = params['ComputeNodeCount']
           @SchedulerType = params['SchedulerType']
+          @SchedulerVersion = params['SchedulerVersion']
           @ImageId = params['ImageId']
           unless params['VirtualPrivateCloud'].nil?
             @VirtualPrivateCloud = VirtualPrivateCloud.new

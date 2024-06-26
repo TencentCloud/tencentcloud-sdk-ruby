@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建Datahub主题
+        # 创建DIP主题
 
         # @param request: Request instance for CreateDatahubTopic.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateDatahubTopicRequest`
@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除Datahub任务
+        # 删除Dip任务
 
         # @param request: Request instance for DeleteDatahubTask.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTaskRequest`
@@ -1133,7 +1133,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取Datahub主题属性
+        # 获取DIP主题属性
 
         # @param request: Request instance for DescribeDatahubTopic.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeDatahubTopicRequest`
@@ -1830,7 +1830,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改Datahub主题属性
+        # 修改DIP主题属性
 
         # @param request: Request instance for ModifyDatahubTopic.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyDatahubTopicRequest`

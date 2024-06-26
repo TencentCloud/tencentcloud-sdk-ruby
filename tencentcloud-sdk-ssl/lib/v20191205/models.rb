@@ -59,13 +59,17 @@ module TencentCloud
         # @type InstanceList: Array
         # @param TotalCount: 该地域下apigateway实例总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :Region, :InstanceList, :TotalCount
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
 
-        def initialize(region=nil, instancelist=nil, totalcount=nil)
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
           @Region = region
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
@@ -79,6 +83,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 
@@ -222,6 +227,45 @@ module TencentCloud
         end
       end
 
+      # cos实例详情 - 异步关联云资源数据结构
+      class COSInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param InstanceList: 实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 地域下总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Error: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
+
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+          @Error = error
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              cosinstancedetail_tmp = CosInstanceDetail.new
+              cosinstancedetail_tmp.deserialize(i)
+              @InstanceList << cosinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @Error = params['Error']
+        end
+      end
+
       # CancelAuditCertificate请求参数结构体
       class CancelAuditCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书ID
@@ -329,12 +373,16 @@ module TencentCloud
         # @param InstanceList: cdn域名详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :TotalCount, :InstanceList
+        attr_accessor :TotalCount, :InstanceList, :Error
 
-        def initialize(totalcount=nil, instancelist=nil)
+        def initialize(totalcount=nil, instancelist=nil, error=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
+          @Error = error
         end
 
         def deserialize(params)
@@ -347,6 +395,7 @@ module TencentCloud
               @InstanceList << cdninstancedetail_tmp
             end
           end
+          @Error = params['Error']
         end
       end
 
@@ -829,13 +878,17 @@ module TencentCloud
         # @type InstanceList: Array
         # @param TotalCount: 该地域下Clb实例总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :Region, :InstanceList, :TotalCount
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
 
-        def initialize(region=nil, instancelist=nil, totalcount=nil)
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
           @Region = region
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
@@ -849,6 +902,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 
@@ -1354,12 +1408,16 @@ module TencentCloud
         # @param InstanceList: ddos实例详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :TotalCount, :InstanceList
+        attr_accessor :TotalCount, :InstanceList, :Error
 
-        def initialize(totalcount=nil, instancelist=nil)
+        def initialize(totalcount=nil, instancelist=nil, error=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
+          @Error = error
         end
 
         def deserialize(params)
@@ -1372,6 +1430,7 @@ module TencentCloud
               @InstanceList << ddosinstancedetail_tmp
             end
           end
+          @Error = params['Error']
         end
       end
 
@@ -1880,12 +1939,15 @@ module TencentCloud
         # @param TSE: 关联tse资源详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TSE: Array
+        # @param COS: 关联的COS资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type COS: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :TSE, :RequestId
+        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :TSE, :COS, :RequestId
 
-        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, tse=nil, requestid=nil)
+        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, tse=nil, cos=nil, requestid=nil)
           @CLB = clb
           @CDN = cdn
           @WAF = waf
@@ -1899,6 +1961,7 @@ module TencentCloud
           @Status = status
           @CacheTime = cachetime
           @TSE = tse
+          @COS = cos
           @RequestId = requestid
         end
 
@@ -1991,6 +2054,14 @@ module TencentCloud
               tseinstancelist_tmp = TSEInstanceList.new
               tseinstancelist_tmp.deserialize(i)
               @TSE << tseinstancelist_tmp
+            end
+          end
+          unless params['COS'].nil?
+            @COS = []
+            params['COS'].each do |i|
+              cosinstancelist_tmp = COSInstanceList.new
+              cosinstancelist_tmp.deserialize(i)
+              @COS << cosinstancelist_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4613,12 +4684,16 @@ module TencentCloud
         # @param InstanceList: live实例详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :TotalCount, :InstanceList
+        attr_accessor :TotalCount, :InstanceList, :Error
 
-        def initialize(totalcount=nil, instancelist=nil)
+        def initialize(totalcount=nil, instancelist=nil, error=nil)
           @TotalCount = totalcount
           @InstanceList = instancelist
+          @Error = error
         end
 
         def deserialize(params)
@@ -4631,6 +4706,7 @@ module TencentCloud
               @InstanceList << liveinstancedetail_tmp
             end
           end
+          @Error = params['Error']
         end
       end
 
@@ -5915,12 +5991,16 @@ module TencentCloud
         # @param Environments: tcb环境实例详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Environments: Array
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :Region, :Environments
+        attr_accessor :Region, :Environments, :Error
 
-        def initialize(region=nil, environments=nil)
+        def initialize(region=nil, environments=nil, error=nil)
           @Region = region
           @Environments = environments
+          @Error = error
         end
 
         def deserialize(params)
@@ -5933,6 +6013,7 @@ module TencentCloud
               @Environments << tcbenvironments_tmp
             end
           end
+          @Error = params['Error']
         end
       end
 
@@ -5979,13 +6060,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Region: 地域
         # @type Region: String
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :InstanceList, :TotalCount, :Region
+        attr_accessor :InstanceList, :TotalCount, :Region, :Error
 
-        def initialize(instancelist=nil, totalcount=nil, region=nil)
+        def initialize(instancelist=nil, totalcount=nil, region=nil, error=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
           @Region = region
+          @Error = error
         end
 
         def deserialize(params)
@@ -5999,6 +6084,7 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @Region = params['Region']
+          @Error = params['Error']
         end
       end
 
@@ -6058,12 +6144,16 @@ module TencentCloud
         # @type InstanceList: Array
         # @param TotalCount: edgeone实例总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :InstanceList, :TotalCount
+        attr_accessor :InstanceList, :TotalCount, :Error
 
-        def initialize(instancelist=nil, totalcount=nil)
+        def initialize(instancelist=nil, totalcount=nil, error=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
@@ -6076,6 +6166,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 
@@ -6151,13 +6242,17 @@ module TencentCloud
         # @type InstanceList: Array
         # @param TotalCount: 该地域下tke实例总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :Region, :InstanceList, :TotalCount
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
 
-        def initialize(region=nil, instancelist=nil, totalcount=nil)
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
           @Region = region
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
@@ -6171,6 +6266,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 
@@ -6851,12 +6947,16 @@ module TencentCloud
         # @type InstanceList: Array
         # @param TotalCount: 该地域下vod实例总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :InstanceList, :TotalCount
+        attr_accessor :InstanceList, :TotalCount, :Error
 
-        def initialize(instancelist=nil, totalcount=nil)
+        def initialize(instancelist=nil, totalcount=nil, error=nil)
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
@@ -6869,6 +6969,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 
@@ -6963,13 +7064,17 @@ module TencentCloud
         # @type InstanceList: Array
         # @param TotalCount: 该地域下waf实例总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :Region, :InstanceList, :TotalCount
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
 
-        def initialize(region=nil, instancelist=nil, totalcount=nil)
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
           @Region = region
           @InstanceList = instancelist
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
@@ -6983,6 +7088,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 

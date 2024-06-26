@@ -3761,14 +3761,17 @@ module TencentCloud
         # @type SucDomainList: Array
         # @param FailDomainList: 预定失败域名列表
         # @type FailDomainList: Array
+        # @param SucDomains: 域名预定成功详情
+        # @type SucDomains: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SucDomainList, :FailDomainList, :RequestId
+        attr_accessor :SucDomainList, :FailDomainList, :SucDomains, :RequestId
 
-        def initialize(sucdomainlist=nil, faildomainlist=nil, requestid=nil)
+        def initialize(sucdomainlist=nil, faildomainlist=nil, sucdomains=nil, requestid=nil)
           @SucDomainList = sucdomainlist
           @FailDomainList = faildomainlist
+          @SucDomains = sucdomains
           @RequestId = requestid
         end
 
@@ -3780,6 +3783,14 @@ module TencentCloud
               failreserveddomaininfo_tmp = FailReservedDomainInfo.new
               failreserveddomaininfo_tmp.deserialize(i)
               @FailDomainList << failreserveddomaininfo_tmp
+            end
+          end
+          unless params['SucDomains'].nil?
+            @SucDomains = []
+            params['SucDomains'].each do |i|
+              sucdomaininfo_tmp = SucDomainInfo.new
+              sucdomaininfo_tmp.deserialize(i)
+              @SucDomains << sucdomaininfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3858,6 +3869,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 预释放域名预约参数补充成功信息
+      class SucDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param BusinessId: 业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
+
+        attr_accessor :Domain, :BusinessId
+
+        def initialize(domain=nil, businessid=nil)
+          @Domain = domain
+          @BusinessId = businessid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @BusinessId = params['BusinessId']
         end
       end
 
