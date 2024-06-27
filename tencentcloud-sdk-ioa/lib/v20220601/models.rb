@@ -76,105 +76,115 @@ module TencentCloud
         end
       end
 
-      # 账户分响应对象集合
+      # 分组名称
       class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
-        # @param Itime: 创建时间
+        # @param NamePath: 名称path
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Itime: String
-        # @param Name: 账户组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param IdPathArr: id patch数组
+        # @type NamePath: String
+        # @param IdPathArr: id patch数组(只支持32位)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPathArr: Array
-        # @param UserTotal: 该分组下用户总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UserTotal: Integer
         # @param ExtraInfo: 扩展信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: String
-        # @param ImportType: 导入类型
+        # @param Utime: 最后更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImportType: String
+        # @type Utime: String
+        # @param ParentId: 父id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: Integer
+        # @param OrgId: 组织id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgId: String
+        # @param Name: 账户组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
         # @param Description: 描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 同步数据源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
-        # @param MiniIamId: miniIAM id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MiniIamId: String
-        # @param OrgId: 组织id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OrgId: String
-        # @param ReadOnly: 是否该账户的直接权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReadOnly: Boolean
-        # @param ParentId: 父id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParentId: Integer
-        # @param NamePath: 名称path
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NamePath: String
-        # @param ParentOrgId: 父组织id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ParentOrgId: String
         # @param IdPath: id path
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPath: String
-        # @param Id: 自增id
+        # @param Itime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Id: Integer
+        # @type Itime: String
+        # @param ParentOrgId: 父组织id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentOrgId: String
+        # @param ImportType: 导入类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportType: String
+        # @param MiniIamId: miniIAM id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MiniIamId: String
+        # @param UserTotal: 该分组下用户总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserTotal: Integer
         # @param IsLeaf: 是否叶子节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLeaf: Boolean
-        # @param Utime: 最后更新时间
+        # @param ReadOnly: 是否该账户的直接权限
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Utime: String
+        # @type ReadOnly: Boolean
+        # @param LatestSyncResult: 最新一次同步任务的结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestSyncResult: String
+        # @param LatestSyncTime: 最新一次同步任务的结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestSyncTime: String
 
-        attr_accessor :Itime, :Name, :IdPathArr, :UserTotal, :ExtraInfo, :ImportType, :Description, :Source, :MiniIamId, :OrgId, :ReadOnly, :ParentId, :NamePath, :ParentOrgId, :IdPath, :Id, :IsLeaf, :Utime
+        attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :ImportType, :MiniIamId, :UserTotal, :IsLeaf, :ReadOnly, :LatestSyncResult, :LatestSyncTime
 
-        def initialize(itime=nil, name=nil, idpatharr=nil, usertotal=nil, extrainfo=nil, importtype=nil, description=nil, source=nil, miniiamid=nil, orgid=nil, readonly=nil, parentid=nil, namepath=nil, parentorgid=nil, idpath=nil, id=nil, isleaf=nil, utime=nil)
-          @Itime = itime
-          @Name = name
+        def initialize(namepath=nil, idpatharr=nil, extrainfo=nil, utime=nil, parentid=nil, orgid=nil, name=nil, id=nil, description=nil, source=nil, idpath=nil, itime=nil, parentorgid=nil, importtype=nil, miniiamid=nil, usertotal=nil, isleaf=nil, readonly=nil, latestsyncresult=nil, latestsynctime=nil)
+          @NamePath = namepath
           @IdPathArr = idpatharr
-          @UserTotal = usertotal
           @ExtraInfo = extrainfo
-          @ImportType = importtype
+          @Utime = utime
+          @ParentId = parentid
+          @OrgId = orgid
+          @Name = name
+          @Id = id
           @Description = description
           @Source = source
-          @MiniIamId = miniiamid
-          @OrgId = orgid
-          @ReadOnly = readonly
-          @ParentId = parentid
-          @NamePath = namepath
-          @ParentOrgId = parentorgid
           @IdPath = idpath
-          @Id = id
+          @Itime = itime
+          @ParentOrgId = parentorgid
+          @ImportType = importtype
+          @MiniIamId = miniiamid
+          @UserTotal = usertotal
           @IsLeaf = isleaf
-          @Utime = utime
+          @ReadOnly = readonly
+          @LatestSyncResult = latestsyncresult
+          @LatestSyncTime = latestsynctime
         end
 
         def deserialize(params)
-          @Itime = params['Itime']
-          @Name = params['Name']
+          @NamePath = params['NamePath']
           @IdPathArr = params['IdPathArr']
-          @UserTotal = params['UserTotal']
           @ExtraInfo = params['ExtraInfo']
-          @ImportType = params['ImportType']
+          @Utime = params['Utime']
+          @ParentId = params['ParentId']
+          @OrgId = params['OrgId']
+          @Name = params['Name']
+          @Id = params['Id']
           @Description = params['Description']
           @Source = params['Source']
-          @MiniIamId = params['MiniIamId']
-          @OrgId = params['OrgId']
-          @ReadOnly = params['ReadOnly']
-          @ParentId = params['ParentId']
-          @NamePath = params['NamePath']
-          @ParentOrgId = params['ParentOrgId']
           @IdPath = params['IdPath']
-          @Id = params['Id']
+          @Itime = params['Itime']
+          @ParentOrgId = params['ParentOrgId']
+          @ImportType = params['ImportType']
+          @MiniIamId = params['MiniIamId']
+          @UserTotal = params['UserTotal']
           @IsLeaf = params['IsLeaf']
-          @Utime = params['Utime']
+          @ReadOnly = params['ReadOnly']
+          @LatestSyncResult = params['LatestSyncResult']
+          @LatestSyncTime = params['LatestSyncTime']
         end
       end
 
@@ -660,25 +670,25 @@ module TencentCloud
 
       # 业务响应数据
       class DeviceDetail < TencentCloud::Common::AbstractModel
-        # @param Id: 设备ID(只支持32位)
+        # @param Id: 设备ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param Mid: 设备唯一标识符
+        # @param Mid: 设备唯一标识码，在ioa中每个设备有唯一标识码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mid: String
         # @param Name: 终端名（设备名）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param GroupId: 设备所在分组ID(只支持32位)
+        # @param GroupId: 设备所在分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
-        # @param OsType: OS平台(只支持32位)
+        # @param OsType: OS平台，0：Windows 、1： Linux、 2：macOS 、4： Android、 5: iOS。默认是0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsType: Integer
         # @param Ip: 设备IP地址（出口IP）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
-        # @param OnlineStatus: 在线状态 2 在线 0，1 离线(只支持32位)
+        # @param OnlineStatus: 在线状态，2：在线、0或者1:离线
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineStatus: Integer
         # @param Version: 客户端版本号-大整数
@@ -693,7 +703,7 @@ module TencentCloud
         # @param ConnActiveTime: 最后一次在线时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnActiveTime: String
-        # @param Locked: 设备是否加锁 1 锁定 0 2 非锁定(只支持32位)
+        # @param Locked: 设备是否加锁 ，1：锁定 0或者2：未锁定。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locked: Integer
         # @param LocalIpList: 设备本地IP列表, 包括IP
@@ -711,7 +721,7 @@ module TencentCloud
         # @param CriticalVulListCount: 未修复高危漏洞数(只支持32位)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CriticalVulListCount: Integer
-        # @param ComputerName: 设备名 和Name相同，保留参数
+        # @param ComputerName: 设备名，和Name相同
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputerName: String
         # @param DomainName: 登录域名
@@ -720,10 +730,10 @@ module TencentCloud
         # @param MacAddr: MAC地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MacAddr: String
-        # @param VulCount: 漏洞数(只支持32位)
+        # @param VulCount: 漏洞数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCount: Integer
-        # @param RiskCount: 病毒风险数(只支持32位)
+        # @param RiskCount: 病毒风险数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCount: Integer
         # @param VirusVer: 病毒库版本
@@ -744,7 +754,7 @@ module TencentCloud
         # @param UserName: 终端用户名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
-        # @param FirewallStatus: 防火墙状态(只支持32位)
+        # @param FirewallStatus: 防火墙状态，不等于0表示开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirewallStatus: Integer
         # @param SerialNum: SN序列号
@@ -756,7 +766,7 @@ module TencentCloud
         # @param NGNStrategyVer: NGN策略版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NGNStrategyVer: String
-        # @param IOAUserName: 最近登录账号
+        # @param IOAUserName: 最近登录账户的账号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IOAUserName: String
         # @param DeviceNewStrategyVer: 设备管控新策略
@@ -783,7 +793,7 @@ module TencentCloud
         # @param AccountGroupName: 最近登录账号部门
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupName: String
-        # @param AccountName: 登录账号姓名
+        # @param AccountName: 最近登录账户的姓名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountName: String
         # @param AccountGroupId: 账号组id

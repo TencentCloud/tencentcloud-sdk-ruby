@@ -632,19 +632,23 @@ module TencentCloud
         # @type ImageUrl: String
         # @param EnableCopyWarn: 是否返回告警码，默认为false
         # @type EnableCopyWarn: Boolean
+        # @param EnablePeriodComplete: 是否返回自动拼接的有效期，默认为true
+        # @type EnablePeriodComplete: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :EnableCopyWarn
+        attr_accessor :ImageBase64, :ImageUrl, :EnableCopyWarn, :EnablePeriodComplete
 
-        def initialize(imagebase64=nil, imageurl=nil, enablecopywarn=nil)
+        def initialize(imagebase64=nil, imageurl=nil, enablecopywarn=nil, enableperiodcomplete=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @EnableCopyWarn = enablecopywarn
+          @EnablePeriodComplete = enableperiodcomplete
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @EnableCopyWarn = params['EnableCopyWarn']
+          @EnablePeriodComplete = params['EnablePeriodComplete']
         end
       end
 
@@ -11367,10 +11371,12 @@ module TencentCloud
         # @type ReimburseOnlyMark: Integer
         # @param RefundMark: 是否有退票费标识（0：没有，1：有）
         # @type RefundMark: Integer
+        # @param TicketChangeMark: 是否有改签费标识（0：没有，1：有）
+        # @type TicketChangeMark: Integer
 
-        attr_accessor :Title, :Number, :DateGetOn, :TimeGetOn, :Name, :StationGetOn, :StationGetOff, :Seat, :Total, :Kind, :SerialNumber, :UserID, :GateNumber, :TrainNumber, :HandlingFee, :OriginalFare, :TotalCn, :SeatNumber, :PickUpAddress, :TicketChange, :AdditionalFare, :ReceiptNumber, :QRCodeMark, :ReimburseOnlyMark, :RefundMark
+        attr_accessor :Title, :Number, :DateGetOn, :TimeGetOn, :Name, :StationGetOn, :StationGetOff, :Seat, :Total, :Kind, :SerialNumber, :UserID, :GateNumber, :TrainNumber, :HandlingFee, :OriginalFare, :TotalCn, :SeatNumber, :PickUpAddress, :TicketChange, :AdditionalFare, :ReceiptNumber, :QRCodeMark, :ReimburseOnlyMark, :RefundMark, :TicketChangeMark
 
-        def initialize(title=nil, number=nil, dategeton=nil, timegeton=nil, name=nil, stationgeton=nil, stationgetoff=nil, seat=nil, total=nil, kind=nil, serialnumber=nil, userid=nil, gatenumber=nil, trainnumber=nil, handlingfee=nil, originalfare=nil, totalcn=nil, seatnumber=nil, pickupaddress=nil, ticketchange=nil, additionalfare=nil, receiptnumber=nil, qrcodemark=nil, reimburseonlymark=nil, refundmark=nil)
+        def initialize(title=nil, number=nil, dategeton=nil, timegeton=nil, name=nil, stationgeton=nil, stationgetoff=nil, seat=nil, total=nil, kind=nil, serialnumber=nil, userid=nil, gatenumber=nil, trainnumber=nil, handlingfee=nil, originalfare=nil, totalcn=nil, seatnumber=nil, pickupaddress=nil, ticketchange=nil, additionalfare=nil, receiptnumber=nil, qrcodemark=nil, reimburseonlymark=nil, refundmark=nil, ticketchangemark=nil)
           @Title = title
           @Number = number
           @DateGetOn = dategeton
@@ -11396,6 +11402,7 @@ module TencentCloud
           @QRCodeMark = qrcodemark
           @ReimburseOnlyMark = reimburseonlymark
           @RefundMark = refundmark
+          @TicketChangeMark = ticketchangemark
         end
 
         def deserialize(params)
@@ -11424,6 +11431,7 @@ module TencentCloud
           @QRCodeMark = params['QRCodeMark']
           @ReimburseOnlyMark = params['ReimburseOnlyMark']
           @RefundMark = params['RefundMark']
+          @TicketChangeMark = params['TicketChangeMark']
         end
       end
 

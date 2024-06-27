@@ -202,6 +202,7 @@ module TencentCloud
         # <li>action-image-sprite：雪碧图</li>
         # <li>action-snapshotByTimeOffset: 时间点截图</li>
         # <li>action-adaptive-substream：自适应码流</li>
+        # <li>action-AIQualityControl：媒体质检</li>
 
 
 
@@ -412,6 +413,7 @@ module TencentCloud
         # <li>AiContentReview：内容审核。</li>
         # <li>AIRecognition：智能识别。</li>
         # <li>AIAnalysis：智能分析。</li>
+        # <li>AiQualityControl：媒体质检。</li>
         # @type ActivityType: String
         # @param ActivityResItem: 原子任务输出。
         # @type ActivityResItem: :class:`Tencentcloud::Mps.v20190612.models.ActivityResItem`
@@ -1704,7 +1706,7 @@ module TencentCloud
 
       # 视频质检输入参数类型
       class AiQualityControlTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 视频质检模板 ID 。暂时可以直接使用 预设模板ID 10，后面控制台支持用户配置自定义模板。
+        # @param Definition: 媒体质检模板 ID 。暂时可以直接使用 预设模板ID 10，后面控制台支持用户配置自定义模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Definition: Integer
         # @param ChannelExtPara: 渠道扩展参数json序列化字符串。
@@ -4356,9 +4358,7 @@ module TencentCloud
         # <li>flac。</li>
         # 当外层参数 Container 为 m4a 时，可选值为：
         # <li>aac；</li>
-        # <li>mp3；</li>
         # <li>ac3。</li>
-        # <li>eac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         # <li>aac：更适合 mp4；</li>
         # <li>mp3：更适合 flv；</li>
@@ -4412,9 +4412,7 @@ module TencentCloud
         # <li>flac。</li>
         # 当外层参数 Container 为 m4a 时，可选值为：
         # <li>aac；</li>
-        # <li>mp3；</li>
         # <li>ac3。</li>
-        # <li>eac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         # <li>aac：更适合 mp4；</li>
         # <li>mp3：更适合 flv；</li>
@@ -6254,10 +6252,12 @@ module TencentCloud
         # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
         # @param SecurityGroupIds: 绑定的输入安全组 ID。
         # @type SecurityGroupIds: Array
+        # @param Zones: 可用区，非必填，如果开启容灾必须输入两个不同的可用区，否则最多只允许输入一个可用区。
+        # @type Zones: Array
 
-        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones
 
-        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil)
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil)
           @InputName = inputname
           @Protocol = protocol
           @Description = description
@@ -6270,6 +6270,7 @@ module TencentCloud
           @HLSPullSettings = hlspullsettings
           @ResilientStream = resilientstream
           @SecurityGroupIds = securitygroupids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -6303,6 +6304,7 @@ module TencentCloud
             @ResilientStream.deserialize(params['ResilientStream'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          @Zones = params['Zones']
         end
       end
 
@@ -6473,10 +6475,12 @@ module TencentCloud
         # @type MaxConcurrent: Integer
         # @param SecurityGroupIds: 绑定的输入安全组 ID。
         # @type SecurityGroupIds: Array
+        # @param Zones: 可用区，output最多只支持输入一个可用区。
+        # @type Zones: Array
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones
 
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
@@ -6487,6 +6491,7 @@ module TencentCloud
           @AllowIpList = allowiplist
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -6509,6 +6514,7 @@ module TencentCloud
           @AllowIpList = params['AllowIpList']
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @Zones = params['Zones']
         end
       end
 
@@ -8628,10 +8634,12 @@ module TencentCloud
         # @param SecurityGroupIds: 绑定的输入安全组 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
+        # @param Zones: 可用区配置，开启容灾情况下最多有两个，顺序和pipeline 0、1对应，否则最多只有一个可用区。
+        # @type Zones: Array
 
-        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones
 
-        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -8648,6 +8656,7 @@ module TencentCloud
           @HLSPullSettings = hlspullsettings
           @ResilientStream = resilientstream
           @SecurityGroupIds = securitygroupids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -8695,6 +8704,7 @@ module TencentCloud
             @ResilientStream.deserialize(params['ResilientStream'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          @Zones = params['Zones']
         end
       end
 
@@ -8953,10 +8963,12 @@ module TencentCloud
         # @param SecurityGroupIds: 绑定的安全组 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
+        # @param Zones: 可用区，output目前最多只支持一个。
+        # @type Zones: Array
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -8973,6 +8985,7 @@ module TencentCloud
           @HLSPullSettings = hlspullsettings
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -9017,6 +9030,7 @@ module TencentCloud
           end
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @Zones = params['Zones']
         end
       end
 
@@ -12329,17 +12343,25 @@ module TencentCloud
         # @param LiveRecordTask: 直播录制任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveRecordTask: :class:`Tencentcloud::Mps.v20190612.models.LiveScheduleLiveRecordTaskResult`
+        # @param LiveQualityControlTask: 媒体质检任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
 
-        attr_accessor :LiveRecordTask
+        attr_accessor :LiveRecordTask, :LiveQualityControlTask
 
-        def initialize(liverecordtask=nil)
+        def initialize(liverecordtask=nil, livequalitycontroltask=nil)
           @LiveRecordTask = liverecordtask
+          @LiveQualityControlTask = livequalitycontroltask
         end
 
         def deserialize(params)
           unless params['LiveRecordTask'].nil?
             @LiveRecordTask = LiveScheduleLiveRecordTaskResult.new
             @LiveRecordTask.deserialize(params['LiveRecordTask'])
+          end
+          unless params['LiveQualityControlTask'].nil?
+            @LiveQualityControlTask = ScheduleQualityControlTaskResult.new
+            @LiveQualityControlTask.deserialize(params['LiveQualityControlTask'])
           end
         end
       end
@@ -12348,6 +12370,7 @@ module TencentCloud
       class LiveActivityResult < TencentCloud::Common::AbstractModel
         # @param ActivityType: 原子任务类型。
         # <li>LiveRecord：直播录制。</li>
+        # <li>AiQualityControl：媒体质检。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityType: String
         # @param LiveActivityResItem: 原子任务输出。
@@ -15418,10 +15441,12 @@ module TencentCloud
         # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
         # @param SecurityGroupIds: 绑定的输入安全组 ID。 仅支持关联一组安全组。
         # @type SecurityGroupIds: Array
+        # @param Zones: 可用区，非必填，最多支持输入两个可用区，对于需改接口，只要第二个可用区会参与到资源分配。如果input开启容灾或者涉及RTSP_PULL协议切换时有效(会重新分配地址)。
+        # @type Zones: Array
 
-        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones
 
-        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -15435,6 +15460,7 @@ module TencentCloud
           @HLSPullSettings = hlspullsettings
           @ResilientStream = resilientstream
           @SecurityGroupIds = securitygroupids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -15469,6 +15495,7 @@ module TencentCloud
             @ResilientStream.deserialize(params['ResilientStream'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          @Zones = params['Zones']
         end
       end
 
@@ -17224,7 +17251,7 @@ module TencentCloud
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
         # @param AiAnalysisTask: 视频内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
-        # @param AiQualityControlTask: 视频内容质检类型任务参数。
+        # @param AiQualityControlTask: 媒体质检类型任务参数。
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
@@ -17332,13 +17359,13 @@ module TencentCloud
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
         # @param AiRecognitionTask: 视频内容识别类型任务参数。
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
-        # @param AiQualityControlTask: 视频质检类型任务参数。
+        # @param AiQualityControlTask: 媒体质检类型任务参数。
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
         # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
         # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不传该参数或者参数为空字符串则本次请求不做去重操作。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
@@ -17586,7 +17613,7 @@ module TencentCloud
         end
       end
 
-      # 质检结果输出。
+      # 媒体质检结果输出。
       class QualityControlData < TencentCloud::Common::AbstractModel
         # @param NoAudio: 为true时表示视频无音频轨。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -17597,7 +17624,7 @@ module TencentCloud
         # @param QualityEvaluationScore: 视频无参考质量打分，百分制。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEvaluationScore: Integer
-        # @param QualityControlResultSet: 质检检出异常项。
+        # @param QualityControlResultSet: 内容质检检出异常项。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlResultSet: Array
 
@@ -18422,7 +18449,7 @@ module TencentCloud
         end
       end
 
-      # 质检任务结果类型
+      # 媒体质检任务结果类型
       class ScheduleQualityControlTaskResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
@@ -18432,9 +18459,9 @@ module TencentCloud
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
-        # @param Input: 质检任务的输入。
+        # @param Input: 媒体质检任务的输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
-        # @param Output: 质检任务的输出。
+        # @param Output: 媒体质检任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.QualityControlData`
 
@@ -19512,7 +19539,6 @@ module TencentCloud
         # <li>militant：武装分子；</li>
         # <li>explosion：爆炸火灾；</li>
         # <li>terrorists：涉敏人物；</li>
-        # <li>scenario：涉敏画面。</li>
         # @type LabelSet: Array
         # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
         # @type BlockConfidence: Integer
@@ -19551,7 +19577,6 @@ module TencentCloud
         # <li>militant：武装分子；</li>
         # <li>explosion：爆炸火灾；</li>
         # <li>terrorists：涉敏人物；</li>
-        # <li>scenario：涉敏画面。</li>
         # @type LabelSet: Array
         # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         # @type BlockConfidence: Integer
@@ -20362,13 +20387,12 @@ module TencentCloud
         # <li>dnxhd：DNxHD 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
 
-        # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv，mov。
+        # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv。
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
-        # 注意：自适应码率时取值范围是 [0, 60]
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。 注意：自适应码率时取值范围是 [0, 60]
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
@@ -20409,11 +20433,11 @@ module TencentCloud
         # 如果没有特殊需求，不建议指定该参数。
         # @type Vcrf: Integer
         # @param SegmentType: hls 分片类型，可选值 ：
-        # <li>6：HLS+TS 切片</li>
+        # <li>0：HLS+TS 切片</li>
         # <li>2：HLS+TS byte range</li>
         # <li>7：HLS+MP4 切片</li>
         # <li>5：HLS+MP4 byte range</li>
-        # 默认值：6
+        # 默认值：0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentType: Integer
 
@@ -20459,13 +20483,13 @@ module TencentCloud
         # <li>dnxhd：DNxHD 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
 
-        # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv，mov。
+        # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv。
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
@@ -20509,11 +20533,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentAdaptStream: Integer
         # @param SegmentType: hls 分片类型，可选值：
-        # <li>6：HLS+TS 切片</li>
+        # <li>0：HLS+TS 切片</li>
         # <li>2：HLS+TS byte range</li>
         # <li>7：HLS+MP4 切片</li>
         # <li>5：HLS+MP4 byte range</li>
-        # 默认值：6
+        # 默认值：0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentType: Integer
 
@@ -20881,7 +20905,7 @@ module TencentCloud
         # @type AiAnalysisResultSet: Array
         # @param AiRecognitionResultSet: 视频内容识别任务的执行状态与结果。
         # @type AiRecognitionResultSet: Array
-        # @param AiQualityControlTaskResult: 视频质检任务的执行状态与结果。
+        # @param AiQualityControlTaskResult: 媒体质检任务的执行状态与结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiQualityControlTaskResult: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
 

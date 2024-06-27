@@ -179,6 +179,28 @@ module TencentCloud
         end
       end
 
+      # 批量删除失败的项
+      class BatchDeleteFail < TencentCloud::Common::AbstractModel
+        # @param CertId: 失败的证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+        # @param Msg: 失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+
+        attr_accessor :CertId, :Msg
+
+        def initialize(certid=nil, msg=nil)
+          @CertId = certid
+          @Msg = msg
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @Msg = params['Msg']
+        end
+      end
+
       # 绑定资源地域结果
       class BindResourceRegionResult < TencentCloud::Common::AbstractModel
         # @param Region: 地域
@@ -1475,6 +1497,59 @@ module TencentCloud
         def deserialize(params)
           @DeleteResult = params['DeleteResult']
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCertificates请求参数结构体
+      class DeleteCertificatesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteCertificates返回参数结构体
+      class DeleteCertificatesResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功的ID
+        # @type Success: Array
+        # @param Fail: 失败的ID和原因
+        # @type Fail: Array
+        # @param CertTaskIds: 证书ID和异步任务的ID
+        # @type CertTaskIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :Fail, :CertTaskIds, :RequestId
+
+        def initialize(success=nil, fail=nil, certtaskids=nil, requestid=nil)
+          @Success = success
+          @Fail = fail
+          @CertTaskIds = certtaskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          unless params['Fail'].nil?
+            @Fail = []
+            params['Fail'].each do |i|
+              batchdeletefail_tmp = BatchDeleteFail.new
+              batchdeletefail_tmp.deserialize(i)
+              @Fail << batchdeletefail_tmp
+            end
+          end
+          unless params['CertTaskIds'].nil?
+            @CertTaskIds = []
+            params['CertTaskIds'].each do |i|
+              certtaskid_tmp = CertTaskId.new
+              certtaskid_tmp.deserialize(i)
+              @CertTaskIds << certtaskid_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

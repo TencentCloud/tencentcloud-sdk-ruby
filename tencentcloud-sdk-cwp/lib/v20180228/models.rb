@@ -27793,68 +27793,6 @@ module TencentCloud
         end
       end
 
-      # ExportAttackLogs请求参数结构体
-      class ExportAttackLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
-        # <li>HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)</li>
-        # <li>DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]</li>
-        # <li>VulType - String 威胁类型 - 是否必填: 否</li>
-        # <li>SrcIp - String 攻击源IP - 是否必填: 否</li>
-        # <li>DstIp - String 攻击目标IP - 是否必填: 否</li>
-        # <li>SrcPort - String 攻击源端口 - 是否必填: 否</li>
-        # <li>DstPort - String 攻击目标端口 - 是否必填: 否</li>
-        # @type Filters: Array
-        # @param Uuid: 主机安全客户端ID
-        # @type Uuid: String
-        # @param Quuid: 云主机机器ID
-        # @type Quuid: String
-
-        attr_accessor :Filters, :Uuid, :Quuid
-
-        def initialize(filters=nil, uuid=nil, quuid=nil)
-          @Filters = filters
-          @Uuid = uuid
-          @Quuid = quuid
-        end
-
-        def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filters_tmp = Filters.new
-              filters_tmp.deserialize(i)
-              @Filters << filters_tmp
-            end
-          end
-          @Uuid = params['Uuid']
-          @Quuid = params['Quuid']
-        end
-      end
-
-      # ExportAttackLogs返回参数结构体
-      class ExportAttackLogsResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 已废弃
-        # @type DownloadUrl: String
-        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DownloadUrl, :TaskId, :RequestId
-
-        def initialize(downloadurl=nil, taskid=nil, requestid=nil)
-          @DownloadUrl = downloadurl
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DownloadUrl = params['DownloadUrl']
-          @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ExportBaselineEffectHostList请求参数结构体
       class ExportBaselineEffectHostListRequest < TencentCloud::Common::AbstractModel
         # @param BaselineId: 基线id

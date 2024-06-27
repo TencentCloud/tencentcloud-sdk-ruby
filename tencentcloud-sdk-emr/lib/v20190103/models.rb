@@ -21,22 +21,29 @@ module TencentCloud
       class AddMetricScaleStrategyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param StrategyType: 1表示按负载规则扩容，2表示按时间规则扩容。
+        # @param StrategyType: 1表示按负载规则扩容，2表示按时间规则扩容。必须填写，并且和下面的规则策略匹配
         # @type StrategyType: Integer
+        # @param LoadAutoScaleStrategy: 按负载扩容的规则。
+        # @type LoadAutoScaleStrategy: :class:`Tencentcloud::Emr.v20190103.models.LoadAutoScaleStrategy`
         # @param TimeAutoScaleStrategy: 按时间扩缩容的规则。
         # @type TimeAutoScaleStrategy: :class:`Tencentcloud::Emr.v20190103.models.TimeAutoScaleStrategy`
 
-        attr_accessor :InstanceId, :StrategyType, :TimeAutoScaleStrategy
+        attr_accessor :InstanceId, :StrategyType, :LoadAutoScaleStrategy, :TimeAutoScaleStrategy
 
-        def initialize(instanceid=nil, strategytype=nil, timeautoscalestrategy=nil)
+        def initialize(instanceid=nil, strategytype=nil, loadautoscalestrategy=nil, timeautoscalestrategy=nil)
           @InstanceId = instanceid
           @StrategyType = strategytype
+          @LoadAutoScaleStrategy = loadautoscalestrategy
           @TimeAutoScaleStrategy = timeautoscalestrategy
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @StrategyType = params['StrategyType']
+          unless params['LoadAutoScaleStrategy'].nil?
+            @LoadAutoScaleStrategy = LoadAutoScaleStrategy.new
+            @LoadAutoScaleStrategy.deserialize(params['LoadAutoScaleStrategy'])
+          end
           unless params['TimeAutoScaleStrategy'].nil?
             @TimeAutoScaleStrategy = TimeAutoScaleStrategy.new
             @TimeAutoScaleStrategy.deserialize(params['TimeAutoScaleStrategy'])
@@ -275,10 +282,16 @@ module TencentCloud
         # @param RetryInfo: 重试信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryInfo: String
+        # @param RetryEnReason: 重试英文描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryEnReason: String
+        # @param RetryReason: 重试描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryReason: String
 
-        attr_accessor :StrategyName, :ScaleAction, :ActionStatus, :ActionTime, :ScaleInfo, :ExpectScaleNum, :EndTime, :StrategyType, :SpecInfo, :CompensateFlag, :CompensateCount, :RetryCount, :RetryInfo
+        attr_accessor :StrategyName, :ScaleAction, :ActionStatus, :ActionTime, :ScaleInfo, :ExpectScaleNum, :EndTime, :StrategyType, :SpecInfo, :CompensateFlag, :CompensateCount, :RetryCount, :RetryInfo, :RetryEnReason, :RetryReason
 
-        def initialize(strategyname=nil, scaleaction=nil, actionstatus=nil, actiontime=nil, scaleinfo=nil, expectscalenum=nil, endtime=nil, strategytype=nil, specinfo=nil, compensateflag=nil, compensatecount=nil, retrycount=nil, retryinfo=nil)
+        def initialize(strategyname=nil, scaleaction=nil, actionstatus=nil, actiontime=nil, scaleinfo=nil, expectscalenum=nil, endtime=nil, strategytype=nil, specinfo=nil, compensateflag=nil, compensatecount=nil, retrycount=nil, retryinfo=nil, retryenreason=nil, retryreason=nil)
           @StrategyName = strategyname
           @ScaleAction = scaleaction
           @ActionStatus = actionstatus
@@ -292,6 +305,8 @@ module TencentCloud
           @CompensateCount = compensatecount
           @RetryCount = retrycount
           @RetryInfo = retryinfo
+          @RetryEnReason = retryenreason
+          @RetryReason = retryreason
         end
 
         def deserialize(params)
@@ -308,6 +323,8 @@ module TencentCloud
           @CompensateCount = params['CompensateCount']
           @RetryCount = params['RetryCount']
           @RetryInfo = params['RetryInfo']
+          @RetryEnReason = params['RetryEnReason']
+          @RetryReason = params['RetryReason']
         end
       end
 
@@ -330,10 +347,37 @@ module TencentCloud
         # @param GraceDownFlag: 优雅缩容开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GraceDownFlag: Boolean
+        # @param HardwareType: "CVM"表示规格全部使用CVM相关类型，"POD"表示规格使用容器相关类型,默认为"CVM"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareType: String
+        # @param PayMode: "POSTPAY"表示只使用按量计费，"SPOT_FIRST"表示竞价实例优先，只有HardwareType为"HOST"时支持竞价实例优先，"POD"只支持纯按量计费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param PostPayPercentMin: 竞价实例优先的场景下，按量计费资源数量的最低百分比，整数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostPayPercentMin: Integer
+        # @param ChangeToPod: 预设资源类型为HOST时，支持勾选“资源不足时切换POD”；支持取消勾选；默认不勾选（0），勾选（1)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChangeToPod: Integer
+        # @param GroupName: 伸缩组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param YarnNodeLabel: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YarnNodeLabel: String
+        # @param GroupStatus: 伸缩组状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupStatus: Integer
+        # @param Parallel: 并行伸缩 0关闭；1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parallel: Integer
+        # @param EnableMNode: 是否支持MNode
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMNode: Integer
 
-        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag
+        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :GroupStatus, :Parallel, :EnableMNode
 
-        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil)
+        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, groupstatus=nil, parallel=nil, enablemnode=nil)
           @Id = id
           @ClusterId = clusterid
           @ScaleLowerBound = scalelowerbound
@@ -341,6 +385,15 @@ module TencentCloud
           @StrategyType = strategytype
           @NextTimeCanScale = nexttimecanscale
           @GraceDownFlag = gracedownflag
+          @HardwareType = hardwaretype
+          @PayMode = paymode
+          @PostPayPercentMin = postpaypercentmin
+          @ChangeToPod = changetopod
+          @GroupName = groupname
+          @YarnNodeLabel = yarnnodelabel
+          @GroupStatus = groupstatus
+          @Parallel = parallel
+          @EnableMNode = enablemnode
         end
 
         def deserialize(params)
@@ -351,6 +404,15 @@ module TencentCloud
           @StrategyType = params['StrategyType']
           @NextTimeCanScale = params['NextTimeCanScale']
           @GraceDownFlag = params['GraceDownFlag']
+          @HardwareType = params['HardwareType']
+          @PayMode = params['PayMode']
+          @PostPayPercentMin = params['PostPayPercentMin']
+          @ChangeToPod = params['ChangeToPod']
+          @GroupName = params['GroupName']
+          @YarnNodeLabel = params['YarnNodeLabel']
+          @GroupStatus = params['GroupStatus']
+          @Parallel = params['Parallel']
+          @EnableMNode = params['EnableMNode']
         end
       end
 
@@ -1664,14 +1726,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页参数。最大支持100
         # @type Limit: Integer
+        # @param RecordSource: 表示是自动(0)还是托管伸缩(1)
+        # @type RecordSource: Integer
 
-        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :RecordSource
 
-        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, recordsource=nil)
           @InstanceId = instanceid
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @RecordSource = recordsource
         end
 
         def deserialize(params)
@@ -1686,6 +1751,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @RecordSource = params['RecordSource']
         end
       end
 
@@ -1742,20 +1808,32 @@ module TencentCloud
 
       # DescribeAutoScaleStrategies返回参数结构体
       class DescribeAutoScaleStrategiesResponse < TencentCloud::Common::AbstractModel
+        # @param LoadAutoScaleStrategies: 按负载伸缩规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadAutoScaleStrategies: Array
         # @param TimeBasedAutoScaleStrategies: 按时间伸缩规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeBasedAutoScaleStrategies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TimeBasedAutoScaleStrategies, :RequestId
+        attr_accessor :LoadAutoScaleStrategies, :TimeBasedAutoScaleStrategies, :RequestId
 
-        def initialize(timebasedautoscalestrategies=nil, requestid=nil)
+        def initialize(loadautoscalestrategies=nil, timebasedautoscalestrategies=nil, requestid=nil)
+          @LoadAutoScaleStrategies = loadautoscalestrategies
           @TimeBasedAutoScaleStrategies = timebasedautoscalestrategies
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['LoadAutoScaleStrategies'].nil?
+            @LoadAutoScaleStrategies = []
+            params['LoadAutoScaleStrategies'].each do |i|
+              loadautoscalestrategy_tmp = LoadAutoScaleStrategy.new
+              loadautoscalestrategy_tmp.deserialize(i)
+              @LoadAutoScaleStrategies << loadautoscalestrategy_tmp
+            end
+          end
           unless params['TimeBasedAutoScaleStrategies'].nil?
             @TimeBasedAutoScaleStrategies = []
             params['TimeBasedAutoScaleStrategies'].each do |i|
@@ -4776,6 +4854,204 @@ module TencentCloud
         end
       end
 
+      # 自动扩缩容基于负载指标的规则
+      class LoadAutoScaleStrategy < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 规则ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: Integer
+        # @param StrategyName: 规则名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
+        # @param CalmDownTime: 规则生效冷却时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalmDownTime: Integer
+        # @param ScaleAction: 扩缩容动作，1表示扩容，2表示缩容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleAction: Integer
+        # @param ScaleNum: 每次规则生效时的扩缩容数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleNum: Integer
+        # @param LoadMetrics: 扩缩容负载指标。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadMetrics: String
+        # @param MetricId: 规则元数据记录ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricId: Integer
+        # @param StatisticPeriod: 规则统计周期，提供300s,600s,900s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatisticPeriod: Integer
+        # @param ProcessMethod: 指标处理方法，1表示MAX，2表示MIN，3表示AVG。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessMethod: Integer
+        # @param TriggerThreshold: 触发次数，当连续触发超过TriggerThreshold次后才开始扩缩容。
+        # @type TriggerThreshold: Integer
+        # @param TriggerConditions: 条件触发数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerConditions: :class:`Tencentcloud::Emr.v20190103.models.TriggerConditions`
+        # @param Priority: 规则优先级，添加时无效，默认为自增。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param StrategyStatus: 规则状态，1表示启动，3表示禁用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyStatus: Integer
+        # @param YarnNodeLabel: 规则扩容指定 yarn node label
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YarnNodeLabel: String
+        # @param PeriodValid: 规则生效的有效时间
+        # @type PeriodValid: String
+        # @param GraceDownFlag: 优雅缩容开关
+        # @type GraceDownFlag: Boolean
+        # @param GraceDownTime: 优雅缩容等待时间
+        # @type GraceDownTime: Integer
+        # @param Tags: 绑定标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ConfigGroupAssigned: 预设配置组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigGroupAssigned: String
+        # @param MeasureMethod: 扩容资源计算方法，"DEFAULT","INSTANCE", "CPU", "MEMORYGB"。
+        # "DEFAULT"表示默认方式，与"INSTANCE"意义相同。
+        # "INSTANCE"表示按照节点计算，默认方式。
+        # "CPU"表示按照机器的核数计算。
+        # "MEMORYGB"表示按照机器内存数计算。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MeasureMethod: String
+        # @param LoadMetricsConditions: 多指标触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadMetricsConditions: :class:`Tencentcloud::Emr.v20190103.models.LoadMetricsConditions`
+
+        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :LoadMetrics, :MetricId, :StatisticPeriod, :ProcessMethod, :TriggerThreshold, :TriggerConditions, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :LoadMetricsConditions
+
+        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, loadmetrics=nil, metricid=nil, statisticperiod=nil, processmethod=nil, triggerthreshold=nil, triggerconditions=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, loadmetricsconditions=nil)
+          @StrategyId = strategyid
+          @StrategyName = strategyname
+          @CalmDownTime = calmdowntime
+          @ScaleAction = scaleaction
+          @ScaleNum = scalenum
+          @LoadMetrics = loadmetrics
+          @MetricId = metricid
+          @StatisticPeriod = statisticperiod
+          @ProcessMethod = processmethod
+          @TriggerThreshold = triggerthreshold
+          @TriggerConditions = triggerconditions
+          @Priority = priority
+          @StrategyStatus = strategystatus
+          @YarnNodeLabel = yarnnodelabel
+          @PeriodValid = periodvalid
+          @GraceDownFlag = gracedownflag
+          @GraceDownTime = gracedowntime
+          @Tags = tags
+          @ConfigGroupAssigned = configgroupassigned
+          @MeasureMethod = measuremethod
+          @LoadMetricsConditions = loadmetricsconditions
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @StrategyName = params['StrategyName']
+          @CalmDownTime = params['CalmDownTime']
+          @ScaleAction = params['ScaleAction']
+          @ScaleNum = params['ScaleNum']
+          @LoadMetrics = params['LoadMetrics']
+          @MetricId = params['MetricId']
+          @StatisticPeriod = params['StatisticPeriod']
+          @ProcessMethod = params['ProcessMethod']
+          @TriggerThreshold = params['TriggerThreshold']
+          unless params['TriggerConditions'].nil?
+            @TriggerConditions = TriggerConditions.new
+            @TriggerConditions.deserialize(params['TriggerConditions'])
+          end
+          @Priority = params['Priority']
+          @StrategyStatus = params['StrategyStatus']
+          @YarnNodeLabel = params['YarnNodeLabel']
+          @PeriodValid = params['PeriodValid']
+          @GraceDownFlag = params['GraceDownFlag']
+          @GraceDownTime = params['GraceDownTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ConfigGroupAssigned = params['ConfigGroupAssigned']
+          @MeasureMethod = params['MeasureMethod']
+          unless params['LoadMetricsConditions'].nil?
+            @LoadMetricsConditions = LoadMetricsConditions.new
+            @LoadMetricsConditions.deserialize(params['LoadMetricsConditions'])
+          end
+        end
+      end
+
+      # 负载指标条件
+      class LoadMetricsCondition < TencentCloud::Common::AbstractModel
+        # @param StatisticPeriod: 规则统计周期，提供1min,3min,5min。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatisticPeriod: Integer
+        # @param TriggerThreshold: 触发次数，当连续触发超过TriggerThreshold次后才开始扩缩容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerThreshold: Integer
+        # @param LoadMetrics: 扩缩容负载指标。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadMetrics: String
+        # @param MetricId: 规则元数据记录ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricId: Integer
+        # @param Conditions: 触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+
+        attr_accessor :StatisticPeriod, :TriggerThreshold, :LoadMetrics, :MetricId, :Conditions
+
+        def initialize(statisticperiod=nil, triggerthreshold=nil, loadmetrics=nil, metricid=nil, conditions=nil)
+          @StatisticPeriod = statisticperiod
+          @TriggerThreshold = triggerthreshold
+          @LoadMetrics = loadmetrics
+          @MetricId = metricid
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          @StatisticPeriod = params['StatisticPeriod']
+          @TriggerThreshold = params['TriggerThreshold']
+          @LoadMetrics = params['LoadMetrics']
+          @MetricId = params['MetricId']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              triggercondition_tmp = TriggerCondition.new
+              triggercondition_tmp.deserialize(i)
+              @Conditions << triggercondition_tmp
+            end
+          end
+        end
+      end
+
+      # 负载指标
+      class LoadMetricsConditions < TencentCloud::Common::AbstractModel
+        # @param LoadMetrics: 触发规则条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadMetrics: Array
+
+        attr_accessor :LoadMetrics
+
+        def initialize(loadmetrics=nil)
+          @LoadMetrics = loadmetrics
+        end
+
+        def deserialize(params)
+          unless params['LoadMetrics'].nil?
+            @LoadMetrics = []
+            params['LoadMetrics'].each do |i|
+              loadmetricscondition_tmp = LoadMetricsCondition.new
+              loadmetricscondition_tmp.deserialize(i)
+              @LoadMetrics << loadmetricscondition_tmp
+            end
+          end
+        end
+      end
+
       # 登录设置
       class LoginSettings < TencentCloud::Common::AbstractModel
         # @param Password: 实例登录密码，8-16个字符，包含大写字母、小写字母、数字和特殊字符四种，特殊符号仅支持!@%^*，密码第一位不能为特殊字符
@@ -4851,16 +5127,19 @@ module TencentCloud
         # @type InstanceId: String
         # @param StrategyType: 自动扩缩容规则类型，1表示按负载指标扩缩容，2表示按时间扩缩容。
         # @type StrategyType: Integer
+        # @param LoadAutoScaleStrategies: 按负载扩缩容的指标。
+        # @type LoadAutoScaleStrategies: Array
         # @param TimeAutoScaleStrategies: 按时间扩缩容的规则。
         # @type TimeAutoScaleStrategies: Array
         # @param GroupId: 伸缩组Id
         # @type GroupId: Integer
 
-        attr_accessor :InstanceId, :StrategyType, :TimeAutoScaleStrategies, :GroupId
+        attr_accessor :InstanceId, :StrategyType, :LoadAutoScaleStrategies, :TimeAutoScaleStrategies, :GroupId
 
-        def initialize(instanceid=nil, strategytype=nil, timeautoscalestrategies=nil, groupid=nil)
+        def initialize(instanceid=nil, strategytype=nil, loadautoscalestrategies=nil, timeautoscalestrategies=nil, groupid=nil)
           @InstanceId = instanceid
           @StrategyType = strategytype
+          @LoadAutoScaleStrategies = loadautoscalestrategies
           @TimeAutoScaleStrategies = timeautoscalestrategies
           @GroupId = groupid
         end
@@ -4868,6 +5147,14 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @StrategyType = params['StrategyType']
+          unless params['LoadAutoScaleStrategies'].nil?
+            @LoadAutoScaleStrategies = []
+            params['LoadAutoScaleStrategies'].each do |i|
+              loadautoscalestrategy_tmp = LoadAutoScaleStrategy.new
+              loadautoscalestrategy_tmp.deserialize(i)
+              @LoadAutoScaleStrategies << loadautoscalestrategy_tmp
+            end
+          end
           unless params['TimeAutoScaleStrategies'].nil?
             @TimeAutoScaleStrategies = []
             params['TimeAutoScaleStrategies'].each do |i|
@@ -6846,7 +7133,7 @@ module TencentCloud
 
       # 定时伸缩任务策略
       class RepeatStrategy < TencentCloud::Common::AbstractModel
-        # @param RepeatType: 取值范围"DAY","DOW","DOM","NONE"，分别表示按天重复、按周重复、按月重复和一次执行。
+        # @param RepeatType: 取值范围"DAY","DOW","DOM","NONE"，分别表示按天重复、按周重复、按月重复和一次执行。必须填写
         # @type RepeatType: String
         # @param DayRepeat: 按天重复规则，当RepeatType为"DAY"时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6860,7 +7147,7 @@ module TencentCloud
         # @param NotRepeat: 一次执行规则，当RepeatType为"NONE"时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotRepeat: :class:`Tencentcloud::Emr.v20190103.models.NotRepeatStrategy`
-        # @param Expire: 规则过期时间，超过该时间后，规则将自动置为暂停状态，形式为"2020-07-23 00:00:00"。
+        # @param Expire: 规则过期时间，超过该时间后，规则将自动置为暂停状态，形式为"2020-07-23 00:00:00"。必须填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expire: String
 
@@ -8243,7 +8530,7 @@ module TencentCloud
         # @param ScaleNum: 扩缩容数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleNum: Integer
-        # @param StrategyStatus: 规则状态，1表示有效，2表示无效，3表示暂停。
+        # @param StrategyStatus: 规则状态，1表示有效，2表示无效，3表示暂停。必须填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyStatus: Integer
         # @param Priority: 规则优先级，越小越高。
@@ -8283,7 +8570,7 @@ module TencentCloud
         # @param MaxUse: 最长使用时间， 秒数，最短1小时，最长24小时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxUse: Integer
-        # @param SoftDeployInfo: 节点部署服务列表。
+        # @param SoftDeployInfo: 节点部署服务列表。部署服务仅填写HDFS、YARN。[组件名对应的映射关系表](https://cloud.tencent.com/document/product/589/98760)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftDeployInfo: Array
         # @param ServiceNodeInfo: 启动进程列表。
@@ -8396,6 +8683,51 @@ module TencentCloud
               shortnodeinfo_tmp = ShortNodeInfo.new
               shortnodeinfo_tmp.deserialize(i)
               @NodeInfoList << shortnodeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 规则触发条件
+      class TriggerCondition < TencentCloud::Common::AbstractModel
+        # @param CompareMethod: 条件比较方法，1表示大于，2表示小于，3表示大于等于，4表示小于等于。
+        # @type CompareMethod: Integer
+        # @param Threshold: 条件阈值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: Float
+
+        attr_accessor :CompareMethod, :Threshold
+
+        def initialize(comparemethod=nil, threshold=nil)
+          @CompareMethod = comparemethod
+          @Threshold = threshold
+        end
+
+        def deserialize(params)
+          @CompareMethod = params['CompareMethod']
+          @Threshold = params['Threshold']
+        end
+      end
+
+      # 规则触发条件数组
+      class TriggerConditions < TencentCloud::Common::AbstractModel
+        # @param Conditions: 规则触发条件数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+
+        attr_accessor :Conditions
+
+        def initialize(conditions=nil)
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              triggercondition_tmp = TriggerCondition.new
+              triggercondition_tmp.deserialize(i)
+              @Conditions << triggercondition_tmp
             end
           end
         end

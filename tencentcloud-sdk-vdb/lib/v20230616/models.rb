@@ -197,10 +197,16 @@ module TencentCloud
         # @param WanAddress: 外网地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanAddress: String
+        # @param IsolateAt: 隔离时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateAt: String
+        # @param AutoRenew: 是否自动续费。0: 不自动续费(可以支持特权不停服)；1:自动续费；2:到期不续费.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenew: Integer
 
-        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress
+        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
 
-        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil)
+        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil)
           @InstanceId = instanceid
           @Name = name
           @AppId = appid
@@ -226,6 +232,8 @@ module TencentCloud
           @ExpiredAt = expiredat
           @IsNoExpired = isnoexpired
           @WanAddress = wanaddress
+          @IsolateAt = isolateat
+          @AutoRenew = autorenew
         end
 
         def deserialize(params)
@@ -268,6 +276,8 @@ module TencentCloud
           @ExpiredAt = params['ExpiredAt']
           @IsNoExpired = params['IsNoExpired']
           @WanAddress = params['WanAddress']
+          @IsolateAt = params['IsolateAt']
+          @AutoRenew = params['AutoRenew']
         end
       end
 

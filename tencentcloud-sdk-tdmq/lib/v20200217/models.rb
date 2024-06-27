@@ -1663,14 +1663,24 @@ module TencentCloud
         # @type StorageSize: Integer
         # @param EnableCreateDefaultHaMirrorQueue: 镜像队列,不传默认为false
         # @type EnableCreateDefaultHaMirrorQueue: Boolean
-        # @param AutoRenewFlag: 自动续费,不传默认为true
+        # @param AutoRenewFlag: 预付费使用。自动续费,不传默认为true
         # @type AutoRenewFlag: Boolean
         # @param TimeSpan: 购买时长,不传默认为1(月)
         # @type TimeSpan: Integer
+        # @param PayMode: 付费方式，0 为后付费，即按量计费；1 为预付费，即包年包月。默认包年包月
+        # @type PayMode: Integer
+        # @param ClusterVersion: 集群版本，不传默认为 3.8.30，可选值为 3.8.30 和 3.11.8
+        # @type ClusterVersion: String
+        # @param IsIntl: 是否国际站请求，默认 false
+        # @type IsIntl: Boolean
+        # @param ResourceTags: 资源标签列表
+        # @type ResourceTags: Array
+        # @param Bandwidth: 公网带宽大小，单位 M
+        # @type Bandwidth: Integer
 
-        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan
+        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth
 
-        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil)
+        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil)
           @ZoneIds = zoneids
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1681,6 +1691,11 @@ module TencentCloud
           @EnableCreateDefaultHaMirrorQueue = enablecreatedefaulthamirrorqueue
           @AutoRenewFlag = autorenewflag
           @TimeSpan = timespan
+          @PayMode = paymode
+          @ClusterVersion = clusterversion
+          @IsIntl = isintl
+          @ResourceTags = resourcetags
+          @Bandwidth = bandwidth
         end
 
         def deserialize(params)
@@ -1694,6 +1709,18 @@ module TencentCloud
           @EnableCreateDefaultHaMirrorQueue = params['EnableCreateDefaultHaMirrorQueue']
           @AutoRenewFlag = params['AutoRenewFlag']
           @TimeSpan = params['TimeSpan']
+          @PayMode = params['PayMode']
+          @ClusterVersion = params['ClusterVersion']
+          @IsIntl = params['IsIntl']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          @Bandwidth = params['Bandwidth']
         end
       end
 
@@ -2685,15 +2712,19 @@ module TencentCloud
       class DeleteRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
+        # @param IsIntl: 是否国际站请求，默认 false
+        # @type IsIntl: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :IsIntl
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, isintl=nil)
           @InstanceId = instanceid
+          @IsIntl = isintl
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @IsIntl = params['IsIntl']
         end
       end
 
@@ -10380,10 +10411,16 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Type: 用户类型，System：系统创建，User：用户创建
         # @type Type: String
+        # @param MaxConnections: 单个用户最大可用连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConnections: Integer
+        # @param MaxChannels: 单个用户最大可用通道数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxChannels: Integer
 
-        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :CreateTime, :ModifyTime, :Type
+        attr_accessor :InstanceId, :User, :Password, :Description, :Tags, :CreateTime, :ModifyTime, :Type, :MaxConnections, :MaxChannels
 
-        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, type=nil)
+        def initialize(instanceid=nil, user=nil, password=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, type=nil, maxconnections=nil, maxchannels=nil)
           @InstanceId = instanceid
           @User = user
           @Password = password
@@ -10392,6 +10429,8 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Type = type
+          @MaxConnections = maxconnections
+          @MaxChannels = maxchannels
         end
 
         def deserialize(params)
@@ -10403,6 +10442,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Type = params['Type']
+          @MaxConnections = params['MaxConnections']
+          @MaxChannels = params['MaxChannels']
         end
       end
 
@@ -10450,10 +10491,13 @@ module TencentCloud
         # @param Vpcs: VPC 接入点列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vpcs: Array
+        # @param CreateTime: 创建时间，毫秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -10472,6 +10516,7 @@ module TencentCloud
           @ClusterStatus = clusterstatus
           @PublicAccessEndpoint = publicaccessendpoint
           @Vpcs = vpcs
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -10500,6 +10545,7 @@ module TencentCloud
               @Vpcs << vpcendpointinfo_tmp
             end
           end
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -11384,10 +11430,25 @@ module TencentCloud
         # @param MaxQueuesPerTopic: 每个主题最大队列数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxQueuesPerTopic: Integer
+        # @param MaxRetention: 最大可设置消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetention: Integer
+        # @param MinRetention: 最小可设置消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinRetention: Integer
+        # @param Retention: 实例消息保留时间，小时为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Retention: Integer
+        # @param TopicNumLowerLimit: Topic个数最小配额，即免费额度，默认为集群规格单节点最小配额*节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumLowerLimit: Integer
+        # @param TopicNumUpperLimit: Topic个数最大配额，默认为集群规格单节点最大配额*节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumUpperLimit: Integer
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic, :MaxRetention, :MinRetention, :Retention, :TopicNumLowerLimit, :TopicNumUpperLimit
 
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil, maxretention=nil, minretention=nil, retention=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -11400,6 +11461,11 @@ module TencentCloud
           @NodeDistribution = nodedistribution
           @TopicDistribution = topicdistribution
           @MaxQueuesPerTopic = maxqueuespertopic
+          @MaxRetention = maxretention
+          @MinRetention = minretention
+          @Retention = retention
+          @TopicNumLowerLimit = topicnumlowerlimit
+          @TopicNumUpperLimit = topicnumupperlimit
         end
 
         def deserialize(params)
@@ -11429,6 +11495,11 @@ module TencentCloud
             end
           end
           @MaxQueuesPerTopic = params['MaxQueuesPerTopic']
+          @MaxRetention = params['MaxRetention']
+          @MinRetention = params['MinRetention']
+          @Retention = params['Retention']
+          @TopicNumLowerLimit = params['TopicNumLowerLimit']
+          @TopicNumUpperLimit = params['TopicNumUpperLimit']
         end
       end
 

@@ -9224,32 +9224,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ExportAttackEvents接口替代
-
-        # 导出网络攻击日志
-
-        # @param request: Request instance for ExportAttackLogs.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportAttackLogsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportAttackLogsResponse`
-        def ExportAttackLogs(request)
-          body = send_request('ExportAttackLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ExportAttackLogsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 导出基线影响主机列表
 
         # @param request: Request instance for ExportBaselineEffectHostList.
