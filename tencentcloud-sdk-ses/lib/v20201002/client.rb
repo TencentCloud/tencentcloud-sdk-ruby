@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加自定义黑名单
+
+        # @param request: Request instance for CreateCustomBlacklist.
+        # @type request: :class:`Tencentcloud::ses::V20201002::CreateCustomBlacklistRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::CreateCustomBlacklistResponse`
+        def CreateCustomBlacklist(request)
+          body = send_request('CreateCustomBlacklist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomBlacklistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在验证了发信域名之后，您需要一个发信地址来发送邮件。例如发信域名是mail.qcloud.com，那么发信地址可以为 service@mail.qcloud.com。如果您想要收件人在收件箱列表中显示您的别名，例如"腾讯云邮件通知"。那么发信地址为： 别名 空格 尖括号 邮箱地址。请注意中间需要有空格
 
         # @param request: Request instance for CreateEmailAddress.
@@ -208,6 +232,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBlackListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除自定义黑名单邮箱地址
+
+        # @param request: Request instance for DeleteCustomBlackList.
+        # @type request: :class:`Tencentcloud::ses::V20201002::DeleteCustomBlackListRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::DeleteCustomBlackListResponse`
+        def DeleteCustomBlackList(request)
+          body = send_request('DeleteCustomBlackList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomBlackListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -438,6 +486,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取自定义黑名单列表
+
+        # @param request: Request instance for ListCustomBlacklist.
+        # @type request: :class:`Tencentcloud::ses::V20201002::ListCustomBlacklistRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::ListCustomBlacklistResponse`
+        def ListCustomBlacklist(request)
+          body = send_request('ListCustomBlacklist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListCustomBlacklistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取发信地址列表
 
         # @param request: Request instance for ListEmailAddress.
@@ -592,6 +664,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SendEmailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自定义黑名单
+
+        # @param request: Request instance for UpdateCustomBlackList.
+        # @type request: :class:`Tencentcloud::ses::V20201002::UpdateCustomBlackListRequest`
+        # @rtype: :class:`Tencentcloud::ses::V20201002::UpdateCustomBlackListResponse`
+        def UpdateCustomBlackList(request)
+          body = send_request('UpdateCustomBlackList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCustomBlackListResponse.new
             model.deserialize(response['Response'])
             model
           else

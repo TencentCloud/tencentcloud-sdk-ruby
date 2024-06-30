@@ -140,6 +140,43 @@ module TencentCloud
         end
       end
 
+      # 黑名单详情
+      class BlackAddressDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 黑名单地址id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Email: 邮箱地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireDate: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireDate: String
+        # @param Status: 黑名单状态，0:已过期，1:生效中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Id, :Email, :CreateTime, :ExpireDate, :Status
+
+        def initialize(id=nil, email=nil, createtime=nil, expiredate=nil, status=nil)
+          @Id = id
+          @Email = email
+          @CreateTime = createtime
+          @ExpireDate = expiredate
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Email = params['Email']
+          @CreateTime = params['CreateTime']
+          @ExpireDate = params['ExpireDate']
+          @Status = params['Status']
+        end
+      end
+
       # 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间，以及被拉黑的理由
       class BlackEmailAddress < TencentCloud::Common::AbstractModel
         # @param BounceTime: 邮箱被拉黑时间
@@ -162,6 +199,42 @@ module TencentCloud
           @BounceTime = params['BounceTime']
           @EmailAddress = params['EmailAddress']
           @IspDesc = params['IspDesc']
+        end
+      end
+
+      # CreateCustomBlacklist请求参数结构体
+      class CreateCustomBlacklistRequest < TencentCloud::Common::AbstractModel
+        # @param Emails: 添加到黑名单的邮件地址
+        # @type Emails: Array
+        # @param ExpireDate: 过期日期
+        # @type ExpireDate: String
+
+        attr_accessor :Emails, :ExpireDate
+
+        def initialize(emails=nil, expiredate=nil)
+          @Emails = emails
+          @ExpireDate = expiredate
+        end
+
+        def deserialize(params)
+          @Emails = params['Emails']
+          @ExpireDate = params['ExpireDate']
+        end
+      end
+
+      # CreateCustomBlacklist返回参数结构体
+      class CreateCustomBlacklistResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -488,6 +561,38 @@ module TencentCloud
 
       # DeleteBlackList返回参数结构体
       class DeleteBlackListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomBlackList请求参数结构体
+      class DeleteCustomBlackListRequest < TencentCloud::Common::AbstractModel
+        # @param Emails: 需要删除的邮箱地址
+        # @type Emails: Array
+
+        attr_accessor :Emails
+
+        def initialize(emails=nil)
+          @Emails = emails
+        end
+
+        def deserialize(params)
+          @Emails = params['Emails']
+        end
+      end
+
+      # DeleteCustomBlackList返回参数结构体
+      class DeleteCustomBlackListResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -970,6 +1075,65 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListCustomBlacklist请求参数结构体
+      class ListCustomBlacklistRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，整型，从0开始
+        # @type Offset: Integer
+        # @param Limit: 限制数目，整型,不超过100
+        # @type Limit: Integer
+        # @param Status: 筛选黑名单的状态，0:已过期，1:生效中, 2:全部
+        # @type Status: Integer
+        # @param Email: 黑名单中的邮箱地址
+        # @type Email: String
+
+        attr_accessor :Offset, :Limit, :Status, :Email
+
+        def initialize(offset=nil, limit=nil, status=nil, email=nil)
+          @Offset = offset
+          @Limit = limit
+          @Status = status
+          @Email = email
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @Email = params['Email']
+        end
+      end
+
+      # ListCustomBlacklist返回参数结构体
+      class ListCustomBlacklistResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表总数
+        # @type TotalCount: Integer
+        # @param Data: 黑名单列表详情
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              blackaddressdetail_tmp = BlackAddressDetail.new
+              blackaddressdetail_tmp.deserialize(i)
+              @Data << blackaddressdetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1759,6 +1923,46 @@ module TencentCloud
 
         def deserialize(params)
           @BeginTime = params['BeginTime']
+        end
+      end
+
+      # UpdateCustomBlackList请求参数结构体
+      class UpdateCustomBlackListRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 需要更改的黑名单id
+        # @type Id: Integer
+        # @param Email: 修改后的邮件地址
+        # @type Email: String
+        # @param ExpireDate: 过期时间，为空则表示永久有效
+        # @type ExpireDate: String
+
+        attr_accessor :Id, :Email, :ExpireDate
+
+        def initialize(id=nil, email=nil, expiredate=nil)
+          @Id = id
+          @Email = email
+          @ExpireDate = expiredate
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Email = params['Email']
+          @ExpireDate = params['ExpireDate']
+        end
+      end
+
+      # UpdateCustomBlackList返回参数结构体
+      class UpdateCustomBlackListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

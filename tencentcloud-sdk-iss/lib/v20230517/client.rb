@@ -1689,6 +1689,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询禁播通道列表
+
+        # @param request: Request instance for QueryForbidPlayChannelList.
+        # @type request: :class:`Tencentcloud::iss::V20230517::QueryForbidPlayChannelListRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::QueryForbidPlayChannelListResponse`
+        def QueryForbidPlayChannelList(request)
+          body = send_request('QueryForbidPlayChannelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryForbidPlayChannelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于刷新国标设备的通道（接口调用后，触发向设备请求通道列表，新增的通道入库，设备上已删除的通道需自行删除、后台不自动删除）。
 
         # @param request: Request instance for RefreshDeviceChannel.
@@ -1699,6 +1723,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RefreshDeviceChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁止主、子账号对视频通道的实况预览
+
+        # @param request: Request instance for SetForbidPlayChannels.
+        # @type request: :class:`Tencentcloud::iss::V20230517::SetForbidPlayChannelsRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::SetForbidPlayChannelsResponse`
+        def SetForbidPlayChannels(request)
+          body = send_request('SetForbidPlayChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetForbidPlayChannelsResponse.new
             model.deserialize(response['Response'])
             model
           else

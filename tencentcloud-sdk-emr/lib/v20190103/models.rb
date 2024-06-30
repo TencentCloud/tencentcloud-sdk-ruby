@@ -772,10 +772,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 6
-        deprecate :Ftitle=, :none, 2024, 6
-        deprecate :Config, :none, 2024, 6
-        deprecate :Config=, :none, 2024, 6
+        deprecate :Ftitle, :none, 2024, 7
+        deprecate :Ftitle=, :none, 2024, 7
+        deprecate :Config, :none, 2024, 7
+        deprecate :Config=, :none, 2024, 7
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -8118,15 +8118,18 @@ module TencentCloud
         # @type StrategyConfig: :class:`Tencentcloud::Emr.v20190103.models.StrategyConfig`
         # @param StopParams: 暂停服务时用的参数
         # @type StopParams: :class:`Tencentcloud::Emr.v20190103.models.StopParams`
+        # @param KeepMonitorButNotRecoverProcess: 当OpType为<li>StopMonitor</li>才有用，true表示进入维护模式但是仍然监控进程但是不拉起进程
+        # @type KeepMonitorButNotRecoverProcess: Boolean
 
-        attr_accessor :InstanceId, :OpType, :OpScope, :StrategyConfig, :StopParams
+        attr_accessor :InstanceId, :OpType, :OpScope, :StrategyConfig, :StopParams, :KeepMonitorButNotRecoverProcess
 
-        def initialize(instanceid=nil, optype=nil, opscope=nil, strategyconfig=nil, stopparams=nil)
+        def initialize(instanceid=nil, optype=nil, opscope=nil, strategyconfig=nil, stopparams=nil, keepmonitorbutnotrecoverprocess=nil)
           @InstanceId = instanceid
           @OpType = optype
           @OpScope = opscope
           @StrategyConfig = strategyconfig
           @StopParams = stopparams
+          @KeepMonitorButNotRecoverProcess = keepmonitorbutnotrecoverprocess
         end
 
         def deserialize(params)
@@ -8144,6 +8147,7 @@ module TencentCloud
             @StopParams = StopParams.new
             @StopParams.deserialize(params['StopParams'])
           end
+          @KeepMonitorButNotRecoverProcess = params['KeepMonitorButNotRecoverProcess']
         end
       end
 

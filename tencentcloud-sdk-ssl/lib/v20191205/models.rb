@@ -208,17 +208,22 @@ module TencentCloud
         # @type Region: String
         # @param TotalCount: 关联资源总数
         # @type TotalCount: Integer
+        # @param Error: 是否查询异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :Region, :TotalCount
+        attr_accessor :Region, :TotalCount, :Error
 
-        def initialize(region=nil, totalcount=nil)
+        def initialize(region=nil, totalcount=nil, error=nil)
           @Region = region
           @TotalCount = totalcount
+          @Error = error
         end
 
         def deserialize(params)
           @Region = params['Region']
           @TotalCount = params['TotalCount']
+          @Error = params['Error']
         end
       end
 
@@ -6412,7 +6417,7 @@ module TencentCloud
       class UpdateCertificateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param OldCertificateId: 一键更新原证书ID， 查询绑定该证书的云资源然后进行证书更新
         # @type OldCertificateId: String
-        # @param ResourceTypes: 需要部署的资源类型，参数值可选（小写）：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb、tse
+        # @param ResourceTypes: 需要部署的资源类型，参数值可选（小写）：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb、tse、cos
         # @type ResourceTypes: Array
         # @param CertificateId: 一键更新新证书ID，不传该则证书公钥和私钥必传
         # @type CertificateId: String
@@ -6437,8 +6442,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 6
-        deprecate :Regions=, :none, 2024, 6
+        deprecate :Regions, :none, 2024, 7
+        deprecate :Regions=, :none, 2024, 7
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

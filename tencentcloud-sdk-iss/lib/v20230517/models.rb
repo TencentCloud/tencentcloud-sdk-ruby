@@ -1418,6 +1418,36 @@ module TencentCloud
         end
       end
 
+      # 通道属性信息
+      class ChannelAttrInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备通道所属的设备ID
+        # @type DeviceId: String
+        # @param DeviceName: 设备通道所属的设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param ChannelId: 设备通道ID
+        # @type ChannelId: String
+        # @param ChannelName: 设备通道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelName: String
+
+        attr_accessor :DeviceId, :DeviceName, :ChannelId, :ChannelName
+
+        def initialize(deviceid=nil, devicename=nil, channelid=nil, channelname=nil)
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @ChannelName = channelname
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+        end
+      end
+
       # 通道及通道所属设备信息
       class ChannelInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 通道所属的设备ID
@@ -4581,6 +4611,42 @@ module TencentCloud
         end
       end
 
+      # 用户禁止播流的通道列表返回数据
+      class ListForbidplayChannelsData < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 第几页
+        # @type PageNumber: Integer
+        # @param PageSize: 当前页的设备数量
+        # @type PageSize: Integer
+        # @param TotalCount: 本次查询的设备通道总数
+        # @type TotalCount: Integer
+        # @param List: 设备通道信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
+
+        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @List = list
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              channelattrinfo_tmp = ChannelAttrInfo.new
+              channelattrinfo_tmp.deserialize(i)
+              @List << channelattrinfo_tmp
+            end
+          end
+        end
+      end
+
       # 查询网关设备列表返回数据
       class ListGatewayDevicesData < TencentCloud::Common::AbstractModel
         # @param List: 网关下设备列表
@@ -5865,6 +5931,54 @@ module TencentCloud
         end
       end
 
+      # QueryForbidPlayChannelList请求参数结构体
+      class QueryForbidPlayChannelListRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 子用户uin，也可以是主用户的uin
+        # @type UserId: String
+        # @param PageSize: 每页最大数量，最大为200，超过按照200返回
+        # @type PageSize: Integer
+        # @param PageNumber: 第几页
+        # @type PageNumber: Integer
+
+        attr_accessor :UserId, :PageSize, :PageNumber
+
+        def initialize(userid=nil, pagesize=nil, pagenumber=nil)
+          @UserId = userid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # QueryForbidPlayChannelList返回参数结构体
+      class QueryForbidPlayChannelListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListForbidplayChannelsData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListForbidplayChannelsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实时上云计划基础信息
       class RecordPlanBaseInfo < TencentCloud::Common::AbstractModel
         # @param PlanId: 上云计划ID
@@ -6222,6 +6336,69 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SetForbidPlayChannels请求参数结构体
+      class SetForbidPlayChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param Channels: 要禁播的通道参数，一次最多可以设置200个通道
+        # @type Channels: Array
+        # @param UserId: 用户uin，可以是子用户的也可以是主用户的uin
+        # @type UserId: String
+
+        attr_accessor :Channels, :UserId
+
+        def initialize(channels=nil, userid=nil)
+          @Channels = channels
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          unless params['Channels'].nil?
+            @Channels = []
+            params['Channels'].each do |i|
+              setforbidplaychannelparam_tmp = SetForbidplayChannelParam.new
+              setforbidplaychannelparam_tmp.deserialize(i)
+              @Channels << setforbidplaychannelparam_tmp
+            end
+          end
+          @UserId = params['UserId']
+        end
+      end
+
+      # SetForbidPlayChannels返回参数结构体
+      class SetForbidPlayChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设置通道禁止播流，有通道Id和使能enable字段
+      class SetForbidplayChannelParam < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道Id
+        # @type ChannelId: String
+        # @param Enable: 是否禁止通道播流
+        # @type Enable: Boolean
+
+        attr_accessor :ChannelId, :Enable
+
+        def initialize(channelid=nil, enable=nil)
+          @ChannelId = channelid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @Enable = params['Enable']
         end
       end
 

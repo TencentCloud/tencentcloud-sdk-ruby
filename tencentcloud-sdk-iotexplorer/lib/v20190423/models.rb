@@ -6318,14 +6318,18 @@ module TencentCloud
         # @type TWeCallPkgList: Array
         # @param Total: 总数
         # @type Total: Integer
+        # @param TWeCallCategoryPkgList: 分类统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TWeCallCategoryPkgList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TWeCallPkgList, :Total, :RequestId
+        attr_accessor :TWeCallPkgList, :Total, :TWeCallCategoryPkgList, :RequestId
 
-        def initialize(twecallpkglist=nil, total=nil, requestid=nil)
+        def initialize(twecallpkglist=nil, total=nil, twecallcategorypkglist=nil, requestid=nil)
           @TWeCallPkgList = twecallpkglist
           @Total = total
+          @TWeCallCategoryPkgList = twecallcategorypkglist
           @RequestId = requestid
         end
 
@@ -6339,6 +6343,14 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          unless params['TWeCallCategoryPkgList'].nil?
+            @TWeCallCategoryPkgList = []
+            params['TWeCallCategoryPkgList'].each do |i|
+              twecallcategorypkginfo_tmp = TWeCallCategoryPkgInfo.new
+              twecallcategorypkginfo_tmp.deserialize(i)
+              @TWeCallCategoryPkgList << twecallcategorypkginfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8740,6 +8752,33 @@ module TencentCloud
           @ModelId = params['ModelId']
           @Sn = params['Sn']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # TWeCall分类统计数据
+      class TWeCallCategoryPkgInfo < TencentCloud::Common::AbstractModel
+        # @param PkgType: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgType: Integer
+        # @param All: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type All: Integer
+        # @param Used: 已使用数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Used: Integer
+
+        attr_accessor :PkgType, :All, :Used
+
+        def initialize(pkgtype=nil, all=nil, used=nil)
+          @PkgType = pkgtype
+          @All = all
+          @Used = used
+        end
+
+        def deserialize(params)
+          @PkgType = params['PkgType']
+          @All = params['All']
+          @Used = params['Used']
         end
       end
 

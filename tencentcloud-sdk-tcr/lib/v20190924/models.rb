@@ -3376,6 +3376,9 @@ module TencentCloud
         # @param All: 列出所有命名空间
         # @type All: Boolean
         # @param Filters: 过滤条件
+        # - 按照【标签】过滤
+        #    Name: Tags
+        #    Value:   tagKey:tagVal
         # @type Filters: Array
         # @param KmsSignPolicy: 仅查询启用了 KMS 镜像签名的空间
         # @type KmsSignPolicy: Boolean
