@@ -1328,6 +1328,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreatePrivateNatGateway）用于创建私网NAT网关。
+
+        # @param request: Request instance for CreatePrivateNatGateway.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayResponse`
+        def CreatePrivateNatGateway(request)
+          body = send_request('CreatePrivateNatGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateNatGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreatePrivateNatGatewayDestinationIpPortTranslationNatRule）用于创建私网NAT网关目的端口转换规则
+
+        # @param request: Request instance for CreatePrivateNatGatewayDestinationIpPortTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayDestinationIpPortTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayDestinationIpPortTranslationNatRuleResponse`
+        def CreatePrivateNatGatewayDestinationIpPortTranslationNatRule(request)
+          body = send_request('CreatePrivateNatGatewayDestinationIpPortTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateNatGatewayDestinationIpPortTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ CreatePrivateNatGatewayTranslationAclRule）用于创建私网NAT网关源端转换访问控制规则
+
+        # @param request: Request instance for CreatePrivateNatGatewayTranslationAclRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayTranslationAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayTranslationAclRuleResponse`
+        def CreatePrivateNatGatewayTranslationAclRule(request)
+          body = send_request('CreatePrivateNatGatewayTranslationAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateNatGatewayTranslationAclRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreatePrivateNatGatewayTranslationNatRule）用于创建私网NAT网关源端转换规则。
+
+        # @param request: Request instance for CreatePrivateNatGatewayTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreatePrivateNatGatewayTranslationNatRuleResponse`
+        def CreatePrivateNatGatewayTranslationNatRule(request)
+          body = send_request('CreatePrivateNatGatewayTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateNatGatewayTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateRouteTable)用于创建路由表。
         # * 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
         # * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
@@ -2393,6 +2489,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNetworkInterfaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeletePrivateNatGateway）用于删除私网NAT网关。
+
+        # @param request: Request instance for DeletePrivateNatGateway.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayResponse`
+        def DeletePrivateNatGateway(request)
+          body = send_request('DeletePrivateNatGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrivateNatGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeletePrivateNatGatewayDestinationIpPortTranslationNatRule）用于删除私网NAT网关目的端口转换规则
+
+        # @param request: Request instance for DeletePrivateNatGatewayDestinationIpPortTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayDestinationIpPortTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayDestinationIpPortTranslationNatRuleResponse`
+        def DeletePrivateNatGatewayDestinationIpPortTranslationNatRule(request)
+          body = send_request('DeletePrivateNatGatewayDestinationIpPortTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrivateNatGatewayDestinationIpPortTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeletePrivateNatGatewayTranslationAclRule）用于删除私网NAT网关源端转换访问控制规则
+
+        # @param request: Request instance for DeletePrivateNatGatewayTranslationAclRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayTranslationAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayTranslationAclRuleResponse`
+        def DeletePrivateNatGatewayTranslationAclRule(request)
+          body = send_request('DeletePrivateNatGatewayTranslationAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrivateNatGatewayTranslationAclRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeletePrivateNatGatewayTranslationNatRule）用于删除私网NAT网关源端转换规则
+
+        # @param request: Request instance for DeletePrivateNatGatewayTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeletePrivateNatGatewayTranslationNatRuleResponse`
+        def DeletePrivateNatGatewayTranslationNatRule(request)
+          body = send_request('DeletePrivateNatGatewayTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrivateNatGatewayTranslationNatRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3973,6 +4165,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNetworkInterfacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePrivateNatGatewayDestinationIpPortTranslationNatRules）用于查询私网NAT网关目的端口转换规则
+
+        # @param request: Request instance for DescribePrivateNatGatewayDestinationIpPortTranslationNatRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayDestinationIpPortTranslationNatRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayDestinationIpPortTranslationNatRulesResponse`
+        def DescribePrivateNatGatewayDestinationIpPortTranslationNatRules(request)
+          body = send_request('DescribePrivateNatGatewayDestinationIpPortTranslationNatRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateNatGatewayDestinationIpPortTranslationNatRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePrivateNatGatewayLimits）用于查询可创建的私网NAT网关配额数量
+
+        # @param request: Request instance for DescribePrivateNatGatewayLimits.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayLimitsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayLimitsResponse`
+        def DescribePrivateNatGatewayLimits(request)
+          body = send_request('DescribePrivateNatGatewayLimits', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateNatGatewayLimitsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePrivateNatGatewayRegions）用于查询查询私网NAT网关可支持地域
+
+        # @param request: Request instance for DescribePrivateNatGatewayRegions.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayRegionsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayRegionsResponse`
+        def DescribePrivateNatGatewayRegions(request)
+          body = send_request('DescribePrivateNatGatewayRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateNatGatewayRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePrivateNatGatewayTranslationAclRules）用于查询私网NAT网关源端转换访问控制规则
+
+        # @param request: Request instance for DescribePrivateNatGatewayTranslationAclRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayTranslationAclRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayTranslationAclRulesResponse`
+        def DescribePrivateNatGatewayTranslationAclRules(request)
+          body = send_request('DescribePrivateNatGatewayTranslationAclRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateNatGatewayTranslationAclRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePrivateNatGatewayTranslationNatRules）用于查询私网NAT网关源端转换规则
+
+        # @param request: Request instance for DescribePrivateNatGatewayTranslationNatRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayTranslationNatRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewayTranslationNatRulesResponse`
+        def DescribePrivateNatGatewayTranslationNatRules(request)
+          body = send_request('DescribePrivateNatGatewayTranslationNatRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateNatGatewayTranslationNatRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePrivateNatGateways）用于查询私网NAT网关
+
+        # @param request: Request instance for DescribePrivateNatGateways.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewaysRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribePrivateNatGatewaysResponse`
+        def DescribePrivateNatGateways(request)
+          body = send_request('DescribePrivateNatGateways', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateNatGatewaysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6634,6 +6970,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPrivateIpAddressesAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyPrivateNatGatewayAttribute）用于修改私网NAT网关属性
+
+        # @param request: Request instance for ModifyPrivateNatGatewayAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayAttributeResponse`
+        def ModifyPrivateNatGatewayAttribute(request)
+          body = send_request('ModifyPrivateNatGatewayAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrivateNatGatewayAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyPrivateNatGatewayDestinationIpPortTranslationNatRule）用于修改私网NAT网关目的端口转换规则
+
+        # @param request: Request instance for ModifyPrivateNatGatewayDestinationIpPortTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayDestinationIpPortTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayDestinationIpPortTranslationNatRuleResponse`
+        def ModifyPrivateNatGatewayDestinationIpPortTranslationNatRule(request)
+          body = send_request('ModifyPrivateNatGatewayDestinationIpPortTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrivateNatGatewayDestinationIpPortTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyPrivateNatGatewayTranslationAclRule）用于修改私网NAT网关源端转换访问控制规则
+
+        # @param request: Request instance for ModifyPrivateNatGatewayTranslationAclRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayTranslationAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayTranslationAclRuleResponse`
+        def ModifyPrivateNatGatewayTranslationAclRule(request)
+          body = send_request('ModifyPrivateNatGatewayTranslationAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrivateNatGatewayTranslationAclRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyPrivateNatGatewayTranslationNatRule）用于修改私网NAT网关源端转换规则
+
+        # @param request: Request instance for ModifyPrivateNatGatewayTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyPrivateNatGatewayTranslationNatRuleResponse`
+        def ModifyPrivateNatGatewayTranslationNatRule(request)
+          body = send_request('ModifyPrivateNatGatewayTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrivateNatGatewayTranslationNatRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

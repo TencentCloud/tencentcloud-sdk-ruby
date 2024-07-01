@@ -3997,6 +3997,233 @@ module TencentCloud
         end
       end
 
+      # CreatePrivateNatGatewayDestinationIpPortTranslationNatRule请求参数结构体
+      class CreatePrivateNatGatewayDestinationIpPortTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param LocalDestinationIpPortTranslationNatRules: 目的端口转换规则列表。
+        # @type LocalDestinationIpPortTranslationNatRules: Array
+
+        attr_accessor :NatGatewayId, :LocalDestinationIpPortTranslationNatRules
+
+        def initialize(natgatewayid=nil, localdestinationipporttranslationnatrules=nil)
+          @NatGatewayId = natgatewayid
+          @LocalDestinationIpPortTranslationNatRules = localdestinationipporttranslationnatrules
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['LocalDestinationIpPortTranslationNatRules'].nil?
+            @LocalDestinationIpPortTranslationNatRules = []
+            params['LocalDestinationIpPortTranslationNatRules'].each do |i|
+              localdestinationipporttranslationnatrule_tmp = LocalDestinationIpPortTranslationNatRule.new
+              localdestinationipporttranslationnatrule_tmp.deserialize(i)
+              @LocalDestinationIpPortTranslationNatRules << localdestinationipporttranslationnatrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePrivateNatGatewayDestinationIpPortTranslationNatRule返回参数结构体
+      class CreatePrivateNatGatewayDestinationIpPortTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrivateNatGateway请求参数结构体
+      class CreatePrivateNatGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayName: 私网网关名称
+        # @type NatGatewayName: String
+        # @param VpcId: 私有网络实例ID。当创建VPC类型私网NAT网关或者专线网关类型私网NAT网关时，此参数必填。
+        # @type VpcId: String
+        # @param CrossDomain: 跨域参数。仅当取值为True时，才会支持跨域绑定VPC。
+        # @type CrossDomain: Boolean
+        # @param Tags: 实例标签
+        # @type Tags: Array
+        # @param VpcType: VPC类型私网NAT网关。仅当取值为True时，才会创建VPC类型私网NAT网关。
+        # @type VpcType: Boolean
+        # @param CcnId: 云联网类型私网NAT网关需要绑定的云联网实例ID。
+        # @type CcnId: String
+
+        attr_accessor :NatGatewayName, :VpcId, :CrossDomain, :Tags, :VpcType, :CcnId
+
+        def initialize(natgatewayname=nil, vpcid=nil, crossdomain=nil, tags=nil, vpctype=nil, ccnid=nil)
+          @NatGatewayName = natgatewayname
+          @VpcId = vpcid
+          @CrossDomain = crossdomain
+          @Tags = tags
+          @VpcType = vpctype
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @NatGatewayName = params['NatGatewayName']
+          @VpcId = params['VpcId']
+          @CrossDomain = params['CrossDomain']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @VpcType = params['VpcType']
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # CreatePrivateNatGateway返回参数结构体
+      class CreatePrivateNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param PrivateNatGatewaySet: 私网网关对象。
+        # @type PrivateNatGatewaySet: Array
+        # @param TotalCount: 创建实例个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivateNatGatewaySet, :TotalCount, :RequestId
+
+        def initialize(privatenatgatewayset=nil, totalcount=nil, requestid=nil)
+          @PrivateNatGatewaySet = privatenatgatewayset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PrivateNatGatewaySet'].nil?
+            @PrivateNatGatewaySet = []
+            params['PrivateNatGatewaySet'].each do |i|
+              privatenatgateway_tmp = PrivateNatGateway.new
+              privatenatgateway_tmp.deserialize(i)
+              @PrivateNatGatewaySet << privatenatgateway_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrivateNatGatewayTranslationAclRule请求参数结构体
+      class CreatePrivateNatGatewayTranslationAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @type TranslationIp: String
+        # @param TranslationAclRules: 访问控制列表。
+        # @type TranslationAclRules: Array
+        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @type OriginalIp: String
+
+        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :TranslationAclRules, :OriginalIp
+
+        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, translationaclrules=nil, originalip=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @TranslationAclRules = translationaclrules
+          @OriginalIp = originalip
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          unless params['TranslationAclRules'].nil?
+            @TranslationAclRules = []
+            params['TranslationAclRules'].each do |i|
+              translationaclrule_tmp = TranslationAclRule.new
+              translationaclrule_tmp.deserialize(i)
+              @TranslationAclRules << translationaclrule_tmp
+            end
+          end
+          @OriginalIp = params['OriginalIp']
+        end
+      end
+
+      # CreatePrivateNatGatewayTranslationAclRule返回参数结构体
+      class CreatePrivateNatGatewayTranslationAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrivateNatGatewayTranslationNatRule请求参数结构体
+      class CreatePrivateNatGatewayTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationNatRules: 转换规则对象数组。
+        # @type TranslationNatRules: Array
+        # @param CrossDomain: 跨域参数，当VPC为跨域时填写为True。
+        # @type CrossDomain: Boolean
+
+        attr_accessor :NatGatewayId, :TranslationNatRules, :CrossDomain
+
+        def initialize(natgatewayid=nil, translationnatrules=nil, crossdomain=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationNatRules = translationnatrules
+          @CrossDomain = crossdomain
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['TranslationNatRules'].nil?
+            @TranslationNatRules = []
+            params['TranslationNatRules'].each do |i|
+              translationnatruleinput_tmp = TranslationNatRuleInput.new
+              translationnatruleinput_tmp.deserialize(i)
+              @TranslationNatRules << translationnatruleinput_tmp
+            end
+          end
+          @CrossDomain = params['CrossDomain']
+        end
+      end
+
+      # CreatePrivateNatGatewayTranslationNatRule返回参数结构体
+      class CreatePrivateNatGatewayTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`。
+        # @type NatGatewayId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NatGatewayId, :RequestId
+
+        def initialize(natgatewayid=nil, requestid=nil)
+          @NatGatewayId = natgatewayid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRouteTable请求参数结构体
       class CreateRouteTableRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -6311,6 +6538,184 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrivateNatGatewayDestinationIpPortTranslationNatRule请求参数结构体
+      class DeletePrivateNatGatewayDestinationIpPortTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param LocalDestinationIpPortTranslationNatRules: 目的端口转换规则数组。
+        # @type LocalDestinationIpPortTranslationNatRules: Array
+
+        attr_accessor :NatGatewayId, :LocalDestinationIpPortTranslationNatRules
+
+        def initialize(natgatewayid=nil, localdestinationipporttranslationnatrules=nil)
+          @NatGatewayId = natgatewayid
+          @LocalDestinationIpPortTranslationNatRules = localdestinationipporttranslationnatrules
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['LocalDestinationIpPortTranslationNatRules'].nil?
+            @LocalDestinationIpPortTranslationNatRules = []
+            params['LocalDestinationIpPortTranslationNatRules'].each do |i|
+              localdestinationipporttranslationnatrule_tmp = LocalDestinationIpPortTranslationNatRule.new
+              localdestinationipporttranslationnatrule_tmp.deserialize(i)
+              @LocalDestinationIpPortTranslationNatRules << localdestinationipporttranslationnatrule_tmp
+            end
+          end
+        end
+      end
+
+      # DeletePrivateNatGatewayDestinationIpPortTranslationNatRule返回参数结构体
+      class DeletePrivateNatGatewayDestinationIpPortTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrivateNatGateway请求参数结构体
+      class DeletePrivateNatGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如"intranat-xxxxxxxx"。
+        # @type NatGatewayId: String
+
+        attr_accessor :NatGatewayId
+
+        def initialize(natgatewayid=nil)
+          @NatGatewayId = natgatewayid
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+        end
+      end
+
+      # DeletePrivateNatGateway返回参数结构体
+      class DeletePrivateNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrivateNatGatewayTranslationAclRule请求参数结构体
+      class DeletePrivateNatGatewayTranslationAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池
+        # @type TranslationIp: String
+        # @param AclRuleIds: 访问控制规则对应`ID`
+        # @type AclRuleIds: Array
+        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效
+        # @type OriginalIp: String
+
+        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :AclRuleIds, :OriginalIp
+
+        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, aclruleids=nil, originalip=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @AclRuleIds = aclruleids
+          @OriginalIp = originalip
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          @AclRuleIds = params['AclRuleIds']
+          @OriginalIp = params['OriginalIp']
+        end
+      end
+
+      # DeletePrivateNatGatewayTranslationAclRule返回参数结构体
+      class DeletePrivateNatGatewayTranslationAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrivateNatGatewayTranslationNatRule请求参数结构体
+      class DeletePrivateNatGatewayTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationNatRules: 转换规则对象数组。
+        # @type TranslationNatRules: Array
+        # @param CrossDomain: 跨域参数，当VPC为跨域时填写为True。
+        # @type CrossDomain: Boolean
+
+        attr_accessor :NatGatewayId, :TranslationNatRules, :CrossDomain
+
+        def initialize(natgatewayid=nil, translationnatrules=nil, crossdomain=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationNatRules = translationnatrules
+          @CrossDomain = crossdomain
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['TranslationNatRules'].nil?
+            @TranslationNatRules = []
+            params['TranslationNatRules'].each do |i|
+              translationnatrule_tmp = TranslationNatRule.new
+              translationnatrule_tmp.deserialize(i)
+              @TranslationNatRules << translationnatrule_tmp
+            end
+          end
+          @CrossDomain = params['CrossDomain']
+        end
+      end
+
+      # DeletePrivateNatGatewayTranslationNatRule返回参数结构体
+      class DeletePrivateNatGatewayTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NatGatewayId, :RequestId
+
+        def initialize(natgatewayid=nil, requestid=nil)
+          @NatGatewayId = natgatewayid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
           @RequestId = params['RequestId']
         end
       end
@@ -9948,6 +10353,396 @@ module TencentCloud
         end
       end
 
+      # DescribePrivateNatGatewayDestinationIpPortTranslationNatRules请求参数结构体
+      class DescribePrivateNatGatewayDestinationIpPortTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如"intranat-xxxxxxxx)
+        # @type NatGatewayId: String
+        # @param Filters: 过滤条件，Name可选值"OriginalIp",  "TranslationIp", "OriginalPort","TranslationPort",  "Protocol", "Description"
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数目，默认值为20。
+        # @type Limit: Integer
+
+        attr_accessor :NatGatewayId, :Filters, :Offset, :Limit
+
+        def initialize(natgatewayid=nil, filters=nil, offset=nil, limit=nil)
+          @NatGatewayId = natgatewayid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrivateNatGatewayDestinationIpPortTranslationNatRules返回参数结构体
+      class DescribePrivateNatGatewayDestinationIpPortTranslationNatRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总规则数目。
+        # @type TotalCount: Integer
+        # @param LocalDestinationIpPortTranslationNatRuleSet: 目的端口转换规则数组。
+        # @type LocalDestinationIpPortTranslationNatRuleSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LocalDestinationIpPortTranslationNatRuleSet, :RequestId
+
+        def initialize(totalcount=nil, localdestinationipporttranslationnatruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LocalDestinationIpPortTranslationNatRuleSet = localdestinationipporttranslationnatruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LocalDestinationIpPortTranslationNatRuleSet'].nil?
+            @LocalDestinationIpPortTranslationNatRuleSet = []
+            params['LocalDestinationIpPortTranslationNatRuleSet'].each do |i|
+              privatenatdestinationipporttranslationnatrule_tmp = PrivateNatDestinationIpPortTranslationNatRule.new
+              privatenatdestinationipporttranslationnatrule_tmp.deserialize(i)
+              @LocalDestinationIpPortTranslationNatRuleSet << privatenatdestinationipporttranslationnatrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateNatGatewayLimits请求参数结构体
+      class DescribePrivateNatGatewayLimitsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 查询VPC下可创建的私网网关配额数量，可选值：
+        # <li>VpcId - String - 所在VpcId</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数目，默认值为20。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrivateNatGatewayLimits返回参数结构体
+      class DescribePrivateNatGatewayLimitsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询返回结果个数。
+        # @type TotalCount: Integer
+        # @param PrivateNatGatewayLimitSet: 私网网关配额。
+        # @type PrivateNatGatewayLimitSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PrivateNatGatewayLimitSet, :RequestId
+
+        def initialize(totalcount=nil, privatenatgatewaylimitset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PrivateNatGatewayLimitSet = privatenatgatewaylimitset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PrivateNatGatewayLimitSet'].nil?
+            @PrivateNatGatewayLimitSet = []
+            params['PrivateNatGatewayLimitSet'].each do |i|
+              privatenatgatewaylimit_tmp = PrivateNatGatewayLimit.new
+              privatenatgatewaylimit_tmp.deserialize(i)
+              @PrivateNatGatewayLimitSet << privatenatgatewaylimit_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateNatGatewayRegions请求参数结构体
+      class DescribePrivateNatGatewayRegionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrivateNatGatewayRegions返回参数结构体
+      class DescribePrivateNatGatewayRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RegionSet: 地域对象
+        # @type RegionSet: Array
+        # @param TotalCount: 返回可支持地域总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionSet, :TotalCount, :RequestId
+
+        def initialize(regionset=nil, totalcount=nil, requestid=nil)
+          @RegionSet = regionset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              natregioninfowitharea_tmp = NatRegionInfoWithArea.new
+              natregioninfowitharea_tmp.deserialize(i)
+              @RegionSet << natregioninfowitharea_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateNatGatewayTranslationAclRules请求参数结构体
+      class DescribePrivateNatGatewayTranslationAclRulesRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @type TranslationIp: String
+        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @type OriginalIp: String
+        # @param Offset: 偏移量。默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数目，默认值为20。
+        # @type Limit: Integer
+
+        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :OriginalIp, :Offset, :Limit
+
+        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, originalip=nil, offset=nil, limit=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @OriginalIp = originalip
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          @OriginalIp = params['OriginalIp']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrivateNatGatewayTranslationAclRules返回参数结构体
+      class DescribePrivateNatGatewayTranslationAclRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回个数。
+        # @type TotalCount: Integer
+        # @param TranslationAclRuleSet: 访问控制规则列表。
+        # @type TranslationAclRuleSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TranslationAclRuleSet, :RequestId
+
+        def initialize(totalcount=nil, translationaclruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TranslationAclRuleSet = translationaclruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TranslationAclRuleSet'].nil?
+            @TranslationAclRuleSet = []
+            params['TranslationAclRuleSet'].each do |i|
+              translationaclrule_tmp = TranslationAclRule.new
+              translationaclrule_tmp.deserialize(i)
+              @TranslationAclRuleSet << translationaclrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateNatGatewayTranslationNatRules请求参数结构体
+      class DescribePrivateNatGatewayTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param Filters: 过滤条件。
+        # <li>OriginalIp - String - 转换规则源`IP`。</li>
+        # <li>TranslationIp - String - 转换`IP`。</li>
+        # <li>VpcId - String - 私网网关所在`VpcId`。</li>
+        # <li>Description - String - 转换规则描述</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量。默认值为20。
+        # @type Limit: Integer
+
+        attr_accessor :NatGatewayId, :Filters, :Offset, :Limit
+
+        def initialize(natgatewayid=nil, filters=nil, offset=nil, limit=nil)
+          @NatGatewayId = natgatewayid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrivateNatGatewayTranslationNatRules返回参数结构体
+      class DescribePrivateNatGatewayTranslationNatRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 对象数目。
+        # @type TotalCount: Integer
+        # @param TranslationNatRuleSet: 转换规则详情数组。
+        # @type TranslationNatRuleSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TranslationNatRuleSet, :RequestId
+
+        def initialize(totalcount=nil, translationnatruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TranslationNatRuleSet = translationnatruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TranslationNatRuleSet'].nil?
+            @TranslationNatRuleSet = []
+            params['TranslationNatRuleSet'].each do |i|
+              translationnatrule_tmp = TranslationNatRule.new
+              translationnatrule_tmp.deserialize(i)
+              @TranslationNatRuleSet << translationnatrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateNatGateways请求参数结构体
+      class DescribePrivateNatGatewaysRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayIds: 私网网关唯一`ID`，形如：`intranat-0g3blj80`。
+        # @type NatGatewayIds: Array
+        # @param Filters: 过滤条件。
+        # <li>NatGatewayId - String - 私网网关唯一`ID`，形如：`intranat-0g3blj80`。</li>
+        # <li>NatGatewayName - String - 专线网关名称，默认模糊查询。</li>
+        # <li>VpcId - String - 私网网关所在`VpcId`。</li>
+        # <li>TagKey - Tag数组 - 私网网关标签键值对数组</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20。
+        # @type Limit: Integer
+        # @param OrderField: 排序字段。可选值："NatGatewayId"、"NatGatewayName"、"CreatedTime"
+        # @type OrderField: String
+        # @param OrderDirection: 排序方式。可选值："ASC"、"DESC"。
+        # @type OrderDirection: String
+
+        attr_accessor :NatGatewayIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
+
+        def initialize(natgatewayids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
+          @NatGatewayIds = natgatewayids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+        end
+
+        def deserialize(params)
+          @NatGatewayIds = params['NatGatewayIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+        end
+      end
+
+      # DescribePrivateNatGateways返回参数结构体
+      class DescribePrivateNatGatewaysResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param PrivateNatGatewaySet: 私网网关对象数组。
+        # @type PrivateNatGatewaySet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PrivateNatGatewaySet, :RequestId
+
+        def initialize(totalcount=nil, privatenatgatewayset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PrivateNatGatewaySet = privatenatgatewayset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PrivateNatGatewaySet'].nil?
+            @PrivateNatGatewaySet = []
+            params['PrivateNatGatewaySet'].each do |i|
+              privatenatgateway_tmp = PrivateNatGateway.new
+              privatenatgateway_tmp.deserialize(i)
+              @PrivateNatGatewaySet << privatenatgateway_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductQuota请求参数结构体
       class DescribeProductQuotaRequest < TencentCloud::Common::AbstractModel
         # @param Product: 查询的网络产品名称，可查询的产品有：vpc、ccn、vpn、dc、dfw、clb、eip。
@@ -12436,6 +13231,62 @@ module TencentCloud
           @PublicPort = params['PublicPort']
           @PrivateIpAddress = params['PrivateIpAddress']
           @PrivatePort = params['PrivatePort']
+          @Description = params['Description']
+        end
+      end
+
+      # 本端目的IP端口转换复杂结构
+      class DestinationIpPortTranslationNatRuleDiff < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param OriginalPort: 源端口
+        # @type OriginalPort: Integer
+        # @param OriginalIp: 源IP
+        # @type OriginalIp: String
+        # @param TranslationPort: 目的端口
+        # @type TranslationPort: Integer
+        # @param TranslationIp: 目的IP
+        # @type TranslationIp: String
+        # @param OldProtocol: 旧协议。
+        # @type OldProtocol: String
+        # @param OldOriginalPort: 旧源端口
+        # @type OldOriginalPort: Integer
+        # @param OldOriginalIp: 旧源IP
+        # @type OldOriginalIp: String
+        # @param OldTranslationPort: 旧目的端口
+        # @type OldTranslationPort: Integer
+        # @param OldTranslationIp: 旧目的IP
+        # @type OldTranslationIp: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :Protocol, :OriginalPort, :OriginalIp, :TranslationPort, :TranslationIp, :OldProtocol, :OldOriginalPort, :OldOriginalIp, :OldTranslationPort, :OldTranslationIp, :Description
+
+        def initialize(protocol=nil, originalport=nil, originalip=nil, translationport=nil, translationip=nil, oldprotocol=nil, oldoriginalport=nil, oldoriginalip=nil, oldtranslationport=nil, oldtranslationip=nil, description=nil)
+          @Protocol = protocol
+          @OriginalPort = originalport
+          @OriginalIp = originalip
+          @TranslationPort = translationport
+          @TranslationIp = translationip
+          @OldProtocol = oldprotocol
+          @OldOriginalPort = oldoriginalport
+          @OldOriginalIp = oldoriginalip
+          @OldTranslationPort = oldtranslationport
+          @OldTranslationIp = oldtranslationip
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @OriginalPort = params['OriginalPort']
+          @OriginalIp = params['OriginalIp']
+          @TranslationPort = params['TranslationPort']
+          @TranslationIp = params['TranslationIp']
+          @OldProtocol = params['OldProtocol']
+          @OldOriginalPort = params['OldOriginalPort']
+          @OldOriginalIp = params['OldOriginalIp']
+          @OldTranslationPort = params['OldTranslationPort']
+          @OldTranslationIp = params['OldTranslationIp']
           @Description = params['Description']
         end
       end
@@ -14962,6 +15813,42 @@ module TencentCloud
         end
       end
 
+      # 本端目的IP端口转换复杂结构
+      class LocalDestinationIpPortTranslationNatRule < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param OriginalPort: 源端口
+        # @type OriginalPort: Integer
+        # @param OriginalIp: 源IP
+        # @type OriginalIp: String
+        # @param TranslationPort: 目的端口
+        # @type TranslationPort: Integer
+        # @param TranslationIp: 目的IP
+        # @type TranslationIp: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :Protocol, :OriginalPort, :OriginalIp, :TranslationPort, :TranslationIp, :Description
+
+        def initialize(protocol=nil, originalport=nil, originalip=nil, translationport=nil, translationip=nil, description=nil)
+          @Protocol = protocol
+          @OriginalPort = originalport
+          @OriginalIp = originalip
+          @TranslationPort = translationport
+          @TranslationIp = translationip
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @OriginalPort = params['OriginalPort']
+          @OriginalIp = params['OriginalIp']
+          @TranslationPort = params['TranslationPort']
+          @TranslationIp = params['TranslationIp']
+          @Description = params['Description']
+        end
+      end
+
       # 本地网关信息
       class LocalGateway < TencentCloud::Common::AbstractModel
         # @param CdcId: CDC实例ID
@@ -16527,6 +17414,191 @@ module TencentCloud
         end
       end
 
+      # ModifyPrivateNatGatewayAttribute请求参数结构体
+      class ModifyPrivateNatGatewayAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param NatGatewayName: 私网网关名称，可任意命名，但不得超过60个字符。
+        # @type NatGatewayName: String
+
+        attr_accessor :NatGatewayId, :NatGatewayName
+
+        def initialize(natgatewayid=nil, natgatewayname=nil)
+          @NatGatewayId = natgatewayid
+          @NatGatewayName = natgatewayname
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @NatGatewayName = params['NatGatewayName']
+        end
+      end
+
+      # ModifyPrivateNatGatewayAttribute返回参数结构体
+      class ModifyPrivateNatGatewayAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrivateNatGatewayDestinationIpPortTranslationNatRule请求参数结构体
+      class ModifyPrivateNatGatewayDestinationIpPortTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param LocalDestinationIpPortTranslationNatRules: 目的端口转换规则列表。
+        # @type LocalDestinationIpPortTranslationNatRules: Array
+
+        attr_accessor :NatGatewayId, :LocalDestinationIpPortTranslationNatRules
+
+        def initialize(natgatewayid=nil, localdestinationipporttranslationnatrules=nil)
+          @NatGatewayId = natgatewayid
+          @LocalDestinationIpPortTranslationNatRules = localdestinationipporttranslationnatrules
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['LocalDestinationIpPortTranslationNatRules'].nil?
+            @LocalDestinationIpPortTranslationNatRules = []
+            params['LocalDestinationIpPortTranslationNatRules'].each do |i|
+              destinationipporttranslationnatrulediff_tmp = DestinationIpPortTranslationNatRuleDiff.new
+              destinationipporttranslationnatrulediff_tmp.deserialize(i)
+              @LocalDestinationIpPortTranslationNatRules << destinationipporttranslationnatrulediff_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyPrivateNatGatewayDestinationIpPortTranslationNatRule返回参数结构体
+      class ModifyPrivateNatGatewayDestinationIpPortTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrivateNatGatewayTranslationAclRule请求参数结构体
+      class ModifyPrivateNatGatewayTranslationAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池
+        # @type TranslationIp: String
+        # @param TranslationAclRules: 访问控制列表，需要附带AclRuleId参数。
+        # @type TranslationAclRules: Array
+        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效
+        # @type OriginalIp: String
+
+        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :TranslationAclRules, :OriginalIp
+
+        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, translationaclrules=nil, originalip=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @TranslationAclRules = translationaclrules
+          @OriginalIp = originalip
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          unless params['TranslationAclRules'].nil?
+            @TranslationAclRules = []
+            params['TranslationAclRules'].each do |i|
+              translationaclrule_tmp = TranslationAclRule.new
+              translationaclrule_tmp.deserialize(i)
+              @TranslationAclRules << translationaclrule_tmp
+            end
+          end
+          @OriginalIp = params['OriginalIp']
+        end
+      end
+
+      # ModifyPrivateNatGatewayTranslationAclRule返回参数结构体
+      class ModifyPrivateNatGatewayTranslationAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrivateNatGatewayTranslationNatRule请求参数结构体
+      class ModifyPrivateNatGatewayTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
+        # @type NatGatewayId: String
+        # @param TranslationNatRules: 转换规则对象数组。仅支持修改单个转换规则
+        # @type TranslationNatRules: Array
+        # @param CrossDomain: 跨域参数，当VPC为跨域时填写为True。
+        # @type CrossDomain: Boolean
+
+        attr_accessor :NatGatewayId, :TranslationNatRules, :CrossDomain
+
+        def initialize(natgatewayid=nil, translationnatrules=nil, crossdomain=nil)
+          @NatGatewayId = natgatewayid
+          @TranslationNatRules = translationnatrules
+          @CrossDomain = crossdomain
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['TranslationNatRules'].nil?
+            @TranslationNatRules = []
+            params['TranslationNatRules'].each do |i|
+              translationnatrulediff_tmp = TranslationNatRuleDiff.new
+              translationnatrulediff_tmp.deserialize(i)
+              @TranslationNatRules << translationnatrulediff_tmp
+            end
+          end
+          @CrossDomain = params['CrossDomain']
+        end
+      end
+
+      # ModifyPrivateNatGatewayTranslationNatRule返回参数结构体
+      class ModifyPrivateNatGatewayTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRouteTableAttribute请求参数结构体
       class ModifyRouteTableAttributeRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -17661,6 +18733,17 @@ module TencentCloud
         end
       end
 
+      # NAT地域地区对象
+      class NatRegionInfoWithArea < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 网络探测对象。
       class NetDetect < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`。形如：`vpc-12345678`
@@ -18419,6 +19502,123 @@ module TencentCloud
           @IsWanIpBlocked = params['IsWanIpBlocked']
           @State = params['State']
           @QosLevel = params['QosLevel']
+        end
+      end
+
+      # 本端目的IP端口转换复杂结构
+      class PrivateNatDestinationIpPortTranslationNatRule < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param OriginalPort: 原端口
+        # @type OriginalPort: Integer
+        # @param OriginalIp: 原IP
+        # @type OriginalIp: String
+        # @param TranslationPort: 映射端口
+        # @type TranslationPort: Integer
+        # @param TranslationIp: 映射IP
+        # @type TranslationIp: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :Protocol, :OriginalPort, :OriginalIp, :TranslationPort, :TranslationIp, :Description, :CreateTime, :UpdateTime
+
+        def initialize(protocol=nil, originalport=nil, originalip=nil, translationport=nil, translationip=nil, description=nil, createtime=nil, updatetime=nil)
+          @Protocol = protocol
+          @OriginalPort = originalport
+          @OriginalIp = originalip
+          @TranslationPort = translationport
+          @TranslationIp = translationip
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @OriginalPort = params['OriginalPort']
+          @OriginalIp = params['OriginalIp']
+          @TranslationPort = params['TranslationPort']
+          @TranslationIp = params['TranslationIp']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 私网网关对象
+      class PrivateNatGateway < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: 私网网关`ID`。
+        # @type NatGatewayId: String
+        # @param NatGatewayName: 私网网关名称。
+        # @type NatGatewayName: String
+        # @param VpcId: 私网网关关联`VPC`实例`ID`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Status: 私网网关当前状态。
+        # @type Status: String
+        # @param CrossDomain: 私网网关跨域标志。
+        # @type CrossDomain: Boolean
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
+
+        attr_accessor :NatGatewayId, :NatGatewayName, :VpcId, :Status, :CrossDomain, :CreatedTime, :TagSet
+
+        def initialize(natgatewayid=nil, natgatewayname=nil, vpcid=nil, status=nil, crossdomain=nil, createdtime=nil, tagset=nil)
+          @NatGatewayId = natgatewayid
+          @NatGatewayName = natgatewayname
+          @VpcId = vpcid
+          @Status = status
+          @CrossDomain = crossdomain
+          @CreatedTime = createdtime
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @NatGatewayName = params['NatGatewayName']
+          @VpcId = params['VpcId']
+          @Status = params['Status']
+          @CrossDomain = params['CrossDomain']
+          @CreatedTime = params['CreatedTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+        end
+      end
+
+      # 可创建的私网网关配额数量
+      class PrivateNatGatewayLimit < TencentCloud::Common::AbstractModel
+        # @param UniqVpcId: 私有网络唯一`ID`。
+        # @type UniqVpcId: String
+        # @param TotalLimit: Vpc下总计可创建私网网关数量。
+        # @type TotalLimit: Integer
+        # @param Available: 可创建私网网关数量。
+        # @type Available: Integer
+
+        attr_accessor :UniqVpcId, :TotalLimit, :Available
+
+        def initialize(uniqvpcid=nil, totallimit=nil, available=nil)
+          @UniqVpcId = uniqvpcid
+          @TotalLimit = totallimit
+          @Available = available
+        end
+
+        def deserialize(params)
+          @UniqVpcId = params['UniqVpcId']
+          @TotalLimit = params['TotalLimit']
+          @Available = params['Available']
         end
       end
 
@@ -20981,6 +22181,160 @@ module TencentCloud
           @TaskId = params['TaskId']
           @AddressId = params['AddressId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 私网网关转发规则匹配ACL
+      class TranslationAclRule < TencentCloud::Common::AbstractModel
+        # @param Protocol: ACL协议类型，可选值:"ALL","TCP","UDP"
+        # @type Protocol: String
+        # @param SourcePort: 源端口。
+        # @type SourcePort: String
+        # @param SourceCidr: 源地址。支持`ip`或`cidr`格式"xxx.xxx.xxx.000/xx"
+        # @type SourceCidr: String
+        # @param DestinationPort: 目的端口。
+        # @type DestinationPort: String
+        # @param DestinationCidr: 目的地址。
+        # @type DestinationCidr: String
+        # @param AclRuleId: ACL规则`ID`。
+        # @type AclRuleId: Integer
+        # @param Action: 是否匹配。
+        # @type Action: Integer
+
+        attr_accessor :Protocol, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :AclRuleId, :Action
+
+        def initialize(protocol=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, aclruleid=nil, action=nil)
+          @Protocol = protocol
+          @SourcePort = sourceport
+          @SourceCidr = sourcecidr
+          @DestinationPort = destinationport
+          @DestinationCidr = destinationcidr
+          @AclRuleId = aclruleid
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @SourcePort = params['SourcePort']
+          @SourceCidr = params['SourceCidr']
+          @DestinationPort = params['DestinationPort']
+          @DestinationCidr = params['DestinationCidr']
+          @AclRuleId = params['AclRuleId']
+          @Action = params['Action']
+        end
+      end
+
+      # 私网网关Snat转发规则
+      class TranslationNatRule < TencentCloud::Common::AbstractModel
+        # @param TranslationDirection: 转换规则目标，可选值"LOCAL","PEER"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @type TranslationIp: String
+        # @param Description: 转换规则描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalIp: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :TranslationDirection, :TranslationType, :TranslationIp, :Description, :OriginalIp, :CreateTime, :UpdateTime
+
+        def initialize(translationdirection=nil, translationtype=nil, translationip=nil, description=nil, originalip=nil, createtime=nil, updatetime=nil)
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @Description = description
+          @OriginalIp = originalip
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          @Description = params['Description']
+          @OriginalIp = params['OriginalIp']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 私网网关Snat转发规则修改
+      class TranslationNatRuleDiff < TencentCloud::Common::AbstractModel
+        # @param TranslationDirection: 转发规则目标，可选值"LOCAL","PEER"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转发规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转发规则映射`IP`,当转发规则类型为四层时为`IP`池
+        # @type TranslationIp: String
+        # @param Description: 转发规则描述。
+        # @type Description: String
+        # @param OldTranslationIp: 旧转发规则映射`IP`,当转发规则类型为四层时为`IP`池
+        # @type OldTranslationIp: String
+        # @param OriginalIp: 新转发规则源`IP`,当转发规则类型为三层时有效
+        # @type OriginalIp: String
+        # @param OldOriginalIp: 旧转发规则源`IP`,当转发规则类型为三层时有效
+        # @type OldOriginalIp: String
+
+        attr_accessor :TranslationDirection, :TranslationType, :TranslationIp, :Description, :OldTranslationIp, :OriginalIp, :OldOriginalIp
+
+        def initialize(translationdirection=nil, translationtype=nil, translationip=nil, description=nil, oldtranslationip=nil, originalip=nil, oldoriginalip=nil)
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @Description = description
+          @OldTranslationIp = oldtranslationip
+          @OriginalIp = originalip
+          @OldOriginalIp = oldoriginalip
+        end
+
+        def deserialize(params)
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          @Description = params['Description']
+          @OldTranslationIp = params['OldTranslationIp']
+          @OriginalIp = params['OriginalIp']
+          @OldOriginalIp = params['OldOriginalIp']
+        end
+      end
+
+      # 私网网关Snat转发规则入参
+      class TranslationNatRuleInput < TencentCloud::Common::AbstractModel
+        # @param TranslationDirection: 转换规则目标，可选值"LOCAL","PEER"。
+        # @type TranslationDirection: String
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @type TranslationType: String
+        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @type TranslationIp: String
+        # @param Description: 转换规则描述。
+        # @type Description: String
+        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @type OriginalIp: String
+
+        attr_accessor :TranslationDirection, :TranslationType, :TranslationIp, :Description, :OriginalIp
+
+        def initialize(translationdirection=nil, translationtype=nil, translationip=nil, description=nil, originalip=nil)
+          @TranslationDirection = translationdirection
+          @TranslationType = translationtype
+          @TranslationIp = translationip
+          @Description = description
+          @OriginalIp = originalip
+        end
+
+        def deserialize(params)
+          @TranslationDirection = params['TranslationDirection']
+          @TranslationType = params['TranslationType']
+          @TranslationIp = params['TranslationIp']
+          @Description = params['Description']
+          @OriginalIp = params['OriginalIp']
         end
       end
 

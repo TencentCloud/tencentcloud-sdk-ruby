@@ -612,7 +612,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  SCF同步调用函数接口
+        # SCF同步调用函数接口。
 
         # @param request: Request instance for InvokeFunction.
         # @type request: :class:`Tencentcloud::scf::V20180416::InvokeFunctionRequest`

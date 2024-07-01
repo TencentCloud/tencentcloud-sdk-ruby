@@ -32,15 +32,23 @@ module TencentCloud
         # @param IsSupportManualSnapshot: 是否支持手动发起快照备份
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportManualSnapshot: String
+        # @param IsSupportTransparentDataEncryption: 是否支持透明数据加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportTransparentDataEncryption: String
+        # @param NoSupportTransparentDataEncryptionReason: 不支持透明数据加密原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoSupportTransparentDataEncryptionReason: String
 
-        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot
+        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason
 
-        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil)
+        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil, issupporttransparentdataencryption=nil, nosupporttransparentdataencryptionreason=nil)
           @IsSupportSlaveZone = issupportslavezone
           @NonsupportSlaveZoneReason = nonsupportslavezonereason
           @IsSupportRo = issupportro
           @NonsupportRoReason = nonsupportroreason
           @IsSupportManualSnapshot = issupportmanualsnapshot
+          @IsSupportTransparentDataEncryption = issupporttransparentdataencryption
+          @NoSupportTransparentDataEncryptionReason = nosupporttransparentdataencryptionreason
         end
 
         def deserialize(params)
@@ -49,6 +57,8 @@ module TencentCloud
           @IsSupportRo = params['IsSupportRo']
           @NonsupportRoReason = params['NonsupportRoReason']
           @IsSupportManualSnapshot = params['IsSupportManualSnapshot']
+          @IsSupportTransparentDataEncryption = params['IsSupportTransparentDataEncryption']
+          @NoSupportTransparentDataEncryptionReason = params['NoSupportTransparentDataEncryptionReason']
         end
       end
 
@@ -234,8 +244,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 6
-        deprecate :InstanceGrpId=, :none, 2024, 6
+        deprecate :InstanceGrpId, :none, 2024, 7
+        deprecate :InstanceGrpId=, :none, 2024, 7
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1028,8 +1038,8 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 6
-        deprecate :InstanceGrpId=, :none, 2024, 6
+        deprecate :InstanceGrpId, :none, 2024, 7
+        deprecate :InstanceGrpId=, :none, 2024, 7
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil)
           @ID = id
@@ -1392,8 +1402,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 6
-        deprecate :InstanceGrpId=, :none, 2024, 6
+        deprecate :InstanceGrpId, :none, 2024, 7
+        deprecate :InstanceGrpId=, :none, 2024, 7
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -3508,6 +3518,10 @@ module TencentCloud
         # @type Status: String
         # @param StatusDesc: 实例状态中文描述
         # @type StatusDesc: String
+        # @param ServerlessStatus: serverless实例状态, 可能值：
+        # resume
+        # pause
+        # @type ServerlessStatus: String
         # @param DbType: 数据库类型
         # @type DbType: String
         # @param DbVersion: 数据库版本
@@ -3552,14 +3566,10 @@ module TencentCloud
         # @type MinCpu: Float
         # @param MaxCpu: serverless实例cpu上限
         # @type MaxCpu: Float
-        # @param ServerlessStatus: serverless实例状态, 可能值：
-        # resume
-        # pause
-        # @type ServerlessStatus: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -3571,6 +3581,7 @@ module TencentCloud
           @Zone = zone
           @Status = status
           @StatusDesc = statusdesc
+          @ServerlessStatus = serverlessstatus
           @DbType = dbtype
           @DbVersion = dbversion
           @Cpu = cpu
@@ -3593,7 +3604,6 @@ module TencentCloud
           @RenewFlag = renewflag
           @MinCpu = mincpu
           @MaxCpu = maxcpu
-          @ServerlessStatus = serverlessstatus
         end
 
         def deserialize(params)
@@ -3608,6 +3618,7 @@ module TencentCloud
           @Zone = params['Zone']
           @Status = params['Status']
           @StatusDesc = params['StatusDesc']
+          @ServerlessStatus = params['ServerlessStatus']
           @DbType = params['DbType']
           @DbVersion = params['DbVersion']
           @Cpu = params['Cpu']
@@ -3630,7 +3641,6 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
-          @ServerlessStatus = params['ServerlessStatus']
         end
       end
 
@@ -5436,8 +5446,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2024, 6
-        deprecate :InstanceGrpInfoList=, :none, 2024, 6
+        deprecate :InstanceGrpInfoList, :none, 2024, 7
+        deprecate :InstanceGrpInfoList=, :none, 2024, 7
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5759,8 +5769,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 6
-        deprecate :InstanceId=, :none, 2024, 6
+        deprecate :InstanceId, :none, 2024, 7
+        deprecate :InstanceId=, :none, 2024, 7
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -9899,8 +9909,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 6
-        deprecate :InstanceGrpId=, :none, 2024, 6
+        deprecate :InstanceGrpId, :none, 2024, 7
+        deprecate :InstanceGrpId=, :none, 2024, 7
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -10415,8 +10425,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 6
-        deprecate :InstanceGrpId=, :none, 2024, 6
+        deprecate :InstanceGrpId, :none, 2024, 7
+        deprecate :InstanceGrpId=, :none, 2024, 7
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -10727,10 +10737,13 @@ module TencentCloud
         # @param Func: 函数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Func: String
+        # @param FuncPattern: 支持公式的参数的默认公式样式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FuncPattern: String
 
-        attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :ParamType, :MatchType, :MatchValue, :Description, :IsGlobal, :ModifiableInfo, :IsFunc, :Func
+        attr_accessor :CurrentValue, :Default, :EnumValue, :Max, :Min, :ParamName, :NeedReboot, :ParamType, :MatchType, :MatchValue, :Description, :IsGlobal, :ModifiableInfo, :IsFunc, :Func, :FuncPattern
 
-        def initialize(currentvalue=nil, default=nil, enumvalue=nil, max=nil, min=nil, paramname=nil, needreboot=nil, paramtype=nil, matchtype=nil, matchvalue=nil, description=nil, isglobal=nil, modifiableinfo=nil, isfunc=nil, func=nil)
+        def initialize(currentvalue=nil, default=nil, enumvalue=nil, max=nil, min=nil, paramname=nil, needreboot=nil, paramtype=nil, matchtype=nil, matchvalue=nil, description=nil, isglobal=nil, modifiableinfo=nil, isfunc=nil, func=nil, funcpattern=nil)
           @CurrentValue = currentvalue
           @Default = default
           @EnumValue = enumvalue
@@ -10746,6 +10759,7 @@ module TencentCloud
           @ModifiableInfo = modifiableinfo
           @IsFunc = isfunc
           @Func = func
+          @FuncPattern = funcpattern
         end
 
         def deserialize(params)
@@ -10767,6 +10781,7 @@ module TencentCloud
           end
           @IsFunc = params['IsFunc']
           @Func = params['Func']
+          @FuncPattern = params['FuncPattern']
         end
       end
 

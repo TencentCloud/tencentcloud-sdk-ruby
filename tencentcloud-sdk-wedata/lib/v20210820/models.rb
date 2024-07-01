@@ -1908,8 +1908,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 6
-        deprecate :TaskId=, :none, 2024, 6
+        deprecate :TaskId, :none, 2024, 7
+        deprecate :TaskId=, :none, 2024, 7
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -7423,6 +7423,111 @@ module TencentCloud
         end
       end
 
+      # DescribeDutyScheduleDetails请求参数结构体
+      class DescribeDutyScheduleDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 值班表id
+        # @type Id: Integer
+        # @param QueryDate: 查询时间
+        # @type QueryDate: String
+        # @param Filters: 扩展字段
+        # @type Filters: Array
+
+        attr_accessor :Id, :QueryDate, :Filters
+
+        def initialize(id=nil, querydate=nil, filters=nil)
+          @Id = id
+          @QueryDate = querydate
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @QueryDate = params['QueryDate']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDutyScheduleDetails返回参数结构体
+      class DescribeDutyScheduleDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 值班日历信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              dutyscheduledetailsinfo_tmp = DutyScheduleDetailsInfo.new
+              dutyscheduledetailsinfo_tmp.deserialize(i)
+              @Data << dutyscheduledetailsinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDutyScheduleList请求参数结构体
+      class DescribeDutyScheduleListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，默认1
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小，默认10
+        # @type PageSize: Integer
+        # @param Name: 值班表名称
+        # @type Name: String
+
+        attr_accessor :PageNumber, :PageSize, :Name
+
+        def initialize(pagenumber=nil, pagesize=nil, name=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Name = name
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeDutyScheduleList返回参数结构体
+      class DescribeDutyScheduleListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DutySchedule`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DutySchedule.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEventCases请求参数结构体
       class DescribeEventCasesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -7473,12 +7578,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 6
-        deprecate :EventType=, :none, 2024, 6
-        deprecate :EventBroadcastType, :none, 2024, 6
-        deprecate :EventBroadcastType=, :none, 2024, 6
-        deprecate :Status, :none, 2024, 6
-        deprecate :Status=, :none, 2024, 6
+        deprecate :EventType, :none, 2024, 7
+        deprecate :EventType=, :none, 2024, 7
+        deprecate :EventBroadcastType, :none, 2024, 7
+        deprecate :EventBroadcastType=, :none, 2024, 7
+        deprecate :Status, :none, 2024, 7
+        deprecate :Status=, :none, 2024, 7
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -13036,8 +13141,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 6
-        deprecate :DimType=, :none, 2024, 6
+        deprecate :DimType, :none, 2024, 7
+        deprecate :DimType=, :none, 2024, 7
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -13515,6 +13620,179 @@ module TencentCloud
           @TaskId = params['TaskId']
           @TaskInstanceKey = params['TaskInstanceKey']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 值班信息
+      class Duty < TencentCloud::Common::AbstractModel
+        # @param DutyScheduleId: 值班Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DutyScheduleId: Integer
+        # @param StartTime: 值班开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 值班结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param DutyPersons: 值班人员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DutyPersons: Array
+
+        attr_accessor :DutyScheduleId, :StartTime, :EndTime, :DutyPersons
+
+        def initialize(dutyscheduleid=nil, starttime=nil, endtime=nil, dutypersons=nil)
+          @DutyScheduleId = dutyscheduleid
+          @StartTime = starttime
+          @EndTime = endtime
+          @DutyPersons = dutypersons
+        end
+
+        def deserialize(params)
+          @DutyScheduleId = params['DutyScheduleId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['DutyPersons'].nil?
+            @DutyPersons = []
+            params['DutyPersons'].each do |i|
+              dutyperson_tmp = DutyPerson.new
+              dutyperson_tmp.deserialize(i)
+              @DutyPersons << dutyperson_tmp
+            end
+          end
+        end
+      end
+
+      # 值班人员
+      class DutyPerson < TencentCloud::Common::AbstractModel
+        # @param UserId: 值班人子账号id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: 值班人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param OwnerUserId: 值班人员主账号用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUserId: String
+        # @param TenantId: 值班人tenantId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: Integer
+        # @param AddTime: 2023-11-02 08:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param Params: 扩展字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+
+        attr_accessor :UserId, :UserName, :OwnerUserId, :TenantId, :AddTime, :Params
+
+        def initialize(userid=nil, username=nil, owneruserid=nil, tenantid=nil, addtime=nil, params=nil)
+          @UserId = userid
+          @UserName = username
+          @OwnerUserId = owneruserid
+          @TenantId = tenantid
+          @AddTime = addtime
+          @Params = params
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @OwnerUserId = params['OwnerUserId']
+          @TenantId = params['TenantId']
+          @AddTime = params['AddTime']
+          @Params = params['Params']
+        end
+      end
+
+      # 值班表列表
+      class DutySchedule < TencentCloud::Common::AbstractModel
+        # @param Rows: 值班表列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param PageNumber: 页号
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param TotalPageNumber: 总页数
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Rows, :TotalCount, :PageNumber, :PageSize, :TotalPageNumber
+
+        def initialize(rows=nil, totalcount=nil, pagenumber=nil, pagesize=nil, totalpagenumber=nil)
+          @Rows = rows
+          @TotalCount = totalcount
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              dutyscheduledata_tmp = DutyScheduleData.new
+              dutyscheduledata_tmp.deserialize(i)
+              @Rows << dutyscheduledata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # 值班表列表
+      class DutyScheduleData < TencentCloud::Common::AbstractModel
+        # @param Id: 值班表Id
+        # @type Id: Integer
+        # @param Name: 值班表名称
+        # @type Name: String
+        # @param Creator: 创建人
+        # @type Creator: String
+
+        attr_accessor :Id, :Name, :Creator
+
+        def initialize(id=nil, name=nil, creator=nil)
+          @Id = id
+          @Name = name
+          @Creator = creator
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Creator = params['Creator']
+        end
+      end
+
+      # 值班信息表
+      class DutyScheduleDetailsInfo < TencentCloud::Common::AbstractModel
+        # @param Day: 值班日期
+        # @type Day: String
+        # @param Duty: 值班信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duty: Array
+
+        attr_accessor :Day, :Duty
+
+        def initialize(day=nil, duty=nil)
+          @Day = day
+          @Duty = duty
+        end
+
+        def deserialize(params)
+          @Day = params['Day']
+          unless params['Duty'].nil?
+            @Duty = []
+            params['Duty'].each do |i|
+              duty_tmp = Duty.new
+              duty_tmp.deserialize(i)
+              @Duty << duty_tmp
+            end
+          end
         end
       end
 
@@ -18200,8 +18478,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2024, 6
-        deprecate :InCharge=, :none, 2024, 6
+        deprecate :InCharge, :none, 2024, 7
+        deprecate :InCharge=, :none, 2024, 7
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid

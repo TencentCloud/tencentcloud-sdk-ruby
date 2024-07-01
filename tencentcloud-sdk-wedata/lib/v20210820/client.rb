@@ -1901,6 +1901,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取值班日历
+
+        # @param request: Request instance for DescribeDutyScheduleDetails.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDutyScheduleDetailsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDutyScheduleDetailsResponse`
+        def DescribeDutyScheduleDetails(request)
+          body = send_request('DescribeDutyScheduleDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDutyScheduleDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取值班表列表
+
+        # @param request: Request instance for DescribeDutyScheduleList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDutyScheduleListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDutyScheduleListResponse`
+        def DescribeDutyScheduleList(request)
+          body = send_request('DescribeDutyScheduleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDutyScheduleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据项目ID和事件名称查看事件详情
 
         # @param request: Request instance for DescribeEvent.

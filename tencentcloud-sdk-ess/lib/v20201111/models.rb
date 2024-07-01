@@ -5497,6 +5497,11 @@ module TencentCloud
         # @type IdCardType: String
         # @param Mobile: 要实名的手机号，兼容带+86的格式
         # @type Mobile: String
+        # @param JumpUrl: 实名完之后的跳转链接，最大长度1000个字符。
+        # 链接类型请参考 <a href="https://qian.tencent.com/developers/company/openqianh5" target="_blank">跳转电子签H5</a>。
+
+        # 注：此参数仅支持 Endpoint 为 <font color="red">H5 或 H5_SHORT_URL </font>的时候传递
+        # @type JumpUrl: String
         # @param Endpoint: 要跳转的链接类型
 
         # - HTTP：
@@ -5508,27 +5513,34 @@ module TencentCloud
         # - APP：
         # 第三方APP或小程序跳转电子签小程序的path, APP或者小程序跳转适合此类型
 
-        # 如果不传递，默认值是 APP
+        # - H5：
+        # 跳转电子签H5实名页面的长链
+
+        # - H5_SHORT_URL：
+        # 跳转电子签H5实名页面的短链
+
+        # 注：如果不传递，默认值是 <font color="red"> APP </font>
         # @type Endpoint: String
         # @param AutoJumpBack: 签署完成后是否自动回跳
         # <ul><li>false：否, 实名完成不会自动跳转回来(默认)</li><li>true：是, 实名完成会自动跳转回来</li></ul>
 
         # 注:
-        # 1. 该参数<font color="red">只针对APP类型（电子签小程序跳转贵方小程序）场景</font> 的实名链接有效
+        # 1. 该参数<font color="red">只针对APP类型（第三方APP或小程序跳转电子签小程序）场景</font> 的实名链接有效
         # 2. <font color="red">手机应用APP 或 微信小程序需要监控界面的返回走后序逻辑</font>, 微信小程序的文档可以参考[这个](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onShow-Object-object)
         # 3. <font color="red">电子签小程序跳转贵方APP，不支持自动跳转，必需用户手动点击完成按钮（微信的限制）</font>
         # @type AutoJumpBack: Boolean
         # @param UserData: 在用户完成实名认证后，其自定义数据将通过[企业引导个人实名认证后回调](https://qian.tencent.com/developers/company/callback_types_staffs/#%E5%8D%81%E4%BA%8C-%E4%BC%81%E4%B8%9A%E5%BC%95%E5%AF%BC%E4%B8%AA%E4%BA%BA%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%E5%90%8E%E5%9B%9E%E8%B0%83)返回，以便用户确认其个人数据信息。请注意，自定义数据的字符长度上限为1000，且必须采用base64编码格式。
         # @type UserData: String
 
-        attr_accessor :Operator, :Name, :IdCardNumber, :IdCardType, :Mobile, :Endpoint, :AutoJumpBack, :UserData
+        attr_accessor :Operator, :Name, :IdCardNumber, :IdCardType, :Mobile, :JumpUrl, :Endpoint, :AutoJumpBack, :UserData
 
-        def initialize(operator=nil, name=nil, idcardnumber=nil, idcardtype=nil, mobile=nil, endpoint=nil, autojumpback=nil, userdata=nil)
+        def initialize(operator=nil, name=nil, idcardnumber=nil, idcardtype=nil, mobile=nil, jumpurl=nil, endpoint=nil, autojumpback=nil, userdata=nil)
           @Operator = operator
           @Name = name
           @IdCardNumber = idcardnumber
           @IdCardType = idcardtype
           @Mobile = mobile
+          @JumpUrl = jumpurl
           @Endpoint = endpoint
           @AutoJumpBack = autojumpback
           @UserData = userdata
@@ -5543,6 +5555,7 @@ module TencentCloud
           @IdCardNumber = params['IdCardNumber']
           @IdCardType = params['IdCardType']
           @Mobile = params['Mobile']
+          @JumpUrl = params['JumpUrl']
           @Endpoint = params['Endpoint']
           @AutoJumpBack = params['AutoJumpBack']
           @UserData = params['UserData']
@@ -5563,8 +5576,14 @@ module TencentCloud
         # - 如果EndPoint是HTTP_SHORT_URL，
         # 得到的链接类似于https://essurl.cn/2n**42Nd，点击后会跳转到腾讯电子签小程序进行签署
 
+        # - 如果EndPoint是H5，
+        # 得到的链接类似于 https://quick.test.qian.tencent.cn/guide?Code=yDU****VJhsS5q&CodeType=xxx&shortKey=yD*****frcb，点击后会跳转到腾讯电子签H5页面进行签署
 
-        # 注： 生成的链路后面不能再增加参数
+        # - 如果EndPoint是H5_SHORT_URL，
+        # 得到的链接类似于https://essurl.cn/2n**42Nd，点击后会跳转到腾讯电子签H5页面进行签署
+
+
+        # `注：` <font color="red">生成的链路后面不能再增加参数</font>
         # 示例值：https://essurl.cn/2n**42Nd
         # @type UserVerifyUrl: String
         # @param ExpireTime: 链接过期时间

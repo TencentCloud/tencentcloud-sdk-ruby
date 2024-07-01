@@ -4219,6 +4219,11 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :ManagerId, :Limit, :Offset
+        extend Gem::Deprecate
+        deprecate :Limit, :none, 2024, 7
+        deprecate :Limit=, :none, 2024, 7
+        deprecate :Offset, :none, 2024, 7
+        deprecate :Offset=, :none, 2024, 7
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -4876,12 +4881,33 @@ module TencentCloud
 
       # 管理人的四种审核状态
       class ManagerStatusInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 审核类型，枚举值：ov,ev,cs,ev_cs
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status: 审核状态，枚举值：pending,completed,invalid,submitted,expiring,expired
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
 
+        attr_accessor :Type, :Status, :CreateTime, :ExpireTime
 
-        def initialize()
+        def initialize(type=nil, status=nil, createtime=nil, expiretime=nil)
+          @Type = type
+          @Status = status
+          @CreateTime = createtime
+          @ExpireTime = expiretime
         end
 
         def deserialize(params)
+          @Type = params['Type']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
         end
       end
 
