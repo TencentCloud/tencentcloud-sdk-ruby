@@ -3747,10 +3747,12 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 备份结束时间
         # @type EndTime: String
+        # @param StorageClass: 对象的存储类型，枚举值：STANDARD（标准存储）、ARCHIVE（归档存储）。
+        # @type StorageClass: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceStatus, :ShardId, :FilePath, :FileName, :FileSize, :BackupType, :ManualBackup, :StartTime, :EndTime
+        attr_accessor :InstanceId, :InstanceName, :InstanceStatus, :ShardId, :FilePath, :FileName, :FileSize, :BackupType, :ManualBackup, :StartTime, :EndTime, :StorageClass
 
-        def initialize(instanceid=nil, instancename=nil, instancestatus=nil, shardid=nil, filepath=nil, filename=nil, filesize=nil, backuptype=nil, manualbackup=nil, starttime=nil, endtime=nil)
+        def initialize(instanceid=nil, instancename=nil, instancestatus=nil, shardid=nil, filepath=nil, filename=nil, filesize=nil, backuptype=nil, manualbackup=nil, starttime=nil, endtime=nil, storageclass=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceStatus = instancestatus
@@ -3762,6 +3764,7 @@ module TencentCloud
           @ManualBackup = manualbackup
           @StartTime = starttime
           @EndTime = endtime
+          @StorageClass = storageclass
         end
 
         def deserialize(params)
@@ -3776,6 +3779,7 @@ module TencentCloud
           @ManualBackup = params['ManualBackup']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @StorageClass = params['StorageClass']
         end
       end
 

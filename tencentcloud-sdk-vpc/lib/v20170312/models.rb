@@ -5177,10 +5177,12 @@ module TencentCloud
         # @type Route: :class:`Tencentcloud::Vpc.v20170312.models.CreateVpnConnRoute`
         # @param BgpConfig: BGP配置。
         # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfig`
+        # @param HealthCheckConfig: 健康检查NQA配置。
+        # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
 
-        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :Route, :BgpConfig
+        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :Route, :BgpConfig, :HealthCheckConfig
 
-        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, route=nil, bgpconfig=nil)
+        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, route=nil, bgpconfig=nil, healthcheckconfig=nil)
           @VpnGatewayId = vpngatewayid
           @CustomerGatewayId = customergatewayid
           @VpnConnectionName = vpnconnectionname
@@ -5200,6 +5202,7 @@ module TencentCloud
           @DpdAction = dpdaction
           @Route = route
           @BgpConfig = bgpconfig
+          @HealthCheckConfig = healthcheckconfig
         end
 
         def deserialize(params)
@@ -5247,6 +5250,10 @@ module TencentCloud
           unless params['BgpConfig'].nil?
             @BgpConfig = BgpConfig.new
             @BgpConfig.deserialize(params['BgpConfig'])
+          end
+          unless params['HealthCheckConfig'].nil?
+            @HealthCheckConfig = HealthCheckConfig.new
+            @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
           end
         end
       end
@@ -15124,6 +15131,38 @@ module TencentCloud
         end
       end
 
+      # VPN通道健康检查配置
+      class HealthCheckConfig < TencentCloud::Common::AbstractModel
+        # @param ProbeType: 探测模式，默认值NQA，不可修改。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProbeType: String
+        # @param ProbeInterval: 探测间隔，腾讯云两次健康检查间隔时间，范围【1000-5000】，单位ms。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProbeInterval: Integer
+        # @param ProbeThreshold: 探测次数，连续N次健康检查失败后执行路由切换，范围【3-8】，单位次。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProbeThreshold: Integer
+        # @param ProbeTimeout: 探测超时时间，范围【10-5000】，单位ms。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProbeTimeout: Integer
+
+        attr_accessor :ProbeType, :ProbeInterval, :ProbeThreshold, :ProbeTimeout
+
+        def initialize(probetype=nil, probeinterval=nil, probethreshold=nil, probetimeout=nil)
+          @ProbeType = probetype
+          @ProbeInterval = probeinterval
+          @ProbeThreshold = probethreshold
+          @ProbeTimeout = probetimeout
+        end
+
+        def deserialize(params)
+          @ProbeType = params['ProbeType']
+          @ProbeInterval = params['ProbeInterval']
+          @ProbeThreshold = params['ProbeThreshold']
+          @ProbeTimeout = params['ProbeTimeout']
+        end
+      end
+
       # IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
       class IKEOptionsSpecification < TencentCloud::Common::AbstractModel
         # @param PropoEncryAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBS-192', 'AES-CBC-256', 'DES-CBC'，'SM4', 默认为3DES-CBC
@@ -18196,10 +18235,12 @@ module TencentCloud
         # @type DpdAction: String
         # @param CustomerGatewayId: 对端网关ID，4.0及以上网关下的通道支持更新。
         # @type CustomerGatewayId: String
+        # @param HealthCheckConfig: 健康检查配置
+        # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :CustomerGatewayId
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :CustomerGatewayId, :HealthCheckConfig
 
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, customergatewayid=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, customergatewayid=nil, healthcheckconfig=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @PreShareKey = presharekey
@@ -18214,6 +18255,7 @@ module TencentCloud
           @DpdTimeout = dpdtimeout
           @DpdAction = dpdaction
           @CustomerGatewayId = customergatewayid
+          @HealthCheckConfig = healthcheckconfig
         end
 
         def deserialize(params)
@@ -18244,6 +18286,10 @@ module TencentCloud
           @DpdTimeout = params['DpdTimeout']
           @DpdAction = params['DpdAction']
           @CustomerGatewayId = params['CustomerGatewayId']
+          unless params['HealthCheckConfig'].nil?
+            @HealthCheckConfig = HealthCheckConfig.new
+            @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
         end
       end
 
@@ -22901,10 +22947,13 @@ module TencentCloud
         # @param BgpConfig: Bgp配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfigAndAsn`
+        # @param HealthCheckConfig: Nqa配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus, :DpdEnable, :DpdTimeout, :DpdAction, :TagSet, :NegotiationType, :BgpConfig
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus, :DpdEnable, :DpdTimeout, :DpdAction, :TagSet, :NegotiationType, :BgpConfig, :HealthCheckConfig
 
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, tagset=nil, negotiationtype=nil, bgpconfig=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, tagset=nil, negotiationtype=nil, bgpconfig=nil, healthcheckconfig=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @VpcId = vpcid
@@ -22930,6 +22979,7 @@ module TencentCloud
           @TagSet = tagset
           @NegotiationType = negotiationtype
           @BgpConfig = bgpconfig
+          @HealthCheckConfig = healthcheckconfig
         end
 
         def deserialize(params)
@@ -22980,6 +23030,10 @@ module TencentCloud
           unless params['BgpConfig'].nil?
             @BgpConfig = BgpConfigAndAsn.new
             @BgpConfig.deserialize(params['BgpConfig'])
+          end
+          unless params['HealthCheckConfig'].nil?
+            @HealthCheckConfig = HealthCheckConfig.new
+            @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
           end
         end
       end

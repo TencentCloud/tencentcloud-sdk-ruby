@@ -3863,10 +3863,13 @@ module TencentCloud
         # @param ChildInstanceType: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的类型、例如：只读实例传ro、读写实例传rw
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChildInstanceType: String
+        # @param SetId: tdsql的分片id。如节点类型为set必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetId: String
 
-        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ChildInstanceId, :ChildInstanceType
+        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ChildInstanceId, :ChildInstanceType, :SetId
 
-        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil, childinstanceid=nil, childinstancetype=nil)
+        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil, childinstanceid=nil, childinstancetype=nil, setid=nil)
           @Region = region
           @Role = role
           @DbKernel = dbkernel
@@ -3896,6 +3899,7 @@ module TencentCloud
           @CcnOwnerUin = ccnowneruin
           @ChildInstanceId = childinstanceid
           @ChildInstanceType = childinstancetype
+          @SetId = setid
         end
 
         def deserialize(params)
@@ -3928,6 +3932,7 @@ module TencentCloud
           @CcnOwnerUin = params['CcnOwnerUin']
           @ChildInstanceId = params['ChildInstanceId']
           @ChildInstanceType = params['ChildInstanceType']
+          @SetId = params['SetId']
         end
       end
 

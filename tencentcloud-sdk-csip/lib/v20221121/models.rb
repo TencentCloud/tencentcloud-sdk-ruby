@@ -998,7 +998,7 @@ module TencentCloud
         # @type From: String
         # @param Status: 状态
         # @type Status: Integer
-        # @param CFGSTD: -
+        # @param CFGSTD: 相关规范
         # @type CFGSTD: String
         # @param CFGDescribe: 配置详情
         # @type CFGDescribe: String
@@ -1510,7 +1510,7 @@ module TencentCloud
         # @type FirstTime: String
         # @param Status: 状态，0未处理、1已处置、2已忽略
         # @type Status: Integer
-        # @param Id: 资产唯一id
+        # @param Id: ID，处理风险使用
         # @type Id: String
         # @param Index: 前端索引
         # @type Index: String
@@ -1536,7 +1536,7 @@ module TencentCloud
         # @type VULURL: String
         # @param Fix: 修复建议
         # @type Fix: String
-        # @param Payload: 负载
+        # @param Payload: 证明
         # @type Payload: String
 
         attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :Service, :RecentTime, :FirstTime, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :PasswordType, :From, :VULType, :VULURL, :Fix, :Payload
@@ -2570,7 +2570,7 @@ module TencentCloud
       class DeleteDomainAndIpRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
-        # @param Content: -
+        # @param Content: 资产
         # @type Content: Array
         # @param RetainPath: 是否保留路径配置，1：保留，其他：不保留，默认不传为不保留
         # @type RetainPath: Integer
@@ -6850,7 +6850,7 @@ module TencentCloud
 
       # 端口视角的端口风险对象
       class PortViewPortRisk < TencentCloud::Common::AbstractModel
-        # @param NoHandleCount: 影响资产
+        # @param NoHandleCount: 未处理数量
         # @type NoHandleCount: Integer
         # @param Level: 风险等级，low-低危，high-高危，middle-中危，info-提示，extreme-严重。
         # @type Level: String
@@ -6866,11 +6866,11 @@ module TencentCloud
         # @type FirstTime: String
         # @param Suggestion: 处置建议,0保持现状、1限制访问、2封禁端口
         # @type Suggestion: Integer
-        # @param AffectAssetCount: 状态，0未处理、1已处置、2已忽略
+        # @param AffectAssetCount: 影响资产数量
         # @type AffectAssetCount: String
-        # @param Id: 资产唯一id
+        # @param Id: ID
         # @type Id: String
-        # @param From: 资产子类型
+        # @param From: 识别来源
         # @type From: String
         # @param Index: 前端索引
         # @type Index: String
@@ -8765,7 +8765,7 @@ module TencentCloud
         # @type FirstTime: String
         # @param Status: 状态，0未处理、1已处置、2已忽略
         # @type Status: Integer
-        # @param Id: 资产唯一id
+        # @param Id: ID,处理风险使用
         # @type Id: String
         # @param Index: 前端索引
         # @type Index: String

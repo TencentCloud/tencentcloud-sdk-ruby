@@ -153,15 +153,18 @@ module TencentCloud
       class AccelerationDomainCertificate < TencentCloud::Common::AbstractModel
         # @param Mode: 配置证书的模式，取值有： <li>disable：不配置证书；</li> <li>eofreecert：配置 EdgeOne 免费证书；</li> <li>sslcert：配置 SSL 证书。</li>
         # @type Mode: String
-        # @param List: 证书列表。
+        # @param List: 服务端证书列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
+        # @param ClientCertInfo: 边缘双向认证配置。
+        # @type ClientCertInfo: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
 
-        attr_accessor :Mode, :List
+        attr_accessor :Mode, :List, :ClientCertInfo
 
-        def initialize(mode=nil, list=nil)
+        def initialize(mode=nil, list=nil, clientcertinfo=nil)
           @Mode = mode
           @List = list
+          @ClientCertInfo = clientcertinfo
         end
 
         def deserialize(params)
@@ -173,6 +176,10 @@ module TencentCloud
               certificateinfo_tmp.deserialize(i)
               @List << certificateinfo_tmp
             end
+          end
+          unless params['ClientCertInfo'].nil?
+            @ClientCertInfo = MutualTLS.new
+            @ClientCertInfo.deserialize(params['ClientCertInfo'])
           end
         end
       end
@@ -1506,8 +1513,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2024, 6
-        deprecate :IgnoreCacheControl=, :none, 2024, 6
+        deprecate :IgnoreCacheControl, :none, 2024, 7
+        deprecate :IgnoreCacheControl=, :none, 2024, 7
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -1631,9 +1638,9 @@ module TencentCloud
         end
       end
 
-      # https 服务端证书配置
+      # https 证书配置。
       class CertificateInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 服务器证书 ID。
+        # @param CertId: 证书 ID。
         # @type CertId: String
         # @param Alias: 证书备注名。
         # @type Alias: String
@@ -2737,8 +2744,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2024, 6
-        deprecate :EncodeUrl=, :none, 2024, 6
+        deprecate :EncodeUrl, :none, 2024, 7
+        deprecate :EncodeUrl=, :none, 2024, 7
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -3104,10 +3111,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2024, 6
-        deprecate :AllowDuplicates=, :none, 2024, 6
-        deprecate :JumpStart, :none, 2024, 6
-        deprecate :JumpStart=, :none, 2024, 6
+        deprecate :AllowDuplicates, :none, 2024, 7
+        deprecate :AllowDuplicates=, :none, 2024, 7
+        deprecate :JumpStart, :none, 2024, 7
+        deprecate :JumpStart=, :none, 2024, 7
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -9152,30 +9159,35 @@ module TencentCloud
         # @type ZoneId: String
         # @param Hosts: 需要修改证书配置的加速域名。
         # @type Hosts: Array
-        # @param Mode: 配置证书的模式，取值有：
-        # <li>disable：不配置证书；</li>
-        # <li>eofreecert：配置 EdgeOne 免费证书；</li>
-        # <li>sslcert：配置 SSL 证书。</li>不填时默认取值为 disable。
+        # @param Mode: 配置服务端证书的模式，取值有：
+        # <li>disable：不配置服务端证书；</li>
+        # <li>eofreecert：配置 EdgeOne 免费服务端证书；</li>
+        # <li>sslcert：配置 SSL 托管服务端证书；</li>
+        # 不填写表示服务端证书保持原有配置。
         # @type Mode: String
-        # @param ServerCertInfo: SSL 证书配置，本参数仅在 mode = sslcert 时生效，传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
+        # @param ServerCertInfo: SSL 证书配置，本参数仅在 mode 为 sslcert 时生效，传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
         # @type ServerCertInfo: Array
         # @param ApplyType: 托管类型，取值有：
         # <li>none：不托管EO；</li>
         # <li>apply：托管EO</li>
         # 不填，默认取值为none。
         # @type ApplyType: String
+        # @param ClientCertInfo: 边缘双向认证配置。
+        # 不填写表示边缘双向认证保持原有配置。
+        # @type ClientCertInfo: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
 
-        attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType
+        attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2024, 6
-        deprecate :ApplyType=, :none, 2024, 6
+        deprecate :ApplyType, :none, 2024, 7
+        deprecate :ApplyType=, :none, 2024, 7
 
-        def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil)
+        def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
           @Hosts = hosts
           @Mode = mode
           @ServerCertInfo = servercertinfo
           @ApplyType = applytype
+          @ClientCertInfo = clientcertinfo
         end
 
         def deserialize(params)
@@ -9191,6 +9203,10 @@ module TencentCloud
             end
           end
           @ApplyType = params['ApplyType']
+          unless params['ClientCertInfo'].nil?
+            @ClientCertInfo = MutualTLS.new
+            @ClientCertInfo.deserialize(params['ClientCertInfo'])
+          end
         end
       end
 
@@ -10048,6 +10064,36 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # HTTPS 双向认证。
+      class MutualTLS < TencentCloud::Common::AbstractModel
+        # @param Switch: 双向认证配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+        # @param CertInfos: 双向认证证书列表。
+        # 注意：MutualTLS 在 ModifyHostsCertificate 作为入参使用时，该参数传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
+        # @type CertInfos: Array
+
+        attr_accessor :Switch, :CertInfos
+
+        def initialize(switch=nil, certinfos=nil)
+          @Switch = switch
+          @CertInfos = certinfos
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['CertInfos'].nil?
+            @CertInfos = []
+            params['CertInfos'].each do |i|
+              certificateinfo_tmp = CertificateInfo.new
+              certificateinfo_tmp.deserialize(i)
+              @CertInfos << certificateinfo_tmp
+            end
+          end
         end
       end
 
@@ -11556,8 +11602,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2024, 6
-        deprecate :IgnoreNameCase=, :none, 2024, 6
+        deprecate :IgnoreNameCase, :none, 2024, 7
+        deprecate :IgnoreNameCase=, :none, 2024, 7
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

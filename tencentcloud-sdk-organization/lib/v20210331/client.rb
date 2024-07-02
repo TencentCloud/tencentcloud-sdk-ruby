@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量删除企业组织成员
+        # 从组织中移除成员账号，不会删除账号。
 
         # @param request: Request instance for DeleteOrganizationMembers.
         # @type request: :class:`Tencentcloud::organization::V20210331::DeleteOrganizationMembersRequest`

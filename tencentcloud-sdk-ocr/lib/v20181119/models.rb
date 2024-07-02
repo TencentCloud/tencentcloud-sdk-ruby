@@ -45,13 +45,16 @@ module TencentCloud
       class AdvertiseOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         # @type TextDetections: Array
+        # @param ImageSize: 图片分辨率信息，单位 px
+        # @type ImageSize: :class:`Tencentcloud::Ocr.v20181119.models.ImageSize`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :RequestId
+        attr_accessor :TextDetections, :ImageSize, :RequestId
 
-        def initialize(textdetections=nil, requestid=nil)
+        def initialize(textdetections=nil, imagesize=nil, requestid=nil)
           @TextDetections = textdetections
+          @ImageSize = imagesize
           @RequestId = requestid
         end
 
@@ -63,6 +66,10 @@ module TencentCloud
               advertisetextdetection_tmp.deserialize(i)
               @TextDetections << advertisetextdetection_tmp
             end
+          end
+          unless params['ImageSize'].nil?
+            @ImageSize = ImageSize.new
+            @ImageSize.deserialize(params['ImageSize'])
           end
           @RequestId = params['RequestId']
         end
@@ -1572,8 +1579,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
         extend Gem::Deprecate
-        deprecate :Angle, :none, 2024, 6
-        deprecate :Angle=, :none, 2024, 6
+        deprecate :Angle, :none, 2024, 7
+        deprecate :Angle=, :none, 2024, 7
 
         def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
           @PageNumber = pagenumber
@@ -3367,8 +3374,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 6
-        deprecate :Angel=, :none, 2024, 6
+        deprecate :Angel, :none, 2024, 7
+        deprecate :Angel=, :none, 2024, 7
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3478,8 +3485,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 6
-        deprecate :Angel=, :none, 2024, 6
+        deprecate :Angel, :none, 2024, 7
+        deprecate :Angel=, :none, 2024, 7
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3869,8 +3876,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2024, 6
-        deprecate :DetectFake=, :none, 2024, 6
+        deprecate :DetectFake, :none, 2024, 7
+        deprecate :DetectFake=, :none, 2024, 7
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -3939,10 +3946,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2024, 6
-        deprecate :FakeDetectResult=, :none, 2024, 6
-        deprecate :WarningCode, :none, 2024, 6
-        deprecate :WarningCode=, :none, 2024, 6
+        deprecate :FakeDetectResult, :none, 2024, 7
+        deprecate :FakeDetectResult=, :none, 2024, 7
+        deprecate :WarningCode, :none, 2024, 7
+        deprecate :WarningCode=, :none, 2024, 7
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -4283,6 +4290,28 @@ module TencentCloud
           @ImageTag = params['ImageTag']
           @Image = params['Image']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 图片分辨率信息
+      class ImageSize < TencentCloud::Common::AbstractModel
+        # @param Width: 图片的宽，单位像素
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 图片的高，单位像素
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+
+        attr_accessor :Width, :Height
+
+        def initialize(width=nil, height=nil)
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 
@@ -4971,8 +5000,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2024, 6
-        deprecate :Warn=, :none, 2024, 6
+        deprecate :Warn, :none, 2024, 7
+        deprecate :Warn=, :none, 2024, 7
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, warncardinfos=nil, requestid=nil)
           @ID = id

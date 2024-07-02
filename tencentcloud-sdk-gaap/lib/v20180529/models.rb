@@ -7784,6 +7784,46 @@ module TencentCloud
         end
       end
 
+      # SetTlsVersion请求参数结构体
+      class SetTlsVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ListenerId: 监听器ID
+        # @type ListenerId: String
+        # @param TLSSupportVersion: TLS版本
+        # @type TLSSupportVersion: Array
+        # @param TLSCiphers: 密码套件包
+        # @type TLSCiphers: String
+
+        attr_accessor :ListenerId, :TLSSupportVersion, :TLSCiphers
+
+        def initialize(listenerid=nil, tlssupportversion=nil, tlsciphers=nil)
+          @ListenerId = listenerid
+          @TLSSupportVersion = tlssupportversion
+          @TLSCiphers = tlsciphers
+        end
+
+        def deserialize(params)
+          @ListenerId = params['ListenerId']
+          @TLSSupportVersion = params['TLSSupportVersion']
+          @TLSCiphers = params['TLSCiphers']
+        end
+      end
+
+      # SetTlsVersion返回参数结构体
+      class SetTlsVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网络加速的原地址信息
       class SrcAddressInfo < TencentCloud::Common::AbstractModel
         # @param SrcIpv4: 内网Ip4地址

@@ -2504,6 +2504,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置监听器TLS配置
+
+        # @param request: Request instance for SetTlsVersion.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::SetTlsVersionRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::SetTlsVersionResponse`
+        def SetTlsVersion(request)
+          body = send_request('SetTlsVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetTlsVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

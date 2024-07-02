@@ -33,6 +33,8 @@ module TencentCloud
 
         # 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
 
+        # 默认接口请求频率限制：20次/秒。
+
         # @param request: Request instance for AdvertiseOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::AdvertiseOCRRequest`
         # @rtype: :class:`Tencentcloud::ocr::V20181119::AdvertiseOCRResponse`

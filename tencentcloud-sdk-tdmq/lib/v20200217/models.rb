@@ -1677,10 +1677,12 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param Bandwidth: 公网带宽大小，单位 M
         # @type Bandwidth: Integer
+        # @param EnablePublicAccess: 是否打开公网接入，不传默认为false
+        # @type EnablePublicAccess: Boolean
 
-        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth
+        attr_accessor :ZoneIds, :VpcId, :SubnetId, :ClusterName, :NodeSpec, :NodeNum, :StorageSize, :EnableCreateDefaultHaMirrorQueue, :AutoRenewFlag, :TimeSpan, :PayMode, :ClusterVersion, :IsIntl, :ResourceTags, :Bandwidth, :EnablePublicAccess
 
-        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil)
+        def initialize(zoneids=nil, vpcid=nil, subnetid=nil, clustername=nil, nodespec=nil, nodenum=nil, storagesize=nil, enablecreatedefaulthamirrorqueue=nil, autorenewflag=nil, timespan=nil, paymode=nil, clusterversion=nil, isintl=nil, resourcetags=nil, bandwidth=nil, enablepublicaccess=nil)
           @ZoneIds = zoneids
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1696,6 +1698,7 @@ module TencentCloud
           @IsIntl = isintl
           @ResourceTags = resourcetags
           @Bandwidth = bandwidth
+          @EnablePublicAccess = enablepublicaccess
         end
 
         def deserialize(params)
@@ -1721,6 +1724,7 @@ module TencentCloud
             end
           end
           @Bandwidth = params['Bandwidth']
+          @EnablePublicAccess = params['EnablePublicAccess']
         end
       end
 
@@ -10570,6 +10574,9 @@ module TencentCloud
         # @param VirtualHostStatistics: vhost概览统计信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHostStatistics: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQVirtualHostStatistics`
+        # @param TraceFlag: 消息轨迹开关,true打开,false关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceFlag: Boolean
         # @param Status: vhost状态，与原生控制台对应，有running、partial、stopped、unknown
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
@@ -10586,9 +10593,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MirrorQueuePolicyFlag: Boolean
 
-        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag
+        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :TraceFlag, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :MirrorQueuePolicyFlag
 
-        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil)
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, traceflag=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, mirrorqueuepolicyflag=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Description = description
@@ -10596,6 +10603,7 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @VirtualHostStatistics = virtualhoststatistics
+          @TraceFlag = traceflag
           @Status = status
           @MessageHeapCount = messageheapcount
           @MessageRateIn = messageratein
@@ -10614,6 +10622,7 @@ module TencentCloud
             @VirtualHostStatistics = RabbitMQVirtualHostStatistics.new
             @VirtualHostStatistics.deserialize(params['VirtualHostStatistics'])
           end
+          @TraceFlag = params['TraceFlag']
           @Status = params['Status']
           @MessageHeapCount = params['MessageHeapCount']
           @MessageRateIn = params['MessageRateIn']
