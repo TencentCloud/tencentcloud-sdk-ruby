@@ -748,7 +748,7 @@ module TencentCloud
       class CommandTake < TencentCloud::Common::AbstractModel
         # @param Cmd: 命令名。
         # @type Cmd: String
-        # @param Took: 耗时时长。
+        # @param Took: 耗时时长。单位：ms。
         # @type Took: Integer
 
         attr_accessor :Cmd, :Took
@@ -2500,9 +2500,13 @@ module TencentCloud
 
       # DescribeInstanceMonitorTopNCmd请求参数结构体
       class DescribeInstanceMonitorTopNCmdRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param SpanType: 时间范围：1——实时，2——近30分钟，3——近6小时，4——近24小时
+        # @param SpanType: 时间范围。
+        # - 1：实时。
+        # - 2：近30分钟。
+        # - 3：近6小时。
+        # - 4：近24小时。
         # @type SpanType: Integer
 
         attr_accessor :InstanceId, :SpanType
@@ -4682,7 +4686,7 @@ module TencentCloud
 
       # 实例节点类型
       class InstanceClusterNode < TencentCloud::Common::AbstractModel
-        # @param Name: 节点名称。
+        # @param Name: 节点组名称。
         # @type Name: String
         # @param RunId: 实例运行时节点 ID。
         # @type RunId: String
@@ -8248,13 +8252,15 @@ module TencentCloud
       class ZoneCapacityConf < TencentCloud::Common::AbstractModel
         # @param ZoneId: 可用区ID：如ap-guangzhou-3
         # @type ZoneId: String
-        # @param ZoneName: 可用区名称
+        # @param ZoneName: 可用区名称。
         # @type ZoneName: String
-        # @param IsSaleout: 可用区是否售罄
+        # @param IsSaleout: 可用区是否售罄。
         # @type IsSaleout: Boolean
-        # @param IsDefault: 是否为默认可用区
+        # @param IsDefault: 是否为默认可用区。
         # @type IsDefault: Boolean
-        # @param NetWorkType: 网络类型：basenet -- 基础网络；vpcnet -- VPC网络
+        # @param NetWorkType: 网络类型。
+        # - basenet：基础网络。
+        # - vpcnet -- VPC网络。
         # @type NetWorkType: Array
         # @param ProductSet: 可用区内产品规格等信息
         # @type ProductSet: Array

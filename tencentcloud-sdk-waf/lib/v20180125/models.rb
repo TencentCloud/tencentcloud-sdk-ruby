@@ -1867,10 +1867,25 @@ module TencentCloud
         # @param Region: 对象地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param Proxy: 代理状态: 0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proxy: Integer
+        # @param IpHeaders: 指定获取客户端IP的头部字段列表。IsCdn为3时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpHeaders: Array
+        # @param BotStatus: bot防护开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotStatus: Integer
+        # @param ApiStatus: api防护开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiStatus: Integer
+        # @param ObjectFlowMode: 对象接入模式，0表示镜像模式，1表示清洗模式，2表示体检模式，默认为清洗模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectFlowMode: Integer
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1888,6 +1903,11 @@ module TencentCloud
           @PostCKafkaStatus = postckafkastatus
           @Type = type
           @Region = region
+          @Proxy = proxy
+          @IpHeaders = ipheaders
+          @BotStatus = botstatus
+          @ApiStatus = apistatus
+          @ObjectFlowMode = objectflowmode
         end
 
         def deserialize(params)
@@ -1908,6 +1928,11 @@ module TencentCloud
           @PostCKafkaStatus = params['PostCKafkaStatus']
           @Type = params['Type']
           @Region = params['Region']
+          @Proxy = params['Proxy']
+          @IpHeaders = params['IpHeaders']
+          @BotStatus = params['BotStatus']
+          @ApiStatus = params['ApiStatus']
+          @ObjectFlowMode = params['ObjectFlowMode']
         end
       end
 

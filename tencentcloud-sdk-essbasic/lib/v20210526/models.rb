@@ -10536,7 +10536,7 @@ module TencentCloud
       class UploadFile < TencentCloud::Common::AbstractModel
         # @param FileBody: Base64编码后的文件内容
         # @type FileBody: String
-        # @param FileName: 文件名
+        # @param FileName: 文件名，最大长度不超过200字符
         # @type FileName: String
 
         attr_accessor :FileBody, :FileName

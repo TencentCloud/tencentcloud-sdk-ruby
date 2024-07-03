@@ -460,6 +460,88 @@ module TencentCloud
         end
       end
 
+      # ReplaceBackground请求参数结构体
+      class ReplaceBackgroundRequest < TencentCloud::Common::AbstractModel
+        # @param ProductUrl: 商品原图 Url。
+        # 图片限制：单边分辨率小于4000，长宽比在2:5 ~ 5:2之间，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type ProductUrl: String
+        # @param MaskUrl: 商品 Mask 图 Url，要求背景透明，保留商品主体。
+        # 如果不传，将自动使用内置的商品分割算法得到 Mask。
+        # 支持自定义上传 Mask，如果该参数不为空，则以实际上传的数据为准。
+        # 图片限制：Mask 图必须和商品原图分辨率一致，转成 Base64 字符串后小于 6MB，格式仅支持 png。
+        # @type MaskUrl: String
+        # @param Prompt: 对新背景的文本描述。
+        # 最多支持256个 utf-8 字符，支持中、英文。
+        # @type Prompt: String
+        # @param Resolution: 替换背景后生成的商品图分辨率。
+        # 支持生成单边分辨率大于500且小于4000、长宽比在2:5 ~ 5:2之间的图片，不传默认生成1280:1280。
+        # 建议图片比例为1:1、9:16、16:9，生成效果更佳，使用其他比例的生成效果可能不如建议比例。
+        # @type Resolution: String
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        # 生成图分辨率较大时建议选择 url，使用 base64 可能因图片过大导致返回失败。
+        # @type RspImgType: String
+
+        attr_accessor :ProductUrl, :MaskUrl, :Prompt, :Resolution, :LogoAdd, :LogoParam, :RspImgType
+
+        def initialize(producturl=nil, maskurl=nil, prompt=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+          @ProductUrl = producturl
+          @MaskUrl = maskurl
+          @Prompt = prompt
+          @Resolution = resolution
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+          @RspImgType = rspimgtype
+        end
+
+        def deserialize(params)
+          @ProductUrl = params['ProductUrl']
+          @MaskUrl = params['MaskUrl']
+          @Prompt = params['Prompt']
+          @Resolution = params['Resolution']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+          @RspImgType = params['RspImgType']
+        end
+      end
+
+      # ReplaceBackground返回参数结构体
+      class ReplaceBackgroundResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param MaskImage: 如果 MaskUrl 未传，则返回使用内置商品分割算法得到的 Mask 结果。
+        # @type MaskImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :MaskImage, :RequestId
+
+        def initialize(resultimage=nil, maskimage=nil, requestid=nil)
+          @ResultImage = resultimage
+          @MaskImage = maskimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @MaskImage = params['MaskImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 返回结果配置
       class ResultConfig < TencentCloud::Common::AbstractModel
         # @param Resolution: 生成图分辨率
