@@ -1133,27 +1133,25 @@ module TencentCloud
 
       # DescribeInstanceList请求参数结构体
       class DescribeInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 查询起始位置
-        # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
-        # @type Limit: Integer
         # @param Filters: 查询条件列表
         # @type Filters: Array
         # @param TagFilters: 标签过滤器
         # @type TagFilters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
 
-        attr_accessor :Offset, :Limit, :Filters, :TagFilters
+        attr_accessor :Filters, :TagFilters, :Offset, :Limit
 
-        def initialize(offset=nil, limit=nil, filters=nil, tagfilters=nil)
-          @Offset = offset
-          @Limit = limit
+        def initialize(filters=nil, tagfilters=nil, offset=nil, limit=nil)
           @Filters = filters
           @TagFilters = tagfilters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1170,6 +1168,8 @@ module TencentCloud
               @TagFilters << tagfilter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -2804,10 +2804,13 @@ module TencentCloud
         # @param MaxMessageDelay: 延迟消息最大时长，小时为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMessageDelay: Integer
+        # @param RenewFlag: 是否自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :GroupNumLimit, :PayMode, :ExpiryTime, :Remark, :TopicNum, :GroupNum, :TagList, :SkuCode, :TpsLimit, :ScaledTpsLimit, :MessageRetention, :MaxMessageDelay
+        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :GroupNumLimit, :PayMode, :ExpiryTime, :Remark, :TopicNum, :GroupNum, :TagList, :SkuCode, :TpsLimit, :ScaledTpsLimit, :MessageRetention, :MaxMessageDelay, :RenewFlag
 
-        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, groupnumlimit=nil, paymode=nil, expirytime=nil, remark=nil, topicnum=nil, groupnum=nil, taglist=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, messageretention=nil, maxmessagedelay=nil)
+        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, groupnumlimit=nil, paymode=nil, expirytime=nil, remark=nil, topicnum=nil, groupnum=nil, taglist=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, messageretention=nil, maxmessagedelay=nil, renewflag=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Version = version
@@ -2826,6 +2829,7 @@ module TencentCloud
           @ScaledTpsLimit = scaledtpslimit
           @MessageRetention = messageretention
           @MaxMessageDelay = maxmessagedelay
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -2854,6 +2858,7 @@ module TencentCloud
           @ScaledTpsLimit = params['ScaledTpsLimit']
           @MessageRetention = params['MessageRetention']
           @MaxMessageDelay = params['MaxMessageDelay']
+          @RenewFlag = params['RenewFlag']
         end
       end
 

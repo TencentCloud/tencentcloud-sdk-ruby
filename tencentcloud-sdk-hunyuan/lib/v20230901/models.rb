@@ -19,7 +19,7 @@ module TencentCloud
     module V20230901
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-pro。
+        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-pro、 hunyuan-code、 hunyuan-role、 hunyuan-functioncall、 hunyuan-vision。
         # 各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。
 
         # 注意：
@@ -28,8 +28,8 @@ module TencentCloud
         # @param Messages: 聊天上下文信息。
         # 说明：
         # 1. 长度最多为 40，按对话时间从旧到新在数组中排列。
-        # 2. Message.Role 可选值：system、user、assistant。
-        # 其中，system 角色可选，如存在则必须位于列表的最开始。user 和 assistant 需交替出现（一问一答），以 user 提问开始和结束，且 Content 不能为空。Role 的顺序示例：[system（可选） user assistant user assistant user ...]。
+        # 2. Message.Role 可选值：system、user、assistant、 tool。
+        # 其中，system 角色可选，如存在则必须位于列表的最开始。user（tool） 和 assistant 需交替出现（一问一答），以 user 提问开始，user（tool）提问结束，且 Content 不能为空。Role 的顺序示例：[system（可选） user assistant user assistant user ...]。
         # 3. Messages 中 Content 总长度不能超过模型输入长度上限（可参考 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 文档），超过则会截断最前面的内容，只保留尾部内容。
         # @type Messages: Array
         # @param Stream: 流式调用开关。
@@ -71,10 +71,20 @@ module TencentCloud
         # 3. 关闭时将直接由主模型生成回复内容，可以降低响应时延（对于流式输出时的首字时延尤为明显）。但在少数场景里，回复效果可能会下降。
         # 4. 安全审核能力不属于功能增强范围，不受此字段影响。
         # @type EnableEnhancement: Boolean
+        # @param Tools: 可调用的工具列表，仅对 hunyuan-functioncall 模型生效。
+        # @type Tools: Array
+        # @param ToolChoice: 工具使用选项，可选值包括 none、auto、custom。
+        # 说明：
+        # 1. 仅对 hunyuan-functioncall 模型生效。
+        # 2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。
+        # 3. 未设置时，默认值为auto
+        # @type ToolChoice: String
+        # @param CustomTool: 强制模型调用指定的工具，当参数ToolChoice为custom时，此参数为必填
+        # @type CustomTool: :class:`Tencentcloud::Hunyuan.v20230901.models.Tool`
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -82,6 +92,9 @@ module TencentCloud
           @TopP = topp
           @Temperature = temperature
           @EnableEnhancement = enableenhancement
+          @Tools = tools
+          @ToolChoice = toolchoice
+          @CustomTool = customtool
         end
 
         def deserialize(params)
@@ -99,6 +112,19 @@ module TencentCloud
           @TopP = params['TopP']
           @Temperature = params['Temperature']
           @EnableEnhancement = params['EnableEnhancement']
+          unless params['Tools'].nil?
+            @Tools = []
+            params['Tools'].each do |i|
+              tool_tmp = Tool.new
+              tool_tmp.deserialize(i)
+              @Tools << tool_tmp
+            end
+          end
+          @ToolChoice = params['ToolChoice']
+          unless params['CustomTool'].nil?
+            @CustomTool = Tool.new
+            @CustomTool.deserialize(params['CustomTool'])
+          end
         end
       end
 
@@ -191,23 +217,70 @@ module TencentCloud
         end
       end
 
+      # 可以传入多种类型的内容，如图片或文本。当前只支持传入单张图片，传入多张图片时，以第一个图片为准。
+      class Content < TencentCloud::Common::AbstractModel
+        # @param Type: 内容类型
+        # 注意：
+        # 当前只支持传入单张图片，传入多张图片时，以第一个图片为准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Text: 当 Type 为 text 时使用，表示具体的文本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param ImageUrl: 当 Type 为 image_url 时使用，表示具体的图片内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: :class:`Tencentcloud::Hunyuan.v20230901.models.ImageUrl`
+
+        attr_accessor :Type, :Text, :ImageUrl
+
+        def initialize(type=nil, text=nil, imageurl=nil)
+          @Type = type
+          @Text = text
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Text = params['Text']
+          unless params['ImageUrl'].nil?
+            @ImageUrl = ImageUrl.new
+            @ImageUrl.deserialize(params['ImageUrl'])
+          end
+        end
+      end
+
       # 返回的内容（流式返回）
       class Delta < TencentCloud::Common::AbstractModel
         # @param Role: 角色名称。
         # @type Role: String
         # @param Content: 内容详情。
         # @type Content: String
+        # @param ToolCalls: 模型生成的工具调用，仅 hunyuan-functioncall 模型支持
+        # 说明：
+        # 对于每一次的输出值应该以Id为标识对Type、Name、Arguments字段进行合并。
 
-        attr_accessor :Role, :Content
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToolCalls: Array
 
-        def initialize(role=nil, content=nil)
+        attr_accessor :Role, :Content, :ToolCalls
+
+        def initialize(role=nil, content=nil, toolcalls=nil)
           @Role = role
           @Content = content
+          @ToolCalls = toolcalls
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+          unless params['ToolCalls'].nil?
+            @ToolCalls = []
+            params['ToolCalls'].each do |i|
+              toolcall_tmp = ToolCall.new
+              toolcall_tmp.deserialize(i)
+              @ToolCalls << toolcall_tmp
+            end
+          end
         end
       end
 
@@ -374,23 +447,69 @@ module TencentCloud
         end
       end
 
+      # 具体的图片内容
+      class ImageUrl < TencentCloud::Common::AbstractModel
+        # @param Url: 图片的 Url（以 http:// 或 https:// 开头）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
       # 会话内容
       class Message < TencentCloud::Common::AbstractModel
-        # @param Role: 角色，可选值包括 system、user、assistant。
+        # @param Role: 角色，可选值包括 system、user、assistant、 tool。
         # @type Role: String
         # @param Content: 文本内容
         # @type Content: String
+        # @param Contents: 多种类型内容（目前支持图片和文本），仅 hunyuan-vision 模型支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contents: Array
+        # @param ToolCallId: 当role为tool时传入，标识具体的函数调用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToolCallId: String
+        # @param ToolCalls: 模型生成的工具调用，仅 hunyuan-functioncall 模型支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToolCalls: Array
 
-        attr_accessor :Role, :Content
+        attr_accessor :Role, :Content, :Contents, :ToolCallId, :ToolCalls
 
-        def initialize(role=nil, content=nil)
+        def initialize(role=nil, content=nil, contents=nil, toolcallid=nil, toolcalls=nil)
           @Role = role
           @Content = content
+          @Contents = contents
+          @ToolCallId = toolcallid
+          @ToolCalls = toolcalls
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              content_tmp = Content.new
+              content_tmp.deserialize(i)
+              @Contents << content_tmp
+            end
+          end
+          @ToolCallId = params['ToolCallId']
+          unless params['ToolCalls'].nil?
+            @ToolCalls = []
+            params['ToolCalls'].each do |i|
+              toolcall_tmp = ToolCall.new
+              toolcall_tmp.deserialize(i)
+              @ToolCalls << toolcall_tmp
+            end
+          end
         end
       end
 
@@ -514,6 +633,100 @@ module TencentCloud
         def deserialize(params)
           @JobId = params['JobId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户指定模型使用的工具
+      class Tool < TencentCloud::Common::AbstractModel
+        # @param Type: 工具类型，当前只支持function
+        # @type Type: String
+        # @param Function: 具体要调用的function
+        # @type Function: :class:`Tencentcloud::Hunyuan.v20230901.models.ToolFunction`
+
+        attr_accessor :Type, :Function
+
+        def initialize(type=nil, function=nil)
+          @Type = type
+          @Function = function
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Function'].nil?
+            @Function = ToolFunction.new
+            @Function.deserialize(params['Function'])
+          end
+        end
+      end
+
+      # 模型生成的工具调用
+      class ToolCall < TencentCloud::Common::AbstractModel
+        # @param Id: 工具调用id
+        # @type Id: String
+        # @param Type: 工具调用类型，当前只支持function
+        # @type Type: String
+        # @param Function: 具体的function调用
+        # @type Function: :class:`Tencentcloud::Hunyuan.v20230901.models.ToolCallFunction`
+
+        attr_accessor :Id, :Type, :Function
+
+        def initialize(id=nil, type=nil, function=nil)
+          @Id = id
+          @Type = type
+          @Function = function
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          unless params['Function'].nil?
+            @Function = ToolCallFunction.new
+            @Function.deserialize(params['Function'])
+          end
+        end
+      end
+
+      # 具体的function调用
+      class ToolCallFunction < TencentCloud::Common::AbstractModel
+        # @param Name: function名称
+        # @type Name: String
+        # @param Arguments: function参数，一般为json字符串
+        # @type Arguments: String
+
+        attr_accessor :Name, :Arguments
+
+        def initialize(name=nil, arguments=nil)
+          @Name = name
+          @Arguments = arguments
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Arguments = params['Arguments']
+        end
+      end
+
+      # function定义
+      class ToolFunction < TencentCloud::Common::AbstractModel
+        # @param Name: function名称，只能包含a-z，A-Z，0-9，\_或-
+        # @type Name: String
+        # @param Parameters: function参数，一般为json字符串
+        # @type Parameters: String
+        # @param Description: function的简单描述
+        # @type Description: String
+
+        attr_accessor :Name, :Parameters, :Description
+
+        def initialize(name=nil, parameters=nil, description=nil)
+          @Name = name
+          @Parameters = parameters
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Parameters = params['Parameters']
+          @Description = params['Description']
         end
       end
 

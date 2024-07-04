@@ -19,7 +19,7 @@ module TencentCloud
     module V20190423
       # ActivateTWeCallLicense请求参数结构体
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgType: TWecall类型： 1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
+        # @param PkgType: TWecall类型： 0-测试激活码； 1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
         # @type PkgType: Integer
         # @param MiniProgramAppId: appId
         # @type MiniProgramAppId: String
@@ -50,16 +50,28 @@ module TencentCloud
 
       # ActivateTWeCallLicense返回参数结构体
       class ActivateTWeCallLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceList: 设备激活返回数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DeviceList, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(devicelist=nil, requestid=nil)
+          @DeviceList = devicelist
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              deviceactiveresult_tmp = DeviceActiveResult.new
+              deviceactiveresult_tmp.deserialize(i)
+              @DeviceList << deviceactiveresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4663,6 +4675,33 @@ module TencentCloud
             @Rule.deserialize(params['Rule'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备激活结果数据
+      class DeviceActiveResult < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模版ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param Sn: SN信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sn: String
+        # @param ErrCode: 设备激活状态，0：激活成功；9800020：设备数超出限制；9800040：资源包类型和设备类型不匹配；9800039：资源包余额不足；9800037：激活码序号已使用；9800038：设备有效期超出限制；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: Integer
+
+        attr_accessor :ModelId, :Sn, :ErrCode
+
+        def initialize(modelid=nil, sn=nil, errcode=nil)
+          @ModelId = modelid
+          @Sn = sn
+          @ErrCode = errcode
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @Sn = params['Sn']
+          @ErrCode = params['ErrCode']
         end
       end
 

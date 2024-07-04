@@ -5522,15 +5522,61 @@ module TencentCloud
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 查询的机器组ID
         # @type GroupId: String
+        # @param Filters: ip
+        # - 按照【ip】进行过滤。
+        # - 类型：String
+        # - 必选：否
 
-        attr_accessor :GroupId
+        # instance
+        # - 按照【instance】进行过滤。
+        # - 类型：String
+        # - 必选：否
 
-        def initialize(groupid=nil)
+        # version
+        # - 按照【LogListener版本】进行过滤。
+        # - 类型：String
+        # - 必选：否
+
+        # status
+        # - 按照【状态】进行过滤。
+        # - 类型：String
+        # - 必选：否
+        # - 可选值：0：离线，1：正常
+
+        # offlineTime
+        # - 按照【机器离线时间】进行过滤。
+        # - 类型：String
+        # - 必选：否
+        # - - 可选值：0：无离线时间，12：12小时内，24：一天内，48：两天内，99：两天前
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目。最大支持100
+        # @type Limit: Integer
+
+        attr_accessor :GroupId, :Filters, :Offset, :Limit
+
+        def initialize(groupid=nil, filters=nil, offset=nil, limit=nil)
           @GroupId = groupid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @GroupId = params['GroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -5548,18 +5594,22 @@ module TencentCloud
         # @type LatestAgentVersion: String
         # @param ServiceLogging: 是否开启服务日志
         # @type ServiceLogging: Boolean
+        # @param TotalCount: 总数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Machines, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :LatestAgentVersion, :ServiceLogging, :RequestId
+        attr_accessor :Machines, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :LatestAgentVersion, :ServiceLogging, :TotalCount, :RequestId
 
-        def initialize(machines=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, latestagentversion=nil, servicelogging=nil, requestid=nil)
+        def initialize(machines=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, latestagentversion=nil, servicelogging=nil, totalcount=nil, requestid=nil)
           @Machines = machines
           @AutoUpdate = autoupdate
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @LatestAgentVersion = latestagentversion
           @ServiceLogging = servicelogging
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -5577,6 +5627,7 @@ module TencentCloud
           @UpdateEndTime = params['UpdateEndTime']
           @LatestAgentVersion = params['LatestAgentVersion']
           @ServiceLogging = params['ServiceLogging']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -9095,8 +9146,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2024, 6
-        deprecate :DstTopicName=, :none, 2024, 6
+        deprecate :DstTopicName, :none, 2024, 7
+        deprecate :DstTopicName=, :none, 2024, 7
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent

@@ -4756,8 +4756,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 6
-        deprecate :Decription=, :none, 2024, 6
+        deprecate :Decription, :none, 2024, 7
+        deprecate :Decription=, :none, 2024, 7
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -8077,13 +8077,13 @@ module TencentCloud
 
       # 日志投递类型细节
       class DeliverTypeDetails < TencentCloud::Common::AbstractModel
-        # @param SecurityType: 安全模块类型 1: 入侵检测 2: 漏洞管理 3: 基线管理 4: 高级防御 5:客户端相关 6: 资产指纹
+        # @param SecurityType: 安全模块类型 1: 入侵检测 2: 漏洞管理 3: 基线管理 4: 高级防御 5:客户端相关 6: 资产指纹 7 主机列表 8 客户端上报
         # @type SecurityType: Integer
-        # @param LogType: 安全模块下的日志类型，http://tapd.woa.com/Teneyes/markdown_wikis/show/#1210131751002328905
+        # @param LogType: 安全模块下的日志类型
         # @type LogType: Array
-        # @param TopicId: kafka topic id
+        # @param TopicId: 主题ID
         # @type TopicId: String
-        # @param TopicName: kafka topic name
+        # @param TopicName: 主题名
         # @type TopicName: String
         # @param Switch: 投递开关 0关闭 1开启
         # @type Switch: Integer
@@ -8091,12 +8091,18 @@ module TencentCloud
         # @type Status: Integer
         # @param ErrInfo: 错误信息
         # @type ErrInfo: String
-        # @param StatusTime: 最近一次状态上报时间戳，s
+        # @param StatusTime: 最近一次状态上报时间戳
         # @type StatusTime: Integer
+        # @param LogName: 日志集名
+        # @type LogName: String
+        # @param LogSetId: 日志集ID
+        # @type LogSetId: String
+        # @param Region: 日志集所在地域
+        # @type Region: String
 
-        attr_accessor :SecurityType, :LogType, :TopicId, :TopicName, :Switch, :Status, :ErrInfo, :StatusTime
+        attr_accessor :SecurityType, :LogType, :TopicId, :TopicName, :Switch, :Status, :ErrInfo, :StatusTime, :LogName, :LogSetId, :Region
 
-        def initialize(securitytype=nil, logtype=nil, topicid=nil, topicname=nil, switch=nil, status=nil, errinfo=nil, statustime=nil)
+        def initialize(securitytype=nil, logtype=nil, topicid=nil, topicname=nil, switch=nil, status=nil, errinfo=nil, statustime=nil, logname=nil, logsetid=nil, region=nil)
           @SecurityType = securitytype
           @LogType = logtype
           @TopicId = topicid
@@ -8105,6 +8111,9 @@ module TencentCloud
           @Status = status
           @ErrInfo = errinfo
           @StatusTime = statustime
+          @LogName = logname
+          @LogSetId = logsetid
+          @Region = region
         end
 
         def deserialize(params)
@@ -8116,6 +8125,9 @@ module TencentCloud
           @Status = params['Status']
           @ErrInfo = params['ErrInfo']
           @StatusTime = params['StatusTime']
+          @LogName = params['LogName']
+          @LogSetId = params['LogSetId']
+          @Region = params['Region']
         end
       end
 
@@ -27903,20 +27915,19 @@ module TencentCloud
 
       # ExportBaselineHostDetectList请求参数结构体
       class ExportBaselineHostDetectListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <li>HostTag - string - 是否必填：否 - 主机标签</i>
-        # <li>ItemId - int64 - 是否必填：否 - 项Id</i>
-        # <li>RuleId - int64 - 是否必填：否 - 规则Id</li>
-        # <li>IsPassed - int - 是否必填：否 - 是否通过</li>
-        # <li>RiskTier - int - 是否必填：否 - 风险等级</li>
+        # @param Filters: <li>HostTag - string - 是否必填：否 - 主机标签</li><li>ItemId - int64 - 是否必填：否 - 项Id</li><li>RuleId - int64 - 是否必填：否 - 规则Id</li><li>IsPassed - int - 是否必填：否 - 是否通过</li><li>RiskTier - int - 是否必填：否 - 风险等级</li>
         # @type Filters: Array
         # @param ExportAll: 0:过滤的结果导出；1:全部导出
         # @type ExportAll: Integer
+        # @param IsExportDetail: 0:导出界面展示；1:导出全部结果事件
+        # @type IsExportDetail: Integer
 
-        attr_accessor :Filters, :ExportAll
+        attr_accessor :Filters, :ExportAll, :IsExportDetail
 
-        def initialize(filters=nil, exportall=nil)
+        def initialize(filters=nil, exportall=nil, isexportdetail=nil)
           @Filters = filters
           @ExportAll = exportall
+          @IsExportDetail = isexportdetail
         end
 
         def deserialize(params)
@@ -27929,6 +27940,7 @@ module TencentCloud
             end
           end
           @ExportAll = params['ExportAll']
+          @IsExportDetail = params['IsExportDetail']
         end
       end
 
@@ -27950,19 +27962,19 @@ module TencentCloud
 
       # ExportBaselineItemDetectList请求参数结构体
       class ExportBaselineItemDetectListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <li>HostId - string - 是否必填：否 - 主机Id</i>
-        # <li>RuleId - int64 - 是否必填：否 - 规则Id</i>
-        # <li>IsPassed - int - 是否必填：否 - 是否通过</li>
-        # <li>RiskTier - int - 是否必填：否 - 风险等级</li>
+        # @param Filters: <li>HostId - string - 是否必填：否 - 主机Id</li><li>RuleId - int64 - 是否必填：否 - 规则Id</li><li>IsPassed - int - 是否必填：否 - 是否通过</li><li>RiskTier - int - 是否必填：否 - 风险等级</li>
         # @type Filters: Array
         # @param ExportAll: 0:过滤的结果导出；1:全部导出
         # @type ExportAll: Integer
+        # @param IsExportDetail: 0:导出界面展示；1:导出全部结果事件
+        # @type IsExportDetail: Integer
 
-        attr_accessor :Filters, :ExportAll
+        attr_accessor :Filters, :ExportAll, :IsExportDetail
 
-        def initialize(filters=nil, exportall=nil)
+        def initialize(filters=nil, exportall=nil, isexportdetail=nil)
           @Filters = filters
           @ExportAll = exportall
+          @IsExportDetail = isexportdetail
         end
 
         def deserialize(params)
@@ -27975,6 +27987,7 @@ module TencentCloud
             end
           end
           @ExportAll = params['ExportAll']
+          @IsExportDetail = params['IsExportDetail']
         end
       end
 
@@ -28106,18 +28119,19 @@ module TencentCloud
 
       # ExportBaselineRuleDetectList请求参数结构体
       class ExportBaselineRuleDetectListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <li>RuleName - string - 是否必填：否 - 规则名称</i>
-        # <li>IsPassed - int - 是否必填：否 - 是否通过</li>
-        # <li>RiskTier - int - 是否必填：否 - 风险等级</li>
+        # @param Filters: <li>RuleName - string - 是否必填：否 - 规则名称</li><li>IsPassed - int - 是否必填：否 - 是否通过</li><li>RiskTier - int - 是否必填：否 - 风险等级</li>
         # @type Filters: Array
         # @param ExportAll: 0:过滤的结果导出；1:全部导出
         # @type ExportAll: Integer
+        # @param IsExportDetail: 0:导出界面展示；1:导出全部结果事件
+        # @type IsExportDetail: Integer
 
-        attr_accessor :Filters, :ExportAll
+        attr_accessor :Filters, :ExportAll, :IsExportDetail
 
-        def initialize(filters=nil, exportall=nil)
+        def initialize(filters=nil, exportall=nil, isexportdetail=nil)
           @Filters = filters
           @ExportAll = exportall
+          @IsExportDetail = isexportdetail
         end
 
         def deserialize(params)
@@ -28130,6 +28144,7 @@ module TencentCloud
             end
           end
           @ExportAll = params['ExportAll']
+          @IsExportDetail = params['IsExportDetail']
         end
       end
 
@@ -28395,8 +28410,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 6
-        deprecate :Fileds=, :none, 2024, 6
+        deprecate :Fileds, :none, 2024, 7
+        deprecate :Fileds=, :none, 2024, 7
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

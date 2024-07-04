@@ -21,26 +21,29 @@ module TencentCloud
       class AccountInfo < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-lnp6j617
         # @type DBInstanceId: String
-        # @param UserName: 帐号
+        # @param UserName: 账号
         # @type UserName: String
-        # @param Remark: 帐号备注
+        # @param Remark: 账号备注
         # @type Remark: String
-        # @param Status: 帐号状态。 1-创建中，2-正常，3-修改中，4-密码重置中，-1-删除中
+        # @param Status: 账号状态。 1-创建中，2-正常，3-修改中，4-密码重置中，5-锁定中，-1-删除中
         # @type Status: Integer
-        # @param CreateTime: 帐号创建时间
+        # @param CreateTime: 账号创建时间
         # @type CreateTime: String
-        # @param UpdateTime: 帐号最后一次更新时间
+        # @param UpdateTime: 账号最后一次更新时间
         # @type UpdateTime: String
+        # @param UserType: 账号类型
+        # @type UserType: String
 
-        attr_accessor :DBInstanceId, :UserName, :Remark, :Status, :CreateTime, :UpdateTime
+        attr_accessor :DBInstanceId, :UserName, :Remark, :Status, :CreateTime, :UpdateTime, :UserType
 
-        def initialize(dbinstanceid=nil, username=nil, remark=nil, status=nil, createtime=nil, updatetime=nil)
+        def initialize(dbinstanceid=nil, username=nil, remark=nil, status=nil, createtime=nil, updatetime=nil, usertype=nil)
           @DBInstanceId = dbinstanceid
           @UserName = username
           @Remark = remark
           @Status = status
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @UserType = usertype
         end
 
         def deserialize(params)
@@ -50,6 +53,7 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @UserType = params['UserType']
         end
       end
 
@@ -2064,11 +2068,11 @@ module TencentCloud
       class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-6fego161
         # @type DBInstanceId: String
-        # @param Limit: 分页返回，每页最大返回数目，默认10，取值范围为1-100
+        # @param Limit: 分页返回，每页最大返回数目，默认20，取值范围为1-100
         # @type Limit: Integer
         # @param Offset: 数据偏移量，从0开始。
         # @type Offset: Integer
-        # @param OrderBy: 返回数据按照创建时间或者用户名排序。取值只能为createTime或者name。createTime-按照创建时间排序；name-按照用户名排序
+        # @param OrderBy: 返回数据按照创建时间或者用户名排序。取值支持createTime、name、updateTime。createTime-按照创建时间排序；name-按照用户名排序; updateTime-按照更新时间排序。
         # @type OrderBy: String
         # @param OrderByType: 返回结果是升序还是降序。取值只能为desc或者asc。desc-降序；asc-升序
         # @type OrderByType: String
@@ -2096,7 +2100,7 @@ module TencentCloud
       class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 本次调用接口共返回了多少条数据。
         # @type TotalCount: Integer
-        # @param Details: 账号列表详细信息。
+        # @param Details: 账号列表详细信息。当CreateTime项为0000-00-00 00:00:00时，意味着对应账号是直连数据库创建的，并非通过CreateAccount接口创建。
         # @type Details: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

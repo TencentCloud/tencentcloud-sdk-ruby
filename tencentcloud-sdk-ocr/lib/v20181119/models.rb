@@ -7621,8 +7621,8 @@ module TencentCloud
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。 示例值：1
         # @type PdfPageNumber: Integer
         # @param Type: 支持的模板类型
-        # - General 通用告警
-        # - LicensePlate 车牌告警
+        # - General 通用告警（支持所有类型告警）
+        # - LicensePlate 车牌告警（支持翻拍告警）
         # @type Type: String
 
         attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber, :Type

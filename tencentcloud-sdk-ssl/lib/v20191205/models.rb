@@ -1000,15 +1000,19 @@ module TencentCloud
         # @param NoMatchDomains: 不匹配域名列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoMatchDomains: Array
+        # @param Url: 规则绑定的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
 
-        attr_accessor :LocationId, :Domain, :IsMatch, :Certificate, :NoMatchDomains
+        attr_accessor :LocationId, :Domain, :IsMatch, :Certificate, :NoMatchDomains, :Url
 
-        def initialize(locationid=nil, domain=nil, ismatch=nil, certificate=nil, nomatchdomains=nil)
+        def initialize(locationid=nil, domain=nil, ismatch=nil, certificate=nil, nomatchdomains=nil, url=nil)
           @LocationId = locationid
           @Domain = domain
           @IsMatch = ismatch
           @Certificate = certificate
           @NoMatchDomains = nomatchdomains
+          @Url = url
         end
 
         def deserialize(params)
@@ -1020,6 +1024,7 @@ module TencentCloud
             @Certificate.deserialize(params['Certificate'])
           end
           @NoMatchDomains = params['NoMatchDomains']
+          @Url = params['Url']
         end
       end
 
@@ -1822,10 +1827,13 @@ module TencentCloud
         # @param Region: 部署的TCB地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param Url: 部署CLB监听器的Url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: Array
 
-        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region
+        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -1847,6 +1855,7 @@ module TencentCloud
           @EnvId = envid
           @TCBType = tcbtype
           @Region = region
+          @Url = url
         end
 
         def deserialize(params)
@@ -1871,6 +1880,7 @@ module TencentCloud
           @EnvId = params['EnvId']
           @TCBType = params['TCBType']
           @Region = params['Region']
+          @Url = params['Url']
         end
       end
 
@@ -6686,10 +6696,13 @@ module TencentCloud
         # @param TCBType: TCB部署类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TCBType: String
+        # @param Url: 监听器Url(clb专属)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType
+        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType, :Url
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil, url=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -6712,6 +6725,7 @@ module TencentCloud
           @SecretName = secretname
           @EnvId = envid
           @TCBType = tcbtype
+          @Url = url
         end
 
         def deserialize(params)
@@ -6737,6 +6751,7 @@ module TencentCloud
           @SecretName = params['SecretName']
           @EnvId = params['EnvId']
           @TCBType = params['TCBType']
+          @Url = params['Url']
         end
       end
 

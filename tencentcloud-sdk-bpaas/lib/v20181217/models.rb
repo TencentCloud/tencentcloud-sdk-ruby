@@ -80,15 +80,31 @@ module TencentCloud
         # @param Scf: 动态获取Scf
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scf: :class:`Tencentcloud::Bpaas.v20181217.models.Scf`
+        # @param ApproveStatus: 审批状态 （取值范围 0:待审批  1:审批通过  2:拒绝  6:其他人已审批）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveStatus: Integer
+        # @param ApproveMsg: 审批意见
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveMsg: String
+        # @param ApproveTime: 审批时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveTime: String
+        # @param ApproveGroup: 审批组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveGroup: String
 
-        attr_accessor :Uin, :Type, :Desc, :Nick, :Scf
+        attr_accessor :Uin, :Type, :Desc, :Nick, :Scf, :ApproveStatus, :ApproveMsg, :ApproveTime, :ApproveGroup
 
-        def initialize(uin=nil, type=nil, desc=nil, nick=nil, scf=nil)
+        def initialize(uin=nil, type=nil, desc=nil, nick=nil, scf=nil, approvestatus=nil, approvemsg=nil, approvetime=nil, approvegroup=nil)
           @Uin = uin
           @Type = type
           @Desc = desc
           @Nick = nick
           @Scf = scf
+          @ApproveStatus = approvestatus
+          @ApproveMsg = approvemsg
+          @ApproveTime = approvetime
+          @ApproveGroup = approvegroup
         end
 
         def deserialize(params)
@@ -100,6 +116,10 @@ module TencentCloud
             @Scf = Scf.new
             @Scf.deserialize(params['Scf'])
           end
+          @ApproveStatus = params['ApproveStatus']
+          @ApproveMsg = params['ApproveMsg']
+          @ApproveTime = params['ApproveTime']
+          @ApproveGroup = params['ApproveGroup']
         end
       end
 

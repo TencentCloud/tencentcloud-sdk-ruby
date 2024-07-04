@@ -53,6 +53,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 产品不再维护，准备下线。
+
         # 视频美颜(此接口目前已下线)
 
         # @param request: Request instance for BeautifyVideo.
@@ -76,6 +78,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品不再维护，准备下线。
 
         # 撤销视频美颜任务请求
 
@@ -174,6 +178,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 产品不再维护，准备下线。
 
         # 查询视频美颜处理进度
 
