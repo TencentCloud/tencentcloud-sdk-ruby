@@ -262,10 +262,13 @@ module TencentCloud
         # @param AiRecognitionTask: 视频内容识别类型任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
+        # @param QualityControlTask: 媒体质检任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -275,6 +278,7 @@ module TencentCloud
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
+          @QualityControlTask = qualitycontroltask
         end
 
         def deserialize(params)
@@ -314,6 +318,10 @@ module TencentCloud
             @AiRecognitionTask = AiRecognitionTaskInput.new
             @AiRecognitionTask.deserialize(params['AiRecognitionTask'])
           end
+          unless params['QualityControlTask'].nil?
+            @QualityControlTask = AiQualityControlTaskInput.new
+            @QualityControlTask.deserialize(params['QualityControlTask'])
+          end
         end
       end
 
@@ -346,10 +354,13 @@ module TencentCloud
         # @param AnalysisTask: 分析任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleAnalysisTaskResult`
+        # @param QualityControlTask: 媒体质检任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -359,6 +370,7 @@ module TencentCloud
           @RecognitionTask = recognitiontask
           @ReviewTask = reviewtask
           @AnalysisTask = analysistask
+          @QualityControlTask = qualitycontroltask
         end
 
         def deserialize(params)
@@ -397,6 +409,10 @@ module TencentCloud
           unless params['AnalysisTask'].nil?
             @AnalysisTask = ScheduleAnalysisTaskResult.new
             @AnalysisTask.deserialize(params['AnalysisTask'])
+          end
+          unless params['QualityControlTask'].nil?
+            @QualityControlTask = ScheduleQualityControlTaskResult.new
+            @QualityControlTask.deserialize(params['QualityControlTask'])
           end
         end
       end
@@ -1888,8 +1904,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 6
-        deprecate :OutputStorage=, :none, 2024, 6
+        deprecate :OutputStorage, :none, 2024, 7
+        deprecate :OutputStorage=, :none, 2024, 7
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -5546,6 +5562,103 @@ module TencentCloud
         end
       end
 
+      # 容器格式诊断结果
+      class ContainerDiagnoseResultItem < TencentCloud::Common::AbstractModel
+        # @param Category: 诊断出的异常类别，取值范围：
+        # DecodeParamException：解码参数异常
+        # TimeStampException：时间戳异常
+        # FrameException： 帧率异常
+        # StreamStatusException：流状态异常
+        # StreamInfo：流信息异常
+        # StreamAbnormalCharacteristics：流特征异常
+        # DecodeException：解码异常
+        # HLSRequirements：HLS 格式异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param Type: 诊断出的具体异常类型，取值如下：
+
+        # VideoResolutionChanged：视频分辨率变化
+        # AudioSampleRateChanged：音频采样率变化
+        # AudioChannelsChanged：音频通道数变化
+        # ParameterSetsChanged：流参数集信息发生变化
+        # DarOrSarInvalid：视频的宽高比异常
+        # TimestampFallback：DTS时间戳回退
+        # DtsJitter：DTS抖动过大
+        # PtsJitter：PTS抖动过大
+        # AACDurationDeviation：AAC帧时间戳间隔不合理
+        # AudioDroppingFrames：音频丢帧
+        # VideoDroppingFrames：视频丢帧
+        # AVTimestampInterleave：音视频交织不合理
+        # PtsLessThanDts：媒体流的 pts 小于 dts
+        # ReceiveFpsJitter：网络接收帧率抖动过大
+        # ReceiveFpsTooSmall：网络接收视频帧率过小
+        # FpsJitter：通过PTS计算得到的流帧率抖动过大
+        # StreamOpenFailed：流打开失败
+        # StreamEnd：流结束
+        # StreamParseFailed：流解析失败
+        # VideoFirstFrameNotIdr：首帧不是IDR帧
+        # StreamNALUError：NALU起始码错误
+        # TsStreamNoAud：mpegts的H26x流缺失 AUD NALU
+        # AudioStreamLack：无音频流
+        # VideoStreamLack：无视频流
+        # LackAudioRecover：缺失音频流恢复
+        # LackVideoRecover：缺失视频流恢复
+        # VideoBitrateOutofRange：视频流码率(kbps)超出范围
+        # AudioBitrateOutofRange：音频流码率(kbps)超出范围
+        # VideoDecodeFailed：视频解码错误
+        # AudioDecodeFailed：音频解码错误
+        # AudioOutOfPhase：双通道音频相位相反
+        # VideoDuplicatedFrame：视频流中存在重复帧
+        # AudioDuplicatedFrame：音频流中存在重复帧
+        # VideoRotation：视频画面旋转
+        # TsMultiPrograms：MPEG2-TS流有多个program
+        # Mp4InvalidCodecFourcc：MP4中codec fourcc不符合Apple HLS要求
+        # HLSBadM3u8Format：无效的m3u8文件
+        # HLSInvalidMasterM3u8：无效的main m3u8文件
+        # HLSInvalidMediaM3u8：无效的media m3u8文件
+        # HLSMasterM3u8Recommended：main m3u8缺少标准推荐的参数
+        # HLSMediaM3u8Recommended：media m3u8缺少标准推荐的参数
+        # HLSMediaM3u8DiscontinuityExist：media m3u8存在EXT-X-DISCONTINUITY
+        # HLSMediaSegmentsStreamNumChange：切片的流数目发生变化
+        # HLSMediaSegmentsPTSJitterDeviation：切片间PTS跳变且没有EXT-X-DISCONTINUITY
+        # HLSMediaSegmentsDTSJitterDeviation：切片间DTS跳变且没有EXT-X-DISCONTINUITY
+        # TimecodeTrackExist：MP4存在tmcd轨道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SeverityLevel: 诊断出的异常级别，取值范围：
+        # Fatal：影响后续播放和解析，
+        # Error： 可能会影响播放，
+        # Warning： 可能会有潜在风险，但不一定会影响播放，
+        # Notice：比较重要的流信息，
+        # Info：一般性的流信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SeverityLevel: String
+        # @param DateTimeSet: 警告出现的时间点，形式如 “2022-12-25T13:14:16Z”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DateTimeSet: Array
+        # @param TimestampSet: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimestampSet: Array
+
+        attr_accessor :Category, :Type, :SeverityLevel, :DateTimeSet, :TimestampSet
+
+        def initialize(category=nil, type=nil, severitylevel=nil, datetimeset=nil, timestampset=nil)
+          @Category = category
+          @Type = type
+          @SeverityLevel = severitylevel
+          @DateTimeSet = datetimeset
+          @TimestampSet = timestampset
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+          @Type = params['Type']
+          @SeverityLevel = params['SeverityLevel']
+          @DateTimeSet = params['DateTimeSet']
+          @TimestampSet = params['TimestampSet']
+        end
+      end
+
       # 内容审核模板详情
       class ContentReviewTemplateItem < TencentCloud::Common::AbstractModel
         # @param Definition: 内容审核模板唯一标识。
@@ -6763,6 +6876,57 @@ module TencentCloud
         end
       end
 
+      # CreateQualityControlTemplate请求参数结构体
+      class CreateQualityControlTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 媒体质检模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param QualityControlItemSet: 媒体质检控制参数。
+        # @type QualityControlItemSet: Array
+        # @param Comment: 媒体质检模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :Name, :QualityControlItemSet, :Comment
+
+        def initialize(name=nil, qualitycontrolitemset=nil, comment=nil)
+          @Name = name
+          @QualityControlItemSet = qualitycontrolitemset
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['QualityControlItemSet'].nil?
+            @QualityControlItemSet = []
+            params['QualityControlItemSet'].each do |i|
+              qualitycontrolitemconfig_tmp = QualityControlItemConfig.new
+              qualitycontrolitemconfig_tmp.deserialize(i)
+              @QualityControlItemSet << qualitycontrolitemconfig_tmp
+            end
+          end
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateQualityControlTemplate返回参数结构体
+      class CreateQualityControlTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 媒体质检模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSampleSnapshotTemplate请求参数结构体
       class CreateSampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SampleType: 采样截图类型，取值：
@@ -7741,6 +7905,38 @@ module TencentCloud
 
       # DeletePersonSample返回参数结构体
       class DeletePersonSampleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteQualityControlTemplate请求参数结构体
+      class DeleteQualityControlTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 媒体质检模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteQualityControlTemplate返回参数结构体
+      class DeleteQualityControlTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9368,6 +9564,68 @@ module TencentCloud
               aisampleperson_tmp = AiSamplePerson.new
               aisampleperson_tmp.deserialize(i)
               @PersonSet << aisampleperson_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQualityControlTemplates请求参数结构体
+      class DescribeQualityControlTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 媒体质检模板唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数
+        # <li>默认值：10；</li>
+        # <li>最大值：100。</li>
+        # @type Limit: Integer
+        # @param Type: "Preset"：预设，Custom":客户魔板
+        # @type Type: String
+
+        attr_accessor :Definitions, :Offset, :Limit, :Type
+
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeQualityControlTemplates返回参数结构体
+      class DescribeQualityControlTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param QualityControlTemplateSet: 媒体质检模板详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityControlTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :QualityControlTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, qualitycontroltemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @QualityControlTemplateSet = qualitycontroltemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['QualityControlTemplateSet'].nil?
+            @QualityControlTemplateSet = []
+            params['QualityControlTemplateSet'].each do |i|
+              qualitycontroltemplate_tmp = QualityControlTemplate.new
+              qualitycontroltemplate_tmp.deserialize(i)
+              @QualityControlTemplateSet << qualitycontroltemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -15641,6 +15899,57 @@ module TencentCloud
         end
       end
 
+      # ModifyQualityControlTemplate请求参数结构体
+      class ModifyQualityControlTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 媒体质检模板唯一标识。
+        # @type Definition: Integer
+        # @param Name: 媒体质检模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param QualityControlItemSet: 媒体质检配置参数。
+        # @type QualityControlItemSet: Array
+
+        attr_accessor :Definition, :Name, :Comment, :QualityControlItemSet
+
+        def initialize(definition=nil, name=nil, comment=nil, qualitycontrolitemset=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @QualityControlItemSet = qualitycontrolitemset
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['QualityControlItemSet'].nil?
+            @QualityControlItemSet = []
+            params['QualityControlItemSet'].each do |i|
+              qualitycontrolitemconfig_tmp = QualityControlItemConfig.new
+              qualitycontrolitemconfig_tmp.deserialize(i)
+              @QualityControlItemSet << qualitycontrolitemconfig_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyQualityControlTemplate返回参数结构体
+      class ModifyQualityControlTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySampleSnapshotTemplate请求参数结构体
       class ModifySampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 采样截图模板唯一标识。
@@ -17627,14 +17936,18 @@ module TencentCloud
         # @param QualityControlResultSet: 内容质检检出异常项。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlResultSet: Array
+        # @param ContainerDiagnoseResultSet: 格式诊断检出异常项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerDiagnoseResultSet: Array
 
-        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityControlResultSet
+        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
 
-        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualitycontrolresultset=nil)
+        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualitycontrolresultset=nil, containerdiagnoseresultset=nil)
           @NoAudio = noaudio
           @NoVideo = novideo
           @QualityEvaluationScore = qualityevaluationscore
           @QualityControlResultSet = qualitycontrolresultset
+          @ContainerDiagnoseResultSet = containerdiagnoseresultset
         end
 
         def deserialize(params)
@@ -17647,6 +17960,14 @@ module TencentCloud
               qualitycontrolresult_tmp = QualityControlResult.new
               qualitycontrolresult_tmp.deserialize(i)
               @QualityControlResultSet << qualitycontrolresult_tmp
+            end
+          end
+          unless params['ContainerDiagnoseResultSet'].nil?
+            @ContainerDiagnoseResultSet = []
+            params['ContainerDiagnoseResultSet'].each do |i|
+              containerdiagnoseresultitem_tmp = ContainerDiagnoseResultItem.new
+              containerdiagnoseresultitem_tmp.deserialize(i)
+              @ContainerDiagnoseResultSet << containerdiagnoseresultitem_tmp
             end
           end
         end
@@ -17679,6 +18000,53 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @AreaCoordSet = params['AreaCoordSet']
+        end
+      end
+
+      # 质检项配置
+      class QualityControlItemConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 质检项名称。
+        # @type Type: String
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param Sampling: 采样方式，取值范围：
+        # - Time：根据时间间隔采样。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sampling: String
+        # @param IntervalTime: 采样间隔时间，取值范围：[0, 60000]，单位：ms。
+        # 默认值 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalTime: Integer
+        # @param Duration: 异常持续时间，取值范围：[0, 60000]，单位：ms。
+        # 默认值 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param Threshold: 检测分值的阈值，使用数学区间格式，当检测值超出区间范围会触发回调。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: String
+
+        attr_accessor :Type, :Switch, :Sampling, :IntervalTime, :Duration, :Threshold
+
+        def initialize(type=nil, switch=nil, sampling=nil, intervaltime=nil, duration=nil, threshold=nil)
+          @Type = type
+          @Switch = switch
+          @Sampling = sampling
+          @IntervalTime = intervaltime
+          @Duration = duration
+          @Threshold = threshold
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Switch = params['Switch']
+          @Sampling = params['Sampling']
+          @IntervalTime = params['IntervalTime']
+          @Duration = params['Duration']
+          @Threshold = params['Threshold']
         end
       end
 
@@ -17722,6 +18090,61 @@ module TencentCloud
               @QualityControlItems << qualitycontrolitem_tmp
             end
           end
+        end
+      end
+
+      # 媒体质检模板详情
+      class QualityControlTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 媒体质检模板唯一标识。
+        # @type Definition: Integer
+        # @param Name: 媒体质检模板名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Comment: 模板描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Type: 模板类型，取值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param QualityControlItemSet: 媒体质检配置参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityControlItemSet: Array
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Name, :Comment, :Type, :QualityControlItemSet, :CreateTime, :UpdateTime
+
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, qualitycontrolitemset=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @Type = type
+          @QualityControlItemSet = qualitycontrolitemset
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          unless params['QualityControlItemSet'].nil?
+            @QualityControlItemSet = []
+            params['QualityControlItemSet'].each do |i|
+              qualitycontrolitemconfig_tmp = QualityControlItemConfig.new
+              qualitycontrolitemconfig_tmp.deserialize(i)
+              @QualityControlItemSet << qualitycontrolitemconfig_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -20489,7 +20912,7 @@ module TencentCloud
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。

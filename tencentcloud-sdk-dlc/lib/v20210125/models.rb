@@ -17,6 +17,28 @@
 module TencentCloud
   module Dlc
     module V20210125
+      # 引擎的访问信息
+      class AccessInfo < TencentCloud::Common::AbstractModel
+        # @param AccessType: 访问引擎的方法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: String
+        # @param AccessConnectionInfos: 访问引擎的url，内部的部分参数需要根据实际情况替换
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessConnectionInfos: Array
+
+        attr_accessor :AccessType, :AccessConnectionInfos
+
+        def initialize(accesstype=nil, accessconnectioninfos=nil)
+          @AccessType = accesstype
+          @AccessConnectionInfos = accessconnectioninfos
+        end
+
+        def deserialize(params)
+          @AccessType = params['AccessType']
+          @AccessConnectionInfos = params['AccessConnectionInfos']
+        end
+      end
+
       # AddDMSPartitions请求参数结构体
       class AddDMSPartitionsRequest < TencentCloud::Common::AbstractModel
         # @param Partitions: 分区
@@ -1595,8 +1617,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 6
-        deprecate :DefaultDataEngine=, :none, 2024, 6
+        deprecate :DefaultDataEngine, :none, 2024, 7
+        deprecate :DefaultDataEngine=, :none, 2024, 7
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -3680,10 +3702,16 @@ module TencentCloud
         # @param EngineResourceUsedCU: 引擎当前使用量（Cu）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineResourceUsedCU: Integer
+        # @param AccessInfos: 引擎的访问信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessInfos: Array
+        # @param EngineNetworkName: 引擎所在网络名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkName: String
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName
 
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -3735,6 +3763,8 @@ module TencentCloud
           @EngineNetworkId = enginenetworkid
           @EngineResourceGroupCount = engineresourcegroupcount
           @EngineResourceUsedCU = engineresourceusedcu
+          @AccessInfos = accessinfos
+          @EngineNetworkName = enginenetworkname
         end
 
         def deserialize(params)
@@ -3809,6 +3839,15 @@ module TencentCloud
           @EngineNetworkId = params['EngineNetworkId']
           @EngineResourceGroupCount = params['EngineResourceGroupCount']
           @EngineResourceUsedCU = params['EngineResourceUsedCU']
+          unless params['AccessInfos'].nil?
+            @AccessInfos = []
+            params['AccessInfos'].each do |i|
+              accessinfo_tmp = AccessInfo.new
+              accessinfo_tmp.deserialize(i)
+              @AccessInfos << accessinfo_tmp
+            end
+          end
+          @EngineNetworkName = params['EngineNetworkName']
         end
       end
 
@@ -11724,10 +11763,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2024, 6
-        deprecate :GovernPolicy=, :none, 2024, 6
-        deprecate :DbGovernPolicyIsDisable, :none, 2024, 6
-        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 6
+        deprecate :GovernPolicy, :none, 2024, 7
+        deprecate :GovernPolicy=, :none, 2024, 7
+        deprecate :DbGovernPolicyIsDisable, :none, 2024, 7
+        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 7
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename

@@ -3472,6 +3472,49 @@ module TencentCloud
         end
       end
 
+      # CreateRotationPassword请求参数结构体
+      class CreateRotationPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param Accounts: 当前需开启密码轮转的账号信息，包含账户名与主机名
+        # @type Accounts: Array
+
+        attr_accessor :InstanceId, :Accounts
+
+        def initialize(instanceid=nil, accounts=nil)
+          @InstanceId = instanceid
+          @Accounts = accounts
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              account_tmp = Account.new
+              account_tmp.deserialize(i)
+              @Accounts << account_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRotationPassword返回参数结构体
+      class CreateRotationPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # proxy配置
       class CustomConfig < TencentCloud::Common::AbstractModel
         # @param Device: 设备
@@ -3874,6 +3917,50 @@ module TencentCloud
 
       # DeleteParamTemplate返回参数结构体
       class DeleteParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRotationPassword请求参数结构体
+      class DeleteRotationPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同
+        # @type InstanceId: String
+        # @param User: 关闭密码轮转的实例账户名,例如root
+        # @type User: String
+        # @param Host: 关闭密码轮转的实例账户域名，例如%
+        # @type Host: String
+        # @param Password: 关闭密码轮转后实例账户的最新密码
+        # @type Password: String
+
+        attr_accessor :InstanceId, :User, :Host, :Password
+
+        def initialize(instanceid=nil, user=nil, host=nil, password=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Host = host
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Host = params['Host']
+          @Password = params['Password']
+        end
+      end
+
+      # DeleteRotationPassword返回参数结构体
+      class DeleteRotationPasswordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11186,8 +11273,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 6
-        deprecate :IsSucess=, :none, 2024, 6
+        deprecate :IsSucess, :none, 2024, 7
+        deprecate :IsSucess=, :none, 2024, 7
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -11898,6 +11985,46 @@ module TencentCloud
 
         def deserialize(params)
           @DealId = params['DealId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetPassword请求参数结构体
+      class ResetPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param User: 手动刷新轮转密码的实例账户名，例如root
+        # @type User: String
+        # @param Host: 手动刷新轮转密码的实例账户域名，例如%
+        # @type Host: String
+
+        attr_accessor :InstanceId, :User, :Host
+
+        def initialize(instanceid=nil, user=nil, host=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Host = host
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Host = params['Host']
+        end
+      end
+
+      # ResetPassword返回参数结构体
+      class ResetPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

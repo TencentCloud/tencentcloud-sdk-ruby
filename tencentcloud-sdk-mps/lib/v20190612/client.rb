@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建媒体质检模板，数量上限：50。
+
+        # @param request: Request instance for CreateQualityControlTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateQualityControlTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateQualityControlTemplateResponse`
+        def CreateQualityControlTemplate(request)
+          body = send_request('CreateQualityControlTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateQualityControlTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义采样截图模板，数量上限：16。
 
         # @param request: Request instance for CreateSampleSnapshotTemplate.
@@ -725,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除媒体质检模板
+
+        # @param request: Request instance for DeleteQualityControlTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteQualityControlTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteQualityControlTemplateResponse`
+        def DeleteQualityControlTemplate(request)
+          body = send_request('DeleteQualityControlTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteQualityControlTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义采样截图模板。
 
         # @param request: Request instance for DeleteSampleSnapshotTemplate.
@@ -1143,6 +1191,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePersonSamplesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户自定义媒体质检模板，支持根据条件，分页查询。
+
+        # @param request: Request instance for DescribeQualityControlTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeQualityControlTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeQualityControlTemplatesResponse`
+        def DescribeQualityControlTemplates(request)
+          body = send_request('DescribeQualityControlTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQualityControlTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1999,6 +2071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPersonSampleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改媒体质检模板。
+
+        # @param request: Request instance for ModifyQualityControlTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyQualityControlTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyQualityControlTemplateResponse`
+        def ModifyQualityControlTemplate(request)
+          body = send_request('ModifyQualityControlTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyQualityControlTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

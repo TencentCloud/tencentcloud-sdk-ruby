@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 不在使用的API
+
         # 企业号码认证
 
         # @param request: Request instance for CreateSmpnEpa.
@@ -52,6 +54,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 不在使用的API
 
         # 查询号码的标记和标记次数
 
@@ -77,6 +81,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不在使用的API
+
         # 虚假号码识别
 
         # @param request: Request instance for DescribeSmpnFnr.
@@ -101,6 +107,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不在使用的API
+
         # 号码营销监控
 
         # @param request: Request instance for DescribeSmpnMhm.
@@ -124,6 +132,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 不在使用的API
 
         # 查询号码恶意标记等级
 

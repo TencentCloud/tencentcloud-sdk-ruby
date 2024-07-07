@@ -1474,6 +1474,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口不再支持
+
         # 对转录的文本进行总结。
 
         # @param request: Request instance for SummarizeTranscription.

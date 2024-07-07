@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取serverless实例对应指标，获取space维度时不需要传入indexid，获取index时不需要传入spaceid
+
+        # @param request: Request instance for DescribeServerlessMetrics.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeServerlessMetricsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeServerlessMetricsResponse`
+        def DescribeServerlessMetrics(request)
+          body = send_request('DescribeServerlessMetrics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServerlessMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看Serverless空间子用户
 
         # @param request: Request instance for DescribeServerlessSpaceUser.
