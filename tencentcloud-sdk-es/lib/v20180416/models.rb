@@ -5433,17 +5433,22 @@ module TencentCloud
         # @param TimestampField: 时间分区字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimestampField: String
+        # @param SinkCycleAge: 标准存储时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SinkCycleAge: String
 
-        attr_accessor :ExpireMaxAge, :TimestampField
+        attr_accessor :ExpireMaxAge, :TimestampField, :SinkCycleAge
 
-        def initialize(expiremaxage=nil, timestampfield=nil)
+        def initialize(expiremaxage=nil, timestampfield=nil, sinkcycleage=nil)
           @ExpireMaxAge = expiremaxage
           @TimestampField = timestampfield
+          @SinkCycleAge = sinkcycleage
         end
 
         def deserialize(params)
           @ExpireMaxAge = params['ExpireMaxAge']
           @TimestampField = params['TimestampField']
+          @SinkCycleAge = params['SinkCycleAge']
         end
       end
 

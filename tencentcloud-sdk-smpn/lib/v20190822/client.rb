@@ -31,32 +31,6 @@ module TencentCloud
 
         # 不在使用的API
 
-        # 企业号码认证
-
-        # @param request: Request instance for CreateSmpnEpa.
-        # @type request: :class:`Tencentcloud::smpn::V20190822::CreateSmpnEpaRequest`
-        # @rtype: :class:`Tencentcloud::smpn::V20190822::CreateSmpnEpaResponse`
-        def CreateSmpnEpa(request)
-          body = send_request('CreateSmpnEpa', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSmpnEpaResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 不在使用的API
-
         # 查询号码的标记和标记次数
 
         # @param request: Request instance for DescribeSmpnChp.
@@ -93,58 +67,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSmpnFnrResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 不在使用的API
-
-        # 号码营销监控
-
-        # @param request: Request instance for DescribeSmpnMhm.
-        # @type request: :class:`Tencentcloud::smpn::V20190822::DescribeSmpnMhmRequest`
-        # @rtype: :class:`Tencentcloud::smpn::V20190822::DescribeSmpnMhmResponse`
-        def DescribeSmpnMhm(request)
-          body = send_request('DescribeSmpnMhm', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSmpnMhmResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 不在使用的API
-
-        # 查询号码恶意标记等级
-
-        # @param request: Request instance for DescribeSmpnMrl.
-        # @type request: :class:`Tencentcloud::smpn::V20190822::DescribeSmpnMrlRequest`
-        # @rtype: :class:`Tencentcloud::smpn::V20190822::DescribeSmpnMrlResponse`
-        def DescribeSmpnMrl(request)
-          body = send_request('DescribeSmpnMrl', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSmpnMrlResponse.new
             model.deserialize(response['Response'])
             model
           else

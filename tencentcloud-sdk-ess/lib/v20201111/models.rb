@@ -2187,13 +2187,17 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ExpiredOn: 链接/二维码的有效截止时间，格式为unix时间戳。最长不超过 2099年12月31日（4102415999）。
+        # 默认值为有效期为当前时间后7天。
+        # @type ExpiredOn: Integer
 
-        attr_accessor :Operator, :FlowId, :Agent
+        attr_accessor :Operator, :FlowId, :Agent, :ExpiredOn
 
-        def initialize(operator=nil, flowid=nil, agent=nil)
+        def initialize(operator=nil, flowid=nil, agent=nil, expiredon=nil)
           @Operator = operator
           @FlowId = flowid
           @Agent = agent
+          @ExpiredOn = expiredon
         end
 
         def deserialize(params)
@@ -2206,6 +2210,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ExpiredOn = params['ExpiredOn']
         end
       end
 

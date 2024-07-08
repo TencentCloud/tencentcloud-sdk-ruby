@@ -5435,12 +5435,16 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowId: 合同流程ID，为32位字符串。建议开发者妥善保存此流程ID，以便于顺利进行后续操作。可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         # @type FlowId: String
+        # @param ExpiredOn: 链接/二维码的有效截止时间，格式为unix时间戳。最长不超过 2099年12月31日（4102415999）。
+        # 默认值为有效期为当前时间后7天。
+        # @type ExpiredOn: Integer
 
-        attr_accessor :Agent, :FlowId
+        attr_accessor :Agent, :FlowId, :ExpiredOn
 
-        def initialize(agent=nil, flowid=nil)
+        def initialize(agent=nil, flowid=nil, expiredon=nil)
           @Agent = agent
           @FlowId = flowid
+          @ExpiredOn = expiredon
         end
 
         def deserialize(params)
@@ -5449,6 +5453,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @FlowId = params['FlowId']
+          @ExpiredOn = params['ExpiredOn']
         end
       end
 
@@ -6888,7 +6893,7 @@ module TencentCloud
         # <ul><li>**0**：（默认）模板列表及详情</li>
         # <li>**1**：仅模板列表, 不会返回模板中的签署控件, 填写控件, 参与方角色列表等信息</li></ul>
         # @type ContentType: Integer
-        # @param TemplateIds: 合同模板ID数组，每一个合同模板ID为32位字符串,  最多支持200个模板的批量查询。
+        # @param TemplateIds: 合同模板ID数组，每一个合同模板ID为32位字符串,  最多支持100个模板的批量查询。
 
         # 注意:
         # 1.` 此参数TemplateIds与TemplateId互为独立，若两者均传入，以TemplateId为准。`
@@ -6900,7 +6905,7 @@ module TencentCloud
         # @type TemplateIds: Array
         # @param Limit: 指定每页返回的数据条数，和Offset参数配合使用。
 
-        # 注：`1.默认值为20，单页做大值为200。`
+        # 注：`1.默认值为20，单页做大值为100。`
         # @type Limit: Integer
         # @param Offset: 查询结果分页返回，指定从第几页返回数据，和Limit参数配合使用。
 
@@ -10101,8 +10106,10 @@ module TencentCloud
         # @param UserId: 员工在电子签平台的用户ID
         # @type UserId: String
         # @param DisplayName: 显示的员工名
+        # 注意：2024-07-08 及之后创建的应用号，该字段返回的是打码信息
         # @type DisplayName: String
         # @param Mobile: 员工手机号
+        # 注意：2024-07-08 及之后创建的应用号，该字段返回的是打码信息
         # @type Mobile: String
         # @param Email: 员工邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。

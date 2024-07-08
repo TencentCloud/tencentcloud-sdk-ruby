@@ -1002,12 +1002,20 @@ module TencentCloud
         # @type Path: String
         # @param OutputStorage: 擦除后文件的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OriginSubtitlePath: 基于画面提取的字幕文件路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginSubtitlePath: String
+        # @param TranslateSubtitlePath: 基于画面提取的字幕翻译文件路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranslateSubtitlePath: String
 
-        attr_accessor :Path, :OutputStorage
+        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath
 
-        def initialize(path=nil, outputstorage=nil)
+        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil)
           @Path = path
           @OutputStorage = outputstorage
+          @OriginSubtitlePath = originsubtitlepath
+          @TranslateSubtitlePath = translatesubtitlepath
         end
 
         def deserialize(params)
@@ -1016,6 +1024,8 @@ module TencentCloud
             @OutputStorage = TaskOutputStorage.new
             @OutputStorage.deserialize(params['OutputStorage'])
           end
+          @OriginSubtitlePath = params['OriginSubtitlePath']
+          @TranslateSubtitlePath = params['TranslateSubtitlePath']
         end
       end
 

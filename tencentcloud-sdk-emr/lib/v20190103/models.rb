@@ -4863,21 +4863,21 @@ module TencentCloud
         # @param ScaleNum: 每次规则生效时的扩缩容数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleNum: Integer
-        # @param LoadMetrics: 扩缩容负载指标。
+        # @param LoadMetrics: 扩缩容负载指标。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadMetrics: String
-        # @param MetricId: 规则元数据记录ID。
+        # @param MetricId: 规则元数据记录ID。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricId: Integer
-        # @param StatisticPeriod: 规则统计周期，提供300s,600s,900s
+        # @param StatisticPeriod: 规则统计周期，提供300s,600s,900s。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticPeriod: Integer
         # @param ProcessMethod: 指标处理方法，1表示MAX，2表示MIN，3表示AVG。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessMethod: Integer
-        # @param TriggerThreshold: 触发次数，当连续触发超过TriggerThreshold次后才开始扩缩容。
+        # @param TriggerThreshold: 触发次数，当连续触发超过TriggerThreshold次后才开始扩缩容。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
         # @type TriggerThreshold: Integer
-        # @param TriggerConditions: 条件触发数组。
+        # @param TriggerConditions: 条件触发数组。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerConditions: :class:`Tencentcloud::Emr.v20190103.models.TriggerConditions`
         # @param Priority: 规则优先级，添加时无效，默认为自增。

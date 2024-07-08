@@ -13425,17 +13425,21 @@ module TencentCloud
         # @param OfdFileBase64: OFD文件的 Base64 值。
         # OfdFileUrl 和 OfdFileBase64 必传其一，若两者都传，只解析OfdFileBase64。
         # @type OfdFileBase64: String
+        # @param OfdPageNumber: 需要识别的OFD发票页面的对应页码，默认值为1。 示例值：1
+        # @type OfdPageNumber: Integer
 
-        attr_accessor :OfdFileUrl, :OfdFileBase64
+        attr_accessor :OfdFileUrl, :OfdFileBase64, :OfdPageNumber
 
-        def initialize(ofdfileurl=nil, ofdfilebase64=nil)
+        def initialize(ofdfileurl=nil, ofdfilebase64=nil, ofdpagenumber=nil)
           @OfdFileUrl = ofdfileurl
           @OfdFileBase64 = ofdfilebase64
+          @OfdPageNumber = ofdpagenumber
         end
 
         def deserialize(params)
           @OfdFileUrl = params['OfdFileUrl']
           @OfdFileBase64 = params['OfdFileBase64']
+          @OfdPageNumber = params['OfdPageNumber']
         end
       end
 

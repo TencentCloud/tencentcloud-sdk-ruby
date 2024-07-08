@@ -3802,10 +3802,13 @@ module TencentCloud
         # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireEnd: String
+        # @param IsAllowRetry: 是否允许重试，0：否，1：是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAllowRetry: Boolean
 
-        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd
+        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry
 
-        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil)
+        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil)
           @DocBizId = docbizid
           @FileName = filename
           @FileType = filetype
@@ -3833,6 +3836,7 @@ module TencentCloud
           @WebUrl = weburl
           @ExpireStart = expirestart
           @ExpireEnd = expireend
+          @IsAllowRetry = isallowretry
         end
 
         def deserialize(params)
@@ -3870,6 +3874,7 @@ module TencentCloud
           @WebUrl = params['WebUrl']
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
+          @IsAllowRetry = params['IsAllowRetry']
         end
       end
 
@@ -5585,8 +5590,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 6
-        deprecate :Operate=, :none, 2024, 6
+        deprecate :Operate, :none, 2024, 7
+        deprecate :Operate=, :none, 2024, 7
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
