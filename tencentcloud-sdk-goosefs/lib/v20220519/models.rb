@@ -189,6 +189,38 @@ module TencentCloud
         end
       end
 
+      # 付费信息详情
+      class ChargeAttribute < TencentCloud::Common::AbstractModel
+        # @param CurDeadline: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+        # @param PayMode: 付费方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param AutoRenewFlag: 自动付费标识：0:默认未设置 1:自动续费 2 不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param ResourceId: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+
+        attr_accessor :CurDeadline, :PayMode, :AutoRenewFlag, :ResourceId
+
+        def initialize(curdeadline=nil, paymode=nil, autorenewflag=nil, resourceid=nil)
+          @CurDeadline = curdeadline
+          @PayMode = paymode
+          @AutoRenewFlag = autorenewflag
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @CurDeadline = params['CurDeadline']
+          @PayMode = params['PayMode']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # 客户侧集群管理节点信息
       class ClientClusterManagerNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeIp: 客户端节点IP
@@ -870,17 +902,21 @@ module TencentCloud
         # @type FileSystemId: String
         # @param ExpandedCapacity: 新增扩容的系统容量
         # @type ExpandedCapacity: Integer
+        # @param ModifyType: 容量修改类型：add/sub
+        # @type ModifyType: String
 
-        attr_accessor :FileSystemId, :ExpandedCapacity
+        attr_accessor :FileSystemId, :ExpandedCapacity, :ModifyType
 
-        def initialize(filesystemid=nil, expandedcapacity=nil)
+        def initialize(filesystemid=nil, expandedcapacity=nil, modifytype=nil)
           @FileSystemId = filesystemid
           @ExpandedCapacity = expandedcapacity
+          @ModifyType = modifytype
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @ExpandedCapacity = params['ExpandedCapacity']
+          @ModifyType = params['ModifyType']
         end
       end
 
@@ -928,10 +964,13 @@ module TencentCloud
         # @type Tag: Array
         # @param ModifyTime: 更新属性时间
         # @type ModifyTime: String
+        # @param ChargeAttribute: 文件系统付费信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeAttribute: :class:`Tencentcloud::Goosefs.v20220519.models.ChargeAttribute`
 
-        attr_accessor :Type, :FileSystemId, :CreateTime, :GooseFSxAttribute, :Status, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :ModifyTime
+        attr_accessor :Type, :FileSystemId, :CreateTime, :GooseFSxAttribute, :Status, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :ModifyTime, :ChargeAttribute
 
-        def initialize(type=nil, filesystemid=nil, createtime=nil, goosefsxattribute=nil, status=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, modifytime=nil)
+        def initialize(type=nil, filesystemid=nil, createtime=nil, goosefsxattribute=nil, status=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, modifytime=nil, chargeattribute=nil)
           @Type = type
           @FileSystemId = filesystemid
           @CreateTime = createtime
@@ -944,6 +983,7 @@ module TencentCloud
           @Zone = zone
           @Tag = tag
           @ModifyTime = modifytime
+          @ChargeAttribute = chargeattribute
         end
 
         def deserialize(params)
@@ -969,6 +1009,10 @@ module TencentCloud
             end
           end
           @ModifyTime = params['ModifyTime']
+          unless params['ChargeAttribute'].nil?
+            @ChargeAttribute = ChargeAttribute.new
+            @ChargeAttribute.deserialize(params['ChargeAttribute'])
+          end
         end
       end
 
@@ -1103,10 +1147,13 @@ module TencentCloud
         # @param BucketRegion: 桶所在的园区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketRegion: String
+        # @param Endpoint: 自定义Endpoint
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoint: String
 
-        attr_accessor :BucketName, :FileSystemPath, :DataRepositoryTaskAutoStrategy, :RuleId, :RuleDescription, :Status, :AccelerateFlag, :BucketRegion
+        attr_accessor :BucketName, :FileSystemPath, :DataRepositoryTaskAutoStrategy, :RuleId, :RuleDescription, :Status, :AccelerateFlag, :BucketRegion, :Endpoint
 
-        def initialize(bucketname=nil, filesystempath=nil, datarepositorytaskautostrategy=nil, ruleid=nil, ruledescription=nil, status=nil, accelerateflag=nil, bucketregion=nil)
+        def initialize(bucketname=nil, filesystempath=nil, datarepositorytaskautostrategy=nil, ruleid=nil, ruledescription=nil, status=nil, accelerateflag=nil, bucketregion=nil, endpoint=nil)
           @BucketName = bucketname
           @FileSystemPath = filesystempath
           @DataRepositoryTaskAutoStrategy = datarepositorytaskautostrategy
@@ -1115,6 +1162,7 @@ module TencentCloud
           @Status = status
           @AccelerateFlag = accelerateflag
           @BucketRegion = bucketregion
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
@@ -1126,6 +1174,7 @@ module TencentCloud
           @Status = params['Status']
           @AccelerateFlag = params['AccelerateFlag']
           @BucketRegion = params['BucketRegion']
+          @Endpoint = params['Endpoint']
         end
       end
 

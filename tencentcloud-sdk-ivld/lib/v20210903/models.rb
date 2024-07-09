@@ -149,6 +149,30 @@ module TencentCloud
         end
       end
 
+      # 一条 asr 语音结果的结构
+      class AsrResult < TencentCloud::Common::AbstractModel
+        # @param Content: ASR提取的文字信息
+        # @type Content: String
+        # @param StartTimeStamp: ASR起始时间戳，从0开始
+        # @type StartTimeStamp: Float
+        # @param EndTimeStamp: ASR结束时间戳，从0开始
+        # @type EndTimeStamp: Float
+
+        attr_accessor :Content, :StartTimeStamp, :EndTimeStamp
+
+        def initialize(content=nil, starttimestamp=nil, endtimestamp=nil)
+          @Content = content
+          @StartTimeStamp = starttimestamp
+          @EndTimeStamp = endtimestamp
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @StartTimeStamp = params['StartTimeStamp']
+          @EndTimeStamp = params['EndTimeStamp']
+        end
+      end
+
       # 音频文件分析结果数据
       class AudioData < TencentCloud::Common::AbstractModel
         # @param AudioInfoSet: 音频识别文本结果
@@ -479,6 +503,106 @@ module TencentCloud
       # CreateTask返回参数结构体
       class CreateTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 智能标签视频分析任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVideoSummaryTask请求参数结构体
+      class CreateVideoSummaryTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SummaryType: 目前只支持 1，表示新闻缩编。
+        # @type SummaryType: Integer
+        # @param VideoURL: 待处理的视频的URL，目前只支持*不带签名的*COS地址，长度最长1KB
+        # @type VideoURL: String
+        # @param CallbackURL: 任务处理完成的回调地址。
+        # @type CallbackURL: String
+        # @param WriteBackCosPath: 如果需要你输出 TTS 或者视频，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)。
+        # @type WriteBackCosPath: String
+        # @param ActiveVideoGenerate: 是否开启结果视频生成功能，如果开启，需要指定WriteBackCosPath 参数
+        # @type ActiveVideoGenerate: Boolean
+        # @param VideoRotationMode: 生成结果视频的时候，控制生成的结果视频的横转竖参数。如果 ActiveVideoGenerate 为 false, 该参数无效。
+        # @type VideoRotationMode: :class:`Tencentcloud::Ivld.v20210903.models.VideoRotationMode`
+        # @param TTSMode: 语音合成相关的控制参数
+        # @type TTSMode: :class:`Tencentcloud::Ivld.v20210903.models.TTSMode`
+        # @param ActiveTTSOutput: 是否输出合成好的语音列表。
+        # @type ActiveTTSOutput: Boolean
+        # @param ExactAsrSet: 用户指定的精确的 asr 结果列表
+        # @type ExactAsrSet: Array
+        # @param ExactTextSummary: 用户指定的精确的文本摘要
+        # @type ExactTextSummary: String
+        # @param ExactTextSegSet: 用户指定的精确的文本摘要分割结果
+        # @type ExactTextSegSet: Array
+        # @param ExactShotSegSet: 用户指定的精确的镜头分割结果
+        # @type ExactShotSegSet: Array
+
+        attr_accessor :SummaryType, :VideoURL, :CallbackURL, :WriteBackCosPath, :ActiveVideoGenerate, :VideoRotationMode, :TTSMode, :ActiveTTSOutput, :ExactAsrSet, :ExactTextSummary, :ExactTextSegSet, :ExactShotSegSet
+
+        def initialize(summarytype=nil, videourl=nil, callbackurl=nil, writebackcospath=nil, activevideogenerate=nil, videorotationmode=nil, ttsmode=nil, activettsoutput=nil, exactasrset=nil, exacttextsummary=nil, exacttextsegset=nil, exactshotsegset=nil)
+          @SummaryType = summarytype
+          @VideoURL = videourl
+          @CallbackURL = callbackurl
+          @WriteBackCosPath = writebackcospath
+          @ActiveVideoGenerate = activevideogenerate
+          @VideoRotationMode = videorotationmode
+          @TTSMode = ttsmode
+          @ActiveTTSOutput = activettsoutput
+          @ExactAsrSet = exactasrset
+          @ExactTextSummary = exacttextsummary
+          @ExactTextSegSet = exacttextsegset
+          @ExactShotSegSet = exactshotsegset
+        end
+
+        def deserialize(params)
+          @SummaryType = params['SummaryType']
+          @VideoURL = params['VideoURL']
+          @CallbackURL = params['CallbackURL']
+          @WriteBackCosPath = params['WriteBackCosPath']
+          @ActiveVideoGenerate = params['ActiveVideoGenerate']
+          unless params['VideoRotationMode'].nil?
+            @VideoRotationMode = VideoRotationMode.new
+            @VideoRotationMode.deserialize(params['VideoRotationMode'])
+          end
+          unless params['TTSMode'].nil?
+            @TTSMode = TTSMode.new
+            @TTSMode.deserialize(params['TTSMode'])
+          end
+          @ActiveTTSOutput = params['ActiveTTSOutput']
+          unless params['ExactAsrSet'].nil?
+            @ExactAsrSet = []
+            params['ExactAsrSet'].each do |i|
+              asrresult_tmp = AsrResult.new
+              asrresult_tmp.deserialize(i)
+              @ExactAsrSet << asrresult_tmp
+            end
+          end
+          @ExactTextSummary = params['ExactTextSummary']
+          @ExactTextSegSet = params['ExactTextSegSet']
+          unless params['ExactShotSegSet'].nil?
+            @ExactShotSegSet = []
+            params['ExactShotSegSet'].each do |i|
+              shotinfo_tmp = ShotInfo.new
+              shotinfo_tmp.deserialize(i)
+              @ExactShotSegSet << shotinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateVideoSummaryTask返回参数结构体
+      class CreateVideoSummaryTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回的任务 id
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1257,6 +1381,138 @@ module TencentCloud
               @TaskInfoSet << taskinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUsageAmount请求参数结构体
+      class DescribeUsageAmountRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUsageAmount返回参数结构体
+      class DescribeUsageAmountResponse < TencentCloud::Common::AbstractModel
+        # @param UsedHours: 资源使用小时数
+        # @type UsedHours: Float
+        # @param TotalHours: 资源包总量小时数
+        # @type TotalHours: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsedHours, :TotalHours, :RequestId
+
+        def initialize(usedhours=nil, totalhours=nil, requestid=nil)
+          @UsedHours = usedhours
+          @TotalHours = totalhours
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsedHours = params['UsedHours']
+          @TotalHours = params['TotalHours']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoSummaryDetail请求参数结构体
+      class DescribeVideoSummaryDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 要查询的任务Id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeVideoSummaryDetail返回参数结构体
+      class DescribeVideoSummaryDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务的状态
+        # 1: 等待处理中
+        # 2: 处理中
+        # 3: 处理成功
+        # 4: 处理失败
+        # @type Status: Integer
+        # @param FailedReason: 如果处理失败，返回失败的原因
+        # @type FailedReason: String
+        # @param AsrSet: 提取出的视频的 Asr 结果
+        # @type AsrSet: Array
+        # @param TextSummary: 文本摘要结果
+        # @type TextSummary: String
+        # @param TextSegSet: 文本摘要分割结果
+        # @type TextSegSet: Array
+        # @param ShotSegSet: 镜头分割结果
+        # @type ShotSegSet: Array
+        # @param TextSegMatchShotScoreSet: 数组第 i 个结构 TextSegMatchShotConfidenceSet[i] 表示第 i 个文本摘要分割结果和所有镜头的匹配度。
+        # @type TextSegMatchShotScoreSet: Array
+        # @param TTSResultURLSet: TTS 输出音频下载地址列表
+        # @type TTSResultURLSet: Array
+        # @param VideoResultURL: 合成视频输出下载地址
+        # @type VideoResultURL: String
+        # @param VideoRotateResultURL: 合成后的视频横竖屏转换后的视频下载地址
+        # @type VideoRotateResultURL: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :FailedReason, :AsrSet, :TextSummary, :TextSegSet, :ShotSegSet, :TextSegMatchShotScoreSet, :TTSResultURLSet, :VideoResultURL, :VideoRotateResultURL, :RequestId
+
+        def initialize(status=nil, failedreason=nil, asrset=nil, textsummary=nil, textsegset=nil, shotsegset=nil, textsegmatchshotscoreset=nil, ttsresulturlset=nil, videoresulturl=nil, videorotateresulturl=nil, requestid=nil)
+          @Status = status
+          @FailedReason = failedreason
+          @AsrSet = asrset
+          @TextSummary = textsummary
+          @TextSegSet = textsegset
+          @ShotSegSet = shotsegset
+          @TextSegMatchShotScoreSet = textsegmatchshotscoreset
+          @TTSResultURLSet = ttsresulturlset
+          @VideoResultURL = videoresulturl
+          @VideoRotateResultURL = videorotateresulturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @FailedReason = params['FailedReason']
+          unless params['AsrSet'].nil?
+            @AsrSet = []
+            params['AsrSet'].each do |i|
+              asrresult_tmp = AsrResult.new
+              asrresult_tmp.deserialize(i)
+              @AsrSet << asrresult_tmp
+            end
+          end
+          @TextSummary = params['TextSummary']
+          @TextSegSet = params['TextSegSet']
+          unless params['ShotSegSet'].nil?
+            @ShotSegSet = []
+            params['ShotSegSet'].each do |i|
+              shotinfo_tmp = ShotInfo.new
+              shotinfo_tmp.deserialize(i)
+              @ShotSegSet << shotinfo_tmp
+            end
+          end
+          unless params['TextSegMatchShotScoreSet'].nil?
+            @TextSegMatchShotScoreSet = []
+            params['TextSegMatchShotScoreSet'].each do |i|
+              textsegmatchshotscore_tmp = TextSegMatchShotScore.new
+              textsegmatchshotscore_tmp.deserialize(i)
+              @TextSegMatchShotScoreSet << textsegmatchshotscore_tmp
+            end
+          end
+          @TTSResultURLSet = params['TTSResultURLSet']
+          @VideoResultURL = params['VideoResultURL']
+          @VideoRotateResultURL = params['VideoRotateResultURL']
           @RequestId = params['RequestId']
         end
       end
@@ -2095,6 +2351,28 @@ module TencentCloud
         end
       end
 
+      # 输入的镜头信息的描述
+      class ShotInfo < TencentCloud::Common::AbstractModel
+        # @param StartTimeStamp: 镜头开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimeStamp: Float
+        # @param EndTimeStamp: 镜头结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTimeStamp: Float
+
+        attr_accessor :StartTimeStamp, :EndTimeStamp
+
+        def initialize(starttimestamp=nil, endtimestamp=nil)
+          @StartTimeStamp = starttimestamp
+          @EndTimeStamp = endtimestamp
+        end
+
+        def deserialize(params)
+          @StartTimeStamp = params['StartTimeStamp']
+          @EndTimeStamp = params['EndTimeStamp']
+        end
+      end
+
       # 视频结构化结果
       class ShowInfo < TencentCloud::Common::AbstractModel
         # @param Date: 节目日期(只在新闻有效)
@@ -2250,6 +2528,49 @@ module TencentCloud
         def deserialize(params)
           @By = params['By']
           @Descend = params['Descend']
+        end
+      end
+
+      # TTS 的参数模式
+      class TTSMode < TencentCloud::Common::AbstractModel
+        # @param Speed: 语速，范围：[-2，2]，分别对应不同语速：
+        # -2代表0.6倍
+        # -1代表0.8倍
+        # 0代表1.0倍（默认）
+        # 1代表1.2倍
+        # 2代表1.5倍
+        # 如果需要更细化的语速，可以保留小数点后 2 位，例如0.5/1.25/2.81等。
+        # @type Speed: Float
+        # @param VoiceType: 音色 ID，[音色体验地址](https://cloud.tencent.com/product/tts)。
+
+
+        # |音乐ID|音色名称|推荐场景|
+        # |--|--|--|
+        # |1001|智瑜|情感女声|
+        # |1002|智聆|通用女声|
+        # |1003|智美|客服女声|
+        # |1004|智云|通用男声|
+        # |1005|智莉|通用女声|
+        # |1007|智娜|客服女声|
+        # |1008|智琪|客服女声|
+        # |1009|智芸|知性女声|
+        # |1010|智华|通用男声|
+        # |1017|智蓉|情感女声|
+        # |1018|智靖|情感男声|
+
+
+        # @type VoiceType: Integer
+
+        attr_accessor :Speed, :VoiceType
+
+        def initialize(speed=nil, voicetype=nil)
+          @Speed = speed
+          @VoiceType = voicetype
+        end
+
+        def deserialize(params)
+          @Speed = params['Speed']
+          @VoiceType = params['VoiceType']
         end
       end
 
@@ -2535,6 +2856,23 @@ module TencentCloud
         end
       end
 
+      # 单个文本摘要分割结果和所有镜头的匹配度信息
+      class TextSegMatchShotScore < TencentCloud::Common::AbstractModel
+        # @param ScoreSet: 数组第 i 个值表示该文本摘要和第 i 个镜头的匹配度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScoreSet: Array
+
+        attr_accessor :ScoreSet
+
+        def initialize(scoreset=nil)
+          @ScoreSet = scoreset
+        end
+
+        def deserialize(params)
+          @ScoreSet = params['ScoreSet']
+        end
+      end
+
       # 未知人物信息
       class UnknownPerson < TencentCloud::Common::AbstractModel
         # @param VideoAppearSet: 视觉出现信息
@@ -2678,6 +3016,22 @@ module TencentCloud
           @StartTimeStamp = params['StartTimeStamp']
           @EndTimeStamp = params['EndTimeStamp']
           @ImageURL = params['ImageURL']
+        end
+      end
+
+      # 视频横转竖的控制参数
+      class VideoRotationMode < TencentCloud::Common::AbstractModel
+        # @param ActiveVideoRotation: 生成的视频是否需要横屏转竖屏。
+        # @type ActiveVideoRotation: Boolean
+
+        attr_accessor :ActiveVideoRotation
+
+        def initialize(activevideorotation=nil)
+          @ActiveVideoRotation = activevideorotation
+        end
+
+        def deserialize(params)
+          @ActiveVideoRotation = params['ActiveVideoRotation']
         end
       end
 

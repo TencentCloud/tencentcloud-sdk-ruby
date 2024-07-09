@@ -136,6 +136,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询AI对话任务状态。
+
+        # @param request: Request instance for DescribeAIConversation.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeAIConversationResponse`
+        def DescribeAIConversation(request)
+          body = send_request('DescribeAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询AI转录任务状态。
 
         # @param request: Request instance for DescribeAITranscription.
@@ -1007,6 +1031,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动一个任务，机器人将进入TRTC房间，与指定成员进行AI对话
+
+        # @param request: Request instance for StartAIConversation.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StartAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StartAIConversationResponse`
+        def StartAIConversation(request)
+          body = send_request('StartAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartAIConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 这个接口调用后，后台会启动转录机器人，实时进行语音识别并下发字幕和转录消息。
         # 转录机器人支持两种拉流方式，通过TranscriptionMode字段控制：
         # - 拉取全房间的流。
@@ -1316,6 +1364,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartWebRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止AI对话任务
+
+        # @param request: Request instance for StopAIConversation.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StopAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StopAIConversationResponse`
+        def StopAIConversation(request)
+          body = send_request('StopAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopAIConversationResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -20,8 +20,10 @@ module TencentCloud
       # 数据库账号信息
       class Account < TencentCloud::Common::AbstractModel
         # @param User: 新账户的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Host: 新账户的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
 
         attr_accessor :User, :Host

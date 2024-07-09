@@ -11009,7 +11009,7 @@ module TencentCloud
 
       # DescribeSecurityGroupPolicies请求参数结构体
       class DescribeSecurityGroupPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupId: 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        # @param SecurityGroupId: 安全组实例ID，例如：sg-33ocnj9n，可通过<a href="https://cloud.tencent.com/document/product/215/15808">DescribeSecurityGroups</a>获取。
         # @type SecurityGroupId: String
         # @param Filters: 过滤条件。
         # <li>security-group-id - String - 规则中的安全组ID。</li>
@@ -18451,6 +18451,42 @@ module TencentCloud
         end
       end
 
+      # ModifyVpnGatewaySslClientCert请求参数结构体
+      class ModifyVpnGatewaySslClientCertRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnClientIds: SSL-VPN-CLIENT 实例ID列表。
+        # @type SslVpnClientIds: Array
+
+        attr_accessor :SslVpnClientIds
+
+        def initialize(sslvpnclientids=nil)
+          @SslVpnClientIds = sslvpnclientids
+        end
+
+        def deserialize(params)
+          @SslVpnClientIds = params['SslVpnClientIds']
+        end
+      end
+
+      # ModifyVpnGatewaySslClientCert返回参数结构体
+      class ModifyVpnGatewaySslClientCertResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVpnGatewaySslServer请求参数结构体
       class ModifyVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
         # @param SslVpnServerId: SSL-VPN SERVER 实例ID
@@ -19474,6 +19510,38 @@ module TencentCloud
           end
           @QosLevel = params['QosLevel']
           @Type = params['Type']
+        end
+      end
+
+      # 安全组策略统计
+      class PolicyStatistics < TencentCloud::Common::AbstractModel
+        # @param IngressIPv4TotalCount: 入站IPv4总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IngressIPv4TotalCount: Integer
+        # @param IngressIPv6TotalCount: 入站IPv6总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IngressIPv6TotalCount: Integer
+        # @param EgressIPv4TotalCount: 出站IPv4总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EgressIPv4TotalCount: Integer
+        # @param EgressIPv6TotalCount: 出站IPv6总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EgressIPv6TotalCount: Integer
+
+        attr_accessor :IngressIPv4TotalCount, :IngressIPv6TotalCount, :EgressIPv4TotalCount, :EgressIPv6TotalCount
+
+        def initialize(ingressipv4totalcount=nil, ingressipv6totalcount=nil, egressipv4totalcount=nil, egressipv6totalcount=nil)
+          @IngressIPv4TotalCount = ingressipv4totalcount
+          @IngressIPv6TotalCount = ingressipv6totalcount
+          @EgressIPv4TotalCount = egressipv4totalcount
+          @EgressIPv6TotalCount = egressipv6totalcount
+        end
+
+        def deserialize(params)
+          @IngressIPv4TotalCount = params['IngressIPv4TotalCount']
+          @IngressIPv6TotalCount = params['IngressIPv6TotalCount']
+          @EgressIPv4TotalCount = params['EgressIPv4TotalCount']
+          @EgressIPv6TotalCount = params['EgressIPv6TotalCount']
         end
       end
 
@@ -21230,27 +21298,38 @@ module TencentCloud
       # 安全组规则对象
       class SecurityGroupPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyIndex: 安全组规则索引号，值会随着安全组规则的变更动态变化。使用PolicyIndex时，请先调用`DescribeSecurityGroupPolicies`获取到规则的PolicyIndex，并且结合返回值中的Version一起使用处理规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyIndex: Integer
         # @param Protocol: 协议, 取值: TCP,UDP,ICMP,ICMPv6,ALL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 端口(all, 离散port,  range)。
         # 说明：如果Protocol设置为ALL，则Port也需要设置为all。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param ServiceTemplate: 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplate: :class:`Tencentcloud::Vpc.v20170312.models.ServiceTemplateSpecification`
         # @param CidrBlock: 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CidrBlock: String
         # @param Ipv6CidrBlock: 网段或IPv6(互斥)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6CidrBlock: String
         # @param SecurityGroupId: 安全组实例ID，例如：sg-ohuuioma。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupId: String
         # @param AddressTemplate: IP地址ID或者IP地址组ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressTemplate: :class:`Tencentcloud::Vpc.v20170312.models.AddressTemplateSpecification`
         # @param Action: ACCEPT 或 DROP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
         # @param PolicyDescription: 安全组规则描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDescription: String
         # @param ModifyTime: 安全组最近修改时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
 
         attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :Ipv6CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime
@@ -21301,13 +21380,17 @@ module TencentCloud
         # @param Ingress: 入站规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ingress: Array
+        # @param PolicyStatistics: 安全组策略条目统计。只用于出参。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyStatistics: :class:`Tencentcloud::Vpc.v20170312.models.PolicyStatistics`
 
-        attr_accessor :Version, :Egress, :Ingress
+        attr_accessor :Version, :Egress, :Ingress, :PolicyStatistics
 
-        def initialize(version=nil, egress=nil, ingress=nil)
+        def initialize(version=nil, egress=nil, ingress=nil, policystatistics=nil)
           @Version = version
           @Egress = egress
           @Ingress = ingress
+          @PolicyStatistics = policystatistics
         end
 
         def deserialize(params)
@@ -21327,6 +21410,10 @@ module TencentCloud
               securitygrouppolicy_tmp.deserialize(i)
               @Ingress << securitygrouppolicy_tmp
             end
+          end
+          unless params['PolicyStatistics'].nil?
+            @PolicyStatistics = PolicyStatistics.new
+            @PolicyStatistics.deserialize(params['PolicyStatistics'])
           end
         end
       end

@@ -77,6 +77,38 @@ module TencentCloud
         end
       end
 
+      # 机器人参数
+      class AgentConfig < TencentCloud::Common::AbstractModel
+        # @param UserId: 机器人的UserId，用于进房发起任务。【注意】这个UserId不能与当前房间内的主播观众[UserId](https://cloud.tencent.com/document/product/647/46351#userid)重复。如果一个房间发起多个任务时，机器人的UserId也不能相互重复，否则会中断前一个任务。需要保证机器人UserId在房间内唯一。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserSig: 机器人UserId对应的校验签名，即UserId和UserSig相当于机器人进房的登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSig: String
+        # @param TargetUserId: 机器人拉流的UserId, 填写后，机器人会拉取该UserId的流进行实时处理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetUserId: String
+        # @param MaxIdleTime: 房间内推流用户全部退出后超过MaxIdleTime秒，后台自动关闭任务，默认值是60s。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxIdleTime: Integer
+
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime
+
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil)
+          @UserId = userid
+          @UserSig = usersig
+          @TargetUserId = targetuserid
+          @MaxIdleTime = maxidletime
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @TargetUserId = params['TargetUserId']
+          @MaxIdleTime = params['MaxIdleTime']
+        end
+      end
+
       # 转推服务加入TRTC房间的机器人参数。
       class AgentParams < TencentCloud::Common::AbstractModel
         # @param UserId: 转推服务在TRTC房间使用的[UserId](https://cloud.tencent.com/document/product/647/46351#userid)，注意这个userId不能与其他TRTC或者转推服务等已经使用的UserId重复，建议可以把房间ID作为userId的标识的一部分。
@@ -478,6 +510,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIConversation请求参数结构体
+      class DescribeAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和开启转录任务的房间使用的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param TaskId: 唯一标识一次任务。
+        # @type TaskId: String
+        # @param SessionId: 开启任务时填写的SessionId，如果没写则不返回。
+        # @type SessionId: String
+
+        attr_accessor :SdkAppId, :TaskId, :SessionId
+
+        def initialize(sdkappid=nil, taskid=nil, sessionid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeAIConversation返回参数结构体
+      class DescribeAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 任务开始时间。
+        # @type StartTime: String
+        # @param Status: 任务状态。有4个值：1、Idle表示任务未开始2、Preparing表示任务准备中3、InProgress表示任务正在运行4、Stopped表示任务已停止，正在清理资源中
+        # @type Status: String
+        # @param TaskId: 唯一标识一次任务。
+        # @type TaskId: String
+        # @param SessionId: 开启对话任务时填写的SessionId，如果没写则不返回。
+        # @type SessionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :Status, :TaskId, :SessionId, :RequestId
+
+        def initialize(starttime=nil, status=nil, taskid=nil, sessionid=nil, requestid=nil)
+          @StartTime = starttime
+          @Status = status
+          @TaskId = taskid
+          @SessionId = sessionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          @SessionId = params['SessionId']
           @RequestId = params['RequestId']
         end
       end
@@ -3671,6 +3759,53 @@ module TencentCloud
         end
       end
 
+      # 语音转文字参数
+      class STTConfig < TencentCloud::Common::AbstractModel
+        # @param Language: 语音识别支持的语言，默认是"zh" 中文
+        # 目前全量支持的语言如下，等号左面是语言英文名，右面是Language字段需要填写的值，该值遵循[ISO639](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)：
+        # 1.     Chinese = "zh" # 中文
+        # 2.     Chinese_TW = "zh-TW" # 中国台湾
+        # 3.     Chinese_DIALECT = "zh-dialect" # 中国方言
+        # 4.     English = "en" # 英语
+        # 5.     Vietnamese = "vi" # 越南语
+        # 6.     Japanese = "ja" # 日语
+        # 7.     Korean = "ko" # 汉语
+        # 8.     Indonesia = "id" # 印度尼西亚语
+        # 9.     Thai = "th" # 泰语
+        # 10.     Portuguese = "pt" # 葡萄牙语
+        # 11.     Turkish = "tr" # 土耳其语
+        # 12.     Arabic = "ar" # 阿拉伯语
+        # 13.     Spanish = "es" # 西班牙语
+        # 14.     Hindi = "hi" # 印地语
+        # 15.     French = "fr" # 法语
+        # 16.     Malay = "ms" # 马来语
+        # 17.     Filipino = "fil" # 菲律宾语
+        # 18.     German = "de" # 德语
+        # 19.     Italian = "it" # 意大利语
+        # 20.     Russian = "ru" # 俄语
+
+        # 注意：
+        # 如果缺少满足您需求的语言，请联系我们技术人员。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Language: String
+        # @param AlternativeLanguage: 额外识别可能替代语言,最多3个, 需高级版支持,Language指定方言时，不允许设置该字段
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlternativeLanguage: Array
+
+        attr_accessor :Language, :AlternativeLanguage
+
+        def initialize(language=nil, alternativelanguage=nil)
+          @Language = language
+          @AlternativeLanguage = alternativelanguage
+        end
+
+        def deserialize(params)
+          @Language = params['Language']
+          @AlternativeLanguage = params['AlternativeLanguage']
+        end
+      end
+
       # 历史规模信息
       class ScaleInfomation < TencentCloud::Common::AbstractModel
         # @param Time: 每天开始的时间
@@ -3869,6 +4004,78 @@ module TencentCloud
           @ImageHeight = params['ImageHeight']
           @LocationX = params['LocationX']
           @LocationY = params['LocationY']
+        end
+      end
+
+      # StartAIConversation请求参数结构体
+      class StartAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和开启转录任务的房间使用的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，表示开启对话任务的房间号。
+        # @type RoomId: String
+        # @param AgentConfig: 机器人参数
+        # @type AgentConfig: :class:`Tencentcloud::Trtc.v20190722.models.AgentConfig`
+        # @param SessionId: 调用方传入的唯一Id，服务端用来去重。
+        # @type SessionId: String
+        # @param RoomIdType: TRTC房间号的类型，0代表数字房间号，1代表字符串房间号。不填默认是数字房间号。
+        # @type RoomIdType: Integer
+        # @param STTConfig: 语音识别配置。
+        # @type STTConfig: :class:`Tencentcloud::Trtc.v20190722.models.STTConfig`
+        # @param LLMConfig: LLM配置。需符合openai规范，为JSON字符串，示例如下：
+        # <pre> { <br> &emsp;  "LLMType": “大模型类型"，  // String 必填，目前固定为"openai" <br> &emsp;  "Model": "您的模型名称", // String 必填，指定使用的模型<br>    "APIKey": "您的OpenAI API密钥", // String 必填，相当于环境变量中的OPENAI_API_KEY<br> &emsp;  "APIBaseUrl": "https://api.openai.com", // String 必填，OpenAI API的基础URL<br> &emsp;  "Streaming": true // Boolean 非必填，指定是否使用流式传输<br> &emsp;} </pre>
+        # @type LLMConfig: String
+        # @param TTSConfig: TTS配置。目前支持腾讯云TTS, 为JSON字符串，示例如下：
+        #  <pre>{ <br> &emsp; "AppId": "您的应用ID", // String 必填<br> &emsp; "TTSType": "TTS类型", // String TTS类型, 固定为"tencent"<br> &emsp; "SercetId": "您的密钥ID", // String 必填<br> &emsp; "SercetKey":  "您的密钥Key", // String 必填<br> &emsp; "VoiceType": 101001, // Integer  必填，音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见<a href="https://cloud.tencent.com/document/product/1073/34112">语音合成计费概述</a>。完整的音色 ID 列表请参见<a href="https://cloud.tencent.com/document/product/1073/92668#55924b56-1a73-4663-a7a1-a8dd82d6e823">语音合成音色列表</a>。<br> &emsp; "Speed": 1.25, // Integer 非必填，语速，范围：[-2，6]，分别对应不同语速： -2: 代表0.6倍 -1: 代表0.8倍 0: 代表1.0倍（默认） 1: 代表1.2倍 2: 代表1.5倍  6: 代表2.5倍  如果需要更细化的语速，可以保留小数点后 2 位，例如0.5/1.25/2.81等。 参数值与实际语速转换，可参考 <a href="https://sdk-1300466766.cos.ap-shanghai.myqcloud.com/sample/speed_sample.tar.gz">语速转换</a><br> &emsp; "Volume": 5, // Integer 非必填，音量大小，范围：[0，10]，分别对应11个等级的音量，默认值为0，代表正常音量。<br> &emsp; "PrimaryLanguage": "zh-CN" // String 非必填，主要语言<br> &emsp;}</pre>
+        # @type TTSConfig: String
+
+        attr_accessor :SdkAppId, :RoomId, :AgentConfig, :SessionId, :RoomIdType, :STTConfig, :LLMConfig, :TTSConfig
+
+        def initialize(sdkappid=nil, roomid=nil, agentconfig=nil, sessionid=nil, roomidtype=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @AgentConfig = agentconfig
+          @SessionId = sessionid
+          @RoomIdType = roomidtype
+          @STTConfig = sttconfig
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = AgentConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
+          @SessionId = params['SessionId']
+          @RoomIdType = params['RoomIdType']
+          unless params['STTConfig'].nil?
+            @STTConfig = STTConfig.new
+            @STTConfig.deserialize(params['STTConfig'])
+          end
+          @LLMConfig = params['LLMConfig']
+          @TTSConfig = params['TTSConfig']
+        end
+      end
+
+      # StartAIConversation返回参数结构体
+      class StartAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 用于唯一标识对话任务。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4334,6 +4541,38 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopAIConversation请求参数结构体
+      class StopAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识任务。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopAIConversation返回参数结构体
+      class StopAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
