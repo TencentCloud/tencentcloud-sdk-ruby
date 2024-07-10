@@ -13499,15 +13499,19 @@ module TencentCloud
         # @type Confidence: Float
         # @param AreaCoordSet: 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         # @type AreaCoordSet: Array
+        # @param Url: 截图链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
 
-        attr_accessor :Name, :StartPtsOffset, :EndPtsOffset, :Confidence, :AreaCoordSet
+        attr_accessor :Name, :StartPtsOffset, :EndPtsOffset, :Confidence, :AreaCoordSet, :Url
 
-        def initialize(name=nil, startptsoffset=nil, endptsoffset=nil, confidence=nil, areacoordset=nil)
+        def initialize(name=nil, startptsoffset=nil, endptsoffset=nil, confidence=nil, areacoordset=nil, url=nil)
           @Name = name
           @StartPtsOffset = startptsoffset
           @EndPtsOffset = endptsoffset
           @Confidence = confidence
           @AreaCoordSet = areacoordset
+          @Url = url
         end
 
         def deserialize(params)
@@ -13516,6 +13520,7 @@ module TencentCloud
           @EndPtsOffset = params['EndPtsOffset']
           @Confidence = params['Confidence']
           @AreaCoordSet = params['AreaCoordSet']
+          @Url = params['Url']
         end
       end
 
@@ -13714,16 +13719,20 @@ module TencentCloud
         # @type TopicName: String
         # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
         # @type NotifyUrl: String
+        # @param NotifyKey: 用于生成回调签名的 Key。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyKey: String
 
-        attr_accessor :NotifyType, :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyUrl
+        attr_accessor :NotifyType, :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyUrl, :NotifyKey
 
-        def initialize(notifytype=nil, cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifyurl=nil)
+        def initialize(notifytype=nil, cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifyurl=nil, notifykey=nil)
           @NotifyType = notifytype
           @CmqModel = cmqmodel
           @CmqRegion = cmqregion
           @QueueName = queuename
           @TopicName = topicname
           @NotifyUrl = notifyurl
+          @NotifyKey = notifykey
         end
 
         def deserialize(params)
@@ -13733,6 +13742,7 @@ module TencentCloud
           @QueueName = params['QueueName']
           @TopicName = params['TopicName']
           @NotifyUrl = params['NotifyUrl']
+          @NotifyKey = params['NotifyKey']
         end
       end
 

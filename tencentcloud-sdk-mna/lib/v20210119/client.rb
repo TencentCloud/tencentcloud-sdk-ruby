@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建分组
+
+        # @param request: Request instance for AddGroup.
+        # @type request: :class:`Tencentcloud::mna::V20210119::AddGroupRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::AddGroupResponse`
+        def AddGroup(request)
+          body = send_request('AddGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加硬件设备，生成未激活的硬件设备，可支持批量添加
 
         # @param request: Request instance for AddHardware.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除分组
+
+        # @param request: Request instance for DeleteGroup.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteGroupRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteGroupResponse`
+        def DeleteGroup(request)
+          body = send_request('DeleteGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -389,6 +437,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定区域，指定时间点数据流量使用情况
+
+        # @param request: Request instance for GetFlowStatisticByRegion.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticByRegionRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticByRegionResponse`
+        def GetFlowStatisticByRegion(request)
+          body = send_request('GetFlowStatisticByRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFlowStatisticByRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看分组详细信息
+
+        # @param request: Request instance for GetGroupDetail.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetGroupDetailRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetGroupDetailResponse`
+        def GetGroupDetail(request)
+          body = send_request('GetGroupDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetGroupDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取分组列表
+
+        # @param request: Request instance for GetGroupList.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetGroupListRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetGroupListResponse`
+        def GetGroupList(request)
+          body = send_request('GetGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取厂商硬件列表
 
         # @param request: Request instance for GetHardwareList.
@@ -533,6 +653,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 向已存在分组中添加设备
+
+        # @param request: Request instance for GroupAddDevice.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GroupAddDeviceRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GroupAddDeviceResponse`
+        def GroupAddDevice(request)
+          body = send_request('GroupAddDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GroupAddDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除分组中的设备
+
+        # @param request: Request instance for GroupDeleteDevice.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GroupDeleteDeviceRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GroupDeleteDeviceResponse`
+        def GroupDeleteDevice(request)
+          body = send_request('GroupDeleteDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GroupDeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 可开启/关闭流量包自动续费，不影响当前周期正在生效的流量包。
 
         # @param request: Request instance for ModifyPackageRenewFlag.
@@ -581,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置用户流量告警信息接口，通过该接口设置流量包告警阈值以及告警时回调的url和key
+
+        # @param request: Request instance for SetNotifyUrl.
+        # @type request: :class:`Tencentcloud::mna::V20210119::SetNotifyUrlRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::SetNotifyUrlResponse`
+        def SetNotifyUrl(request)
+          body = send_request('SetNotifyUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetNotifyUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新设备信息
 
         # @param request: Request instance for UpdateDevice.
@@ -591,6 +783,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新分组备注
+
+        # @param request: Request instance for UpdateGroup.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateGroupRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateGroupResponse`
+        def UpdateGroup(request)
+          body = send_request('UpdateGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

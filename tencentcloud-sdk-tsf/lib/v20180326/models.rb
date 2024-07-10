@@ -1209,8 +1209,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 6
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 6
+        deprecate :ConfigAssociatedGroups, :none, 2024, 7
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 7
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
@@ -4415,6 +4415,57 @@ module TencentCloud
         # @param Result: 返回路径重写规则 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateProgram请求参数结构体
+      class CreateProgramRequest < TencentCloud::Common::AbstractModel
+        # @param ProgramName: 数据集名称
+        # @type ProgramName: String
+        # @param ProgramDesc: 数据集描述
+        # @type ProgramDesc: String
+        # @param ProgramItemList: 数据项列表，传入null或空数组时不新增
+        # @type ProgramItemList: Array
+
+        attr_accessor :ProgramName, :ProgramDesc, :ProgramItemList
+
+        def initialize(programname=nil, programdesc=nil, programitemlist=nil)
+          @ProgramName = programname
+          @ProgramDesc = programdesc
+          @ProgramItemList = programitemlist
+        end
+
+        def deserialize(params)
+          @ProgramName = params['ProgramName']
+          @ProgramDesc = params['ProgramDesc']
+          unless params['ProgramItemList'].nil?
+            @ProgramItemList = []
+            params['ProgramItemList'].each do |i|
+              programitem_tmp = ProgramItem.new
+              programitem_tmp.deserialize(i)
+              @ProgramItemList << programitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateProgram返回参数结构体
+      class CreateProgramResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true: 创建成功；false: 创建失败
+        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -15404,6 +15455,65 @@ module TencentCloud
       # ModifyPathRewrite返回参数结构体
       class ModifyPathRewriteResponse < TencentCloud::Common::AbstractModel
         # @param Result: true/false
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyProgram请求参数结构体
+      class ModifyProgramRequest < TencentCloud::Common::AbstractModel
+        # @param ProgramId: 数据集ID
+        # @type ProgramId: String
+        # @param ProgramName: 数据集名称，不传入时不更新
+        # @type ProgramName: String
+        # @param ProgramDesc: 数据集描述，不传入时不更新
+        # @type ProgramDesc: String
+        # @param ProgramItemList: 数据项列表，传入null不更新，传入空数组全量删除
+        # @type ProgramItemList: Array
+        # @param EmptyProgramItemList: ProgramItemList是否是空数组
+        # @type EmptyProgramItemList: Boolean
+
+        attr_accessor :ProgramId, :ProgramName, :ProgramDesc, :ProgramItemList, :EmptyProgramItemList
+
+        def initialize(programid=nil, programname=nil, programdesc=nil, programitemlist=nil, emptyprogramitemlist=nil)
+          @ProgramId = programid
+          @ProgramName = programname
+          @ProgramDesc = programdesc
+          @ProgramItemList = programitemlist
+          @EmptyProgramItemList = emptyprogramitemlist
+        end
+
+        def deserialize(params)
+          @ProgramId = params['ProgramId']
+          @ProgramName = params['ProgramName']
+          @ProgramDesc = params['ProgramDesc']
+          unless params['ProgramItemList'].nil?
+            @ProgramItemList = []
+            params['ProgramItemList'].each do |i|
+              programitem_tmp = ProgramItem.new
+              programitem_tmp.deserialize(i)
+              @ProgramItemList << programitem_tmp
+            end
+          end
+          @EmptyProgramItemList = params['EmptyProgramItemList']
+        end
+      end
+
+      # ModifyProgram返回参数结构体
+      class ModifyProgramResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true: 更新成功；false: 更新失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

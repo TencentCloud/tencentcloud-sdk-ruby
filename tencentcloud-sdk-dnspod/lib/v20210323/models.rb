@@ -969,10 +969,12 @@ module TencentCloud
         # @type Remark: String
         # @param DnssecConflictMode: 开启DNSSEC时，强制添加CNAME/URL记录
         # @type DnssecConflictMode: String
+        # @param GroupId: 记录分组 Id。可以通过接口 DescribeRecordGroupList 接口 GroupId 字段获取。
+        # @type GroupId: Integer
 
-        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark, :DnssecConflictMode
+        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark, :DnssecConflictMode, :GroupId
 
-        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil, dnssecconflictmode=nil)
+        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil, dnssecconflictmode=nil, groupid=nil)
           @Domain = domain
           @RecordType = recordtype
           @RecordLine = recordline
@@ -986,6 +988,7 @@ module TencentCloud
           @Status = status
           @Remark = remark
           @DnssecConflictMode = dnssecconflictmode
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -1002,6 +1005,7 @@ module TencentCloud
           @Status = params['Status']
           @Remark = params['Remark']
           @DnssecConflictMode = params['DnssecConflictMode']
+          @GroupId = params['GroupId']
         end
       end
 

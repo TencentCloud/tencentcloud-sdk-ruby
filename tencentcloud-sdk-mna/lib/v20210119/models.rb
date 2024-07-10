@@ -48,10 +48,16 @@ module TencentCloud
         # @param GroupName: 设备分组名称，预留参数，需要分组时传入GroupId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
+        # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowTrunc: Integer
+        # @param DeviceId: 激活后的设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
 
-        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey, :AccessScope, :LicensePayMode, :GroupId, :GroupName
+        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey, :AccessScope, :LicensePayMode, :GroupId, :GroupName, :FlowTrunc, :DeviceId
 
-        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil, accessscope=nil, licensepaymode=nil, groupid=nil, groupname=nil)
+        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil, accessscope=nil, licensepaymode=nil, groupid=nil, groupname=nil, flowtrunc=nil, deviceid=nil)
           @Vendor = vendor
           @SN = sn
           @DeviceName = devicename
@@ -61,6 +67,8 @@ module TencentCloud
           @LicensePayMode = licensepaymode
           @GroupId = groupid
           @GroupName = groupname
+          @FlowTrunc = flowtrunc
+          @DeviceId = deviceid
         end
 
         def deserialize(params)
@@ -73,6 +81,8 @@ module TencentCloud
           @LicensePayMode = params['LicensePayMode']
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
+          @FlowTrunc = params['FlowTrunc']
+          @DeviceId = params['DeviceId']
         end
       end
 
@@ -152,10 +162,12 @@ module TencentCloud
         # @type GroupName: String
         # @param GroupId: 设备分组ID，非必选，如果不填写则默认设备无分组
         # @type GroupId: String
+        # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
+        # @type FlowTrunc: Integer
 
-        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted, :AccessScope, :LicensePayMode, :GroupName, :GroupId
+        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted, :AccessScope, :LicensePayMode, :GroupName, :GroupId, :FlowTrunc
 
-        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil, accessscope=nil, licensepaymode=nil, groupname=nil, groupid=nil)
+        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil, accessscope=nil, licensepaymode=nil, groupname=nil, groupid=nil, flowtrunc=nil)
           @DeviceName = devicename
           @Remark = remark
           @DataKey = datakey
@@ -164,6 +176,7 @@ module TencentCloud
           @LicensePayMode = licensepaymode
           @GroupName = groupname
           @GroupId = groupid
+          @FlowTrunc = flowtrunc
         end
 
         def deserialize(params)
@@ -175,6 +188,7 @@ module TencentCloud
           @LicensePayMode = params['LicensePayMode']
           @GroupName = params['GroupName']
           @GroupId = params['GroupId']
+          @FlowTrunc = params['FlowTrunc']
         end
       end
 
@@ -203,6 +217,46 @@ module TencentCloud
           @DataKey = params['DataKey']
           @DeviceId = params['DeviceId']
           @Signature = params['Signature']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddGroup请求参数结构体
+      class AddGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: 分组的名称
+        # @type GroupName: String
+        # @param Description: 分组的描述
+        # @type Description: String
+
+        attr_accessor :GroupName, :Description
+
+        def initialize(groupname=nil, description=nil)
+          @GroupName = groupname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+        end
+      end
+
+      # AddGroup返回参数结构体
+      class AddGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组的唯一ID，仅做分组唯一区分
+        # @type GroupId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -476,6 +530,38 @@ module TencentCloud
         end
       end
 
+      # DeleteGroup请求参数结构体
+      class DeleteGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 删除指定分组
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteGroup返回参数结构体
+      class DeleteGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteQos请求参数结构体
       class DeleteQosRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 单次加速唯一 Id
@@ -615,10 +701,13 @@ module TencentCloud
         # @param GroupName: 设备分组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
+        # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowTrunc: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName
+        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc
 
-        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil)
+        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil, flowtrunc=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @CreateTime = createtime
@@ -629,6 +718,7 @@ module TencentCloud
           @Payer = payer
           @GroupId = groupid
           @GroupName = groupname
+          @FlowTrunc = flowtrunc
         end
 
         def deserialize(params)
@@ -642,6 +732,7 @@ module TencentCloud
           @Payer = params['Payer']
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
+          @FlowTrunc = params['FlowTrunc']
         end
       end
 
@@ -1341,6 +1432,81 @@ module TencentCloud
         end
       end
 
+      # GetFlowStatisticByRegion请求参数结构体
+      class GetFlowStatisticByRegionRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 开始查找时间
+        # @type BeginTime: Integer
+        # @param EndTime: 截止时间
+        # @type EndTime: Integer
+        # @param Type: 流量种类（1：上行流量，2：下行流量， 3: 上下行总和）
+        # @type Type: Integer
+        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @type TimeGranularity: Integer
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。
+        # @type GatewayType: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @type AccessRegion: String
+
+        attr_accessor :BeginTime, :EndTime, :Type, :TimeGranularity, :GatewayType, :AccessRegion
+
+        def initialize(begintime=nil, endtime=nil, type=nil, timegranularity=nil, gatewaytype=nil, accessregion=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Type = type
+          @TimeGranularity = timegranularity
+          @GatewayType = gatewaytype
+          @AccessRegion = accessregion
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @TimeGranularity = params['TimeGranularity']
+          @GatewayType = params['GatewayType']
+          @AccessRegion = params['AccessRegion']
+        end
+      end
+
+      # GetFlowStatisticByRegion返回参数结构体
+      class GetFlowStatisticByRegionResponse < TencentCloud::Common::AbstractModel
+        # @param NetDetails: 流量详细信息
+        # @type NetDetails: Array
+        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @type MaxValue: Float
+        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @type AvgValue: Float
+        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @type TotalValue: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetDetails, :MaxValue, :AvgValue, :TotalValue, :RequestId
+
+        def initialize(netdetails=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil, requestid=nil)
+          @NetDetails = netdetails
+          @MaxValue = maxvalue
+          @AvgValue = avgvalue
+          @TotalValue = totalvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NetDetails'].nil?
+            @NetDetails = []
+            params['NetDetails'].each do |i|
+              netdetails_tmp = NetDetails.new
+              netdetails_tmp.deserialize(i)
+              @NetDetails << netdetails_tmp
+            end
+          end
+          @MaxValue = params['MaxValue']
+          @AvgValue = params['AvgValue']
+          @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetFlowStatistic请求参数结构体
       class GetFlowStatisticRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
@@ -1420,6 +1586,135 @@ module TencentCloud
           @MaxValue = params['MaxValue']
           @AvgValue = params['AvgValue']
           @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetGroupDetail请求参数结构体
+      class GetGroupDetailRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param PageSize: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageSize: Integer
+        # @param PageNumber: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageNumber: Integer
+        # @param KeyWord: 搜索关键字
+        # @type KeyWord: String
+
+        attr_accessor :GroupId, :PageSize, :PageNumber, :KeyWord
+
+        def initialize(groupid=nil, pagesize=nil, pagenumber=nil, keyword=nil)
+          @GroupId = groupid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @KeyWord = keyword
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @KeyWord = params['KeyWord']
+        end
+      end
+
+      # GetGroupDetail返回参数结构体
+      class GetGroupDetailResponse < TencentCloud::Common::AbstractModel
+        # @param GroupInfo: 分组基本信息
+        # @type GroupInfo: :class:`Tencentcloud::Mna.v20210119.models.GroupInfo`
+        # @param DeviceInfos: 分组中设备列表
+        # @type DeviceInfos: Array
+        # @param Length: 设备总记录条数
+        # @type Length: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupInfo, :DeviceInfos, :Length, :TotalPage, :RequestId
+
+        def initialize(groupinfo=nil, deviceinfos=nil, length=nil, totalpage=nil, requestid=nil)
+          @GroupInfo = groupinfo
+          @DeviceInfos = deviceinfos
+          @Length = length
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupInfo'].nil?
+            @GroupInfo = GroupInfo.new
+            @GroupInfo.deserialize(params['GroupInfo'])
+          end
+          unless params['DeviceInfos'].nil?
+            @DeviceInfos = []
+            params['DeviceInfos'].each do |i|
+              devicebaseinfo_tmp = DeviceBaseInfo.new
+              devicebaseinfo_tmp.deserialize(i)
+              @DeviceInfos << devicebaseinfo_tmp
+            end
+          end
+          @Length = params['Length']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetGroupList请求参数结构体
+      class GetGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageSize: Integer
+        # @param PageNumber: 当前查看页码，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageNumber: Integer
+        # @param Keyword: 搜索分组的关键字，为空时匹配所有分组
+        # @type Keyword: String
+
+        attr_accessor :PageSize, :PageNumber, :Keyword
+
+        def initialize(pagesize=nil, pagenumber=nil, keyword=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # GetGroupList返回参数结构体
+      class GetGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param GroupInfos: 设备信息列表
+        # @type GroupInfos: Array
+        # @param Length: 设备总记录条数
+        # @type Length: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupInfos, :Length, :TotalPage, :RequestId
+
+        def initialize(groupinfos=nil, length=nil, totalpage=nil, requestid=nil)
+          @GroupInfos = groupinfos
+          @Length = length
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupInfos'].nil?
+            @GroupInfos = []
+            params['GroupInfos'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @GroupInfos << groupinfo_tmp
+            end
+          end
+          @Length = params['Length']
+          @TotalPage = params['TotalPage']
           @RequestId = params['RequestId']
         end
       end
@@ -1781,6 +2076,123 @@ module TencentCloud
         end
       end
 
+      # GroupAddDevice请求参数结构体
+      class GroupAddDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param DeviceList: 待添加的设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :GroupId, :DeviceList
+
+        def initialize(groupid=nil, devicelist=nil)
+          @GroupId = groupid
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @DeviceList = params['DeviceList']
+        end
+      end
+
+      # GroupAddDevice返回参数结构体
+      class GroupAddDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceNum: 分组中的设备数量
+        # @type DeviceNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceNum, :RequestId
+
+        def initialize(devicenum=nil, requestid=nil)
+          @DeviceNum = devicenum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeviceNum = params['DeviceNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GroupDeleteDevice请求参数结构体
+      class GroupDeleteDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param DeviceList: 待删除的设备列表
+        # @type DeviceList: Array
+
+        attr_accessor :GroupId, :DeviceList
+
+        def initialize(groupid=nil, devicelist=nil)
+          @GroupId = groupid
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @DeviceList = params['DeviceList']
+        end
+      end
+
+      # GroupDeleteDevice返回参数结构体
+      class GroupDeleteDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceNum: 分组中的设备数量
+        # @type DeviceNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceNum, :RequestId
+
+        def initialize(devicenum=nil, requestid=nil)
+          @DeviceNum = devicenum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeviceNum = params['DeviceNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 分组的基本信息
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param GroupName: 分组名
+        # @type GroupName: String
+        # @param CreateTime: 分组创建的时间，单位：ms
+        # @type CreateTime: String
+        # @param UpdateTime: 分组更新的时间，单位：ms
+        # @type UpdateTime: String
+        # @param Description: 分组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DeviceNum: 分组中的设备数量
+        # @type DeviceNum: Integer
+
+        attr_accessor :GroupId, :GroupName, :CreateTime, :UpdateTime, :Description, :DeviceNum
+
+        def initialize(groupid=nil, groupname=nil, createtime=nil, updatetime=nil, description=nil, devicenum=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Description = description
+          @DeviceNum = devicenum
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Description = params['Description']
+          @DeviceNum = params['DeviceNum']
+        end
+      end
+
       # 新建Hardware入参
       class Hardware < TencentCloud::Common::AbstractModel
         # @param SN: 硬件序列号
@@ -1862,10 +2274,13 @@ module TencentCloud
         # @param GroupName: 设备分组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
+        # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowTrunc: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :ActiveTime, :LastOnlineTime, :Description, :VendorDescription, :LicenseChargingMode, :CreateTime, :SN, :LicensePayMode, :Payer, :GroupId, :GroupName
+        attr_accessor :DeviceId, :DeviceName, :ActiveTime, :LastOnlineTime, :Description, :VendorDescription, :LicenseChargingMode, :CreateTime, :SN, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc
 
-        def initialize(deviceid=nil, devicename=nil, activetime=nil, lastonlinetime=nil, description=nil, vendordescription=nil, licensechargingmode=nil, createtime=nil, sn=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil)
+        def initialize(deviceid=nil, devicename=nil, activetime=nil, lastonlinetime=nil, description=nil, vendordescription=nil, licensechargingmode=nil, createtime=nil, sn=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil, flowtrunc=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @ActiveTime = activetime
@@ -1879,6 +2294,7 @@ module TencentCloud
           @Payer = payer
           @GroupId = groupid
           @GroupName = groupname
+          @FlowTrunc = flowtrunc
         end
 
         def deserialize(params)
@@ -1895,6 +2311,7 @@ module TencentCloud
           @Payer = params['Payer']
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
+          @FlowTrunc = params['FlowTrunc']
         end
       end
 
@@ -2089,6 +2506,46 @@ module TencentCloud
         end
       end
 
+      # SetNotifyUrl请求参数结构体
+      class SetNotifyUrlRequest < TencentCloud::Common::AbstractModel
+        # @param NotifyUrl: 告警通知回调url
+        # @type NotifyUrl: String
+        # @param CallbackKey: 告警通知回调key
+        # @type CallbackKey: String
+        # @param AlarmValue: 流量包的告警阈值
+        # @type AlarmValue: Integer
+
+        attr_accessor :NotifyUrl, :CallbackKey, :AlarmValue
+
+        def initialize(notifyurl=nil, callbackkey=nil, alarmvalue=nil)
+          @NotifyUrl = notifyurl
+          @CallbackKey = callbackkey
+          @AlarmValue = alarmvalue
+        end
+
+        def deserialize(params)
+          @NotifyUrl = params['NotifyUrl']
+          @CallbackKey = params['CallbackKey']
+          @AlarmValue = params['AlarmValue']
+        end
+      end
+
+      # SetNotifyUrl返回参数结构体
+      class SetNotifyUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网卡流量指标数据
       class SlotNetInfo < TencentCloud::Common::AbstractModel
         # @param NetInfoName: 网卡名
@@ -2150,14 +2607,17 @@ module TencentCloud
         # @type Remark: String
         # @param UpdateNetInfo: 更新设备网络信息
         # @type UpdateNetInfo: Array
+        # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
+        # @type FlowTrunc: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :Remark, :UpdateNetInfo
+        attr_accessor :DeviceId, :DeviceName, :Remark, :UpdateNetInfo, :FlowTrunc
 
-        def initialize(deviceid=nil, devicename=nil, remark=nil, updatenetinfo=nil)
+        def initialize(deviceid=nil, devicename=nil, remark=nil, updatenetinfo=nil, flowtrunc=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @Remark = remark
           @UpdateNetInfo = updatenetinfo
+          @FlowTrunc = flowtrunc
         end
 
         def deserialize(params)
@@ -2172,11 +2632,48 @@ module TencentCloud
               @UpdateNetInfo << updatenetinfo_tmp
             end
           end
+          @FlowTrunc = params['FlowTrunc']
         end
       end
 
       # UpdateDevice返回参数结构体
       class UpdateDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateGroup请求参数结构体
+      class UpdateGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param Description: 分组备注
+        # @type Description: String
+
+        attr_accessor :GroupId, :Description
+
+        def initialize(groupid=nil, description=nil)
+          @GroupId = groupid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateGroup返回参数结构体
+      class UpdateGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

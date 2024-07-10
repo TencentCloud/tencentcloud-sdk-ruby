@@ -2024,6 +2024,54 @@ module TencentCloud
         end
       end
 
+      # DescribeSegments请求参数结构体
+      class DescribeSegmentsRequest < TencentCloud::Common::AbstractModel
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param SegBizId: 文档ID
+        # @type SegBizId: Array
+
+        attr_accessor :BotBizId, :SegBizId
+
+        def initialize(botbizid=nil, segbizid=nil)
+          @BotBizId = botbizid
+          @SegBizId = segbizid
+        end
+
+        def deserialize(params)
+          @BotBizId = params['BotBizId']
+          @SegBizId = params['SegBizId']
+        end
+      end
+
+      # DescribeSegments返回参数结构体
+      class DescribeSegmentsResponse < TencentCloud::Common::AbstractModel
+        # @param List: 片段列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              docsegment_tmp = DocSegment.new
+              docsegment_tmp.deserialize(i)
+              @List << docsegment_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStorageCredential请求参数结构体
       class DescribeStorageCredentialRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -2164,6 +2212,68 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 文档片段
+      class DocSegment < TencentCloud::Common::AbstractModel
+        # @param Id: 片段ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param BusinessId: 业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessId: String
+        # @param FileType: 文件类型(markdown,word,txt)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileType: String
+        # @param SegmentType: 文档切片类型(segment-文档切片 table-表格)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentType: String
+        # @param Title: 标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param PageContent: 段落内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageContent: String
+        # @param OrgData: 段落原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgData: String
+        # @param DocId: 文章ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocId: String
+        # @param DocBizId: 文档业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocBizId: String
+        # @param DocUrl: 文档链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocUrl: String
+
+        attr_accessor :Id, :BusinessId, :FileType, :SegmentType, :Title, :PageContent, :OrgData, :DocId, :DocBizId, :DocUrl
+
+        def initialize(id=nil, businessid=nil, filetype=nil, segmenttype=nil, title=nil, pagecontent=nil, orgdata=nil, docid=nil, docbizid=nil, docurl=nil)
+          @Id = id
+          @BusinessId = businessid
+          @FileType = filetype
+          @SegmentType = segmenttype
+          @Title = title
+          @PageContent = pagecontent
+          @OrgData = orgdata
+          @DocId = docid
+          @DocBizId = docbizid
+          @DocUrl = docurl
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @BusinessId = params['BusinessId']
+          @FileType = params['FileType']
+          @SegmentType = params['SegmentType']
+          @Title = params['Title']
+          @PageContent = params['PageContent']
+          @OrgData = params['OrgData']
+          @DocId = params['DocId']
+          @DocBizId = params['DocBizId']
+          @DocUrl = params['DocUrl']
         end
       end
 
@@ -6597,7 +6707,7 @@ module TencentCloud
         # @type ExpireEnd: String
         # @param IsRefer: 是否引用链接
         # @type IsRefer: Boolean
-        # @param Opt: 文档操作类型：1：批量导入；2:文档导入
+        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档）
         # @type Opt: Integer
 
         attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt

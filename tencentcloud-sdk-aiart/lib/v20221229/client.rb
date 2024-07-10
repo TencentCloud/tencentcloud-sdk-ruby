@@ -29,6 +29,32 @@ module TencentCloud
         end
 
 
+        # 上传正面全身模特照和服装平铺图，生成模特换装后的图片。
+        # 生成的换装图片分辨率和模特照分辨率一致。
+        # 模特换装默认提供1个并发任务数，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
+
+        # @param request: Request instance for ChangeClothes.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::ChangeClothesRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::ChangeClothesResponse`
+        def ChangeClothes(request)
+          body = send_request('ChangeClothes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeClothesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 百变头像接口将根据输入的人像照片，生成风格百变的头像。
         # 百变头像默认提供1个并发任务数，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
 

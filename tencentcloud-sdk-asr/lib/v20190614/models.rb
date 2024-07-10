@@ -2141,25 +2141,25 @@ module TencentCloud
         # @type VoiceFormat: Integer
         # @param SampleRate: 音频采样率，目前支持16000，单位：Hz，必填
         # @type SampleRate: Integer
-        # @param VoicePrintId: 说话人id, 说话人唯一标识
-        # @type VoicePrintId: String
         # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
         # @type Data: String
+        # @param VoicePrintId: 说话人id, 说话人唯一标识
+        # @type VoicePrintId: String
 
-        attr_accessor :VoiceFormat, :SampleRate, :VoicePrintId, :Data
+        attr_accessor :VoiceFormat, :SampleRate, :Data, :VoicePrintId
 
-        def initialize(voiceformat=nil, samplerate=nil, voiceprintid=nil, data=nil)
+        def initialize(voiceformat=nil, samplerate=nil, data=nil, voiceprintid=nil)
           @VoiceFormat = voiceformat
           @SampleRate = samplerate
-          @VoicePrintId = voiceprintid
           @Data = data
+          @VoicePrintId = voiceprintid
         end
 
         def deserialize(params)
           @VoiceFormat = params['VoiceFormat']
           @SampleRate = params['SampleRate']
-          @VoicePrintId = params['VoicePrintId']
           @Data = params['Data']
+          @VoicePrintId = params['VoicePrintId']
         end
       end
 
