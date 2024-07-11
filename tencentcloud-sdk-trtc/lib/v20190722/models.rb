@@ -1806,7 +1806,7 @@ module TencentCloud
       class DescribeTrtcUsageResponse < TencentCloud::Common::AbstractModel
         # @param UsageKey: 用量类型，与UsageValue中各个位置的值对应。
         # @type UsageKey: Array
-        # @param UsageList: 各个时间点用量明细。
+        # @param UsageList: 各个时间点用量明细，单位:分钟
         # @type UsageList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5091,18 +5091,22 @@ module TencentCloud
       class TrtcUsage < TencentCloud::Common::AbstractModel
         # @param TimeKey: 时间点，格式为YYYY-MM-DD HH:mm:ss。多天查询时，HH:mm:ss为00:00:00。
         # @type TimeKey: String
-        # @param UsageValue: 用量数组。每个数值含义与UsageKey对应。单位：分钟。
+        # @param TimeStampKey: 时间点时间戳
+        # @type TimeStampKey: Integer
+        # @param UsageValue: 用量数组。每个数值含义与UsageKey对应。单位:分钟。
         # @type UsageValue: Array
 
-        attr_accessor :TimeKey, :UsageValue
+        attr_accessor :TimeKey, :TimeStampKey, :UsageValue
 
-        def initialize(timekey=nil, usagevalue=nil)
+        def initialize(timekey=nil, timestampkey=nil, usagevalue=nil)
           @TimeKey = timekey
+          @TimeStampKey = timestampkey
           @UsageValue = usagevalue
         end
 
         def deserialize(params)
           @TimeKey = params['TimeKey']
+          @TimeStampKey = params['TimeStampKey']
           @UsageValue = params['UsageValue']
         end
       end

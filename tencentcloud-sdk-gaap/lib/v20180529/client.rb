@@ -1855,6 +1855,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询异步任务执行状态
+
+        # @param request: Request instance for DescribeTaskStatus.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeTaskStatusResponse`
+        def DescribeTaskStatus(request)
+          body = send_request('DescribeTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribeUDPListeners）用于查询单通道或者通道组下的UDP监听器信息
 
         # @param request: Request instance for DescribeUDPListeners.

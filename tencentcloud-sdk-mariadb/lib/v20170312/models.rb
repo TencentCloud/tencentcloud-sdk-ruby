@@ -5679,6 +5679,62 @@ module TencentCloud
         end
       end
 
+      # UpgradeHourDBInstance请求参数结构体
+      class UpgradeHourDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Memory: 内存大小，单位：GB
+        # @type Memory: Integer
+        # @param Storage: 存储大小，单位：GB
+        # @type Storage: Integer
+        # @param SwitchStartTime: 切换开始时间，格式如: "2019-12-12 07:00:00"。开始时间必须在当前时间一个小时以后，3天以内。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换结束时间,  格式如: "2019-12-12 07:15:00"，结束时间必须大于开始时间。
+        # @type SwitchEndTime: String
+        # @param SwitchAutoRetry: 是否自动重试。 0：不自动重试  1：自动重试
+        # @type SwitchAutoRetry: Integer
+        # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
+        # @type Zones: Array
+
+        attr_accessor :InstanceId, :Memory, :Storage, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry, :Zones
+
+        def initialize(instanceid=nil, memory=nil, storage=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil, zones=nil)
+          @InstanceId = instanceid
+          @Memory = memory
+          @Storage = storage
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+          @SwitchAutoRetry = switchautoretry
+          @Zones = zones
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+          @SwitchAutoRetry = params['SwitchAutoRetry']
+          @Zones = params['Zones']
+        end
+      end
+
+      # UpgradeHourDBInstance返回参数结构体
+      class UpgradeHourDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 视图权限信息
       class ViewPrivileges < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名

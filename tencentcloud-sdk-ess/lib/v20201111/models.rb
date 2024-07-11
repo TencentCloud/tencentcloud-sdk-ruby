@@ -2025,6 +2025,56 @@ module TencentCloud
         end
       end
 
+      # CreateEmployeeQualificationSealQrCode请求参数结构体
+      class CreateEmployeeQualificationSealQrCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param HintText: 提示信息，扫码后此信息会展示给扫描用户，用来提示用户授权操作的目的
+        # @type HintText: String
+
+        attr_accessor :Operator, :Agent, :HintText
+
+        def initialize(operator=nil, agent=nil, hinttext=nil)
+          @Operator = operator
+          @Agent = agent
+          @HintText = hinttext
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @HintText = params['HintText']
+        end
+      end
+
+      # CreateEmployeeQualificationSealQrCode返回参数结构体
+      class CreateEmployeeQualificationSealQrCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrcodeBase64: 二维码图片的Base64  注:  `此二维码的有效时间为7天，过期后需要重新生成新的二维码图片`
+        # @type QrcodeBase64: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrcodeBase64, :RequestId
+
+        def initialize(qrcodebase64=nil, requestid=nil)
+          @QrcodeBase64 = qrcodebase64
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrcodeBase64 = params['QrcodeBase64']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExtendedServiceAuthInfos请求参数结构体
       class CreateExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -2249,7 +2299,7 @@ module TencentCloud
 
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200个字符，只能由中文、字母、数字、中划线和下划线组成。
 
         # 该名称还将用于合同签署完成后的下载文件名。
         # @type FlowName: String
@@ -2273,6 +2323,7 @@ module TencentCloud
         # <li> 勾选框控件        </li>
         # <li> 数字控件          </li>
         # <li> 图片控件          </li>
+        # <li> 水印控件          </li>
         # <li> 动态表格等填写控件</li></ul>
         # @type Components: Array
         # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
@@ -6387,6 +6438,7 @@ module TencentCloud
         # 默认为空，即查询当前支持的所有扩展服务信息。
         # 若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：
         # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
+        # <li>AUTO_SIGN_CAN_FILL_IN：本企业自动签合同支持签前内容补充</li>
         # <li>BATCH_SIGN：批量签署</li>
         # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
         # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
@@ -6395,7 +6447,8 @@ module TencentCloud
         # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
         # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
         # <li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li>
-        # <li>PAGING_SEAL：骑缝章</li>
+        # <li>ORGANIZATION_FLOW_EMAIL_NOTIFY：邮件通知签署方</li>
+        # <li>FLOW_APPROVAL：合同审批强制开启</li>
         # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul>
         # @type ExtendServiceType: String
         # @param Agent: 代理企业和员工的信息。
@@ -7359,11 +7412,7 @@ module TencentCloud
         # @type InfoType: Integer
         # @param SealId: 印章id，是否查询特定的印章（没有输入返回所有）
         # @type SealId: String
-        # @param SealTypes: 印章种类列表（均为组织机构印章）。 若无特定需求，将展示所有类型的印章。
-
-        # 目前支持以下几种：
-
-        # <ul> <li><strong>OFFICIAL</strong>：企业公章；</li> <li><strong>CONTRACT</strong>：合同专用章；</li> <li><strong>ORGANIZATION_SEAL</strong>：企业印章（通过图片上传创建）；</li> <li><strong>LEGAL_PERSON_SEAL</strong>：法定代表人章。</li> </ul>
+        # @param SealTypes: 印章种类列表（均为组织机构印章）。 若无特定需求，将展示所有类型的印章。 目前支持以下几种：<ul> <li><strong>OFFICIAL</strong>：企业公章；</li> <li><strong>CONTRACT</strong>：合同专用章；</li> <li><strong>ORGANIZATION_SEAL</strong>：企业印章（通过图片上传创建）；</li> <li><strong>LEGAL_PERSON_SEAL</strong>：法定代表人章。</li> <li><strong>EMPLOYEE_QUALIFICATION_SEAL</strong>：员工执业章。</li> </ul>
         # @type SealTypes: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -9881,6 +9930,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param ServiceType: 要管理的拓展服务类型。
         # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
+        # <li>AUTO_SIGN_CAN_FILL_IN：本企业自动签合同支持签前内容补充</li>
         # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
         # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
         # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
@@ -9888,7 +9938,8 @@ module TencentCloud
         # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
         # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
         # <li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li>
-        # <li>PAGING_SEAL：骑缝章</li>
+        # <li>ORGANIZATION_FLOW_EMAIL_NOTIFY：邮件通知签署方</li>
+        # <li>FLOW_APPROVAL：合同审批强制开启</li>
         # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul>
         # @type ServiceType: String
         # @param Operate: 操作类型

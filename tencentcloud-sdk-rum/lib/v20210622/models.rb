@@ -2930,17 +2930,21 @@ module TencentCloud
         # @type ProjectID: Integer
         # @param FileVersion: 文件版本
         # @type FileVersion: String
+        # @param FileName: 查询过滤条件（根据sourcemap的文件名模糊匹配）
+        # @type FileName: String
 
-        attr_accessor :ProjectID, :FileVersion
+        attr_accessor :ProjectID, :FileVersion, :FileName
 
-        def initialize(projectid=nil, fileversion=nil)
+        def initialize(projectid=nil, fileversion=nil, filename=nil)
           @ProjectID = projectid
           @FileVersion = fileversion
+          @FileName = filename
         end
 
         def deserialize(params)
           @ProjectID = params['ProjectID']
           @FileVersion = params['FileVersion']
+          @FileName = params['FileName']
         end
       end
 

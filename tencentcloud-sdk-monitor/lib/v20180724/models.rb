@@ -2455,7 +2455,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网 ID(可通过 vpc:DescribeSubnets 接口获取)
         # @type SubnetId: String
-        # @param DataRetentionTime: 数据存储时间（单位天），限制值为15，30，45之一
+        # @param DataRetentionTime: 数据存储时间（单位天），限制值为15, 30, 45, 90, 180, 365, 730之一
         # @type DataRetentionTime: Integer
         # @param Zone: 可用区(与子网同可用区)
         # @type Zone: String

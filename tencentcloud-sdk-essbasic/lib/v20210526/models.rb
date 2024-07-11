@@ -3684,15 +3684,7 @@ module TencentCloud
 
         # 注:  `没有输入返回所有记录，最大返回100条。`
         # @type SealId: String
-        # @param SealTypes: 电子印章类型 , 可选类型如下:
-        # <ul><li>**OFFICIAL**: 公章</li>
-        # <li>**CONTRACT**: 合同专用章;</li>
-        # <li>**FINANCE**: 财务专用章;</li>
-        # <li>**PERSONNEL**: 人事专用章</li>
-        # <li>**INVOICE**: 发票专用章</li>
-        # </ul>
-
-        # 注:  `为空时查询所有类型的印章。`
+        # @param SealTypes: 电子印章类型 , 可选类型如下: <ul><li>**OFFICIAL**: 公章</li><li>**CONTRACT**: 合同专用章;</li><li>**FINANCE**: 财务专用章;</li><li>**PERSONNEL**: 人事专用章</li><li>**INVOICE**: 发票专用章</li><<li>**EMPLOYEE_QUALIFICATION_SEAL**: 员工执业章</li></ul>注:  `为空时查询所有类型的印章。`
         # @type SealTypes: Array
         # @param SealStatuses: 需查询的印章状态列表。
 
@@ -5270,7 +5262,9 @@ module TencentCloud
         # `3. 同渠道应用(Agent.AppId)下，企业唯一标识ProxyOrganizationOpenId需要保持唯一，员工唯一标识OpenId也要保持唯一 (而不是企业下唯一)。 `
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param ProxyOrganizationName: 第三方平台子客的企业名称，请确认该企业名称与企业营业执照中注册的名称完全一致。
-        # <font color="red">在测试环境联调的过程中，企业名称请使用以下名称
+        # <font color="red">
+        # 在测试环境联调的过程中，企业名称请统一加上“测试”二字，如：典子谦示例企业测试，否则将无法审核通过。
+        # 企业名称请使用以下名称, 以下名称可以不用走收录。
         # **子客测试专用企业1 - 子客测试专用企业9**</font>
 
         # 注:
@@ -5425,6 +5419,49 @@ module TencentCloud
           @ConsoleUrl = params['ConsoleUrl']
           @IsActivated = params['IsActivated']
           @ProxyOperatorIsVerified = params['ProxyOperatorIsVerified']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEmployeeQualificationSealQrCode请求参数结构体
+      class CreateEmployeeQualificationSealQrCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。此接口下面信息必填。<ul><li>渠道应用标识:  Agent.AppId</li><li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li><li>第三方平台子客企业中的员工标识: Agent.ProxyOperator.OpenId</li></ul>第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param HintText: 提示信息，扫码后此信息会展示给扫描用户，用来提示用户授权操作的目的
+        # @type HintText: String
+
+        attr_accessor :Agent, :HintText
+
+        def initialize(agent=nil, hinttext=nil)
+          @Agent = agent
+          @HintText = hinttext
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @HintText = params['HintText']
+        end
+      end
+
+      # CreateEmployeeQualificationSealQrCode返回参数结构体
+      class CreateEmployeeQualificationSealQrCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrcodeBase64: 二维码图片的Base64  注:  `此二维码的有效时间为7天，过期后需要重新生成新的二维码图片`
+        # @type QrcodeBase64: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrcodeBase64, :RequestId
+
+        def initialize(qrcodebase64=nil, requestid=nil)
+          @QrcodeBase64 = qrcodebase64
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrcodeBase64 = params['QrcodeBase64']
           @RequestId = params['RequestId']
         end
       end
@@ -7189,7 +7226,6 @@ module TencentCloud
         # <li>AUTO_SIGN             企业自动签（自动签署）</li>
         # <li>  OVERSEA_SIGN          企业与港澳台居民签署合同</li>
         # <li>  MOBILE_CHECK_APPROVER 使用手机号验证签署方身份</li>
-        # <li> PAGING_SEAL           骑缝章</li>
         # <li> DOWNLOAD_FLOW         授权渠道下载合同 </li>
         # <li>AGE_LIMIT_EXPANSION 拓宽签署方年龄限制</li>
         # <li>HIDE_OPERATOR_DISPLAY 隐藏合同经办人姓名</li>

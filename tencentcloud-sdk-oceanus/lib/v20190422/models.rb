@@ -3026,10 +3026,13 @@ module TencentCloud
         # @param WorkspaceName: es空间中文
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceName: String
+        # @param FlinkVersion: flink 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlinkVersion: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3062,6 +3065,7 @@ module TencentCloud
           @EsServerlessSpace = esserverlessspace
           @IndexName = indexname
           @WorkspaceName = workspacename
+          @FlinkVersion = flinkversion
         end
 
         def deserialize(params)
@@ -3127,6 +3131,7 @@ module TencentCloud
           @EsServerlessSpace = params['EsServerlessSpace']
           @IndexName = params['IndexName']
           @WorkspaceName = params['WorkspaceName']
+          @FlinkVersion = params['FlinkVersion']
         end
       end
 
@@ -4478,13 +4483,17 @@ module TencentCloud
         # @param Description: SlotSharingGroup的描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param Configuration: SlotSharingGroup的配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configuration: Array
 
-        attr_accessor :Name, :Spec, :Description
+        attr_accessor :Name, :Spec, :Description, :Configuration
 
-        def initialize(name=nil, spec=nil, description=nil)
+        def initialize(name=nil, spec=nil, description=nil, configuration=nil)
           @Name = name
           @Spec = spec
           @Description = description
+          @Configuration = configuration
         end
 
         def deserialize(params)
@@ -4494,6 +4503,14 @@ module TencentCloud
             @Spec.deserialize(params['Spec'])
           end
           @Description = params['Description']
+          unless params['Configuration'].nil?
+            @Configuration = []
+            params['Configuration'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Configuration << property_tmp
+            end
+          end
         end
       end
 

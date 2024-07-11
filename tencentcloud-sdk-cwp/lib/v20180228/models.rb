@@ -19209,12 +19209,16 @@ module TencentCloud
         # @type EnableInspiredEngine: Integer
         # @param EnableMemShellScan: 是否开启恶意进程查杀[0:未开启,1:开启]
         # @type EnableMemShellScan: Integer
+        # @param ProtectMode: 防护模式 0 标准 1 重保
+        # @type ProtectMode: Integer
+        # @param ProtectFileScope: 查杀范围 0 脚本类之外的恶意文件，1全部恶意文件
+        # @type ProtectFileScope: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :RequestId
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :RequestId
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, requestid=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, requestid=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -19231,6 +19235,8 @@ module TencentCloud
           @EngineType = enginetype
           @EnableInspiredEngine = enableinspiredengine
           @EnableMemShellScan = enablememshellscan
+          @ProtectMode = protectmode
+          @ProtectFileScope = protectfilescope
           @RequestId = requestid
         end
 
@@ -19251,6 +19257,8 @@ module TencentCloud
           @EngineType = params['EngineType']
           @EnableInspiredEngine = params['EnableInspiredEngine']
           @EnableMemShellScan = params['EnableMemShellScan']
+          @ProtectMode = params['ProtectMode']
+          @ProtectFileScope = params['ProtectFileScope']
           @RequestId = params['RequestId']
         end
       end
@@ -34498,16 +34506,23 @@ module TencentCloud
         # @type AutoIsolation: Integer
         # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉
         # @type KillProcess: Integer
+        # @param DoClean: 1 清理, 0 不清理
+        # <li>本操作会修复被篡改的系统命令，计划任务等系统文件，操作中请确保yum/apt 可用</li>
+        # @type DoClean: Integer
         # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
         # @type EngineType: Integer
         # @param EnableInspiredEngine: 启发引擎开关 0 关闭 1开启
         # @type EnableInspiredEngine: Integer
         # @param EnableMemShellScan: 是否开启恶意进程查杀[0:未开启,1:开启]
         # @type EnableMemShellScan: Integer
+        # @param ProtectMode: 防护模式 0 标准 1重保
+        # @type ProtectMode: Integer
+        # @param ProtectFileScope: 查杀范围 0 脚本类之外的恶意文件，1全部恶意文件
+        # @type ProtectFileScope: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -34519,9 +34534,12 @@ module TencentCloud
           @QuuidList = quuidlist
           @AutoIsolation = autoisolation
           @KillProcess = killprocess
+          @DoClean = doclean
           @EngineType = enginetype
           @EnableInspiredEngine = enableinspiredengine
           @EnableMemShellScan = enablememshellscan
+          @ProtectMode = protectmode
+          @ProtectFileScope = protectfilescope
         end
 
         def deserialize(params)
@@ -34536,9 +34554,12 @@ module TencentCloud
           @QuuidList = params['QuuidList']
           @AutoIsolation = params['AutoIsolation']
           @KillProcess = params['KillProcess']
+          @DoClean = params['DoClean']
           @EngineType = params['EngineType']
           @EnableInspiredEngine = params['EnableInspiredEngine']
           @EnableMemShellScan = params['EnableMemShellScan']
+          @ProtectMode = params['ProtectMode']
+          @ProtectFileScope = params['ProtectFileScope']
         end
       end
 
