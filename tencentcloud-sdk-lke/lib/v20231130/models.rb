@@ -939,6 +939,8 @@ module TencentCloud
 
       # CreateReconstructDocumentFlow请求参数结构体
       class CreateReconstructDocumentFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FileType: 文件类型。支持的文件类型：PDF、DOCX、DOC、XLS、XLSX、PPT、PPTX、PNG、JPG、JPEG、CSV
+        # @type FileType: String
         # @param FileBase64: 文件的 Base64 值。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过 3 秒。 支持的图片像素：单边介于20-10000px之间。 文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。
         # @type FileBase64: String
         # @param FileUrl: 文件的 Url 地址。 支持的文件格式：PNG、JPG、JPEG、PDF。 支持的文件大小：所下载文件经 Base64 编码后不超过 100M。文件下载时间不超过 15 秒。 支持的图片像素：单边介于20-10000px之间。 文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
@@ -950,9 +952,10 @@ module TencentCloud
         # @param Config: 创建文档解析任务配置信息
         # @type Config: :class:`Tencentcloud::Lke.v20231130.models.CreateReconstructDocumentFlowConfig`
 
-        attr_accessor :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
+        attr_accessor :FileType, :FileBase64, :FileUrl, :FileStartPageNumber, :FileEndPageNumber, :Config
 
-        def initialize(filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
+        def initialize(filetype=nil, filebase64=nil, fileurl=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
+          @FileType = filetype
           @FileBase64 = filebase64
           @FileUrl = fileurl
           @FileStartPageNumber = filestartpagenumber
@@ -961,6 +964,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @FileType = params['FileType']
           @FileBase64 = params['FileBase64']
           @FileUrl = params['FileUrl']
           @FileStartPageNumber = params['FileStartPageNumber']
@@ -974,7 +978,7 @@ module TencentCloud
 
       # CreateReconstructDocumentFlow返回参数结构体
       class CreateReconstructDocumentFlowResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务唯一id
+        # @param TaskId: 任务唯一id。30天内可以通过GetReconstructDocumentResult接口查询TaskId对应的处理结果。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

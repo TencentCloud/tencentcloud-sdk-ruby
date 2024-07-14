@@ -546,6 +546,28 @@ module TencentCloud
         end
       end
 
+      # 标签数据结构
+      class CamTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # CancelAssignTWeCallLicense请求参数结构体
       class CancelAssignTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
         # @param PkgId: 订单号
@@ -4653,13 +4675,17 @@ module TencentCloud
         # @param Rule: 规则描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: :class:`Tencentcloud::Iotexplorer.v20190423.models.TopicRule`
+        # @param CamTag: 规则绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CamTag: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Rule, :RequestId
+        attr_accessor :Rule, :CamTag, :RequestId
 
-        def initialize(rule=nil, requestid=nil)
+        def initialize(rule=nil, camtag=nil, requestid=nil)
           @Rule = rule
+          @CamTag = camtag
           @RequestId = requestid
         end
 
@@ -4667,6 +4693,14 @@ module TencentCloud
           unless params['Rule'].nil?
             @Rule = TopicRule.new
             @Rule.deserialize(params['Rule'])
+          end
+          unless params['CamTag'].nil?
+            @CamTag = []
+            params['CamTag'].each do |i|
+              camtag_tmp = CamTag.new
+              camtag_tmp.deserialize(i)
+              @CamTag << camtag_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -5355,6 +5389,30 @@ module TencentCloud
         end
       end
 
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+
+      # - 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+
+      # - 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段
+        # @type Name: String
+        # @param Values: 字段的过滤的一个或多个值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 设备固件详细信息
       class FirmwareInfo < TencentCloud::Common::AbstractModel
         # @param Version: 固件版本
@@ -5727,16 +5785,19 @@ module TencentCloud
         # @type DeviceName: String
         # @param ProjectId: 项目ID。产品 ID 为 -1 时，该参数必填
         # @type ProjectId: String
+        # @param Filters: 每次请求的Filters的上限为10，Filter.Values的上限为1。
+        # @type Filters: Array
 
-        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName, :ProjectId
+        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName, :ProjectId, :Filters
 
-        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil, projectid=nil)
+        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil, projectid=nil, filters=nil)
           @ProductId = productid
           @Offset = offset
           @Limit = limit
           @FirmwareVersion = firmwareversion
           @DeviceName = devicename
           @ProjectId = projectid
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -5746,6 +5807,14 @@ module TencentCloud
           @FirmwareVersion = params['FirmwareVersion']
           @DeviceName = params['DeviceName']
           @ProjectId = params['ProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -8629,16 +8698,19 @@ module TencentCloud
         # @type DevStatus: String
         # @param ProductId: 产品ID
         # @type ProductId: String
+        # @param Filters: 每次请求的Filters的上限为10，Filter.Values的上限为1。
+        # @type Filters: Array
 
-        attr_accessor :ProjectId, :ProductName, :Limit, :Offset, :DevStatus, :ProductId
+        attr_accessor :ProjectId, :ProductName, :Limit, :Offset, :DevStatus, :ProductId, :Filters
 
-        def initialize(projectid=nil, productname=nil, limit=nil, offset=nil, devstatus=nil, productid=nil)
+        def initialize(projectid=nil, productname=nil, limit=nil, offset=nil, devstatus=nil, productid=nil, filters=nil)
           @ProjectId = projectid
           @ProductName = productname
           @Limit = limit
           @Offset = offset
           @DevStatus = devstatus
           @ProductId = productid
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -8648,6 +8720,14 @@ module TencentCloud
           @Offset = params['Offset']
           @DevStatus = params['DevStatus']
           @ProductId = params['ProductId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

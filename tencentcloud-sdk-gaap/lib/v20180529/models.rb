@@ -4569,12 +4569,17 @@ module TencentCloud
 
       # DescribeTaskStatus请求参数结构体
       class DescribeTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，值为异步接口返回的RequestId
+        # @type TaskId: String
 
+        attr_accessor :TaskId
 
-        def initialize()
+        def initialize(taskid=nil)
+          @TaskId = taskid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 

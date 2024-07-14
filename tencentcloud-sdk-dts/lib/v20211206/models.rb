@@ -414,10 +414,10 @@ module TencentCloud
 
       # 一致性校验选项
       class CompareOptions < TencentCloud::Common::AbstractModel
-        # @param Method: 对比方式：dataCheck(完整数据对比)、sampleDataCheck(抽样数据对比)、rowsCount(行数对比)
+        # @param Method: 对比方式：dataCheck(完整数据对比)、sampleDataCheck(抽样数据对比)、rowsCount(行数对比), 默认为dataCheck
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
-        # @param SampleRate: 抽样比例;范围0,100
+        # @param SampleRate: 抽样比例;范围0,100。默认为100
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleRate: Integer
         # @param ThreadCount: 线程数，取值1-5，默认为1
