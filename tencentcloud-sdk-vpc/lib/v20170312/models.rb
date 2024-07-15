@@ -1214,6 +1214,53 @@ module TencentCloud
         end
       end
 
+      # AssociateInstancesToCcnRouteTable请求参数结构体
+      class AssociateInstancesToCcnRouteTableRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param RouteTableId: 路由表ID。
+        # @type RouteTableId: String
+        # @param Instances: 实例列表。
+        # @type Instances: Array
+
+        attr_accessor :CcnId, :RouteTableId, :Instances
+
+        def initialize(ccnid=nil, routetableid=nil, instances=nil)
+          @CcnId = ccnid
+          @RouteTableId = routetableid
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @RouteTableId = params['RouteTableId']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              ccninstancewithoutregion_tmp = CcnInstanceWithoutRegion.new
+              ccninstancewithoutregion_tmp.deserialize(i)
+              @Instances << ccninstancewithoutregion_tmp
+            end
+          end
+        end
+      end
+
+      # AssociateInstancesToCcnRouteTable返回参数结构体
+      class AssociateInstancesToCcnRouteTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateNatGatewayAddress请求参数结构体
       class AssociateNatGatewayAddressRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
@@ -2048,6 +2095,30 @@ module TencentCloud
         end
       end
 
+      # 云联网路由表信息
+      class CcnBatchRouteTable < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param Name: 云联网路由表名称。
+        # @type Name: String
+        # @param Description: 云联网路由表描述。
+        # @type Description: String
+
+        attr_accessor :CcnId, :Name, :Description
+
+        def initialize(ccnid=nil, name=nil, description=nil)
+          @CcnId = ccnid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
       # 云联网限速实例锁对象，该对象特用于运营端使用，用于封禁实例流量。
       class CcnFlowLock < TencentCloud::Common::AbstractModel
         # @param CcnId: 带宽所属的云联网ID。
@@ -2117,6 +2188,33 @@ module TencentCloud
         end
 
         def deserialize(params)
+        end
+      end
+
+      # ccn实例信息（不带地域属性）
+      class CcnInstanceWithoutRegion < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 云联网支持的实例类型：
+        # `VPC`
+        # `DIRECTCONNECT`
+        # `BMVPC`
+        # `EDGE`
+        # `EDGE_TUNNEL`
+        # `EDGE_VPNGW`
+        # `VPNGW`
+        # @type InstanceType: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceType, :InstanceId
+
+        def initialize(instancetype=nil, instanceid=nil)
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -2241,6 +2339,243 @@ module TencentCloud
           @IsBgp = params['IsBgp']
           @RoutePriority = params['RoutePriority']
           @InstanceExtraName = params['InstanceExtraName']
+        end
+      end
+
+      # 云联网路由传播策略之路由条件
+      class CcnRouteBroadcastPolicyRouteCondition < TencentCloud::Common::AbstractModel
+        # @param Name: 条件类型
+        # @type Name: String
+        # @param Values: 条件值列表
+        # @type Values: Array
+        # @param MatchPattern: 匹配模式，`1` 精确匹配，`0` 模糊匹配
+        # @type MatchPattern: Integer
+
+        attr_accessor :Name, :Values, :MatchPattern
+
+        def initialize(name=nil, values=nil, matchpattern=nil)
+          @Name = name
+          @Values = values
+          @MatchPattern = matchpattern
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @MatchPattern = params['MatchPattern']
+        end
+      end
+
+      # 云联网路由表信息
+      class CcnRouteTable < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param CcnRouteTableId: 云联网路由表ID。
+        # @type CcnRouteTableId: String
+        # @param RouteTableName: 云联网路由表名称。
+        # @type RouteTableName: String
+        # @param RouteTableDescription: 云联网路由表描述。
+        # @type RouteTableDescription: String
+        # @param IsDefaultTable: True：是默认路由表 False：非默认路由表。
+        # @type IsDefaultTable: Boolean
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+
+        attr_accessor :CcnId, :CcnRouteTableId, :RouteTableName, :RouteTableDescription, :IsDefaultTable, :CreateTime
+
+        def initialize(ccnid=nil, ccnroutetableid=nil, routetablename=nil, routetabledescription=nil, isdefaulttable=nil, createtime=nil)
+          @CcnId = ccnid
+          @CcnRouteTableId = ccnroutetableid
+          @RouteTableName = routetablename
+          @RouteTableDescription = routetabledescription
+          @IsDefaultTable = isdefaulttable
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @CcnRouteTableId = params['CcnRouteTableId']
+          @RouteTableName = params['RouteTableName']
+          @RouteTableDescription = params['RouteTableDescription']
+          @IsDefaultTable = params['IsDefaultTable']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 云联网路由传播策略
+      class CcnRouteTableBroadcastPolicy < TencentCloud::Common::AbstractModel
+        # @param RouteConditions: 路由条件
+        # @type RouteConditions: Array
+        # @param BroadcastConditions: 传播条件
+        # @type BroadcastConditions: Array
+        # @param Action: 路由行为，`accept` 允许，`drop` 拒绝
+        # @type Action: String
+        # @param Description: 策略描述
+        # @type Description: String
+
+        attr_accessor :RouteConditions, :BroadcastConditions, :Action, :Description
+
+        def initialize(routeconditions=nil, broadcastconditions=nil, action=nil, description=nil)
+          @RouteConditions = routeconditions
+          @BroadcastConditions = broadcastconditions
+          @Action = action
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['RouteConditions'].nil?
+            @RouteConditions = []
+            params['RouteConditions'].each do |i|
+              ccnroutebroadcastpolicyroutecondition_tmp = CcnRouteBroadcastPolicyRouteCondition.new
+              ccnroutebroadcastpolicyroutecondition_tmp.deserialize(i)
+              @RouteConditions << ccnroutebroadcastpolicyroutecondition_tmp
+            end
+          end
+          unless params['BroadcastConditions'].nil?
+            @BroadcastConditions = []
+            params['BroadcastConditions'].each do |i|
+              ccnroutebroadcastpolicyroutecondition_tmp = CcnRouteBroadcastPolicyRouteCondition.new
+              ccnroutebroadcastpolicyroutecondition_tmp.deserialize(i)
+              @BroadcastConditions << ccnroutebroadcastpolicyroutecondition_tmp
+            end
+          end
+          @Action = params['Action']
+          @Description = params['Description']
+        end
+      end
+
+      # 云联网路由传播策略列表
+      class CcnRouteTableBroadcastPolicys < TencentCloud::Common::AbstractModel
+        # @param Policys: 策略列表
+        # @type Policys: Array
+        # @param PolicyVersion: 版本号
+        # @type PolicyVersion: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :Policys, :PolicyVersion, :CreateTime
+
+        def initialize(policys=nil, policyversion=nil, createtime=nil)
+          @Policys = policys
+          @PolicyVersion = policyversion
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          unless params['Policys'].nil?
+            @Policys = []
+            params['Policys'].each do |i|
+              ccnroutetablebroadcastpolicy_tmp = CcnRouteTableBroadcastPolicy.new
+              ccnroutetablebroadcastpolicy_tmp.deserialize(i)
+              @Policys << ccnroutetablebroadcastpolicy_tmp
+            end
+          end
+          @PolicyVersion = params['PolicyVersion']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 云联网路由接收策略
+      class CcnRouteTableInputPolicy < TencentCloud::Common::AbstractModel
+        # @param RouteConditions: 路由条件。
+        # @type RouteConditions: Array
+        # @param Action: 路由行为，`accept` 允许，`drop` 拒绝。
+        # @type Action: String
+        # @param Description: 策略描述。
+        # @type Description: String
+
+        attr_accessor :RouteConditions, :Action, :Description
+
+        def initialize(routeconditions=nil, action=nil, description=nil)
+          @RouteConditions = routeconditions
+          @Action = action
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['RouteConditions'].nil?
+            @RouteConditions = []
+            params['RouteConditions'].each do |i|
+              ccnroutebroadcastpolicyroutecondition_tmp = CcnRouteBroadcastPolicyRouteCondition.new
+              ccnroutebroadcastpolicyroutecondition_tmp.deserialize(i)
+              @RouteConditions << ccnroutebroadcastpolicyroutecondition_tmp
+            end
+          end
+          @Action = params['Action']
+          @Description = params['Description']
+        end
+      end
+
+      # 云联网路由接收策略列表
+      class CcnRouteTableInputPolicys < TencentCloud::Common::AbstractModel
+        # @param Policys: 策略列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policys: Array
+        # @param PolicyVersion: 版本号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyVersion: Integer
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :Policys, :PolicyVersion, :CreateTime
+
+        def initialize(policys=nil, policyversion=nil, createtime=nil)
+          @Policys = policys
+          @PolicyVersion = policyversion
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          unless params['Policys'].nil?
+            @Policys = []
+            params['Policys'].each do |i|
+              ccnroutetableinputpolicy_tmp = CcnRouteTableInputPolicy.new
+              ccnroutetableinputpolicy_tmp.deserialize(i)
+              @Policys << ccnroutetableinputpolicy_tmp
+            end
+          end
+          @PolicyVersion = params['PolicyVersion']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 路由表选择策略信息
+      class CcnRouteTableSelectPolicy < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型：
+        # 私有网络: `VPC`
+        # 专线网关: `DIRECTCONNECT`
+        # 黑石私有网络: `BMVPC`
+        # EDGE设备: `EDGE`
+        # EDGE隧道: `EDGE_TUNNEL`
+        # EDGE网关: `EDGE_VPNGW`
+        # VPN网关：`VPNGW`
+        # @type InstanceType: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param SourceCidrBlock: 源端CIDR。
+        # @type SourceCidrBlock: String
+        # @param RouteTableId: 路由表ID。
+        # @type RouteTableId: String
+        # @param Description: 路由表备注。
+        # @type Description: String
+
+        attr_accessor :InstanceType, :InstanceId, :SourceCidrBlock, :RouteTableId, :Description
+
+        def initialize(instancetype=nil, instanceid=nil, sourcecidrblock=nil, routetableid=nil, description=nil)
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @SourceCidrBlock = sourcecidrblock
+          @RouteTableId = routetableid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @SourceCidrBlock = params['SourceCidrBlock']
+          @RouteTableId = params['RouteTableId']
+          @Description = params['Description']
         end
       end
 
@@ -2451,6 +2786,38 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ClearRouteTableSelectionPolicies请求参数结构体
+      class ClearRouteTableSelectionPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # ClearRouteTableSelectionPolicies返回参数结构体
+      class ClearRouteTableSelectionPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2953,6 +3320,56 @@ module TencentCloud
           unless params['Ccn'].nil?
             @Ccn = CCN.new
             @Ccn.deserialize(params['Ccn'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCcnRouteTables请求参数结构体
+      class CreateCcnRouteTablesRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTable: 需要创建的路由表列表。
+        # @type RouteTable: Array
+
+        attr_accessor :RouteTable
+
+        def initialize(routetable=nil)
+          @RouteTable = routetable
+        end
+
+        def deserialize(params)
+          unless params['RouteTable'].nil?
+            @RouteTable = []
+            params['RouteTable'].each do |i|
+              ccnbatchroutetable_tmp = CcnBatchRouteTable.new
+              ccnbatchroutetable_tmp.deserialize(i)
+              @RouteTable << ccnbatchroutetable_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCcnRouteTables返回参数结构体
+      class CreateCcnRouteTablesResponse < TencentCloud::Common::AbstractModel
+        # @param CcnRouteTableSet: 路由表信息列表。
+        # @type CcnRouteTableSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CcnRouteTableSet, :RequestId
+
+        def initialize(ccnroutetableset=nil, requestid=nil)
+          @CcnRouteTableSet = ccnroutetableset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CcnRouteTableSet'].nil?
+            @CcnRouteTableSet = []
+            params['CcnRouteTableSet'].each do |i|
+              ccnroutetable_tmp = CcnRouteTable.new
+              ccnroutetable_tmp.deserialize(i)
+              @CcnRouteTableSet << ccnroutetable_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -5992,6 +6409,38 @@ module TencentCloud
         end
       end
 
+      # DeleteCcnRouteTables请求参数结构体
+      class DeleteCcnRouteTablesRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 需要删除的路由表列表。
+        # @type RouteTableId: Array
+
+        attr_accessor :RouteTableId
+
+        def initialize(routetableid=nil)
+          @RouteTableId = routetableid
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+        end
+      end
+
+      # DeleteCcnRouteTables返回参数结构体
+      class DeleteCcnRouteTablesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCustomerGateway请求参数结构体
       class DeleteCustomerGatewayRequest < TencentCloud::Common::AbstractModel
         # @param CustomerGatewayId: 对端网关ID，例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/api/215/17516)接口查询对端网关。
@@ -8134,6 +8583,182 @@ module TencentCloud
               @CcnRegionBandwidthLimitSet << ccnregionbandwidthlimit_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnRouteTableBroadcastPolicys请求参数结构体
+      class DescribeCcnRouteTableBroadcastPolicysRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param RouteTableId: 云联网路由表ID
+        # @type RouteTableId: String
+        # @param PolicyVersion: 路由传播策略版本号
+        # @type PolicyVersion: Integer
+
+        attr_accessor :CcnId, :RouteTableId, :PolicyVersion
+
+        def initialize(ccnid=nil, routetableid=nil, policyversion=nil)
+          @CcnId = ccnid
+          @RouteTableId = routetableid
+          @PolicyVersion = policyversion
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @RouteTableId = params['RouteTableId']
+          @PolicyVersion = params['PolicyVersion']
+        end
+      end
+
+      # DescribeCcnRouteTableBroadcastPolicys返回参数结构体
+      class DescribeCcnRouteTableBroadcastPolicysResponse < TencentCloud::Common::AbstractModel
+        # @param PolicySet: 路由表传播策略。
+        # @type PolicySet: Array
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicySet, :TotalCount, :RequestId
+
+        def initialize(policyset=nil, totalcount=nil, requestid=nil)
+          @PolicySet = policyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              ccnroutetablebroadcastpolicys_tmp = CcnRouteTableBroadcastPolicys.new
+              ccnroutetablebroadcastpolicys_tmp.deserialize(i)
+              @PolicySet << ccnroutetablebroadcastpolicys_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnRouteTableInputPolicys请求参数结构体
+      class DescribeCcnRouteTableInputPolicysRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param RouteTableId: 云联网路由表ID。
+        # @type RouteTableId: String
+        # @param PolicyVersion: 路由接收策略版本号。
+        # @type PolicyVersion: Integer
+
+        attr_accessor :CcnId, :RouteTableId, :PolicyVersion
+
+        def initialize(ccnid=nil, routetableid=nil, policyversion=nil)
+          @CcnId = ccnid
+          @RouteTableId = routetableid
+          @PolicyVersion = policyversion
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @RouteTableId = params['RouteTableId']
+          @PolicyVersion = params['PolicyVersion']
+        end
+      end
+
+      # DescribeCcnRouteTableInputPolicys返回参数结构体
+      class DescribeCcnRouteTableInputPolicysResponse < TencentCloud::Common::AbstractModel
+        # @param PolicySet: 路由表接收策略。
+        # @type PolicySet: Array
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicySet, :TotalCount, :RequestId
+
+        def initialize(policyset=nil, totalcount=nil, requestid=nil)
+          @PolicySet = policyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              ccnroutetableinputpolicys_tmp = CcnRouteTableInputPolicys.new
+              ccnroutetableinputpolicys_tmp.deserialize(i)
+              @PolicySet << ccnroutetableinputpolicys_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnRouteTables请求参数结构体
+      class DescribeCcnRouteTablesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件：
+        # <li>ccn-id - String -（过滤条件）CCN实例ID。</li>
+        # <li>route-table-id - String -（过滤条件）路由表ID。</li>
+        # <li>route-table-name - String -（过滤条件）路由表名称。</li>
+        # <li>route-table-description- String -（过滤条件）路由表备注。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 一次查询最大返回的数量。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCcnRouteTables返回参数结构体
+      class DescribeCcnRouteTablesResponse < TencentCloud::Common::AbstractModel
+        # @param CcnRouteTableSet: 路由表信息列表。
+        # @type CcnRouteTableSet: Array
+        # @param TotalCount: 查询到的路由表数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CcnRouteTableSet, :TotalCount, :RequestId
+
+        def initialize(ccnroutetableset=nil, totalcount=nil, requestid=nil)
+          @CcnRouteTableSet = ccnroutetableset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CcnRouteTableSet'].nil?
+            @CcnRouteTableSet = []
+            params['CcnRouteTableSet'].each do |i|
+              ccnroutetable_tmp = CcnRouteTable.new
+              ccnroutetable_tmp.deserialize(i)
+              @CcnRouteTableSet << ccnroutetable_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -10838,6 +11463,153 @@ module TencentCloud
               routeconflict_tmp = RouteConflict.new
               routeconflict_tmp.deserialize(i)
               @RouteConflictSet << routeconflict_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRouteTableAssociatedInstances请求参数结构体
+      class DescribeRouteTableAssociatedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件：
+        # <li>ccn-id - String -（过滤条件）CCN实例ID。</li>
+        # <li>ccn-route-table-id - String -（过滤条件）路由表ID。</li>
+        # <li>instance-type - String -（过滤条件）实例类型：
+        # 私有网络: `VPC`
+        # 专线网关: `DIRECTCONNECT`
+        # 黑石私有网络: `BMVPC`
+        # EDGE设备: `EDGE`
+        # EDGE隧道: `EDGE_TUNNEL`
+        # EDGE网关: `EDGE_VPNGW`
+        # VPN网关：`VPNGW`</li>
+        # <li>instance-id- String -（过滤条件）实例ID。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 一次查询最大返回的数量。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRouteTableAssociatedInstances返回参数结构体
+      class DescribeRouteTableAssociatedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询到的绑定路由表的实例数量。
+        # @type TotalCount: Integer
+        # @param InstanceBindSet: 绑定信息。
+        # @type InstanceBindSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceBindSet, :RequestId
+
+        def initialize(totalcount=nil, instancebindset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceBindSet = instancebindset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceBindSet'].nil?
+            @InstanceBindSet = []
+            params['InstanceBindSet'].each do |i|
+              instancebind_tmp = InstanceBind.new
+              instancebind_tmp.deserialize(i)
+              @InstanceBindSet << instancebind_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRouteTableSelectionPolicies请求参数结构体
+      class DescribeRouteTableSelectionPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回数量
+        # @type Limit: Integer
+        # @param Filters: 过滤条件：
+        # <li>ccn-id - String -（过滤条件）CCN实例ID。</li>
+        # <li>instance-type - String -（过滤条件）关联实例类型:
+        # 私有网络: `VPC`
+        # 专线网关: `DIRECTCONNECT`
+        # 黑石私有网络: `BMVPC`
+        # EDGE设备: `EDGE`
+        # EDGE隧道: `EDGE_TUNNEL`
+        # EDGE网关: `EDGE_VPNGW`
+        # VPN网关：`VPNGW`</li>
+        # <li>ccn-route-table-id - String -（过滤条件）路由表ID。</li>
+        # <li>instance-id - String -（过滤条件）关联的实例ID。</li>
+        # <li>route-table-name - String -（过滤条件）路由表名称。</li>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRouteTableSelectionPolicies返回参数结构体
+      class DescribeRouteTableSelectionPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RouteSelectionPolicySet: 路由表选择策略信息集合。
+        # @type RouteSelectionPolicySet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RouteSelectionPolicySet, :RequestId
+
+        def initialize(totalcount=nil, routeselectionpolicyset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RouteSelectionPolicySet = routeselectionpolicyset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RouteSelectionPolicySet'].nil?
+            @RouteSelectionPolicySet = []
+            params['RouteSelectionPolicySet'].each do |i|
+              routeselectionpolicy_tmp = RouteSelectionPolicy.new
+              routeselectionpolicy_tmp.deserialize(i)
+              @RouteSelectionPolicySet << routeselectionpolicy_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -15464,6 +16236,63 @@ module TencentCloud
         end
       end
 
+      # 云联网实例绑定路由表信息
+      class InstanceBind < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param InstanceType: 实例类型：VPC，DIRECTCONNECT，BMVPC，EDGE，EDGE_TUNNEL，EDGE_VPNGW，VPNGW。
+        # @type InstanceType: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceBindTime: 实例绑定路由表的时间。
+        # @type InstanceBindTime: String
+        # @param RouteTableId: 路由表ID。
+        # @type RouteTableId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param InstanceRegion: 实例所在地域。
+        # @type InstanceRegion: Array
+        # @param InstanceUin: 实例所属的账户uin。
+        # @type InstanceUin: String
+        # @param State: 关联实例状态：
+        # <li>`PENDING`：申请中</li>
+        # <li>`ACTIVE`：已连接</li>
+        # <li>`EXPIRED`：已过期</li>
+        # <li>`REJECTED`：已拒绝</li>
+        # <li>`DELETED`：已删除</li>
+        # <li>`FAILED`：失败的（2小时后将异步强制解关联）</li>
+        # <li>`ATTACHING`：关联中</li>
+        # <li>`DETACHING`：解关联中</li>
+        # <li>`DETACHFAILED`：解关联失败（2小时后将异步强制解关联）</li>
+        # @type State: String
+
+        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceBindTime, :RouteTableId, :InstanceName, :InstanceRegion, :InstanceUin, :State
+
+        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancebindtime=nil, routetableid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, state=nil)
+          @CcnId = ccnid
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @InstanceBindTime = instancebindtime
+          @RouteTableId = routetableid
+          @InstanceName = instancename
+          @InstanceRegion = instanceregion
+          @InstanceUin = instanceuin
+          @State = state
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @InstanceBindTime = params['InstanceBindTime']
+          @RouteTableId = params['RouteTableId']
+          @InstanceName = params['InstanceName']
+          @InstanceRegion = params['InstanceRegion']
+          @InstanceUin = params['InstanceUin']
+          @State = params['State']
+        end
+      end
+
       # 预付费（包年包月）计费对象。
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36。
@@ -16526,6 +17355,45 @@ module TencentCloud
 
       # ModifyCcnRegionBandwidthLimitsType返回参数结构体
       class ModifyCcnRegionBandwidthLimitsTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCcnRouteTables请求参数结构体
+      class ModifyCcnRouteTablesRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTableInfo: 需要修改的路由表列表。
+        # @type RouteTableInfo: Array
+
+        attr_accessor :RouteTableInfo
+
+        def initialize(routetableinfo=nil)
+          @RouteTableInfo = routetableinfo
+        end
+
+        def deserialize(params)
+          unless params['RouteTableInfo'].nil?
+            @RouteTableInfo = []
+            params['RouteTableInfo'].each do |i|
+              modifyroutetableinfo_tmp = ModifyRouteTableInfo.new
+              modifyroutetableinfo_tmp.deserialize(i)
+              @RouteTableInfo << modifyroutetableinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCcnRouteTables返回参数结构体
+      class ModifyCcnRouteTablesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -17660,6 +18528,73 @@ module TencentCloud
 
       # ModifyRouteTableAttribute返回参数结构体
       class ModifyRouteTableAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云联网路由表信息
+      class ModifyRouteTableInfo < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 云联网路由表id。
+        # @type RouteTableId: String
+        # @param Name: 云联网路由表名称。
+        # @type Name: String
+        # @param Description: 云联网路由表描述。
+        # @type Description: String
+
+        attr_accessor :RouteTableId, :Name, :Description
+
+        def initialize(routetableid=nil, name=nil, description=nil)
+          @RouteTableId = routetableid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyRouteTableSelectionPolicies请求参数结构体
+      class ModifyRouteTableSelectionPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param SelectionPolicies: 选择策略信息集合，表示需要按照当前的策略来修改。
+        # @type SelectionPolicies: Array
+
+        attr_accessor :CcnId, :SelectionPolicies
+
+        def initialize(ccnid=nil, selectionpolicies=nil)
+          @CcnId = ccnid
+          @SelectionPolicies = selectionpolicies
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          unless params['SelectionPolicies'].nil?
+            @SelectionPolicies = []
+            params['SelectionPolicies'].each do |i|
+              ccnroutetableselectpolicy_tmp = CcnRouteTableSelectPolicy.new
+              ccnroutetableselectpolicy_tmp.deserialize(i)
+              @SelectionPolicies << ccnroutetableselectpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyRouteTableSelectionPolicies返回参数结构体
+      class ModifyRouteTableSelectionPoliciesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -20168,6 +21103,100 @@ module TencentCloud
         end
       end
 
+      # ReplaceCcnRouteTableBroadcastPolicys请求参数结构体
+      class ReplaceCcnRouteTableBroadcastPolicysRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param RouteTableId: 云联网路由表ID
+        # @type RouteTableId: String
+        # @param Policys: 新的路由传播策略
+        # @type Policys: Array
+
+        attr_accessor :CcnId, :RouteTableId, :Policys
+
+        def initialize(ccnid=nil, routetableid=nil, policys=nil)
+          @CcnId = ccnid
+          @RouteTableId = routetableid
+          @Policys = policys
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @RouteTableId = params['RouteTableId']
+          unless params['Policys'].nil?
+            @Policys = []
+            params['Policys'].each do |i|
+              ccnroutetablebroadcastpolicy_tmp = CcnRouteTableBroadcastPolicy.new
+              ccnroutetablebroadcastpolicy_tmp.deserialize(i)
+              @Policys << ccnroutetablebroadcastpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # ReplaceCcnRouteTableBroadcastPolicys返回参数结构体
+      class ReplaceCcnRouteTableBroadcastPolicysResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReplaceCcnRouteTableInputPolicys请求参数结构体
+      class ReplaceCcnRouteTableInputPolicysRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param RouteTableId: 云联网路由表ID。
+        # @type RouteTableId: String
+        # @param Policys: 新的路由接收策略。
+        # @type Policys: Array
+
+        attr_accessor :CcnId, :RouteTableId, :Policys
+
+        def initialize(ccnid=nil, routetableid=nil, policys=nil)
+          @CcnId = ccnid
+          @RouteTableId = routetableid
+          @Policys = policys
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @RouteTableId = params['RouteTableId']
+          unless params['Policys'].nil?
+            @Policys = []
+            params['Policys'].each do |i|
+              ccnroutetableinputpolicy_tmp = CcnRouteTableInputPolicy.new
+              ccnroutetableinputpolicy_tmp.deserialize(i)
+              @Policys << ccnroutetableinputpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # ReplaceCcnRouteTableInputPolicys返回参数结构体
+      class ReplaceCcnRouteTableInputPolicysResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplaceDirectConnectGatewayCcnRoutes请求参数结构体
       class ReplaceDirectConnectGatewayCcnRoutesRequest < TencentCloud::Common::AbstractModel
         # @param DirectConnectGatewayId: 专线网关ID，形如：dcg-prpqlmg1
@@ -21048,6 +22077,55 @@ module TencentCloud
               @ConflictSet << route_tmp
             end
           end
+        end
+      end
+
+      # 路由表选择策略信息
+      class RouteSelectionPolicy < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param RouteTableId: 路由表ID。
+        # @type RouteTableId: String
+        # @param RouteTableName: 路由表名称。
+        # @type RouteTableName: String
+        # @param InstanceType: 实例类型。如VPC
+        # @type InstanceType: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param SourceCidrBlock: 源端cidr。
+        # @type SourceCidrBlock: String
+        # @param Description: 路由表描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceUin: 关联实例所属UIN（根账号）。
+        # @type InstanceUin: String
+
+        attr_accessor :CcnId, :RouteTableId, :RouteTableName, :InstanceType, :InstanceName, :SourceCidrBlock, :Description, :InstanceId, :InstanceUin
+
+        def initialize(ccnid=nil, routetableid=nil, routetablename=nil, instancetype=nil, instancename=nil, sourcecidrblock=nil, description=nil, instanceid=nil, instanceuin=nil)
+          @CcnId = ccnid
+          @RouteTableId = routetableid
+          @RouteTableName = routetablename
+          @InstanceType = instancetype
+          @InstanceName = instancename
+          @SourceCidrBlock = sourcecidrblock
+          @Description = description
+          @InstanceId = instanceid
+          @InstanceUin = instanceuin
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @RouteTableId = params['RouteTableId']
+          @RouteTableName = params['RouteTableName']
+          @InstanceType = params['InstanceType']
+          @InstanceName = params['InstanceName']
+          @SourceCidrBlock = params['SourceCidrBlock']
+          @Description = params['Description']
+          @InstanceId = params['InstanceId']
+          @InstanceUin = params['InstanceUin']
         end
       end
 

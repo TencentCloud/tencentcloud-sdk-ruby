@@ -636,6 +636,73 @@ module TencentCloud
         end
       end
 
+      # TextToImageLite请求参数结构体
+      class TextToImageLiteRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 文本描述。
+        # 算法将根据输入的文本智能生成与之相关的图像。建议详细描述画面主体、细节、场景等，文本描述越丰富，生成效果越精美。
+        # 不能为空，推荐使用中文。最多可传256个 utf-8 字符。
+        # @type Prompt: String
+        # @param NegativePrompt: 反向文本描述。
+        # 用于一定程度上从反面引导模型生成的走向，减少生成结果中出现描述内容的可能，但不能完全杜绝。
+        # 推荐使用中文。最多可传256个 utf-8 字符。
+        # @type NegativePrompt: String
+        # @param Style: 绘画风格。
+        # 请在 [智能文生图风格列表](https://cloud.tencent.com/document/product/1668/86249) 中选择期望的风格，传入风格编号。
+        # 推荐使用且只使用一种风格。不传默认使用201（日系动漫风格）。
+        # @type Style: String
+        # @param Resolution: 生成图分辨率。
+        # 支持生成以下分辨率的图片：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1）、720:1280（9:16）、1280:720（16:9）、768:1280（3:5）、1280:768（5:3）、1080:1920（9:16）、1920:1080（16:9），不传默认使用768:768。
+        # @type Resolution: String
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按0处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        # @type RspImgType: String
+
+        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :LogoAdd, :RspImgType
+
+        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, logoadd=nil, rspimgtype=nil)
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @Style = style
+          @Resolution = resolution
+          @LogoAdd = logoadd
+          @RspImgType = rspimgtype
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @Style = params['Style']
+          @Resolution = params['Resolution']
+          @LogoAdd = params['LogoAdd']
+          @RspImgType = params['RspImgType']
+        end
+      end
+
+      # TextToImageLite返回参数结构体
+      class TextToImageLiteResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。如果传入 base64 则返回生成图 Base64 编码。如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :RequestId
+
+        def initialize(resultimage=nil, requestid=nil)
+          @ResultImage = resultimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户指定模型使用的工具
       class Tool < TencentCloud::Common::AbstractModel
         # @param Type: 工具类型，当前只支持function

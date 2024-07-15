@@ -1350,6 +1350,49 @@ module TencentCloud
         end
       end
 
+      # DescribeSnapshotOverview请求参数结构体
+      class DescribeSnapshotOverviewRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSnapshotOverview返回参数结构体
+      class DescribeSnapshotOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNums: 当前总有效快照数量
+        # @type TotalNums: Integer
+        # @param TotalSize: 已使用快照总容量大小，容量单位为GiB
+        # @type TotalSize: Float
+        # @param FreeQuota: 快照免费额度大小，额度单位为GiB
+        # @type FreeQuota: Float
+        # @param RealTradeSize: 快照真实产生计费的总容量大小，单位为GiB
+        # @type RealTradeSize: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNums, :TotalSize, :FreeQuota, :RealTradeSize, :RequestId
+
+        def initialize(totalnums=nil, totalsize=nil, freequota=nil, realtradesize=nil, requestid=nil)
+          @TotalNums = totalnums
+          @TotalSize = totalsize
+          @FreeQuota = freequota
+          @RealTradeSize = realtradesize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNums = params['TotalNums']
+          @TotalSize = params['TotalSize']
+          @FreeQuota = params['FreeQuota']
+          @RealTradeSize = params['RealTradeSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSnapshotSharePermission请求参数结构体
       class DescribeSnapshotSharePermissionRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 要查询快照的ID。可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询获取。

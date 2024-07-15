@@ -1492,10 +1492,12 @@ module TencentCloud
         # @type DynamicVip: Boolean
         # @param Egress: 网络出口
         # @type Egress: String
+        # @param LBChargePrepaid: 负载均衡实例的预付费相关属性
+        # @type LBChargePrepaid: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClusterIds, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClusterIds, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress, :LBChargePrepaid
 
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clusterids=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clusterids=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil, lbchargeprepaid=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1523,6 +1525,7 @@ module TencentCloud
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
           @DynamicVip = dynamicvip
           @Egress = egress
+          @LBChargePrepaid = lbchargeprepaid
         end
 
         def deserialize(params)
@@ -1573,6 +1576,10 @@ module TencentCloud
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
           @DynamicVip = params['DynamicVip']
           @Egress = params['Egress']
+          unless params['LBChargePrepaid'].nil?
+            @LBChargePrepaid = LBChargePrepaid.new
+            @LBChargePrepaid.deserialize(params['LBChargePrepaid'])
+          end
         end
       end
 

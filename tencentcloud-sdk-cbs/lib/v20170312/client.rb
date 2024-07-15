@@ -532,6 +532,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于查询用户快照使用概览，包括快照总容量、计费容量等信息。
+
+        # @param request: Request instance for DescribeSnapshotOverview.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::DescribeSnapshotOverviewRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::DescribeSnapshotOverviewResponse`
+        def DescribeSnapshotOverview(request)
+          body = send_request('DescribeSnapshotOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
 
         # @param request: Request instance for DescribeSnapshotSharePermission.

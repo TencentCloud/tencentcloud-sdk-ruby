@@ -744,8 +744,8 @@ module TencentCloud
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 5
-        deprecate :SessTime=, :none, 2024, 5
+        deprecate :SessTime, :none, 2024, 7
+        deprecate :SessTime=, :none, 2024, 7
 
         def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Cmd = cmd
@@ -1316,7 +1316,7 @@ module TencentCloud
         # @type UserName: String
         # @param RealName: 用户姓名，最大长度20个字符，不能包含空白字符
         # @type RealName: String
-        # @param Phone: 大陆手机号直接填写，如果是其他国家、地区号码， 按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
+        # @param Phone: 按照"国家地区代码|手机号"的格式输入。如: "+86|xxxxxxxx"
         # @type Phone: String
         # @param Email: 电子邮件
         # @type Email: String
@@ -3821,7 +3821,7 @@ module TencentCloud
         # @type Id: Integer
         # @param RealName: 用户姓名，最大长度20个字符，不能包含空格
         # @type RealName: String
-        # @param Phone: 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
+        # @param Phone: 按照"国家地区代码|手机号"的格式输入。如: "+86|xxxxxxxx"
         # @type Phone: String
         # @param Email: 电子邮件
         # @type Email: String
@@ -4519,8 +4519,8 @@ module TencentCloud
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 5
-        deprecate :SessTime=, :none, 2024, 5
+        deprecate :SessTime, :none, 2024, 7
+        deprecate :SessTime=, :none, 2024, 7
 
         def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Time = time

@@ -160,6 +160,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 文生图轻量版接口根据输入的文本描述，智能生成与之相关的结果图。
+        # 文生图轻量版默认提供3个并发任务数，代表最多能同时处理3个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
+
+        # @param request: Request instance for TextToImageLite.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::TextToImageLiteRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::TextToImageLiteResponse`
+        def TextToImageLite(request)
+          body = send_request('TextToImageLite', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToImageLiteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

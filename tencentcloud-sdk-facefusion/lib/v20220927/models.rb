@@ -515,6 +515,19 @@ module TencentCloud
         # @param MaterialId: 素材Id
         # @type MaterialId: String
         # @param MaterialStatus: 素材状态
+
+        # 字段取值:
+        # 0   审核中
+        # 1   人工审核通过
+        # 2   人工审核失败
+        # 3   申诉中
+        # 11  申诉成功
+        # 12  申诉失败
+        # 21  机器审核通过
+        # 22  机器审核失败
+        # 31  视频素材预处理成功，素材可用
+        # 32  视频素材预处理失败
+        # 33  角色不在视频中
         # @type MaterialStatus: Integer
         # @param CreateTime: 创建时间
         # @type CreateTime: String

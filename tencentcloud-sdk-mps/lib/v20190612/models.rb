@@ -18458,7 +18458,8 @@ module TencentCloud
         # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
         # @param OutputStorage: 视频处理的文件输出配置。不填则继承 Trigger 中的存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 视频处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致，即`{inputDir}`。
+        # @param OutputDir: 视频处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
+        # 如果不填，表示与触发文件所在的目录一致，即`{inputDir}`。
         # @type OutputDir: String
         # @param MediaProcessTask: 视频处理类型任务参数。
         # @type MediaProcessTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskInput`
@@ -20835,7 +20836,8 @@ module TencentCloud
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。 注意：自适应码率时取值范围是 [0, 60]
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
+        # 注意：自适应码率时取值范围是 [0, 60]
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
