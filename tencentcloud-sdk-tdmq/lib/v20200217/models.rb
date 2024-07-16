@@ -7156,6 +7156,113 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQTopicStats请求参数结构体
+      class DescribeRocketMQTopicStatsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 实例ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param TopicName: 主题名
+        # @type TopicName: String
+
+        attr_accessor :ClusterId, :NamespaceId, :TopicName
+
+        def initialize(clusterid=nil, namespaceid=nil, topicname=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # DescribeRocketMQTopicStats返回参数结构体
+      class DescribeRocketMQTopicStatsResponse < TencentCloud::Common::AbstractModel
+        # @param TopicStatsList: 生产详情列表
+        # @type TopicStatsList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicStatsList, :RequestId
+
+        def initialize(topicstatslist=nil, requestid=nil)
+          @TopicStatsList = topicstatslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopicStatsList'].nil?
+            @TopicStatsList = []
+            params['TopicStatsList'].each do |i|
+              topicstats_tmp = TopicStats.new
+              topicstats_tmp.deserialize(i)
+              @TopicStatsList << topicstats_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQTopicsByGroup请求参数结构体
+      class DescribeRocketMQTopicsByGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param GroupId: 消费组名称
+        # @type GroupId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Offset, :Limit
+
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRocketMQTopicsByGroup返回参数结构体
+      class DescribeRocketMQTopicsByGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Topics: 主题列表
+        # @type Topics: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Topics, :RequestId
+
+        def initialize(totalcount=nil, topics=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Topics = params['Topics']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQTopics请求参数结构体
       class DescribeRocketMQTopicsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 查询偏移量
@@ -8941,6 +9048,50 @@ module TencentCloud
 
       # ModifyRocketMQGroup返回参数结构体
       class ModifyRocketMQGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRocketMQInstance请求参数结构体
+      class ModifyRocketMQInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 专享实例ID
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param Remark: 实例备注信息
+        # @type Remark: String
+        # @param MessageRetention: 实例消息保留时间，小时为单位
+        # @type MessageRetention: Integer
+
+        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention
+
+        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Remark = remark
+          @MessageRetention = messageretention
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @MessageRetention = params['MessageRetention']
+        end
+      end
+
+      # ModifyRocketMQInstance返回参数结构体
+      class ModifyRocketMQInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -12823,6 +12974,48 @@ module TencentCloud
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
+        end
+      end
+
+      # Topic状态
+      class TopicStats < TencentCloud::Common::AbstractModel
+        # @param BrokerName: 所属Broker节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerName: String
+        # @param QueueId: 队列编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueId: Integer
+        # @param MinOffset: 最小位点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinOffset: Integer
+        # @param MaxOffset: 最大位点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxOffset: Integer
+        # @param MessageCount: 消息条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageCount: Integer
+        # @param LastUpdateTimestamp: 消息最后写入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTimestamp: Integer
+
+        attr_accessor :BrokerName, :QueueId, :MinOffset, :MaxOffset, :MessageCount, :LastUpdateTimestamp
+
+        def initialize(brokername=nil, queueid=nil, minoffset=nil, maxoffset=nil, messagecount=nil, lastupdatetimestamp=nil)
+          @BrokerName = brokername
+          @QueueId = queueid
+          @MinOffset = minoffset
+          @MaxOffset = maxoffset
+          @MessageCount = messagecount
+          @LastUpdateTimestamp = lastupdatetimestamp
+        end
+
+        def deserialize(params)
+          @BrokerName = params['BrokerName']
+          @QueueId = params['QueueId']
+          @MinOffset = params['MinOffset']
+          @MaxOffset = params['MaxOffset']
+          @MessageCount = params['MessageCount']
+          @LastUpdateTimestamp = params['LastUpdateTimestamp']
         end
       end
 

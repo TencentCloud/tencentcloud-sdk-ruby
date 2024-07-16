@@ -2335,6 +2335,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Topic生产详情列表
+
+        # @param request: Request instance for DescribeRocketMQTopicStats.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicStatsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicStatsResponse`
+        def DescribeRocketMQTopicStats(request)
+          body = send_request('DescribeRocketMQTopicStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQTopicStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取RocketMQ主题列表
 
         # @param request: Request instance for DescribeRocketMQTopics.
@@ -2345,6 +2369,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRocketMQTopicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取指定消费组下订阅的主题列表
+
+        # @param request: Request instance for DescribeRocketMQTopicsByGroup.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicsByGroupRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicsByGroupResponse`
+        def DescribeRocketMQTopicsByGroup(request)
+          body = send_request('DescribeRocketMQTopicsByGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQTopicsByGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2897,6 +2945,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRocketMQGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改RocketMQ专享实例
+
+        # @param request: Request instance for ModifyRocketMQInstance.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRocketMQInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyRocketMQInstanceResponse`
+        def ModifyRocketMQInstance(request)
+          body = send_request('ModifyRocketMQInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRocketMQInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

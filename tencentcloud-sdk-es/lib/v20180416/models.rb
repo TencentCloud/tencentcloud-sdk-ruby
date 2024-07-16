@@ -1553,7 +1553,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，默认值10
         # @type Limit: Integer
-        # @param OrderBy: 排序字段<li>1：插件名 pluginName
+        # @param OrderBy: 排序字段<li>1：插件名 pluginName</li>
         # @type OrderBy: String
         # @param OrderByType: 排序方式<li>0：升序 asc</li><li>1：降序 desc</li>
         # @type OrderByType: String
@@ -6089,10 +6089,14 @@ module TencentCloud
         # @type OutboundPublicAccess: String
         # @param CvmDelayOnlineTime: cvm延迟上架参数
         # @type CvmDelayOnlineTime: Integer
+        # @param ShardAllocationConcurrents: 分片迁移并发数
+        # @type ShardAllocationConcurrents: Integer
+        # @param ShardAllocationBytes: 分片迁移并发速度
+        # @type ShardAllocationBytes: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -6131,6 +6135,8 @@ module TencentCloud
           @OutboundPublicAcls = outboundpublicacls
           @OutboundPublicAccess = outboundpublicaccess
           @CvmDelayOnlineTime = cvmdelayonlinetime
+          @ShardAllocationConcurrents = shardallocationconcurrents
+          @ShardAllocationBytes = shardallocationbytes
         end
 
         def deserialize(params)
@@ -6211,6 +6217,8 @@ module TencentCloud
           end
           @OutboundPublicAccess = params['OutboundPublicAccess']
           @CvmDelayOnlineTime = params['CvmDelayOnlineTime']
+          @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
+          @ShardAllocationBytes = params['ShardAllocationBytes']
         end
       end
 

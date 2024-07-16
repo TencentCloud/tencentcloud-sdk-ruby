@@ -5281,17 +5281,25 @@ module TencentCloud
 
       # DescribeDataEngineImageVersions请求参数结构体
       class DescribeDataEngineImageVersionsRequest < TencentCloud::Common::AbstractModel
-        # @param EngineType: 引擎类型：SQL、SparkBatch、StandardSpark、StandardPresto
+        # @param EngineType: 引擎类型：SparkSQL、PrestoSQL、SparkBatch、StandardSpark、StandardPresto
         # @type EngineType: String
+        # @param Sort: 排序字段: InsertTime（插入时间，默认），UpdateTime（更新时间）
+        # @type Sort: String
+        # @param Asc: 排序方式：false（降序，默认），true（升序）
+        # @type Asc: Boolean
 
-        attr_accessor :EngineType
+        attr_accessor :EngineType, :Sort, :Asc
 
-        def initialize(enginetype=nil)
+        def initialize(enginetype=nil, sort=nil, asc=nil)
           @EngineType = enginetype
+          @Sort = sort
+          @Asc = asc
         end
 
         def deserialize(params)
           @EngineType = params['EngineType']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
         end
       end
 

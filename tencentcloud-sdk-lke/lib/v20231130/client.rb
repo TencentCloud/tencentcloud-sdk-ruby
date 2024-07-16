@@ -969,7 +969,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取推荐问题
+        # 获取聊天历史请求
 
         # @param request: Request instance for GetMsgRecord.
         # @type request: :class:`Tencentcloud::lke::V20231130::GetMsgRecordRequest`

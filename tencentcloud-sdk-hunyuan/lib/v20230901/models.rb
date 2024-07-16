@@ -145,18 +145,21 @@ module TencentCloud
         # 如果流式返回中服务处理异常，返回该错误信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: :class:`Tencentcloud::Hunyuan.v20230901.models.ErrorMsg`
+        # @param ModerationLevel: 多轮会话风险审核，值为1时，表明存在信息安全风险，建议终止客户多轮会话。
+        # @type ModerationLevel: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :RequestId
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :RequestId
 
-        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, requestid=nil)
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, requestid=nil)
           @Created = created
           @Usage = usage
           @Note = note
           @Id = id
           @Choices = choices
           @ErrorMsg = errormsg
+          @ModerationLevel = moderationlevel
           @RequestId = requestid
         end
 
@@ -180,6 +183,7 @@ module TencentCloud
             @ErrorMsg = ErrorMsg.new
             @ErrorMsg.deserialize(params['ErrorMsg'])
           end
+          @ModerationLevel = params['ModerationLevel']
           @RequestId = params['RequestId']
         end
       end

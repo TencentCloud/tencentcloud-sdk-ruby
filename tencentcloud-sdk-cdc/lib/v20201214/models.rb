@@ -495,10 +495,31 @@ module TencentCloud
         # @param OrderType: 订单类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderType: String
+        # @param CheckStatus: 验收状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckStatus: String
+        # @param DeliverExpectTime: 交付预期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverExpectTime: String
+        # @param DeliverFinishTime: 交付实际完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverFinishTime: String
+        # @param CheckExpectTime: 验收预期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckExpectTime: String
+        # @param CheckFinishTime: 验收实际完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckFinishTime: String
+        # @param OrderSLA: 订单SLA
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderSLA: String
+        # @param OrderPayPlan: 订单支付计划
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderPayPlan: String
 
-        attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType
+        attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
 
-        def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil)
+        def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil, checkstatus=nil, deliverexpecttime=nil, deliverfinishtime=nil, checkexpecttime=nil, checkfinishtime=nil, ordersla=nil, orderpayplan=nil)
           @DedicatedClusterId = dedicatedclusterid
           @DedicatedClusterTypeId = dedicatedclustertypeid
           @SupportedStorageType = supportedstoragetype
@@ -519,6 +540,13 @@ module TencentCloud
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @OrderType = ordertype
+          @CheckStatus = checkstatus
+          @DeliverExpectTime = deliverexpecttime
+          @DeliverFinishTime = deliverfinishtime
+          @CheckExpectTime = checkexpecttime
+          @CheckFinishTime = checkfinishtime
+          @OrderSLA = ordersla
+          @OrderPayPlan = orderpayplan
         end
 
         def deserialize(params)
@@ -549,6 +577,13 @@ module TencentCloud
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
           @OrderType = params['OrderType']
+          @CheckStatus = params['CheckStatus']
+          @DeliverExpectTime = params['DeliverExpectTime']
+          @DeliverFinishTime = params['DeliverFinishTime']
+          @CheckExpectTime = params['CheckExpectTime']
+          @CheckFinishTime = params['CheckFinishTime']
+          @OrderSLA = params['OrderSLA']
+          @OrderPayPlan = params['OrderPayPlan']
         end
       end
 
@@ -1064,16 +1099,19 @@ module TencentCloud
         # @type Status: String
         # @param ActionType: 订单类型为过滤条件：CREATE  EXTEND
         # @type ActionType: String
+        # @param OrderTypes: 订单类型列表
+        # @type OrderTypes: Array
 
-        attr_accessor :DedicatedClusterIds, :DedicatedClusterOrderIds, :Offset, :Limit, :Status, :ActionType
+        attr_accessor :DedicatedClusterIds, :DedicatedClusterOrderIds, :Offset, :Limit, :Status, :ActionType, :OrderTypes
 
-        def initialize(dedicatedclusterids=nil, dedicatedclusterorderids=nil, offset=nil, limit=nil, status=nil, actiontype=nil)
+        def initialize(dedicatedclusterids=nil, dedicatedclusterorderids=nil, offset=nil, limit=nil, status=nil, actiontype=nil, ordertypes=nil)
           @DedicatedClusterIds = dedicatedclusterids
           @DedicatedClusterOrderIds = dedicatedclusterorderids
           @Offset = offset
           @Limit = limit
           @Status = status
           @ActionType = actiontype
+          @OrderTypes = ordertypes
         end
 
         def deserialize(params)
@@ -1083,6 +1121,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Status = params['Status']
           @ActionType = params['ActionType']
+          @OrderTypes = params['OrderTypes']
         end
       end
 

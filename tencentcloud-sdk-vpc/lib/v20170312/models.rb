@@ -2160,15 +2160,19 @@ module TencentCloud
         # @param RouteTableId: 实例关联的路由表ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableId: String
+        # @param OrderType: 实例付费方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderType: String
 
-        attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description, :RouteTableId
+        attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description, :RouteTableId, :OrderType
 
-        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil, description=nil, routetableid=nil)
+        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil, description=nil, routetableid=nil, ordertype=nil)
           @InstanceId = instanceid
           @InstanceRegion = instanceregion
           @InstanceType = instancetype
           @Description = description
           @RouteTableId = routetableid
+          @OrderType = ordertype
         end
 
         def deserialize(params)
@@ -2177,6 +2181,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @Description = params['Description']
           @RouteTableId = params['RouteTableId']
+          @OrderType = params['OrderType']
         end
       end
 
@@ -3778,31 +3783,35 @@ module TencentCloud
       class CreateHaVipRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `HAVIP`所在私有网络`ID`。
         # @type VpcId: String
-        # @param SubnetId: `HAVIP`所在子网`ID`。
-        # @type SubnetId: String
         # @param HaVipName: `HAVIP`名称。
         # @type HaVipName: String
+        # @param SubnetId: `HAVIP`所在子网`ID`。
+        # @type SubnetId: String
         # @param Vip: 指定虚拟IP地址，必须在`VPC`网段内且未被占用。不指定则自动分配。
         # @type Vip: String
         # @param NetworkInterfaceId: `HAVIP`所在弹性网卡`ID`。
         # @type NetworkInterfaceId: String
+        # @param CheckAssociate: 是否开启`HAVIP`漂移时子机或网卡范围的校验。默认不开启。
+        # @type CheckAssociate: Boolean
 
-        attr_accessor :VpcId, :SubnetId, :HaVipName, :Vip, :NetworkInterfaceId
+        attr_accessor :VpcId, :HaVipName, :SubnetId, :Vip, :NetworkInterfaceId, :CheckAssociate
 
-        def initialize(vpcid=nil, subnetid=nil, havipname=nil, vip=nil, networkinterfaceid=nil)
+        def initialize(vpcid=nil, havipname=nil, subnetid=nil, vip=nil, networkinterfaceid=nil, checkassociate=nil)
           @VpcId = vpcid
-          @SubnetId = subnetid
           @HaVipName = havipname
+          @SubnetId = subnetid
           @Vip = vip
           @NetworkInterfaceId = networkinterfaceid
+          @CheckAssociate = checkassociate
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
           @HaVipName = params['HaVipName']
+          @SubnetId = params['SubnetId']
           @Vip = params['Vip']
           @NetworkInterfaceId = params['NetworkInterfaceId']
+          @CheckAssociate = params['CheckAssociate']
         end
       end
 
@@ -6015,10 +6024,16 @@ module TencentCloud
         # @type State: String
         # @param CreatedTime: 审批单创建时间。
         # @type CreatedTime: String
+        # @param LegalPersonId: 法定代表人身份证号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalPersonId: String
+        # @param LegalPersonIdCard: 法定代表人身份证。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalPersonIdCard: String
 
-        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessLicense, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerIdCard, :ManagerAddress, :ManagerTelephone, :Email, :ServiceHandlingForm, :AuthorizationLetter, :SafetyCommitment, :ServiceStartDate, :ServiceEndDate, :State, :CreatedTime
+        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessLicense, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerIdCard, :ManagerAddress, :ManagerTelephone, :Email, :ServiceHandlingForm, :AuthorizationLetter, :SafetyCommitment, :ServiceStartDate, :ServiceEndDate, :State, :CreatedTime, :LegalPersonId, :LegalPersonIdCard
 
-        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businesslicense=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageridcard=nil, manageraddress=nil, managertelephone=nil, email=nil, servicehandlingform=nil, authorizationletter=nil, safetycommitment=nil, servicestartdate=nil, serviceenddate=nil, state=nil, createdtime=nil)
+        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businesslicense=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageridcard=nil, manageraddress=nil, managertelephone=nil, email=nil, servicehandlingform=nil, authorizationletter=nil, safetycommitment=nil, servicestartdate=nil, serviceenddate=nil, state=nil, createdtime=nil, legalpersonid=nil, legalpersonidcard=nil)
           @ServiceProvider = serviceprovider
           @ComplianceId = complianceid
           @Company = company
@@ -6041,6 +6056,8 @@ module TencentCloud
           @ServiceEndDate = serviceenddate
           @State = state
           @CreatedTime = createdtime
+          @LegalPersonId = legalpersonid
+          @LegalPersonIdCard = legalpersonidcard
         end
 
         def deserialize(params)
@@ -6066,6 +6083,8 @@ module TencentCloud
           @ServiceEndDate = params['ServiceEndDate']
           @State = params['State']
           @CreatedTime = params['CreatedTime']
+          @LegalPersonId = params['LegalPersonId']
+          @LegalPersonIdCard = params['LegalPersonIdCard']
         end
       end
 
@@ -9841,13 +9860,7 @@ module TencentCloud
       class DescribeHaVipsRequest < TencentCloud::Common::AbstractModel
         # @param HaVipIds: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。
         # @type HaVipIds: Array
-        # @param Filters: 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。
-        # <li>havip-id - String - `HAVIP`唯一`ID`，形如：`havip-9o233uri`。</li>
-        # <li>havip-name - String - `HAVIP`名称。</li>
-        # <li>vpc-id - String - `HAVIP`所在私有网络`ID`。</li>
-        # <li>subnet-id - String - `HAVIP`所在子网`ID`。</li>
-        # <li>vip - String - `HAVIP`的地址`VIP`。</li>
-        # <li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li>
+        # @param Filters: 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。<li>havip-id - String - `HAVIP`唯一`ID`，形如：`havip-9o233uri`。</li><li>havip-name - String - `HAVIP`名称。</li><li>vpc-id - String - `HAVIP`所在私有网络`ID`。</li><li>subnet-id - String - `HAVIP`所在子网`ID`。</li><li>vip - String - `HAVIP`的地址`VIP`。</li><li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li><li>havip-association.instance-id - String - `HAVIP`绑定的子机或网卡。</li><li>havip-association.instance-type - String - `HAVIP`绑定的类型，取值:CVM, ENI。</li><li>check-associate - Bool - 是否开启HaVip飘移时校验绑定的子机或网卡。</li><li>cdc-id - String - CDC实例ID。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -15803,10 +15816,19 @@ module TencentCloud
         # @type CreatedTime: String
         # @param Business: 使用havip的业务标识。
         # @type Business: String
+        # @param HaVipAssociationSet: `HAVIP`的飘移范围。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HaVipAssociationSet: Array
+        # @param CheckAssociate: 是否开启`HAVIP`的飘移范围校验。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckAssociate: Boolean
+        # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发 FlushTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlushedTime: String
 
-        attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business
+        attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :FlushedTime
 
-        def initialize(havipid=nil, havipname=nil, vip=nil, vpcid=nil, subnetid=nil, networkinterfaceid=nil, instanceid=nil, addressip=nil, state=nil, createdtime=nil, business=nil)
+        def initialize(havipid=nil, havipname=nil, vip=nil, vpcid=nil, subnetid=nil, networkinterfaceid=nil, instanceid=nil, addressip=nil, state=nil, createdtime=nil, business=nil, havipassociationset=nil, checkassociate=nil, flushedtime=nil)
           @HaVipId = havipid
           @HaVipName = havipname
           @Vip = vip
@@ -15818,6 +15840,9 @@ module TencentCloud
           @State = state
           @CreatedTime = createdtime
           @Business = business
+          @HaVipAssociationSet = havipassociationset
+          @CheckAssociate = checkassociate
+          @FlushedTime = flushedtime
         end
 
         def deserialize(params)
@@ -15832,6 +15857,16 @@ module TencentCloud
           @State = params['State']
           @CreatedTime = params['CreatedTime']
           @Business = params['Business']
+          unless params['HaVipAssociationSet'].nil?
+            @HaVipAssociationSet = []
+            params['HaVipAssociationSet'].each do |i|
+              havipassociation_tmp = HaVipAssociation.new
+              havipassociation_tmp.deserialize(i)
+              @HaVipAssociationSet << havipassociation_tmp
+            end
+          end
+          @CheckAssociate = params['CheckAssociate']
+          @FlushedTime = params['FlushedTime']
         end
       end
 
@@ -15868,6 +15903,33 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # HaVip绑定的子机/网卡（用于限制HaVip飘移的范围，并不是真正的飘移动作）。
+      class HaVipAssociation < TencentCloud::Common::AbstractModel
+        # @param HaVipId: HaVip实例唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HaVipId: String
+        # @param InstanceId: HaVip绑定的子机或网卡唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceType: HaVip绑定的类型。取值:CVM, ENI。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+
+        attr_accessor :HaVipId, :InstanceId, :InstanceType
+
+        def initialize(havipid=nil, instanceid=nil, instancetype=nil)
+          @HaVipId = havipid
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @HaVipId = params['HaVipId']
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
         end
       end
 

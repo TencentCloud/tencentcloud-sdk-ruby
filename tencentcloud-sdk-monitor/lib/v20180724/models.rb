@@ -2759,7 +2759,38 @@ module TencentCloud
         # <li> 2 = PodMonitor</li>
         # <li> 3 = JobMonitor</li>
         # @type Type: Integer
-        # @param Yaml: 服务发现配置信息
+        # @param Yaml: 服务发现配置信息，YAML 格式
+
+        # 示例值：
+
+        # ```
+        # apiVersion: monitoring.coreos.com/v1
+        # kind: ServiceMonitor
+        # metadata:
+        #   name: go-demo    # 填写一个唯一名称
+        #   namespace: cm-prometheus  # namespace固定，不要修改
+        # spec:
+        #   endpoints:
+        #   - interval: 30s
+        #     # 填写service yaml中Prometheus Exporter对应的Port的Name
+        #     port: 2112
+        #     # 填写Prometheus Exporter对应的Path的值，不填默认/metrics
+        #     path: /metrics
+        #     relabelings:
+        #     # ** 必须要有一个 label 为 application，这里假设 k8s 有一个 label 为 app，
+        #     # 我们通过 relabel 的 replace 动作把它替换成了 application
+        #     - action: replace
+        #       sourceLabels:  [__meta_kubernetes_pod_label_app]
+        #       targetLabel: application
+        #   # 选择要监控service所在的namespace
+        #   namespaceSelector:
+        #     matchNames:
+        #     - golang-demo
+        #     # 填写要监控service的Label值，以定位目标service
+        #   selector:
+        #     matchLabels:
+        #       app: golang-app-demo
+        # ```
         # @type Yaml: String
 
         attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
@@ -3572,7 +3603,38 @@ module TencentCloud
         # <li> 2 = PodMonitor</li>
         # <li> 3 = PodMonitor</li>
         # @type Type: Integer
-        # @param Yaml: 服务发现配置信息
+        # @param Yaml: 服务发现配置信息，YAML 格式
+
+        # 示例值：
+
+        # ```
+        # apiVersion: monitoring.coreos.com/v1
+        # kind: ServiceMonitor
+        # metadata:
+        #   name: go-demo    # 填写一个唯一名称
+        #   namespace: cm-prometheus  # namespace固定，不要修改
+        # spec:
+        #   endpoints:
+        #   - interval: 30s
+        #     # 填写service yaml中Prometheus Exporter对应的Port的Name
+        #     port: 2112
+        #     # 填写Prometheus Exporter对应的Path的值，不填默认/metrics
+        #     path: /metrics
+        #     relabelings:
+        #     # ** 必须要有一个 label 为 application，这里假设 k8s 有一个 label 为 app，
+        #     # 我们通过 relabel 的 replace 动作把它替换成了 application
+        #     - action: replace
+        #       sourceLabels:  [__meta_kubernetes_pod_label_app]
+        #       targetLabel: application
+        #   # 选择要监控service所在的namespace
+        #   namespaceSelector:
+        #     matchNames:
+        #     - golang-demo
+        #     # 填写要监控service的Label值，以定位目标service
+        #   selector:
+        #     matchLabels:
+        #       app: golang-app-demo
+        # ```
         # @type Yaml: String
 
         attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
@@ -8108,7 +8170,7 @@ module TencentCloud
 
       # DescribePrometheusInstanceUsage请求参数结构体
       class DescribePrometheusInstanceUsageRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
+        # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。
         # @type InstanceIds: Array
         # @param StartCalcDate: 开始时间
         # @type StartCalcDate: String
@@ -11159,7 +11221,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param InstanceName: 实例名称
         # @type InstanceName: String
-        # @param DataRetentionTime: 存储时长（取值为 15、30、45。此参数不适用于包年包月实例）
+        # @param DataRetentionTime: 数据存储时间（单位天），限制值为15, 30, 45, 90, 180, 365, 730之一
         # @type DataRetentionTime: Integer
 
         attr_accessor :InstanceId, :InstanceName, :DataRetentionTime
@@ -12087,7 +12149,7 @@ module TencentCloud
 
       # 与腾讯云可观测平台融合托管 Prometheus 实例，关联集群基础信息
       class PrometheusClusterAgentBasic < TencentCloud::Common::AbstractModel
-        # @param Region: 集群ID
+        # @param Region: 地域
         # @type Region: String
         # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc，分别代表标准集群、弹性集群、边缘集群、注册集群
         # @type ClusterType: String
@@ -14532,6 +14594,8 @@ module TencentCloud
         # @param InstanceId: Prometheus 实例 ID，例如：prom-abcd1234
         # @type InstanceId: String
         # @param AgentIds: Agent ID 列表，例如：agent-abcd1234，可在控制台 Agent 管理中获取
+
+        # 示例值：["agent-abcd1234"]
         # @type AgentIds: Array
         # @param Status: 要更新的状态
         # <li> 1= 开启 </li>
@@ -14854,7 +14918,38 @@ module TencentCloud
         # <li> 2 = PodMonitor</li>
         # <li> 3 = JobMonitor</li>
         # @type Type: Integer
-        # @param Yaml: 服务发现配置信息
+        # @param Yaml: 服务发现配置信息，YAML 格式
+
+        # 示例值：
+
+        # ```
+        # apiVersion: monitoring.coreos.com/v1
+        # kind: ServiceMonitor
+        # metadata:
+        #   name: go-demo    # 填写一个唯一名称
+        #   namespace: cm-prometheus  # namespace固定，不要修改
+        # spec:
+        #   endpoints:
+        #   - interval: 30s
+        #     # 填写service yaml中Prometheus Exporter对应的Port的Name
+        #     port: 2112
+        #     # 填写Prometheus Exporter对应的Path的值，不填默认/metrics
+        #     path: /metrics
+        #     relabelings:
+        #     # ** 必须要有一个 label 为 application，这里假设 k8s 有一个 label 为 app，
+        #     # 我们通过 relabel 的 replace 动作把它替换成了 application
+        #     - action: replace
+        #       sourceLabels:  [__meta_kubernetes_pod_label_app]
+        #       targetLabel: application
+        #   # 选择要监控service所在的namespace
+        #   namespaceSelector:
+        #     matchNames:
+        #     - golang-demo
+        #     # 填写要监控service的Label值，以定位目标service
+        #   selector:
+        #     matchLabels:
+        #       app: golang-app-demo
+        # ```
         # @type Yaml: String
 
         attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
@@ -14903,33 +14998,7 @@ module TencentCloud
       class UpgradeGrafanaDashboardRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
-        # @param IntegrationCodes: Prometheus 集成项 Code，升级对应的 Dashboard，取值如下：
-        # <li>qcloud</li>
-        # <li>cvm_process_exporter</li>
-        # <li>cvm_node_exporter</li>
-        # <li>cvm</li>
-        # <li>kubernetes</li>
-        # <li>cdwch</li>
-        # <li>rocketmq</li>
-        # <li>spring_mvc</li>
-        # <li>mysql</li>
-        # <li>go</li>
-        # <li>redis</li>
-        # <li>jvm</li>
-        # <li>pgsql</li>
-        # <li>mongo</li>
-        # <li>kafka</li>
-        # <li>es</li>
-        # <li>flink</li>
-        # <li>blackbox</li>
-        # <li>consule</li>
-        # <li>memcached</li>
-        # <li>zk</li>
-        # <li>tps</li>
-        # <li>istio</li>
-        # <li>etcd</li>
-        # <li>pts</li>
-        # <li>kong</li>
+        # @param IntegrationCodes: Prometheus 集成项 Code，升级对应的 Dashboard，取值如下：<li>qcloud</li><li>cvm_process_exporter</li><li>cvm_node_exporter</li><li>cvm</li><li>tps</li><li>nginx-ingress</li><li>nvidia-gpu</li><li>cdwch</li><li>emr</li><li>apache</li><li>rocketmq</li><li>rabbitmq</li><li>spring_mvc</li><li>mysql</li><li>mssql</li><li>go</li><li>redis</li><li>jvm</li><li>pgsql</li><li>ceph</li><li>docker</li><li>nginx</li><li>oracledb</li><li>mongo</li><li>kafka</li><li>es</li><li>flink</li><li>blackbox</li><li>consule</li><li>memcached</li><li>zk</li><li>tps</li><li>istio</li><li>etcd</li><li>pts</li><li>kong</li>
         # @type IntegrationCodes: Array
 
         attr_accessor :InstanceId, :IntegrationCodes

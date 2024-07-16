@@ -935,13 +935,15 @@ module TencentCloud
         # @type RecordScene: String
         # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
         # @type RecordLang: String
+        # @param RecordStream: 录制类型 0 仅录制混流（默认） ;1 录制混流+单流，该模式下除混流录制基础上，分别录制老师、台上学生的音视频流，每路录制都会产生相应的录制费用 。示例：0
+        # @type RecordStream: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 6
-        deprecate :RecordLang=, :none, 2024, 6
+        deprecate :RecordLang, :none, 2024, 7
+        deprecate :RecordLang=, :none, 2024, 7
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -971,6 +973,7 @@ module TencentCloud
           @RecordBackground = recordbackground
           @RecordScene = recordscene
           @RecordLang = recordlang
+          @RecordStream = recordstream
         end
 
         def deserialize(params)
@@ -1003,6 +1006,7 @@ module TencentCloud
           @RecordBackground = params['RecordBackground']
           @RecordScene = params['RecordScene']
           @RecordLang = params['RecordLang']
+          @RecordStream = params['RecordStream']
         end
       end
 
@@ -2193,7 +2197,7 @@ module TencentCloud
         # @type VideoDuration: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
-        # @param LiveType: 直播类型：0 常规（默认）1 伪直播
+        # @param LiveType: 直播类型：0 常规（默认）1 伪直播 2 RTMP推流直播
         # @type LiveType: Integer
         # @param RecordLiveUrl: 伪直播链接
         # @type RecordLiveUrl: String
@@ -3743,8 +3747,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 6
-        deprecate :RecordLang=, :none, 2024, 6
+        deprecate :RecordLang, :none, 2024, 7
+        deprecate :RecordLang=, :none, 2024, 7
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil)
           @RoomId = roomid
@@ -4082,13 +4086,15 @@ module TencentCloud
         # @type RecordScene: String
         # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
         # @type RecordLang: String
+        # @param RecordStream: 录制类型 0 仅录制混流（默认） ;1 录制混流+单流，该模式下除混流录制基础上，分别录制老师、台上学生的音视频流，每路录制都会产生相应的录制费用 。示例：0
+        # @type RecordStream: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 6
-        deprecate :RecordLang=, :none, 2024, 6
+        deprecate :RecordLang, :none, 2024, 7
+        deprecate :RecordLang=, :none, 2024, 7
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -4117,6 +4123,7 @@ module TencentCloud
           @RecordBackground = recordbackground
           @RecordScene = recordscene
           @RecordLang = recordlang
+          @RecordStream = recordstream
         end
 
         def deserialize(params)
@@ -4148,6 +4155,7 @@ module TencentCloud
           @RecordBackground = params['RecordBackground']
           @RecordScene = params['RecordScene']
           @RecordLang = params['RecordLang']
+          @RecordStream = params['RecordStream']
         end
       end
 
