@@ -3035,7 +3035,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改prometheus配置，如果配置项不存在，则会新增
+        # 修改prometheus采集配置
 
         # @param request: Request instance for ModifyPrometheusConfig.
         # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusConfigRequest`

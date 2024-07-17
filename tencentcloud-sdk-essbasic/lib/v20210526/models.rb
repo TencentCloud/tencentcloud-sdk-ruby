@@ -1050,12 +1050,12 @@ module TencentCloud
         # @param Name: 签署方经办人的姓名。
         # 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
 
-        # 注：`请确保和合同中填入的一致`，`除动态签署人场景外，此参数必填`
+        # 注：`请确保和合同中填入的一致`，`除动态签署人或子客员工经办人场景外，此参数必填`
         # @type Name: String
         # @param Mobile: 手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
         # 请确认手机号所有方为此业务通知方。
 
-        # 注：`请确保和合同中填入的一致,  若无法保持一致，请确保在发起和生成批量签署链接时传入相同的参与方证件信息`，`除动态签署人场景外，此参数必填`
+        # 注：`请确保和合同中填入的一致,  若无法保持一致，请确保在发起和生成批量签署链接时传入相同的参与方证件信息`，`除动态签署人或子客员工经办人场景外，此参数必填`
         # @type Mobile: String
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
@@ -1083,14 +1083,14 @@ module TencentCloud
         # @param FlowIds: 批量签署的合同流程ID数组。
         # 注: `在调用此接口时，请确保合同流程均为本企业发起，且合同数量不超过100个。`
         # @type FlowIds: Array
-        # @param OrganizationName: 目标签署人的企业名称，签署人如果是企业员工身份，需要传此参数。
+        # @param OrganizationName: SaaS平台企业员工签署方的企业名称。目标签署人如果为saas应用企业员工身份，此参数必填。
 
         # 注：
         # <ul>
         # <li>请确认该名称与企业营业执照中注册的名称一致。</li>
         # <li>如果名称中包含英文括号()，请使用中文括号（）代替。</li>
         # <li>请确保此企业已完成腾讯电子签企业认证。</li>
-        # <li>暂时仅支持给`自建应用集成企业` 生成员工批签链接，不支持子客企业。</li>
+        # <li>**若为子客企业员工，请使用OpenId，OrganizationOpenId参数，此参数留空即可**</li>
         # </ul>
         # @type OrganizationName: String
         # @param JumpToDetail: 是否直接跳转至合同内容页面进行签署
@@ -1101,10 +1101,20 @@ module TencentCloud
         # @type JumpToDetail: Boolean
         # @param FlowBatchUrlInfo: 批量签署合同相关信息，指定合同和签署方的信息，用于补充动态签署人。
         # @type FlowBatchUrlInfo: :class:`Tencentcloud::Essbasic.v20210526.models.FlowBatchUrlInfo`
+        # @param OpenId: 第三方平台子客企业员工的标识OpenId，批签合同经办人为子客员工的情况下为必填。
 
-        attr_accessor :Agent, :Name, :Mobile, :Operator, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo
+        # 注：
+        # <ul>
+        # <li>传入的OpenId对应员工在此子客企业下必须已经实名</li>
+        # <li>传递了此参数可以无需传递Name，Mobile，IdCardNumber，IdCardType参数。系统会根据员工OpenId自动拉取实名信息。</li>
+        # </ul>
+        # @type OpenId: String
+        # @param OrganizationOpenId: 第三方平台子客企业的企业的标识, 即OrganizationOpenId，批签合同经办人为子客企业员工是为必填。
+        # @type OrganizationOpenId: String
 
-        def initialize(agent=nil, name=nil, mobile=nil, operator=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil)
+        attr_accessor :Agent, :Name, :Mobile, :Operator, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo, :OpenId, :OrganizationOpenId
+
+        def initialize(agent=nil, name=nil, mobile=nil, operator=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil, openid=nil, organizationopenid=nil)
           @Agent = agent
           @Name = name
           @Mobile = mobile
@@ -1116,6 +1126,8 @@ module TencentCloud
           @OrganizationName = organizationname
           @JumpToDetail = jumptodetail
           @FlowBatchUrlInfo = flowbatchurlinfo
+          @OpenId = openid
+          @OrganizationOpenId = organizationopenid
         end
 
         def deserialize(params)
@@ -1139,6 +1151,8 @@ module TencentCloud
             @FlowBatchUrlInfo = FlowBatchUrlInfo.new
             @FlowBatchUrlInfo.deserialize(params['FlowBatchUrlInfo'])
           end
+          @OpenId = params['OpenId']
+          @OrganizationOpenId = params['OrganizationOpenId']
         end
       end
 
@@ -5962,7 +5976,7 @@ module TencentCloud
         # <li><strong>SealGenerateSourceSystem</strong>: 系统生成印章, 无需上传SealImage图片</li>
         # </ul>
         # @type GenerateSource: String
-        # @param SealType: 电子印章类型 , 可选类型如下: <ul><li>**OFFICIAL**: (默认)公章</li><li>**CONTRACT**: 合同专用章;</li><li>**FINANCE**: 财务专用章;</li><li>**PERSONNEL**: 人事专用章</li><li>**INVOICE**: 发票专用章</li></ul>注: `同企业下只能有<font color="red">一个</font>公章, 重复创建会报错`
+        # @param SealType: 电子印章类型 , 可选类型如下: <ul><li>**OFFICIAL**: (默认)公章</li><li>**CONTRACT**: 合同专用章;</li><li>**FINANCE**: 财务专用章;</li><li>**PERSONNEL**: 人事专用章</li><li>**INVOICE**: 发票专用章</li><li>**OTHER**: 其他</li></ul>注: 同企业下只能有<font color="red">一个</font>公章, 重复创建会报错
         # @type SealType: String
         # @param SealHorizontalText: 企业印章横向文字，最多可填15个汉字  (若超过印章最大宽度，优先压缩字间距，其次缩小字号)
         # 横向文字的位置如下图中的"印章横向文字在这里"
