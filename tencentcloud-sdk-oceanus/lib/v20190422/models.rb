@@ -242,10 +242,13 @@ module TencentCloud
         # @param ResourceType: 资源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: Integer
+        # @param BillingResourceMode: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingResourceMode: String
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -291,6 +294,7 @@ module TencentCloud
           @SubEks = subeks
           @AgentSerialId = agentserialid
           @ResourceType = resourcetype
+          @BillingResourceMode = billingresourcemode
         end
 
         def deserialize(params)
@@ -387,6 +391,7 @@ module TencentCloud
           end
           @AgentSerialId = params['AgentSerialId']
           @ResourceType = params['ResourceType']
+          @BillingResourceMode = params['BillingResourceMode']
         end
       end
 
@@ -433,10 +438,13 @@ module TencentCloud
         # @param SubEks: 弹性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubEks: :class:`Tencentcloud::Oceanus.v20190422.models.SubEks`
+        # @param BillingResourceMode: 默认 "" 包销模式 "exclusiveSale"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingResourceMode: String
 
-        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode, :SubEks
+        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode, :SubEks, :BillingResourceMode
 
-        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil, subeks=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil, subeks=nil, billingresourcemode=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -457,6 +465,7 @@ module TencentCloud
           @RunningCu = runningcu
           @PayMode = paymode
           @SubEks = subeks
+          @BillingResourceMode = billingresourcemode
         end
 
         def deserialize(params)
@@ -483,6 +492,7 @@ module TencentCloud
             @SubEks = SubEks.new
             @SubEks.deserialize(params['SubEks'])
           end
+          @BillingResourceMode = params['BillingResourceMode']
         end
       end
 

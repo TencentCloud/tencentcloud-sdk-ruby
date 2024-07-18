@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 6
-        deprecate :Idcard=, :none, 2024, 6
+        deprecate :Idcard, :none, 2024, 7
+        deprecate :Idcard=, :none, 2024, 7
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -610,6 +610,7 @@ module TencentCloud
         # -5: 身份信息无效
         # -6: 证件库服务异常
         # -7: 证件库中无此身份证记录
+        # -8: 认证次数超过当日限制，请次日重试
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
@@ -670,6 +671,7 @@ module TencentCloud
         # -3:引擎服务异常
         # -4:姓名校验不通过
         # -5:手机号码不合法
+        # -6: 认证次数超过当日限制，请次日重试
         # @type Result: String
         # @param Description: 业务结果描述
         # @type Description: String
@@ -2800,8 +2802,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 6
-        deprecate :AsrResultSimilarity=, :none, 2024, 6
+        deprecate :AsrResultSimilarity, :none, 2024, 7
+        deprecate :AsrResultSimilarity=, :none, 2024, 7
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3687,6 +3689,7 @@ module TencentCloud
         # -8: 姓名校验不通过
         # -9: 没有记录
         # -11: 验证中心服务繁忙
+        # -12: 认证次数超过当日限制，请次日重试
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String

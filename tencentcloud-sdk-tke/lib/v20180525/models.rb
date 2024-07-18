@@ -2228,7 +2228,7 @@ module TencentCloud
         # @type Chart: String
         # @param Values: 自定义参数
         # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
-        # @param ChartFrom: 制品来源，范围：tke-market 或 other
+        # @param ChartFrom: 制品来源，范围：tke-market 或 other默认值：tke-market。
         # @type ChartFrom: String
         # @param ChartVersion: 制品版本
         # @type ChartVersion: String
@@ -2238,7 +2238,7 @@ module TencentCloud
         # @type Username: String
         # @param Password: 制品访问密码
         # @type Password: String
-        # @param ChartNamespace: 制品命名空间
+        # @param ChartNamespace: 制品命名空间，ChartFrom为tke-market时ChartNamespace不为空，值为DescribeProducts接口反馈的Namespace
         # @type ChartNamespace: String
         # @param ClusterType: 集群类型，支持传 tke, eks, tkeedge, external(注册集群）
         # @type ClusterType: String
@@ -18796,7 +18796,7 @@ module TencentCloud
         # @type Chart: String
         # @param Values: 自定义参数，覆盖chart 中values.yaml 中的参数
         # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
-        # @param ChartFrom: 制品来源，范围：tke-market 或 other默认值：tke-market。
+        # @param ChartFrom: 制品来源，范围：tke-market 或 other 默认值：tke-market，示例值：tke-market
         # @type ChartFrom: String
         # @param ChartVersion: 制品版本( 从第三方安装时，不传这个参数）
         # @type ChartVersion: String
@@ -18806,7 +18806,7 @@ module TencentCloud
         # @type Username: String
         # @param Password: 制品访问密码
         # @type Password: String
-        # @param ChartNamespace: 制品命名空间
+        # @param ChartNamespace: 制品命名空间，ChartFrom为tke-market时ChartNamespace不为空，值为DescribeProducts接口反馈的Namespace
         # @type ChartNamespace: String
         # @param ClusterType: 集群类型，支持传 tke, eks, tkeedge, external(注册集群）
         # @type ClusterType: String
