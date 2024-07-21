@@ -16313,7 +16313,7 @@ module TencentCloud
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
         # @param InstanceRegion: 实例所在地域。
-        # @type InstanceRegion: Array
+        # @type InstanceRegion: String
         # @param InstanceUin: 实例所属的账户uin。
         # @type InstanceUin: String
         # @param State: 关联实例状态：

@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建互通规则
+
+        # @param request: Request instance for AddL3Conn.
+        # @type request: :class:`Tencentcloud::mna::V20210119::AddL3ConnRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::AddL3ConnResponse`
+        def AddL3Conn(request)
+          body = send_request('AddL3Conn', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddL3ConnResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过此接口设置和更新预置密钥
 
         # @param request: Request instance for CreateEncryptedKey.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除互通规则
+
+        # @param request: Request instance for DeleteL3Conn.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteL3ConnRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteL3ConnResponse`
+        def DeleteL3Conn(request)
+          body = send_request('DeleteL3Conn', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteL3ConnResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -533,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取互通规则列表
+
+        # @param request: Request instance for GetL3ConnList.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetL3ConnListRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetL3ConnListResponse`
+        def GetL3ConnList(request)
+          body = send_request('GetL3ConnList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetL3ConnListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量获取设备流量统计曲线
 
         # @param request: Request instance for GetMultiFlowStatistic.
@@ -831,6 +903,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateHardwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新互通规则CIDR
+
+        # @param request: Request instance for UpdateL3Cidr.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateL3CidrRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateL3CidrResponse`
+        def UpdateL3Cidr(request)
+          body = send_request('UpdateL3Cidr', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateL3CidrResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新互通规则备注
+
+        # @param request: Request instance for UpdateL3Conn.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateL3ConnRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateL3ConnResponse`
+        def UpdateL3Conn(request)
+          body = send_request('UpdateL3Conn', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateL3ConnResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新互通规则开关
+
+        # @param request: Request instance for UpdateL3Switch.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateL3SwitchRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateL3SwitchResponse`
+        def UpdateL3Switch(request)
+          body = send_request('UpdateL3Switch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateL3SwitchResponse.new
             model.deserialize(response['Response'])
             model
           else

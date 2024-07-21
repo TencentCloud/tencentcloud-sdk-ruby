@@ -1325,6 +1325,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 进入救援模式
+
+        # @param request: Request instance for EnterRescueMode.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::EnterRescueModeRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::EnterRescueModeResponse`
+        def EnterRescueMode(request)
+          body = send_request('EnterRescueMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnterRescueModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 退出救援模式
+
+        # @param request: Request instance for ExitRescueMode.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::ExitRescueModeRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::ExitRescueModeResponse`
+        def ExitRescueMode(request)
+          body = send_request('ExitRescueMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExitRescueModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供导出自定义镜像到指定COS存储桶的能力
 
         # @param request: Request instance for ExportImages.

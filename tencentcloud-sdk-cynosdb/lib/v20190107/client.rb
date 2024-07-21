@@ -1951,6 +1951,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 资源包使用明细导出
+
+        # @param request: Request instance for ExportResourcePackageDeductDetails.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ExportResourcePackageDeductDetailsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ExportResourcePackageDeductDetailsResponse`
+        def ExportResourcePackageDeductDetails(request)
+          body = send_request('ExportResourcePackageDeductDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportResourcePackageDeductDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量授权账号权限
 
         # @param request: Request instance for GrantAccountPrivileges.
@@ -2657,6 +2681,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyResourcePackageNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改已绑定资源包抵扣优先级
+
+        # @param request: Request instance for ModifyResourcePackagesDeductionPriority.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackagesDeductionPriorityRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackagesDeductionPriorityResponse`
+        def ModifyResourcePackagesDeductionPriority(request)
+          body = send_request('ModifyResourcePackagesDeductionPriority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourcePackagesDeductionPriorityResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -7584,6 +7584,74 @@ module TencentCloud
         end
       end
 
+      # ExportResourcePackageDeductDetails请求参数结构体
+      class ExportResourcePackageDeductDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param PackageId: 需要导出的资源包ID
+        # @type PackageId: String
+        # @param ClusterIds: 使用资源包容量的cynos集群ID
+        # @type ClusterIds: Array
+        # @param OrderBy: 排序字段，目前支持：createTime（资源包被抵扣时间），successDeductSpec（资源包抵扣量）
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型，支持ASC、DESC、asc、desc
+        # @type OrderByType: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Limit: 单次最大导出数据行数，目前最大支持2000行
+        # @type Limit: String
+        # @param Offset: 偏移量页数
+        # @type Offset: String
+        # @param FileType: 导出数据格式，目前仅支持csv格式，留作扩展
+        # @type FileType: String
+
+        attr_accessor :PackageId, :ClusterIds, :OrderBy, :OrderByType, :StartTime, :EndTime, :Limit, :Offset, :FileType
+
+        def initialize(packageid=nil, clusterids=nil, orderby=nil, orderbytype=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, filetype=nil)
+          @PackageId = packageid
+          @ClusterIds = clusterids
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @FileType = filetype
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @ClusterIds = params['ClusterIds']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @FileType = params['FileType']
+        end
+      end
+
+      # ExportResourcePackageDeductDetails返回参数结构体
+      class ExportResourcePackageDeductDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param FileContent: 文件详情
+        # @type FileContent: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileContent, :RequestId
+
+        def initialize(filecontent=nil, requestid=nil)
+          @FileContent = filecontent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileContent = params['FileContent']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GrantAccountPrivileges请求参数结构体
       class GrantAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -9889,6 +9957,53 @@ module TencentCloud
         end
       end
 
+      # ModifyResourcePackagesDeductionPriority请求参数结构体
+      class ModifyResourcePackagesDeductionPriorityRequest < TencentCloud::Common::AbstractModel
+        # @param PackageType: 需要修改优先级的资源包类型，CCU：计算资源包，DISK：存储资源包
+        # @type PackageType: String
+        # @param ClusterId: 修改后的抵扣优先级对于哪个cynos资源生效
+        # @type ClusterId: String
+        # @param DeductionPriorities: 资源包抵扣优先级
+        # @type DeductionPriorities: Array
+
+        attr_accessor :PackageType, :ClusterId, :DeductionPriorities
+
+        def initialize(packagetype=nil, clusterid=nil, deductionpriorities=nil)
+          @PackageType = packagetype
+          @ClusterId = clusterid
+          @DeductionPriorities = deductionpriorities
+        end
+
+        def deserialize(params)
+          @PackageType = params['PackageType']
+          @ClusterId = params['ClusterId']
+          unless params['DeductionPriorities'].nil?
+            @DeductionPriorities = []
+            params['DeductionPriorities'].each do |i|
+              packagepriority_tmp = PackagePriority.new
+              packagepriority_tmp.deserialize(i)
+              @DeductionPriorities << packagepriority_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyResourcePackagesDeductionPriority返回参数结构体
+      class ModifyResourcePackagesDeductionPriorityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVipVport请求参数结构体
       class ModifyVipVportRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -10609,6 +10724,26 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @ExtendInfo = params['ExtendInfo']
+        end
+      end
+
+      # 资源包抵扣优先级
+      class PackagePriority < TencentCloud::Common::AbstractModel
+        # @param PackageId: 需要自定义抵扣优先级的资源包
+        # @type PackageId: String
+        # @param DeductionPriority: 自定义的抵扣优先级
+        # @type DeductionPriority: Integer
+
+        attr_accessor :PackageId, :DeductionPriority
+
+        def initialize(packageid=nil, deductionpriority=nil)
+          @PackageId = packageid
+          @DeductionPriority = deductionpriority
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @DeductionPriority = params['DeductionPriority']
         end
       end
 

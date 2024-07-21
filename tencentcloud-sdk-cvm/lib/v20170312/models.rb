@@ -3618,6 +3618,82 @@ module TencentCloud
         end
       end
 
+      # EnterRescueMode请求参数结构体
+      class EnterRescueModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要进入救援模式的实例id
+        # @type InstanceId: String
+        # @param Password: 救援模式下系统密码
+        # @type Password: String
+        # @param Username: 救援模式下系统用户名
+        # @type Username: String
+        # @param ForceStop: 是否强制关机
+        # @type ForceStop: Boolean
+
+        attr_accessor :InstanceId, :Password, :Username, :ForceStop
+
+        def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil)
+          @InstanceId = instanceid
+          @Password = password
+          @Username = username
+          @ForceStop = forcestop
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Password = params['Password']
+          @Username = params['Username']
+          @ForceStop = params['ForceStop']
+        end
+      end
+
+      # EnterRescueMode返回参数结构体
+      class EnterRescueModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExitRescueMode请求参数结构体
+      class ExitRescueModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 退出救援模式的实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ExitRescueMode返回参数结构体
+      class ExitRescueModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExportImages请求参数结构体
       class ExportImagesRequest < TencentCloud::Common::AbstractModel
         # @param BucketName: COS存储桶名称

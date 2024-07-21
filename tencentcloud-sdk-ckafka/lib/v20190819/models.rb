@@ -9266,6 +9266,85 @@ module TencentCloud
         end
       end
 
+      # ModifyRoutineMaintenanceTask请求参数结构体
+      class ModifyRoutineMaintenanceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param MaintenanceType: 自动化运维类别
+        # @type MaintenanceType: String
+        # @param MaintenanceSubtype: 自动化运维子类别
+        # @type MaintenanceSubtype: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param ConfigureThreshold: 任务触发阈值
+        # @type ConfigureThreshold: Integer
+        # @param ConfigureStepSize: 任务调整步长
+        # @type ConfigureStepSize: Integer
+        # @param ConfigureLimit: 任务调整上限
+        # @type ConfigureLimit: Integer
+        # @param PlannedTime: 任务预期触发时间，存储从当日 0AM 开始偏移的秒数
+        # @type PlannedTime: Integer
+        # @param ExtraConfig: 任务额外信息
+        # @type ExtraConfig: String
+        # @param Status: 任务状态
+        # @type Status: Integer
+        # @param Week: 执行week day
+        # @type Week: String
+
+        attr_accessor :InstanceId, :MaintenanceType, :MaintenanceSubtype, :TopicName, :ConfigureThreshold, :ConfigureStepSize, :ConfigureLimit, :PlannedTime, :ExtraConfig, :Status, :Week
+
+        def initialize(instanceid=nil, maintenancetype=nil, maintenancesubtype=nil, topicname=nil, configurethreshold=nil, configurestepsize=nil, configurelimit=nil, plannedtime=nil, extraconfig=nil, status=nil, week=nil)
+          @InstanceId = instanceid
+          @MaintenanceType = maintenancetype
+          @MaintenanceSubtype = maintenancesubtype
+          @TopicName = topicname
+          @ConfigureThreshold = configurethreshold
+          @ConfigureStepSize = configurestepsize
+          @ConfigureLimit = configurelimit
+          @PlannedTime = plannedtime
+          @ExtraConfig = extraconfig
+          @Status = status
+          @Week = week
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MaintenanceType = params['MaintenanceType']
+          @MaintenanceSubtype = params['MaintenanceSubtype']
+          @TopicName = params['TopicName']
+          @ConfigureThreshold = params['ConfigureThreshold']
+          @ConfigureStepSize = params['ConfigureStepSize']
+          @ConfigureLimit = params['ConfigureLimit']
+          @PlannedTime = params['PlannedTime']
+          @ExtraConfig = params['ExtraConfig']
+          @Status = params['Status']
+          @Week = params['Week']
+        end
+      end
+
+      # ModifyRoutineMaintenanceTask返回参数结构体
+      class ModifyRoutineMaintenanceTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTopicAttributes请求参数结构体
       class ModifyTopicAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。

@@ -311,6 +311,58 @@ module TencentCloud
         end
       end
 
+      # AddL3Conn请求参数结构体
+      class AddL3ConnRequest < TencentCloud::Common::AbstractModel
+        # @param Cidr1: 设置互通网段CIDR1，支持： 10.0.0.0 - 10.255.255.255，172.16.0.0 - 172.31.255.255，192.168.0.0 - 192.168.255.255
+        # @type Cidr1: String
+        # @param Cidr2: 设置互通网段CIDR2，支持： 10.0.0.0 - 10.255.255.255，172.16.0.0 - 172.31.255.255，192.168.0.0 - 192.168.255.255
+        # @type Cidr2: String
+        # @param DeviceId1: CIDR1对应的设备ID
+        # @type DeviceId1: String
+        # @param DeviceId2: CIDR2对应的设备ID
+        # @type DeviceId2: String
+        # @param Description: 规则描述
+        # @type Description: String
+
+        attr_accessor :Cidr1, :Cidr2, :DeviceId1, :DeviceId2, :Description
+
+        def initialize(cidr1=nil, cidr2=nil, deviceid1=nil, deviceid2=nil, description=nil)
+          @Cidr1 = cidr1
+          @Cidr2 = cidr2
+          @DeviceId1 = deviceid1
+          @DeviceId2 = deviceid2
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Cidr1 = params['Cidr1']
+          @Cidr2 = params['Cidr2']
+          @DeviceId1 = params['DeviceId1']
+          @DeviceId2 = params['DeviceId2']
+          @Description = params['Description']
+        end
+      end
+
+      # AddL3Conn返回参数结构体
+      class AddL3ConnResponse < TencentCloud::Common::AbstractModel
+        # @param L3ConnId: 互通规则ID
+        # @type L3ConnId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :L3ConnId, :RequestId
+
+        def initialize(l3connid=nil, requestid=nil)
+          @L3ConnId = l3connid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @L3ConnId = params['L3ConnId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 接口能力扩展，用于填充电信的加速Token，并为未来参数提供兼容空间
       class Capacity < TencentCloud::Common::AbstractModel
         # @param CTCCToken: 电信鉴权的Token。要加速的电信手机终端访问 http://qos.189.cn/qos-api/getToken?appid=TencentCloud 页面，获取返回结果中result的值
@@ -548,6 +600,38 @@ module TencentCloud
 
       # DeleteGroup返回参数结构体
       class DeleteGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteL3Conn请求参数结构体
+      class DeleteL3ConnRequest < TencentCloud::Common::AbstractModel
+        # @param L3ConnIdList: 互通规则ID列表
+        # @type L3ConnIdList: Array
+
+        attr_accessor :L3ConnIdList
+
+        def initialize(l3connidlist=nil)
+          @L3ConnIdList = l3connidlist
+        end
+
+        def deserialize(params)
+          @L3ConnIdList = params['L3ConnIdList']
+        end
+      end
+
+      # DeleteL3Conn返回参数结构体
+      class DeleteL3ConnResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1778,6 +1862,65 @@ module TencentCloud
         end
       end
 
+      # GetL3ConnList请求参数结构体
+      class GetL3ConnListRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageSize: Integer
+        # @param PageNumber: 当前查看页码，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # @type PageNumber: Integer
+        # @param DeviceId: 搜索分组的DeviceId，为空时匹配所有分组
+        # @type DeviceId: String
+
+        attr_accessor :PageSize, :PageNumber, :DeviceId
+
+        def initialize(pagesize=nil, pagenumber=nil, deviceid=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetL3ConnList返回参数结构体
+      class GetL3ConnListResponse < TencentCloud::Common::AbstractModel
+        # @param L3ConnList: 互通规则列表
+        # @type L3ConnList: Array
+        # @param Length: 设备总记录条数
+        # @type Length: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :L3ConnList, :Length, :TotalPage, :RequestId
+
+        def initialize(l3connlist=nil, length=nil, totalpage=nil, requestid=nil)
+          @L3ConnList = l3connlist
+          @Length = length
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['L3ConnList'].nil?
+            @L3ConnList = []
+            params['L3ConnList'].each do |i|
+              l3conninfo_tmp = L3ConnInfo.new
+              l3conninfo_tmp.deserialize(i)
+              @L3ConnList << l3conninfo_tmp
+            end
+          end
+          @Length = params['Length']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetMultiFlowStatistic请求参数结构体
       class GetMultiFlowStatisticRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIds: 设备id列表，单次最多请求10个设备
@@ -2315,6 +2458,47 @@ module TencentCloud
         end
       end
 
+      # 三层互通规则信息
+      class L3ConnInfo < TencentCloud::Common::AbstractModel
+        # @param L3ConnId: 互通规则ID
+        # @type L3ConnId: String
+        # @param DeviceId1: 互通设备ID
+        # @type DeviceId1: String
+        # @param Cidr1: 互通规则CIDR
+        # @type Cidr1: String
+        # @param DeviceId2: 互通设备ID
+        # @type DeviceId2: String
+        # @param Cidr2: 互通规则CIDR
+        # @type Cidr2: String
+        # @param Enable: 互通规则启用状态
+        # @type Enable: Boolean
+        # @param Description: 互通规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :L3ConnId, :DeviceId1, :Cidr1, :DeviceId2, :Cidr2, :Enable, :Description
+
+        def initialize(l3connid=nil, deviceid1=nil, cidr1=nil, deviceid2=nil, cidr2=nil, enable=nil, description=nil)
+          @L3ConnId = l3connid
+          @DeviceId1 = deviceid1
+          @Cidr1 = cidr1
+          @DeviceId2 = deviceid2
+          @Cidr2 = cidr2
+          @Enable = enable
+          @Description = description
+        end
+
+        def deserialize(params)
+          @L3ConnId = params['L3ConnId']
+          @DeviceId1 = params['DeviceId1']
+          @Cidr1 = params['Cidr1']
+          @DeviceId2 = params['DeviceId2']
+          @Cidr2 = params['Cidr2']
+          @Enable = params['Enable']
+          @Description = params['Description']
+        end
+      end
+
       # ModifyPackageRenewFlag请求参数结构体
       class ModifyPackageRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 流量包的唯一资源ID
@@ -2714,6 +2898,126 @@ module TencentCloud
 
       # UpdateHardware返回参数结构体
       class UpdateHardwareResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateL3Cidr请求参数结构体
+      class UpdateL3CidrRequest < TencentCloud::Common::AbstractModel
+        # @param L3ConnId: 互通规则ID
+        # @type L3ConnId: String
+        # @param Cidr1: 互通规则CIDR
+        # @type Cidr1: String
+        # @param DeviceId1: 互通设备ID
+        # @type DeviceId1: String
+        # @param DeviceId2: 互通设备ID
+        # @type DeviceId2: String
+        # @param Cidr2: 互通规则CIDR
+        # @type Cidr2: String
+
+        attr_accessor :L3ConnId, :Cidr1, :DeviceId1, :DeviceId2, :Cidr2
+
+        def initialize(l3connid=nil, cidr1=nil, deviceid1=nil, deviceid2=nil, cidr2=nil)
+          @L3ConnId = l3connid
+          @Cidr1 = cidr1
+          @DeviceId1 = deviceid1
+          @DeviceId2 = deviceid2
+          @Cidr2 = cidr2
+        end
+
+        def deserialize(params)
+          @L3ConnId = params['L3ConnId']
+          @Cidr1 = params['Cidr1']
+          @DeviceId1 = params['DeviceId1']
+          @DeviceId2 = params['DeviceId2']
+          @Cidr2 = params['Cidr2']
+        end
+      end
+
+      # UpdateL3Cidr返回参数结构体
+      class UpdateL3CidrResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateL3Conn请求参数结构体
+      class UpdateL3ConnRequest < TencentCloud::Common::AbstractModel
+        # @param L3ConnId: 互通规则ID
+        # @type L3ConnId: String
+        # @param Description: 互通规则备注
+        # @type Description: String
+
+        attr_accessor :L3ConnId, :Description
+
+        def initialize(l3connid=nil, description=nil)
+          @L3ConnId = l3connid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @L3ConnId = params['L3ConnId']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateL3Conn返回参数结构体
+      class UpdateL3ConnResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateL3Switch请求参数结构体
+      class UpdateL3SwitchRequest < TencentCloud::Common::AbstractModel
+        # @param L3ConnId: 互通规则ID
+        # @type L3ConnId: String
+        # @param Enable: 互通规则开关
+        # @type Enable: Boolean
+
+        attr_accessor :L3ConnId, :Enable
+
+        def initialize(l3connid=nil, enable=nil)
+          @L3ConnId = l3connid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @L3ConnId = params['L3ConnId']
+          @Enable = params['Enable']
+        end
+      end
+
+      # UpdateL3Switch返回参数结构体
+      class UpdateL3SwitchResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

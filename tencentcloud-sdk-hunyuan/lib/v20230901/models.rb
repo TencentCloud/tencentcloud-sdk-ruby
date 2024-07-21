@@ -81,10 +81,12 @@ module TencentCloud
         # @type ToolChoice: String
         # @param CustomTool: 强制模型调用指定的工具，当参数ToolChoice为custom时，此参数为必填
         # @type CustomTool: :class:`Tencentcloud::Hunyuan.v20230901.models.Tool`
+        # @param SearchInfo: 默认是false，在值为true且命中搜索时，接口会返回SearchInfo
+        # @type SearchInfo: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -95,6 +97,7 @@ module TencentCloud
           @Tools = tools
           @ToolChoice = toolchoice
           @CustomTool = customtool
+          @SearchInfo = searchinfo
         end
 
         def deserialize(params)
@@ -125,6 +128,7 @@ module TencentCloud
             @CustomTool = Tool.new
             @CustomTool.deserialize(params['CustomTool'])
           end
+          @SearchInfo = params['SearchInfo']
         end
       end
 
@@ -147,12 +151,14 @@ module TencentCloud
         # @type ErrorMsg: :class:`Tencentcloud::Hunyuan.v20230901.models.ErrorMsg`
         # @param ModerationLevel: 多轮会话风险审核，值为1时，表明存在信息安全风险，建议终止客户多轮会话。
         # @type ModerationLevel: String
+        # @param SearchInfo: 搜索结果信息
+        # @type SearchInfo: :class:`Tencentcloud::Hunyuan.v20230901.models.SearchInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :RequestId
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :RequestId
 
-        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, requestid=nil)
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, requestid=nil)
           @Created = created
           @Usage = usage
           @Note = note
@@ -160,6 +166,7 @@ module TencentCloud
           @Choices = choices
           @ErrorMsg = errormsg
           @ModerationLevel = moderationlevel
+          @SearchInfo = searchinfo
           @RequestId = requestid
         end
 
@@ -184,6 +191,10 @@ module TencentCloud
             @ErrorMsg.deserialize(params['ErrorMsg'])
           end
           @ModerationLevel = params['ModerationLevel']
+          unless params['SearchInfo'].nil?
+            @SearchInfo = SearchInfo.new
+            @SearchInfo.deserialize(params['SearchInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -578,6 +589,57 @@ module TencentCloud
         end
       end
 
+      # 搜索结果信息
+      class SearchInfo < TencentCloud::Common::AbstractModel
+        # @param SearchResults: 搜索引文信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchResults: Array
+
+        attr_accessor :SearchResults
+
+        def initialize(searchresults=nil)
+          @SearchResults = searchresults
+        end
+
+        def deserialize(params)
+          unless params['SearchResults'].nil?
+            @SearchResults = []
+            params['SearchResults'].each do |i|
+              searchresult_tmp = SearchResult.new
+              searchresult_tmp.deserialize(i)
+              @SearchResults << searchresult_tmp
+            end
+          end
+        end
+      end
+
+      # 搜索引文信息
+      class SearchResult < TencentCloud::Common::AbstractModel
+        # @param Index: 搜索引文序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+        # @param Title: 搜索引文标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Url: 搜索引文链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Index, :Title, :Url
+
+        def initialize(index=nil, title=nil, url=nil)
+          @Index = index
+          @Title = title
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Title = params['Title']
+          @Url = params['Url']
+        end
+      end
+
       # SubmitHunyuanImageJob请求参数结构体
       class SubmitHunyuanImageJobRequest < TencentCloud::Common::AbstractModel
         # @param Prompt: 文本描述。
@@ -653,8 +715,7 @@ module TencentCloud
         # 推荐使用中文。最多可传256个 utf-8 字符。
         # @type NegativePrompt: String
         # @param Style: 绘画风格。
-        # 请在 [智能文生图风格列表](https://cloud.tencent.com/document/product/1668/86249) 中选择期望的风格，传入风格编号。
-        # 推荐使用且只使用一种风格。不传默认使用201（日系动漫风格）。
+        # 请在 [文生图轻量版风格列表](https://cloud.tencent.com/document/product/1729/108992) 中选择期望的风格，传入风格编号。不传默认使用201（日系动漫风格）。
         # @type Style: String
         # @param Resolution: 生成图分辨率。
         # 支持生成以下分辨率的图片：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1）、720:1280（9:16）、1280:720（16:9）、768:1280（3:5）、1280:768（5:3）、1080:1920（9:16）、1920:1080（16:9），不传默认使用768:768。
@@ -691,7 +752,9 @@ module TencentCloud
 
       # TextToImageLite返回参数结构体
       class TextToImageLiteResponse < TencentCloud::Common::AbstractModel
-        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。如果传入 base64 则返回生成图 Base64 编码。如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
         # @type ResultImage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

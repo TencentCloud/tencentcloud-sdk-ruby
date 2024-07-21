@@ -5160,16 +5160,22 @@ module TencentCloud
         # @type IsOffline: Boolean
         # @param CvmDelayOnlineTime: cvm延迟上架时间
         # @type CvmDelayOnlineTime: Integer
+        # @param ShardAllocationConcurrents: 分片迁移并发数
+        # @type ShardAllocationConcurrents: Integer
+        # @param ShardAllocationBytes: 分片迁移并发速度
+        # @type ShardAllocationBytes: Integer
 
-        attr_accessor :InstanceId, :NodeNames, :ForceRestart, :RestartMode, :IsOffline, :CvmDelayOnlineTime
+        attr_accessor :InstanceId, :NodeNames, :ForceRestart, :RestartMode, :IsOffline, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes
 
-        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil, restartmode=nil, isoffline=nil, cvmdelayonlinetime=nil)
+        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil, restartmode=nil, isoffline=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil)
           @InstanceId = instanceid
           @NodeNames = nodenames
           @ForceRestart = forcerestart
           @RestartMode = restartmode
           @IsOffline = isoffline
           @CvmDelayOnlineTime = cvmdelayonlinetime
+          @ShardAllocationConcurrents = shardallocationconcurrents
+          @ShardAllocationBytes = shardallocationbytes
         end
 
         def deserialize(params)
@@ -5179,6 +5185,8 @@ module TencentCloud
           @RestartMode = params['RestartMode']
           @IsOffline = params['IsOffline']
           @CvmDelayOnlineTime = params['CvmDelayOnlineTime']
+          @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
+          @ShardAllocationBytes = params['ShardAllocationBytes']
         end
       end
 
@@ -6618,10 +6626,14 @@ module TencentCloud
         # @type SkipCheckForceRestart: Boolean
         # @param CvmDelayOnlineTime: cvm延迟上架参数
         # @type CvmDelayOnlineTime: Integer
+        # @param ShardAllocationConcurrents: 分片迁移并发数
+        # @type ShardAllocationConcurrents: Integer
+        # @param ShardAllocationBytes: 分片迁移并发速度
+        # @type ShardAllocationBytes: Integer
 
-        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup, :SkipCheckForceRestart, :CvmDelayOnlineTime
+        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup, :SkipCheckForceRestart, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes
 
-        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil, skipcheckforcerestart=nil, cvmdelayonlinetime=nil)
+        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil, skipcheckforcerestart=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil)
           @InstanceId = instanceid
           @EsVersion = esversion
           @CheckOnly = checkonly
@@ -6631,6 +6643,8 @@ module TencentCloud
           @CosBackup = cosbackup
           @SkipCheckForceRestart = skipcheckforcerestart
           @CvmDelayOnlineTime = cvmdelayonlinetime
+          @ShardAllocationConcurrents = shardallocationconcurrents
+          @ShardAllocationBytes = shardallocationbytes
         end
 
         def deserialize(params)
@@ -6643,6 +6657,8 @@ module TencentCloud
           @CosBackup = params['CosBackup']
           @SkipCheckForceRestart = params['SkipCheckForceRestart']
           @CvmDelayOnlineTime = params['CvmDelayOnlineTime']
+          @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
+          @ShardAllocationBytes = params['ShardAllocationBytes']
         end
       end
 
