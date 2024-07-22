@@ -5627,7 +5627,8 @@ module TencentCloud
         # @param Operation: 默认不根据该字段进行筛选，否则根据设备操作类型进行筛选，目前值有：BatchDeleteUserDevice，BatchDisableDevice，BatchEnableDevice，
         # BatchUpgradeDevice，
         # BatchResetDevice,
-        # BatchRebootDevice
+        # BatchRebootDevice,
+        # BatchRefreshDeviceChannel
         # @type Operation: String
         # @param Status: 默认不根据该字段进行筛选，否则根据任务状态进行筛选。状态码：1-未执行，2-执行中，3-完成，4-取消
         # @type Status: Integer

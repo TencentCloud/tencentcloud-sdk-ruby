@@ -4282,10 +4282,12 @@ module TencentCloud
         # @type UseOldSystemConnector: Boolean
         # @param CustomTimestamp: 自定义时间戳
         # @type CustomTimestamp: Integer
+        # @param KafkaScanMode: timestamp; latest-offset;  earliest-offset; 任选一种
+        # @type KafkaScanMode: String
 
-        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector, :CustomTimestamp
+        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector, :CustomTimestamp, :KafkaScanMode
 
-        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil, useoldsystemconnector=nil, customtimestamp=nil)
+        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil, useoldsystemconnector=nil, customtimestamp=nil, kafkascanmode=nil)
           @JobId = jobid
           @RunType = runtype
           @StartMode = startmode
@@ -4294,6 +4296,7 @@ module TencentCloud
           @SavepointId = savepointid
           @UseOldSystemConnector = useoldsystemconnector
           @CustomTimestamp = customtimestamp
+          @KafkaScanMode = kafkascanmode
         end
 
         def deserialize(params)
@@ -4305,6 +4308,7 @@ module TencentCloud
           @SavepointId = params['SavepointId']
           @UseOldSystemConnector = params['UseOldSystemConnector']
           @CustomTimestamp = params['CustomTimestamp']
+          @KafkaScanMode = params['KafkaScanMode']
         end
       end
 

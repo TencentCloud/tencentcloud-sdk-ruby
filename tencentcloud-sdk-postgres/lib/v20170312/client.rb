@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于创建数据账号，返回的Oid为账号唯一标识。与数据库系统表pg_roles中记录的oid一致。
+
+        # @param request: Request instance for CreateAccount.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateAccountRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateAccountResponse`
+        def CreateAccount(request)
+          body = send_request('CreateAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateBaseBackup）用于创建实例的数据备份。
 
         # @param request: Request instance for CreateBaseBackup.
@@ -343,6 +367,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于删除数据库账号，需要同时输入Oid与UserName，避免误删。
+
+        # @param request: Request instance for DeleteAccount.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteAccountRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteAccountResponse`
+        def DeleteAccount(request)
+          body = send_request('DeleteAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteBaseBackup）用于删除实例指定数据备份。
 
         # @param request: Request instance for DeleteBaseBackup.
@@ -497,6 +545,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteServerlessDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询数据库账号对某数据库对象拥有的权限列表。
+
+        # @param request: Request instance for DescribeAccountPrivileges.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeAccountPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeAccountPrivilegesResponse`
+        def DescribeAccountPrivileges(request)
+          body = send_request('DescribeAccountPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountPrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -979,6 +1051,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBXlogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询数据库对象列表。例如查询test数据库下的模式列表。
+
+        # @param request: Request instance for DescribeDatabaseObjects.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDatabaseObjectsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDatabaseObjectsResponse`
+        def DescribeDatabaseObjects(request)
+          body = send_request('DescribeDatabaseObjects', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseObjectsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1507,6 +1603,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = IsolateDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于锁定数据库账号，锁定后账号当前连接会断开，并且无法建立新连接。
+
+        # @param request: Request instance for LockAccount.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::LockAccountRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::LockAccountResponse`
+        def LockAccount(request)
+          body = send_request('LockAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LockAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改某账号对某数据库对象的权限、修改账号类型。
+
+        # @param request: Request instance for ModifyAccountPrivileges.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyAccountPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyAccountPrivilegesResponse`
+        def ModifyAccountPrivileges(request)
+          body = send_request('ModifyAccountPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountPrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2136,6 +2280,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchDBInstancePrimaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解除数据库账号的锁定，解锁后账号可以登陆数据库。
+
+        # @param request: Request instance for UnlockAccount.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::UnlockAccountRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::UnlockAccountResponse`
+        def UnlockAccount(request)
+          body = send_request('UnlockAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnlockAccountResponse.new
             model.deserialize(response['Response'])
             model
           else

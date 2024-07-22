@@ -13713,15 +13713,18 @@ module TencentCloud
         # @type UpgradeSubversion: Integer
         # @param MaxDelayTime: 延迟阈值。取值范围1~10
         # @type MaxDelayTime: Integer
+        # @param ParamList: 版本升级支持指定参数
+        # @type ParamList: Array
 
-        attr_accessor :InstanceId, :EngineVersion, :WaitSwitch, :UpgradeSubversion, :MaxDelayTime
+        attr_accessor :InstanceId, :EngineVersion, :WaitSwitch, :UpgradeSubversion, :MaxDelayTime, :ParamList
 
-        def initialize(instanceid=nil, engineversion=nil, waitswitch=nil, upgradesubversion=nil, maxdelaytime=nil)
+        def initialize(instanceid=nil, engineversion=nil, waitswitch=nil, upgradesubversion=nil, maxdelaytime=nil, paramlist=nil)
           @InstanceId = instanceid
           @EngineVersion = engineversion
           @WaitSwitch = waitswitch
           @UpgradeSubversion = upgradesubversion
           @MaxDelayTime = maxdelaytime
+          @ParamList = paramlist
         end
 
         def deserialize(params)
@@ -13730,6 +13733,14 @@ module TencentCloud
           @WaitSwitch = params['WaitSwitch']
           @UpgradeSubversion = params['UpgradeSubversion']
           @MaxDelayTime = params['MaxDelayTime']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              upgradeengineversionparams_tmp = UpgradeEngineVersionParams.new
+              upgradeengineversionparams_tmp.deserialize(i)
+              @ParamList << upgradeengineversionparams_tmp
+            end
+          end
         end
       end
 
@@ -13857,6 +13868,28 @@ module TencentCloud
           @DealIds = params['DealIds']
           @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 5.7升级8.0指定参数的结构
+      class UpgradeEngineVersionParams < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

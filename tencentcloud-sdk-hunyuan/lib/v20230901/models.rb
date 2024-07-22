@@ -617,7 +617,7 @@ module TencentCloud
       class SearchResult < TencentCloud::Common::AbstractModel
         # @param Index: 搜索引文序号
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Index: String
+        # @type Index: Integer
         # @param Title: 搜索引文标题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String

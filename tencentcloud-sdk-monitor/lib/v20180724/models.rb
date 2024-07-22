@@ -7568,14 +7568,17 @@ module TencentCloud
 
       # DescribePrometheusAlertPolicy请求参数结构体
       class DescribePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param Offset: 分页
+        # @param Offset: 分页偏移量，默认为0。 示例值：1
         # @type Offset: Integer
-        # @param Limit: 分页
+        # @param Limit: 分页返回数量，默认为20，最大值为100
         # @type Limit: Integer
-        # @param Filters: 过滤
-        # 支持ID，Name
+        # @param Filters: 仅支持按Name, Values字段过滤:
+        # - Name = Name
+        #   按照给定的告警规则名称列表匹配
+        # - Name = ID
+        #   按照给定的告警规则ID列表匹配
         # @type Filters: Array
 
         attr_accessor :InstanceId, :Offset, :Limit, :Filters
@@ -8377,13 +8380,18 @@ module TencentCloud
 
       # DescribePrometheusRecordRules请求参数结构体
       class DescribePrometheusRecordRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例ID
+
+        # 示例值：prom-343kafd34
         # @type InstanceId: String
-        # @param Offset: 分页
+        # @param Offset: 偏移量，默认为0。 示例值：1
         # @type Offset: Integer
-        # @param Limit: 分页
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # 示例值：1
         # @type Limit: Integer
-        # @param Filters: 过滤
+        # @param Filters: 仅支持按Name, Values字段过滤:
+        # - Name = Name
+        #   按照给定的预聚合名称列表匹配
         # @type Filters: Array
 
         attr_accessor :InstanceId, :Offset, :Limit, :Filters
@@ -8625,15 +8633,19 @@ module TencentCloud
 
       # DescribePrometheusTemp请求参数结构体
       class DescribePrometheusTempRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 模糊过滤条件，支持
-        # Level 按模板级别过滤
-        # Name 按名称过滤
-        # Describe 按描述过滤
-        # ID 按templateId过滤
+        # @param Filters: 仅支持按Name, Values字段过滤:
+        # * Name = Name
+        #   按照给定的模板名称列表匹配
+        # * Name = ID
+        #   按照给定的模板ID列表匹配
+        # * Name = Describe
+        #   按照给定的模板描述列表匹配
+        # * Name = Level
+        #   按照给定的模板维度(instance, cluster)列表匹配
         # @type Filters: Array
         # @param Offset: 分页偏移量，默认为0
         # @type Offset: Integer
-        # @param Limit: 总数限制
+        # @param Limit: 分页返回数量，默认为20，最大值为100
         # @type Limit: Integer
 
         attr_accessor :Filters, :Offset, :Limit
@@ -10999,9 +11011,9 @@ module TencentCloud
 
       # ModifyPrometheusAlertPolicy请求参数结构体
       class ModifyPrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
-        # @param AlertRule: 告警配置
+        # @param AlertRule: 告警配置，[具体参考](https://cloud.tencent.com/document/api/248/30354#PrometheusAlertPolicyItem)
         # @type AlertRule: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertPolicyItem`
 
         attr_accessor :InstanceId, :AlertRule

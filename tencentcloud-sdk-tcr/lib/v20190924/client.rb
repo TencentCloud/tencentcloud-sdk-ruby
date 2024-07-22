@@ -1495,7 +1495,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询所有实例命名空间列表
+        # 查询所有有实例命名空间列表
 
         # @param request: Request instance for DescribeInstanceAllNamespaces.
         # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeInstanceAllNamespacesRequest`
@@ -1999,7 +1999,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询版本保留规则
+        # 查询镜像版本保留规则
 
         # @param request: Request instance for DescribeTagRetentionRules.
         # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionRulesRequest`

@@ -4295,6 +4295,68 @@ module TencentCloud
         end
       end
 
+      # CreatePartnerAutoSignAuthUrl请求参数结构体
+      class CreatePartnerAutoSignAuthUrlRequest < TencentCloud::Common::AbstractModel
+        # @param AuthorizedOrganizationId: 被授企业id
+        # @type AuthorizedOrganizationId: String
+        # @param SealTypes: 指定印章类型，指定后只能选择该类型的印章进行授权支持以下印章类型：- OFFICIAL : 企业公章- CONTRACT : 合同专用章- FINANCE : 财务专用章- PERSONNEL : 人事专用章
+        # @type SealTypes: Array
+        # @param Agent: 代理企业和员工的信息。<br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Operator: 执行本接口操作的员工信息。<br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+
+        attr_accessor :AuthorizedOrganizationId, :SealTypes, :Agent, :Operator
+
+        def initialize(authorizedorganizationid=nil, sealtypes=nil, agent=nil, operator=nil)
+          @AuthorizedOrganizationId = authorizedorganizationid
+          @SealTypes = sealtypes
+          @Agent = agent
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
+          @SealTypes = params['SealTypes']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # CreatePartnerAutoSignAuthUrl返回参数结构体
+      class CreatePartnerAutoSignAuthUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 授权链接，以短链形式返回，短链的有效期参考回参中的 ExpiredTime。
+        # @type Url: String
+        # @param MiniAppPath: 从客户小程序或者客户APP跳转至腾讯电子签小程序进行批量签署的跳转路径
+        # @type MiniAppPath: String
+        # @param ExpireTime: 链接过期时间以 Unix 时间戳格式表示，从生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :MiniAppPath, :ExpireTime, :RequestId
+
+        def initialize(url=nil, miniapppath=nil, expiretime=nil, requestid=nil)
+          @Url = url
+          @MiniAppPath = miniapppath
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @MiniAppPath = params['MiniAppPath']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePersonAuthCertificateImage请求参数结构体
       class CreatePersonAuthCertificateImageRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。

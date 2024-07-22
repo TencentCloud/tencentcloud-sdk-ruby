@@ -4287,10 +4287,13 @@ module TencentCloud
         # @param SkillGroupType: 技能组类型0-电话，1-在线，3-音频，4-视频
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupType: Integer
+        # @param Alias: 技能组内线号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
 
-        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType
+        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType, :Alias
 
-        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil, skillgrouptype=nil)
+        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil, skillgrouptype=nil, _alias=nil)
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
           @Type = type
@@ -4299,6 +4302,7 @@ module TencentCloud
           @MaxConcurrency = maxconcurrency
           @LastModifyTimestamp = lastmodifytimestamp
           @SkillGroupType = skillgrouptype
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -4310,6 +4314,7 @@ module TencentCloud
           @MaxConcurrency = params['MaxConcurrency']
           @LastModifyTimestamp = params['LastModifyTimestamp']
           @SkillGroupType = params['SkillGroupType']
+          @Alias = params['Alias']
         end
       end
 

@@ -522,16 +522,25 @@ module TencentCloud
         # @type SignatureId: String
         # @param SignatureIds: 加白的规则ID列表
         # @type SignatureIds: Array
+        # @param TypeIds: 加白的大类规则ID
+        # @type TypeIds: Array
+        # @param Mode: 0:按照特定规则ID加白, 1:按照规则类型加白
+        # @type Mode: Integer
+        # @param Name: 规则名
+        # @type Name: String
 
-        attr_accessor :Domain, :Status, :Rules, :RuleId, :SignatureId, :SignatureIds
+        attr_accessor :Domain, :Status, :Rules, :RuleId, :SignatureId, :SignatureIds, :TypeIds, :Mode, :Name
 
-        def initialize(domain=nil, status=nil, rules=nil, ruleid=nil, signatureid=nil, signatureids=nil)
+        def initialize(domain=nil, status=nil, rules=nil, ruleid=nil, signatureid=nil, signatureids=nil, typeids=nil, mode=nil, name=nil)
           @Domain = domain
           @Status = status
           @Rules = rules
           @RuleId = ruleid
           @SignatureId = signatureid
           @SignatureIds = signatureids
+          @TypeIds = typeids
+          @Mode = mode
+          @Name = name
         end
 
         def deserialize(params)
@@ -548,6 +557,9 @@ module TencentCloud
           @RuleId = params['RuleId']
           @SignatureId = params['SignatureId']
           @SignatureIds = params['SignatureIds']
+          @TypeIds = params['TypeIds']
+          @Mode = params['Mode']
+          @Name = params['Name']
         end
       end
 
@@ -1253,10 +1265,22 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
+        # @param JobType: 定时任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobType: String
+        # @param CronType: 周期任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronType: String
+        # @param JobDateTime: 定时任务配置详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param ValidStatus: 生效状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidStatus: Integer
 
-        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus
 
-        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil)
           @Id = id
           @ActionType = actiontype
           @Ip = ip
@@ -1268,6 +1292,10 @@ module TencentCloud
           @RuleId = ruleid
           @IpList = iplist
           @CreateTime = createtime
+          @JobType = jobtype
+          @CronType = crontype
+          @JobDateTime = jobdatetime
+          @ValidStatus = validstatus
         end
 
         def deserialize(params)
@@ -1282,6 +1310,13 @@ module TencentCloud
           @RuleId = params['RuleId']
           @IpList = params['IpList']
           @CreateTime = params['CreateTime']
+          @JobType = params['JobType']
+          @CronType = params['CronType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @ValidStatus = params['ValidStatus']
         end
       end
 
@@ -1476,10 +1511,25 @@ module TencentCloud
         # @param OptionsArr: 高级参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionsArr: String
+        # @param Length: url长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Length: Integer
+        # @param RuleId: 规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param EventId: 事件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventId: String
+        # @param SessionApplied: 关联的Session规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionApplied: Array
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
 
-        attr_accessor :ActionType, :Advance, :Interval, :Limit, :MatchFunc, :Name, :Priority, :Status, :TsVersion, :Url, :ValidTime, :OptionsArr
+        attr_accessor :ActionType, :Advance, :Interval, :Limit, :MatchFunc, :Name, :Priority, :Status, :TsVersion, :Url, :ValidTime, :OptionsArr, :Length, :RuleId, :EventId, :SessionApplied, :CreateTime
 
-        def initialize(actiontype=nil, advance=nil, interval=nil, limit=nil, matchfunc=nil, name=nil, priority=nil, status=nil, tsversion=nil, url=nil, validtime=nil, optionsarr=nil)
+        def initialize(actiontype=nil, advance=nil, interval=nil, limit=nil, matchfunc=nil, name=nil, priority=nil, status=nil, tsversion=nil, url=nil, validtime=nil, optionsarr=nil, length=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil)
           @ActionType = actiontype
           @Advance = advance
           @Interval = interval
@@ -1492,6 +1542,11 @@ module TencentCloud
           @Url = url
           @ValidTime = validtime
           @OptionsArr = optionsarr
+          @Length = length
+          @RuleId = ruleid
+          @EventId = eventid
+          @SessionApplied = sessionapplied
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -1507,6 +1562,11 @@ module TencentCloud
           @Url = params['Url']
           @ValidTime = params['ValidTime']
           @OptionsArr = params['OptionsArr']
+          @Length = params['Length']
+          @RuleId = params['RuleId']
+          @EventId = params['EventId']
+          @SessionApplied = params['SessionApplied']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -2303,14 +2363,18 @@ module TencentCloud
         # @type InstanceId: String
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
-        # @param SourceType: 可选值为：batch（批量添加）、bot、cc、custom（非批量添加时的默认值）
+        # @param SourceType: 可选值为：batch（批量添加）、bot（BOT流量分析中的BOT详情列表中添加时）、cc（在攻击日志列表中对攻击类型为CC的IP添加时）、custom（非批量添加时的默认值）
         # @type SourceType: String
         # @param Note: 备注
         # @type Note: String
+        # @param JobType: 定时配置类型
+        # @type JobType: String
+        # @param JobDateTime: 定时配置详情
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
-        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note
+        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
 
-        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil)
+        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
           @IpList = iplist
           @ActionType = actiontype
@@ -2319,6 +2383,8 @@ module TencentCloud
           @Edition = edition
           @SourceType = sourcetype
           @Note = note
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
         end
 
         def deserialize(params)
@@ -2330,6 +2396,11 @@ module TencentCloud
           @Edition = params['Edition']
           @SourceType = params['SourceType']
           @Note = params['Note']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
         end
       end
 
@@ -3967,7 +4038,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页容量
         # @type Limit: Integer
-        # @param By: 排序字段，支持user_id, signature_id, modify_time
+        # @param By: 排序的字段，支持user_id, signature_id, modify_time
         # @type By: String
         # @param Order: 排序方式
         # @type Order: String
@@ -5423,13 +5494,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: 过滤数组
         # @type Filters: Array
+        # @param FreeDelayFlag: 释放延期标识
+        # @type FreeDelayFlag: Integer
 
-        attr_accessor :Offset, :Limit, :Filters
+        attr_accessor :Offset, :Limit, :Filters, :FreeDelayFlag
 
-        def initialize(offset=nil, limit=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, filters=nil, freedelayflag=nil)
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @FreeDelayFlag = freedelayflag
         end
 
         def deserialize(params)
@@ -5443,6 +5517,7 @@ module TencentCloud
               @Filters << filtersitemnew_tmp
             end
           end
+          @FreeDelayFlag = params['FreeDelayFlag']
         end
       end
 
@@ -5495,7 +5570,7 @@ module TencentCloud
         # @type CtsMax: Integer
         # @param OffSet: 分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整
         # @type OffSet: Integer
-        # @param Limit: 每页返回的数量
+        # @param Limit: 每页返回的数量，默认为20
         # @type Limit: Integer
         # @param Source: 来源
         # @type Source: String
@@ -5511,15 +5586,17 @@ module TencentCloud
         # @type ValidTimeStampMax: String
         # @param RuleId: 规则ID
         # @type RuleId: Integer
+        # @param TimerType: 定时任务类型筛选0 1 2 3 4
+        # @type TimerType: Integer
 
-        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId
+        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
         deprecate :VtsMin, :none, 2024, 7
         deprecate :VtsMin=, :none, 2024, 7
         deprecate :VtsMax, :none, 2024, 7
         deprecate :VtsMax=, :none, 2024, 7
 
-        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil)
+        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
           @Count = count
           @ActionType = actiontype
@@ -5536,6 +5613,7 @@ module TencentCloud
           @ValidTimeStampMin = validtimestampmin
           @ValidTimeStampMax = validtimestampmax
           @RuleId = ruleid
+          @TimerType = timertype
         end
 
         def deserialize(params)
@@ -5555,6 +5633,7 @@ module TencentCloud
           @ValidTimeStampMin = params['ValidTimeStampMin']
           @ValidTimeStampMax = params['ValidTimeStampMax']
           @RuleId = params['RuleId']
+          @TimerType = params['TimerType']
         end
       end
 
@@ -5593,7 +5672,7 @@ module TencentCloud
         # @type Domain: String
         # @param Count: 计数标识
         # @type Count: Integer
-        # @param Category: 类别
+        # @param Category: 类别，ip封禁传值auto_deny
         # @type Category: String
         # @param VtsMin: 有效时间最小时间戳
         # @type VtsMin: Integer
@@ -8657,10 +8736,13 @@ module TencentCloud
         # @param BillingItem: 计费项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
+        # @param FreeDelayFlag: 实例延期释放标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeDelayFlag: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -8701,6 +8783,7 @@ module TencentCloud
           @LastQpsExceedTime = lastqpsexceedtime
           @MiniExtendPkg = miniextendpkg
           @BillingItem = billingitem
+          @FreeDelayFlag = freedelayflag
         end
 
         def deserialize(params)
@@ -8774,6 +8857,7 @@ module TencentCloud
             @MiniExtendPkg.deserialize(params['MiniExtendPkg'])
           end
           @BillingItem = params['BillingItem']
+          @FreeDelayFlag = params['FreeDelayFlag']
         end
       end
 
@@ -8835,10 +8919,19 @@ module TencentCloud
         # @param CreateTime: 规则创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
+        # @param JobType: 定时任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobType: String
+        # @param CronType: 周期任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronType: String
+        # @param JobDateTime: 定时任务配置详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
-        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :ValidStatus, :RuleId, :IpList, :CreateTime
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :ValidStatus, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime
 
-        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, validstatus=nil, ruleid=nil, iplist=nil, createtime=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, validstatus=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil)
           @Id = id
           @ActionType = actiontype
           @Ip = ip
@@ -8850,6 +8943,9 @@ module TencentCloud
           @RuleId = ruleid
           @IpList = iplist
           @CreateTime = createtime
+          @JobType = jobtype
+          @CronType = crontype
+          @JobDateTime = jobdatetime
         end
 
         def deserialize(params)
@@ -8864,6 +8960,12 @@ module TencentCloud
           @RuleId = params['RuleId']
           @IpList = params['IpList']
           @CreateTime = params['CreateTime']
+          @JobType = params['JobType']
+          @CronType = params['CronType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
         end
       end
 
@@ -9777,16 +9879,25 @@ module TencentCloud
         # @type SignatureId: String
         # @param SignatureIds: 编辑的加白的规则ID列表
         # @type SignatureIds: Array
+        # @param TypeIds: 加白的大类规则ID
+        # @type TypeIds: Array
+        # @param Mode: 0表示按照特定规则ID加白, 1表示按照规则类型加白
+        # @type Mode: Integer
+        # @param Name: 规则名
+        # @type Name: String
 
-        attr_accessor :RuleId, :Domain, :Status, :Rules, :SignatureId, :SignatureIds
+        attr_accessor :RuleId, :Domain, :Status, :Rules, :SignatureId, :SignatureIds, :TypeIds, :Mode, :Name
 
-        def initialize(ruleid=nil, domain=nil, status=nil, rules=nil, signatureid=nil, signatureids=nil)
+        def initialize(ruleid=nil, domain=nil, status=nil, rules=nil, signatureid=nil, signatureids=nil, typeids=nil, mode=nil, name=nil)
           @RuleId = ruleid
           @Domain = domain
           @Status = status
           @Rules = rules
           @SignatureId = signatureid
           @SignatureIds = signatureids
+          @TypeIds = typeids
+          @Mode = mode
+          @Name = name
         end
 
         def deserialize(params)
@@ -9803,6 +9914,9 @@ module TencentCloud
           end
           @SignatureId = params['SignatureId']
           @SignatureIds = params['SignatureIds']
+          @TypeIds = params['TypeIds']
+          @Mode = params['Mode']
+          @Name = params['Name']
         end
       end
 
@@ -10815,10 +10929,14 @@ module TencentCloud
         # @type SourceType: String
         # @param Note: 备注
         # @type Note: String
+        # @param JobType: 定时配置类型
+        # @type JobType: String
+        # @param JobDateTime: 定时配置详情
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
-        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :RuleId, :InstanceId, :Edition, :SourceType, :Note
+        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :RuleId, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
 
-        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, ruleid=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil)
+        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, ruleid=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
           @IpList = iplist
           @ActionType = actiontype
@@ -10828,6 +10946,8 @@ module TencentCloud
           @Edition = edition
           @SourceType = sourcetype
           @Note = note
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
         end
 
         def deserialize(params)
@@ -10840,6 +10960,11 @@ module TencentCloud
           @Edition = params['Edition']
           @SourceType = params['SourceType']
           @Note = params['Note']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
         end
       end
 
@@ -12739,10 +12864,12 @@ module TencentCloud
         # @type RuleId: Integer
         # @param CreateTime: 规则创建时间
         # @type CreateTime: Integer
+        # @param Length: url长度
+        # @type Length: Integer
 
-        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime
+        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length
 
-        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil)
+        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil)
           @Domain = domain
           @Name = name
           @Status = status
@@ -12761,6 +12888,7 @@ module TencentCloud
           @SessionApplied = sessionapplied
           @RuleId = ruleid
           @CreateTime = createtime
+          @Length = length
         end
 
         def deserialize(params)
@@ -12782,6 +12910,7 @@ module TencentCloud
           @SessionApplied = params['SessionApplied']
           @RuleId = params['RuleId']
           @CreateTime = params['CreateTime']
+          @Length = params['Length']
         end
       end
 
@@ -13047,10 +13176,13 @@ module TencentCloud
         # @type Description: String
         # @param Reason: 0/1
         # @type Reason: Integer
+        # @param RiskLevel: 1: 高危 2:中危 3:低危
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: Integer
 
-        attr_accessor :ID, :Status, :MainClassID, :SubClassID, :CveID, :CreateTime, :ModifyTime, :MainClassName, :SubClassName, :Description, :Reason
+        attr_accessor :ID, :Status, :MainClassID, :SubClassID, :CveID, :CreateTime, :ModifyTime, :MainClassName, :SubClassName, :Description, :Reason, :RiskLevel
 
-        def initialize(id=nil, status=nil, mainclassid=nil, subclassid=nil, cveid=nil, createtime=nil, modifytime=nil, mainclassname=nil, subclassname=nil, description=nil, reason=nil)
+        def initialize(id=nil, status=nil, mainclassid=nil, subclassid=nil, cveid=nil, createtime=nil, modifytime=nil, mainclassname=nil, subclassname=nil, description=nil, reason=nil, risklevel=nil)
           @ID = id
           @Status = status
           @MainClassID = mainclassid
@@ -13062,6 +13194,7 @@ module TencentCloud
           @SubClassName = subclassname
           @Description = description
           @Reason = reason
+          @RiskLevel = risklevel
         end
 
         def deserialize(params)
@@ -13076,6 +13209,7 @@ module TencentCloud
           @SubClassName = params['SubClassName']
           @Description = params['Description']
           @Reason = params['Reason']
+          @RiskLevel = params['RiskLevel']
         end
       end
 
@@ -13089,6 +13223,9 @@ module TencentCloud
         # @type Status: Integer
         # @param MatchField: 匹配域
         # @type MatchField: String
+        # @param MatchParams: 匹配参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchParams: String
         # @param MatchMethod: 匹配方法
         # @type MatchMethod: String
         # @param MatchContent: 匹配内容
@@ -13097,18 +13234,47 @@ module TencentCloud
         # @type CreateTime: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
+        # @param SignatureIds: 规则ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignatureIds: Array
+        # @param TypeIds: 大类规则ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeIds: Array
+        # @param TypeId: 大类规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeId: String
+        # @param Mode: 0:按照特定规则ID加白, 1:按照规则类型加白
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: Integer
+        # @param Name: 规则名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param MatchInfo: 匹配规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchInfo: Array
+        # @param MatchInfoStr: MatchInfo字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchInfoStr: String
 
-        attr_accessor :WhiteRuleId, :SignatureId, :Status, :MatchField, :MatchMethod, :MatchContent, :CreateTime, :ModifyTime
+        attr_accessor :WhiteRuleId, :SignatureId, :Status, :MatchField, :MatchParams, :MatchMethod, :MatchContent, :CreateTime, :ModifyTime, :SignatureIds, :TypeIds, :TypeId, :Mode, :Name, :MatchInfo, :MatchInfoStr
 
-        def initialize(whiteruleid=nil, signatureid=nil, status=nil, matchfield=nil, matchmethod=nil, matchcontent=nil, createtime=nil, modifytime=nil)
+        def initialize(whiteruleid=nil, signatureid=nil, status=nil, matchfield=nil, matchparams=nil, matchmethod=nil, matchcontent=nil, createtime=nil, modifytime=nil, signatureids=nil, typeids=nil, typeid=nil, mode=nil, name=nil, matchinfo=nil, matchinfostr=nil)
           @WhiteRuleId = whiteruleid
           @SignatureId = signatureid
           @Status = status
           @MatchField = matchfield
+          @MatchParams = matchparams
           @MatchMethod = matchmethod
           @MatchContent = matchcontent
           @CreateTime = createtime
           @ModifyTime = modifytime
+          @SignatureIds = signatureids
+          @TypeIds = typeids
+          @TypeId = typeid
+          @Mode = mode
+          @Name = name
+          @MatchInfo = matchinfo
+          @MatchInfoStr = matchinfostr
         end
 
         def deserialize(params)
@@ -13116,10 +13282,25 @@ module TencentCloud
           @SignatureId = params['SignatureId']
           @Status = params['Status']
           @MatchField = params['MatchField']
+          @MatchParams = params['MatchParams']
           @MatchMethod = params['MatchMethod']
           @MatchContent = params['MatchContent']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
+          @SignatureIds = params['SignatureIds']
+          @TypeIds = params['TypeIds']
+          @TypeId = params['TypeId']
+          @Mode = params['Mode']
+          @Name = params['Name']
+          unless params['MatchInfo'].nil?
+            @MatchInfo = []
+            params['MatchInfo'].each do |i|
+              userwhiteruleitem_tmp = UserWhiteRuleItem.new
+              userwhiteruleitem_tmp.deserialize(i)
+              @MatchInfo << userwhiteruleitem_tmp
+            end
+          end
+          @MatchInfoStr = params['MatchInfoStr']
         end
       end
 
@@ -13131,19 +13312,24 @@ module TencentCloud
         # @type MatchMethod: String
         # @param MatchContent: 匹配内容
         # @type MatchContent: String
+        # @param MatchParams: 匹配参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchParams: String
 
-        attr_accessor :MatchField, :MatchMethod, :MatchContent
+        attr_accessor :MatchField, :MatchMethod, :MatchContent, :MatchParams
 
-        def initialize(matchfield=nil, matchmethod=nil, matchcontent=nil)
+        def initialize(matchfield=nil, matchmethod=nil, matchcontent=nil, matchparams=nil)
           @MatchField = matchfield
           @MatchMethod = matchmethod
           @MatchContent = matchcontent
+          @MatchParams = matchparams
         end
 
         def deserialize(params)
           @MatchField = params['MatchField']
           @MatchMethod = params['MatchMethod']
           @MatchContent = params['MatchContent']
+          @MatchParams = params['MatchParams']
         end
       end
 

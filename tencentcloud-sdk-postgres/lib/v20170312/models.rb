@@ -589,6 +589,54 @@ module TencentCloud
         end
       end
 
+      # CreateAccount请求参数结构体
+      class CreateAccountRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param UserName: 创建的账号名称。
+        # @type UserName: String
+        # @param Password: 账号对应的密码。
+        # @type Password: String
+        # @param Type: 账号类型。当前支持normal、tencentDBSuper两个输入。normal指代普通用户，tencentDBSuper为拥有pg_tencentdb_superuser角色的账号。
+        # @type Type: String
+        # @param Remark: 账号备注。
+        # @type Remark: String
+
+        attr_accessor :DBInstanceId, :UserName, :Password, :Type, :Remark
+
+        def initialize(dbinstanceid=nil, username=nil, password=nil, type=nil, remark=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+          @Password = password
+          @Type = type
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @Type = params['Type']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateAccount返回参数结构体
+      class CreateAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBaseBackup请求参数结构体
       class CreateBaseBackupRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -1789,6 +1837,104 @@ module TencentCloud
         end
       end
 
+      # 描述数据库中某个对象所属的类型、是在哪个数据库、模式、表中的对象。
+      class DatabaseObject < TencentCloud::Common::AbstractModel
+        # @param ObjectType: 支持使用的数据库对象类型有：account,database,schema,sequence,procedure,type,function,table,view,matview,column。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectType: String
+        # @param ObjectName: 所描述的数据库对象名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectName: String
+        # @param DatabaseName: 所要描述的数据库对象，所属的数据库名称。当描述对象类型不为database时，此参数必选。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param SchemaName: 所要描述的数据库对象，所属的模式名称。当描述对象不为database、schema时，此参数必选。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param TableName: 所要描述的数据库对象，所属的表名称。当描述的对象类型为column时，此参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+
+        attr_accessor :ObjectType, :ObjectName, :DatabaseName, :SchemaName, :TableName
+
+        def initialize(objecttype=nil, objectname=nil, databasename=nil, schemaname=nil, tablename=nil)
+          @ObjectType = objecttype
+          @ObjectName = objectname
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @ObjectType = params['ObjectType']
+          @ObjectName = params['ObjectName']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+        end
+      end
+
+      # 指定账号对数据库对象拥有的权限列表
+      class DatabasePrivilege < TencentCloud::Common::AbstractModel
+        # @param Object: 数据库对象，当ObjectType为database时，DataseName/SchemaName/TableName可为空；当ObjectType为schema时，SchemaName/TableName可为空；当ObjectType为column时，TableName不可为空，其余情况均可为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Object: :class:`Tencentcloud::Postgres.v20170312.models.DatabaseObject`
+        # @param PrivilegeSet: 指定账号对数据库对象拥有的权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeSet: Array
+
+        attr_accessor :Object, :PrivilegeSet
+
+        def initialize(object=nil, privilegeset=nil)
+          @Object = object
+          @PrivilegeSet = privilegeset
+        end
+
+        def deserialize(params)
+          unless params['Object'].nil?
+            @Object = DatabaseObject.new
+            @Object.deserialize(params['Object'])
+          end
+          @PrivilegeSet = params['PrivilegeSet']
+        end
+      end
+
+      # DeleteAccount请求参数结构体
+      class DeleteAccountRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param UserName: 删除的账号名称。
+        # @type UserName: String
+
+        attr_accessor :DBInstanceId, :UserName
+
+        def initialize(dbinstanceid=nil, username=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # DeleteAccount返回参数结构体
+      class DeleteAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteBaseBackup请求参数结构体
       class DeleteBaseBackupRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -2060,6 +2206,64 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountPrivileges请求参数结构体
+      class DescribeAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param UserName: 查询此账号对某数据库对象所拥有的权限信息。
+        # @type UserName: String
+        # @param DatabaseObjectSet: 要查询的数据库对象信息
+        # @type DatabaseObjectSet: Array
+
+        attr_accessor :DBInstanceId, :UserName, :DatabaseObjectSet
+
+        def initialize(dbinstanceid=nil, username=nil, databaseobjectset=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+          @DatabaseObjectSet = databaseobjectset
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+          unless params['DatabaseObjectSet'].nil?
+            @DatabaseObjectSet = []
+            params['DatabaseObjectSet'].each do |i|
+              databaseobject_tmp = DatabaseObject.new
+              databaseobject_tmp.deserialize(i)
+              @DatabaseObjectSet << databaseobject_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAccountPrivileges返回参数结构体
+      class DescribeAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param PrivilegeSet: 用户拥有数据库user_database的CREATE、CONNECT、TEMPORARY权限
+        # @type PrivilegeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivilegeSet, :RequestId
+
+        def initialize(privilegeset=nil, requestid=nil)
+          @PrivilegeSet = privilegeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PrivilegeSet'].nil?
+            @PrivilegeSet = []
+            params['PrivilegeSet'].each do |i|
+              databaseprivilege_tmp = DatabasePrivilege.new
+              databaseprivilege_tmp.deserialize(i)
+              @PrivilegeSet << databaseprivilege_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3221,6 +3425,72 @@ module TencentCloud
               @XlogList << xlog_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatabaseObjects请求参数结构体
+      class DescribeDatabaseObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param ObjectType: 查询的对象类型。支持查询的数据对象有：database,schema,sequence,procedure,type,function,table,view,matview,column。
+        # @type ObjectType: String
+        # @param Limit: 单次显示数量，默认20。可选范围为[0,100]。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始。
+        # @type Offset: Integer
+        # @param DatabaseName: 查询对象所属的数据库。当查询对象类型不为database时，此参数必填。
+        # @type DatabaseName: String
+        # @param SchemaName: 查询对象所属的模式。当查询对象类型不为database、schema时，此参数必填。
+        # @type SchemaName: String
+        # @param TableName: 查询对象所属的表。当查询对象类型为column时，此参数必填。
+        # @type TableName: String
+
+        attr_accessor :DBInstanceId, :ObjectType, :Limit, :Offset, :DatabaseName, :SchemaName, :TableName
+
+        def initialize(dbinstanceid=nil, objecttype=nil, limit=nil, offset=nil, databasename=nil, schemaname=nil, tablename=nil)
+          @DBInstanceId = dbinstanceid
+          @ObjectType = objecttype
+          @Limit = limit
+          @Offset = offset
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @ObjectType = params['ObjectType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeDatabaseObjects返回参数结构体
+      class DescribeDatabaseObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param ObjectSet: 查询对象列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectSet: Array
+        # @param TotalCount: 查询对象总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ObjectSet, :TotalCount, :RequestId
+
+        def initialize(objectset=nil, totalcount=nil, requestid=nil)
+          @ObjectSet = objectset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ObjectSet = params['ObjectSet']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4716,6 +4986,42 @@ module TencentCloud
         end
       end
 
+      # LockAccount请求参数结构体
+      class LockAccountRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param UserName: 账号名称。
+        # @type UserName: String
+
+        attr_accessor :DBInstanceId, :UserName
+
+        def initialize(dbinstanceid=nil, username=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # LockAccount返回参数结构体
+      class LockAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库日志备份信息
       class LogBackup < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
@@ -4765,6 +5071,53 @@ module TencentCloud
           @StartTime = params['StartTime']
           @FinishTime = params['FinishTime']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # ModifyAccountPrivileges请求参数结构体
+      class ModifyAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param UserName: 修改此账号对某数据库对象的权限。
+        # @type UserName: String
+        # @param ModifyPrivilegeSet: 修改的权限信息，支持批量修改，一次最高修改50条。
+        # @type ModifyPrivilegeSet: Array
+
+        attr_accessor :DBInstanceId, :UserName, :ModifyPrivilegeSet
+
+        def initialize(dbinstanceid=nil, username=nil, modifyprivilegeset=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+          @ModifyPrivilegeSet = modifyprivilegeset
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+          unless params['ModifyPrivilegeSet'].nil?
+            @ModifyPrivilegeSet = []
+            params['ModifyPrivilegeSet'].each do |i|
+              modifyprivilege_tmp = ModifyPrivilege.new
+              modifyprivilege_tmp.deserialize(i)
+              @ModifyPrivilegeSet << modifyprivilege_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAccountPrivileges返回参数结构体
+      class ModifyAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5474,6 +5827,36 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用于修改数据库对象的权限，其中包含了数据库对象描述的数据结构、需要修改的权限列表以及修改的类型等。
+      class ModifyPrivilege < TencentCloud::Common::AbstractModel
+        # @param DatabasePrivilege: 要修改的数据库对象及权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabasePrivilege: :class:`Tencentcloud::Postgres.v20170312.models.DatabasePrivilege`
+        # @param ModifyType: 修改的方式，当前仅支持grantObject、revokeObject、alterRole。grantObject代表授权、revokeObject代表收回权、alterRole代表修改账号类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyType: String
+        # @param IsCascade: 当ModifyType为revokeObject才需要此参数，参数为true时，撤销权限会级联撤销。默认为false。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCascade: Boolean
+
+        attr_accessor :DatabasePrivilege, :ModifyType, :IsCascade
+
+        def initialize(databaseprivilege=nil, modifytype=nil, iscascade=nil)
+          @DatabasePrivilege = databaseprivilege
+          @ModifyType = modifytype
+          @IsCascade = iscascade
+        end
+
+        def deserialize(params)
+          unless params['DatabasePrivilege'].nil?
+            @DatabasePrivilege = DatabasePrivilege.new
+            @DatabasePrivilege.deserialize(params['DatabasePrivilege'])
+          end
+          @ModifyType = params['ModifyType']
+          @IsCascade = params['IsCascade']
         end
       end
 
@@ -7017,6 +7400,42 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # UnlockAccount请求参数结构体
+      class UnlockAccountRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param UserName: 账号名称。
+        # @type UserName: String
+
+        attr_accessor :DBInstanceId, :UserName
+
+        def initialize(dbinstanceid=nil, username=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # UnlockAccount返回参数结构体
+      class UnlockAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2024, 5
-        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 5
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 7
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 7
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -1416,7 +1416,15 @@ module TencentCloud
 
       # 启动配置的数据盘配置信息。若不指定该参数，则默认不购买数据盘，当前仅支持购买的时候指定一个数据盘。
       class DataDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 数据盘类型。数据盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
+        # @param DiskType: 数据盘类型。数据盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：
+        # <li>LOCAL_BASIC：本地硬盘</li>
+        # <li>LOCAL_SSD：本地SSD硬盘</li>
+        # <li>CLOUD_BASIC：普通云硬盘</li>
+        # <li>CLOUD_PREMIUM：高性能云硬盘</li>
+        # <li>CLOUD_SSD：SSD云硬盘</li>
+        # <li>CLOUD_HSSD：增强型SSD云硬盘</li>
+        # <li>CLOUD_TSSD：极速型SSD云硬盘</li>
+        # 默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[CVM实例配置](https://cloud.tencent.com/document/product/213/2177)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
@@ -1425,26 +1433,36 @@ module TencentCloud
         # @param SnapshotId: 数据盘快照 ID，类似 `snap-l8psqwnt`。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
-        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：<br><li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘<br><li>FALSE：子机销毁时，保留数据盘
+        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：
+        # <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li>
+        # <li>FALSE：子机销毁时，保留数据盘</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteWithInstance: Boolean
-        # @param Encrypt: 数据盘是否加密。取值范围：<br><li>TRUE：加密<br><li>FALSE：不加密
+        # @param Encrypt: 数据盘是否加密。取值范围：
+        # <li>TRUE：加密</li>
+        # <li>FALSE：不加密</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Boolean
         # @param ThroughputPerformance: 云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能，功能介绍和类型限制详见：[增强型 SSD 云硬盘额外性能说明](https://cloud.tencent.com/document/product/362/51896#.E5.A2.9E.E5.BC.BA.E5.9E.8B-ssd-.E4.BA.91.E7.A1.AC.E7.9B.98.E9.A2.9D.E5.A4.96.E6.80.A7.E8.83.BD)。
         # 当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且 需容量 > 460GB。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
+        # @param BurstPerformance: 突发性能。是否开启突发性能，默认取值为 false。
 
-        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance, :Encrypt, :ThroughputPerformance
+        # 注：内测中，需提单申请后使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BurstPerformance: Boolean
 
-        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil, encrypt=nil, throughputperformance=nil)
+        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance, :Encrypt, :ThroughputPerformance, :BurstPerformance
+
+        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil, encrypt=nil, throughputperformance=nil, burstperformance=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @SnapshotId = snapshotid
           @DeleteWithInstance = deletewithinstance
           @Encrypt = encrypt
           @ThroughputPerformance = throughputperformance
+          @BurstPerformance = burstperformance
         end
 
         def deserialize(params)
@@ -1454,6 +1472,7 @@ module TencentCloud
           @DeleteWithInstance = params['DeleteWithInstance']
           @Encrypt = params['Encrypt']
           @ThroughputPerformance = params['ThroughputPerformance']
+          @BurstPerformance = params['BurstPerformance']
         end
       end
 
@@ -2632,8 +2651,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2024, 5
-        deprecate :AutomationService=, :none, 2024, 5
+        deprecate :AutomationService, :none, 2024, 7
+        deprecate :AutomationService=, :none, 2024, 7
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3073,17 +3092,24 @@ module TencentCloud
 
         # UNIQUE，入参所填的 InstanceName 相当于实例名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 InstanceName 可以保证唯一。
         # @type InstanceNameStyle: String
+        # @param InstanceNameSuffix: 云服务器实例名后缀。字符长度为[1,105]，且与 InstanceName 的长度和不能超过107。
 
-        attr_accessor :InstanceName, :InstanceNameStyle
+        # 假设后缀名称为 suffix，原实例名为 test.0，最终实例名为 test.0.suffix。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNameSuffix: String
 
-        def initialize(instancename=nil, instancenamestyle=nil)
+        attr_accessor :InstanceName, :InstanceNameStyle, :InstanceNameSuffix
+
+        def initialize(instancename=nil, instancenamestyle=nil, instancenamesuffix=nil)
           @InstanceName = instancename
           @InstanceNameStyle = instancenamestyle
+          @InstanceNameSuffix = instancenamesuffix
         end
 
         def deserialize(params)
           @InstanceName = params['InstanceName']
           @InstanceNameStyle = params['InstanceNameStyle']
+          @InstanceNameSuffix = params['InstanceNameSuffix']
         end
       end
 

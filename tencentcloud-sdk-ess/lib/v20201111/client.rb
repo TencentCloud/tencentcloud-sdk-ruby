@@ -1302,6 +1302,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建他方自动签授权链接，通过该链接可进入小程序进行合作方企业的自动签授权，若当前企业未开通企业自动签，通过该链接会先引导开通本企业自动签。
+        # 该接口效果同控制台： 企业设置-> 扩展服务 -> 企业自动签署 -> 合作企业方授权
+
+
+
+        # 注:
+        # 1. <font color='red'>所在企业的超管、法人才有权限调用此接口</font>(Operator.UserId 需要传递超管或者法人的UserId)
+        # 2. 已经在授权中或者授权成功的企业，无法重复授权
+
+        # @param request: Request instance for CreatePartnerAutoSignAuthUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreatePartnerAutoSignAuthUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreatePartnerAutoSignAuthUrlResponse`
+        def CreatePartnerAutoSignAuthUrl(request)
+          body = send_request('CreatePartnerAutoSignAuthUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePartnerAutoSignAuthUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取个人用户认证证书图片下载URL
 
         # 个人用户认证证书图片样式如下图

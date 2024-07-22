@@ -1511,27 +1511,27 @@ module TencentCloud
       class DeleteImageRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
         # @type RegistryId: String
+        # @param NamespaceName: 命名空间名称
+        # @type NamespaceName: String
         # @param RepositoryName: 镜像仓库名称
         # @type RepositoryName: String
         # @param ImageVersion: 镜像版本
         # @type ImageVersion: String
-        # @param NamespaceName: 命名空间名称
-        # @type NamespaceName: String
 
-        attr_accessor :RegistryId, :RepositoryName, :ImageVersion, :NamespaceName
+        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :ImageVersion
 
-        def initialize(registryid=nil, repositoryname=nil, imageversion=nil, namespacename=nil)
+        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, imageversion=nil)
           @RegistryId = registryid
+          @NamespaceName = namespacename
           @RepositoryName = repositoryname
           @ImageVersion = imageversion
-          @NamespaceName = namespacename
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
           @RepositoryName = params['RepositoryName']
           @ImageVersion = params['ImageVersion']
-          @NamespaceName = params['NamespaceName']
         end
       end
 
@@ -2757,20 +2757,37 @@ module TencentCloud
         # @type Manifest: String
         # @param Config: 镜像的配置信息
         # @type Config: String
+        # @param Labels: 镜像的Labels信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+        # @param Size: 镜像大小，单位：byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Manifest, :Config, :RequestId
+        attr_accessor :Manifest, :Config, :Labels, :Size, :RequestId
 
-        def initialize(manifest=nil, config=nil, requestid=nil)
+        def initialize(manifest=nil, config=nil, labels=nil, size=nil, requestid=nil)
           @Manifest = manifest
           @Config = config
+          @Labels = labels
+          @Size = size
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Manifest = params['Manifest']
           @Config = params['Config']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              keyvaluestring_tmp = KeyValueString.new
+              keyvaluestring_tmp.deserialize(i)
+              @Labels << keyvaluestring_tmp
+            end
+          end
+          @Size = params['Size']
           @RequestId = params['RequestId']
         end
       end
@@ -6395,8 +6412,10 @@ module TencentCloud
       # 版本保留规则
       class RetentionRule < TencentCloud::Common::AbstractModel
         # @param Key: 支持的策略，可选值为latestPushedK（保留最新推送多少个版本）nDaysSinceLastPush（保留近天内推送）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 规则设置下的对应值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
         attr_accessor :Key, :Value

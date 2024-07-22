@@ -58,6 +58,80 @@ module TencentCloud
         end
       end
 
+      # 数据授权信息
+      class DataAuthorizationInfo < TencentCloud::Common::AbstractModel
+        # @param DataProviderName: 客户主体名称。
+
+        # 示例值：某某有限公司。
+        # @type DataProviderName: String
+        # @param DataRecipientName: 接收方主体名称。
+
+        # 固定填：腾讯云计算（北京）有限责任公司
+
+        # 示例值：腾讯云计算（北京）有限责任公司
+        # @type DataRecipientName: String
+        # @param UserDataType: 客户请求RCE所涉及的用户敏感数据类型，支持多选。实际以接口请求传参为准。
+
+        # 1-手机号；
+
+        # 2-微信开放账号；
+
+        # 3-QQ开放账号；
+
+        # 4-IP地址；
+
+        # 5-设备指纹；
+
+        # 999-其它；
+
+        # 示例值：[1, 4]
+        # @type UserDataType: Array
+        # @param IsAuthorize: 客户是否已经获取用户授权。
+
+        # 1-已授权；其它值为未授权。
+
+        # 示例值：1
+        # @type IsAuthorize: Integer
+        # @param IsPersonalData: 是否是用户个人敏感数据。
+
+        # 固定填：1。
+
+        # 示例值：1
+        # @type IsPersonalData: Integer
+        # @param AuthorizationTerm: 客户获得的用户授权期限时间戳（单位秒）。
+
+        # 不填默认无固定期限。
+
+        # 示例值：1719805604
+        # @type AuthorizationTerm: Integer
+        # @param PrivacyPolicyLink: 客户获得用户授权所依赖的协议地址。
+
+        # 示例值：https://www.*****.com/*****
+        # @type PrivacyPolicyLink: String
+
+        attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsPersonalData, :AuthorizationTerm, :PrivacyPolicyLink
+
+        def initialize(dataprovidername=nil, datarecipientname=nil, userdatatype=nil, isauthorize=nil, ispersonaldata=nil, authorizationterm=nil, privacypolicylink=nil)
+          @DataProviderName = dataprovidername
+          @DataRecipientName = datarecipientname
+          @UserDataType = userdatatype
+          @IsAuthorize = isauthorize
+          @IsPersonalData = ispersonaldata
+          @AuthorizationTerm = authorizationterm
+          @PrivacyPolicyLink = privacypolicylink
+        end
+
+        def deserialize(params)
+          @DataProviderName = params['DataProviderName']
+          @DataRecipientName = params['DataRecipientName']
+          @UserDataType = params['UserDataType']
+          @IsAuthorize = params['IsAuthorize']
+          @IsPersonalData = params['IsPersonalData']
+          @AuthorizationTerm = params['AuthorizationTerm']
+          @PrivacyPolicyLink = params['PrivacyPolicyLink']
+        end
+      end
+
       # 全栈式风控引擎入参
       class InputCryptoManageMarketingRisk < TencentCloud::Common::AbstractModel
         # @param IsAuthorized: 是否授权：1已授权，否则未授权。
@@ -163,10 +237,12 @@ module TencentCloud
         # 3：H5
         # 4：小程序
         # @type Platform: String
+        # @param DataAuthorization: 数据授权信息。
+        # @type DataAuthorization: :class:`Tencentcloud::Rce.v20201103.models.DataAuthorizationInfo`
 
-        attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform
+        attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform, :DataAuthorization
 
-        def initialize(account=nil, scenecode=nil, userip=nil, posttime=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, vendorid=nil, devicetype=nil, details=nil, sponsor=nil, onlinescam=nil, platform=nil)
+        def initialize(account=nil, scenecode=nil, userip=nil, posttime=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, vendorid=nil, devicetype=nil, details=nil, sponsor=nil, onlinescam=nil, platform=nil, dataauthorization=nil)
           @Account = account
           @SceneCode = scenecode
           @UserIp = userip
@@ -189,6 +265,7 @@ module TencentCloud
           @Sponsor = sponsor
           @OnlineScam = onlinescam
           @Platform = platform
+          @DataAuthorization = dataauthorization
         end
 
         def deserialize(params)
@@ -230,6 +307,10 @@ module TencentCloud
             @OnlineScam.deserialize(params['OnlineScam'])
           end
           @Platform = params['Platform']
+          unless params['DataAuthorization'].nil?
+            @DataAuthorization = DataAuthorizationInfo.new
+            @DataAuthorization.deserialize(params['DataAuthorization'])
+          end
         end
       end
 
