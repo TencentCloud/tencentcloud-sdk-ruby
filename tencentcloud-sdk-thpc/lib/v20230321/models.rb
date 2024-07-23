@@ -68,11 +68,11 @@ module TencentCloud
         # @type Count: Integer
         # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像和特定自定义镜像。
         # @type ImageId: String
-        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li>默认值：POSTPAID_BY_HOUR。
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.InstanceChargePrepaid`
-        # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。<br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。<br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。</li>
         # @type InstanceType: String
         # @param SystemDisk: 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Thpc.v20230321.models.SystemDisk`
@@ -90,9 +90,9 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param QueueName: 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。<li>SGE默认队列为：all.q。
+        # @param QueueName: 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。</li><li>SGE默认队列为：all.q。</li>
         # @type QueueName: String
-        # @param NodeRole: 添加节点角色。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
+        # @param NodeRole: 添加节点角色。默认值：Compute<br><li>Compute：计算节点。</li><li>Login：登录节点。</li>
         # @type NodeRole: String
         # @param DryRun: 是否只预检此次请求。
         # true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制和云服务器库存。
@@ -100,14 +100,16 @@ module TencentCloud
         # 如果检查通过，则返回RequestId.
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
-        # @param NodeType: 添加节点类型。默认取值：STATIC。<li>STATIC：静态节点，不会参与弹性伸缩流程。<li>DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。
+        # @param NodeType: 添加节点类型。默认取值：STATIC。<li>STATIC：静态节点，不会参与弹性伸缩流程。</li><li>DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。</li>
         # @type NodeType: String
         # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
         # @type ProjectId: Integer
+        # @param ResourceType: 要新增节点的资源类型。<li>CVM：CVM实例类型资源</li><li>WORKSPACE：工作空间类型实例资源</li>默认值：CVM。
+        # @type ResourceType: String
 
-        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun, :NodeType, :ProjectId
+        attr_accessor :Placement, :ClusterId, :VirtualPrivateCloud, :Count, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :LoginSettings, :SecurityGroupIds, :ClientToken, :QueueName, :NodeRole, :DryRun, :NodeType, :ProjectId, :ResourceType
 
-        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil, nodetype=nil, projectid=nil)
+        def initialize(placement=nil, clusterid=nil, virtualprivatecloud=nil, count=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, queuename=nil, noderole=nil, dryrun=nil, nodetype=nil, projectid=nil, resourcetype=nil)
           @Placement = placement
           @ClusterId = clusterid
           @VirtualPrivateCloud = virtualprivatecloud
@@ -128,6 +130,7 @@ module TencentCloud
           @DryRun = dryrun
           @NodeType = nodetype
           @ProjectId = projectid
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
@@ -176,6 +179,7 @@ module TencentCloud
           @DryRun = params['DryRun']
           @NodeType = params['NodeType']
           @ProjectId = params['ProjectId']
+          @ResourceType = params['ResourceType']
         end
       end
 
@@ -217,6 +221,56 @@ module TencentCloud
 
       # AddQueue返回参数结构体
       class AddQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AttachNodes请求参数结构体
+      class AttachNodesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ResourceSet: 节点的资源类型。<li>CVM：CVM实例类型资源</li><li>WORKSPACE：工作空间类型实例资源</li>默认值：CVM。
+        # @type ResourceSet: Array
+        # @param QueueName: 队列名称。不指定则为默认队列：
+        # SLURM默认队列为：compute。
+        # SGE默认队列为：all.q。
+        # @type QueueName: String
+        # @param ImageId: 指定有效的镜像ID，格式形如img-xxx。目前仅支持公有镜像和特定自定义镜像。如不指定，则该字段是默认镜像。
+        # @type ImageId: String
+        # @param ResourceType: 要新增节点的资源类型。<li>CVM：CVM实例类型资源</li><li>WORKSPACE：工作空间类型实例资源</li>默认值：CVM。
+        # @type ResourceType: String
+
+        attr_accessor :ClusterId, :ResourceSet, :QueueName, :ImageId, :ResourceType
+
+        def initialize(clusterid=nil, resourceset=nil, queuename=nil, imageid=nil, resourcetype=nil)
+          @ClusterId = clusterid
+          @ResourceSet = resourceset
+          @QueueName = queuename
+          @ImageId = imageid
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ResourceSet = params['ResourceSet']
+          @QueueName = params['QueueName']
+          @ImageId = params['ImageId']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # AttachNodes返回参数结构体
+      class AttachNodesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -471,12 +525,11 @@ module TencentCloud
 
       # 计算节点信息。
       class ComputeNode < TencentCloud::Common::AbstractModel
-        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        # @param InstanceChargeType: 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li>默认值：POSTPAID_BY_HOUR。
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.InstanceChargePrepaid`
-        # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。
-        # <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        # @param InstanceType: 节点机型。不同实例机型指定了不同的资源规格。<li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。</li>
         # @type InstanceType: String
         # @param SystemDisk: 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Thpc.v20230321.models.SystemDisk`
@@ -484,16 +537,17 @@ module TencentCloud
         # @type DataDisks: Array
         # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20230321.models.InternetAccessible`
-        # @param InstanceName: 节点显示名称。<br><li>
-        # 不指定节点显示名称则默认显示‘未命名’。
-        # 最多支持60个字符。
+        # @param InstanceName: 节点显示名称。<li>不指定节点显示名称则默认显示‘未命名’。
+        # 最多支持60个字符。</li>
         # @type InstanceName: String
         # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
         # @type ProjectId: Integer
+        # @param ResourceType: 实例资源类型，默认是CVM资源
+        # @type ResourceType: String
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId, :ResourceType
 
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil, resourcetype=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
@@ -502,6 +556,7 @@ module TencentCloud
           @InternetAccessible = internetaccessible
           @InstanceName = instancename
           @ProjectId = projectid
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
@@ -529,6 +584,7 @@ module TencentCloud
           end
           @InstanceName = params['InstanceName']
           @ProjectId = params['ProjectId']
+          @ResourceType = params['ResourceType']
         end
       end
 
@@ -1127,7 +1183,24 @@ module TencentCloud
       class DescribeNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param Filters: <li><strong>queue-name</strong></li> <p style="padding-left: 30px;">按照【<strong>队列名称</strong>】进行过滤。队列名称形如：compute。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;"><li><strong>node-role</strong></li> <p style="padding-left: 30px;">按照【<strong>节点角色</strong>】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;"><li><strong>node-type</strong></li> <p style="padding-left: 30px;">按照【<strong>节点类型</strong>】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
+        # @param Filters: <ul>
+        #     <li><strong>queue-name</strong>
+        #         <p style="padding-left: 30px;">按照【<strong>队列名称</strong>】进行过滤。队列名称形如：compute。</p>
+        #         <p style="padding-left: 30px;">类型：String</p>
+        #         <p style="padding-left: 30px;">必选：否</p>
+        #     </li>
+        #     <li><strong>node-role</strong>
+        #         <p style="padding-left: 30px;">按照【<strong>节点角色</strong>】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）</p>
+        #         <p style="padding-left: 30px;">类型：String</p>
+        #         <p style="padding-left: 30px;">必选：否</p>
+        #     </li>
+        #     <li><strong>node-type</strong>
+        #         <p style="padding-left: 30px;">按照【<strong>节点类型</strong>】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)</p>
+        #         <p style="padding-left: 30px;">类型：String</p>
+        #         <p style="padding-left: 30px;">必选：否</p>
+        #     </li>
+        # </ul>
+        # <p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。</p>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer
@@ -1240,6 +1313,42 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetachNodes请求参数结构体
+      class DetachNodesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodeIds: 集群中的节点id
+        # @type NodeIds: Array
+
+        attr_accessor :ClusterId, :NodeIds
+
+        def initialize(clusterid=nil, nodeids=nil)
+          @ClusterId = clusterid
+          @NodeIds = nodeids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeIds = params['NodeIds']
+        end
+      end
+
+      # DetachNodes返回参数结构体
+      class DetachNodesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1841,7 +1950,7 @@ module TencentCloud
         # @param Zone: 节点所在可用区信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param NodeState: 节点状态。<br><li>SUBMITTED：已完成提交。<br><li>CREATING：创建中。<br><li>CREATED：完成创建。<br><li>INITING：初始化中。<br><li>INIT_FAILED：初始化失败。<br><li>RUNNING：运行中。<br><li>DELETING：销毁中。
+        # @param NodeState: 节点状态。<li>SUBMITTED：已完成提交。</li><li>CREATING：创建中。</li><li>CREATED：完成创建。</li><li>INITING：初始化中。</li><li>INIT_FAILED：初始化失败。</li><li>RUNNING：运行中。</li><li>DELETING：销毁中。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeState: String
         # @param ImageId: 镜像ID。
@@ -1850,16 +1959,19 @@ module TencentCloud
         # @param QueueName: 节点所属队列名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueName: String
-        # @param NodeRole: 节点角色。<br><li>Manager：管控节点。<br><li>Compute：计算节点。<br><li>Login：登录节点。<br><li>ManagerBackup：备用管控节点。
+        # @param NodeRole: 节点角色。<li>Manager：管控节点。</li><li>Compute：计算节点。</li><li>Login：登录节点。</li><li>ManagerBackup：备用管控节点。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeRole: String
-        # @param NodeType: 节点类型。<br><li>STATIC：静态节点。<br><li>DYNAMIC：弹性节点。
+        # @param NodeType: 节点类型。<li>STATIC：静态节点。</li><li>DYNAMIC：弹性节点。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeType: String
+        # @param NodeId: thpc集群节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
 
-        attr_accessor :InstanceId, :Zone, :NodeState, :ImageId, :QueueName, :NodeRole, :NodeType
+        attr_accessor :InstanceId, :Zone, :NodeState, :ImageId, :QueueName, :NodeRole, :NodeType, :NodeId
 
-        def initialize(instanceid=nil, zone=nil, nodestate=nil, imageid=nil, queuename=nil, noderole=nil, nodetype=nil)
+        def initialize(instanceid=nil, zone=nil, nodestate=nil, imageid=nil, queuename=nil, noderole=nil, nodetype=nil, nodeid=nil)
           @InstanceId = instanceid
           @Zone = zone
           @NodeState = nodestate
@@ -1867,6 +1979,7 @@ module TencentCloud
           @QueueName = queuename
           @NodeRole = noderole
           @NodeType = nodetype
+          @NodeId = nodeid
         end
 
         def deserialize(params)
@@ -1877,6 +1990,7 @@ module TencentCloud
           @QueueName = params['QueueName']
           @NodeRole = params['NodeRole']
           @NodeType = params['NodeType']
+          @NodeId = params['NodeId']
         end
       end
 

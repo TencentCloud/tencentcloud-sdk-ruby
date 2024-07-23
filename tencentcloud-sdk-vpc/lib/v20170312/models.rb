@@ -1830,10 +1830,25 @@ module TencentCloud
         # @param RouteBroadcastPolicyFlag: 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteBroadcastPolicyFlag: Boolean
+        # @param RouteECMPFlag: 是否开启等价路由功能。`False` 未开启，`True` 开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteECMPFlag: Boolean
+        # @param RouteOverlapFlag: 是否开启路由重叠功能。`False` 未开启，`True` 开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteOverlapFlag: Boolean
+        # @param TrafficMarkingPolicyFlag: 是否开启QOS。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficMarkingPolicyFlag: Boolean
+        # @param RouteSelectPolicyFlag: 是否开启路由表选择策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteSelectPolicyFlag: Boolean
+        # @param DirectConnectAccelerateChannelFlag: 是否开启二层云联网通道。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectConnectAccelerateChannelFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1849,6 +1864,11 @@ module TencentCloud
           @RouteTableFlag = routetableflag
           @IsSecurityLock = issecuritylock
           @RouteBroadcastPolicyFlag = routebroadcastpolicyflag
+          @RouteECMPFlag = routeecmpflag
+          @RouteOverlapFlag = routeoverlapflag
+          @TrafficMarkingPolicyFlag = trafficmarkingpolicyflag
+          @RouteSelectPolicyFlag = routeselectpolicyflag
+          @DirectConnectAccelerateChannelFlag = directconnectacceleratechannelflag
         end
 
         def deserialize(params)
@@ -1874,6 +1894,11 @@ module TencentCloud
           @RouteTableFlag = params['RouteTableFlag']
           @IsSecurityLock = params['IsSecurityLock']
           @RouteBroadcastPolicyFlag = params['RouteBroadcastPolicyFlag']
+          @RouteECMPFlag = params['RouteECMPFlag']
+          @RouteOverlapFlag = params['RouteOverlapFlag']
+          @TrafficMarkingPolicyFlag = params['TrafficMarkingPolicyFlag']
+          @RouteSelectPolicyFlag = params['RouteSelectPolicyFlag']
+          @DirectConnectAccelerateChannelFlag = params['DirectConnectAccelerateChannelFlag']
         end
       end
 
@@ -19316,14 +19341,17 @@ module TencentCloud
         # @type InstanceChargeType: String
         # @param BgpAsn: BGP ASN。ASN取值范围为1- 4294967295，默认值64551，其中139341、45090和58835不可用。
         # @type BgpAsn: Integer
+        # @param MaxConnection: 服务端最大连接数个数。
+        # @type MaxConnection: Integer
 
-        attr_accessor :VpnGatewayId, :VpnGatewayName, :InstanceChargeType, :BgpAsn
+        attr_accessor :VpnGatewayId, :VpnGatewayName, :InstanceChargeType, :BgpAsn, :MaxConnection
 
-        def initialize(vpngatewayid=nil, vpngatewayname=nil, instancechargetype=nil, bgpasn=nil)
+        def initialize(vpngatewayid=nil, vpngatewayname=nil, instancechargetype=nil, bgpasn=nil, maxconnection=nil)
           @VpnGatewayId = vpngatewayid
           @VpnGatewayName = vpngatewayname
           @InstanceChargeType = instancechargetype
           @BgpAsn = bgpasn
+          @MaxConnection = maxconnection
         end
 
         def deserialize(params)
@@ -19331,6 +19359,7 @@ module TencentCloud
           @VpnGatewayName = params['VpnGatewayName']
           @InstanceChargeType = params['InstanceChargeType']
           @BgpAsn = params['BgpAsn']
+          @MaxConnection = params['MaxConnection']
         end
       end
 

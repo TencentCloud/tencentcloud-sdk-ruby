@@ -173,6 +173,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateDBInstanceParamTpl)用于创建云数据库MongoDB实例的参数模板
+        # **说明：CreateDBInstanceParamTpl API正在公测中，在此期间，该接口仅对公测用户开放**
+
+        # @param request: Request instance for CreateDBInstanceParamTpl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateDBInstanceParamTplRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateDBInstanceParamTplResponse`
+        def CreateDBInstanceParamTpl(request)
+          body = send_request('CreateDBInstanceParamTpl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDBInstanceParamTplResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteAccountUser）用于删除实例的自定义账号。
 
         # @param request: Request instance for DeleteAccountUser.
@@ -413,6 +438,56 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeDBInstanceParamTpl )用于查询当前账号下所有MongoDB数据库参数模板
+        # **说明：DescribeDBInstanceParamTpl  API正在公测中，在此期间，该接口仅对公测用户开放**
+
+        # @param request: Request instance for DescribeDBInstanceParamTpl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeDBInstanceParamTplRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeDBInstanceParamTplResponse`
+        def DescribeDBInstanceParamTpl(request)
+          body = send_request('DescribeDBInstanceParamTpl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceParamTplResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeDBInstanceParamTplDetail )用于查询MongoDB云数据库实例的参数模板详情。
+        # **说明：DescribeDBInstanceParamTplDetail  API正在公测中，在此期间，该接口仅对公测用户开放**
+
+        # @param request: Request instance for DescribeDBInstanceParamTplDetail.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeDBInstanceParamTplDetailRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeDBInstanceParamTplDetailResponse`
+        def DescribeDBInstanceParamTplDetail(request)
+          body = send_request('DescribeDBInstanceParamTplDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceParamTplDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBInstances）用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选主实例、灾备实例和只读实例信息列表。
 
         # @param request: Request instance for DescribeDBInstances.
@@ -567,6 +642,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTransparentDataEncryptionStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DropDBInstanceParamTpl )用于删除云数据库MongoDB实例的参数模板
+        # **说明：DropDBInstanceParamTpl  API正在公测中，在此期间，该接口仅对公测用户开放**
+
+        # @param request: Request instance for DropDBInstanceParamTpl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DropDBInstanceParamTplRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DropDBInstanceParamTplResponse`
+        def DropDBInstanceParamTpl(request)
+          body = send_request('DropDBInstanceParamTpl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DropDBInstanceParamTplResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -784,6 +884,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstanceNetworkAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDBInstanceParamTpl )用于修改MongoDB云数据库实例的参数模板。
+        # **说明：ModifyDBInstanceParamTpl  API正在公测中，在此期间，该接口仅对公测用户开放**
+
+        # @param request: Request instance for ModifyDBInstanceParamTpl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ModifyDBInstanceParamTplRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ModifyDBInstanceParamTplResponse`
+        def ModifyDBInstanceParamTpl(request)
+          body = send_request('ModifyDBInstanceParamTpl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceParamTplResponse.new
             model.deserialize(response['Response'])
             model
           else

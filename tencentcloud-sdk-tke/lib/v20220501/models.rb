@@ -1333,6 +1333,8 @@ module TencentCloud
         # @param Replicas: 期望节点数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Replicas: Integer
+        # @param ReadyReplicas: 就绪 Machine 个数
+        # @type ReadyReplicas: Integer
         # @param InternetAccessible: 公网带宽设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
@@ -1340,9 +1342,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :InternetAccessible, :DataDisks
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :ReadyReplicas, :InternetAccessible, :DataDisks
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, keyids=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, internetaccessible=nil, datadisks=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, keyids=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, readyreplicas=nil, internetaccessible=nil, datadisks=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -1361,6 +1363,7 @@ module TencentCloud
           @EnableAutoscaling = enableautoscaling
           @InstanceTypes = instancetypes
           @Replicas = replicas
+          @ReadyReplicas = readyreplicas
           @InternetAccessible = internetaccessible
           @DataDisks = datadisks
         end
@@ -1402,6 +1405,7 @@ module TencentCloud
           @EnableAutoscaling = params['EnableAutoscaling']
           @InstanceTypes = params['InstanceTypes']
           @Replicas = params['Replicas']
+          @ReadyReplicas = params['ReadyReplicas']
           unless params['InternetAccessible'].nil?
             @InternetAccessible = InternetAccessible.new
             @InternetAccessible.deserialize(params['InternetAccessible'])

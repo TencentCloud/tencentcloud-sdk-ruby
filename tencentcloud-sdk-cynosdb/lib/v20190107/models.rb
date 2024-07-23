@@ -2087,7 +2087,7 @@ module TencentCloud
         # @param TimeUnit: 包年包月购买时长单位，['s','d','m','y']
         # @type TimeUnit: String
         # @param AutoRenewFlag: 包年包月购买是否自动续费，默认为0。
-        # 0标识默认续费方式，1表示自动续费，2表示手不自动续费。
+        # 0标识默认续费方式，1表示自动续费，2表示不自动续费。
         # @type AutoRenewFlag: Integer
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer

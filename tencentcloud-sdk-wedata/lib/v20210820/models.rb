@@ -9567,15 +9567,21 @@ module TencentCloud
         # 标准模式生产环境：PROD
         # 简单模式：ALL
         # @type EnvType: String
+        # @param Filters: 过滤条件
+        # @type Filters: :class:`Tencentcloud::Wedata.v20210820.models.Filter`
+        # @param OrderFields: 排序条件
+        # @type OrderFields: :class:`Tencentcloud::Wedata.v20210820.models.OrderField`
 
-        attr_accessor :Type, :ProjectId, :Name, :DisplayName, :EnvType
+        attr_accessor :Type, :ProjectId, :Name, :DisplayName, :EnvType, :Filters, :OrderFields
 
-        def initialize(type=nil, projectid=nil, name=nil, displayname=nil, envtype=nil)
+        def initialize(type=nil, projectid=nil, name=nil, displayname=nil, envtype=nil, filters=nil, orderfields=nil)
           @Type = type
           @ProjectId = projectid
           @Name = name
           @DisplayName = displayname
           @EnvType = envtype
+          @Filters = filters
+          @OrderFields = orderfields
         end
 
         def deserialize(params)
@@ -9584,6 +9590,14 @@ module TencentCloud
           @Name = params['Name']
           @DisplayName = params['DisplayName']
           @EnvType = params['EnvType']
+          unless params['Filters'].nil?
+            @Filters = Filter.new
+            @Filters.deserialize(params['Filters'])
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = OrderField.new
+            @OrderFields.deserialize(params['OrderFields'])
+          end
         end
       end
 
@@ -12034,16 +12048,19 @@ module TencentCloud
         # @type ConnectionType: String
         # @param SchemaName: 元数据Database下的Schema名称
         # @type SchemaName: String
+        # @param ProjectId: 项目空间ID
+        # @type ProjectId: String
 
-        attr_accessor :Name, :DatabaseName, :MsType, :DatasourceId, :ConnectionType, :SchemaName
+        attr_accessor :Name, :DatabaseName, :MsType, :DatasourceId, :ConnectionType, :SchemaName, :ProjectId
 
-        def initialize(name=nil, databasename=nil, mstype=nil, datasourceid=nil, connectiontype=nil, schemaname=nil)
+        def initialize(name=nil, databasename=nil, mstype=nil, datasourceid=nil, connectiontype=nil, schemaname=nil, projectid=nil)
           @Name = name
           @DatabaseName = databasename
           @MsType = mstype
           @DatasourceId = datasourceid
           @ConnectionType = connectiontype
           @SchemaName = schemaname
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -12053,6 +12070,7 @@ module TencentCloud
           @DatasourceId = params['DatasourceId']
           @ConnectionType = params['ConnectionType']
           @SchemaName = params['SchemaName']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -21726,10 +21744,13 @@ module TencentCloud
         # @param TriggerTypes: 触发类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerTypes: Array
+        # @param DlcGroupName: DLC资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DlcGroupName: String
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName, :TriggerTypes, :DlcGroupName
 
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil, triggertypes=nil, dlcgroupname=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -21747,6 +21768,7 @@ module TencentCloud
           @RuleId = ruleid
           @RuleName = rulename
           @TriggerTypes = triggertypes
+          @DlcGroupName = dlcgroupname
         end
 
         def deserialize(params)
@@ -21774,6 +21796,7 @@ module TencentCloud
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
           @TriggerTypes = params['TriggerTypes']
+          @DlcGroupName = params['DlcGroupName']
         end
       end
 

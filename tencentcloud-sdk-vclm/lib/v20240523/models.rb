@@ -368,17 +368,23 @@ module TencentCloud
         # - 视频大小：不超过200M；
         # - 视频FPS：15～60fps。
         # @type VideoUrl: String
+        # @param StyleStrength: 风格化强度 可选参数["low","medium","high"]
+        # "low":风格化强度弱,"medium":"风格化强度中等","high":"风格化强度强"
+        # 默认为medium
+        # @type StyleStrength: String
 
-        attr_accessor :StyleId, :VideoUrl
+        attr_accessor :StyleId, :VideoUrl, :StyleStrength
 
-        def initialize(styleid=nil, videourl=nil)
+        def initialize(styleid=nil, videourl=nil, stylestrength=nil)
           @StyleId = styleid
           @VideoUrl = videourl
+          @StyleStrength = stylestrength
         end
 
         def deserialize(params)
           @StyleId = params['StyleId']
           @VideoUrl = params['VideoUrl']
+          @StyleStrength = params['StyleStrength']
         end
       end
 

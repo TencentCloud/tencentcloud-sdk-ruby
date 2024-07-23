@@ -607,6 +607,70 @@ module TencentCloud
         end
       end
 
+      # CreateDBInstanceParamTpl请求参数结构体
+      class CreateDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
+        # @param TplName: 参数模板名称。
+        # @type TplName: String
+        # @param MongoVersion: 版本号，该参数模板支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是：MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。当MirrorTplId为空时，该字段必填。
+        # @type MongoVersion: String
+        # @param ClusterType: 实例类型，REPLSET-副本集，SHARD-分片集群，STANDALONE-单节点
+        # 当MirrorTplId为空时，该字段必填。
+        # @type ClusterType: String
+        # @param TplDesc: 模板描述信息。
+        # @type TplDesc: String
+        # @param Params: 模板参数，若为空，则以系统默认模板作为新版本参数。
+        # @type Params: Array
+        # @param MirrorTplId: 镜像模板ID，若该字段不为空，则以该模板为镜像，克隆出一个新的模板。注意：MirrorTplId不为空时，MongoVersion及ClusterType将以MirrorTpl模板的版本及实例类型为准。
+        # @type MirrorTplId: String
+
+        attr_accessor :TplName, :MongoVersion, :ClusterType, :TplDesc, :Params, :MirrorTplId
+
+        def initialize(tplname=nil, mongoversion=nil, clustertype=nil, tpldesc=nil, params=nil, mirrortplid=nil)
+          @TplName = tplname
+          @MongoVersion = mongoversion
+          @ClusterType = clustertype
+          @TplDesc = tpldesc
+          @Params = params
+          @MirrorTplId = mirrortplid
+        end
+
+        def deserialize(params)
+          @TplName = params['TplName']
+          @MongoVersion = params['MongoVersion']
+          @ClusterType = params['ClusterType']
+          @TplDesc = params['TplDesc']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              paramtype_tmp = ParamType.new
+              paramtype_tmp.deserialize(i)
+              @Params << paramtype_tmp
+            end
+          end
+          @MirrorTplId = params['MirrorTplId']
+        end
+      end
+
+      # CreateDBInstanceParamTpl返回参数结构体
+      class CreateDBInstanceParamTplResponse < TencentCloud::Common::AbstractModel
+        # @param TplId: 模板ID
+        # @type TplId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TplId, :RequestId
+
+        def initialize(tplid=nil, requestid=nil)
+          @TplId = tplid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TplId = params['TplId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDBInstance请求参数结构体
       class CreateDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param NodeNum: - 创建副本集实例，指每个副本集内主从节点数量。每个副本集所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
@@ -1480,6 +1544,171 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstanceParamTplDetail请求参数结构体
+      class DescribeDBInstanceParamTplDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TplId: 参数模板 ID。
+        # @type TplId: String
+        # @param ParamName: 参数名称，传入该值，则只会获取该字段的参数详情。为空时，返回全部参数。
+        # @type ParamName: String
+
+        attr_accessor :TplId, :ParamName
+
+        def initialize(tplid=nil, paramname=nil)
+          @TplId = tplid
+          @ParamName = paramname
+        end
+
+        def deserialize(params)
+          @TplId = params['TplId']
+          @ParamName = params['ParamName']
+        end
+      end
+
+      # DescribeDBInstanceParamTplDetail返回参数结构体
+      class DescribeDBInstanceParamTplDetailResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceEnumParams: 枚举类参数详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceEnumParams: Array
+        # @param InstanceIntegerParams: 整形参数详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIntegerParams: Array
+        # @param InstanceTextParams: 文本参数详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTextParams: Array
+        # @param InstanceMultiParams: 多值参数详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceMultiParams: Array
+        # @param TotalCount: 参数总个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param MongoVersion: 模板适配实例版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongoVersion: String
+        # @param ClusterType: 模板适配集群类型，副本集或分片。。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param TplName: 参数模板名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TplName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceEnumParams, :InstanceIntegerParams, :InstanceTextParams, :InstanceMultiParams, :TotalCount, :MongoVersion, :ClusterType, :TplName, :RequestId
+
+        def initialize(instanceenumparams=nil, instanceintegerparams=nil, instancetextparams=nil, instancemultiparams=nil, totalcount=nil, mongoversion=nil, clustertype=nil, tplname=nil, requestid=nil)
+          @InstanceEnumParams = instanceenumparams
+          @InstanceIntegerParams = instanceintegerparams
+          @InstanceTextParams = instancetextparams
+          @InstanceMultiParams = instancemultiparams
+          @TotalCount = totalcount
+          @MongoVersion = mongoversion
+          @ClusterType = clustertype
+          @TplName = tplname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceEnumParams'].nil?
+            @InstanceEnumParams = []
+            params['InstanceEnumParams'].each do |i|
+              instanceenumparam_tmp = InstanceEnumParam.new
+              instanceenumparam_tmp.deserialize(i)
+              @InstanceEnumParams << instanceenumparam_tmp
+            end
+          end
+          unless params['InstanceIntegerParams'].nil?
+            @InstanceIntegerParams = []
+            params['InstanceIntegerParams'].each do |i|
+              instanceintegerparam_tmp = InstanceIntegerParam.new
+              instanceintegerparam_tmp.deserialize(i)
+              @InstanceIntegerParams << instanceintegerparam_tmp
+            end
+          end
+          unless params['InstanceTextParams'].nil?
+            @InstanceTextParams = []
+            params['InstanceTextParams'].each do |i|
+              instancetextparam_tmp = InstanceTextParam.new
+              instancetextparam_tmp.deserialize(i)
+              @InstanceTextParams << instancetextparam_tmp
+            end
+          end
+          unless params['InstanceMultiParams'].nil?
+            @InstanceMultiParams = []
+            params['InstanceMultiParams'].each do |i|
+              instancemultiparam_tmp = InstanceMultiParam.new
+              instancemultiparam_tmp.deserialize(i)
+              @InstanceMultiParams << instancemultiparam_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @MongoVersion = params['MongoVersion']
+          @ClusterType = params['ClusterType']
+          @TplName = params['TplName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBInstanceParamTpl请求参数结构体
+      class DescribeDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
+        # @param TplIds: 参数模板 ID 查询条件。
+        # @type TplIds: Array
+        # @param TplNames: 模板名称，查询条件。
+        # @type TplNames: Array
+        # @param MongoVersion: 根据版本号插叙参数模板，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是：MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # @type MongoVersion: Array
+        # @param TplType: 根据模板类型查询参数模板，支持DEFAULT（默认模板）和CUSTOMIZE（自定义模板）两种。
+        # @type TplType: String
+
+        attr_accessor :TplIds, :TplNames, :MongoVersion, :TplType
+
+        def initialize(tplids=nil, tplnames=nil, mongoversion=nil, tpltype=nil)
+          @TplIds = tplids
+          @TplNames = tplnames
+          @MongoVersion = mongoversion
+          @TplType = tpltype
+        end
+
+        def deserialize(params)
+          @TplIds = params['TplIds']
+          @TplNames = params['TplNames']
+          @MongoVersion = params['MongoVersion']
+          @TplType = params['TplType']
+        end
+      end
+
+      # DescribeDBInstanceParamTpl返回参数结构体
+      class DescribeDBInstanceParamTplResponse < TencentCloud::Common::AbstractModel
+        # @param ParamTpls: 参数模板列表信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamTpls: Array
+        # @param TotalCount: 参数模板总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ParamTpls, :TotalCount, :RequestId
+
+        def initialize(paramtpls=nil, totalcount=nil, requestid=nil)
+          @ParamTpls = paramtpls
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ParamTpls'].nil?
+            @ParamTpls = []
+            params['ParamTpls'].each do |i|
+              paramtpl_tmp = ParamTpl.new
+              paramtpl_tmp.deserialize(i)
+              @ParamTpls << paramtpl_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -1940,6 +2169,38 @@ module TencentCloud
               @KeyInfoList << kmsinfodetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DropDBInstanceParamTpl请求参数结构体
+      class DropDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
+        # @param TplId: 参数模板 ID。
+        # @type TplId: String
+
+        attr_accessor :TplId
+
+        def initialize(tplid=nil)
+          @TplId = tplid
+        end
+
+        def deserialize(params)
+          @TplId = params['TplId']
+        end
+      end
+
+      # DropDBInstanceParamTpl返回参数结构体
+      class DropDBInstanceParamTplResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3039,6 +3300,57 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceParamTpl请求参数结构体
+      class ModifyDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
+        # @param TplId: 待修改的参数模板 ID，示例：tpl-jglr91vew。
+        # @type TplId: String
+        # @param TplName: 待修改参数模板名称，为空时，保持原有名称。
+        # @type TplName: String
+        # @param TplDesc: 待修改参数模板描述，为空时，保持原有描述。
+        # @type TplDesc: String
+        # @param Params: 待修改参数名及参数值，为空时，各参数保持原有值，支持单条或批量修改。
+        # @type Params: Array
+
+        attr_accessor :TplId, :TplName, :TplDesc, :Params
+
+        def initialize(tplid=nil, tplname=nil, tpldesc=nil, params=nil)
+          @TplId = tplid
+          @TplName = tplname
+          @TplDesc = tpldesc
+          @Params = params
+        end
+
+        def deserialize(params)
+          @TplId = params['TplId']
+          @TplName = params['TplName']
+          @TplDesc = params['TplDesc']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              paramtype_tmp = ParamType.new
+              paramtype_tmp.deserialize(i)
+              @Params << paramtype_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDBInstanceParamTpl返回参数结构体
+      class ModifyDBInstanceParamTplResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroup请求参数结构体
       class ModifyDBInstanceSecurityGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。例如：cmgo-7pje****。
@@ -3420,6 +3732,62 @@ module TencentCloud
           @ReplicaSetName = params['ReplicaSetName']
           @NodeName = params['NodeName']
           @OpId = params['OpId']
+        end
+      end
+
+      # 数据库参数模板
+      class ParamTpl < TencentCloud::Common::AbstractModel
+        # @param TplName: 参数模板名称
+        # @type TplName: String
+        # @param TplId: 参数模板ID
+        # @type TplId: String
+        # @param MongoVersion: 适用数据库版本
+        # @type MongoVersion: String
+        # @param ClusterType: 适用数据库类型
+        # @type ClusterType: String
+        # @param TplDesc: 参数模板描述
+        # @type TplDesc: String
+        # @param TplType: 模板类型，包括DEFAULT（默认模板）及CUSTOMIZE（定制模板）两种类型
+        # @type TplType: String
+
+        attr_accessor :TplName, :TplId, :MongoVersion, :ClusterType, :TplDesc, :TplType
+
+        def initialize(tplname=nil, tplid=nil, mongoversion=nil, clustertype=nil, tpldesc=nil, tpltype=nil)
+          @TplName = tplname
+          @TplId = tplid
+          @MongoVersion = mongoversion
+          @ClusterType = clustertype
+          @TplDesc = tpldesc
+          @TplType = tpltype
+        end
+
+        def deserialize(params)
+          @TplName = params['TplName']
+          @TplId = params['TplId']
+          @MongoVersion = params['MongoVersion']
+          @ClusterType = params['ClusterType']
+          @TplDesc = params['TplDesc']
+          @TplType = params['TplType']
+        end
+      end
+
+      # 数据库参数
+      class ParamType < TencentCloud::Common::AbstractModel
+        # @param Key: 参数
+        # @type Key: String
+        # @param Value: 参数值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

@@ -1033,7 +1033,11 @@ module TencentCloud
         # @param DeployVersion: 部署类型为 IMAGE 时，该参数表示镜像 tag。
         # 部署类型为 JAR/WAR 时，该参数表示包版本号。
         # @type DeployVersion: String
-        # @param PkgName: 包名。使用 JAR 包或者 WAR 包部署的时候必填。
+        # @param PkgName: 传入内容为 /jar包名字 的形式。也就是在 jar包名字前增加一个/。
+
+        # 如上传的 jar 包名字为 demo-1.0.0.jar，那么这里传入内容为：/demo-1.0.0.jar
+
+        # 注：jar 包需要通过 tem 页面上传过，tem 后端才能拉到该 jar 包。
         # @type PkgName: String
         # @param JdkVersion: JDK 版本。
         # - KONA:8：使用 kona jdk 8。
@@ -1105,10 +1109,14 @@ module TencentCloud
         # @type RepoServer: String
         # @param RepoType: 镜像部署时，仓库类型：0：个人仓库；1：企业版；2：公共仓库；3：tem托管仓库；4：demo仓库
         # @type RepoType: Integer
+        # @param PostStartEncoded: 启动后执行的脚本，base64 编码
+        # @type PostStartEncoded: String
+        # @param PreStopEncoded: 停止前执行的脚本，base64 编码
+        # @type PreStopEncoded: String
 
-        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics, :TcrInstanceId, :RepoServer, :RepoType
+        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics, :TcrInstanceId, :RepoServer, :RepoType, :PostStartEncoded, :PreStopEncoded
 
-        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil, tcrinstanceid=nil, reposerver=nil, repotype=nil)
+        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil, tcrinstanceid=nil, reposerver=nil, repotype=nil, poststartencoded=nil, prestopencoded=nil)
           @ApplicationId = applicationid
           @InitPodNum = initpodnum
           @CpuSpec = cpuspec
@@ -1154,6 +1162,8 @@ module TencentCloud
           @TcrInstanceId = tcrinstanceid
           @RepoServer = reposerver
           @RepoType = repotype
+          @PostStartEncoded = poststartencoded
+          @PreStopEncoded = prestopencoded
         end
 
         def deserialize(params)
@@ -1268,6 +1278,8 @@ module TencentCloud
           @TcrInstanceId = params['TcrInstanceId']
           @RepoServer = params['RepoServer']
           @RepoType = params['RepoType']
+          @PostStartEncoded = params['PostStartEncoded']
+          @PreStopEncoded = params['PreStopEncoded']
         end
       end
 

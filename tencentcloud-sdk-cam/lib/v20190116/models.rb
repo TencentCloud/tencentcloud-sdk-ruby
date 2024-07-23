@@ -4281,10 +4281,13 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param RoleArn: 角色RoleArn信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleArn: String
 
-        attr_accessor :RoleId, :RoleName, :PolicyDocument, :Description, :AddTime, :UpdateTime, :ConsoleLogin, :RoleType, :SessionDuration, :DeletionTaskId, :Tags
+        attr_accessor :RoleId, :RoleName, :PolicyDocument, :Description, :AddTime, :UpdateTime, :ConsoleLogin, :RoleType, :SessionDuration, :DeletionTaskId, :Tags, :RoleArn
 
-        def initialize(roleid=nil, rolename=nil, policydocument=nil, description=nil, addtime=nil, updatetime=nil, consolelogin=nil, roletype=nil, sessionduration=nil, deletiontaskid=nil, tags=nil)
+        def initialize(roleid=nil, rolename=nil, policydocument=nil, description=nil, addtime=nil, updatetime=nil, consolelogin=nil, roletype=nil, sessionduration=nil, deletiontaskid=nil, tags=nil, rolearn=nil)
           @RoleId = roleid
           @RoleName = rolename
           @PolicyDocument = policydocument
@@ -4296,6 +4299,7 @@ module TencentCloud
           @SessionDuration = sessionduration
           @DeletionTaskId = deletiontaskid
           @Tags = tags
+          @RoleArn = rolearn
         end
 
         def deserialize(params)
@@ -4317,6 +4321,7 @@ module TencentCloud
               @Tags << roletags_tmp
             end
           end
+          @RoleArn = params['RoleArn']
         end
       end
 

@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2024, 6
-        deprecate :Tags=, :none, 2024, 6
+        deprecate :Tags, :none, 2024, 7
+        deprecate :Tags=, :none, 2024, 7
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
           @Zone = zone
@@ -1575,6 +1575,23 @@ module TencentCloud
         end
       end
 
+      # Instance表detail字段
+      class InstanceDetail < TencentCloud::Common::AbstractModel
+        # @param EnableAlarmStrategy: 告警策略是否可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAlarmStrategy: Boolean
+
+        attr_accessor :EnableAlarmStrategy
+
+        def initialize(enablealarmstrategy=nil)
+          @EnableAlarmStrategy = enablealarmstrategy
+        end
+
+        def deserialize(params)
+          @EnableAlarmStrategy = params['EnableAlarmStrategy']
+        end
+      end
+
       # 实例描述信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID, "cdw-xxxx" 字符串类型
@@ -1727,10 +1744,13 @@ module TencentCloud
         # @param ClickHouseKeeper: 是否clickhouse-keeper
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickHouseKeeper: Boolean
+        # @param Details: 实例扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: :class:`Tencentcloud::Cdwch.v20200915.models.InstanceDetail`
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -1780,6 +1800,7 @@ module TencentCloud
           @IsSecondaryZone = issecondaryzone
           @SecondaryZoneInfo = secondaryzoneinfo
           @ClickHouseKeeper = clickhousekeeper
+          @Details = details
         end
 
         def deserialize(params)
@@ -1855,6 +1876,10 @@ module TencentCloud
           @IsSecondaryZone = params['IsSecondaryZone']
           @SecondaryZoneInfo = params['SecondaryZoneInfo']
           @ClickHouseKeeper = params['ClickHouseKeeper']
+          unless params['Details'].nil?
+            @Details = InstanceDetail.new
+            @Details.deserialize(params['Details'])
+          end
         end
       end
 

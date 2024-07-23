@@ -101,8 +101,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 6
-        deprecate :FileKeyValues=, :none, 2024, 6
+        deprecate :FileKeyValues, :none, 2024, 7
+        deprecate :FileKeyValues=, :none, 2024, 7
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -1177,6 +1177,23 @@ module TencentCloud
         end
       end
 
+      # Instance表detail字段
+      class InstanceDetail < TencentCloud::Common::AbstractModel
+        # @param EnableAlarmStrategy: 告警策略是否可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAlarmStrategy: Boolean
+
+        attr_accessor :EnableAlarmStrategy
+
+        def initialize(enablealarmstrategy=nil)
+          @EnableAlarmStrategy = enablealarmstrategy
+        end
+
+        def deserialize(params)
+          @EnableAlarmStrategy = params['EnableAlarmStrategy']
+        end
+      end
+
       # 实例描述信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID, "cdw-xxxx" 字符串类型
@@ -1327,13 +1344,16 @@ module TencentCloud
         # @param CoolDownBucket: 冷热分层使用COS桶
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoolDownBucket: String
+        # @param Details: 实例扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: :class:`Tencentcloud::Cdwdoris.v20211228.models.InstanceDetail`
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 6
-        deprecate :IfExistCatalog=, :none, 2024, 6
+        deprecate :IfExistCatalog, :none, 2024, 7
+        deprecate :IfExistCatalog=, :none, 2024, 7
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -1381,6 +1401,7 @@ module TencentCloud
           @UserNetworkInfos = usernetworkinfos
           @EnableCoolDown = enablecooldown
           @CoolDownBucket = cooldownbucket
+          @Details = details
         end
 
         def deserialize(params)
@@ -1444,6 +1465,10 @@ module TencentCloud
           @UserNetworkInfos = params['UserNetworkInfos']
           @EnableCoolDown = params['EnableCoolDown']
           @CoolDownBucket = params['CoolDownBucket']
+          unless params['Details'].nil?
+            @Details = InstanceDetail.new
+            @Details.deserialize(params['Details'])
+          end
         end
       end
 
