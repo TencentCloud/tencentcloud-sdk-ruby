@@ -2845,18 +2845,24 @@ module TencentCloud
         # @type DomainTemplateCount: Integer
         # @param PortTemplateCount: 协议端口模板数量
         # @type PortTemplateCount: Integer
+        # @param UsedTemplateCount: 已使用的地址模版数
+        # @type UsedTemplateCount: Integer
+        # @param TemplateQuotaCount: 地址模版配额数量
+        # @type TemplateQuotaCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :NameList, :IpTemplateCount, :DomainTemplateCount, :PortTemplateCount, :RequestId
+        attr_accessor :Total, :Data, :NameList, :IpTemplateCount, :DomainTemplateCount, :PortTemplateCount, :UsedTemplateCount, :TemplateQuotaCount, :RequestId
 
-        def initialize(total=nil, data=nil, namelist=nil, iptemplatecount=nil, domaintemplatecount=nil, porttemplatecount=nil, requestid=nil)
+        def initialize(total=nil, data=nil, namelist=nil, iptemplatecount=nil, domaintemplatecount=nil, porttemplatecount=nil, usedtemplatecount=nil, templatequotacount=nil, requestid=nil)
           @Total = total
           @Data = data
           @NameList = namelist
           @IpTemplateCount = iptemplatecount
           @DomainTemplateCount = domaintemplatecount
           @PortTemplateCount = porttemplatecount
+          @UsedTemplateCount = usedtemplatecount
+          @TemplateQuotaCount = templatequotacount
           @RequestId = requestid
         end
 
@@ -2874,6 +2880,8 @@ module TencentCloud
           @IpTemplateCount = params['IpTemplateCount']
           @DomainTemplateCount = params['DomainTemplateCount']
           @PortTemplateCount = params['PortTemplateCount']
+          @UsedTemplateCount = params['UsedTemplateCount']
+          @TemplateQuotaCount = params['TemplateQuotaCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3903,16 +3911,20 @@ module TencentCloud
         # @type ReturnCode: Integer
         # @param ReturnMsg: 返回信息  success 成功 其他 不成功
         # @type ReturnMsg: String
+        # @param AppProtocolList: 七层协议，NTA日志有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppProtocolList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :RequestId
+        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :AppProtocolList, :RequestId
 
-        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, requestid=nil)
+        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, appprotocollist=nil, requestid=nil)
           @Data = data
           @Total = total
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
+          @AppProtocolList = appprotocollist
           @RequestId = requestid
         end
 
@@ -3921,6 +3933,7 @@ module TencentCloud
           @Total = params['Total']
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @AppProtocolList = params['AppProtocolList']
           @RequestId = params['RequestId']
         end
       end

@@ -4297,27 +4297,33 @@ module TencentCloud
 
       # CreatePartnerAutoSignAuthUrl请求参数结构体
       class CreatePartnerAutoSignAuthUrlRequest < TencentCloud::Common::AbstractModel
-        # @param AuthorizedOrganizationId: 被授企业id
-        # @type AuthorizedOrganizationId: String
-        # @param SealTypes: 指定印章类型，指定后只能选择该类型的印章进行授权支持以下印章类型：- OFFICIAL : 企业公章- CONTRACT : 合同专用章- FINANCE : 财务专用章- PERSONNEL : 人事专用章
-        # @type SealTypes: Array
         # @param Agent: 代理企业和员工的信息。<br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Operator: 执行本接口操作的员工信息。<br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param AuthorizedOrganizationId: 被授企业id/授权方企业id，和AuthorizedOrganizationName二选一传入
+        # @type AuthorizedOrganizationId: String
+        # @param AuthorizedOrganizationName: 被授企业名称/授权方企业名称，和AuthorizedOrganizationId二选一传入
+        # @type AuthorizedOrganizationName: String
+        # @param SealTypes: 指定印章类型，指定后只能选择该类型的印章进行授权支持以下印章类型：- OFFICIAL : 企业公章- CONTRACT : 合同专用章- FINANCE : 财务专用章- PERSONNEL : 人事专用章
+        # @type SealTypes: Array
+        # @param AuthToMe: 他方授权给我方：
+        # - false：我方授权他方，AuthorizedOrganizationName代表【被授权方】企业名称
+        # - true：他方授权我方，AuthorizedOrganizationName代表【授权方】企业名称
+        # @type AuthToMe: Boolean
 
-        attr_accessor :AuthorizedOrganizationId, :SealTypes, :Agent, :Operator
+        attr_accessor :Agent, :Operator, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :SealTypes, :AuthToMe
 
-        def initialize(authorizedorganizationid=nil, sealtypes=nil, agent=nil, operator=nil)
-          @AuthorizedOrganizationId = authorizedorganizationid
-          @SealTypes = sealtypes
+        def initialize(agent=nil, operator=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, sealtypes=nil, authtome=nil)
           @Agent = agent
           @Operator = operator
+          @AuthorizedOrganizationId = authorizedorganizationid
+          @AuthorizedOrganizationName = authorizedorganizationname
+          @SealTypes = sealtypes
+          @AuthToMe = authtome
         end
 
         def deserialize(params)
-          @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
-          @SealTypes = params['SealTypes']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -4326,6 +4332,10 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
+          @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
+          @SealTypes = params['SealTypes']
+          @AuthToMe = params['AuthToMe']
         end
       end
 

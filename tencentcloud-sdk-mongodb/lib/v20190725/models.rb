@@ -514,10 +514,12 @@ module TencentCloud
         # @type ReadonlyNodeAvailabilityZoneList: Array
         # @param HiddenZone: Hidden节点所属可用区。跨可用区部署实例，必须配置该参数。
         # @type HiddenZone: String
+        # @param ParamTemplateId: 参数模板 ID。参数模板是一组 MongoDB 的参数并为预设置了参数值的集合，将一组有相同诉求的参数及值 存为模板，在创建实例时，可直接引用参数值到新实例。合理使用参数模板，可以提高MongoDB数据库的效率。模板列表从 DescribeDBInstanceParamTpl 接口获取，注意模板支持的版本。
+        # @type ParamTemplateId: String
 
-        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone
+        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone, :ParamTemplateId
 
-        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil)
+        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil, paramtemplateid=nil)
           @Memory = memory
           @Volume = volume
           @ReplicateSetNum = replicatesetnum
@@ -544,6 +546,7 @@ module TencentCloud
           @ReadonlyNodeNum = readonlynodenum
           @ReadonlyNodeAvailabilityZoneList = readonlynodeavailabilityzonelist
           @HiddenZone = hiddenzone
+          @ParamTemplateId = paramtemplateid
         end
 
         def deserialize(params)
@@ -580,6 +583,7 @@ module TencentCloud
           @ReadonlyNodeNum = params['ReadonlyNodeNum']
           @ReadonlyNodeAvailabilityZoneList = params['ReadonlyNodeAvailabilityZoneList']
           @HiddenZone = params['HiddenZone']
+          @ParamTemplateId = params['ParamTemplateId']
         end
       end
 
@@ -759,10 +763,12 @@ module TencentCloud
         # @type ReadonlyNodeAvailabilityZoneList: Array
         # @param HiddenZone: Hidden节点所属可用区。跨可用区部署实例，必须配置该参数。
         # @type HiddenZone: String
+        # @param ParamTemplateId: 参数模板 ID。参数模板是一组 MongoDB 的参数并为预设置了参数值的集合，将一组有相同诉求的参数及值 存为模板，在创建实例时，可直接引用参数值到新实例。合理使用参数模板，可以提高MongoDB数据库的效率。模板列表从 DescribeDBInstanceParamTpl 接口获取，注意模板支持的版本及实例类型。
+        # @type ParamTemplateId: String
 
-        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone
+        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone, :ParamTemplateId
 
-        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil)
+        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil, paramtemplateid=nil)
           @NodeNum = nodenum
           @Memory = memory
           @Volume = volume
@@ -792,6 +798,7 @@ module TencentCloud
           @ReadonlyNodeNum = readonlynodenum
           @ReadonlyNodeAvailabilityZoneList = readonlynodeavailabilityzonelist
           @HiddenZone = hiddenzone
+          @ParamTemplateId = paramtemplateid
         end
 
         def deserialize(params)
@@ -831,6 +838,7 @@ module TencentCloud
           @ReadonlyNodeNum = params['ReadonlyNodeNum']
           @ReadonlyNodeAvailabilityZoneList = params['ReadonlyNodeAvailabilityZoneList']
           @HiddenZone = params['HiddenZone']
+          @ParamTemplateId = params['ParamTemplateId']
         end
       end
 
@@ -3978,6 +3986,46 @@ module TencentCloud
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestartNodes请求参数结构体
+      class RestartNodesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @type InstanceId: String
+        # @param NodeIds: 节点Id。
+        # @type NodeIds: Array
+
+        attr_accessor :InstanceId, :NodeIds
+
+        def initialize(instanceid=nil, nodeids=nil)
+          @InstanceId = instanceid
+          @NodeIds = nodeids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeIds = params['NodeIds']
+        end
+      end
+
+      # RestartNodes返回参数结构体
+      class RestartNodesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程Id。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

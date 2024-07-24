@@ -10379,12 +10379,15 @@ module TencentCloud
       class UploadLogRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题id
         # @type TopicId: String
-        # @param HashKey: 根据 hashkey 写入相应范围的主题分区
+        # @param HashKey: 该参数已废弃，请勿使用
         # @type HashKey: String
         # @param CompressType: 压缩方法
         # @type CompressType: String
 
         attr_accessor :TopicId, :HashKey, :CompressType
+        extend Gem::Deprecate
+        deprecate :HashKey, :none, 2024, 7
+        deprecate :HashKey=, :none, 2024, 7
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid

@@ -19690,10 +19690,13 @@ module TencentCloud
         # @param OwnerUserIdsStr: 公有云 Owner ID 列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUserIdsStr: Array
+        # @param EnvType: 数据库环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvType: String
 
-        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg, :SchemaName, :CommandFormat, :OwnerName, :SubmitTimestamp, :Tag, :OperatorUserIdsStr, :OwnerUserIdsStr
+        attr_accessor :Name, :DisplayName, :LayerPath, :ParentLayerPath, :Type, :Kind, :Category, :Status, :Description, :Usage, :ParamDesc, :ReturnDesc, :Example, :ClusterIdentifier, :FuncId, :ClassName, :ResourceList, :OperatorUserIds, :OwnerUserIds, :DbName, :SubmitErrorMsg, :SchemaName, :CommandFormat, :OwnerName, :SubmitTimestamp, :Tag, :OperatorUserIdsStr, :OwnerUserIdsStr, :EnvType
 
-        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil, schemaname=nil, commandformat=nil, ownername=nil, submittimestamp=nil, tag=nil, operatoruseridsstr=nil, owneruseridsstr=nil)
+        def initialize(name=nil, displayname=nil, layerpath=nil, parentlayerpath=nil, type=nil, kind=nil, category=nil, status=nil, description=nil, usage=nil, paramdesc=nil, returndesc=nil, example=nil, clusteridentifier=nil, funcid=nil, classname=nil, resourcelist=nil, operatoruserids=nil, owneruserids=nil, dbname=nil, submiterrormsg=nil, schemaname=nil, commandformat=nil, ownername=nil, submittimestamp=nil, tag=nil, operatoruseridsstr=nil, owneruseridsstr=nil, envtype=nil)
           @Name = name
           @DisplayName = displayname
           @LayerPath = layerpath
@@ -19722,6 +19725,7 @@ module TencentCloud
           @Tag = tag
           @OperatorUserIdsStr = operatoruseridsstr
           @OwnerUserIdsStr = owneruseridsstr
+          @EnvType = envtype
         end
 
         def deserialize(params)
@@ -19760,6 +19764,7 @@ module TencentCloud
           @Tag = params['Tag']
           @OperatorUserIdsStr = params['OperatorUserIdsStr']
           @OwnerUserIdsStr = params['OwnerUserIdsStr']
+          @EnvType = params['EnvType']
         end
       end
 

@@ -8380,18 +8380,13 @@ module TencentCloud
 
       # DescribePrometheusRecordRules请求参数结构体
       class DescribePrometheusRecordRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-
-        # 示例值：prom-343kafd34
+        # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
-        # @param Offset: 偏移量，默认为0。 示例值：1
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
-        # 示例值：1
         # @type Limit: Integer
-        # @param Filters: 仅支持按Name, Values字段过滤:
-        # - Name = Name
-        #   按照给定的预聚合名称列表匹配
+        # @param Filters: 仅支持按Name, Values字段过滤。
         # @type Filters: Array
 
         attr_accessor :InstanceId, :Offset, :Limit, :Filters

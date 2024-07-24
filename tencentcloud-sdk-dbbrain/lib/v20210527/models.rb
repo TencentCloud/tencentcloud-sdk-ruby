@@ -723,6 +723,8 @@ module TencentCloud
         # @type Command: String
         # @param Info: 任务过滤条件，支持单条件前缀匹配。
         # @type Info: String
+        # @param Infos: 任务过滤条件，支持多个关键字匹配，与Info参数互斥。
+        # @type Infos: Array
         # @param User: 任务过滤条件，用户类型。
         # @type User: String
         # @param Time: 任务过滤条件，会话持续时长，单位秒。
@@ -730,15 +732,16 @@ module TencentCloud
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         # @type Product: String
 
-        attr_accessor :InstanceId, :Duration, :Host, :DB, :Command, :Info, :User, :Time, :Product
+        attr_accessor :InstanceId, :Duration, :Host, :DB, :Command, :Info, :Infos, :User, :Time, :Product
 
-        def initialize(instanceid=nil, duration=nil, host=nil, db=nil, command=nil, info=nil, user=nil, time=nil, product=nil)
+        def initialize(instanceid=nil, duration=nil, host=nil, db=nil, command=nil, info=nil, infos=nil, user=nil, time=nil, product=nil)
           @InstanceId = instanceid
           @Duration = duration
           @Host = host
           @DB = db
           @Command = command
           @Info = info
+          @Infos = infos
           @User = user
           @Time = time
           @Product = product
@@ -751,6 +754,7 @@ module TencentCloud
           @DB = params['DB']
           @Command = params['Command']
           @Info = params['Info']
+          @Infos = params['Infos']
           @User = params['User']
           @Time = params['Time']
           @Product = params['Product']

@@ -6517,17 +6517,21 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param CropPortrait: 是否返回头像照片，默认为 false
+        # @type CropPortrait: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :CropPortrait
 
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cropportrait=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @CropPortrait = cropportrait
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @CropPortrait = params['CropPortrait']
         end
       end
 
@@ -6549,12 +6553,14 @@ module TencentCloud
         # @type IssueAddress: String
         # @param Birthday: 出生日期
         # @type Birthday: String
+        # @param PortraitImage: 头像照片的base64
+        # @type PortraitImage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :EnglishName, :Number, :Sex, :ValidDate, :IssueAuthority, :IssueAddress, :Birthday, :RequestId
+        attr_accessor :Name, :EnglishName, :Number, :Sex, :ValidDate, :IssueAuthority, :IssueAddress, :Birthday, :PortraitImage, :RequestId
 
-        def initialize(name=nil, englishname=nil, number=nil, sex=nil, validdate=nil, issueauthority=nil, issueaddress=nil, birthday=nil, requestid=nil)
+        def initialize(name=nil, englishname=nil, number=nil, sex=nil, validdate=nil, issueauthority=nil, issueaddress=nil, birthday=nil, portraitimage=nil, requestid=nil)
           @Name = name
           @EnglishName = englishname
           @Number = number
@@ -6563,6 +6569,7 @@ module TencentCloud
           @IssueAuthority = issueauthority
           @IssueAddress = issueaddress
           @Birthday = birthday
+          @PortraitImage = portraitimage
           @RequestId = requestid
         end
 
@@ -6575,6 +6582,7 @@ module TencentCloud
           @IssueAuthority = params['IssueAuthority']
           @IssueAddress = params['IssueAddress']
           @Birthday = params['Birthday']
+          @PortraitImage = params['PortraitImage']
           @RequestId = params['RequestId']
         end
       end

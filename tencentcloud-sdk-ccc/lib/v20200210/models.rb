@@ -1417,7 +1417,7 @@ module TencentCloud
       class DeleteStaffRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param StaffList: 待删除客服邮箱列表
+        # @param StaffList: 待删除客服邮箱列表，一次最大支持200个。
         # @type StaffList: Array
 
         attr_accessor :SdkAppId, :StaffList
@@ -3042,9 +3042,9 @@ module TencentCloud
 
       # DescribeTelCdr请求参数结构体
       class DescribeTelCdrRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStamp: 起始时间戳，Unix 秒级时间戳
+        # @param StartTimeStamp: 起始时间戳，Unix 秒级时间戳，最大支持近180天。
         # @type StartTimeStamp: Integer
-        # @param EndTimeStamp: 结束时间戳，Unix 秒级时间戳
+        # @param EndTimeStamp: 结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。
         # @type EndTimeStamp: Integer
         # @param InstanceId: 实例 ID（废弃）
         # @type InstanceId: Integer

@@ -11190,10 +11190,7 @@ module TencentCloud
         # @type DomainId: String
         # @param InstanceID: 必填项。域名所属实例id
         # @type InstanceID: String
-        # @param CertType: 必填项。证书类型。
-        # 0：仅配置HTTP监听端口，没有证书
-        # 1：证书来源为自有证书
-        # 2：证书来源为托管证书
+        # @param CertType: 证书类型。0：仅配置HTTP监听端口，没有证书1：证书来源为自有证书2：证书来源为托管证书
         # @type CertType: Integer
         # @param Cert: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Cert: String
@@ -11201,11 +11198,7 @@ module TencentCloud
         # @type PrivateKey: String
         # @param SSLId: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type SSLId: String
-        # @param IsCdn: 必填项。waf前是否部署有七层代理服务。
-        # 0：没有部署代理服务
-        # 1：有部署代理服务，waf将使用XFF获取客户端IP
-        # 2：有部署代理服务，waf将使用remote_addr获取客户端IP
-        # 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
+        # @param IsCdn: waf前是否部署有七层代理服务。0：没有部署代理服务1：有部署代理服务，waf将使用XFF获取客户端IP2：有部署代理服务，waf将使用remote_addr获取客户端IP3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         # @type IsCdn: Integer
         # @param UpstreamScheme: 服务配置有HTTPS端口时，HTTPS的回源协议。
         # http：使用http协议回源，和HttpsUpstreamPort配合使用
@@ -11213,58 +11206,39 @@ module TencentCloud
         # @type UpstreamScheme: String
         # @param HttpsUpstreamPort: HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
         # @type HttpsUpstreamPort: String
-        # @param HttpsRewrite: 必填项。是否开启HTTP强制跳转到HTTPS。
-        # 0：不强制跳转
-        # 1：开启强制跳转
+        # @param HttpsRewrite: 是否开启HTTP强制跳转到HTTPS。0：不强制跳转1：开启强制跳转
         # @type HttpsRewrite: Integer
-        # @param UpstreamType: 必填项。回源类型。
-        # 0：通过IP回源
-        # 1：通过域名回源
+        # @param UpstreamType: 回源类型。0：通过IP回源1：通过域名回源
         # @type UpstreamType: Integer
         # @param UpstreamDomain: 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
         # @type UpstreamDomain: String
         # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
         # @type SrcList: Array
-        # @param IsHttp2: 必填项。是否开启HTTP2，需要开启HTTPS协议支持。
-        # 0：关闭
-        # 1：开启
+        # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。0：关闭1：开启
         # @type IsHttp2: Integer
-        # @param IsWebsocket: 必填项。是否开启WebSocket支持。
-        # 0：关闭
-        # 1：开启
+        # @param IsWebsocket: 是否开启WebSocket支持。0：关闭1：开启
         # @type IsWebsocket: Integer
-        # @param LoadBalance: 必填项。回源负载均衡策略。
-        # 0：轮询
-        # 1：IP hash
-        # 2：加权轮询
+        # @param LoadBalance: 回源负载均衡策略。0：轮询1：IP hash2：加权轮询
         # @type LoadBalance: Integer
         # @param IsGray: 待废弃，可不填。是否开启灰度，0表示不开启灰度。
         # @type IsGray: Integer
         # @param Edition: 域名所属实例类型
         # @type Edition: String
-        # @param Ports: 必填项。端口信息，可通过DescribeDomains接口获取具体参数信息。
+        # @param Ports: 端口信息，可通过DescribeDomains接口获取具体参数信息。
         # @type Ports: Array
-        # @param IsKeepAlive: 必填项。是否开启长连接。
-        # 0： 短连接
-        # 1： 长连接
+        # @param IsKeepAlive: 是否开启长连接。0： 短连接1： 长连接
         # @type IsKeepAlive: String
-        # @param Anycast: 必填项，待废弃。目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
+        # @param Anycast: 待废弃。目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         # @type Weights: Array
-        # @param ActiveCheck: 必填项，是否开启主动健康检测。
-        # 0：不开启
-        # 1：开启
+        # @param ActiveCheck: 是否开启主动健康检测。0：不开启1：开启
         # @type ActiveCheck: Integer
         # @param TLSVersion: TLS版本信息
         # @type TLSVersion: Integer
         # @param Ciphers: 加密套件信息
         # @type Ciphers: Array
-        # @param CipherTemplate: 必填项。加密套件模板。
-        # 0：不支持选择，使用默认模板
-        # 1：通用型模板
-        # 2：安全型模板
-        # 3：自定义模板
+        # @param CipherTemplate: 加密套件模板。0：不支持选择，使用默认模板  1：通用型模板 2：安全型模板3：自定义模板
         # @type CipherTemplate: Integer
         # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
         # @type ProxyReadTimeout: Integer
@@ -11280,9 +11254,7 @@ module TencentCloud
         # @type SniHost: String
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
         # @type IpHeaders: Array
-        # @param XFFReset: 必填项。是否开启XFF重置。
-        # 0：关闭
-        # 1：开启
+        # @param XFFReset: 是否开启XFF重置。0：关闭1：开启
         # @type XFFReset: Integer
         # @param Note: 域名备注信息
         # @type Note: String

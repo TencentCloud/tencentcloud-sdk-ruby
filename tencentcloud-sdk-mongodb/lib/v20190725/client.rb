@@ -1091,6 +1091,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于重启数据库节点。
+
+        # @param request: Request instance for RestartNodes.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::RestartNodesRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::RestartNodesResponse`
+        def RestartNodes(request)
+          body = send_request('RestartNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
 
         # @param request: Request instance for SetAccountUserPrivilege.
