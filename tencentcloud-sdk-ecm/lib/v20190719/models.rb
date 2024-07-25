@@ -330,8 +330,8 @@ module TencentCloud
 
         attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :ISPType, :SkipCheckIPv6Address, :SkipAllocateBandwidth, :Ipv6ISP
         extend Gem::Deprecate
-        deprecate :Ipv6ISP, :none, 2024, 3
-        deprecate :Ipv6ISP=, :none, 2024, 3
+        deprecate :Ipv6ISP, :none, 2024, 7
+        deprecate :Ipv6ISP=, :none, 2024, 7
 
         def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, isptype=nil, skipcheckipv6address=nil, skipallocatebandwidth=nil, ipv6isp=nil)
           @EcmRegion = ecmregion
@@ -5706,8 +5706,8 @@ module TencentCloud
 
         attr_accessor :ProviderName, :ProviderNodeNum, :ProvederInstanceNum, :ZoneInstanceInfoSet, :ProviderInstanceNum
         extend Gem::Deprecate
-        deprecate :ProvederInstanceNum, :none, 2024, 3
-        deprecate :ProvederInstanceNum=, :none, 2024, 3
+        deprecate :ProvederInstanceNum, :none, 2024, 7
+        deprecate :ProvederInstanceNum=, :none, 2024, 7
 
         def initialize(providername=nil, providernodenum=nil, provederinstancenum=nil, zoneinstanceinfoset=nil, providerinstancenum=nil)
           @ProviderName = providername
@@ -8162,15 +8162,21 @@ module TencentCloud
         # @type Tags: Array
         # @param Description: 私有网络描述
         # @type Description: String
+        # @param DnsServers: DNS地址，最多支持4个，第1个默认为主，其余为备。
+        # @type DnsServers: Array
+        # @param DomainName: 域名。
+        # @type DomainName: String
 
-        attr_accessor :VpcId, :EcmRegion, :VpcName, :Tags, :Description
+        attr_accessor :VpcId, :EcmRegion, :VpcName, :Tags, :Description, :DnsServers, :DomainName
 
-        def initialize(vpcid=nil, ecmregion=nil, vpcname=nil, tags=nil, description=nil)
+        def initialize(vpcid=nil, ecmregion=nil, vpcname=nil, tags=nil, description=nil, dnsservers=nil, domainname=nil)
           @VpcId = vpcid
           @EcmRegion = ecmregion
           @VpcName = vpcname
           @Tags = tags
           @Description = description
+          @DnsServers = dnsservers
+          @DomainName = domainname
         end
 
         def deserialize(params)
@@ -8186,6 +8192,8 @@ module TencentCloud
             end
           end
           @Description = params['Description']
+          @DnsServers = params['DnsServers']
+          @DomainName = params['DomainName']
         end
       end
 

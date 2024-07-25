@@ -243,7 +243,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param ImageUrl: 图片的url，当 Type 为 image_url 时使用，表示具体的图片内容
-        # 如"https://example.com/1.png" 或 图片的base64（注意 "data:image/jpeg;base64" 为必要部分）："data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAA......"
+        # 如"https://example.com/1.png" 或 图片的base64（注意 "data:image/jpeg;base64," 为必要部分）："data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAA......"
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: :class:`Tencentcloud::Hunyuan.v20230901.models.ImageUrl`
 
@@ -480,6 +480,61 @@ module TencentCloud
         end
       end
 
+      # logo参数
+      class LogoParam < TencentCloud::Common::AbstractModel
+        # @param LogoUrl: 水印url
+        # @type LogoUrl: String
+        # @param LogoImage: 水印base64，url和base64二选一传入
+        # @type LogoImage: String
+        # @param LogoRect: 水印图片位于融合结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
+        # @type LogoRect: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoRect`
+
+        attr_accessor :LogoUrl, :LogoImage, :LogoRect
+
+        def initialize(logourl=nil, logoimage=nil, logorect=nil)
+          @LogoUrl = logourl
+          @LogoImage = logoimage
+          @LogoRect = logorect
+        end
+
+        def deserialize(params)
+          @LogoUrl = params['LogoUrl']
+          @LogoImage = params['LogoImage']
+          unless params['LogoRect'].nil?
+            @LogoRect = LogoRect.new
+            @LogoRect.deserialize(params['LogoRect'])
+          end
+        end
+      end
+
+      # 输入框
+      class LogoRect < TencentCloud::Common::AbstractModel
+        # @param X: 左上角X坐标
+        # @type X: Integer
+        # @param Y: 左上角Y坐标
+        # @type Y: Integer
+        # @param Width: 方框宽度
+        # @type Width: Integer
+        # @param Height: 方框高度
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # 会话内容
       class Message < TencentCloud::Common::AbstractModel
         # @param Role: 角色，可选值包括 system、user、assistant、 tool。
@@ -654,34 +709,53 @@ module TencentCloud
         # @param Resolution: 生成图分辨率。
         # 支持生成以下分辨率的图片：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1）、720:1280（9:16）、1280:720（16:9）、768:1280（3:5）、1280:768（5:3），不传默认使用1024:1024。
         # @type Resolution: String
+        # @param Num: 图片生成数量。
+        # 支持1 ~ 4张，默认生成1张。
+        # @type Num: Integer
+        # @param Seed: 随机种子，默认随机。
+        # 不传：随机种子生成。
+        # 正数：固定种子生成。
+        # @type Seed: Integer
+        # @param Revise: prompt 扩写开关。1为开启，0为关闭，不传默认开启。
+        # 开启扩写后，将自动扩写原始输入的 prompt 并使用扩写后的 prompt 生成图片，返回生成图片结果时将一并返回扩写后的 prompt 文本。
+        # 如果关闭扩写，将直接使用原始输入的 prompt 生成图片。
+        # 建议开启，在多数场景下可提升生成图片效果、丰富生成图片细节。
+        # @type Revise: Integer
         # @param LogoAdd: 为生成结果图添加显式水印标识的开关，默认为1。
         # 1：添加。
         # 0：不添加。
         # 其他数值：默认按1处理。
         # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
         # @type LogoAdd: Integer
-        # @param Revise: prompt 扩写开关。1为开启，0为关闭，不传默认开启。
-        # 开启扩写后，将自动扩写原始输入的 prompt 并使用扩写后的 prompt 生成图片，返回生成图片结果时将一并返回扩写后的 prompt 文本。
-        # 如果关闭扩写，将直接使用原始输入的 prompt 生成图片。
-        # 建议开启，在多数场景下可提升生成图片效果、丰富生成图片细节。
-        # @type Revise: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoParam`
 
-        attr_accessor :Prompt, :Style, :Resolution, :LogoAdd, :Revise
+        attr_accessor :Prompt, :Style, :Resolution, :Num, :Seed, :Revise, :LogoAdd, :LogoParam
 
-        def initialize(prompt=nil, style=nil, resolution=nil, logoadd=nil, revise=nil)
+        def initialize(prompt=nil, style=nil, resolution=nil, num=nil, seed=nil, revise=nil, logoadd=nil, logoparam=nil)
           @Prompt = prompt
           @Style = style
           @Resolution = resolution
-          @LogoAdd = logoadd
+          @Num = num
+          @Seed = seed
           @Revise = revise
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
         end
 
         def deserialize(params)
           @Prompt = params['Prompt']
           @Style = params['Style']
           @Resolution = params['Resolution']
-          @LogoAdd = params['LogoAdd']
+          @Num = params['Num']
+          @Seed = params['Seed']
           @Revise = params['Revise']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
         end
       end
 
@@ -727,17 +801,21 @@ module TencentCloud
         # 其他数值：默认按0处理。
         # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
         # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoParam`
         # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
         # @type RspImgType: String
 
-        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :LogoAdd, :RspImgType
+        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :LogoAdd, :LogoParam, :RspImgType
 
-        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, logoadd=nil, rspimgtype=nil)
+        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @Style = style
           @Resolution = resolution
           @LogoAdd = logoadd
+          @LogoParam = logoparam
           @RspImgType = rspimgtype
         end
 
@@ -747,6 +825,10 @@ module TencentCloud
           @Style = params['Style']
           @Resolution = params['Resolution']
           @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
           @RspImgType = params['RspImgType']
         end
       end

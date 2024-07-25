@@ -2608,6 +2608,68 @@ module TencentCloud
         end
       end
 
+      # NAT防火墙Dnat规则列表
+      class DescNatDnatRule < TencentCloud::Common::AbstractModel
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param IpProtocol: 网络协议，可选值：TCP、UDP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpProtocol: String
+        # @param PublicIpAddress: 弹性IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAddress: String
+        # @param PublicPort: 公网端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicPort: Integer
+        # @param PrivateIpAddress: 内网地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIpAddress: String
+        # @param PrivatePort: 内网端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivatePort: Integer
+        # @param Description: NAT防火墙转发规则描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param IsReferenced: 是否被关联引用，如被远程运维使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsReferenced: Integer
+        # @param FwInsId: 所属防火墙实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwInsId: String
+        # @param NatGwId: 关联的nat网关Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatGwId: String
+
+        attr_accessor :Id, :IpProtocol, :PublicIpAddress, :PublicPort, :PrivateIpAddress, :PrivatePort, :Description, :IsReferenced, :FwInsId, :NatGwId
+
+        def initialize(id=nil, ipprotocol=nil, publicipaddress=nil, publicport=nil, privateipaddress=nil, privateport=nil, description=nil, isreferenced=nil, fwinsid=nil, natgwid=nil)
+          @Id = id
+          @IpProtocol = ipprotocol
+          @PublicIpAddress = publicipaddress
+          @PublicPort = publicport
+          @PrivateIpAddress = privateipaddress
+          @PrivatePort = privateport
+          @Description = description
+          @IsReferenced = isreferenced
+          @FwInsId = fwinsid
+          @NatGwId = natgwid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @IpProtocol = params['IpProtocol']
+          @PublicIpAddress = params['PublicIpAddress']
+          @PublicPort = params['PublicPort']
+          @PrivateIpAddress = params['PrivateIpAddress']
+          @PrivatePort = params['PrivatePort']
+          @Description = params['Description']
+          @IsReferenced = params['IsReferenced']
+          @FwInsId = params['FwInsId']
+          @NatGwId = params['NatGwId']
+        end
+      end
+
       # DescribeAcLists请求参数结构体
       class DescribeAcListsRequest < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议
@@ -4021,6 +4083,89 @@ module TencentCloud
             end
           end
           @AllTotal = params['AllTotal']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNatFwDnatRule请求参数结构体
+      class DescribeNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @type Index: String
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param StartTime: 检索的起始时间，可不传
+        # @type StartTime: String
+        # @param EndTime: 检索的截止时间，可不传
+        # @type EndTime: String
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :Index, :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
+
+        def initialize(index=nil, filters=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, order=nil, by=nil)
+          @Index = index
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeNatFwDnatRule返回参数结构体
+      class DescribeNatFwDnatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: Dnat规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: 列表总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              descnatdnatrule_tmp = DescNatDnatRule.new
+              descnatdnatrule_tmp.deserialize(i)
+              @Data << descnatdnatrule_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -9384,10 +9529,16 @@ module TencentCloud
         # @param CrossUserMode: 跨租户模式 1管理员 2单边 0 非跨租户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossUserMode: String
+        # @param NeedSwitchCcnOverlap: 云联网模式下，当前实例是否需要开启重叠路由开关，1：需要开启，0：不需要开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedSwitchCcnOverlap: Integer
+        # @param CcnId: 云联网模式下，实例关联的云联网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
 
-        attr_accessor :FwGroupId, :FwGroupName, :FwSwitchNum, :RegionLst, :Mode, :SwitchMode, :FwInstanceLst, :Status, :FwVpcCidr, :CdcId, :CdcName, :CrossUserMode
+        attr_accessor :FwGroupId, :FwGroupName, :FwSwitchNum, :RegionLst, :Mode, :SwitchMode, :FwInstanceLst, :Status, :FwVpcCidr, :CdcId, :CdcName, :CrossUserMode, :NeedSwitchCcnOverlap, :CcnId
 
-        def initialize(fwgroupid=nil, fwgroupname=nil, fwswitchnum=nil, regionlst=nil, mode=nil, switchmode=nil, fwinstancelst=nil, status=nil, fwvpccidr=nil, cdcid=nil, cdcname=nil, crossusermode=nil)
+        def initialize(fwgroupid=nil, fwgroupname=nil, fwswitchnum=nil, regionlst=nil, mode=nil, switchmode=nil, fwinstancelst=nil, status=nil, fwvpccidr=nil, cdcid=nil, cdcname=nil, crossusermode=nil, needswitchccnoverlap=nil, ccnid=nil)
           @FwGroupId = fwgroupid
           @FwGroupName = fwgroupname
           @FwSwitchNum = fwswitchnum
@@ -9400,6 +9551,8 @@ module TencentCloud
           @CdcId = cdcid
           @CdcName = cdcname
           @CrossUserMode = crossusermode
+          @NeedSwitchCcnOverlap = needswitchccnoverlap
+          @CcnId = ccnid
         end
 
         def deserialize(params)
@@ -9422,6 +9575,8 @@ module TencentCloud
           @CdcId = params['CdcId']
           @CdcName = params['CdcName']
           @CrossUserMode = params['CrossUserMode']
+          @NeedSwitchCcnOverlap = params['NeedSwitchCcnOverlap']
+          @CcnId = params['CcnId']
         end
       end
 

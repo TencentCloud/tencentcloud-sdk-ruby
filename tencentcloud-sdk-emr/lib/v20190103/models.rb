@@ -2904,6 +2904,70 @@ module TencentCloud
         end
       end
 
+      # DescribeTrinoQueryInfo请求参数结构体
+      class DescribeTrinoQueryInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 获取查询信息开始时间 (s)
+        # @type StartTime: Integer
+        # @param EndTime: 获取查询信息结束时间 (s)
+        # @type EndTime: Integer
+        # @param PageSize: 分页查询时的分页大小，最小1，最大100
+        # @type PageSize: Integer
+        # @param Page: 分页查询时的页号，从1开始
+        # @type Page: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageSize = pagesize
+          @Page = page
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageSize = params['PageSize']
+          @Page = params['Page']
+        end
+      end
+
+      # DescribeTrinoQueryInfo返回参数结构体
+      class DescribeTrinoQueryInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数，分页查询时使用
+        # @type TotalCount: Integer
+        # @param QueryInfoList: 查询结果数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :QueryInfoList, :RequestId
+
+        def initialize(totalcount=nil, queryinfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @QueryInfoList = queryinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['QueryInfoList'].nil?
+            @QueryInfoList = []
+            params['QueryInfoList'].each do |i|
+              trinoqueryinfo_tmp = TrinoQueryInfo.new
+              trinoqueryinfo_tmp.deserialize(i)
+              @QueryInfoList << trinoqueryinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsersForUserManager请求参数结构体
       class DescribeUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -4265,8 +4329,6 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param ResourceIds: 待续费节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr)查询。
         # @type ResourceIds: Array
-        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param PayMode: 实例计费模式。此处只支持取值为1，表示包年包月。
         # @type PayMode: Integer
         # @param TimeUnit: 实例续费的时间单位。取值范围：
@@ -4275,31 +4337,33 @@ module TencentCloud
         # @param Currency: 货币种类。取值范围：
         # <li>CNY：表示人民币。</li>
         # @type Currency: String
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
+        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param ModifyPayMode: 是否按量转包年包月。0：否，1：是。
         # @type ModifyPayMode: Integer
 
-        attr_accessor :TimeSpan, :ResourceIds, :Placement, :PayMode, :TimeUnit, :Currency, :ModifyPayMode
+        attr_accessor :TimeSpan, :ResourceIds, :PayMode, :TimeUnit, :Currency, :Placement, :ModifyPayMode
 
-        def initialize(timespan=nil, resourceids=nil, placement=nil, paymode=nil, timeunit=nil, currency=nil, modifypaymode=nil)
+        def initialize(timespan=nil, resourceids=nil, paymode=nil, timeunit=nil, currency=nil, placement=nil, modifypaymode=nil)
           @TimeSpan = timespan
           @ResourceIds = resourceids
-          @Placement = placement
           @PayMode = paymode
           @TimeUnit = timeunit
           @Currency = currency
+          @Placement = placement
           @ModifyPayMode = modifypaymode
         end
 
         def deserialize(params)
           @TimeSpan = params['TimeSpan']
           @ResourceIds = params['ResourceIds']
+          @PayMode = params['PayMode']
+          @TimeUnit = params['TimeUnit']
+          @Currency = params['Currency']
           unless params['Placement'].nil?
             @Placement = Placement.new
             @Placement.deserialize(params['Placement'])
           end
-          @PayMode = params['PayMode']
-          @TimeUnit = params['TimeUnit']
-          @Currency = params['Currency']
           @ModifyPayMode = params['ModifyPayMode']
         end
       end
@@ -4471,12 +4535,12 @@ module TencentCloud
         # <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
         # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
         # @type TimeSpan: Integer
-        # @param UpdateSpec: 节点变配的目标配置。
-        # @type UpdateSpec: :class:`Tencentcloud::Emr.v20190103.models.UpdateInstanceSettings`
         # @param PayMode: 实例计费模式。取值范围：
         # <li>0：表示按量计费。</li>
         # <li>1：表示包年包月。</li>
         # @type PayMode: Integer
+        # @param UpdateSpec: 节点变配的目标配置。
+        # @type UpdateSpec: :class:`Tencentcloud::Emr.v20190103.models.UpdateInstanceSettings`
         # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
         # @param Currency: 货币种类。取值范围：
@@ -4485,13 +4549,13 @@ module TencentCloud
         # @param ResourceIdList: 批量变配资源ID列表
         # @type ResourceIdList: Array
 
-        attr_accessor :TimeUnit, :TimeSpan, :UpdateSpec, :PayMode, :Placement, :Currency, :ResourceIdList
+        attr_accessor :TimeUnit, :TimeSpan, :PayMode, :UpdateSpec, :Placement, :Currency, :ResourceIdList
 
-        def initialize(timeunit=nil, timespan=nil, updatespec=nil, paymode=nil, placement=nil, currency=nil, resourceidlist=nil)
+        def initialize(timeunit=nil, timespan=nil, paymode=nil, updatespec=nil, placement=nil, currency=nil, resourceidlist=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
-          @UpdateSpec = updatespec
           @PayMode = paymode
+          @UpdateSpec = updatespec
           @Placement = placement
           @Currency = currency
           @ResourceIdList = resourceidlist
@@ -4500,11 +4564,11 @@ module TencentCloud
         def deserialize(params)
           @TimeUnit = params['TimeUnit']
           @TimeSpan = params['TimeSpan']
+          @PayMode = params['PayMode']
           unless params['UpdateSpec'].nil?
             @UpdateSpec = UpdateInstanceSettings.new
             @UpdateSpec.deserialize(params['UpdateSpec'])
           end
-          @PayMode = params['PayMode']
           unless params['Placement'].nil?
             @Placement = Placement.new
             @Placement.deserialize(params['Placement'])
@@ -4533,17 +4597,21 @@ module TencentCloud
         # @param PriceDetail: 价格详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceDetail: Array
+        # @param NewConfigPrice: 新配置价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewConfigPrice: :class:`Tencentcloud::Emr.v20190103.models.PriceResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceDetail, :RequestId
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :PriceDetail, :NewConfigPrice, :RequestId
 
-        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricedetail=nil, requestid=nil)
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, pricedetail=nil, newconfigprice=nil, requestid=nil)
           @OriginalCost = originalcost
           @DiscountCost = discountcost
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @PriceDetail = pricedetail
+          @NewConfigPrice = newconfigprice
           @RequestId = requestid
         end
 
@@ -4559,6 +4627,10 @@ module TencentCloud
               pricedetail_tmp.deserialize(i)
               @PriceDetail << pricedetail_tmp
             end
+          end
+          unless params['NewConfigPrice'].nil?
+            @NewConfigPrice = PriceResult.new
+            @NewConfigPrice.deserialize(params['NewConfigPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -4863,23 +4935,9 @@ module TencentCloud
         # @param ScaleNum: 每次规则生效时的扩缩容数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleNum: Integer
-        # @param LoadMetrics: 扩缩容负载指标。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LoadMetrics: String
-        # @param MetricId: 规则元数据记录ID。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MetricId: Integer
-        # @param StatisticPeriod: 规则统计周期，提供300s,600s,900s。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StatisticPeriod: Integer
         # @param ProcessMethod: 指标处理方法，1表示MAX，2表示MIN，3表示AVG。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessMethod: Integer
-        # @param TriggerThreshold: 触发次数，当连续触发超过TriggerThreshold次后才开始扩缩容。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
-        # @type TriggerThreshold: Integer
-        # @param TriggerConditions: 条件触发数组。注:不推荐使用此属性，和LoadMetricsConditions属性配置互斥，配置了LoadMetricsConditions，这个属性不生效。请优先使用LoadMetricsConditions属性支持多指标。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TriggerConditions: :class:`Tencentcloud::Emr.v20190103.models.TriggerConditions`
         # @param Priority: 规则优先级，添加时无效，默认为自增。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
@@ -4912,20 +4970,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadMetricsConditions: :class:`Tencentcloud::Emr.v20190103.models.LoadMetricsConditions`
 
-        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :LoadMetrics, :MetricId, :StatisticPeriod, :ProcessMethod, :TriggerThreshold, :TriggerConditions, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :LoadMetricsConditions
+        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :LoadMetricsConditions
 
-        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, loadmetrics=nil, metricid=nil, statisticperiod=nil, processmethod=nil, triggerthreshold=nil, triggerconditions=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, loadmetricsconditions=nil)
+        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, loadmetricsconditions=nil)
           @StrategyId = strategyid
           @StrategyName = strategyname
           @CalmDownTime = calmdowntime
           @ScaleAction = scaleaction
           @ScaleNum = scalenum
-          @LoadMetrics = loadmetrics
-          @MetricId = metricid
-          @StatisticPeriod = statisticperiod
           @ProcessMethod = processmethod
-          @TriggerThreshold = triggerthreshold
-          @TriggerConditions = triggerconditions
           @Priority = priority
           @StrategyStatus = strategystatus
           @YarnNodeLabel = yarnnodelabel
@@ -4944,15 +4997,7 @@ module TencentCloud
           @CalmDownTime = params['CalmDownTime']
           @ScaleAction = params['ScaleAction']
           @ScaleNum = params['ScaleNum']
-          @LoadMetrics = params['LoadMetrics']
-          @MetricId = params['MetricId']
-          @StatisticPeriod = params['StatisticPeriod']
           @ProcessMethod = params['ProcessMethod']
-          @TriggerThreshold = params['TriggerThreshold']
-          unless params['TriggerConditions'].nil?
-            @TriggerConditions = TriggerConditions.new
-            @TriggerConditions.deserialize(params['TriggerConditions'])
-          end
           @Priority = params['Priority']
           @StrategyStatus = params['StrategyStatus']
           @YarnNodeLabel = params['YarnNodeLabel']
@@ -7042,6 +7087,28 @@ module TencentCloud
         end
       end
 
+      # 询价结果
+      class PriceResult < TencentCloud::Common::AbstractModel
+        # @param OriginalCost: 原价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalCost: Float
+        # @param DiscountCost: 折扣价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountCost: Float
+
+        attr_accessor :OriginalCost, :DiscountCost
+
+        def initialize(originalcost=nil, discountcost=nil)
+          @OriginalCost = originalcost
+          @DiscountCost = discountcost
+        end
+
+        def deserialize(params)
+          @OriginalCost = params['OriginalCost']
+          @DiscountCost = params['DiscountCost']
+        end
+      end
+
       # 获取CVM配额
       class QuotaEntity < TencentCloud::Common::AbstractModel
         # @param UsedQuota: 已使用配额
@@ -8705,27 +8772,110 @@ module TencentCloud
         end
       end
 
-      # 规则触发条件数组
-      class TriggerConditions < TencentCloud::Common::AbstractModel
-        # @param Conditions: 规则触发条件数组。
+      # trino 查询信息
+      class TrinoQueryInfo < TencentCloud::Common::AbstractModel
+        # @param Catalog: catalog
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Conditions: Array
+        # @type Catalog: String
+        # @param ClientIpAddr: 提交IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIpAddr: String
+        # @param CompletedSplits: 切片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompletedSplits: String
+        # @param CpuTime: CPU时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTime: Integer
+        # @param CumulativeMemory: 累计内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CumulativeMemory: Integer
+        # @param DurationMillis: 执行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationMillis: Integer
+        # @param EndTime: 结束时间 (s)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param Id: 查询ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param InternalNetworkBytes: 内部传输量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalNetworkBytes: Integer
+        # @param OutputBytes: 输出字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputBytes: Integer
+        # @param PeakUserMemoryBytes: 峰值内存量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeakUserMemoryBytes: Integer
+        # @param PhysicalInputBytes: 物理输入量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalInputBytes: Integer
+        # @param ProcessedInputBytes: 处理输入量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessedInputBytes: Integer
+        # @param SqlCompileTime: 编译时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlCompileTime: Integer
+        # @param StartTime: 开始时间 (s)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param State: 执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Statement: 执行语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statement: String
+        # @param User: 提交用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param WrittenBytes: 写入字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WrittenBytes: Integer
 
-        attr_accessor :Conditions
+        attr_accessor :Catalog, :ClientIpAddr, :CompletedSplits, :CpuTime, :CumulativeMemory, :DurationMillis, :EndTime, :Id, :InternalNetworkBytes, :OutputBytes, :PeakUserMemoryBytes, :PhysicalInputBytes, :ProcessedInputBytes, :SqlCompileTime, :StartTime, :State, :Statement, :User, :WrittenBytes
 
-        def initialize(conditions=nil)
-          @Conditions = conditions
+        def initialize(catalog=nil, clientipaddr=nil, completedsplits=nil, cputime=nil, cumulativememory=nil, durationmillis=nil, endtime=nil, id=nil, internalnetworkbytes=nil, outputbytes=nil, peakusermemorybytes=nil, physicalinputbytes=nil, processedinputbytes=nil, sqlcompiletime=nil, starttime=nil, state=nil, statement=nil, user=nil, writtenbytes=nil)
+          @Catalog = catalog
+          @ClientIpAddr = clientipaddr
+          @CompletedSplits = completedsplits
+          @CpuTime = cputime
+          @CumulativeMemory = cumulativememory
+          @DurationMillis = durationmillis
+          @EndTime = endtime
+          @Id = id
+          @InternalNetworkBytes = internalnetworkbytes
+          @OutputBytes = outputbytes
+          @PeakUserMemoryBytes = peakusermemorybytes
+          @PhysicalInputBytes = physicalinputbytes
+          @ProcessedInputBytes = processedinputbytes
+          @SqlCompileTime = sqlcompiletime
+          @StartTime = starttime
+          @State = state
+          @Statement = statement
+          @User = user
+          @WrittenBytes = writtenbytes
         end
 
         def deserialize(params)
-          unless params['Conditions'].nil?
-            @Conditions = []
-            params['Conditions'].each do |i|
-              triggercondition_tmp = TriggerCondition.new
-              triggercondition_tmp.deserialize(i)
-              @Conditions << triggercondition_tmp
-            end
-          end
+          @Catalog = params['Catalog']
+          @ClientIpAddr = params['ClientIpAddr']
+          @CompletedSplits = params['CompletedSplits']
+          @CpuTime = params['CpuTime']
+          @CumulativeMemory = params['CumulativeMemory']
+          @DurationMillis = params['DurationMillis']
+          @EndTime = params['EndTime']
+          @Id = params['Id']
+          @InternalNetworkBytes = params['InternalNetworkBytes']
+          @OutputBytes = params['OutputBytes']
+          @PeakUserMemoryBytes = params['PeakUserMemoryBytes']
+          @PhysicalInputBytes = params['PhysicalInputBytes']
+          @ProcessedInputBytes = params['ProcessedInputBytes']
+          @SqlCompileTime = params['SqlCompileTime']
+          @StartTime = params['StartTime']
+          @State = params['State']
+          @Statement = params['Statement']
+          @User = params['User']
+          @WrittenBytes = params['WrittenBytes']
         end
       end
 

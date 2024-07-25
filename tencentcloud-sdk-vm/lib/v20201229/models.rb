@@ -35,7 +35,7 @@ module TencentCloud
         # @param Text: 该字段用于返回音频文件经ASR识别后的文本信息。最长可识别**5小时**的音频文件，若超出时长限制，接口将会报错。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
-        # @param Url: 该字段用于返回音频片段存储的链接地址，该地址有效期为1天。
+        # @param Url: 该字段用于返回审核结果的访问链接（URL）。<br>备注：链接默认有效期为12小时。如果您需要更长时效的链接，请使用[COS预签名](https://cloud.tencent.com/document/product/1265/104001)功能更新签名时效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Duration: 该字段用于返回音频文件的时长，单位为毫秒。
@@ -468,10 +468,10 @@ module TencentCloud
         # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
-        # @param ImageSegments: 该字段用于返回视频中截帧审核的结果，详细返回内容敬请参考ImageSegments数据结构的描述。<br>备注：数据有效期为24小时，如需要延长存储时间，请在已配置的COS储存桶中设置。
+        # @param ImageSegments: 该字段用于返回视频中截帧审核的结果，详细返回内容敬请参考ImageSegments数据结构的描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSegments: Array
-        # @param AudioSegments: 该字段用于返回视频中音频审核的结果，详细返回内容敬请参考AudioSegments数据结构的描述。<br>备注：数据有效期为24小时，如需要延长存储时间，请在已配置的COS储存桶中设置。
+        # @param AudioSegments: 该字段用于返回视频中音频审核的结果，详细返回内容敬请参考AudioSegments数据结构的描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioSegments: Array
         # @param ErrorType: 当任务状态为Error时，返回对应错误的类型，取值：**DECODE_ERROR**: 解码失败。（输入资源中可能包含无法解码的视频）
@@ -485,12 +485,24 @@ module TencentCloud
         # @param Label: 该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
+        # @param SegmentCosUrlList: 该字段用于返回检测结果明细数据相关的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentCosUrlList: :class:`Tencentcloud::Vm.v20201229.models.SegmentCosUrlList`
+        # @param AudioText: 该字段用于返回音频审核的ASR识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioText: String
+        # @param TryInSeconds: 在秒后重试
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TryInSeconds: Integer
+        # @param Asrs: 该字段用于返回音频文件识别出的对应文本内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Asrs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :RequestId
+        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :SegmentCosUrlList, :AudioText, :TryInSeconds, :Asrs, :RequestId
 
-        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, requestid=nil)
+        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, segmentcosurllist=nil, audiotext=nil, tryinseconds=nil, asrs=nil, requestid=nil)
           @TaskId = taskid
           @DataId = dataid
           @BizType = biztype
@@ -508,6 +520,10 @@ module TencentCloud
           @ErrorType = errortype
           @ErrorDescription = errordescription
           @Label = label
+          @SegmentCosUrlList = segmentcosurllist
+          @AudioText = audiotext
+          @TryInSeconds = tryinseconds
+          @Asrs = asrs
           @RequestId = requestid
         end
 
@@ -556,6 +572,20 @@ module TencentCloud
           @ErrorType = params['ErrorType']
           @ErrorDescription = params['ErrorDescription']
           @Label = params['Label']
+          unless params['SegmentCosUrlList'].nil?
+            @SegmentCosUrlList = SegmentCosUrlList.new
+            @SegmentCosUrlList.deserialize(params['SegmentCosUrlList'])
+          end
+          @AudioText = params['AudioText']
+          @TryInSeconds = params['TryInSeconds']
+          unless params['Asrs'].nil?
+            @Asrs = []
+            params['Asrs'].each do |i|
+              rcbasr_tmp = RcbAsr.new
+              rcbasr_tmp.deserialize(i)
+              @Asrs << rcbasr_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -651,7 +681,7 @@ module TencentCloud
         # @param Results: 该字段用于返回图像审核结果的子结果，详细内容敬请参考ImageResultResult数据结构的描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
-        # @param Url: 该字段用于返回审核结果的访问链接（URL），图片支持PNG、JPG、JPEG、BMP、GIF、WEBP格式。<br>备注：数据**默认有效期为12小时**。如您需要更长时间的保存，请在数据储存的COS桶中配置对应的储存时长。
+        # @param Url: 该字段用于返回审核结果的访问链接（URL）。<br>备注：链接默认有效期为12小时。如果您需要更长时效的链接，请使用[COS预签名](https://cloud.tencent.com/document/product/1265/104001)功能更新签名时效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Extra: 该字段用于返回输入参数中的额外附加信息（Extra），如未配置则默认返回值为空。<br>备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理。
@@ -660,10 +690,13 @@ module TencentCloud
         # @param SubLabel: 该字段用于返回当前标签（Lable）下的二级标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabel: String
+        # @param RecognitionResults: 该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecognitionResults: Array
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra, :SubLabel
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Results, :Url, :Extra, :SubLabel, :RecognitionResults
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil, sublabel=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, results=nil, url=nil, extra=nil, sublabel=nil, recognitionresults=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -672,6 +705,7 @@ module TencentCloud
           @Url = url
           @Extra = extra
           @SubLabel = sublabel
+          @RecognitionResults = recognitionresults
         end
 
         def deserialize(params)
@@ -690,6 +724,14 @@ module TencentCloud
           @Url = params['Url']
           @Extra = params['Extra']
           @SubLabel = params['SubLabel']
+          unless params['RecognitionResults'].nil?
+            @RecognitionResults = []
+            params['RecognitionResults'].each do |i|
+              recognitionresult_tmp = RecognitionResult.new
+              recognitionresult_tmp.deserialize(i)
+              @RecognitionResults << recognitionresult_tmp
+            end
+          end
         end
       end
 
@@ -791,10 +833,13 @@ module TencentCloud
         # @param SubLabelCode: 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubLabelCode: String
+        # @param SubLabel: 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Name, :Text, :Location, :Label, :LibId, :LibName, :Keywords, :Suggestion, :Score, :SubLabelCode
+        attr_accessor :Name, :Text, :Location, :Label, :LibId, :LibName, :Keywords, :Suggestion, :Score, :SubLabelCode, :SubLabel
 
-        def initialize(name=nil, text=nil, location=nil, label=nil, libid=nil, libname=nil, keywords=nil, suggestion=nil, score=nil, sublabelcode=nil)
+        def initialize(name=nil, text=nil, location=nil, label=nil, libid=nil, libname=nil, keywords=nil, suggestion=nil, score=nil, sublabelcode=nil, sublabel=nil)
           @Name = name
           @Text = text
           @Location = location
@@ -805,6 +850,7 @@ module TencentCloud
           @Suggestion = suggestion
           @Score = score
           @SubLabelCode = sublabelcode
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -821,6 +867,7 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @Score = params['Score']
           @SubLabelCode = params['SubLabelCode']
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -867,12 +914,20 @@ module TencentCloud
         # @type OffsetTime: String
         # @param Result: 该字段用于返回视频片段的具体截帧审核结果，详细内容敬请参考ImageResult数据结构的描述。
         # @type Result: :class:`Tencentcloud::Vm.v20201229.models.ImageResult`
+        # @param CreatedAt: 该字段用于返回视频片段的具体截帧审核时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param OffsetusTime: 该字段用于返回视频片段的截帧时间，单位为豪秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OffsetusTime: String
 
-        attr_accessor :OffsetTime, :Result
+        attr_accessor :OffsetTime, :Result, :CreatedAt, :OffsetusTime
 
-        def initialize(offsettime=nil, result=nil)
+        def initialize(offsettime=nil, result=nil, createdat=nil, offsetustime=nil)
           @OffsetTime = offsettime
           @Result = result
+          @CreatedAt = createdat
+          @OffsetusTime = offsetustime
         end
 
         def deserialize(params)
@@ -881,6 +936,8 @@ module TencentCloud
             @Result = ImageResult.new
             @Result.deserialize(params['Result'])
           end
+          @CreatedAt = params['CreatedAt']
+          @OffsetusTime = params['OffsetusTime']
         end
       end
 
@@ -927,6 +984,28 @@ module TencentCloud
         end
       end
 
+      # 审核切片asr文本信息
+      class RcbAsr < TencentCloud::Common::AbstractModel
+        # @param Text: 该字段用于返回音频文件识别出的对应文本内容，最大支持前1000个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+
+        attr_accessor :Text, :CreatedAt
+
+        def initialize(text=nil, createdat=nil)
+          @Text = text
+          @CreatedAt = createdat
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @CreatedAt = params['CreatedAt']
+        end
+      end
+
       # 识别类标签结果信息
       class RecognitionResult < TencentCloud::Common::AbstractModel
         # @param Label: 可能的取值有：Teenager 、Gender
@@ -953,6 +1032,43 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+        end
+      end
+
+      # 明细数据相关的cos url
+      class SegmentCosUrlList < TencentCloud::Common::AbstractModel
+        # @param ImageAllUrl: 全量图片片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageAllUrl: String
+        # @param AudioAllUrl: 全量音频片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioAllUrl: String
+        # @param ImageBlockUrl: 违规图片片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageBlockUrl: String
+        # @param AudioBlockUrl: 违规音频片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioBlockUrl: String
+        # @param AsrUrl: 全量音频识别文本的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrUrl: String
+
+        attr_accessor :ImageAllUrl, :AudioAllUrl, :ImageBlockUrl, :AudioBlockUrl, :AsrUrl
+
+        def initialize(imageallurl=nil, audioallurl=nil, imageblockurl=nil, audioblockurl=nil, asrurl=nil)
+          @ImageAllUrl = imageallurl
+          @AudioAllUrl = audioallurl
+          @ImageBlockUrl = imageblockurl
+          @AudioBlockUrl = audioblockurl
+          @AsrUrl = asrurl
+        end
+
+        def deserialize(params)
+          @ImageAllUrl = params['ImageAllUrl']
+          @AudioAllUrl = params['AudioAllUrl']
+          @ImageBlockUrl = params['ImageBlockUrl']
+          @AudioBlockUrl = params['AudioBlockUrl']
+          @AsrUrl = params['AsrUrl']
         end
       end
 

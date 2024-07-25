@@ -3535,6 +3535,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询各种规格类型的预留券使用率
+
+        # @param request: Request instance for DescribeReservedInstanceUtilizationRate.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeReservedInstanceUtilizationRateRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeReservedInstanceUtilizationRateResponse`
+        def DescribeReservedInstanceUtilizationRate(request)
+          body = send_request('DescribeReservedInstanceUtilizationRate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReservedInstanceUtilizationRateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询预留实例列表
 
         # @param request: Request instance for DescribeReservedInstances.

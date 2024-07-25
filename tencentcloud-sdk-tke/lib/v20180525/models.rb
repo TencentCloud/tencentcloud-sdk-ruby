@@ -9604,6 +9604,65 @@ module TencentCloud
         end
       end
 
+      # DescribeReservedInstanceUtilizationRate请求参数结构体
+      class DescribeReservedInstanceUtilizationRateRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodeName:  节点名称
+        # @type NodeName: String
+
+        attr_accessor :Zone, :ClusterId, :NodeName
+
+        def initialize(zone=nil, clusterid=nil, nodename=nil)
+          @Zone = zone
+          @ClusterId = clusterid
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+        end
+      end
+
+      # DescribeReservedInstanceUtilizationRate返回参数结构体
+      class DescribeReservedInstanceUtilizationRateResponse < TencentCloud::Common::AbstractModel
+        # @param UtilizationRateSet: 预留券使用率
+        # @type UtilizationRateSet: Array
+        # @param PodNum: 按量计费的 Pod 总数
+        # @type PodNum: Integer
+        # @param PodRate:  Pod 被预留券抵扣的抵扣率
+        # @type PodRate: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UtilizationRateSet, :PodNum, :PodRate, :RequestId
+
+        def initialize(utilizationrateset=nil, podnum=nil, podrate=nil, requestid=nil)
+          @UtilizationRateSet = utilizationrateset
+          @PodNum = podnum
+          @PodRate = podrate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UtilizationRateSet'].nil?
+            @UtilizationRateSet = []
+            params['UtilizationRateSet'].each do |i|
+              reservedinstanceutilizationrate_tmp = ReservedInstanceUtilizationRate.new
+              reservedinstanceutilizationrate_tmp.deserialize(i)
+              @UtilizationRateSet << reservedinstanceutilizationrate_tmp
+            end
+          end
+          @PodNum = params['PodNum']
+          @PodRate = params['PodRate']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReservedInstances请求参数结构体
       class DescribeReservedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，默认0。
@@ -16983,6 +17042,68 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @Gpu = params['Gpu']
+        end
+      end
+
+      # 预留券的使用率信息
+      class ReservedInstanceUtilizationRate < TencentCloud::Common::AbstractModel
+        # @param Rate: 使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rate: Float
+        # @param Num: 预留券数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Num: Integer
+        # @param CPU: 核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPU: Float
+        # @param Memory: 内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Float
+        # @param Type:  预留券类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param GpuNum: GPU 卡数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuNum: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ClusterId: 集群 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param NodeName: 节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param PodNum: Pod 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodNum: Integer
+
+        attr_accessor :Rate, :Num, :CPU, :Memory, :Type, :GpuNum, :Zone, :ClusterId, :NodeName, :PodNum
+
+        def initialize(rate=nil, num=nil, cpu=nil, memory=nil, type=nil, gpunum=nil, zone=nil, clusterid=nil, nodename=nil, podnum=nil)
+          @Rate = rate
+          @Num = num
+          @CPU = cpu
+          @Memory = memory
+          @Type = type
+          @GpuNum = gpunum
+          @Zone = zone
+          @ClusterId = clusterid
+          @NodeName = nodename
+          @PodNum = podnum
+        end
+
+        def deserialize(params)
+          @Rate = params['Rate']
+          @Num = params['Num']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @Type = params['Type']
+          @GpuNum = params['GpuNum']
+          @Zone = params['Zone']
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+          @PodNum = params['PodNum']
         end
       end
 

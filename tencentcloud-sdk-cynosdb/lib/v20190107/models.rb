@@ -1904,12 +1904,18 @@ module TencentCloud
         # @type InstanceId: String
         # @param CLSInfoList: 日志投递配置
         # @type CLSInfoList: Array
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param IsInMaintainPeriod: 是否维护时间运行
+        # @type IsInMaintainPeriod: String
 
-        attr_accessor :InstanceId, :CLSInfoList
+        attr_accessor :InstanceId, :CLSInfoList, :LogType, :IsInMaintainPeriod
 
-        def initialize(instanceid=nil, clsinfolist=nil)
+        def initialize(instanceid=nil, clsinfolist=nil, logtype=nil, isinmaintainperiod=nil)
           @InstanceId = instanceid
           @CLSInfoList = clsinfolist
+          @LogType = logtype
+          @IsInMaintainPeriod = isinmaintainperiod
         end
 
         def deserialize(params)
@@ -1922,6 +1928,8 @@ module TencentCloud
               @CLSInfoList << clsinfo_tmp
             end
           end
+          @LogType = params['LogType']
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
         end
       end
 
@@ -4172,17 +4180,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param CLSTopicIds: 日志主题id
         # @type CLSTopicIds: Array
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param IsInMaintainPeriod: 是否维护时间运行
+        # @type IsInMaintainPeriod: String
 
-        attr_accessor :InstanceId, :CLSTopicIds
+        attr_accessor :InstanceId, :CLSTopicIds, :LogType, :IsInMaintainPeriod
 
-        def initialize(instanceid=nil, clstopicids=nil)
+        def initialize(instanceid=nil, clstopicids=nil, logtype=nil, isinmaintainperiod=nil)
           @InstanceId = instanceid
           @CLSTopicIds = clstopicids
+          @LogType = logtype
+          @IsInMaintainPeriod = isinmaintainperiod
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @CLSTopicIds = params['CLSTopicIds']
+          @LogType = params['LogType']
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
         end
       end
 
@@ -5850,15 +5866,19 @@ module TencentCloud
       class DescribeInstanceCLSLogDeliveryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
         # @type InstanceId: String
+        # @param LogType: 日志类型
+        # @type LogType: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :LogType
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, logtype=nil)
           @InstanceId = instanceid
+          @LogType = logtype
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
         end
       end
 
@@ -8100,10 +8120,13 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param LogType: 日志类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogType: String
 
-        attr_accessor :InstanceId, :InstanceName, :TopicId, :TopicName, :GroupId, :GroupName, :Region, :Status
+        attr_accessor :InstanceId, :InstanceName, :TopicId, :TopicName, :GroupId, :GroupName, :Region, :Status, :LogType
 
-        def initialize(instanceid=nil, instancename=nil, topicid=nil, topicname=nil, groupid=nil, groupname=nil, region=nil, status=nil)
+        def initialize(instanceid=nil, instancename=nil, topicid=nil, topicname=nil, groupid=nil, groupname=nil, region=nil, status=nil, logtype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @TopicId = topicid
@@ -8112,6 +8135,7 @@ module TencentCloud
           @GroupName = groupname
           @Region = region
           @Status = status
+          @LogType = logtype
         end
 
         def deserialize(params)
@@ -8123,6 +8147,7 @@ module TencentCloud
           @GroupName = params['GroupName']
           @Region = params['Region']
           @Status = params['Status']
+          @LogType = params['LogType']
         end
       end
 
@@ -13145,17 +13170,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param CLSTopicIds: 开通的日志主题id
         # @type CLSTopicIds: Array
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param IsInMaintainPeriod: 是否维护时间运行
+        # @type IsInMaintainPeriod: String
 
-        attr_accessor :InstanceId, :CLSTopicIds
+        attr_accessor :InstanceId, :CLSTopicIds, :LogType, :IsInMaintainPeriod
 
-        def initialize(instanceid=nil, clstopicids=nil)
+        def initialize(instanceid=nil, clstopicids=nil, logtype=nil, isinmaintainperiod=nil)
           @InstanceId = instanceid
           @CLSTopicIds = clstopicids
+          @LogType = logtype
+          @IsInMaintainPeriod = isinmaintainperiod
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @CLSTopicIds = params['CLSTopicIds']
+          @LogType = params['LogType']
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
         end
       end
 
@@ -13185,17 +13218,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param CLSTopicIds: 日志主题id
         # @type CLSTopicIds: Array
+        # @param LogType: 日志类型
+        # @type LogType: String
+        # @param IsInMaintainPeriod: 是否维护时间运行
+        # @type IsInMaintainPeriod: String
 
-        attr_accessor :InstanceId, :CLSTopicIds
+        attr_accessor :InstanceId, :CLSTopicIds, :LogType, :IsInMaintainPeriod
 
-        def initialize(instanceid=nil, clstopicids=nil)
+        def initialize(instanceid=nil, clstopicids=nil, logtype=nil, isinmaintainperiod=nil)
           @InstanceId = instanceid
           @CLSTopicIds = clstopicids
+          @LogType = logtype
+          @IsInMaintainPeriod = isinmaintainperiod
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @CLSTopicIds = params['CLSTopicIds']
+          @LogType = params['LogType']
+          @IsInMaintainPeriod = params['IsInMaintainPeriod']
         end
       end
 

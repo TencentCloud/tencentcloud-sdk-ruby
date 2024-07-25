@@ -6502,10 +6502,13 @@ module TencentCloud
         # @param OthersPrivateAccess: 其他厂商对象存储回源鉴权
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OthersPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OthersPrivateAccess`
+        # @param ParamFilter: 参数黑名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamFilter: :class:`Tencentcloud::Cdn.v20180606.models.ParamFilter`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost, :HwPrivateAccess, :QnPrivateAccess, :HttpsBilling, :OthersPrivateAccess
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :RuleEngine, :ParentHost, :HwPrivateAccess, :QnPrivateAccess, :HttpsBilling, :OthersPrivateAccess, :ParamFilter
 
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil, hwprivateaccess=nil, qnprivateaccess=nil, httpsbilling=nil, othersprivateaccess=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, ruleengine=nil, parenthost=nil, hwprivateaccess=nil, qnprivateaccess=nil, httpsbilling=nil, othersprivateaccess=nil, paramfilter=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -6572,6 +6575,7 @@ module TencentCloud
           @QnPrivateAccess = qnprivateaccess
           @HttpsBilling = httpsbilling
           @OthersPrivateAccess = othersprivateaccess
+          @ParamFilter = paramfilter
         end
 
         def deserialize(params)
@@ -6801,6 +6805,10 @@ module TencentCloud
           unless params['OthersPrivateAccess'].nil?
             @OthersPrivateAccess = OthersPrivateAccess.new
             @OthersPrivateAccess.deserialize(params['OthersPrivateAccess'])
+          end
+          unless params['ParamFilter'].nil?
+            @ParamFilter = ParamFilter.new
+            @ParamFilter.deserialize(params['ParamFilter'])
           end
         end
       end
@@ -10546,6 +10554,62 @@ module TencentCloud
         end
       end
 
+      # 参数黑名单
+      class ParamFilter < TencentCloud::Common::AbstractModel
+        # @param Switch:  参数黑名单开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param FilterRules: 参数黑名单规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterRules: Array
+
+        attr_accessor :Switch, :FilterRules
+
+        def initialize(switch=nil, filterrules=nil)
+          @Switch = switch
+          @FilterRules = filterrules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['FilterRules'].nil?
+            @FilterRules = []
+            params['FilterRules'].each do |i|
+              paramfilterrule_tmp = ParamFilterRule.new
+              paramfilterrule_tmp.deserialize(i)
+              @FilterRules << paramfilterrule_tmp
+            end
+          end
+        end
+      end
+
+      # 参数黑名单规则
+      class ParamFilterRule < TencentCloud::Common::AbstractModel
+        # @param Key: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Values: 参数值数组, 小于10个
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+        # @param ReturnCode: http 返回码 ( 暂仅支持403)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnCode: String
+
+        attr_accessor :Key, :Values, :ReturnCode
+
+        def initialize(key=nil, values=nil, returncode=nil)
+          @Key = key
+          @Values = values
+          @ReturnCode = returncode
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+          @ReturnCode = params['ReturnCode']
+        end
+      end
+
       # 分路径回源规则
       class PathBasedOriginRule < TencentCloud::Common::AbstractModel
         # @param RuleType: 规则类型：
@@ -13560,10 +13624,12 @@ module TencentCloud
         # @type OthersPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OthersPrivateAccess`
         # @param HttpsBilling: HTTPS服务（收费服务，详见计费说明和产品文档）
         # @type HttpsBilling: :class:`Tencentcloud::Cdn.v20180606.models.HttpsBilling`
+        # @param ParamFilter: 参数黑名单
+        # @type ParamFilter: :class:`Tencentcloud::Cdn.v20180606.models.ParamFilter`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess, :OthersPrivateAccess, :HttpsBilling
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :SpecificConfig, :ServiceType, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication, :ShareCname, :HwPrivateAccess, :QnPrivateAccess, :OthersPrivateAccess, :HttpsBilling, :ParamFilter
 
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil, othersprivateaccess=nil, httpsbilling=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, specificconfig=nil, servicetype=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil, sharecname=nil, hwprivateaccess=nil, qnprivateaccess=nil, othersprivateaccess=nil, httpsbilling=nil, paramfilter=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -13613,6 +13679,7 @@ module TencentCloud
           @QnPrivateAccess = qnprivateaccess
           @OthersPrivateAccess = othersprivateaccess
           @HttpsBilling = httpsbilling
+          @ParamFilter = paramfilter
         end
 
         def deserialize(params)
@@ -13796,6 +13863,10 @@ module TencentCloud
           unless params['HttpsBilling'].nil?
             @HttpsBilling = HttpsBilling.new
             @HttpsBilling.deserialize(params['HttpsBilling'])
+          end
+          unless params['ParamFilter'].nil?
+            @ParamFilter = ParamFilter.new
+            @ParamFilter.deserialize(params['ParamFilter'])
           end
         end
       end

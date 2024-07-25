@@ -45,10 +45,12 @@ module TencentCloud
         # @type ClientNum: String
         # @param NodeIpType: 拨测点IP类型：0-不限制IP类型，1-IPv4，2-IPv6
         # @type NodeIpType: Integer
+        # @param SubSyncFlag: 供应商子账户同步标志
+        # @type SubSyncFlag: Integer
 
-        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum, :NodeIpType
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum, :NodeIpType, :SubSyncFlag
 
-        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil, nodeiptype=nil)
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil, nodeiptype=nil, subsyncflag=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
           @Nodes = nodes
@@ -61,6 +63,7 @@ module TencentCloud
           @PluginSource = pluginsource
           @ClientNum = clientnum
           @NodeIpType = nodeiptype
+          @SubSyncFlag = subsyncflag
         end
 
         def deserialize(params)
@@ -90,6 +93,7 @@ module TencentCloud
           @PluginSource = params['PluginSource']
           @ClientNum = params['ClientNum']
           @NodeIpType = params['NodeIpType']
+          @SubSyncFlag = params['SubSyncFlag']
         end
       end
 
