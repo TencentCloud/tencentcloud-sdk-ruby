@@ -77,6 +77,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询图片唱演任务。
+        # 支持提交音频和图片生成唱演视频，满足社交娱乐、互动营销等场景的需求。
+
+        # @param request: Request instance for DescribePortraitSingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribePortraitSingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribePortraitSingJobResponse`
+        def DescribePortraitSingJob(request)
+          body = send_request('DescribePortraitSingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePortraitSingJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询视频风格化任务。视频风格化支持将输入视频生成特定风格的视频。生成后的视频画面风格多样、流畅自然，能够满足社交娱乐、互动营销、视频素材制作等场景的需求。
 
         # @param request: Request instance for DescribeVideoStylizationJob.
@@ -135,6 +160,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitImageAnimateJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于提交图片唱演任务。
+        # 支持提交音频和图片生成唱演视频，满足社交娱乐、互动营销等场景的需求。
+
+        # @param request: Request instance for SubmitPortraitSingJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitPortraitSingJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitPortraitSingJobResponse`
+        def SubmitPortraitSingJob(request)
+          body = send_request('SubmitPortraitSingJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitPortraitSingJobResponse.new
             model.deserialize(response['Response'])
             model
           else

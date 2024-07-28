@@ -155,6 +155,59 @@ module TencentCloud
         end
       end
 
+      # DescribePortraitSingJob请求参数结构体
+      class DescribePortraitSingJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribePortraitSingJob返回参数结构体
+      class DescribePortraitSingJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: String
+        # @param StatusCode: 任务状态码
+        # —RUN：处理中
+        # —FAIL：处理失败
+        # —STOP：处理终止
+        # —DONE：处理完成
+        # @type StatusCode: String
+        # @param StatusMsg: 任务状态信息
+        # @type StatusMsg: String
+        # @param ResultVideoUrl: 生成视频的URL地址
+        # 有效期24小时
+        # @type ResultVideoUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :StatusCode, :StatusMsg, :ResultVideoUrl, :RequestId
+
+        def initialize(jobid=nil, statuscode=nil, statusmsg=nil, resultvideourl=nil, requestid=nil)
+          @JobId = jobid
+          @StatusCode = statuscode
+          @StatusMsg = statusmsg
+          @ResultVideoUrl = resultvideourl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @StatusCode = params['StatusCode']
+          @StatusMsg = params['StatusMsg']
+          @ResultVideoUrl = params['ResultVideoUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVideoStylizationJob请求参数结构体
       class DescribeVideoStylizationJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID
@@ -340,6 +393,57 @@ module TencentCloud
       # SubmitImageAnimateJob返回参数结构体
       class SubmitImageAnimateJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitPortraitSingJob请求参数结构体
+      class SubmitPortraitSingJobRequest < TencentCloud::Common::AbstractModel
+        # @param AudioUrl: 传入音频URL地址。音频要求：
+        # —音频时长：不超过60秒
+        # —音频格式：mp3、wav、m4a
+        # @type AudioUrl: String
+        # @param ImageUrl: 传入图片URL地址，图片要求：
+        # —图片格式：jpg、jpeg、png
+        # —图片分辨率：长边不超过2560
+        # —图片大小：不超过6M
+        # —图片宽高比：图片【宽：高】在1:2到2:1范围内
+        # @type ImageUrl: String
+        # @param ImageBase64: 传入图片Base64编码。
+        # —图片Base64编码与URL地址必传其一
+        # @type ImageBase64: String
+
+        attr_accessor :AudioUrl, :ImageUrl, :ImageBase64
+
+        def initialize(audiourl=nil, imageurl=nil, imagebase64=nil)
+          @AudioUrl = audiourl
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @AudioUrl = params['AudioUrl']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # SubmitPortraitSingJob返回参数结构体
+      class SubmitPortraitSingJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 从动作创建演练
+
+        # @param request: Request instance for CreateTaskFromAction.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::CreateTaskFromActionRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::CreateTaskFromActionResponse`
+        def CreateTaskFromAction(request)
+          body = send_request('CreateTaskFromAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTaskFromActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 从经验库创建演练
 
         # @param request: Request instance for CreateTaskFromTemplate.
@@ -63,6 +87,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据动作ID获取动作栏位动态配置参数信息，里面包含动作自有和通用两部分参数。
+
+        # @param request: Request instance for DescribeActionFieldConfigList.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::DescribeActionFieldConfigListRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::DescribeActionFieldConfigListResponse`
+        def DescribeActionFieldConfigList(request)
+          body = send_request('DescribeActionFieldConfigList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeActionFieldConfigListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取混沌演练平台的动作库列表
+
+        # @param request: Request instance for DescribeActionLibraryList.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::DescribeActionLibraryListRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::DescribeActionLibraryListResponse`
+        def DescribeActionLibraryList(request)
+          body = send_request('DescribeActionLibraryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeActionLibraryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询对象类型列表
+
+        # @param request: Request instance for DescribeObjectTypeList.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::DescribeObjectTypeListRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::DescribeObjectTypeListResponse`
+        def DescribeObjectTypeList(request)
+          body = send_request('DescribeObjectTypeList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeObjectTypeListResponse.new
             model.deserialize(response['Response'])
             model
           else

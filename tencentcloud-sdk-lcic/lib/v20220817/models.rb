@@ -4678,6 +4678,46 @@ module TencentCloud
         end
       end
 
+      # UnblockKickedUser请求参数结构体
+      class UnblockKickedUserRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码平台的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间Id。
+        # @type RoomId: Integer
+        # @param UserId: 需要解禁踢出的成员Id。
+        # @type UserId: String
+
+        attr_accessor :SdkAppId, :RoomId, :UserId
+
+        def initialize(sdkappid=nil, roomid=nil, userid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # UnblockKickedUser返回参数结构体
+      class UnblockKickedUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户信息结构体
       class UserInfo < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用Id。

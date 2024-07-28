@@ -132,12 +132,12 @@ module TencentCloud
         # @type Style: String
         # @param InputImage: 输入图 Base64 数据。
         # 算法将根据输入的图片，结合文本描述智能生成与之相关的图像。
-        # Base64 和 Url 必须提供一个，如果都提供以 Base64 为准。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
         # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type InputImage: String
         # @param InputUrl: 输入图 Url。
         # 算法将根据输入的图片，结合文本描述智能生成与之相关的图像。
-        # Base64 和 Url 必须提供一个，如果都提供以 Base64 为准。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
         # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type InputUrl: String
         # @param Filter: 输入图像质量检测开关，默认开启。
@@ -211,13 +211,13 @@ module TencentCloud
       class ImageToImageRequest < TencentCloud::Common::AbstractModel
         # @param InputImage: 输入图 Base64 数据。
         # 算法将根据输入的图片，结合文本描述智能生成与之相关的图像。
-        # Base64 和 Url 必须提供一个，如果都提供以 Base64 为准。
-        # 图片限制：单边分辨率小于5000且大于50，转成 Base64 字符串后小于 8MB。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000且大于50，转成 Base64 字符串后小于 8MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type InputImage: String
         # @param InputUrl: 输入图 Url。
         # 算法将根据输入的图片，结合文本描述智能生成与之相关的图像。
-        # Base64 和 Url 必须提供一个，如果都提供以 Base64 为准。
-        # 图片限制：单边分辨率小于5000且大于50，转成 Base64 字符串后小于8MB。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000且大于50，转成 Base64 字符串后小于 8MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type InputUrl: String
         # @param Prompt: 文本描述。
         # 用于在输入图的基础上引导生成图效果，增加生成结果中出现描述内容的可能。
@@ -310,11 +310,11 @@ module TencentCloud
 
       # logo参数
       class LogoParam < TencentCloud::Common::AbstractModel
-        # @param LogoUrl: 水印url
+        # @param LogoUrl: 水印 Url
         # @type LogoUrl: String
-        # @param LogoImage: 水印base64，url和base64二选一传入
+        # @param LogoImage: 水印 Base64，Url 和 Base64 二选一传入，如果都提供以 Url 为准
         # @type LogoImage: String
-        # @param LogoRect: 水印图片位于融合结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
+        # @param LogoRect: 水印图片位于生成结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
         # @type LogoRect: :class:`Tencentcloud::Aiart.v20221229.models.LogoRect`
 
         attr_accessor :LogoUrl, :LogoImage, :LogoRect
@@ -617,9 +617,7 @@ module TencentCloud
       class ResultConfig < TencentCloud::Common::AbstractModel
         # @param Resolution: 生成图分辨率
 
-        # 智能文生图支持生成以下分辨率的图片：768:768（1:1）、768:1024（3:4）、1024:768（4:3）、1024:1024（1:1）、720:1280（9:16）、1280:720（16:9）、768:1280（3:5）、1280:768（5:3）、1080:1920（9:16）、1920:1080（16:9），不传默认使用768:768。
-
-        # 智能图生图支持生成以下分辨率的图片：origin（与输入图分辨率一致，长边最高为2000，超出将做等比例缩小）、768:768（1:1）、768:1024（3:4）、1024:768（4:3），不传默认使用origin，如果指定生成的长宽比与输入图长宽比差异过大可能导致图片内容被裁剪。
+        # 图像风格化（图生图）支持生成以下分辨率的图片：origin（与输入图分辨率一致，长边最高为2000，超出将做等比例缩小）、768:768（1:1）、768:1024（3:4）、1024:768（4:3），不传默认使用origin，如果指定生成的长宽比与输入图长宽比差异过大可能导致图片内容被裁剪。
         # @type Resolution: String
 
         attr_accessor :Resolution

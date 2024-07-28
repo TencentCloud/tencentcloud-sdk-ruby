@@ -13497,12 +13497,14 @@ module TencentCloud
         # @type AirTicketInfo: :class:`Tencentcloud::Ocr.v20181119.models.AirTicketInfo`
         # @param RailwayTicketInfo: 铁路电子客票
         # @type RailwayTicketInfo: :class:`Tencentcloud::Ocr.v20181119.models.RailwayTicketInfo`
+        # @param InvoiceTitle: 发票标题
+        # @type InvoiceTitle: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Type, :InvoiceCode, :InvoiceNumber, :IssueDate, :InvoiceCheckCode, :MachineNumber, :TaxControlCode, :Buyer, :Seller, :TaxInclusiveTotalAmount, :InvoiceClerk, :Payee, :Checker, :TaxTotalAmount, :TaxExclusiveTotalAmount, :Note, :GoodsInfos, :AirTicketInfo, :RailwayTicketInfo, :RequestId
+        attr_accessor :Type, :InvoiceCode, :InvoiceNumber, :IssueDate, :InvoiceCheckCode, :MachineNumber, :TaxControlCode, :Buyer, :Seller, :TaxInclusiveTotalAmount, :InvoiceClerk, :Payee, :Checker, :TaxTotalAmount, :TaxExclusiveTotalAmount, :Note, :GoodsInfos, :AirTicketInfo, :RailwayTicketInfo, :InvoiceTitle, :RequestId
 
-        def initialize(type=nil, invoicecode=nil, invoicenumber=nil, issuedate=nil, invoicecheckcode=nil, machinenumber=nil, taxcontrolcode=nil, buyer=nil, seller=nil, taxinclusivetotalamount=nil, invoiceclerk=nil, payee=nil, checker=nil, taxtotalamount=nil, taxexclusivetotalamount=nil, note=nil, goodsinfos=nil, airticketinfo=nil, railwayticketinfo=nil, requestid=nil)
+        def initialize(type=nil, invoicecode=nil, invoicenumber=nil, issuedate=nil, invoicecheckcode=nil, machinenumber=nil, taxcontrolcode=nil, buyer=nil, seller=nil, taxinclusivetotalamount=nil, invoiceclerk=nil, payee=nil, checker=nil, taxtotalamount=nil, taxexclusivetotalamount=nil, note=nil, goodsinfos=nil, airticketinfo=nil, railwayticketinfo=nil, invoicetitle=nil, requestid=nil)
           @Type = type
           @InvoiceCode = invoicecode
           @InvoiceNumber = invoicenumber
@@ -13522,6 +13524,7 @@ module TencentCloud
           @GoodsInfos = goodsinfos
           @AirTicketInfo = airticketinfo
           @RailwayTicketInfo = railwayticketinfo
+          @InvoiceTitle = invoicetitle
           @RequestId = requestid
         end
 
@@ -13564,6 +13567,7 @@ module TencentCloud
             @RailwayTicketInfo = RailwayTicketInfo.new
             @RailwayTicketInfo.deserialize(params['RailwayTicketInfo'])
           end
+          @InvoiceTitle = params['InvoiceTitle']
           @RequestId = params['RequestId']
         end
       end

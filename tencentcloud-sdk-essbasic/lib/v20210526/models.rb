@@ -5896,15 +5896,18 @@ module TencentCloud
         # - FINANCE : 财务专用章
         # - PERSONNEL : 人事专用章
         # @type SealTypes: Array
+        # @param AuthToMe: 他方授权给我方：- false：我方授权他方，AuthorizedOrganizationName代表【被授权方】企业名称- true：他方授权我方，AuthorizedOrganizationName代表【授权方】企业名称
+        # @type AuthToMe: Boolean
 
-        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization, :SealTypes
+        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization, :SealTypes, :AuthToMe
 
-        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil, sealtypes=nil)
+        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil, sealtypes=nil, authtome=nil)
           @Agent = agent
           @AuthorizedOrganizationId = authorizedorganizationid
           @AuthorizedOrganizationName = authorizedorganizationname
           @PlatformAppAuthorization = platformappauthorization
           @SealTypes = sealtypes
+          @AuthToMe = authtome
         end
 
         def deserialize(params)
@@ -5916,6 +5919,7 @@ module TencentCloud
           @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
           @PlatformAppAuthorization = params['PlatformAppAuthorization']
           @SealTypes = params['SealTypes']
+          @AuthToMe = params['AuthToMe']
         end
       end
 

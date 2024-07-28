@@ -17,6 +17,122 @@
 module TencentCloud
   module Cfg
     module V20210820
+      # 动作动态参数返回格式
+      class ActionFieldConfigDetail < TencentCloud::Common::AbstractModel
+        # @param Type: 组件类型
+        # 可选项如下：
+        # input  文本框
+        # textarea  多行文本框
+        # number  数值输入框
+        # select   选择器
+        # cascader  级联选择器
+        # radio  单选
+        # time   时间选择
+        # @type Type: String
+        # @param Lable: 组件label
+        # @type Lable: String
+        # @param Field: 组件唯一标识， 传回后端时的key
+        # @type Field: String
+        # @param DefaultValue: 默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param Config: 支持配置项如下,可根据需要选择配置项，不需要配置是设置空{}：
+
+        # {
+
+        #   placeholder: string (占位符)
+
+        #   tooltip: string (提示信息)
+
+        #   reg: RegExp (对输入内容格式进行正则校验的规则)
+
+        #   max: number (对于输入框，限制最大输入字符数，对于数值输入框，设置上限)
+
+        #   min: number (对于数值输入框，设置下限)
+
+        #   step: number (设置数值输入框的步长，默认为1)
+
+        #   format: string (时间选择的格式，如YYYY-MM-DD表示年月日, YYYY-MM-DD HH:mm:ss 表示时分秒)
+
+        #   separator:  string[] (多行输入框的分隔符，不传或者为空时表示不分隔，直接返回用户输入的文本字符串)
+
+        #   multiple: boolean (是否多选,对选择器和级联选择器有效)
+
+        #   options:  选择器的选项【支持以下两种形式】
+
+        # 直接给定选项数组  { value: string; label: string }[]
+        # 通过调接口获取选项                                                                                                                                       { api: string(接口地址),                                                                                                                                       params: string[] (接口参数,对应于参数配置的field，前端根据field对应的所有组件的输入值作为参数查询数据， 为空时在组件加载时直接请求数据)                                                                                                    }
+        # }
+        # @type Config: String
+        # @param Required: 是否必填 (0 -- 否   1-- 是)
+        # @type Required: Integer
+        # @param Validate: compute配置依赖的其他field满足的条件时通过校验（如：三个表单项中必须至少有一个填写了）
+
+        # [fieldName,
+
+        # { config:  此项保留，等待后面具体场景细化  }
+
+        # ]
+        # @type Validate: String
+        # @param Visible: 是否可见
+        # @type Visible: String
+
+        attr_accessor :Type, :Lable, :Field, :DefaultValue, :Config, :Required, :Validate, :Visible
+
+        def initialize(type=nil, lable=nil, field=nil, defaultvalue=nil, config=nil, required=nil, validate=nil, visible=nil)
+          @Type = type
+          @Lable = lable
+          @Field = field
+          @DefaultValue = defaultvalue
+          @Config = config
+          @Required = required
+          @Validate = validate
+          @Visible = visible
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Lable = params['Lable']
+          @Field = params['Field']
+          @DefaultValue = params['DefaultValue']
+          @Config = params['Config']
+          @Required = params['Required']
+          @Validate = params['Validate']
+          @Visible = params['Visible']
+        end
+      end
+
+      # 动作栏位配置结果
+      class ActionFieldConfigResult < TencentCloud::Common::AbstractModel
+        # @param ActionId: 动作ID
+        # @type ActionId: Integer
+        # @param ActionName: 动作名称
+        # @type ActionName: String
+        # @param ConfigDetail: 动作对应的栏位配置详情
+        # @type ConfigDetail: Array
+
+        attr_accessor :ActionId, :ActionName, :ConfigDetail
+
+        def initialize(actionid=nil, actionname=nil, configdetail=nil)
+          @ActionId = actionid
+          @ActionName = actionname
+          @ConfigDetail = configdetail
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @ActionName = params['ActionName']
+          unless params['ConfigDetail'].nil?
+            @ConfigDetail = []
+            params['ConfigDetail'].each do |i|
+              actionfieldconfigdetail_tmp = ActionFieldConfigDetail.new
+              actionfieldconfigdetail_tmp.deserialize(i)
+              @ConfigDetail << actionfieldconfigdetail_tmp
+            end
+          end
+        end
+      end
+
       # 动作库筛选栏位
       class ActionFilter < TencentCloud::Common::AbstractModel
         # @param Keyword: 关键字
@@ -34,6 +150,105 @@ module TencentCloud
         def deserialize(params)
           @Keyword = params['Keyword']
           @Values = params['Values']
+        end
+      end
+
+      # 动作库数据列表
+      class ActionLibraryListResult < TencentCloud::Common::AbstractModel
+        # @param ActionName: 动作名称
+        # @type ActionName: String
+        # @param Desc: 动作描述
+        # @type Desc: String
+        # @param ActionType: 动作类型。范围：["平台","自定义"]
+        # @type ActionType: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Creator: 创建人
+        # @type Creator: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param RiskDesc: 动作风险描述
+        # @type RiskDesc: String
+        # @param ActionId: 动作ID
+        # @type ActionId: Integer
+        # @param AttributeId: 动作属性（ 1：故障  2：恢复）
+        # @type AttributeId: Integer
+        # @param RelationActionId: 关联的动作ID
+        # @type RelationActionId: Integer
+        # @param ActionCommand: 操作命令
+        # @type ActionCommand: String
+        # @param ActionCommandType: 动作类型( 0 -- tat   1 -- 云API）
+        # @type ActionCommandType: Integer
+        # @param ActionContent: 自定义动作的参数，json string
+        # @type ActionContent: String
+        # @param ResourceType: 二级分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param ActionDetail: 动作描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionDetail: String
+        # @param IsAllowed: 是否允许当前账号使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAllowed: Boolean
+        # @param ActionBestCase: 最佳实践案例的链接地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionBestCase: String
+        # @param ObjectType: 对象类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectType: String
+        # @param MetricIdList: 监控指标ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricIdList: Array
+        # @param IsNewAction: 是否是新动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAction: Boolean
+
+        attr_accessor :ActionName, :Desc, :ActionType, :CreateTime, :Creator, :UpdateTime, :RiskDesc, :ActionId, :AttributeId, :RelationActionId, :ActionCommand, :ActionCommandType, :ActionContent, :ResourceType, :ActionDetail, :IsAllowed, :ActionBestCase, :ObjectType, :MetricIdList, :IsNewAction
+
+        def initialize(actionname=nil, desc=nil, actiontype=nil, createtime=nil, creator=nil, updatetime=nil, riskdesc=nil, actionid=nil, attributeid=nil, relationactionid=nil, actioncommand=nil, actioncommandtype=nil, actioncontent=nil, resourcetype=nil, actiondetail=nil, isallowed=nil, actionbestcase=nil, objecttype=nil, metricidlist=nil, isnewaction=nil)
+          @ActionName = actionname
+          @Desc = desc
+          @ActionType = actiontype
+          @CreateTime = createtime
+          @Creator = creator
+          @UpdateTime = updatetime
+          @RiskDesc = riskdesc
+          @ActionId = actionid
+          @AttributeId = attributeid
+          @RelationActionId = relationactionid
+          @ActionCommand = actioncommand
+          @ActionCommandType = actioncommandtype
+          @ActionContent = actioncontent
+          @ResourceType = resourcetype
+          @ActionDetail = actiondetail
+          @IsAllowed = isallowed
+          @ActionBestCase = actionbestcase
+          @ObjectType = objecttype
+          @MetricIdList = metricidlist
+          @IsNewAction = isnewaction
+        end
+
+        def deserialize(params)
+          @ActionName = params['ActionName']
+          @Desc = params['Desc']
+          @ActionType = params['ActionType']
+          @CreateTime = params['CreateTime']
+          @Creator = params['Creator']
+          @UpdateTime = params['UpdateTime']
+          @RiskDesc = params['RiskDesc']
+          @ActionId = params['ActionId']
+          @AttributeId = params['AttributeId']
+          @RelationActionId = params['RelationActionId']
+          @ActionCommand = params['ActionCommand']
+          @ActionCommandType = params['ActionCommandType']
+          @ActionContent = params['ActionContent']
+          @ResourceType = params['ResourceType']
+          @ActionDetail = params['ActionDetail']
+          @IsAllowed = params['IsAllowed']
+          @ActionBestCase = params['ActionBestCase']
+          @ObjectType = params['ObjectType']
+          @MetricIdList = params['MetricIdList']
+          @IsNewAction = params['IsNewAction']
         end
       end
 
@@ -61,6 +276,66 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @ServiceNameList = params['ServiceNameList']
           @RegionId = params['RegionId']
+        end
+      end
+
+      # CreateTaskFromAction请求参数结构体
+      class CreateTaskFromActionRequest < TencentCloud::Common::AbstractModel
+        # @param TaskActionId: 动作ID，可从动作列表接口DescribeActionLibraryList获取
+        # @type TaskActionId: Integer
+        # @param TaskInstances: 参与演练的实例ID
+        # @type TaskInstances: Array
+        # @param TaskTitle: 演练名称，不填则默认取动作名称
+        # @type TaskTitle: String
+        # @param TaskDescription: 演练描述，不填则默认取动作描述
+        # @type TaskDescription: String
+        # @param TaskActionGeneralConfiguration: 动作通用参数，需要json序列化传入，可以从动作详情接口DescribeActionFieldConfigList获取，不填默认使用动作默认参数
+        # @type TaskActionGeneralConfiguration: String
+        # @param TaskActionCustomConfiguration: 动作自定义参数，需要json序列化传入，可以从动作详情接口DescribeActionFieldConfigList获取，不填默认使用动作默认参数，注意：必填参数，是没有默认值的 ，务必保证传入有效值
+        # @type TaskActionCustomConfiguration: String
+        # @param TaskPauseDuration: 演练自动暂停时间，单位分钟, 不填则默认为60
+        # @type TaskPauseDuration: Integer
+
+        attr_accessor :TaskActionId, :TaskInstances, :TaskTitle, :TaskDescription, :TaskActionGeneralConfiguration, :TaskActionCustomConfiguration, :TaskPauseDuration
+
+        def initialize(taskactionid=nil, taskinstances=nil, tasktitle=nil, taskdescription=nil, taskactiongeneralconfiguration=nil, taskactioncustomconfiguration=nil, taskpauseduration=nil)
+          @TaskActionId = taskactionid
+          @TaskInstances = taskinstances
+          @TaskTitle = tasktitle
+          @TaskDescription = taskdescription
+          @TaskActionGeneralConfiguration = taskactiongeneralconfiguration
+          @TaskActionCustomConfiguration = taskactioncustomconfiguration
+          @TaskPauseDuration = taskpauseduration
+        end
+
+        def deserialize(params)
+          @TaskActionId = params['TaskActionId']
+          @TaskInstances = params['TaskInstances']
+          @TaskTitle = params['TaskTitle']
+          @TaskDescription = params['TaskDescription']
+          @TaskActionGeneralConfiguration = params['TaskActionGeneralConfiguration']
+          @TaskActionCustomConfiguration = params['TaskActionCustomConfiguration']
+          @TaskPauseDuration = params['TaskPauseDuration']
+        end
+      end
+
+      # CreateTaskFromAction返回参数结构体
+      class CreateTaskFromActionResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 创建成功的演练ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -135,6 +410,196 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeActionFieldConfigList请求参数结构体
+      class DescribeActionFieldConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param ActionIds: 动作ID列表
+        # @type ActionIds: Array
+        # @param ObjectTypeId: 对象类型ID
+        # @type ObjectTypeId: Integer
+
+        attr_accessor :ActionIds, :ObjectTypeId
+
+        def initialize(actionids=nil, objecttypeid=nil)
+          @ActionIds = actionids
+          @ObjectTypeId = objecttypeid
+        end
+
+        def deserialize(params)
+          @ActionIds = params['ActionIds']
+          @ObjectTypeId = params['ObjectTypeId']
+        end
+      end
+
+      # DescribeActionFieldConfigList返回参数结构体
+      class DescribeActionFieldConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param Common: 通用栏位配置列表
+        # @type Common: Array
+        # @param Results: 动作栏位配置列表
+        # @type Results: Array
+        # @param ResourceOffline: 资源下线信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceOffline: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Common, :Results, :ResourceOffline, :RequestId
+
+        def initialize(common=nil, results=nil, resourceoffline=nil, requestid=nil)
+          @Common = common
+          @Results = results
+          @ResourceOffline = resourceoffline
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Common'].nil?
+            @Common = []
+            params['Common'].each do |i|
+              actionfieldconfigresult_tmp = ActionFieldConfigResult.new
+              actionfieldconfigresult_tmp.deserialize(i)
+              @Common << actionfieldconfigresult_tmp
+            end
+          end
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              actionfieldconfigresult_tmp = ActionFieldConfigResult.new
+              actionfieldconfigresult_tmp.deserialize(i)
+              @Results << actionfieldconfigresult_tmp
+            end
+          end
+          unless params['ResourceOffline'].nil?
+            @ResourceOffline = []
+            params['ResourceOffline'].each do |i|
+              resourceoffline_tmp = ResourceOffline.new
+              resourceoffline_tmp.deserialize(i)
+              @ResourceOffline << resourceoffline_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeActionLibraryList请求参数结构体
+      class DescribeActionLibraryListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 0-100
+        # @type Limit: Integer
+        # @param Offset: 默认值0
+        # @type Offset: Integer
+        # @param ObjectType: 对象类型ID
+        # @type ObjectType: Integer
+        # @param Filters: Keyword取值{"动作名称": "a_title", "描述": "a_desc", "动作类型": "a_type", "创建时间": "a_create_time", "二级分类": "a_resource_type"}
+        # @type Filters: Array
+        # @param Attribute: 动作分类，1表示故障动作，2表示恢复动作
+        # @type Attribute: Array
+        # @param ActionIds: 筛选项 -动作ID
+        # @type ActionIds: Array
+
+        attr_accessor :Limit, :Offset, :ObjectType, :Filters, :Attribute, :ActionIds
+
+        def initialize(limit=nil, offset=nil, objecttype=nil, filters=nil, attribute=nil, actionids=nil)
+          @Limit = limit
+          @Offset = offset
+          @ObjectType = objecttype
+          @Filters = filters
+          @Attribute = attribute
+          @ActionIds = actionids
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ObjectType = params['ObjectType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              actionfilter_tmp = ActionFilter.new
+              actionfilter_tmp.deserialize(i)
+              @Filters << actionfilter_tmp
+            end
+          end
+          @Attribute = params['Attribute']
+          @ActionIds = params['ActionIds']
+        end
+      end
+
+      # DescribeActionLibraryList返回参数结构体
+      class DescribeActionLibraryListResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 查询结果列表
+        # @type Results: Array
+        # @param Total: 符合记录条数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :Total, :RequestId
+
+        def initialize(results=nil, total=nil, requestid=nil)
+          @Results = results
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              actionlibrarylistresult_tmp = ActionLibraryListResult.new
+              actionlibrarylistresult_tmp.deserialize(i)
+              @Results << actionlibrarylistresult_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeObjectTypeList请求参数结构体
+      class DescribeObjectTypeListRequest < TencentCloud::Common::AbstractModel
+        # @param SupportType: 所支持的对象
+        # 0：全平台产品
+        # 1：平台接入的对象
+        # 2：应用所支持的部分对象
+        # @type SupportType: Integer
+
+        attr_accessor :SupportType
+
+        def initialize(supporttype=nil)
+          @SupportType = supporttype
+        end
+
+        def deserialize(params)
+          @SupportType = params['SupportType']
+        end
+      end
+
+      # DescribeObjectTypeList返回参数结构体
+      class DescribeObjectTypeListResponse < TencentCloud::Common::AbstractModel
+        # @param ObjectTypeList: 对象类型列表
+        # @type ObjectTypeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ObjectTypeList, :RequestId
+
+        def initialize(objecttypelist=nil, requestid=nil)
+          @ObjectTypeList = objecttypelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ObjectTypeList'].nil?
+            @ObjectTypeList = []
+            params['ObjectTypeList'].each do |i|
+              objecttype_tmp = ObjectType.new
+              objecttype_tmp.deserialize(i)
+              @ObjectTypeList << objecttype_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -684,6 +1149,139 @@ module TencentCloud
         end
       end
 
+      # 对象类型
+      class ObjectType < TencentCloud::Common::AbstractModel
+        # @param ObjectTypeId: 对象类型ID
+        # @type ObjectTypeId: Integer
+        # @param ObjectTypeTitle: 对象类型名称
+        # @type ObjectTypeTitle: String
+        # @param ObjectTypeLevelOne: 对象类型第一级
+        # @type ObjectTypeLevelOne: String
+        # @param ObjectTypeParams: 对象类型参数
+        # @type ObjectTypeParams: :class:`Tencentcloud::Cfg.v20210820.models.ObjectTypeConfig`
+        # @param ObjectTypeJsonParse: tke接口json解析规则，null不需要解析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectTypeJsonParse: :class:`Tencentcloud::Cfg.v20210820.models.ObjectTypeJsonParse`
+        # @param ObjectHasNewAction: 是否包含新动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectHasNewAction: Boolean
+
+        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction
+
+        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil)
+          @ObjectTypeId = objecttypeid
+          @ObjectTypeTitle = objecttypetitle
+          @ObjectTypeLevelOne = objecttypelevelone
+          @ObjectTypeParams = objecttypeparams
+          @ObjectTypeJsonParse = objecttypejsonparse
+          @ObjectHasNewAction = objecthasnewaction
+        end
+
+        def deserialize(params)
+          @ObjectTypeId = params['ObjectTypeId']
+          @ObjectTypeTitle = params['ObjectTypeTitle']
+          @ObjectTypeLevelOne = params['ObjectTypeLevelOne']
+          unless params['ObjectTypeParams'].nil?
+            @ObjectTypeParams = ObjectTypeConfig.new
+            @ObjectTypeParams.deserialize(params['ObjectTypeParams'])
+          end
+          unless params['ObjectTypeJsonParse'].nil?
+            @ObjectTypeJsonParse = ObjectTypeJsonParse.new
+            @ObjectTypeJsonParse.deserialize(params['ObjectTypeJsonParse'])
+          end
+          @ObjectHasNewAction = params['ObjectHasNewAction']
+        end
+      end
+
+      # 对象类型配置
+      class ObjectTypeConfig < TencentCloud::Common::AbstractModel
+        # @param Key: 主键
+        # @type Key: String
+        # @param Fields: 对象类型配置字段列表
+        # @type Fields: Array
+
+        attr_accessor :Key, :Fields
+
+        def initialize(key=nil, fields=nil)
+          @Key = key
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              objecttypeconfigfields_tmp = ObjectTypeConfigFields.new
+              objecttypeconfigfields_tmp.deserialize(i)
+              @Fields << objecttypeconfigfields_tmp
+            end
+          end
+        end
+      end
+
+      # 对象类型字段类型
+      class ObjectTypeConfigFields < TencentCloud::Common::AbstractModel
+        # @param Key: instanceId
+        # @type Key: String
+        # @param Header: 实例id
+        # @type Header: String
+        # @param Transfer: 字段值是否需要转译，当不需要转译时，此字段返回null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Transfer: String
+        # @param JsonParse: tke的pod字段信息解析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonParse: String
+
+        attr_accessor :Key, :Header, :Transfer, :JsonParse
+
+        def initialize(key=nil, header=nil, transfer=nil, jsonparse=nil)
+          @Key = key
+          @Header = header
+          @Transfer = transfer
+          @JsonParse = jsonparse
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Header = params['Header']
+          @Transfer = params['Transfer']
+          @JsonParse = params['JsonParse']
+        end
+      end
+
+      # 标准pod对象类型下拉数据的解析
+      class ObjectTypeJsonParse < TencentCloud::Common::AbstractModel
+        # @param NameSpace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameSpace: String
+        # @param WorkloadName: 工作负载名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkloadName: String
+        # @param LanIP: 节点IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LanIP: String
+        # @param InstanceId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :NameSpace, :WorkloadName, :LanIP, :InstanceId
+
+        def initialize(namespace=nil, workloadname=nil, lanip=nil, instanceid=nil)
+          @NameSpace = namespace
+          @WorkloadName = workloadname
+          @LanIP = lanip
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @NameSpace = params['NameSpace']
+          @WorkloadName = params['WorkloadName']
+          @LanIP = params['LanIP']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # 护栏策略触发日志
       class PolicyTriggerLog < TencentCloud::Common::AbstractModel
         # @param TaskId: 演练ID
@@ -718,6 +1316,33 @@ module TencentCloud
           @TriggerType = params['TriggerType']
           @Content = params['Content']
           @CreatTime = params['CreatTime']
+        end
+      end
+
+      # 资源下线
+      class ResourceOffline < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: Integer
+        # @param ResourceDeleteTime: 资源下线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceDeleteTime: String
+        # @param ResourceDeleteMessage: 资源下线提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceDeleteMessage: String
+
+        attr_accessor :ResourceId, :ResourceDeleteTime, :ResourceDeleteMessage
+
+        def initialize(resourceid=nil, resourcedeletetime=nil, resourcedeletemessage=nil)
+          @ResourceId = resourceid
+          @ResourceDeleteTime = resourcedeletetime
+          @ResourceDeleteMessage = resourcedeletemessage
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceDeleteTime = params['ResourceDeleteTime']
+          @ResourceDeleteMessage = params['ResourceDeleteMessage']
         end
       end
 
