@@ -4220,10 +4220,13 @@ module TencentCloud
         # @param RegexBashCmd: 自动生成的正则表达式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegexBashCmd: String
+        # @param HostName: 主机HostName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :HostName
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, hostname=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -4243,6 +4246,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @RuleCategory = rulecategory
           @RegexBashCmd = regexbashcmd
+          @HostName = hostname
         end
 
         def deserialize(params)
@@ -4265,6 +4269,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @RuleCategory = params['RuleCategory']
           @RegexBashCmd = params['RegexBashCmd']
+          @HostName = params['HostName']
         end
       end
 
@@ -4440,10 +4445,13 @@ module TencentCloud
         # @param Pid: 进程号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pid: String
+        # @param DetectBy: 数据来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectBy: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid, :DetectBy
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil, detectby=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -4469,6 +4477,7 @@ module TencentCloud
           @MachineStatus = machinestatus
           @User = user
           @Pid = pid
+          @DetectBy = detectby
         end
 
         def deserialize(params)
@@ -4497,6 +4506,7 @@ module TencentCloud
           @MachineStatus = params['MachineStatus']
           @User = params['User']
           @Pid = params['Pid']
+          @DetectBy = params['DetectBy']
         end
       end
 

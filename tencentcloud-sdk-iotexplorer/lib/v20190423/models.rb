@@ -2202,7 +2202,7 @@ module TencentCloud
 
       # DescribeCloudStorageAIServiceCallback请求参数结构体
       class DescribeCloudStorageAIServiceCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: 产品 ID
         # @type ProductId: String
 
         attr_accessor :ProductId
@@ -2248,13 +2248,12 @@ module TencentCloud
 
       # DescribeCloudStorageAIService请求参数结构体
       class DescribeCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: 产品 ID
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
         # @param ServiceType: 云存 AI 服务类型。可选值：
-
-        # - `PackageDetect`：包裹检测
+        # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
         # @type ServiceType: String
 
@@ -2275,28 +2274,28 @@ module TencentCloud
 
       # DescribeCloudStorageAIService返回参数结构体
       class DescribeCloudStorageAIServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Enabled: 启用状态
+        # @param Enabled: 视频分析启用状态
         # @type Enabled: Boolean
-        # @param ROI: 视频分析区域
-        # @type ROI: String
-        # @param Config: 云存 AI 服务的配置参数
+        # @param Config: 视频分析配置参数
         # @type Config: String
+        # @param ROI: 视频分析识别区域
+        # @type ROI: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enabled, :ROI, :Config, :RequestId
+        attr_accessor :Enabled, :Config, :ROI, :RequestId
 
-        def initialize(enabled=nil, roi=nil, config=nil, requestid=nil)
+        def initialize(enabled=nil, config=nil, roi=nil, requestid=nil)
           @Enabled = enabled
-          @ROI = roi
           @Config = config
+          @ROI = roi
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Enabled = params['Enabled']
-          @ROI = params['ROI']
           @Config = params['Config']
+          @ROI = params['ROI']
           @RequestId = params['RequestId']
         end
       end
@@ -2347,7 +2346,7 @@ module TencentCloud
         # @param DeviceName: 设备名称
         # @type DeviceName: String
         # @param ServiceType: 云存 AI 服务类型。可选值：
-        # - `PackageDetect`：包裹检测
+        # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
         # @type ServiceType: String
         # @param Limit: 分页拉取数量
@@ -2361,9 +2360,9 @@ module TencentCloud
         # - `3`：成功且结果非空
         # - `4`：执行中
         # @type Status: Integer
-        # @param UserId: 用户ID
+        # @param UserId: 用户 ID
         # @type UserId: String
-        # @param ChannelId: 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
+        # @param ChannelId: 通道 ID
         # @type ChannelId: Integer
 
         attr_accessor :ProductId, :DeviceName, :ServiceType, :Limit, :Offset, :Status, :UserId, :ChannelId
@@ -4426,7 +4425,7 @@ module TencentCloud
 
       # DescribeProductCloudStorageAIService请求参数结构体
       class DescribeProductCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: 产品 ID
         # @type ProductId: String
 
         attr_accessor :ProductId
@@ -7062,7 +7061,7 @@ module TencentCloud
 
       # ModifyCloudStorageAIServiceCallback请求参数结构体
       class ModifyCloudStorageAIServiceCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: 产品 ID
         # @type ProductId: String
         # @param Type: 推送类型。可选值：
         # - `http`：HTTP 回调
@@ -7107,19 +7106,19 @@ module TencentCloud
 
       # ModifyCloudStorageAIService请求参数结构体
       class ModifyCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: 产品 ID
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
         # @param ServiceType: 云存 AI 服务类型。可选值：
-        # - `PackageDetect`：包裹检测
+        # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
         # @type ServiceType: String
-        # @param Enabled: 启用状态
+        # @param Enabled: 视频分析启用状态
         # @type Enabled: Boolean
-        # @param ROI: 视频分析区域
+        # @param ROI: 视频分析识别区域
         # @type ROI: String
-        # @param Config: 云存 AI 服务的配置参数
+        # @param Config: 视频分析配置参数
         # @type Config: String
 
         attr_accessor :ProductId, :DeviceName, :ServiceType, :Enabled, :ROI, :Config
@@ -7460,7 +7459,7 @@ module TencentCloud
 
       # ModifyProductCloudStorageAIService请求参数结构体
       class ModifyProductCloudStorageAIServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: 产品 ID
         # @type ProductId: String
         # @param Enabled: 开通状态
         # @type Enabled: Boolean

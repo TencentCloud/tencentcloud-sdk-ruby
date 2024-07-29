@@ -2529,10 +2529,13 @@ module TencentCloud
         # @param TargetName: 访问目的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetName: String
+        # @param LastHitTime: 规则最近命中时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastHitTime: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2564,6 +2567,7 @@ module TencentCloud
           @ParamTemplateId = paramtemplateid
           @SourceName = sourcename
           @TargetName = targetname
+          @LastHitTime = lasthittime
         end
 
         def deserialize(params)
@@ -2605,6 +2609,7 @@ module TencentCloud
           @ParamTemplateId = params['ParamTemplateId']
           @SourceName = params['SourceName']
           @TargetName = params['TargetName']
+          @LastHitTime = params['LastHitTime']
         end
       end
 
@@ -2907,9 +2912,9 @@ module TencentCloud
         # @type DomainTemplateCount: Integer
         # @param PortTemplateCount: 协议端口模板数量
         # @type PortTemplateCount: Integer
-        # @param UsedTemplateCount: 已使用的地址模版数
+        # @param UsedTemplateCount: 已使用的地址模板数
         # @type UsedTemplateCount: Integer
-        # @param TemplateQuotaCount: 地址模版配额数量
+        # @param TemplateQuotaCount: 地址模板配额数量
         # @type TemplateQuotaCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

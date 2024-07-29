@@ -286,6 +286,51 @@ module TencentCloud
         end
       end
 
+      # ControlAIConversation请求参数结构体
+      class ControlAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一标识
+        # @type TaskId: String
+        # @param Command: 控制命令，目前支持命令如下：
+
+        # - ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本
+        # @type Command: String
+        # @param ServerPushText: 服务端发送播报文本命令，当Command为ServerPushText时必填
+        # @type ServerPushText: :class:`Tencentcloud::Trtc.v20190722.models.ServerPushText`
+
+        attr_accessor :TaskId, :Command, :ServerPushText
+
+        def initialize(taskid=nil, command=nil, serverpushtext=nil)
+          @TaskId = taskid
+          @Command = command
+          @ServerPushText = serverpushtext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Command = params['Command']
+          unless params['ServerPushText'].nil?
+            @ServerPushText = ServerPushText.new
+            @ServerPushText.deserialize(params['ServerPushText'])
+          end
+        end
+      end
+
+      # ControlAIConversation返回参数结构体
+      class ControlAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudRecording请求参数结构体
       class CreateCloudRecordingRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和录制的房间所对应的SdkAppId相同。
@@ -3949,6 +3994,26 @@ module TencentCloud
               @Values << rowvalues_tmp
             end
           end
+        end
+      end
+
+      # 服务端控制AI对话机器人播报指定文本
+      class ServerPushText < TencentCloud::Common::AbstractModel
+        # @param Text: 服务端推送播报文本
+        # @type Text: String
+        # @param Interrupt: 是否允许该文本打断机器人说话
+        # @type Interrupt: Boolean
+
+        attr_accessor :Text, :Interrupt
+
+        def initialize(text=nil, interrupt=nil)
+          @Text = text
+          @Interrupt = interrupt
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Interrupt = params['Interrupt']
         end
       end
 

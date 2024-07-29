@@ -2885,6 +2885,77 @@ module TencentCloud
         end
       end
 
+      # DescribeCFWAssetStatistics请求参数结构体
+      class DescribeCFWAssetStatisticsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCFWAssetStatistics返回参数结构体
+      class DescribeCFWAssetStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param NetworkTotal: 网络资产总数
+        # @type NetworkTotal: Integer
+        # @param ClbTotal: 资产clb数量
+        # @type ClbTotal: Integer
+        # @param NatTotal: nat数量
+        # @type NatTotal: Integer
+        # @param PublicAssetTotal: 公网ip数量
+        # @type PublicAssetTotal: Integer
+        # @param CVMAssetTotal: 主机数量
+        # @type CVMAssetTotal: Integer
+        # @param CFGTotal: 配置风险
+        # @type CFGTotal: Integer
+        # @param PortTotal: 端口风险
+        # @type PortTotal: Integer
+        # @param WebsiteTotal: 内容风险
+        # @type WebsiteTotal: Integer
+        # @param ServerTotal: 风险服务暴露
+        # @type ServerTotal: Integer
+        # @param WeakPasswordTotal: 弱口令风险
+        # @type WeakPasswordTotal: Integer
+        # @param VULTotal: 漏洞风险
+        # @type VULTotal: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetworkTotal, :ClbTotal, :NatTotal, :PublicAssetTotal, :CVMAssetTotal, :CFGTotal, :PortTotal, :WebsiteTotal, :ServerTotal, :WeakPasswordTotal, :VULTotal, :RequestId
+
+        def initialize(networktotal=nil, clbtotal=nil, nattotal=nil, publicassettotal=nil, cvmassettotal=nil, cfgtotal=nil, porttotal=nil, websitetotal=nil, servertotal=nil, weakpasswordtotal=nil, vultotal=nil, requestid=nil)
+          @NetworkTotal = networktotal
+          @ClbTotal = clbtotal
+          @NatTotal = nattotal
+          @PublicAssetTotal = publicassettotal
+          @CVMAssetTotal = cvmassettotal
+          @CFGTotal = cfgtotal
+          @PortTotal = porttotal
+          @WebsiteTotal = websitetotal
+          @ServerTotal = servertotal
+          @WeakPasswordTotal = weakpasswordtotal
+          @VULTotal = vultotal
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NetworkTotal = params['NetworkTotal']
+          @ClbTotal = params['ClbTotal']
+          @NatTotal = params['NatTotal']
+          @PublicAssetTotal = params['PublicAssetTotal']
+          @CVMAssetTotal = params['CVMAssetTotal']
+          @CFGTotal = params['CFGTotal']
+          @PortTotal = params['PortTotal']
+          @WebsiteTotal = params['WebsiteTotal']
+          @ServerTotal = params['ServerTotal']
+          @WeakPasswordTotal = params['WeakPasswordTotal']
+          @VULTotal = params['VULTotal']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCVMAssetInfo请求参数结构体
       class DescribeCVMAssetInfoRequest < TencentCloud::Common::AbstractModel
         # @param AssetId: -

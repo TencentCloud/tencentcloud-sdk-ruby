@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云防资产中心统计数据
+
+        # @param request: Request instance for DescribeCFWAssetStatistics.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCFWAssetStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCFWAssetStatisticsResponse`
+        def DescribeCFWAssetStatistics(request)
+          body = send_request('DescribeCFWAssetStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCFWAssetStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # cvm详情
 
         # @param request: Request instance for DescribeCVMAssetInfo.
