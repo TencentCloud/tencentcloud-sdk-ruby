@@ -1143,7 +1143,7 @@ module TencentCloud
 
       # DescribeAuctionList请求参数结构体
       class DescribeAuctionListRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessId: 业务ID
+        # @param BusinessId: 业务ID，通过接口DescribeBiddingList返回结果中获取
         # @type BusinessId: String
         # @param Limit: 条数，默认10条
         # @type Limit: Integer

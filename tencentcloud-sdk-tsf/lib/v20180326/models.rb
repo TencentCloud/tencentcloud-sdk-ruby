@@ -7737,10 +7737,10 @@ module TencentCloud
 
       # DescribeContainerGroups请求参数结构体
       class DescribeContainerGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 分组所属应用ID。
+        # @type ApplicationId: String
         # @param SearchWord: 搜索字段，模糊搜索groupName字段
         # @type SearchWord: String
-        # @param ApplicationId: 分组所属应用ID。必填
-        # @type ApplicationId: String
         # @param OrderBy: 排序字段，默认为 createTime字段，支持id， name， createTime
         # @type OrderBy: String
         # @param OrderType: 排序方式，默认为1：倒序排序，0：正序，1：倒序
@@ -7754,11 +7754,11 @@ module TencentCloud
         # @param NamespaceId: 命名空间 ID
         # @type NamespaceId: String
 
-        attr_accessor :SearchWord, :ApplicationId, :OrderBy, :OrderType, :Offset, :Limit, :ClusterId, :NamespaceId
+        attr_accessor :ApplicationId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ClusterId, :NamespaceId
 
-        def initialize(searchword=nil, applicationid=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, clusterid=nil, namespaceid=nil)
-          @SearchWord = searchword
+        def initialize(applicationid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, clusterid=nil, namespaceid=nil)
           @ApplicationId = applicationid
+          @SearchWord = searchword
           @OrderBy = orderby
           @OrderType = ordertype
           @Offset = offset
@@ -7768,8 +7768,8 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SearchWord = params['SearchWord']
           @ApplicationId = params['ApplicationId']
+          @SearchWord = params['SearchWord']
           @OrderBy = params['OrderBy']
           @OrderType = params['OrderType']
           @Offset = params['Offset']

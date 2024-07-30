@@ -360,12 +360,12 @@ module TencentCloud
       class BaseFlowInfo < TencentCloud::Common::AbstractModel
         # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowName: String
+        # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
+        # @type Deadline: Integer
         # @param FlowType: 合同流程的类别分类（可自定义名称，如销售合同/入职合同等），最大长度为200个字符，仅限中文、字母、数字和下划线组成。
         # @type FlowType: String
         # @param FlowDescription: 合同流程描述信息(可自定义此描述)，最大长度1000个字符。
         # @type FlowDescription: String
-        # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
-        # @type Deadline: Integer
         # @param Unordered: 合同流程的签署顺序类型：
         # **false**：(默认)有序签署, 本合同多个参与人需要依次签署
         # **true**：无序签署, 本合同多个参与人没有先后签署限制
@@ -396,13 +396,13 @@ module TencentCloud
         # @param Components: 填写控件：文件发起使用
         # @type Components: Array
 
-        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview, :Components
+        attr_accessor :FlowName, :Deadline, :FlowType, :FlowDescription, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview, :Components
 
-        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil, needcreatereview=nil, components=nil)
+        def initialize(flowname=nil, deadline=nil, flowtype=nil, flowdescription=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil, needcreatereview=nil, components=nil)
           @FlowName = flowname
+          @Deadline = deadline
           @FlowType = flowtype
           @FlowDescription = flowdescription
-          @Deadline = deadline
           @Unordered = unordered
           @IntelligentStatus = intelligentstatus
           @FormFields = formfields
@@ -415,9 +415,9 @@ module TencentCloud
 
         def deserialize(params)
           @FlowName = params['FlowName']
+          @Deadline = params['Deadline']
           @FlowType = params['FlowType']
           @FlowDescription = params['FlowDescription']
-          @Deadline = params['Deadline']
           @Unordered = params['Unordered']
           @IntelligentStatus = params['IntelligentStatus']
           unless params['FormFields'].nil?

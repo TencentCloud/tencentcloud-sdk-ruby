@@ -6189,16 +6189,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页参数，默认0
         # @type Offset: Integer
+        # @param Filters: 过滤类型，支持如下的过滤类型，传参Name应为以下其中一个, engine-generation - String（引擎时代： supersql：supersql引擎，native：标准引擎）：notebook-keyword - String（数据引擎名称或sessionid或sessionname的模糊搜索）
+        # @type Filters: Array
 
-        attr_accessor :DataEngineName, :State, :SortFields, :Asc, :Limit, :Offset
+        attr_accessor :DataEngineName, :State, :SortFields, :Asc, :Limit, :Offset, :Filters
 
-        def initialize(dataenginename=nil, state=nil, sortfields=nil, asc=nil, limit=nil, offset=nil)
+        def initialize(dataenginename=nil, state=nil, sortfields=nil, asc=nil, limit=nil, offset=nil, filters=nil)
           @DataEngineName = dataenginename
           @State = state
           @SortFields = sortfields
           @Asc = asc
           @Limit = limit
           @Offset = offset
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -6208,6 +6211,14 @@ module TencentCloud
           @Asc = params['Asc']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -7191,7 +7202,7 @@ module TencentCloud
 
       # DescribeTaskResult请求参数结构体
       class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务唯一ID
+        # @param TaskId: 任务唯一ID，仅支持30天内的任务
         # @type TaskId: String
         # @param NextToken: 上一次请求响应返回的分页信息。第一次可以不带，从头开始返回数据，每次返回MaxResults字段设置的数据量。
         # @type NextToken: String
@@ -7509,15 +7520,23 @@ module TencentCloud
       class DescribeUpdatableDataEnginesRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineConfigCommand: 引擎配置操作命令，UpdateSparkSQLLakefsPath 更新托管表路径，UpdateSparkSQLResultPath 更新结果桶路径
         # @type DataEngineConfigCommand: String
+        # @param UseLakeFs: 是否使用托管存储作为结果存储
+        # @type UseLakeFs: Boolean
+        # @param CustomResultPath: 用户自定义结果存储路径
+        # @type CustomResultPath: String
 
-        attr_accessor :DataEngineConfigCommand
+        attr_accessor :DataEngineConfigCommand, :UseLakeFs, :CustomResultPath
 
-        def initialize(dataengineconfigcommand=nil)
+        def initialize(dataengineconfigcommand=nil, uselakefs=nil, customresultpath=nil)
           @DataEngineConfigCommand = dataengineconfigcommand
+          @UseLakeFs = uselakefs
+          @CustomResultPath = customresultpath
         end
 
         def deserialize(params)
           @DataEngineConfigCommand = params['DataEngineConfigCommand']
+          @UseLakeFs = params['UseLakeFs']
+          @CustomResultPath = params['CustomResultPath']
         end
       end
 

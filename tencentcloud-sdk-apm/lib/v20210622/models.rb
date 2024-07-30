@@ -925,10 +925,12 @@ module TencentCloud
         # @type PageSize: Integer
         # @param OrFilters: Or过滤条件
         # @type OrFilters: Array
+        # @param Type: 数据来源
+        # @type Type: String
 
-        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize, :OrFilters
+        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize, :OrFilters, :Type
 
-        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil, orfilters=nil)
+        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil, orfilters=nil, type=nil)
           @Filters = filters
           @Metrics = metrics
           @GroupBy = groupby
@@ -942,6 +944,7 @@ module TencentCloud
           @PageIndex = pageindex
           @PageSize = pagesize
           @OrFilters = orfilters
+          @Type = type
         end
 
         def deserialize(params)
@@ -982,6 +985,7 @@ module TencentCloud
               @OrFilters << filter_tmp
             end
           end
+          @Type = params['Type']
         end
       end
 

@@ -142,15 +142,27 @@ module TencentCloud
         # @param TokenBalance: token余量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TokenBalance: Float
+        # @param IsUseContext: 是否使用上下文指代轮次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUseContext: Boolean
+        # @param HistoryLimit: 上下文记忆轮数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HistoryLimit: Integer
+        # @param UsageType: 使用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageType: String
 
-        attr_accessor :Name, :Desc, :ContextLimit, :AliasName, :TokenBalance
+        attr_accessor :Name, :Desc, :ContextLimit, :AliasName, :TokenBalance, :IsUseContext, :HistoryLimit, :UsageType
 
-        def initialize(name=nil, desc=nil, contextlimit=nil, aliasname=nil, tokenbalance=nil)
+        def initialize(name=nil, desc=nil, contextlimit=nil, aliasname=nil, tokenbalance=nil, isusecontext=nil, historylimit=nil, usagetype=nil)
           @Name = name
           @Desc = desc
           @ContextLimit = contextlimit
           @AliasName = aliasname
           @TokenBalance = tokenbalance
+          @IsUseContext = isusecontext
+          @HistoryLimit = historylimit
+          @UsageType = usagetype
         end
 
         def deserialize(params)
@@ -159,6 +171,9 @@ module TencentCloud
           @ContextLimit = params['ContextLimit']
           @AliasName = params['AliasName']
           @TokenBalance = params['TokenBalance']
+          @IsUseContext = params['IsUseContext']
+          @HistoryLimit = params['HistoryLimit']
+          @UsageType = params['UsageType']
         end
       end
 
@@ -314,7 +329,10 @@ module TencentCloud
       class BaseConfig < TencentCloud::Common::AbstractModel
         # @param Name: 应用名称
         # @type Name: String
-        # @param Avatar: 应用头像
+        # @param Avatar: 应用头像url，在CreateApp和ModifyApp中作为入参必填。
+        # 作为入参传入说明：
+        # 1. 传入的url图片限制为jpeg和png，大小限制为500KB，url链接需允许head请求。
+        # 2. 如果用户没有对象存储，可使用“获取文件上传临时密钥”(DescribeStorageCredential)接口，获取cos临时密钥和上传路径，自行上传头像至cos中并获取访问链接。
         # @type Avatar: String
         # @param Desc: 应用描述
         # @type Desc: String
@@ -3386,6 +3404,28 @@ module TencentCloud
         end
       end
 
+      # 多轮历史信息
+      class HistorySummary < TencentCloud::Common::AbstractModel
+        # @param Assistant: 助手
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Assistant: String
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+
+        attr_accessor :Assistant, :User
+
+        def initialize(assistant=nil, user=nil)
+          @Assistant = assistant
+          @User = user
+        end
+
+        def deserialize(params)
+          @Assistant = params['Assistant']
+          @User = params['User']
+        end
+      end
+
       # IgnoreUnsatisfiedReply请求参数结构体
       class IgnoreUnsatisfiedReplyRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -3427,6 +3467,79 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 请求的API信息
+      class InvokeAPI < TencentCloud::Common::AbstractModel
+        # @param Method: 请求方法，如GET/POST等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param Url: 请求地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param HeaderValues: header参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeaderValues: Array
+        # @param QueryValues: 入参Query
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryValues: Array
+        # @param RequestPostBody: Post请求的原始数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestPostBody: String
+        # @param ResponseBody: 返回的原始数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseBody: String
+        # @param ResponseValues: 出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseValues: Array
+        # @param FailMessage: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailMessage: String
+
+        attr_accessor :Method, :Url, :HeaderValues, :QueryValues, :RequestPostBody, :ResponseBody, :ResponseValues, :FailMessage
+
+        def initialize(method=nil, url=nil, headervalues=nil, queryvalues=nil, requestpostbody=nil, responsebody=nil, responsevalues=nil, failmessage=nil)
+          @Method = method
+          @Url = url
+          @HeaderValues = headervalues
+          @QueryValues = queryvalues
+          @RequestPostBody = requestpostbody
+          @ResponseBody = responsebody
+          @ResponseValues = responsevalues
+          @FailMessage = failmessage
+        end
+
+        def deserialize(params)
+          @Method = params['Method']
+          @Url = params['Url']
+          unless params['HeaderValues'].nil?
+            @HeaderValues = []
+            params['HeaderValues'].each do |i|
+              strvalue_tmp = StrValue.new
+              strvalue_tmp.deserialize(i)
+              @HeaderValues << strvalue_tmp
+            end
+          end
+          unless params['QueryValues'].nil?
+            @QueryValues = []
+            params['QueryValues'].each do |i|
+              strvalue_tmp = StrValue.new
+              strvalue_tmp.deserialize(i)
+              @QueryValues << strvalue_tmp
+            end
+          end
+          @RequestPostBody = params['RequestPostBody']
+          @ResponseBody = params['ResponseBody']
+          unless params['ResponseValues'].nil?
+            @ResponseValues = []
+            params['ResponseValues'].each do |i|
+              valueinfo_tmp = ValueInfo.new
+              valueinfo_tmp.deserialize(i)
+              @ResponseValues << valueinfo_tmp
+            end
+          end
+          @FailMessage = params['FailMessage']
         end
       end
 
@@ -3540,16 +3653,20 @@ module TencentCloud
         # @param QuestionClarifyKeywords: 问题澄清关键词列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuestionClarifyKeywords: Array
+        # @param UseRecommended: 是否打开推荐问题开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseRecommended: Boolean
 
-        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords
+        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords, :UseRecommended
 
-        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil)
+        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil, userecommended=nil)
           @Method = method
           @UseGeneralKnowledge = usegeneralknowledge
           @BareAnswer = bareanswer
           @ShowQuestionClarify = showquestionclarify
           @UseQuestionClarify = usequestionclarify
           @QuestionClarifyKeywords = questionclarifykeywords
+          @UseRecommended = userecommended
         end
 
         def deserialize(params)
@@ -3559,6 +3676,7 @@ module TencentCloud
           @ShowQuestionClarify = params['ShowQuestionClarify']
           @UseQuestionClarify = params['UseQuestionClarify']
           @QuestionClarifyKeywords = params['QuestionClarifyKeywords']
+          @UseRecommended = params['UseRecommended']
         end
       end
 
@@ -3588,10 +3706,13 @@ module TencentCloud
         # @param Confidence: 检索置信度，针对文档和问答有效，最小0.01，最大0.99
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Confidence: Float
+        # @param ResourceStatus: 资源状态 1：资源可用；2：资源已用尽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStatus: Integer
 
-        attr_accessor :Type, :ReplyFlexibility, :UseSearchEngine, :ShowSearchEngine, :IsEnabled, :QaTopN, :DocTopN, :Confidence
+        attr_accessor :Type, :ReplyFlexibility, :UseSearchEngine, :ShowSearchEngine, :IsEnabled, :QaTopN, :DocTopN, :Confidence, :ResourceStatus
 
-        def initialize(type=nil, replyflexibility=nil, usesearchengine=nil, showsearchengine=nil, isenabled=nil, qatopn=nil, doctopn=nil, confidence=nil)
+        def initialize(type=nil, replyflexibility=nil, usesearchengine=nil, showsearchengine=nil, isenabled=nil, qatopn=nil, doctopn=nil, confidence=nil, resourcestatus=nil)
           @Type = type
           @ReplyFlexibility = replyflexibility
           @UseSearchEngine = usesearchengine
@@ -3600,6 +3721,7 @@ module TencentCloud
           @QaTopN = qatopn
           @DocTopN = doctopn
           @Confidence = confidence
+          @ResourceStatus = resourcestatus
         end
 
         def deserialize(params)
@@ -3611,6 +3733,29 @@ module TencentCloud
           @QaTopN = params['QaTopN']
           @DocTopN = params['DocTopN']
           @Confidence = params['Confidence']
+          @ResourceStatus = params['ResourceStatus']
+        end
+      end
+
+      # 检索知识
+      class KnowledgeSummary < TencentCloud::Common::AbstractModel
+        # @param Type: 1是问答 2是文档片段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Content: 知识内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Type, :Content
+
+        def initialize(type=nil, content=nil)
+          @Type = type
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Content = params['Content']
         end
       end
 
@@ -4953,19 +5098,29 @@ module TencentCloud
         # @param AliasName: 模型名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasName: String
+        # @param ResourceStatus: 资源状态 1：资源可用；2：资源已用尽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStatus: Integer
+        # @param PromptWordsLimit: 提示词内容字符限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptWordsLimit: String
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
+          @ResourceStatus = resourcestatus
+          @PromptWordsLimit = promptwordslimit
         end
 
         def deserialize(params)
           @ModelName = params['ModelName']
           @ModelDesc = params['ModelDesc']
           @AliasName = params['AliasName']
+          @ResourceStatus = params['ResourceStatus']
+          @PromptWordsLimit = params['PromptWordsLimit']
         end
       end
 
@@ -5799,14 +5954,22 @@ module TencentCloud
         # @param Count: 消耗 token 数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
+        # @param Debugging: 调试信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Debugging: :class:`Tencentcloud::Lke.v20231130.models.ProcedureDebugging`
+        # @param ResourceStatus: 计费资源状态，1：可用，2：不可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStatus: Integer
 
-        attr_accessor :Name, :Title, :Status, :Count
+        attr_accessor :Name, :Title, :Status, :Count, :Debugging, :ResourceStatus
 
-        def initialize(name=nil, title=nil, status=nil, count=nil)
+        def initialize(name=nil, title=nil, status=nil, count=nil, debugging=nil, resourcestatus=nil)
           @Name = name
           @Title = title
           @Status = status
           @Count = count
+          @Debugging = debugging
+          @ResourceStatus = resourcestatus
         end
 
         def deserialize(params)
@@ -5814,6 +5977,65 @@ module TencentCloud
           @Title = params['Title']
           @Status = params['Status']
           @Count = params['Count']
+          unless params['Debugging'].nil?
+            @Debugging = ProcedureDebugging.new
+            @Debugging.deserialize(params['Debugging'])
+          end
+          @ResourceStatus = params['ResourceStatus']
+        end
+      end
+
+      # 调试信息
+      class ProcedureDebugging < TencentCloud::Common::AbstractModel
+        # @param Content: 检索query
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param System: 系统prompt
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type System: String
+        # @param Histories: 多轮历史信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Histories: Array
+        # @param Knowledge: 检索知识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Knowledge: Array
+        # @param TaskFlow: 任务流程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskFlow: :class:`Tencentcloud::Lke.v20231130.models.TaskFlowSummary`
+
+        attr_accessor :Content, :System, :Histories, :Knowledge, :TaskFlow
+
+        def initialize(content=nil, system=nil, histories=nil, knowledge=nil, taskflow=nil)
+          @Content = content
+          @System = system
+          @Histories = histories
+          @Knowledge = knowledge
+          @TaskFlow = taskflow
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @System = params['System']
+          unless params['Histories'].nil?
+            @Histories = []
+            params['Histories'].each do |i|
+              historysummary_tmp = HistorySummary.new
+              historysummary_tmp.deserialize(i)
+              @Histories << historysummary_tmp
+            end
+          end
+          unless params['Knowledge'].nil?
+            @Knowledge = []
+            params['Knowledge'].each do |i|
+              knowledgesummary_tmp = KnowledgeSummary.new
+              knowledgesummary_tmp.deserialize(i)
+              @Knowledge << knowledgesummary_tmp
+            end
+          end
+          unless params['TaskFlow'].nil?
+            @TaskFlow = TaskFlowSummary.new
+            @TaskFlow.deserialize(params['TaskFlow'])
+          end
         end
       end
 
@@ -6678,6 +6900,53 @@ module TencentCloud
         end
       end
 
+      # 节点信息
+      class RunNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型，0:未指定，1:开始节点，2:API节点，3:询问节点，4:答案节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeType: Integer
+        # @param NodeId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+        # @param NodeName: 节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param InvokeApi: 请求的API
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvokeApi: :class:`Tencentcloud::Lke.v20231130.models.InvokeAPI`
+        # @param SlotValues: 当前节点的所有槽位的值，key：SlotID。没有值的时候也要返回空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlotValues: Array
+
+        attr_accessor :NodeType, :NodeId, :NodeName, :InvokeApi, :SlotValues
+
+        def initialize(nodetype=nil, nodeid=nil, nodename=nil, invokeapi=nil, slotvalues=nil)
+          @NodeType = nodetype
+          @NodeId = nodeid
+          @NodeName = nodename
+          @InvokeApi = invokeapi
+          @SlotValues = slotvalues
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @NodeId = params['NodeId']
+          @NodeName = params['NodeName']
+          unless params['InvokeApi'].nil?
+            @InvokeApi = InvokeAPI.new
+            @InvokeApi.deserialize(params['InvokeApi'])
+          end
+          unless params['SlotValues'].nil?
+            @SlotValues = []
+            params['SlotValues'].each do |i|
+              valueinfo_tmp = ValueInfo.new
+              valueinfo_tmp.deserialize(i)
+              @SlotValues << valueinfo_tmp
+            end
+          end
+        end
+      end
+
       # SaveDoc请求参数结构体
       class SaveDocRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -6830,6 +7099,28 @@ module TencentCloud
         end
       end
 
+      # 字符串KV信息
+      class StrValue < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 知识摘要应用配置
       class SummaryConfig < TencentCloud::Common::AbstractModel
         # @param Model: 模型配置
@@ -6931,6 +7222,52 @@ module TencentCloud
         end
       end
 
+      # 任务流程调试信息
+      class TaskFlowSummary < TencentCloud::Common::AbstractModel
+        # @param IntentName: 任务流程名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentName: String
+        # @param UpdatedSlotValues: 实体列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedSlotValues: Array
+        # @param RunNodes: 节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunNodes: Array
+        # @param Purposes: 意图判断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Purposes: Array
+
+        attr_accessor :IntentName, :UpdatedSlotValues, :RunNodes, :Purposes
+
+        def initialize(intentname=nil, updatedslotvalues=nil, runnodes=nil, purposes=nil)
+          @IntentName = intentname
+          @UpdatedSlotValues = updatedslotvalues
+          @RunNodes = runnodes
+          @Purposes = purposes
+        end
+
+        def deserialize(params)
+          @IntentName = params['IntentName']
+          unless params['UpdatedSlotValues'].nil?
+            @UpdatedSlotValues = []
+            params['UpdatedSlotValues'].each do |i|
+              valueinfo_tmp = ValueInfo.new
+              valueinfo_tmp.deserialize(i)
+              @UpdatedSlotValues << valueinfo_tmp
+            end
+          end
+          unless params['RunNodes'].nil?
+            @RunNodes = []
+            params['RunNodes'].each do |i|
+              runnodeinfo_tmp = RunNodeInfo.new
+              runnodeinfo_tmp.deserialize(i)
+              @RunNodes << runnodeinfo_tmp
+            end
+          end
+          @Purposes = params['Purposes']
+        end
+      end
+
       # 任务参数
       class TaskParams < TencentCloud::Common::AbstractModel
         # @param CosPath: 下载地址,需要通过cos桶临时密钥去下载
@@ -6983,10 +7320,13 @@ module TencentCloud
         # @param Procedures: 执行过程信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Procedures: Array
+        # @param TraceId: 执行过程信息TraceId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceId: String
 
-        attr_accessor :SessionId, :RequestId, :RecordId, :UsedCount, :FreeCount, :OrderCount, :StatusSummary, :StatusSummaryTitle, :Elapsed, :TokenCount, :Procedures
+        attr_accessor :SessionId, :RequestId, :RecordId, :UsedCount, :FreeCount, :OrderCount, :StatusSummary, :StatusSummaryTitle, :Elapsed, :TokenCount, :Procedures, :TraceId
 
-        def initialize(sessionid=nil, requestid=nil, recordid=nil, usedcount=nil, freecount=nil, ordercount=nil, statussummary=nil, statussummarytitle=nil, elapsed=nil, tokencount=nil, procedures=nil)
+        def initialize(sessionid=nil, requestid=nil, recordid=nil, usedcount=nil, freecount=nil, ordercount=nil, statussummary=nil, statussummarytitle=nil, elapsed=nil, tokencount=nil, procedures=nil, traceid=nil)
           @SessionId = sessionid
           @RequestId = requestid
           @RecordId = recordid
@@ -6998,6 +7338,7 @@ module TencentCloud
           @Elapsed = elapsed
           @TokenCount = tokencount
           @Procedures = procedures
+          @TraceId = traceid
         end
 
         def deserialize(params)
@@ -7019,6 +7360,7 @@ module TencentCloud
               @Procedures << procedure_tmp
             end
           end
+          @TraceId = params['TraceId']
         end
       end
 
@@ -7152,6 +7494,58 @@ module TencentCloud
           @InputTokens = params['InputTokens']
           @OutputTokens = params['OutputTokens']
           @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 任务流程参数信息
+      class ValueInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 值ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ValueType: 值类型：0:未知或者空, 1:string, 2:int, 3:float, 4:bool, 5:array(字符串数组), 6: object_array(结构体数组), 7: object(结构体)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueType: Integer
+        # @param ValueStr: string
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueStr: String
+        # @param ValueInt: int（避免精度丢失使用字符串返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueInt: String
+        # @param ValueFloat: float
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueFloat: Float
+        # @param ValueBool: bool
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueBool: Boolean
+        # @param ValueStrArray: array
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueStrArray: Array
+
+        attr_accessor :Id, :Name, :ValueType, :ValueStr, :ValueInt, :ValueFloat, :ValueBool, :ValueStrArray
+
+        def initialize(id=nil, name=nil, valuetype=nil, valuestr=nil, valueint=nil, valuefloat=nil, valuebool=nil, valuestrarray=nil)
+          @Id = id
+          @Name = name
+          @ValueType = valuetype
+          @ValueStr = valuestr
+          @ValueInt = valueint
+          @ValueFloat = valuefloat
+          @ValueBool = valuebool
+          @ValueStrArray = valuestrarray
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ValueType = params['ValueType']
+          @ValueStr = params['ValueStr']
+          @ValueInt = params['ValueInt']
+          @ValueFloat = params['ValueFloat']
+          @ValueBool = params['ValueBool']
+          @ValueStrArray = params['ValueStrArray']
         end
       end
 

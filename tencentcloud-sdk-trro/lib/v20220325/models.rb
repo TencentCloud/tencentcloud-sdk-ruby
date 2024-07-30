@@ -334,15 +334,18 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNumber: 当前页码，不填默认为1（首页）
         # @type PageNumber: Integer
+        # @param DeviceStatus: 设备状态筛选，不填默认为不过滤。取值：["ready","connected","online"]，online代表ready或connected
+        # @type DeviceStatus: String
 
-        attr_accessor :ProjectId, :DeviceType, :SearchWords, :PageSize, :PageNumber
+        attr_accessor :ProjectId, :DeviceType, :SearchWords, :PageSize, :PageNumber, :DeviceStatus
 
-        def initialize(projectid=nil, devicetype=nil, searchwords=nil, pagesize=nil, pagenumber=nil)
+        def initialize(projectid=nil, devicetype=nil, searchwords=nil, pagesize=nil, pagenumber=nil, devicestatus=nil)
           @ProjectId = projectid
           @DeviceType = devicetype
           @SearchWords = searchwords
           @PageSize = pagesize
           @PageNumber = pagenumber
+          @DeviceStatus = devicestatus
         end
 
         def deserialize(params)
@@ -351,6 +354,7 @@ module TencentCloud
           @SearchWords = params['SearchWords']
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
+          @DeviceStatus = params['DeviceStatus']
         end
       end
 
@@ -1368,6 +1372,48 @@ module TencentCloud
         end
       end
 
+      # 多网的网卡状态信息
+      class MultiNet < TencentCloud::Common::AbstractModel
+        # @param NetId: 网卡序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetId: Integer
+        # @param NetIp: 网卡IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetIp: String
+        # @param Rtt: 时延，单位ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rtt: Array
+        # @param Lost: 丢包率，单位%
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lost: Array
+        # @param SendBps: 发送bps，单位kbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendBps: Array
+        # @param RecvBps: 接收bps，单位kbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecvBps: Array
+
+        attr_accessor :NetId, :NetIp, :Rtt, :Lost, :SendBps, :RecvBps
+
+        def initialize(netid=nil, netip=nil, rtt=nil, lost=nil, sendbps=nil, recvbps=nil)
+          @NetId = netid
+          @NetIp = netip
+          @Rtt = rtt
+          @Lost = lost
+          @SendBps = sendbps
+          @RecvBps = recvbps
+        end
+
+        def deserialize(params)
+          @NetId = params['NetId']
+          @NetIp = params['NetIp']
+          @Rtt = params['Rtt']
+          @Lost = params['Lost']
+          @SendBps = params['SendBps']
+          @RecvBps = params['RecvBps']
+        end
+      end
+
       # 权限信息
       class PolicyInfo < TencentCloud::Common::AbstractModel
         # @param RemoteDeviceId: 远端设备ID
@@ -1499,7 +1545,7 @@ module TencentCloud
         # @param DecodeCost: 解码耗时，单位：ms
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DecodeCost: Array
-        # @param RenderConst: 渲染耗时，单位：ms
+        # @param RenderConst: 【已废弃，使用RenderCost】
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenderConst: Array
         # @param K100: 卡顿k100
@@ -1526,10 +1572,43 @@ module TencentCloud
         # @param CaptureCost: 采集耗时，单位：ms
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptureCost: Array
+        # @param RenderCost: 渲染耗时，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenderCost: Array
+        # @param ConfigWidth: 配置宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigWidth: Integer
+        # @param ConfigHeight: 配置高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigHeight: Integer
+        # @param FrameDelta: 平均帧间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameDelta: Array
+        # @param MaxFrameDelta: 最大帧间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxFrameDelta: Array
+        # @param TotalBitrateEstimate: 总码率评估,单位：kbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalBitrateEstimate: Array
+        # @param Lag100Duration: 帧间隔大于100ms的卡顿时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lag100Duration: Array
+        # @param Lag150Duration: 帧间隔大于150ms的卡顿时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lag150Duration: Array
+        # @param MultiMode: 是否开启多网：0 单网，1 多网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiMode: Integer
+        # @param MultiNet: 多网卡信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiNet: Array
 
-        attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost
+        attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
+        extend Gem::Deprecate
+        deprecate :RenderConst, :none, 2024, 7
+        deprecate :RenderConst=, :none, 2024, 7
 
-        def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil)
+        def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype
           @StartTime = starttime
           @EndTime = endtime
@@ -1556,6 +1635,16 @@ module TencentCloud
           @Height = height
           @EncodeCost = encodecost
           @CaptureCost = capturecost
+          @RenderCost = rendercost
+          @ConfigWidth = configwidth
+          @ConfigHeight = configheight
+          @FrameDelta = framedelta
+          @MaxFrameDelta = maxframedelta
+          @TotalBitrateEstimate = totalbitrateestimate
+          @Lag100Duration = lag100duration
+          @Lag150Duration = lag150duration
+          @MultiMode = multimode
+          @MultiNet = multinet
         end
 
         def deserialize(params)
@@ -1585,6 +1674,23 @@ module TencentCloud
           @Height = params['Height']
           @EncodeCost = params['EncodeCost']
           @CaptureCost = params['CaptureCost']
+          @RenderCost = params['RenderCost']
+          @ConfigWidth = params['ConfigWidth']
+          @ConfigHeight = params['ConfigHeight']
+          @FrameDelta = params['FrameDelta']
+          @MaxFrameDelta = params['MaxFrameDelta']
+          @TotalBitrateEstimate = params['TotalBitrateEstimate']
+          @Lag100Duration = params['Lag100Duration']
+          @Lag150Duration = params['Lag150Duration']
+          @MultiMode = params['MultiMode']
+          unless params['MultiNet'].nil?
+            @MultiNet = []
+            params['MultiNet'].each do |i|
+              multinet_tmp = MultiNet.new
+              multinet_tmp.deserialize(i)
+              @MultiNet << multinet_tmp
+            end
+          end
         end
       end
 
