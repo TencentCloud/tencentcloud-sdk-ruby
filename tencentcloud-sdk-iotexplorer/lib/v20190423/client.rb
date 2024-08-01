@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开通设备云存AI分析服务
+
+        # @param request: Request instance for CreateCloudStorageAIService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateCloudStorageAIServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateCloudStorageAIServiceResponse`
+        def CreateCloudStorageAIService(request)
+          body = send_request('CreateCloudStorageAIService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudStorageAIServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建设备
 
         # @param request: Request instance for CreateDevice.
@@ -3135,6 +3159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置指定设备的云存 AI 服务
+
+        # @param request: Request instance for ResetCloudStorageAIService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ResetCloudStorageAIServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ResetCloudStorageAIServiceResponse`
+        def ResetCloudStorageAIService(request)
+          body = send_request('ResetCloudStorageAIService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetCloudStorageAIServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

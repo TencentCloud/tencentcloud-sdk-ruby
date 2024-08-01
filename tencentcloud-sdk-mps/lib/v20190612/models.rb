@@ -1914,8 +1914,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 7
-        deprecate :OutputStorage=, :none, 2024, 7
+        deprecate :OutputStorage, :none, 2024, 8
+        deprecate :OutputStorage=, :none, 2024, 8
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -20381,19 +20381,25 @@ module TencentCloud
         # @type SourceLanguage: String
         # @param DestinationLanguage: 翻译目标语言。
         # @type DestinationLanguage: String
+        # @param SubtitleFormat: 生成的字幕文件格式，填空字符串表示不生成字幕文件，可选值：
+        # <li>vtt：生成 WebVTT 字幕文件。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleFormat: String
 
-        attr_accessor :Switch, :SourceLanguage, :DestinationLanguage
+        attr_accessor :Switch, :SourceLanguage, :DestinationLanguage, :SubtitleFormat
 
-        def initialize(switch=nil, sourcelanguage=nil, destinationlanguage=nil)
+        def initialize(switch=nil, sourcelanguage=nil, destinationlanguage=nil, subtitleformat=nil)
           @Switch = switch
           @SourceLanguage = sourcelanguage
           @DestinationLanguage = destinationlanguage
+          @SubtitleFormat = subtitleformat
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @SourceLanguage = params['SourceLanguage']
           @DestinationLanguage = params['DestinationLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
         end
       end
 
@@ -20407,19 +20413,24 @@ module TencentCloud
         # @type SourceLanguage: String
         # @param DestinationLanguage: 翻译目标语言。
         # @type DestinationLanguage: String
+        # @param SubtitleFormat: 生成的字幕文件格式，填空字符串表示不生成字幕文件，可选值：
+        # <li>vtt：生成 WebVTT 字幕文件。</li>
+        # @type SubtitleFormat: String
 
-        attr_accessor :Switch, :SourceLanguage, :DestinationLanguage
+        attr_accessor :Switch, :SourceLanguage, :DestinationLanguage, :SubtitleFormat
 
-        def initialize(switch=nil, sourcelanguage=nil, destinationlanguage=nil)
+        def initialize(switch=nil, sourcelanguage=nil, destinationlanguage=nil, subtitleformat=nil)
           @Switch = switch
           @SourceLanguage = sourcelanguage
           @DestinationLanguage = destinationlanguage
+          @SubtitleFormat = subtitleformat
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @SourceLanguage = params['SourceLanguage']
           @DestinationLanguage = params['DestinationLanguage']
+          @SubtitleFormat = params['SubtitleFormat']
         end
       end
 

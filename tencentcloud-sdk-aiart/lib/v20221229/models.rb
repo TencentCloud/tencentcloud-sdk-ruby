@@ -536,14 +536,14 @@ module TencentCloud
         # @param ProductUrl: 商品原图 Url。
         # 图片限制：单边分辨率小于4000，长宽比在2:5 ~ 5:2之间，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
         # @type ProductUrl: String
+        # @param Prompt: 对新背景的文本描述。
+        # 最多支持256个 utf-8 字符，支持中、英文。
+        # @type Prompt: String
         # @param MaskUrl: 商品 Mask 图 Url，要求背景透明，保留商品主体。
         # 如果不传，将自动使用内置的商品分割算法得到 Mask。
         # 支持自定义上传 Mask，如果该参数不为空，则以实际上传的数据为准。
         # 图片限制：Mask 图必须和商品原图分辨率一致，转成 Base64 字符串后小于 6MB，格式仅支持 png。
         # @type MaskUrl: String
-        # @param Prompt: 对新背景的文本描述。
-        # 最多支持256个 utf-8 字符，支持中、英文。
-        # @type Prompt: String
         # @param Resolution: 替换背景后生成的商品图分辨率。
         # 支持生成单边分辨率大于500且小于4000、长宽比在2:5 ~ 5:2之间的图片，不传默认生成1280:1280。
         # 建议图片比例为1:1、9:16、16:9，生成效果更佳，使用其他比例的生成效果可能不如建议比例。
@@ -561,12 +561,12 @@ module TencentCloud
         # 生成图分辨率较大时建议选择 url，使用 base64 可能因图片过大导致返回失败。
         # @type RspImgType: String
 
-        attr_accessor :ProductUrl, :MaskUrl, :Prompt, :Resolution, :LogoAdd, :LogoParam, :RspImgType
+        attr_accessor :ProductUrl, :Prompt, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
 
-        def initialize(producturl=nil, maskurl=nil, prompt=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+        def initialize(producturl=nil, prompt=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
           @ProductUrl = producturl
-          @MaskUrl = maskurl
           @Prompt = prompt
+          @MaskUrl = maskurl
           @Resolution = resolution
           @LogoAdd = logoadd
           @LogoParam = logoparam
@@ -575,8 +575,8 @@ module TencentCloud
 
         def deserialize(params)
           @ProductUrl = params['ProductUrl']
-          @MaskUrl = params['MaskUrl']
           @Prompt = params['Prompt']
+          @MaskUrl = params['MaskUrl']
           @Resolution = params['Resolution']
           @LogoAdd = params['LogoAdd']
           unless params['LogoParam'].nil?

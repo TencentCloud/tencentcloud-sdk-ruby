@@ -1022,23 +1022,27 @@ module TencentCloud
       class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID
         # @type FileSystemId: String
-        # @param UserType: 指定配额类型，包括Uid、Gid
+        # @param UserType: 指定配额类型，包括Uid、Gid、Dir
         # @type UserType: String
         # @param UserId: UID/GID信息
         # @type UserId: String
+        # @param DirectoryPath: 设置目录配额的目录的绝对路径
+        # @type DirectoryPath: String
 
-        attr_accessor :FileSystemId, :UserType, :UserId
+        attr_accessor :FileSystemId, :UserType, :UserId, :DirectoryPath
 
-        def initialize(filesystemid=nil, usertype=nil, userid=nil)
+        def initialize(filesystemid=nil, usertype=nil, userid=nil, directorypath=nil)
           @FileSystemId = filesystemid
           @UserType = usertype
           @UserId = userid
+          @DirectoryPath = directorypath
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @UserType = params['UserType']
           @UserId = params['UserId']
+          @DirectoryPath = params['DirectoryPath']
         end
       end
 
@@ -2434,23 +2438,26 @@ module TencentCloud
       class SetUserQuotaRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID
         # @type FileSystemId: String
-        # @param UserType: 指定配额类型，包括Uid、Gid
+        # @param UserType: 指定配额类型，包括Uid、Gid，Dir，分别代表用户配额，用户组配额，目录配额
         # @type UserType: String
         # @param UserId: UID/GID信息
         # @type UserId: String
-        # @param CapacityHardLimit: 容量硬限制，单位GiB
+        # @param CapacityHardLimit: 容量硬限制，单位GiB。设置范围10-10000000。
         # @type CapacityHardLimit: Integer
-        # @param FileHardLimit: 文件硬限制，单位个
+        # @param FileHardLimit: 文件硬限制，单位个。设置范围1000-100000000
         # @type FileHardLimit: Integer
+        # @param DirectoryPath: 需设置目录配额的目录绝对路径，不同目录不可存在包含关系
+        # @type DirectoryPath: String
 
-        attr_accessor :FileSystemId, :UserType, :UserId, :CapacityHardLimit, :FileHardLimit
+        attr_accessor :FileSystemId, :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :DirectoryPath
 
-        def initialize(filesystemid=nil, usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil)
+        def initialize(filesystemid=nil, usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, directorypath=nil)
           @FileSystemId = filesystemid
           @UserType = usertype
           @UserId = userid
           @CapacityHardLimit = capacityhardlimit
           @FileHardLimit = filehardlimit
+          @DirectoryPath = directorypath
         end
 
         def deserialize(params)
@@ -2459,6 +2466,7 @@ module TencentCloud
           @UserId = params['UserId']
           @CapacityHardLimit = params['CapacityHardLimit']
           @FileHardLimit = params['FileHardLimit']
+          @DirectoryPath = params['DirectoryPath']
         end
       end
 

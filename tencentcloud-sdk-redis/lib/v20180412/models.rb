@@ -366,6 +366,88 @@ module TencentCloud
         end
       end
 
+      # redis独享集群详细信息
+      class CDCResource < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户的Appid
+        # @type AppId: Integer
+        # @param RegionId: 地域id
+        # @type RegionId: Integer
+        # @param ZoneId: 可用区id
+        # @type ZoneId: Integer
+        # @param RedisClusterId: redis独享集群id
+        # @type RedisClusterId: String
+        # @param PayMode: 计费模式，1-包年包月，0-按量计费
+        # @type PayMode: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: Integer
+        # @param AutoRenewFlag: 自动续费标识，0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
+        # @type AutoRenewFlag: Integer
+        # @param ClusterName: 独享集群名称
+        # @type ClusterName: String
+        # @param StartTime: 实例创建时间
+        # @type StartTime: String
+        # @param EndTime: 实例到期时间
+        # @type EndTime: String
+        # @param Status: 集群状态：1-流程中，2-运行中，3-已隔离
+        # @type Status: Integer
+        # @param BaseBundles: 基础管控资源包
+        # @type BaseBundles: Array
+        # @param ResourceBundles: 资源包列表
+        # @type ResourceBundles: Array
+        # @param DedicatedClusterId: 所属本地专有集群id
+        # @type DedicatedClusterId: String
+
+        attr_accessor :AppId, :RegionId, :ZoneId, :RedisClusterId, :PayMode, :ProjectId, :AutoRenewFlag, :ClusterName, :StartTime, :EndTime, :Status, :BaseBundles, :ResourceBundles, :DedicatedClusterId
+
+        def initialize(appid=nil, regionid=nil, zoneid=nil, redisclusterid=nil, paymode=nil, projectid=nil, autorenewflag=nil, clustername=nil, starttime=nil, endtime=nil, status=nil, basebundles=nil, resourcebundles=nil, dedicatedclusterid=nil)
+          @AppId = appid
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @RedisClusterId = redisclusterid
+          @PayMode = paymode
+          @ProjectId = projectid
+          @AutoRenewFlag = autorenewflag
+          @ClusterName = clustername
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @BaseBundles = basebundles
+          @ResourceBundles = resourcebundles
+          @DedicatedClusterId = dedicatedclusterid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @RedisClusterId = params['RedisClusterId']
+          @PayMode = params['PayMode']
+          @ProjectId = params['ProjectId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ClusterName = params['ClusterName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          unless params['BaseBundles'].nil?
+            @BaseBundles = []
+            params['BaseBundles'].each do |i|
+              resourcebundle_tmp = ResourceBundle.new
+              resourcebundle_tmp.deserialize(i)
+              @BaseBundles << resourcebundle_tmp
+            end
+          end
+          unless params['ResourceBundles'].nil?
+            @ResourceBundles = []
+            params['ResourceBundles'].each do |i|
+              resourcebundle_tmp = ResourceBundle.new
+              resourcebundle_tmp.deserialize(i)
+              @ResourceBundles << resourcebundle_tmp
+            end
+          end
+          @DedicatedClusterId = params['DedicatedClusterId']
+        end
+      end
+
       # ChangeInstanceRole请求参数结构体
       class ChangeInstanceRoleRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 复制组ID
@@ -3629,6 +3711,125 @@ module TencentCloud
         end
       end
 
+      # DescribeRedisClusterOverview请求参数结构体
+      class DescribeRedisClusterOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterId: 本地专用集群id
+        # @type DedicatedClusterId: String
+
+        attr_accessor :DedicatedClusterId
+
+        def initialize(dedicatedclusterid=nil)
+          @DedicatedClusterId = dedicatedclusterid
+        end
+
+        def deserialize(params)
+          @DedicatedClusterId = params['DedicatedClusterId']
+        end
+      end
+
+      # DescribeRedisClusterOverview返回参数结构体
+      class DescribeRedisClusterOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalBundle: 资源包总数
+        # @type TotalBundle: Integer
+        # @param TotalMemory: 资源包总内存大小，单位：GB
+        # @type TotalMemory: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalBundle, :TotalMemory, :RequestId
+
+        def initialize(totalbundle=nil, totalmemory=nil, requestid=nil)
+          @TotalBundle = totalbundle
+          @TotalMemory = totalmemory
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalBundle = params['TotalBundle']
+          @TotalMemory = params['TotalMemory']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisClusters请求参数结构体
+      class DescribeRedisClustersRequest < TencentCloud::Common::AbstractModel
+        # @param RedisClusterIds: Redis独享集群id
+        # @type RedisClusterIds: Array
+        # @param Status: 集群状态：1-流程中，2-运行中，3-已隔离
+        # @type Status: Array
+        # @param ProjectIds: 项目ID数组
+        # @type ProjectIds: Array
+        # @param AutoRenewFlag: 续费模式：0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
+        # @type AutoRenewFlag: Array
+        # @param ClusterName: Redis独享集群名称
+        # @type ClusterName: String
+        # @param SearchKey: 搜索关键词：支持集群Id、集群名称
+        # @type SearchKey: String
+        # @param Limit: 分页限制返回大小，不传则默认为20
+        # @type Limit: Integer
+        # @param Offset: 偏移量，取Limit整数倍
+        # @type Offset: Integer
+        # @param DedicatedClusterId: 本地专用集群id
+        # @type DedicatedClusterId: String
+
+        attr_accessor :RedisClusterIds, :Status, :ProjectIds, :AutoRenewFlag, :ClusterName, :SearchKey, :Limit, :Offset, :DedicatedClusterId
+
+        def initialize(redisclusterids=nil, status=nil, projectids=nil, autorenewflag=nil, clustername=nil, searchkey=nil, limit=nil, offset=nil, dedicatedclusterid=nil)
+          @RedisClusterIds = redisclusterids
+          @Status = status
+          @ProjectIds = projectids
+          @AutoRenewFlag = autorenewflag
+          @ClusterName = clustername
+          @SearchKey = searchkey
+          @Limit = limit
+          @Offset = offset
+          @DedicatedClusterId = dedicatedclusterid
+        end
+
+        def deserialize(params)
+          @RedisClusterIds = params['RedisClusterIds']
+          @Status = params['Status']
+          @ProjectIds = params['ProjectIds']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ClusterName = params['ClusterName']
+          @SearchKey = params['SearchKey']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @DedicatedClusterId = params['DedicatedClusterId']
+        end
+      end
+
+      # DescribeRedisClusters返回参数结构体
+      class DescribeRedisClustersResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 集群总数
+        # @type Total: Integer
+        # @param Resources: CDC集群资源列表
+        # @type Resources: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Resources, :RequestId
+
+        def initialize(total=nil, resources=nil, requestid=nil)
+          @Total = total
+          @Resources = resources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              cdcresource_tmp = CDCResource.new
+              cdcresource_tmp.deserialize(i)
+              @Resources << cdcresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReplicationGroupInstance请求参数结构体
       class DescribeReplicationGroupInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -5237,6 +5438,15 @@ module TencentCloud
         # @param PolarisServer: 北极星服务地址，内部使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolarisServer: String
+        # @param RedisClusterId: CDC Redis集群ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedisClusterId: String
+        # @param DedicatedClusterId: CDC 集群ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DedicatedClusterId: String
+        # @param ProductVersion: 产品版本。<ul><li>local：本地盘。</li><li>cloud：云盘版。</li><li>cdc：CDC 集群版本。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductVersion: String
         # @param CurrentProxyVersion: 实例当前Proxy版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentProxyVersion: String
@@ -5253,9 +5463,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupMode: String
 
-        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion, :BackupMode
+        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :RedisClusterId, :DedicatedClusterId, :ProductVersion, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion, :BackupMode
 
-        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, ipv6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil, backupmode=nil)
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, ipv6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, redisclusterid=nil, dedicatedclusterid=nil, productversion=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil, backupmode=nil)
           @InstanceName = instancename
           @InstanceId = instanceid
           @Appid = appid
@@ -5308,6 +5518,9 @@ module TencentCloud
           @Region = region
           @WanAddress = wanaddress
           @PolarisServer = polarisserver
+          @RedisClusterId = redisclusterid
+          @DedicatedClusterId = dedicatedclusterid
+          @ProductVersion = productversion
           @CurrentProxyVersion = currentproxyversion
           @CurrentRedisVersion = currentredisversion
           @UpgradeProxyVersion = upgradeproxyversion
@@ -5389,6 +5602,9 @@ module TencentCloud
           @Region = params['Region']
           @WanAddress = params['WanAddress']
           @PolarisServer = params['PolarisServer']
+          @RedisClusterId = params['RedisClusterId']
+          @DedicatedClusterId = params['DedicatedClusterId']
+          @ProductVersion = params['ProductVersion']
           @CurrentProxyVersion = params['CurrentProxyVersion']
           @CurrentRedisVersion = params['CurrentRedisVersion']
           @UpgradeProxyVersion = params['UpgradeProxyVersion']
@@ -7362,6 +7578,30 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # redis独享集群资源包
+      class ResourceBundle < TencentCloud::Common::AbstractModel
+        # @param ResourceBundleName: 资源包名称
+        # @type ResourceBundleName: String
+        # @param AvailableMemory: 可售卖内存，单位：GB
+        # @type AvailableMemory: Integer
+        # @param Count: 资源包个数
+        # @type Count: Integer
+
+        attr_accessor :ResourceBundleName, :AvailableMemory, :Count
+
+        def initialize(resourcebundlename=nil, availablememory=nil, count=nil)
+          @ResourceBundleName = resourcebundlename
+          @AvailableMemory = availablememory
+          @Count = count
+        end
+
+        def deserialize(params)
+          @ResourceBundleName = params['ResourceBundleName']
+          @AvailableMemory = params['AvailableMemory']
+          @Count = params['Count']
         end
       end
 

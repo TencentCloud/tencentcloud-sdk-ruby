@@ -2670,6 +2670,63 @@ module TencentCloud
         end
       end
 
+      # ListOrganizationService请求参数结构体
+      class ListOrganizationServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
+        # @type Offset: Integer
+        # @param Limit: 限制数目。取值范围：1~50，默认值：10
+        # @type Limit: Integer
+        # @param SearchKey: 名称搜索关键字。
+        # @type SearchKey: String
+
+        attr_accessor :Offset, :Limit, :SearchKey
+
+        def initialize(offset=nil, limit=nil, searchkey=nil)
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # ListOrganizationService返回参数结构体
+      class ListOrganizationServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Items: 集团服务列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              organizationserviceassign_tmp = OrganizationServiceAssign.new
+              organizationserviceassign_tmp.deserialize(i)
+              @Items << organizationserviceassign_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询目标关联的SCP策略列表
       class ListPoliciesForTarget < TencentCloud::Common::AbstractModel
         # @param StrategyId: 策略Id
@@ -3675,6 +3732,84 @@ module TencentCloud
         end
       end
 
+      # 集团服务设置
+      class OrganizationServiceAssign < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 集团服务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: Integer
+        # @param ProductName: 集团服务产品名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param IsAssign: 是否支持委派。取值: 1-是  2-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAssign: Integer
+        # @param Description: 集团服务描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param MemberNum: 当前委派管理员数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberNum: String
+        # @param Document: 帮助文档。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Document: String
+        # @param ConsoleUrl: 集团服务产品控制台路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsoleUrl: String
+        # @param IsUsageStatus: 是否接入使用状态。取值: 1-是
+        #  2-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUsageStatus: Integer
+        # @param CanAssignCount: 委派管理员数量限制。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanAssignCount: Integer
+        # @param Product: 集团服务产品标识。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Product: String
+        # @param ServiceGrant: 是否支持集团服务授权。取值 1-是、2-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceGrant: Integer
+        # @param GrantStatus: 集团服务授权启用状态。ServiceGrant值为1时该字段有效 ，取值：Enabled-开启  Disabled-关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrantStatus: String
+        # @param IsSetManagementScope: 是否支持设置委派管理范围。取值: 1-是  2-否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSetManagementScope: Integer
+
+        attr_accessor :ServiceId, :ProductName, :IsAssign, :Description, :MemberNum, :Document, :ConsoleUrl, :IsUsageStatus, :CanAssignCount, :Product, :ServiceGrant, :GrantStatus, :IsSetManagementScope
+
+        def initialize(serviceid=nil, productname=nil, isassign=nil, description=nil, membernum=nil, document=nil, consoleurl=nil, isusagestatus=nil, canassigncount=nil, product=nil, servicegrant=nil, grantstatus=nil, issetmanagementscope=nil)
+          @ServiceId = serviceid
+          @ProductName = productname
+          @IsAssign = isassign
+          @Description = description
+          @MemberNum = membernum
+          @Document = document
+          @ConsoleUrl = consoleurl
+          @IsUsageStatus = isusagestatus
+          @CanAssignCount = canassigncount
+          @Product = product
+          @ServiceGrant = servicegrant
+          @GrantStatus = grantstatus
+          @IsSetManagementScope = issetmanagementscope
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ProductName = params['ProductName']
+          @IsAssign = params['IsAssign']
+          @Description = params['Description']
+          @MemberNum = params['MemberNum']
+          @Document = params['Document']
+          @ConsoleUrl = params['ConsoleUrl']
+          @IsUsageStatus = params['IsUsageStatus']
+          @CanAssignCount = params['CanAssignCount']
+          @Product = params['Product']
+          @ServiceGrant = params['ServiceGrant']
+          @GrantStatus = params['GrantStatus']
+          @IsSetManagementScope = params['IsSetManagementScope']
+        end
+      end
+
       # 产品资源
       class ProductResource < TencentCloud::Common::AbstractModel
         # @param ProductResourceId: 产品资源ID。
@@ -3684,8 +3819,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 7
-        deprecate :ResourceGrantLast=, :none, 2024, 7
+        deprecate :ResourceGrantLast, :none, 2024, 8
+        deprecate :ResourceGrantLast=, :none, 2024, 8
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -3850,8 +3985,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 7
-        deprecate :ResourceId=, :none, 2024, 7
+        deprecate :ResourceId, :none, 2024, 8
+        deprecate :ResourceId=, :none, 2024, 8
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

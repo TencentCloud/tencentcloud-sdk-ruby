@@ -112,9 +112,19 @@ module TencentCloud
       class TongChuanRecognizeRequest < TencentCloud::Common::AbstractModel
         # @param SessionUuid: 一段完整的语音对应一个SessionUuid
         # @type SessionUuid: String
-        # @param Source: 音频中的语言类型，支持语言列表<li> zh : 中文 </li> <li> en : 英文 </li>
+        # @param Source: 源语言，支持：
+        # zh：中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # yue：粤语
         # @type Source: String
-        # @param Target: 翻译目标语言类型，支持的语言列表<li> zh : 中文 </li> <li> en : 英文 </li>
+        # @param Target: 目标语言，各源语言的目标语言支持列表如下
+        # <li>zh（中文）：en（英语）、ja（日语）、ko（韩语）、yue（粤语）</li>
+        # <li>en（英语）：zh（中文）</li>
+        # <li>ja（日语）：zh（中文）</li>
+        # <li>ko（韩语）：zh（中文）</li>
+        # <li>yue（粤语）：zh（中文）</li>
         # @type Target: String
         # @param AudioFormat: 语音编码类型，1-pcm
         # @type AudioFormat: Integer
@@ -176,9 +186,19 @@ module TencentCloud
       class TongChuanSyncRequest < TencentCloud::Common::AbstractModel
         # @param SessionUuid: 一段完整的语音对应一个SessionUuid
         # @type SessionUuid: String
-        # @param Source: 音频中的语言类型，支持语言列表<li> zh : 中文 </li> <li> en : 英文 </li>
+        # @param Source: 源语言，支持：
+        # zh：中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # yue：粤语
         # @type Source: String
-        # @param Target: 翻译目标语言类型，支持的语言列表<li> zh : 中文 </li> <li> en : 英文 </li>
+        # @param Target: 目标语言，各源语言的目标语言支持列表如下
+        # <li>zh（中文）：en（英语）、ja（日语）、ko（韩语）、yue（粤语）</li>
+        # <li>en（英语）：zh（中文）</li>
+        # <li>ja（日语）：zh（中文）</li>
+        # <li>ko（韩语）：zh（中文）</li>
+        # <li>yue（粤语）：zh（中文）</li>
         # @type Target: String
         # @param AudioFormat: 语音编码类型，1-pcm
         # @type AudioFormat: Integer

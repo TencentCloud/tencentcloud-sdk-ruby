@@ -83,10 +83,16 @@ module TencentCloud
         # @type CustomTool: :class:`Tencentcloud::Hunyuan.v20230901.models.Tool`
         # @param SearchInfo: 默认是false，在值为true且命中搜索时，接口会返回SearchInfo
         # @type SearchInfo: Boolean
+        # @param Citation: 搜索引文角标开关。
+        # 说明：
+        # 1. 配合EnableEnhancement和SearchInfo参数使用。打开后，回答中命中搜索的结果会在片段后增加角标标志，对应SearchInfo列表中的链接。
+        # 2. false：开关关闭，true：开关打开。
+        # 3. 未传值时默认开关关闭（false）。
+        # @type Citation: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -98,6 +104,7 @@ module TencentCloud
           @ToolChoice = toolchoice
           @CustomTool = customtool
           @SearchInfo = searchinfo
+          @Citation = citation
         end
 
         def deserialize(params)
@@ -129,6 +136,7 @@ module TencentCloud
             @CustomTool.deserialize(params['CustomTool'])
           end
           @SearchInfo = params['SearchInfo']
+          @Citation = params['Citation']
         end
       end
 
@@ -141,7 +149,7 @@ module TencentCloud
         # @type Usage: :class:`Tencentcloud::Hunyuan.v20230901.models.Usage`
         # @param Note: 免责声明。
         # @type Note: String
-        # @param Id: 本轮对话的 ID。
+        # @param Id: 本次请求的 RequestId。
         # @type Id: String
         # @param Choices: 回复内容。
         # @type Choices: Array

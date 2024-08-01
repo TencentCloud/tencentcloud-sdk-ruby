@@ -58,6 +58,48 @@ module TencentCloud
         end
       end
 
+      # CreateNameList请求参数结构体
+      class CreateNameListRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputCreateNameListFront`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputCreateNameListFront.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # CreateNameList返回参数结构体
+      class CreateNameListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputCreateNameListFront`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputCreateNameListFront.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据授权信息
       class DataAuthorizationInfo < TencentCloud::Common::AbstractModel
         # @param DataProviderName: 客户主体名称。
@@ -132,6 +174,322 @@ module TencentCloud
         end
       end
 
+      # 黑白名单导入名单数据的业务入参数据结构
+      class DataContentInfo < TencentCloud::Common::AbstractModel
+        # @param DataContent: 名单数据内容
+        # @type DataContent: String
+        # @param DataRemark: 名单数据描述
+        # @type DataRemark: String
+        # @param StartTime: 名单数据开始时间，时间格式示例"2024-05-05 12:10:15"
+        # @type StartTime: String
+        # @param EndTime: 名单数据结束时间，时间格式示例"2024-05-05 12:10:15"
+        # @type EndTime: String
+
+        attr_accessor :DataContent, :DataRemark, :StartTime, :EndTime
+
+        def initialize(datacontent=nil, dataremark=nil, starttime=nil, endtime=nil)
+          @DataContent = datacontent
+          @DataRemark = dataremark
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @DataContent = params['DataContent']
+          @DataRemark = params['DataRemark']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DeleteNameListData请求参数结构体
+      class DeleteNameListDataRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputDeleteNameListData`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputDeleteNameListData.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # DeleteNameListData返回参数结构体
+      class DeleteNameListDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDeleteNameListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputDeleteNameListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNameList请求参数结构体
+      class DeleteNameListRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputDeleteNameListFront`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputDeleteNameListFront.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # DeleteNameList返回参数结构体
+      class DeleteNameListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDeleteNameListFront`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputDeleteNameListFront.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNameListDataList请求参数结构体
+      class DescribeNameListDataListRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputDescribeDataListFront`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputDescribeDataListFront.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # DescribeNameListDataList返回参数结构体
+      class DescribeNameListDataListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeDataListFrontData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputDescribeDataListFrontData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNameListDetail请求参数结构体
+      class DescribeNameListDetailRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputDescribeNameListDetail`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputDescribeNameListDetail.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # DescribeNameListDetail返回参数结构体
+      class DescribeNameListDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 黑白名单列表详情业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeNameListDetailFront`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputDescribeNameListDetailFront.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNameList请求参数结构体
+      class DescribeNameListRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputDescribeNameListFront`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputDescribeNameListFront.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # DescribeNameList返回参数结构体
+      class DescribeNameListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeNameListFrontFixListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputDescribeNameListFrontFixListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ImportNameListData请求参数结构体
+      class ImportNameListDataRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputImportNameListDataFront`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputImportNameListDataFront.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # ImportNameListData返回参数结构体
+      class ImportNameListDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputImportNameListDataFront`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputImportNameListDataFront.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建黑白名单入参
+      class InputCreateNameListFront < TencentCloud::Common::AbstractModel
+        # @param ListName: 名单名称
+        # @type ListName: String
+        # @param ListType: 名单类型 [1 黑名单 2白名单]
+        # @type ListType: Integer
+        # @param DataType: 数据类型[1 手机号 2 qqOpenId 3 2echatOpenId 4 ip 6 idfa 7 imei]
+        # @type DataType: Integer
+        # @param Remark: 描述
+        # @type Remark: String
+        # @param EncryptionType: 加密类型[0 无需加密 1 MD5加密 2 SHA256加密]
+        # @type EncryptionType: Integer
+        # @param SceneCode: 场景Code，all_scene代表全部场景
+        # @type SceneCode: String
+
+        attr_accessor :ListName, :ListType, :DataType, :Remark, :EncryptionType, :SceneCode
+
+        def initialize(listname=nil, listtype=nil, datatype=nil, remark=nil, encryptiontype=nil, scenecode=nil)
+          @ListName = listname
+          @ListType = listtype
+          @DataType = datatype
+          @Remark = remark
+          @EncryptionType = encryptiontype
+          @SceneCode = scenecode
+        end
+
+        def deserialize(params)
+          @ListName = params['ListName']
+          @ListType = params['ListType']
+          @DataType = params['DataType']
+          @Remark = params['Remark']
+          @EncryptionType = params['EncryptionType']
+          @SceneCode = params['SceneCode']
+        end
+      end
+
       # 全栈式风控引擎入参
       class InputCryptoManageMarketingRisk < TencentCloud::Common::AbstractModel
         # @param IsAuthorized: 是否授权：1已授权，否则未授权。
@@ -158,6 +516,122 @@ module TencentCloud
         end
       end
 
+      # 删除黑白名单数据业务入参
+      class InputDeleteNameListData < TencentCloud::Common::AbstractModel
+        # @param NameListDataIdList: 黑白名单数据ID集合
+        # @type NameListDataIdList: Array
+
+        attr_accessor :NameListDataIdList
+
+        def initialize(namelistdataidlist=nil)
+          @NameListDataIdList = namelistdataidlist
+        end
+
+        def deserialize(params)
+          @NameListDataIdList = params['NameListDataIdList']
+        end
+      end
+
+      # 删除黑白名单入参
+      class InputDeleteNameListFront < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+
+        attr_accessor :NameListId
+
+        def initialize(namelistid=nil)
+          @NameListId = namelistid
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+        end
+      end
+
+      # 查询黑白名单数据入参
+      class InputDescribeDataListFront < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+        # @param PageNumber: 当前页数
+        # @type PageNumber: Integer
+        # @param PageSize: 每页显示条数
+        # @type PageSize: Integer
+        # @param KeyWord: 搜索关键字，按照名单数据名称或加密名单数据名称搜索
+        # @type KeyWord: String
+        # @param Status: 黑白名单列表状态[1 启用 2 停用]
+        # @type Status: Integer
+
+        attr_accessor :NameListId, :PageNumber, :PageSize, :KeyWord, :Status
+
+        def initialize(namelistid=nil, pagenumber=nil, pagesize=nil, keyword=nil, status=nil)
+          @NameListId = namelistid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @KeyWord = keyword
+          @Status = status
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @KeyWord = params['KeyWord']
+          @Status = params['Status']
+        end
+      end
+
+      # 查询黑白名单详情入参
+      class InputDescribeNameListDetail < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+
+        attr_accessor :NameListId
+
+        def initialize(namelistid=nil)
+          @NameListId = namelistid
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+        end
+      end
+
+      # 查询黑白名单入参
+      class InputDescribeNameListFront < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 当前页数
+        # @type PageNumber: Integer
+        # @param PageSize: 每页显示条数
+        # @type PageSize: Integer
+        # @param ListType: 名单类型 [1 黑名单 2 白名单]
+        # @type ListType: Integer
+        # @param DataType: 数据类型[1 手机号 2 qqOpenId 3 wechatOpenId 4 ip 6 idfa 7 imei]
+        # @type DataType: Integer
+        # @param KeyWord: 关键字，按照名单名称搜索
+        # @type KeyWord: String
+        # @param Status: 记录状态[1 启用 2 停用]
+        # @type Status: Integer
+
+        attr_accessor :PageNumber, :PageSize, :ListType, :DataType, :KeyWord, :Status
+
+        def initialize(pagenumber=nil, pagesize=nil, listtype=nil, datatype=nil, keyword=nil, status=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ListType = listtype
+          @DataType = datatype
+          @KeyWord = keyword
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ListType = params['ListType']
+          @DataType = params['DataType']
+          @KeyWord = params['KeyWord']
+          @Status = params['Status']
+        end
+      end
+
       # 入参的详细参数信息
       class InputDetails < TencentCloud::Common::AbstractModel
         # @param FieldName: 字段名称
@@ -175,6 +649,37 @@ module TencentCloud
         def deserialize(params)
           @FieldName = params['FieldName']
           @FieldValue = params['FieldValue']
+        end
+      end
+
+      # 添加名单数据入参
+      class InputImportNameListDataFront < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+        # @param DataSource: 数据来源，固定传2（手工录入）
+        # @type DataSource: Integer
+        # @param DataContentInfo: 黑白名单数据内容
+        # @type DataContentInfo: Array
+
+        attr_accessor :NameListId, :DataSource, :DataContentInfo
+
+        def initialize(namelistid=nil, datasource=nil, datacontentinfo=nil)
+          @NameListId = namelistid
+          @DataSource = datasource
+          @DataContentInfo = datacontentinfo
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+          @DataSource = params['DataSource']
+          unless params['DataContentInfo'].nil?
+            @DataContentInfo = []
+            params['DataContentInfo'].each do |i|
+              datacontentinfo_tmp = DataContentInfo.new
+              datacontentinfo_tmp.deserialize(i)
+              @DataContentInfo << datacontentinfo_tmp
+            end
+          end
         end
       end
 
@@ -314,6 +819,93 @@ module TencentCloud
         end
       end
 
+      # 修改黑白名单入参
+      class InputModifyNameFront < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+        # @param ListName: 名单名称
+        # @type ListName: String
+        # @param Status: 名单状态 [1 启用 2 停用]
+        # @type Status: Integer
+        # @param Remark: 描述
+        # @type Remark: String
+
+        attr_accessor :NameListId, :ListName, :Status, :Remark
+
+        def initialize(namelistid=nil, listname=nil, status=nil, remark=nil)
+          @NameListId = namelistid
+          @ListName = listname
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+          @ListName = params['ListName']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 名单数据集合
+      class InputModifyNameListDataFront < TencentCloud::Common::AbstractModel
+        # @param NameListDataId: 名单数据ID
+        # @type NameListDataId: Integer
+        # @param DataContent: 名单数据内容
+        # @type DataContent: String
+        # @param StartTime: 名单数据开始时间，时间格式示例"2024-05-05 12:10:15"
+        # @type StartTime: String
+        # @param EndTime: 名单数据结束时间，时间格式示例"2024-05-05 12:10:15"
+        # @type EndTime: String
+        # @param Status: 记录状态 [1 启用 2 停用]
+        # @type Status: Integer
+        # @param Remark: 名单数据描述
+        # @type Remark: String
+
+        attr_accessor :NameListDataId, :DataContent, :StartTime, :EndTime, :Status, :Remark
+
+        def initialize(namelistdataid=nil, datacontent=nil, starttime=nil, endtime=nil, status=nil, remark=nil)
+          @NameListDataId = namelistdataid
+          @DataContent = datacontent
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @NameListDataId = params['NameListDataId']
+          @DataContent = params['DataContent']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # 修改黑白名单数据入参
+      class InputModifyNameListDataFrontListData < TencentCloud::Common::AbstractModel
+        # @param DataList: 名单数据集合
+        # @type DataList: Array
+
+        attr_accessor :DataList
+
+        def initialize(datalist=nil)
+          @DataList = datalist
+        end
+
+        def deserialize(params)
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              inputmodifynamelistdatafront_tmp = InputModifyNameListDataFront.new
+              inputmodifynamelistdatafront_tmp.deserialize(i)
+              @DataList << inputmodifynamelistdatafront_tmp
+            end
+          end
+        end
+      end
+
       # ManageMarketingRisk请求参数结构体
       class ManageMarketingRiskRequest < TencentCloud::Common::AbstractModel
         # @param BusinessSecurityData: 业务入参
@@ -357,6 +949,90 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = OutputManageMarketingRisk.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNameListData请求参数结构体
+      class ModifyNameListDataRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputModifyNameListDataFrontListData`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputModifyNameListDataFrontListData.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # ModifyNameListData返回参数结构体
+      class ModifyNameListDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputModifyNameListFront`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputModifyNameListFront.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNameList请求参数结构体
+      class ModifyNameListRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputModifyNameFront`
+
+        attr_accessor :BusinessSecurityData
+
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputModifyNameFront.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+        end
+      end
+
+      # ModifyNameList返回参数结构体
+      class ModifyNameListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputModifyNameFront`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputModifyNameFront.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -427,6 +1103,440 @@ module TencentCloud
           @AccountId = params['AccountId']
           @MobilePhone = params['MobilePhone']
           @DeviceId = params['DeviceId']
+        end
+      end
+
+      # 黑白名单数据列表信息
+      class OuntputDescribeDataListInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param List: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :Count, :List
+
+        def initialize(count=nil, list=nil)
+          @Count = count
+          @List = list
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              outputdescribedatalistfront_tmp = OutputDescribeDataListFront.new
+              outputdescribedatalistfront_tmp.deserialize(i)
+              @List << outputdescribedatalistfront_tmp
+            end
+          end
+        end
+      end
+
+      # 创建黑白名单出参
+      class OutputCreateNameListFront < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Value: 空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
+        end
+      end
+
+      # 删除黑白名单出参
+      class OutputDeleteNameListData < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
+        end
+      end
+
+      # 删除黑白名单出参
+      class OutputDeleteNameListFront < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Value: 空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
+        end
+      end
+
+      # 黑白名单数据信息
+      class OutputDescribeDataListFront < TencentCloud::Common::AbstractModel
+        # @param NameListDataId: 名单数据ID
+        # @type NameListDataId: Integer
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+        # @param DataContent: 名单数据内容
+        # @type DataContent: String
+        # @param DataSource: 数据来源，固定传2（手工录入）
+        # @type DataSource: Integer
+        # @param StartTime: 名单数据开始时间，时间格式示例"2024-05-05 12:10:15"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 名单数据结束时间，时间格式示例"2024-05-05 12:10:15"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Status: 名单数据状态 [1 启用 2 停用]
+        # @type Status: Integer
+        # @param Remark: 名单数据描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 名单数据创建时间，时间格式示例"2024-05-05 12:10:15"
+        # @type CreateTime: String
+        # @param UpdateTime: 名单数据更新时间，时间格式示例"2024-05-05 12:10:15"
+        # @type UpdateTime: String
+        # @param EncryptDataContent: 加密名单数据内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptDataContent: String
+
+        attr_accessor :NameListDataId, :NameListId, :DataContent, :DataSource, :StartTime, :EndTime, :Status, :Remark, :CreateTime, :UpdateTime, :EncryptDataContent
+
+        def initialize(namelistdataid=nil, namelistid=nil, datacontent=nil, datasource=nil, starttime=nil, endtime=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, encryptdatacontent=nil)
+          @NameListDataId = namelistdataid
+          @NameListId = namelistid
+          @DataContent = datacontent
+          @DataSource = datasource
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @EncryptDataContent = encryptdatacontent
+        end
+
+        def deserialize(params)
+          @NameListDataId = params['NameListDataId']
+          @NameListId = params['NameListId']
+          @DataContent = params['DataContent']
+          @DataSource = params['DataSource']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @EncryptDataContent = params['EncryptDataContent']
+        end
+      end
+
+      # 查询黑白名单数据出参
+      class OutputDescribeDataListFrontData < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 黑白名单数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OuntputDescribeDataListInfo`
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['Value'].nil?
+            @Value = OuntputDescribeDataListInfo.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 黑白名单详情出参
+      class OutputDescribeNameListDetail < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameListId: Integer
+        # @param ListName: 名单名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListName: String
+        # @param ListType: 名单类型 [1 黑名单 2 白名单]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListType: Integer
+        # @param DataType: 数据类型[1 手机号 2 qqOpenId 3 2echatOpenId 4 ip 6 idfa 7 imei]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataType: Integer
+        # @param SceneCode: 场景Code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneCode: String
+        # @param Status: 名单列表状态 [1 启用 2 停用]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Remark: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 创建时间，时间格式示例"2024-05-05 12:10:15"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间，时间格式示例"2024-05-05 12:10:15"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param EncryptionType: 加密类型 [0 无需加密，1 MD5加密，2 SHA256加密]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptionType: Integer
+
+        attr_accessor :NameListId, :ListName, :ListType, :DataType, :SceneCode, :Status, :Remark, :CreateTime, :UpdateTime, :EncryptionType
+
+        def initialize(namelistid=nil, listname=nil, listtype=nil, datatype=nil, scenecode=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, encryptiontype=nil)
+          @NameListId = namelistid
+          @ListName = listname
+          @ListType = listtype
+          @DataType = datatype
+          @SceneCode = scenecode
+          @Status = status
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @EncryptionType = encryptiontype
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+          @ListName = params['ListName']
+          @ListType = params['ListType']
+          @DataType = params['DataType']
+          @SceneCode = params['SceneCode']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @EncryptionType = params['EncryptionType']
+        end
+      end
+
+      # 查询列表详情出参
+      class OutputDescribeNameListDetailFront < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 列表详情信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeNameListDetail`
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['Value'].nil?
+            @Value = OutputDescribeNameListDetail.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 黑白名单信息
+      class OutputDescribeNameListFrontFix < TencentCloud::Common::AbstractModel
+        # @param NameListId: 名单ID
+        # @type NameListId: Integer
+        # @param ListName: 名单名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListName: String
+        # @param ListType: 名单类型 [1 黑名单 2 白名单]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListType: Integer
+        # @param DataType: 数据类型[1 手机号 2 qqOpenId 3 2echatOpenId 4 ip 6 idfa 7 imei]
+        # @type DataType: Integer
+        # @param Status: 记录状态 [1 启用 2 停用]
+        # @type Status: Integer
+        # @param Remark: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 创建时间，时间格式示例"2024-05-05 12:10:15"
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间，时间格式示例"2024-05-05 12:10:15"
+        # @type UpdateTime: String
+        # @param EffectCount: 有效数据/数据总数
+        # @type EffectCount: String
+        # @param EncryptionType: 加密类型[0 无需加密 1 MD5加密 2 SHA256加密]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptionType: Integer
+        # @param SceneCode: 场景Code，all_scene代表全部场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneCode: String
+
+        attr_accessor :NameListId, :ListName, :ListType, :DataType, :Status, :Remark, :CreateTime, :UpdateTime, :EffectCount, :EncryptionType, :SceneCode
+
+        def initialize(namelistid=nil, listname=nil, listtype=nil, datatype=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, effectcount=nil, encryptiontype=nil, scenecode=nil)
+          @NameListId = namelistid
+          @ListName = listname
+          @ListType = listtype
+          @DataType = datatype
+          @Status = status
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @EffectCount = effectcount
+          @EncryptionType = encryptiontype
+          @SceneCode = scenecode
+        end
+
+        def deserialize(params)
+          @NameListId = params['NameListId']
+          @ListName = params['ListName']
+          @ListType = params['ListType']
+          @DataType = params['DataType']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @EffectCount = params['EffectCount']
+          @EncryptionType = params['EncryptionType']
+          @SceneCode = params['SceneCode']
+        end
+      end
+
+      # 查询黑白名单出参
+      class OutputDescribeNameListFrontFixListData < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 黑白名单列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeNameListInfo`
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['Value'].nil?
+            @Value = OutputDescribeNameListInfo.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 黑白名单信息
+      class OutputDescribeNameListInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param List: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :Count, :List
+
+        def initialize(count=nil, list=nil)
+          @Count = count
+          @List = list
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              outputdescribenamelistfrontfix_tmp = OutputDescribeNameListFrontFix.new
+              outputdescribenamelistfrontfix_tmp.deserialize(i)
+              @List << outputdescribenamelistfrontfix_tmp
+            end
+          end
+        end
+      end
+
+      # 添加黑白名单数据出参
+      class OutputImportNameListDataFront < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Value: 空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
         end
       end
 
@@ -544,6 +1654,56 @@ module TencentCloud
           @RiskType = params['RiskType']
           @ConstId = params['ConstId']
           @RiskInformation = params['RiskInformation']
+        end
+      end
+
+      # 修改黑白名单出参
+      class OutputModifyNameFront < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Value: 空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
+        end
+      end
+
+      # 修改黑白名单数据出参
+      class OutputModifyNameListFront < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 1002：参数错误 4300：未开通服务 6000：系统内部错误
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Value: 空数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @Value = params['Value']
         end
       end
 

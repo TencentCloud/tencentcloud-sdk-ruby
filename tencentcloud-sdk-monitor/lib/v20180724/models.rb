@@ -1429,7 +1429,7 @@ module TencentCloud
         # @type NoticeLanguage: String
         # @param UserNotices: 用户通知 最多5个
         # @type UserNotices: Array
-        # @param URLNotices: 回调通知 最多3个
+        # @param URLNotices: 回调通知 最多6个
         # @type URLNotices: Array
         # @param CLSNotices: 推送CLS日志服务的操作 最多1个
         # @type CLSNotices: Array
@@ -10379,7 +10379,7 @@ module TencentCloud
         # @type NoticeId: String
         # @param UserNotices: 用户通知 最多5个
         # @type UserNotices: Array
-        # @param URLNotices: 回调通知 最多3个
+        # @param URLNotices: 回调通知 最多6个
         # @type URLNotices: Array
         # @param CLSNotices: 告警通知推送到CLS服务 最多1个
         # @type CLSNotices: Array

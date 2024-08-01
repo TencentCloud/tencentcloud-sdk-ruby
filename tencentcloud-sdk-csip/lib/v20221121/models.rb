@@ -2718,15 +2718,21 @@ module TencentCloud
         # @type AlertTypeCount: Array
         # @param TotalCount: 告警总数
         # @type TotalCount: Integer
+        # @param ReturnCode: 0：succeed 1：timeout
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回状态信息
+        # @type ReturnMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AlertList, :AlertTypeCount, :TotalCount, :RequestId
+        attr_accessor :AlertList, :AlertTypeCount, :TotalCount, :ReturnCode, :ReturnMsg, :RequestId
 
-        def initialize(alertlist=nil, alerttypecount=nil, totalcount=nil, requestid=nil)
+        def initialize(alertlist=nil, alerttypecount=nil, totalcount=nil, returncode=nil, returnmsg=nil, requestid=nil)
           @AlertList = alertlist
           @AlertTypeCount = alerttypecount
           @TotalCount = totalcount
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
           @RequestId = requestid
         end
 
@@ -2748,6 +2754,8 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
           @RequestId = params['RequestId']
         end
       end

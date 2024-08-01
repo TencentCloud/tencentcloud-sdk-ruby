@@ -368,7 +368,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 指定条件删除文件系统配额
+        # 指定条件删除文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
 
         # @param request: Request instance for DeleteUserQuota.
         # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteUserQuotaRequest`
@@ -778,7 +778,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置文件系统配额，提供UID/GID的配额设置的接口
+        # 设置文件系统配额，提供UID/GID的配额设置的接口（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
 
         # @param request: Request instance for SetUserQuota.
         # @type request: :class:`Tencentcloud::cfs::V20190719::SetUserQuotaRequest`
