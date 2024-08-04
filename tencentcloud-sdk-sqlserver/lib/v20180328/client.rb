@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CutXEvents)用于手动切割阻塞日志和死锁日志。
+
+        # @param request: Request instance for CutXEvents.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CutXEventsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CutXEventsResponse`
+        def CutXEvents(request)
+          body = send_request('CutXEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CutXEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteAccount）用于删除实例账号。
 
         # @param request: Request instance for DeleteAccount.

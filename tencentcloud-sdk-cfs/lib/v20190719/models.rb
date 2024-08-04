@@ -3185,7 +3185,7 @@ module TencentCloud
 
       # 文件系统配额信息
       class UserQuota < TencentCloud::Common::AbstractModel
-        # @param UserType: 指定配额类型，包括Uid、Gid
+        # @param UserType: 指定配额类型，包括Uid、Gid、Dir
         # @type UserType: String
         # @param UserId: UID/GID信息
         # @type UserId: String
@@ -3201,10 +3201,16 @@ module TencentCloud
         # @param FileUsed: 文件使用个数，单位个
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileUsed: Integer
+        # @param DirectoryPath: 目录配额的目录绝对路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectoryPath: String
+        # @param Status: 配置规则状态，inavailable---配置中，available --已生效，deleting--删除中，deleted 已删除，failed--配置失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId, :CapacityUsed, :FileUsed
+        attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId, :CapacityUsed, :FileUsed, :DirectoryPath, :Status
 
-        def initialize(usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, filesystemid=nil, capacityused=nil, fileused=nil)
+        def initialize(usertype=nil, userid=nil, capacityhardlimit=nil, filehardlimit=nil, filesystemid=nil, capacityused=nil, fileused=nil, directorypath=nil, status=nil)
           @UserType = usertype
           @UserId = userid
           @CapacityHardLimit = capacityhardlimit
@@ -3212,6 +3218,8 @@ module TencentCloud
           @FileSystemId = filesystemid
           @CapacityUsed = capacityused
           @FileUsed = fileused
+          @DirectoryPath = directorypath
+          @Status = status
         end
 
         def deserialize(params)
@@ -3222,6 +3230,8 @@ module TencentCloud
           @FileSystemId = params['FileSystemId']
           @CapacityUsed = params['CapacityUsed']
           @FileUsed = params['FileUsed']
+          @DirectoryPath = params['DirectoryPath']
+          @Status = params['Status']
         end
       end
 
