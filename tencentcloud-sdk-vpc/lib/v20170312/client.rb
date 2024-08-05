@@ -3067,6 +3067,8 @@ module TencentCloud
         end
 
         # 本接口（DeleteVpnConnection）用于删除VPN通道。
+        # >?本接口为异步接口
+        # >
 
         # @param request: Request instance for DeleteVpnConnection.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteVpnConnectionRequest`

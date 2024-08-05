@@ -16118,8 +16118,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 7
-        deprecate :IntegrityAlgorith=, :none, 2024, 7
+        deprecate :IntegrityAlgorith, :none, 2024, 8
+        deprecate :IntegrityAlgorith=, :none, 2024, 8
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20646,6 +20646,33 @@ module TencentCloud
         end
       end
 
+      # 私网NAT网关跨域信息
+      class PrivateNatCrossDomainInfo < TencentCloud::Common::AbstractModel
+        # @param CcnId: 跨域私网NAT关联的云联网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
+        # @param LocalVpcId: 跨域私网NAT本端Vpc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalVpcId: String
+        # @param PeerVpcId: 跨域私网NAT对端Vpc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeerVpcId: String
+
+        attr_accessor :CcnId, :LocalVpcId, :PeerVpcId
+
+        def initialize(ccnid=nil, localvpcid=nil, peervpcid=nil)
+          @CcnId = ccnid
+          @LocalVpcId = localvpcid
+          @PeerVpcId = peervpcid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @LocalVpcId = params['LocalVpcId']
+          @PeerVpcId = params['PeerVpcId']
+        end
+      end
+
       # 本端目的IP端口转换复杂结构
       class PrivateNatDestinationIpPortTranslationNatRule < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议
@@ -20708,10 +20735,25 @@ module TencentCloud
         # @param TagSet: 标签键值对。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
+        # @param DirectConnectGatewayIds: 专线网关唯一`ID`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectConnectGatewayIds: Array
+        # @param NatType: 私网网关类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatType: String
+        # @param CrossDomainInfo: 私网NAT跨域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossDomainInfo: :class:`Tencentcloud::Vpc.v20170312.models.PrivateNatCrossDomainInfo`
+        # @param VpcType: 是否VPC型私网网关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcType: Boolean
+        # @param CcnId: 跨域私网NAT关联的云联网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :VpcId, :Status, :CrossDomain, :CreatedTime, :TagSet
+        attr_accessor :NatGatewayId, :NatGatewayName, :VpcId, :Status, :CrossDomain, :CreatedTime, :TagSet, :DirectConnectGatewayIds, :NatType, :CrossDomainInfo, :VpcType, :CcnId
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, vpcid=nil, status=nil, crossdomain=nil, createdtime=nil, tagset=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, vpcid=nil, status=nil, crossdomain=nil, createdtime=nil, tagset=nil, directconnectgatewayids=nil, nattype=nil, crossdomaininfo=nil, vpctype=nil, ccnid=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
@@ -20719,6 +20761,11 @@ module TencentCloud
           @CrossDomain = crossdomain
           @CreatedTime = createdtime
           @TagSet = tagset
+          @DirectConnectGatewayIds = directconnectgatewayids
+          @NatType = nattype
+          @CrossDomainInfo = crossdomaininfo
+          @VpcType = vpctype
+          @CcnId = ccnid
         end
 
         def deserialize(params)
@@ -20736,6 +20783,14 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+          @DirectConnectGatewayIds = params['DirectConnectGatewayIds']
+          @NatType = params['NatType']
+          unless params['CrossDomainInfo'].nil?
+            @CrossDomainInfo = PrivateNatCrossDomainInfo.new
+            @CrossDomainInfo.deserialize(params['CrossDomainInfo'])
+          end
+          @VpcType = params['VpcType']
+          @CcnId = params['CcnId']
         end
       end
 
