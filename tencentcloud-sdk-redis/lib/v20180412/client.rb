@@ -2405,7 +2405,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 变更实例配置
+        # 本接口（UpgradeInstance）用于变更实例的配置规格。
 
         # @param request: Request instance for UpgradeInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeInstanceRequest`

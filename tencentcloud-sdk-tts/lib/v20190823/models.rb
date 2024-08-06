@@ -259,6 +259,7 @@ module TencentCloud
         # @param ModelType: 模型类型，1-默认模型。
         # @type ModelType: Integer
         # @param VoiceType: 音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
+        # 若使用一句话版声音复刻，请填入固定值“200000000”
         # @type VoiceType: Integer
         # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li><li>3-日文</li>
         # @type PrimaryLanguage: Integer
@@ -278,7 +279,7 @@ module TencentCloud
         # @type EmotionCategory: String
         # @param EmotionIntensity: 控制合成音频情感程度，取值范围为[50,200],默认为100；只有EmotionCategory不为空时生效；
         # @type EmotionIntensity: Integer
-        # @param FastVoiceType: 预留参数，暂未使用
+        # @param FastVoiceType: 一句话版声音复刻音色ID，使用一句话版声音复刻音色时需填写。
         # @type FastVoiceType: String
 
         attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle, :SegmentRate, :EmotionCategory, :EmotionIntensity, :FastVoiceType

@@ -17,6 +17,38 @@
 module TencentCloud
   module Hunyuan
     module V20230901
+      # ActivateService请求参数结构体
+      class ActivateServiceRequest < TencentCloud::Common::AbstractModel
+        # @param PayMode: 开通之后，是否关闭后付费；默认为0，不关闭；1为关闭
+        # @type PayMode: Integer
+
+        attr_accessor :PayMode
+
+        def initialize(paymode=nil)
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+        end
+      end
+
+      # ActivateService返回参数结构体
+      class ActivateServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
         # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-pro、 hunyuan-code、 hunyuan-role、 hunyuan-functioncall、 hunyuan-vision。
@@ -55,14 +87,12 @@ module TencentCloud
         # 当选择流式输出审核时，可能会出现部分内容已输出，但中间某一段响应中的 FinishReason 值为 sensitive，此时说明安全审核未通过。如果业务场景有实时文字上屏的需求，需要自行撤回已上屏的内容，并建议自定义替换为一条提示语，如 “这个问题我不方便回答，不如我们换个话题试试”，以保障终端体验。
         # @type StreamModeration: Boolean
         # @param TopP: 说明：
-        # 1. 影响输出文本的多样性，取值越大，生成文本的多样性越强。
-        # 2. 取值区间为 [0.0, 1.0]，未传值时使用各模型推荐值。
-        # 3. 非必要不建议使用，不合理的取值会影响效果。
+        # 1. 影响输出文本的多样性，取值区间为 [0.0, 1.0]。取值越大，生成文本的多样性越强。
+        # 2. 模型已有默认参数，不传值时使用各模型推荐值，不推荐用户修改。
         # @type TopP: Float
         # @param Temperature: 说明：
-        # 1. 较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。
-        # 2. 取值区间为 [0.0, 2.0]，未传值时使用各模型推荐值。
-        # 3. 非必要不建议使用，不合理的取值会影响效果。
+        # 1. 影响模型输出多样性，取值区间为 [0.0, 2.0]。较高的数值会使输出更加多样化和不可预测，而较低的数值会使其更加集中和确定。
+        # 2. 模型已有默认参数，不传值时使用各模型推荐值，不推荐用户修改。
         # @type Temperature: Float
         # @param EnableEnhancement: 功能增强（如搜索）开关。
         # 说明：
@@ -701,6 +731,38 @@ module TencentCloud
           @Index = params['Index']
           @Title = params['Title']
           @Url = params['Url']
+        end
+      end
+
+      # SetPayMode请求参数结构体
+      class SetPayModeRequest < TencentCloud::Common::AbstractModel
+        # @param PayMode: 设置后付费状态，0：后付费；1：预付费
+        # @type PayMode: Integer
+
+        attr_accessor :PayMode
+
+        def initialize(paymode=nil)
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+        end
+      end
+
+      # SetPayMode返回参数结构体
+      class SetPayModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

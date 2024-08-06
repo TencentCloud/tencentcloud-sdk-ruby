@@ -840,13 +840,16 @@ module TencentCloud
         # @type Ipv6Addresses: Array
         # @param Ipv6AddressCount: 自动分配`IPv6`地址个数，内网IP地址个数总和不能超过配额数。与入参`Ipv6Addresses`合并计算配额。与Ipv6Addresses必填一个。
         # @type Ipv6AddressCount: Integer
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
 
-        attr_accessor :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount
+        attr_accessor :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :ClientToken
 
-        def initialize(networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil)
+        def initialize(networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, clienttoken=nil)
           @NetworkInterfaceId = networkinterfaceid
           @Ipv6Addresses = ipv6addresses
           @Ipv6AddressCount = ipv6addresscount
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -860,6 +863,7 @@ module TencentCloud
             end
           end
           @Ipv6AddressCount = params['Ipv6AddressCount']
+          @ClientToken = params['ClientToken']
         end
       end
 

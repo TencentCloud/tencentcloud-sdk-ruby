@@ -83,7 +83,7 @@ module TencentCloud
 
         # 1-中文
         # @type VoiceLanguage: Integer
-        # @param AudioIdList: 音频ID集合
+        # @param AudioIdList: 音频ID集合。（一句话声音复刻仅需填写一个音质检测接口返回的AudioId）
         # @type AudioIdList: Array
         # @param SampleRate: 音频采样率：
 
@@ -96,9 +96,11 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param ModelType: 模型类型 1:在线 2:离线  默认为1
         # @type ModelType: Integer
-        # @param TaskType: 复刻类型。 0 - 轻量版声音复刻（默认）。
+        # @param TaskType: 复刻类型。
+        # 0 - 轻量版声音复刻（默认）；
+        # 5 - 一句话声音复刻。
         # @type TaskType: Integer
-        # @param VPRAudioId: 校验音频ID。
+        # @param VPRAudioId: 校验音频ID。（仅基础版声音复刻使用）
         # @type VPRAudioId: String
 
         attr_accessor :SessionId, :VoiceName, :VoiceGender, :VoiceLanguage, :AudioIdList, :SampleRate, :Codec, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId
@@ -199,21 +201,29 @@ module TencentCloud
         # @param StatusStr: 任务状态，waiting：任务等待，doing：任务执行中，success：任务成功，failed：任务失败。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusStr: String
-        # @param VoiceType: 音色id。
+        # @param VoiceType: 音色id。（若为一句话复刻时，该值为固定值“200000000”）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceType: Integer
         # @param ErrorMsg: 失败原因说明。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
+        # @param ExpireTime: 任务过期时间。（当复刻类型为一句话复刻时展示）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param FastVoiceType: 快速复刻音色ID。（当复刻类型为一句话复刻时展示）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FastVoiceType: String
 
-        attr_accessor :TaskId, :Status, :StatusStr, :VoiceType, :ErrorMsg
+        attr_accessor :TaskId, :Status, :StatusStr, :VoiceType, :ErrorMsg, :ExpireTime, :FastVoiceType
 
-        def initialize(taskid=nil, status=nil, statusstr=nil, voicetype=nil, errormsg=nil)
+        def initialize(taskid=nil, status=nil, statusstr=nil, voicetype=nil, errormsg=nil, expiretime=nil, fastvoicetype=nil)
           @TaskId = taskid
           @Status = status
           @StatusStr = statusstr
           @VoiceType = voicetype
           @ErrorMsg = errormsg
+          @ExpireTime = expiretime
+          @FastVoiceType = fastvoicetype
         end
 
         def deserialize(params)
@@ -222,6 +232,8 @@ module TencentCloud
           @StatusStr = params['StatusStr']
           @VoiceType = params['VoiceType']
           @ErrorMsg = params['ErrorMsg']
+          @ExpireTime = params['ExpireTime']
+          @FastVoiceType = params['FastVoiceType']
         end
       end
 
@@ -258,19 +270,25 @@ module TencentCloud
         # @type TypeId: Integer
         # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
         # @type Codec: String
-        # @param SampleRate: 音频采样率：
-
-        # 16000：16k（默认）
+        # @param SampleRate: 音频采样率。
+        # 16000：16k（默认）；
+        # 24000：24k（仅一句话声音复刻支持）；
+        # 48000：48k（仅一句话声音复刻支持）。
         # @type SampleRate: Integer
+        # @param TaskType: 复刻类型。
+        # 0 - 轻量版声音复刻（默认）;
+        # 5 - 一句话声音复刻。
+        # @type TaskType: Integer
 
-        attr_accessor :TextId, :AudioData, :TypeId, :Codec, :SampleRate
+        attr_accessor :TextId, :AudioData, :TypeId, :Codec, :SampleRate, :TaskType
 
-        def initialize(textid=nil, audiodata=nil, typeid=nil, codec=nil, samplerate=nil)
+        def initialize(textid=nil, audiodata=nil, typeid=nil, codec=nil, samplerate=nil, tasktype=nil)
           @TextId = textid
           @AudioData = audiodata
           @TypeId = typeid
           @Codec = codec
           @SampleRate = samplerate
+          @TaskType = tasktype
         end
 
         def deserialize(params)
@@ -279,6 +297,7 @@ module TencentCloud
           @TypeId = params['TypeId']
           @Codec = params['Codec']
           @SampleRate = params['SampleRate']
+          @TaskType = params['TaskType']
         end
       end
 
@@ -429,12 +448,32 @@ module TencentCloud
 
       # GetTrainingText请求参数结构体
       class GetTrainingTextRequest < TencentCloud::Common::AbstractModel
+        # @param TaskType: 复刻类型。
+        # 0 - 轻量版声音复刻（默认）;
+        # 5 - 一句话声音复刻。
+        # @type TaskType: Integer
+        # @param Domain: 音色场景。（仅支持一句话声音复刻，其余复刻类型不生效）
+        # 0 - 通用场景（默认）；
+        # 1 - 聊天场景；
+        # 2 - 阅读场景；
+        # 3 - 资讯播报场景。
+        # @type Domain: Integer
+        # @param TextLanguage: 文本语种。（仅支持一句话声音复刻，其余复刻类型不生效）
+        # 1 - 中文（默认）。
+        # @type TextLanguage: Integer
 
+        attr_accessor :TaskType, :Domain, :TextLanguage
 
-        def initialize()
+        def initialize(tasktype=nil, domain=nil, textlanguage=nil)
+          @TaskType = tasktype
+          @Domain = domain
+          @TextLanguage = textlanguage
         end
 
         def deserialize(params)
+          @TaskType = params['TaskType']
+          @Domain = params['Domain']
+          @TextLanguage = params['TextLanguage']
         end
       end
 
@@ -463,12 +502,19 @@ module TencentCloud
 
       # GetVRSVoiceTypes请求参数结构体
       class GetVRSVoiceTypesRequest < TencentCloud::Common::AbstractModel
+        # @param TaskType: 复刻类型。
+        # 0 - 除快速声音复刻外其他复刻类型（默认）；
+        # 5 - 一句话声音复刻。
+        # @type TaskType: Integer
 
+        attr_accessor :TaskType
 
-        def initialize()
+        def initialize(tasktype=nil)
+          @TaskType = tasktype
         end
 
         def deserialize(params)
+          @TaskType = params['TaskType']
         end
       end
 
@@ -543,7 +589,7 @@ module TencentCloud
 
       # 复刻音色详情
       class VoiceTypeInfo < TencentCloud::Common::AbstractModel
-        # @param VoiceType: 音色id
+        # @param VoiceType: 音色id。（若为一句话复刻时，该值为固定值“200000000”）
         # @type VoiceType: Integer
         # @param VoiceName: 音色名称
         # @type VoiceName: String
@@ -557,10 +603,17 @@ module TencentCloud
         # @type DateCreated: String
         # @param IsDeployed: 部署状态。若已部署，则可通过语音合成接口调用该音色
         # @type IsDeployed: Boolean
+        # @param ExpireTime: 任务过期时间。（当复刻类型为一句话复刻时展示）
 
-        attr_accessor :VoiceType, :VoiceName, :VoiceGender, :TaskType, :TaskID, :DateCreated, :IsDeployed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param FastVoiceType: 快速复刻音色ID。（当复刻类型为一句话复刻时展示）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FastVoiceType: String
 
-        def initialize(voicetype=nil, voicename=nil, voicegender=nil, tasktype=nil, taskid=nil, datecreated=nil, isdeployed=nil)
+        attr_accessor :VoiceType, :VoiceName, :VoiceGender, :TaskType, :TaskID, :DateCreated, :IsDeployed, :ExpireTime, :FastVoiceType
+
+        def initialize(voicetype=nil, voicename=nil, voicegender=nil, tasktype=nil, taskid=nil, datecreated=nil, isdeployed=nil, expiretime=nil, fastvoicetype=nil)
           @VoiceType = voicetype
           @VoiceName = voicename
           @VoiceGender = voicegender
@@ -568,6 +621,8 @@ module TencentCloud
           @TaskID = taskid
           @DateCreated = datecreated
           @IsDeployed = isdeployed
+          @ExpireTime = expiretime
+          @FastVoiceType = fastvoicetype
         end
 
         def deserialize(params)
@@ -578,6 +633,8 @@ module TencentCloud
           @TaskID = params['TaskID']
           @DateCreated = params['DateCreated']
           @IsDeployed = params['IsDeployed']
+          @ExpireTime = params['ExpireTime']
+          @FastVoiceType = params['FastVoiceType']
         end
       end
 

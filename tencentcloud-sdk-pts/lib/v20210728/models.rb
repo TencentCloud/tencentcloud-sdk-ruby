@@ -5112,7 +5112,7 @@ module TencentCloud
       class UpdateScenarioRequest < TencentCloud::Common::AbstractModel
         # @param ScenarioId: 场景ID
         # @type ScenarioId: String
-        # @param Name: 场景名
+        # @param Name: 场景名；调用该接口时，请将 Scenario 中不需要修改的字段保持原样也作为接口的入参，否则场景可能会不可用。
         # @type Name: String
         # @param Description: 场景描述
         # @type Description: String

@@ -17,6 +17,52 @@
 module TencentCloud
   module Tds
     module V20220801
+      # 数据授权信息
+      class DataAuthorizationInfo < TencentCloud::Common::AbstractModel
+        # @param DataProviderName: 数据委托方、需求方：客户主体名称。
+        # @type DataProviderName: String
+        # @param DataRecipientName: 数据受托方、提供方：腾讯云主体名称。
+
+        # 固定填：腾讯云计算（北京）有限责任公司
+        # @type DataRecipientName: String
+        # @param UserDataType: 客户请求所涉及的用户个人信息类型，支持多选。实际以接口请求传参为准。
+        # 1-手机号；
+        # 2-微信开放账号；
+        # 3-QQ开放账号；
+        # 4-IP地址；
+        # @type UserDataType: Array
+        # @param IsAuthorize: 客户是否已按合规指南要求获取用户授权，同意客户委托腾讯云处理入参信息，结合已合法收集的用户数据进行必要处理得出服务结果，并返回给客户。
+
+        # 1-已授权；其它值为未授权。
+        # @type IsAuthorize: Integer
+        # @param AuthorizationTerm: 客户获得的用户授权期限时间戳（单位秒）。
+
+        # 不填或0默认无固定期限。
+        # @type AuthorizationTerm: Integer
+        # @param PrivacyPolicyLink: 客户获得用户授权所依赖的协议地址。
+        # @type PrivacyPolicyLink: String
+
+        attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :AuthorizationTerm, :PrivacyPolicyLink
+
+        def initialize(dataprovidername=nil, datarecipientname=nil, userdatatype=nil, isauthorize=nil, authorizationterm=nil, privacypolicylink=nil)
+          @DataProviderName = dataprovidername
+          @DataRecipientName = datarecipientname
+          @UserDataType = userdatatype
+          @IsAuthorize = isauthorize
+          @AuthorizationTerm = authorizationterm
+          @PrivacyPolicyLink = privacypolicylink
+        end
+
+        def deserialize(params)
+          @DataProviderName = params['DataProviderName']
+          @DataRecipientName = params['DataRecipientName']
+          @UserDataType = params['UserDataType']
+          @IsAuthorize = params['IsAuthorize']
+          @AuthorizationTerm = params['AuthorizationTerm']
+          @PrivacyPolicyLink = params['PrivacyPolicyLink']
+        end
+      end
+
       # DescribeFraudBase请求参数结构体
       class DescribeFraudBaseRequest < TencentCloud::Common::AbstractModel
         # @param DeviceToken: 客户端通过SDK获取的设备Token
@@ -221,10 +267,12 @@ module TencentCloud
         # @type ClientIP: String
         # @param QQOpenId: QQ的OpenId
         # @type QQOpenId: String
+        # @param DataAuthorization: 数据授权信息
+        # @type DataAuthorization: :class:`Tencentcloud::Tds.v20220801.models.DataAuthorizationInfo`
 
-        attr_accessor :DeviceToken, :SceneCode, :UserId, :EventTime, :ElapsedTime, :WeChatOpenId, :PhoneNumber, :ClientIP, :QQOpenId
+        attr_accessor :DeviceToken, :SceneCode, :UserId, :EventTime, :ElapsedTime, :WeChatOpenId, :PhoneNumber, :ClientIP, :QQOpenId, :DataAuthorization
 
-        def initialize(devicetoken=nil, scenecode=nil, userid=nil, eventtime=nil, elapsedtime=nil, wechatopenid=nil, phonenumber=nil, clientip=nil, qqopenid=nil)
+        def initialize(devicetoken=nil, scenecode=nil, userid=nil, eventtime=nil, elapsedtime=nil, wechatopenid=nil, phonenumber=nil, clientip=nil, qqopenid=nil, dataauthorization=nil)
           @DeviceToken = devicetoken
           @SceneCode = scenecode
           @UserId = userid
@@ -234,6 +282,7 @@ module TencentCloud
           @PhoneNumber = phonenumber
           @ClientIP = clientip
           @QQOpenId = qqopenid
+          @DataAuthorization = dataauthorization
         end
 
         def deserialize(params)
@@ -246,6 +295,10 @@ module TencentCloud
           @PhoneNumber = params['PhoneNumber']
           @ClientIP = params['ClientIP']
           @QQOpenId = params['QQOpenId']
+          unless params['DataAuthorization'].nil?
+            @DataAuthorization = DataAuthorizationInfo.new
+            @DataAuthorization.deserialize(params['DataAuthorization'])
+          end
         end
       end
 

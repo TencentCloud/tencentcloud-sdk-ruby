@@ -3985,12 +3985,15 @@ module TencentCloud
         # @param SourceType: 服务创建类型，默认为空，一键部署为oneclick
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
+        # @param Tag: 服务标签, function: 托管函数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :VersionItems, :ServerName, :IsPublic, :ImageRepo, :TrafficType, :SourceType, :RequestId
+        attr_accessor :TotalCount, :VersionItems, :ServerName, :IsPublic, :ImageRepo, :TrafficType, :SourceType, :Tag, :RequestId
 
-        def initialize(totalcount=nil, versionitems=nil, servername=nil, ispublic=nil, imagerepo=nil, traffictype=nil, sourcetype=nil, requestid=nil)
+        def initialize(totalcount=nil, versionitems=nil, servername=nil, ispublic=nil, imagerepo=nil, traffictype=nil, sourcetype=nil, tag=nil, requestid=nil)
           @TotalCount = totalcount
           @VersionItems = versionitems
           @ServerName = servername
@@ -3998,6 +4001,7 @@ module TencentCloud
           @ImageRepo = imagerepo
           @TrafficType = traffictype
           @SourceType = sourcetype
+          @Tag = tag
           @RequestId = requestid
         end
 
@@ -4016,6 +4020,7 @@ module TencentCloud
           @ImageRepo = params['ImageRepo']
           @TrafficType = params['TrafficType']
           @SourceType = params['SourceType']
+          @Tag = params['Tag']
           @RequestId = params['RequestId']
         end
       end

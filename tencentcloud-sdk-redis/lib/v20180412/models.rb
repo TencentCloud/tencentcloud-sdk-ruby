@@ -1716,7 +1716,7 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param PayMode: 计费类型过滤列表；0表示包年包月，1表示按量计费
         # @type PayMode: Integer
-        # @param InstanceIds: 实例ID过滤信息列表
+        # @param InstanceIds: 实例ID过滤信息列表，数组最大长度限制为100
         # @type InstanceIds: Array
         # @param InstanceNames: 实例名称过滤信息列表
         # @type InstanceNames: Array
@@ -2162,7 +2162,7 @@ module TencentCloud
 
       # DescribeInstanceDealDetail请求参数结构体
       class DescribeInstanceDealDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DealIds: 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealId。
+        # @param DealIds: 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealId。数组最大长度限制为10
         # @type DealIds: Array
 
         attr_accessor :DealIds
@@ -3444,10 +3444,12 @@ module TencentCloud
         # - 9：Redis 5.0 内存版（集群架构）。
         # - 15：Redis 6.2 内存版（标准架构）。
         # - 16：Redis 6.2 内存版（集群架构）。
+        # - 17：Redis 7.0 内存版（标准架构）。
+        # - 18：Redis 7.0 内存版（集群架构）。
         # @type ProductTypes: Array
-        # @param TemplateNames: 模板名称数组。
+        # @param TemplateNames: 模板名称数组。数组最大长度限制为50
         # @type TemplateNames: Array
-        # @param TemplateIds: 模板ID数组。
+        # @param TemplateIds: 模板ID数组。数组最大长度限制为50
         # @type TemplateIds: Array
 
         attr_accessor :ProductTypes, :TemplateNames, :TemplateIds
@@ -6442,7 +6444,7 @@ module TencentCloud
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Operation: 修改实例操作，如填写：rename-表示实例重命名；modifyProject-修改实例所属项目；modifyAutoRenew-修改实例续费标记
         # @type Operation: String
-        # @param InstanceIds: 实例Id
+        # @param InstanceIds: 实例Id，每次请求的实例的上限为10。
         # @type InstanceIds: Array
         # @param InstanceNames: 实例的新名称
         # @type InstanceNames: Array
@@ -8251,7 +8253,7 @@ module TencentCloud
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 指实例变更后的副本数量。<ul><li>每次只能修改参数RedisReplicasNum、MemSize和RedisShardNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。</li><li>多AZ实例修改副本时必须要传入NodeSet。</li></ul>
         # @type RedisReplicasNum: Integer
-        # @param NodeSet: 多AZ实例，增加副本时的附带信息，包括副本的可用区和副本的类型（NodeType为1）。非多AZ实例不需要配置该参数。
+        # @param NodeSet: 多AZ实例，增加副本时的节点信息，包括副本的 ID 编号及可用区信息。非多AZ实例不需要配置该参数。
         # @type NodeSet: Array
 
         attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum, :NodeSet

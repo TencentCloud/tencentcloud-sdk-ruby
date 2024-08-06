@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 开通服务
+
+        # @param request: Request instance for ActivateService.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::ActivateServiceRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::ActivateServiceResponse`
+        def ActivateService(request)
+          body = send_request('ActivateService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 腾讯混元大模型是由腾讯研发的大语言模型，具备强大的中文创作能力，复杂语境下的逻辑推理能力，以及可靠的任务执行能力。本接口支持流式或非流式调用，当使用流式调用时为 SSE 协议。
 
         #  1. 本接口暂不支持返回图片内容。
@@ -119,6 +143,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryHunyuanImageJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置付费模式
+
+        # @param request: Request instance for SetPayMode.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::SetPayModeRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::SetPayModeResponse`
+        def SetPayMode(request)
+          body = send_request('SetPayMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetPayModeResponse.new
             model.deserialize(response['Response'])
             model
           else
