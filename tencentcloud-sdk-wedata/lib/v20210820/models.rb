@@ -3209,10 +3209,12 @@ module TencentCloud
         # @type ConnectResult: String
         # @param DevelopmentParams: 开发环境数据源配置
         # @type DevelopmentParams: String
+        # @param ProjectId: 新建数据源的项目ID
+        # @type ProjectId: String
 
-        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion, :ConnectResult, :DevelopmentParams
+        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion, :ConnectResult, :DevelopmentParams, :ProjectId
 
-        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil, connectresult=nil, developmentparams=nil)
+        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil, connectresult=nil, developmentparams=nil, projectid=nil)
           @Name = name
           @Category = category
           @Type = type
@@ -3232,6 +3234,7 @@ module TencentCloud
           @COSRegion = cosregion
           @ConnectResult = connectresult
           @DevelopmentParams = developmentparams
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -3254,6 +3257,7 @@ module TencentCloud
           @COSRegion = params['COSRegion']
           @ConnectResult = params['ConnectResult']
           @DevelopmentParams = params['DevelopmentParams']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -8945,7 +8949,7 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: 分页大小
         # @type PageSize: Integer
-        # @param Filters: 查询filter
+        # @param Filters: 查询filter;默认查询任务的开发态，如需查询生产态任务需添加{"Values":["true"],"Name":"ProductionState"};如需查询查询任务状态需要查询生产态任务列表
         # @type Filters: Array
         # @param OrderFields: 排序字段信息
         # @type OrderFields: Array
@@ -16765,7 +16769,7 @@ module TencentCloud
         # @param AppId: 应用id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param Status: 1:未开始|2:操作中|3:运行中|4:暂停|5:任务停止中|6:停止|7:执行失败|20:异常|21:未知|
+        # @param Status: 0:新建(任务开发态默认状态)|1:未开始|2:操作中|3:运行中|4:暂停|5:任务停止中|6:停止|7:执行失败|20:异常|21:未知|
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Nodes: 节点列表

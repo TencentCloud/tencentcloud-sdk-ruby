@@ -12522,17 +12522,25 @@ module TencentCloud
         # @type DataEngineIds: Array
         # @param DataEngineConfigCommand: 引擎配置命令，支持UpdateSparkSQLLakefsPath（更新原生表配置）、UpdateSparkSQLResultPath（更新结果路径配置）
         # @type DataEngineConfigCommand: String
+        # @param UseLakeFs: 是否使用lakefs作为结果存储
+        # @type UseLakeFs: Boolean
+        # @param CustomResultPath: 用户自定义结果路径
+        # @type CustomResultPath: String
 
-        attr_accessor :DataEngineIds, :DataEngineConfigCommand
+        attr_accessor :DataEngineIds, :DataEngineConfigCommand, :UseLakeFs, :CustomResultPath
 
-        def initialize(dataengineids=nil, dataengineconfigcommand=nil)
+        def initialize(dataengineids=nil, dataengineconfigcommand=nil, uselakefs=nil, customresultpath=nil)
           @DataEngineIds = dataengineids
           @DataEngineConfigCommand = dataengineconfigcommand
+          @UseLakeFs = uselakefs
+          @CustomResultPath = customresultpath
         end
 
         def deserialize(params)
           @DataEngineIds = params['DataEngineIds']
           @DataEngineConfigCommand = params['DataEngineConfigCommand']
+          @UseLakeFs = params['UseLakeFs']
+          @CustomResultPath = params['CustomResultPath']
         end
       end
 

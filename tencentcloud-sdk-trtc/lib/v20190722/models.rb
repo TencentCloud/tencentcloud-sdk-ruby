@@ -88,17 +88,21 @@ module TencentCloud
         # @param TargetUserId: 机器人拉流的UserId, 填写后，机器人会拉取该UserId的流进行实时处理
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetUserId: String
-        # @param MaxIdleTime: 房间内推流用户全部退出后超过MaxIdleTime秒，后台自动关闭任务，默认值是60s。
+        # @param MaxIdleTime: 房间内超过MaxIdleTime 没有推流，后台自动关闭任务，默认值是60s。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxIdleTime: Integer
+        # @param WelcomeMessage: 机器人的欢迎语
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WelcomeMessage: String
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
           @MaxIdleTime = maxidletime
+          @WelcomeMessage = welcomemessage
         end
 
         def deserialize(params)
@@ -106,6 +110,7 @@ module TencentCloud
           @UserSig = params['UserSig']
           @TargetUserId = params['TargetUserId']
           @MaxIdleTime = params['MaxIdleTime']
+          @WelcomeMessage = params['WelcomeMessage']
         end
       end
 
@@ -590,7 +595,7 @@ module TencentCloud
         # @type StartTime: String
         # @param Status: 任务状态。有4个值：1、Idle表示任务未开始2、Preparing表示任务准备中3、InProgress表示任务正在运行4、Stopped表示任务已停止，正在清理资源中
         # @type Status: String
-        # @param TaskId: 唯一标识一次任务。
+        # @param TaskId: 任务的唯一标识，在启动任务时生成
         # @type TaskId: String
         # @param SessionId: 开启对话任务时填写的SessionId，如果没写则不返回。
         # @type SessionId: String
@@ -3511,36 +3516,45 @@ module TencentCloud
 
       # 语音识别使用的配置
       class RecognizeConfig < TencentCloud::Common::AbstractModel
-        # @param Language: 语音识别支持的语言，默认是"zh"。目前全量支持的语言如下，等号左面是语言英文名，右面是Language字段需要填写的值，该值遵循[ISO639](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)：
-        # 中文 Chinese = "zh"
-        # 中文繁体 Chinese_TW = "zh-TW"
-        # 中文方言 Chinese_DIALECT = "zh-dialect"
-        # English = "en"
-        # Vietnamese = "vi"
-        # Japanese = "ja"
-        # Korean = "ko"
-        # Indonesia = "id"
-        # Thai = "th"
-        # Portuguese = "pt"
-        # Turkish = "tr"
-        # Arabic = "ar"
-        # Spanish = "es"
-        # Hindi = "hi"
-        # French = "fr"
-        # Malay = "ms"
-        # Filipino = "fil"
-        # German = "de"
-        # Italian = "it"
-        # Russian = "ru"
+        # @param Language: 语音转文字支持识别的语言，默认是"zh" 中文
+        # 目前全量支持的语言如下，等号左面是语言英文名，右面是Language字段需要填写的值，该值遵循[ISO639](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)：
+        # 可通过购买「语音转文本时长包」解锁或领取包月套餐体验版解锁此功能。
+
+        # 语音转文本支持语言类型如下：
+        # - Chinese = "zh" # 中文
+        # - Chinese_TW = "zh-TW" # 中国台湾
+        # - English = "en" # 英语
+        # - Chinese_YUE = "zh-yue" # 中国粤语
+        # - Chinese_DIALECT = "zh-dialect" # 中国方言
+        # - English = "en" # 英语
+        # - Vietnamese = "vi" # 越南语
+        # - Japanese = "ja" # 日语
+        # - Korean = "ko" # 汉语
+        # - Indonesia = "id" # 印度尼西亚语
+        # - Thai = "th" # 泰语
+        # - Portuguese = "pt" # 葡萄牙语
+        # - Turkish = "tr" # 土耳其语
+        # - Arabic = "ar" # 阿拉伯语
+        # - Spanish = "es" # 西班牙语
+        # - Hindi = "hi" # 印地语
+        # - French = "fr" # 法语
+        # - Malay = "ms" # 马来语
+        # - Filipino = "fil" # 菲律宾语
+        # - German = "de" # 德语
+        # - Italian = "it" # 意大利语
+        # - Russian = "ru" # 俄语
 
         # 注意：
         # 如果缺少满足您需求的语言，请联系我们技术人员。
+        # 示例值：zh
         # @type Language: String
-        # @param AlternativeLanguage: 额外的可能替代语言，最多3个，仅高级版支持。Language指定中文方言时，不能设置该字段。
+        # @param AlternativeLanguage: 发起模糊识别额外可能替代语言类型,最多填写3种语言类型。
+        # 注：Language指定为"zh-dialect" # 中国方言 时，不支持模糊识别，该字段无效
         # @type AlternativeLanguage: Array
         # @param Model: 使用的模型，目前支持tencent和google，默认是tencent。
         # @type Model: String
         # @param TranslationLanguage: 翻译功能支持的语言，如果填写，则会启用翻译，不填则只会使用语音识别。
+        # 注：文本翻译功能需要购买「语音转文本时长包」解锁或领取包月套餐-体验版解。
         # 目前全量支持的语言如下，等号左面是语言英文名，右面是Language字段需要填写的值，该值遵循[ISO639](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)：
         # Chinese = "zh"
         # Chinese_TW = "zh-TW"
@@ -3564,6 +3578,7 @@ module TencentCloud
 
         # 注意：
         # 如果缺少满足您需求的语言，请联系我们技术人员。
+        # 示例值：en
         # @type TranslationLanguage: String
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
@@ -3839,7 +3854,8 @@ module TencentCloud
         # 如果缺少满足您需求的语言，请联系我们技术人员。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Language: String
-        # @param AlternativeLanguage: 额外识别可能替代语言,最多3个, 需高级版支持,Language指定方言时，不允许设置该字段
+        # @param AlternativeLanguage: 发起模糊识别额外可能替代语言类型,最多填写3种语言类型,
+        # 注：Language指定为"zh-dialect" # 中国方言 时，不支持模糊识别，该字段无效
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlternativeLanguage: Array
@@ -4009,17 +4025,21 @@ module TencentCloud
         # @type Text: String
         # @param Interrupt: 是否允许该文本打断机器人说话
         # @type Interrupt: Boolean
+        # @param StopAfterPlay: 播报完文本后，是否自动关闭对话任务
+        # @type StopAfterPlay: Boolean
 
-        attr_accessor :Text, :Interrupt
+        attr_accessor :Text, :Interrupt, :StopAfterPlay
 
-        def initialize(text=nil, interrupt=nil)
+        def initialize(text=nil, interrupt=nil, stopafterplay=nil)
           @Text = text
           @Interrupt = interrupt
+          @StopAfterPlay = stopafterplay
         end
 
         def deserialize(params)
           @Text = params['Text']
           @Interrupt = params['Interrupt']
+          @StopAfterPlay = params['StopAfterPlay']
         end
       end
 
@@ -4086,7 +4106,7 @@ module TencentCloud
         # @type RoomId: String
         # @param AgentConfig: 机器人参数
         # @type AgentConfig: :class:`Tencentcloud::Trtc.v20190722.models.AgentConfig`
-        # @param SessionId: 调用方传入的唯一Id，服务端用来去重。
+        # @param SessionId: 调用方传入的唯一Id，可用于客户侧防止重复发起任务以及可以通过该字段查询任务状态。
         # @type SessionId: String
         # @param RoomIdType: TRTC房间号的类型，0代表数字房间号，1代表字符串房间号。不填默认是数字房间号。
         # @type RoomIdType: Integer
@@ -4477,8 +4497,16 @@ module TencentCloud
         # @type SourceUrl: Array
         # @param SeekSecond: 指定视频从某个秒时间戳播放
         # @type SeekSecond: Integer
+        # @param AutoPush: 开启自动旁路推流，请确认控制台已经开启该功能。
+        # @type AutoPush: Boolean
+        # @param RepeatNum: 循环播放次数, 取值范围[-1, 1000],  默认1次。
+        #  - 0 无效值
+        #  - -1 循环播放, 需要主动调用停止接口或设置MaxDuration
+        # @type RepeatNum: Integer
+        # @param MaxDuration: 循环播放最大时长,仅支持RepeatNum设置-1时生效，取值范围[1, 10080]，单位分钟。
+        # @type MaxDuration: Integer
 
-        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration
         extend Gem::Deprecate
         deprecate :VideoEncodeParams, :none, 2024, 8
         deprecate :VideoEncodeParams=, :none, 2024, 8
@@ -4487,7 +4515,7 @@ module TencentCloud
         deprecate :SourceUrl, :none, 2024, 8
         deprecate :SourceUrl=, :none, 2024, 8
 
-        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil)
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RoomIdType = roomidtype
@@ -4499,6 +4527,9 @@ module TencentCloud
           @AudioEncodeParams = audioencodeparams
           @SourceUrl = sourceurl
           @SeekSecond = seeksecond
+          @AutoPush = autopush
+          @RepeatNum = repeatnum
+          @MaxDuration = maxduration
         end
 
         def deserialize(params)
@@ -4519,6 +4550,9 @@ module TencentCloud
           end
           @SourceUrl = params['SourceUrl']
           @SeekSecond = params['SeekSecond']
+          @AutoPush = params['AutoPush']
+          @RepeatNum = params['RepeatNum']
+          @MaxDuration = params['MaxDuration']
         end
       end
 

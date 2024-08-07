@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2024, 7
-        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 7
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 8
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 8
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -613,15 +613,19 @@ module TencentCloud
         # @param ClearDisasterRecoverGroupIds: 是否清空置放群组信息，非必填，默认为 false。
         # 填 true 代表清空置放群组信息，清空后基于此新创建的云主机将不指定任何置放群组。
         # @type ClearDisasterRecoverGroupIds: Boolean
+        # @param ClearInstanceTags: 是否清空实例标签列表，非必填，默认为 false。
+        # 填 true 代表清空实例标签列表，清空后基于此新创建的云主机将不会绑定列表中的标签。
+        # @type ClearInstanceTags: Boolean
 
-        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds
+        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds, :ClearInstanceTags
 
-        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil)
+        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil, clearinstancetags=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ClearDataDisks = cleardatadisks
           @ClearHostNameSettings = clearhostnamesettings
           @ClearInstanceNameSettings = clearinstancenamesettings
           @ClearDisasterRecoverGroupIds = cleardisasterrecovergroupids
+          @ClearInstanceTags = clearinstancetags
         end
 
         def deserialize(params)
@@ -630,6 +634,7 @@ module TencentCloud
           @ClearHostNameSettings = params['ClearHostNameSettings']
           @ClearInstanceNameSettings = params['ClearInstanceNameSettings']
           @ClearDisasterRecoverGroupIds = params['ClearDisasterRecoverGroupIds']
+          @ClearInstanceTags = params['ClearInstanceTags']
         end
       end
 
@@ -955,9 +960,9 @@ module TencentCloud
         # @param UserData: 经过 Base64 编码后的自定义数据，最大长度不超过16KB。
         # @type UserData: String
         # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
-        # <br><li>POSTPAID_BY_HOUR：按小时后付费
-        # <br><li>SPOTPAID：竞价付费
-        # <br><li>PREPAID：预付费，即包年包月
+        # <li>POSTPAID_BY_HOUR：按小时后付费</li>
+        # <li>SPOTPAID：竞价付费</li>
+        # <li>PREPAID：预付费，即包年包月</li>
         # @type InstanceChargeType: String
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
@@ -967,8 +972,8 @@ module TencentCloud
         # @param CamRoleName: CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
         # @type CamRoleName: String
         # @param InstanceTypesCheckPolicy: 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
-        # <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
-        # <br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
+        # <li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li>
+        # <li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li>
 
         # 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
         # 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
@@ -985,8 +990,8 @@ module TencentCloud
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
         # @param DiskTypePolicy: 云盘类型选择策略，默认取值 ORIGINAL，取值范围：
-        # <br><li>ORIGINAL：使用设置的云盘类型
-        # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
+        # <li>ORIGINAL：使用设置的云盘类型</li>
+        # <li>AUTOMATIC：自动选择当前可用的云盘类型</li>
         # @type DiskTypePolicy: String
         # @param HpcClusterId: 高性能计算集群ID。<br>
         # 注意：此字段默认为空。
@@ -2651,8 +2656,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2024, 7
-        deprecate :AutomationService=, :none, 2024, 7
+        deprecate :AutomationService, :none, 2024, 8
+        deprecate :AutomationService=, :none, 2024, 8
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -2867,27 +2872,36 @@ module TencentCloud
       # 云服务器主机名（HostName）的相关设置
       class HostNameSettings < TencentCloud::Common::AbstractModel
         # @param HostName: 云服务器的主机名。
-        # <br><li> 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
-        # <br><li> 不支持 Windows 实例。
-        # <br><li> 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
+        # <li> 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。</li>
+        # <li> 不支持 Windows 实例。</li>
+        # <li> 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param HostNameStyle: 云服务器主机名的风格，取值范围包括 ORIGINAL 和  UNIQUE，默认为 ORIGINAL。
-        # <br><li> ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
-        # <br><li> UNIQUE，入参所填的 HostName 相当于主机名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 HostName 可以保证唯一。
+        # <li> ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。</li>
+        # <li> UNIQUE，入参所填的 HostName 相当于主机名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 HostName 可以保证唯一。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNameStyle: String
+        # @param HostNameSuffix: 云服务器的主机名后缀。
+        # <li> 点号（.）和短横线（-）不能作为 HostNameSuffix 的首尾字符，不能连续使用。</li>
+        # <li> 不支持 Windows 实例。</li>
+        # <li>其他类型（Linux 等）实例：字符长度为[1, 37]，且与 HostName 的长度和不能超过 39，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li>
+        # 假设后缀名称为 suffix，原主机名为 test.0，最终主机名为 test.0.suffix。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostNameSuffix: String
 
-        attr_accessor :HostName, :HostNameStyle
+        attr_accessor :HostName, :HostNameStyle, :HostNameSuffix
 
-        def initialize(hostname=nil, hostnamestyle=nil)
+        def initialize(hostname=nil, hostnamestyle=nil, hostnamesuffix=nil)
           @HostName = hostname
           @HostNameStyle = hostnamestyle
+          @HostNameSuffix = hostnamesuffix
         end
 
         def deserialize(params)
           @HostName = params['HostName']
           @HostNameStyle = params['HostNameStyle']
+          @HostNameSuffix = params['HostNameSuffix']
         end
       end
 
@@ -3831,9 +3845,8 @@ module TencentCloud
         # InstanceType 指定单一实例类型，通过设置 InstanceTypes可以指定多实例类型，并使原有的InstanceType失效。
         # @type InstanceTypes: Array
         # @param InstanceTypesCheckPolicy: 实例类型校验策略，在实际修改 InstanceTypes 时发挥作用，取值包括 ALL 和 ANY，默认取值为ANY。
-        # <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
-        # <br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
-
+        # <li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li>
+        # <li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li>
         # 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
         # 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
         # @type InstanceTypesCheckPolicy: String
@@ -3848,9 +3861,9 @@ module TencentCloud
         # 当公网出带宽上限为0Mbps时，不支持修改为开通分配公网IP；相应的，当前为开通分配公网IP时，修改的公网出带宽上限值必须大于0Mbps。
         # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
         # @param InstanceChargeType: 实例计费类型。具体取值范围如下：
-        # <br><li>POSTPAID_BY_HOUR：按小时后付费
-        # <br><li>SPOTPAID：竞价付费
-        # <br><li>PREPAID：预付费，即包年包月
+        # <li>POSTPAID_BY_HOUR：按小时后付费</li>
+        # <li>SPOTPAID：竞价付费</li>
+        # <li>PREPAID：预付费，即包年包月</li>
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         # 若修改实例的付费模式为预付费，则该参数必传；从预付费修改为其他付费模式时，本字段原信息会自动丢弃。
@@ -3863,8 +3876,8 @@ module TencentCloud
         # 当修改本字段时，当前付费模式必须为竞价付费。
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
         # @param DiskTypePolicy: 云盘类型选择策略，取值范围：
-        # <br><li>ORIGINAL：使用设置的云盘类型。
-        # <br><li>AUTOMATIC：自动选择当前可用的云盘类型。
+        # <li>ORIGINAL：使用设置的云盘类型。</li>
+        # <li>AUTOMATIC：自动选择当前可用的云盘类型。</li>
         # @type DiskTypePolicy: String
         # @param SystemDisk: 实例系统盘配置信息。
         # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
@@ -3893,10 +3906,13 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
         # @param LoginSettings: 实例登录设置，包括密码、密钥或保持镜像的原始登录设置。<br>请注意，指定新的登录设置会覆盖原有登录设置。例如，如果您之前使用密码登录，使用该参数将登录设置修改为密钥，则原有密码被清除。
         # @type LoginSettings: :class:`Tencentcloud::As.v20180419.models.LoginSettings`
+        # @param InstanceTags: 实例标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。
+        # 该参数会覆盖原有的实例标签列表，如需新增标签，需将新标签和原有标签一并传入。
+        # @type InstanceTags: Array
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags
 
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3919,6 +3935,7 @@ module TencentCloud
           @IPv6InternetAccessible = ipv6internetaccessible
           @DisasterRecoverGroupIds = disasterrecovergroupids
           @LoginSettings = loginsettings
+          @InstanceTags = instancetags
         end
 
         def deserialize(params)
@@ -3977,6 +3994,14 @@ module TencentCloud
           unless params['LoginSettings'].nil?
             @LoginSettings = LoginSettings.new
             @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          unless params['InstanceTags'].nil?
+            @InstanceTags = []
+            params['InstanceTags'].each do |i|
+              instancetag_tmp = InstanceTag.new
+              instancetag_tmp.deserialize(i)
+              @InstanceTags << instancetag_tmp
+            end
           end
         end
       end

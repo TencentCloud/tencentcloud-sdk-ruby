@@ -1094,10 +1094,13 @@ module TencentCloud
         # @param IdNumber: ID号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdNumber: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone, :IdType, :IdNumber
+        attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone, :IdType, :IdNumber, :Tags
 
-        def initialize(companyname=nil, companyid=nil, companycountry=nil, companyprovince=nil, companycity=nil, companyaddress=nil, companyphone=nil, idtype=nil, idnumber=nil)
+        def initialize(companyname=nil, companyid=nil, companycountry=nil, companyprovince=nil, companycity=nil, companyaddress=nil, companyphone=nil, idtype=nil, idnumber=nil, tags=nil)
           @CompanyName = companyname
           @CompanyId = companyid
           @CompanyCountry = companycountry
@@ -1107,6 +1110,7 @@ module TencentCloud
           @CompanyPhone = companyphone
           @IdType = idtype
           @IdNumber = idnumber
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1119,6 +1123,14 @@ module TencentCloud
           @CompanyPhone = params['CompanyPhone']
           @IdType = params['IdType']
           @IdNumber = params['IdNumber']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
         end
       end
 
@@ -4230,10 +4242,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2024, 7
-        deprecate :Limit=, :none, 2024, 7
-        deprecate :Offset, :none, 2024, 7
-        deprecate :Offset=, :none, 2024, 7
+        deprecate :Limit, :none, 2024, 8
+        deprecate :Limit=, :none, 2024, 8
+        deprecate :Offset, :none, 2024, 8
+        deprecate :Offset=, :none, 2024, 8
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -4842,10 +4854,13 @@ module TencentCloud
         # @param StatusInfo: 具体审核状态信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusInfo: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Status, :ManagerFirstName, :ManagerLastName, :ManagerPosition, :ManagerPhone, :ManagerMail, :ManagerDepartment, :CreateTime, :DomainCount, :CertCount, :ManagerId, :ExpireTime, :SubmitAuditTime, :VerifyTime, :StatusInfo
+        attr_accessor :Status, :ManagerFirstName, :ManagerLastName, :ManagerPosition, :ManagerPhone, :ManagerMail, :ManagerDepartment, :CreateTime, :DomainCount, :CertCount, :ManagerId, :ExpireTime, :SubmitAuditTime, :VerifyTime, :StatusInfo, :Tags
 
-        def initialize(status=nil, managerfirstname=nil, managerlastname=nil, managerposition=nil, managerphone=nil, managermail=nil, managerdepartment=nil, createtime=nil, domaincount=nil, certcount=nil, managerid=nil, expiretime=nil, submitaudittime=nil, verifytime=nil, statusinfo=nil)
+        def initialize(status=nil, managerfirstname=nil, managerlastname=nil, managerposition=nil, managerphone=nil, managermail=nil, managerdepartment=nil, createtime=nil, domaincount=nil, certcount=nil, managerid=nil, expiretime=nil, submitaudittime=nil, verifytime=nil, statusinfo=nil, tags=nil)
           @Status = status
           @ManagerFirstName = managerfirstname
           @ManagerLastName = managerlastname
@@ -4861,6 +4876,7 @@ module TencentCloud
           @SubmitAuditTime = submitaudittime
           @VerifyTime = verifytime
           @StatusInfo = statusinfo
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4884,6 +4900,14 @@ module TencentCloud
               managerstatusinfo_tmp = ManagerStatusInfo.new
               managerstatusinfo_tmp.deserialize(i)
               @StatusInfo << managerstatusinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
             end
           end
         end
@@ -6478,8 +6502,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 7
-        deprecate :Regions=, :none, 2024, 7
+        deprecate :Regions, :none, 2024, 8
+        deprecate :Regions=, :none, 2024, 8
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

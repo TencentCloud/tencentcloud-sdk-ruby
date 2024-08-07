@@ -786,8 +786,10 @@ module TencentCloud
       # 扩缩容入参
       class HpaPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyType: 扩缩容类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param PolicyThreshold: 扩缩容阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyThreshold: Integer
 
         attr_accessor :PolicyType, :PolicyThreshold
@@ -1059,10 +1061,13 @@ module TencentCloud
         # @type LogTopicId: String
         # @param LogParseType: 解析类型：json ｜ line
         # @type LogParseType: String
+        # @param Tag: 服务标签, function: 函数托管
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -1083,6 +1088,7 @@ module TencentCloud
           @LogSetId = logsetid
           @LogTopicId = logtopicid
           @LogParseType = logparsetype
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -1113,6 +1119,7 @@ module TencentCloud
           @LogSetId = params['LogSetId']
           @LogTopicId = params['LogTopicId']
           @LogParseType = params['LogParseType']
+          @Tag = params['Tag']
         end
       end
 
