@@ -485,6 +485,54 @@ module TencentCloud
         end
       end
 
+      # CreateOrgServiceAssign请求参数结构体
+      class CreateOrgServiceAssignRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 集团服务ID。可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type ServiceId: Integer
+        # @param MemberUins: 委派管理员Uin列表。 最大长度20个
+        # @type MemberUins: Array
+        # @param ManagementScope: 委派管理员管理范围。 取值：1-全部成员 2-部分成员，默认值1
+        # @type ManagementScope: Integer
+        # @param ManagementScopeUins: 管理的成员Uin列表。ManagementScope为2时该参数有效
+        # @type ManagementScopeUins: Array
+        # @param ManagementScopeNodeIds: 管理的部门ID列表。ManagementScope为2时该参数有效
+        # @type ManagementScopeNodeIds: Array
+
+        attr_accessor :ServiceId, :MemberUins, :ManagementScope, :ManagementScopeUins, :ManagementScopeNodeIds
+
+        def initialize(serviceid=nil, memberuins=nil, managementscope=nil, managementscopeuins=nil, managementscopenodeids=nil)
+          @ServiceId = serviceid
+          @MemberUins = memberuins
+          @ManagementScope = managementscope
+          @ManagementScopeUins = managementscopeuins
+          @ManagementScopeNodeIds = managementscopenodeids
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @MemberUins = params['MemberUins']
+          @ManagementScope = params['ManagementScope']
+          @ManagementScopeUins = params['ManagementScopeUins']
+          @ManagementScopeNodeIds = params['ManagementScopeNodeIds']
+        end
+      end
+
+      # CreateOrgServiceAssign返回参数结构体
+      class CreateOrgServiceAssignResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationIdentity请求参数结构体
       class CreateOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
         # @param IdentityAliasName: 身份名称
@@ -846,6 +894,42 @@ module TencentCloud
 
       # DeleteAccount返回参数结构体
       class DeleteAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOrgServiceAssign请求参数结构体
+      class DeleteOrgServiceAssignRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 集团服务ID。可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type ServiceId: Integer
+        # @param MemberUin: 委派管理员Uin。
+        # @type MemberUin: Integer
+
+        attr_accessor :ServiceId, :MemberUin
+
+        def initialize(serviceid=nil, memberuin=nil)
+          @ServiceId = serviceid
+          @MemberUin = memberuin
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @MemberUin = params['MemberUin']
+        end
+      end
+
+      # DeleteOrgServiceAssign返回参数结构体
+      class DeleteOrgServiceAssignResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2605,6 +2689,63 @@ module TencentCloud
         end
       end
 
+      # ListOrgServiceAssignMember请求参数结构体
+      class ListOrgServiceAssignMemberRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
+        # @type Offset: Integer
+        # @param Limit: 限制数目。取值范围：1~50，默认值：10
+        # @type Limit: Integer
+        # @param ServiceId: 集团服务ID。可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type ServiceId: Integer
+
+        attr_accessor :Offset, :Limit, :ServiceId
+
+        def initialize(offset=nil, limit=nil, serviceid=nil)
+          @Offset = offset
+          @Limit = limit
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # ListOrgServiceAssignMember返回参数结构体
+      class ListOrgServiceAssignMemberResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Items: 委派管理员列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              organizationserviceassignmember_tmp = OrganizationServiceAssignMember.new
+              organizationserviceassignmember_tmp.deserialize(i)
+              @Items << organizationserviceassignmember_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListOrganizationIdentity请求参数结构体
       class ListOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
@@ -3183,6 +3324,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 部门主要信息
+      class NodeMainInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: 部门ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: Integer
+        # @param NodeName: 部门名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+
+        attr_accessor :NodeId, :NodeName
+
+        def initialize(nodeid=nil, nodename=nil)
+          @NodeId = nodeid
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeName = params['NodeName']
         end
       end
 
@@ -3807,6 +3970,77 @@ module TencentCloud
           @ServiceGrant = params['ServiceGrant']
           @GrantStatus = params['GrantStatus']
           @IsSetManagementScope = params['IsSetManagementScope']
+        end
+      end
+
+      # 集团服务委派成员信息
+      class OrganizationServiceAssignMember < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 集团服务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: Integer
+        # @param ProductName: 集团服务产品名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param MemberUin: 委派管理员Uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberUin: Integer
+        # @param MemberName: 委派管理员名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberName: String
+        # @param UsageStatus: 启用状态 。取值：0-服务无启用状态  1-已启用  2-未启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageStatus: Integer
+        # @param CreateTime: 委派时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ManagementScope: 委派管理员管理范围。取值: 1-全部成员  2-部分成员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagementScope: Integer
+        # @param ManagementScopeMembers: 管理的成员Uin列表。ManagementScope值为2时该参数有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagementScopeMembers: Array
+        # @param ManagementScopeNodes: 管理的部门ID列表。ManagementScope值为2时该参数有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagementScopeNodes: Array
+
+        attr_accessor :ServiceId, :ProductName, :MemberUin, :MemberName, :UsageStatus, :CreateTime, :ManagementScope, :ManagementScopeMembers, :ManagementScopeNodes
+
+        def initialize(serviceid=nil, productname=nil, memberuin=nil, membername=nil, usagestatus=nil, createtime=nil, managementscope=nil, managementscopemembers=nil, managementscopenodes=nil)
+          @ServiceId = serviceid
+          @ProductName = productname
+          @MemberUin = memberuin
+          @MemberName = membername
+          @UsageStatus = usagestatus
+          @CreateTime = createtime
+          @ManagementScope = managementscope
+          @ManagementScopeMembers = managementscopemembers
+          @ManagementScopeNodes = managementscopenodes
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ProductName = params['ProductName']
+          @MemberUin = params['MemberUin']
+          @MemberName = params['MemberName']
+          @UsageStatus = params['UsageStatus']
+          @CreateTime = params['CreateTime']
+          @ManagementScope = params['ManagementScope']
+          unless params['ManagementScopeMembers'].nil?
+            @ManagementScopeMembers = []
+            params['ManagementScopeMembers'].each do |i|
+              membermaininfo_tmp = MemberMainInfo.new
+              membermaininfo_tmp.deserialize(i)
+              @ManagementScopeMembers << membermaininfo_tmp
+            end
+          end
+          unless params['ManagementScopeNodes'].nil?
+            @ManagementScopeNodes = []
+            params['ManagementScopeNodes'].each do |i|
+              nodemaininfo_tmp = NodeMainInfo.new
+              nodemaininfo_tmp.deserialize(i)
+              @ManagementScopeNodes << nodemaininfo_tmp
+            end
+          end
         end
       end
 

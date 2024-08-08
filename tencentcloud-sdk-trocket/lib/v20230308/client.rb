@@ -464,6 +464,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定消费组堆积数。
+
+        # @param request: Request instance for DescribeConsumerLag.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerLagRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerLagResponse`
+        def DescribeConsumerLag(request)
+          body = send_request('DescribeConsumerLag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerLagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取实例列表，Filters参数使用说明如下：
         # 1. InstanceName, 名称模糊查询
         # 2. InstanceId，实例ID查询

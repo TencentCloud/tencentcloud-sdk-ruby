@@ -1054,11 +1054,14 @@ module TencentCloud
       class AddComplianceAssetPolicySetToWhitelistRequest < TencentCloud::Common::AbstractModel
         # @param AssetPolicySetList: 资产ID+检查项IDs. 列表
         # @type AssetPolicySetList: Array
+        # @param AssetType: 扫描资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :AssetPolicySetList
+        attr_accessor :AssetPolicySetList, :AssetType
 
-        def initialize(assetpolicysetlist=nil)
+        def initialize(assetpolicysetlist=nil, assettype=nil)
           @AssetPolicySetList = assetpolicysetlist
+          @AssetType = assettype
         end
 
         def deserialize(params)
@@ -1070,6 +1073,7 @@ module TencentCloud
               @AssetPolicySetList << complianceassetpolicysetitem_tmp
             end
           end
+          @AssetType = params['AssetType']
         end
       end
 
@@ -3113,10 +3117,19 @@ module TencentCloud
         # @param IgnoredPolicyItemCount: 已忽略的检查项总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoredPolicyItemCount: Integer
+        # @param TotalPolicyItemCount: 总检测项数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPolicyItemCount: Integer
+        # @param DetectHostCount: 检测主机数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectHostCount: Integer
+        # @param LeftTime: 当前任务剩余时间，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeftTime: Integer
 
-        attr_accessor :AssetType, :IsCustomerFirstCheck, :CheckStatus, :CheckProgress, :PassedPolicyItemCount, :FailedPolicyItemCount, :FailedCriticalPolicyItemCount, :FailedHighRiskPolicyItemCount, :FailedMediumRiskPolicyItemCount, :FailedLowRiskPolicyItemCount, :NoticePolicyItemCount, :PassedAssetCount, :FailedAssetCount, :AssetPassedRate, :ScanFailedAssetCount, :CheckCostTime, :LastCheckTime, :PeriodRule, :OpenPolicyItemCount, :IgnoredPolicyItemCount
+        attr_accessor :AssetType, :IsCustomerFirstCheck, :CheckStatus, :CheckProgress, :PassedPolicyItemCount, :FailedPolicyItemCount, :FailedCriticalPolicyItemCount, :FailedHighRiskPolicyItemCount, :FailedMediumRiskPolicyItemCount, :FailedLowRiskPolicyItemCount, :NoticePolicyItemCount, :PassedAssetCount, :FailedAssetCount, :AssetPassedRate, :ScanFailedAssetCount, :CheckCostTime, :LastCheckTime, :PeriodRule, :OpenPolicyItemCount, :IgnoredPolicyItemCount, :TotalPolicyItemCount, :DetectHostCount, :LeftTime
 
-        def initialize(assettype=nil, iscustomerfirstcheck=nil, checkstatus=nil, checkprogress=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, failedcriticalpolicyitemcount=nil, failedhighriskpolicyitemcount=nil, failedmediumriskpolicyitemcount=nil, failedlowriskpolicyitemcount=nil, noticepolicyitemcount=nil, passedassetcount=nil, failedassetcount=nil, assetpassedrate=nil, scanfailedassetcount=nil, checkcosttime=nil, lastchecktime=nil, periodrule=nil, openpolicyitemcount=nil, ignoredpolicyitemcount=nil)
+        def initialize(assettype=nil, iscustomerfirstcheck=nil, checkstatus=nil, checkprogress=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, failedcriticalpolicyitemcount=nil, failedhighriskpolicyitemcount=nil, failedmediumriskpolicyitemcount=nil, failedlowriskpolicyitemcount=nil, noticepolicyitemcount=nil, passedassetcount=nil, failedassetcount=nil, assetpassedrate=nil, scanfailedassetcount=nil, checkcosttime=nil, lastchecktime=nil, periodrule=nil, openpolicyitemcount=nil, ignoredpolicyitemcount=nil, totalpolicyitemcount=nil, detecthostcount=nil, lefttime=nil)
           @AssetType = assettype
           @IsCustomerFirstCheck = iscustomerfirstcheck
           @CheckStatus = checkstatus
@@ -3137,6 +3150,9 @@ module TencentCloud
           @PeriodRule = periodrule
           @OpenPolicyItemCount = openpolicyitemcount
           @IgnoredPolicyItemCount = ignoredpolicyitemcount
+          @TotalPolicyItemCount = totalpolicyitemcount
+          @DetectHostCount = detecthostcount
+          @LeftTime = lefttime
         end
 
         def deserialize(params)
@@ -3163,6 +3179,9 @@ module TencentCloud
           end
           @OpenPolicyItemCount = params['OpenPolicyItemCount']
           @IgnoredPolicyItemCount = params['IgnoredPolicyItemCount']
+          @TotalPolicyItemCount = params['TotalPolicyItemCount']
+          @DetectHostCount = params['DetectHostCount']
+          @LeftTime = params['LeftTime']
         end
       end
 
@@ -3493,10 +3512,15 @@ module TencentCloud
         # @param AuditProcedure: 检查项审计方法
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditProcedure: String
+        # @param IsEnable: 是否开启
+        # <li>0 关闭</li>
+        # <li>1 开启</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEnable: Integer
 
-        attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardName, :RiskLevel, :AssetType, :LastCheckTime, :CheckStatus, :CheckResult, :PassedAssetCount, :FailedAssetCount, :WhitelistId, :FixSuggestion, :BenchmarkStandardId, :ApplicableVersion, :Description, :AuditProcedure
+        attr_accessor :CustomerPolicyItemId, :BasePolicyItemId, :Name, :Category, :BenchmarkStandardName, :RiskLevel, :AssetType, :LastCheckTime, :CheckStatus, :CheckResult, :PassedAssetCount, :FailedAssetCount, :WhitelistId, :FixSuggestion, :BenchmarkStandardId, :ApplicableVersion, :Description, :AuditProcedure, :IsEnable
 
-        def initialize(customerpolicyitemid=nil, basepolicyitemid=nil, name=nil, category=nil, benchmarkstandardname=nil, risklevel=nil, assettype=nil, lastchecktime=nil, checkstatus=nil, checkresult=nil, passedassetcount=nil, failedassetcount=nil, whitelistid=nil, fixsuggestion=nil, benchmarkstandardid=nil, applicableversion=nil, description=nil, auditprocedure=nil)
+        def initialize(customerpolicyitemid=nil, basepolicyitemid=nil, name=nil, category=nil, benchmarkstandardname=nil, risklevel=nil, assettype=nil, lastchecktime=nil, checkstatus=nil, checkresult=nil, passedassetcount=nil, failedassetcount=nil, whitelistid=nil, fixsuggestion=nil, benchmarkstandardid=nil, applicableversion=nil, description=nil, auditprocedure=nil, isenable=nil)
           @CustomerPolicyItemId = customerpolicyitemid
           @BasePolicyItemId = basepolicyitemid
           @Name = name
@@ -3515,6 +3539,7 @@ module TencentCloud
           @ApplicableVersion = applicableversion
           @Description = description
           @AuditProcedure = auditprocedure
+          @IsEnable = isenable
         end
 
         def deserialize(params)
@@ -3536,6 +3561,7 @@ module TencentCloud
           @ApplicableVersion = params['ApplicableVersion']
           @Description = params['Description']
           @AuditProcedure = params['AuditProcedure']
+          @IsEnable = params['IsEnable']
         end
       end
 
@@ -3670,8 +3696,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2024, 7
-        deprecate :Component=, :none, 2024, 7
+        deprecate :Component, :none, 2024, 8
+        deprecate :Component=, :none, 2024, 8
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4124,8 +4150,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 7
-        deprecate :All=, :none, 2024, 7
+        deprecate :All, :none, 2024, 8
+        deprecate :All=, :none, 2024, 8
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4286,8 +4312,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 7
-        deprecate :All=, :none, 2024, 7
+        deprecate :All, :none, 2024, 8
+        deprecate :All=, :none, 2024, 8
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
           @Enable = enable
@@ -4361,8 +4387,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 7
-        deprecate :All=, :none, 2024, 7
+        deprecate :All, :none, 2024, 8
+        deprecate :All=, :none, 2024, 8
 
         def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil)
           @All = all
@@ -6448,17 +6474,21 @@ module TencentCloud
         # @type AssetItemId: Integer
         # @param CustomerPolicyItemIdSet: 需要忽略指定资产内的检查项ID列表
         # @type CustomerPolicyItemIdSet: Array
+        # @param AssetType: 扫描资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :AssetItemId, :CustomerPolicyItemIdSet
+        attr_accessor :AssetItemId, :CustomerPolicyItemIdSet, :AssetType
 
-        def initialize(assetitemid=nil, customerpolicyitemidset=nil)
+        def initialize(assetitemid=nil, customerpolicyitemidset=nil, assettype=nil)
           @AssetItemId = assetitemid
           @CustomerPolicyItemIdSet = customerpolicyitemidset
+          @AssetType = assettype
         end
 
         def deserialize(params)
           @AssetItemId = params['AssetItemId']
           @CustomerPolicyItemIdSet = params['CustomerPolicyItemIdSet']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -9517,8 +9547,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 7
-        deprecate :SentiveInfoCnt=, :none, 2024, 7
+        deprecate :SentiveInfoCnt, :none, 2024, 8
+        deprecate :SentiveInfoCnt=, :none, 2024, 8
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10615,8 +10645,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 7
-        deprecate :All=, :none, 2024, 7
+        deprecate :All, :none, 2024, 8
+        deprecate :All=, :none, 2024, 8
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, requestid=nil)
           @Enable = enable
@@ -11992,15 +12022,19 @@ module TencentCloud
       class DescribeComplianceAssetDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param CustomerAssetId: 客户资产ID。
         # @type CustomerAssetId: Integer
+        # @param AssetType: 资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :CustomerAssetId
+        attr_accessor :CustomerAssetId, :AssetType
 
-        def initialize(customerassetid=nil)
+        def initialize(customerassetid=nil, assettype=nil)
           @CustomerAssetId = customerassetid
+          @AssetType = assettype
         end
 
         def deserialize(params)
           @CustomerAssetId = params['CustomerAssetId']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -12135,16 +12169,19 @@ module TencentCloud
         # @param Limit: 要获取的数据量，默认为10，最大为100。
         # @type Limit: Integer
         # @param Filters: 过滤器列表。Name字段支持
-        # RiskLevel
+        # RiskLevel， AppId
         # @type Filters: Array
+        # @param AssetType: 资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :CustomerAssetId, :Offset, :Limit, :Filters
+        attr_accessor :CustomerAssetId, :Offset, :Limit, :Filters, :AssetType
 
-        def initialize(customerassetid=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(customerassetid=nil, offset=nil, limit=nil, filters=nil, assettype=nil)
           @CustomerAssetId = customerassetid
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @AssetType = assettype
         end
 
         def deserialize(params)
@@ -12159,6 +12196,7 @@ module TencentCloud
               @Filters << compliancefilters_tmp
             end
           end
+          @AssetType = params['AssetType']
         end
       end
 
@@ -12501,10 +12539,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 需要返回的数量，默认为10，最大值为100。
         # @type Limit: Integer
-        # @param Filters: 过滤条件。
-        # Name - String
-        # Name 可取值：ItemType, StandardId,  RiskLevel。
-        # 当为K8S资产时，还可取ClusterName。
+        # @param Filters: 过滤条件 <li>Name      string 检测项名字</li> <li>ItemType  string 检测项类型</li> <li>RiskLevel string 威胁等级</li> <li>IsOpen    int    是否开启</li>
         # @type Filters: Array
 
         attr_accessor :AssetType, :Offset, :Limit, :Filters
@@ -14084,8 +14119,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 7
-        deprecate :All=, :none, 2024, 7
+        deprecate :All, :none, 2024, 8
+        deprecate :All=, :none, 2024, 8
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, requestid=nil)
           @Enable = enable
@@ -22176,8 +22211,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2024, 7
-        deprecate :SentiveInfoCnt=, :none, 2024, 7
+        deprecate :SentiveInfoCnt, :none, 2024, 8
+        deprecate :SentiveInfoCnt=, :none, 2024, 8
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil)
           @ImageDigest = imagedigest
@@ -26838,17 +26873,21 @@ module TencentCloud
         # @type CustomerPolicyItemId: Integer
         # @param CustomerAssetIdSet: 要重新扫描的客户资产项ID的列表。
         # @type CustomerAssetIdSet: Array
+        # @param AssetType: 扫描资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :CustomerPolicyItemId, :CustomerAssetIdSet
+        attr_accessor :CustomerPolicyItemId, :CustomerAssetIdSet, :AssetType
 
-        def initialize(customerpolicyitemid=nil, customerassetidset=nil)
+        def initialize(customerpolicyitemid=nil, customerassetidset=nil, assettype=nil)
           @CustomerPolicyItemId = customerpolicyitemid
           @CustomerAssetIdSet = customerassetidset
+          @AssetType = assettype
         end
 
         def deserialize(params)
           @CustomerPolicyItemId = params['CustomerPolicyItemId']
           @CustomerAssetIdSet = params['CustomerAssetIdSet']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -26876,15 +26915,19 @@ module TencentCloud
       class ScanComplianceAssetsRequest < TencentCloud::Common::AbstractModel
         # @param CustomerAssetIdSet: 要重新扫描的客户资产项ID的列表。
         # @type CustomerAssetIdSet: Array
+        # @param AssetType: 扫描资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :CustomerAssetIdSet
+        attr_accessor :CustomerAssetIdSet, :AssetType
 
-        def initialize(customerassetidset=nil)
+        def initialize(customerassetidset=nil, assettype=nil)
           @CustomerAssetIdSet = customerassetidset
+          @AssetType = assettype
         end
 
         def deserialize(params)
           @CustomerAssetIdSet = params['CustomerAssetIdSet']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -26948,15 +26991,19 @@ module TencentCloud
       class ScanComplianceScanFailedAssetsRequest < TencentCloud::Common::AbstractModel
         # @param CustomerAssetIdSet: 要重新扫描的客户资产项ID的列表。
         # @type CustomerAssetIdSet: Array
+        # @param AssetType: 扫描资产类型 <li>ASSET_CONTAINER Docker容器</li> <li>ASSET_IMAGE Docker镜像</li> <li>ASSET_HOST Docker主机</li> <li>ASSET_K8S Kubernetes</li> <li>ASSET_CONTAINERD Containerd主机</li> <li>ASSET_CONTAINERD_CONTAINER Containerd容器</li>
+        # @type AssetType: String
 
-        attr_accessor :CustomerAssetIdSet
+        attr_accessor :CustomerAssetIdSet, :AssetType
 
-        def initialize(customerassetidset=nil)
+        def initialize(customerassetidset=nil, assettype=nil)
           @CustomerAssetIdSet = customerassetidset
+          @AssetType = assettype
         end
 
         def deserialize(params)
           @CustomerAssetIdSet = params['CustomerAssetIdSet']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -28131,8 +28178,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2024, 7
-        deprecate :All=, :none, 2024, 7
+        deprecate :All, :none, 2024, 8
+        deprecate :All=, :none, 2024, 8
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod

@@ -1301,6 +1301,101 @@ module TencentCloud
         end
       end
 
+      # 控制台分享配置
+      class ConsoleSharingConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 分享链接名称
+        # @type Name: String
+        # @param Type: 仪表盘: 1; 检索页:2
+        # @type Type: Integer
+        # @param DurationMilliseconds: 分享链接有效期，单位：毫秒，最长支持30天
+        # @type DurationMilliseconds: Integer
+        # @param Resources: 允许访问的资源列表
+        # @type Resources: Array
+        # @param Domain: 分享链接域名，可选范围
+        # - 公网匿名分享：填写clsshare.com
+        # - datasight内网匿名分享(若开启)：datasight内网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param VerifyCode: 验证码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyCode: String
+        # @param StartTime: 开始时间，支持绝对时间(13位时间戳字符串)/相对时间字符串
+        # @type StartTime: String
+        # @param EndTime: 结束时间，支持绝对时间(13位时间戳字符串)/相对时间字符串
+        # @type EndTime: String
+        # @param NowTime: 当StartTime/EndTime为相对时间时，基于NowTime计算绝对时间，默认为创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NowTime: Integer
+        # @param Params: params参数列表，当Type为2时支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param IsLockTimeRange: 是否允许访问者自行修改检索分析时间范围，默认不锁定
+        # @type IsLockTimeRange: Boolean
+        # @param IsLockQuery: 是否允许访问者自行修改日志检索语句。在检索页分享中表示检索语句锁定状态；在仪表盘中表示过滤变量锁定状态
+        # @type IsLockQuery: Boolean
+
+        attr_accessor :Name, :Type, :DurationMilliseconds, :Resources, :Domain, :VerifyCode, :StartTime, :EndTime, :NowTime, :Params, :IsLockTimeRange, :IsLockQuery
+
+        def initialize(name=nil, type=nil, durationmilliseconds=nil, resources=nil, domain=nil, verifycode=nil, starttime=nil, endtime=nil, nowtime=nil, params=nil, islocktimerange=nil, islockquery=nil)
+          @Name = name
+          @Type = type
+          @DurationMilliseconds = durationmilliseconds
+          @Resources = resources
+          @Domain = domain
+          @VerifyCode = verifycode
+          @StartTime = starttime
+          @EndTime = endtime
+          @NowTime = nowtime
+          @Params = params
+          @IsLockTimeRange = islocktimerange
+          @IsLockQuery = islockquery
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @DurationMilliseconds = params['DurationMilliseconds']
+          @Resources = params['Resources']
+          @Domain = params['Domain']
+          @VerifyCode = params['VerifyCode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NowTime = params['NowTime']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              consolesharingparam_tmp = ConsoleSharingParam.new
+              consolesharingparam_tmp.deserialize(i)
+              @Params << consolesharingparam_tmp
+            end
+          end
+          @IsLockTimeRange = params['IsLockTimeRange']
+          @IsLockQuery = params['IsLockQuery']
+        end
+      end
+
+      # 控制台分享链接params参数
+      class ConsoleSharingParam < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 投递任务出入参 Content
       class ConsumerContent < TencentCloud::Common::AbstractModel
         # @param EnableTag: 是否投递 TAG 信息。
@@ -2206,6 +2301,49 @@ module TencentCloud
 
         def deserialize(params)
           @ConfigId = params['ConfigId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConsoleSharing请求参数结构体
+      class CreateConsoleSharingRequest < TencentCloud::Common::AbstractModel
+        # @param SharingConfig: 免密分享配置
+        # @type SharingConfig: :class:`Tencentcloud::Cls.v20201016.models.ConsoleSharingConfig`
+
+        attr_accessor :SharingConfig
+
+        def initialize(sharingconfig=nil)
+          @SharingConfig = sharingconfig
+        end
+
+        def deserialize(params)
+          unless params['SharingConfig'].nil?
+            @SharingConfig = ConsoleSharingConfig.new
+            @SharingConfig.deserialize(params['SharingConfig'])
+          end
+        end
+      end
+
+      # CreateConsoleSharing返回参数结构体
+      class CreateConsoleSharingResponse < TencentCloud::Common::AbstractModel
+        # @param SharingUrl: 免密分享链接
+        # @type SharingUrl: String
+        # @param SharingId: 免密分享链接ID
+        # @type SharingId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SharingUrl, :SharingId, :RequestId
+
+        def initialize(sharingurl=nil, sharingid=nil, requestid=nil)
+          @SharingUrl = sharingurl
+          @SharingId = sharingid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SharingUrl = params['SharingUrl']
+          @SharingId = params['SharingId']
           @RequestId = params['RequestId']
         end
       end
@@ -3698,6 +3836,38 @@ module TencentCloud
         end
       end
 
+      # DeleteConsoleSharing请求参数结构体
+      class DeleteConsoleSharingRequest < TencentCloud::Common::AbstractModel
+        # @param SharingId: 免密分享Id
+        # @type SharingId: String
+
+        attr_accessor :SharingId
+
+        def initialize(sharingid=nil)
+          @SharingId = sharingid
+        end
+
+        def deserialize(params)
+          @SharingId = params['SharingId']
+        end
+      end
+
+      # DeleteConsoleSharing返回参数结构体
+      class DeleteConsoleSharingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteConsumer请求参数结构体
       class DeleteConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题 ID
@@ -4602,6 +4772,37 @@ module TencentCloud
               @Configs << configinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsoleSharingList请求参数结构体
+      class DescribeConsoleSharingListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeConsoleSharingList返回参数结构体
+      class DescribeConsoleSharingListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 分页的总数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RequestId
+
+        def initialize(totalcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -7894,6 +8095,42 @@ module TencentCloud
         end
       end
 
+      # ModifyConsoleSharing请求参数结构体
+      class ModifyConsoleSharingRequest < TencentCloud::Common::AbstractModel
+        # @param SharingId: 免密分享链接Id
+        # @type SharingId: String
+        # @param DurationMilliseconds: 指定分享链接有效期，单位：毫秒，最长可设定有效期为30天
+        # @type DurationMilliseconds: Integer
+
+        attr_accessor :SharingId, :DurationMilliseconds
+
+        def initialize(sharingid=nil, durationmilliseconds=nil)
+          @SharingId = sharingid
+          @DurationMilliseconds = durationmilliseconds
+        end
+
+        def deserialize(params)
+          @SharingId = params['SharingId']
+          @DurationMilliseconds = params['DurationMilliseconds']
+        end
+      end
+
+      # ModifyConsoleSharing返回参数结构体
+      class ModifyConsoleSharingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyConsumer请求参数结构体
       class ModifyConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题 ID
@@ -9157,8 +9394,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2024, 7
-        deprecate :DstTopicName=, :none, 2024, 7
+        deprecate :DstTopicName, :none, 2024, 8
+        deprecate :DstTopicName=, :none, 2024, 8
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -10397,8 +10634,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2024, 7
-        deprecate :HashKey=, :none, 2024, 7
+        deprecate :HashKey, :none, 2024, 8
+        deprecate :HashKey=, :none, 2024, 8
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid

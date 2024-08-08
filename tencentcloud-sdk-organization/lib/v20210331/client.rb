@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加集团服务委派管理员
+
+        # @param request: Request instance for CreateOrgServiceAssign.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CreateOrgServiceAssignRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CreateOrgServiceAssignResponse`
+        def CreateOrgServiceAssign(request)
+          body = send_request('CreateOrgServiceAssign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrgServiceAssignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建企业组织
 
         # @param request: Request instance for CreateOrganization.
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除集团服务委派管理员
+
+        # @param request: Request instance for DeleteOrgServiceAssign.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteOrgServiceAssignRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteOrgServiceAssignResponse`
+        def DeleteOrgServiceAssign(request)
+          body = send_request('DeleteOrgServiceAssign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOrgServiceAssignResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1215,6 +1263,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListNonCompliantResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取集团服务委派管理员列表
+
+        # @param request: Request instance for ListOrgServiceAssignMember.
+        # @type request: :class:`Tencentcloud::organization::V20210331::ListOrgServiceAssignMemberRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::ListOrgServiceAssignMemberResponse`
+        def ListOrgServiceAssignMember(request)
+          body = send_request('ListOrgServiceAssignMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListOrgServiceAssignMemberResponse.new
             model.deserialize(response['Response'])
             model
           else

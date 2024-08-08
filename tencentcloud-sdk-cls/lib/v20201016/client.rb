@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建控制台分享
+
+        # @param request: Request instance for CreateConsoleSharing.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateConsoleSharingRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateConsoleSharingResponse`
+        def CreateConsoleSharing(request)
+          body = send_request('CreateConsoleSharing', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConsoleSharingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建投递CKafka任务
 
         # @param request: Request instance for CreateConsumer.
@@ -725,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除控制台分享
+
+        # @param request: Request instance for DeleteConsoleSharing.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteConsoleSharingRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteConsoleSharingResponse`
+        def DeleteConsoleSharing(request)
+          body = send_request('DeleteConsoleSharing', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConsoleSharingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除投递配置
 
         # @param request: Request instance for DeleteConsumer.
@@ -1167,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量查询控制台分享列表
+
+        # @param request: Request instance for DescribeConsoleSharingList.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeConsoleSharingListRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeConsoleSharingListResponse`
+        def DescribeConsoleSharingList(request)
+          body = send_request('DescribeConsoleSharingList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsoleSharingListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1816,6 +1888,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyConfigExtraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改控制台分享，目前仅允许修改有效期
+
+        # @param request: Request instance for ModifyConsoleSharing.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyConsoleSharingRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyConsoleSharingResponse`
+        def ModifyConsoleSharing(request)
+          body = send_request('ModifyConsoleSharing', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConsoleSharingResponse.new
             model.deserialize(response['Response'])
             model
           else

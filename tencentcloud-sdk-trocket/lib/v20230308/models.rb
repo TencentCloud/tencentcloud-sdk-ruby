@@ -1057,6 +1057,54 @@ module TencentCloud
         end
       end
 
+      # DescribeConsumerLag请求参数结构体
+      class DescribeConsumerLagRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param Namespace: 命名空间，4.x集群必填
+        # @type Namespace: String
+        # @param SubscribeTopic: 订阅主题，不为空则查询订阅了该主题的消费组的堆积
+        # @type SubscribeTopic: String
+
+        attr_accessor :InstanceId, :ConsumerGroup, :Namespace, :SubscribeTopic
+
+        def initialize(instanceid=nil, consumergroup=nil, namespace=nil, subscribetopic=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+          @Namespace = namespace
+          @SubscribeTopic = subscribetopic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @Namespace = params['Namespace']
+          @SubscribeTopic = params['SubscribeTopic']
+        end
+      end
+
+      # DescribeConsumerLag返回参数结构体
+      class DescribeConsumerLagResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerLag: 堆积数
+        # @type ConsumerLag: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerLag, :RequestId
+
+        def initialize(consumerlag=nil, requestid=nil)
+          @ConsumerLag = consumerlag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsumerLag = params['ConsumerLag']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFusionInstanceList请求参数结构体
       class DescribeFusionInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 查询起始位置
