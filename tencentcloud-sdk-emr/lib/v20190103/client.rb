@@ -582,6 +582,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询服务进程信息
+
+        # @param request: Request instance for DescribeServiceNodeInfos.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeServiceNodeInfosRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeServiceNodeInfosResponse`
+        def DescribeServiceNodeInfos(request)
+          body = send_request('DescribeServiceNodeInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceNodeInfosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取trino查询结果
 
         # @param request: Request instance for DescribeTrinoQueryInfo.
@@ -641,6 +665,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeYarnApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看yarn资源调度的调度历史
+
+        # @param request: Request instance for DescribeYarnScheduleHistory.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeYarnScheduleHistoryRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeYarnScheduleHistoryResponse`
+        def DescribeYarnScheduleHistory(request)
+          body = send_request('DescribeYarnScheduleHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeYarnScheduleHistoryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -905,6 +953,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserManagerPwdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 部署生效
+
+        # @param request: Request instance for ModifyYarnDeploy.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyYarnDeployRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyYarnDeployResponse`
+        def ModifyYarnDeploy(request)
+          body = send_request('ModifyYarnDeploy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyYarnDeployResponse.new
             model.deserialize(response['Response'])
             model
           else

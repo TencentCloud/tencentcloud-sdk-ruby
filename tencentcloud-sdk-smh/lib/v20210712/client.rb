@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建用户。
+
+        # @param request: Request instance for CreateUser.
+        # @type request: :class:`Tencentcloud::smh::V20210712::CreateUserRequest`
+        # @rtype: :class:`Tencentcloud::smh::V20210712::CreateUserResponse`
+        def CreateUser(request)
+          body = send_request('CreateUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置用户生命周期。如果指定的用户已经设置了生命周期，重复调用此接口将覆盖已有的设置。也可用于清除指定用户的生命周期。
+
+        # @param request: Request instance for CreateUserLifecycle.
+        # @type request: :class:`Tencentcloud::smh::V20210712::CreateUserLifecycleRequest`
+        # @rtype: :class:`Tencentcloud::smh::V20210712::CreateUserLifecycleResponse`
+        def CreateUserLifecycle(request)
+          body = send_request('CreateUserLifecycle', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserLifecycleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除 PaaS 服务媒体库
 
         # @param request: Request instance for DeleteLibrary.
@@ -63,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLibraryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 一次删除多个用户。
+
+        # @param request: Request instance for DeleteUser.
+        # @type request: :class:`Tencentcloud::smh::V20210712::DeleteUserRequest`
+        # @rtype: :class:`Tencentcloud::smh::V20210712::DeleteUserResponse`
+        def DeleteUser(request)
+          body = send_request('DeleteUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -197,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户生命周期。
+
+        # @param request: Request instance for DescribeUserLifecycle.
+        # @type request: :class:`Tencentcloud::smh::V20210712::DescribeUserLifecycleRequest`
+        # @rtype: :class:`Tencentcloud::smh::V20210712::DescribeUserLifecycleResponse`
+        def DescribeUserLifecycle(request)
+          body = send_request('DescribeUserLifecycle', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserLifecycleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改 PaaS 服务媒体库配置项
 
         # @param request: Request instance for ModifyLibrary.
@@ -207,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLibraryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新用户信息。
+
+        # @param request: Request instance for ModifyUser.
+        # @type request: :class:`Tencentcloud::smh::V20210712::ModifyUserRequest`
+        # @rtype: :class:`Tencentcloud::smh::V20210712::ModifyUserResponse`
+        def ModifyUser(request)
+          body = send_request('ModifyUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserResponse.new
             model.deserialize(response['Response'])
             model
           else

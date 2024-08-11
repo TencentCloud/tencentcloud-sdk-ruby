@@ -547,6 +547,9 @@ module TencentCloud
         # @param Prompt: 对新背景的文本描述。
         # 最多支持256个 utf-8 字符，支持中、英文。
         # @type Prompt: String
+        # @param Product: 商品图中的商品主体名称。
+        # 建议说明商品主体，否则影响生成效果。
+        # @type Product: String
         # @param MaskUrl: 商品 Mask 图 Url，要求背景透明，保留商品主体。
         # 如果不传，将自动使用内置的商品分割算法得到 Mask。
         # 支持自定义上传 Mask，如果该参数不为空，则以实际上传的数据为准。
@@ -569,11 +572,12 @@ module TencentCloud
         # 生成图分辨率较大时建议选择 url，使用 base64 可能因图片过大导致返回失败。
         # @type RspImgType: String
 
-        attr_accessor :ProductUrl, :Prompt, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
+        attr_accessor :ProductUrl, :Prompt, :Product, :MaskUrl, :Resolution, :LogoAdd, :LogoParam, :RspImgType
 
-        def initialize(producturl=nil, prompt=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+        def initialize(producturl=nil, prompt=nil, product=nil, maskurl=nil, resolution=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
           @ProductUrl = producturl
           @Prompt = prompt
+          @Product = product
           @MaskUrl = maskurl
           @Resolution = resolution
           @LogoAdd = logoadd
@@ -584,6 +588,7 @@ module TencentCloud
         def deserialize(params)
           @ProductUrl = params['ProductUrl']
           @Prompt = params['Prompt']
+          @Product = params['Product']
           @MaskUrl = params['MaskUrl']
           @Resolution = params['Resolution']
           @LogoAdd = params['LogoAdd']

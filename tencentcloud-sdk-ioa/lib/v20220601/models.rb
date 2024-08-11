@@ -317,7 +317,8 @@ module TencentCloud
         # <li>PageNum 从1开始，小于等于0时使用默认参数。</li>
         # <li>PageSize 最大值5000，最好不超过100。</li>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param GroupId: 私有化默认分组id-名称-操作系统
+        # @param GroupId: 【和GroupIds必须有一个填写】设备分组id（需要和OsType匹配）
+        # id-名称-操作系统
         # 1	全网终端	Win
         # 2	未分组终端	Win
         # 30000000	服务器	Win
@@ -332,17 +333,17 @@ module TencentCloud
         # 40000501	全网终端	iOS
         # 40000502	未分组终端	iOS
         # @type GroupId: Integer
-        # @param OsType: 系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios   默认值0）
+        # @param OsType: 【必填】操作系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios   默认值0），需要和GroupId或者GroupIds匹配
         # @type OsType: Integer
-        # @param OnlineStatus: 在线状态 2 在线 0，1 离线
+        # @param OnlineStatus: 在线状态 （2表示在线，0或者1表示离线）
         # @type OnlineStatus: Integer
         # @param Filters: 过滤条件--兼容旧接口,参数同Condition
         # @type Filters: Array
         # @param Sort: 排序字段--兼容旧接口,参数同Condition
         # @type Sort: :class:`Tencentcloud::Ioa.v20220601.models.Sort`
-        # @param PageNum: 获取第几页--兼容旧接口,参数同Condition(只支持32位)
+        # @param PageNum: 获取第几页--兼容旧接口,参数同Condition
         # @type PageNum: Integer
-        # @param PageSize: 每页获取数--兼容旧接口,参数同Condition(只支持32位)
+        # @param PageSize: 每页获取数--兼容旧接口,参数同Condition
         # @type PageSize: Integer
         # @param Status: 授权状态 4未授权 5已授权
         # @type Status: Integer

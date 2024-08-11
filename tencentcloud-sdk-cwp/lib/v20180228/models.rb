@@ -34881,6 +34881,82 @@ module TencentCloud
         end
       end
 
+      # ModifyReverseShellRulesAggregation请求参数结构体
+      class ModifyReverseShellRulesAggregationRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID(新增时请留空)
+        # @type Id: Integer
+        # @param Uuids: 客户端ID数组
+        # @type Uuids: Array
+        # @param HostIp: 主机IP
+        # @type HostIp: String
+        # @param DestIp: 目标IP
+        # @type DestIp: String
+        # @param DestPort: 目标端口
+        # @type DestPort: String
+        # @param ProcessName: 进程名
+        # @type ProcessName: String
+        # @param IsGlobal: 是否全局规则(默认否)
+        # @type IsGlobal: Integer
+        # @param EventId: 事件列表和详情点击加白时关联的事件id (新增规则时请留空)
+        # @type EventId: Integer
+        # @param WhiteType: 加白方式， 0:常规加白 1:正则加白
+        # @type WhiteType: Integer
+        # @param RuleRegexp: 正则表达式
+        # @type RuleRegexp: String
+        # @param HandleHistory: 处理历史事件， 0:不处理 1:处理
+        # @type HandleHistory: Integer
+        # @param GroupID: 批次id
+        # @type GroupID: String
+
+        attr_accessor :Id, :Uuids, :HostIp, :DestIp, :DestPort, :ProcessName, :IsGlobal, :EventId, :WhiteType, :RuleRegexp, :HandleHistory, :GroupID
+
+        def initialize(id=nil, uuids=nil, hostip=nil, destip=nil, destport=nil, processname=nil, isglobal=nil, eventid=nil, whitetype=nil, ruleregexp=nil, handlehistory=nil, groupid=nil)
+          @Id = id
+          @Uuids = uuids
+          @HostIp = hostip
+          @DestIp = destip
+          @DestPort = destport
+          @ProcessName = processname
+          @IsGlobal = isglobal
+          @EventId = eventid
+          @WhiteType = whitetype
+          @RuleRegexp = ruleregexp
+          @HandleHistory = handlehistory
+          @GroupID = groupid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuids = params['Uuids']
+          @HostIp = params['HostIp']
+          @DestIp = params['DestIp']
+          @DestPort = params['DestPort']
+          @ProcessName = params['ProcessName']
+          @IsGlobal = params['IsGlobal']
+          @EventId = params['EventId']
+          @WhiteType = params['WhiteType']
+          @RuleRegexp = params['RuleRegexp']
+          @HandleHistory = params['HandleHistory']
+          @GroupID = params['GroupID']
+        end
+      end
+
+      # ModifyReverseShellRulesAggregation返回参数结构体
+      class ModifyReverseShellRulesAggregationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRiskDnsPolicy请求参数结构体
       class ModifyRiskDnsPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Data: 策略

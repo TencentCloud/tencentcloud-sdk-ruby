@@ -10003,16 +10003,26 @@ module TencentCloud
         # - 检索单个日志主题时请使用TopicId。
         # - TopicId 和 Topics 不能同时使用，在一次请求中有且只能选择一个。
         # @type Topics: Array
-        # @param Limit: 表示单次查询返回的原始日志条数，默认为100，最大值为1000，获取后续日志需使用Context参数
-        # 注意：
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
-        # @type Limit: Integer
         # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # 注意：
         # * 仅当检索分析语句(Query)不包含SQL时有效
         # * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
         # @type Sort: String
+        # @param Limit: 表示单次查询返回的原始日志条数，默认为100，最大值为1000。
+        # 注意：
+        # * 仅当检索分析语句(Query)不包含SQL时有效
+        # * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+
+        # 可通过两种方式获取后续更多日志：
+        # * Context:透传上次接口返回的Context值，获取后续更多日志，总计最多可获取1万条原始日志
+        # * Offset:偏移量，表示从第几行开始返回原始日志，无日志条数限制
+        # @type Limit: Integer
+        # @param Offset: 查询原始日志的偏移量，表示从第几行开始返回原始日志，默认为0。
+        # 注意：
+        # * 仅当检索分析语句(Query)不包含SQL时有效
+        # * 不能与Context参数同时使用
+        # * 仅适用于单日志主题检索
+        # @type Offset: Integer
         # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
         # 注意：
         # * 透传该参数时，请勿修改除该参数外的其它参数
@@ -10030,17 +10040,18 @@ module TencentCloud
         # 两种返回方式在编码格式上有少量区别，建议使用true
         # @type UseNewAnalysis: Boolean
 
-        attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Limit, :Sort, :Context, :SamplingRate, :UseNewAnalysis
+        attr_accessor :From, :To, :Query, :SyntaxRule, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis
 
-        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topicid=nil, topics=nil, limit=nil, sort=nil, context=nil, samplingrate=nil, usenewanalysis=nil)
+        def initialize(from=nil, to=nil, query=nil, syntaxrule=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil)
           @From = from
           @To = to
           @Query = query
           @SyntaxRule = syntaxrule
           @TopicId = topicid
           @Topics = topics
-          @Limit = limit
           @Sort = sort
+          @Limit = limit
+          @Offset = offset
           @Context = context
           @SamplingRate = samplingrate
           @UseNewAnalysis = usenewanalysis
@@ -10060,8 +10071,9 @@ module TencentCloud
               @Topics << multitopicsearchinformation_tmp
             end
           end
-          @Limit = params['Limit']
           @Sort = params['Sort']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Context = params['Context']
           @SamplingRate = params['SamplingRate']
           @UseNewAnalysis = params['UseNewAnalysis']

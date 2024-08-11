@@ -341,6 +341,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云护航计费产品已下线
+
         # 云护航服务使用完成后，该接口可以确认收货
 
         # @param request: Request instance for CreateCloudProtectServiceOrderRecord.
@@ -11274,6 +11276,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRansomDefenseStrategyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑反弹Shell规则（支持多服务器选择）
+
+        # @param request: Request instance for ModifyReverseShellRulesAggregation.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyReverseShellRulesAggregationRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyReverseShellRulesAggregationResponse`
+        def ModifyReverseShellRulesAggregation(request)
+          body = send_request('ModifyReverseShellRulesAggregation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReverseShellRulesAggregationResponse.new
             model.deserialize(response['Response'])
             model
           else

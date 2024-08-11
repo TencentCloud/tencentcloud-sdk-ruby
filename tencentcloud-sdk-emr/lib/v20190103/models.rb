@@ -2912,6 +2912,135 @@ module TencentCloud
         end
       end
 
+      # DescribeServiceNodeInfos请求参数结构体
+      class DescribeServiceNodeInfosRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param Limit: 页大小
+        # @type Limit: Integer
+        # @param SearchText: 搜索字段
+        # @type SearchText: String
+        # @param ConfStatus: '配置状态，-2：配置失败，-1:配置过期，1：已同步', -99 '全部'
+        # @type ConfStatus: Integer
+        # @param MaintainStateId: 过滤条件：维护状态
+        # 0代表所有状态
+        # 1代表正常模式
+        # 2代表维护模式
+        # @type MaintainStateId: Integer
+        # @param OperatorStateId: 过滤条件：操作状态
+        # 0代表所有状态
+        # 1代表已启动
+        # 2代表已停止
+        # @type OperatorStateId: Integer
+        # @param HealthStateId: 过滤条件：健康状态
+        # "0"代表不可用
+        # "1"代表良好
+        # "-2"代表未知
+        # "-99"代表所有
+        # "-3"代表存在隐患
+        # "-4"代表未探测
+        # @type HealthStateId: String
+        # @param ServiceName: 服务组件名称，都是大写比如YARN
+        # @type ServiceName: String
+        # @param NodeTypeName: 节点名称
+        # master
+        # core
+        # task
+        # common
+        # router
+        # @type NodeTypeName: String
+        # @param DataNodeMaintenanceId: 过滤条件：dn是否处于维护状态
+        # 0代表所有状态
+        # 1代表处于维护状态
+        # @type DataNodeMaintenanceId: Integer
+        # @param SearchFields: 支持搜索的字段
+        # @type SearchFields: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :SearchText, :ConfStatus, :MaintainStateId, :OperatorStateId, :HealthStateId, :ServiceName, :NodeTypeName, :DataNodeMaintenanceId, :SearchFields
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, searchtext=nil, confstatus=nil, maintainstateid=nil, operatorstateid=nil, healthstateid=nil, servicename=nil, nodetypename=nil, datanodemaintenanceid=nil, searchfields=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @SearchText = searchtext
+          @ConfStatus = confstatus
+          @MaintainStateId = maintainstateid
+          @OperatorStateId = operatorstateid
+          @HealthStateId = healthstateid
+          @ServiceName = servicename
+          @NodeTypeName = nodetypename
+          @DataNodeMaintenanceId = datanodemaintenanceid
+          @SearchFields = searchfields
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchText = params['SearchText']
+          @ConfStatus = params['ConfStatus']
+          @MaintainStateId = params['MaintainStateId']
+          @OperatorStateId = params['OperatorStateId']
+          @HealthStateId = params['HealthStateId']
+          @ServiceName = params['ServiceName']
+          @NodeTypeName = params['NodeTypeName']
+          @DataNodeMaintenanceId = params['DataNodeMaintenanceId']
+          unless params['SearchFields'].nil?
+            @SearchFields = []
+            params['SearchFields'].each do |i|
+              searchitem_tmp = SearchItem.new
+              searchitem_tmp.deserialize(i)
+              @SearchFields << searchitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeServiceNodeInfos返回参数结构体
+      class DescribeServiceNodeInfosResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCnt: Integer
+        # @param ServiceNodeList: 进程信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceNodeList: Array
+        # @param AliasInfo: 集群所有节点的别名序列化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasInfo: String
+        # @param SupportNodeFlagFilterList: 支持的FlagNode列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportNodeFlagFilterList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :ServiceNodeList, :AliasInfo, :SupportNodeFlagFilterList, :RequestId
+
+        def initialize(totalcnt=nil, servicenodelist=nil, aliasinfo=nil, supportnodeflagfilterlist=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @ServiceNodeList = servicenodelist
+          @AliasInfo = aliasinfo
+          @SupportNodeFlagFilterList = supportnodeflagfilterlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['ServiceNodeList'].nil?
+            @ServiceNodeList = []
+            params['ServiceNodeList'].each do |i|
+              servicenodedetailinfo_tmp = ServiceNodeDetailInfo.new
+              servicenodedetailinfo_tmp.deserialize(i)
+              @ServiceNodeList << servicenodedetailinfo_tmp
+            end
+          end
+          @AliasInfo = params['AliasInfo']
+          @SupportNodeFlagFilterList = params['SupportNodeFlagFilterList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrinoQueryInfo请求参数结构体
       class DescribeTrinoQueryInfoRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -3103,6 +3232,89 @@ module TencentCloud
               @Results << yarnapplication_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeYarnScheduleHistory请求参数结构体
+      class DescribeYarnScheduleHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Limit: 页码
+        # @type Limit: Integer
+        # @param Offset: 页大小
+        # @type Offset: Integer
+        # @param SchedulerType: 调度器类型 可选值为“ALL”，"Capacity Scheduler", "Fair Scheduler"
+        # @type SchedulerType: String
+        # @param TaskState: 任务类型0:等待执行，1:执行中，2：完成，-1:失败 ，-99:全部
+        # @type TaskState: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :SchedulerType, :TaskState
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, schedulertype=nil, taskstate=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @SchedulerType = schedulertype
+          @TaskState = taskstate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SchedulerType = params['SchedulerType']
+          @TaskState = params['TaskState']
+        end
+      end
+
+      # DescribeYarnScheduleHistory返回参数结构体
+      class DescribeYarnScheduleHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param Total: 任务详情总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param SchedulerNameList: 调度类型筛选列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulerNameList: Array
+        # @param StateList: 状态筛选列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :Total, :SchedulerNameList, :StateList, :RequestId
+
+        def initialize(tasks=nil, total=nil, schedulernamelist=nil, statelist=nil, requestid=nil)
+          @Tasks = tasks
+          @Total = total
+          @SchedulerNameList = schedulernamelist
+          @StateList = statelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              schedulertaskinfo_tmp = SchedulerTaskInfo.new
+              schedulertaskinfo_tmp.deserialize(i)
+              @Tasks << schedulertaskinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @SchedulerNameList = params['SchedulerNameList']
+          @StateList = params['StateList']
           @RequestId = params['RequestId']
         end
       end
@@ -3857,6 +4069,30 @@ module TencentCloud
           @CurrentNodes = params['CurrentNodes']
           @CurrentPostPaidNodes = params['CurrentPostPaidNodes']
           @CurrentSpotPaidNodes = params['CurrentSpotPaidNodes']
+        end
+      end
+
+      # 进程健康状态
+      class HealthStatus < TencentCloud::Common::AbstractModel
+        # @param Code: 运行正常
+        # @type Code: Integer
+        # @param Text: 运行正常
+        # @type Text: String
+        # @param Desc: 运行正常
+        # @type Desc: String
+
+        attr_accessor :Code, :Text, :Desc
+
+        def initialize(code=nil, text=nil, desc=nil)
+          @Code = code
+          @Text = text
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Text = params['Text']
+          @Desc = params['Desc']
         end
       end
 
@@ -5540,6 +5776,56 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyYarnDeploy请求参数结构体
+      class ModifyYarnDeployRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param NewScheduler: 切换后的调度器，可选值为fair、capacity
+        # @type NewScheduler: String
+        # @param OldScheduler: 现在使用的调度器，可选值为fair、capacity
+        # @type OldScheduler: String
+
+        attr_accessor :InstanceId, :NewScheduler, :OldScheduler
+
+        def initialize(instanceid=nil, newscheduler=nil, oldscheduler=nil)
+          @InstanceId = instanceid
+          @NewScheduler = newscheduler
+          @OldScheduler = oldscheduler
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NewScheduler = params['NewScheduler']
+          @OldScheduler = params['OldScheduler']
+        end
+      end
+
+      # ModifyYarnDeploy返回参数结构体
+      class ModifyYarnDeployResponse < TencentCloud::Common::AbstractModel
+        # @param IsDraft: 为false不点亮部署生效、重置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDraft: Boolean
+        # @param ErrorMsg: 错误信息，预留
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsDraft, :ErrorMsg, :RequestId
+
+        def initialize(isdraft=nil, errormsg=nil, requestid=nil)
+          @IsDraft = isdraft
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsDraft = params['IsDraft']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -7404,6 +7690,38 @@ module TencentCloud
         end
       end
 
+      # 组件重启策略
+      class RestartPolicy < TencentCloud::Common::AbstractModel
+        # @param Name: 重启策略名。
+        # @type Name: String
+        # @param DisplayName: 策略展示名称。
+        # @type DisplayName: String
+        # @param Describe: 策略描述。
+        # @type Describe: String
+        # @param BatchSizeRange: 批量重启节点数可选范围。
+        # @type BatchSizeRange: Array
+        # @param IsDefault: 是否是默认策略。
+        # @type IsDefault: String
+
+        attr_accessor :Name, :DisplayName, :Describe, :BatchSizeRange, :IsDefault
+
+        def initialize(name=nil, displayname=nil, describe=nil, batchsizerange=nil, isdefault=nil)
+          @Name = name
+          @DisplayName = displayname
+          @Describe = describe
+          @BatchSizeRange = batchsizerange
+          @IsDefault = isdefault
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DisplayName = params['DisplayName']
+          @Describe = params['Describe']
+          @BatchSizeRange = params['BatchSizeRange']
+          @IsDefault = params['IsDefault']
+        end
+      end
+
       # RunJobFlow请求参数结构体
       class RunJobFlowRequest < TencentCloud::Common::AbstractModel
         # @param Name: 作业名称。
@@ -7959,6 +8277,85 @@ module TencentCloud
         end
       end
 
+      # 调度任务详情
+      class SchedulerTaskDetail < TencentCloud::Common::AbstractModel
+        # @param Step: 步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: String
+        # @param Progress: 进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: String
+        # @param FailReason: 失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param JobId: 用来获取详情的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: Integer
+
+        attr_accessor :Step, :Progress, :FailReason, :JobId
+
+        def initialize(step=nil, progress=nil, failreason=nil, jobid=nil)
+          @Step = step
+          @Progress = progress
+          @FailReason = failreason
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @Step = params['Step']
+          @Progress = params['Progress']
+          @FailReason = params['FailReason']
+          @JobId = params['JobId']
+        end
+      end
+
+      # yarn资源调度历史
+      class SchedulerTaskInfo < TencentCloud::Common::AbstractModel
+        # @param SchedulerName: 调度器类型
+        # @type SchedulerName: String
+        # @param OperatorName: 操作类型
+        # @type OperatorName: String
+        # @param CreateTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param Details: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+
+        attr_accessor :SchedulerName, :OperatorName, :CreateTime, :EndTime, :State, :Details
+
+        def initialize(schedulername=nil, operatorname=nil, createtime=nil, endtime=nil, state=nil, details=nil)
+          @SchedulerName = schedulername
+          @OperatorName = operatorname
+          @CreateTime = createtime
+          @EndTime = endtime
+          @State = state
+          @Details = details
+        end
+
+        def deserialize(params)
+          @SchedulerName = params['SchedulerName']
+          @OperatorName = params['OperatorName']
+          @CreateTime = params['CreateTime']
+          @EndTime = params['EndTime']
+          @State = params['State']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              schedulertaskdetail_tmp = SchedulerTaskDetail.new
+              schedulertaskdetail_tmp.deserialize(i)
+              @Details << schedulertaskdetail_tmp
+            end
+          end
+        end
+      end
+
       # 添加引导操作
       class ScriptBootstrapActionConfig < TencentCloud::Common::AbstractModel
         # @param CosFileURI: 脚本的cos地址，参照格式：https://beijing-111111.cos.ap-beijing.myqcloud.com/data/test.sh查询cos存储桶列表：[存储桶列表](https://console.cloud.tencent.com/cos/bucket)
@@ -8040,6 +8437,182 @@ module TencentCloud
               @ComponentInfoList << componentbasicrestartinfo_tmp
             end
           end
+        end
+      end
+
+      # 服务进程信息
+      class ServiceNodeDetailInfo < TencentCloud::Common::AbstractModel
+        # @param Ip: 进程所在节点IP
+        # @type Ip: String
+        # @param NodeType: 进程类型
+        # @type NodeType: Integer
+        # @param NodeName: 进程名称
+        # @type NodeName: String
+        # @param ServiceStatus: 服务组件状态
+        # @type ServiceStatus: Integer
+        # @param MonitorStatus: 进程监控状态
+        # @type MonitorStatus: Integer
+        # @param Status: 服务组件状态
+        # @type Status: Integer
+        # @param PortsInfo: 进程端口信息
+        # @type PortsInfo: String
+        # @param LastRestartTime: 最近重启时间
+        # @type LastRestartTime: String
+        # @param Flag: 节点类型
+        # @type Flag: Integer
+        # @param ConfGroupId: 配置组ID
+        # @type ConfGroupId: Integer
+        # @param ConfGroupName: 配置组名称
+        # @type ConfGroupName: String
+        # @param ConfStatus: 节点是否需要重启
+        # @type ConfStatus: Integer
+        # @param ServiceDetectionInfo: 进程探测信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDetectionInfo: Array
+        # @param NodeFlagFilter: 节点类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeFlagFilter: String
+        # @param HealthStatus: 进程健康状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthStatus: :class:`Tencentcloud::Emr.v20190103.models.HealthStatus`
+        # @param IsSupportRoleMonitor: 角色是否支持监控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportRoleMonitor: Boolean
+        # @param StopPolicies: 暂停策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StopPolicies: Array
+        # @param HAState: 测试环境api强校验，现网没有，emrcc接口返回有。不加会报错
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HAState: String
+        # @param NameService: NameService名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameService: String
+        # @param IsFederation: 是否支持联邦
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFederation: Boolean
+        # @param DataNodeMaintenanceState: datanode是否是维护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataNodeMaintenanceState: Integer
+
+        attr_accessor :Ip, :NodeType, :NodeName, :ServiceStatus, :MonitorStatus, :Status, :PortsInfo, :LastRestartTime, :Flag, :ConfGroupId, :ConfGroupName, :ConfStatus, :ServiceDetectionInfo, :NodeFlagFilter, :HealthStatus, :IsSupportRoleMonitor, :StopPolicies, :HAState, :NameService, :IsFederation, :DataNodeMaintenanceState
+
+        def initialize(ip=nil, nodetype=nil, nodename=nil, servicestatus=nil, monitorstatus=nil, status=nil, portsinfo=nil, lastrestarttime=nil, flag=nil, confgroupid=nil, confgroupname=nil, confstatus=nil, servicedetectioninfo=nil, nodeflagfilter=nil, healthstatus=nil, issupportrolemonitor=nil, stoppolicies=nil, hastate=nil, nameservice=nil, isfederation=nil, datanodemaintenancestate=nil)
+          @Ip = ip
+          @NodeType = nodetype
+          @NodeName = nodename
+          @ServiceStatus = servicestatus
+          @MonitorStatus = monitorstatus
+          @Status = status
+          @PortsInfo = portsinfo
+          @LastRestartTime = lastrestarttime
+          @Flag = flag
+          @ConfGroupId = confgroupid
+          @ConfGroupName = confgroupname
+          @ConfStatus = confstatus
+          @ServiceDetectionInfo = servicedetectioninfo
+          @NodeFlagFilter = nodeflagfilter
+          @HealthStatus = healthstatus
+          @IsSupportRoleMonitor = issupportrolemonitor
+          @StopPolicies = stoppolicies
+          @HAState = hastate
+          @NameService = nameservice
+          @IsFederation = isfederation
+          @DataNodeMaintenanceState = datanodemaintenancestate
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @NodeType = params['NodeType']
+          @NodeName = params['NodeName']
+          @ServiceStatus = params['ServiceStatus']
+          @MonitorStatus = params['MonitorStatus']
+          @Status = params['Status']
+          @PortsInfo = params['PortsInfo']
+          @LastRestartTime = params['LastRestartTime']
+          @Flag = params['Flag']
+          @ConfGroupId = params['ConfGroupId']
+          @ConfGroupName = params['ConfGroupName']
+          @ConfStatus = params['ConfStatus']
+          unless params['ServiceDetectionInfo'].nil?
+            @ServiceDetectionInfo = []
+            params['ServiceDetectionInfo'].each do |i|
+              serviceprocessfunctioninfo_tmp = ServiceProcessFunctionInfo.new
+              serviceprocessfunctioninfo_tmp.deserialize(i)
+              @ServiceDetectionInfo << serviceprocessfunctioninfo_tmp
+            end
+          end
+          @NodeFlagFilter = params['NodeFlagFilter']
+          unless params['HealthStatus'].nil?
+            @HealthStatus = HealthStatus.new
+            @HealthStatus.deserialize(params['HealthStatus'])
+          end
+          @IsSupportRoleMonitor = params['IsSupportRoleMonitor']
+          unless params['StopPolicies'].nil?
+            @StopPolicies = []
+            params['StopPolicies'].each do |i|
+              restartpolicy_tmp = RestartPolicy.new
+              restartpolicy_tmp.deserialize(i)
+              @StopPolicies << restartpolicy_tmp
+            end
+          end
+          @HAState = params['HAState']
+          @NameService = params['NameService']
+          @IsFederation = params['IsFederation']
+          @DataNodeMaintenanceState = params['DataNodeMaintenanceState']
+        end
+      end
+
+      # 进程检测信息
+      class ServiceProcessFunctionInfo < TencentCloud::Common::AbstractModel
+        # @param DetectAlert: 探测告警级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectAlert: String
+        # @param DetetcFunctionKey: 探测功能描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetetcFunctionKey: String
+        # @param DetetcFunctionValue: 探测功能结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetetcFunctionValue: String
+        # @param DetetcTime: 探测结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetetcTime: String
+        # @param DetectFunctionKey: 探测功能描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectFunctionKey: String
+        # @param DetectFunctionValue: 探测功能结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectFunctionValue: String
+        # @param DetectTime: 探测结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectTime: String
+
+        attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
+        extend Gem::Deprecate
+        deprecate :DetetcFunctionKey, :none, 2024, 8
+        deprecate :DetetcFunctionKey=, :none, 2024, 8
+        deprecate :DetetcFunctionValue, :none, 2024, 8
+        deprecate :DetetcFunctionValue=, :none, 2024, 8
+        deprecate :DetetcTime, :none, 2024, 8
+        deprecate :DetetcTime=, :none, 2024, 8
+
+        def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
+          @DetectAlert = detectalert
+          @DetetcFunctionKey = detetcfunctionkey
+          @DetetcFunctionValue = detetcfunctionvalue
+          @DetetcTime = detetctime
+          @DetectFunctionKey = detectfunctionkey
+          @DetectFunctionValue = detectfunctionvalue
+          @DetectTime = detecttime
+        end
+
+        def deserialize(params)
+          @DetectAlert = params['DetectAlert']
+          @DetetcFunctionKey = params['DetetcFunctionKey']
+          @DetetcFunctionValue = params['DetetcFunctionValue']
+          @DetetcTime = params['DetetcTime']
+          @DetectFunctionKey = params['DetectFunctionKey']
+          @DetectFunctionValue = params['DetectFunctionValue']
+          @DetectTime = params['DetectTime']
         end
       end
 

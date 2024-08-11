@@ -72,6 +72,212 @@ module TencentCloud
         end
       end
 
+      # CreateUserLifecycle请求参数结构体
+      class CreateUserLifecycleRequest < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 媒体库 ID。
+        # @type LibraryId: String
+        # @param Filter: 用于唯一查找用户的过滤器。
+        # @type Filter: :class:`Tencentcloud::Smh.v20210712.models.UserFilter`
+        # @param IsolateTime: 隔离时间，当时间超过该时间点后，指定用户将无法登录，但他的账号信息、文件资源会被保留，可以通过再次调用本接口更新隔离时间，恢复登录。如不指定，则代表不设置隔离时间，且当前用户已经设置的隔离时间会被删除。
+        # @type IsolateTime: String
+        # @param DestroyTime: 销毁时间，当时间超过该时间点后，指定用户的资源将被销毁且无法通过再次调用此接口更新时间。如果同时指定了 IsolateTime 则不能早于 IsolateTime 指定的时间。如不指定，则代表不设置销毁时间，且当前用户已经设置的销毁时间会被删除。
+        # @type DestroyTime: String
+
+        attr_accessor :LibraryId, :Filter, :IsolateTime, :DestroyTime
+
+        def initialize(libraryid=nil, filter=nil, isolatetime=nil, destroytime=nil)
+          @LibraryId = libraryid
+          @Filter = filter
+          @IsolateTime = isolatetime
+          @DestroyTime = destroytime
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          unless params['Filter'].nil?
+            @Filter = UserFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @IsolateTime = params['IsolateTime']
+          @DestroyTime = params['DestroyTime']
+        end
+      end
+
+      # CreateUserLifecycle返回参数结构体
+      class CreateUserLifecycleResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param IsolateTime: 设置的隔离时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
+        # @param DestroyTime: 设置的销毁时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestroyTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserId, :IsolateTime, :DestroyTime, :RequestId
+
+        def initialize(userid=nil, isolatetime=nil, destroytime=nil, requestid=nil)
+          @UserId = userid
+          @IsolateTime = isolatetime
+          @DestroyTime = destroytime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @IsolateTime = params['IsolateTime']
+          @DestroyTime = params['DestroyTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUser请求参数结构体
+      class CreateUserRequest < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 媒体库 ID。
+        # @type LibraryId: String
+        # @param Role: 用户角色，当只支持 user。
+        # @type Role: String
+        # @param Enabled: 是否启用。
+        # @type Enabled: Boolean
+        # @param CountryCode: 手机号国家码，不传默认为 null，此时无法使用该登录方式进行登录。
+        # @type CountryCode: String
+        # @param PhoneNumber: 手机号码，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有手机号重复则报错。CountryCode 和 PhoneNumber 必须同时传入或同时不传入。
+        # @type PhoneNumber: String
+        # @param Email: 邮箱，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有邮箱重复则报错。
+        # @type Email: String
+        # @param AccountName: 账号，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有账号重复则报错。只能使用大小写字母、数字、中划线、下划线、小数点，长度不超过 50 个字符。
+        # @type AccountName: String
+        # @param AccountPassword: 密码的 base64 形式，不传默认为 null，此时无法使用该登录方式进行登录。AccountName 和 AccountPassword 必须同时传入或同时不传入。
+        # @type AccountPassword: String
+        # @param AccountUserId: 第三方账号 ID，用于关联第三方账号体系，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有第三方账号重复则报错。只能使用大小写字母、数字、中划线、下划线、小数点，长度不超过 200 个字符。
+        # @type AccountUserId: String
+        # @param Comment: 备注。不超过 255 个字符。
+        # @type Comment: String
+        # @param Nickname: 昵称。不超过 100 个字符。
+        # @type Nickname: String
+        # @param Avatar: 用户头像地址。不超过 255 个字符。
+        # @type Avatar: String
+        # @param Customize: 自定义信息。不超过 255 个字符。
+        # @type Customize: String
+
+        attr_accessor :LibraryId, :Role, :Enabled, :CountryCode, :PhoneNumber, :Email, :AccountName, :AccountPassword, :AccountUserId, :Comment, :Nickname, :Avatar, :Customize
+
+        def initialize(libraryid=nil, role=nil, enabled=nil, countrycode=nil, phonenumber=nil, email=nil, accountname=nil, accountpassword=nil, accountuserid=nil, comment=nil, nickname=nil, avatar=nil, customize=nil)
+          @LibraryId = libraryid
+          @Role = role
+          @Enabled = enabled
+          @CountryCode = countrycode
+          @PhoneNumber = phonenumber
+          @Email = email
+          @AccountName = accountname
+          @AccountPassword = accountpassword
+          @AccountUserId = accountuserid
+          @Comment = comment
+          @Nickname = nickname
+          @Avatar = avatar
+          @Customize = customize
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          @Role = params['Role']
+          @Enabled = params['Enabled']
+          @CountryCode = params['CountryCode']
+          @PhoneNumber = params['PhoneNumber']
+          @Email = params['Email']
+          @AccountName = params['AccountName']
+          @AccountPassword = params['AccountPassword']
+          @AccountUserId = params['AccountUserId']
+          @Comment = params['Comment']
+          @Nickname = params['Nickname']
+          @Avatar = params['Avatar']
+          @Customize = params['Customize']
+        end
+      end
+
+      # CreateUser返回参数结构体
+      class CreateUserResponse < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 用户所在的媒体库 ID。
+        # @type LibraryId: String
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param CreationTime: 用户创建时间。
+        # @type CreationTime: String
+        # @param Role: 用户角色.
+        # @type Role: String
+        # @param Enabled: 是否启用。
+        # @type Enabled: Boolean
+        # @param CountryCode: 手机号国家码，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountryCode: String
+        # @param PhoneNumber: 手机号码，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNumber: String
+        # @param Email: 邮箱，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param AccountName: 账号，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+        # @param AccountUserId: 第三方账号 ID，用于关联第三方账号体系，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountUserId: String
+        # @param Comment: 备注。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Nickname: 昵称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nickname: String
+        # @param Avatar: 用户头像地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Avatar: String
+        # @param Customize: 自定义信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Customize: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LibraryId, :UserId, :CreationTime, :Role, :Enabled, :CountryCode, :PhoneNumber, :Email, :AccountName, :AccountUserId, :Comment, :Nickname, :Avatar, :Customize, :RequestId
+
+        def initialize(libraryid=nil, userid=nil, creationtime=nil, role=nil, enabled=nil, countrycode=nil, phonenumber=nil, email=nil, accountname=nil, accountuserid=nil, comment=nil, nickname=nil, avatar=nil, customize=nil, requestid=nil)
+          @LibraryId = libraryid
+          @UserId = userid
+          @CreationTime = creationtime
+          @Role = role
+          @Enabled = enabled
+          @CountryCode = countrycode
+          @PhoneNumber = phonenumber
+          @Email = email
+          @AccountName = accountname
+          @AccountUserId = accountuserid
+          @Comment = comment
+          @Nickname = nickname
+          @Avatar = avatar
+          @Customize = customize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          @UserId = params['UserId']
+          @CreationTime = params['CreationTime']
+          @Role = params['Role']
+          @Enabled = params['Enabled']
+          @CountryCode = params['CountryCode']
+          @PhoneNumber = params['PhoneNumber']
+          @Email = params['Email']
+          @AccountName = params['AccountName']
+          @AccountUserId = params['AccountUserId']
+          @Comment = params['Comment']
+          @Nickname = params['Nickname']
+          @Avatar = params['Avatar']
+          @Customize = params['Customize']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLibrary请求参数结构体
       class DeleteLibraryRequest < TencentCloud::Common::AbstractModel
         # @param LibraryId: 媒体库 ID
@@ -90,6 +296,49 @@ module TencentCloud
 
       # DeleteLibrary返回参数结构体
       class DeleteLibraryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUser请求参数结构体
+      class DeleteUserRequest < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 媒体库 ID。
+        # @type LibraryId: String
+        # @param Filters: 用于唯一查找用户的过滤器数组，数组之间为 **或** 的关系，即满足任意一个过滤器的用户，都将被删除，单次传入的过滤器最多为 100 个。
+        # @type Filters: Array
+
+        attr_accessor :LibraryId, :Filters
+
+        def initialize(libraryid=nil, filters=nil)
+          @LibraryId = libraryid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              userfilter_tmp = UserFilter.new
+              userfilter_tmp.deserialize(i)
+              @Filters << userfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteUser返回参数结构体
+      class DeleteUserResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -384,6 +633,59 @@ module TencentCloud
         end
       end
 
+      # DescribeUserLifecycle请求参数结构体
+      class DescribeUserLifecycleRequest < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 媒体库 ID。
+        # @type LibraryId: String
+        # @param Filter: 用于唯一查找用户的过滤器。
+        # @type Filter: :class:`Tencentcloud::Smh.v20210712.models.UserFilter`
+
+        attr_accessor :LibraryId, :Filter
+
+        def initialize(libraryid=nil, filter=nil)
+          @LibraryId = libraryid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          unless params['Filter'].nil?
+            @Filter = UserFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeUserLifecycle返回参数结构体
+      class DescribeUserLifecycleResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param IsolateTime: 设置的隔离时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
+        # @param DestroyTime: 设置的销毁时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestroyTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserId, :IsolateTime, :DestroyTime, :RequestId
+
+        def initialize(userid=nil, isolatetime=nil, destroytime=nil, requestid=nil)
+          @UserId = userid
+          @IsolateTime = isolatetime
+          @DestroyTime = destroytime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @IsolateTime = params['IsolateTime']
+          @DestroyTime = params['DestroyTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 官方云盘实例信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -643,6 +945,154 @@ module TencentCloud
         end
       end
 
+      # ModifyUser请求参数结构体
+      class ModifyUserRequest < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 媒体库 ID。
+        # @type LibraryId: String
+        # @param Filter: 用于唯一查找用户的过滤器。
+        # @type Filter: :class:`Tencentcloud::Smh.v20210712.models.UserFilter`
+        # @param Role: 用户角色，当只支持 user。
+        # @type Role: String
+        # @param Enabled: 是否启用。
+        # @type Enabled: Boolean
+        # @param CountryCode: 手机号国家码，不传默认为 null，此时无法使用该登录方式进行登录。
+        # @type CountryCode: String
+        # @param PhoneNumber: 手机号码，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有手机号重复则报错。CountryCode 和 PhoneNumber 必须同时传入或同时不传入。
+        # @type PhoneNumber: String
+        # @param Email: 邮箱，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有邮箱重复则报错。
+        # @type Email: String
+        # @param AccountName: 账号，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有账号重复则报错。只能使用大小写字母、数字、中划线、下划线、小数点，长度不超过 50 个字符。
+        # @type AccountName: String
+        # @param AccountPassword: 密码的 base64 形式，不传默认为 null，此时无法使用该登录方式进行登录。AccountName 和 AccountPassword 必须同时传入或同时不传入。
+        # @type AccountPassword: String
+        # @param AccountUserId: 第三方账号 ID，用于关联第三方账号体系，不传默认为 null，此时无法使用该登录方式进行登录。如果与同一媒体库内已有第三方账号重复则报错。只能使用大小写字母、数字、中划线、下划线、小数点，长度不超过 200 个字符。
+        # @type AccountUserId: String
+        # @param Comment: 备注。不超过 255 个字符。
+        # @type Comment: String
+        # @param Nickname: 昵称。不超过 100 个字符。
+        # @type Nickname: String
+        # @param Avatar: 用户头像地址。不超过 255 个字符。
+        # @type Avatar: String
+        # @param Customize: 自定义信息。不超过 255 个字符。
+        # @type Customize: String
+
+        attr_accessor :LibraryId, :Filter, :Role, :Enabled, :CountryCode, :PhoneNumber, :Email, :AccountName, :AccountPassword, :AccountUserId, :Comment, :Nickname, :Avatar, :Customize
+
+        def initialize(libraryid=nil, filter=nil, role=nil, enabled=nil, countrycode=nil, phonenumber=nil, email=nil, accountname=nil, accountpassword=nil, accountuserid=nil, comment=nil, nickname=nil, avatar=nil, customize=nil)
+          @LibraryId = libraryid
+          @Filter = filter
+          @Role = role
+          @Enabled = enabled
+          @CountryCode = countrycode
+          @PhoneNumber = phonenumber
+          @Email = email
+          @AccountName = accountname
+          @AccountPassword = accountpassword
+          @AccountUserId = accountuserid
+          @Comment = comment
+          @Nickname = nickname
+          @Avatar = avatar
+          @Customize = customize
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          unless params['Filter'].nil?
+            @Filter = UserFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @Role = params['Role']
+          @Enabled = params['Enabled']
+          @CountryCode = params['CountryCode']
+          @PhoneNumber = params['PhoneNumber']
+          @Email = params['Email']
+          @AccountName = params['AccountName']
+          @AccountPassword = params['AccountPassword']
+          @AccountUserId = params['AccountUserId']
+          @Comment = params['Comment']
+          @Nickname = params['Nickname']
+          @Avatar = params['Avatar']
+          @Customize = params['Customize']
+        end
+      end
+
+      # ModifyUser返回参数结构体
+      class ModifyUserResponse < TencentCloud::Common::AbstractModel
+        # @param LibraryId: 用户所在的媒体库 ID。
+        # @type LibraryId: String
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param CreationTime: 用户创建时间。
+        # @type CreationTime: String
+        # @param Role: 用户角色.
+        # @type Role: String
+        # @param Enabled: 是否启用。
+        # @type Enabled: Boolean
+        # @param CountryCode: 手机号国家码，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountryCode: String
+        # @param PhoneNumber: 手机号码，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNumber: String
+        # @param Email: 邮箱，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+        # @param AccountName: 账号，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+        # @param AccountUserId: 第三方账号 ID，用于关联第三方账号体系，如未指定则为 null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountUserId: String
+        # @param Comment: 备注。
+        # @type Comment: String
+        # @param Nickname: 昵称。
+        # @type Nickname: String
+        # @param Avatar: 用户头像地址。
+        # @type Avatar: String
+        # @param Customize: 自定义信息。
+        # @type Customize: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LibraryId, :UserId, :CreationTime, :Role, :Enabled, :CountryCode, :PhoneNumber, :Email, :AccountName, :AccountUserId, :Comment, :Nickname, :Avatar, :Customize, :RequestId
+
+        def initialize(libraryid=nil, userid=nil, creationtime=nil, role=nil, enabled=nil, countrycode=nil, phonenumber=nil, email=nil, accountname=nil, accountuserid=nil, comment=nil, nickname=nil, avatar=nil, customize=nil, requestid=nil)
+          @LibraryId = libraryid
+          @UserId = userid
+          @CreationTime = creationtime
+          @Role = role
+          @Enabled = enabled
+          @CountryCode = countrycode
+          @PhoneNumber = phonenumber
+          @Email = email
+          @AccountName = accountname
+          @AccountUserId = accountuserid
+          @Comment = comment
+          @Nickname = nickname
+          @Avatar = avatar
+          @Customize = customize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          @UserId = params['UserId']
+          @CreationTime = params['CreationTime']
+          @Role = params['Role']
+          @Enabled = params['Enabled']
+          @CountryCode = params['CountryCode']
+          @PhoneNumber = params['PhoneNumber']
+          @Email = params['Email']
+          @AccountName = params['AccountName']
+          @AccountUserId = params['AccountUserId']
+          @Comment = params['Comment']
+          @Nickname = params['Nickname']
+          @Avatar = params['Avatar']
+          @Customize = params['Customize']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SendSmsCode请求参数结构体
       class SendSmsCodeRequest < TencentCloud::Common::AbstractModel
         # @param Purpose: 验证码目的，当前支持换绑超级管理员账号， BindSuperAdmin；体验版企业升级，ChannelUpdateVerify等
@@ -738,6 +1188,31 @@ module TencentCloud
           @UsedPercentage = params['UsedPercentage']
           @EffectiveTime = params['EffectiveTime']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 用于唯一查找用户的过滤器。
+      class UserFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤类型，当前支持：UserId、PhoneNumber、Email、AccountName、AccountUserId。
+        # @type Key: String
+        # @param Value: 过滤值，只支持完全匹配，不支持模糊搜索。针对不同的 Key，Value 的取值如下：
+        # UserId: user12345678abcde
+        # PhoneNumber: +86-13800000000（格式为：{CountryCode}-{PhoneNumber}）
+        # Email: admin@mail.foobar.com
+        # AccountName: account_name
+        # AccountUserId: x53mYVqykfPqTCqekbNwwa4aXk4
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

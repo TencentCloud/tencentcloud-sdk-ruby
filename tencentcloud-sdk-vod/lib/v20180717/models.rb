@@ -1983,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2024, 7
-        deprecate :SegmentSet=, :none, 2024, 7
+        deprecate :SegmentSet, :none, 2024, 8
+        deprecate :SegmentSet=, :none, 2024, 8
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -9809,8 +9809,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2024, 7
-        deprecate :DomainName=, :none, 2024, 7
+        deprecate :DomainName, :none, 2024, 8
+        deprecate :DomainName=, :none, 2024, 8
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -12727,15 +12727,20 @@ module TencentCloud
       class EditMediaTEHDConfig < TencentCloud::Common::AbstractModel
         # @param Type: 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
         # @type Type: String
+        # @param MaxVideoBitrate: 视频码率上限，当 Type 指定了极速高清类型时有效。
+        # 不填或填0表示不设视频码率上限。
+        # @type MaxVideoBitrate: Integer
 
-        attr_accessor :Type
+        attr_accessor :Type, :MaxVideoBitrate
 
-        def initialize(type=nil)
+        def initialize(type=nil, maxvideobitrate=nil)
           @Type = type
+          @MaxVideoBitrate = maxvideobitrate
         end
 
         def deserialize(params)
           @Type = params['Type']
+          @MaxVideoBitrate = params['MaxVideoBitrate']
         end
       end
 
@@ -17341,8 +17346,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2024, 7
-        deprecate :Transitions=, :none, 2024, 7
+        deprecate :Transitions, :none, 2024, 8
+        deprecate :Transitions=, :none, 2024, 8
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -21253,8 +21258,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2024, 7
-        deprecate :ProductInstanceResourceSet=, :none, 2024, 7
+        deprecate :ProductInstanceResourceSet, :none, 2024, 8
+        deprecate :ProductInstanceResourceSet=, :none, 2024, 8
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
