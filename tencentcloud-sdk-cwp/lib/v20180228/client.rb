@@ -4210,6 +4210,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云护航计费产品已下线
+
         # 查询云护航服务订单列表
 
         # @param request: Request instance for DescribeCloudProtectServiceOrderList.

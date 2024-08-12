@@ -1849,10 +1849,13 @@ module TencentCloud
         # @param DirectConnectAccelerateChannelFlag: 是否开启二层云联网通道。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectConnectAccelerateChannelFlag: Boolean
+        # @param Ipv6Flag: 是否支持ipv6路由表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6Flag: String
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1873,6 +1876,7 @@ module TencentCloud
           @TrafficMarkingPolicyFlag = trafficmarkingpolicyflag
           @RouteSelectPolicyFlag = routeselectpolicyflag
           @DirectConnectAccelerateChannelFlag = directconnectacceleratechannelflag
+          @Ipv6Flag = ipv6flag
         end
 
         def deserialize(params)
@@ -1903,6 +1907,7 @@ module TencentCloud
           @TrafficMarkingPolicyFlag = params['TrafficMarkingPolicyFlag']
           @RouteSelectPolicyFlag = params['RouteSelectPolicyFlag']
           @DirectConnectAccelerateChannelFlag = params['DirectConnectAccelerateChannelFlag']
+          @Ipv6Flag = params['Ipv6Flag']
         end
       end
 
@@ -2340,10 +2345,16 @@ module TencentCloud
         # @type RoutePriority: Integer
         # @param InstanceExtraName: 下一跳扩展名称（关联实例的扩展名称）
         # @type InstanceExtraName: String
+        # @param AliasType: 实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasType: String
+        # @param AliasInstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasInstanceId: String
 
-        attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin, :ExtraState, :IsBgp, :RoutePriority, :InstanceExtraName
+        attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin, :ExtraState, :IsBgp, :RoutePriority, :InstanceExtraName, :AliasType, :AliasInstanceId
 
-        def initialize(routeid=nil, destinationcidrblock=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, updatetime=nil, enabled=nil, instanceuin=nil, extrastate=nil, isbgp=nil, routepriority=nil, instanceextraname=nil)
+        def initialize(routeid=nil, destinationcidrblock=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, updatetime=nil, enabled=nil, instanceuin=nil, extrastate=nil, isbgp=nil, routepriority=nil, instanceextraname=nil, aliastype=nil, aliasinstanceid=nil)
           @RouteId = routeid
           @DestinationCidrBlock = destinationcidrblock
           @InstanceType = instancetype
@@ -2357,6 +2368,8 @@ module TencentCloud
           @IsBgp = isbgp
           @RoutePriority = routepriority
           @InstanceExtraName = instanceextraname
+          @AliasType = aliastype
+          @AliasInstanceId = aliasinstanceid
         end
 
         def deserialize(params)
@@ -2373,6 +2386,8 @@ module TencentCloud
           @IsBgp = params['IsBgp']
           @RoutePriority = params['RoutePriority']
           @InstanceExtraName = params['InstanceExtraName']
+          @AliasType = params['AliasType']
+          @AliasInstanceId = params['AliasInstanceId']
         end
       end
 
