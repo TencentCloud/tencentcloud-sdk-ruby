@@ -5040,6 +5040,67 @@ module TencentCloud
         end
       end
 
+      # CreateBatchInitOrganizationUrl请求参数结构体
+      class CreateBatchInitOrganizationUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.AppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param OperateTypes: 初始化操作类型
+        # <ul><li>CREATE_SEAL : 创建印章</li>
+        # <li>OPEN_AUTO_SIGN :开通企业自动签署</li></ul>
+        # @type OperateTypes: Array
+        # @param ProxyOrganizationOpenIds: 批量操作的企业列表在第三方平台的企业Id列表，即ProxyOrganizationOpenId列表,最大支持50个
+        # @type ProxyOrganizationOpenIds: Array
+
+        attr_accessor :Agent, :OperateTypes, :ProxyOrganizationOpenIds
+
+        def initialize(agent=nil, operatetypes=nil, proxyorganizationopenids=nil)
+          @Agent = agent
+          @OperateTypes = operatetypes
+          @ProxyOrganizationOpenIds = proxyorganizationopenids
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @OperateTypes = params['OperateTypes']
+          @ProxyOrganizationOpenIds = params['ProxyOrganizationOpenIds']
+        end
+      end
+
+      # CreateBatchInitOrganizationUrl返回参数结构体
+      class CreateBatchInitOrganizationUrlResponse < TencentCloud::Common::AbstractModel
+        # @param MiniAppPath: 小程序路径
+        # @type MiniAppPath: String
+        # @param OperateLongUrl: 操作长链
+        # @type OperateLongUrl: String
+        # @param OperateShortUrl: 操作短链
+        # @type OperateShortUrl: String
+        # @param QRCodeUrl: 操作二维码
+        # @type QRCodeUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MiniAppPath, :OperateLongUrl, :OperateShortUrl, :QRCodeUrl, :RequestId
+
+        def initialize(miniapppath=nil, operatelongurl=nil, operateshorturl=nil, qrcodeurl=nil, requestid=nil)
+          @MiniAppPath = miniapppath
+          @OperateLongUrl = operatelongurl
+          @OperateShortUrl = operateshorturl
+          @QRCodeUrl = qrcodeurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MiniAppPath = params['MiniAppPath']
+          @OperateLongUrl = params['OperateLongUrl']
+          @OperateShortUrl = params['OperateShortUrl']
+          @QRCodeUrl = params['QRCodeUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBatchOrganizationRegistrationTasks请求参数结构体
       class CreateBatchOrganizationRegistrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。

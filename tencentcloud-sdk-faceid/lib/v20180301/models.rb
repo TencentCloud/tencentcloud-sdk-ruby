@@ -177,6 +177,7 @@ module TencentCloud
         # '-5': '手机号码不合法'
         # '-18': '验证中心服务繁忙'
         # '-19': '验证次数超限，请次日重试'
+        # '-20': '该证件号暂不支持核验，当前仅支持二代身份证'
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
@@ -258,6 +259,7 @@ module TencentCloud
         # '-4': '银行卡号码有误'
         # '-17': '验证中心服务繁忙'
         # '-18': '验证次数超限，请次日重试'
+        # '-19': '该证件号暂不支持核验，当前仅支持二代身份证'
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
@@ -304,8 +306,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 7
-        deprecate :Idcard=, :none, 2024, 7
+        deprecate :Idcard, :none, 2024, 8
+        deprecate :Idcard=, :none, 2024, 8
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -2802,8 +2804,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 7
-        deprecate :AsrResultSimilarity=, :none, 2024, 7
+        deprecate :AsrResultSimilarity, :none, 2024, 8
+        deprecate :AsrResultSimilarity=, :none, 2024, 8
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

@@ -1403,6 +1403,76 @@ module TencentCloud
         end
       end
 
+      # CreateBatchInitOrganizationUrl请求参数结构体
+      class CreateBatchInitOrganizationUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param OperateTypes: 初始化操作类型
+        # <ul><li>CREATE_SEAL : 创建印章</li>
+        # <li>AUTH_JOIN_ORGANIZATION_GROUP : 加入集团企业</li>
+        # <li>OPEN_AUTO_SIGN :开通企业自动签署</li></ul>
+        # @type OperateTypes: Array
+        # @param OrganizationIds: 批量操作的企业Id列表，最大支持50个
+        # @type OrganizationIds: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :OperateTypes, :OrganizationIds, :Agent
+
+        def initialize(operator=nil, operatetypes=nil, organizationids=nil, agent=nil)
+          @Operator = operator
+          @OperateTypes = operatetypes
+          @OrganizationIds = organizationids
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @OperateTypes = params['OperateTypes']
+          @OrganizationIds = params['OrganizationIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateBatchInitOrganizationUrl返回参数结构体
+      class CreateBatchInitOrganizationUrlResponse < TencentCloud::Common::AbstractModel
+        # @param MiniAppPath: 小程序路径
+        # @type MiniAppPath: String
+        # @param OperateLongUrl: 操作长链
+        # @type OperateLongUrl: String
+        # @param OperateShortUrl: 操作短链
+        # @type OperateShortUrl: String
+        # @param QRCodeUrl: 操作二维码
+        # @type QRCodeUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MiniAppPath, :OperateLongUrl, :OperateShortUrl, :QRCodeUrl, :RequestId
+
+        def initialize(miniapppath=nil, operatelongurl=nil, operateshorturl=nil, qrcodeurl=nil, requestid=nil)
+          @MiniAppPath = miniapppath
+          @OperateLongUrl = operatelongurl
+          @OperateShortUrl = operateshorturl
+          @QRCodeUrl = qrcodeurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MiniAppPath = params['MiniAppPath']
+          @OperateLongUrl = params['OperateLongUrl']
+          @OperateShortUrl = params['OperateShortUrl']
+          @QRCodeUrl = params['QRCodeUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBatchOrganizationRegistrationTasks请求参数结构体
       class CreateBatchOrganizationRegistrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。

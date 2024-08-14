@@ -49,6 +49,46 @@ module TencentCloud
         end
       end
 
+      # AddExternalSAMLIdPCertificate请求参数结构体
+      class AddExternalSAMLIdPCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param X509Certificate: PEM 格式的 X509 证书。  由 SAML 身份提供商提供。
+        # @type X509Certificate: String
+
+        attr_accessor :ZoneId, :X509Certificate
+
+        def initialize(zoneid=nil, x509certificate=nil)
+          @ZoneId = zoneid
+          @X509Certificate = x509certificate
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @X509Certificate = params['X509Certificate']
+        end
+      end
+
+      # AddExternalSAMLIdPCertificate返回参数结构体
+      class AddExternalSAMLIdPCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateId: SAML 签名证书 ID。
+        # @type CertificateId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateId, :RequestId
+
+        def initialize(certificateid=nil, requestid=nil)
+          @CertificateId = certificateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddOrganizationMemberEmail请求参数结构体
       class AddOrganizationMemberEmailRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -138,6 +178,65 @@ module TencentCloud
 
         def deserialize(params)
           @NodeId = params['NodeId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddPermissionPolicyToRoleConfiguration请求参数结构体
+      class AddPermissionPolicyToRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置 ID
+        # @type RoleConfigurationId: String
+        # @param RolePolicyType: 权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。 前期只支持系统策略，自定义策略后期在支持
+        # @type RolePolicyType: String
+        # @param RolePolicyNames: 权限策略名称，长度最大为 20策略，每个策略长度最大32个字符。
+        # @type RolePolicyNames: Array
+        # @param RolePolicies: 策略详情。
+        # @type RolePolicies: Array
+        # @param CustomPolicyDocument: 自定义策略内容。长度：最大 4096 个字符。当RolePolicyType为Inline时，该参数必须配置。关于权限策略的语法和结构，请参见权限策略语法和结构。
+        # @type CustomPolicyDocument: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :RolePolicyNames, :RolePolicies, :CustomPolicyDocument
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, rolepolicynames=nil, rolepolicies=nil, custompolicydocument=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @RolePolicyType = rolepolicytype
+          @RolePolicyNames = rolepolicynames
+          @RolePolicies = rolepolicies
+          @CustomPolicyDocument = custompolicydocument
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RolePolicyType = params['RolePolicyType']
+          @RolePolicyNames = params['RolePolicyNames']
+          unless params['RolePolicies'].nil?
+            @RolePolicies = []
+            params['RolePolicies'].each do |i|
+              policydetail_tmp = PolicyDetail.new
+              policydetail_tmp.deserialize(i)
+              @RolePolicies << policydetail_tmp
+            end
+          end
+          @CustomPolicyDocument = params['CustomPolicyDocument']
+        end
+      end
+
+      # AddPermissionPolicyToRoleConfiguration返回参数结构体
+      class AddPermissionPolicyToRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -284,6 +383,46 @@ module TencentCloud
 
         def deserialize(params)
           @UnitId = params['UnitId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddUserToGroup请求参数结构体
+      class AddUserToGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param GroupId: 用户组 ID。
+        # @type GroupId: String
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+
+        attr_accessor :ZoneId, :GroupId, :UserId
+
+        def initialize(zoneid=nil, groupid=nil, userid=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # AddUserToGroup返回参数结构体
+      class AddUserToGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -480,6 +619,85 @@ module TencentCloud
           unless params['NotAllowReason'].nil?
             @NotAllowReason = NotAllowReason.new
             @NotAllowReason.deserialize(params['NotAllowReason'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ClearExternalSAMLIdentityProvider请求参数结构体
+      class ClearExternalSAMLIdentityProviderRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # ClearExternalSAMLIdentityProvider返回参数结构体
+      class ClearExternalSAMLIdentityProviderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGroup请求参数结构体
+      class CreateGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param GroupName: 用户组的名称。  格式：允许英文字母、数字和特殊字符-。 长度：最大 128 个字符。
+        # @type GroupName: String
+        # @param Description: 用户组的描述。  长度：最大 1024 个字符。
+        # @type Description: String
+
+        attr_accessor :ZoneId, :GroupName, :Description
+
+        def initialize(zoneid=nil, groupname=nil, description=nil)
+          @ZoneId = zoneid
+          @GroupName = groupname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateGroup返回参数结构体
+      class CreateGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupInfo: 用户组信息。
+        # @type GroupInfo: :class:`Tencentcloud::Organization.v20210331.models.GroupInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupInfo, :RequestId
+
+        def initialize(groupinfo=nil, requestid=nil)
+          @GroupInfo = groupinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupInfo'].nil?
+            @GroupInfo = GroupInfo.new
+            @GroupInfo.deserialize(params['GroupInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -876,6 +1094,236 @@ module TencentCloud
         end
       end
 
+      # CreateRoleAssignment请求参数结构体
+      class CreateRoleAssignmentRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleAssignmentInfo: 授权成员账号信息，最多授权50条。
+        # @type RoleAssignmentInfo: Array
+
+        attr_accessor :ZoneId, :RoleAssignmentInfo
+
+        def initialize(zoneid=nil, roleassignmentinfo=nil)
+          @ZoneId = zoneid
+          @RoleAssignmentInfo = roleassignmentinfo
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['RoleAssignmentInfo'].nil?
+            @RoleAssignmentInfo = []
+            params['RoleAssignmentInfo'].each do |i|
+              roleassignmentinfo_tmp = RoleAssignmentInfo.new
+              roleassignmentinfo_tmp.deserialize(i)
+              @RoleAssignmentInfo << roleassignmentinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRoleAssignment返回参数结构体
+      class CreateRoleAssignmentResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务详情。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              taskinfo_tmp = TaskInfo.new
+              taskinfo_tmp.deserialize(i)
+              @Tasks << taskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRoleConfiguration请求参数结构体
+      class CreateRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleConfigurationName: 访问配置名称。格式：包含英文字母、数字或短划线（-）。 长度：最大 128 个字符。
+        # @type RoleConfigurationName: String
+        # @param Description: 访问配置的描述。 长度：最大 1024 个字符。
+        # @type Description: String
+        # @param SessionDuration: 会话持续时间。 CIC用户使用访问配置访问集团账号目标账号时，会话最多保持的时间。 单位：秒。 取值范围：900~43200（15 分钟~12 小时）。 默认值：3600（1 小时）。
+        # @type SessionDuration: Integer
+        # @param RelayState: 初始访问页面。 CIC用户使用访问配置访问集团账号目标账号时，初始访问的页面地址。 该页面必须是腾讯云控制台页面。默认为空，表示跳转到腾讯云控制台首页。
+        # @type RelayState: String
+
+        attr_accessor :ZoneId, :RoleConfigurationName, :Description, :SessionDuration, :RelayState
+
+        def initialize(zoneid=nil, roleconfigurationname=nil, description=nil, sessionduration=nil, relaystate=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationName = roleconfigurationname
+          @Description = description
+          @SessionDuration = sessionduration
+          @RelayState = relaystate
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @Description = params['Description']
+          @SessionDuration = params['SessionDuration']
+          @RelayState = params['RelayState']
+        end
+      end
+
+      # CreateRoleConfiguration返回参数结构体
+      class CreateRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RoleConfigurationInfo: 配置访问详情
+        # @type RoleConfigurationInfo: :class:`Tencentcloud::Organization.v20210331.models.RoleConfiguration`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleConfigurationInfo, :RequestId
+
+        def initialize(roleconfigurationinfo=nil, requestid=nil)
+          @RoleConfigurationInfo = roleconfigurationinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoleConfigurationInfo'].nil?
+            @RoleConfigurationInfo = RoleConfiguration.new
+            @RoleConfigurationInfo.deserialize(params['RoleConfigurationInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUser请求参数结构体
+      class CreateUserRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param UserName: 用户名称。空间内必须唯一。不支持修改。  格式：包含数字、英文字母和特殊符号+ = , . @ - _ 。  长度：最大 64 个字符
+        # @type UserName: String
+        # @param FirstName: 用户的姓。  长度：最大 64 个字符。
+        # @type FirstName: String
+        # @param LastName: 用户的名。  长度：最大 64 个字符。
+        # @type LastName: String
+        # @param DisplayName: 用户的显示名称。  长度：最大 256 个字符。
+        # @type DisplayName: String
+        # @param Description: 用户的描述。  长度：最大 1024 个字符。
+        # @type Description: String
+        # @param Email: 用户的电子邮箱。目录内必须唯一。  长度：最大 128 个字符。
+        # @type Email: String
+        # @param UserStatus: 用户的状态。取值：  Enabled（默认值）：启用。 Disabled：禁用。
+        # @type UserStatus: String
+
+        attr_accessor :ZoneId, :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus
+
+        def initialize(zoneid=nil, username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil)
+          @ZoneId = zoneid
+          @UserName = username
+          @FirstName = firstname
+          @LastName = lastname
+          @DisplayName = displayname
+          @Description = description
+          @Email = email
+          @UserStatus = userstatus
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserName = params['UserName']
+          @FirstName = params['FirstName']
+          @LastName = params['LastName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @Email = params['Email']
+          @UserStatus = params['UserStatus']
+        end
+      end
+
+      # CreateUser返回参数结构体
+      class CreateUserResponse < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户详情
+        # @type UserInfo: :class:`Tencentcloud::Organization.v20210331.models.UserInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserInfo, :RequestId
+
+        def initialize(userinfo=nil, requestid=nil)
+          @UserInfo = userinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserSyncProvisioning请求参数结构体
+      class CreateUserSyncProvisioningRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param UserSyncProvisionings: CAM用户同步信息。
+        # @type UserSyncProvisionings: Array
+
+        attr_accessor :ZoneId, :UserSyncProvisionings
+
+        def initialize(zoneid=nil, usersyncprovisionings=nil)
+          @ZoneId = zoneid
+          @UserSyncProvisionings = usersyncprovisionings
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['UserSyncProvisionings'].nil?
+            @UserSyncProvisionings = []
+            params['UserSyncProvisionings'].each do |i|
+              usersyncprovisioning_tmp = UserSyncProvisioning.new
+              usersyncprovisioning_tmp.deserialize(i)
+              @UserSyncProvisionings << usersyncprovisioning_tmp
+            end
+          end
+        end
+      end
+
+      # CreateUserSyncProvisioning返回参数结构体
+      class CreateUserSyncProvisioningResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务详细。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              userprovisioningstask_tmp = UserProvisioningsTask.new
+              userprovisioningstask_tmp.deserialize(i)
+              @Tasks << userprovisioningstask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAccount请求参数结构体
       class DeleteAccountRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -894,6 +1342,42 @@ module TencentCloud
 
       # DeleteAccount返回参数结构体
       class DeleteAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGroup请求参数结构体
+      class DeleteGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param GroupId: 用户组的 ID。
+        # @type GroupId: String
+
+        attr_accessor :ZoneId, :GroupId
+
+        def initialize(zoneid=nil, groupid=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteGroup返回参数结构体
+      class DeleteGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1171,6 +1655,105 @@ module TencentCloud
         end
       end
 
+      # DeleteRoleAssignment请求参数结构体
+      class DeleteRoleAssignmentRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param TargetUin: 集团账号目标账号的UIN
+        # @type TargetUin: Integer
+        # @param PrincipalType: CAM用户同步的身份类型。取值： User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param PrincipalId: CAM用户同步的身份 ID。取值： 当PrincipalType取值为Group时，该值为CIC 用户组 ID（g-********）， 当PrincipalType取值为User时，该值为CIC 用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param DeprovisionStrategy: 当您移除一个集团账号目标账号上使用某访问配置的最后一个授权时，是否同时解除访问配置部署。取值： DeprovisionForLastRoleAssignmentOnAccount：解除访问配置部署。 None（默认值）：不解除访问配置部署。
+        # @type DeprovisionStrategy: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :TargetType, :TargetUin, :PrincipalType, :PrincipalId, :DeprovisionStrategy
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, targettype=nil, targetuin=nil, principaltype=nil, principalid=nil, deprovisionstrategy=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @TargetType = targettype
+          @TargetUin = targetuin
+          @PrincipalType = principaltype
+          @PrincipalId = principalid
+          @DeprovisionStrategy = deprovisionstrategy
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @TargetType = params['TargetType']
+          @TargetUin = params['TargetUin']
+          @PrincipalType = params['PrincipalType']
+          @PrincipalId = params['PrincipalId']
+          @DeprovisionStrategy = params['DeprovisionStrategy']
+        end
+      end
+
+      # DeleteRoleAssignment返回参数结构体
+      class DeleteRoleAssignmentResponse < TencentCloud::Common::AbstractModel
+        # @param Task: 任务详情
+        # @type Task: :class:`Tencentcloud::Organization.v20210331.models.TaskInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Task, :RequestId
+
+        def initialize(task=nil, requestid=nil)
+          @Task = task
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Task'].nil?
+            @Task = TaskInfo.new
+            @Task.deserialize(params['Task'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoleConfiguration请求参数结构体
+      class DeleteRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置 ID
+        # @type RoleConfigurationId: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId
+
+        def initialize(zoneid=nil, roleconfigurationid=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+        end
+      end
+
+      # DeleteRoleConfiguration返回参数结构体
+      class DeleteRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteShareUnitMembers请求参数结构体
       class DeleteShareUnitMembersRequest < TencentCloud::Common::AbstractModel
         # @param UnitId: 共享单元ID。
@@ -1301,6 +1884,85 @@ module TencentCloud
         end
       end
 
+      # DeleteUser请求参数结构体
+      class DeleteUserRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+
+        attr_accessor :ZoneId, :UserId
+
+        def initialize(zoneid=nil, userid=nil)
+          @ZoneId = zoneid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteUser返回参数结构体
+      class DeleteUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserSyncProvisioning请求参数结构体
+      class DeleteUserSyncProvisioningRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param UserProvisioningId: 用户同步的ID。
+        # @type UserProvisioningId: String
+
+        attr_accessor :ZoneId, :UserProvisioningId
+
+        def initialize(zoneid=nil, userprovisioningid=nil)
+          @ZoneId = zoneid
+          @UserProvisioningId = userprovisioningid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserProvisioningId = params['UserProvisioningId']
+        end
+      end
+
+      # DeleteUserSyncProvisioning返回参数结构体
+      class DeleteUserSyncProvisioningResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务详情。
+        # @type Tasks: :class:`Tencentcloud::Organization.v20210331.models.UserProvisioningsTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = UserProvisioningsTask.new
+            @Tasks.deserialize(params['Tasks'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEffectivePolicy请求参数结构体
       class DescribeEffectivePolicyRequest < TencentCloud::Common::AbstractModel
         # @param TargetId: 账号uin或者节点id。
@@ -1337,6 +1999,57 @@ module TencentCloud
             @EffectivePolicy = EffectivePolicy.new
             @EffectivePolicy.deserialize(params['EffectivePolicy'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIdentityCenter请求参数结构体
+      class DescribeIdentityCenterRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIdentityCenter返回参数结构体
+      class DescribeIdentityCenterResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param ZoneName: 空间名，必须全局唯一。包含小写字母、数字和短划线（-）。不能以短划线（-）开头或结尾，且不能有两个连续的短划线（-）。长度：2~64 个字符。
+        # @type ZoneName: String
+        # @param ServiceStatus: 服务开启状态，Disabled代表未开通，Enabled代表已开通
+        # @type ServiceStatus: String
+        # @param ScimSyncStatus: SCIM 同步状态。Enabled：启用。 Disabled：禁用。
+        # @type ScimSyncStatus: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :ZoneName, :ServiceStatus, :ScimSyncStatus, :CreateTime, :UpdateTime, :RequestId
+
+        def initialize(zoneid=nil, zonename=nil, servicestatus=nil, scimsyncstatus=nil, createtime=nil, updatetime=nil, requestid=nil)
+          @ZoneId = zoneid
+          @ZoneName = zonename
+          @ServiceStatus = servicestatus
+          @ScimSyncStatus = scimsyncstatus
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+          @ServiceStatus = params['ServiceStatus']
+          @ScimSyncStatus = params['ScimSyncStatus']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2537,6 +3250,57 @@ module TencentCloud
         end
       end
 
+      # DismantleRoleConfiguration请求参数结构体
+      class DismantleRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号。
+        # @type TargetType: String
+        # @param TargetUin: 同步的集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :TargetType, :TargetUin
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, targettype=nil, targetuin=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @TargetType = targettype
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @TargetType = params['TargetType']
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # DismantleRoleConfiguration返回参数结构体
+      class DismantleRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param Task: 任务详情。
+        # @type Task: :class:`Tencentcloud::Organization.v20210331.models.RoleProvisioningsTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Task, :RequestId
+
+        def initialize(task=nil, requestid=nil)
+          @Task = task
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Task'].nil?
+            @Task = RoleProvisioningsTask.new
+            @Task.deserialize(params['Task'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 有效策略。
       class EffectivePolicy < TencentCloud::Common::AbstractModel
         # @param TargetId: 目标ID。
@@ -2597,6 +3361,469 @@ module TencentCloud
         end
       end
 
+      # GetExternalSAMLIdentityProvider请求参数结构体
+      class GetExternalSAMLIdentityProviderRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # GetExternalSAMLIdentityProvider返回参数结构体
+      class GetExternalSAMLIdentityProviderResponse < TencentCloud::Common::AbstractModel
+        # @param SAMLIdentityProviderConfiguration: saml 身份提供商配置信息。
+        # @type SAMLIdentityProviderConfiguration: :class:`Tencentcloud::Organization.v20210331.models.SAMLIdentityProviderConfiguration`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SAMLIdentityProviderConfiguration, :RequestId
+
+        def initialize(samlidentityproviderconfiguration=nil, requestid=nil)
+          @SAMLIdentityProviderConfiguration = samlidentityproviderconfiguration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SAMLIdentityProviderConfiguration'].nil?
+            @SAMLIdentityProviderConfiguration = SAMLIdentityProviderConfiguration.new
+            @SAMLIdentityProviderConfiguration.deserialize(params['SAMLIdentityProviderConfiguration'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetGroup请求参数结构体
+      class GetGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param GroupId: 用户组的 ID。
+        # @type GroupId: String
+
+        attr_accessor :ZoneId, :GroupId
+
+        def initialize(zoneid=nil, groupid=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # GetGroup返回参数结构体
+      class GetGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupInfo: 用户组信息
+        # @type GroupInfo: :class:`Tencentcloud::Organization.v20210331.models.GroupInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupInfo, :RequestId
+
+        def initialize(groupinfo=nil, requestid=nil)
+          @GroupInfo = groupinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupInfo'].nil?
+            @GroupInfo = GroupInfo.new
+            @GroupInfo.deserialize(params['GroupInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetProvisioningTaskStatus请求参数结构体
+      class GetProvisioningTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+
+        attr_accessor :ZoneId, :TaskId
+
+        def initialize(zoneid=nil, taskid=nil)
+          @ZoneId = zoneid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # GetProvisioningTaskStatus返回参数结构体
+      class GetProvisioningTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 任务状态信息。
+        # @type TaskStatus: :class:`Tencentcloud::Organization.v20210331.models.TaskStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :RequestId
+
+        def initialize(taskstatus=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskStatus'].nil?
+            @TaskStatus = TaskStatus.new
+            @TaskStatus.deserialize(params['TaskStatus'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetRoleConfiguration请求参数结构体
+      class GetRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置ID
+        # @type RoleConfigurationId: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId
+
+        def initialize(zoneid=nil, roleconfigurationid=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+        end
+      end
+
+      # GetRoleConfiguration返回参数结构体
+      class GetRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RoleConfigurationInfo: 权限配置详情
+        # @type RoleConfigurationInfo: :class:`Tencentcloud::Organization.v20210331.models.RoleConfiguration`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleConfigurationInfo, :RequestId
+
+        def initialize(roleconfigurationinfo=nil, requestid=nil)
+          @RoleConfigurationInfo = roleconfigurationinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoleConfigurationInfo'].nil?
+            @RoleConfigurationInfo = RoleConfiguration.new
+            @RoleConfigurationInfo.deserialize(params['RoleConfigurationInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTaskStatus请求参数结构体
+      class GetTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+
+        attr_accessor :ZoneId, :TaskId
+
+        def initialize(zoneid=nil, taskid=nil)
+          @ZoneId = zoneid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # GetTaskStatus返回参数结构体
+      class GetTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 任务状态信息。
+        # @type TaskStatus: :class:`Tencentcloud::Organization.v20210331.models.TaskStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :RequestId
+
+        def initialize(taskstatus=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskStatus'].nil?
+            @TaskStatus = TaskStatus.new
+            @TaskStatus.deserialize(params['TaskStatus'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetUser请求参数结构体
+      class GetUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+
+        attr_accessor :UserId, :ZoneId
+
+        def initialize(userid=nil, zoneid=nil)
+          @UserId = userid
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # GetUser返回参数结构体
+      class GetUserResponse < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户信息。
+        # @type UserInfo: :class:`Tencentcloud::Organization.v20210331.models.UserInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserInfo, :RequestId
+
+        def initialize(userinfo=nil, requestid=nil)
+          @UserInfo = userinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetUserSyncProvisioning请求参数结构体
+      class GetUserSyncProvisioningRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param UserProvisioningId: CAM 用户同步的 ID。
+        # @type UserProvisioningId: String
+
+        attr_accessor :ZoneId, :UserProvisioningId
+
+        def initialize(zoneid=nil, userprovisioningid=nil)
+          @ZoneId = zoneid
+          @UserProvisioningId = userprovisioningid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserProvisioningId = params['UserProvisioningId']
+        end
+      end
+
+      # GetUserSyncProvisioning返回参数结构体
+      class GetUserSyncProvisioningResponse < TencentCloud::Common::AbstractModel
+        # @param UserProvisioning: CAM 用户同步信息。
+        # @type UserProvisioning: :class:`Tencentcloud::Organization.v20210331.models.UserProvisioning`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserProvisioning, :RequestId
+
+        def initialize(userprovisioning=nil, requestid=nil)
+          @UserProvisioning = userprovisioning
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserProvisioning'].nil?
+            @UserProvisioning = UserProvisioning.new
+            @UserProvisioning.deserialize(params['UserProvisioning'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetZoneSAMLServiceProviderInfo请求参数结构体
+      class GetZoneSAMLServiceProviderInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # GetZoneSAMLServiceProviderInfo返回参数结构体
+      class GetZoneSAMLServiceProviderInfoResponse < TencentCloud::Common::AbstractModel
+        # @param SAMLServiceProvider: saml服务提供商配置信息
+        # @type SAMLServiceProvider: :class:`Tencentcloud::Organization.v20210331.models.SAMLServiceProvider`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SAMLServiceProvider, :RequestId
+
+        def initialize(samlserviceprovider=nil, requestid=nil)
+          @SAMLServiceProvider = samlserviceprovider
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SAMLServiceProvider'].nil?
+            @SAMLServiceProvider = SAMLServiceProvider.new
+            @SAMLServiceProvider.deserialize(params['SAMLServiceProvider'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetZoneStatistics请求参数结构体
+      class GetZoneStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # GetZoneStatistics返回参数结构体
+      class GetZoneStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneStatistics: 空间的统计信息。
+        # @type ZoneStatistics: :class:`Tencentcloud::Organization.v20210331.models.ZoneStatistics`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneStatistics, :RequestId
+
+        def initialize(zonestatistics=nil, requestid=nil)
+          @ZoneStatistics = zonestatistics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneStatistics'].nil?
+            @ZoneStatistics = ZoneStatistics.new
+            @ZoneStatistics.deserialize(params['ZoneStatistics'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户组信息。
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupName: 用户组的名称。
+        # @type GroupName: String
+        # @param Description: 用户组的描述。
+        # @type Description: String
+        # @param CreateTime: 用户组的创建时间。
+        # @type CreateTime: String
+        # @param GroupType: 用户组的类型  Manual：手动创建，Synchronized：外部导入。
+        # @type GroupType: String
+        # @param UpdateTime: 用户组的修改时间。
+        # @type UpdateTime: String
+        # @param GroupId: 用户组的 ID。
+        # @type GroupId: String
+        # @param MemberCount: 组员数量。
+        # @type MemberCount: Integer
+        # @param IsSelected: 如果有入参FilterUsers，用户在用户组返回true，否则返回false
+        # @type IsSelected: Boolean
+
+        attr_accessor :GroupName, :Description, :CreateTime, :GroupType, :UpdateTime, :GroupId, :MemberCount, :IsSelected
+
+        def initialize(groupname=nil, description=nil, createtime=nil, grouptype=nil, updatetime=nil, groupid=nil, membercount=nil, isselected=nil)
+          @GroupName = groupname
+          @Description = description
+          @CreateTime = createtime
+          @GroupType = grouptype
+          @UpdateTime = updatetime
+          @GroupId = groupid
+          @MemberCount = membercount
+          @IsSelected = isselected
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @GroupType = params['GroupType']
+          @UpdateTime = params['UpdateTime']
+          @GroupId = params['GroupId']
+          @MemberCount = params['MemberCount']
+          @IsSelected = params['IsSelected']
+        end
+      end
+
+      # 用户信息
+      class GroupMembers < TencentCloud::Common::AbstractModel
+        # @param UserName: 查询username。
+        # @type UserName: String
+        # @param DisplayName: 用户的显示名称。
+        # @type DisplayName: String
+        # @param Description: 用户的描述。
+        # @type Description: String
+        # @param Email: 用户的电子邮箱。目录内必须唯一。
+        # @type Email: String
+        # @param UserStatus: 用户状态 Enabled：启用， Disabled：禁用。
+        # @type UserStatus: String
+        # @param UserType: 用户类型  Manual：手动创建，Synchronized：外部导入。
+        # @type UserType: String
+        # @param UserId: 用户 ID
+        # @type UserId: String
+        # @param JoinTime: 用户加入用户组的时间
+        # @type JoinTime: String
+
+        attr_accessor :UserName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :UserId, :JoinTime
+
+        def initialize(username=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, userid=nil, jointime=nil)
+          @UserName = username
+          @DisplayName = displayname
+          @Description = description
+          @Email = email
+          @UserStatus = userstatus
+          @UserType = usertype
+          @UserId = userid
+          @JoinTime = jointime
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @Email = params['Email']
+          @UserStatus = params['UserStatus']
+          @UserType = params['UserType']
+          @UserId = params['UserId']
+          @JoinTime = params['JoinTime']
+        end
+      end
+
       # 组织身份策略
       class IdentityPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyId: CAM预设策略ID。PolicyType 为预设策略时有效且必选
@@ -2624,6 +3851,321 @@ module TencentCloud
           @PolicyName = params['PolicyName']
           @PolicyType = params['PolicyType']
           @PolicyDocument = params['PolicyDocument']
+        end
+      end
+
+      # 用户加入的用户组
+      class JoinedGroups < TencentCloud::Common::AbstractModel
+        # @param GroupName: 用户组的名称。
+        # @type GroupName: String
+        # @param Description: 用户组的描述。
+        # @type Description: String
+        # @param GroupId: 用户组 ID。
+        # @type GroupId: String
+        # @param GroupType: 用户组的类型。取值：
+
+        # Manual：手动创建。
+        # Synchronized：外部同步。
+        # @type GroupType: String
+        # @param JoinTime: 加入用户组的时间
+        # @type JoinTime: String
+
+        attr_accessor :GroupName, :Description, :GroupId, :GroupType, :JoinTime
+
+        def initialize(groupname=nil, description=nil, groupid=nil, grouptype=nil, jointime=nil)
+          @GroupName = groupname
+          @Description = description
+          @GroupId = groupid
+          @GroupType = grouptype
+          @JoinTime = jointime
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Description = params['Description']
+          @GroupId = params['GroupId']
+          @GroupType = params['GroupType']
+          @JoinTime = params['JoinTime']
+        end
+      end
+
+      # ListExternalSAMLIdPCertificates请求参数结构体
+      class ListExternalSAMLIdPCertificatesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # ListExternalSAMLIdPCertificates返回参数结构体
+      class ListExternalSAMLIdPCertificatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param SAMLIdPCertificates: SAML 签名证书列表
+        # @type SAMLIdPCertificates: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCounts, :SAMLIdPCertificates, :RequestId
+
+        def initialize(totalcounts=nil, samlidpcertificates=nil, requestid=nil)
+          @TotalCounts = totalcounts
+          @SAMLIdPCertificates = samlidpcertificates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCounts = params['TotalCounts']
+          unless params['SAMLIdPCertificates'].nil?
+            @SAMLIdPCertificates = []
+            params['SAMLIdPCertificates'].each do |i|
+              samlidpcertificate_tmp = SAMLIdPCertificate.new
+              samlidpcertificate_tmp.deserialize(i)
+              @SAMLIdPCertificates << samlidpcertificate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListGroupMembers请求参数结构体
+      class ListGroupMembersRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param GroupId: 用户组ID。
+        # @type GroupId: String
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param UserType: 用户类型  Manual：手动创建，Synchronized：外部导入。
+        # @type UserType: String
+
+        attr_accessor :ZoneId, :GroupId, :NextToken, :MaxResults, :UserType
+
+        def initialize(zoneid=nil, groupid=nil, nexttoken=nil, maxresults=nil, usertype=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+          @UserType = params['UserType']
+        end
+      end
+
+      # ListGroupMembers返回参数结构体
+      class ListGroupMembersResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param GroupMembers: 用户组的用户列表
+        # @type GroupMembers: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :TotalCounts, :MaxResults, :IsTruncated, :GroupMembers, :RequestId
+
+        def initialize(nexttoken=nil, totalcounts=nil, maxresults=nil, istruncated=nil, groupmembers=nil, requestid=nil)
+          @NextToken = nexttoken
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @GroupMembers = groupmembers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          unless params['GroupMembers'].nil?
+            @GroupMembers = []
+            params['GroupMembers'].each do |i|
+              groupmembers_tmp = GroupMembers.new
+              groupmembers_tmp.deserialize(i)
+              @GroupMembers << groupmembers_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListGroups请求参数结构体
+      class ListGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param Filter: 过滤条件。  格式：<Attribute> <Operator> <Value>，不区分大小写。目前，<Attribute>只支持GroupName，<Operator>只支持eq（Equals）和sw（Start With）。  示例：Filter = "GroupName sw test"，表示查询名称以 test 开头的全部用户组。Filter = "GroupName eq testgroup"，表示查询名称为 testgroup 的用户组。
+        # @type Filter: String
+        # @param GroupType: 用户组的类型  Manual：手动创建，Synchronized：外部导入。
+        # @type GroupType: String
+        # @param FilterUsers: 筛选的用户，该用户关联的用户组会返回IsSelected=1
+        # @type FilterUsers: Array
+        # @param SortField: 排序的字段，目前只支持CreateTime，默认是CreateTime字段
+        # @type SortField: String
+        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要你和SortField一起设置
+        # @type SortType: String
+
+        attr_accessor :ZoneId, :NextToken, :MaxResults, :Filter, :GroupType, :FilterUsers, :SortField, :SortType
+
+        def initialize(zoneid=nil, nexttoken=nil, maxresults=nil, filter=nil, grouptype=nil, filterusers=nil, sortfield=nil, sorttype=nil)
+          @ZoneId = zoneid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+          @Filter = filter
+          @GroupType = grouptype
+          @FilterUsers = filterusers
+          @SortField = sortfield
+          @SortType = sorttype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+          @Filter = params['Filter']
+          @GroupType = params['GroupType']
+          @FilterUsers = params['FilterUsers']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+        end
+      end
+
+      # ListGroups返回参数结构体
+      class ListGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param Groups: 用户组列表。
+        # @type Groups: Array
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :Groups, :MaxResults, :TotalCounts, :IsTruncated, :RequestId
+
+        def initialize(nexttoken=nil, groups=nil, maxresults=nil, totalcounts=nil, istruncated=nil, requestid=nil)
+          @NextToken = nexttoken
+          @Groups = groups
+          @MaxResults = maxresults
+          @TotalCounts = totalcounts
+          @IsTruncated = istruncated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+          @MaxResults = params['MaxResults']
+          @TotalCounts = params['TotalCounts']
+          @IsTruncated = params['IsTruncated']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListJoinedGroupsForUser请求参数结构体
+      class ListJoinedGroupsForUserRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+
+        attr_accessor :ZoneId, :UserId, :NextToken, :MaxResults
+
+        def initialize(zoneid=nil, userid=nil, nexttoken=nil, maxresults=nil)
+          @ZoneId = zoneid
+          @UserId = userid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserId = params['UserId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # ListJoinedGroupsForUser返回参数结构体
+      class ListJoinedGroupsForUserResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param JoinedGroups: 用户加入的用户组列表
+        # @type JoinedGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :TotalCounts, :MaxResults, :IsTruncated, :JoinedGroups, :RequestId
+
+        def initialize(nexttoken=nil, totalcounts=nil, maxresults=nil, istruncated=nil, joinedgroups=nil, requestid=nil)
+          @NextToken = nexttoken
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @JoinedGroups = joinedgroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          unless params['JoinedGroups'].nil?
+            @JoinedGroups = []
+            params['JoinedGroups'].each do |i|
+              joinedgroups_tmp = JoinedGroups.new
+              joinedgroups_tmp.deserialize(i)
+              @JoinedGroups << joinedgroups_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2868,6 +4410,65 @@ module TencentCloud
         end
       end
 
+      # ListPermissionPoliciesInRoleConfiguration请求参数结构体
+      class ListPermissionPoliciesInRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置 ID
+        # @type RoleConfigurationId: String
+        # @param RolePolicyType: 权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。
+        # @type RolePolicyType: String
+        # @param Filter: 按策略名称搜索
+        # @type Filter: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :Filter
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, filter=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @RolePolicyType = rolepolicytype
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RolePolicyType = params['RolePolicyType']
+          @Filter = params['Filter']
+        end
+      end
+
+      # ListPermissionPoliciesInRoleConfiguration返回参数结构体
+      class ListPermissionPoliciesInRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCounts: 权限策略总个数。
+        # @type TotalCounts: Integer
+        # @param RolePolicies: 权限策略列表。
+        # @type RolePolicies: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCounts, :RolePolicies, :RequestId
+
+        def initialize(totalcounts=nil, rolepolicies=nil, requestid=nil)
+          @TotalCounts = totalcounts
+          @RolePolicies = rolepolicies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCounts = params['TotalCounts']
+          unless params['RolePolicies'].nil?
+            @RolePolicies = []
+            params['RolePolicies'].each do |i|
+              rolepolicie_tmp = RolePolicie.new
+              rolepolicie_tmp.deserialize(i)
+              @RolePolicies << rolepolicie_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询目标关联的SCP策略列表
       class ListPoliciesForTarget < TencentCloud::Common::AbstractModel
         # @param StrategyId: 策略Id
@@ -3093,6 +4694,263 @@ module TencentCloud
         end
       end
 
+      # ListRoleAssignments请求参数结构体
+      class ListRoleAssignmentsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param TargetUin: 同步的集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值： 当PrincipalType取值为Group时，该值为CIC 用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC 用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param Filter: 查询条件，目前只支持权限配置名称查询。
+        # @type Filter: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :MaxResults, :NextToken, :TargetType, :TargetUin, :PrincipalType, :PrincipalId, :Filter
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, maxresults=nil, nexttoken=nil, targettype=nil, targetuin=nil, principaltype=nil, principalid=nil, filter=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @TargetType = targettype
+          @TargetUin = targetuin
+          @PrincipalType = principaltype
+          @PrincipalId = principalid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          @TargetType = params['TargetType']
+          @TargetUin = params['TargetUin']
+          @PrincipalType = params['PrincipalType']
+          @PrincipalId = params['PrincipalId']
+          @Filter = params['Filter']
+        end
+      end
+
+      # ListRoleAssignments返回参数结构体
+      class ListRoleAssignmentsResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param RoleAssignments: 集团账号目标账号的授权列表。
+        # @type RoleAssignments: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :TotalCounts, :MaxResults, :IsTruncated, :RoleAssignments, :RequestId
+
+        def initialize(nexttoken=nil, totalcounts=nil, maxresults=nil, istruncated=nil, roleassignments=nil, requestid=nil)
+          @NextToken = nexttoken
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @RoleAssignments = roleassignments
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          unless params['RoleAssignments'].nil?
+            @RoleAssignments = []
+            params['RoleAssignments'].each do |i|
+              roleassignments_tmp = RoleAssignments.new
+              roleassignments_tmp.deserialize(i)
+              @RoleAssignments << roleassignments_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListRoleConfigurationProvisionings请求参数结构体
+      class ListRoleConfigurationProvisioningsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param TargetUin: 同步的集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param DeploymentStatus: Deployed: 部署成功 DeployedRequired：需要重新部署 DeployFailed：部署失败
+        # @type DeploymentStatus: String
+        # @param Filter: 支持配置名称搜索。
+        # @type Filter: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :MaxResults, :NextToken, :TargetType, :TargetUin, :DeploymentStatus, :Filter
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, maxresults=nil, nexttoken=nil, targettype=nil, targetuin=nil, deploymentstatus=nil, filter=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @TargetType = targettype
+          @TargetUin = targetuin
+          @DeploymentStatus = deploymentstatus
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          @TargetType = params['TargetType']
+          @TargetUin = params['TargetUin']
+          @DeploymentStatus = params['DeploymentStatus']
+          @Filter = params['Filter']
+        end
+      end
+
+      # ListRoleConfigurationProvisionings返回参数结构体
+      class ListRoleConfigurationProvisioningsResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param RoleConfigurationProvisionings: 部成员账号列表。
+        # @type RoleConfigurationProvisionings: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :TotalCounts, :MaxResults, :IsTruncated, :RoleConfigurationProvisionings, :RequestId
+
+        def initialize(nexttoken=nil, totalcounts=nil, maxresults=nil, istruncated=nil, roleconfigurationprovisionings=nil, requestid=nil)
+          @NextToken = nexttoken
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @RoleConfigurationProvisionings = roleconfigurationprovisionings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          unless params['RoleConfigurationProvisionings'].nil?
+            @RoleConfigurationProvisionings = []
+            params['RoleConfigurationProvisionings'].each do |i|
+              roleconfigurationprovisionings_tmp = RoleConfigurationProvisionings.new
+              roleconfigurationprovisionings_tmp.deserialize(i)
+              @RoleConfigurationProvisionings << roleconfigurationprovisionings_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListRoleConfigurations请求参数结构体
+      class ListRoleConfigurationsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param Filter: 过滤条件。不区分大小写。目前，只支持 RoleConfigurationName，只支持 eq（Equals）和 sw（Start With）。 示例：Filter = "RoleConfigurationName，只支持 sw test"，表示查询名称以 test 开头的全部访问配置。Filter = "RoleConfigurationName，只支持 eq TestRoleConfiguration"，表示查询名称为 TestRoleConfiguration 的访问配置。
+        # @type Filter: String
+        # @param FilterTargets: 检索成员账号是否配置过权限，如果配置过返回IsSelected: true, 否则返回false。
+        # @type FilterTargets: Array
+        # @param PrincipalId: 授权的用户UserId或者用户组的GroupId，必须和入参数FilterTargets一起设置
+        # @type PrincipalId: String
+
+        attr_accessor :ZoneId, :NextToken, :MaxResults, :Filter, :FilterTargets, :PrincipalId
+
+        def initialize(zoneid=nil, nexttoken=nil, maxresults=nil, filter=nil, filtertargets=nil, principalid=nil)
+          @ZoneId = zoneid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+          @Filter = filter
+          @FilterTargets = filtertargets
+          @PrincipalId = principalid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+          @Filter = params['Filter']
+          @FilterTargets = params['FilterTargets']
+          @PrincipalId = params['PrincipalId']
+        end
+      end
+
+      # ListRoleConfigurations返回参数结构体
+      class ListRoleConfigurationsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param RoleConfigurations: 权限配置列表。
+        # @type RoleConfigurations: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCounts, :MaxResults, :IsTruncated, :NextToken, :RoleConfigurations, :RequestId
+
+        def initialize(totalcounts=nil, maxresults=nil, istruncated=nil, nexttoken=nil, roleconfigurations=nil, requestid=nil)
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @NextToken = nexttoken
+          @RoleConfigurations = roleconfigurations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          @NextToken = params['NextToken']
+          unless params['RoleConfigurations'].nil?
+            @RoleConfigurations = []
+            params['RoleConfigurations'].each do |i|
+              roleconfiguration_tmp = RoleConfiguration.new
+              roleconfiguration_tmp.deserialize(i)
+              @RoleConfigurations << roleconfiguration_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询某个指定SCP策略关联的目标列表
       class ListTargetsForPolicyNode < TencentCloud::Common::AbstractModel
         # @param Uin: scp账号uin或节点Id
@@ -3186,6 +5044,279 @@ module TencentCloud
               @List << listtargetsforpolicynode_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTasks请求参数结构体
+      class ListTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值：  当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param PrincipalType: CAM 用户同步的身份类型。取值：  User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param TargetUin: 同步的集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param Status: InProgress：任务执行中。 Success：任务执行成功。 Failed：任务执行失败。
+        # @type Status: String
+        # @param TaskType: 任务类型。
+        # @type TaskType: String
+
+        attr_accessor :ZoneId, :PrincipalId, :NextToken, :MaxResults, :PrincipalType, :TargetUin, :TargetType, :RoleConfigurationId, :Status, :TaskType
+
+        def initialize(zoneid=nil, principalid=nil, nexttoken=nil, maxresults=nil, principaltype=nil, targetuin=nil, targettype=nil, roleconfigurationid=nil, status=nil, tasktype=nil)
+          @ZoneId = zoneid
+          @PrincipalId = principalid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+          @PrincipalType = principaltype
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @RoleConfigurationId = roleconfigurationid
+          @Status = status
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PrincipalId = params['PrincipalId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+          @PrincipalType = params['PrincipalType']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @Status = params['Status']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # ListTasks返回参数结构体
+      class ListTasksResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param Tasks: 任务详情
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :TotalCounts, :MaxResults, :IsTruncated, :Tasks, :RequestId
+
+        def initialize(nexttoken=nil, totalcounts=nil, maxresults=nil, istruncated=nil, tasks=nil, requestid=nil)
+          @NextToken = nexttoken
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              taskinfo_tmp = TaskInfo.new
+              taskinfo_tmp.deserialize(i)
+              @Tasks << taskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListUserSyncProvisionings请求参数结构体
+      class ListUserSyncProvisioningsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值：  当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param PrincipalType: CAM 用户同步的身份类型。取值：  User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param TargetUin: 集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param Filter: 检测条件。
+        # @type Filter: String
+
+        attr_accessor :ZoneId, :PrincipalId, :NextToken, :MaxResults, :PrincipalType, :TargetUin, :TargetType, :Filter
+
+        def initialize(zoneid=nil, principalid=nil, nexttoken=nil, maxresults=nil, principaltype=nil, targetuin=nil, targettype=nil, filter=nil)
+          @ZoneId = zoneid
+          @PrincipalId = principalid
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+          @PrincipalType = principaltype
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PrincipalId = params['PrincipalId']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+          @PrincipalType = params['PrincipalType']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @Filter = params['Filter']
+        end
+      end
+
+      # ListUserSyncProvisionings返回参数结构体
+      class ListUserSyncProvisioningsResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param UserProvisionings: CAM同步的用户列表。
+        # @type UserProvisionings: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextToken, :TotalCounts, :MaxResults, :IsTruncated, :UserProvisionings, :RequestId
+
+        def initialize(nexttoken=nil, totalcounts=nil, maxresults=nil, istruncated=nil, userprovisionings=nil, requestid=nil)
+          @NextToken = nexttoken
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @IsTruncated = istruncated
+          @UserProvisionings = userprovisionings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextToken = params['NextToken']
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @IsTruncated = params['IsTruncated']
+          unless params['UserProvisionings'].nil?
+            @UserProvisionings = []
+            params['UserProvisionings'].each do |i|
+              userprovisioning_tmp = UserProvisioning.new
+              userprovisioning_tmp.deserialize(i)
+              @UserProvisionings << userprovisioning_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListUsers请求参数结构体
+      class ListUsersRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param UserStatus: 用户状态 Enabled：启用， Disabled：禁用。
+        # @type UserStatus: String
+        # @param UserType: 用户类型  Manual：手动创建，Synchronized：外部导入。
+        # @type UserType: String
+        # @param Filter: 过滤条件。  目前仅支持用户名，邮箱，用户userId，描述
+        # @type Filter: String
+        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @type MaxResults: Integer
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法经过多次查询，直到IsTruncated为false时，表示全部数据查询完毕。
+        # @type NextToken: String
+        # @param FilterGroups: 筛选的用户组，该用户组关联的子用户会返回IsSelected=1
+        # @type FilterGroups: Array
+        # @param SortField: 排序的字段，目前只支持CreateTime，默认是CreateTime字段
+        # @type SortField: String
+        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要你和SortField一起设置
+        # @type SortType: String
+
+        attr_accessor :ZoneId, :UserStatus, :UserType, :Filter, :MaxResults, :NextToken, :FilterGroups, :SortField, :SortType
+
+        def initialize(zoneid=nil, userstatus=nil, usertype=nil, filter=nil, maxresults=nil, nexttoken=nil, filtergroups=nil, sortfield=nil, sorttype=nil)
+          @ZoneId = zoneid
+          @UserStatus = userstatus
+          @UserType = usertype
+          @Filter = filter
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @FilterGroups = filtergroups
+          @SortField = sortfield
+          @SortType = sorttype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserStatus = params['UserStatus']
+          @UserType = params['UserType']
+          @Filter = params['Filter']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          @FilterGroups = params['FilterGroups']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+        end
+      end
+
+      # ListUsers返回参数结构体
+      class ListUsersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @type TotalCounts: Integer
+        # @param MaxResults: 每页的最大数据条数。
+        # @type MaxResults: Integer
+        # @param Users: 用户列表。
+        # @type Users: Array
+        # @param NextToken: 查询返回结果下一页的令牌。只有IsTruncated为true时，才显示该参数。
+        # @type NextToken: String
+        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @type IsTruncated: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCounts, :MaxResults, :Users, :NextToken, :IsTruncated, :RequestId
+
+        def initialize(totalcounts=nil, maxresults=nil, users=nil, nexttoken=nil, istruncated=nil, requestid=nil)
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @Users = users
+          @NextToken = nexttoken
+          @IsTruncated = istruncated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              userinfo_tmp = UserInfo.new
+              userinfo_tmp.deserialize(i)
+              @Users << userinfo_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @IsTruncated = params['IsTruncated']
           @RequestId = params['RequestId']
         end
       end
@@ -3403,6 +5534,42 @@ module TencentCloud
           @BillingPermission = params['BillingPermission']
           @ExistResources = params['ExistResources']
           @DetectFailedResources = params['DetectFailedResources']
+        end
+      end
+
+      # OpenIdentityCenter请求参数结构体
+      class OpenIdentityCenterRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneName: 空间名，必须全局唯一。包含小写字母、数字和短划线（-）。不能以短划线（-）开头或结尾，且不能有两个连续的短划线（-）。长度：2~64 个字符。
+        # @type ZoneName: String
+
+        attr_accessor :ZoneName
+
+        def initialize(zonename=nil)
+          @ZoneName = zonename
+        end
+
+        def deserialize(params)
+          @ZoneName = params['ZoneName']
+        end
+      end
+
+      # OpenIdentityCenter返回参数结构体
+      class OpenIdentityCenterResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :RequestId
+
+        def initialize(zoneid=nil, requestid=nil)
+          @ZoneId = zoneid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4044,6 +6211,27 @@ module TencentCloud
         end
       end
 
+      # 策略详情
+      class PolicyDetail < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID。
+        # @type PolicyId: Integer
+        # @param PolicyName: 策略名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+
+        attr_accessor :PolicyId, :PolicyName
+
+        def initialize(policyid=nil, policyname=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+        end
+      end
+
       # 产品资源
       class ProductResource < TencentCloud::Common::AbstractModel
         # @param ProductResourceId: 产品资源ID。
@@ -4064,6 +6252,57 @@ module TencentCloud
         def deserialize(params)
           @ProductResourceId = params['ProductResourceId']
           @ResourceGrantLast = params['ResourceGrantLast']
+        end
+      end
+
+      # ProvisionRoleConfiguration请求参数结构体
+      class ProvisionRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号。
+        # @type TargetType: String
+        # @param TargetUin: 集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :TargetType, :TargetUin
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, targettype=nil, targetuin=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @TargetType = targettype
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @TargetType = params['TargetType']
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # ProvisionRoleConfiguration返回参数结构体
+      class ProvisionRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param Task: 任务详情。
+        # @type Task: :class:`Tencentcloud::Organization.v20210331.models.RoleProvisioningsTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Task, :RequestId
+
+        def initialize(task=nil, requestid=nil)
+          @Task = task
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Task'].nil?
+            @Task = RoleProvisioningsTask.new
+            @Task.deserialize(params['Task'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4131,6 +6370,130 @@ module TencentCloud
         end
       end
 
+      # RemoveExternalSAMLIdPCertificate请求参数结构体
+      class RemoveExternalSAMLIdPCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param CertificateId: PEM 格式的 X509 证书。  由 SAML 身份提供商提供。
+        # @type CertificateId: String
+
+        attr_accessor :ZoneId, :CertificateId
+
+        def initialize(zoneid=nil, certificateid=nil)
+          @ZoneId = zoneid
+          @CertificateId = certificateid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @CertificateId = params['CertificateId']
+        end
+      end
+
+      # RemoveExternalSAMLIdPCertificate返回参数结构体
+      class RemoveExternalSAMLIdPCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemovePermissionPolicyFromRoleConfiguration请求参数结构体
+      class RemovePermissionPolicyFromRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置 ID
+        # @type RoleConfigurationId: String
+        # @param RolePolicyType: 权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。
+        # @type RolePolicyType: String
+        # @param RolePolicyName: 权限策略名称，长度最大为 32 个字符。
+        # @type RolePolicyName: String
+        # @param RolePolicyId: 策略ID。
+        # @type RolePolicyId: Integer
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :RolePolicyName, :RolePolicyId
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, rolepolicyname=nil, rolepolicyid=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @RolePolicyType = rolepolicytype
+          @RolePolicyName = rolepolicyname
+          @RolePolicyId = rolepolicyid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RolePolicyType = params['RolePolicyType']
+          @RolePolicyName = params['RolePolicyName']
+          @RolePolicyId = params['RolePolicyId']
+        end
+      end
+
+      # RemovePermissionPolicyFromRoleConfiguration返回参数结构体
+      class RemovePermissionPolicyFromRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveUserFromGroup请求参数结构体
+      class RemoveUserFromGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param GroupId: 用户组ID。
+        # @type GroupId: String
+        # @param UserId: 用户ID。
+        # @type UserId: String
+
+        attr_accessor :ZoneId, :GroupId, :UserId
+
+        def initialize(zoneid=nil, groupid=nil, userid=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # RemoveUserFromGroup返回参数结构体
+      class RemoveUserFromGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资源及关联的标签
       class ResourceTagMapping < TencentCloud::Common::AbstractModel
         # @param Resource: 资源六段式。腾讯云使用资源六段式描述一个资源。
@@ -4166,6 +6529,432 @@ module TencentCloud
               @Tags << tags_tmp
             end
           end
+        end
+      end
+
+      # 授权成员账号信息
+      class RoleAssignmentInfo < TencentCloud::Common::AbstractModel
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值：
+        # 当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。
+        # 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param PrincipalType: CAM 用户同步的身份类型。取值：
+
+        # User：表示该 CAM 用户同步的身份是CIC用户。
+        # Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param TargetUin: 同步集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param TargetType: 同步集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+
+        attr_accessor :PrincipalId, :PrincipalType, :TargetUin, :TargetType, :RoleConfigurationId
+
+        def initialize(principalid=nil, principaltype=nil, targetuin=nil, targettype=nil, roleconfigurationid=nil)
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @RoleConfigurationId = roleconfigurationid
+        end
+
+        def deserialize(params)
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @RoleConfigurationId = params['RoleConfigurationId']
+        end
+      end
+
+      # 成员账号的授权详情
+      class RoleAssignments < TencentCloud::Common::AbstractModel
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param RoleConfigurationName: 权限配置名称。
+        # @type RoleConfigurationName: String
+        # @param TargetUin: 集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号。
+        # @type TargetType: String
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值： 当PrincipalType取值为Group时，该值为CIC 用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC 用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param PrincipalName: 用户名称或者用户组名称
+        # @type PrincipalName: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+        # @param TargetName: 集团账号目标账号的名称。
+        # @type TargetName: String
+
+        attr_accessor :RoleConfigurationId, :RoleConfigurationName, :TargetUin, :TargetType, :PrincipalId, :PrincipalType, :PrincipalName, :CreateTime, :UpdateTime, :TargetName
+
+        def initialize(roleconfigurationid=nil, roleconfigurationname=nil, targetuin=nil, targettype=nil, principalid=nil, principaltype=nil, principalname=nil, createtime=nil, updatetime=nil, targetname=nil)
+          @RoleConfigurationId = roleconfigurationid
+          @RoleConfigurationName = roleconfigurationname
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+          @PrincipalName = principalname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TargetName = targetname
+        end
+
+        def deserialize(params)
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+          @PrincipalName = params['PrincipalName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TargetName = params['TargetName']
+        end
+      end
+
+      # CIC权限配置
+      class RoleConfiguration < TencentCloud::Common::AbstractModel
+        # @param RoleConfigurationId: 权限配置配置ID。
+        # @type RoleConfigurationId: String
+        # @param RoleConfigurationName: 权限配置配名称。
+        # @type RoleConfigurationName: String
+        # @param Description: 权限配置的描述。
+        # @type Description: String
+        # @param SessionDuration: 会话持续时间。CIC 用户使用访问配置访问成员账号时，会话最多保持的时间。
+        # 单位：秒。
+        # @type SessionDuration: Integer
+        # @param RelayState: 初始访问页面。CIC 用户使用访问配置访问成员账号时，初始访问的页面地址。
+        # @type RelayState: String
+        # @param CreateTime: 权限配置的创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 权限配置的更新时间。
+        # @type UpdateTime: String
+        # @param IsSelected: 如果有入参FilterTargets查询成员账号是否配置过权限，配置了返回true，否则返回false。
+        # @type IsSelected: Boolean
+
+        attr_accessor :RoleConfigurationId, :RoleConfigurationName, :Description, :SessionDuration, :RelayState, :CreateTime, :UpdateTime, :IsSelected
+
+        def initialize(roleconfigurationid=nil, roleconfigurationname=nil, description=nil, sessionduration=nil, relaystate=nil, createtime=nil, updatetime=nil, isselected=nil)
+          @RoleConfigurationId = roleconfigurationid
+          @RoleConfigurationName = roleconfigurationname
+          @Description = description
+          @SessionDuration = sessionduration
+          @RelayState = relaystate
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @IsSelected = isselected
+        end
+
+        def deserialize(params)
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @Description = params['Description']
+          @SessionDuration = params['SessionDuration']
+          @RelayState = params['RelayState']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @IsSelected = params['IsSelected']
+        end
+      end
+
+      # 权限配置同步
+      class RoleConfigurationProvisionings < TencentCloud::Common::AbstractModel
+        # @param DeploymentStatus: Deployed: 部署成功 DeployedRequired：需要重新部署 DeployFailed：部署失败
+        # @type DeploymentStatus: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param RoleConfigurationName: 权限配置名称。
+        # @type RoleConfigurationName: String
+        # @param TargetUin: 集团账号目标账号的UIN
+        # @type TargetUin: Integer
+        # @param TargetName: 集团账号目标账号的名称。
+        # @type TargetName: String
+        # @param CreateTime: 创建时间，
+        # @type CreateTime: String
+        # @param UpdateTime: 修改时间，
+        # @type UpdateTime: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+
+        attr_accessor :DeploymentStatus, :RoleConfigurationId, :RoleConfigurationName, :TargetUin, :TargetName, :CreateTime, :UpdateTime, :TargetType
+
+        def initialize(deploymentstatus=nil, roleconfigurationid=nil, roleconfigurationname=nil, targetuin=nil, targetname=nil, createtime=nil, updatetime=nil, targettype=nil)
+          @DeploymentStatus = deploymentstatus
+          @RoleConfigurationId = roleconfigurationid
+          @RoleConfigurationName = roleconfigurationname
+          @TargetUin = targetuin
+          @TargetName = targetname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TargetType = targettype
+        end
+
+        def deserialize(params)
+          @DeploymentStatus = params['DeploymentStatus']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @TargetUin = params['TargetUin']
+          @TargetName = params['TargetName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TargetType = params['TargetType']
+        end
+      end
+
+      # CIC的权限策略
+      class RolePolicie < TencentCloud::Common::AbstractModel
+        # @param RolePolicyId: 策略ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RolePolicyId: Integer
+        # @param RolePolicyName: 权限策略名称
+        # @type RolePolicyName: String
+        # @param RolePolicyType: 权限策略类型
+        # @type RolePolicyType: String
+        # @param RolePolicyDocument: 自定义策略内容。仅自定义策略返回该参数。
+        # @type RolePolicyDocument: String
+        # @param AddTime: 权限策略被添加到权限配置的时间。
+        # @type AddTime: String
+
+        attr_accessor :RolePolicyId, :RolePolicyName, :RolePolicyType, :RolePolicyDocument, :AddTime
+
+        def initialize(rolepolicyid=nil, rolepolicyname=nil, rolepolicytype=nil, rolepolicydocument=nil, addtime=nil)
+          @RolePolicyId = rolepolicyid
+          @RolePolicyName = rolepolicyname
+          @RolePolicyType = rolepolicytype
+          @RolePolicyDocument = rolepolicydocument
+          @AddTime = addtime
+        end
+
+        def deserialize(params)
+          @RolePolicyId = params['RolePolicyId']
+          @RolePolicyName = params['RolePolicyName']
+          @RolePolicyType = params['RolePolicyType']
+          @RolePolicyDocument = params['RolePolicyDocument']
+          @AddTime = params['AddTime']
+        end
+      end
+
+      # 同步部署角色任务状态信息。
+      class RoleProvisioningsTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param RoleConfigurationName: 权限配置名称。
+        # @type RoleConfigurationName: String
+        # @param TargetUin: 授权的集团账号目标账号的UIN
+        # @type TargetUin: Integer
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetType: String
+        # @param TaskType: 任务类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: String
+        # @param TaskStatus: 任务状态：InProgress: 进行中，Failed: 失败 3:Success: 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+
+        attr_accessor :TaskId, :RoleConfigurationId, :RoleConfigurationName, :TargetUin, :TargetType, :TaskType, :TaskStatus
+
+        def initialize(taskid=nil, roleconfigurationid=nil, roleconfigurationname=nil, targetuin=nil, targettype=nil, tasktype=nil, taskstatus=nil)
+          @TaskId = taskid
+          @RoleConfigurationId = roleconfigurationid
+          @RoleConfigurationName = roleconfigurationname
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @TaskType = tasktype
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @TaskType = params['TaskType']
+          @TaskStatus = params['TaskStatus']
+        end
+      end
+
+      # SAML 签名证书信息
+      class SAMLIdPCertificate < TencentCloud::Common::AbstractModel
+        # @param SerialNumber: 证书序列号。
+        # @type SerialNumber: String
+        # @param Issuer: 证书颁发者。
+        # @type Issuer: String
+        # @param Version: 证书版本。
+        # @type Version: Integer
+        # @param CertificateId: 证书ID。
+        # @type CertificateId: String
+        # @param PublicKey: PEM 格式的公钥证书（Base64 编码）。
+        # @type PublicKey: String
+        # @param SignatureAlgorithm: 证书的签名算法。
+        # @type SignatureAlgorithm: String
+        # @param NotAfter: 证书的过期时间。
+        # @type NotAfter: String
+        # @param NotBefore: 证书的创建时间。
+        # @type NotBefore: String
+        # @param Subject: 证书的主体。
+        # @type Subject: String
+        # @param X509Certificate: PEM 格式的 X509 证书。
+        # @type X509Certificate: String
+
+        attr_accessor :SerialNumber, :Issuer, :Version, :CertificateId, :PublicKey, :SignatureAlgorithm, :NotAfter, :NotBefore, :Subject, :X509Certificate
+
+        def initialize(serialnumber=nil, issuer=nil, version=nil, certificateid=nil, publickey=nil, signaturealgorithm=nil, notafter=nil, notbefore=nil, subject=nil, x509certificate=nil)
+          @SerialNumber = serialnumber
+          @Issuer = issuer
+          @Version = version
+          @CertificateId = certificateid
+          @PublicKey = publickey
+          @SignatureAlgorithm = signaturealgorithm
+          @NotAfter = notafter
+          @NotBefore = notbefore
+          @Subject = subject
+          @X509Certificate = x509certificate
+        end
+
+        def deserialize(params)
+          @SerialNumber = params['SerialNumber']
+          @Issuer = params['Issuer']
+          @Version = params['Version']
+          @CertificateId = params['CertificateId']
+          @PublicKey = params['PublicKey']
+          @SignatureAlgorithm = params['SignatureAlgorithm']
+          @NotAfter = params['NotAfter']
+          @NotBefore = params['NotBefore']
+          @Subject = params['Subject']
+          @X509Certificate = params['X509Certificate']
+        end
+      end
+
+      # saml 身份提供商配置信息。
+      class SAMLIdentityProviderConfiguration < TencentCloud::Common::AbstractModel
+        # @param EntityId: IdP 标识。
+        # @type EntityId: String
+        # @param SSOStatus: SSO 登录的启用状态。取值：  Enabled：启用。 Disabled（默认值）：禁用。
+        # @type SSOStatus: String
+        # @param EncodedMetadataDocument: IdP 元数据文档（Base64 编码）。
+        # @type EncodedMetadataDocument: String
+        # @param CertificateIds: X509证书ID。
+        # @type CertificateIds: Array
+        # @param LoginUrl: IdP 的登录地址。
+        # @type LoginUrl: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :EntityId, :SSOStatus, :EncodedMetadataDocument, :CertificateIds, :LoginUrl, :CreateTime, :UpdateTime
+
+        def initialize(entityid=nil, ssostatus=nil, encodedmetadatadocument=nil, certificateids=nil, loginurl=nil, createtime=nil, updatetime=nil)
+          @EntityId = entityid
+          @SSOStatus = ssostatus
+          @EncodedMetadataDocument = encodedmetadatadocument
+          @CertificateIds = certificateids
+          @LoginUrl = loginurl
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @EntityId = params['EntityId']
+          @SSOStatus = params['SSOStatus']
+          @EncodedMetadataDocument = params['EncodedMetadataDocument']
+          @CertificateIds = params['CertificateIds']
+          @LoginUrl = params['LoginUrl']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # SAML服务提供商信息
+      class SAMLServiceProvider < TencentCloud::Common::AbstractModel
+        # @param EntityId: https://tencentcloudsso.com/saml/sp/z-sjw8ensa**
+        # @type EntityId: String
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param EncodedMetadataDocument: SP 元数据文档（Base64 编码）。
+        # @type EncodedMetadataDocument: String
+        # @param AcsUrl: SP 的 ACS URL。
+        # @type AcsUrl: String
+
+        attr_accessor :EntityId, :ZoneId, :EncodedMetadataDocument, :AcsUrl
+
+        def initialize(entityid=nil, zoneid=nil, encodedmetadatadocument=nil, acsurl=nil)
+          @EntityId = entityid
+          @ZoneId = zoneid
+          @EncodedMetadataDocument = encodedmetadatadocument
+          @AcsUrl = acsurl
+        end
+
+        def deserialize(params)
+          @EntityId = params['EntityId']
+          @ZoneId = params['ZoneId']
+          @EncodedMetadataDocument = params['EncodedMetadataDocument']
+          @AcsUrl = params['AcsUrl']
+        end
+      end
+
+      # SetExternalSAMLIdentityProvider请求参数结构体
+      class SetExternalSAMLIdentityProviderRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param EncodedMetadataDocument: IdP 元数据文档（Base64 编码）。  由支持 SAML 2.0 协议的 IdP 提供。
+        # @type EncodedMetadataDocument: String
+        # @param SSOStatus: SSO 登录的启用状态。取值：  Enabled：启用。 Disabled（默认值）：禁用。
+        # @type SSOStatus: String
+        # @param EntityId: IdP 标识。
+        # @type EntityId: String
+        # @param LoginUrl: IdP 的登录地址。
+        # @type LoginUrl: String
+        # @param X509Certificate: PEM 格式的 X509 证书。指定该参数会替换所有已经存在的证书。
+        # @type X509Certificate: String
+
+        attr_accessor :ZoneId, :EncodedMetadataDocument, :SSOStatus, :EntityId, :LoginUrl, :X509Certificate
+
+        def initialize(zoneid=nil, encodedmetadatadocument=nil, ssostatus=nil, entityid=nil, loginurl=nil, x509certificate=nil)
+          @ZoneId = zoneid
+          @EncodedMetadataDocument = encodedmetadatadocument
+          @SSOStatus = ssostatus
+          @EntityId = entityid
+          @LoginUrl = loginurl
+          @X509Certificate = x509certificate
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @EncodedMetadataDocument = params['EncodedMetadataDocument']
+          @SSOStatus = params['SSOStatus']
+          @EntityId = params['EntityId']
+          @LoginUrl = params['LoginUrl']
+          @X509Certificate = params['X509Certificate']
+        end
+      end
+
+      # SetExternalSAMLIdentityProvider返回参数结构体
+      class SetExternalSAMLIdentityProviderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4344,6 +7133,144 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 任务状态信息。
+      class TaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param RoleConfigurationId: 权限配置ID。
+        # @type RoleConfigurationId: String
+        # @param RoleConfigurationName: 权限配置名称。
+        # @type RoleConfigurationName: String
+        # @param TargetUin: 授权的目标成员账号的UIN
+        # @type TargetUin: Integer
+        # @param TargetType: 同步的目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param PrincipalId: 用户授权的身份ID,如果是身份类型是CIC用户,则为用户ID; 如果是用户组，则为用户组ID;
+        # @type PrincipalId: String
+        # @param PrincipalType: 用户授权的身份类型, User代表CIC用户, Group代表CIC用户组
+        # @type PrincipalType: String
+        # @param TaskType: 任务类型。
+        # @type TaskType: String
+        # @param Status: InProgress：任务执行中。 Success：任务执行成功。 Failed：任务执行失败。
+        # @type Status: String
+        # @param FailureReason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureReason: String
+
+        attr_accessor :TaskId, :RoleConfigurationId, :RoleConfigurationName, :TargetUin, :TargetType, :PrincipalId, :PrincipalType, :TaskType, :Status, :FailureReason
+
+        def initialize(taskid=nil, roleconfigurationid=nil, roleconfigurationname=nil, targetuin=nil, targettype=nil, principalid=nil, principaltype=nil, tasktype=nil, status=nil, failurereason=nil)
+          @TaskId = taskid
+          @RoleConfigurationId = roleconfigurationid
+          @RoleConfigurationName = roleconfigurationname
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+          @TaskType = tasktype
+          @Status = status
+          @FailureReason = failurereason
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          @FailureReason = params['FailureReason']
+        end
+      end
+
+      # 任务状态信息。
+      class TaskStatus < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。取值：  InProgress：任务执行中。 Success：任务执行成功。 Failed：任务执行失败。
+        # @type Status: String
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param TaskType: 任务类型。取值：
+        # ProvisionRoleConfiguration：部署权限配置。
+        # DeprovisionRoleConfiguration：解除权限配置部署。
+        # CreateRoleAssignment：在成员 账号上授权。
+        # DeleteRoleAssignment：移除 成员 账号上的授权。
+        # @type TaskType: String
+        # @param FailureReason: 任务失败原因。
+        # 说明
+        # 只有Status为Failed，才会显示该参数。
+        # @type FailureReason: String
+
+        attr_accessor :Status, :TaskId, :TaskType, :FailureReason
+
+        def initialize(status=nil, taskid=nil, tasktype=nil, failurereason=nil)
+          @Status = status
+          @TaskId = taskid
+          @TaskType = tasktype
+          @FailureReason = failurereason
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @FailureReason = params['FailureReason']
+        end
+      end
+
+      # UpdateGroup请求参数结构体
+      class UpdateGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param GroupId: 用户组ID。
+        # @type GroupId: String
+        # @param NewGroupName: 新的用户组名称。
+        # @type NewGroupName: String
+        # @param NewDescription: 新的用户组描述。
+        # @type NewDescription: String
+
+        attr_accessor :ZoneId, :GroupId, :NewGroupName, :NewDescription
+
+        def initialize(zoneid=nil, groupid=nil, newgroupname=nil, newdescription=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @NewGroupName = newgroupname
+          @NewDescription = newdescription
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @NewGroupName = params['NewGroupName']
+          @NewDescription = params['NewDescription']
+        end
+      end
+
+      # UpdateGroup返回参数结构体
+      class UpdateGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupInfo: 用户组信息。
+        # @type GroupInfo: :class:`Tencentcloud::Organization.v20210331.models.GroupInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupInfo, :RequestId
+
+        def initialize(groupinfo=nil, requestid=nil)
+          @GroupInfo = groupinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupInfo'].nil?
+            @GroupInfo = GroupInfo.new
+            @GroupInfo.deserialize(params['GroupInfo'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4587,6 +7514,61 @@ module TencentCloud
         end
       end
 
+      # UpdateRoleConfiguration请求参数结构体
+      class UpdateRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置 ID
+        # @type RoleConfigurationId: String
+        # @param NewDescription: 新的访问配置描述。  长度：最大 1024 个字符。
+        # @type NewDescription: String
+        # @param NewSessionDuration: 新的会话持续时间。  CIC 用户使用访问配置访问集团账号目标账号时，会话最多保持的时间。  单位：秒。  取值范围：900-43200（15 分钟-12 小时）。
+        # @type NewSessionDuration: Integer
+        # @param NewRelayState: 新的初始访问页面。  CIC 用户使用访问配置访问集团账号目标账号时，初始访问的页面地址。  该页面必须是腾讯云控制台页面。
+        # @type NewRelayState: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :NewDescription, :NewSessionDuration, :NewRelayState
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, newdescription=nil, newsessionduration=nil, newrelaystate=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @NewDescription = newdescription
+          @NewSessionDuration = newsessionduration
+          @NewRelayState = newrelaystate
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @NewDescription = params['NewDescription']
+          @NewSessionDuration = params['NewSessionDuration']
+          @NewRelayState = params['NewRelayState']
+        end
+      end
+
+      # UpdateRoleConfiguration返回参数结构体
+      class UpdateRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RoleConfigurationInfo: 权限配置详情
+        # @type RoleConfigurationInfo: :class:`Tencentcloud::Organization.v20210331.models.RoleConfiguration`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleConfigurationInfo, :RequestId
+
+        def initialize(roleconfigurationinfo=nil, requestid=nil)
+          @RoleConfigurationInfo = roleconfigurationinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoleConfigurationInfo'].nil?
+            @RoleConfigurationInfo = RoleConfiguration.new
+            @RoleConfigurationInfo.deserialize(params['RoleConfigurationInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateShareUnit请求参数结构体
       class UpdateShareUnitRequest < TencentCloud::Common::AbstractModel
         # @param UnitId: 共享单元ID。
@@ -4628,6 +7610,478 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUser请求参数结构体
+      class UpdateUserRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param NewFirstName: 用户的名。
+        # @type NewFirstName: String
+        # @param NewLastName: 用户的姓。
+        # @type NewLastName: String
+        # @param NewDisplayName: 用户的显示名称。
+        # @type NewDisplayName: String
+        # @param NewDescription: 用户的描述。
+        # @type NewDescription: String
+        # @param NewEmail: 用户的电子邮箱。
+        # @type NewEmail: String
+
+        attr_accessor :ZoneId, :UserId, :NewFirstName, :NewLastName, :NewDisplayName, :NewDescription, :NewEmail
+
+        def initialize(zoneid=nil, userid=nil, newfirstname=nil, newlastname=nil, newdisplayname=nil, newdescription=nil, newemail=nil)
+          @ZoneId = zoneid
+          @UserId = userid
+          @NewFirstName = newfirstname
+          @NewLastName = newlastname
+          @NewDisplayName = newdisplayname
+          @NewDescription = newdescription
+          @NewEmail = newemail
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserId = params['UserId']
+          @NewFirstName = params['NewFirstName']
+          @NewLastName = params['NewLastName']
+          @NewDisplayName = params['NewDisplayName']
+          @NewDescription = params['NewDescription']
+          @NewEmail = params['NewEmail']
+        end
+      end
+
+      # UpdateUser返回参数结构体
+      class UpdateUserResponse < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户信息
+        # @type UserInfo: :class:`Tencentcloud::Organization.v20210331.models.UserInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserInfo, :RequestId
+
+        def initialize(userinfo=nil, requestid=nil)
+          @UserInfo = userinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserStatus请求参数结构体
+      class UpdateUserStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID。
+        # @type ZoneId: String
+        # @param UserId: 用户 ID。
+        # @type UserId: String
+        # @param NewUserStatus: 用户的状态。取值：  Enabled：启用。 Disabled：禁用。
+        # @type NewUserStatus: String
+
+        attr_accessor :ZoneId, :UserId, :NewUserStatus
+
+        def initialize(zoneid=nil, userid=nil, newuserstatus=nil)
+          @ZoneId = zoneid
+          @UserId = userid
+          @NewUserStatus = newuserstatus
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserId = params['UserId']
+          @NewUserStatus = params['NewUserStatus']
+        end
+      end
+
+      # UpdateUserStatus返回参数结构体
+      class UpdateUserStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserSyncProvisioning请求参数结构体
+      class UpdateUserSyncProvisioningRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。
+        # @type ZoneId: String
+        # @param UserProvisioningId: 用户同步的iD
+        # @type UserProvisioningId: String
+        # @param NewDescription: 用户同步描述。
+        # @type NewDescription: String
+        # @param NewDuplicationStateful: 冲突策略。当CIC 用户同步到 CAM 时，如果 CAM 中存在同名用户时的处理策略。取值： KeepBoth：两者都保留。当CIC 用户被同步到 CAM 时，如果 CAM 已经存在同名用户，则对CIC 用户的用户名添加后缀_cic后尝试创建该用户名的 CAM 用户。 TakeOver：替换。当CIC 用户被同步到 CAM 时，如果 CAM 已经存在同名用户，则直接将已经存在的 CAM 用户替换为CIC 同步用户。
+        # @type NewDuplicationStateful: String
+        # @param NewDeletionStrategy: 删除策略。删除 CAM 用户同步时，对已同步的 CAM 用户的处理策略。取值： Delete：删除。删除 CAM 用户同步时，会删除从CIC 已经同步到 CAM 中的 CAM 用户。 Keep：保留。删除 RAM 用户同步时，会保留从CIC 已经同步到 CAM 中的 CAM 用户。
+        # @type NewDeletionStrategy: String
+
+        attr_accessor :ZoneId, :UserProvisioningId, :NewDescription, :NewDuplicationStateful, :NewDeletionStrategy
+
+        def initialize(zoneid=nil, userprovisioningid=nil, newdescription=nil, newduplicationstateful=nil, newdeletionstrategy=nil)
+          @ZoneId = zoneid
+          @UserProvisioningId = userprovisioningid
+          @NewDescription = newdescription
+          @NewDuplicationStateful = newduplicationstateful
+          @NewDeletionStrategy = newdeletionstrategy
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @UserProvisioningId = params['UserProvisioningId']
+          @NewDescription = params['NewDescription']
+          @NewDuplicationStateful = params['NewDuplicationStateful']
+          @NewDeletionStrategy = params['NewDeletionStrategy']
+        end
+      end
+
+      # UpdateUserSyncProvisioning返回参数结构体
+      class UpdateUserSyncProvisioningResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateZone请求参数结构体
+      class UpdateZoneRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param NewZoneName: 空间名，必须全局唯一。包含小写字母、数字和短划线（-）。不能以短划线（-）开头或结尾，且不能有两个连续的短划线（-）。长度：2~64 个字符。
+        # @type NewZoneName: String
+
+        attr_accessor :ZoneId, :NewZoneName
+
+        def initialize(zoneid=nil, newzonename=nil)
+          @ZoneId = zoneid
+          @NewZoneName = newzonename
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @NewZoneName = params['NewZoneName']
+        end
+      end
+
+      # UpdateZone返回参数结构体
+      class UpdateZoneResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户信息
+      class UserInfo < TencentCloud::Common::AbstractModel
+        # @param UserName: 查询username。
+        # @type UserName: String
+        # @param FirstName: 用户的名。
+        # @type FirstName: String
+        # @param LastName: 用户的姓。
+        # @type LastName: String
+        # @param DisplayName: 用户的显示名称。
+        # @type DisplayName: String
+        # @param Description: 用户的描述。
+        # @type Description: String
+        # @param Email: 用户的电子邮箱。目录内必须唯一。
+        # @type Email: String
+        # @param UserStatus: 用户状态 Enabled：启用， Disabled：禁用。
+        # @type UserStatus: String
+        # @param UserType: 用户类型  Manual：手动创建，Synchronized：外部导入。
+        # @type UserType: String
+        # @param UserId: 用户 ID
+        # @type UserId: String
+        # @param CreateTime: 用户的创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 用户的修改时间
+        # @type UpdateTime: String
+        # @param IsSelected: 是否选中
+        # @type IsSelected: Boolean
+
+        attr_accessor :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :UserId, :CreateTime, :UpdateTime, :IsSelected
+
+        def initialize(username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, userid=nil, createtime=nil, updatetime=nil, isselected=nil)
+          @UserName = username
+          @FirstName = firstname
+          @LastName = lastname
+          @DisplayName = displayname
+          @Description = description
+          @Email = email
+          @UserStatus = userstatus
+          @UserType = usertype
+          @UserId = userid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @IsSelected = isselected
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @FirstName = params['FirstName']
+          @LastName = params['LastName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @Email = params['Email']
+          @UserStatus = params['UserStatus']
+          @UserType = params['UserType']
+          @UserId = params['UserId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @IsSelected = params['IsSelected']
+        end
+      end
+
+      # 用户同步信息
+      class UserProvisioning < TencentCloud::Common::AbstractModel
+        # @param UserProvisioningId: CAM 用户同步的状态。取值：
+
+        # Enabled：CAM 用户同步已启用。
+        # Disabled：CAM 用户同步未启用。
+        # @type UserProvisioningId: String
+        # @param Description: 描述。
+        # @type Description: String
+        # @param Status: CAM 用户同步的状态。取值：
+        # Enabled：CAM 用户同步已启用。
+        # Disabled：CAM 用户同步未启用。
+        # @type Status: String
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值：
+        # 当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。
+        # 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param PrincipalName: CAM 用户同步的身份名称。取值：
+        # 当PrincipalType取值为Group时，该值为CIC用户组名称。
+        # 当PrincipalType取值为User时，该值为CIC用户名称。
+        # @type PrincipalName: String
+        # @param PrincipalType: CAM 用户同步的身份类型。取值：
+
+        # User：表示该 CAM 用户同步的身份是CIC用户。
+        # Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param TargetUin: 集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param TargetName: 集团账号目标账号的名称。
+        # @type TargetName: String
+        # @param DuplicationStrategy: 冲突策略。当CIC 用户同步到 CAM 时，如果 CAM 中存在同名用户时的处理策略。取值： KeepBoth：两者都保留。当CIC 用户被同步到 CAM 时，如果 CAM 已经存在同名用户，则对CIC 用户的用户名添加后缀_cic后尝试创建该用户名的 CAM 用户。 TakeOver：替换。当CIC 用户被同步到 CAM 时，如果 CAM 已经存在同名用户，则直接将已经存在的 CAM 用户替换为CIC 同步用户。
+        # @type DuplicationStrategy: String
+        # @param DeletionStrategy: 删除策略。删除 CAM 用户同步时，对已同步的 CAM 用户的处理策略。取值： Delete：删除。删除 CAM 用户同步时，会删除从CIC 已经同步到 CAM 中的 CAM 用户。 Keep：保留。删除 RAM 用户同步时，会保留从CIC 已经同步到 CAM 中的 CAM 用户。
+        # @type DeletionStrategy: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+
+        attr_accessor :UserProvisioningId, :Description, :Status, :PrincipalId, :PrincipalName, :PrincipalType, :TargetUin, :TargetName, :DuplicationStrategy, :DeletionStrategy, :CreateTime, :UpdateTime, :TargetType
+
+        def initialize(userprovisioningid=nil, description=nil, status=nil, principalid=nil, principalname=nil, principaltype=nil, targetuin=nil, targetname=nil, duplicationstrategy=nil, deletionstrategy=nil, createtime=nil, updatetime=nil, targettype=nil)
+          @UserProvisioningId = userprovisioningid
+          @Description = description
+          @Status = status
+          @PrincipalId = principalid
+          @PrincipalName = principalname
+          @PrincipalType = principaltype
+          @TargetUin = targetuin
+          @TargetName = targetname
+          @DuplicationStrategy = duplicationstrategy
+          @DeletionStrategy = deletionstrategy
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TargetType = targettype
+        end
+
+        def deserialize(params)
+          @UserProvisioningId = params['UserProvisioningId']
+          @Description = params['Description']
+          @Status = params['Status']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalName = params['PrincipalName']
+          @PrincipalType = params['PrincipalType']
+          @TargetUin = params['TargetUin']
+          @TargetName = params['TargetName']
+          @DuplicationStrategy = params['DuplicationStrategy']
+          @DeletionStrategy = params['DeletionStrategy']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TargetType = params['TargetType']
+        end
+      end
+
+      # 用户同步任务状态信息。
+      class UserProvisioningsTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param TargetUin: 授权的集团账号目标账号的UIN
+        # @type TargetUin: Integer
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+        # @param TaskType: 任务类型。StartProvisioning：用户同步，DeleteProvisioning：删除用户同步
+        # @type TaskType: String
+        # @param TaskStatus: 任务状态：InProgress: 进行中，Failed: 失败 3:Success: 成功
+        # @type TaskStatus: String
+        # @param UserProvisioningId: 用户同步ID。
+        # @type UserProvisioningId: String
+        # @param PrincipalId:  CAM 用户同步的身份 ID。取值： 当PrincipalType取值为Group时，该值为CIC 用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC 用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示该 CAM 用户同步的身份是CIC 用户。 Group：表示该 CAM 用户同步的身份是CIC 用户组。
+        # @type PrincipalType: String
+        # @param PrincipalName: 用户或者用户组名称。
+        # @type PrincipalName: String
+        # @param DuplicationStrategy: 冲突策略。KeepBoth:两者都保留;TakeOver:替换
+        # @type DuplicationStrategy: String
+        # @param DeletionStrategy: 删除策略。Delete:删除;Keep:保留
+        # @type DeletionStrategy: String
+
+        attr_accessor :TaskId, :TargetUin, :TargetType, :TaskType, :TaskStatus, :UserProvisioningId, :PrincipalId, :PrincipalType, :PrincipalName, :DuplicationStrategy, :DeletionStrategy
+
+        def initialize(taskid=nil, targetuin=nil, targettype=nil, tasktype=nil, taskstatus=nil, userprovisioningid=nil, principalid=nil, principaltype=nil, principalname=nil, duplicationstrategy=nil, deletionstrategy=nil)
+          @TaskId = taskid
+          @TargetUin = targetuin
+          @TargetType = targettype
+          @TaskType = tasktype
+          @TaskStatus = taskstatus
+          @UserProvisioningId = userprovisioningid
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+          @PrincipalName = principalname
+          @DuplicationStrategy = duplicationstrategy
+          @DeletionStrategy = deletionstrategy
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TargetUin = params['TargetUin']
+          @TargetType = params['TargetType']
+          @TaskType = params['TaskType']
+          @TaskStatus = params['TaskStatus']
+          @UserProvisioningId = params['UserProvisioningId']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+          @PrincipalName = params['PrincipalName']
+          @DuplicationStrategy = params['DuplicationStrategy']
+          @DeletionStrategy = params['DeletionStrategy']
+        end
+      end
+
+      # CAM用户同步信息
+      class UserSyncProvisioning < TencentCloud::Common::AbstractModel
+        # @param Description: 描述。
+        # @type Description: String
+        # @param PrincipalId: CAM 用户同步的身份 ID。取值：
+        # 当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。
+        # 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @type PrincipalId: String
+        # @param PrincipalType: CAM 用户同步的身份类型。取值：
+
+        # User：表示该 CAM 用户同步的身份是CIC用户。
+        # Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @type PrincipalType: String
+        # @param TargetUin: 同步的集团账号目标账号的UIN。
+        # @type TargetUin: Integer
+        # @param DuplicationStrategy: 冲突策略。当CIC 用户同步到 CAM 时，如果 CAM 中存在同名用户时的处理策略。取值： KeepBoth：两者都保留。当CIC 用户被同步到 CAM 时，如果 CAM 已经存在同名用户，则对CIC 用户的用户名添加后缀_cic后尝试创建该用户名的 CAM 用户。 TakeOver：替换。当CIC 用户被同步到 CAM 时，如果 CAM 已经存在同名用户，则直接将已经存在的 CAM 用户替换为CIC 同步用户。
+        # @type DuplicationStrategy: String
+        # @param DeletionStrategy: 删除策略。删除 CAM 用户同步时，对已同步的 CAM 用户的处理策略。取值： Delete：删除。删除 CAM 用户同步时，会删除从CIC 已经同步到 CAM 中的 CAM 用户。 Keep：保留。删除 RAM 用户同步时，会保留从CIC 已经同步到 CAM 中的 CAM 用户。
+        # @type DeletionStrategy: String
+        # @param TargetType: 同步的集团账号目标账号的类型，ManagerUin管理账号;MemberUin成员账号
+        # @type TargetType: String
+
+        attr_accessor :Description, :PrincipalId, :PrincipalType, :TargetUin, :DuplicationStrategy, :DeletionStrategy, :TargetType
+
+        def initialize(description=nil, principalid=nil, principaltype=nil, targetuin=nil, duplicationstrategy=nil, deletionstrategy=nil, targettype=nil)
+          @Description = description
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+          @TargetUin = targetuin
+          @DuplicationStrategy = duplicationstrategy
+          @DeletionStrategy = deletionstrategy
+          @TargetType = targettype
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+          @TargetUin = params['TargetUin']
+          @DuplicationStrategy = params['DuplicationStrategy']
+          @DeletionStrategy = params['DeletionStrategy']
+          @TargetType = params['TargetType']
+        end
+      end
+
+      # CIC的空间统计
+      class ZoneStatistics < TencentCloud::Common::AbstractModel
+        # @param UserQuota: 用户配额。
+        # @type UserQuota: Integer
+        # @param GroupQuota: 用户组配额。
+        # @type GroupQuota: Integer
+        # @param RoleConfigurationQuota: 权限配置配额。
+        # @type RoleConfigurationQuota: Integer
+        # @param SystemPolicyPerRoleConfigurationQuota: 权限配置绑定的系统策略配额。
+        # @type SystemPolicyPerRoleConfigurationQuota: Integer
+        # @param UserCount: 用户数。
+        # @type UserCount: Integer
+        # @param GroupCount: 用户组数。
+        # @type GroupCount: Integer
+        # @param RoleConfigurationCount: 权限配置数
+        # @type RoleConfigurationCount: Integer
+        # @param UserProvisioningCount: 同步用户数。
+        # @type UserProvisioningCount: Integer
+        # @param RoleConfigurationSyncCount: 同步角色数。
+        # @type RoleConfigurationSyncCount: Integer
+
+        attr_accessor :UserQuota, :GroupQuota, :RoleConfigurationQuota, :SystemPolicyPerRoleConfigurationQuota, :UserCount, :GroupCount, :RoleConfigurationCount, :UserProvisioningCount, :RoleConfigurationSyncCount
+
+        def initialize(userquota=nil, groupquota=nil, roleconfigurationquota=nil, systempolicyperroleconfigurationquota=nil, usercount=nil, groupcount=nil, roleconfigurationcount=nil, userprovisioningcount=nil, roleconfigurationsynccount=nil)
+          @UserQuota = userquota
+          @GroupQuota = groupquota
+          @RoleConfigurationQuota = roleconfigurationquota
+          @SystemPolicyPerRoleConfigurationQuota = systempolicyperroleconfigurationquota
+          @UserCount = usercount
+          @GroupCount = groupcount
+          @RoleConfigurationCount = roleconfigurationcount
+          @UserProvisioningCount = userprovisioningcount
+          @RoleConfigurationSyncCount = roleconfigurationsynccount
+        end
+
+        def deserialize(params)
+          @UserQuota = params['UserQuota']
+          @GroupQuota = params['GroupQuota']
+          @RoleConfigurationQuota = params['RoleConfigurationQuota']
+          @SystemPolicyPerRoleConfigurationQuota = params['SystemPolicyPerRoleConfigurationQuota']
+          @UserCount = params['UserCount']
+          @GroupCount = params['GroupCount']
+          @RoleConfigurationCount = params['RoleConfigurationCount']
+          @UserProvisioningCount = params['UserProvisioningCount']
+          @RoleConfigurationSyncCount = params['RoleConfigurationSyncCount']
         end
       end
 

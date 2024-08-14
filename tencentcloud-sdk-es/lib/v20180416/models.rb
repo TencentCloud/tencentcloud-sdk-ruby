@@ -880,15 +880,18 @@ module TencentCloud
         # @type KibanaWhiteIpList: Array
         # @param ZoneId: 空间id
         # @type ZoneId: Integer
+        # @param TagList: 标签信息
+        # @type TagList: Array
 
-        attr_accessor :VpcInfo, :SpaceName, :Zone, :KibanaWhiteIpList, :ZoneId
+        attr_accessor :VpcInfo, :SpaceName, :Zone, :KibanaWhiteIpList, :ZoneId, :TagList
 
-        def initialize(vpcinfo=nil, spacename=nil, zone=nil, kibanawhiteiplist=nil, zoneid=nil)
+        def initialize(vpcinfo=nil, spacename=nil, zone=nil, kibanawhiteiplist=nil, zoneid=nil, taglist=nil)
           @VpcInfo = vpcinfo
           @SpaceName = spacename
           @Zone = zone
           @KibanaWhiteIpList = kibanawhiteiplist
           @ZoneId = zoneid
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -904,6 +907,14 @@ module TencentCloud
           @Zone = params['Zone']
           @KibanaWhiteIpList = params['KibanaWhiteIpList']
           @ZoneId = params['ZoneId']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -2092,21 +2103,25 @@ module TencentCloud
         # @type SpaceId: String
         # @param IndexId: index索引id
         # @type IndexId: String
-        # @param MetricType: 指标类型，暂时只支持Storage
+        # @param MetricType: 指标类型，暂时只支持Storage(存储大小),AllMetric(所有存储指标：索引流量、存储大小、文档数量、读请求和写请求)
         # @type MetricType: Array
+        # @param DurationType: 时间长度类型DurationType(1: 3小时, 2: 昨天1天,3: 今日0点到现在)
+        # @type DurationType: Integer
 
-        attr_accessor :SpaceId, :IndexId, :MetricType
+        attr_accessor :SpaceId, :IndexId, :MetricType, :DurationType
 
-        def initialize(spaceid=nil, indexid=nil, metrictype=nil)
+        def initialize(spaceid=nil, indexid=nil, metrictype=nil, durationtype=nil)
           @SpaceId = spaceid
           @IndexId = indexid
           @MetricType = metrictype
+          @DurationType = durationtype
         end
 
         def deserialize(params)
           @SpaceId = params['SpaceId']
           @IndexId = params['IndexId']
           @MetricType = params['MetricType']
+          @DurationType = params['DurationType']
         end
       end
 
@@ -2114,18 +2129,34 @@ module TencentCloud
       class DescribeServerlessMetricsResponse < TencentCloud::Common::AbstractModel
         # @param Storage: storage指标值，单位byte
         # @type Storage: Float
+        # @param IndexTraffic: IndexTraffic指标值，单位byte
+        # @type IndexTraffic: Float
+        # @param ReadReqTimes: 读请求数，单位次数
+        # @type ReadReqTimes: Integer
+        # @param WriteReqTimes: 写请求数，单位次数
+        # @type WriteReqTimes: Integer
+        # @param DocCount: 文档数量，单位个数
+        # @type DocCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Storage, :RequestId
+        attr_accessor :Storage, :IndexTraffic, :ReadReqTimes, :WriteReqTimes, :DocCount, :RequestId
 
-        def initialize(storage=nil, requestid=nil)
+        def initialize(storage=nil, indextraffic=nil, readreqtimes=nil, writereqtimes=nil, doccount=nil, requestid=nil)
           @Storage = storage
+          @IndexTraffic = indextraffic
+          @ReadReqTimes = readreqtimes
+          @WriteReqTimes = writereqtimes
+          @DocCount = doccount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Storage = params['Storage']
+          @IndexTraffic = params['IndexTraffic']
+          @ReadReqTimes = params['ReadReqTimes']
+          @WriteReqTimes = params['WriteReqTimes']
+          @DocCount = params['DocCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2213,10 +2244,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页条数
         # @type Limit: Integer
+        # @param TagList: 标签信息
+        # @type TagList: Array
 
-        attr_accessor :SpaceIds, :SpaceNames, :Order, :OrderBy, :VpcIds, :Offset, :Limit
+        attr_accessor :SpaceIds, :SpaceNames, :Order, :OrderBy, :VpcIds, :Offset, :Limit, :TagList
 
-        def initialize(spaceids=nil, spacenames=nil, order=nil, orderby=nil, vpcids=nil, offset=nil, limit=nil)
+        def initialize(spaceids=nil, spacenames=nil, order=nil, orderby=nil, vpcids=nil, offset=nil, limit=nil, taglist=nil)
           @SpaceIds = spaceids
           @SpaceNames = spacenames
           @Order = order
@@ -2224,6 +2257,7 @@ module TencentCloud
           @VpcIds = vpcids
           @Offset = offset
           @Limit = limit
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -2234,6 +2268,14 @@ module TencentCloud
           @VpcIds = params['VpcIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -5344,10 +5386,13 @@ module TencentCloud
         # @type StorageType: Integer
         # @param TagList: 标签信息
         # @type TagList: Array
+        # @param IndexTraffic: 3782478.47
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexTraffic: Float
 
-        attr_accessor :AppId, :IndexName, :IndexDocs, :IndexStorage, :IndexCreateTime, :InstanceId, :IndexOptionsField, :IndexSettingsField, :IndexNetworkField, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :Status, :SpaceId, :SpaceName, :StorageType, :TagList
+        attr_accessor :AppId, :IndexName, :IndexDocs, :IndexStorage, :IndexCreateTime, :InstanceId, :IndexOptionsField, :IndexSettingsField, :IndexNetworkField, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :Status, :SpaceId, :SpaceName, :StorageType, :TagList, :IndexTraffic
 
-        def initialize(appid=nil, indexname=nil, indexdocs=nil, indexstorage=nil, indexcreatetime=nil, instanceid=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexnetworkfield=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, status=nil, spaceid=nil, spacename=nil, storagetype=nil, taglist=nil)
+        def initialize(appid=nil, indexname=nil, indexdocs=nil, indexstorage=nil, indexcreatetime=nil, instanceid=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexnetworkfield=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, status=nil, spaceid=nil, spacename=nil, storagetype=nil, taglist=nil, indextraffic=nil)
           @AppId = appid
           @IndexName = indexname
           @IndexDocs = indexdocs
@@ -5365,6 +5410,7 @@ module TencentCloud
           @SpaceName = spacename
           @StorageType = storagetype
           @TagList = taglist
+          @IndexTraffic = indextraffic
         end
 
         def deserialize(params)
@@ -5401,6 +5447,7 @@ module TencentCloud
               @TagList << taginfo_tmp
             end
           end
+          @IndexTraffic = params['IndexTraffic']
         end
       end
 
@@ -5549,10 +5596,13 @@ module TencentCloud
         # @param ClusterType: 0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
+        # @param TagList: key:value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
 
-        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage, :ClusterType
+        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage, :ClusterType, :TagList
 
-        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil, clustertype=nil)
+        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil, clustertype=nil, taglist=nil)
           @SpaceId = spaceid
           @SpaceName = spacename
           @Status = status
@@ -5572,6 +5622,7 @@ module TencentCloud
           @AppId = appid
           @KibanaLanguage = kibanalanguage
           @ClusterType = clustertype
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -5607,6 +5658,14 @@ module TencentCloud
           @AppId = params['AppId']
           @KibanaLanguage = params['KibanaLanguage']
           @ClusterType = params['ClusterType']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
         end
       end
 

@@ -721,6 +721,7 @@ module TencentCloud
         # <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。</li>
         # <li> command-name - String - 是否必填：否 -（过滤条件）按照命令名称过滤。</li>
         # <li> command-type - String - 是否必填：否 -（过滤条件）按照命令类型过滤，取值为 SHELL 或 POWERSHELL。</li>
+        # <li> scene-id - String - 是否必填：否 -（过滤条件）按照场景ID过滤。</li>
         # <li> created-by - String - 是否必填：否 -（过滤条件）按照命令创建者过滤，取值为 TAT 或 USER，TAT 代表公共命令，USER 代表由用户创建的命令。</li>
         # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
         # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
@@ -1285,6 +1286,77 @@ module TencentCloud
               registerinstanceinfo_tmp = RegisterInstanceInfo.new
               registerinstanceinfo_tmp.deserialize(i)
               @RegisterInstanceSet << registerinstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScenes请求参数结构体
+      class DescribeScenesRequest < TencentCloud::Common::AbstractModel
+        # @param SceneIds: 场景 ID 数组
+        # @type SceneIds: Array
+        # @param Filters: 过滤条件。
+        # <li> scene-id - String - 是否必填：否 -（过滤条件）按照场景 ID 过滤。</li>
+        # <li> scene-name - String - 是否必填：否 -（过滤条件）按照场景名称过滤。</li>
+        # <li> created-by - String - 是否必填：否 -（过滤条件）按照场景创建者过滤，取值为 TAT 或 USER。TAT 代表公共命令，USER 代表由用户创建的命令。</li>
+
+        # 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `SceneIds` 和 `Filters` 。
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+
+        attr_accessor :SceneIds, :Filters, :Limit, :Offset
+
+        def initialize(sceneids=nil, filters=nil, limit=nil, offset=nil)
+          @SceneIds = sceneids
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SceneIds = params['SceneIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeScenes返回参数结构体
+      class DescribeScenesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的场景总数。
+        # @type TotalCount: Integer
+        # @param SceneSet: 场景详情列表。
+        # @type SceneSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SceneSet, :RequestId
+
+        def initialize(totalcount=nil, sceneset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SceneSet = sceneset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SceneSet'].nil?
+            @SceneSet = []
+            params['SceneSet'].each do |i|
+              scene_tmp = Scene.new
+              scene_tmp.deserialize(i)
+              @SceneSet << scene_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1983,7 +2055,7 @@ module TencentCloud
       class ModifyRegisterInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param InstanceName: 实例名。
+        # @param InstanceName: 实例名称。有效长度为 1～60 字符。
         # @type InstanceName: String
 
         attr_accessor :InstanceId, :InstanceName
@@ -2357,6 +2429,43 @@ module TencentCloud
           @CommandId = params['CommandId']
           @InvocationId = params['InvocationId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 场景详情。
+      class Scene < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景 ID 。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneId: String
+        # @param SceneName: 场景名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneName: String
+        # @param CreatedBy: 场景创建者。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedBy: String
+        # @param CreatedTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+
+        attr_accessor :SceneId, :SceneName, :CreatedBy, :CreatedTime, :UpdatedTime
+
+        def initialize(sceneid=nil, scenename=nil, createdby=nil, createdtime=nil, updatedtime=nil)
+          @SceneId = sceneid
+          @SceneName = scenename
+          @CreatedBy = createdby
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @SceneName = params['SceneName']
+          @CreatedBy = params['CreatedBy']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

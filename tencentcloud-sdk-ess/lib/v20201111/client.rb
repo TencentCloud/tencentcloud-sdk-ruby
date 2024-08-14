@@ -186,6 +186,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 支持企业进行批量初始化操作：
+
+        # 此接口存在以下限制：
+        # 1. 若批量操作中包含<font  color="red">加入集团企业</font>操作,则调用此接口的员工须有<font  color="red">集团企业管理权限</font>。
+        # 2. 批量操作的企业需要已经完成电子签的认证流程。
+        # 3. 通过此接口生成的链接在小程序端进行操作时，操作人需要是<font  color="red">所有企业的超管或法人</font>。
+        # 4. 批量操作的企业，需要是<a href="https://qian.tencent.com/developers/companyApis/organizations/CreateOrganizationAuthUrl" target="_blank">通过平台方引导认证</a>的企业。
+        # 5. <font  color="red">操作链接过期时间默认为生成链接后7天。</font>
+
+        # @param request: Request instance for CreateBatchInitOrganizationUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateBatchInitOrganizationUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateBatchInitOrganizationUrlResponse`
+        def CreateBatchInitOrganizationUrl(request)
+          body = send_request('CreateBatchInitOrganizationUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBatchInitOrganizationUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateBatchOrganizationRegistrationTasks）用于批量创建企业认证链接
         # 该接口为异步提交任务接口,需要跟查询企业批量认证链接(DescribeBatchOrganizationRegistrationUrls) 配合使用.
 

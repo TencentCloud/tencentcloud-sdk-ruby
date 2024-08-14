@@ -490,6 +490,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于查询场景详情。
+
+        # @param request: Request instance for DescribeScenes.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DescribeScenesRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DescribeScenesResponse`
+        def DescribeScenes(request)
+          body = send_request('DescribeScenes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScenesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于停止执行器。
 
         # @param request: Request instance for DisableInvoker.

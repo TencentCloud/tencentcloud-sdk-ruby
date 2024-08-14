@@ -123,7 +123,7 @@ module TencentCloud
         # PRO  专业版
         # PLATINUM 铂金版
         # @type InstanceType: String
-        # @param Name: 实例名称
+        # @param Name: 集群名称
         # @type Name: String
         # @param SkuCode: 商品规格，可用规格如下：experiment_500, basic_1k, basic_2k, basic_3k, basic_4k, basic_5k, basic_6k, basic_7k, basic_8k, basic_9k, basic_10k, pro_4k, pro_6k, pro_8k, pro_1w, pro_15k, pro_2w, pro_25k, pro_3w, pro_35k, pro_4w, pro_45k, pro_5w, pro_55k, pro_60k, pro_65k, pro_70k, pro_75k, pro_80k, pro_85k, pro_90k, pro_95k, pro_100k, platinum_1w, platinum_2w, platinum_3w, platinum_4w, platinum_5w, platinum_6w, platinum_7w, platinum_8w, platinum_9w, platinum_10w, platinum_12w, platinum_14w, platinum_16w, platinum_18w, platinum_20w, platinum_25w, platinum_30w, platinum_35w, platinum_40w, platinum_45w, platinum_50w, platinum_60w, platinum_70w, platinum_80w, platinum_90w, platinum_100w
         # @type SkuCode: String
@@ -131,28 +131,30 @@ module TencentCloud
         # @type Remark: String
         # @param TagList: 标签列表
         # @type TagList: Array
-        # @param VpcList: 实例绑定的VPC信息
+        # @param VpcList: 集群绑定的VPC信息，必填
         # @type VpcList: Array
-        # @param EnablePublic: 是否开启公网
+        # @param EnablePublic: 是否开启公网，默认值为false表示不开启
         # @type EnablePublic: Boolean
-        # @param Bandwidth: 公网带宽（单位：兆）
+        # @param BillingFlow: 公网是否按流量计费，默认值为false表示不按流量计费
+        # @type BillingFlow: Boolean
+        # @param Bandwidth: 公网带宽（单位：兆），默认值为0。如果开启公网，该字段必须为大于0的正整数
         # @type Bandwidth: Integer
         # @param IpRules: 公网访问白名单
         # @type IpRules: Array
         # @param MessageRetention: 消息保留时长（单位：小时）
         # @type MessageRetention: Integer
-        # @param PayMode: 付费模式（0: 后付费；1: 预付费）
+        # @param PayMode: 付费模式（0: 后付费；1: 预付费），默认值为0
         # @type PayMode: Integer
-        # @param RenewFlag: 是否自动续费（0: 不自动续费；1: 自动续费）
+        # @param RenewFlag: 是否自动续费（0: 不自动续费；1: 自动续费），默认值为0
         # @type RenewFlag: Integer
-        # @param TimeSpan: 购买时长（单位：月）
+        # @param TimeSpan: 购买时长（单位：月），默认值为1
         # @type TimeSpan: Integer
         # @param MaxTopicNum: 最大可创建主题数
         # @type MaxTopicNum: Integer
 
-        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :Bandwidth, :IpRules, :MessageRetention, :PayMode, :RenewFlag, :TimeSpan, :MaxTopicNum
+        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :BillingFlow, :Bandwidth, :IpRules, :MessageRetention, :PayMode, :RenewFlag, :TimeSpan, :MaxTopicNum
 
-        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, bandwidth=nil, iprules=nil, messageretention=nil, paymode=nil, renewflag=nil, timespan=nil, maxtopicnum=nil)
+        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, billingflow=nil, bandwidth=nil, iprules=nil, messageretention=nil, paymode=nil, renewflag=nil, timespan=nil, maxtopicnum=nil)
           @InstanceType = instancetype
           @Name = name
           @SkuCode = skucode
@@ -160,6 +162,7 @@ module TencentCloud
           @TagList = taglist
           @VpcList = vpclist
           @EnablePublic = enablepublic
+          @BillingFlow = billingflow
           @Bandwidth = bandwidth
           @IpRules = iprules
           @MessageRetention = messageretention
@@ -191,6 +194,7 @@ module TencentCloud
             end
           end
           @EnablePublic = params['EnablePublic']
+          @BillingFlow = params['BillingFlow']
           @Bandwidth = params['Bandwidth']
           unless params['IpRules'].nil?
             @IpRules = []
@@ -3974,15 +3978,31 @@ module TencentCloud
         # AlreadyExists 已存在
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportStatus: String
+        # @param NamespaceV4: 4.x的命名空间，出参使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceV4: String
+        # @param GroupNameV4: 4.x的消费组名，出参使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupNameV4: String
+        # @param FullNamespaceV4: 4.x的完整命名空间，出参使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullNamespaceV4: String
+        # @param ConsumeMessageOrderly: 是否为顺序投递，5.0有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumeMessageOrderly: Boolean
 
-        attr_accessor :GroupName, :Remark, :Imported, :Namespace, :ImportStatus
+        attr_accessor :GroupName, :Remark, :Imported, :Namespace, :ImportStatus, :NamespaceV4, :GroupNameV4, :FullNamespaceV4, :ConsumeMessageOrderly
 
-        def initialize(groupname=nil, remark=nil, imported=nil, namespace=nil, importstatus=nil)
+        def initialize(groupname=nil, remark=nil, imported=nil, namespace=nil, importstatus=nil, namespacev4=nil, groupnamev4=nil, fullnamespacev4=nil, consumemessageorderly=nil)
           @GroupName = groupname
           @Remark = remark
           @Imported = imported
           @Namespace = namespace
           @ImportStatus = importstatus
+          @NamespaceV4 = namespacev4
+          @GroupNameV4 = groupnamev4
+          @FullNamespaceV4 = fullnamespacev4
+          @ConsumeMessageOrderly = consumemessageorderly
         end
 
         def deserialize(params)
@@ -3991,6 +4011,10 @@ module TencentCloud
           @Imported = params['Imported']
           @Namespace = params['Namespace']
           @ImportStatus = params['ImportStatus']
+          @NamespaceV4 = params['NamespaceV4']
+          @GroupNameV4 = params['GroupNameV4']
+          @FullNamespaceV4 = params['FullNamespaceV4']
+          @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
         end
       end
 

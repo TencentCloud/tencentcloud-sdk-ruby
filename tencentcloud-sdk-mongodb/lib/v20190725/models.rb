@@ -2431,8 +2431,8 @@ module TencentCloud
       class InquirePriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属区域及可用区信息。格式：ap-guangzhou-2。
         # @type Zone: String
-        # @param NodeNum: 每个分片的主从节点数量。
-        # 取值范围：请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MinNodeNum与MaxNodeNum分别对应其最小值与最大值。
+        # @param NodeNum: - 创建副本集实例，指每个副本集内主从节点数量。每个副本集所支持的的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
+        # - 创建分片集群实例，指每个分片的主从节点数量。每个分片所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # @type NodeNum: Integer
         # @param Memory: 实例内存大小。
         # - 单位：GB。
@@ -2443,48 +2443,44 @@ module TencentCloud
         # - 取值范围：请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MinStorage与MaxStorage分别对应其最小磁盘规格与最大磁盘规格。
         # @type Volume: Integer
         # @param MongoVersion: 实例版本信息。具体支持的版本，请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MongoVersionCode为实例所支持的版本信息。版本信息与版本号对应关系如下：
-        # - MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本。
-        # - MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本。
         # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
         # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
         # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
         # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param MachineCode: 机器类型。
-        # - HIO：高IO型。
-        # - HIO10G：高IO万兆型。
+        # @param MachineCode: 产品规格类型。
+        # - HIO10G：通用高HIO万兆型。
+        # - HCD：云盘版。
         # @type MachineCode: String
         # @param GoodsNum: 实例数量，取值范围为[1,10]。
         # @type GoodsNum: Integer
         # @param ClusterType: 实例类型。
         # - REPLSET：副本集。
         # - SHARD：分片集群。
-        # - STANDALONE：单节点。
         # @type ClusterType: String
-        # @param ReplicateSetNum: 副本集个数。
-        # - 创建副本集实例时，该参数固定设置为1。
-        # - 创建分片集群时，指分片数量，请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MinReplicateSetNum与MaxReplicateSetNum分别对应其最小值与最大值。
-        # - 若为单节点实例，该参数固定设置为0。
+        # @param ReplicateSetNum: - 创建副本集实例，指副本集数量，该参数只能为1。
+        # - 创建分片集群实例，指分片的数量。请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询分片数量的取值范围，其返回的数据结构SpecItems中的参数MinReplicateSetNum与MaxReplicateSetNum分别对应其最小值与最大值。
         # @type ReplicateSetNum: Integer
-        # @param Period: - 选择包年包月计费模式，即 <b>InstanceChargeType </b>设定为<b>PREPAID</b>时，需设定购买实例的时长。该参数取值可选：[1,2,3,4,5,6,7,8,9,10,11,12,24,36]；单位：月。
+        # @param Period: - 选择包年包月计费模式，即 <b>InstanceChargeType </b>设定为<b>PREPAID</b>时，必须设置该参数，指定购买实例的购买时长。取值可选：[1,2,3,4,5,6,7,8,9,10,11,12,24,36]；单位：月。
         # -选择按量计费，即 <b>InstanceChargeType</b> 设定为 **POSTPAID_BY_HOUR** 时，该参数仅可配置为 1。
         # @type Period: Integer
         # @param InstanceChargeType: 实例付费方式。
         # - PREPAID：包年包月计费。
         # - POSTPAID_BY_HOUR：按量计费。
         # @type InstanceChargeType: String
-        # @param MongosCpu: 分片实例询价必填参数，指 Mongos CPU核数，取值范围为[1,16]。
+        # @param MongosCpu: Mongos CPU 核数，支持1、2、4、8、16。购买分片集群时，必须填写。注意为空时取默认取值为2C。
         # @type MongosCpu: Integer
-        # @param MongosMemory: 分片实例询价必填参数，指 Mongos 内存，取值范围为[2,32]，单位：GB。
+        # @param MongosMemory: Mongos 内存大小。-  购买分片集群时，必须填写。- 单位：GB，支持1核2GB、2核4GB、4核8GB、8核16GB、16核32GB。注意为空时取默认取值为4G。
         # @type MongosMemory: Integer
-        # @param MongosNum: 分片实例询价必填参数，指 Mongos 个数，取值范围为[3,32]。
+        # @param MongosNum: 指 Mongos 个数，取值范围为[3,32]。若为分片集群实例询价，则该参数必须设置。注意为空时取默认取值为3个节点。
         # @type MongosNum: Integer
-        # @param ConfigServerCpu: 分片实例询价必填参数，指 ConfigServer CPU核数，取值为1，单位：GB。
+        # @param ConfigServerCpu: 指 ConfigServer CPU核数，取值为1，单位：GB。若为分片集群实例询价，该参数必须设置。
         # @type ConfigServerCpu: Integer
-        # @param ConfigServerMemory: 分片实例询价必填参数，指 ConfigServer 内存大小，取值为2，单位：GB。
+        # @param ConfigServerMemory: 指 ConfigServer 内存大小，取值为2，单位：GB。若为分片集群实例询价，则该参数必须设置。
         # @type ConfigServerMemory: Integer
-        # @param ConfigServerVolume: 分片实例询价必填参数，指 ConfigServer 磁盘大小，取值为 20，单位：GB。
+        # @param ConfigServerVolume: 指 ConfigServer 磁盘大小，取值为 20，单位：GB。若为分片集群实例询价，则该参数必须设置。
         # @type ConfigServerVolume: Integer
 
         attr_accessor :Zone, :NodeNum, :Memory, :Volume, :MongoVersion, :MachineCode, :GoodsNum, :ClusterType, :ReplicateSetNum, :Period, :InstanceChargeType, :MongosCpu, :MongosMemory, :MongosNum, :ConfigServerCpu, :ConfigServerMemory, :ConfigServerVolume
@@ -4345,47 +4341,69 @@ module TencentCloud
 
       # mongodb售卖规格
       class SpecItem < TencentCloud::Common::AbstractModel
-        # @param SpecCode: 规格信息标识
+        # @param SpecCode: 规格信息标识。格式如：mongo.HIO10G.128g。由节点类型、规格类型、内存规格三部分组成。
+        # - 节点类型，如下所示。
+        #   - mongo：Mongod 节点。
+        #  - mongos：Mongos 节点。
+        #  - cfgstr：Configserver 节点。
+        # - 规格类型，如下所示。
+        #  - HIO10G：通用高HIO万兆型。
+        #  - HCD：云盘版类型。
+        # - 内存规格，如下所示：
+        #  - 支持4、8、16、32、64、128、240、512。
+        #  - 单位g：表示GB。128g则表示128GB。
         # @type SpecCode: String
-        # @param Status: 规格有效标志，取值：0-停止售卖，1-开放售卖
+        # @param Status: 售卖规格有效标志，取值范围如下：
+        # - 0：停止售卖，
+        # - 1：开放售卖。
         # @type Status: Integer
-        # @param Cpu: 计算资源规格，单位为CPU核心数
+        # @param Cpu: 计算资源规格，CPU核数。
         # @type Cpu: Integer
-        # @param Memory: 内存规格，单位为MB
+        # @param Memory: 内存规格，单位为：MB。
         # @type Memory: Integer
-        # @param DefaultStorage: 默认磁盘规格，单位MB
+        # @param DefaultStorage: 默认磁盘规格，单位为：MB。
         # @type DefaultStorage: Integer
-        # @param MaxStorage: 最大磁盘规格，单位MB
+        # @param MaxStorage: 最大磁盘规格，单位为：MB。
         # @type MaxStorage: Integer
-        # @param MinStorage: 最小磁盘规格，单位MB
+        # @param MinStorage: 最小磁盘规格，单位为：MB。
         # @type MinStorage: Integer
-        # @param Qps: 可承载qps信息
+        # @param Qps: 指每秒最大请求次数，单位为：次/秒。
         # @type Qps: Integer
-        # @param Conns: 连接数限制
+        # @param Conns: 规格所支持的最大连接数限制。
         # @type Conns: Integer
-        # @param MongoVersionCode: 实例mongodb版本信息
+        # @param MongoVersionCode: 实例存储引擎版本信息。
+        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
+        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
+        # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
+        # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # @type MongoVersionCode: String
-        # @param MongoVersionValue: 实例mongodb版本号
+        # @param MongoVersionValue: 实例版本对应的数字版本。
         # @type MongoVersionValue: Integer
-        # @param Version: 实例mongodb版本号（短）
+        # @param Version: 实例版本信息。支持：3.6、4.2、4.4、5.0、6.0。
         # @type Version: String
-        # @param EngineName: 存储引擎
+        # @param EngineName: 存储引擎。
         # @type EngineName: String
-        # @param ClusterType: 集群类型，取值：1-分片集群，0-副本集集群
+        # @param ClusterType: 集群类型，取值如下：
+        # - 1：分片集群。
+        # - 0：副本集集群。
         # @type ClusterType: Integer
-        # @param MinNodeNum: 最小副本集从节点数
+        # @param MinNodeNum: 每个副本集最小节点数。
         # @type MinNodeNum: Integer
-        # @param MaxNodeNum: 最大副本集从节点数
+        # @param MaxNodeNum: 每个副本集最大节点数。
         # @type MaxNodeNum: Integer
-        # @param MinReplicateSetNum: 最小分片数
+        # @param MinReplicateSetNum: 最小分片数。
         # @type MinReplicateSetNum: Integer
-        # @param MaxReplicateSetNum: 最大分片数
+        # @param MaxReplicateSetNum: 最大分片数。
         # @type MaxReplicateSetNum: Integer
-        # @param MinReplicateSetNodeNum: 最小分片从节点数
+        # @param MinReplicateSetNodeNum: 每个分片最小节点数。
         # @type MinReplicateSetNodeNum: Integer
-        # @param MaxReplicateSetNodeNum: 最大分片从节点数
+        # @param MaxReplicateSetNodeNum: 每个分片最大节点数。
         # @type MaxReplicateSetNodeNum: Integer
-        # @param MachineType: 机器类型，取值：0-HIO，4-HIO10G
+        # @param MachineType: 集群的规格类型，取值范围如下：
+        # - HIO10G：通用高HIO万兆型。
+        # - HCD：云盘版类型。
         # @type MachineType: String
 
         attr_accessor :SpecCode, :Status, :Cpu, :Memory, :DefaultStorage, :MaxStorage, :MinStorage, :Qps, :Conns, :MongoVersionCode, :MongoVersionValue, :Version, :EngineName, :ClusterType, :MinNodeNum, :MaxNodeNum, :MinReplicateSetNum, :MaxReplicateSetNum, :MinReplicateSetNodeNum, :MaxReplicateSetNodeNum, :MachineType
