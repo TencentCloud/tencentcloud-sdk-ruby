@@ -1513,8 +1513,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2024, 7
-        deprecate :IgnoreCacheControl=, :none, 2024, 7
+        deprecate :IgnoreCacheControl, :none, 2024, 8
+        deprecate :IgnoreCacheControl=, :none, 2024, 8
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2744,8 +2744,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2024, 7
-        deprecate :EncodeUrl=, :none, 2024, 7
+        deprecate :EncodeUrl, :none, 2024, 8
+        deprecate :EncodeUrl=, :none, 2024, 8
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -3111,10 +3111,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2024, 7
-        deprecate :AllowDuplicates=, :none, 2024, 7
-        deprecate :JumpStart, :none, 2024, 7
-        deprecate :JumpStart=, :none, 2024, 7
+        deprecate :AllowDuplicates, :none, 2024, 8
+        deprecate :AllowDuplicates=, :none, 2024, 8
+        deprecate :JumpStart, :none, 2024, 8
+        deprecate :JumpStart=, :none, 2024, 8
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -5731,8 +5731,7 @@ module TencentCloud
 
       # DescribePrefetchTasks请求参数结构体
       class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
-        # 必填参数。
+        # @param ZoneId: 站点ID。该参数必填。
         # @type ZoneId: String
         # @param StartTime: 查询起始时间，时间与 job-id 必填一个。
         # @type StartTime: String
@@ -5742,7 +5741,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目，默认值：20，上限：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li>
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：<li>job-id：按照任务 ID 进行过滤。job-id 形如：1379afjk91u32h，暂不支持多值，不支持模糊查询；</li><li>target：按照目标资源信息进行过滤。target 形如：http://www.qq.com/1.txt，暂不支持多值，不支持模糊查询；</li><li>domains：按照域名行过滤。domains 形如：www.qq.com，不支持模糊查询；</li><li>statuses：按照任务状态进行过滤，不支持模糊查询。可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时<br>   invalid：无效。即源站响应非 2xx 状态码，请检查源站服务。</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :StartTime, :EndTime, :Offset, :Limit, :Filters
@@ -9189,8 +9188,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2024, 7
-        deprecate :ApplyType=, :none, 2024, 7
+        deprecate :ApplyType, :none, 2024, 8
+        deprecate :ApplyType=, :none, 2024, 8
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
@@ -11613,8 +11612,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2024, 7
-        deprecate :IgnoreNameCase=, :none, 2024, 7
+        deprecate :IgnoreNameCase, :none, 2024, 8
+        deprecate :IgnoreNameCase=, :none, 2024, 8
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

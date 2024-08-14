@@ -8969,14 +8969,30 @@ module TencentCloud
         # @type SpaceUsedSize: Float
         # @param CreateTimeStamp: 创建时候的时间戳
         # @type CreateTimeStamp: Integer
+        # @param DefaultBucket: 是否是用户默认桶，0：默认桶，1：非默认桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultBucket: Integer
+        # @param ShortName: 托管存储short name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortName: String
+        # @param Description: 桶描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Status: 托管桶状态，当前取值为：creating、bind、readOnly、isolate
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :Name, :Type, :SpaceUsedSize, :CreateTimeStamp
+        attr_accessor :Name, :Type, :SpaceUsedSize, :CreateTimeStamp, :DefaultBucket, :ShortName, :Description, :Status
 
-        def initialize(name=nil, type=nil, spaceusedsize=nil, createtimestamp=nil)
+        def initialize(name=nil, type=nil, spaceusedsize=nil, createtimestamp=nil, defaultbucket=nil, shortname=nil, description=nil, status=nil)
           @Name = name
           @Type = type
           @SpaceUsedSize = spaceusedsize
           @CreateTimeStamp = createtimestamp
+          @DefaultBucket = defaultbucket
+          @ShortName = shortname
+          @Description = description
+          @Status = status
         end
 
         def deserialize(params)
@@ -8984,6 +9000,10 @@ module TencentCloud
           @Type = params['Type']
           @SpaceUsedSize = params['SpaceUsedSize']
           @CreateTimeStamp = params['CreateTimeStamp']
+          @DefaultBucket = params['DefaultBucket']
+          @ShortName = params['ShortName']
+          @Description = params['Description']
+          @Status = params['Status']
         end
       end
 
@@ -10979,19 +10999,29 @@ module TencentCloud
         # @param DropTable: 是否删表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DropTable: Boolean
+        # @param ExpiredField: 过期字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredField: String
+        # @param ExpiredFieldFormat: 过期字段格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredFieldFormat: String
 
-        attr_accessor :LifecycleEnable, :Expiration, :DropTable
+        attr_accessor :LifecycleEnable, :Expiration, :DropTable, :ExpiredField, :ExpiredFieldFormat
 
-        def initialize(lifecycleenable=nil, expiration=nil, droptable=nil)
+        def initialize(lifecycleenable=nil, expiration=nil, droptable=nil, expiredfield=nil, expiredfieldformat=nil)
           @LifecycleEnable = lifecycleenable
           @Expiration = expiration
           @DropTable = droptable
+          @ExpiredField = expiredfield
+          @ExpiredFieldFormat = expiredfieldformat
         end
 
         def deserialize(params)
           @LifecycleEnable = params['LifecycleEnable']
           @Expiration = params['Expiration']
           @DropTable = params['DropTable']
+          @ExpiredField = params['ExpiredField']
+          @ExpiredFieldFormat = params['ExpiredFieldFormat']
         end
       end
 
@@ -11050,12 +11080,18 @@ module TencentCloud
 
       # SmartOptimizerWrittenPolicy
       class SmartOptimizerWrittenPolicy < TencentCloud::Common::AbstractModel
+        # @param WrittenEnable: none/enable/disable/default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WrittenEnable: String
 
+        attr_accessor :WrittenEnable
 
-        def initialize()
+        def initialize(writtenenable=nil)
+          @WrittenEnable = writtenenable
         end
 
         def deserialize(params)
+          @WrittenEnable = params['WrittenEnable']
         end
       end
 
@@ -11672,24 +11708,37 @@ module TencentCloud
       # 表字段描述信息
       class TColumn < TencentCloud::Common::AbstractModel
         # @param Name: 字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Type: 字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Comment: 字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param Default: 字段默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Default: String
         # @param NotNull: 字段是否是非空
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotNull: Boolean
         # @param Precision: 表示整个 numeric 的长度,取值1-38
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Precision: Integer
         # @param Scale: 表示小数部分的长度
         # Scale小于Precision
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scale: Integer
+        # @param Position: 字段位置，小的在前
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param IsPartition: 是否为分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartition: Boolean
 
-        attr_accessor :Name, :Type, :Comment, :Default, :NotNull, :Precision, :Scale
+        attr_accessor :Name, :Type, :Comment, :Default, :NotNull, :Precision, :Scale, :Position, :IsPartition
 
-        def initialize(name=nil, type=nil, comment=nil, default=nil, notnull=nil, precision=nil, scale=nil)
+        def initialize(name=nil, type=nil, comment=nil, default=nil, notnull=nil, precision=nil, scale=nil, position=nil, ispartition=nil)
           @Name = name
           @Type = type
           @Comment = comment
@@ -11697,6 +11746,8 @@ module TencentCloud
           @NotNull = notnull
           @Precision = precision
           @Scale = scale
+          @Position = position
+          @IsPartition = ispartition
         end
 
         def deserialize(params)
@@ -11707,6 +11758,8 @@ module TencentCloud
           @NotNull = params['NotNull']
           @Precision = params['Precision']
           @Scale = params['Scale']
+          @Position = params['Position']
+          @IsPartition = params['IsPartition']
         end
       end
 

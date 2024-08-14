@@ -9740,10 +9740,15 @@ module TencentCloud
         # <li> 5 :设备指纹识别</li>
         # <li> 6 :设备面容识别</li></ul>
         # @type ApproverSignTypes: Array
+        # @param NoTransfer: 签署方是否可以转他人处理
 
-        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder, :IsPromoter, :ApproverVerifyTypes, :ApproverSignTypes
+        # <ul><li> **false** : ( 默认)可以转他人处理</li>
+        # <li> **true** :不可以转他人处理</li></ul>
+        # @type NoTransfer: Boolean
 
-        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil, ispromoter=nil, approververifytypes=nil, approversigntypes=nil)
+        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder, :IsPromoter, :ApproverVerifyTypes, :ApproverSignTypes, :NoTransfer
+
+        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil, ispromoter=nil, approververifytypes=nil, approversigntypes=nil, notransfer=nil)
           @RecipientId = recipientid
           @RecipientType = recipienttype
           @Description = description
@@ -9755,6 +9760,7 @@ module TencentCloud
           @IsPromoter = ispromoter
           @ApproverVerifyTypes = approververifytypes
           @ApproverSignTypes = approversigntypes
+          @NoTransfer = notransfer
         end
 
         def deserialize(params)
@@ -9769,6 +9775,7 @@ module TencentCloud
           @IsPromoter = params['IsPromoter']
           @ApproverVerifyTypes = params['ApproverVerifyTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
+          @NoTransfer = params['NoTransfer']
         end
       end
 

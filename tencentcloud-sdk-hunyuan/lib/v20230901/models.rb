@@ -119,10 +119,12 @@ module TencentCloud
         # 2. false：开关关闭，true：开关打开。
         # 3. 未传值时默认开关关闭（false）。
         # @type Citation: Boolean
+        # @param EnableSpeedSearch: 是否开启极速版搜索，默认false，不开启；在开启且命中搜索时，会启用极速版搜索，流式输出首字返回更快。
+        # @type EnableSpeedSearch: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -135,6 +137,7 @@ module TencentCloud
           @CustomTool = customtool
           @SearchInfo = searchinfo
           @Citation = citation
+          @EnableSpeedSearch = enablespeedsearch
         end
 
         def deserialize(params)
@@ -167,6 +170,7 @@ module TencentCloud
           end
           @SearchInfo = params['SearchInfo']
           @Citation = params['Citation']
+          @EnableSpeedSearch = params['EnableSpeedSearch']
         end
       end
 

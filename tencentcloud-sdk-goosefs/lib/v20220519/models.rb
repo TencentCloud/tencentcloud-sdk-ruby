@@ -253,19 +253,36 @@ module TencentCloud
         # @type Status: String
         # @param ClientType: 客户端节点类型，extend(扩展节点)，manager(管理节点)
         # @type ClientType: String
+        # @param VpcId: 节点所属vpcid
+        # @type VpcId: String
+        # @param SubnetId: 节点所属子网id
+        # @type SubnetId: String
+        # @param InstanceId: cvmId
+        # @type InstanceId: String
+        # @param MountPoint: 自定义挂载点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountPoint: String
 
-        attr_accessor :ClientNodeIp, :Status, :ClientType
+        attr_accessor :ClientNodeIp, :Status, :ClientType, :VpcId, :SubnetId, :InstanceId, :MountPoint
 
-        def initialize(clientnodeip=nil, status=nil, clienttype=nil)
+        def initialize(clientnodeip=nil, status=nil, clienttype=nil, vpcid=nil, subnetid=nil, instanceid=nil, mountpoint=nil)
           @ClientNodeIp = clientnodeip
           @Status = status
           @ClientType = clienttype
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InstanceId = instanceid
+          @MountPoint = mountpoint
         end
 
         def deserialize(params)
           @ClientNodeIp = params['ClientNodeIp']
           @Status = params['Status']
           @ClientType = params['ClientType']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InstanceId = params['InstanceId']
+          @MountPoint = params['MountPoint']
         end
       end
 
@@ -1099,14 +1116,17 @@ module TencentCloud
         # @type SubnetId: String
         # @param LinuxClientNodeIp: linux客户端节点地址
         # @type LinuxClientNodeIp: String
+        # @param MountPoint: 自定义挂载点
+        # @type MountPoint: String
 
-        attr_accessor :InstanceId, :VpcId, :SubnetId, :LinuxClientNodeIp
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :LinuxClientNodeIp, :MountPoint
 
-        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, linuxclientnodeip=nil)
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, linuxclientnodeip=nil, mountpoint=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @SubnetId = subnetid
           @LinuxClientNodeIp = linuxclientnodeip
+          @MountPoint = mountpoint
         end
 
         def deserialize(params)
@@ -1114,6 +1134,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @LinuxClientNodeIp = params['LinuxClientNodeIp']
+          @MountPoint = params['MountPoint']
         end
       end
 

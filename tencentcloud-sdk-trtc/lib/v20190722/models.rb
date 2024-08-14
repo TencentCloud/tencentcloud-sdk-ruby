@@ -94,15 +94,23 @@ module TencentCloud
         # @param WelcomeMessage: 机器人的欢迎语
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WelcomeMessage: String
+        # @param InterruptMode: 智能打断模式，默认为0，0表示服务端自动打断，1表示服务端不打断，由端上发送打断信令进行打断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterruptMode: Integer
+        # @param InterruptSpeechDuration: InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterruptSpeechDuration: Integer
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
           @MaxIdleTime = maxidletime
           @WelcomeMessage = welcomemessage
+          @InterruptMode = interruptmode
+          @InterruptSpeechDuration = interruptspeechduration
         end
 
         def deserialize(params)
@@ -111,6 +119,8 @@ module TencentCloud
           @TargetUserId = params['TargetUserId']
           @MaxIdleTime = params['MaxIdleTime']
           @WelcomeMessage = params['WelcomeMessage']
+          @InterruptMode = params['InterruptMode']
+          @InterruptSpeechDuration = params['InterruptSpeechDuration']
         end
       end
 

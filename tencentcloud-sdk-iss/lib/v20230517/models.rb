@@ -1167,10 +1167,14 @@ module TencentCloud
         # @type Username: String
         # @param SNCode: 设备 SN，仅IVCP 协议设备需要
         # @type SNCode: String
+        # @param AppName: RTMP推流地址自定义AppName（仅RTMP需要，支持英文、数字组合限制32个字符内）
+        # @type AppName: String
+        # @param StreamName: RTMP推流地址自定义StreamName（仅RTMP需要，支持英文、数字组合限制32个字符内）
+        # @type StreamName: String
 
-        attr_accessor :Name, :AccessProtocol, :Type, :OrganizationId, :ClusterId, :TransportProtocol, :Password, :Description, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :SNCode
+        attr_accessor :Name, :AccessProtocol, :Type, :OrganizationId, :ClusterId, :TransportProtocol, :Password, :Description, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :SNCode, :AppName, :StreamName
 
-        def initialize(name=nil, accessprotocol=nil, type=nil, organizationid=nil, clusterid=nil, transportprotocol=nil, password=nil, description=nil, gatewayid=nil, protocoltype=nil, ip=nil, port=nil, username=nil, sncode=nil)
+        def initialize(name=nil, accessprotocol=nil, type=nil, organizationid=nil, clusterid=nil, transportprotocol=nil, password=nil, description=nil, gatewayid=nil, protocoltype=nil, ip=nil, port=nil, username=nil, sncode=nil, appname=nil, streamname=nil)
           @Name = name
           @AccessProtocol = accessprotocol
           @Type = type
@@ -1185,6 +1189,8 @@ module TencentCloud
           @Port = port
           @Username = username
           @SNCode = sncode
+          @AppName = appname
+          @StreamName = streamname
         end
 
         def deserialize(params)
@@ -1202,6 +1208,8 @@ module TencentCloud
           @Port = params['Port']
           @Username = params['Username']
           @SNCode = params['SNCode']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
         end
       end
 
@@ -2277,15 +2285,19 @@ module TencentCloud
       class DescribeCNAMERequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 服务节点 ID（从查询域名可绑定服务节点接口DescribeDomainRegion中获取）
         # @type ClusterId: String
+        # @param DomainType: 域名类型，0:拉流域名 1:推流域名
+        # @type DomainType: Integer
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :DomainType
 
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, domaintype=nil)
           @ClusterId = clusterid
+          @DomainType = domaintype
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @DomainType = params['DomainType']
         end
       end
 
@@ -2501,10 +2513,16 @@ module TencentCloud
         # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscribeSwitch: Integer
+        # @param AppName: RTMP推流地址自定义appName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param StreamName: RTMP推流地址自定义streamName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamName: String
 
-        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch
+        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName
 
-        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil)
+        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil)
           @DeviceId = deviceid
           @Code = code
           @Name = name
@@ -2533,6 +2551,8 @@ module TencentCloud
           @Manufacturer = manufacturer
           @AudioSwitch = audioswitch
           @SubscribeSwitch = subscribeswitch
+          @AppName = appname
+          @StreamName = streamname
         end
 
         def deserialize(params)
@@ -2564,6 +2584,8 @@ module TencentCloud
           @Manufacturer = params['Manufacturer']
           @AudioSwitch = params['AudioSwitch']
           @SubscribeSwitch = params['SubscribeSwitch']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
         end
       end
 
@@ -2723,10 +2745,13 @@ module TencentCloud
         # @param CertId: 证书ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
+        # @param DomainType: 域名类型 0:拉流域名 1:推流域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainType: Integer
 
-        attr_accessor :Id, :PlayDomain, :InternalDomain, :HaveCert, :ClusterId, :ClusterName, :AppId, :CertId
+        attr_accessor :Id, :PlayDomain, :InternalDomain, :HaveCert, :ClusterId, :ClusterName, :AppId, :CertId, :DomainType
 
-        def initialize(id=nil, playdomain=nil, internaldomain=nil, havecert=nil, clusterid=nil, clustername=nil, appid=nil, certid=nil)
+        def initialize(id=nil, playdomain=nil, internaldomain=nil, havecert=nil, clusterid=nil, clustername=nil, appid=nil, certid=nil, domaintype=nil)
           @Id = id
           @PlayDomain = playdomain
           @InternalDomain = internaldomain
@@ -2735,6 +2760,7 @@ module TencentCloud
           @ClusterName = clustername
           @AppId = appid
           @CertId = certid
+          @DomainType = domaintype
         end
 
         def deserialize(params)
@@ -2746,6 +2772,7 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @AppId = params['AppId']
           @CertId = params['CertId']
+          @DomainType = params['DomainType']
         end
       end
 
