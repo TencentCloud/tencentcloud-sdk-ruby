@@ -1319,24 +1319,27 @@ module TencentCloud
         # @param VerifyCode: 验证码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyCode: String
-        # @param StartTime: 开始时间，支持绝对时间(13位时间戳字符串)/相对时间字符串
+        # @param StartTime: 默认查询范围的开始时间点，支持绝对时间(13位Unix时间戳)或相对时间表达式
         # @type StartTime: String
-        # @param EndTime: 结束时间，支持绝对时间(13位时间戳字符串)/相对时间字符串
+        # @param EndTime: 默认查询范围的结束时间点，支持绝对时间(13位Unix时间戳)或相对时间表达式。注意，结束时间点要大于开始时间点
         # @type EndTime: String
-        # @param NowTime: 当StartTime/EndTime为相对时间时，基于NowTime计算绝对时间，默认为创建时间
+        # @param NowTime: 仅当StartTime/EndTime为相对时间时使用，基于NowTime计算绝对时间，默认为创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NowTime: Integer
-        # @param Params: params参数列表，当Type为2时支持
+        # @param Params: 默认的检索分析语句，仅当Type为2时使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Params: Array
-        # @param IsLockTimeRange: 是否允许访问者自行修改检索分析时间范围，默认不锁定
+        # @param IsLockTimeRange: 是否允许访问者自行修改检索分析时间范围。默认不锁定（false）
         # @type IsLockTimeRange: Boolean
-        # @param IsLockQuery: 是否允许访问者自行修改日志检索语句。在检索页分享中表示检索语句锁定状态；在仪表盘中表示过滤变量锁定状态
+        # @param IsLockQuery: 是否允许访问者自行修改日志检索语句。在检索页分享中表示检索语句锁定状态；在仪表盘中表示过滤变量锁定状态。默认不锁定（false）
         # @type IsLockQuery: Boolean
+        # @param IsSupportLogExport: 检索页分享是否允许访问者下载日志，默认不允许（false）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportLogExport: Boolean
 
-        attr_accessor :Name, :Type, :DurationMilliseconds, :Resources, :Domain, :VerifyCode, :StartTime, :EndTime, :NowTime, :Params, :IsLockTimeRange, :IsLockQuery
+        attr_accessor :Name, :Type, :DurationMilliseconds, :Resources, :Domain, :VerifyCode, :StartTime, :EndTime, :NowTime, :Params, :IsLockTimeRange, :IsLockQuery, :IsSupportLogExport
 
-        def initialize(name=nil, type=nil, durationmilliseconds=nil, resources=nil, domain=nil, verifycode=nil, starttime=nil, endtime=nil, nowtime=nil, params=nil, islocktimerange=nil, islockquery=nil)
+        def initialize(name=nil, type=nil, durationmilliseconds=nil, resources=nil, domain=nil, verifycode=nil, starttime=nil, endtime=nil, nowtime=nil, params=nil, islocktimerange=nil, islockquery=nil, issupportlogexport=nil)
           @Name = name
           @Type = type
           @DurationMilliseconds = durationmilliseconds
@@ -1349,6 +1352,7 @@ module TencentCloud
           @Params = params
           @IsLockTimeRange = islocktimerange
           @IsLockQuery = islockquery
+          @IsSupportLogExport = issupportlogexport
         end
 
         def deserialize(params)
@@ -1371,6 +1375,7 @@ module TencentCloud
           end
           @IsLockTimeRange = params['IsLockTimeRange']
           @IsLockQuery = params['IsLockQuery']
+          @IsSupportLogExport = params['IsSupportLogExport']
         end
       end
 
@@ -2487,12 +2492,32 @@ module TencentCloud
 
       # CreateDashboardSubscribe请求参数结构体
       class CreateDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 仪表盘订阅名称。
+        # @type Name: String
+        # @param DashboardId: 仪表盘id。
+        # @type DashboardId: String
+        # @param Cron: 订阅时间cron表达式，格式为：{秒数} {分钟} {小时} {日期} {月份} {星期}；（有效数据为：{分钟} {小时} {日期} {月份} {星期}）。<br><li/>{秒数} 取值范围： 0 ~ 59 <br><li/>{分钟} 取值范围： 0 ~ 59  <br><li/>{小时} 取值范围： 0 ~ 23  <br><li/>{日期} 取值范围： 1 ~ 31 AND (dayOfMonth最后一天： L) <br><li/>{月份} 取值范围： 1 ~ 12 <br><li/>{星期} 取值范围： 0 ~ 6 【0:星期日， 6星期六】
+        # @type Cron: String
+        # @param SubscribeData: 仪表盘订阅数据。
+        # @type SubscribeData: :class:`Tencentcloud::Cls.v20201016.models.DashboardSubscribeData`
 
+        attr_accessor :Name, :DashboardId, :Cron, :SubscribeData
 
-        def initialize()
+        def initialize(name=nil, dashboardid=nil, cron=nil, subscribedata=nil)
+          @Name = name
+          @DashboardId = dashboardid
+          @Cron = cron
+          @SubscribeData = subscribedata
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @DashboardId = params['DashboardId']
+          @Cron = params['Cron']
+          unless params['SubscribeData'].nil?
+            @SubscribeData = DashboardSubscribeData.new
+            @SubscribeData.deserialize(params['SubscribeData'])
+          end
         end
       end
 
@@ -3902,12 +3927,17 @@ module TencentCloud
 
       # DeleteDashboardSubscribe请求参数结构体
       class DeleteDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 仪表盘订阅记录id。
+        # @type Id: Integer
 
+        attr_accessor :Id
 
-        def initialize()
+        def initialize(id=nil)
+          @Id = id
         end
 
         def deserialize(params)
+          @Id = params['Id']
         end
       end
 
@@ -4922,12 +4952,32 @@ module TencentCloud
 
       # DescribeDashboardSubscribes请求参数结构体
       class DescribeDashboardSubscribesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <br><li/> dashboardId：按照【仪表盘id】进行过滤。类型：String必选：否<br><br><li/> 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
 
+        attr_accessor :Filters, :Offset, :Limit
 
-        def initialize()
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -8272,12 +8322,36 @@ module TencentCloud
 
       # ModifyDashboardSubscribe请求参数结构体
       class ModifyDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 仪表盘订阅id。
+        # @type Id: Integer
+        # @param DashboardId: 仪表盘id。
+        # @type DashboardId: String
+        # @param Name: 仪表盘订阅名称。
+        # @type Name: String
+        # @param Cron: 订阅时间cron表达式，格式为：{秒数} {分钟} {小时} {日期} {月份} {星期}；（有效数据为：{分钟} {小时} {日期} {月份} {星期}）。
+        # @type Cron: String
+        # @param SubscribeData: 仪表盘订阅数据。
+        # @type SubscribeData: :class:`Tencentcloud::Cls.v20201016.models.DashboardSubscribeData`
 
+        attr_accessor :Id, :DashboardId, :Name, :Cron, :SubscribeData
 
-        def initialize()
+        def initialize(id=nil, dashboardid=nil, name=nil, cron=nil, subscribedata=nil)
+          @Id = id
+          @DashboardId = dashboardid
+          @Name = name
+          @Cron = cron
+          @SubscribeData = subscribedata
         end
 
         def deserialize(params)
+          @Id = params['Id']
+          @DashboardId = params['DashboardId']
+          @Name = params['Name']
+          @Cron = params['Cron']
+          unless params['SubscribeData'].nil?
+            @SubscribeData = DashboardSubscribeData.new
+            @SubscribeData.deserialize(params['SubscribeData'])
+          end
         end
       end
 

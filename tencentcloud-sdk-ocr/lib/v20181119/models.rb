@@ -1304,6 +1304,50 @@ module TencentCloud
         end
       end
 
+      # ClassifyStoreName请求参数结构体
+      class ClassifyStoreNameRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # ClassifyStoreName返回参数结构体
+      class ClassifyStoreNameResponse < TencentCloud::Common::AbstractModel
+        # @param StoreLabel: 门头照标签
+        # @type StoreLabel: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StoreLabel, :RequestId
+
+        def initialize(storelabel=nil, requestid=nil)
+          @StoreLabel = storelabel
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StoreLabel = params['StoreLabel']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 坐标
       class Coord < TencentCloud::Common::AbstractModel
         # @param X: 横坐标
@@ -6819,7 +6863,12 @@ module TencentCloud
 
       # 二维码/条形码识别结果信息
       class QrcodeResultsInfo < TencentCloud::Common::AbstractModel
-        # @param TypeName: 类型（二维码、条形码）
+        # @param TypeName: 类型包括
+        # 二维码：QR_CODE
+        # 一维码：EAN-13、EAN-8、EAN-2、UPC-A、UPC-E、CODE-39、CODE-93、CODE-128
+        # PDF：PDF_417
+        # DataMatrix：DATA_MATRIX
+        # 小程序码：WX_CODE
         # @type TypeName: String
         # @param Url: 二维码/条形码包含的地址
         # @type Url: String
@@ -8570,6 +8619,65 @@ module TencentCloud
         end
       end
 
+      # RecognizeStoreName请求参数结构体
+      class RecognizeStoreNameRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RecognizeStoreName返回参数结构体
+      class RecognizeStoreNameResponse < TencentCloud::Common::AbstractModel
+        # @param StoreInfo: 门头照名称
+        # @type StoreInfo: Array
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StoreLabel: 门头照标签
+        # @type StoreLabel: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StoreInfo, :Angle, :StoreLabel, :RequestId
+
+        def initialize(storeinfo=nil, angle=nil, storelabel=nil, requestid=nil)
+          @StoreInfo = storeinfo
+          @Angle = angle
+          @StoreLabel = storelabel
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StoreInfo'].nil?
+            @StoreInfo = []
+            params['StoreInfo'].each do |i|
+              storeinfo_tmp = StoreInfo.new
+              storeinfo_tmp.deserialize(i)
+              @StoreInfo << storeinfo_tmp
+            end
+          end
+          @Angle = params['Angle']
+          @StoreLabel = params['StoreLabel']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeTableAccurateOCR请求参数结构体
       class RecognizeTableAccurateOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片/PDF的 Base64 值。
@@ -10043,6 +10151,34 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 门头照识别结果
+      class StoreInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 付款开户行、收款开户行、付款账号、收款账号、回单类型、回单编号、币种、流水号、凭证号码、交易机构、交易金额、手续费、日期等字段信息。
+        # @type Name: String
+        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
+        # @type Value: String
+        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+
+        attr_accessor :Name, :Value, :Rect
+
+        def initialize(name=nil, value=nil, rect=nil)
+          @Name = name
+          @Value = value
+          @Rect = rect
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          unless params['Rect'].nil?
+            @Rect = Rect.new
+            @Rect.deserialize(params['Rect'])
+          end
         end
       end
 

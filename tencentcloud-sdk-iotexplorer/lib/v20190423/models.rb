@@ -682,7 +682,7 @@ module TencentCloud
         # @type ChannelId: Integer
         # @param ServiceType: 云存 AI 服务类型。可能取值：
 
-        # - `PackageDetect`：包裹检测
+        # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
         # @type ServiceType: String
         # @param StartTime: 对应云存视频的起始时间
@@ -699,10 +699,12 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param UpdateTime: 最后更新时间
         # @type UpdateTime: Integer
+        # @param CustomId: 自定义任务 ID
+        # @type CustomId: String
 
-        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :EndTime, :Status, :Result, :Files, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :ServiceType, :StartTime, :EndTime, :Status, :Result, :Files, :CreateTime, :UpdateTime, :CustomId
 
-        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, endtime=nil, status=nil, result=nil, files=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, servicetype=nil, starttime=nil, endtime=nil, status=nil, result=nil, files=nil, createtime=nil, updatetime=nil, customid=nil)
           @TaskId = taskid
           @ProductId = productid
           @DeviceName = devicename
@@ -715,6 +717,7 @@ module TencentCloud
           @Files = files
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @CustomId = customid
         end
 
         def deserialize(params)
@@ -730,6 +733,7 @@ module TencentCloud
           @Files = params['Files']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @CustomId = params['CustomId']
         end
       end
 
@@ -2368,19 +2372,15 @@ module TencentCloud
         # - `1`：全时套餐
         # - `2`：事件套餐
         # - `3`：低功耗套餐
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Status: 云存 AI 套餐生效状态。可能取值：
 
         # - `0`：未开通或已过期
         # - `1`：生效中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ExpireTime: 云存 AI 套餐过期时间 UNIX 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
         # @param UserId: 用户 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param Enabled: 视频分析启用状态
         # @type Enabled: Boolean

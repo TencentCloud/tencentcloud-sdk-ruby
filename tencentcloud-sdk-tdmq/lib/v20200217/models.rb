@@ -6158,8 +6158,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 7
-        deprecate :QueryDlqMsg=, :none, 2024, 7
+        deprecate :QueryDlqMsg, :none, 2024, 8
+        deprecate :QueryDlqMsg=, :none, 2024, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6264,8 +6264,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 7
-        deprecate :QueryDLQMsg=, :none, 2024, 7
+        deprecate :QueryDLQMsg, :none, 2024, 8
+        deprecate :QueryDLQMsg=, :none, 2024, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -6546,18 +6546,22 @@ module TencentCloud
         # @param PayMode: 付费模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
+        # @param BillingFlow: 公网是否按流量计费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingFlow: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :PayStatus, :AccessUrl, :Rules, :Bandwidth, :PayMode, :RequestId
+        attr_accessor :Status, :PayStatus, :AccessUrl, :Rules, :Bandwidth, :PayMode, :BillingFlow, :RequestId
 
-        def initialize(status=nil, paystatus=nil, accessurl=nil, rules=nil, bandwidth=nil, paymode=nil, requestid=nil)
+        def initialize(status=nil, paystatus=nil, accessurl=nil, rules=nil, bandwidth=nil, paymode=nil, billingflow=nil, requestid=nil)
           @Status = status
           @PayStatus = paystatus
           @AccessUrl = accessurl
           @Rules = rules
           @Bandwidth = bandwidth
           @PayMode = paymode
+          @BillingFlow = billingflow
           @RequestId = requestid
         end
 
@@ -6575,6 +6579,7 @@ module TencentCloud
           end
           @Bandwidth = params['Bandwidth']
           @PayMode = params['PayMode']
+          @BillingFlow = params['BillingFlow']
           @RequestId = params['RequestId']
         end
       end
@@ -7082,8 +7087,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 7
-        deprecate :QueryDlqMsg=, :none, 2024, 7
+        deprecate :QueryDlqMsg, :none, 2024, 8
+        deprecate :QueryDlqMsg=, :none, 2024, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -12580,15 +12585,18 @@ module TencentCloud
         # @type PayMode: Integer
         # @param Rules: 公网访问安全规则列表，Enabled为true时必须传入
         # @type Rules: Array
+        # @param BillingFlow: 公网是否按流量计费
+        # @type BillingFlow: Boolean
 
-        attr_accessor :InstanceId, :Enabled, :Bandwidth, :PayMode, :Rules
+        attr_accessor :InstanceId, :Enabled, :Bandwidth, :PayMode, :Rules, :BillingFlow
 
-        def initialize(instanceid=nil, enabled=nil, bandwidth=nil, paymode=nil, rules=nil)
+        def initialize(instanceid=nil, enabled=nil, bandwidth=nil, paymode=nil, rules=nil, billingflow=nil)
           @InstanceId = instanceid
           @Enabled = enabled
           @Bandwidth = bandwidth
           @PayMode = paymode
           @Rules = rules
+          @BillingFlow = billingflow
         end
 
         def deserialize(params)
@@ -12604,6 +12612,7 @@ module TencentCloud
               @Rules << publicaccessrule_tmp
             end
           end
+          @BillingFlow = params['BillingFlow']
         end
       end
 

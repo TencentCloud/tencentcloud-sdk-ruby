@@ -1301,7 +1301,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  本接口用于获取仪表盘订阅列表，支持分页
+        # 本接口用于获取仪表盘订阅列表，支持分页
 
         # @param request: Request instance for DescribeDashboardSubscribes.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeDashboardSubscribesRequest`

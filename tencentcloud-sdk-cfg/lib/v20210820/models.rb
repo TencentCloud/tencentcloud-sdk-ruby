@@ -1904,8 +1904,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 7
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 7
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 8
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 8
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2340,10 +2340,13 @@ module TencentCloud
         # @param ActionType: 动作类型：平台和自定义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
+        # @param ActionRisk: 动作风险等级，1:低风险 2:中风险 3:高风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionRisk: String
 
-        attr_accessor :TemplateGroupActionId, :ActionId, :Order, :GeneralConfiguration, :CustomConfiguration, :CreateTime, :UpdateTime, :ActionTitle, :RandomId, :RecoverId, :ExecuteId, :ActionApiType, :ActionAttribute, :ActionType
+        attr_accessor :TemplateGroupActionId, :ActionId, :Order, :GeneralConfiguration, :CustomConfiguration, :CreateTime, :UpdateTime, :ActionTitle, :RandomId, :RecoverId, :ExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :ActionRisk
 
-        def initialize(templategroupactionid=nil, actionid=nil, order=nil, generalconfiguration=nil, customconfiguration=nil, createtime=nil, updatetime=nil, actiontitle=nil, randomid=nil, recoverid=nil, executeid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil)
+        def initialize(templategroupactionid=nil, actionid=nil, order=nil, generalconfiguration=nil, customconfiguration=nil, createtime=nil, updatetime=nil, actiontitle=nil, randomid=nil, recoverid=nil, executeid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, actionrisk=nil)
           @TemplateGroupActionId = templategroupactionid
           @ActionId = actionid
           @Order = order
@@ -2358,6 +2361,7 @@ module TencentCloud
           @ActionApiType = actionapitype
           @ActionAttribute = actionattribute
           @ActionType = actiontype
+          @ActionRisk = actionrisk
         end
 
         def deserialize(params)
@@ -2375,6 +2379,7 @@ module TencentCloud
           @ActionApiType = params['ActionApiType']
           @ActionAttribute = params['ActionAttribute']
           @ActionType = params['ActionType']
+          @ActionRisk = params['ActionRisk']
         end
       end
 

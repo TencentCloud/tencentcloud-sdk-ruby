@@ -1852,10 +1852,16 @@ module TencentCloud
         # @param Ipv6Flag: 是否支持ipv6路由表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6Flag: String
+        # @param MrtbAggregatePolicyFlag: 是否支持路由表聚合策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MrtbAggregatePolicyFlag: Boolean
+        # @param MrtbPolicyValueFlag: 是否支持策略值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MrtbPolicyValueFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1877,6 +1883,8 @@ module TencentCloud
           @RouteSelectPolicyFlag = routeselectpolicyflag
           @DirectConnectAccelerateChannelFlag = directconnectacceleratechannelflag
           @Ipv6Flag = ipv6flag
+          @MrtbAggregatePolicyFlag = mrtbaggregatepolicyflag
+          @MrtbPolicyValueFlag = mrtbpolicyvalueflag
         end
 
         def deserialize(params)
@@ -1908,6 +1916,8 @@ module TencentCloud
           @RouteSelectPolicyFlag = params['RouteSelectPolicyFlag']
           @DirectConnectAccelerateChannelFlag = params['DirectConnectAccelerateChannelFlag']
           @Ipv6Flag = params['Ipv6Flag']
+          @MrtbAggregatePolicyFlag = params['MrtbAggregatePolicyFlag']
+          @MrtbPolicyValueFlag = params['MrtbPolicyValueFlag']
         end
       end
 
@@ -2461,14 +2471,30 @@ module TencentCloud
         # @type Action: String
         # @param Description: 策略描述
         # @type Description: String
+        # @param OperateAsPath: as-path操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateAsPath: String
+        # @param AsPathOperateMode: as-path操作模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsPathOperateMode: String
+        # @param OperateCommunitySet: community操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateCommunitySet: Array
+        # @param CommunityOperateMode: community操作模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommunityOperateMode: String
 
-        attr_accessor :RouteConditions, :BroadcastConditions, :Action, :Description
+        attr_accessor :RouteConditions, :BroadcastConditions, :Action, :Description, :OperateAsPath, :AsPathOperateMode, :OperateCommunitySet, :CommunityOperateMode
 
-        def initialize(routeconditions=nil, broadcastconditions=nil, action=nil, description=nil)
+        def initialize(routeconditions=nil, broadcastconditions=nil, action=nil, description=nil, operateaspath=nil, aspathoperatemode=nil, operatecommunityset=nil, communityoperatemode=nil)
           @RouteConditions = routeconditions
           @BroadcastConditions = broadcastconditions
           @Action = action
           @Description = description
+          @OperateAsPath = operateaspath
+          @AsPathOperateMode = aspathoperatemode
+          @OperateCommunitySet = operatecommunityset
+          @CommunityOperateMode = communityoperatemode
         end
 
         def deserialize(params)
@@ -2490,6 +2516,10 @@ module TencentCloud
           end
           @Action = params['Action']
           @Description = params['Description']
+          @OperateAsPath = params['OperateAsPath']
+          @AsPathOperateMode = params['AsPathOperateMode']
+          @OperateCommunitySet = params['OperateCommunitySet']
+          @CommunityOperateMode = params['CommunityOperateMode']
         end
       end
 
@@ -2532,13 +2562,21 @@ module TencentCloud
         # @type Action: String
         # @param Description: 策略描述。
         # @type Description: String
+        # @param OperateAsPath: as-path操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateAsPath: String
+        # @param AsPathOperateMode: as-path操作模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsPathOperateMode: String
 
-        attr_accessor :RouteConditions, :Action, :Description
+        attr_accessor :RouteConditions, :Action, :Description, :OperateAsPath, :AsPathOperateMode
 
-        def initialize(routeconditions=nil, action=nil, description=nil)
+        def initialize(routeconditions=nil, action=nil, description=nil, operateaspath=nil, aspathoperatemode=nil)
           @RouteConditions = routeconditions
           @Action = action
           @Description = description
+          @OperateAsPath = operateaspath
+          @AsPathOperateMode = aspathoperatemode
         end
 
         def deserialize(params)
@@ -2552,6 +2590,8 @@ module TencentCloud
           end
           @Action = params['Action']
           @Description = params['Description']
+          @OperateAsPath = params['OperateAsPath']
+          @AsPathOperateMode = params['AsPathOperateMode']
         end
       end
 

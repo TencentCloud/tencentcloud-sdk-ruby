@@ -3128,14 +3128,24 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         # @type Limit: Integer
+        # @param OrderField: 指定排序字段 。取值范围： "EXPIRED_TIME"：依据实例的到期时间排序。
+        #  不传入此字段时, 优先返回实例状态为“待回收”的实例, 其余实例以“创建时间”倒序返回。
+        # @type OrderField: String
+        # @param Order: 输出实例列表的排列顺序。取值范围：
+        # "ASC"：升序排列。
+        # "DESC"：降序排列。
+        # 默认按升序排序。当传入该字段时，必须指定OrderField。
+        # @type Order: String
 
-        attr_accessor :InstanceIds, :Filters, :Offset, :Limit
+        attr_accessor :InstanceIds, :Filters, :Offset, :Limit, :OrderField, :Order
 
-        def initialize(instanceids=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(instanceids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
           @InstanceIds = instanceids
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @OrderField = orderfield
+          @Order = order
         end
 
         def deserialize(params)
@@ -3150,6 +3160,8 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
         end
       end
 

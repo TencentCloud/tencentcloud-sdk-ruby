@@ -257,8 +257,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 7
-        deprecate :TagInfos=, :none, 2024, 7
+        deprecate :TagInfos, :none, 2024, 8
+        deprecate :TagInfos=, :none, 2024, 8
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -482,8 +482,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2024, 7
-        deprecate :ReinforceHotword=, :none, 2024, 7
+        deprecate :ReinforceHotword, :none, 2024, 8
+        deprecate :ReinforceHotword=, :none, 2024, 8
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil)
           @EngineModelType = enginemodeltype
@@ -908,8 +908,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 7
-        deprecate :TagInfos=, :none, 2024, 7
+        deprecate :TagInfos, :none, 2024, 8
+        deprecate :TagInfos=, :none, 2024, 8
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1270,6 +1270,8 @@ module TencentCloud
         # @param SubServiceType: 子服务类型。2： 一句话识别。
         # @type SubServiceType: Integer
         # @param Url: 语音的URL地址，需要公网环境浏览器可下载。当 SourceType 值为 0时须填写该字段，为 1 时不填。音频时长不能超过60s，音频文件大小不能超过3MB。
+
+        # 注意：推荐使用 [腾讯云COS](https://cloud.tencent.com/document/product/436/38484) 来存储音频、生成URL并提交请求，此种方式会走内网下载音频，极大降低整体请求时延；并且不会产生外网和流量下行费用，可节约成本（COS桶权限需要设置公有读私有写，或URL设置时效访问签名）
         # @type Url: String
         # @param UsrAudioKey: 废弃参数，填写任意字符串即可。
         # @type UsrAudioKey: String
@@ -1309,14 +1311,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2024, 7
-        deprecate :ProjectId=, :none, 2024, 7
-        deprecate :SubServiceType, :none, 2024, 7
-        deprecate :SubServiceType=, :none, 2024, 7
-        deprecate :UsrAudioKey, :none, 2024, 7
-        deprecate :UsrAudioKey=, :none, 2024, 7
-        deprecate :ReinforceHotword, :none, 2024, 7
-        deprecate :ReinforceHotword=, :none, 2024, 7
+        deprecate :ProjectId, :none, 2024, 8
+        deprecate :ProjectId=, :none, 2024, 8
+        deprecate :SubServiceType, :none, 2024, 8
+        deprecate :SubServiceType=, :none, 2024, 8
+        deprecate :UsrAudioKey, :none, 2024, 8
+        deprecate :UsrAudioKey=, :none, 2024, 8
+        deprecate :ReinforceHotword, :none, 2024, 8
+        deprecate :ReinforceHotword=, :none, 2024, 8
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype

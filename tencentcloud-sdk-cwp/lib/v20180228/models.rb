@@ -5244,14 +5244,18 @@ module TencentCloud
         # @param FixTag: 修复提示tag
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixTag: Array
+        # @param VulCategory: 漏洞分类1 web cms漏洞,2应用漏洞,4linux软件漏洞,5windows系统漏洞
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulCategory: Integer
 
-        attr_accessor :VulId, :VulName, :HostList, :FixTag
+        attr_accessor :VulId, :VulName, :HostList, :FixTag, :VulCategory
 
-        def initialize(vulid=nil, vulname=nil, hostlist=nil, fixtag=nil)
+        def initialize(vulid=nil, vulname=nil, hostlist=nil, fixtag=nil, vulcategory=nil)
           @VulId = vulid
           @VulName = vulname
           @HostList = hostlist
           @FixTag = fixtag
+          @VulCategory = vulcategory
         end
 
         def deserialize(params)
@@ -5266,6 +5270,7 @@ module TencentCloud
             end
           end
           @FixTag = params['FixTag']
+          @VulCategory = params['VulCategory']
         end
       end
 
@@ -6647,17 +6652,21 @@ module TencentCloud
         # @type VulId: Integer
         # @param Quuids: 需要修复漏洞的主机，所有主机必须有VulId的这个漏洞且是待修复状态。
         # @type Quuids: Array
+        # @param FixMethod: 修复方式 0组件更新或者安装补丁,1禁用服务
+        # @type FixMethod: Integer
 
-        attr_accessor :VulId, :Quuids
+        attr_accessor :VulId, :Quuids, :FixMethod
 
-        def initialize(vulid=nil, quuids=nil)
+        def initialize(vulid=nil, quuids=nil, fixmethod=nil)
           @VulId = vulid
           @Quuids = quuids
+          @FixMethod = fixmethod
         end
 
         def deserialize(params)
           @VulId = params['VulId']
           @Quuids = params['Quuids']
+          @FixMethod = params['FixMethod']
         end
       end
 
@@ -41606,16 +41615,20 @@ module TencentCloud
         # @param FixSuccessCnt: 修复成功的数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FixSuccessCnt: Integer
+        # @param FixMethod: 修复方式 0组件更新或者安装补丁,1禁用服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixMethod: Integer
 
-        attr_accessor :VulId, :VulName, :Progress, :HostList, :FailCnt, :FixSuccessCnt
+        attr_accessor :VulId, :VulName, :Progress, :HostList, :FailCnt, :FixSuccessCnt, :FixMethod
 
-        def initialize(vulid=nil, vulname=nil, progress=nil, hostlist=nil, failcnt=nil, fixsuccesscnt=nil)
+        def initialize(vulid=nil, vulname=nil, progress=nil, hostlist=nil, failcnt=nil, fixsuccesscnt=nil, fixmethod=nil)
           @VulId = vulid
           @VulName = vulname
           @Progress = progress
           @HostList = hostlist
           @FailCnt = failcnt
           @FixSuccessCnt = fixsuccesscnt
+          @FixMethod = fixmethod
         end
 
         def deserialize(params)
@@ -41632,6 +41645,7 @@ module TencentCloud
           end
           @FailCnt = params['FailCnt']
           @FixSuccessCnt = params['FixSuccessCnt']
+          @FixMethod = params['FixMethod']
         end
       end
 

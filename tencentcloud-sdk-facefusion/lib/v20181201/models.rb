@@ -445,11 +445,17 @@ module TencentCloud
       # 人脸图片和待被融合的素材模板图的人脸位置信息。
       class MergeInfo < TencentCloud::Common::AbstractModel
         # @param Image: 输入图片base64。
+        # ●base64 和 url 必须提供一个，如果都提供以 url 为准。
+        # ●素材图片限制：图片中面部尺寸大于34 * 34；图片尺寸大于64 * 64。（图片编码之后可能会大30%左右，建议合理控制图片大小）。
+        # ●支持图片格式：支持jpg或png。
         # @type Image: String
         # @param Url: 输入图片url。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
+        # ●base64 和 url 必须提供一个，如果都提供以 url 为准。
+        # ●素材图片限制：图片中面部尺寸大于34 * 34；图片尺寸大于64 * 64。（图片编码之后可能会大30%左右，建议合理控制图片大小）。
+        # ●支持图片格式：支持jpg或png。
         # @type Url: String
         # @param InputImageFaceRect: 输入图片人脸位置信息（人脸框）。不填默认取输入图中最大人脸。
+        # Width、Height >= 30。
         # @type InputImageFaceRect: :class:`Tencentcloud::Facefusion.v20181201.models.FaceRect`
         # @param TemplateFaceID: 素材人脸ID，不填默认取素材中最大人脸。
         # @type TemplateFaceID: String
@@ -476,9 +482,9 @@ module TencentCloud
 
       # MetaData数据结构，Key/Value格式
       class MetaData < TencentCloud::Common::AbstractModel
-        # @param MetaKey: MetaData的Key
+        # @param MetaKey: MetaData的Key，长度不能超过32。
         # @type MetaKey: String
-        # @param MetaValue: MetaData的Value
+        # @param MetaValue: MetaData的Value，长度不能超过256。
         # @type MetaValue: String
 
         attr_accessor :MetaKey, :MetaValue

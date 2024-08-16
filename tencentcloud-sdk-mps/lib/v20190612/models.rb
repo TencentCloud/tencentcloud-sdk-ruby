@@ -15169,10 +15169,16 @@ module TencentCloud
         # @param Codecs: 视频Codecs。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codecs: String
+        # @param FpsNumerator: 帧率分子部分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsNumerator: Integer
+        # @param FpsDenominator: 帧率分母部分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsDenominator: Integer
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType, :Codecs
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType, :Codecs, :FpsNumerator, :FpsDenominator
 
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil, codecs=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil, codecs=nil, fpsnumerator=nil, fpsdenominator=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
@@ -15183,6 +15189,8 @@ module TencentCloud
           @ColorTransfer = colortransfer
           @HdrType = hdrtype
           @Codecs = codecs
+          @FpsNumerator = fpsnumerator
+          @FpsDenominator = fpsdenominator
         end
 
         def deserialize(params)
@@ -15196,6 +15204,8 @@ module TencentCloud
           @ColorTransfer = params['ColorTransfer']
           @HdrType = params['HdrType']
           @Codecs = params['Codecs']
+          @FpsNumerator = params['FpsNumerator']
+          @FpsDenominator = params['FpsDenominator']
         end
       end
 
@@ -20847,10 +20857,12 @@ module TencentCloud
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
-        # 注意：自适应码率时取值范围是 [0, 60]
+        # @param Fps: 视频帧率，取值范围：
+        # 当FpsDenominator的值为空时，范围：[0, 120]，单位：Hz；
+        # 当FpsDenominator的值不为空时，Fps/FpsDenominator的范围：[0,120]
+        # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
         # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
@@ -20896,10 +20908,14 @@ module TencentCloud
         # 默认值：0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentType: Integer
+        # @param FpsDenominator: 帧率分母部分
+        # 注意：值必须大于0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsDenominator: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :SegmentType
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :SegmentType, :FpsDenominator
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, segmenttype=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, segmenttype=nil, fpsdenominator=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -20910,6 +20926,7 @@ module TencentCloud
           @FillType = filltype
           @Vcrf = vcrf
           @SegmentType = segmenttype
+          @FpsDenominator = fpsdenominator
         end
 
         def deserialize(params)
@@ -20923,6 +20940,7 @@ module TencentCloud
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @SegmentType = params['SegmentType']
+          @FpsDenominator = params['FpsDenominator']
         end
       end
 
@@ -20945,10 +20963,13 @@ module TencentCloud
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。 当取值为 0，表示帧率和原始视频保持一致。
+        # @param Fps: 视频帧率，取值范围：
+        # 当FpsDenominator的值为空时，范围：[0, 120]，单位：Hz；
+        # 当FpsDenominator的值不为空时，Fps/FpsDenominator的范围：[0,120]
+        # 当取值为 0，表示帧率和原始视频保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fps: Integer
-        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 100000]，单位：kbps。
         # 当取值为 0，表示视频码率和原始视频保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bitrate: Integer
@@ -20996,10 +21017,14 @@ module TencentCloud
         # 默认值：0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentType: Integer
+        # @param FpsDenominator: 帧率分母部分
+        # 注意：值必须大于0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsDenominator: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream, :SegmentType
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream, :SegmentType, :FpsDenominator
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, segmenttype=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, segmenttype=nil, fpsdenominator=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21011,6 +21036,7 @@ module TencentCloud
           @Vcrf = vcrf
           @ContentAdaptStream = contentadaptstream
           @SegmentType = segmenttype
+          @FpsDenominator = fpsdenominator
         end
 
         def deserialize(params)
@@ -21025,6 +21051,7 @@ module TencentCloud
           @Vcrf = params['Vcrf']
           @ContentAdaptStream = params['ContentAdaptStream']
           @SegmentType = params['SegmentType']
+          @FpsDenominator = params['FpsDenominator']
         end
       end
 
