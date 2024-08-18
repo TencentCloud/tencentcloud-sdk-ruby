@@ -10612,17 +10612,21 @@ module TencentCloud
         # @type AuthUrl: String
         # @param ErrorMessage: 企业批量注册的错误信息，例如：企业三要素不通过
         # @type ErrorMessage: String
+        # @param SubTaskId: 企业批量注册的唯一 Id， 此 Id 可以用在[创建企业批量认证链接-单链接](https://qian.tencent.com/developers/companyApis/organizations/CreateBatchOrganizationAuthorizationUrl)。
+        # @type SubTaskId: String
 
-        attr_accessor :AuthUrl, :ErrorMessage
+        attr_accessor :AuthUrl, :ErrorMessage, :SubTaskId
 
-        def initialize(authurl=nil, errormessage=nil)
+        def initialize(authurl=nil, errormessage=nil, subtaskid=nil)
           @AuthUrl = authurl
           @ErrorMessage = errormessage
+          @SubTaskId = subtaskid
         end
 
         def deserialize(params)
           @AuthUrl = params['AuthUrl']
           @ErrorMessage = params['ErrorMessage']
+          @SubTaskId = params['SubTaskId']
         end
       end
 

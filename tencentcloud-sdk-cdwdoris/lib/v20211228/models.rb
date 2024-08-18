@@ -3003,6 +3003,64 @@ module TencentCloud
         end
       end
 
+      # DescribeTableList请求参数结构体
+      class DescribeTableListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源ID，建表所用的TCHouse-D资源ID。
+        # @type InstanceId: String
+        # @param DbName: 需要获取表列表的库
+        # @type DbName: String
+        # @param UserName: 使用该用户进行操作，该用户需要有对应的权限。如果该TCHouse-D集群使用CAM用户注册内核账户，则不需要填写
+        # @type UserName: String
+        # @param PassWord: 用户对应的密码。如果该TCHouse-D集群使用CAM用户注册内核账户，则不需要填写
+        # @type PassWord: String
+        # @param CatalogName: 查询库所在的数据源，不填则默认为内部数据源（internal）。
+        # @type CatalogName: String
+
+        attr_accessor :InstanceId, :DbName, :UserName, :PassWord, :CatalogName
+
+        def initialize(instanceid=nil, dbname=nil, username=nil, password=nil, catalogname=nil)
+          @InstanceId = instanceid
+          @DbName = dbname
+          @UserName = username
+          @PassWord = password
+          @CatalogName = catalogname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DbName = params['DbName']
+          @UserName = params['UserName']
+          @PassWord = params['PassWord']
+          @CatalogName = params['CatalogName']
+        end
+      end
+
+      # DescribeTableList返回参数结构体
+      class DescribeTableListResponse < TencentCloud::Common::AbstractModel
+        # @param TableNames: 表名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNames: Array
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableNames, :Message, :RequestId
+
+        def initialize(tablenames=nil, message=nil, requestid=nil)
+          @TableNames = tablenames
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TableNames = params['TableNames']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserBindWorkloadGroup请求参数结构体
       class DescribeUserBindWorkloadGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id

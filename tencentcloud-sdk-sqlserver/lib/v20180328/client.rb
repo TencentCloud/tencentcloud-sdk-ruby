@@ -2837,6 +2837,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDatabasePrivilege）用于修改实例数据库权限。
+
+        # @param request: Request instance for ModifyDatabasePrivilege.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabasePrivilegeRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabasePrivilegeResponse`
+        def ModifyDatabasePrivilege(request)
+          body = send_request('ModifyDatabasePrivilege', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatabasePrivilegeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDatabaseShrinkDMF)用于收缩数据库mdf(Shrink mdf)。
 
         # @param request: Request instance for ModifyDatabaseShrinkMDF.

@@ -714,17 +714,28 @@ module TencentCloud
         # 2- 传入的是视频类型
         # 其他 - 返回错误码InvalidParameter
         # @type FaceInputType: Integer
+        # @param Encryption: 是否需要对请求信息进行全包体加密； 支持的加密算法:AES-256-CBC、SM4-GCM； 有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param EncryptedBody: 加密后的密文； 加密前的数据格式如下:{"FaceInput":"AAAAA","FaceInputType":1}
+        # @type EncryptedBody: String
 
-        attr_accessor :FaceInput, :FaceInputType
+        attr_accessor :FaceInput, :FaceInputType, :Encryption, :EncryptedBody
 
-        def initialize(faceinput=nil, faceinputtype=nil)
+        def initialize(faceinput=nil, faceinputtype=nil, encryption=nil, encryptedbody=nil)
           @FaceInput = faceinput
           @FaceInputType = faceinputtype
+          @Encryption = encryption
+          @EncryptedBody = encryptedbody
         end
 
         def deserialize(params)
           @FaceInput = params['FaceInput']
           @FaceInputType = params['FaceInputType']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+          @EncryptedBody = params['EncryptedBody']
         end
       end
 

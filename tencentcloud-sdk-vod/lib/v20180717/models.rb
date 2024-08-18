@@ -11202,18 +11202,30 @@ module TencentCloud
       class DescribeRoundPlaysRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
-        # @param RoundPlayIds: 轮播播单标识过滤条件，数组长度限制：100。
+        # @param RoundPlayIds: 过滤条件：轮播播单标识，数组长度限制：100。
         # @type RoundPlayIds: Array
-        # @param Offset: 分页偏移量，默认值：0。
+        # @param Status: 过滤条件，轮播播单状态，可选值： <li>Enabled：启动状态；</li> <li>Disabled：停止状态。</li>
+        # @type Status: String
+        # @param CreateTime: 过滤条件：轮播播单创建时间。
+        # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
+        # @param UpdateTime: 过滤条件：轮播播单更新时间。
+        # @type UpdateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
+        # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
+        # @type ScrollToken: String
+        # @param Offset: 分页偏移量，默认值：0。已经废弃，请根据 ScrollToken 参数进行分批次查询。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
 
-        attr_accessor :SubAppId, :RoundPlayIds, :Offset, :Limit
+        attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
 
-        def initialize(subappid=nil, roundplayids=nil, offset=nil, limit=nil)
+        def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
           @RoundPlayIds = roundplayids
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ScrollToken = scrolltoken
           @Offset = offset
           @Limit = limit
         end
@@ -11221,6 +11233,16 @@ module TencentCloud
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @RoundPlayIds = params['RoundPlayIds']
+          @Status = params['Status']
+          unless params['CreateTime'].nil?
+            @CreateTime = TimeRange.new
+            @CreateTime.deserialize(params['CreateTime'])
+          end
+          unless params['UpdateTime'].nil?
+            @UpdateTime = TimeRange.new
+            @UpdateTime.deserialize(params['UpdateTime'])
+          end
+          @ScrollToken = params['ScrollToken']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -11228,18 +11250,21 @@ module TencentCloud
 
       # DescribeRoundPlays返回参数结构体
       class DescribeRoundPlaysResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合过滤条件的轮播播单总数。
+        # @param TotalCount: 符合过滤条件的轮播播单总数。已经废弃，分批次查询请请使用 ScrollToken 参数。
         # @type TotalCount: Integer
         # @param RoundPlaySet: 轮播播单详情列表。
         # @type RoundPlaySet: Array
+        # @param ScrollToken: 翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空，说明已无更多数据。
+        # @type ScrollToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RoundPlaySet, :RequestId
+        attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
 
-        def initialize(totalcount=nil, roundplayset=nil, requestid=nil)
+        def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
           @RoundPlaySet = roundplayset
+          @ScrollToken = scrolltoken
           @RequestId = requestid
         end
 
@@ -11253,6 +11278,7 @@ module TencentCloud
               @RoundPlaySet << roundplayinfo_tmp
             end
           end
+          @ScrollToken = params['ScrollToken']
           @RequestId = params['RequestId']
         end
       end
@@ -18866,8 +18892,7 @@ module TencentCloud
         # @type Name: String
         # @param Desc: 轮播播单描述信息，长度限制：256 个字符。
         # @type Desc: String
-        # @param Status: 播放状态，可选值：
-        # <li>Disabled：结束播放，结束后轮播任务不能再次启动。</li>
+        # @param Status: 播放状态，可选值：<li>Disabled：停止播放。</li><li>Enabled：启播时长到达后启动播放。</li>
         # @type Status: String
         # @param PlayBackMode: 播放模式，可选值：
         # <li>Loop：循环播放播单；</li>
@@ -24487,7 +24512,7 @@ module TencentCloud
         end
       end
 
-      # 轮播媒体文件信息
+      # 轮播播放节目信息
       class RoundPlayListItemInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件标识。
         # @type FileId: String
@@ -24496,20 +24521,24 @@ module TencentCloud
         # <li>Original：原始音视频。</li>
         # Type 对应的格式必须为 HLS 格式。
         # @type AudioVideoType: String
+        # @param ItemId: 播放节目的 ID，由系统分配。
+        # @type ItemId: String
         # @param Definition: 指定播放的转码模版，当 AudioVideoType 为 Transcode 时必须指定。
         # @type Definition: Integer
 
-        attr_accessor :FileId, :AudioVideoType, :Definition
+        attr_accessor :FileId, :AudioVideoType, :ItemId, :Definition
 
-        def initialize(fileid=nil, audiovideotype=nil, definition=nil)
+        def initialize(fileid=nil, audiovideotype=nil, itemid=nil, definition=nil)
           @FileId = fileid
           @AudioVideoType = audiovideotype
+          @ItemId = itemid
           @Definition = definition
         end
 
         def deserialize(params)
           @FileId = params['FileId']
           @AudioVideoType = params['AudioVideoType']
+          @ItemId = params['ItemId']
           @Definition = params['Definition']
         end
       end

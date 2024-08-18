@@ -2284,10 +2284,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
+        # @param StatDimensions: 会话统计的维度信息,可以多个维度。
+        # @type StatDimensions: Array
 
-        attr_accessor :InstanceId, :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :Limit, :Product
+        attr_accessor :InstanceId, :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :Limit, :Product, :StatDimensions
 
-        def initialize(instanceid=nil, id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil, limit=nil, product=nil)
+        def initialize(instanceid=nil, id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil, limit=nil, product=nil, statdimensions=nil)
           @InstanceId = instanceid
           @ID = id
           @User = user
@@ -2299,6 +2301,7 @@ module TencentCloud
           @Info = info
           @Limit = limit
           @Product = product
+          @StatDimensions = statdimensions
         end
 
         def deserialize(params)
@@ -2313,6 +2316,14 @@ module TencentCloud
           @Info = params['Info']
           @Limit = params['Limit']
           @Product = params['Product']
+          unless params['StatDimensions'].nil?
+            @StatDimensions = []
+            params['StatDimensions'].each do |i|
+              statdimension_tmp = StatDimension.new
+              statdimension_tmp.deserialize(i)
+              @StatDimensions << statdimension_tmp
+            end
+          end
         end
       end
 
@@ -2320,13 +2331,17 @@ module TencentCloud
       class DescribeMySqlProcessListResponse < TencentCloud::Common::AbstractModel
         # @param ProcessList: 实时线程列表。
         # @type ProcessList: Array
+        # @param Statistics: sql会话统计信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProcessList, :RequestId
+        attr_accessor :ProcessList, :Statistics, :RequestId
 
-        def initialize(processlist=nil, requestid=nil)
+        def initialize(processlist=nil, statistics=nil, requestid=nil)
           @ProcessList = processlist
+          @Statistics = statistics
           @RequestId = requestid
         end
 
@@ -2337,6 +2352,14 @@ module TencentCloud
               mysqlprocess_tmp = MySqlProcess.new
               mysqlprocess_tmp.deserialize(i)
               @ProcessList << mysqlprocess_tmp
+            end
+          end
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              statisticinfo_tmp = StatisticInfo.new
+              statisticinfo_tmp.deserialize(i)
+              @Statistics << statisticinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5648,6 +5671,92 @@ module TencentCloud
           @UserName = params['UserName']
           @Ratio = params['Ratio']
           @Count = params['Count']
+        end
+      end
+
+      # 会话统计的维度信息,可以多个维度
+      class StatDimension < TencentCloud::Common::AbstractModel
+        # @param Dimension: 维度名称，目前仅支持：SqlTag。
+        # @type Dimension: String
+        # @param Data: SQL 标签过滤与统计信息
+        # 示例：
+
+        # 示例 1：[p=position] 统计包含 p=position 标签的 SQL 会话。
+        # 示例 2：[p] 统计包含 p 标签的 SQL 会话。
+        # 示例 3：[p=position, c=idCard] 统计同时包含 p=position 标签和 c=idCard 标签的 SQL 会话。
+        # @type Data: Array
+
+        attr_accessor :Dimension, :Data
+
+        def initialize(dimension=nil, data=nil)
+          @Dimension = dimension
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Dimension = params['Dimension']
+          @Data = params['Data']
+        end
+      end
+
+      # 统计分析维度下的统计数据详情
+      class StatisticDataInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 统计维度的值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param TimeAvg: 平均时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeAvg: Float
+        # @param TimeSum: 总时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSum: Float
+        # @param Count: 数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :Name, :TimeAvg, :TimeSum, :Count
+
+        def initialize(name=nil, timeavg=nil, timesum=nil, count=nil)
+          @Name = name
+          @TimeAvg = timeavg
+          @TimeSum = timesum
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TimeAvg = params['TimeAvg']
+          @TimeSum = params['TimeSum']
+          @Count = params['Count']
+        end
+      end
+
+      # sql会话统计信息
+      class StatisticInfo < TencentCloud::Common::AbstractModel
+        # @param Dimension: 统计分析的维度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimension: String
+        # @param Data: 统计分析的维度下的统计数据详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Dimension, :Data
+
+        def initialize(dimension=nil, data=nil)
+          @Dimension = dimension
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Dimension = params['Dimension']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              statisticdatainfo_tmp = StatisticDataInfo.new
+              statisticdatainfo_tmp.deserialize(i)
+              @Data << statisticdatainfo_tmp
+            end
+          end
         end
       end
 

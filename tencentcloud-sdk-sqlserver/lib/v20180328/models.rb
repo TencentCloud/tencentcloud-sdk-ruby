@@ -187,20 +187,23 @@ module TencentCloud
       class AccountPrivilegeModifyInfo < TencentCloud::Common::AbstractModel
         # @param UserName: 数据库用户名
         # @type UserName: String
-        # @param DBPrivileges: 账号权限变更信息
+        # @param DBPrivileges: 账号权限变更信息。参数DBPrivileges和AccAllDB只能二选一
         # @type DBPrivileges: Array
         # @param IsAdmin: 表示是否为管理员账户，当值为true，表示是 管理员。若实例 是 单节点，则管理员所在的 账号类型为超级权限账号 ，即AccountType=L0；若实例 是 双节点，则管理员所在的 账号类型为高级权限账号，即AccountType=L1；当值为false，表示 不是管理员，则账号类型为普通账号，即AccountType=L3
         # @type IsAdmin: Boolean
         # @param AccountType: 账号类型，IsAdmin字段的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
         # @type AccountType: String
+        # @param AccAllDB: 全量修改指定账号下的所有DB权限，只支持特殊权限账号和普通权限账号。参数DBPrivileges和AccAllDB只能二选一
+        # @type AccAllDB: :class:`Tencentcloud::Sqlserver.v20180328.models.SelectAllDB`
 
-        attr_accessor :UserName, :DBPrivileges, :IsAdmin, :AccountType
+        attr_accessor :UserName, :DBPrivileges, :IsAdmin, :AccountType, :AccAllDB
 
-        def initialize(username=nil, dbprivileges=nil, isadmin=nil, accounttype=nil)
+        def initialize(username=nil, dbprivileges=nil, isadmin=nil, accounttype=nil, accalldb=nil)
           @UserName = username
           @DBPrivileges = dbprivileges
           @IsAdmin = isadmin
           @AccountType = accounttype
+          @AccAllDB = accalldb
         end
 
         def deserialize(params)
@@ -215,6 +218,10 @@ module TencentCloud
           end
           @IsAdmin = params['IsAdmin']
           @AccountType = params['AccountType']
+          unless params['AccAllDB'].nil?
+            @AccAllDB = SelectAllDB.new
+            @AccAllDB.deserialize(params['AccAllDB'])
+          end
         end
       end
 
@@ -2510,6 +2517,33 @@ module TencentCloud
         def deserialize(params)
           @DBName = params['DBName']
           @Encryption = params['Encryption']
+        end
+      end
+
+      # 数据库账号权限变更信息
+      class DataBasePrivilegeModifyInfo < TencentCloud::Common::AbstractModel
+        # @param DataBaseName: 数据库名称
+        # @type DataBaseName: String
+        # @param AccountPrivileges: 数据库权限变更信息
+        # @type AccountPrivileges: Array
+
+        attr_accessor :DataBaseName, :AccountPrivileges
+
+        def initialize(databasename=nil, accountprivileges=nil)
+          @DataBaseName = databasename
+          @AccountPrivileges = accountprivileges
+        end
+
+        def deserialize(params)
+          @DataBaseName = params['DataBaseName']
+          unless params['AccountPrivileges'].nil?
+            @AccountPrivileges = []
+            params['AccountPrivileges'].each do |i|
+              accountprivilege_tmp = AccountPrivilege.new
+              accountprivilege_tmp.deserialize(i)
+              @AccountPrivileges << accountprivilege_tmp
+            end
+          end
         end
       end
 
@@ -9012,6 +9046,53 @@ module TencentCloud
         end
       end
 
+      # ModifyDatabasePrivilege请求参数结构体
+      class ModifyDatabasePrivilegeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
+        # @type InstanceId: String
+        # @param DataBaseSet: 数据库权限变更信息
+        # @type DataBaseSet: Array
+
+        attr_accessor :InstanceId, :DataBaseSet
+
+        def initialize(instanceid=nil, databaseset=nil)
+          @InstanceId = instanceid
+          @DataBaseSet = databaseset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['DataBaseSet'].nil?
+            @DataBaseSet = []
+            params['DataBaseSet'].each do |i|
+              databaseprivilegemodifyinfo_tmp = DataBasePrivilegeModifyInfo.new
+              databaseprivilegemodifyinfo_tmp.deserialize(i)
+              @DataBaseSet << databaseprivilegemodifyinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDatabasePrivilege返回参数结构体
+      class ModifyDatabasePrivilegeResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDatabaseShrinkMDF请求参数结构体
       class ModifyDatabaseShrinkMDFRequest < TencentCloud::Common::AbstractModel
         # @param DBNames: 数据库名数组
@@ -10786,6 +10867,22 @@ module TencentCloud
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
+        end
+      end
+
+      # DB权限修改类型
+      class SelectAllDB < TencentCloud::Common::AbstractModel
+        # @param Privilege: 权限变更信息。ReadWrite表示可读写，ReadOnly表示只读，Delete表示删除账号对该DB的权限，DBOwner所有者
+        # @type Privilege: String
+
+        attr_accessor :Privilege
+
+        def initialize(privilege=nil)
+          @Privilege = privilege
+        end
+
+        def deserialize(params)
+          @Privilege = params['Privilege']
         end
       end
 
