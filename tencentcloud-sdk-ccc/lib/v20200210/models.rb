@@ -1860,10 +1860,10 @@ module TencentCloud
 
       # DescribeChatMessages请求参数结构体
       class DescribeChatMessagesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID（废弃）
-        # @type InstanceId: Integer
         # @param SdkAppId: 应用 ID，可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
+        # @param InstanceId: 实例 ID（废弃）
+        # @type InstanceId: Integer
         # @param CdrId: 服务记录ID（废弃）
         # @type CdrId: String
         # @param Limit: 返回记录条数，最大为100 默认20
@@ -1875,16 +1875,16 @@ module TencentCloud
         # @param SessionId: 服务记录 SessionID
         # @type SessionId: String
 
-        attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
+        attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
         deprecate :InstanceId, :none, 2024, 8
         deprecate :InstanceId=, :none, 2024, 8
         deprecate :CdrId, :none, 2024, 8
         deprecate :CdrId=, :none, 2024, 8
 
-        def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
-          @InstanceId = instanceid
+        def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
+          @InstanceId = instanceid
           @CdrId = cdrid
           @Limit = limit
           @Offset = offset
@@ -1893,8 +1893,8 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InstanceId = params['InstanceId']
           @SdkAppId = params['SdkAppId']
+          @InstanceId = params['InstanceId']
           @CdrId = params['CdrId']
           @Limit = params['Limit']
           @Offset = params['Offset']

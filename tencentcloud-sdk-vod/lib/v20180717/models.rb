@@ -9614,6 +9614,57 @@ module TencentCloud
         end
       end
 
+      # DescribeCurrentPlaylist请求参数结构体
+      class DescribeCurrentPlaylistRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param RoundPlayId: 轮播播单唯一标识。
+        # @type RoundPlayId: String
+        # @param Limit: 返回的播放列表的长度。最大10，默认值为5。
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :RoundPlayId, :Limit
+
+        def initialize(subappid=nil, roundplayid=nil, limit=nil)
+          @SubAppId = subappid
+          @RoundPlayId = roundplayid
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @RoundPlayId = params['RoundPlayId']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCurrentPlaylist返回参数结构体
+      class DescribeCurrentPlaylistResponse < TencentCloud::Common::AbstractModel
+        # @param CurrentPlaylist: 当前播放列表信息。
+        # @type CurrentPlaylist: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CurrentPlaylist, :RequestId
+
+        def initialize(currentplaylist=nil, requestid=nil)
+          @CurrentPlaylist = currentplaylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CurrentPlaylist'].nil?
+            @CurrentPlaylist = []
+            params['CurrentPlaylist'].each do |i|
+              roundplayfileplayinfo_tmp = RoundPlayFilePlayInfo.new
+              roundplayfileplayinfo_tmp.deserialize(i)
+              @CurrentPlaylist << roundplayfileplayinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDailyMediaPlayStat请求参数结构体
       class DescribeDailyMediaPlayStatRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID 。
@@ -13875,6 +13926,96 @@ module TencentCloud
         end
       end
 
+      # 快速媒体编辑操作的输入媒体类型
+      class FastEditMediaFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体的 ID。
+        # @type FileId: String
+        # @param AudioVideoType: 操作的音视频类型，可选值有：
+        # <li>Transcode：转码输出；</li>
+        # <li>Original：原始音视频。</li>
+        # 注意：操作的音视频，必须为 HLS 格式。
+        # @type AudioVideoType: String
+        # @param TranscodeDefinition: 当 AudioVideoType 为 Transcode 时有效，表示操作媒体的的转码模板 ID。
+        # @type TranscodeDefinition: Integer
+        # @param StartTimeOffset: 媒体剪辑起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 媒体剪辑结束的时间偏移，单位：秒。
+        # @type EndTimeOffset: Float
+
+        attr_accessor :FileId, :AudioVideoType, :TranscodeDefinition, :StartTimeOffset, :EndTimeOffset
+
+        def initialize(fileid=nil, audiovideotype=nil, transcodedefinition=nil, starttimeoffset=nil, endtimeoffset=nil)
+          @FileId = fileid
+          @AudioVideoType = audiovideotype
+          @TranscodeDefinition = transcodedefinition
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @AudioVideoType = params['AudioVideoType']
+          @TranscodeDefinition = params['TranscodeDefinition']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+        end
+      end
+
+      # FastEditMedia请求参数结构体
+      class FastEditMediaRequest < TencentCloud::Common::AbstractModel
+        # @param FileInfos: 输入的媒体文件信息。最多支持传入100个媒体。
+        # @type FileInfos: Array
+        # @param ClipMode: ClipMode 用来表示剪辑时间点落在一个 TS 分片中间时，是否包含这个分片。共有两种取值： <li>StartInclusiveEndInclusive：当剪辑起始时间点和结束时间点落在一个分片的中间时，都会包含这个分片；</li> <li>StartInclusiveEndExclusive：当起始时间点落在一个分片的中间时，会包含这个分片；而当结束时间点落在一个分片的中间时，不会包含这个分片。</li> 不填时，默认为 StartInclusiveEndInclusive。
+        # @type ClipMode: String
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :FileInfos, :ClipMode, :SubAppId
+
+        def initialize(fileinfos=nil, clipmode=nil, subappid=nil)
+          @FileInfos = fileinfos
+          @ClipMode = clipmode
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              fasteditmediafileinfo_tmp = FastEditMediaFileInfo.new
+              fasteditmediafileinfo_tmp.deserialize(i)
+              @FileInfos << fasteditmediafileinfo_tmp
+            end
+          end
+          @ClipMode = params['ClipMode']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # FastEditMedia返回参数结构体
+      class FastEditMediaResponse < TencentCloud::Common::AbstractModel
+        # @param FileId: 快速编辑后的视频的媒体文件的唯一标识。
+        # @type FileId: String
+        # @param Url: 快速编辑后的媒体播放地址。
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileId, :Url, :RequestId
+
+        def initialize(fileid=nil, url=nil, requestid=nil)
+          @FileId = fileid
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件删除结果信息
       class FileDeleteResultItem < TencentCloud::Common::AbstractModel
         # @param FileId: 删除的文件 ID 。
@@ -14139,6 +14280,72 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # HandleCurrentPlaylist请求参数结构体
+      class HandleCurrentPlaylistRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param RoundPlayId: 轮播播单唯一标识。
+        # @type RoundPlayId: String
+        # @param Operation: 操作类型，取值有：<li>Insert：向当前播放列表插入播放节目。</li> <li>InsertTemporary：向当前播放列表临时插入播放节目。只能插入到当前正在播放的节目后面，临时插入的节目只在本次轮播过程生效。</li><li>Delete：删除播放列表中的播放节目。不能删除正在播放的节目。</li>
+        # @type Operation: String
+        # @param ItemId: 播单节目 ID。当 Operation 为 Insert 时必填，表示插入的节目列表位于该播放节目之后。插入的位置必须在当前正在播放的节目之后。
+        # @type ItemId: String
+        # @param RoundPlaylist: 节目列表。当 Operation 为 Insert、InsertTemporary、Delete 时必填，表示要操作的节目列表。列表长度最大为10。
+        # @type RoundPlaylist: Array
+
+        attr_accessor :SubAppId, :RoundPlayId, :Operation, :ItemId, :RoundPlaylist
+
+        def initialize(subappid=nil, roundplayid=nil, operation=nil, itemid=nil, roundplaylist=nil)
+          @SubAppId = subappid
+          @RoundPlayId = roundplayid
+          @Operation = operation
+          @ItemId = itemid
+          @RoundPlaylist = roundplaylist
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @RoundPlayId = params['RoundPlayId']
+          @Operation = params['Operation']
+          @ItemId = params['ItemId']
+          unless params['RoundPlaylist'].nil?
+            @RoundPlaylist = []
+            params['RoundPlaylist'].each do |i|
+              roundplaylistiteminfo_tmp = RoundPlayListItemInfo.new
+              roundplaylistiteminfo_tmp.deserialize(i)
+              @RoundPlaylist << roundplaylistiteminfo_tmp
+            end
+          end
+        end
+      end
+
+      # HandleCurrentPlaylist返回参数结构体
+      class HandleCurrentPlaylistResponse < TencentCloud::Common::AbstractModel
+        # @param RoundPlaylist: 操作成功的节目列表。
+        # @type RoundPlaylist: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoundPlaylist, :RequestId
+
+        def initialize(roundplaylist=nil, requestid=nil)
+          @RoundPlaylist = roundplaylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoundPlaylist'].nil?
+            @RoundPlaylist = []
+            params['RoundPlaylist'].each do |i|
+              roundplaylistiteminfo_tmp = RoundPlayListItemInfo.new
+              roundplaylistiteminfo_tmp.deserialize(i)
+              @RoundPlaylist << roundplaylistiteminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -24455,6 +24662,40 @@ module TencentCloud
         end
       end
 
+      # 轮播节目播放信息
+      class RoundPlayFilePlayInfo < TencentCloud::Common::AbstractModel
+        # @param ItemId: 播单节目的 ID，由系统分配。
+        # @type ItemId: String
+        # @param FileId: 媒体文件标识。
+        # @type FileId: String
+        # @param StartPlayTime: 启播时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartPlayTime: String
+        # @param Duration: 播放时长，单位为秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Float
+        # @param Progress: 播放进度，单位为妙。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Float
+
+        attr_accessor :ItemId, :FileId, :StartPlayTime, :Duration, :Progress
+
+        def initialize(itemid=nil, fileid=nil, startplaytime=nil, duration=nil, progress=nil)
+          @ItemId = itemid
+          @FileId = fileid
+          @StartPlayTime = startplaytime
+          @Duration = duration
+          @Progress = progress
+        end
+
+        def deserialize(params)
+          @ItemId = params['ItemId']
+          @FileId = params['FileId']
+          @StartPlayTime = params['StartPlayTime']
+          @Duration = params['Duration']
+          @Progress = params['Progress']
+        end
+      end
+
       # 轮播任务信息
       class RoundPlayInfo < TencentCloud::Common::AbstractModel
         # @param RoundPlayId: 轮播播单标识。
@@ -24479,10 +24720,16 @@ module TencentCloud
         # @type PlayBackMode: String
         # @param Url: 轮播播放地址。
         # @type Url: String
+        # @param CreateTime: 创建时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode, :Url
+        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode, :Url, :CreateTime, :UpdateTime
 
-        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil, url=nil)
+        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil, url=nil, createtime=nil, updatetime=nil)
           @RoundPlayId = roundplayid
           @StartTime = starttime
           @RoundPlaylist = roundplaylist
@@ -24491,6 +24738,8 @@ module TencentCloud
           @Status = status
           @PlayBackMode = playbackmode
           @Url = url
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -24509,6 +24758,8 @@ module TencentCloud
           @Status = params['Status']
           @PlayBackMode = params['PlayBackMode']
           @Url = params['Url']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

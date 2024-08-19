@@ -1836,6 +1836,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询轮播当前播放列表。
+
+        # @param request: Request instance for DescribeCurrentPlaylist.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeCurrentPlaylistRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeCurrentPlaylistResponse`
+        def DescribeCurrentPlaylist(request)
+          body = send_request('DescribeCurrentPlaylist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCurrentPlaylistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于查询指定日期范围内每天的播放统计数据。
         # * 可以查询最近一年的播放统计数据。
         # * 结束日期和起始日期的时间跨度最大为90天。
@@ -3020,6 +3044,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对 HLS 视频实现快速拼接和快速剪辑，生成新的 HLS 格式的媒体。
+
+        # @param request: Request instance for FastEditMedia.
+        # @type request: :class:`Tencentcloud::vod::V20180717::FastEditMediaRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::FastEditMediaResponse`
+        def FastEditMedia(request)
+          body = send_request('FastEditMedia', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FastEditMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
         #   禁播/解禁操作全网生效时间约 5~10 分钟。
 
@@ -3031,6 +3079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ForbidMediaDistributionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 操作轮播当前播放列表。支持的操作有：<li> Insert：向当前播列表插入播放节目。</li><li> Delete：删除播列表中的播放节目。</li>
+
+        # @param request: Request instance for HandleCurrentPlaylist.
+        # @type request: :class:`Tencentcloud::vod::V20180717::HandleCurrentPlaylistRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::HandleCurrentPlaylistResponse`
+        def HandleCurrentPlaylist(request)
+          body = send_request('HandleCurrentPlaylist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = HandleCurrentPlaylistResponse.new
             model.deserialize(response['Response'])
             model
           else

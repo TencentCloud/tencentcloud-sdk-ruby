@@ -914,6 +914,33 @@ module TencentCloud
         end
       end
 
+      # binlog配置信息
+      class BinlogConfigInfo < TencentCloud::Common::AbstractModel
+        # @param BinlogSaveDays: binlog保留时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BinlogSaveDays: Integer
+        # @param BinlogCrossRegionsEnable: binlog异地地域备份是否开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BinlogCrossRegionsEnable: String
+        # @param BinlogCrossRegions: binlog异地地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BinlogCrossRegions: Array
+
+        attr_accessor :BinlogSaveDays, :BinlogCrossRegionsEnable, :BinlogCrossRegions
+
+        def initialize(binlogsavedays=nil, binlogcrossregionsenable=nil, binlogcrossregions=nil)
+          @BinlogSaveDays = binlogsavedays
+          @BinlogCrossRegionsEnable = binlogcrossregionsenable
+          @BinlogCrossRegions = binlogcrossregions
+        end
+
+        def deserialize(params)
+          @BinlogSaveDays = params['BinlogSaveDays']
+          @BinlogCrossRegionsEnable = params['BinlogCrossRegionsEnable']
+          @BinlogCrossRegions = params['BinlogCrossRegions']
+        end
+      end
+
       # Binlog描述
       class BinlogItem < TencentCloud::Common::AbstractModel
         # @param FileName: Binlog文件名称
@@ -5035,6 +5062,51 @@ module TencentCloud
         end
       end
 
+      # DescribeBinlogConfig请求参数结构体
+      class DescribeBinlogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeBinlogConfig返回参数结构体
+      class DescribeBinlogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param BinlogCrossRegionsConfigUpdateTime: Binlog跨地域配置更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BinlogCrossRegionsConfigUpdateTime: String
+        # @param BinlogConfig: Binlog配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BinlogConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.BinlogConfigInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BinlogCrossRegionsConfigUpdateTime, :BinlogConfig, :RequestId
+
+        def initialize(binlogcrossregionsconfigupdatetime=nil, binlogconfig=nil, requestid=nil)
+          @BinlogCrossRegionsConfigUpdateTime = binlogcrossregionsconfigupdatetime
+          @BinlogConfig = binlogconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BinlogCrossRegionsConfigUpdateTime = params['BinlogCrossRegionsConfigUpdateTime']
+          unless params['BinlogConfig'].nil?
+            @BinlogConfig = BinlogConfigInfo.new
+            @BinlogConfig.deserialize(params['BinlogConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBinlogDownloadUrl请求参数结构体
       class DescribeBinlogDownloadUrlRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -8988,6 +9060,45 @@ module TencentCloud
 
       # ModifyBackupName返回参数结构体
       class ModifyBackupNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBinlogConfig请求参数结构体
+      class ModifyBinlogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param BinlogConfig: Binlog配置信息
+        # @type BinlogConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.BinlogConfigInfo`
+
+        attr_accessor :ClusterId, :BinlogConfig
+
+        def initialize(clusterid=nil, binlogconfig=nil)
+          @ClusterId = clusterid
+          @BinlogConfig = binlogconfig
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['BinlogConfig'].nil?
+            @BinlogConfig = BinlogConfigInfo.new
+            @BinlogConfig.deserialize(params['BinlogConfig'])
+          end
+        end
+      end
+
+      # ModifyBinlogConfig返回参数结构体
+      class ModifyBinlogConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询冷热分层生效变量和配置是否正确
+
+        # @param request: Request instance for CheckCoolDownWorkingVariableConfigCorrect.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::CheckCoolDownWorkingVariableConfigCorrectRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::CheckCoolDownWorkingVariableConfigCorrectResponse`
+        def CheckCoolDownWorkingVariableConfigCorrect(request)
+          body = send_request('CheckCoolDownWorkingVariableConfigCorrect', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckCoolDownWorkingVariableConfigCorrectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建或者修改备份策略
 
         # @param request: Request instance for CreateBackUpSchedule.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateBackUpScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建冷热分层策略
+
+        # @param request: Request instance for CreateCoolDownPolicy.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::CreateCoolDownPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::CreateCoolDownPolicyResponse`
+        def CreateCoolDownPolicy(request)
+          body = send_request('CreateCoolDownPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCoolDownPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +413,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询冷热分层backend节点信息列表
+
+        # @param request: Request instance for DescribeCoolDownBackends.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeCoolDownBackendsRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeCoolDownBackendsResponse`
+        def DescribeCoolDownBackends(request)
+          body = send_request('DescribeCoolDownBackends', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCoolDownBackendsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询冷热分层策略列表
+
+        # @param request: Request instance for DescribeCoolDownPolicies.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeCoolDownPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeCoolDownPoliciesResponse`
+        def DescribeCoolDownPolicies(request)
+          body = send_request('DescribeCoolDownPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCoolDownPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询冷热分层Table数据
+
+        # @param request: Request instance for DescribeCoolDownTableData.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeCoolDownTableDataRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeCoolDownTableDataResponse`
+        def DescribeCoolDownTableData(request)
+          body = send_request('DescribeCoolDownTableData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCoolDownTableDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 下载数据库审计日志
 
         # @param request: Request instance for DescribeDatabaseAuditDownload.
@@ -399,150 +519,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDatabaseAuditRecordsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 数据库审计数据库、用户等
-
-        # @param request: Request instance for DescribeDatabaseAuditResource.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeDatabaseAuditResourceRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeDatabaseAuditResourceResponse`
-        def DescribeDatabaseAuditResource(request)
-          body = send_request('DescribeDatabaseAuditResource', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDatabaseAuditResourceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询sql工作区历史运行记录
-
-        # @param request: Request instance for DescribeDmsSqlHistory.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeDmsSqlHistoryRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeDmsSqlHistoryResponse`
-        def DescribeDmsSqlHistory(request)
-          body = send_request('DescribeDmsSqlHistory', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDmsSqlHistoryResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 展示监控指标文件
-
-        # @param request: Request instance for DescribeDorisMetricFiles.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeDorisMetricFilesRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeDorisMetricFilesResponse`
-        def DescribeDorisMetricFiles(request)
-          body = send_request('DescribeDorisMetricFiles', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDorisMetricFilesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取联合身份临时访问凭证
-
-        # @param request: Request instance for DescribeFederationToken.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeFederationTokenRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeFederationTokenResponse`
-        def DescribeFederationToken(request)
-          body = send_request('DescribeFederationToken', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeFederationTokenResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询前端内容
-
-        # @param request: Request instance for DescribeFrontEnd.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeFrontEndRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeFrontEndResponse`
-        def DescribeFrontEnd(request)
-          body = send_request('DescribeFrontEnd', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeFrontEndResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 生成计费相关接口的GoodsDetail结构
-
-        # @param request: Request instance for DescribeGoodsDetail.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeGoodsDetailRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeGoodsDetailResponse`
-        def DescribeGoodsDetail(request)
-          body = send_request('DescribeGoodsDetail', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGoodsDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -773,54 +749,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 购买页获取地域及可用区列表、内核版本、网络规则等
-
-        # @param request: Request instance for DescribeRegionZone.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeRegionZoneRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeRegionZoneResponse`
-        def DescribeRegionZone(request)
-          body = send_request('DescribeRegionZone', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRegionZoneResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 检查内核版本是否支持新的备份恢复语法
-
-        # @param request: Request instance for DescribeReplicaVersion.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeReplicaVersionRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::DescribeReplicaVersionResponse`
-        def DescribeReplicaVersion(request)
-          body = send_request('DescribeReplicaVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeReplicaVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询恢复任务进度详情
 
         # @param request: Request instance for DescribeRestoreTaskDetail.
@@ -1037,16 +965,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 给已存在集群，配置日志服务
+        # 修改冷热分层策略
 
-        # @param request: Request instance for FitClsLog.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::FitClsLogRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::FitClsLogResponse`
-        def FitClsLog(request)
-          body = send_request('FitClsLog', request.serialize)
+        # @param request: Request instance for ModifyCoolDownPolicy.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::ModifyCoolDownPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::ModifyCoolDownPolicyResponse`
+        def ModifyCoolDownPolicy(request)
+          body = send_request('ModifyCoolDownPolicy', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = FitClsLogResponse.new
+            model = ModifyCoolDownPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1253,16 +1181,40 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开启或者关闭策略
+        # 开始启用冷热分层
 
-        # @param request: Request instance for OpenBackUp.
-        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::OpenBackUpRequest`
-        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::OpenBackUpResponse`
-        def OpenBackUp(request)
-          body = send_request('OpenBackUp', request.serialize)
+        # @param request: Request instance for OpenCoolDown.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::OpenCoolDownRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::OpenCoolDownResponse`
+        def OpenCoolDown(request)
+          body = send_request('OpenCoolDown', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = OpenBackUpResponse.new
+            model = OpenCoolDownResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开通、描述降冷策略接口
+
+        # @param request: Request instance for OpenCoolDownPolicy.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::OpenCoolDownPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::OpenCoolDownPolicyResponse`
+        def OpenCoolDownPolicy(request)
+          body = send_request('OpenCoolDownPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenCoolDownPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1431,6 +1383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScaleUpInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新集群冷热分层信息
+
+        # @param request: Request instance for UpdateCoolDown.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::UpdateCoolDownRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::UpdateCoolDownResponse`
+        def UpdateCoolDown(request)
+          body = send_request('UpdateCoolDown', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCoolDownResponse.new
             model.deserialize(response['Response'])
             model
           else

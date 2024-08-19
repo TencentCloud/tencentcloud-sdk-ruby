@@ -4682,10 +4682,12 @@ module TencentCloud
         # @type ResourceBaseType: String
         # @param ComputeResourceId: 计算资源id
         # @type ComputeResourceId: String
+        # @param HardwareResourceType: 扩容资源类型
+        # @type HardwareResourceType: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount, :ResourceBaseType, :ComputeResourceId
+        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount, :ResourceBaseType, :ComputeResourceId, :HardwareResourceType
 
-        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil, resourcebasetype=nil, computeresourceid=nil)
+        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil, resourcebasetype=nil, computeresourceid=nil, hardwareresourcetype=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @ZoneId = zoneid
@@ -4698,6 +4700,7 @@ module TencentCloud
           @MasterCount = mastercount
           @ResourceBaseType = resourcebasetype
           @ComputeResourceId = computeresourceid
+          @HardwareResourceType = hardwareresourcetype
         end
 
         def deserialize(params)
@@ -4713,6 +4716,7 @@ module TencentCloud
           @MasterCount = params['MasterCount']
           @ResourceBaseType = params['ResourceBaseType']
           @ComputeResourceId = params['ComputeResourceId']
+          @HardwareResourceType = params['HardwareResourceType']
         end
       end
 

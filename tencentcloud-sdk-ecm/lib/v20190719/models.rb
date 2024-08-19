@@ -330,8 +330,8 @@ module TencentCloud
 
         attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :ISPType, :SkipCheckIPv6Address, :SkipAllocateBandwidth, :Ipv6ISP
         extend Gem::Deprecate
-        deprecate :Ipv6ISP, :none, 2024, 7
-        deprecate :Ipv6ISP=, :none, 2024, 7
+        deprecate :Ipv6ISP, :none, 2024, 8
+        deprecate :Ipv6ISP=, :none, 2024, 8
 
         def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, isptype=nil, skipcheckipv6address=nil, skipallocatebandwidth=nil, ipv6isp=nil)
           @EcmRegion = ecmregion
@@ -5706,8 +5706,8 @@ module TencentCloud
 
         attr_accessor :ProviderName, :ProviderNodeNum, :ProvederInstanceNum, :ZoneInstanceInfoSet, :ProviderInstanceNum
         extend Gem::Deprecate
-        deprecate :ProvederInstanceNum, :none, 2024, 7
-        deprecate :ProvederInstanceNum=, :none, 2024, 7
+        deprecate :ProvederInstanceNum, :none, 2024, 8
+        deprecate :ProvederInstanceNum=, :none, 2024, 8
 
         def initialize(providername=nil, providernodenum=nil, provederinstancenum=nil, zoneinstanceinfoset=nil, providerinstancenum=nil)
           @ProviderName = providername

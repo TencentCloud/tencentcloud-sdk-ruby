@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeBinlogConfig）用于查询binlog配置
+
+        # @param request: Request instance for DescribeBinlogConfig.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogConfigRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogConfigResponse`
+        def DescribeBinlogConfig(request)
+          body = send_request('DescribeBinlogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBinlogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
 
         # @param request: Request instance for DescribeBinlogDownloadUrl.
@@ -2273,6 +2297,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBackupNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（ModifyBinlogConfig）用于修改Binlog配置
+
+        # @param request: Request instance for ModifyBinlogConfig.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyBinlogConfigRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyBinlogConfigResponse`
+        def ModifyBinlogConfig(request)
+          body = send_request('ModifyBinlogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBinlogConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

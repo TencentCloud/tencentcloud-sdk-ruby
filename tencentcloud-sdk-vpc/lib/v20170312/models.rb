@@ -23059,7 +23059,7 @@ module TencentCloud
 
       # NAT的SNAT规则
       class SourceIpTranslationNatRule < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID，如果ResourceType为USERDEFINED，可以为空
+        # @param ResourceId: 资源ID，如果ResourceType为USERDEFINED，可以为空字符串
         # @type ResourceId: String
         # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE、USERDEFINED
         # 注意：此字段可能返回 null，表示取不到有效值。

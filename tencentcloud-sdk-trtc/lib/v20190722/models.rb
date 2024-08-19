@@ -5300,6 +5300,50 @@ module TencentCloud
         end
       end
 
+      # UpdateStreamIngest请求参数结构体
+      class UpdateStreamIngestRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId，和任务的房间所对应的SDKAppId相同
+        # @type SdkAppId: Integer
+        # @param TaskId: 任务的唯一Id，在启动任务成功后会返回。
+        # @type TaskId: String
+        # @param StreamUrl: 源流URL【必填】。
+        # @type StreamUrl: String
+
+        attr_accessor :SdkAppId, :TaskId, :StreamUrl
+
+        def initialize(sdkappid=nil, taskid=nil, streamurl=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @StreamUrl = streamurl
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @StreamUrl = params['StreamUrl']
+        end
+      end
+
+      # UpdateStreamIngest返回参数结构体
+      class UpdateStreamIngestResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务的状态信息。InProgress：表示当前任务正在进行中。NotExist：表示当前任务不存在。示例值：InProgress
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户信息，包括用户进房时间，退房时间等
       class UserInformation < TencentCloud::Common::AbstractModel
         # @param RoomStr: 房间号
