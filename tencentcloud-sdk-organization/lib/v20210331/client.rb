@@ -1109,7 +1109,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取cam身份中心服务信息
+        # 获取集团账号身份中心服务信息
 
         # @param request: Request instance for DescribeIdentityCenter.
         # @type request: :class:`Tencentcloud::organization::V20210331::DescribeIdentityCenterRequest`
@@ -2309,7 +2309,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开通CIC服务
+        # 开通身份中心服务（CIC）
 
         # @param request: Request instance for OpenIdentityCenter.
         # @type request: :class:`Tencentcloud::organization::V20210331::OpenIdentityCenterRequest`

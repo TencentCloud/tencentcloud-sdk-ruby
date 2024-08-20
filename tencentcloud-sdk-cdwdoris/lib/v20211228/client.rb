@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 新增和修改用户接口
+
+        # @param request: Request instance for ActionAlterUser.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::ActionAlterUserRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::ActionAlterUserResponse`
+        def ActionAlterUser(request)
+          body = send_request('ActionAlterUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActionAlterUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消对应的备份实例任务
 
         # @param request: Request instance for CancelBackupJob.

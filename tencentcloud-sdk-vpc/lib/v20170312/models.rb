@@ -484,15 +484,19 @@ module TencentCloud
         # @type CreatedTime: String
         # @param AddressExtraSet: 带备注的IP地址信息。
         # @type AddressExtraSet: Array
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :AddressTemplateName, :AddressTemplateId, :AddressSet, :CreatedTime, :AddressExtraSet
+        attr_accessor :AddressTemplateName, :AddressTemplateId, :AddressSet, :CreatedTime, :AddressExtraSet, :TagSet
 
-        def initialize(addresstemplatename=nil, addresstemplateid=nil, addressset=nil, createdtime=nil, addressextraset=nil)
+        def initialize(addresstemplatename=nil, addresstemplateid=nil, addressset=nil, createdtime=nil, addressextraset=nil, tagset=nil)
           @AddressTemplateName = addresstemplatename
           @AddressTemplateId = addresstemplateid
           @AddressSet = addressset
           @CreatedTime = createdtime
           @AddressExtraSet = addressextraset
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -506,6 +510,14 @@ module TencentCloud
               addressinfo_tmp = AddressInfo.new
               addressinfo_tmp.deserialize(i)
               @AddressExtraSet << addressinfo_tmp
+            end
+          end
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
         end
@@ -523,15 +535,19 @@ module TencentCloud
         # @type CreatedTime: String
         # @param AddressTemplateSet: IP地址模板实例。
         # @type AddressTemplateSet: Array
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :AddressTemplateGroupName, :AddressTemplateGroupId, :AddressTemplateIdSet, :CreatedTime, :AddressTemplateSet
+        attr_accessor :AddressTemplateGroupName, :AddressTemplateGroupId, :AddressTemplateIdSet, :CreatedTime, :AddressTemplateSet, :TagSet
 
-        def initialize(addresstemplategroupname=nil, addresstemplategroupid=nil, addresstemplateidset=nil, createdtime=nil, addresstemplateset=nil)
+        def initialize(addresstemplategroupname=nil, addresstemplategroupid=nil, addresstemplateidset=nil, createdtime=nil, addresstemplateset=nil, tagset=nil)
           @AddressTemplateGroupName = addresstemplategroupname
           @AddressTemplateGroupId = addresstemplategroupid
           @AddressTemplateIdSet = addresstemplateidset
           @CreatedTime = createdtime
           @AddressTemplateSet = addresstemplateset
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -545,6 +561,14 @@ module TencentCloud
               addresstemplateitem_tmp = AddressTemplateItem.new
               addresstemplateitem_tmp.deserialize(i)
               @AddressTemplateSet << addresstemplateitem_tmp
+            end
+          end
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
         end
@@ -15432,10 +15456,13 @@ module TencentCloud
         # @param ServiceName: 终端节点服务名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :EndPointId, :VpcId, :SubnetId, :EndPointOwner, :EndPointName, :ServiceVpcId, :ServiceVip, :EndPointServiceId, :EndPointVip, :State, :CreateTime, :GroupSet, :ServiceName
+        attr_accessor :EndPointId, :VpcId, :SubnetId, :EndPointOwner, :EndPointName, :ServiceVpcId, :ServiceVip, :EndPointServiceId, :EndPointVip, :State, :CreateTime, :GroupSet, :ServiceName, :TagSet
 
-        def initialize(endpointid=nil, vpcid=nil, subnetid=nil, endpointowner=nil, endpointname=nil, servicevpcid=nil, servicevip=nil, endpointserviceid=nil, endpointvip=nil, state=nil, createtime=nil, groupset=nil, servicename=nil)
+        def initialize(endpointid=nil, vpcid=nil, subnetid=nil, endpointowner=nil, endpointname=nil, servicevpcid=nil, servicevip=nil, endpointserviceid=nil, endpointvip=nil, state=nil, createtime=nil, groupset=nil, servicename=nil, tagset=nil)
           @EndPointId = endpointid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -15449,6 +15476,7 @@ module TencentCloud
           @CreateTime = createtime
           @GroupSet = groupset
           @ServiceName = servicename
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -15465,6 +15493,14 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @GroupSet = params['GroupSet']
           @ServiceName = params['ServiceName']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -15500,10 +15536,13 @@ module TencentCloud
         # @param BusinessIpType: 服务IP类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessIpType: Integer
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType, :ServiceUin, :BusinessIpType
+        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType, :ServiceUin, :BusinessIpType, :TagSet
 
-        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil, serviceuin=nil, businessiptype=nil)
+        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil, serviceuin=nil, businessiptype=nil, tagset=nil)
           @EndPointServiceId = endpointserviceid
           @VpcId = vpcid
           @ServiceOwner = serviceowner
@@ -15517,6 +15556,7 @@ module TencentCloud
           @ServiceType = servicetype
           @ServiceUin = serviceuin
           @BusinessIpType = businessiptype
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -15540,6 +15580,14 @@ module TencentCloud
           @ServiceType = params['ServiceType']
           @ServiceUin = params['ServiceUin']
           @BusinessIpType = params['BusinessIpType']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -15910,10 +15958,13 @@ module TencentCloud
         # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发 FlushTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlushedTime: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :FlushedTime
+        attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :FlushedTime, :TagSet
 
-        def initialize(havipid=nil, havipname=nil, vip=nil, vpcid=nil, subnetid=nil, networkinterfaceid=nil, instanceid=nil, addressip=nil, state=nil, createdtime=nil, business=nil, havipassociationset=nil, checkassociate=nil, flushedtime=nil)
+        def initialize(havipid=nil, havipname=nil, vip=nil, vpcid=nil, subnetid=nil, networkinterfaceid=nil, instanceid=nil, addressip=nil, state=nil, createdtime=nil, business=nil, havipassociationset=nil, checkassociate=nil, flushedtime=nil, tagset=nil)
           @HaVipId = havipid
           @HaVipName = havipname
           @Vip = vip
@@ -15928,6 +15979,7 @@ module TencentCloud
           @HaVipAssociationSet = havipassociationset
           @CheckAssociate = checkassociate
           @FlushedTime = flushedtime
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -15952,6 +16004,14 @@ module TencentCloud
           end
           @CheckAssociate = params['CheckAssociate']
           @FlushedTime = params['FlushedTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -16870,7 +16930,7 @@ module TencentCloud
         # @type CdcId: String
         # @param VpcId: VPC实例ID
         # @type VpcId: String
-        # @param UniqLocalGwId: 本地网关实例ID
+        # @param UniqLocalGwId: 本地网关实例ID（计划弃用）
         # @type UniqLocalGwId: String
         # @param LocalGatewayName: 本地网关名称
         # @type LocalGatewayName: String
@@ -16878,16 +16938,23 @@ module TencentCloud
         # @type LocalGwIp: String
         # @param CreateTime: 本地网关创建时间
         # @type CreateTime: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
+        # @param LocalGatewayId: 本地网关实例ID（计划起用）
+        # @type LocalGatewayId: String
 
-        attr_accessor :CdcId, :VpcId, :UniqLocalGwId, :LocalGatewayName, :LocalGwIp, :CreateTime
+        attr_accessor :CdcId, :VpcId, :UniqLocalGwId, :LocalGatewayName, :LocalGwIp, :CreateTime, :TagSet, :LocalGatewayId
 
-        def initialize(cdcid=nil, vpcid=nil, uniqlocalgwid=nil, localgatewayname=nil, localgwip=nil, createtime=nil)
+        def initialize(cdcid=nil, vpcid=nil, uniqlocalgwid=nil, localgatewayname=nil, localgwip=nil, createtime=nil, tagset=nil, localgatewayid=nil)
           @CdcId = cdcid
           @VpcId = vpcid
           @UniqLocalGwId = uniqlocalgwid
           @LocalGatewayName = localgatewayname
           @LocalGwIp = localgwip
           @CreateTime = createtime
+          @TagSet = tagset
+          @LocalGatewayId = localgatewayid
         end
 
         def deserialize(params)
@@ -16897,6 +16964,15 @@ module TencentCloud
           @LocalGatewayName = params['LocalGatewayName']
           @LocalGwIp = params['LocalGwIp']
           @CreateTime = params['CreateTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+          @LocalGatewayId = params['LocalGatewayId']
         end
       end
 
@@ -19957,10 +20033,13 @@ module TencentCloud
         # @param CreateTime: 创建时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :VpcId, :VpcName, :SubnetId, :SubnetName, :NetDetectId, :NetDetectName, :DetectDestinationIp, :DetectSourceIp, :NextHopType, :NextHopDestination, :NextHopName, :NetDetectDescription, :CreateTime
+        attr_accessor :VpcId, :VpcName, :SubnetId, :SubnetName, :NetDetectId, :NetDetectName, :DetectDestinationIp, :DetectSourceIp, :NextHopType, :NextHopDestination, :NextHopName, :NetDetectDescription, :CreateTime, :TagSet
 
-        def initialize(vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, netdetectid=nil, netdetectname=nil, detectdestinationip=nil, detectsourceip=nil, nexthoptype=nil, nexthopdestination=nil, nexthopname=nil, netdetectdescription=nil, createtime=nil)
+        def initialize(vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, netdetectid=nil, netdetectname=nil, detectdestinationip=nil, detectsourceip=nil, nexthoptype=nil, nexthopdestination=nil, nexthopname=nil, netdetectdescription=nil, createtime=nil, tagset=nil)
           @VpcId = vpcid
           @VpcName = vpcname
           @SubnetId = subnetid
@@ -19974,6 +20053,7 @@ module TencentCloud
           @NextHopName = nexthopname
           @NetDetectDescription = netdetectdescription
           @CreateTime = createtime
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -19990,6 +20070,14 @@ module TencentCloud
           @NextHopName = params['NextHopName']
           @NetDetectDescription = params['NetDetectDescription']
           @CreateTime = params['CreateTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -22736,15 +22824,19 @@ module TencentCloud
         # @type CreatedTime: String
         # @param ServiceExtraSet: 带备注的协议端口信息。
         # @type ServiceExtraSet: Array
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :ServiceSet, :CreatedTime, :ServiceExtraSet
+        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :ServiceSet, :CreatedTime, :ServiceExtraSet, :TagSet
 
-        def initialize(servicetemplateid=nil, servicetemplatename=nil, serviceset=nil, createdtime=nil, serviceextraset=nil)
+        def initialize(servicetemplateid=nil, servicetemplatename=nil, serviceset=nil, createdtime=nil, serviceextraset=nil, tagset=nil)
           @ServiceTemplateId = servicetemplateid
           @ServiceTemplateName = servicetemplatename
           @ServiceSet = serviceset
           @CreatedTime = createdtime
           @ServiceExtraSet = serviceextraset
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -22758,6 +22850,14 @@ module TencentCloud
               servicesinfo_tmp = ServicesInfo.new
               servicesinfo_tmp.deserialize(i)
               @ServiceExtraSet << servicesinfo_tmp
+            end
+          end
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
         end
@@ -22775,15 +22875,19 @@ module TencentCloud
         # @type CreatedTime: String
         # @param ServiceTemplateSet: 协议端口模板实例信息。
         # @type ServiceTemplateSet: Array
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :ServiceTemplateGroupId, :ServiceTemplateGroupName, :ServiceTemplateIdSet, :CreatedTime, :ServiceTemplateSet
+        attr_accessor :ServiceTemplateGroupId, :ServiceTemplateGroupName, :ServiceTemplateIdSet, :CreatedTime, :ServiceTemplateSet, :TagSet
 
-        def initialize(servicetemplategroupid=nil, servicetemplategroupname=nil, servicetemplateidset=nil, createdtime=nil, servicetemplateset=nil)
+        def initialize(servicetemplategroupid=nil, servicetemplategroupname=nil, servicetemplateidset=nil, createdtime=nil, servicetemplateset=nil, tagset=nil)
           @ServiceTemplateGroupId = servicetemplategroupid
           @ServiceTemplateGroupName = servicetemplategroupname
           @ServiceTemplateIdSet = servicetemplateidset
           @CreatedTime = createdtime
           @ServiceTemplateSet = servicetemplateset
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -22797,6 +22901,14 @@ module TencentCloud
               servicetemplate_tmp = ServiceTemplate.new
               servicetemplate_tmp.deserialize(i)
               @ServiceTemplateSet << servicetemplate_tmp
+            end
+          end
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
         end
@@ -23020,10 +23132,13 @@ module TencentCloud
         # @param CreateTime: 创建时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :SnapshotPolicyName, :BackupType, :KeepTime, :CreateNewCos, :CosRegion, :CosBucket, :SnapshotPolicyId, :BackupPolicies, :Enable, :CreateTime
+        attr_accessor :SnapshotPolicyName, :BackupType, :KeepTime, :CreateNewCos, :CosRegion, :CosBucket, :SnapshotPolicyId, :BackupPolicies, :Enable, :CreateTime, :TagSet
 
-        def initialize(snapshotpolicyname=nil, backuptype=nil, keeptime=nil, createnewcos=nil, cosregion=nil, cosbucket=nil, snapshotpolicyid=nil, backuppolicies=nil, enable=nil, createtime=nil)
+        def initialize(snapshotpolicyname=nil, backuptype=nil, keeptime=nil, createnewcos=nil, cosregion=nil, cosbucket=nil, snapshotpolicyid=nil, backuppolicies=nil, enable=nil, createtime=nil, tagset=nil)
           @SnapshotPolicyName = snapshotpolicyname
           @BackupType = backuptype
           @KeepTime = keeptime
@@ -23034,6 +23149,7 @@ module TencentCloud
           @BackupPolicies = backuppolicies
           @Enable = enable
           @CreateTime = createtime
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -23054,6 +23170,14 @@ module TencentCloud
           end
           @Enable = params['Enable']
           @CreateTime = params['CreateTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 

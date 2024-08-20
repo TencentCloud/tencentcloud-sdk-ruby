@@ -880,10 +880,16 @@ module TencentCloud
         # @param AliasRuleName: 别名规则名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasRuleName: String
+        # @param RuleEffectItems: 各类分类分级规则数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleEffectItems: Array
+        # @param RuleStatus: 规则状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleStatus: Integer
 
-        attr_accessor :CategoryId, :RuleId, :RuleName, :LevelId, :LevelName, :Id, :AliasRuleId, :AliasRuleName
+        attr_accessor :CategoryId, :RuleId, :RuleName, :LevelId, :LevelName, :Id, :AliasRuleId, :AliasRuleName, :RuleEffectItems, :RuleStatus
 
-        def initialize(categoryid=nil, ruleid=nil, rulename=nil, levelid=nil, levelname=nil, id=nil, aliasruleid=nil, aliasrulename=nil)
+        def initialize(categoryid=nil, ruleid=nil, rulename=nil, levelid=nil, levelname=nil, id=nil, aliasruleid=nil, aliasrulename=nil, ruleeffectitems=nil, rulestatus=nil)
           @CategoryId = categoryid
           @RuleId = ruleid
           @RuleName = rulename
@@ -892,6 +898,8 @@ module TencentCloud
           @Id = id
           @AliasRuleId = aliasruleid
           @AliasRuleName = aliasrulename
+          @RuleEffectItems = ruleeffectitems
+          @RuleStatus = rulestatus
         end
 
         def deserialize(params)
@@ -903,6 +911,15 @@ module TencentCloud
           @Id = params['Id']
           @AliasRuleId = params['AliasRuleId']
           @AliasRuleName = params['AliasRuleName']
+          unless params['RuleEffectItems'].nil?
+            @RuleEffectItems = []
+            params['RuleEffectItems'].each do |i|
+              ruleeffectitem_tmp = RuleEffectItem.new
+              ruleeffectitem_tmp.deserialize(i)
+              @RuleEffectItems << ruleeffectitem_tmp
+            end
+          end
+          @RuleStatus = params['RuleStatus']
         end
       end
 
@@ -1969,15 +1986,18 @@ module TencentCloud
         # @type RDBRules: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryRDBRules`
         # @param COSRules: COS类敏感数据识别规则
         # @type COSRules: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryCOSRules`
+        # @param Status: 规则状态；0 不启用, 1 启用
+        # @type Status: Integer
 
-        attr_accessor :DspaId, :Name, :Description, :RDBRules, :COSRules
+        attr_accessor :DspaId, :Name, :Description, :RDBRules, :COSRules, :Status
 
-        def initialize(dspaid=nil, name=nil, description=nil, rdbrules=nil, cosrules=nil)
+        def initialize(dspaid=nil, name=nil, description=nil, rdbrules=nil, cosrules=nil, status=nil)
           @DspaId = dspaid
           @Name = name
           @Description = description
           @RDBRules = rdbrules
           @COSRules = cosrules
+          @Status = status
         end
 
         def deserialize(params)
@@ -1992,6 +2012,7 @@ module TencentCloud
             @COSRules = DspaDiscoveryCOSRules.new
             @COSRules.deserialize(params['COSRules'])
           end
+          @Status = params['Status']
         end
       end
 
@@ -8944,16 +8965,20 @@ module TencentCloud
         # @param COSRules: COS规则详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSRules: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryCOSRules`
+        # @param Status: 0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :RuleId, :Name, :Description, :Source, :RDBRules, :COSRules
+        attr_accessor :RuleId, :Name, :Description, :Source, :RDBRules, :COSRules, :Status
 
-        def initialize(ruleid=nil, name=nil, description=nil, source=nil, rdbrules=nil, cosrules=nil)
+        def initialize(ruleid=nil, name=nil, description=nil, source=nil, rdbrules=nil, cosrules=nil, status=nil)
           @RuleId = ruleid
           @Name = name
           @Description = description
           @Source = source
           @RDBRules = rdbrules
           @COSRules = cosrules
+          @Status = status
         end
 
         def deserialize(params)
@@ -8969,6 +8994,7 @@ module TencentCloud
             @COSRules = DspaDiscoveryCOSRules.new
             @COSRules.deserialize(params['COSRules'])
           end
+          @Status = params['Status']
         end
       end
 
@@ -11353,16 +11379,19 @@ module TencentCloud
         # @type RDBRules: :class:`Tencentcloud::Dsgc.v20190723.models.ScanTaskRDBRules`
         # @param COSRules: COS类敏感数据识别规则
         # @type COSRules: :class:`Tencentcloud::Dsgc.v20190723.models.ScanTaskCOSRules`
+        # @param Status: 规则状态
+        # @type Status: Integer
 
-        attr_accessor :DspaId, :Name, :RuleId, :Description, :RDBRules, :COSRules
+        attr_accessor :DspaId, :Name, :RuleId, :Description, :RDBRules, :COSRules, :Status
 
-        def initialize(dspaid=nil, name=nil, ruleid=nil, description=nil, rdbrules=nil, cosrules=nil)
+        def initialize(dspaid=nil, name=nil, ruleid=nil, description=nil, rdbrules=nil, cosrules=nil, status=nil)
           @DspaId = dspaid
           @Name = name
           @RuleId = ruleid
           @Description = description
           @RDBRules = rdbrules
           @COSRules = cosrules
+          @Status = status
         end
 
         def deserialize(params)
@@ -11378,6 +11407,7 @@ module TencentCloud
             @COSRules = ScanTaskCOSRules.new
             @COSRules.deserialize(params['COSRules'])
           end
+          @Status = params['Status']
         end
       end
 
@@ -12702,6 +12732,28 @@ module TencentCloud
           @LevelId = params['LevelId']
           @LevelName = params['LevelName']
           @RuleCnt = params['RuleCnt']
+        end
+      end
+
+      # 分类分级规则数量
+      class RuleEffectItem < TencentCloud::Common::AbstractModel
+        # @param Name: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 规则值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Integer
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

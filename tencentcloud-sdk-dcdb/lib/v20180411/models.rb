@@ -5990,10 +5990,16 @@ module TencentCloud
         # @type VoucherIds: Array
         # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
         # @type Zones: Array
+        # @param SwitchStartTime: 切换开始时间，格式如: "2019-12-12 07:00:00"。开始时间必须在当前时间一个小时以后，3天以内。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换结束时间, 格式如: "2019-12-12 07:15:00"，结束时间必须大于开始时间。
+        # @type SwitchEndTime: String
+        # @param SwitchAutoRetry: 是否自动重试。 0：不自动重试 1：自动重试
+        # @type SwitchAutoRetry: Integer
 
-        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AutoVoucher, :VoucherIds, :Zones
+        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AutoVoucher, :VoucherIds, :Zones, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry
 
-        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, autovoucher=nil, voucherids=nil, zones=nil)
+        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, autovoucher=nil, voucherids=nil, zones=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil)
           @InstanceId = instanceid
           @UpgradeType = upgradetype
           @AddShardConfig = addshardconfig
@@ -6002,6 +6008,9 @@ module TencentCloud
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
           @Zones = zones
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+          @SwitchAutoRetry = switchautoretry
         end
 
         def deserialize(params)
@@ -6022,6 +6031,9 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
           @Zones = params['Zones']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+          @SwitchAutoRetry = params['SwitchAutoRetry']
         end
       end
 

@@ -24673,7 +24673,7 @@ module TencentCloud
         # @param Duration: 播放时长，单位为秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Float
-        # @param Progress: 播放进度，单位为妙。
+        # @param Progress: 播放进度，单位为秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Float
 

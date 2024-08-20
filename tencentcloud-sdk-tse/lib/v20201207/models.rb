@@ -5669,10 +5669,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param Location: 地域
+        # @type Location: :class:`Tencentcloud::Tse.v20201207.models.Location`
 
-        attr_accessor :Service, :Namespace, :InstanceId, :Host, :InstanceVersion, :Protocol, :HealthStatus, :Isolate, :Metadatas, :Offset, :Limit
+        attr_accessor :Service, :Namespace, :InstanceId, :Host, :InstanceVersion, :Protocol, :HealthStatus, :Isolate, :Metadatas, :Offset, :Limit, :Location
 
-        def initialize(service=nil, namespace=nil, instanceid=nil, host=nil, instanceversion=nil, protocol=nil, healthstatus=nil, isolate=nil, metadatas=nil, offset=nil, limit=nil)
+        def initialize(service=nil, namespace=nil, instanceid=nil, host=nil, instanceversion=nil, protocol=nil, healthstatus=nil, isolate=nil, metadatas=nil, offset=nil, limit=nil, location=nil)
           @Service = service
           @Namespace = namespace
           @InstanceId = instanceid
@@ -5684,6 +5686,7 @@ module TencentCloud
           @Metadatas = metadatas
           @Offset = offset
           @Limit = limit
+          @Location = location
         end
 
         def deserialize(params)
@@ -5705,6 +5708,10 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Location'].nil?
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
+          end
         end
       end
 
@@ -5714,14 +5721,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Content: 服务里实例列表。
         # @type Content: Array
+        # @param Location: 地域
+        # @type Location: :class:`Tencentcloud::Tse.v20201207.models.Location`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Content, :RequestId
+        attr_accessor :TotalCount, :Content, :Location, :RequestId
 
-        def initialize(totalcount=nil, content=nil, requestid=nil)
+        def initialize(totalcount=nil, content=nil, location=nil, requestid=nil)
           @TotalCount = totalcount
           @Content = content
+          @Location = location
           @RequestId = requestid
         end
 
@@ -5734,6 +5744,10 @@ module TencentCloud
               governanceinstance_tmp.deserialize(i)
               @Content << governanceinstance_tmp
             end
+          end
+          unless params['Location'].nil?
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
           end
           @RequestId = params['RequestId']
         end
@@ -8971,6 +8985,33 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 新增Location字段，展示zone/region/campus
+      class Location < TencentCloud::Common::AbstractModel
+        # @param Region: 大区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Campus: 机房
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Campus: String
+
+        attr_accessor :Region, :Zone, :Campus
+
+        def initialize(region=nil, zone=nil, campus=nil)
+          @Region = region
+          @Zone = zone
+          @Campus = campus
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Campus = params['Campus']
         end
       end
 

@@ -1349,7 +1349,7 @@ module TencentCloud
         # @type MaxConn: Integer
         # @param MaxCps: 监听器最大新增连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。
         # @type MaxCps: Integer
-        # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。取值范围：共享型实例和独占型实例支持：300~900，性能容量型实例支持：300~2000。如需设置请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)。
+        # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。取值范围：共享型实例和独占型实例支持：300-900，性能容量型实例支持：300-2000。如需设置请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)。
         # @type IdleConnectTimeout: Integer
         # @param SnatEnable: 是否开启SNAT。
         # @type SnatEnable: Boolean

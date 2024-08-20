@@ -2110,28 +2110,28 @@ module TencentCloud
 
       # 详细DTS实例信息
       class DescribeInstanceDTSInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param RegionId: 地域ID
+        # @param RegionId: 地域 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param SetId: 仓库ID
+        # @param SetId: 仓库ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetId: Integer
-        # @param ZoneId: 可用区ID
+        # @param ZoneId: 可用区ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
-        # @param Type: 实例类型
+        # @param Type: 实例类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
-        # @param InstanceName: 实例名称
+        # @param InstanceName: 实例名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param Vip: 实例访问地址
+        # @param Vip: 实例访问地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
-        # @param Status: 状态
+        # @param Status: 状态。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
@@ -3384,16 +3384,18 @@ module TencentCloud
         # @param Name: 参数模板名称。
         # @type Name: String
         # @param ProductType: 产品类型。
-        # - 2：Redis 2.8内存版（标准架构）。
-        # - 3：CKV 3.2内存版（标准架构）。
-        # - 4：CKV 3.2内存版（集群架构）。
-        # - 5：Redis 2.8内存版（单机）。
-        # - 6：Redis 4.0内存版（标准架构）。
-        # - 7：Redis 4.0内存版（集群架构）。
-        # - 8：Redis 5.0内存版（标准架构）。
-        # - 9：Redis 5.0内存版（集群架构）。
-        # - 15：Redis 6.2内存版（标准架构）。
-        # - 16：Redis 6.2内存版（集群架构）。
+        # - 2：Redis 2.8 内存版（标准架构）。
+        # - 3：CKV 3.2 内存版（标准架构）。
+        # - 4：CKV 3.2 内存版（集群架构）。
+        # - 5：Redis 2.8 内存版（单机）。
+        # - 6：Redis 4.0 内存版（标准架构）。
+        # - 7：Redis 4.0 内存版（集群架构）。
+        # - 8：Redis 5.0 内存版（标准架构）。
+        # - 9：Redis 5.0 内存版（集群架构）。
+        # - 15：Redis 6.2 内存版（标准架构）。
+        # - 16：Redis 6.2 内存版（集群架构）。
+        # - 17：Redis 7.0 内存版（标准架构）。
+        # - 18：Redis 7.0 内存版（集群架构）。
         # @type ProductType: Integer
         # @param Description: 参数模板描述。
         # @type Description: String

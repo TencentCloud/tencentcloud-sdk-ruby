@@ -465,14 +465,20 @@ module TencentCloud
         # @param IsEncrypt: 是否需要对返回中的敏感信息进行加密。默认false。
         # 其中敏感信息包括：Response.IdNum、Response.Name
         # @type IsEncrypt: Boolean
+        # @param IsEncryptResponse: 是否需要对响应体加密
+        # @type IsEncryptResponse: Boolean
+        # @param Encryption: 是否需要对返回中的敏感信息进行加密,需指定加密算法Algorithm、CBC加密的初始向量、加密后的对称密钥。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :ImageBase64, :ImageUrl, :Config, :IsEncrypt
+        attr_accessor :ImageBase64, :ImageUrl, :Config, :IsEncrypt, :IsEncryptResponse, :Encryption
 
-        def initialize(imagebase64=nil, imageurl=nil, config=nil, isencrypt=nil)
+        def initialize(imagebase64=nil, imageurl=nil, config=nil, isencrypt=nil, isencryptresponse=nil, encryption=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Config = config
           @IsEncrypt = isencrypt
+          @IsEncryptResponse = isencryptresponse
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -480,6 +486,11 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @Config = params['Config']
           @IsEncrypt = params['IsEncrypt']
+          @IsEncryptResponse = params['IsEncryptResponse']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -521,12 +532,14 @@ module TencentCloud
         # @param Encryption: 敏感数据加密信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param EncryptedBody: 加密后的数据
+        # @type EncryptedBody: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Sim, :Result, :Description, :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Portrait, :Warnings, :Quality, :Encryption, :RequestId
+        attr_accessor :Sim, :Result, :Description, :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Portrait, :Warnings, :Quality, :Encryption, :EncryptedBody, :RequestId
 
-        def initialize(sim=nil, result=nil, description=nil, name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, portrait=nil, warnings=nil, quality=nil, encryption=nil, requestid=nil)
+        def initialize(sim=nil, result=nil, description=nil, name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, portrait=nil, warnings=nil, quality=nil, encryption=nil, encryptedbody=nil, requestid=nil)
           @Sim = sim
           @Result = result
           @Description = description
@@ -540,6 +553,7 @@ module TencentCloud
           @Warnings = warnings
           @Quality = quality
           @Encryption = encryption
+          @EncryptedBody = encryptedbody
           @RequestId = requestid
         end
 
@@ -560,6 +574,7 @@ module TencentCloud
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
           end
+          @EncryptedBody = params['EncryptedBody']
           @RequestId = params['RequestId']
         end
       end

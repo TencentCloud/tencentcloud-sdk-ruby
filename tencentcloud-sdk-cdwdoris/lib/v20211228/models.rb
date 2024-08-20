@@ -17,6 +17,54 @@
 module TencentCloud
   module Cdwdoris
     module V20211228
+      # ActionAlterUser请求参数结构体
+      class ActionAlterUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户信息
+        # @type UserInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.UserInfo`
+        # @param ApiType: api接口类型
+        # @type ApiType: String
+        # @param UserPrivilege: 用户权限类型 0:普通用户 1:管理员
+        # @type UserPrivilege: Integer
+
+        attr_accessor :UserInfo, :ApiType, :UserPrivilege
+
+        def initialize(userinfo=nil, apitype=nil, userprivilege=nil)
+          @UserInfo = userinfo
+          @ApiType = apitype
+          @UserPrivilege = userprivilege
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @ApiType = params['ApiType']
+          @UserPrivilege = params['UserPrivilege']
+        end
+      end
+
+      # ActionAlterUser返回参数结构体
+      class ActionAlterUserResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorMsg, :RequestId
+
+        def initialize(errormsg=nil, requestid=nil)
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群内节点的规格磁盘规格描述
       class AttachCBSSpec < TencentCloud::Common::AbstractModel
         # @param DiskType: 节点磁盘类型，例如“CLOUD_SSD”\"CLOUD_PREMIUM"
@@ -3256,13 +3304,19 @@ module TencentCloud
         # @param Details: 实例扩展信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: :class:`Tencentcloud::Cdwdoris.v20211228.models.InstanceDetail`
+        # @param EnableDlc: 是否启用DLC 0:关闭 1:开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDlc: Integer
+        # @param AccountType: 账户类型 0:普通用户 1:CAM用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountType: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType
         extend Gem::Deprecate
         deprecate :IfExistCatalog, :none, 2024, 8
         deprecate :IfExistCatalog=, :none, 2024, 8
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -3311,6 +3365,8 @@ module TencentCloud
           @EnableCoolDown = enablecooldown
           @CoolDownBucket = cooldownbucket
           @Details = details
+          @EnableDlc = enabledlc
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -3378,6 +3434,8 @@ module TencentCloud
             @Details = InstanceDetail.new
             @Details.deserialize(params['Details'])
           end
+          @EnableDlc = params['EnableDlc']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -5102,6 +5160,46 @@ module TencentCloud
 
         def deserialize(params)
           @IsSetGlobalCatalog = params['IsSetGlobalCatalog']
+        end
+      end
+
+      # 新增或是修改用户
+      class UserInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例id
+        # @type InstanceId: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param PassWord: 密码
+        # @type PassWord: String
+        # @param WhiteHost: 用户链接来自的 IP
+        # @type WhiteHost: String
+        # @param OldWhiteHost: 修改前用户链接来自的 IP
+        # @type OldWhiteHost: String
+        # @param Describe: 描述
+        # @type Describe: String
+        # @param OldPwd: 旧密码
+        # @type OldPwd: String
+
+        attr_accessor :InstanceId, :UserName, :PassWord, :WhiteHost, :OldWhiteHost, :Describe, :OldPwd
+
+        def initialize(instanceid=nil, username=nil, password=nil, whitehost=nil, oldwhitehost=nil, describe=nil, oldpwd=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @PassWord = password
+          @WhiteHost = whitehost
+          @OldWhiteHost = oldwhitehost
+          @Describe = describe
+          @OldPwd = oldpwd
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @PassWord = params['PassWord']
+          @WhiteHost = params['WhiteHost']
+          @OldWhiteHost = params['OldWhiteHost']
+          @Describe = params['Describe']
+          @OldPwd = params['OldPwd']
         end
       end
 

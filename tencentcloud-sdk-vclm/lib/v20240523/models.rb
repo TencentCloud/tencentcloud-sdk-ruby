@@ -372,14 +372,17 @@ module TencentCloud
         # @type TemplateId: String
         # @param EnableAudio: 结果视频是否保留模板音频。默认为true
         # @type EnableAudio: Boolean
+        # @param EnableBodyJoins: 是否检测输入图人体12个身体部位（头部、颈部、右肩、右肘、右腕、左肩、左肘、左腕、右髋、左髋,、左膝、右膝）。默认不检测。
+        # @type EnableBodyJoins: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio
+        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins
 
-        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil)
+        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @TemplateId = templateid
           @EnableAudio = enableaudio
+          @EnableBodyJoins = enablebodyjoins
         end
 
         def deserialize(params)
@@ -387,6 +390,7 @@ module TencentCloud
           @ImageBase64 = params['ImageBase64']
           @TemplateId = params['TemplateId']
           @EnableAudio = params['EnableAudio']
+          @EnableBodyJoins = params['EnableBodyJoins']
         end
       end
 

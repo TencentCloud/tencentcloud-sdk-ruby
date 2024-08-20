@@ -1152,13 +1152,13 @@ module TencentCloud
       class CreateRoleConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间 ID。
         # @type ZoneId: String
-        # @param RoleConfigurationName: 访问配置名称。格式：包含英文字母、数字或短划线（-）。 长度：最大 128 个字符。
+        # @param RoleConfigurationName: 权限配置名称。格式：包含英文字母、数字或短划线（-）。 长度：最大 128 个字符。
         # @type RoleConfigurationName: String
-        # @param Description: 访问配置的描述。 长度：最大 1024 个字符。
+        # @param Description: 权限配置的描述。 长度：最大 1024 个字符。
         # @type Description: String
-        # @param SessionDuration: 会话持续时间。 CIC用户使用访问配置访问集团账号目标账号时，会话最多保持的时间。 单位：秒。 取值范围：900~43200（15 分钟~12 小时）。 默认值：3600（1 小时）。
+        # @param SessionDuration: 会话持续时间。 CIC用户使用权限配置访问集团账号目标账号时，会话最多保持的时间。 单位：秒。 取值范围：900 ~ 43200（15 分钟~12 小时）。 默认值：3600（1 小时）。
         # @type SessionDuration: Integer
-        # @param RelayState: 初始访问页面。 CIC用户使用访问配置访问集团账号目标账号时，初始访问的页面地址。 该页面必须是腾讯云控制台页面。默认为空，表示跳转到腾讯云控制台首页。
+        # @param RelayState: 初始访问页面。 CIC用户使用权限配置访问集团账号目标账号时，初始访问的页面地址。 该页面必须是腾讯云控制台页面。默认为空，表示跳转到腾讯云控制台首页。
         # @type RelayState: String
 
         attr_accessor :ZoneId, :RoleConfigurationName, :Description, :SessionDuration, :RelayState
@@ -1665,11 +1665,11 @@ module TencentCloud
         # @type TargetType: String
         # @param TargetUin: 集团账号目标账号的UIN
         # @type TargetUin: Integer
-        # @param PrincipalType: CAM用户同步的身份类型。取值： User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示同步的身份是用户。 Group：表示同步的身份是用户组。
         # @type PrincipalType: String
-        # @param PrincipalId: CAM用户同步的身份 ID。取值： 当PrincipalType取值为Group时，该值为CIC 用户组 ID（g-********）， 当PrincipalType取值为User时，该值为CIC 用户 ID（u-********）。
+        # @param PrincipalId: 用户同步 ID。取值： 当PrincipalType取值为Group时，该值为用户组 ID（g-********）， 当PrincipalType取值为User时，该值为用户 ID（u-********）。
         # @type PrincipalId: String
-        # @param DeprovisionStrategy: 当您移除一个集团账号目标账号上使用某访问配置的最后一个授权时，是否同时解除访问配置部署。取值： DeprovisionForLastRoleAssignmentOnAccount：解除访问配置部署。 None（默认值）：不解除访问配置部署。
+        # @param DeprovisionStrategy: 当您移除一个集团账号目标账号上使用某权限配置的最后一个授权时，是否同时解除权限配置部署。取值： DeprovisionForLastRoleAssignmentOnAccount：解除权限配置部署。 None（默认值）：不解除权限配置部署。
         # @type DeprovisionStrategy: String
 
         attr_accessor :ZoneId, :RoleConfigurationId, :TargetType, :TargetUin, :PrincipalType, :PrincipalId, :DeprovisionStrategy
@@ -4708,9 +4708,9 @@ module TencentCloud
         # @type TargetType: String
         # @param TargetUin: 同步的集团账号目标账号的UIN。
         # @type TargetUin: Integer
-        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示同步的身份是用户。 Group：表示同步的身份是用户组。
         # @type PrincipalType: String
-        # @param PrincipalId: CAM 用户同步的身份 ID。取值： 当PrincipalType取值为Group时，该值为CIC 用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC 用户 ID（u-********）。
+        # @param PrincipalId: 用户同步 ID。取值： 当PrincipalType取值为Group时，该值为用户组 ID（g-****)，当PrincipalType取值为User时，该值为用户 ID （u-****）。
         # @type PrincipalId: String
         # @param Filter: 查询条件，目前只支持权限配置名称查询。
         # @type Filter: String
@@ -4880,7 +4880,7 @@ module TencentCloud
         # @type NextToken: String
         # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
         # @type MaxResults: Integer
-        # @param Filter: 过滤条件。不区分大小写。目前，只支持 RoleConfigurationName，只支持 eq（Equals）和 sw（Start With）。 示例：Filter = "RoleConfigurationName，只支持 sw test"，表示查询名称以 test 开头的全部访问配置。Filter = "RoleConfigurationName，只支持 eq TestRoleConfiguration"，表示查询名称为 TestRoleConfiguration 的访问配置。
+        # @param Filter: 过滤条件。不区分大小写。目前，只支持 RoleConfigurationName，只支持 eq（Equals）和 sw（Start With）。 示例：Filter = "RoleConfigurationName，只支持 sw test"，表示查询名称以 test 开头的全部权限配置。Filter = "RoleConfigurationName，只支持 eq TestRoleConfiguration"，表示查询名称为 TestRoleConfiguration 的权限配置。
         # @type Filter: String
         # @param FilterTargets: 检索成员账号是否配置过权限，如果配置过返回IsSelected: true, 否则返回false。
         # @type FilterTargets: Array
@@ -5052,13 +5052,13 @@ module TencentCloud
       class ListTasksRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间 ID。
         # @type ZoneId: String
-        # @param PrincipalId: CAM 用户同步的身份 ID。取值：  当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @param PrincipalId: 用户同步 ID。取值： 当PrincipalType取值为Group时，该值为用户组 ID（g-****）， 当PrincipalType取值为User时，该值为用户 ID（u-****）。
         # @type PrincipalId: String
         # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
         # @type NextToken: String
         # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
         # @type MaxResults: Integer
-        # @param PrincipalType: CAM 用户同步的身份类型。取值：  User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示同步的身份是用户。 Group：表示同步的身份是用户组。
         # @type PrincipalType: String
         # @param TargetUin: 同步的集团账号目标账号的UIN。
         # @type TargetUin: Integer
@@ -5147,13 +5147,13 @@ module TencentCloud
       class ListUserSyncProvisioningsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间 ID。
         # @type ZoneId: String
-        # @param PrincipalId: CAM 用户同步的身份 ID。取值：  当PrincipalType取值为Group时，该值为CIC用户组 ID（g-********）。 当PrincipalType取值为User时，该值为CIC用户 ID（u-********）。
+        # @param PrincipalId: 用户同步 ID。取值：  当PrincipalType取值为Group时，该值为用户组 ID（g-********）。 当PrincipalType取值为User时，该值为用户 ID（u-********）。
         # @type PrincipalId: String
         # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
         # @type NextToken: String
         # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
         # @type MaxResults: Integer
-        # @param PrincipalType: CAM 用户同步的身份类型。取值：  User：表示该 CAM 用户同步的身份是CIC用户。 Group：表示该 CAM 用户同步的身份是CIC用户组。
+        # @param PrincipalType: CAM 用户同步的身份类型。取值： User：表示同步的身份是用户。 Group：表示同步的身份是用户组。
         # @type PrincipalType: String
         # @param TargetUin: 集团账号目标账号的UIN。
         # @type TargetUin: Integer
@@ -7520,11 +7520,11 @@ module TencentCloud
         # @type ZoneId: String
         # @param RoleConfigurationId: 权限配置 ID
         # @type RoleConfigurationId: String
-        # @param NewDescription: 新的访问配置描述。  长度：最大 1024 个字符。
+        # @param NewDescription: 新的权限配置描述。  长度：最大 1024 个字符。
         # @type NewDescription: String
-        # @param NewSessionDuration: 新的会话持续时间。  CIC 用户使用访问配置访问集团账号目标账号时，会话最多保持的时间。  单位：秒。  取值范围：900-43200（15 分钟-12 小时）。
+        # @param NewSessionDuration: 新的会话持续时间。  CIC 用户使用权限配置访问集团账号目标账号时，会话最多保持的时间。  单位：秒。  取值范围：900-43200（15 分钟-12 小时）。
         # @type NewSessionDuration: Integer
-        # @param NewRelayState: 新的初始访问页面。  CIC 用户使用访问配置访问集团账号目标账号时，初始访问的页面地址。  该页面必须是腾讯云控制台页面。
+        # @param NewRelayState: 新的初始访问页面。  CIC 用户使用权限配置访问集团账号目标账号时，初始访问的页面地址。  该页面必须是腾讯云控制台页面。
         # @type NewRelayState: String
 
         attr_accessor :ZoneId, :RoleConfigurationId, :NewDescription, :NewSessionDuration, :NewRelayState

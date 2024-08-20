@@ -5202,6 +5202,58 @@ module TencentCloud
         end
       end
 
+      # UpdateAIConversation请求参数结构体
+      class UpdateAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识一个任务
+        # @type TaskId: String
+        # @param WelcomeMessage: 不填写则不进行更新，机器人的欢迎语
+        # @type WelcomeMessage: String
+        # @param InterruptMode: 不填写则不进行更新。智能打断模式，0表示服务端自动打断，1表示服务端不打断，由端上发送打断信令进行打断
+        # @type InterruptMode: Integer
+        # @param InterruptSpeechDuration: 不填写则不进行更新。InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断
+        # @type InterruptSpeechDuration: Integer
+        # @param LLMConfig: 不填写则不进行更新，LLM配置，详情见StartAIConversation接口
+        # @type LLMConfig: String
+        # @param TTSConfig: 不填写则不进行更新，TTS配置，详情见StartAIConversation接口
+        # @type TTSConfig: String
+
+        attr_accessor :TaskId, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :LLMConfig, :TTSConfig
+
+        def initialize(taskid=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, llmconfig=nil, ttsconfig=nil)
+          @TaskId = taskid
+          @WelcomeMessage = welcomemessage
+          @InterruptMode = interruptmode
+          @InterruptSpeechDuration = interruptspeechduration
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @WelcomeMessage = params['WelcomeMessage']
+          @InterruptMode = params['InterruptMode']
+          @InterruptSpeechDuration = params['InterruptSpeechDuration']
+          @LLMConfig = params['LLMConfig']
+          @TTSConfig = params['TTSConfig']
+        end
+      end
+
+      # UpdateAIConversation返回参数结构体
+      class UpdateAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdatePublishCdnStream请求参数结构体
       class UpdatePublishCdnStreamRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
