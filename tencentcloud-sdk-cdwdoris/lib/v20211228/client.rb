@@ -989,6 +989,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在集群配置页面修改集群配置文件接口，xml模式
+
+        # @param request: Request instance for ModifyClusterConfigs.
+        # @type request: :class:`Tencentcloud::cdwdoris::V20211228::ModifyClusterConfigsRequest`
+        # @rtype: :class:`Tencentcloud::cdwdoris::V20211228::ModifyClusterConfigsResponse`
+        def ModifyClusterConfigs(request)
+          body = send_request('ModifyClusterConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改冷热分层策略
 
         # @param request: Request instance for ModifyCoolDownPolicy.

@@ -580,6 +580,34 @@ module TencentCloud
         end
       end
 
+      # 配置文件修改信息
+      class ConfigSubmitContext < TencentCloud::Common::AbstractModel
+        # @param FileName: 配置文件名称
+        # @type FileName: String
+        # @param NewConfValue: 配置文件新内容，base64编码
+        # @type NewConfValue: String
+        # @param OldConfValue: 配置文件旧内容，base64编码
+        # @type OldConfValue: String
+        # @param FilePath: 文件路径
+        # @type FilePath: String
+
+        attr_accessor :FileName, :NewConfValue, :OldConfValue, :FilePath
+
+        def initialize(filename=nil, newconfvalue=nil, oldconfvalue=nil, filepath=nil)
+          @FileName = filename
+          @NewConfValue = newconfvalue
+          @OldConfValue = oldconfvalue
+          @FilePath = filepath
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @NewConfValue = params['NewConfValue']
+          @OldConfValue = params['OldConfValue']
+          @FilePath = params['FilePath']
+        end
+      end
+
       # 冷热分层backend节点信息
       class CoolDownBackend < TencentCloud::Common::AbstractModel
         # @param Host: 字段：Host
@@ -3552,6 +3580,61 @@ module TencentCloud
           @OperateUin = params['OperateUin']
           @JobId = params['JobId']
           @OperationDetail = params['OperationDetail']
+        end
+      end
+
+      # ModifyClusterConfigs请求参数结构体
+      class ModifyClusterConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID，例如cdwch-xxxx
+        # @type InstanceId: String
+        # @param ModifyConfContext: 配置文件修改信息
+        # @type ModifyConfContext: Array
+        # @param Remark: 修改原因
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :ModifyConfContext, :Remark
+
+        def initialize(instanceid=nil, modifyconfcontext=nil, remark=nil)
+          @InstanceId = instanceid
+          @ModifyConfContext = modifyconfcontext
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ModifyConfContext'].nil?
+            @ModifyConfContext = []
+            params['ModifyConfContext'].each do |i|
+              configsubmitcontext_tmp = ConfigSubmitContext.new
+              configsubmitcontext_tmp.deserialize(i)
+              @ModifyConfContext << configsubmitcontext_tmp
+            end
+          end
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyClusterConfigs返回参数结构体
+      class ModifyClusterConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程相关信息
+        # @type FlowId: Integer
+        # @param ErrorMsg: 错误信息
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :ErrorMsg, :RequestId
+
+        def initialize(flowid=nil, errormsg=nil, requestid=nil)
+          @FlowId = flowid
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
         end
       end
 

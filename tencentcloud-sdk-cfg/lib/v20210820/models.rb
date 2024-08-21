@@ -177,7 +177,7 @@ module TencentCloud
         # @type RelationActionId: Integer
         # @param ActionCommand: 操作命令
         # @type ActionCommand: String
-        # @param ActionCommandType: 动作类型( 0 -- tat   1 -- 云API）
+        # @param ActionCommandType: 动作类型（0 -- tat   1 -- 云API）
         # @type ActionCommandType: Integer
         # @param ActionContent: 自定义动作的参数，json string
         # @type ActionContent: String

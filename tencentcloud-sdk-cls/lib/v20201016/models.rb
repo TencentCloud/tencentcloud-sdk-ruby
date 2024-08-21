@@ -2561,10 +2561,12 @@ module TencentCloud
         # @type EnableFlag: Integer
         # @param PreviewLogStatistics: 用于预览加工结果的测试数据
         # @type PreviewLogStatistics: Array
+        # @param DataTransformType: 数据加工类型。0：标准加工任务； 1：前置加工任务。前置加工任务将采集的日志处理完成后，再写入日志主题。
+        # @type DataTransformType: Integer
 
-        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics
+        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics, :DataTransformType
 
-        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil)
+        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil, datatransformtype=nil)
           @FuncType = functype
           @SrcTopicId = srctopicid
           @Name = name
@@ -2573,6 +2575,7 @@ module TencentCloud
           @DstResources = dstresources
           @EnableFlag = enableflag
           @PreviewLogStatistics = previewlogstatistics
+          @DataTransformType = datatransformtype
         end
 
         def deserialize(params)
@@ -2598,6 +2601,7 @@ module TencentCloud
               @PreviewLogStatistics << previewlogstatistic_tmp
             end
           end
+          @DataTransformType = params['DataTransformType']
         end
       end
 

@@ -654,7 +654,7 @@ module TencentCloud
         # @param BasicPlusFlag: 是否是基础防护加强版 0: 不是 1: 是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicPlusFlag: Integer
-        # @param PlanCntFlag: 是否是商业模式优化-普惠版
+        # @param PlanCntFlag: 是否标准版2.0 0: 包含标准版2.0 1: 只查询标准版2.0 2: 不查标准版2.0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanCntFlag: Integer
         # @param TransRegionFlag: 是否跨区域产品 0: 不包含跨区域产品 1: 中国大陆跨区域产品 2: 非中国大陆跨区域产品
@@ -3149,10 +3149,12 @@ module TencentCloud
         # @type Cname: String
         # @param Export: 默认为false，当为true时，将不对各个规则做策略检查，直接导出所有规则
         # @type Export: Boolean
+        # @param Source: 源站，模糊查询
+        # @type Source: String
 
-        attr_accessor :Business, :StatusList, :Domain, :Ip, :Limit, :Offset, :ProtocolList, :Cname, :Export
+        attr_accessor :Business, :StatusList, :Domain, :Ip, :Limit, :Offset, :ProtocolList, :Cname, :Export, :Source
 
-        def initialize(business=nil, statuslist=nil, domain=nil, ip=nil, limit=nil, offset=nil, protocollist=nil, cname=nil, export=nil)
+        def initialize(business=nil, statuslist=nil, domain=nil, ip=nil, limit=nil, offset=nil, protocollist=nil, cname=nil, export=nil, source=nil)
           @Business = business
           @StatusList = statuslist
           @Domain = domain
@@ -3162,6 +3164,7 @@ module TencentCloud
           @ProtocolList = protocollist
           @Cname = cname
           @Export = export
+          @Source = source
         end
 
         def deserialize(params)
@@ -3174,6 +3177,7 @@ module TencentCloud
           @ProtocolList = params['ProtocolList']
           @Cname = params['Cname']
           @Export = params['Export']
+          @Source = params['Source']
         end
       end
 
