@@ -9021,10 +9021,11 @@ module TencentCloud
 
       # 告警策略中监控任务的执行时间点
       class MonitorTime < TencentCloud::Common::AbstractModel
-        # @param Type: 执行周期， 可选值：`Period`、`Fixed`。
+        # @param Type: 执行周期， 可选值：`Period`、`Fixed`、`Cron`。
 
         # - Period：固定频率
         # - Fixed：固定时间
+        # - Cron：Cron表达式
         # @type Type: String
         # @param Time: 执行的周期，或者定制执行的时间节点。单位为分钟，取值范围为1~1440。
         # 当type为`Period`,`Fixed`时，time字段生效。

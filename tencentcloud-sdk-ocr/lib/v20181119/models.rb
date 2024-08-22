@@ -1742,12 +1742,16 @@ module TencentCloud
         # @type BackPageName: String
         # @param BackPageCardCode: 驾驶证副页证号
         # @type BackPageCardCode: String
+        # @param DriverLicenseType: 驾驶证类型
+        # 电子驾驶证：Electronic
+        # 普通驾驶证：Normal
+        # @type DriverLicenseType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :CurrentTime, :GenerateTime, :BackPageName, :BackPageCardCode, :RequestId
+        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :CurrentTime, :GenerateTime, :BackPageName, :BackPageCardCode, :DriverLicenseType, :RequestId
 
-        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, currenttime=nil, generatetime=nil, backpagename=nil, backpagecardcode=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, currenttime=nil, generatetime=nil, backpagename=nil, backpagecardcode=nil, driverlicensetype=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nationality = nationality
@@ -1769,6 +1773,7 @@ module TencentCloud
           @GenerateTime = generatetime
           @BackPageName = backpagename
           @BackPageCardCode = backpagecardcode
+          @DriverLicenseType = driverlicensetype
           @RequestId = requestid
         end
 
@@ -1794,6 +1799,7 @@ module TencentCloud
           @GenerateTime = params['GenerateTime']
           @BackPageName = params['BackPageName']
           @BackPageCardCode = params['BackPageCardCode']
+          @DriverLicenseType = params['DriverLicenseType']
           @RequestId = params['RequestId']
         end
       end

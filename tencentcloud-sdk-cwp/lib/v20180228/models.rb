@@ -6237,10 +6237,12 @@ module TencentCloud
         # @type Md5List: Array
         # @param EventId: 木马事件ID
         # @type EventId: Integer
+        # @param IsHandleHistoryEvents: 对历史待处理执行加白操作；0是不处理，1是处理
+        # @type IsHandleHistoryEvents: Integer
 
-        attr_accessor :Mode, :QuuidList, :IsGlobal, :MatchType, :FileName, :FileDirectory, :FileExtension, :Md5List, :EventId
+        attr_accessor :Mode, :QuuidList, :IsGlobal, :MatchType, :FileName, :FileDirectory, :FileExtension, :Md5List, :EventId, :IsHandleHistoryEvents
 
-        def initialize(mode=nil, quuidlist=nil, isglobal=nil, matchtype=nil, filename=nil, filedirectory=nil, fileextension=nil, md5list=nil, eventid=nil)
+        def initialize(mode=nil, quuidlist=nil, isglobal=nil, matchtype=nil, filename=nil, filedirectory=nil, fileextension=nil, md5list=nil, eventid=nil, ishandlehistoryevents=nil)
           @Mode = mode
           @QuuidList = quuidlist
           @IsGlobal = isglobal
@@ -6250,6 +6252,7 @@ module TencentCloud
           @FileExtension = fileextension
           @Md5List = md5list
           @EventId = eventid
+          @IsHandleHistoryEvents = ishandlehistoryevents
         end
 
         def deserialize(params)
@@ -6262,6 +6265,7 @@ module TencentCloud
           @FileExtension = params['FileExtension']
           @Md5List = params['Md5List']
           @EventId = params['EventId']
+          @IsHandleHistoryEvents = params['IsHandleHistoryEvents']
         end
       end
 
@@ -22009,12 +22013,14 @@ module TencentCloud
         # @type ClickTimeout: Integer
         # @param Uuids: 为空默认扫描全部专业版、旗舰版、普惠版主机，不为空只扫描选中主机
         # @type Uuids: Array
+        # @param ScanMethod: 0版本比对,2版本比对+poc
+        # @type ScanMethod: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulCategories, :VulLevels, :TimerInterval, :TimerTime, :VulEmergency, :StartTime, :EnableScan, :EndTime, :ClickTimeout, :Uuids, :RequestId
+        attr_accessor :VulCategories, :VulLevels, :TimerInterval, :TimerTime, :VulEmergency, :StartTime, :EnableScan, :EndTime, :ClickTimeout, :Uuids, :ScanMethod, :RequestId
 
-        def initialize(vulcategories=nil, vullevels=nil, timerinterval=nil, timertime=nil, vulemergency=nil, starttime=nil, enablescan=nil, endtime=nil, clicktimeout=nil, uuids=nil, requestid=nil)
+        def initialize(vulcategories=nil, vullevels=nil, timerinterval=nil, timertime=nil, vulemergency=nil, starttime=nil, enablescan=nil, endtime=nil, clicktimeout=nil, uuids=nil, scanmethod=nil, requestid=nil)
           @VulCategories = vulcategories
           @VulLevels = vullevels
           @TimerInterval = timerinterval
@@ -22025,6 +22031,7 @@ module TencentCloud
           @EndTime = endtime
           @ClickTimeout = clicktimeout
           @Uuids = uuids
+          @ScanMethod = scanmethod
           @RequestId = requestid
         end
 
@@ -22039,6 +22046,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @ClickTimeout = params['ClickTimeout']
           @Uuids = params['Uuids']
+          @ScanMethod = params['ScanMethod']
           @RequestId = params['RequestId']
         end
       end
@@ -25429,17 +25437,20 @@ module TencentCloud
         # @param ItemLabelIds: 项目或标签的id列表，自选主机时为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemLabelIds: Array
+        # @param ExcludedQuuids: 需排除的机器列表
+        # @type ExcludedQuuids: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :HostRange, :ItemLabels, :Quuids, :TotalCount, :ItemLabelIds, :RequestId
+        attr_accessor :HostRange, :ItemLabels, :Quuids, :TotalCount, :ItemLabelIds, :ExcludedQuuids, :RequestId
 
-        def initialize(hostrange=nil, itemlabels=nil, quuids=nil, totalcount=nil, itemlabelids=nil, requestid=nil)
+        def initialize(hostrange=nil, itemlabels=nil, quuids=nil, totalcount=nil, itemlabelids=nil, excludedquuids=nil, requestid=nil)
           @HostRange = hostrange
           @ItemLabels = itemlabels
           @Quuids = quuids
           @TotalCount = totalcount
           @ItemLabelIds = itemlabelids
+          @ExcludedQuuids = excludedquuids
           @RequestId = requestid
         end
 
@@ -25449,6 +25460,7 @@ module TencentCloud
           @Quuids = params['Quuids']
           @TotalCount = params['TotalCount']
           @ItemLabelIds = params['ItemLabelIds']
+          @ExcludedQuuids = params['ExcludedQuuids']
           @RequestId = params['RequestId']
         end
       end
@@ -35260,15 +35272,18 @@ module TencentCloud
         # @type Quuids: Array
         # @param ItemLabelIds: 项目或标签的id列表，自选主机时为空
         # @type ItemLabelIds: Array
+        # @param ExcludedQuuids: 需排除的机器列表
+        # @type ExcludedQuuids: Array
 
-        attr_accessor :Type, :HostRange, :ItemLabels, :Quuids, :ItemLabelIds
+        attr_accessor :Type, :HostRange, :ItemLabels, :Quuids, :ItemLabelIds, :ExcludedQuuids
 
-        def initialize(type=nil, hostrange=nil, itemlabels=nil, quuids=nil, itemlabelids=nil)
+        def initialize(type=nil, hostrange=nil, itemlabels=nil, quuids=nil, itemlabelids=nil, excludedquuids=nil)
           @Type = type
           @HostRange = hostrange
           @ItemLabels = itemlabels
           @Quuids = quuids
           @ItemLabelIds = itemlabelids
+          @ExcludedQuuids = excludedquuids
         end
 
         def deserialize(params)
@@ -35277,6 +35292,7 @@ module TencentCloud
           @ItemLabels = params['ItemLabels']
           @Quuids = params['Quuids']
           @ItemLabelIds = params['ItemLabelIds']
+          @ExcludedQuuids = params['ExcludedQuuids']
         end
       end
 
@@ -35355,10 +35371,12 @@ module TencentCloud
         # @type IsDisabled: Integer
         # @param Quuids: 主机列表
         # @type Quuids: Array
+        # @param ExcludedQuuids: 需排除的机器列表
+        # @type ExcludedQuuids: Array
 
-        attr_accessor :Id, :Name, :Events, :HostLabels, :Receivers, :Format, :CustomFields, :IsDisabled, :Quuids
+        attr_accessor :Id, :Name, :Events, :HostLabels, :Receivers, :Format, :CustomFields, :IsDisabled, :Quuids, :ExcludedQuuids
 
-        def initialize(id=nil, name=nil, events=nil, hostlabels=nil, receivers=nil, format=nil, customfields=nil, isdisabled=nil, quuids=nil)
+        def initialize(id=nil, name=nil, events=nil, hostlabels=nil, receivers=nil, format=nil, customfields=nil, isdisabled=nil, quuids=nil, excludedquuids=nil)
           @Id = id
           @Name = name
           @Events = events
@@ -35368,6 +35386,7 @@ module TencentCloud
           @CustomFields = customfields
           @IsDisabled = isdisabled
           @Quuids = quuids
+          @ExcludedQuuids = excludedquuids
         end
 
         def deserialize(params)
@@ -35408,6 +35427,7 @@ module TencentCloud
           end
           @IsDisabled = params['IsDisabled']
           @Quuids = params['Quuids']
+          @ExcludedQuuids = params['ExcludedQuuids']
         end
       end
 
@@ -38786,10 +38806,12 @@ module TencentCloud
         # @type TimeoutPeriod: Integer
         # @param VulIds: 需要扫描的漏洞id
         # @type VulIds: Array
+        # @param ScanMethod: 0版本比对，2版本比对+poc
+        # @type ScanMethod: Integer
 
-        attr_accessor :VulLevels, :HostType, :VulCategories, :QuuidList, :VulEmergency, :TimeoutPeriod, :VulIds
+        attr_accessor :VulLevels, :HostType, :VulCategories, :QuuidList, :VulEmergency, :TimeoutPeriod, :VulIds, :ScanMethod
 
-        def initialize(vullevels=nil, hosttype=nil, vulcategories=nil, quuidlist=nil, vulemergency=nil, timeoutperiod=nil, vulids=nil)
+        def initialize(vullevels=nil, hosttype=nil, vulcategories=nil, quuidlist=nil, vulemergency=nil, timeoutperiod=nil, vulids=nil, scanmethod=nil)
           @VulLevels = vullevels
           @HostType = hosttype
           @VulCategories = vulcategories
@@ -38797,6 +38819,7 @@ module TencentCloud
           @VulEmergency = vulemergency
           @TimeoutPeriod = timeoutperiod
           @VulIds = vulids
+          @ScanMethod = scanmethod
         end
 
         def deserialize(params)
@@ -38807,6 +38830,7 @@ module TencentCloud
           @VulEmergency = params['VulEmergency']
           @TimeoutPeriod = params['TimeoutPeriod']
           @VulIds = params['VulIds']
+          @ScanMethod = params['ScanMethod']
         end
       end
 
@@ -38851,10 +38875,12 @@ module TencentCloud
         # @type EnableScan: Integer
         # @param Uuids: 为空默认扫描全部专业版、旗舰版、普惠版主机，不为空只扫描选中主机
         # @type Uuids: Array
+        # @param ScanMethod: 0版本比对，2版本比对+poc
+        # @type ScanMethod: Integer
 
-        attr_accessor :TimerInterval, :VulCategories, :VulLevels, :TimerTime, :VulEmergency, :StartTime, :EndTime, :EnableScan, :Uuids
+        attr_accessor :TimerInterval, :VulCategories, :VulLevels, :TimerTime, :VulEmergency, :StartTime, :EndTime, :EnableScan, :Uuids, :ScanMethod
 
-        def initialize(timerinterval=nil, vulcategories=nil, vullevels=nil, timertime=nil, vulemergency=nil, starttime=nil, endtime=nil, enablescan=nil, uuids=nil)
+        def initialize(timerinterval=nil, vulcategories=nil, vullevels=nil, timertime=nil, vulemergency=nil, starttime=nil, endtime=nil, enablescan=nil, uuids=nil, scanmethod=nil)
           @TimerInterval = timerinterval
           @VulCategories = vulcategories
           @VulLevels = vullevels
@@ -38864,6 +38890,7 @@ module TencentCloud
           @EndTime = endtime
           @EnableScan = enablescan
           @Uuids = uuids
+          @ScanMethod = scanmethod
         end
 
         def deserialize(params)
@@ -38876,6 +38903,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @EnableScan = params['EnableScan']
           @Uuids = params['Uuids']
+          @ScanMethod = params['ScanMethod']
         end
       end
 

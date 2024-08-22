@@ -4103,12 +4103,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 7
-        deprecate :ResourceId=, :none, 2024, 7
-        deprecate :BindStatus, :none, 2024, 7
-        deprecate :BindStatus=, :none, 2024, 7
-        deprecate :TriggerAttribute, :none, 2024, 7
-        deprecate :TriggerAttribute=, :none, 2024, 7
+        deprecate :ResourceId, :none, 2024, 8
+        deprecate :ResourceId=, :none, 2024, 8
+        deprecate :BindStatus, :none, 2024, 8
+        deprecate :BindStatus=, :none, 2024, 8
+        deprecate :TriggerAttribute, :none, 2024, 8
+        deprecate :TriggerAttribute=, :none, 2024, 8
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4269,12 +4269,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 7
-        deprecate :ResourceId=, :none, 2024, 7
-        deprecate :BindStatus, :none, 2024, 7
-        deprecate :BindStatus=, :none, 2024, 7
-        deprecate :TriggerAttribute, :none, 2024, 7
-        deprecate :TriggerAttribute=, :none, 2024, 7
+        deprecate :ResourceId, :none, 2024, 8
+        deprecate :ResourceId=, :none, 2024, 8
+        deprecate :BindStatus, :none, 2024, 8
+        deprecate :BindStatus=, :none, 2024, 8
+        deprecate :TriggerAttribute, :none, 2024, 8
+        deprecate :TriggerAttribute=, :none, 2024, 8
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable
@@ -4750,11 +4750,11 @@ module TencentCloud
         # @type FunctionName: String
         # @param TriggerName: 触发器名称
         # @type TriggerName: String
-        # @param Type: 触发器类型
+        # @param Type: 触发器类型，触发器类型，目前只支持 timer、 cos  、 ckafka三种类型
         # @type Type: String
-        # @param Qualifier: 函数的版本，默认为 $LATEST，建议填写 [$DEFAULT](https://cloud.tencent.com/document/product/583/36149#.E9.BB.98.E8.AE.A4.E5.88.AB.E5.90.8D)方便后续进行版本的灰度发布。
+        # @param Qualifier: 触发器在创建时所指向的触发别名或版本，默认值为$LATEST
         # @type Qualifier: String
-        # @param Namespace: 函数的命名空间
+        # @param Namespace: 函数所在的命名空间，默认值为default
         # @type Namespace: String
         # @param TriggerDesc: 如果更新的触发器类型为 COS 触发器，该字段为必填值，存放 JSON 格式的数据 {"event":"cos:ObjectCreated:*"}，数据内容和 SetTrigger 接口中该字段的格式相同；如果更新的触发器类型为定时触发器或 CMQ 触发器，可以不指定该字段
         # @type TriggerDesc: String

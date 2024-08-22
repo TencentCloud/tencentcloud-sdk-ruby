@@ -1505,10 +1505,12 @@ module TencentCloud
         # @type Browser: String
         # @param Env: 环境区分
         # @type Env: String
+        # @param ErrorMsg: js异常信息
+        # @type ErrorMsg: String
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :ErrorMsg
 
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil, errormsg=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -1530,6 +1532,7 @@ module TencentCloud
           @Os = os
           @Browser = browser
           @Env = env
+          @ErrorMsg = errormsg
         end
 
         def deserialize(params)
@@ -1554,6 +1557,7 @@ module TencentCloud
           @Os = params['Os']
           @Browser = params['Browser']
           @Env = params['Env']
+          @ErrorMsg = params['ErrorMsg']
         end
       end
 

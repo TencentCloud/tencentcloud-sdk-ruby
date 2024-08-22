@@ -1130,7 +1130,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackUpJobId: 任务id
         # @type BackUpJobId: Integer
-        # @param IsDeleteAll: 是否删除所有数据
+        # @param IsDeleteAll: 是否删除所有实例
         # @type IsDeleteAll: Boolean
 
         attr_accessor :InstanceId, :BackUpJobId, :IsDeleteAll
@@ -4201,7 +4201,7 @@ module TencentCloud
 
       # 节点信息列表
       class NodeInfos < TencentCloud::Common::AbstractModel
-        # @param NodeName: 节点在doris中明朝n
+        # @param NodeName: 节点名称
         # @type NodeName: String
         # @param Status: 节点状态
         # @type Status: Integer

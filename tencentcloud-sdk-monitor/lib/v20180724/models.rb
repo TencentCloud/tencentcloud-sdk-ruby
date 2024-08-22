@@ -15023,10 +15023,13 @@ module TencentCloud
         # @param OnCallFormIDs: 值班表id列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnCallFormIDs: Array
+        # @param VoiceConfirmKey: 电话按键确认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceConfirmKey: String
 
-        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType, :Weekday, :OnCallFormIDs
+        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice, :PhoneCallType, :Weekday, :OnCallFormIDs, :VoiceConfirmKey
 
-        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil, weekday=nil, oncallformids=nil)
+        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil, phonecalltype=nil, weekday=nil, oncallformids=nil, voiceconfirmkey=nil)
           @ReceiverType = receivertype
           @StartTime = starttime
           @EndTime = endtime
@@ -15041,6 +15044,7 @@ module TencentCloud
           @PhoneCallType = phonecalltype
           @Weekday = weekday
           @OnCallFormIDs = oncallformids
+          @VoiceConfirmKey = voiceconfirmkey
         end
 
         def deserialize(params)
@@ -15058,6 +15062,7 @@ module TencentCloud
           @PhoneCallType = params['PhoneCallType']
           @Weekday = params['Weekday']
           @OnCallFormIDs = params['OnCallFormIDs']
+          @VoiceConfirmKey = params['VoiceConfirmKey']
         end
       end
 

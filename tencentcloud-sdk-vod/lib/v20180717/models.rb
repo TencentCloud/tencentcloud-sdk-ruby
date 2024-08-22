@@ -317,9 +317,9 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
-        # @param TraceWatermark: 溯源水印。
+        # @param TraceWatermark: 溯源水印，该功能已不再支持使用。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param CopyRightWatermark: 版权水印。
+        # @param CopyRightWatermark: 版权水印，该功能已不再支持使用。
         # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
         # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         # @type SubtitleSet: Array
@@ -13802,7 +13802,7 @@ module TencentCloud
 
       # 提取溯源水印输出信息
       class ExtractTraceWatermarkTaskOutput < TencentCloud::Common::AbstractModel
-        # @param Uv: 播放者的 ID，以十六进制表示，共6位，该参数用于 [溯源水印](https://cloud.tencent.com/document/product/266/75789) 使用场景。
+        # @param Uv: 播放者的 ID，以十六进制表示，共6位。
         # @type Uv: String
         # @param Uid: 该字段已废弃。
         # @type Uid: String
@@ -27085,9 +27085,9 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
-        # @param TraceWatermark: 溯源水印。
+        # @param TraceWatermark: 溯源水印，该功能已不再支持使用。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
-        # @param CopyRightWatermark: 版权水印。
+        # @param CopyRightWatermark: 版权水印，该功能已不再支持使用。
         # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array

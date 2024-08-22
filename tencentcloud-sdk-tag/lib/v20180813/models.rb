@@ -103,7 +103,7 @@ module TencentCloud
 
       # AttachResourcesTag请求参数结构体
       class AttachResourcesTagRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 业务的英文简称，即资源六段式第三段。资源六段式的描述方式参考：https://cloud.tencent.com/document/product/651/89122
+        # @param ServiceType: 业务类型，示例 cvm 。资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array
@@ -113,7 +113,7 @@ module TencentCloud
         # @type TagValue: String
         # @param ResourceRegion: 资源所在地域，不区分地域的资源则不必填。区分地域的资源则必填，且必填时必须是参数ResourceIds.N资源所对应的地域，且如果ResourceIds.N为批量时，这些资源也必须是同一个地域的。例如示例值：ap-beijing，则参数ResourceIds.N中都应该填写该地域的资源。
         # @type ResourceRegion: String
-        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
+        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分，例如“qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584” 中资源前缀为ckafkaId），cos存储桶不需要传入该字段，其他云资源必填
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :TagValue, :ResourceRegion, :ResourcePrefix
@@ -233,7 +233,7 @@ module TencentCloud
       class DeleteResourceTagRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
         # @type TagKey: String
-        # @param Resource: [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
+        # @param Resource: 资源六段式。示例：qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584
         # @type Resource: String
 
         attr_accessor :TagKey, :Resource
@@ -406,13 +406,13 @@ module TencentCloud
 
       # DescribeResourceTagsByResourceIds请求参数结构体
       class DescribeResourceTagsByResourceIdsRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 业务类型
+        # @param ServiceType: 业务类型，示例 cvm 。资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
-        # @param ResourcePrefix: 资源前缀
+        # @param ResourcePrefix: 资源前缀，示例 instance
         # @type ResourcePrefix: String
         # @param ResourceIds: 资源ID数组，大小不超过50
         # @type ResourceIds: Array
-        # @param ResourceRegion: 资源所在地域
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
         # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         # @type Offset: Integer
@@ -485,13 +485,13 @@ module TencentCloud
 
       # DescribeResourceTagsByResourceIdsSeq请求参数结构体
       class DescribeResourceTagsByResourceIdsSeqRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 业务类型
+        # @param ServiceType: 业务类型，示例 cvm 。指资源所属业务类型，也是资源六段式中的第三段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中业务类型为ckafka
         # @type ServiceType: String
-        # @param ResourcePrefix: 资源前缀
+        # @param ResourcePrefix: 该业务类型对应的资源前缀，示例 cvm对应instance、image、volume等。也是资源六段式中的第六段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中资源前缀为ckafkaId。cos存储桶为非必填，其他云资源为必填
         # @type ResourcePrefix: String
         # @param ResourceIds: 资源唯一标记
         # @type ResourceIds: Array
-        # @param ResourceRegion: 资源所在地域
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
         # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         # @type Offset: Integer
@@ -560,11 +560,11 @@ module TencentCloud
 
       # DescribeResourceTagsByTagKeys请求参数结构体
       class DescribeResourceTagsByTagKeysRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 业务类型
+        # @param ServiceType: 业务类型，示例 cvm 。指资源所属业务类型，也是资源六段式中的第三段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中业务类型为ckafka
         # @type ServiceType: String
-        # @param ResourcePrefix: 资源前缀
+        # @param ResourcePrefix: 该业务类型对应的资源前缀，示例 cvm对应instance、image、volume等。也是资源六段式中的第六段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中资源前缀为ckafkaId。cos存储桶为非必填，其他云资源为必填
         # @type ResourcePrefix: String
-        # @param ResourceRegion: 资源地域
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
         # @param ResourceIds: 资源唯一标识ID的列表，列表容量不超过20
         # @type ResourceIds: Array
@@ -639,21 +639,21 @@ module TencentCloud
 
       # DescribeResourceTags请求参数结构体
       class DescribeResourceTagsRequest < TencentCloud::Common::AbstractModel
-        # @param CreateUin: 创建者uin
+        # @param CreateUin: 资源创建者UIN
         # @type CreateUin: Integer
-        # @param ResourceRegion: 资源所在地域
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 。不区分地域的资源则不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ServiceType: 业务类型
+        # @param ServiceType: 业务类型，示例 ckafka。指资源所属业务类型，也是资源六段式中的第三段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中业务类型为ckafka
         # @type ServiceType: String
-        # @param ResourcePrefix: 资源前缀
+        # @param ResourcePrefix: 该业务类型对应的资源前缀，示例 cvm对应instance、image、volume等。也是资源六段式中的第六段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中资源前缀为ckafkaId
         # @type ResourcePrefix: String
-        # @param ResourceId: 资源唯一标识。只输入ResourceId进行查询可能会查询较慢，或者无法匹配到结果，建议在输入ResourceId的同时也输入ServiceType、ResourcePrefix和ResourceRegion（不区分地域的资源可忽略该参数）
+        # @param ResourceId: 资源唯一标识（资源六段式中最后一段"/"后面的部分）。注：只输入ResourceId查询时，如资源量大可能较慢，或无法匹配到结果，建议在输入ResourceId的同时也输入ServiceType、ResourcePrefix和ResourceRegion（不区分地域的资源可忽略该参数）。若传入的是cos资源的Id，则CosResourceId 字段请同时传1。
         # @type ResourceId: String
         # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15
         # @type Limit: Integer
-        # @param CosResourceId: 是否是cos的资源（0或者1），输入的ResourceId为cos资源时必填
+        # @param CosResourceId: 是否为cos的资源，取值 0 表示：非cos资源。取值1 表示：cos资源，且此时ResourceId也为必填。不填则默认为 0
         # @type CosResourceId: Integer
 
         attr_accessor :CreateUin, :ResourceRegion, :ServiceType, :ResourcePrefix, :ResourceId, :Offset, :Limit, :CosResourceId
@@ -731,13 +731,13 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15
         # @type Limit: Integer
-        # @param ResourcePrefix: 资源前缀
+        # @param ResourcePrefix: 该业务类型对应的资源前缀，示例 cvm对应instance、image、volume等。也是资源六段式中的第六段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中资源前缀为ckafkaId。cos存储桶为非必填，其他云资源为必填
         # @type ResourcePrefix: String
         # @param ResourceId: 资源唯一标记
         # @type ResourceId: String
-        # @param ResourceRegion: 资源所在地域
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ServiceType: 业务类型
+        # @param ServiceType: 业务类型，示例 cvm 。指资源所属业务类型，也是资源六段式中的第三段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中业务类型为ckafka
         # @type ServiceType: String
 
         attr_accessor :TagFilters, :CreateUin, :Offset, :Limit, :ResourcePrefix, :ResourceId, :ResourceRegion, :ServiceType
@@ -822,13 +822,13 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15
         # @type Limit: Integer
-        # @param ResourcePrefix: 资源前缀
+        # @param ResourcePrefix: 该业务类型对应的资源前缀，示例 cvm对应instance、image、volume等。也是资源六段式中的第六段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中资源前缀为ckafkaId。cos存储桶为非必填，其他云资源为必填
         # @type ResourcePrefix: String
         # @param ResourceId: 资源唯一标记
         # @type ResourceId: String
-        # @param ResourceRegion: 资源所在地域
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ServiceType: 业务类型
+        # @param ServiceType: 业务类型，示例 cvm 。指资源所属业务类型，也是资源六段式中的第三段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中业务类型为ckafka
         # @type ServiceType: String
 
         attr_accessor :TagFilters, :CreateUin, :Offset, :Limit, :ResourcePrefix, :ResourceId, :ResourceRegion, :ServiceType
@@ -910,7 +910,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15，最大1000
         # @type Limit: Integer
-        # @param ShowProject: 是否展现项目
+        # @param ShowProject: 是否展现项目。1:展示  0:不展示
         # @type ShowProject: Integer
         # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
         # @type Category: String
@@ -1118,7 +1118,7 @@ module TencentCloud
         # @type CreateUin: Integer
         # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只取本值
         # @type TagKeys: Array
-        # @param ShowProject: 是否展现项目标签
+        # @param ShowProject: 是否展现项目标签。1:展示  0:不展示
         # @type ShowProject: Integer
 
         attr_accessor :TagKey, :TagValue, :Offset, :Limit, :CreateUin, :TagKeys, :ShowProject
@@ -1197,7 +1197,7 @@ module TencentCloud
         # @type CreateUin: Integer
         # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只取本值
         # @type TagKeys: Array
-        # @param ShowProject: 是否展现项目标签
+        # @param ShowProject: 是否展现项目标签。1:展示  0:不展示
         # @type ShowProject: Integer
 
         attr_accessor :TagKey, :TagValue, :Offset, :Limit, :CreateUin, :TagKeys, :ShowProject
@@ -1264,15 +1264,15 @@ module TencentCloud
 
       # DetachResourcesTag请求参数结构体
       class DetachResourcesTagRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 资源所属业务名称（资源六段式中的第三段）
+        # @param ServiceType: 业务类型，示例 cvm 。指资源所属业务类型，也是资源六段式中的第三段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中业务类型为ckafka
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array
         # @param TagKey: 需要解绑的标签键
         # @type TagKey: String
-        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 。不区分地域的资源则不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
+        # @param ResourcePrefix: 该业务类型对应的资源前缀，示例 cvm对应instance、image、volume等。也是资源六段式中的第六段，例如qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584中资源前缀为ckafkaId。cos存储桶为非必填，其他云资源为必填
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :ResourceRegion, :ResourcePrefix
@@ -1641,7 +1641,7 @@ module TencentCloud
 
       # ModifyResourcesTagValue请求参数结构体
       class ModifyResourcesTagValueRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 资源所属业务名称（资源六段式中的第三段）
+        # @param ServiceType: 业务类型，示例 cvm 。资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array
@@ -1649,9 +1649,9 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值
         # @type TagValue: String
-        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
+        # @param ResourceRegion: 资源所在地域，示例：ap-guangzhou 不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
+        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），例如“qcs::ckafka:ap-shanghai:uin/123456789:ckafkaId/ckafka-o85jq584” 中资源前缀为ckafkaId），cos存储桶不需要传入该字段，其他云资源必填
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :TagValue, :ResourceRegion, :ResourcePrefix

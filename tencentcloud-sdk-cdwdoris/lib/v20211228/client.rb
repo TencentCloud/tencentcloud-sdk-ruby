@@ -869,7 +869,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 针对驱动sql命令查询ck集群接口
+        # 针对驱动sql命令查询集群接口
 
         # @param request: Request instance for DescribeSqlApis.
         # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeSqlApisRequest`

@@ -788,10 +788,16 @@ module TencentCloud
         # @param FlowTrunc: 设备无流量包处理方式，0: 按量付费，1: 截断加速
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowTrunc: Integer
+        # @param Sn: 设备sn
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sn: String
+        # @param Vendor: 厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vendor: String
 
-        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc
+        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope, :LicensePayMode, :Payer, :GroupId, :GroupName, :FlowTrunc, :Sn, :Vendor
 
-        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil, flowtrunc=nil)
+        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil, licensepaymode=nil, payer=nil, groupid=nil, groupname=nil, flowtrunc=nil, sn=nil, vendor=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @CreateTime = createtime
@@ -803,6 +809,8 @@ module TencentCloud
           @GroupId = groupid
           @GroupName = groupname
           @FlowTrunc = flowtrunc
+          @Sn = sn
+          @Vendor = vendor
         end
 
         def deserialize(params)
@@ -817,6 +825,8 @@ module TencentCloud
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
           @FlowTrunc = params['FlowTrunc']
+          @Sn = params['Sn']
+          @Vendor = params['Vendor']
         end
       end
 
