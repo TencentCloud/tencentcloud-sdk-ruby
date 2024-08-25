@@ -2381,7 +2381,7 @@ module TencentCloud
       class DescribeInstancesHealthStateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceID: 集群Id
         # @type InstanceID: String
-        # @param Input: "" 或者  某个集群Id
+        # @param Input: 为空：代表当前appId下所有集群 或者  某个集群Id
         # @type Input: String
 
         attr_accessor :InstanceID, :Input
@@ -2402,7 +2402,7 @@ module TencentCloud
 
       # DescribeInstancesHealthState返回参数结构体
       class DescribeInstancesHealthStateResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 出参
+        # @param Data: base64编码后的数据，包含了集群的健康信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5262,10 +5262,12 @@ module TencentCloud
         # @type Describe: String
         # @param OldPwd: 旧密码
         # @type OldPwd: String
+        # @param CamUin: 绑定的子用户uin
+        # @type CamUin: String
 
-        attr_accessor :InstanceId, :UserName, :PassWord, :WhiteHost, :OldWhiteHost, :Describe, :OldPwd
+        attr_accessor :InstanceId, :UserName, :PassWord, :WhiteHost, :OldWhiteHost, :Describe, :OldPwd, :CamUin
 
-        def initialize(instanceid=nil, username=nil, password=nil, whitehost=nil, oldwhitehost=nil, describe=nil, oldpwd=nil)
+        def initialize(instanceid=nil, username=nil, password=nil, whitehost=nil, oldwhitehost=nil, describe=nil, oldpwd=nil, camuin=nil)
           @InstanceId = instanceid
           @UserName = username
           @PassWord = password
@@ -5273,6 +5275,7 @@ module TencentCloud
           @OldWhiteHost = oldwhitehost
           @Describe = describe
           @OldPwd = oldpwd
+          @CamUin = camuin
         end
 
         def deserialize(params)
@@ -5283,6 +5286,7 @@ module TencentCloud
           @OldWhiteHost = params['OldWhiteHost']
           @Describe = params['Describe']
           @OldPwd = params['OldPwd']
+          @CamUin = params['CamUin']
         end
       end
 

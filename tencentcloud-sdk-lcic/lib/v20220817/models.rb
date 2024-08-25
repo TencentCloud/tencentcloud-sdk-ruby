@@ -2062,6 +2062,65 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordStream请求参数结构体
+      class DescribeRecordStreamRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeRecordStream返回参数结构体
+      class DescribeRecordStreamResponse < TencentCloud::Common::AbstractModel
+        # @param SchoolId: 学校ID
+        # @type SchoolId: Integer
+        # @param ClassId: 课堂ID
+        # @type ClassId: Integer
+        # @param ClassType: 课堂类型
+        # @type ClassType: Integer
+        # @param StreamInfo: 用户流信息
+        # @type StreamInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SchoolId, :ClassId, :ClassType, :StreamInfo, :RequestId
+
+        def initialize(schoolid=nil, classid=nil, classtype=nil, streaminfo=nil, requestid=nil)
+          @SchoolId = schoolid
+          @ClassId = classid
+          @ClassType = classtype
+          @StreamInfo = streaminfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SchoolId = params['SchoolId']
+          @ClassId = params['ClassId']
+          @ClassType = params['ClassType']
+          unless params['StreamInfo'].nil?
+            @StreamInfo = []
+            params['StreamInfo'].each do |i|
+              singlestreaminfo_tmp = SingleStreamInfo.new
+              singlestreaminfo_tmp.deserialize(i)
+              @StreamInfo << singlestreaminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomForbiddenUser请求参数结构体
       class DescribeRoomForbiddenUserRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
@@ -4560,6 +4619,63 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 录制流信息
+      class SingleStreamInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param StopTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StopTime: Integer
+        # @param Duration: 总时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param FileFormat: 文件格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileFormat: String
+        # @param RecordUrl: 流url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordUrl: String
+        # @param RecordSize: 流大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordSize: Integer
+        # @param VideoId: 流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoId: String
+        # @param Role: 流类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+
+        attr_accessor :UserId, :StartTime, :StopTime, :Duration, :FileFormat, :RecordUrl, :RecordSize, :VideoId, :Role
+
+        def initialize(userid=nil, starttime=nil, stoptime=nil, duration=nil, fileformat=nil, recordurl=nil, recordsize=nil, videoid=nil, role=nil)
+          @UserId = userid
+          @StartTime = starttime
+          @StopTime = stoptime
+          @Duration = duration
+          @FileFormat = fileformat
+          @RecordUrl = recordurl
+          @RecordSize = recordsize
+          @VideoId = videoid
+          @Role = role
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @Duration = params['Duration']
+          @FileFormat = params['FileFormat']
+          @RecordUrl = params['RecordUrl']
+          @RecordSize = params['RecordSize']
+          @VideoId = params['VideoId']
+          @Role = params['Role']
         end
       end
 
