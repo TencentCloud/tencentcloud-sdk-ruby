@@ -470,10 +470,13 @@ module TencentCloud
         # @param ApproveProjectName: 审批所属项目
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveProjectName: String
+        # @param ApplyId: 审批id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyId: String
 
-        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName
+        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName, :ApplyId
 
-        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil)
+        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil, applyid=nil)
           @ApplicantId = applicantid
           @ApplicantName = applicantname
           @Remark = remark
@@ -491,6 +494,7 @@ module TencentCloud
           @ApproverId = approverid
           @ApproverName = approvername
           @ApproveProjectName = approveprojectname
+          @ApplyId = applyid
         end
 
         def deserialize(params)
@@ -511,6 +515,7 @@ module TencentCloud
           @ApproverId = params['ApproverId']
           @ApproverName = params['ApproverName']
           @ApproveProjectName = params['ApproveProjectName']
+          @ApplyId = params['ApplyId']
         end
       end
 

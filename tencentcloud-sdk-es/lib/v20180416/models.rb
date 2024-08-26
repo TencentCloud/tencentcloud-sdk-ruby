@@ -523,10 +523,12 @@ module TencentCloud
         # @type DisasterRecoverGroupAffinity: Integer
         # @param SubProductCode: 子产品ID枚举值： 开源版："sp_es_io2"， 基础版："sp_es_basic"，白金版："sp_es_platinum"，企业版："sp_es_enterprise"，CDC白金版："sp_es_cdc_platinum"，日志增强版："sp_es_enlogging"，tsearch："sp_tsearch_io2"，logstash："sp_es_logstash" ，可以为空，为空的时候后台取LicenseType映射该字段
         # @type SubProductCode: String
+        # @param ReadWriteMode: 读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离
+        # @type ReadWriteMode: Integer
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode
 
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -564,6 +566,7 @@ module TencentCloud
           @CdcId = cdcid
           @DisasterRecoverGroupAffinity = disasterrecovergroupaffinity
           @SubProductCode = subproductcode
+          @ReadWriteMode = readwritemode
         end
 
         def deserialize(params)
@@ -631,6 +634,7 @@ module TencentCloud
           @CdcId = params['CdcId']
           @DisasterRecoverGroupAffinity = params['DisasterRecoverGroupAffinity']
           @SubProductCode = params['SubProductCode']
+          @ReadWriteMode = params['ReadWriteMode']
         end
       end
 
@@ -3721,10 +3725,16 @@ module TencentCloud
         # @param SubProductCode: 子产品ID枚举值： 开源版："sp_es_io2"， 基础版："sp_es_basic"，白金版："sp_es_platinum"，企业版："sp_es_enterprise"，CDC白金版："sp_es_cdc_platinum"，日志增强版："sp_es_enlogging"，tsearch："sp_tsearch_io2"，logstash："sp_es_logstash" ，可以为空，为空的时候后台取LicenseType映射该字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
+        # @param CosBucketStorageSize: 存算分离cos用量，单位M
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucketStorageSize: Integer
+        # @param ReadWriteMode: 读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadWriteMode: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -3814,6 +3824,8 @@ module TencentCloud
           @NetConnectScheme = netconnectscheme
           @DisasterRecoverGroupAffinity = disasterrecovergroupaffinity
           @SubProductCode = subproductcode
+          @CosBucketStorageSize = cosbucketstoragesize
+          @ReadWriteMode = readwritemode
         end
 
         def deserialize(params)
@@ -3972,6 +3984,8 @@ module TencentCloud
           @NetConnectScheme = params['NetConnectScheme']
           @DisasterRecoverGroupAffinity = params['DisasterRecoverGroupAffinity']
           @SubProductCode = params['SubProductCode']
+          @CosBucketStorageSize = params['CosBucketStorageSize']
+          @ReadWriteMode = params['ReadWriteMode']
         end
       end
 
@@ -6173,10 +6187,12 @@ module TencentCloud
         # @type ShardAllocationConcurrents: Integer
         # @param ShardAllocationBytes: 分片迁移并发速度
         # @type ShardAllocationBytes: Integer
+        # @param ReadWriteMode: 读写分离模式：-1-不开启，1-本地读写分离，2-远端读写分离
+        # @type ReadWriteMode: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -6217,6 +6233,7 @@ module TencentCloud
           @CvmDelayOnlineTime = cvmdelayonlinetime
           @ShardAllocationConcurrents = shardallocationconcurrents
           @ShardAllocationBytes = shardallocationbytes
+          @ReadWriteMode = readwritemode
         end
 
         def deserialize(params)
@@ -6299,6 +6316,7 @@ module TencentCloud
           @CvmDelayOnlineTime = params['CvmDelayOnlineTime']
           @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
           @ShardAllocationBytes = params['ShardAllocationBytes']
+          @ReadWriteMode = params['ReadWriteMode']
         end
       end
 

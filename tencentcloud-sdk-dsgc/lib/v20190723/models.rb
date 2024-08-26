@@ -6949,21 +6949,29 @@ module TencentCloud
         # @type DspaId: String
         # @param ComplianceId: 合规组Id
         # @type ComplianceId: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
         # @param CreditScore: 可信分排序，ASC-升序
         # DESC降序
         # @type CreditScore: String
 
-        attr_accessor :DspaId, :ComplianceId, :CreditScore
+        attr_accessor :DspaId, :ComplianceId, :Offset, :Limit, :CreditScore
 
-        def initialize(dspaid=nil, complianceid=nil, creditscore=nil)
+        def initialize(dspaid=nil, complianceid=nil, offset=nil, limit=nil, creditscore=nil)
           @DspaId = dspaid
           @ComplianceId = complianceid
+          @Offset = offset
+          @Limit = limit
           @CreditScore = creditscore
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @ComplianceId = params['ComplianceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @CreditScore = params['CreditScore']
         end
       end

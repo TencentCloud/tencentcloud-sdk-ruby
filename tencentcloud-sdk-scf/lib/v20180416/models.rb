@@ -2256,10 +2256,12 @@ module TencentCloud
         # @param ContainerImageAccelerate: 镜像加速开关，默认False
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerImageAccelerate: Boolean
-        # @param ImagePort: 镜像函数端口设置
-        # 默认值: 9000
-        # -1: 无端口镜像函数
-        # 其他: 取值范围 0 ~ 65535
+        # @param ImagePort: 镜像函数端口设置，可指定镜像类型
+        # Web Server镜像：9000
+        # Job 镜像：-1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 默认值：9000
+        # 示例值：9000
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImagePort: Integer
 
@@ -3541,15 +3543,18 @@ module TencentCloud
         # @type Description: String
         # @param LicenseInfo: 层的软件许可证
         # @type LicenseInfo: String
+        # @param Tags: 层Tag 参数，以键值对数组形式传入
+        # @type Tags: Array
 
-        attr_accessor :LayerName, :CompatibleRuntimes, :Content, :Description, :LicenseInfo
+        attr_accessor :LayerName, :CompatibleRuntimes, :Content, :Description, :LicenseInfo, :Tags
 
-        def initialize(layername=nil, compatibleruntimes=nil, content=nil, description=nil, licenseinfo=nil)
+        def initialize(layername=nil, compatibleruntimes=nil, content=nil, description=nil, licenseinfo=nil, tags=nil)
           @LayerName = layername
           @CompatibleRuntimes = compatibleruntimes
           @Content = content
           @Description = description
           @LicenseInfo = licenseinfo
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3561,6 +3566,14 @@ module TencentCloud
           end
           @Description = params['Description']
           @LicenseInfo = params['LicenseInfo']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

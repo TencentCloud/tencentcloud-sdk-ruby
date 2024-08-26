@@ -685,10 +685,13 @@ module TencentCloud
         # @param SupportDownloadType: 支持下载的WEB服务器类型： nginx、apache、iis、tomcat、jks、root、other
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDownloadType: :class:`Tencentcloud::Ssl.v20191205.models.SupportDownloadType`
+        # @param CertRevokedTime: 证书吊销完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertRevokedTime: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -742,6 +745,7 @@ module TencentCloud
           @IsPackage = ispackage
           @KeyPasswordCustomFlag = keypasswordcustomflag
           @SupportDownloadType = supportdownloadtype
+          @CertRevokedTime = certrevokedtime
         end
 
         def deserialize(params)
@@ -817,6 +821,7 @@ module TencentCloud
             @SupportDownloadType = SupportDownloadType.new
             @SupportDownloadType.deserialize(params['SupportDownloadType'])
           end
+          @CertRevokedTime = params['CertRevokedTime']
         end
       end
 

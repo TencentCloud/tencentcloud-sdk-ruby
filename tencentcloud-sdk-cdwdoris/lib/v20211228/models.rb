@@ -5264,10 +5264,12 @@ module TencentCloud
         # @type OldPwd: String
         # @param CamUin: 绑定的子用户uin
         # @type CamUin: String
+        # @param CamRangerGroupIds: ranger group id列表
+        # @type CamRangerGroupIds: Array
 
-        attr_accessor :InstanceId, :UserName, :PassWord, :WhiteHost, :OldWhiteHost, :Describe, :OldPwd, :CamUin
+        attr_accessor :InstanceId, :UserName, :PassWord, :WhiteHost, :OldWhiteHost, :Describe, :OldPwd, :CamUin, :CamRangerGroupIds
 
-        def initialize(instanceid=nil, username=nil, password=nil, whitehost=nil, oldwhitehost=nil, describe=nil, oldpwd=nil, camuin=nil)
+        def initialize(instanceid=nil, username=nil, password=nil, whitehost=nil, oldwhitehost=nil, describe=nil, oldpwd=nil, camuin=nil, camrangergroupids=nil)
           @InstanceId = instanceid
           @UserName = username
           @PassWord = password
@@ -5276,6 +5278,7 @@ module TencentCloud
           @Describe = describe
           @OldPwd = oldpwd
           @CamUin = camuin
+          @CamRangerGroupIds = camrangergroupids
         end
 
         def deserialize(params)
@@ -5287,6 +5290,7 @@ module TencentCloud
           @Describe = params['Describe']
           @OldPwd = params['OldPwd']
           @CamUin = params['CamUin']
+          @CamRangerGroupIds = params['CamRangerGroupIds']
         end
       end
 

@@ -7964,20 +7964,21 @@ module TencentCloud
 
         # 值为unix时间戳,单位为秒。
         # @type LicenseTo: Integer
-        # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。
-
-        # <ul><li>**0**: 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: `不可解绑释放更换他人`</li></ul>
+        # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。<ul><li>**0**: 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: `不可解绑释放更换他人`</li><li>**1**: 不绑定自动签账号许可开通，后续使用合同份额进行合同发起</li></ul>
         # @type LicenseType: Integer
+        # @param SealId: 用户开通自动签指定使用的印章，为空则未设置印章，需重新进入开通链接设置印章。
+        # @type SealId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :LicenseType, :RequestId
+        attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :LicenseType, :SealId, :RequestId
 
-        def initialize(isopen=nil, licensefrom=nil, licenseto=nil, licensetype=nil, requestid=nil)
+        def initialize(isopen=nil, licensefrom=nil, licenseto=nil, licensetype=nil, sealid=nil, requestid=nil)
           @IsOpen = isopen
           @LicenseFrom = licensefrom
           @LicenseTo = licenseto
           @LicenseType = licensetype
+          @SealId = sealid
           @RequestId = requestid
         end
 
@@ -7986,6 +7987,7 @@ module TencentCloud
           @LicenseFrom = params['LicenseFrom']
           @LicenseTo = params['LicenseTo']
           @LicenseType = params['LicenseType']
+          @SealId = params['SealId']
           @RequestId = params['RequestId']
         end
       end
