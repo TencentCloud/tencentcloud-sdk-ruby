@@ -158,7 +158,7 @@ module TencentCloud
         # @type PkgType: Integer
         # @param MiniProgramAppId: appId
         # @type MiniProgramAppId: String
-        # @param DeductNum: License数
+        # @param DeductNum: License数，只支持50,500,1000,5000,10000,20000,50000
         # @type DeductNum: Integer
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeductNum

@@ -2614,10 +2614,9 @@ module TencentCloud
 
       # CreateResourcePackage请求参数结构体
       class CreateResourcePackageRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 实例类型
+        # @param InstanceType: 实例类型，目前固定传cynosdb-serverless
         # @type InstanceType: String
-        # @param PackageRegion: 资源包使用地域
-        # china-中国内地通用，overseas-港澳台及海外通用
+        # @param PackageRegion: 资源包使用地域chineseMainland-中国内地通用，overseas-港澳台及海外通用
         # @type PackageRegion: String
         # @param PackageType: 资源包类型：CCU-计算资源包，DISK-存储资源包
         # @type PackageType: String
@@ -10594,44 +10593,61 @@ module TencentCloud
 
       # OpenClusterReadOnlyInstanceGroupAccess请求参数结构体
       class OpenClusterReadOnlyInstanceGroupAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Port: 端口
+        # @type Port: String
+        # @param SecurityGroupIds: 安全组ID
+        # @type SecurityGroupIds: Array
 
+        attr_accessor :ClusterId, :Port, :SecurityGroupIds
 
-        def initialize()
+        def initialize(clusterid=nil, port=nil, securitygroupids=nil)
+          @ClusterId = clusterid
+          @Port = port
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Port = params['Port']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
       # OpenClusterReadOnlyInstanceGroupAccess返回参数结构体
       class OpenClusterReadOnlyInstanceGroupAccessResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 开启流程ID
+        # @type FlowId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FlowId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
 
       # OpenReadOnlyInstanceExclusiveAccess请求参数结构体
       class OpenReadOnlyInstanceExclusiveAccessRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 请使用 集群信息描述（https://cloud.tencent.com/document/api/1003/48086） 获取 clusterId。
         # @type ClusterId: String
-        # @param InstanceId: 需要开通独有访问的只读实例ID
+        # @param InstanceId: 请使用 集群信息描述（https://cloud.tencent.com/document/api/1003/48086） 获取 instanceId。
         # @type InstanceId: String
-        # @param VpcId: 指定的vpc ID
+        # @param VpcId: 指定的vpc ID，请使用 查询私有网络列表（https://cloud.tencent.com/document/api/215/15778） 获取 vpc ID。
         # @type VpcId: String
-        # @param SubnetId: 指定的子网ID
+        # @param SubnetId: 指定的子网 ID，如果设置了 vpc ID，则 SubnetId 必填，请使用 查询子网列表（https://cloud.tencent.com/document/api/215/15784）获取 SubnetId。
         # @type SubnetId: String
-        # @param Port: 端口
+        # @param Port: 用户自定义的端口
         # @type Port: Integer
-        # @param SecurityGroupIds: 安全组
+        # @param SecurityGroupIds: 安全组ID，请使用 查看安全组（https://cloud.tencent.com/document/api/215/15808）获取 SecurityGroupId。
         # @type SecurityGroupIds: Array
 
         attr_accessor :ClusterId, :InstanceId, :VpcId, :SubnetId, :Port, :SecurityGroupIds

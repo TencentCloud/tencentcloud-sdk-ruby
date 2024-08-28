@@ -17,42 +17,6 @@
 module TencentCloud
   module Tms
     module V20201229
-      # AnswerQuestion请求参数结构体
-      class AnswerQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param Question: 用户问题
-        # @type Question: String
-
-        attr_accessor :Question
-
-        def initialize(question=nil)
-          @Question = question
-        end
-
-        def deserialize(params)
-          @Question = params['Question']
-        end
-      end
-
-      # AnswerQuestion返回参数结构体
-      class AnswerQuestionResponse < TencentCloud::Common::AbstractModel
-        # @param Answer: 匹配到的答案
-        # @type Answer: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Answer, :RequestId
-
-        def initialize(answer=nil, requestid=nil)
-          @Answer = answer
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Answer = params['Answer']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 文本审核返回的详细结果
       class DetailResults < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果所对应的全部恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告；以及其他令人反感、不安全或不适宜的内容类型。

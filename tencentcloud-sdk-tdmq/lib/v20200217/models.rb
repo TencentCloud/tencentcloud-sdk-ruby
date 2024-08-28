@@ -9817,10 +9817,13 @@ module TencentCloud
         # @param BillingLabelVersion: 代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingLabelVersion: String
+        # @param ExpireTime: 实例到期时间戳，毫秒级精度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -9831,6 +9834,7 @@ module TencentCloud
           @MaxStorage = maxstorage
           @CanEditRoute = caneditroute
           @BillingLabelVersion = billinglabelversion
+          @ExpireTime = expiretime
         end
 
         def deserialize(params)
@@ -9851,6 +9855,7 @@ module TencentCloud
           @MaxStorage = params['MaxStorage']
           @CanEditRoute = params['CanEditRoute']
           @BillingLabelVersion = params['BillingLabelVersion']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

@@ -6307,10 +6307,12 @@ module TencentCloud
         # @type TrpcCallee: String
         # @param TrpcFunc: TRPC调用服务接口，ForwardType为TRPC时必填。目前暂未对外开放。
         # @type TrpcFunc: String
+        # @param OAuth: OAuth配置信息。
+        # @type OAuth: :class:`Tencentcloud::Clb.v20180317.models.OAuth`
 
-        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Url, :HealthCheck, :Scheduler, :SessionExpireTime, :ForwardType, :TrpcCallee, :TrpcFunc
+        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Url, :HealthCheck, :Scheduler, :SessionExpireTime, :ForwardType, :TrpcCallee, :TrpcFunc, :OAuth
 
-        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, url=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, forwardtype=nil, trpccallee=nil, trpcfunc=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, url=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, forwardtype=nil, trpccallee=nil, trpcfunc=nil, oauth=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @LocationId = locationid
@@ -6321,6 +6323,7 @@ module TencentCloud
           @ForwardType = forwardtype
           @TrpcCallee = trpccallee
           @TrpcFunc = trpcfunc
+          @OAuth = oauth
         end
 
         def deserialize(params)
@@ -6337,6 +6340,10 @@ module TencentCloud
           @ForwardType = params['ForwardType']
           @TrpcCallee = params['TrpcCallee']
           @TrpcFunc = params['TrpcFunc']
+          unless params['OAuth'].nil?
+            @OAuth = OAuth.new
+            @OAuth.deserialize(params['OAuth'])
+          end
         end
       end
 
@@ -6632,6 +6639,31 @@ module TencentCloud
               @CertList << certinfo_tmp
             end
           end
+        end
+      end
+
+      # OAuth配置信息。
+      class OAuth < TencentCloud::Common::AbstractModel
+        # @param OAuthEnable: 开启或关闭鉴权。
+        # True: 开启;
+        # False: 关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OAuthEnable: Boolean
+        # @param OAuthFailureStatus: IAP全部故障后，拒绝请求还是放行。BYPASS:通过,
+        # REJECT: 拒绝
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OAuthFailureStatus: String
+
+        attr_accessor :OAuthEnable, :OAuthFailureStatus
+
+        def initialize(oauthenable=nil, oauthfailurestatus=nil)
+          @OAuthEnable = oauthenable
+          @OAuthFailureStatus = oauthfailurestatus
+        end
+
+        def deserialize(params)
+          @OAuthEnable = params['OAuthEnable']
+          @OAuthFailureStatus = params['OAuthFailureStatus']
         end
       end
 
@@ -7345,10 +7377,13 @@ module TencentCloud
         # @param TargetGroupList: 绑定的目标组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroupList: Array
+        # @param OAuth: OAuth配置状态信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OAuth: :class:`Tencentcloud::Clb.v20180317.models.OAuth`
 
-        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains, :TargetGroupList
+        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains, :TargetGroupList, :OAuth
 
-        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil, targetgrouplist=nil)
+        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil, targetgrouplist=nil, oauth=nil)
           @LocationId = locationid
           @Domain = domain
           @Url = url
@@ -7372,6 +7407,7 @@ module TencentCloud
           @QuicStatus = quicstatus
           @Domains = domains
           @TargetGroupList = targetgrouplist
+          @OAuth = oauth
         end
 
         def deserialize(params)
@@ -7416,6 +7452,10 @@ module TencentCloud
               basictargetgroupinfo_tmp.deserialize(i)
               @TargetGroupList << basictargetgroupinfo_tmp
             end
+          end
+          unless params['OAuth'].nil?
+            @OAuth = OAuth.new
+            @OAuth.deserialize(params['OAuth'])
           end
         end
       end

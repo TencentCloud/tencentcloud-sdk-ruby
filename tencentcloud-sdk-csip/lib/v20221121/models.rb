@@ -259,10 +259,73 @@ module TencentCloud
         # @param HitStrategy: 主机防护命中策略，是策略ID和策略名称的组合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitStrategy: String
+        # @param ProcessName: 进程名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessName: String
+        # @param PID: PID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PID: String
+        # @param PodName: 容器Pod名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
+        # @param PodID: 容器PodID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodID: String
+        # @param Response: Http响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Response: String
+        # @param SystemCall: 系统调用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemCall: String
+        # @param Verb: 操作类型verb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Verb: String
+        # @param LogID: 日志ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogID: String
+        # @param Different: 变更内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Different: String
+        # @param EventType: 事件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventType: String
+        # @param Description: 事件描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param TargetAddress: 目标地址(容器反弹shell)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetAddress: String
+        # @param MaliciousRequestDomain: 恶意请求域名(容器恶意外联)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaliciousRequestDomain: String
+        # @param RuleType: 规则类型(容器K8sAPI异常请求)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param RequestURI: 请求资源(容器K8sAPI异常请求)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestURI: String
+        # @param RequestUser: 发起请求用户(容器K8sAPI异常请求)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestUser: String
+        # @param RequestObject: 请求对象(容器K8sAPI异常请求)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestObject: String
+        # @param ResponseObject: 响应对象(容器K8sAPI异常请求)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseObject: String
+        # @param FileType: 文件类型(容器文件篡改)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileType: String
+        # @param TIType: 标签特征(容器恶意外联)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TIType: String
+        # @param SourceIP: 来源IP(容器K8sAPI异常请求)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceIP: String
 
-        attr_accessor :RelateEvent, :LeakContent, :LeakAPI, :SecretID, :Rule, :RuleDesc, :ProtocolPort, :AttackContent, :AttackIPProfile, :AttackIPTags, :RequestMethod, :HttpLog, :AttackDomain, :FilePath, :UserAgent, :RequestHeaders, :LoginUserName, :VulnerabilityName, :CVE, :ServiceProcess, :FileName, :FileSize, :FileMD5, :FileLastAccessTime, :FileModifyTime, :RecentAccessTime, :RecentModifyTime, :VirusName, :VirusFileTags, :BehavioralCharacteristics, :ProcessNamePID, :ProcessPath, :ProcessCommandLine, :ProcessPermissions, :ExecutedCommand, :AffectedFileName, :DecoyPath, :MaliciousProcessFileSize, :MaliciousProcessFileMD5, :MaliciousProcessNamePID, :MaliciousProcessPath, :MaliciousProcessStartTime, :CommandContent, :StartupUser, :UserGroup, :NewPermissions, :ParentProcess, :ClassName, :ClassLoader, :ClassFileSize, :ClassFileMD5, :ParentClassName, :InheritedInterface, :Comment, :PayloadContent, :CallbackAddressPortrait, :CallbackAddressTag, :ProcessMD5, :FilePermission, :FromLogAnalysisData, :HitProbe, :HitHoneyPot, :CommandList, :AttackEventDesc, :ProcessInfo, :UserNameAndPwd, :StrategyID, :StrategyName, :HitStrategy
+        attr_accessor :RelateEvent, :LeakContent, :LeakAPI, :SecretID, :Rule, :RuleDesc, :ProtocolPort, :AttackContent, :AttackIPProfile, :AttackIPTags, :RequestMethod, :HttpLog, :AttackDomain, :FilePath, :UserAgent, :RequestHeaders, :LoginUserName, :VulnerabilityName, :CVE, :ServiceProcess, :FileName, :FileSize, :FileMD5, :FileLastAccessTime, :FileModifyTime, :RecentAccessTime, :RecentModifyTime, :VirusName, :VirusFileTags, :BehavioralCharacteristics, :ProcessNamePID, :ProcessPath, :ProcessCommandLine, :ProcessPermissions, :ExecutedCommand, :AffectedFileName, :DecoyPath, :MaliciousProcessFileSize, :MaliciousProcessFileMD5, :MaliciousProcessNamePID, :MaliciousProcessPath, :MaliciousProcessStartTime, :CommandContent, :StartupUser, :UserGroup, :NewPermissions, :ParentProcess, :ClassName, :ClassLoader, :ClassFileSize, :ClassFileMD5, :ParentClassName, :InheritedInterface, :Comment, :PayloadContent, :CallbackAddressPortrait, :CallbackAddressTag, :ProcessMD5, :FilePermission, :FromLogAnalysisData, :HitProbe, :HitHoneyPot, :CommandList, :AttackEventDesc, :ProcessInfo, :UserNameAndPwd, :StrategyID, :StrategyName, :HitStrategy, :ProcessName, :PID, :PodName, :PodID, :Response, :SystemCall, :Verb, :LogID, :Different, :EventType, :Description, :TargetAddress, :MaliciousRequestDomain, :RuleType, :RequestURI, :RequestUser, :RequestObject, :ResponseObject, :FileType, :TIType, :SourceIP
 
-        def initialize(relateevent=nil, leakcontent=nil, leakapi=nil, secretid=nil, rule=nil, ruledesc=nil, protocolport=nil, attackcontent=nil, attackipprofile=nil, attackiptags=nil, requestmethod=nil, httplog=nil, attackdomain=nil, filepath=nil, useragent=nil, requestheaders=nil, loginusername=nil, vulnerabilityname=nil, cve=nil, serviceprocess=nil, filename=nil, filesize=nil, filemd5=nil, filelastaccesstime=nil, filemodifytime=nil, recentaccesstime=nil, recentmodifytime=nil, virusname=nil, virusfiletags=nil, behavioralcharacteristics=nil, processnamepid=nil, processpath=nil, processcommandline=nil, processpermissions=nil, executedcommand=nil, affectedfilename=nil, decoypath=nil, maliciousprocessfilesize=nil, maliciousprocessfilemd5=nil, maliciousprocessnamepid=nil, maliciousprocesspath=nil, maliciousprocessstarttime=nil, commandcontent=nil, startupuser=nil, usergroup=nil, newpermissions=nil, parentprocess=nil, classname=nil, classloader=nil, classfilesize=nil, classfilemd5=nil, parentclassname=nil, inheritedinterface=nil, comment=nil, payloadcontent=nil, callbackaddressportrait=nil, callbackaddresstag=nil, processmd5=nil, filepermission=nil, fromloganalysisdata=nil, hitprobe=nil, hithoneypot=nil, commandlist=nil, attackeventdesc=nil, processinfo=nil, usernameandpwd=nil, strategyid=nil, strategyname=nil, hitstrategy=nil)
+        def initialize(relateevent=nil, leakcontent=nil, leakapi=nil, secretid=nil, rule=nil, ruledesc=nil, protocolport=nil, attackcontent=nil, attackipprofile=nil, attackiptags=nil, requestmethod=nil, httplog=nil, attackdomain=nil, filepath=nil, useragent=nil, requestheaders=nil, loginusername=nil, vulnerabilityname=nil, cve=nil, serviceprocess=nil, filename=nil, filesize=nil, filemd5=nil, filelastaccesstime=nil, filemodifytime=nil, recentaccesstime=nil, recentmodifytime=nil, virusname=nil, virusfiletags=nil, behavioralcharacteristics=nil, processnamepid=nil, processpath=nil, processcommandline=nil, processpermissions=nil, executedcommand=nil, affectedfilename=nil, decoypath=nil, maliciousprocessfilesize=nil, maliciousprocessfilemd5=nil, maliciousprocessnamepid=nil, maliciousprocesspath=nil, maliciousprocessstarttime=nil, commandcontent=nil, startupuser=nil, usergroup=nil, newpermissions=nil, parentprocess=nil, classname=nil, classloader=nil, classfilesize=nil, classfilemd5=nil, parentclassname=nil, inheritedinterface=nil, comment=nil, payloadcontent=nil, callbackaddressportrait=nil, callbackaddresstag=nil, processmd5=nil, filepermission=nil, fromloganalysisdata=nil, hitprobe=nil, hithoneypot=nil, commandlist=nil, attackeventdesc=nil, processinfo=nil, usernameandpwd=nil, strategyid=nil, strategyname=nil, hitstrategy=nil, processname=nil, pid=nil, podname=nil, podid=nil, response=nil, systemcall=nil, verb=nil, logid=nil, different=nil, eventtype=nil, description=nil, targetaddress=nil, maliciousrequestdomain=nil, ruletype=nil, requesturi=nil, requestuser=nil, requestobject=nil, responseobject=nil, filetype=nil, titype=nil, sourceip=nil)
           @RelateEvent = relateevent
           @LeakContent = leakcontent
           @LeakAPI = leakapi
@@ -332,6 +395,27 @@ module TencentCloud
           @StrategyID = strategyid
           @StrategyName = strategyname
           @HitStrategy = hitstrategy
+          @ProcessName = processname
+          @PID = pid
+          @PodName = podname
+          @PodID = podid
+          @Response = response
+          @SystemCall = systemcall
+          @Verb = verb
+          @LogID = logid
+          @Different = different
+          @EventType = eventtype
+          @Description = description
+          @TargetAddress = targetaddress
+          @MaliciousRequestDomain = maliciousrequestdomain
+          @RuleType = ruletype
+          @RequestURI = requesturi
+          @RequestUser = requestuser
+          @RequestObject = requestobject
+          @ResponseObject = responseobject
+          @FileType = filetype
+          @TIType = titype
+          @SourceIP = sourceip
         end
 
         def deserialize(params)
@@ -414,6 +498,27 @@ module TencentCloud
           @StrategyID = params['StrategyID']
           @StrategyName = params['StrategyName']
           @HitStrategy = params['HitStrategy']
+          @ProcessName = params['ProcessName']
+          @PID = params['PID']
+          @PodName = params['PodName']
+          @PodID = params['PodID']
+          @Response = params['Response']
+          @SystemCall = params['SystemCall']
+          @Verb = params['Verb']
+          @LogID = params['LogID']
+          @Different = params['Different']
+          @EventType = params['EventType']
+          @Description = params['Description']
+          @TargetAddress = params['TargetAddress']
+          @MaliciousRequestDomain = params['MaliciousRequestDomain']
+          @RuleType = params['RuleType']
+          @RequestURI = params['RequestURI']
+          @RequestUser = params['RequestUser']
+          @RequestObject = params['RequestObject']
+          @ResponseObject = params['ResponseObject']
+          @FileType = params['FileType']
+          @TIType = params['TIType']
+          @SourceIP = params['SourceIP']
         end
       end
 
@@ -510,10 +615,16 @@ module TencentCloud
         # @param RiskTreatment: 风险处置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskTreatment: String
+        # @param LogType: 日志类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogType: String
+        # @param LogSearch: 语句检索
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSearch: String
 
-        attr_accessor :ID, :Name, :Source, :Level, :Attacker, :Victim, :EvidenceData, :EvidenceLocation, :EvidencePath, :CreateTime, :UpdateTime, :Count, :UrgentSuggestion, :RemediationSuggestion, :Status, :ProcessType, :Type, :SubType, :ExtraInfo, :Key, :Date, :AppID, :NickName, :Uin, :Action, :RiskInvestigation, :RiskTreatment
+        attr_accessor :ID, :Name, :Source, :Level, :Attacker, :Victim, :EvidenceData, :EvidenceLocation, :EvidencePath, :CreateTime, :UpdateTime, :Count, :UrgentSuggestion, :RemediationSuggestion, :Status, :ProcessType, :Type, :SubType, :ExtraInfo, :Key, :Date, :AppID, :NickName, :Uin, :Action, :RiskInvestigation, :RiskTreatment, :LogType, :LogSearch
 
-        def initialize(id=nil, name=nil, source=nil, level=nil, attacker=nil, victim=nil, evidencedata=nil, evidencelocation=nil, evidencepath=nil, createtime=nil, updatetime=nil, count=nil, urgentsuggestion=nil, remediationsuggestion=nil, status=nil, processtype=nil, type=nil, subtype=nil, extrainfo=nil, key=nil, date=nil, appid=nil, nickname=nil, uin=nil, action=nil, riskinvestigation=nil, risktreatment=nil)
+        def initialize(id=nil, name=nil, source=nil, level=nil, attacker=nil, victim=nil, evidencedata=nil, evidencelocation=nil, evidencepath=nil, createtime=nil, updatetime=nil, count=nil, urgentsuggestion=nil, remediationsuggestion=nil, status=nil, processtype=nil, type=nil, subtype=nil, extrainfo=nil, key=nil, date=nil, appid=nil, nickname=nil, uin=nil, action=nil, riskinvestigation=nil, risktreatment=nil, logtype=nil, logsearch=nil)
           @ID = id
           @Name = name
           @Source = source
@@ -541,6 +652,8 @@ module TencentCloud
           @Action = action
           @RiskInvestigation = riskinvestigation
           @RiskTreatment = risktreatment
+          @LogType = logtype
+          @LogSearch = logsearch
         end
 
         def deserialize(params)
@@ -580,6 +693,8 @@ module TencentCloud
           @Action = params['Action']
           @RiskInvestigation = params['RiskInvestigation']
           @RiskTreatment = params['RiskTreatment']
+          @LogType = params['LogType']
+          @LogSearch = params['LogSearch']
         end
       end
 
@@ -1703,6 +1818,15 @@ module TencentCloud
       end
 
       # 主机资产信息
+
+      # 主机防护状态枚举，左边是常量，右边是显示
+      # 0：未安装
+      # 1：基础版防护中
+      # 2：普惠版防护中
+      # 3：专业版防护中
+      # 4：旗舰版防护中
+      # 5：已离线
+      # 6：已关机
       class CVMAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1899,10 +2023,23 @@ module TencentCloud
         # @param CloudType: 云资产类型：0：腾讯云，1：aws，2：azure
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: Integer
+        # @param ProtectStatus: 主机防护状态枚举
+        # 0：未安装
+        # 1：基础版防护中
+        # 2：普惠版防护中
+        # 3：专业版防护中
+        # 4：旗舰版防护中
+        # 5：已离线
+        # 6：已关机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectStatus: Integer
+        # @param OfflineTime: 最后离线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset, :CVMAgentStatus, :CVMStatus, :DefenseModel, :TatStatus, :CpuTrend, :MemoryTrend, :AgentStatus, :CloseDefenseCount, :InstanceState, :SecurityGroupIds, :AgentMemRss, :AgentCpuPer, :RealAppid, :CloudType
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset, :CVMAgentStatus, :CVMStatus, :DefenseModel, :TatStatus, :CpuTrend, :MemoryTrend, :AgentStatus, :CloseDefenseCount, :InstanceState, :SecurityGroupIds, :AgentMemRss, :AgentCpuPer, :RealAppid, :CloudType, :ProtectStatus, :OfflineTime
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil, cvmagentstatus=nil, cvmstatus=nil, defensemodel=nil, tatstatus=nil, cputrend=nil, memorytrend=nil, agentstatus=nil, closedefensecount=nil, instancestate=nil, securitygroupids=nil, agentmemrss=nil, agentcpuper=nil, realappid=nil, cloudtype=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil, cvmagentstatus=nil, cvmstatus=nil, defensemodel=nil, tatstatus=nil, cputrend=nil, memorytrend=nil, agentstatus=nil, closedefensecount=nil, instancestate=nil, securitygroupids=nil, agentmemrss=nil, agentcpuper=nil, realappid=nil, cloudtype=nil, protectstatus=nil, offlinetime=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -1968,6 +2105,8 @@ module TencentCloud
           @AgentCpuPer = agentcpuper
           @RealAppid = realappid
           @CloudType = cloudtype
+          @ProtectStatus = protectstatus
+          @OfflineTime = offlinetime
         end
 
         def deserialize(params)
@@ -2057,6 +2196,8 @@ module TencentCloud
           @AgentCpuPer = params['AgentCpuPer']
           @RealAppid = params['RealAppid']
           @CloudType = params['CloudType']
+          @ProtectStatus = params['ProtectStatus']
+          @OfflineTime = params['OfflineTime']
         end
       end
 
@@ -3068,12 +3209,15 @@ module TencentCloud
         # @param PublicPrivateAttr: 公网内网枚举
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicPrivateAttr: Array
+        # @param ProtectStatusList: 主机防护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectStatusList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :AssetMapInstanceTypeList, :PublicPrivateAttr, :RequestId
+        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :AssetMapInstanceTypeList, :PublicPrivateAttr, :ProtectStatusList, :RequestId
 
-        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, assetmapinstancetypelist=nil, publicprivateattr=nil, requestid=nil)
+        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, assetmapinstancetypelist=nil, publicprivateattr=nil, protectstatuslist=nil, requestid=nil)
           @Total = total
           @Data = data
           @RegionList = regionlist
@@ -3087,6 +3231,7 @@ module TencentCloud
           @OsList = oslist
           @AssetMapInstanceTypeList = assetmapinstancetypelist
           @PublicPrivateAttr = publicprivateattr
+          @ProtectStatusList = protectstatuslist
           @RequestId = requestid
         end
 
@@ -3186,6 +3331,14 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @PublicPrivateAttr << filterdataobject_tmp
+            end
+          end
+          unless params['ProtectStatusList'].nil?
+            @ProtectStatusList = []
+            params['ProtectStatusList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @ProtectStatusList << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7177,10 +7330,16 @@ module TencentCloud
         # @param FromLogAnalysisData: 来源日志分析的信息字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromLogAnalysisData: Array
+        # @param ContainerName: 容器名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+        # @param ContainerID: 容器ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerID: String
 
-        attr_accessor :IP, :HostIP, :OriginIP, :Port, :InstanceID, :City, :Province, :Country, :Address, :Latitude, :Longitude, :Info, :Domain, :Name, :Account, :Family, :VirusName, :MD5, :FileName, :AssetType, :FromLogAnalysisData
+        attr_accessor :IP, :HostIP, :OriginIP, :Port, :InstanceID, :City, :Province, :Country, :Address, :Latitude, :Longitude, :Info, :Domain, :Name, :Account, :Family, :VirusName, :MD5, :FileName, :AssetType, :FromLogAnalysisData, :ContainerName, :ContainerID
 
-        def initialize(ip=nil, hostip=nil, originip=nil, port=nil, instanceid=nil, city=nil, province=nil, country=nil, address=nil, latitude=nil, longitude=nil, info=nil, domain=nil, name=nil, account=nil, family=nil, virusname=nil, md5=nil, filename=nil, assettype=nil, fromloganalysisdata=nil)
+        def initialize(ip=nil, hostip=nil, originip=nil, port=nil, instanceid=nil, city=nil, province=nil, country=nil, address=nil, latitude=nil, longitude=nil, info=nil, domain=nil, name=nil, account=nil, family=nil, virusname=nil, md5=nil, filename=nil, assettype=nil, fromloganalysisdata=nil, containername=nil, containerid=nil)
           @IP = ip
           @HostIP = hostip
           @OriginIP = originip
@@ -7202,6 +7361,8 @@ module TencentCloud
           @FileName = filename
           @AssetType = assettype
           @FromLogAnalysisData = fromloganalysisdata
+          @ContainerName = containername
+          @ContainerID = containerid
         end
 
         def deserialize(params)
@@ -7233,6 +7394,8 @@ module TencentCloud
               @FromLogAnalysisData << keyvalue_tmp
             end
           end
+          @ContainerName = params['ContainerName']
+          @ContainerID = params['ContainerID']
         end
       end
 

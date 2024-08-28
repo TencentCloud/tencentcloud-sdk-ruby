@@ -6906,6 +6906,42 @@ module TencentCloud
         end
       end
 
+      # SendOrgMemberAccountBindEmail请求参数结构体
+      class SendOrgMemberAccountBindEmailRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin。
+        # @type MemberUin: Integer
+        # @param BindId: 绑定ID。可以通过[DescribeOrganizationMemberEmailBind](https://cloud.tencent.com/document/product/850/93332)获取
+        # @type BindId: Integer
+
+        attr_accessor :MemberUin, :BindId
+
+        def initialize(memberuin=nil, bindid=nil)
+          @MemberUin = memberuin
+          @BindId = bindid
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @BindId = params['BindId']
+        end
+      end
+
+      # SendOrgMemberAccountBindEmail返回参数结构体
+      class SendOrgMemberAccountBindEmailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetExternalSAMLIdentityProvider请求参数结构体
       class SetExternalSAMLIdentityProviderRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间ID。

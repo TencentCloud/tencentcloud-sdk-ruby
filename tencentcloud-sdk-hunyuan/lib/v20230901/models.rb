@@ -507,6 +507,38 @@ module TencentCloud
         end
       end
 
+      # 混元生图多轮对话历史记录。
+      class History < TencentCloud::Common::AbstractModel
+        # @param ChatId: 对话的 ID，用于唯一标识一轮对话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChatId: String
+        # @param Prompt: 原始输入的 Prompt 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Prompt: String
+        # @param RevisedPrompt: 扩写后的 Prompt 文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RevisedPrompt: String
+        # @param Seed: 生成图的随机种子
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Seed: Integer
+
+        attr_accessor :ChatId, :Prompt, :RevisedPrompt, :Seed
+
+        def initialize(chatid=nil, prompt=nil, revisedprompt=nil, seed=nil)
+          @ChatId = chatid
+          @Prompt = prompt
+          @RevisedPrompt = revisedprompt
+          @Seed = seed
+        end
+
+        def deserialize(params)
+          @ChatId = params['ChatId']
+          @Prompt = params['Prompt']
+          @RevisedPrompt = params['RevisedPrompt']
+          @Seed = params['Seed']
+        end
+      end
+
       # 具体的图片内容
       class ImageUrl < TencentCloud::Common::AbstractModel
         # @param Url: 图片的 Url（以 http:// 或 https:// 开头）
@@ -625,6 +657,80 @@ module TencentCloud
               @ToolCalls << toolcall_tmp
             end
           end
+        end
+      end
+
+      # QueryHunyuanImageChatJob请求参数结构体
+      class QueryHunyuanImageChatJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # QueryHunyuanImageChatJob返回参数结构体
+      class QueryHunyuanImageChatJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobStatusCode: 当前任务状态码：
+        # 1：等待中、2：运行中、4：处理失败、5：处理完成。
+        # @type JobStatusCode: String
+        # @param JobStatusMsg: 当前任务状态：排队中、处理中、处理失败或者处理完成。
+        # @type JobStatusMsg: String
+        # @param JobErrorCode: 任务处理失败错误码。
+        # @type JobErrorCode: String
+        # @param JobErrorMsg: 任务处理失败错误信息。
+        # @type JobErrorMsg: String
+        # @param ChatId: 本轮对话的 ChatId，ChatId 用于唯一标识一轮对话。
+        # 一个对话组中，最多支持进行100轮对话。
+        # 每轮对话数据有效期为7天，到期后 ChatId 失效，有效期内的历史对话数据可通过 History 查询，如有长期使用需求请及时保存输入输出数据。
+        # @type ChatId: String
+        # @param ResultImage: 生成图 URL 列表，有效期7天，请及时保存。
+        # @type ResultImage: Array
+        # @param ResultDetails: 结果 detail 数组，Success 代表成功。
+        # @type ResultDetails: Array
+        # @param History: 本轮对话前置的历史对话数据（不含生成图）。
+        # @type History: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobStatusCode, :JobStatusMsg, :JobErrorCode, :JobErrorMsg, :ChatId, :ResultImage, :ResultDetails, :History, :RequestId
+
+        def initialize(jobstatuscode=nil, jobstatusmsg=nil, joberrorcode=nil, joberrormsg=nil, chatid=nil, resultimage=nil, resultdetails=nil, history=nil, requestid=nil)
+          @JobStatusCode = jobstatuscode
+          @JobStatusMsg = jobstatusmsg
+          @JobErrorCode = joberrorcode
+          @JobErrorMsg = joberrormsg
+          @ChatId = chatid
+          @ResultImage = resultimage
+          @ResultDetails = resultdetails
+          @History = history
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobStatusCode = params['JobStatusCode']
+          @JobStatusMsg = params['JobStatusMsg']
+          @JobErrorCode = params['JobErrorCode']
+          @JobErrorMsg = params['JobErrorMsg']
+          @ChatId = params['ChatId']
+          @ResultImage = params['ResultImage']
+          @ResultDetails = params['ResultDetails']
+          unless params['History'].nil?
+            @History = []
+            params['History'].each do |i|
+              history_tmp = History.new
+              history_tmp.deserialize(i)
+              @History << history_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -768,6 +874,70 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitHunyuanImageChatJob请求参数结构体
+      class SubmitHunyuanImageChatJobRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 本轮对话的文本描述。
+        # 提交一个任务请求对应发起一轮生图对话，每轮对话中可输入一条 Prompt，生成一张图像，支持通过多轮输入 Prompt 来不断调整图像内容。
+        # 推荐使用中文，最多可传1024个 utf-8 字符。
+        # 输入示例：
+        # <li> 第一轮对话：一颗红色的苹果 </li>
+        # <li> 第二轮对话：将苹果改为绿色 </li>
+        # <li> 第三轮对话：苹果放在桌子上 </li>
+        # @type Prompt: String
+        # @param ChatId: 上传上一轮对话的 ChatId，本轮对话将在指定的上一轮对话结果基础上继续生成图像。
+        # 如果不传代表新建一个对话组，重新开启一轮新的对话。
+        # 一个对话组中，最多支持进行100轮对话。
+        # @type ChatId: String
+        # @param LogoAdd: 为生成结果图添加显式水印标识的开关，默认为1。
+        # 1：添加。
+        # 0：不添加。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoParam`
+
+        attr_accessor :Prompt, :ChatId, :LogoAdd, :LogoParam
+
+        def initialize(prompt=nil, chatid=nil, logoadd=nil, logoparam=nil)
+          @Prompt = prompt
+          @ChatId = chatid
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @ChatId = params['ChatId']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitHunyuanImageChatJob返回参数结构体
+      class SubmitHunyuanImageChatJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end

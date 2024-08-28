@@ -1957,6 +1957,33 @@ module TencentCloud
         end
       end
 
+      # 集群版节点信息
+      class ClusterInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+        # @param Role: 节点类型：主节点，从节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+        # @param Zone: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+
+        attr_accessor :NodeId, :Role, :Zone
+
+        def initialize(nodeid=nil, role=nil, zone=nil)
+          @NodeId = nodeid
+          @Role = role
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Role = params['Role']
+          @Zone = params['Zone']
+        end
+      end
+
       # 集群版实例节点信息
       class ClusterNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点id。
@@ -6137,10 +6164,12 @@ module TencentCloud
         # @type ProxyIds: Array
         # @param EngineTypes: 数据库引擎类型。
         # @type EngineTypes: Array
+        # @param QueryClusterInfo: 是否获取集群版实例节点信息，可填：true或false
+        # @type QueryClusterInfo: Boolean
 
-        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds, :TagValues, :UniqueVpcIds, :UniqSubnetIds, :Tags, :ProxyVips, :ProxyIds, :EngineTypes
+        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds, :TagValues, :UniqueVpcIds, :UniqSubnetIds, :Tags, :ProxyVips, :ProxyIds, :EngineTypes, :QueryClusterInfo
 
-        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil, cageids=nil, tagvalues=nil, uniquevpcids=nil, uniqsubnetids=nil, tags=nil, proxyvips=nil, proxyids=nil, enginetypes=nil)
+        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil, cageids=nil, tagvalues=nil, uniquevpcids=nil, uniqsubnetids=nil, tags=nil, proxyvips=nil, proxyids=nil, enginetypes=nil, queryclusterinfo=nil)
           @ProjectId = projectid
           @InstanceTypes = instancetypes
           @Vips = vips
@@ -6176,6 +6205,7 @@ module TencentCloud
           @ProxyVips = proxyvips
           @ProxyIds = proxyids
           @EngineTypes = enginetypes
+          @QueryClusterInfo = queryclusterinfo
         end
 
         def deserialize(params)
@@ -6221,6 +6251,7 @@ module TencentCloud
           @ProxyVips = params['ProxyVips']
           @ProxyIds = params['ProxyIds']
           @EngineTypes = params['EngineTypes']
+          @QueryClusterInfo = params['QueryClusterInfo']
         end
       end
 
@@ -8966,10 +8997,13 @@ module TencentCloud
         # @param ExpandCpu: 当前扩容的CPU核心数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpandCpu: Integer
+        # @param ClusterInfo: 实例集群版节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterInfo: Array
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo
 
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -9017,6 +9051,7 @@ module TencentCloud
           @MaxDelayTime = maxdelaytime
           @DiskType = disktype
           @ExpandCpu = expandcpu
+          @ClusterInfo = clusterinfo
         end
 
         def deserialize(params)
@@ -9097,6 +9132,14 @@ module TencentCloud
           @MaxDelayTime = params['MaxDelayTime']
           @DiskType = params['DiskType']
           @ExpandCpu = params['ExpandCpu']
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = []
+            params['ClusterInfo'].each do |i|
+              clusterinfo_tmp = ClusterInfo.new
+              clusterinfo_tmp.deserialize(i)
+              @ClusterInfo << clusterinfo_tmp
+            end
+          end
         end
       end
 

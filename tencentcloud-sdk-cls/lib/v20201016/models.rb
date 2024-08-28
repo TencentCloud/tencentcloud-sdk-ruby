@@ -1309,7 +1309,7 @@ module TencentCloud
         # @type Type: Integer
         # @param DurationMilliseconds: 分享链接有效期，单位：毫秒，最长支持30天
         # @type DurationMilliseconds: Integer
-        # @param Resources: 允许访问的资源列表
+        # @param Resources: 允许访问的资源列表，目前仅支持一个Resource
         # @type Resources: Array
         # @param Domain: 分享链接域名，可选范围
         # - 公网匿名分享：填写clsshare.com

@@ -2554,10 +2554,13 @@ module TencentCloud
         # @param Stamp: Stamp
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stamp: String
+        # @param Tags: 返回层绑定的标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :CompatibleRuntimes, :AddTime, :Description, :LicenseInfo, :LayerVersion, :LayerName, :Status, :Stamp
+        attr_accessor :CompatibleRuntimes, :AddTime, :Description, :LicenseInfo, :LayerVersion, :LayerName, :Status, :Stamp, :Tags
 
-        def initialize(compatibleruntimes=nil, addtime=nil, description=nil, licenseinfo=nil, layerversion=nil, layername=nil, status=nil, stamp=nil)
+        def initialize(compatibleruntimes=nil, addtime=nil, description=nil, licenseinfo=nil, layerversion=nil, layername=nil, status=nil, stamp=nil, tags=nil)
           @CompatibleRuntimes = compatibleruntimes
           @AddTime = addtime
           @Description = description
@@ -2566,6 +2569,7 @@ module TencentCloud
           @LayerName = layername
           @Status = status
           @Stamp = stamp
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2577,6 +2581,14 @@ module TencentCloud
           @LayerName = params['LayerName']
           @Status = params['Status']
           @Stamp = params['Stamp']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

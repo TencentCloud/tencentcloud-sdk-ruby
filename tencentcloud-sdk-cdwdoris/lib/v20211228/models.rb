@@ -2819,19 +2819,27 @@ module TencentCloud
         # @type Catalog: String
         # @param Catalogs: catalog集合
         # @type Catalogs: Array
+        # @param DatabaseName: 数据库名
+        # @type DatabaseName: String
+        # @param TableName: 表名
+        # @type TableName: String
 
-        attr_accessor :WhiteHost, :Catalog, :Catalogs
+        attr_accessor :WhiteHost, :Catalog, :Catalogs, :DatabaseName, :TableName
 
-        def initialize(whitehost=nil, catalog=nil, catalogs=nil)
+        def initialize(whitehost=nil, catalog=nil, catalogs=nil, databasename=nil, tablename=nil)
           @WhiteHost = whitehost
           @Catalog = catalog
           @Catalogs = catalogs
+          @DatabaseName = databasename
+          @TableName = tablename
         end
 
         def deserialize(params)
           @WhiteHost = params['WhiteHost']
           @Catalog = params['Catalog']
           @Catalogs = params['Catalogs']
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
         end
       end
 
