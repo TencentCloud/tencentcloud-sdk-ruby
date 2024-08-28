@@ -433,16 +433,41 @@ module TencentCloud
 
       # CreateReceiverDetailWithData返回参数结构体
       class CreateReceiverDetailWithDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 收件人总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ValidCount: 实际上传数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidCount: Integer
+        # @param TooLongCount: 数据过长数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TooLongCount: Integer
+        # @param EmptyEmailCount: 邮件地址为空数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmptyEmailCount: Integer
+        # @param RepeatCount: 重复数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepeatCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :ValidCount, :TooLongCount, :EmptyEmailCount, :RepeatCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, validcount=nil, toolongcount=nil, emptyemailcount=nil, repeatcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ValidCount = validcount
+          @TooLongCount = toolongcount
+          @EmptyEmailCount = emptyemailcount
+          @RepeatCount = repeatcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ValidCount = params['ValidCount']
+          @TooLongCount = params['TooLongCount']
+          @EmptyEmailCount = params['EmptyEmailCount']
+          @RepeatCount = params['RepeatCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1284,14 +1309,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Email: 收件人地址，长度0-50，示例：xxx@te.com，支持模糊查询
         # @type Email: String
+        # @param CreateTimeBegin: 搜索开始时间
+        # @type CreateTimeBegin: String
+        # @param CreateTimeEnd: 搜索结束时间
+        # @type CreateTimeEnd: String
+        # @param Status: 1:有效，2:无效
+        # @type Status: Integer
 
-        attr_accessor :ReceiverId, :Offset, :Limit, :Email
+        attr_accessor :ReceiverId, :Offset, :Limit, :Email, :CreateTimeBegin, :CreateTimeEnd, :Status
 
-        def initialize(receiverid=nil, offset=nil, limit=nil, email=nil)
+        def initialize(receiverid=nil, offset=nil, limit=nil, email=nil, createtimebegin=nil, createtimeend=nil, status=nil)
           @ReceiverId = receiverid
           @Offset = offset
           @Limit = limit
           @Email = email
+          @CreateTimeBegin = createtimebegin
+          @CreateTimeEnd = createtimeend
+          @Status = status
         end
 
         def deserialize(params)
@@ -1299,6 +1333,9 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Email = params['Email']
+          @CreateTimeBegin = params['CreateTimeBegin']
+          @CreateTimeEnd = params['CreateTimeEnd']
+          @Status = params['Status']
         end
       end
 
@@ -1308,14 +1345,20 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Data: 数据记录
         # @type Data: Array
+        # @param ValidCount: 有效邮件地址数
+        # @type ValidCount: Integer
+        # @param InvalidCount: 无效邮件地址数
+        # @type InvalidCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Data, :RequestId
+        attr_accessor :TotalCount, :Data, :ValidCount, :InvalidCount, :RequestId
 
-        def initialize(totalcount=nil, data=nil, requestid=nil)
+        def initialize(totalcount=nil, data=nil, validcount=nil, invalidcount=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
+          @ValidCount = validcount
+          @InvalidCount = invalidcount
           @RequestId = requestid
         end
 
@@ -1329,6 +1372,8 @@ module TencentCloud
               @Data << receiverdetail_tmp
             end
           end
+          @ValidCount = params['ValidCount']
+          @InvalidCount = params['InvalidCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1471,16 +1516,20 @@ module TencentCloud
         # @type ReceiversStatus: Integer
         # @param CreateTime: 创建时间,如:2021-09-28 16:40:35
         # @type CreateTime: String
+        # @param InvalidCount: 无效收件人数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvalidCount: Integer
 
-        attr_accessor :ReceiverId, :ReceiversName, :Count, :Desc, :ReceiversStatus, :CreateTime
+        attr_accessor :ReceiverId, :ReceiversName, :Count, :Desc, :ReceiversStatus, :CreateTime, :InvalidCount
 
-        def initialize(receiverid=nil, receiversname=nil, count=nil, desc=nil, receiversstatus=nil, createtime=nil)
+        def initialize(receiverid=nil, receiversname=nil, count=nil, desc=nil, receiversstatus=nil, createtime=nil, invalidcount=nil)
           @ReceiverId = receiverid
           @ReceiversName = receiversname
           @Count = count
           @Desc = desc
           @ReceiversStatus = receiversstatus
           @CreateTime = createtime
+          @InvalidCount = invalidcount
         end
 
         def deserialize(params)
@@ -1490,6 +1539,7 @@ module TencentCloud
           @Desc = params['Desc']
           @ReceiversStatus = params['ReceiversStatus']
           @CreateTime = params['CreateTime']
+          @InvalidCount = params['InvalidCount']
         end
       end
 
@@ -1501,19 +1551,34 @@ module TencentCloud
         # @type CreateTime: String
         # @param TemplateData: 模板参数
         # @type TemplateData: String
+        # @param Reason: 无效原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Status: 1:有效，2:无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param EmailId: 收件人地址id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmailId: Integer
 
-        attr_accessor :Email, :CreateTime, :TemplateData
+        attr_accessor :Email, :CreateTime, :TemplateData, :Reason, :Status, :EmailId
 
-        def initialize(email=nil, createtime=nil, templatedata=nil)
+        def initialize(email=nil, createtime=nil, templatedata=nil, reason=nil, status=nil, emailid=nil)
           @Email = email
           @CreateTime = createtime
           @TemplateData = templatedata
+          @Reason = reason
+          @Status = status
+          @EmailId = emailid
         end
 
         def deserialize(params)
           @Email = params['Email']
           @CreateTime = params['CreateTime']
           @TemplateData = params['TemplateData']
+          @Reason = params['Reason']
+          @Status = params['Status']
+          @EmailId = params['EmailId']
         end
       end
 

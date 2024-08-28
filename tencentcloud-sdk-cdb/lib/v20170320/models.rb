@@ -7007,6 +7007,50 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceUpgradeCheckJob请求参数结构体
+      class DescribeInstanceUpgradeCheckJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param DstMysqlVersion: 目标数据库版本
+        # @type DstMysqlVersion: String
+
+        attr_accessor :InstanceId, :DstMysqlVersion
+
+        def initialize(instanceid=nil, dstmysqlversion=nil)
+          @InstanceId = instanceid
+          @DstMysqlVersion = dstmysqlversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DstMysqlVersion = params['DstMysqlVersion']
+        end
+      end
+
+      # DescribeInstanceUpgradeCheckJob返回参数结构体
+      class DescribeInstanceUpgradeCheckJobResponse < TencentCloud::Common::AbstractModel
+        # @param ExistUpgradeCheckJob: 24小时内是否存在历史升级校验任务
+        # @type ExistUpgradeCheckJob: Boolean
+        # @param JobId: 任务id
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExistUpgradeCheckJob, :JobId, :RequestId
+
+        def initialize(existupgradecheckjob=nil, jobid=nil, requestid=nil)
+          @ExistUpgradeCheckJob = existupgradecheckjob
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExistUpgradeCheckJob = params['ExistUpgradeCheckJob']
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceUpgradeType请求参数结构体
       class DescribeInstanceUpgradeTypeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -13341,6 +13385,46 @@ module TencentCloud
         end
       end
 
+      # SubmitInstanceUpgradeCheckJob请求参数结构体
+      class SubmitInstanceUpgradeCheckJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例D
+        # @type InstanceId: String
+        # @param DstMysqlVersion: 目标数据库版本
+        # @type DstMysqlVersion: String
+
+        attr_accessor :InstanceId, :DstMysqlVersion
+
+        def initialize(instanceid=nil, dstmysqlversion=nil)
+          @InstanceId = instanceid
+          @DstMysqlVersion = dstmysqlversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DstMysqlVersion = params['DstMysqlVersion']
+        end
+      end
+
+      # SubmitInstanceUpgradeCheckJob返回参数结构体
+      class SubmitInstanceUpgradeCheckJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SwitchCDBProxy请求参数结构体
       class SwitchCDBProxyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -13801,17 +13885,20 @@ module TencentCloud
         # @type UpgradeSubversion: Integer
         # @param MaxDelayTime: 延迟阈值。取值范围1~10
         # @type MaxDelayTime: Integer
+        # @param IgnoreErrKeyword: 5.7升级8.0是否忽略关键字错误，取值范围[0,1]，1表示忽略，0表示不忽略
+        # @type IgnoreErrKeyword: Integer
         # @param ParamList: 版本升级支持指定参数
         # @type ParamList: Array
 
-        attr_accessor :InstanceId, :EngineVersion, :WaitSwitch, :UpgradeSubversion, :MaxDelayTime, :ParamList
+        attr_accessor :InstanceId, :EngineVersion, :WaitSwitch, :UpgradeSubversion, :MaxDelayTime, :IgnoreErrKeyword, :ParamList
 
-        def initialize(instanceid=nil, engineversion=nil, waitswitch=nil, upgradesubversion=nil, maxdelaytime=nil, paramlist=nil)
+        def initialize(instanceid=nil, engineversion=nil, waitswitch=nil, upgradesubversion=nil, maxdelaytime=nil, ignoreerrkeyword=nil, paramlist=nil)
           @InstanceId = instanceid
           @EngineVersion = engineversion
           @WaitSwitch = waitswitch
           @UpgradeSubversion = upgradesubversion
           @MaxDelayTime = maxdelaytime
+          @IgnoreErrKeyword = ignoreerrkeyword
           @ParamList = paramlist
         end
 
@@ -13821,6 +13908,7 @@ module TencentCloud
           @WaitSwitch = params['WaitSwitch']
           @UpgradeSubversion = params['UpgradeSubversion']
           @MaxDelayTime = params['MaxDelayTime']
+          @IgnoreErrKeyword = params['IgnoreErrKeyword']
           unless params['ParamList'].nil?
             @ParamList = []
             params['ParamList'].each do |i|

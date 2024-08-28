@@ -601,7 +601,7 @@ module TencentCloud
       class CreateDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
         # @type Name: String
-        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机<br><li>SW：交换机<br><li>RACK：机架
+        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机</li><li>SW：交换机</li><li>RACK：机架</li>
         # @type Type: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。
         # @type ClientToken: String
@@ -625,7 +625,7 @@ module TencentCloud
       class CreateDisasterRecoverGroupResponse < TencentCloud::Common::AbstractModel
         # @param DisasterRecoverGroupId: 分散置放群组ID列表。
         # @type DisasterRecoverGroupId: String
-        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机<br><li>SW：交换机<br><li>RACK：机架
+        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机</li><li>SW：交换机</li><li>RACK：机架</li>
         # @type Type: String
         # @param Name: 分散置放群组名称，长度1-60个字符，支持中、英文。
         # @type Name: String
@@ -3517,7 +3517,10 @@ module TencentCloud
         # @type DisasterRecoverGroupId: String
         # @param Name: 分散置放群组名称，长度1-60个字符。
         # @type Name: String
-        # @param Type: 分散置放群组类型，取值范围：<br><li>HOST：物理机<br><li>SW：交换机<br><li>RACK：机架
+        # @param Type: 分散置放群组类型，取值范围：<br>
+        # <li>HOST：物理机<br></li>
+        # <li>SW：交换机<br></li>
+        # <li>RACK：机架</li>
         # @type Type: String
         # @param CvmQuotaTotal: 分散置放群组内最大容纳云服务器数量。
         # @type CvmQuotaTotal: Integer
@@ -8720,7 +8723,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 私有网络子网ID，形如`subnet-xxx`。有效的私有网络子网ID可通过登录[控制台](https://console.cloud.tencent.com/vpc/subnet?rid=1)查询；也可以调用接口  [DescribeSubnets](/document/api/215/15784) ，从接口返回中的`unSubnetId`字段获取。若在创建子机时SubnetId与VpcId同时传入`DEFAULT`，则强制使用默认vpc网络。
         # @type SubnetId: String
-        # @param AsVpcGateway: 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：<br><li>true：表示用作公网网关<br><li>false：表示不作为公网网关<br><br>默认取值：false。
+        # @param AsVpcGateway: 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：<li>true：表示用作公网网关</li><li>false：表示不作为公网网关</li>默认取值：false。
         # @type AsVpcGateway: Boolean
         # @param PrivateIpAddresses: 私有网络子网 IP 数组，在创建实例、修改实例vpc属性操作中可使用此参数。当前仅批量创建多台实例时支持传入相同子网的多个 IP。
         # @type PrivateIpAddresses: Array
@@ -8798,7 +8801,6 @@ module TencentCloud
         # <li> na-siliconvalley-2 </li>
         # <li> eu-frankfurt-1 </li>
         # <li> eu-frankfurt-2 </li>
-        # <li> na-toronto-1 </li>
         # <li> na-ashburn-1 </li>
         # <li> na-ashburn-2 </li>
         # <li> ap-nanjing-1 </li>

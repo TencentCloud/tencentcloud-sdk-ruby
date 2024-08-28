@@ -2115,6 +2115,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeInstanceUpgradeCheckJob）查询实例版本升级校验任务。
+
+        # @param request: Request instance for DescribeInstanceUpgradeCheckJob.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeInstanceUpgradeCheckJobRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeInstanceUpgradeCheckJobResponse`
+        def DescribeInstanceUpgradeCheckJob(request)
+          body = send_request('DescribeInstanceUpgradeCheckJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceUpgradeCheckJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeInstanceUpgradeType)用于查询数据库实例升级类型。
 
         # @param request: Request instance for DescribeInstanceUpgradeType.
@@ -3903,6 +3927,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopRollbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（SubmitInstanceUpgradeCheckJob）提交实例版本升级校验任务。
+
+        # @param request: Request instance for SubmitInstanceUpgradeCheckJob.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::SubmitInstanceUpgradeCheckJobRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::SubmitInstanceUpgradeCheckJobResponse`
+        def SubmitInstanceUpgradeCheckJob(request)
+          body = send_request('SubmitInstanceUpgradeCheckJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitInstanceUpgradeCheckJobResponse.new
             model.deserialize(response['Response'])
             model
           else
