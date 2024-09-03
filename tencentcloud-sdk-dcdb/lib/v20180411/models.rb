@@ -2334,6 +2334,46 @@ module TencentCloud
         end
       end
 
+      # DescribeDCDBBinlogTime请求参数结构体
+      class DescribeDCDBBinlogTimeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要回档的实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDCDBBinlogTime返回参数结构体
+      class DescribeDCDBBinlogTimeResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :EndTime, :RequestId
+
+        def initialize(starttime=nil, endtime=nil, requestid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDCDBInstanceDetail请求参数结构体
       class DescribeDCDBInstanceDetailRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如dcdbt-7oaxtcb7

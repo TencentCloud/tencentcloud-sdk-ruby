@@ -2282,6 +2282,42 @@ module TencentCloud
         end
       end
 
+      # DeleteRemoteAccessDomain请求参数结构体
+      class DeleteRemoteAccessDomainRequest < TencentCloud::Common::AbstractModel
+        # @param AccessDomainList: 域名列表
+        # @type AccessDomainList: Array
+
+        attr_accessor :AccessDomainList
+
+        def initialize(accessdomainlist=nil)
+          @AccessDomainList = accessdomainlist
+        end
+
+        def deserialize(params)
+          @AccessDomainList = params['AccessDomainList']
+        end
+      end
+
+      # DeleteRemoteAccessDomain返回参数结构体
+      class DeleteRemoteAccessDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态值 0：删除成功，非 0：删除失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteResourceGroup请求参数结构体
       class DeleteResourceGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 组id

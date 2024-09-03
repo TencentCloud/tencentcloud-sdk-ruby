@@ -122,7 +122,7 @@ module TencentCloud
         # @type TaskId: String
         # @param Status: 状态
         # @type Status: String
-        # @param FileData: 文件数据
+        # @param FileData: 文件数据，目标文件必须小于50M，否则请通过回调方式请求文件翻译接口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileData: String
         # @param Message: 错误提示
@@ -399,10 +399,10 @@ module TencentCloud
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
         extend Gem::Deprecate
-        deprecate :Mode, :none, 2024, 8
-        deprecate :Mode=, :none, 2024, 8
-        deprecate :TransType, :none, 2024, 8
-        deprecate :TransType=, :none, 2024, 8
+        deprecate :Mode, :none, 2024, 9
+        deprecate :Mode=, :none, 2024, 9
+        deprecate :TransType, :none, 2024, 9
+        deprecate :TransType=, :none, 2024, 9
 
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid

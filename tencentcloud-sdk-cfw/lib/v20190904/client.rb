@@ -653,6 +653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除远程运维域名
+
+        # @param request: Request instance for DeleteRemoteAccessDomain.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteRemoteAccessDomainRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteRemoteAccessDomainResponse`
+        def DeleteRemoteAccessDomain(request)
+          body = send_request('DeleteRemoteAccessDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRemoteAccessDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DeleteResourceGroup-资产中心资产组删除
 
         # @param request: Request instance for DeleteResourceGroup.

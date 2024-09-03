@@ -93,6 +93,54 @@ module TencentCloud
         end
       end
 
+      # CreateAsrKeyWordLib请求参数结构体
+      class CreateAsrKeyWordLibRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 词表名称，长度在1-20之间
+        # 仅限中英文数字-_
+        # @type Name: String
+        # @param KeyWordFile: 词文件（纯文本文件）的二进制base64编码，以行分隔
+        # 格式要求：TXT
+        # 每行只有一个词，不满足格式则报错无法上传
+        # 每个词限制**5个汉字，15个字符**，单个词库最多不超过100个词
+        # 注意不要有空行，尤其是最后一行
+        # @type KeyWordFile: String
+
+        attr_accessor :Name, :KeyWordFile
+
+        def initialize(name=nil, keywordfile=nil)
+          @Name = name
+          @KeyWordFile = keywordfile
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @KeyWordFile = params['KeyWordFile']
+        end
+      end
+
+      # CreateAsrKeyWordLib返回参数结构体
+      class CreateAsrKeyWordLibResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 词表ID数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.KeyWordLibIdData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = KeyWordLibIdData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAsrVocab请求参数结构体
       class CreateAsrVocabRequest < TencentCloud::Common::AbstractModel
         # @param Name: 热词表名称，长度在1-255之间
@@ -257,8 +305,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 8
-        deprecate :TagInfos=, :none, 2024, 8
+        deprecate :TagInfos, :none, 2024, 9
+        deprecate :TagInfos=, :none, 2024, 9
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -479,13 +527,15 @@ module TencentCloud
 
         # - 热词权重设置为100时，当前热词开启热词增强同音替换功能（仅支持8k_zh,16k_zh），举例：热词配置“蜜制|100”时，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。建议仅将重要且必须生效的热词设置到100，设置过多权重为100的热词将影响整体字准率。
         # @type HotwordList: String
+        # @param KeyWordLibIdList: 关键词识别ID列表，默认空为不进行识别，最多10个
+        # @type KeyWordLibIdList: Array
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2024, 8
-        deprecate :ReinforceHotword=, :none, 2024, 8
+        deprecate :ReinforceHotword, :none, 2024, 9
+        deprecate :ReinforceHotword=, :none, 2024, 9
 
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -508,6 +558,7 @@ module TencentCloud
           @SentenceMaxLength = sentencemaxlength
           @Extra = extra
           @HotwordList = hotwordlist
+          @KeyWordLibIdList = keywordlibidlist
         end
 
         def deserialize(params)
@@ -533,6 +584,7 @@ module TencentCloud
           @SentenceMaxLength = params['SentenceMaxLength']
           @Extra = params['Extra']
           @HotwordList = params['HotwordList']
+          @KeyWordLibIdList = params['KeyWordLibIdList']
         end
       end
 
@@ -556,6 +608,38 @@ module TencentCloud
             @Data = Task.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAsrKeyWordLib请求参数结构体
+      class DeleteAsrKeyWordLibRequest < TencentCloud::Common::AbstractModel
+        # @param KeyWordLibId: 关键词表ID
+        # @type KeyWordLibId: String
+
+        attr_accessor :KeyWordLibId
+
+        def initialize(keywordlibid=nil)
+          @KeyWordLibId = keywordlibid
+        end
+
+        def deserialize(params)
+          @KeyWordLibId = params['KeyWordLibId']
+        end
+      end
+
+      # DeleteAsrKeyWordLib返回参数结构体
+      class DeleteAsrKeyWordLibResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -775,6 +859,57 @@ module TencentCloud
         end
       end
 
+      # GetAsrKeyWordLibList请求参数结构体
+      class GetAsrKeyWordLibListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+        # @param SpecifyNames: 词库名称或者UIN检索
+        # @type SpecifyNames: Array
+        # @param OnlySelf: 只看用户自己创建的
+        # @type OnlySelf: Boolean
+
+        attr_accessor :Offset, :Limit, :SpecifyNames, :OnlySelf
+
+        def initialize(offset=nil, limit=nil, specifynames=nil, onlyself=nil)
+          @Offset = offset
+          @Limit = limit
+          @SpecifyNames = specifynames
+          @OnlySelf = onlyself
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SpecifyNames = params['SpecifyNames']
+          @OnlySelf = params['OnlySelf']
+        end
+      end
+
+      # GetAsrKeyWordLibList返回参数结构体
+      class GetAsrKeyWordLibListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 关键词列表返回数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.KeyWordLibListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = KeyWordLibListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAsrVocabList请求参数结构体
       class GetAsrVocabListRequest < TencentCloud::Common::AbstractModel
         # @param TagInfos: 标签信息，格式为“$TagKey : $TagValue ”，中间分隔符为“空格”+“:”+“空格”
@@ -908,8 +1043,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 8
-        deprecate :TagInfos=, :none, 2024, 8
+        deprecate :TagInfos, :none, 2024, 9
+        deprecate :TagInfos=, :none, 2024, 9
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1015,6 +1150,116 @@ module TencentCloud
         def deserialize(params)
           @Word = params['Word']
           @Weight = params['Weight']
+        end
+      end
+
+      # 关键词表信息
+      class KeyWordLib < TencentCloud::Common::AbstractModel
+        # @param KeyWordLibId: 关键词表ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordLibId: String
+        # @param Name: 关键词表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param KeyWordList: 关键词列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordList: Array
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :KeyWordLibId, :Name, :KeyWordList, :CreateTime, :UpdateTime
+
+        def initialize(keywordlibid=nil, name=nil, keywordlist=nil, createtime=nil, updatetime=nil)
+          @KeyWordLibId = keywordlibid
+          @Name = name
+          @KeyWordList = keywordlist
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @KeyWordLibId = params['KeyWordLibId']
+          @Name = params['Name']
+          @KeyWordList = params['KeyWordList']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 关键词ID
+      class KeyWordLibIdData < TencentCloud::Common::AbstractModel
+        # @param KeyWordLibId: 关键词ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordLibId: String
+
+        attr_accessor :KeyWordLibId
+
+        def initialize(keywordlibid=nil)
+          @KeyWordLibId = keywordlibid
+        end
+
+        def deserialize(params)
+          @KeyWordLibId = params['KeyWordLibId']
+        end
+      end
+
+      # 查询列表返回数据
+      class KeyWordLibListData < TencentCloud::Common::AbstractModel
+        # @param KeyWordLibList: 关键词表列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordLibList: Array
+        # @param TotalCount: 关键词列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :KeyWordLibList, :TotalCount
+
+        def initialize(keywordliblist=nil, totalcount=nil)
+          @KeyWordLibList = keywordliblist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['KeyWordLibList'].nil?
+            @KeyWordLibList = []
+            params['KeyWordLibList'].each do |i|
+              keywordlib_tmp = KeyWordLib.new
+              keywordlib_tmp.deserialize(i)
+              @KeyWordLibList << keywordlib_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 关键字识别结果
+      class KeyWordResult < TencentCloud::Common::AbstractModel
+        # @param KeyWordLibID: 关键词库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordLibID: String
+        # @param KeyWordLibName: 关键词库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordLibName: String
+        # @param KeyWords: 匹配到的关键词
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWords: Array
+
+        attr_accessor :KeyWordLibID, :KeyWordLibName, :KeyWords
+
+        def initialize(keywordlibid=nil, keywordlibname=nil, keywords=nil)
+          @KeyWordLibID = keywordlibid
+          @KeyWordLibName = keywordlibname
+          @KeyWords = keywords
+        end
+
+        def deserialize(params)
+          @KeyWordLibID = params['KeyWordLibID']
+          @KeyWordLibName = params['KeyWordLibName']
+          @KeyWords = params['KeyWords']
         end
       end
 
@@ -1191,10 +1436,13 @@ module TencentCloud
         # @param EmotionType: 情绪类型（可能为空）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmotionType: Array
+        # @param KeyWordResults: 关键词识别结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyWordResults: Array
 
-        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType
+        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType, :KeyWordResults
 
-        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil, keywordresults=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
           @WrittenText = writtentext
@@ -1207,6 +1455,7 @@ module TencentCloud
           @EmotionalEnergy = emotionalenergy
           @SilenceTime = silencetime
           @EmotionType = emotiontype
+          @KeyWordResults = keywordresults
         end
 
         def deserialize(params)
@@ -1229,6 +1478,14 @@ module TencentCloud
           @EmotionalEnergy = params['EmotionalEnergy']
           @SilenceTime = params['SilenceTime']
           @EmotionType = params['EmotionType']
+          unless params['KeyWordResults'].nil?
+            @KeyWordResults = []
+            params['KeyWordResults'].each do |i|
+              keywordresult_tmp = KeyWordResult.new
+              keywordresult_tmp.deserialize(i)
+              @KeyWordResults << keywordresult_tmp
+            end
+          end
         end
       end
 
@@ -1311,14 +1568,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2024, 8
-        deprecate :ProjectId=, :none, 2024, 8
-        deprecate :SubServiceType, :none, 2024, 8
-        deprecate :SubServiceType=, :none, 2024, 8
-        deprecate :UsrAudioKey, :none, 2024, 8
-        deprecate :UsrAudioKey=, :none, 2024, 8
-        deprecate :ReinforceHotword, :none, 2024, 8
-        deprecate :ReinforceHotword=, :none, 2024, 8
+        deprecate :ProjectId, :none, 2024, 9
+        deprecate :ProjectId=, :none, 2024, 9
+        deprecate :SubServiceType, :none, 2024, 9
+        deprecate :SubServiceType=, :none, 2024, 9
+        deprecate :UsrAudioKey, :none, 2024, 9
+        deprecate :UsrAudioKey=, :none, 2024, 9
+        deprecate :ReinforceHotword, :none, 2024, 9
+        deprecate :ReinforceHotword=, :none, 2024, 9
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype
@@ -1560,6 +1817,57 @@ module TencentCloud
             end
           end
           @AudioDuration = params['AudioDuration']
+        end
+      end
+
+      # UpdateAsrKeyWordLib请求参数结构体
+      class UpdateAsrKeyWordLibRequest < TencentCloud::Common::AbstractModel
+        # @param KeyWordLibId: 关键词表ID
+        # @type KeyWordLibId: String
+        # @param Name: 词表名称，长度在1-20之间
+        # 仅限中英文数字-_
+        # @type Name: String
+        # @param KeyWordFile: - 词文件（纯文本文件）以行分隔 ，进行二进制base64编码
+        # - 格式要求：TXT 每行只有一个词，不满足格式则报错无法上传
+        # - 每个词最多5个汉字或15个字符，单个词库最多不超过100个词
+        # - 此参数为空则只更新词表名称
+        # @type KeyWordFile: String
+
+        attr_accessor :KeyWordLibId, :Name, :KeyWordFile
+
+        def initialize(keywordlibid=nil, name=nil, keywordfile=nil)
+          @KeyWordLibId = keywordlibid
+          @Name = name
+          @KeyWordFile = keywordfile
+        end
+
+        def deserialize(params)
+          @KeyWordLibId = params['KeyWordLibId']
+          @Name = params['Name']
+          @KeyWordFile = params['KeyWordFile']
+        end
+      end
+
+      # UpdateAsrKeyWordLib返回参数结构体
+      class UpdateAsrKeyWordLibResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 关键词表ID数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.KeyWordLibIdData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = KeyWordLibIdData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

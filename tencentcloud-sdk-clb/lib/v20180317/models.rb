@@ -1276,8 +1276,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2024, 8
-        deprecate :Period=, :none, 2024, 8
+        deprecate :Period, :none, 2024, 9
+        deprecate :Period=, :none, 2024, 9
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -1353,10 +1353,12 @@ module TencentCloud
         # @type IdleConnectTimeout: Integer
         # @param SnatEnable: 是否开启SNAT。
         # @type SnatEnable: Boolean
+        # @param FullEndPorts: 全端口段监听器的结束端口
+        # @type FullEndPorts: Array
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :FullEndPorts
 
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, fullendports=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1376,6 +1378,7 @@ module TencentCloud
           @MaxCps = maxcps
           @IdleConnectTimeout = idleconnecttimeout
           @SnatEnable = snatenable
+          @FullEndPorts = fullendports
         end
 
         def deserialize(params)
@@ -1407,6 +1410,7 @@ module TencentCloud
           @MaxCps = params['MaxCps']
           @IdleConnectTimeout = params['IdleConnectTimeout']
           @SnatEnable = params['SnatEnable']
+          @FullEndPorts = params['FullEndPorts']
         end
       end
 
@@ -5207,8 +5211,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive
         extend Gem::Deprecate
-        deprecate :Log, :none, 2024, 8
-        deprecate :Log=, :none, 2024, 8
+        deprecate :Log, :none, 2024, 9
+        deprecate :Log=, :none, 2024, 9
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil)
           @LoadBalancerId = loadbalancerid
@@ -5375,7 +5379,7 @@ module TencentCloud
         # @param LoadBalancerName: 负载均衡实例的名称。
         # @type LoadBalancerName: String
         # @param LoadBalancerType: 负载均衡实例的网络类型：
-        # Public：公网属性， Private：内网属性。
+        # OPEN：公网属性，INTERNAL：内网属性。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
         # @param Status: 负载均衡实例的状态，包括
@@ -5487,10 +5491,20 @@ module TencentCloud
         # @param Egress: 网络出口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Egress: String
+        # @param AttributeFlags: 负载均衡的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttributeFlags: Array
+        # @param SlaType: 负载均衡实例的规格类型信息<ul><li> clb.c1.small：简约型规格 </li><li>clb.c2.medium：标准型规格 </li><li> clb.c3.small：高阶型1规格 </li><li> clb.c3.medium：高阶型2规格 </li><li> clb.c4.small：超强型1规格 </li><li> clb.c4.medium：超强型2规格 </li><li> clb.c4.large：超强型3规格 </li><li> clb.c4.xlarge：超强型4规格 </li><li>""：非性能容量型实例</li></ul>
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch, :LoadBalancerDomain, :Egress
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaType: String
+        # @param Exclusive: 0：表示非独占型实例，1：表示独占型态实例。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exclusive: Integer
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil, loadbalancerdomain=nil, egress=nil)
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch, :LoadBalancerDomain, :Egress, :AttributeFlags, :SlaType, :Exclusive
+
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil, loadbalancerdomain=nil, egress=nil, attributeflags=nil, slatype=nil, exclusive=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -5530,6 +5544,9 @@ module TencentCloud
           @SniSwitch = sniswitch
           @LoadBalancerDomain = loadbalancerdomain
           @Egress = egress
+          @AttributeFlags = attributeflags
+          @SlaType = slatype
+          @Exclusive = exclusive
         end
 
         def deserialize(params)
@@ -5588,6 +5605,9 @@ module TencentCloud
           @SniSwitch = params['SniSwitch']
           @LoadBalancerDomain = params['LoadBalancerDomain']
           @Egress = params['Egress']
+          @AttributeFlags = params['AttributeFlags']
+          @SlaType = params['SlaType']
+          @Exclusive = params['Exclusive']
         end
       end
 
@@ -7170,10 +7190,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2024, 8
-        deprecate :Domain=, :none, 2024, 8
-        deprecate :Url, :none, 2024, 8
-        deprecate :Url=, :none, 2024, 8
+        deprecate :Domain, :none, 2024, 9
+        deprecate :Domain=, :none, 2024, 9
+        deprecate :Url, :none, 2024, 9
+        deprecate :Url=, :none, 2024, 9
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8092,8 +8112,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2024, 8
-        deprecate :HealthStatusDetial=, :none, 2024, 8
+        deprecate :HealthStatusDetial, :none, 2024, 9
+        deprecate :HealthStatusDetial=, :none, 2024, 9
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip

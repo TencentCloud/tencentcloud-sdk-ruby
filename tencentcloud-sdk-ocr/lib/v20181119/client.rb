@@ -266,6 +266,7 @@ module TencentCloud
         end
 
         # 本接口用于识别门头照分类标签信息
+        # 默认接口请求频率限制：1次/秒
 
         # @param request: Request instance for ClassifyStoreName.
         # @type request: :class:`Tencentcloud::ocr::V20181119::ClassifyStoreNameRequest`
@@ -288,6 +289,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 智慧表单产品已下线，需要下线相关API
 
         # 本接口可创建智能表单录入任务，支持多个识别图片和PDF的URL上传，返回含有识别内容的操作页面URL。
 
@@ -893,6 +896,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 智慧表单产品已下线，需要下线相关API
 
         # 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
 
@@ -2008,6 +2013,7 @@ module TencentCloud
         end
 
         # 本接口用于识别门头照文字识别结果以及对应分类标签信息
+        # 默认接口请求频率限制：1次/秒
 
         # @param request: Request instance for RecognizeStoreName.
         # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeStoreNameRequest`

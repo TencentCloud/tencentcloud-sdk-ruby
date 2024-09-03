@@ -1219,10 +1219,12 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
         # @param DeployZone: 部署zone
         # @type DeployZone: String
+        # @param Trial: 0非试用版，1试用版
+        # @type Trial: Integer
 
-        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :DeployZone
+        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :DeployZone, :Trial
 
-        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, deployzone=nil)
+        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, deployzone=nil, trial=nil)
           @DeployRegion = deployregion
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1233,6 +1235,7 @@ module TencentCloud
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
           @DeployZone = deployzone
+          @Trial = trial
         end
 
         def deserialize(params)
@@ -1246,6 +1249,7 @@ module TencentCloud
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
           @DeployZone = params['DeployZone']
+          @Trial = params['Trial']
         end
       end
 

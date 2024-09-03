@@ -280,6 +280,42 @@ module TencentCloud
         end
       end
 
+      # 客户端订阅详情，可用于辅助判断哪些客户端订阅关系不一致
+      class ClientSubscriptionInfo < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param ClientAddr: 客户端IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientAddr: String
+        # @param Topic: 订阅主题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param SubString: 订阅表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubString: String
+        # @param ExpressionType: 订阅方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpressionType: String
+
+        attr_accessor :ClientId, :ClientAddr, :Topic, :SubString, :ExpressionType
+
+        def initialize(clientid=nil, clientaddr=nil, topic=nil, substring=nil, expressiontype=nil)
+          @ClientId = clientid
+          @ClientAddr = clientaddr
+          @Topic = topic
+          @SubString = substring
+          @ExpressionType = expressiontype
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientAddr = params['ClientAddr']
+          @Topic = params['Topic']
+          @SubString = params['SubString']
+          @ExpressionType = params['ExpressionType']
+        end
+      end
+
       # 集群信息集合
       class Cluster < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id。
@@ -6158,8 +6194,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 8
-        deprecate :QueryDlqMsg=, :none, 2024, 8
+        deprecate :QueryDlqMsg, :none, 2024, 9
+        deprecate :QueryDlqMsg=, :none, 2024, 9
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6264,8 +6300,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 8
-        deprecate :QueryDLQMsg=, :none, 2024, 8
+        deprecate :QueryDLQMsg, :none, 2024, 9
+        deprecate :QueryDLQMsg=, :none, 2024, 9
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7087,8 +7123,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 8
-        deprecate :QueryDlqMsg=, :none, 2024, 8
+        deprecate :QueryDlqMsg, :none, 2024, 9
+        deprecate :QueryDlqMsg=, :none, 2024, 9
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -9874,16 +9910,21 @@ module TencentCloud
         # @param ScalableTps: 规格外弹性TPS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalableTps: Integer
+        # @param MaxPartitions: 32或者128
+        # 当前集群topic的最大分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPartitions: Integer
 
-        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps
+        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps, :MaxPartitions
 
-        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil)
+        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil, maxpartitions=nil)
           @SpecName = specname
           @MaxTps = maxtps
           @MaxBandWidth = maxbandwidth
           @MaxNamespaces = maxnamespaces
           @MaxTopics = maxtopics
           @ScalableTps = scalabletps
+          @MaxPartitions = maxpartitions
         end
 
         def deserialize(params)
@@ -9893,6 +9934,7 @@ module TencentCloud
           @MaxNamespaces = params['MaxNamespaces']
           @MaxTopics = params['MaxTopics']
           @ScalableTps = params['ScalableTps']
+          @MaxPartitions = params['MaxPartitions']
         end
       end
 
@@ -11935,10 +11977,13 @@ module TencentCloud
         # @param ClientProtocol: 协议类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientProtocol: String
+        # @param ClientSubscriptionInfos: 客户端订阅详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientSubscriptionInfos: Array
 
-        attr_accessor :Topic, :Type, :PartitionNum, :ExpressionType, :SubString, :Status, :ConsumerLag, :ClusterId, :ConsumerGroup, :IsOnline, :ConsumeType, :Consistency, :LastUpdateTime, :MaxRetryTimes, :ClientProtocol
+        attr_accessor :Topic, :Type, :PartitionNum, :ExpressionType, :SubString, :Status, :ConsumerLag, :ClusterId, :ConsumerGroup, :IsOnline, :ConsumeType, :Consistency, :LastUpdateTime, :MaxRetryTimes, :ClientProtocol, :ClientSubscriptionInfos
 
-        def initialize(topic=nil, type=nil, partitionnum=nil, expressiontype=nil, substring=nil, status=nil, consumerlag=nil, clusterid=nil, consumergroup=nil, isonline=nil, consumetype=nil, consistency=nil, lastupdatetime=nil, maxretrytimes=nil, clientprotocol=nil)
+        def initialize(topic=nil, type=nil, partitionnum=nil, expressiontype=nil, substring=nil, status=nil, consumerlag=nil, clusterid=nil, consumergroup=nil, isonline=nil, consumetype=nil, consistency=nil, lastupdatetime=nil, maxretrytimes=nil, clientprotocol=nil, clientsubscriptioninfos=nil)
           @Topic = topic
           @Type = type
           @PartitionNum = partitionnum
@@ -11954,6 +11999,7 @@ module TencentCloud
           @LastUpdateTime = lastupdatetime
           @MaxRetryTimes = maxretrytimes
           @ClientProtocol = clientprotocol
+          @ClientSubscriptionInfos = clientsubscriptioninfos
         end
 
         def deserialize(params)
@@ -11972,6 +12018,14 @@ module TencentCloud
           @LastUpdateTime = params['LastUpdateTime']
           @MaxRetryTimes = params['MaxRetryTimes']
           @ClientProtocol = params['ClientProtocol']
+          unless params['ClientSubscriptionInfos'].nil?
+            @ClientSubscriptionInfos = []
+            params['ClientSubscriptionInfos'].each do |i|
+              clientsubscriptioninfo_tmp = ClientSubscriptionInfo.new
+              clientsubscriptioninfo_tmp.deserialize(i)
+              @ClientSubscriptionInfos << clientsubscriptioninfo_tmp
+            end
+          end
         end
       end
 

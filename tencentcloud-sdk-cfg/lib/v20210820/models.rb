@@ -1115,14 +1115,17 @@ module TencentCloud
         # @type IsExpect: Boolean
         # @param Summary: 演习结论（当演习状态转变为执行结束时，需要填写此字段）
         # @type Summary: String
+        # @param Issue: 问题以及改进
+        # @type Issue: String
 
-        attr_accessor :TaskId, :Status, :IsExpect, :Summary
+        attr_accessor :TaskId, :Status, :IsExpect, :Summary, :Issue
 
-        def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil)
+        def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil, issue=nil)
           @TaskId = taskid
           @Status = status
           @IsExpect = isexpect
           @Summary = summary
+          @Issue = issue
         end
 
         def deserialize(params)
@@ -1130,6 +1133,7 @@ module TencentCloud
           @Status = params['Status']
           @IsExpect = params['IsExpect']
           @Summary = params['Summary']
+          @Issue = params['Issue']
         end
       end
 
@@ -1165,16 +1169,24 @@ module TencentCloud
         # @param ObjectHasNewAction: 是否包含新动作
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectHasNewAction: Boolean
+        # @param ObjectPlatformName: 对应在平台架构图中的资源类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectPlatformName: String
+        # @param ObjectSupportType: 1：平台支持的对象 2：应用支持的部分对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectSupportType: Integer
 
-        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction
+        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction, :ObjectPlatformName, :ObjectSupportType
 
-        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil)
+        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil, objectplatformname=nil, objectsupporttype=nil)
           @ObjectTypeId = objecttypeid
           @ObjectTypeTitle = objecttypetitle
           @ObjectTypeLevelOne = objecttypelevelone
           @ObjectTypeParams = objecttypeparams
           @ObjectTypeJsonParse = objecttypejsonparse
           @ObjectHasNewAction = objecthasnewaction
+          @ObjectPlatformName = objectplatformname
+          @ObjectSupportType = objectsupporttype
         end
 
         def deserialize(params)
@@ -1190,6 +1202,8 @@ module TencentCloud
             @ObjectTypeJsonParse.deserialize(params['ObjectTypeJsonParse'])
           end
           @ObjectHasNewAction = params['ObjectHasNewAction']
+          @ObjectPlatformName = params['ObjectPlatformName']
+          @ObjectSupportType = params['ObjectSupportType']
         end
       end
 
@@ -1349,8 +1363,10 @@ module TencentCloud
       # 用于传入创建、编辑标签
       class TagWithCreate < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -1464,10 +1480,22 @@ module TencentCloud
         # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDealType: Integer
+        # @param TaskPlanStartTime: 计划开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPlanStartTime: String
+        # @param TaskPlanEndTime: 计划结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPlanEndTime: String
+        # @param TaskOrg: 人员组织
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskOrg: Array
+        # @param TaskIssue: 问题和改进
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskIssue: String
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1497,6 +1525,10 @@ module TencentCloud
           @ApmServiceList = apmservicelist
           @VerifyId = verifyid
           @PolicyDealType = policydealtype
+          @TaskPlanStartTime = taskplanstarttime
+          @TaskPlanEndTime = taskplanendtime
+          @TaskOrg = taskorg
+          @TaskIssue = taskissue
         end
 
         def deserialize(params)
@@ -1560,6 +1592,17 @@ module TencentCloud
           end
           @VerifyId = params['VerifyId']
           @PolicyDealType = params['PolicyDealType']
+          @TaskPlanStartTime = params['TaskPlanStartTime']
+          @TaskPlanEndTime = params['TaskPlanEndTime']
+          unless params['TaskOrg'].nil?
+            @TaskOrg = []
+            params['TaskOrg'].each do |i|
+              taskorg_tmp = TaskOrg.new
+              taskorg_tmp.deserialize(i)
+              @TaskOrg << taskorg_tmp
+            end
+          end
+          @TaskIssue = params['TaskIssue']
         end
       end
 
@@ -1904,8 +1947,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 8
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 8
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 9
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 9
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2082,6 +2125,28 @@ module TencentCloud
         end
       end
 
+      # 演练人员组织
+      class TaskOrg < TencentCloud::Common::AbstractModel
+        # @param TaskRole: 演练角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskRole: String
+        # @param TaskOperator: 负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskOperator: String
+
+        attr_accessor :TaskRole, :TaskOperator
+
+        def initialize(taskrole=nil, taskoperator=nil)
+          @TaskRole = taskrole
+          @TaskOperator = taskoperator
+        end
+
+        def deserialize(params)
+          @TaskRole = params['TaskRole']
+          @TaskOperator = params['TaskOperator']
+        end
+      end
+
       # 演练报告状态信息
       class TaskReportInfo < TencentCloud::Common::AbstractModel
         # @param Stage: 0--未开始，1--正在导出，2--导出成功，3--导出失败
@@ -2098,16 +2163,22 @@ module TencentCloud
         # @param Log: 演练报告导出日志
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Log: String
+        # @param ArchiveStage: 0--未开始，1--正在归档，2--归档成功，3--归档失败
+        # @type ArchiveStage: Integer
+        # @param ArchiveTime: 归档时间
+        # @type ArchiveTime: String
 
-        attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log
+        attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log, :ArchiveStage, :ArchiveTime
 
-        def initialize(stage=nil, createtime=nil, expirationtime=nil, expired=nil, cosurl=nil, log=nil)
+        def initialize(stage=nil, createtime=nil, expirationtime=nil, expired=nil, cosurl=nil, log=nil, archivestage=nil, archivetime=nil)
           @Stage = stage
           @CreateTime = createtime
           @ExpirationTime = expirationtime
           @Expired = expired
           @CosUrl = cosurl
           @Log = log
+          @ArchiveStage = archivestage
+          @ArchiveTime = archivetime
         end
 
         def deserialize(params)
@@ -2117,6 +2188,8 @@ module TencentCloud
           @Expired = params['Expired']
           @CosUrl = params['CosUrl']
           @Log = params['Log']
+          @ArchiveStage = params['ArchiveStage']
+          @ArchiveTime = params['ArchiveTime']
         end
       end
 

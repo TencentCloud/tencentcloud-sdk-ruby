@@ -128,8 +128,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除物理专线。
-        # 只能删除处于已连接状态的物理专线。
+        # 删除物理专线。只能删除处于已连接状态的物理专线。
 
         # @param request: Request instance for DeleteDirectConnect.
         # @type request: :class:`Tencentcloud::dc::V20180410::DeleteDirectConnectRequest`
@@ -153,7 +152,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除专用通道
+        # 删除专用通道。
 
         # @param request: Request instance for DeleteDirectConnectTunnel.
         # @type request: :class:`Tencentcloud::dc::V20180410::DeleteDirectConnectTunnelRequest`
@@ -441,7 +440,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改专用通道属性
+        # 修改专用通道属性。
 
         # @param request: Request instance for ModifyDirectConnectTunnelAttribute.
         # @type request: :class:`Tencentcloud::dc::V20180410::ModifyDirectConnectTunnelAttributeRequest`

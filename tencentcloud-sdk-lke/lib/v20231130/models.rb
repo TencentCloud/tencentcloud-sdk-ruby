@@ -879,10 +879,12 @@ module TencentCloud
         # @type ExpireStart: String
         # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
         # @type ExpireEnd: String
+        # @param SimilarQuestions: 相似问内容
+        # @type SimilarQuestions: Array
 
-        attr_accessor :BotBizId, :Question, :Answer, :AttrRange, :CustomParam, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd
+        attr_accessor :BotBizId, :Question, :Answer, :AttrRange, :CustomParam, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd, :SimilarQuestions
 
-        def initialize(botbizid=nil, question=nil, answer=nil, attrrange=nil, customparam=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil)
+        def initialize(botbizid=nil, question=nil, answer=nil, attrrange=nil, customparam=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil, similarquestions=nil)
           @BotBizId = botbizid
           @Question = question
           @Answer = answer
@@ -893,6 +895,7 @@ module TencentCloud
           @CateBizId = catebizid
           @ExpireStart = expirestart
           @ExpireEnd = expireend
+          @SimilarQuestions = similarquestions
         end
 
         def deserialize(params)
@@ -913,6 +916,7 @@ module TencentCloud
           @CateBizId = params['CateBizId']
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
+          @SimilarQuestions = params['SimilarQuestions']
         end
       end
 
@@ -1790,12 +1794,14 @@ module TencentCloud
         # @type ExpireStart: String
         # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
         # @type ExpireEnd: String
+        # @param SimilarQuestions: 相似问列表信息
+        # @type SimilarQuestions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :QaBizId, :Question, :Answer, :CustomParam, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :CateBizId, :IsAllowAccept, :IsAllowDelete, :IsAllowEdit, :DocBizId, :FileName, :FileType, :SegmentBizId, :PageContent, :Highlights, :OrgData, :AttrRange, :AttrLabels, :ExpireStart, :ExpireEnd, :RequestId
+        attr_accessor :QaBizId, :Question, :Answer, :CustomParam, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :CateBizId, :IsAllowAccept, :IsAllowDelete, :IsAllowEdit, :DocBizId, :FileName, :FileType, :SegmentBizId, :PageContent, :Highlights, :OrgData, :AttrRange, :AttrLabels, :ExpireStart, :ExpireEnd, :SimilarQuestions, :RequestId
 
-        def initialize(qabizid=nil, question=nil, answer=nil, customparam=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, catebizid=nil, isallowaccept=nil, isallowdelete=nil, isallowedit=nil, docbizid=nil, filename=nil, filetype=nil, segmentbizid=nil, pagecontent=nil, highlights=nil, orgdata=nil, attrrange=nil, attrlabels=nil, expirestart=nil, expireend=nil, requestid=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, customparam=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, catebizid=nil, isallowaccept=nil, isallowdelete=nil, isallowedit=nil, docbizid=nil, filename=nil, filetype=nil, segmentbizid=nil, pagecontent=nil, highlights=nil, orgdata=nil, attrrange=nil, attrlabels=nil, expirestart=nil, expireend=nil, similarquestions=nil, requestid=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -1820,6 +1826,7 @@ module TencentCloud
           @AttrLabels = attrlabels
           @ExpireStart = expirestart
           @ExpireEnd = expireend
+          @SimilarQuestions = similarquestions
           @RequestId = requestid
         end
 
@@ -1862,6 +1869,14 @@ module TencentCloud
           end
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
+          unless params['SimilarQuestions'].nil?
+            @SimilarQuestions = []
+            params['SimilarQuestions'].each do |i|
+              similarquestion_tmp = SimilarQuestion.new
+              similarquestion_tmp.deserialize(i)
+              @SimilarQuestions << similarquestion_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4307,7 +4322,7 @@ module TencentCloud
 
       # ListQA请求参数结构体
       class ListQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -4317,7 +4332,7 @@ module TencentCloud
         # @type Query: String
         # @param AcceptStatus: 校验状态(1未校验2采纳3不采纳)
         # @type AcceptStatus: Array
-        # @param ReleaseStatus: 发布状态(2待发布 3发布中 4已发布 7审核中 8审核失败 9人工申述中 11人工申述失败)
+        # @param ReleaseStatus: 发布状态(2待发布 3发布中 4已发布 7审核中 8审核失败 9人工申述中 11人工申述失败 12已过期 13超量失效 14超量失效恢复)
         # @type ReleaseStatus: Array
         # @param DocBizId: 文档ID
         # @type DocBizId: String
@@ -4438,10 +4453,20 @@ module TencentCloud
         # @type FileType: String
         # @param QaCharSize: 问答字符数
         # @type QaCharSize: String
+        # @param ExpireStart: 有效开始时间，unix时间戳
+        # @type ExpireStart: String
+        # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
+        # @type ExpireEnd: String
+        # @param AttrRange: 属性标签适用范围 1：全部，2：按条件
+        # @type AttrRange: Integer
+        # @param AttrLabels: 属性标签
+        # @type AttrLabels: Array
+        # @param SimilarQuestionNum: 相似问个数
+        # @type SimilarQuestionNum: Integer
 
-        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize
+        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum
 
-        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -4458,6 +4483,11 @@ module TencentCloud
           @FileName = filename
           @FileType = filetype
           @QaCharSize = qacharsize
+          @ExpireStart = expirestart
+          @ExpireEnd = expireend
+          @AttrRange = attrrange
+          @AttrLabels = attrlabels
+          @SimilarQuestionNum = similarquestionnum
         end
 
         def deserialize(params)
@@ -4477,6 +4507,18 @@ module TencentCloud
           @FileName = params['FileName']
           @FileType = params['FileType']
           @QaCharSize = params['QaCharSize']
+          @ExpireStart = params['ExpireStart']
+          @ExpireEnd = params['ExpireEnd']
+          @AttrRange = params['AttrRange']
+          unless params['AttrLabels'].nil?
+            @AttrLabels = []
+            params['AttrLabels'].each do |i|
+              attrlabel_tmp = AttrLabel.new
+              attrlabel_tmp.deserialize(i)
+              @AttrLabels << attrlabel_tmp
+            end
+          end
+          @SimilarQuestionNum = params['SimilarQuestionNum']
         end
       end
 
@@ -5515,10 +5557,12 @@ module TencentCloud
         # @type ExpireStart: String
         # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
         # @type ExpireEnd: String
+        # @param SimilarQuestionModify: 相似问修改信息(相似问没有修改则不传)
+        # @type SimilarQuestionModify: :class:`Tencentcloud::Lke.v20231130.models.SimilarQuestionModify`
 
-        attr_accessor :BotBizId, :QaBizId, :Question, :Answer, :CustomParam, :AttrRange, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd
+        attr_accessor :BotBizId, :QaBizId, :Question, :Answer, :CustomParam, :AttrRange, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd, :SimilarQuestionModify
 
-        def initialize(botbizid=nil, qabizid=nil, question=nil, answer=nil, customparam=nil, attrrange=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil)
+        def initialize(botbizid=nil, qabizid=nil, question=nil, answer=nil, customparam=nil, attrrange=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil, similarquestionmodify=nil)
           @BotBizId = botbizid
           @QaBizId = qabizid
           @Question = question
@@ -5530,6 +5574,7 @@ module TencentCloud
           @CateBizId = catebizid
           @ExpireStart = expirestart
           @ExpireEnd = expireend
+          @SimilarQuestionModify = similarquestionmodify
         end
 
         def deserialize(params)
@@ -5551,6 +5596,10 @@ module TencentCloud
           @CateBizId = params['CateBizId']
           @ExpireStart = params['ExpireStart']
           @ExpireEnd = params['ExpireEnd']
+          unless params['SimilarQuestionModify'].nil?
+            @SimilarQuestionModify = SimilarQuestionModify.new
+            @SimilarQuestionModify.deserialize(params['SimilarQuestionModify'])
+          end
         end
       end
 
@@ -7071,6 +7120,66 @@ module TencentCloud
           @ErrorLink = params['ErrorLink']
           @ErrorLinkText = params['ErrorLinkText']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 相似问信息
+      class SimilarQuestion < TencentCloud::Common::AbstractModel
+        # @param SimBizId: 相似问ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimBizId: String
+        # @param Question: 相似问内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Question: String
+
+        attr_accessor :SimBizId, :Question
+
+        def initialize(simbizid=nil, question=nil)
+          @SimBizId = simbizid
+          @Question = question
+        end
+
+        def deserialize(params)
+          @SimBizId = params['SimBizId']
+          @Question = params['Question']
+        end
+      end
+
+      # 相似问修改(更新)信息
+      class SimilarQuestionModify < TencentCloud::Common::AbstractModel
+        # @param AddQuestions: 需要添加的相似问(内容)列表
+        # @type AddQuestions: Array
+        # @param UpdateQuestions: 需要更新的相似问列表
+        # @type UpdateQuestions: Array
+        # @param DeleteQuestions: 需要删除的相似问列表
+        # @type DeleteQuestions: Array
+
+        attr_accessor :AddQuestions, :UpdateQuestions, :DeleteQuestions
+
+        def initialize(addquestions=nil, updatequestions=nil, deletequestions=nil)
+          @AddQuestions = addquestions
+          @UpdateQuestions = updatequestions
+          @DeleteQuestions = deletequestions
+        end
+
+        def deserialize(params)
+          @AddQuestions = params['AddQuestions']
+          unless params['UpdateQuestions'].nil?
+            @UpdateQuestions = []
+            params['UpdateQuestions'].each do |i|
+              similarquestion_tmp = SimilarQuestion.new
+              similarquestion_tmp.deserialize(i)
+              @UpdateQuestions << similarquestion_tmp
+            end
+          end
+          unless params['DeleteQuestions'].nil?
+            @DeleteQuestions = []
+            params['DeleteQuestions'].each do |i|
+              similarquestion_tmp = SimilarQuestion.new
+              similarquestion_tmp.deserialize(i)
+              @DeleteQuestions << similarquestion_tmp
+            end
+          end
         end
       end
 

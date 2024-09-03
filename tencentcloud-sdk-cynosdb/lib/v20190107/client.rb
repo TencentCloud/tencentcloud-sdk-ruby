@@ -1831,6 +1831,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询serverless策略
+
+        # @param request: Request instance for DescribeServerlessStrategy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeServerlessStrategyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeServerlessStrategyResponse`
+        def DescribeServerlessStrategy(request)
+          body = send_request('DescribeServerlessStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServerlessStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询支持的数据库代理版本
 
         # @param request: Request instance for DescribeSupportProxyVersion.
@@ -2753,6 +2777,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyResourcePackagesDeductionPriorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改serverless策略
+
+        # @param request: Request instance for ModifyServerlessStrategy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyServerlessStrategyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyServerlessStrategyResponse`
+        def ModifyServerlessStrategy(request)
+          body = send_request('ModifyServerlessStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServerlessStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else

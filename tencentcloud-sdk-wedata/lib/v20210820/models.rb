@@ -12515,6 +12515,84 @@ module TencentCloud
         end
       end
 
+      # DescribeTablePartitions请求参数结构体
+      class DescribeTablePartitionsRequest < TencentCloud::Common::AbstractModel
+        # @param TableId: 表ID
+        # @type TableId: String
+        # @param PageNumber: 分页number
+        # @type PageNumber: Integer
+        # @param PageSize: 分页size
+        # @type PageSize: Integer
+        # @param FilterSet: 过滤器
+        # @type FilterSet: Array
+        # @param OrderFieldSet: 排序字段
+        # @type OrderFieldSet: Array
+
+        attr_accessor :TableId, :PageNumber, :PageSize, :FilterSet, :OrderFieldSet
+
+        def initialize(tableid=nil, pagenumber=nil, pagesize=nil, filterset=nil, orderfieldset=nil)
+          @TableId = tableid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @FilterSet = filterset
+          @OrderFieldSet = orderfieldset
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['FilterSet'].nil?
+            @FilterSet = []
+            params['FilterSet'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterSet << filter_tmp
+            end
+          end
+          unless params['OrderFieldSet'].nil?
+            @OrderFieldSet = []
+            params['OrderFieldSet'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFieldSet << orderfield_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTablePartitions返回参数结构体
+      class DescribeTablePartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param TablePartitionSet: 分区详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePartitionSet: Array
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TablePartitionSet, :TotalCount, :RequestId
+
+        def initialize(tablepartitionset=nil, totalcount=nil, requestid=nil)
+          @TablePartitionSet = tablepartitionset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TablePartitionSet'].nil?
+            @TablePartitionSet = []
+            params['TablePartitionSet'].each do |i|
+              tablepartition_tmp = TablePartition.new
+              tablepartition_tmp.deserialize(i)
+              @TablePartitionSet << tablepartition_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTableQualityDetails请求参数结构体
       class DescribeTableQualityDetailsRequest < TencentCloud::Common::AbstractModel
         # @param StatisticsDate: 统计日期
@@ -26177,6 +26255,52 @@ module TencentCloud
           @DatabaseName = params['DatabaseName']
           @SchemaName = params['SchemaName']
           @Name = params['Name']
+        end
+      end
+
+      # 表的分区数据
+      class TablePartition < TencentCloud::Common::AbstractModel
+        # @param PartitionName: 分区名称
+        # @type PartitionName: String
+        # @param RecordCount: 分区记录数
+        # @type RecordCount: Integer
+        # @param StorageSize: 分区数据存储大小，字节数
+        # @type StorageSize: String
+        # @param CreateTime: 分区创建时间
+        # @type CreateTime: String
+        # @param ModifiedTime: 分区修改时间
+        # @type ModifiedTime: String
+        # @param StorageSizeWithUnit: 分区数据存储大小，已转为适合的单位
+        # @type StorageSizeWithUnit: String
+        # @param NumFiles: 文件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumFiles: Integer
+        # @param AverageFileSizeWithUnit: 平均文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AverageFileSizeWithUnit: String
+
+        attr_accessor :PartitionName, :RecordCount, :StorageSize, :CreateTime, :ModifiedTime, :StorageSizeWithUnit, :NumFiles, :AverageFileSizeWithUnit
+
+        def initialize(partitionname=nil, recordcount=nil, storagesize=nil, createtime=nil, modifiedtime=nil, storagesizewithunit=nil, numfiles=nil, averagefilesizewithunit=nil)
+          @PartitionName = partitionname
+          @RecordCount = recordcount
+          @StorageSize = storagesize
+          @CreateTime = createtime
+          @ModifiedTime = modifiedtime
+          @StorageSizeWithUnit = storagesizewithunit
+          @NumFiles = numfiles
+          @AverageFileSizeWithUnit = averagefilesizewithunit
+        end
+
+        def deserialize(params)
+          @PartitionName = params['PartitionName']
+          @RecordCount = params['RecordCount']
+          @StorageSize = params['StorageSize']
+          @CreateTime = params['CreateTime']
+          @ModifiedTime = params['ModifiedTime']
+          @StorageSizeWithUnit = params['StorageSizeWithUnit']
+          @NumFiles = params['NumFiles']
+          @AverageFileSizeWithUnit = params['AverageFileSizeWithUnit']
         end
       end
 

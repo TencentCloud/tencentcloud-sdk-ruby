@@ -1849,6 +1849,46 @@ module TencentCloud
         end
       end
 
+      # DescribeBinlogTime请求参数结构体
+      class DescribeBinlogTimeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBinlogTime返回参数结构体
+      class DescribeBinlogTimeResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :EndTime, :RequestId
+
+        def initialize(starttime=nil, endtime=nil, requestid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBEncryptAttributes请求参数结构体
       class DescribeDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id，形如：tdsql-ow728lmc。

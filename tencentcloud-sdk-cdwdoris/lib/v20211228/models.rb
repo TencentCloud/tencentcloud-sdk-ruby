@@ -510,8 +510,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 8
-        deprecate :FileKeyValues=, :none, 2024, 8
+        deprecate :FileKeyValues, :none, 2024, 9
+        deprecate :FileKeyValues=, :none, 2024, 9
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -2386,8 +2386,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2024, 8
-        deprecate :InstanceID=, :none, 2024, 8
+        deprecate :InstanceID, :none, 2024, 9
+        deprecate :InstanceID=, :none, 2024, 9
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -2431,7 +2431,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页参数，分页步长，默认为10
         # @type Limit: Integer
-        # @param SearchTags: 搜索标签列表
+        # @param SearchTags: 搜索标签列表，没匹配到则不过滤集群列表
         # @type SearchTags: Array
 
         attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags
@@ -2813,6 +2813,17 @@ module TencentCloud
 
       # DescribeSqlApis请求参数结构体
       class DescribeSqlApisRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ApiType: GetUsers：获取用户列表；
+        # GetDatabases：获取数据库列表；
+        # GetTables：获取数据库表列表；
+        # GetUserPrivilegesV2：获取用户下的权限，粒度到表级别；
+        # DeleteUser：删除用户；
+        # GetCatalog：获取Catalog列表；
+        # @type ApiType: String
+        # @param UserName: 用户名称
+        # @type UserName: String
         # @param WhiteHost: 用户链接来自的 IP
         # @type WhiteHost: String
         # @param Catalog: catalog名称
@@ -2824,9 +2835,12 @@ module TencentCloud
         # @param TableName: 表名
         # @type TableName: String
 
-        attr_accessor :WhiteHost, :Catalog, :Catalogs, :DatabaseName, :TableName
+        attr_accessor :InstanceId, :ApiType, :UserName, :WhiteHost, :Catalog, :Catalogs, :DatabaseName, :TableName
 
-        def initialize(whitehost=nil, catalog=nil, catalogs=nil, databasename=nil, tablename=nil)
+        def initialize(instanceid=nil, apitype=nil, username=nil, whitehost=nil, catalog=nil, catalogs=nil, databasename=nil, tablename=nil)
+          @InstanceId = instanceid
+          @ApiType = apitype
+          @UserName = username
           @WhiteHost = whitehost
           @Catalog = catalog
           @Catalogs = catalogs
@@ -2835,6 +2849,9 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ApiType = params['ApiType']
+          @UserName = params['UserName']
           @WhiteHost = params['WhiteHost']
           @Catalog = params['Catalog']
           @Catalogs = params['Catalogs']
@@ -2845,16 +2862,26 @@ module TencentCloud
 
       # DescribeSqlApis返回参数结构体
       class DescribeSqlApisResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnData: 返回的查询数据，大部分情况是list，也可能是bool
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnData: String
+        # @param ErrorMsg: 错误消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ReturnData, :ErrorMsg, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(returndata=nil, errormsg=nil, requestid=nil)
+          @ReturnData = returndata
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ReturnData = params['ReturnData']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -3349,8 +3376,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 8
-        deprecate :IfExistCatalog=, :none, 2024, 8
+        deprecate :IfExistCatalog, :none, 2024, 9
+        deprecate :IfExistCatalog=, :none, 2024, 9
 
         def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil)
           @InstanceId = instanceid
@@ -5078,7 +5105,7 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签的值
         # @type TagValue: String
-        # @param AllValue: 1表示只输入标签的键，没有输入值；0表示输入键时且输入值
+        # @param AllValue: 1表示只输入标签的键，没有输入值；非1则表示输入键时且输入值
         # @type AllValue: Integer
 
         attr_accessor :TagKey, :TagValue, :AllValue

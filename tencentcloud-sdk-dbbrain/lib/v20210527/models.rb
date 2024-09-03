@@ -5500,10 +5500,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserHost: String
         # @param QueryTime: 执行时间,单位秒
-        # @type QueryTime: Integer
+        # @type QueryTime: Float
         # @param LockTime: 锁时间,单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LockTime: Integer
+        # @type LockTime: Float
         # @param RowsExamined: 扫描行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowsExamined: Integer

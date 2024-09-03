@@ -559,6 +559,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例回档时可选的时间范围
+
+        # @param request: Request instance for DescribeDCDBBinlogTime.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeDCDBBinlogTimeRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeDCDBBinlogTimeResponse`
+        def DescribeDCDBBinlogTime(request)
+          body = send_request('DescribeDCDBBinlogTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDCDBBinlogTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDCDBInstanceDetail）用于获取TDSQL实例详情
 
         # @param request: Request instance for DescribeDCDBInstanceDetail.

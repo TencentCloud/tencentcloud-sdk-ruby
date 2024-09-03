@@ -292,10 +292,12 @@ module TencentCloud
         # @type FaultReportContactNumber: String
         # @param SignLaw: 物理专线申请者是否签署了用户使用协议。默认已签署。
         # @type SignLaw: Boolean
+        # @param Tags: 标签键值对
+        # @type Tags: Array
 
-        attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw
+        attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Tags
 
-        def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil)
+        def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, tags=nil)
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
           @LineOperator = lineoperator
@@ -313,6 +315,7 @@ module TencentCloud
           @FaultReportContactPerson = faultreportcontactperson
           @FaultReportContactNumber = faultreportcontactnumber
           @SignLaw = signlaw
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -333,6 +336,14 @@ module TencentCloud
           @FaultReportContactPerson = params['FaultReportContactPerson']
           @FaultReportContactNumber = params['FaultReportContactNumber']
           @SignLaw = params['SignLaw']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -365,11 +376,11 @@ module TencentCloud
         # @param DirectConnectOwnerAccount: 物理专线owner，缺省为当前客户（物理专线 owner）
         # 共享专线时这里需要填写共享专线的开发商账号 ID。
         # @type DirectConnectOwnerAccount: String
-        # @param NetworkType: 网络类型，枚举：VPC、BMVPC、CCN；默认为VPC。VPC：私有网络；BMVPC：黑石网络；CCN：云联网）。
+        # @param NetworkType: 网络类型，枚举：VPC、CCN、NAT；默认为VPC。VPC：私有网络；CCN：云联网；NAT：NAT网络）。
         # @type NetworkType: String
         # @param NetworkRegion: 网络地域。
         # @type NetworkRegion: String
-        # @param VpcId: 私有网络统一ID或黑石网络统一ID。
+        # @param VpcId: 私有网络统一ID，在NetworkType为VPC时必填，且与专线网关所属的VPCID一致；NetworkType为其它组网类型时可不填，内部会统一处理。
         # @type VpcId: String
         # @param DirectConnectGatewayId: 专线网关ID，例如 dcg-d545ddf。
         # @type DirectConnectGatewayId: String
@@ -400,10 +411,12 @@ module TencentCloud
         # @type BfdInfo: :class:`Tencentcloud::Dc.v20180410.models.BFDInfo`
         # @param NqaInfo: NQA配置信息。
         # @type NqaInfo: :class:`Tencentcloud::Dc.v20180410.models.NQAInfo`
+        # @param Tags: 标签键值对
+        # @type Tags: Array
 
-        attr_accessor :DirectConnectId, :DirectConnectTunnelName, :DirectConnectOwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :Bandwidth, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :TencentBackupAddress, :CloudAttachId, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo
+        attr_accessor :DirectConnectId, :DirectConnectTunnelName, :DirectConnectOwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :Bandwidth, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :TencentBackupAddress, :CloudAttachId, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :Tags
 
-        def initialize(directconnectid=nil, directconnecttunnelname=nil, directconnectowneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, bandwidth=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, tencentbackupaddress=nil, cloudattachid=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil)
+        def initialize(directconnectid=nil, directconnecttunnelname=nil, directconnectowneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, bandwidth=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, tencentbackupaddress=nil, cloudattachid=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, tags=nil)
           @DirectConnectId = directconnectid
           @DirectConnectTunnelName = directconnecttunnelname
           @DirectConnectOwnerAccount = directconnectowneraccount
@@ -424,6 +437,7 @@ module TencentCloud
           @NqaEnable = nqaenable
           @BfdInfo = bfdinfo
           @NqaInfo = nqainfo
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -462,6 +476,14 @@ module TencentCloud
           unless params['NqaInfo'].nil?
             @NqaInfo = NQAInfo.new
             @NqaInfo.deserialize(params['NqaInfo'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -520,7 +542,7 @@ module TencentCloud
 
       # DeleteDirectConnectTunnel请求参数结构体
       class DeleteDirectConnectTunnelRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
@@ -718,13 +740,13 @@ module TencentCloud
 
       # DescribeDirectConnects请求参数结构体
       class DescribeDirectConnectsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件:
+        # @param Filters: 过滤条件。
         # @type Filters: Array
-        # @param DirectConnectIds: 物理专线 ID数组
+        # @param DirectConnectIds: 物理专线 ID数组。
         # @type DirectConnectIds: Array
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :Filters, :DirectConnectIds, :Offset, :Limit
@@ -757,7 +779,7 @@ module TencentCloud
         # @type DirectConnectSet: Array
         # @param TotalCount: 符合物理专线列表数量。
         # @type TotalCount: Integer
-        # @param AllSignLaw: 用户名下物理专线是否都签署了用户协议
+        # @param AllSignLaw: 用户名下物理专线是否都签署了用户协议。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllSignLaw: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1112,10 +1134,16 @@ module TencentCloud
         # @param MinBandwidth: 物理专线最小带宽
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinBandwidth: Integer
+        # @param Construct: 建设模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Construct: Integer
+        # @param AccessPointName: 物理专线的接入点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPointName: String
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth
+        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName
 
-        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
@@ -1148,6 +1176,8 @@ module TencentCloud
           @VlanZeroDirectConnectTunnelCount = vlanzerodirectconnecttunnelcount
           @OtherVlanDirectConnectTunnelCount = othervlandirectconnecttunnelcount
           @MinBandwidth = minbandwidth
+          @Construct = construct
+          @AccessPointName = accesspointname
         end
 
         def deserialize(params)
@@ -1190,6 +1220,8 @@ module TencentCloud
           @VlanZeroDirectConnectTunnelCount = params['VlanZeroDirectConnectTunnelCount']
           @OtherVlanDirectConnectTunnelCount = params['OtherVlanDirectConnectTunnelCount']
           @MinBandwidth = params['MinBandwidth']
+          @Construct = params['Construct']
+          @AccessPointName = params['AccessPointName']
         end
       end
 
@@ -1806,7 +1838,7 @@ module TencentCloud
 
       # ModifyDirectConnectAttribute请求参数结构体
       class ModifyDirectConnectAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectId: 物理专线的ID。
+        # @param DirectConnectId: 物理专线ID。
         # @type DirectConnectId: String
         # @param DirectConnectName: 物理专线名称。
         # @type DirectConnectName: String
@@ -1828,9 +1860,9 @@ module TencentCloud
         # @type FaultReportContactPerson: String
         # @param FaultReportContactNumber: 报障联系电话。
         # @type FaultReportContactNumber: String
-        # @param SignLaw: 物理专线申请者补签用户使用协议
+        # @param SignLaw: 物理专线申请者补签用户使用协议。
         # @type SignLaw: Boolean
-        # @param Bandwidth: 物理专线带宽
+        # @param Bandwidth: 物理专线带宽。
         # @type Bandwidth: Integer
 
         attr_accessor :DirectConnectId, :DirectConnectName, :CircuitCode, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Bandwidth
@@ -1886,21 +1918,21 @@ module TencentCloud
 
       # ModifyDirectConnectTunnelAttribute请求参数结构体
       class ModifyDirectConnectTunnelAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
-        # @param DirectConnectTunnelName: 专用通道名称
+        # @param DirectConnectTunnelName: 专用通道名称。
         # @type DirectConnectTunnelName: String
-        # @param BgpPeer: 用户侧BGP，包括Asn，AuthKey
+        # @param BgpPeer: 用户侧BGP，包括Asn，AuthKey。
         # @type BgpPeer: :class:`Tencentcloud::Dc.v20180410.models.BgpPeer`
-        # @param RouteFilterPrefixes: 用户侧网段地址
+        # @param RouteFilterPrefixes: 用户侧网段地址。
         # @type RouteFilterPrefixes: Array
-        # @param TencentAddress: 腾讯侧互联IP
+        # @param TencentAddress: 腾讯侧互联IP。
         # @type TencentAddress: String
-        # @param CustomerAddress: 用户侧互联IP
+        # @param CustomerAddress: 用户侧互联IP。
         # @type CustomerAddress: String
         # @param Bandwidth: 专用通道带宽值，单位为M。
         # @type Bandwidth: Integer
-        # @param TencentBackupAddress: 腾讯侧备用互联IP
+        # @param TencentBackupAddress: 腾讯侧备用互联IP。
         # @type TencentBackupAddress: String
 
         attr_accessor :DirectConnectTunnelId, :DirectConnectTunnelName, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :CustomerAddress, :Bandwidth, :TencentBackupAddress

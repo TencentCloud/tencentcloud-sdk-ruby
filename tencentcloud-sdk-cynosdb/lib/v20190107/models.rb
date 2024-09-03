@@ -244,8 +244,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 8
-        deprecate :InstanceGrpId=, :none, 2024, 8
+        deprecate :InstanceGrpId, :none, 2024, 9
+        deprecate :InstanceGrpId=, :none, 2024, 9
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1065,8 +1065,8 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 8
-        deprecate :InstanceGrpId=, :none, 2024, 8
+        deprecate :InstanceGrpId, :none, 2024, 9
+        deprecate :InstanceGrpId=, :none, 2024, 9
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil)
           @ID = id
@@ -1429,8 +1429,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 8
-        deprecate :InstanceGrpId=, :none, 2024, 8
+        deprecate :InstanceGrpId, :none, 2024, 9
+        deprecate :InstanceGrpId=, :none, 2024, 9
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -5543,8 +5543,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2024, 8
-        deprecate :InstanceGrpInfoList=, :none, 2024, 8
+        deprecate :InstanceGrpInfoList, :none, 2024, 9
+        deprecate :InstanceGrpInfoList=, :none, 2024, 9
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5866,8 +5866,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 8
-        deprecate :InstanceId=, :none, 2024, 8
+        deprecate :InstanceId, :none, 2024, 9
+        deprecate :InstanceId=, :none, 2024, 9
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -7239,6 +7239,64 @@ module TencentCloud
           @QueryId = params['QueryId']
           @Status = params['Status']
           @SuggestTime = params['SuggestTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServerlessStrategy请求参数结构体
+      class DescribeServerlessStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: serverless集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeServerlessStrategy返回参数结构体
+      class DescribeServerlessStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param AutoPauseDelay: cpu负载为 0 时持续多久（秒）发起自动暂停
+        # @type AutoPauseDelay: Integer
+        # @param AutoScaleUpDelay: cpu负载超过当前规格核数时，持续多久（秒）发起自动扩容
+        # @type AutoScaleUpDelay: Integer
+        # @param AutoScaleDownDelay: cpu 负载低于低一级规格核数时，持续多久（秒）发起自动缩容
+        # @type AutoScaleDownDelay: Integer
+        # @param AutoPause: 是否自动暂停，可能值：
+        # yes
+        # no
+        # @type AutoPause: String
+        # @param AutoScaleUp: 集群是否允许向上扩容，可选范围<li>yes</li><li>no</li>
+        # @type AutoScaleUp: String
+        # @param AutoScaleDown: 集群是否允许向下缩容，可选范围<li>yes</li><li>no</li>
+        # @type AutoScaleDown: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :AutoPause, :AutoScaleUp, :AutoScaleDown, :RequestId
+
+        def initialize(autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, autopause=nil, autoscaleup=nil, autoscaledown=nil, requestid=nil)
+          @AutoPauseDelay = autopausedelay
+          @AutoScaleUpDelay = autoscaleupdelay
+          @AutoScaleDownDelay = autoscaledowndelay
+          @AutoPause = autopause
+          @AutoScaleUp = autoscaleup
+          @AutoScaleDown = autoscaledown
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AutoPauseDelay = params['AutoPauseDelay']
+          @AutoScaleUpDelay = params['AutoScaleUpDelay']
+          @AutoScaleDownDelay = params['AutoScaleDownDelay']
+          @AutoPause = params['AutoPause']
+          @AutoScaleUp = params['AutoScaleUp']
+          @AutoScaleDown = params['AutoScaleDown']
           @RequestId = params['RequestId']
         end
       end
@@ -10149,6 +10207,92 @@ module TencentCloud
         end
       end
 
+      # ModifyServerlessStrategy请求参数结构体
+      class ModifyServerlessStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: serverless集群id
+        # @type ClusterId: String
+        # @param AutoPause: 集群是否自动暂停，可选范围
+        # <li>yes</li>
+        # <li>no</li>
+        # @type AutoPause: String
+        # @param AutoPauseDelay: 集群自动暂停的延迟，单位秒，可选范围[600,691200]，默认600
+        # @type AutoPauseDelay: Integer
+        # @param AutoScaleUpDelay: 该参数暂时无效
+        # @type AutoScaleUpDelay: Integer
+        # @param AutoScaleDownDelay: 该参数暂时无效
+        # @type AutoScaleDownDelay: Integer
+        # @param MinCpu: cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @type MinCpu: Float
+        # @param MaxCpu: cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @type MaxCpu: Float
+        # @param MinRoCpu: 只读实例cpu最小值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @type MinRoCpu: Float
+        # @param MaxRoCpu: 只读cpu最大值，可选范围参考DescribeServerlessInstanceSpecs接口返回
+        # @type MaxRoCpu: Float
+        # @param MinRoCount: 只读节点最小个数
+        # @type MinRoCount: Integer
+        # @param MaxRoCount: 只读节点最大个数
+        # @type MaxRoCount: Integer
+        # @param AutoScaleUp: 集群是否允许扩容，可选范围<li>yes</li><li>no</li>
+        # @type AutoScaleUp: String
+        # @param AutoScaleDown: 集群是否允许缩容，可选范围<li>yes</li><li>no</li>
+        # @type AutoScaleDown: String
+
+        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoScaleUp, :AutoScaleDown
+
+        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoscaleup=nil, autoscaledown=nil)
+          @ClusterId = clusterid
+          @AutoPause = autopause
+          @AutoPauseDelay = autopausedelay
+          @AutoScaleUpDelay = autoscaleupdelay
+          @AutoScaleDownDelay = autoscaledowndelay
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @MinRoCpu = minrocpu
+          @MaxRoCpu = maxrocpu
+          @MinRoCount = minrocount
+          @MaxRoCount = maxrocount
+          @AutoScaleUp = autoscaleup
+          @AutoScaleDown = autoscaledown
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AutoPause = params['AutoPause']
+          @AutoPauseDelay = params['AutoPauseDelay']
+          @AutoScaleUpDelay = params['AutoScaleUpDelay']
+          @AutoScaleDownDelay = params['AutoScaleDownDelay']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @MinRoCpu = params['MinRoCpu']
+          @MaxRoCpu = params['MaxRoCpu']
+          @MinRoCount = params['MinRoCount']
+          @MaxRoCount = params['MaxRoCount']
+          @AutoScaleUp = params['AutoScaleUp']
+          @AutoScaleDown = params['AutoScaleDown']
+        end
+      end
+
+      # ModifyServerlessStrategy返回参数结构体
+      class ModifyServerlessStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVipVport请求参数结构体
       class ModifyVipVportRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -10169,8 +10313,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 8
-        deprecate :InstanceGrpId=, :none, 2024, 8
+        deprecate :InstanceGrpId, :none, 2024, 9
+        deprecate :InstanceGrpId=, :none, 2024, 9
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -10702,8 +10846,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2024, 8
-        deprecate :InstanceGrpId=, :none, 2024, 8
+        deprecate :InstanceGrpId, :none, 2024, 9
+        deprecate :InstanceGrpId=, :none, 2024, 9
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid

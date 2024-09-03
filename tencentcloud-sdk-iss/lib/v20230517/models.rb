@@ -4169,16 +4169,26 @@ module TencentCloud
         # @type IsRespActualTime: Boolean
         # @param IsInternal: 是否返回内网下载URL，默认是false，返回公网下载URL，true则返回内网下载URL
         # @type IsInternal: Boolean
+        # @param Expires: 设置URL的有效期, 最小值是1秒, 最大值是86400秒, 不设置的话, 默认是600秒
+        # @type Expires: Integer
+        # @param IsSupportG711: 下载的MP4文件是否支持G711音频编码.
+        # 注意: 如果云端录像中的音频编码为AAC, 那么下载的MP4默认是支持AAC编码的
+        # 如果云端录像中的音频编码为G711且 IsSupportG711设置为true时, 下载的MP4是支持G711音频编码
+        # 如果云端录像中的音频编码为G711且 IsSupportG711设置为false时, 下载的MP4是不支持G711音频编码
+        # 该参数只对FileType为mp4才有效, 不设置的话, 默认是false
+        # @type IsSupportG711: Boolean
 
-        attr_accessor :ChannelId, :BeginTime, :EndTime, :FileType, :IsRespActualTime, :IsInternal
+        attr_accessor :ChannelId, :BeginTime, :EndTime, :FileType, :IsRespActualTime, :IsInternal, :Expires, :IsSupportG711
 
-        def initialize(channelid=nil, begintime=nil, endtime=nil, filetype=nil, isrespactualtime=nil, isinternal=nil)
+        def initialize(channelid=nil, begintime=nil, endtime=nil, filetype=nil, isrespactualtime=nil, isinternal=nil, expires=nil, issupportg711=nil)
           @ChannelId = channelid
           @BeginTime = begintime
           @EndTime = endtime
           @FileType = filetype
           @IsRespActualTime = isrespactualtime
           @IsInternal = isinternal
+          @Expires = expires
+          @IsSupportG711 = issupportg711
         end
 
         def deserialize(params)
@@ -4188,6 +4198,8 @@ module TencentCloud
           @FileType = params['FileType']
           @IsRespActualTime = params['IsRespActualTime']
           @IsInternal = params['IsInternal']
+          @Expires = params['Expires']
+          @IsSupportG711 = params['IsSupportG711']
         end
       end
 

@@ -2104,10 +2104,12 @@ module TencentCloud
         # @type InstanceNum: Integer
         # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
         # @type PublicNetworkMonthly: Integer
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :InstanceName, :VpcId, :SubnetId, :BandWidth, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :BandWidth, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags
 
-        def initialize(instancename=nil, vpcid=nil, subnetid=nil, bandwidth=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, bandwidth=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2126,6 +2128,7 @@ module TencentCloud
           @ZoneIds = zoneids
           @InstanceNum = instancenum
           @PublicNetworkMonthly = publicnetworkmonthly
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2147,6 +2150,14 @@ module TencentCloud
           @ZoneIds = params['ZoneIds']
           @InstanceNum = params['InstanceNum']
           @PublicNetworkMonthly = params['PublicNetworkMonthly']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2358,8 +2369,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 8
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 8
+        deprecate :DeleteRouteTimestamp, :none, 2024, 9
+        deprecate :DeleteRouteTimestamp=, :none, 2024, 9
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2465,7 +2476,7 @@ module TencentCloud
         # @type ClusterId: Integer
         # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.1","2.4.2","2.8.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
-        # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版
+        # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版。  (标准版仅国际站支持，国内站目前支持专业版)
         # @type SpecificationsType: String
         # @param DiskType: 专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认值为 "CLOUD_BASIC"
         # @type DiskType: String
@@ -2487,10 +2498,12 @@ module TencentCloud
         # @type InstanceNum: Integer
         # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
         # @type PublicNetworkMonthly: Integer
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags
 
-        def initialize(instancename=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2509,6 +2522,7 @@ module TencentCloud
           @ZoneIds = zoneids
           @InstanceNum = instancenum
           @PublicNetworkMonthly = publicnetworkmonthly
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2530,6 +2544,14 @@ module TencentCloud
           @ZoneIds = params['ZoneIds']
           @InstanceNum = params['InstanceNum']
           @PublicNetworkMonthly = params['PublicNetworkMonthly']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3788,16 +3810,20 @@ module TencentCloud
 
       # DeleteRouteTriggerTime请求参数结构体
       class DeleteRouteTriggerTimeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
         # @param DelayTime: 修改时间
         # @type DelayTime: String
 
-        attr_accessor :DelayTime
+        attr_accessor :InstanceId, :DelayTime
 
-        def initialize(delaytime=nil)
+        def initialize(instanceid=nil, delaytime=nil)
+          @InstanceId = instanceid
           @DelayTime = delaytime
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           @DelayTime = params['DelayTime']
         end
       end
@@ -12284,8 +12310,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 8
-        deprecate :Exflag=, :none, 2024, 8
+        deprecate :Exflag, :none, 2024, 9
+        deprecate :Exflag=, :none, 2024, 9
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

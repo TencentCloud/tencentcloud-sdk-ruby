@@ -12490,17 +12490,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param KubeletRootDir: kubelet根目录
         # @type KubeletRootDir: String
+        # @param ClusterType: 集群类型 tke/eks，默认tke
+        # @type ClusterType: String
 
-        attr_accessor :ClusterId, :KubeletRootDir
+        attr_accessor :ClusterId, :KubeletRootDir, :ClusterType
 
-        def initialize(clusterid=nil, kubeletrootdir=nil)
+        def initialize(clusterid=nil, kubeletrootdir=nil, clustertype=nil)
           @ClusterId = clusterid
           @KubeletRootDir = kubeletrootdir
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @KubeletRootDir = params['KubeletRootDir']
+          @ClusterType = params['ClusterType']
         end
       end
 

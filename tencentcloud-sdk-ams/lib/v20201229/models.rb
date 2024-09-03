@@ -209,8 +209,8 @@ module TencentCloud
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2024, 7
-        deprecate :SubLabelCode=, :none, 2024, 7
+        deprecate :SubLabelCode, :none, 2024, 9
+        deprecate :SubLabelCode=, :none, 2024, 9
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
@@ -490,12 +490,16 @@ module TencentCloud
         # @param Duration: 识别音频时长，单位为毫秒；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: String
+        # @param HitFlag: 是否命中(0:否, 1: 是)
+        # @type HitFlag: Integer
+        # @param Score: 得分
+        # @type Score: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DataId, :Name, :BizType, :Suggestion, :Label, :AsrText, :TextResults, :MoanResults, :SubLabel, :LanguageResults, :SpeakerResults, :RecognitionResults, :Duration, :RequestId
+        attr_accessor :DataId, :Name, :BizType, :Suggestion, :Label, :AsrText, :TextResults, :MoanResults, :SubLabel, :LanguageResults, :SpeakerResults, :RecognitionResults, :Duration, :HitFlag, :Score, :RequestId
 
-        def initialize(dataid=nil, name=nil, biztype=nil, suggestion=nil, label=nil, asrtext=nil, textresults=nil, moanresults=nil, sublabel=nil, languageresults=nil, speakerresults=nil, recognitionresults=nil, duration=nil, requestid=nil)
+        def initialize(dataid=nil, name=nil, biztype=nil, suggestion=nil, label=nil, asrtext=nil, textresults=nil, moanresults=nil, sublabel=nil, languageresults=nil, speakerresults=nil, recognitionresults=nil, duration=nil, hitflag=nil, score=nil, requestid=nil)
           @DataId = dataid
           @Name = name
           @BizType = biztype
@@ -509,6 +513,8 @@ module TencentCloud
           @SpeakerResults = speakerresults
           @RecognitionResults = recognitionresults
           @Duration = duration
+          @HitFlag = hitflag
+          @Score = score
           @RequestId = requestid
         end
 
@@ -561,6 +567,8 @@ module TencentCloud
             end
           end
           @Duration = params['Duration']
+          @HitFlag = params['HitFlag']
+          @Score = params['Score']
           @RequestId = params['RequestId']
         end
       end

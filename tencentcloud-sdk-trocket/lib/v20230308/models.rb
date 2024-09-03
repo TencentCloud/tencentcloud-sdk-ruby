@@ -32,16 +32,32 @@ module TencentCloud
         # @type MaxRetryTimes: Integer
         # @param Remark: 备注
         # @type Remark: String
+        # @param ClusterIdV4: 4.x的集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIdV4: String
+        # @param NamespaceV4: 4.x的命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceV4: String
+        # @param ConsumerGroupV4: 4.x的消费组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerGroupV4: String
+        # @param FullNamespaceV4: 4.x的完整命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullNamespaceV4: String
 
-        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark
+        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4
 
-        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil)
+        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil)
           @InstanceId = instanceid
           @ConsumerGroup = consumergroup
           @ConsumeEnable = consumeenable
           @ConsumeMessageOrderly = consumemessageorderly
           @MaxRetryTimes = maxretrytimes
           @Remark = remark
+          @ClusterIdV4 = clusteridv4
+          @NamespaceV4 = namespacev4
+          @ConsumerGroupV4 = consumergroupv4
+          @FullNamespaceV4 = fullnamespacev4
         end
 
         def deserialize(params)
@@ -51,6 +67,10 @@ module TencentCloud
           @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
           @MaxRetryTimes = params['MaxRetryTimes']
           @Remark = params['Remark']
+          @ClusterIdV4 = params['ClusterIdV4']
+          @NamespaceV4 = params['NamespaceV4']
+          @ConsumerGroupV4 = params['ConsumerGroupV4']
+          @FullNamespaceV4 = params['FullNamespaceV4']
         end
       end
 

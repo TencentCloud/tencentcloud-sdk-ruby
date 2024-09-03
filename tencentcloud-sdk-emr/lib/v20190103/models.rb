@@ -5406,6 +5406,46 @@ module TencentCloud
         end
       end
 
+      # ModifyAutoRenewFlag请求参数结构体
+      class ModifyAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param ResourceIds: 实例ID
+        # @type ResourceIds: Array
+        # @param RenewFlag: NOTIFY_AND_MANUAL_RENEW：表示通知即将过期，但不自动续费  NOTIFY_AND_AUTO_RENEW：表示通知即将过期，而且自动续费  DISABLE_NOTIFY_AND_MANUAL_RENEW：表示不通知即将过期，也不自动续费。
+        # @type RenewFlag: String
+
+        attr_accessor :InstanceId, :ResourceIds, :RenewFlag
+
+        def initialize(instanceid=nil, resourceids=nil, renewflag=nil)
+          @InstanceId = instanceid
+          @ResourceIds = resourceids
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceIds = params['ResourceIds']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyAutoRenewFlag返回参数结构体
+      class ModifyAutoRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAutoScaleStrategy请求参数结构体
       class ModifyAutoScaleStrategyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。

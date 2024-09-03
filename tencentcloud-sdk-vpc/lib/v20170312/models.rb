@@ -5963,19 +5963,30 @@ module TencentCloud
         # @type SslVpnClientName: String
         # @param SslVpnClientNames: SSL-VPN-CLIENT实例Name数字。批量创建时使用。不可和SslVpnClientName同时使用。
         # @type SslVpnClientNames: Array
+        # @param Tags: 指定绑定的标签列表
+        # @type Tags: Array
 
-        attr_accessor :SslVpnServerId, :SslVpnClientName, :SslVpnClientNames
+        attr_accessor :SslVpnServerId, :SslVpnClientName, :SslVpnClientNames, :Tags
 
-        def initialize(sslvpnserverid=nil, sslvpnclientname=nil, sslvpnclientnames=nil)
+        def initialize(sslvpnserverid=nil, sslvpnclientname=nil, sslvpnclientnames=nil, tags=nil)
           @SslVpnServerId = sslvpnserverid
           @SslVpnClientName = sslvpnclientname
           @SslVpnClientNames = sslvpnclientnames
+          @Tags = tags
         end
 
         def deserialize(params)
           @SslVpnServerId = params['SslVpnServerId']
           @SslVpnClientName = params['SslVpnClientName']
           @SslVpnClientNames = params['SslVpnClientNames']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6029,10 +6040,12 @@ module TencentCloud
         # @type AccessPolicyEnabled: Boolean
         # @param SamlData: SAML-DATA，开启SSO时传。
         # @type SamlData: String
+        # @param Tags: 指定绑定的标签列表
+        # @type Tags: Array
 
-        attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData
+        attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData, :Tags
 
-        def initialize(vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil)
+        def initialize(vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil, tags=nil)
           @VpnGatewayId = vpngatewayid
           @SslVpnServerName = sslvpnservername
           @LocalAddress = localaddress
@@ -6045,6 +6058,7 @@ module TencentCloud
           @SsoEnabled = ssoenabled
           @AccessPolicyEnabled = accesspolicyenabled
           @SamlData = samldata
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6060,6 +6074,14 @@ module TencentCloud
           @SsoEnabled = params['SsoEnabled']
           @AccessPolicyEnabled = params['AccessPolicyEnabled']
           @SamlData = params['SamlData']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -16237,8 +16259,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 8
-        deprecate :IntegrityAlgorith=, :none, 2024, 8
+        deprecate :IntegrityAlgorith, :none, 2024, 9
+        deprecate :IntegrityAlgorith=, :none, 2024, 9
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm

@@ -53,6 +53,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户通过本接口进行关键字词表的创建。
+        # <br>•   默认每个用户最多可创建30个关键字词表。
+        # <br>•   每个关键词词表最多可添加100个词，每个词最多5个汉字或15个字符。
+        # <br>•   词表通过本地文件形式上传。
+        # <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个词且不能包含标点和特殊字符。
+
+        # @param request: Request instance for CreateAsrKeyWordLib.
+        # @type request: :class:`Tencentcloud::asr::V20190614::CreateAsrKeyWordLibRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::CreateAsrKeyWordLibResponse`
+        def CreateAsrKeyWordLib(request)
+          body = send_request('CreateAsrKeyWordLib', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAsrKeyWordLibResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户通过本接口进行热词表的创建。
         # <br>•   默认最多可创建30个热词表。
         # <br>•   每个热词表最多可添加1000个词，每个词最长10个汉字或30个英文字符，不能超出限制。
@@ -157,6 +185,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateRecTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户通过本接口进行关键词表的删除。
+
+        # @param request: Request instance for DeleteAsrKeyWordLib.
+        # @type request: :class:`Tencentcloud::asr::V20190614::DeleteAsrKeyWordLibRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::DeleteAsrKeyWordLibResponse`
+        def DeleteAsrKeyWordLib(request)
+          body = send_request('DeleteAsrKeyWordLib', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAsrKeyWordLibResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -308,6 +360,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DownloadCustomizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户通过该接口，可获得所有的关键词表及其信息。
+
+        # @param request: Request instance for GetAsrKeyWordLibList.
+        # @type request: :class:`Tencentcloud::asr::V20190614::GetAsrKeyWordLibListRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::GetAsrKeyWordLibListResponse`
+        def GetAsrKeyWordLibList(request)
+          body = send_request('GetAsrKeyWordLibList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAsrKeyWordLibListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -506,6 +582,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetVocabStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户通过本接口进行对应的关键词表信息更新。
+
+        # @param request: Request instance for UpdateAsrKeyWordLib.
+        # @type request: :class:`Tencentcloud::asr::V20190614::UpdateAsrKeyWordLibRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::UpdateAsrKeyWordLibResponse`
+        def UpdateAsrKeyWordLib(request)
+          body = send_request('UpdateAsrKeyWordLib', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAsrKeyWordLibResponse.new
             model.deserialize(response['Response'])
             model
           else

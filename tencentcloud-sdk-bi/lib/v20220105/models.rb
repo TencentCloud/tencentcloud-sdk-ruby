@@ -976,10 +976,13 @@ module TencentCloud
         # @param ClusterId: 集群id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
+        # @param DbTypeName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbTypeName: String
 
-        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId
+        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName
 
-        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil)
+        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil)
           @Id = id
           @DbName = dbname
           @ServiceType = servicetype
@@ -1015,6 +1018,7 @@ module TencentCloud
           @DataOriginProjectId = dataoriginprojectid
           @DataOriginDatasourceId = dataorigindatasourceid
           @ClusterId = clusterid
+          @DbTypeName = dbtypename
         end
 
         def deserialize(params)
@@ -1063,6 +1067,7 @@ module TencentCloud
           @DataOriginProjectId = params['DataOriginProjectId']
           @DataOriginDatasourceId = params['DataOriginDatasourceId']
           @ClusterId = params['ClusterId']
+          @DbTypeName = params['DbTypeName']
         end
       end
 
