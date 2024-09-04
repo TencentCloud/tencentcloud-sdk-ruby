@@ -3539,7 +3539,7 @@ module TencentCloud
         # - English = "en" # 英语
         # - Vietnamese = "vi" # 越南语
         # - Japanese = "ja" # 日语
-        # - Korean = "ko" # 汉语
+        # - Korean = "ko" # 韩语
         # - Indonesia = "id" # 印度尼西亚语
         # - Thai = "th" # 泰语
         # - Portuguese = "pt" # 葡萄牙语
@@ -3567,10 +3567,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
         extend Gem::Deprecate
-        deprecate :Model, :none, 2024, 8
-        deprecate :Model=, :none, 2024, 8
-        deprecate :TranslationLanguage, :none, 2024, 8
-        deprecate :TranslationLanguage=, :none, 2024, 8
+        deprecate :Model, :none, 2024, 9
+        deprecate :Model=, :none, 2024, 9
+        deprecate :TranslationLanguage, :none, 2024, 9
+        deprecate :TranslationLanguage=, :none, 2024, 9
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil)
           @Language = language
@@ -3821,7 +3821,7 @@ module TencentCloud
         # 4.     English = "en" # 英语
         # 5.     Vietnamese = "vi" # 越南语
         # 6.     Japanese = "ja" # 日语
-        # 7.     Korean = "ko" # 汉语
+        # 7.     Korean = "ko" # 韩语
         # 8.     Indonesia = "id" # 印度尼西亚语
         # 9.     Thai = "th" # 泰语
         # 10.     Portuguese = "pt" # 葡萄牙语
@@ -4494,12 +4494,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2024, 8
-        deprecate :VideoEncodeParams=, :none, 2024, 8
-        deprecate :AudioEncodeParams, :none, 2024, 8
-        deprecate :AudioEncodeParams=, :none, 2024, 8
-        deprecate :SourceUrl, :none, 2024, 8
-        deprecate :SourceUrl=, :none, 2024, 8
+        deprecate :VideoEncodeParams, :none, 2024, 9
+        deprecate :VideoEncodeParams=, :none, 2024, 9
+        deprecate :AudioEncodeParams, :none, 2024, 9
+        deprecate :AudioEncodeParams=, :none, 2024, 9
+        deprecate :SourceUrl, :none, 2024, 9
+        deprecate :SourceUrl=, :none, 2024, 9
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil)
           @SdkAppId = sdkappid
@@ -5152,10 +5152,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2024, 8
-        deprecate :IMAdminUserId=, :none, 2024, 8
-        deprecate :IMAdminUserSig, :none, 2024, 8
-        deprecate :IMAdminUserSig=, :none, 2024, 8
+        deprecate :IMAdminUserId, :none, 2024, 9
+        deprecate :IMAdminUserId=, :none, 2024, 9
+        deprecate :IMAdminUserSig, :none, 2024, 9
+        deprecate :IMAdminUserSig=, :none, 2024, 9
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil)
           @UserId = userid

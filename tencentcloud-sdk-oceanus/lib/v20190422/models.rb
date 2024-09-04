@@ -1326,17 +1326,21 @@ module TencentCloud
         # @type JobIds: Array
         # @param WorkSpaceId: 工作空间Id
         # @type WorkSpaceId: String
+        # @param JobNames: 作业名称列表
+        # @type JobNames: Array
 
-        attr_accessor :JobIds, :WorkSpaceId
+        attr_accessor :JobIds, :WorkSpaceId, :JobNames
 
-        def initialize(jobids=nil, workspaceid=nil)
+        def initialize(jobids=nil, workspaceid=nil, jobnames=nil)
           @JobIds = jobids
           @WorkSpaceId = workspaceid
+          @JobNames = jobnames
         end
 
         def deserialize(params)
           @JobIds = params['JobIds']
           @WorkSpaceId = params['WorkSpaceId']
+          @JobNames = params['JobNames']
         end
       end
 

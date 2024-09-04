@@ -869,6 +869,50 @@ module TencentCloud
         end
       end
 
+      # CheckCertificateDomainVerification请求参数结构体
+      class CheckCertificateDomainVerificationRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID。
+        # @type CertificateId: String
+
+        attr_accessor :CertificateId
+
+        def initialize(certificateid=nil)
+          @CertificateId = certificateid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+        end
+      end
+
+      # CheckCertificateDomainVerification返回参数结构体
+      class CheckCertificateDomainVerificationResponse < TencentCloud::Common::AbstractModel
+        # @param VerificationResults: 域名验证结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerificationResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VerificationResults, :RequestId
+
+        def initialize(verificationresults=nil, requestid=nil)
+          @VerificationResults = verificationresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VerificationResults'].nil?
+            @VerificationResults = []
+            params['VerificationResults'].each do |i|
+              domainvalidationresult_tmp = DomainValidationResult.new
+              domainvalidationresult_tmp.deserialize(i)
+              @VerificationResults << domainvalidationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # clb实例详情
       class ClbInstanceDetail < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: CLB实例ID
@@ -4519,6 +4563,53 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @TotalBalance = params['TotalBalance']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 域名验证结果
+      class DomainValidationResult < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param VerifyType: 验证类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyType: String
+        # @param LocalCheck: 本地检查结果。
+        # @type LocalCheck: Integer
+        # @param CaCheck: CA检查结果。
+        # @type CaCheck: Integer
+        # @param LocalCheckFailReason: 检查失败原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCheckFailReason: String
+        # @param CheckValue: 检查到的值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckValue: Array
+        # @param Frequently: 是否频繁请求。
+        # @type Frequently: Boolean
+        # @param Issued: 是否已经签发。
+        # @type Issued: Boolean
+
+        attr_accessor :Domain, :VerifyType, :LocalCheck, :CaCheck, :LocalCheckFailReason, :CheckValue, :Frequently, :Issued
+
+        def initialize(domain=nil, verifytype=nil, localcheck=nil, cacheck=nil, localcheckfailreason=nil, checkvalue=nil, frequently=nil, issued=nil)
+          @Domain = domain
+          @VerifyType = verifytype
+          @LocalCheck = localcheck
+          @CaCheck = cacheck
+          @LocalCheckFailReason = localcheckfailreason
+          @CheckValue = checkvalue
+          @Frequently = frequently
+          @Issued = issued
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @VerifyType = params['VerifyType']
+          @LocalCheck = params['LocalCheck']
+          @CaCheck = params['CaCheck']
+          @LocalCheckFailReason = params['LocalCheckFailReason']
+          @CheckValue = params['CheckValue']
+          @Frequently = params['Frequently']
+          @Issued = params['Issued']
         end
       end
 

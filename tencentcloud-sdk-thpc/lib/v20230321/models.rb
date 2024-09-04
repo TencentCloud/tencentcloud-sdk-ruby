@@ -769,6 +769,161 @@ module TencentCloud
         end
       end
 
+      # CreateWorkspaces请求参数结构体
+      class CreateWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目，所属宿主机（在专用宿主机上创建子机时指定）等属性。 <b>注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。</b>
+        # @type Placement: :class:`Tencentcloud::Thpc.v20230321.models.SpacePlacement`
+        # @param SpaceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type SpaceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.SpaceChargePrepaid`
+        # @param SpaceChargeType: 工作空间计费类型
+        # @type SpaceChargeType: String
+        # @param SpaceType: 工作空间规格
+        # @type SpaceType: String
+        # @param ImageId: 镜像ID
+        # @type ImageId: String
+        # @param SystemDisk: 工作空间系统盘信息
+        # @type SystemDisk: :class:`Tencentcloud::Thpc.v20230321.models.SpaceSystemDisk`
+        # @param DataDisks: 工作空间数据盘信息
+        # @type DataDisks: Array
+        # @param VirtualPrivateCloud: 私有网络相关信息
+        # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20230321.models.SpaceVirtualPrivateCloud`
+        # @param InternetAccessible: 公网带宽相关信息设置
+        # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20230321.models.SpaceInternetAccessible`
+        # @param SpaceCount: 购买工作空间数量
+        # @type SpaceCount: Integer
+        # @param SpaceName: 工作空间显示名称
+        # @type SpaceName: String
+        # @param LoginSettings: 工作空间登陆设置
+        # @type LoginSettings: :class:`Tencentcloud::Thpc.v20230321.models.LoginSettings`
+        # @param SecurityGroupIds: 工作空间所属安全组
+        # @type SecurityGroupIds: Array
+        # @param EnhancedService: 增强服务
+        # @type EnhancedService: :class:`Tencentcloud::Thpc.v20230321.models.EnhancedService`
+        # @param DryRun: 是否只预检此次请求
+        # @type DryRun: Boolean
+        # @param UserData: 提供给工作空间使用的用户数据
+        # @type UserData: String
+        # @param DisasterRecoverGroupIds: 置放群组id
+        # @type DisasterRecoverGroupIds: Array
+        # @param TagSpecification: 标签描述列表
+        # @type TagSpecification: Array
+        # @param HpcClusterId: 高性能计算集群ID
+        # @type HpcClusterId: String
+        # @param CamRoleName: CAM角色名称
+        # @type CamRoleName: String
+        # @param HostName: 实例主机名。<br><li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。</li><br><li>Windows 实例：主机名名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。</li><br><li>其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li><br><li>购买多台实例，如果指定模式串`{R:x}`，表示生成数字`[x, x+n-1]`，其中`n`表示购买实例的数量，例如`server{R:3}`，购买1台时，实例主机名为`server3`；购买2台时，实例主机名分别为`server3`，`server4`。支持指定多个模式串`{R:x}`。</li><br><li>购买多台实例，如果不指定模式串，则在实例主机名添加后缀`1、2...n`，其中`n`表示购买实例的数量，例如`server`，购买2台时，实例主机名分别为`server1`，`server2`。</li>
+        # @type HostName: String
+
+        attr_accessor :ClientToken, :Placement, :SpaceChargePrepaid, :SpaceChargeType, :SpaceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :SpaceCount, :SpaceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :DryRun, :UserData, :DisasterRecoverGroupIds, :TagSpecification, :HpcClusterId, :CamRoleName, :HostName
+
+        def initialize(clienttoken=nil, placement=nil, spacechargeprepaid=nil, spacechargetype=nil, spacetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, spacecount=nil, spacename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, dryrun=nil, userdata=nil, disasterrecovergroupids=nil, tagspecification=nil, hpcclusterid=nil, camrolename=nil, hostname=nil)
+          @ClientToken = clienttoken
+          @Placement = placement
+          @SpaceChargePrepaid = spacechargeprepaid
+          @SpaceChargeType = spacechargetype
+          @SpaceType = spacetype
+          @ImageId = imageid
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
+          @VirtualPrivateCloud = virtualprivatecloud
+          @InternetAccessible = internetaccessible
+          @SpaceCount = spacecount
+          @SpaceName = spacename
+          @LoginSettings = loginsettings
+          @SecurityGroupIds = securitygroupids
+          @EnhancedService = enhancedservice
+          @DryRun = dryrun
+          @UserData = userdata
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @TagSpecification = tagspecification
+          @HpcClusterId = hpcclusterid
+          @CamRoleName = camrolename
+          @HostName = hostname
+        end
+
+        def deserialize(params)
+          @ClientToken = params['ClientToken']
+          unless params['Placement'].nil?
+            @Placement = SpacePlacement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          unless params['SpaceChargePrepaid'].nil?
+            @SpaceChargePrepaid = SpaceChargePrepaid.new
+            @SpaceChargePrepaid.deserialize(params['SpaceChargePrepaid'])
+          end
+          @SpaceChargeType = params['SpaceChargeType']
+          @SpaceType = params['SpaceType']
+          @ImageId = params['ImageId']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SpaceSystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              spacedatadisk_tmp = SpaceDataDisk.new
+              spacedatadisk_tmp.deserialize(i)
+              @DataDisks << spacedatadisk_tmp
+            end
+          end
+          unless params['VirtualPrivateCloud'].nil?
+            @VirtualPrivateCloud = SpaceVirtualPrivateCloud.new
+            @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
+          end
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = SpaceInternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          @SpaceCount = params['SpaceCount']
+          @SpaceName = params['SpaceName']
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['EnhancedService'].nil?
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
+          end
+          @DryRun = params['DryRun']
+          @UserData = params['UserData']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
+          @HpcClusterId = params['HpcClusterId']
+          @CamRoleName = params['CamRoleName']
+          @HostName = params['HostName']
+        end
+      end
+
+      # CreateWorkspaces返回参数结构体
+      class CreateWorkspacesResponse < TencentCloud::Common::AbstractModel
+        # @param SpaceIdSet: 工作空间ID
+        # @type SpaceIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpaceIdSet, :RequestId
+
+        def initialize(spaceidset=nil, requestid=nil)
+          @SpaceIdSet = spaceidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SpaceIdSet = params['SpaceIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了数据盘的信息
       class DataDisk < TencentCloud::Common::AbstractModel
         # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
@@ -2340,6 +2495,246 @@ module TencentCloud
         end
       end
 
+      # 描述了工作空间的计费模式
+      class SpaceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 12, 24, 36。默认取值为1。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param RenewFlag: 自动续费标识。取值范围：
+
+        # NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+
+        # NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+
+
+        # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 工作空间数据盘配置
+      class SpaceDataDisk < TencentCloud::Common::AbstractModel
+        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br />
+        # <li>
+        #   LOCAL_BASIC：本地硬盘<br />
+        #   <li>
+        #     LOCAL_SSD：本地SSD硬盘<br />
+        #     <li>
+        #       LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br />
+        #       <li>
+        #         LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br />
+        #         <li>
+        #           CLOUD_BASIC：普通云硬盘<br />
+        #           <li>
+        #             CLOUD_PREMIUM：高性能云硬盘<br />
+        #             <li>
+        #               CLOUD_SSD：SSD云硬盘<br />
+        #               <li>
+        #                 CLOUD_HSSD：增强型SSD云硬盘<br />
+        #                 <li>
+        #                   CLOUD_TSSD：极速型SSD云硬盘<br />
+        #                   <li>
+        #                     CLOUD_BSSD：通用型SSD云硬盘<br /><br />默认取值：LOCAL_BASIC。<br /><br />该参数对`ResizeInstanceDisk`接口无效。
+        #                   </li>
+        #                 </li>
+        #               </li>
+        #             </li>
+        #           </li>
+        #         </li>
+        #       </li>
+        #     </li>
+        #   </li>
+        # </li>
+        # @type DiskType: String
+        # @param DiskId: 数据盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskId: String
+        # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
+        # @type DiskSize: Integer
+        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：
+        # <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li>
+        # <li>
+        #   FALSE：子机销毁时，保留数据盘<br />
+        #   默认取值：TRUE<br />
+        #   该参数目前仅用于 `RunInstances` 接口。
+        # </li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteWithInstance: Boolean
+        # @param SnapshotId: 数据盘快照ID。选择的数据盘快照大小需小于数据盘大小。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotId: String
+        # @param Encrypt: 数据盘是加密。取值范围：
+        # <li>true：加密</li>
+        # <li>
+        #   false：不加密<br />
+        #   默认取值：false<br />
+        #   该参数目前仅用于 `RunInstances` 接口。
+        # </li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encrypt: Boolean
+        # @param KmsKeyId: 自定义CMK对应的ID，取值为UUID或者类似kms-abcd1234。用于加密云盘。
+
+        # 该参数目前仅用于 `CreateWorkspaces` 接口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKeyId: String
+        # @param ThroughputPerformance: 云硬盘性能，单位：MB/s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputPerformance: Integer
+        # @param BurstPerformance: 突发性能
+
+        # 注：内测中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BurstPerformance: Boolean
+
+        attr_accessor :DiskType, :DiskId, :DiskSize, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId, :ThroughputPerformance, :BurstPerformance
+
+        def initialize(disktype=nil, diskid=nil, disksize=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil, throughputperformance=nil, burstperformance=nil)
+          @DiskType = disktype
+          @DiskId = diskid
+          @DiskSize = disksize
+          @DeleteWithInstance = deletewithinstance
+          @SnapshotId = snapshotid
+          @Encrypt = encrypt
+          @KmsKeyId = kmskeyid
+          @ThroughputPerformance = throughputperformance
+          @BurstPerformance = burstperformance
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskId = params['DiskId']
+          @DiskSize = params['DiskSize']
+          @DeleteWithInstance = params['DeleteWithInstance']
+          @SnapshotId = params['SnapshotId']
+          @Encrypt = params['Encrypt']
+          @KmsKeyId = params['KmsKeyId']
+          @ThroughputPerformance = params['ThroughputPerformance']
+          @BurstPerformance = params['BurstPerformance']
+        end
+      end
+
+      # 描述了工作空间的公网可访问性，声明了工作空间的公网使用计费模式，最大带宽等
+      class SpaceInternetAccessible < TencentCloud::Common::AbstractModel
+        # @param InternetChargeType: 网络计费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetChargeType: String
+        # @param InternetMaxBandwidthOut: 公网出带宽上限，默认为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param PublicIpAssigned: 是否分配公网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAssigned: Boolean
+        # @param BandwidthPackageId: 带宽包ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthPackageId: String
+
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :PublicIpAssigned, :BandwidthPackageId
+
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, publicipassigned=nil, bandwidthpackageid=nil)
+          @InternetChargeType = internetchargetype
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @PublicIpAssigned = publicipassigned
+          @BandwidthPackageId = bandwidthpackageid
+        end
+
+        def deserialize(params)
+          @InternetChargeType = params['InternetChargeType']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @PublicIpAssigned = params['PublicIpAssigned']
+          @BandwidthPackageId = params['BandwidthPackageId']
+        end
+      end
+
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目
+      class SpacePlacement < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ProjectId: 项目，默认是0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+
+        attr_accessor :Zone, :ProjectId
+
+        def initialize(zone=nil, projectid=nil)
+          @Zone = zone
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # 工作空间系统盘配置
+      class SpaceSystemDisk < TencentCloud::Common::AbstractModel
+        # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<ul><li>LOCAL_BASIC：本地硬盘</li><li>LOCAL_SSD：本地SSD硬盘</li><li>CLOUD_BASIC：普通云硬盘</li><li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_BSSD：通用性SSD云硬盘</li><li>CLOUD_HSSD：增强型SSD云硬盘</li><li>CLOUD_TSSD：极速型SSD云硬盘</li></ul>默认取值：当前有库存的硬盘类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DiskSize: 系统盘大小，单位：GB。默认值为 50
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskSize
+
+        def initialize(disktype=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 描述了工作空间VPC相关信息，包括子网，IP信息等
+      class SpaceVirtualPrivateCloud < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 私有网络子网ID
+        # @type SubnetId: String
+        # @param AsVpcGateway: 是否用作公网网关
+        # @type AsVpcGateway: Boolean
+        # @param PrivateIpAddresses: 私有网络子网 IP 数组
+        # @type PrivateIpAddresses: Array
+        # @param Ipv6AddressCount: 为弹性网卡指定随机生成
+        # @type Ipv6AddressCount: Integer
+
+        attr_accessor :VpcId, :SubnetId, :AsVpcGateway, :PrivateIpAddresses, :Ipv6AddressCount
+
+        def initialize(vpcid=nil, subnetid=nil, asvpcgateway=nil, privateipaddresses=nil, ipv6addresscount=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AsVpcGateway = asvpcgateway
+          @PrivateIpAddresses = privateipaddresses
+          @Ipv6AddressCount = ipv6addresscount
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @AsVpcGateway = params['AsVpcGateway']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @Ipv6AddressCount = params['Ipv6AddressCount']
+        end
+      end
+
       # 描述集群文件系统选项
       class StorageOption < TencentCloud::Common::AbstractModel
         # @param CFSOptions: 集群挂载CFS文件系统选项。
@@ -2474,6 +2869,35 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 创建资源工作空间时同时绑定的标签对说明
+      class TagSpecification < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 标签绑定的资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Tags: 标签对列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :ResourceType, :Tags
+
+        def initialize(resourcetype=nil, tags=nil)
+          @ResourceType = resourcetype
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

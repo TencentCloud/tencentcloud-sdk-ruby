@@ -153,6 +153,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (CreateWorkspaces) 用于创建工作空间。
+
+        # @param request: Request instance for CreateWorkspaces.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::CreateWorkspacesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::CreateWorkspacesResponse`
+        def CreateWorkspaces(request)
+          body = send_request('CreateWorkspaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWorkspacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteCluster）用于删除一个指定的集群。
 
         # @param request: Request instance for DeleteCluster.

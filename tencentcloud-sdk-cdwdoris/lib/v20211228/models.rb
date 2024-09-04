@@ -728,6 +728,10 @@ module TencentCloud
 
       # CreateBackUpSchedule请求参数结构体
       class CreateBackUpScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param OperationType: 操作类型 create(创建) update(编辑修改)
+        # @type OperationType: String
         # @param ScheduleId: 编辑时需要传
         # @type ScheduleId: Integer
         # @param WeekDays: 选择的星期 逗号分隔
@@ -750,10 +754,23 @@ module TencentCloud
         # @type AuthType: Integer
         # @param CosSourceInfo: cos认证的信息
         # @type CosSourceInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.CosSourceInfo`
+        # @param ScheduleName: 调度任务名
+        # @type ScheduleName: String
+        # @param ScheduleInfo: 调度信息
+        # @type ScheduleInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.ScheduleInfo`
+        # @param UpdateStatus: 更新任务状态：
+        # 3-暂停,
+        # 2-删除,
+        # 1-启动
+        # @type UpdateStatus: Integer
+        # @param CosBucket: 当前任务的cos桶信息
+        # @type CosBucket: String
 
-        attr_accessor :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo
+        attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket
 
-        def initialize(scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil)
+        def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil)
+          @InstanceId = instanceid
+          @OperationType = operationtype
           @ScheduleId = scheduleid
           @WeekDays = weekdays
           @ExecuteHour = executehour
@@ -764,9 +781,15 @@ module TencentCloud
           @RestoreType = restoretype
           @AuthType = authtype
           @CosSourceInfo = cossourceinfo
+          @ScheduleName = schedulename
+          @ScheduleInfo = scheduleinfo
+          @UpdateStatus = updatestatus
+          @CosBucket = cosbucket
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OperationType = params['OperationType']
           @ScheduleId = params['ScheduleId']
           @WeekDays = params['WeekDays']
           @ExecuteHour = params['ExecuteHour']
@@ -790,6 +813,13 @@ module TencentCloud
             @CosSourceInfo = CosSourceInfo.new
             @CosSourceInfo.deserialize(params['CosSourceInfo'])
           end
+          @ScheduleName = params['ScheduleName']
+          unless params['ScheduleInfo'].nil?
+            @ScheduleInfo = ScheduleInfo.new
+            @ScheduleInfo.deserialize(params['ScheduleInfo'])
+          end
+          @UpdateStatus = params['UpdateStatus']
+          @CosBucket = params['CosBucket']
         end
       end
 
@@ -5096,6 +5126,61 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 调度信息
+      class ScheduleInfo < TencentCloud::Common::AbstractModel
+        # @param EffectivePeriod: 生效时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectivePeriod: String
+        # @param ScheduleType: 调度类型：
+        # Day-天
+        # Week-周
+        # Month-月
+        # Once-单次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleType: String
+        # @param ScheduleData: 执行调度的日期。调度类型为周和月时以英文逗号分隔；
+        # 调度类型为单次时，该值是个日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleData: String
+        # @param ScheduleHour: 执行时间：时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleHour: Integer
+        # @param ScheduleMin: 执行时间：分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleMin: Integer
+        # @param BackupScope: 备份粒度：
+        # All-全量
+        # Database-按库
+        # Table-按表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupScope: String
+        # @param BackupDatabase: 备份库：如果是按库备份，则需要该字段，库之间用英文逗号分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupDatabase: String
+
+        attr_accessor :EffectivePeriod, :ScheduleType, :ScheduleData, :ScheduleHour, :ScheduleMin, :BackupScope, :BackupDatabase
+
+        def initialize(effectiveperiod=nil, scheduletype=nil, scheduledata=nil, schedulehour=nil, schedulemin=nil, backupscope=nil, backupdatabase=nil)
+          @EffectivePeriod = effectiveperiod
+          @ScheduleType = scheduletype
+          @ScheduleData = scheduledata
+          @ScheduleHour = schedulehour
+          @ScheduleMin = schedulemin
+          @BackupScope = backupscope
+          @BackupDatabase = backupdatabase
+        end
+
+        def deserialize(params)
+          @EffectivePeriod = params['EffectivePeriod']
+          @ScheduleType = params['ScheduleType']
+          @ScheduleData = params['ScheduleData']
+          @ScheduleHour = params['ScheduleHour']
+          @ScheduleMin = params['ScheduleMin']
+          @BackupScope = params['BackupScope']
+          @BackupDatabase = params['BackupDatabase']
         end
       end
 

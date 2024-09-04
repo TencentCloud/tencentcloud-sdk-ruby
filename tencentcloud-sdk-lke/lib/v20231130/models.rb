@@ -652,7 +652,7 @@ module TencentCloud
 
       # CreateApp请求参数结构体
       class CreateAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppType: 应用类型；knowledge_qa-知识问答管理；summary-知识摘要；classifys-知识标签提取
+        # @param AppType: 应用类型；knowledge_qa-知识问答管理
         # @type AppType: String
         # @param BaseConfig: 应用基础配置
         # @type BaseConfig: :class:`Tencentcloud::Lke.v20231130.models.BaseConfig`
@@ -5919,8 +5919,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 8
-        deprecate :Operate=, :none, 2024, 8
+        deprecate :Operate, :none, 2024, 9
+        deprecate :Operate=, :none, 2024, 9
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
