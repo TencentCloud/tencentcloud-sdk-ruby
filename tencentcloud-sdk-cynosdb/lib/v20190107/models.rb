@@ -6397,6 +6397,84 @@ module TencentCloud
         end
       end
 
+      # DescribeIsolatedInstances请求参数结构体
+      class DescribeIsolatedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @type Limit: Integer
+        # @param Offset: 记录偏移量，默认值为0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，取值范围：
+        # <li> CREATETIME：创建时间</li>
+        # <li> PERIODENDTIME：过期时间</li>
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型，取值范围：
+        # <li> ASC：升序排序 </li>
+        # <li> DESC：降序排序 </li>
+        # @type OrderByType: String
+        # @param Filters: 搜索条件，若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+        # @type Filters: Array
+        # @param DbType: 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
+        # @type DbType: String
+
+        attr_accessor :Limit, :Offset, :OrderBy, :OrderByType, :Filters, :DbType
+
+        def initialize(limit=nil, offset=nil, orderby=nil, orderbytype=nil, filters=nil, dbtype=nil)
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Filters = filters
+          @DbType = dbtype
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filters << queryfilter_tmp
+            end
+          end
+          @DbType = params['DbType']
+        end
+      end
+
+      # DescribeIsolatedInstances返回参数结构体
+      class DescribeIsolatedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例个数
+        # @type TotalCount: Integer
+        # @param InstanceSet: 实例列表
+        # @type InstanceSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceSet, :RequestId
+
+        def initialize(totalcount=nil, instanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceSet = instanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              cynosdbinstance_tmp = CynosdbInstance.new
+              cynosdbinstance_tmp.deserialize(i)
+              @InstanceSet << cynosdbinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMaintainPeriod请求参数结构体
       class DescribeMaintainPeriodRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

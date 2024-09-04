@@ -444,6 +444,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeWorkspaces）用于查询工作空间列表。
+
+        # @param request: Request instance for DescribeWorkspaces.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeWorkspacesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeWorkspacesResponse`
+        def DescribeWorkspaces(request)
+          body = send_request('DescribeWorkspaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkspacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DetachNodes) 用于将一个或者多个计算节点从集群中移除，但是不销毁指定计算资源。
 
         # @param request: Request instance for DetachNodes.
@@ -492,6 +516,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyWorkspacesAttribute) 用于修改工作空间的属性（目前只支持修改工作空间的名称）。
+
+        # @param request: Request instance for ModifyWorkspacesAttribute.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyWorkspacesAttributeRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyWorkspacesAttributeResponse`
+        def ModifyWorkspacesAttribute(request)
+          body = send_request('ModifyWorkspacesAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWorkspacesAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
 
         # @param request: Request instance for SetAutoScalingConfiguration.
@@ -502,6 +550,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAutoScalingConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (TerminateWorkspaces) 用于主动退还工作空间。
+
+        # @param request: Request instance for TerminateWorkspaces.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::TerminateWorkspacesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::TerminateWorkspacesResponse`
+        def TerminateWorkspaces(request)
+          body = send_request('TerminateWorkspaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateWorkspacesResponse.new
             model.deserialize(response['Response'])
             model
           else

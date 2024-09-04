@@ -623,7 +623,7 @@ module TencentCloud
         # @param ToolCallId: 当role为tool时传入，标识具体的函数调用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ToolCallId: String
-        # @param ToolCalls: 模型生成的工具调用，仅 hunyuan-functioncall 模型支持
+        # @param ToolCalls: 模型生成的工具调用，仅 hunyuan-pro 或者 hunyuan-functioncall 模型支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ToolCalls: Array
 

@@ -80,8 +80,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 8
-        deprecate :BTime=, :none, 2024, 8
+        deprecate :BTime, :none, 2024, 9
+        deprecate :BTime=, :none, 2024, 9
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -3205,8 +3205,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 8
-        deprecate :TopicId=, :none, 2024, 8
+        deprecate :TopicId, :none, 2024, 9
+        deprecate :TopicId=, :none, 2024, 9
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -5591,10 +5591,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 8
-        deprecate :VtsMin=, :none, 2024, 8
-        deprecate :VtsMax, :none, 2024, 8
-        deprecate :VtsMax=, :none, 2024, 8
+        deprecate :VtsMin, :none, 2024, 9
+        deprecate :VtsMin=, :none, 2024, 9
+        deprecate :VtsMax, :none, 2024, 9
+        deprecate :VtsMax=, :none, 2024, 9
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -5699,10 +5699,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 8
-        deprecate :VtsMin=, :none, 2024, 8
-        deprecate :VtsMax, :none, 2024, 8
-        deprecate :VtsMax=, :none, 2024, 8
+        deprecate :VtsMin, :none, 2024, 9
+        deprecate :VtsMin=, :none, 2024, 9
+        deprecate :VtsMax, :none, 2024, 9
+        deprecate :VtsMax=, :none, 2024, 9
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -7947,7 +7947,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param Domain: 查询的域名，全部域名不指定
+        # @param Domain: 查询的域名，全部域名填all
         # @type Domain: String
         # @param QueryString: 查询条件，默认为""
         # @type QueryString: String

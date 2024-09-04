@@ -78,7 +78,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口请求域名： ecc.tencentcloudapi.com
         # 纯文本英语作文批改
 
         # @param request: Request instance for ECC.

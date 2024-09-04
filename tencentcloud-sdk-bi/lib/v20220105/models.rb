@@ -2393,10 +2393,12 @@ module TencentCloud
         # @type AreaCode: String
         # @param AppUserId: 企业微信应用用户id
         # @type AppUserId: String
+        # @param LoginSecurityStatus: 是否开启手机验证码登录（0 关闭，1 开启）
+        # @type LoginSecurityStatus: Integer
 
-        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode, :AppUserId
+        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode, :AppUserId, :LoginSecurityStatus
 
-        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil, appuserid=nil)
+        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil, appuserid=nil, loginsecuritystatus=nil)
           @UserId = userid
           @RoleIdList = roleidlist
           @Email = email
@@ -2404,6 +2406,7 @@ module TencentCloud
           @PhoneNumber = phonenumber
           @AreaCode = areacode
           @AppUserId = appuserid
+          @LoginSecurityStatus = loginsecuritystatus
         end
 
         def deserialize(params)
@@ -2414,6 +2417,7 @@ module TencentCloud
           @PhoneNumber = params['PhoneNumber']
           @AreaCode = params['AreaCode']
           @AppUserId = params['AppUserId']
+          @LoginSecurityStatus = params['LoginSecurityStatus']
         end
       end
 

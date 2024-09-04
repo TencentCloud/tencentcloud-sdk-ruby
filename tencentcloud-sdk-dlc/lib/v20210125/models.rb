@@ -527,16 +527,27 @@ module TencentCloud
 
       # AssignMangedTableProperties返回参数结构体
       class AssignMangedTablePropertiesResponse < TencentCloud::Common::AbstractModel
+        # @param Properties: 分配的原生表表属性
+        # @type Properties: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Properties, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(properties=nil, requestid=nil)
+          @Properties = properties
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1617,8 +1628,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 8
-        deprecate :DefaultDataEngine=, :none, 2024, 8
+        deprecate :DefaultDataEngine, :none, 2024, 9
+        deprecate :DefaultDataEngine=, :none, 2024, 9
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -7648,7 +7659,7 @@ module TencentCloud
       class DescribeUserInfoRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id
         # @type UserId: String
-        # @param Type: 查询的信息类型，Group：工作组 DataAuth：数据权限 EngineAuth:引擎权限
+        # @param Type: 必传字段，查询的信息类型，Group：工作组 DataAuth：数据权限 EngineAuth:引擎权限 RowFilter：行级别权限
         # @type Type: String
         # @param Filters: 查询的过滤条件。
 
@@ -11843,10 +11854,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2024, 8
-        deprecate :GovernPolicy=, :none, 2024, 8
-        deprecate :DbGovernPolicyIsDisable, :none, 2024, 8
-        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 8
+        deprecate :GovernPolicy, :none, 2024, 9
+        deprecate :GovernPolicy=, :none, 2024, 9
+        deprecate :DbGovernPolicyIsDisable, :none, 2024, 9
+        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 9
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename
@@ -12857,10 +12868,13 @@ module TencentCloud
         # @param RowFilterInfo: 行过滤集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowFilterInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param AccountType: 账号类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountType: String
 
-        attr_accessor :UserId, :Type, :UserType, :UserDescription, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupInfo, :UserAlias, :RowFilterInfo
+        attr_accessor :UserId, :Type, :UserType, :UserDescription, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupInfo, :UserAlias, :RowFilterInfo, :AccountType
 
-        def initialize(userid=nil, type=nil, usertype=nil, userdescription=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupinfo=nil, useralias=nil, rowfilterinfo=nil)
+        def initialize(userid=nil, type=nil, usertype=nil, userdescription=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupinfo=nil, useralias=nil, rowfilterinfo=nil, accounttype=nil)
           @UserId = userid
           @Type = type
           @UserType = usertype
@@ -12870,6 +12884,7 @@ module TencentCloud
           @WorkGroupInfo = workgroupinfo
           @UserAlias = useralias
           @RowFilterInfo = rowfilterinfo
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -12894,6 +12909,7 @@ module TencentCloud
             @RowFilterInfo = Policys.new
             @RowFilterInfo.deserialize(params['RowFilterInfo'])
           end
+          @AccountType = params['AccountType']
         end
       end
 

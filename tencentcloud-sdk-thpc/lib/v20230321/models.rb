@@ -1472,6 +1472,72 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkspaces请求参数结构体
+      class DescribeWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: 集群ID列表。通过该参数可以指定需要查询信息的集群列表。<br>如果您不指定该参数，则返回Limit数量以内的集群信息。
+        # @type SpaceIds: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+        # @param Filters: 过滤列表
+        # @type Filters: Array
+
+        attr_accessor :SpaceIds, :Offset, :Limit, :Filters
+
+        def initialize(spaceids=nil, offset=nil, limit=nil, filters=nil)
+          @SpaceIds = spaceids
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeWorkspaces返回参数结构体
+      class DescribeWorkspacesResponse < TencentCloud::Common::AbstractModel
+        # @param SpaceSet: 集群概览信息列表
+        # @type SpaceSet: Array
+        # @param TotalCount: 集群数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpaceSet, :TotalCount, :RequestId
+
+        def initialize(spaceset=nil, totalcount=nil, requestid=nil)
+          @SpaceSet = spaceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SpaceSet'].nil?
+            @SpaceSet = []
+            params['SpaceSet'].each do |i|
+              spaceinfo_tmp = SpaceInfo.new
+              spaceinfo_tmp.deserialize(i)
+              @SpaceSet << spaceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetachNodes请求参数结构体
       class DetachNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -2066,6 +2132,42 @@ module TencentCloud
         end
       end
 
+      # ModifyWorkspacesAttribute请求参数结构体
+      class ModifyWorkspacesAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: 工作空间列表
+        # @type SpaceIds: Array
+        # @param SpaceName: 修改后的工作空间名称。可任意命名，但不得超过60个字符。
+        # @type SpaceName: String
+
+        attr_accessor :SpaceIds, :SpaceName
+
+        def initialize(spaceids=nil, spacename=nil)
+          @SpaceIds = spaceids
+          @SpaceName = spacename
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @SpaceName = params['SpaceName']
+        end
+      end
+
+      # ModifyWorkspacesAttribute返回参数结构体
+      class ModifyWorkspacesAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 节点活动信息。
       class NodeActivity < TencentCloud::Common::AbstractModel
         # @param NodeInstanceId: 节点活动所在的实例ID。
@@ -2627,6 +2729,86 @@ module TencentCloud
         end
       end
 
+      # 描述工作空间的信息
+      class SpaceInfo < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 工作空间ID
+        # @type SpaceId: String
+        # @param SpaceFamily: 工作空间类型
+        # @type SpaceFamily: String
+        # @param SpaceType: 工作空间规格
+        # @type SpaceType: String
+        # @param SpaceName: 工作空间名称
+        # @type SpaceName: String
+        # @param SpaceState: 工作空间状态。取值范围：<br><li>PENDING：表示创建中<br></li><li>LAUNCH_FAILED：表示创建失败<br></li><li>ONLINE：表示运行中<br></li><li>ARREARS：表示隔离中<br></li><li>TERMINATING：表示销毁中。<br></li>
+        # @type SpaceState: String
+        # @param SpaceChargeType: 工作空间计费模式
+        # @type SpaceChargeType: String
+        # @param ResourceId: 工作空间对应资源ID
+        # @type ResourceId: String
+        # @param RenewFlag: 自动续费标识
+        # @type RenewFlag: String
+        # @param Tags: 工作空间关联的工作列表
+        # @type Tags: Array
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param ExpiredTime: 到期时间
+        # @type ExpiredTime: String
+        # @param Placement: 工作空间所在位置
+        # @type Placement: :class:`Tencentcloud::Thpc.v20230321.models.Placement`
+        # @param LatestOperation: 工作空间的最新操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperation: String
+        # @param LatestOperationState: 工作空间的最新操作状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationState: String
+
+        attr_accessor :SpaceId, :SpaceFamily, :SpaceType, :SpaceName, :SpaceState, :SpaceChargeType, :ResourceId, :RenewFlag, :Tags, :CreatedTime, :ExpiredTime, :Placement, :LatestOperation, :LatestOperationState
+
+        def initialize(spaceid=nil, spacefamily=nil, spacetype=nil, spacename=nil, spacestate=nil, spacechargetype=nil, resourceid=nil, renewflag=nil, tags=nil, createdtime=nil, expiredtime=nil, placement=nil, latestoperation=nil, latestoperationstate=nil)
+          @SpaceId = spaceid
+          @SpaceFamily = spacefamily
+          @SpaceType = spacetype
+          @SpaceName = spacename
+          @SpaceState = spacestate
+          @SpaceChargeType = spacechargetype
+          @ResourceId = resourceid
+          @RenewFlag = renewflag
+          @Tags = tags
+          @CreatedTime = createdtime
+          @ExpiredTime = expiredtime
+          @Placement = placement
+          @LatestOperation = latestoperation
+          @LatestOperationState = latestoperationstate
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @SpaceFamily = params['SpaceFamily']
+          @SpaceType = params['SpaceType']
+          @SpaceName = params['SpaceName']
+          @SpaceState = params['SpaceState']
+          @SpaceChargeType = params['SpaceChargeType']
+          @ResourceId = params['ResourceId']
+          @RenewFlag = params['RenewFlag']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @CreatedTime = params['CreatedTime']
+          @ExpiredTime = params['ExpiredTime']
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @LatestOperation = params['LatestOperation']
+          @LatestOperationState = params['LatestOperationState']
+        end
+      end
+
       # 描述了工作空间的公网可访问性，声明了工作空间的公网使用计费模式，最大带宽等
       class SpaceInternetAccessible < TencentCloud::Common::AbstractModel
         # @param InternetChargeType: 网络计费类型
@@ -2898,6 +3080,42 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+        end
+      end
+
+      # TerminateWorkspaces请求参数结构体
+      class TerminateWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: 工作空间ID
+        # @type SpaceIds: Array
+        # @param ReleasePrepaidDataDisks: 释放空间挂载的包年包月数据盘。true表示销毁空间同时释放包年包月数据盘，false表示只销毁空间。
+        # @type ReleasePrepaidDataDisks: Boolean
+
+        attr_accessor :SpaceIds, :ReleasePrepaidDataDisks
+
+        def initialize(spaceids=nil, releaseprepaiddatadisks=nil)
+          @SpaceIds = spaceids
+          @ReleasePrepaidDataDisks = releaseprepaiddatadisks
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @ReleasePrepaidDataDisks = params['ReleasePrepaidDataDisks']
+        end
+      end
+
+      # TerminateWorkspaces返回参数结构体
+      class TerminateWorkspacesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

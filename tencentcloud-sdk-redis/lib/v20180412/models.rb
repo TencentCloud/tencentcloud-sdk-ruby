@@ -6380,7 +6380,7 @@ module TencentCloud
 
       # ModifyInstanceParams返回参数结构体
       class ModifyInstanceParamsResponse < TencentCloud::Common::AbstractModel
-        # @param Changed: 说明修改参数配置是否成功。<br><li>true：指修改成功；<br><li>false：指修改失败。<br>
+        # @param Changed: 说明修改参数配置是否成功。<br><li>true：指修改成功；</li><li>false：指修改失败。</li>
         # @type Changed: Boolean
         # @param TaskId: 任务ID。
         # @type TaskId: Integer
@@ -7873,7 +7873,7 @@ module TencentCloud
 
       # StartupInstance返回参数结构体
       class StartupInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: 该字段已废弃，请通过查询实例接口获取到的状态来判断实例是否已解隔离
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

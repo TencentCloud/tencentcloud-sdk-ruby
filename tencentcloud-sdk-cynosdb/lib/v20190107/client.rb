@@ -1517,6 +1517,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeIsolatedInstances)用于查询回收站实例列表。
+
+        # @param request: Request instance for DescribeIsolatedInstances.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeIsolatedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeIsolatedInstancesResponse`
+        def DescribeIsolatedInstances(request)
+          body = send_request('DescribeIsolatedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIsolatedInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例维护时间窗
 
         # @param request: Request instance for DescribeMaintainPeriod.

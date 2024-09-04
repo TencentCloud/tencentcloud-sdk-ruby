@@ -1142,7 +1142,7 @@ module TencentCloud
         # @type Region: String
         # @param RemoteInfo: 异地备份详细信息
         # @type RemoteInfo: Array
-        # @param CosStorageType: 存储方式，0-常规存储，1-归档存储，默认为0
+        # @param CosStorageType: 存储方式，0-常规存储，1-归档存储，2-标准存储，默认为0
         # @type CosStorageType: Integer
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
@@ -1359,7 +1359,7 @@ module TencentCloud
         # @type Status: String
         # @param RemoteInfo: binlog异地备份详细信息
         # @type RemoteInfo: Array
-        # @param CosStorageType: 存储方式，0-常规存储，1-归档存储，默认为0
+        # @param CosStorageType: 存储方式，0-常规存储，1-归档存储，2-标准存储，默认为0
         # @type CosStorageType: Integer
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
@@ -11408,8 +11408,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 8
-        deprecate :IsSucess=, :none, 2024, 8
+        deprecate :IsSucess, :none, 2024, 9
+        deprecate :IsSucess=, :none, 2024, 9
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
