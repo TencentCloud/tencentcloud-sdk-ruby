@@ -207,7 +207,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param UserName: 用户名
         # @type UserName: String
-        # @param PassWord: 密码
+        # @param PassWord: base64加密后的密码
         # @type PassWord: String
         # @param Describe: 描述
         # @type Describe: String
@@ -424,8 +424,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2024, 7
-        deprecate :Tags=, :none, 2024, 7
+        deprecate :Tags, :none, 2024, 9
+        deprecate :Tags=, :none, 2024, 9
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil)
           @Zone = zone

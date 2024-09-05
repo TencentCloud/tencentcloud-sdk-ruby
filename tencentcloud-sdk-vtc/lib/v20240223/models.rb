@@ -239,16 +239,19 @@ module TencentCloud
         # @type Confirm: Integer
         # @param LipSync: 是否开启口型驱动，0：不开启，1：开启。默认开启。
         # @type LipSync: Integer
+        # @param VoiceType: 音色 ID
+        # @type VoiceType: String
 
-        attr_accessor :VideoUrl, :SrcLang, :DstLang, :AudioUrl, :Confirm, :LipSync
+        attr_accessor :VideoUrl, :SrcLang, :DstLang, :AudioUrl, :Confirm, :LipSync, :VoiceType
 
-        def initialize(videourl=nil, srclang=nil, dstlang=nil, audiourl=nil, confirm=nil, lipsync=nil)
+        def initialize(videourl=nil, srclang=nil, dstlang=nil, audiourl=nil, confirm=nil, lipsync=nil, voicetype=nil)
           @VideoUrl = videourl
           @SrcLang = srclang
           @DstLang = dstlang
           @AudioUrl = audiourl
           @Confirm = confirm
           @LipSync = lipsync
+          @VoiceType = voicetype
         end
 
         def deserialize(params)
@@ -258,6 +261,7 @@ module TencentCloud
           @AudioUrl = params['AudioUrl']
           @Confirm = params['Confirm']
           @LipSync = params['LipSync']
+          @VoiceType = params['VoiceType']
         end
       end
 

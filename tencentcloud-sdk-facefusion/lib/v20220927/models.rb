@@ -390,7 +390,8 @@ module TencentCloud
 
       # 图片编码参数
       class ImageCodecParam < TencentCloud::Common::AbstractModel
-        # @param MetaData: 元数据，个数不能大于1。
+        # @param MetaData: 元数据是描述媒体文件的附加信息。通过添加自定义的元数据，可以将一些附加信息嵌入到文件中。这些信息可以用于版权、描述、标识等目的，并在后续的媒体处理或管理过程中使用。
+        # 个数不能大于1。
         # @type MetaData: Array
 
         attr_accessor :MetaData
@@ -414,14 +415,20 @@ module TencentCloud
       # logo参数
       class LogoParam < TencentCloud::Common::AbstractModel
         # @param LogoRect: 标识图片位于融合结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配。
+        # Width、Height <= 2160。
         # @type LogoRect: :class:`Tencentcloud::Facefusion.v20220927.models.FaceRect`
-        # @param LogoUrl: 标识图片Url地址。
+        # @param LogoUrl: 标识图片Url地址
+
         # ●base64 和 url 必须提供一个，如果都提供以 url 为准。
-        # ●支持图片格式：支持jpg或png。
+        # ●支持图片格式：支持jpg或png
+        # 专业版：base64 编码后大小不超过10M。
+        # 非专业版：base64 编码后大小不超过5M。
         # @type LogoUrl: String
-        # @param LogoImage: 标识图片base64
+        # @param LogoImage: 输入图片base64。
         # ●base64 和 url 必须提供一个，如果都提供以 url 为准。
-        # ●支持图片格式：支持jpg或png。
+        # ●支持图片格式：支持jpg或png
+        # 专业版：base64 编码后大小不超过10M。
+        # 非专业版：base64 编码后大小不超过5M。
         # @type LogoImage: String
 
         attr_accessor :LogoRect, :LogoUrl, :LogoImage
@@ -513,9 +520,9 @@ module TencentCloud
 
       # MetaData数据结构，Key/Value格式
       class MetaData < TencentCloud::Common::AbstractModel
-        # @param MetaKey: MetaData的Key
+        # @param MetaKey: MetaData的Key，字符长度不能超过32
         # @type MetaKey: String
-        # @param MetaValue: MetaData的Value
+        # @param MetaValue: MetaData的Value，字符长度不能超过256
         # @type MetaValue: String
 
         attr_accessor :MetaKey, :MetaValue
