@@ -4106,21 +4106,28 @@ module TencentCloud
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param AuthorizationTypes: 指定授权方式 支持多选:
-        # 1-上传授权书方式
-        # 2- 法人授权方式
-        # 3- 法人身份认证方式
+
+        # <ul>
+        # <li><strong>1</strong>:上传授权书方式</li>
+        # <li><strong>2</strong>: 法人授权方式</li>
+        # <li><strong>3</strong>: 法人身份认证方式</li>
+        # </ul>
         # @type AuthorizationTypes: Array
-        # @param OrganizationName: 企业名称
-        # EndPointType=“H5”或者"SHORT_H5"时，该参数必填
+        # @param OrganizationName: 认证企业名称，请确认该名称与企业营业执照中注册的名称一致。
+
+        # 注：
+
+        # 1. `如果名称中包含英文括号()，请使用中文括号（）代替。`
+
+        # 2. `EndPointType=“H5”或者"SHORT_H5"时，该参数必填`
         # @type OrganizationName: String
         # @param UniformSocialCreditCode: 企业统一社会信用代码
         # @type UniformSocialCreditCode: String
-        # @param LegalName: 法人姓名
+        # @param LegalName: 企业法人的姓名
         # @type LegalName: String
-        # @param AutoJumpUrl: 认证完成跳转链接
+        # @param AutoJumpUrl: 认证完成跳回的链接，最长500个字符
         # @type AutoJumpUrl: String
         # @param OrganizationAddress: 营业执照企业地址
-        # 示例：xx省xx市xx县/区xx街道
         # @type OrganizationAddress: String
         # @param AdminName: 认证人姓名
         # @type AdminName: String
@@ -4128,49 +4135,37 @@ module TencentCloud
         # @type AdminMobile: String
         # @param AdminIdCardNumber: 认证人身份证号
         # @type AdminIdCardNumber: String
-        # @param AdminIdCardType: 认证人证件类型
-        # 支持以下类型
-        # <ul><li>ID_CARD : 中国大陆居民身份证  (默认值)</li>
-        # <li>HONGKONG_AND_MACAO : 港澳居民来往内地通行证</li>
-        # <li>HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)</li></ul>
+        # @param AdminIdCardType: 认证人证件类型， 支持以下类型
+        # <ul><li><b>ID_CARD</b> : 中国大陆居民身份证  (默认值)</li>
+        # <li><b>HONGKONG_AND_MACAO</b>  : 港澳居民来往内地通行证</li>
+        # <li><b>HONGKONG_MACAO_AND_TAIWAN</b>  : 港澳台居民居住证(格式同居民身份证)</li></ul>
         # @type AdminIdCardType: String
-        # @param UniformSocialCreditCodeSame: 营业执照的社会信用代码保持一致
-        # false 关闭-默认
-        # true 开启
+        # @param UniformSocialCreditCodeSame: 对方打开链接认证时，对方填写的营业执照的社会信用代码是否与接口上传上来的要保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>
         # @type UniformSocialCreditCodeSame: Boolean
-        # @param LegalNameSame: 法人姓名保持一致
-        # false 关闭-默认
-        # true 开启
+        # @param LegalNameSame: 对方打开链接认证时，法人姓名是否要与接口传递上来的保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>
         # @type LegalNameSame: Boolean
-        # @param AdminNameSame: 认证人姓名一致
-        # false 关闭-默认
-        # true 开启
-        # 注意：
-        # 开启后在认证过程前会校验拦截
+        # @param AdminNameSame: 对方打开链接认证时，认证人姓名是否要与接口传递上来的保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>
         # @type AdminNameSame: Boolean
-        # @param AdminIdCardNumberSame: 认证人居民身份证件号一致
-        # false 关闭-默认
-        # true 开启
-        # 注意：
-        # 开启后在认证过程前会校验拦截
+        # @param AdminIdCardNumberSame: 对方打开链接认证时，认证人居民身份证件号是否要与接口传递上来的保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>
         # @type AdminIdCardNumberSame: Boolean
-        # @param AdminMobileSame: 认证人手机号一致
-        # false 关闭-默认
-        # true 开启
-        # 注意：
-        # 开启后在认证过程前会校验拦截
+        # @param AdminMobileSame: 对方打开链接认证时，认证人手机号是否要与接口传递上来的保持一致。<ul>
+        # <li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li>
+        # <li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li>
+        # </ul>
         # @type AdminMobileSame: Boolean
-        # @param OrganizationNameSame: 企业名称保持一致
-        # false 关闭-默认
-        # true 开启
+        # @param OrganizationNameSame: 对方打开链接认证时，企业名称是否要与接口传递上来的保持一致。<ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul>
         # @type OrganizationNameSame: Boolean
-        # @param BusinessLicense: 营业执照正面照(PNG或JPG) base64格式, 大小不超过5M
+        # @param BusinessLicense: 营业执照正面照（支持PNG或JPG格式）需以base64格式提供，且文件大小不得超过5MB。
         # @type BusinessLicense: String
         # @param Endpoint: 跳转链接类型：
-        # "PC"-PC端认证链接
-        # "APP"-全屏或半屏跳转小程序链接
-        # “H5”-H5页面认证链接 "SHORT_H5"- H5认证短链
-        # "SHORT_URL"- 跳转小程序短链
+
+        # <ul>
+        # <li><b>PC</b>：适用于PC端的认证链接</li>
+        # <li><b>APP</b>：用于全屏或半屏跳转的小程序链接</li>
+        # <li><b>SHORT_URL</b>：跳转小程序的链接的短链形式</li>
+        # <li><b>H5</b>：适用于H5页面的认证链接</li>
+        # <li><b>SHORT_H5</b>：H5认证链接的短链形式</li>
+        # </ul>
         # @type Endpoint: String
 
         attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint
@@ -4225,13 +4220,11 @@ module TencentCloud
 
       # CreateOrganizationAuthUrl返回参数结构体
       class CreateOrganizationAuthUrlResponse < TencentCloud::Common::AbstractModel
-        # @param AuthUrl: “H5”-H5长连接
-        # "SHORT_H5"- H5短链
-        # "APP"-小程序
-        # "PC"-PC浏览器
-        # 链接有效期统一30天
+        # @param AuthUrl: 生成的认证链接。
+
+        # 注： `链接有效期统一30天`
         # @type AuthUrl: String
-        # @param ExpiredTime: 链接过期时间戳
+        # @param ExpiredTime: 链接过期时间，格式为Unix标准时间戳（秒）
         # @type ExpiredTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

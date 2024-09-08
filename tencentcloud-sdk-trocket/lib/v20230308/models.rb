@@ -1718,13 +1718,16 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 查询结果限制数量
         # @type Limit: Integer
+        # @param IncludeNew: 是否包含新控制台集群
+        # @type IncludeNew: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :IncludeNew
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, includenew=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @IncludeNew = includenew
         end
 
         def deserialize(params)
@@ -1738,6 +1741,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @IncludeNew = params['IncludeNew']
         end
       end
 

@@ -2445,33 +2445,6 @@ module TencentCloud
         end
       end
 
-      # DeleteVpcInstance请求参数结构体
-      class DeleteVpcInstanceRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DeleteVpcInstance返回参数结构体
-      class DeleteVpcInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 访问控制列表对象
       class DescAcItem < TencentCloud::Common::AbstractModel
         # @param SourceContent: 访问源

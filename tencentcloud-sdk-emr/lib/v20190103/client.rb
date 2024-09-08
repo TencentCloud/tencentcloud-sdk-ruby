@@ -174,6 +174,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # yarn资源调度-部署生效
+
+        # @param request: Request instance for DeployYarnConf.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DeployYarnConfRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DeployYarnConfResponse`
+        def DeployYarnConf(request)
+          body = send_request('DeployYarnConf', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployYarnConfResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取自动扩缩容全局配置
 
         # @param request: Request instance for DescribeAutoScaleGroupGlobalConf.
@@ -558,7 +582,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询YARN资源调度数据信息
+        # 查询YARN资源调度数据信息。已废弃，请使用`DescribeYarnQueue`去查询队列信息。
 
         # @param request: Request instance for DescribeResourceSchedule.
         # @type request: :class:`Tencentcloud::emr::V20190103::DescribeResourceScheduleRequest`
@@ -679,7 +703,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看yarn资源调度的调度历史
+        # 获取资源调度中的队列信息
+
+        # @param request: Request instance for DescribeYarnQueue.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeYarnQueueRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeYarnQueueResponse`
+        def DescribeYarnQueue(request)
+          body = send_request('DescribeYarnQueue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeYarnQueueResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看yarn资源调度的调度历史。废弃，请使用流程中心查看历史记录。
 
         # @param request: Request instance for DescribeYarnScheduleHistory.
         # @type request: :class:`Tencentcloud::emr::V20190103::DescribeYarnScheduleHistoryRequest`
@@ -872,7 +920,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 刷新YARN的动态资源池
+        # 刷新YARN的动态资源池。已废弃，请使用`DeployYarnConf`
 
         # @param request: Request instance for ModifyResourcePools.
         # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourcePoolsRequest`
@@ -896,7 +944,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改YARN资源调度的资源配置
+        # 修改YARN资源调度的资源配置。已废弃，请使用`ModifyYarnQueueV2`来修改队列配置
 
         # @param request: Request instance for ModifyResourceScheduleConfig.
         # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourceScheduleConfigRequest`
@@ -920,7 +968,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改了yarn的资源调度器，点击部署生效
+        # 修改了yarn的资源调度器，点击部署生效。
 
         # @param request: Request instance for ModifyResourceScheduler.
         # @type request: :class:`Tencentcloud::emr::V20190103::ModifyResourceSchedulerRequest`
@@ -992,7 +1040,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 部署生效
+        # 部署生效。已废弃，请使用`DeployYarnConf`接口进行部署生效
 
         # @param request: Request instance for ModifyYarnDeploy.
         # @type request: :class:`Tencentcloud::emr::V20190103::ModifyYarnDeployRequest`
@@ -1002,6 +1050,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyYarnDeployResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改资源调度中队列信息
+
+        # @param request: Request instance for ModifyYarnQueueV2.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyYarnQueueV2Request`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyYarnQueueV2Response`
+        def ModifyYarnQueueV2(request)
+          body = send_request('ModifyYarnQueueV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyYarnQueueV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改YARN资源调度的资源配置
+
+        # @param request: Request instance for ResetYarnConfig.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ResetYarnConfigRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ResetYarnConfigResponse`
+        def ResetYarnConfig(request)
+          body = send_request('ResetYarnConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetYarnConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1513,8 +1513,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2024, 8
-        deprecate :IgnoreCacheControl=, :none, 2024, 8
+        deprecate :IgnoreCacheControl, :none, 2024, 9
+        deprecate :IgnoreCacheControl=, :none, 2024, 9
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2744,8 +2744,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2024, 8
-        deprecate :EncodeUrl=, :none, 2024, 8
+        deprecate :EncodeUrl, :none, 2024, 9
+        deprecate :EncodeUrl=, :none, 2024, 9
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -3086,8 +3086,9 @@ module TencentCloud
       class CreateZoneRequest < TencentCloud::Common::AbstractModel
         # @param Type: 站点接入类型。该参数取值如下，不填写时默认为 partial：
         # <li>partial：CNAME 接入；</li>
-        # <li> full：NS 接入；</li>
-        # <li>noDomainAccess：无域名接入。</li>
+        # <li>full：NS 接入；</li>
+        # <li>noDomainAccess：无域名接入；</li>
+        # <li>dnsPodAccess：DNSPod 托管接入，该接入模式要求您的域名已托管在 DNSPod 内。</li>
         # @type Type: String
         # @param ZoneName: 站点名称。CNAME/NS 接入的时，请传入二级域名（example.com）作为站点名称；无域名接入时，该值请保留为空。
         # @type ZoneName: String
@@ -3111,10 +3112,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2024, 8
-        deprecate :AllowDuplicates=, :none, 2024, 8
-        deprecate :JumpStart, :none, 2024, 8
-        deprecate :JumpStart=, :none, 2024, 8
+        deprecate :AllowDuplicates, :none, 2024, 9
+        deprecate :AllowDuplicates=, :none, 2024, 9
+        deprecate :JumpStart, :none, 2024, 9
+        deprecate :JumpStart=, :none, 2024, 9
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -9188,8 +9189,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2024, 8
-        deprecate :ApplyType=, :none, 2024, 8
+        deprecate :ApplyType, :none, 2024, 9
+        deprecate :ApplyType=, :none, 2024, 9
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
@@ -9793,8 +9794,9 @@ module TencentCloud
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
         # @param Type: 站点接入方式，取值有：
-        # <li> full：NS 接入；</li>
-        # <li> partial：CNAME 接入，如果站点当前是无域名接入，仅支持切换到CNAME接入。</li>不填写保持原有配置。
+        # <li>full：NS 接入；</li>
+        # <li>partial：CNAME 接入，如果站点当前是无域名接入，仅支持切换到 CNAME 接入；</li>
+        # <li>dnsPodAccess：DNSPod 托管接入，该接入模式要求您的域名已托管在 DNSPod 内。</li>不填写保持原有配置。
         # @type Type: String
         # @param VanityNameServers: 自定义站点信息，以替代系统默认分配的名称服务器。不填写保持原有配置。当站点是无域名接入方式时不允许传此参数。
         # @type VanityNameServers: :class:`Tencentcloud::Teo.v20220901.models.VanityNameServers`
@@ -11612,8 +11614,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2024, 8
-        deprecate :IgnoreNameCase=, :none, 2024, 8
+        deprecate :IgnoreNameCase, :none, 2024, 9
+        deprecate :IgnoreNameCase=, :none, 2024, 9
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

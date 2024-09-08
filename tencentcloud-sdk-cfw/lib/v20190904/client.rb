@@ -749,32 +749,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口废弃
-
-        # 删除防火墙实例
-
-        # @param request: Request instance for DeleteVpcInstance.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteVpcInstanceRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteVpcInstanceResponse`
-        def DeleteVpcInstance(request)
-          body = send_request('DeleteVpcInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteVpcInstanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 访问控制列表
 
         # @param request: Request instance for DescribeAcLists.

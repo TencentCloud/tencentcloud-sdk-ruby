@@ -2014,9 +2014,9 @@ module TencentCloud
         # @type Rate: String
         # @param KeyWord: 违规关键字
         # @type KeyWord: String
-        # @param StartTime: 关键字在音频的开始时间，从0开始的偏移量，单位为毫秒
+        # @param StartTime: 关键字在音频的开始时间，从0开始的偏移量，单位为毫秒，Label=moan时有效
         # @type StartTime: Integer
-        # @param EndTime: 关键字在音频的结束时间，从0开始的偏移量,，单位为毫秒
+        # @param EndTime: 关键字在音频的结束时间，从0开始的偏移量,，单位为毫秒，Label=moan时有效
         # @type EndTime: Integer
 
         attr_accessor :Label, :Rate, :KeyWord, :StartTime, :EndTime

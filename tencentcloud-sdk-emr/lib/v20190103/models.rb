@@ -772,10 +772,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 8
-        deprecate :Ftitle=, :none, 2024, 8
-        deprecate :Config, :none, 2024, 8
-        deprecate :Config=, :none, 2024, 8
+        deprecate :Ftitle, :none, 2024, 9
+        deprecate :Ftitle=, :none, 2024, 9
+        deprecate :Config, :none, 2024, 9
+        deprecate :Config=, :none, 2024, 9
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -1006,6 +1006,171 @@ module TencentCloud
         def deserialize(params)
           @ComponentName = params['ComponentName']
           @IpList = params['IpList']
+        end
+      end
+
+      # 资源调度 - 队列修改信息
+      class ConfigModifyInfoV2 < TencentCloud::Common::AbstractModel
+        # @param OpType: 操作类型，可选值：
+
+        # - 0：新建队列
+        # - 1：编辑-全量覆盖
+        # - 2：新建子队列
+        # - 3：删除
+        # - 4：克隆，与新建子队列的行为一样，特别的对于`fair`，可以复制子队列到新建队列
+        # - 6：编辑-增量更新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpType: Integer
+        # @param Name: 队列名称，不支持修改。
+        # @type Name: String
+        # @param ParentId: 新建队列 传root的MyId；新建子队列 传 选中队列的 myId；克隆 要传 选中队列 parentId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param MyId: 编辑、删除 传选中队列的 myId。克隆只有在调度器是`fair`时才需要传，用来复制子队列到新队列。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MyId: String
+        # @param BasicParams: 基础配置信息。key的取值与**DescribeYarnQueue**返回的字段一致。
+        # ###### 公平调度器
+        # key的取值信息如下：
+
+        # - type，父队列，取值为 **parent** 或 **null**
+        # - aclSubmitApps，提交访问控制，取值为**AclForYarnQueue类型的json串**或**null**
+        # - aclAdministerApps，管理访问控制，取值为**AclForYarnQueue类型的json串**或**null**
+        # - minSharePreemptionTimeout，最小共享优先权超时时间，取值为**数字字符串**或**null**
+        # - fairSharePreemptionTimeout，公平份额抢占超时时间，取值为**数字字符串**或**null**
+        # - fairSharePreemptionThreshold，公平份额抢占阈值，取值为**数字字符串**或**null**，其中数字的范围是（0，1]
+        # - allowPreemptionFrom，抢占模式，取值为**布尔字符串**或**null**
+        # - schedulingPolicy，调度策略，取值为**drf**、**fair**、**fifo**或**null**
+
+        # ```
+        # type AclForYarnQueue struct {
+        # 	User  *string `json:"user"` //用户名
+        # 	Group *string `json:"group"`//组名
+        # }
+        # ```
+        # ###### 容量调度器
+        # key的取值信息如下：
+
+        # - state，队列状态，取值为**STOPPED**或**RUNNING**
+        # - default-node-label-expression，默认标签表达式，取值为**标签**或**null**
+        # - acl_submit_applications，提交访问控制，取值为**AclForYarnQueue类型的json串**或**null**
+        # - acl_administer_queue，管理访问控制，取值为**AclForYarnQueue类型的json串**或**null**
+        # - maximum-allocation-mb，分配Container最大内存数量，取值为**数字字符串**或**null**
+        # - maximum-allocation-vcores，Container最大vCore数量，取值为**数字字符串**或**null**
+        # ```
+        # type AclForYarnQueue struct {
+        # 	User  *string `json:"user"` //用户名
+        # 	Group *string `json:"group"`//组名
+        # }
+        # ```
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasicParams: :class:`Tencentcloud::Emr.v20190103.models.ItemSeq`
+        # @param ConfigSetParams: 配置集信息，取值见该复杂类型的参数说明。配置集是计划模式在队列中表现，表示的是不同时间段不同的配置值，所有队列的配置集名称都一样，对于单个队列，每个配置集中的标签与参数都一样，只是参数值不同。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigSetParams: Array
+        # @param DeleteLables: 容量调度专用，`OpType`为`6`时才生效，表示要删除这个队列中的哪些标签。优先级高于ConfigSetParams中的LabelParams。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteLables: Array
+
+        attr_accessor :OpType, :Name, :ParentId, :MyId, :BasicParams, :ConfigSetParams, :DeleteLables
+
+        def initialize(optype=nil, name=nil, parentid=nil, myid=nil, basicparams=nil, configsetparams=nil, deletelables=nil)
+          @OpType = optype
+          @Name = name
+          @ParentId = parentid
+          @MyId = myid
+          @BasicParams = basicparams
+          @ConfigSetParams = configsetparams
+          @DeleteLables = deletelables
+        end
+
+        def deserialize(params)
+          @OpType = params['OpType']
+          @Name = params['Name']
+          @ParentId = params['ParentId']
+          @MyId = params['MyId']
+          unless params['BasicParams'].nil?
+            @BasicParams = ItemSeq.new
+            @BasicParams.deserialize(params['BasicParams'])
+          end
+          unless params['ConfigSetParams'].nil?
+            @ConfigSetParams = []
+            params['ConfigSetParams'].each do |i|
+              configsetinfo_tmp = ConfigSetInfo.new
+              configsetinfo_tmp.deserialize(i)
+              @ConfigSetParams << configsetinfo_tmp
+            end
+          end
+          @DeleteLables = params['DeleteLables']
+        end
+      end
+
+      # 资源调度-配置集信息
+      class ConfigSetInfo < TencentCloud::Common::AbstractModel
+        # @param ConfigSet: 配置集名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigSet: String
+        # @param LabelParams: 容量调度器会使用，里面设置了标签相关的配置。key的取值与**DescribeYarnQueue**返回的字段一致。
+        # key的取值信息如下：
+        # - labelName，标签名称，标签管理里的标签。
+        # - capacity，容量，取值为**数字字符串**
+        # - maximum-capacity，最大容量，取值为**数字字符串**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelParams: Array
+        # @param BasicParams: 设置配置集相关的参数。key的取值与**DescribeYarnQueue**返回的字段一致。
+        # ###### 公平调度器
+        # key的取值信息如下：
+        # - minResources，最大资源量，取值为**YarnResource类型的json串**或**null**
+        # - maxResources，最大资源量，取值为**YarnResource类型的json串**或**null**
+        # - maxChildResources，能够分配给为未声明子队列的最大资源量，取值为**数字字符串**或**null**
+        # - maxRunningApps，最高可同时处于运行的App数量，取值为**数字字符串**或**null**
+        # - weight，权重，取值为**数字字符串**或**null**
+        # - maxAMShare，App Master最大份额，取值为**数字字符串**或**null**，其中数字的范围是[0，1]或-1
+
+        # ```
+        # type YarnResource struct {
+        # 	Vcores *int `json:"vcores"`
+        # 	Memory *int `json:"memory"`
+        # 	Type *string `json:"type"` // 取值为`percent`或`null`当值为`percent`时，表示使用的百分比，否则就是使用的绝对数值。只有maxResources、maxChildResources才可以取值为`percent`
+        # }
+        # ```
+
+        # ###### 容量调度器
+        # key的取值信息如下：
+        # - minimum-user-limit-percent，用户最小容量，取值为**YarnResource类型的json串**或**null**，其中数字的范围是[0，100]
+        # - user-limit-factor，用户资源因子，取值为**YarnResource类型的json串**或**null**
+        # - maximum-applications，最大应用数Max-Applications，取值为**数字字符串**或**null**，其中数字为正整数
+        # - maximum-am-resource-percent，最大AM比例，取值为**数字字符串**或**null**，其中数字的范围是[0，1]或-1
+        # - default-application-priority，资源池优先级，取值为**数字字符串**或**null**，其中数字为正整数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasicParams: Array
+
+        attr_accessor :ConfigSet, :LabelParams, :BasicParams
+
+        def initialize(configset=nil, labelparams=nil, basicparams=nil)
+          @ConfigSet = configset
+          @LabelParams = labelparams
+          @BasicParams = basicparams
+        end
+
+        def deserialize(params)
+          @ConfigSet = params['ConfigSet']
+          unless params['LabelParams'].nil?
+            @LabelParams = []
+            params['LabelParams'].each do |i|
+              itemseq_tmp = ItemSeq.new
+              itemseq_tmp.deserialize(i)
+              @LabelParams << itemseq_tmp
+            end
+          end
+          unless params['BasicParams'].nil?
+            @BasicParams = []
+            params['BasicParams'].each do |i|
+              item_tmp = Item.new
+              item_tmp.deserialize(i)
+              @BasicParams << item_tmp
+            end
+          end
         end
       end
 
@@ -1672,6 +1837,42 @@ module TencentCloud
         def deserialize(params)
           @ServiceName = params['ServiceName']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeployYarnConf请求参数结构体
+      class DeployYarnConfRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeployYarnConf返回参数结构体
+      class DeployYarnConfResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 启动流程后的流程ID，可以使用[DescribeClusterFlowStatusDetail](https://cloud.tencent.com/document/product/589/107224)接口来获取流程状态
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3232,6 +3433,145 @@ module TencentCloud
               @Results << yarnapplication_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeYarnQueue请求参数结构体
+      class DescribeYarnQueueRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群Id
+        # @type InstanceId: String
+        # @param Scheduler: 调度器，可选值：
+
+        # 1. capacity
+        # 2. fair
+        # @type Scheduler: String
+
+        attr_accessor :InstanceId, :Scheduler
+
+        def initialize(instanceid=nil, scheduler=nil)
+          @InstanceId = instanceid
+          @Scheduler = scheduler
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Scheduler = params['Scheduler']
+        end
+      end
+
+      # DescribeYarnQueue返回参数结构体
+      class DescribeYarnQueueResponse < TencentCloud::Common::AbstractModel
+        # @param Queue: 队列信息。是一个对象转成的json字符串，对应的golang结构体如下所示，比如`QueueWithConfigSetForFairScheduler`的第一个字段`Name`：
+
+        # ```
+        # Name                         string                               `json:"name"` //队列名称
+        # ```
+        # - `Name`：字段名
+        # - `string`：字段类型
+        # - `json:"name"`：表示在序列化和反序列化`json`时，对应的`json key`，下面以`json key`来指代
+        # - `//`：后面的注释内容对应页面上看到的名称
+
+        # 字段类型以`*`开头的表示取值可能为json规范下的null，不同的语言需要使用能表达null的类型来接收，比如java的包装类型；字段类型以`[]`开头的表示是数组类型；`json key`在调用`ModifyYarnQueueV2 `接口也会使用。
+
+        # - 公平调度器
+
+        # ```
+        # type QueueWithConfigSetForFairScheduler struct {
+        # 	Name                         string                               `json:"name"` //队列名称
+        # 	MyId                         string                  `json:"myId"` // 队列id，用于编辑、删除、克隆时使用
+        # 	ParentId                     string                  `json:"parentId"`  // 父队列Id
+        # 	Type                         *string                              `json:"type"` // 队列归属。parent或空，当确定某个队列是父队列，且没有子队列时，才可以设置，通常用来支持放置策略nestedUserQueue
+        # 	AclSubmitApps                *AclForYarnQueue                     `json:"aclSubmitApps"` // 提交访问控制
+        # 	AclAdministerApps            *AclForYarnQueue                     `json:"aclAdministerApps"` // 管理访问控制
+        # 	MinSharePreemptionTimeout    *int                                 `json:"minSharePreemptionTimeout"` // 最小共享优先权超时时间
+        # 	FairSharePreemptionTimeout   *int                                 `json:"fairSharePreemptionTimeout"` // 公平份额抢占超时时间
+        # 	FairSharePreemptionThreshold *float32                             `json:"fairSharePreemptionThreshold"` // 公平份额抢占阈值。取值 （0，1]
+        # 	AllowPreemptionFrom          *bool                                `json:"allowPreemptionFrom"`                                        // 抢占模式
+        # 	SchedulingPolicy             *string                              `json:"schedulingPolicy"`  // 调度策略，取值有drf、fair、fifo
+        # 	IsDefault                    *bool                                `json:"isDefault"` // 是否是root.default队列
+        # 	IsRoot                       *bool                                `json:"isRoot"` // 是否是root队列
+        # 	ConfigSets                   []ConfigSetForFairScheduler          `json:"configSets"` // 配置集设置
+        # 	Children                     []QueueWithConfigSetForFairScheduler `json:"queues"` // 子队列信息。递归
+        # }
+
+        # type AclForYarnQueue struct {
+        # 	User  *string `json:"user"` //用户名
+        # 	Group *string `json:"group"`//组名
+        # }
+
+        # type ConfigSetForFairScheduler struct {
+        # 	Name              string        `json:"name"` // 配置集名称
+        # 	MinResources      *YarnResource `json:"minResources"` // 最小资源量
+        # 	MaxResources      *YarnResource `json:"maxResources"` // 最大资源量
+        # 	MaxChildResources *YarnResource `json:"maxChildResources"` // 能够分配给为未声明子队列的最大资源量
+        # 	MaxRunningApps    *int          `json:"maxRunningApps"` // 最高可同时处于运行的App数量
+        # 	Weight            *float32      `json:"weight"`                   // 权重
+        # 	MaxAMShare        *float32      `json:"maxAMShare"` // App Master最大份额
+        # }
+
+        # type YarnResource struct {
+        # 	Vcores *int `json:"vcores"`
+        # 	Memory *int `json:"memory"`
+        # 	Type *string `json:"type"` // 当值为`percent`时，表示使用的百分比，否则就是使用的绝对数值
+        # }
+        # ```
+
+        # - 容量调度器
+
+        # ```
+        # type QueueForCapacitySchedulerV3 struct {
+        # 	Name                       string                `json:"name"` // 队列名称
+        # 	MyId                       string                `json:"myId"` // 队列id，用于编辑、删除、克隆时使用
+        # 	ParentId                   string                `json:"parentId"` // 父队列Id
+        # 	Configs                    []ConfigForCapacityV3 `json:"configs"` //配置集设置
+        # 	State                      *string         `json:"state"` // 资源池状态
+        # 	DefaultNodeLabelExpression *string               `json:"default-node-label-expression"` // 默认标签表达式
+        # 	AclSubmitApps              *AclForYarnQueue      `json:"acl_submit_applications"` // 提交访问控制
+        # 	AclAdminQueue              *AclForYarnQueue      `json:"acl_administer_queue"` //管理访问控制
+        # 	MaxAllocationMB *int32 `json:"maximum-allocation-mb"` // 分配Container最大内存数量
+        # 	MaxAllocationVcores *int32                         `json:"maximum-allocation-vcores"` // Container最大vCore数量
+        # 	IsDefault           *bool                          `json:"isDefault"`// 是否是root.default队列
+        # 	IsRoot              *bool                          `json:"isRoot"` // 是否是root队列
+        # 	Queues              []*QueueForCapacitySchedulerV3 `json:"queues"`//子队列信息。递归
+        # }
+        # type ConfigForCapacityV3 struct {
+        # 	Name                string          `json:"configName"` // 配置集名称
+        # 	Labels              []CapacityLabel `json:"labels"` // 标签信息
+        # 	MinUserLimitPercent *int32          `json:"minimum-user-limit-percent"` // 用户最小容量
+        # 	UserLimitFactor     *float32        `json:"user-limit-factor" valid:"rangeExcludeLeft(0|)"`  // 用户资源因子
+        # 	MaxApps *int32 `json:"maximum-applications" valid:"rangeExcludeLeft(0|)"` // 最大应用数Max-Applications
+        # 	MaxAmPercent               *float32 `json:"maximum-am-resource-percent"` // 最大AM比例
+        # 	DefaultApplicationPriority *int32   `json:"default-application-priority"` // 资源池优先级
+        # }
+        # type CapacityLabel struct {
+        # 	Name        string   `json:"labelName"`
+        # 	Capacity    *float32 `json:"capacity"`  // 容量
+        # 	MaxCapacity *float32 `json:"maximum-capacity"` //最大容量
+        # }
+
+        # type AclForYarnQueue struct {
+        # 	User  *string `json:"user"` //用户名
+        # 	Group *string `json:"group"`//组名
+        # }
+        # ```
+        # @type Queue: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Queue, :Version, :RequestId
+
+        def initialize(queue=nil, version=nil, requestid=nil)
+          @Queue = queue
+          @Version = version
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Queue = params['Queue']
+          @Version = params['Version']
           @RequestId = params['RequestId']
         end
       end
@@ -5007,6 +5347,52 @@ module TencentCloud
         end
       end
 
+      # 代表一个kv结构
+      class Item < TencentCloud::Common::AbstractModel
+        # @param Key: 健值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 键值对组成的列表
+      class ItemSeq < TencentCloud::Common::AbstractModel
+        # @param Items: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              item_tmp = Item.new
+              item_tmp.deserialize(i)
+              @Items << item_tmp
+            end
+          end
+        end
+      end
+
       # 机器资源描述。
       class JobFlowResource < TencentCloud::Common::AbstractModel
         # @param Spec: 机器类型描述。
@@ -5870,6 +6256,56 @@ module TencentCloud
         def deserialize(params)
           @IsDraft = params['IsDraft']
           @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyYarnQueueV2请求参数结构体
+      class ModifyYarnQueueV2Request < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群Id
+        # @type InstanceId: String
+        # @param Scheduler: 调度器类型。可选值：
+
+        # 1. capacity
+        # 2. fair
+        # @type Scheduler: String
+        # @param ConfigModifyInfoList: 资源池数据
+        # @type ConfigModifyInfoList: Array
+
+        attr_accessor :InstanceId, :Scheduler, :ConfigModifyInfoList
+
+        def initialize(instanceid=nil, scheduler=nil, configmodifyinfolist=nil)
+          @InstanceId = instanceid
+          @Scheduler = scheduler
+          @ConfigModifyInfoList = configmodifyinfolist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Scheduler = params['Scheduler']
+          unless params['ConfigModifyInfoList'].nil?
+            @ConfigModifyInfoList = []
+            params['ConfigModifyInfoList'].each do |i|
+              configmodifyinfov2_tmp = ConfigModifyInfoV2.new
+              configmodifyinfov2_tmp.deserialize(i)
+              @ConfigModifyInfoList << configmodifyinfov2_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyYarnQueueV2返回参数结构体
+      class ModifyYarnQueueV2Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -7581,6 +8017,46 @@ module TencentCloud
         end
       end
 
+      # ResetYarnConfig请求参数结构体
+      class ResetYarnConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+        # @param Key: 要重置的配置别名，可选值：
+
+        # - capacityLabel：重置标签管理的配置
+        # - fair：重置公平调度的配置
+        # - capacity：重置容量调度的配置
+        # @type Key: String
+
+        attr_accessor :InstanceId, :Key
+
+        def initialize(instanceid=nil, key=nil)
+          @InstanceId = instanceid
+          @Key = key
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Key = params['Key']
+        end
+      end
+
+      # ResetYarnConfig返回参数结构体
+      class ResetYarnConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资源详情
       class Resource < TencentCloud::Common::AbstractModel
         # @param Spec: 节点规格描述，如CVM.SA2。
@@ -8632,12 +9108,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2024, 8
-        deprecate :DetetcFunctionKey=, :none, 2024, 8
-        deprecate :DetetcFunctionValue, :none, 2024, 8
-        deprecate :DetetcFunctionValue=, :none, 2024, 8
-        deprecate :DetetcTime, :none, 2024, 8
-        deprecate :DetetcTime=, :none, 2024, 8
+        deprecate :DetetcFunctionKey, :none, 2024, 9
+        deprecate :DetetcFunctionKey=, :none, 2024, 9
+        deprecate :DetetcFunctionValue, :none, 2024, 9
+        deprecate :DetetcFunctionValue=, :none, 2024, 9
+        deprecate :DetetcTime, :none, 2024, 9
+        deprecate :DetetcTime=, :none, 2024, 9
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

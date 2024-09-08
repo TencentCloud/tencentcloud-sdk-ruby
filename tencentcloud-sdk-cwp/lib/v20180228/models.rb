@@ -4766,8 +4766,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 8
-        deprecate :Decription=, :none, 2024, 8
+        deprecate :Decription, :none, 2024, 9
+        deprecate :Decription=, :none, 2024, 9
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -28438,8 +28438,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 8
-        deprecate :Fileds=, :none, 2024, 8
+        deprecate :Fileds, :none, 2024, 9
+        deprecate :Fileds=, :none, 2024, 9
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters
@@ -33584,7 +33584,7 @@ module TencentCloud
         # @type Ids: Array
         # @param All: 是否更新全部，即是否对所有的事件进行操作，当ids 不为空时，此参数无效
         # @type All: Boolean
-        # @param Status: 0：待处理 1：已处理 2： 已加白 3： 已忽略 4：已删除
+        # @param Status: 0：待处理 1：已处理 3： 已忽略 4：已删除
         # @type Status: Integer
         # @param Filters: 过滤条件。
         # <li>Type - String 攻击状态 0: 尝试攻击 1: 攻击成功 - 是否必填: 否</li>
