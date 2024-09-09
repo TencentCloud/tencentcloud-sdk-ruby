@@ -576,6 +576,67 @@ module TencentCloud
         end
       end
 
+      # ConvertOperatingSystems请求参数结构体
+      class ConvertOperatingSystemsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 执行操作系统转换的实例 ID
+        # @type InstanceIds: Array
+        # @param MinimalConversion: 是否最小规模转换
+        # @type MinimalConversion: Boolean
+        # @param DryRun: 是否只预检
+        # @type DryRun: Boolean
+        # @param TargetOSType: 转换的目标操作系统类型。仅支持 TencentOS。
+        # @type TargetOSType: String
+
+        attr_accessor :InstanceIds, :MinimalConversion, :DryRun, :TargetOSType
+
+        def initialize(instanceids=nil, minimalconversion=nil, dryrun=nil, targetostype=nil)
+          @InstanceIds = instanceids
+          @MinimalConversion = minimalconversion
+          @DryRun = dryrun
+          @TargetOSType = targetostype
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @MinimalConversion = params['MinimalConversion']
+          @DryRun = params['DryRun']
+          @TargetOSType = params['TargetOSType']
+        end
+      end
+
+      # ConvertOperatingSystems返回参数结构体
+      class ConvertOperatingSystemsResponse < TencentCloud::Common::AbstractModel
+        # @param SupportTargetOSList: 转换的目标操系统信息，仅在入参 DryRun 为 true 时返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportTargetOSList: Array
+        # @param TaskId: 操作系统转换的任务 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SupportTargetOSList, :TaskId, :RequestId
+
+        def initialize(supporttargetoslist=nil, taskid=nil, requestid=nil)
+          @SupportTargetOSList = supporttargetoslist
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SupportTargetOSList'].nil?
+            @SupportTargetOSList = []
+            params['SupportTargetOSList'].each do |i|
+              targetos_tmp = TargetOS.new
+              targetos_tmp.deserialize(i)
+              @SupportTargetOSList << targetos_tmp
+            end
+          end
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了实例CPU拓扑结构的相关信息。
       class CpuTopology < TencentCloud::Common::AbstractModel
         # @param CoreCount: 决定启用的CPU物理核心数。
@@ -8677,6 +8738,26 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+        end
+      end
+
+      # 操作系统转换的目标操作系统信息
+      class TargetOS < TencentCloud::Common::AbstractModel
+        # @param TargetOSType: 目标操作系统类型
+        # @type TargetOSType: String
+        # @param TargetOSVersion: 目标操作系统版本
+        # @type TargetOSVersion: String
+
+        attr_accessor :TargetOSType, :TargetOSVersion
+
+        def initialize(targetostype=nil, targetosversion=nil)
+          @TargetOSType = targetostype
+          @TargetOSVersion = targetosversion
+        end
+
+        def deserialize(params)
+          @TargetOSType = params['TargetOSType']
+          @TargetOSVersion = params['TargetOSVersion']
         end
       end
 

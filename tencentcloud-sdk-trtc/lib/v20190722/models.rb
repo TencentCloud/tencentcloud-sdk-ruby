@@ -3845,17 +3845,22 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlternativeLanguage: Array
+        # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VadSilenceTime: Integer
 
-        attr_accessor :Language, :AlternativeLanguage
+        attr_accessor :Language, :AlternativeLanguage, :VadSilenceTime
 
-        def initialize(language=nil, alternativelanguage=nil)
+        def initialize(language=nil, alternativelanguage=nil, vadsilencetime=nil)
           @Language = language
           @AlternativeLanguage = alternativelanguage
+          @VadSilenceTime = vadsilencetime
         end
 
         def deserialize(params)
           @Language = params['Language']
           @AlternativeLanguage = params['AlternativeLanguage']
+          @VadSilenceTime = params['VadSilenceTime']
         end
       end
 

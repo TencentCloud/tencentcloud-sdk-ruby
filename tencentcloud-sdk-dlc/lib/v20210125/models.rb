@@ -4566,6 +4566,41 @@ module TencentCloud
         end
       end
 
+      # DeleteTable请求参数结构体
+      class DeleteTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 表基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+
+        attr_accessor :TableBaseInfo
+
+        def initialize(tablebaseinfo=nil)
+          @TableBaseInfo = tablebaseinfo
+        end
+
+        def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+        end
+      end
+
+      # DeleteTable返回参数结构体
+      class DeleteTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteThirdPartyAccessUser请求参数结构体
       class DeleteThirdPartyAccessUserRequest < TencentCloud::Common::AbstractModel
 
@@ -10473,6 +10508,46 @@ module TencentCloud
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # QueryInternalTableWarehouse请求参数结构体
+      class QueryInternalTableWarehouseRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 库名
+        # @type DatabaseName: String
+        # @param TableName: 表名
+        # @type TableName: String
+
+        attr_accessor :DatabaseName, :TableName
+
+        def initialize(databasename=nil, tablename=nil)
+          @DatabaseName = databasename
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+        end
+      end
+
+      # QueryInternalTableWarehouse返回参数结构体
+      class QueryInternalTableWarehouseResponse < TencentCloud::Common::AbstractModel
+        # @param WarehousePath: warehouse路径
+        # @type WarehousePath: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WarehousePath, :RequestId
+
+        def initialize(warehousepath=nil, requestid=nil)
+          @WarehousePath = warehousepath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WarehousePath = params['WarehousePath']
+          @RequestId = params['RequestId']
         end
       end
 

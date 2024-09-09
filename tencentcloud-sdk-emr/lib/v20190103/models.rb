@@ -3065,6 +3065,54 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceScheduleDiffDetail请求参数结构体
+      class DescribeResourceScheduleDiffDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+        # @param Scheduler: 查询的变更明细对应的调度器，可选值为fair、capacity。如果不传或者传空会使用最新的调度器
+        # @type Scheduler: String
+
+        attr_accessor :InstanceId, :Scheduler
+
+        def initialize(instanceid=nil, scheduler=nil)
+          @InstanceId = instanceid
+          @Scheduler = scheduler
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Scheduler = params['Scheduler']
+        end
+      end
+
+      # DescribeResourceScheduleDiffDetail返回参数结构体
+      class DescribeResourceScheduleDiffDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Details: 变化项的明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Details, :RequestId
+
+        def initialize(details=nil, requestid=nil)
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              diffdetail_tmp = DiffDetail.new
+              diffdetail_tmp.deserialize(i)
+              @Details << diffdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceSchedule请求参数结构体
       class DescribeResourceScheduleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: emr集群的英文id
@@ -3656,6 +3704,147 @@ module TencentCloud
           @SchedulerNameList = params['SchedulerNameList']
           @StateList = params['StateList']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 动态生成的变更详情
+      class DiffDetail < TencentCloud::Common::AbstractModel
+        # @param Name: tab页的头
+        # @type Name: String
+        # @param Count: 变化项的个数
+        # @type Count: Integer
+        # @param Rows: 要渲染的明细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param Header: 要渲染的头部信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Header: Array
+
+        attr_accessor :Name, :Count, :Rows, :Header
+
+        def initialize(name=nil, count=nil, rows=nil, header=nil)
+          @Name = name
+          @Count = count
+          @Rows = rows
+          @Header = header
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Count = params['Count']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              diffdetailitem_tmp = DiffDetailItem.new
+              diffdetailitem_tmp.deserialize(i)
+              @Rows << diffdetailitem_tmp
+            end
+          end
+          unless params['Header'].nil?
+            @Header = []
+            params['Header'].each do |i|
+              diffheader_tmp = DiffHeader.new
+              diffheader_tmp.deserialize(i)
+              @Header << diffheader_tmp
+            end
+          end
+        end
+      end
+
+      # 动态生成的变更详情条目
+      class DiffDetailItem < TencentCloud::Common::AbstractModel
+        # @param Attribute: 属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Attribute: String
+        # @param InEffect: 当前生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InEffect: String
+        # @param PendingEffectiveness: 待生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PendingEffectiveness: String
+        # @param Operation: 操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operation: String
+        # @param Queue: 队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Queue: String
+        # @param ConfigSet: 配置集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigSet: String
+        # @param LabelName: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelName: String
+        # @param InEffectIndex: 当前所在位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InEffectIndex: String
+        # @param PendingEffectIndex: 待生效的位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PendingEffectIndex: String
+        # @param PlanName: 计划模式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanName: String
+        # @param Label: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param RuleName: 放置规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+
+        attr_accessor :Attribute, :InEffect, :PendingEffectiveness, :Operation, :Queue, :ConfigSet, :LabelName, :InEffectIndex, :PendingEffectIndex, :PlanName, :Label, :RuleName, :UserName
+
+        def initialize(attribute=nil, ineffect=nil, pendingeffectiveness=nil, operation=nil, queue=nil, configset=nil, labelname=nil, ineffectindex=nil, pendingeffectindex=nil, planname=nil, label=nil, rulename=nil, username=nil)
+          @Attribute = attribute
+          @InEffect = ineffect
+          @PendingEffectiveness = pendingeffectiveness
+          @Operation = operation
+          @Queue = queue
+          @ConfigSet = configset
+          @LabelName = labelname
+          @InEffectIndex = ineffectindex
+          @PendingEffectIndex = pendingeffectindex
+          @PlanName = planname
+          @Label = label
+          @RuleName = rulename
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @Attribute = params['Attribute']
+          @InEffect = params['InEffect']
+          @PendingEffectiveness = params['PendingEffectiveness']
+          @Operation = params['Operation']
+          @Queue = params['Queue']
+          @ConfigSet = params['ConfigSet']
+          @LabelName = params['LabelName']
+          @InEffectIndex = params['InEffectIndex']
+          @PendingEffectIndex = params['PendingEffectIndex']
+          @PlanName = params['PlanName']
+          @Label = params['Label']
+          @RuleName = params['RuleName']
+          @UserName = params['UserName']
+        end
+      end
+
+      # 动态生成的变更详情
+      class DiffHeader < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Id: ID，前端会使用
+        # @type Id: String
+
+        attr_accessor :Name, :Id
+
+        def initialize(name=nil, id=nil)
+          @Name = name
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Id = params['Id']
         end
       end
 

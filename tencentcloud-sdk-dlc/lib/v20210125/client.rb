@@ -1133,6 +1133,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除表
+
+        # @param request: Request instance for DeleteTable.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteTableRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteTableResponse`
+        def DeleteTable(request)
+          body = send_request('DeleteTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（RegisterThirdPartyAccessUser）用于移除第三方平台访问
 
         # @param request: Request instance for DeleteThirdPartyAccessUser.
@@ -2967,6 +2991,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyWorkGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（QueryInternalTableWarehouse）用于获取原生表warehouse路径
+
+        # @param request: Request instance for QueryInternalTableWarehouse.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::QueryInternalTableWarehouseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::QueryInternalTableWarehouseResponse`
+        def QueryInternalTableWarehouse(request)
+          body = send_request('QueryInternalTableWarehouse', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryInternalTableWarehouseResponse.new
             model.deserialize(response['Response'])
             model
           else

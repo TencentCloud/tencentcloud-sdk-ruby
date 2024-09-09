@@ -482,6 +482,44 @@ module TencentCloud
         end
       end
 
+      # 企业认证信息
+      class AuthRecord < TencentCloud::Common::AbstractModel
+        # @param OperatorName: 经办人姓名。
+        # @type OperatorName: String
+        # @param OperatorMobile: 经办人手机号。
+        # @type OperatorMobile: String
+        # @param AuthType: 认证授权方式：
+        # <ul><li> **0**：未选择授权方式（默认值）</li>
+        # <li> **1**：上传授权书</li>
+        # <li> **2**：法人授权</li>
+        # <li> **3**：法人认证</li></ul>
+        # @type AuthType: Integer
+        # @param AuditStatus: 企业认证授权书审核状态：
+        # <ul><li> **0**：未提交授权书（默认值）</li>
+        # <li> **1**：审核通过</li>
+        # <li> **2**：审核驳回</li>
+        # <li> **3**：审核中</li>
+        # <li> **4**：AI识别中</li>
+        # <li> **5**：客户确认AI信息</li></ul>
+        # @type AuditStatus: Integer
+
+        attr_accessor :OperatorName, :OperatorMobile, :AuthType, :AuditStatus
+
+        def initialize(operatorname=nil, operatormobile=nil, authtype=nil, auditstatus=nil)
+          @OperatorName = operatorname
+          @OperatorMobile = operatormobile
+          @AuthType = authtype
+          @AuditStatus = auditstatus
+        end
+
+        def deserialize(params)
+          @OperatorName = params['OperatorName']
+          @OperatorMobile = params['OperatorMobile']
+          @AuthType = params['AuthType']
+          @AuditStatus = params['AuditStatus']
+        end
+      end
+
       # 授权用户
       class AuthorizedUser < TencentCloud::Common::AbstractModel
         # @param UserId: 电子签系统中的用户id
@@ -7504,6 +7542,79 @@ module TencentCloud
               @IntegrateRoles << integraterole_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationAuthStatus请求参数结构体
+      class DescribeOrganizationAuthStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param OrganizationName: 组织机构名称。 请确认该名称与企业营业执照中注册的名称一致。 如果名称中包含英文括号()，请使用中文括号（）代替。
+        # @type OrganizationName: String
+        # @param UniformSocialCreditCode: 企业统一社会信用代码
+        # 注意：OrganizationName和UniformSocialCreditCode不能同时为空
+        # @type UniformSocialCreditCode: String
+        # @param LegalName: 法人姓名
+        # @type LegalName: String
+
+        attr_accessor :Operator, :OrganizationName, :UniformSocialCreditCode, :LegalName
+
+        def initialize(operator=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil)
+          @Operator = operator
+          @OrganizationName = organizationname
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalName = legalname
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @OrganizationName = params['OrganizationName']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalName = params['LegalName']
+        end
+      end
+
+      # DescribeOrganizationAuthStatus返回参数结构体
+      class DescribeOrganizationAuthStatusResponse < TencentCloud::Common::AbstractModel
+        # @param IsVerified: 企业是否已认证
+        # @type IsVerified: Boolean
+        # @param AuthStatus: 企业认证状态 0-未认证 1-认证中 2-已认证
+        # @type AuthStatus: Integer
+        # @param AuthRecords: 企业认证信息
+        # @type AuthRecords: Array
+        # @param OrganizationId: 企业在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # 可登录腾讯电子签控制台，在 "更多"->"企业设置"->"企业中心"- 中查看企业电子签账号。
+        # p.s. 只有当前企业认证成功的时候返回
+        # @type OrganizationId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsVerified, :AuthStatus, :AuthRecords, :OrganizationId, :RequestId
+
+        def initialize(isverified=nil, authstatus=nil, authrecords=nil, organizationid=nil, requestid=nil)
+          @IsVerified = isverified
+          @AuthStatus = authstatus
+          @AuthRecords = authrecords
+          @OrganizationId = organizationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsVerified = params['IsVerified']
+          @AuthStatus = params['AuthStatus']
+          unless params['AuthRecords'].nil?
+            @AuthRecords = []
+            params['AuthRecords'].each do |i|
+              authrecord_tmp = AuthRecord.new
+              authrecord_tmp.deserialize(i)
+              @AuthRecords << authrecord_tmp
+            end
+          end
+          @OrganizationId = params['OrganizationId']
           @RequestId = params['RequestId']
         end
       end

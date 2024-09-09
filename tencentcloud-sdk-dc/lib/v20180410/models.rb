@@ -19,7 +19,7 @@ module TencentCloud
     module V20180410
       # AcceptDirectConnectTunnel请求参数结构体
       class AcceptDirectConnectTunnelRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 物理专线拥有者接受共享专用通道申请
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
@@ -574,8 +574,7 @@ module TencentCloud
 
       # DescribeAccessPoints请求参数结构体
       class DescribeAccessPointsRequest < TencentCloud::Common::AbstractModel
-        # @param RegionId: 接入点所在的地域。使用DescribeRegions查询
-
+        # @param RegionId: 接入点所在的地域。使用DescribeRegions查询。
         # 您可以通过调用 DescribeRegions接口获取地域ID。
         # @type RegionId: String
         # @param Offset: 偏移量，默认为0。
@@ -602,7 +601,7 @@ module TencentCloud
       class DescribeAccessPointsResponse < TencentCloud::Common::AbstractModel
         # @param AccessPointSet: 接入点信息。
         # @type AccessPointSet: Array
-        # @param TotalCount: 符合接入点数量。
+        # @param TotalCount: 接入点总数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -631,7 +630,7 @@ module TencentCloud
 
       # DescribeDirectConnectTunnelExtra请求参数结构体
       class DescribeDirectConnectTunnelExtraRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId
@@ -647,7 +646,7 @@ module TencentCloud
 
       # DescribeDirectConnectTunnelExtra返回参数结构体
       class DescribeDirectConnectTunnelExtraResponse < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelExtra: 专用通道扩展信息
+        # @param DirectConnectTunnelExtra: 专用通道扩展信息。
         # @type DirectConnectTunnelExtra: :class:`Tencentcloud::Dc.v20180410.models.DirectConnectTunnelExtra`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2135,7 +2134,7 @@ module TencentCloud
 
       # RejectDirectConnectTunnel请求参数结构体
       class RejectDirectConnectTunnelRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 无
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
 
         attr_accessor :DirectConnectTunnelId

@@ -2356,6 +2356,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询企业认证状态
+
+        # @param request: Request instance for DescribeOrganizationAuthStatus.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationAuthStatusRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationAuthStatusResponse`
+        def DescribeOrganizationAuthStatus(request)
+          body = send_request('DescribeOrganizationAuthStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationAuthStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此API接口用来查询加入集团的成员企业信息
         # 适用场景：子企业在加入集团后，主企业可能通过此接口获取到所有的子企业列表，方便进行展示和统计
 

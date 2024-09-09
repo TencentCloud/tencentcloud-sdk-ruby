@@ -2111,14 +2111,17 @@ module TencentCloud
         # @type MetricType: Array
         # @param DurationType: 时间长度类型DurationType(1: 3小时, 2: 昨天1天,3: 今日0点到现在)
         # @type DurationType: Integer
+        # @param BatchIndexList: 索引数据
+        # @type BatchIndexList: Array
 
-        attr_accessor :SpaceId, :IndexId, :MetricType, :DurationType
+        attr_accessor :SpaceId, :IndexId, :MetricType, :DurationType, :BatchIndexList
 
-        def initialize(spaceid=nil, indexid=nil, metrictype=nil, durationtype=nil)
+        def initialize(spaceid=nil, indexid=nil, metrictype=nil, durationtype=nil, batchindexlist=nil)
           @SpaceId = spaceid
           @IndexId = indexid
           @MetricType = metrictype
           @DurationType = durationtype
+          @BatchIndexList = batchindexlist
         end
 
         def deserialize(params)
@@ -2126,6 +2129,7 @@ module TencentCloud
           @IndexId = params['IndexId']
           @MetricType = params['MetricType']
           @DurationType = params['DurationType']
+          @BatchIndexList = params['BatchIndexList']
         end
       end
 
@@ -2141,17 +2145,21 @@ module TencentCloud
         # @type WriteReqTimes: Integer
         # @param DocCount: 文档数量，单位个数
         # @type DocCount: Integer
+        # @param MetricMapList: 指标数据数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricMapList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Storage, :IndexTraffic, :ReadReqTimes, :WriteReqTimes, :DocCount, :RequestId
+        attr_accessor :Storage, :IndexTraffic, :ReadReqTimes, :WriteReqTimes, :DocCount, :MetricMapList, :RequestId
 
-        def initialize(storage=nil, indextraffic=nil, readreqtimes=nil, writereqtimes=nil, doccount=nil, requestid=nil)
+        def initialize(storage=nil, indextraffic=nil, readreqtimes=nil, writereqtimes=nil, doccount=nil, metricmaplist=nil, requestid=nil)
           @Storage = storage
           @IndexTraffic = indextraffic
           @ReadReqTimes = readreqtimes
           @WriteReqTimes = writereqtimes
           @DocCount = doccount
+          @MetricMapList = metricmaplist
           @RequestId = requestid
         end
 
@@ -2161,6 +2169,14 @@ module TencentCloud
           @ReadReqTimes = params['ReadReqTimes']
           @WriteReqTimes = params['WriteReqTimes']
           @DocCount = params['DocCount']
+          unless params['MetricMapList'].nil?
+            @MetricMapList = []
+            params['MetricMapList'].each do |i|
+              metricmapbyindexid_tmp = MetricMapByIndexId.new
+              metricmapbyindexid_tmp.deserialize(i)
+              @MetricMapList << metricmapbyindexid_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4666,6 +4682,38 @@ module TencentCloud
         end
       end
 
+      # 全部指标数据
+      class MetricAllData < TencentCloud::Common::AbstractModel
+        # @param IndexTraffic: 索引流量
+        # @type IndexTraffic: Float
+        # @param Storage: 存储大小
+        # @type Storage: Float
+        # @param ReadReqTimes: 读请求次数
+        # @type ReadReqTimes: Integer
+        # @param WriteReqTimes: 写请求次数
+        # @type WriteReqTimes: Integer
+        # @param DocCount: 文档数量
+        # @type DocCount: Integer
+
+        attr_accessor :IndexTraffic, :Storage, :ReadReqTimes, :WriteReqTimes, :DocCount
+
+        def initialize(indextraffic=nil, storage=nil, readreqtimes=nil, writereqtimes=nil, doccount=nil)
+          @IndexTraffic = indextraffic
+          @Storage = storage
+          @ReadReqTimes = readreqtimes
+          @WriteReqTimes = writereqtimes
+          @DocCount = doccount
+        end
+
+        def deserialize(params)
+          @IndexTraffic = params['IndexTraffic']
+          @Storage = params['Storage']
+          @ReadReqTimes = params['ReadReqTimes']
+          @WriteReqTimes = params['WriteReqTimes']
+          @DocCount = params['DocCount']
+        end
+      end
+
       # 智能运维指标详情
       class MetricDetail < TencentCloud::Common::AbstractModel
         # @param Key: 指标详情名
@@ -4689,6 +4737,29 @@ module TencentCloud
               metric_tmp.deserialize(i)
               @Metrics << metric_tmp
             end
+          end
+        end
+      end
+
+      # 指标数据map
+      class MetricMapByIndexId < TencentCloud::Common::AbstractModel
+        # @param IndexId: 实例id
+        # @type IndexId: String
+        # @param MetricAllData: 指标数据
+        # @type MetricAllData: :class:`Tencentcloud::Es.v20180416.models.MetricAllData`
+
+        attr_accessor :IndexId, :MetricAllData
+
+        def initialize(indexid=nil, metricalldata=nil)
+          @IndexId = indexid
+          @MetricAllData = metricalldata
+        end
+
+        def deserialize(params)
+          @IndexId = params['IndexId']
+          unless params['MetricAllData'].nil?
+            @MetricAllData = MetricAllData.new
+            @MetricAllData.deserialize(params['MetricAllData'])
           end
         end
       end

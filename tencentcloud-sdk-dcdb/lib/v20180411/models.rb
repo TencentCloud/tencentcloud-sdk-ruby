@@ -442,10 +442,12 @@ module TencentCloud
         # @type SlaveConst: Integer
         # @param MaxUserConnections: 用户最大连接数限制参数。不传或者传0表示为不限制，对应max_user_connections参数，目前10.1内核版本不支持设置。
         # @type MaxUserConnections: Integer
+        # @param EncryptedPassword: 使用GetPublicKey返回的RSA2048公钥加密后的密码
+        # @type EncryptedPassword: String
 
-        attr_accessor :InstanceId, :UserName, :Host, :Password, :ReadOnly, :Description, :DelayThresh, :SlaveConst, :MaxUserConnections
+        attr_accessor :InstanceId, :UserName, :Host, :Password, :ReadOnly, :Description, :DelayThresh, :SlaveConst, :MaxUserConnections, :EncryptedPassword
 
-        def initialize(instanceid=nil, username=nil, host=nil, password=nil, readonly=nil, description=nil, delaythresh=nil, slaveconst=nil, maxuserconnections=nil)
+        def initialize(instanceid=nil, username=nil, host=nil, password=nil, readonly=nil, description=nil, delaythresh=nil, slaveconst=nil, maxuserconnections=nil, encryptedpassword=nil)
           @InstanceId = instanceid
           @UserName = username
           @Host = host
@@ -455,6 +457,7 @@ module TencentCloud
           @DelayThresh = delaythresh
           @SlaveConst = slaveconst
           @MaxUserConnections = maxuserconnections
+          @EncryptedPassword = encryptedpassword
         end
 
         def deserialize(params)
@@ -467,6 +470,7 @@ module TencentCloud
           @DelayThresh = params['DelayThresh']
           @SlaveConst = params['SlaveConst']
           @MaxUserConnections = params['MaxUserConnections']
+          @EncryptedPassword = params['EncryptedPassword']
         end
       end
 
@@ -5291,14 +5295,17 @@ module TencentCloud
         # @type Host: String
         # @param Password: 新密码，由字母、数字或常见符号组成，不能包含分号、单引号和双引号，长度为6~32位。
         # @type Password: String
+        # @param EncryptedPassword: 使用GetPublicKey返回的RSA2048公钥加密后的密码，加密算法是PKCS1v15
+        # @type EncryptedPassword: String
 
-        attr_accessor :InstanceId, :UserName, :Host, :Password
+        attr_accessor :InstanceId, :UserName, :Host, :Password, :EncryptedPassword
 
-        def initialize(instanceid=nil, username=nil, host=nil, password=nil)
+        def initialize(instanceid=nil, username=nil, host=nil, password=nil, encryptedpassword=nil)
           @InstanceId = instanceid
           @UserName = username
           @Host = host
           @Password = password
+          @EncryptedPassword = encryptedpassword
         end
 
         def deserialize(params)
@@ -5306,6 +5313,7 @@ module TencentCloud
           @UserName = params['UserName']
           @Host = params['Host']
           @Password = params['Password']
+          @EncryptedPassword = params['EncryptedPassword']
         end
       end
 

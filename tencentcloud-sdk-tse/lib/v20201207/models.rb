@@ -2383,8 +2383,6 @@ module TencentCloud
         # - tcp
         # - udp
         # @type Protocol: String
-        # @param Path: 请求路径
-        # @type Path: String
         # @param Timeout: 超时时间，单位ms
         # @type Timeout: Integer
         # @param Retries: 重试次数
@@ -2398,25 +2396,26 @@ module TencentCloud
         # @type UpstreamType: String
         # @param UpstreamInfo: 服务配置信息
         # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
+        # @param Path: 请求路径
+        # @type Path: String
 
-        attr_accessor :GatewayId, :Name, :Protocol, :Path, :Timeout, :Retries, :UpstreamType, :UpstreamInfo
+        attr_accessor :GatewayId, :Name, :Protocol, :Timeout, :Retries, :UpstreamType, :UpstreamInfo, :Path
 
-        def initialize(gatewayid=nil, name=nil, protocol=nil, path=nil, timeout=nil, retries=nil, upstreamtype=nil, upstreaminfo=nil)
+        def initialize(gatewayid=nil, name=nil, protocol=nil, timeout=nil, retries=nil, upstreamtype=nil, upstreaminfo=nil, path=nil)
           @GatewayId = gatewayid
           @Name = name
           @Protocol = protocol
-          @Path = path
           @Timeout = timeout
           @Retries = retries
           @UpstreamType = upstreamtype
           @UpstreamInfo = upstreaminfo
+          @Path = path
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @Name = params['Name']
           @Protocol = params['Protocol']
-          @Path = params['Path']
           @Timeout = params['Timeout']
           @Retries = params['Retries']
           @UpstreamType = params['UpstreamType']
@@ -2424,6 +2423,7 @@ module TencentCloud
             @UpstreamInfo = KongUpstreamInfo.new
             @UpstreamInfo.deserialize(params['UpstreamInfo'])
           end
+          @Path = params['Path']
         end
       end
 
@@ -9489,8 +9489,6 @@ module TencentCloud
         # - tcp
         # - udp
         # @type Protocol: String
-        # @param Path: 请求路径
-        # @type Path: String
         # @param Timeout: 超时时间，单位ms
         # @type Timeout: Integer
         # @param Retries: 重试次数
@@ -9506,26 +9504,27 @@ module TencentCloud
         # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
         # @param ID: 服务ID
         # @type ID: String
+        # @param Path: 请求路径
+        # @type Path: String
 
-        attr_accessor :GatewayId, :Name, :Protocol, :Path, :Timeout, :Retries, :UpstreamType, :UpstreamInfo, :ID
+        attr_accessor :GatewayId, :Name, :Protocol, :Timeout, :Retries, :UpstreamType, :UpstreamInfo, :ID, :Path
 
-        def initialize(gatewayid=nil, name=nil, protocol=nil, path=nil, timeout=nil, retries=nil, upstreamtype=nil, upstreaminfo=nil, id=nil)
+        def initialize(gatewayid=nil, name=nil, protocol=nil, timeout=nil, retries=nil, upstreamtype=nil, upstreaminfo=nil, id=nil, path=nil)
           @GatewayId = gatewayid
           @Name = name
           @Protocol = protocol
-          @Path = path
           @Timeout = timeout
           @Retries = retries
           @UpstreamType = upstreamtype
           @UpstreamInfo = upstreaminfo
           @ID = id
+          @Path = path
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @Name = params['Name']
           @Protocol = params['Protocol']
-          @Path = params['Path']
           @Timeout = params['Timeout']
           @Retries = params['Retries']
           @UpstreamType = params['UpstreamType']
@@ -9534,6 +9533,7 @@ module TencentCloud
             @UpstreamInfo.deserialize(params['UpstreamInfo'])
           end
           @ID = params['ID']
+          @Path = params['Path']
         end
       end
 
