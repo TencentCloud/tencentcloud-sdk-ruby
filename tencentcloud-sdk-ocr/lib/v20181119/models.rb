@@ -3457,13 +3457,9 @@ module TencentCloud
 
       # GeneralBasicOCR请求参数结构体
       class GeneralBasicOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片/PDF的 Base64 值。
-        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: 图片/PDF的 Base64 值。要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片/PDF的 Url 地址。
-        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片/PDF的 Url 地址。要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
         # @param Scene: 保留字段。
         # @type Scene: String
@@ -6611,12 +6607,14 @@ module TencentCloud
         # @type Birthday: String
         # @param PortraitImage: 头像照片的base64
         # @type PortraitImage: String
+        # @param Type: 返回类型
+        # @type Type: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :EnglishName, :Number, :Sex, :ValidDate, :IssueAuthority, :IssueAddress, :Birthday, :PortraitImage, :RequestId
+        attr_accessor :Name, :EnglishName, :Number, :Sex, :ValidDate, :IssueAuthority, :IssueAddress, :Birthday, :PortraitImage, :Type, :RequestId
 
-        def initialize(name=nil, englishname=nil, number=nil, sex=nil, validdate=nil, issueauthority=nil, issueaddress=nil, birthday=nil, portraitimage=nil, requestid=nil)
+        def initialize(name=nil, englishname=nil, number=nil, sex=nil, validdate=nil, issueauthority=nil, issueaddress=nil, birthday=nil, portraitimage=nil, type=nil, requestid=nil)
           @Name = name
           @EnglishName = englishname
           @Number = number
@@ -6626,6 +6624,7 @@ module TencentCloud
           @IssueAddress = issueaddress
           @Birthday = birthday
           @PortraitImage = portraitimage
+          @Type = type
           @RequestId = requestid
         end
 
@@ -6639,6 +6638,7 @@ module TencentCloud
           @IssueAddress = params['IssueAddress']
           @Birthday = params['Birthday']
           @PortraitImage = params['PortraitImage']
+          @Type = params['Type']
           @RequestId = params['RequestId']
         end
       end

@@ -141,6 +141,55 @@ module TencentCloud
         end
       end
 
+      # 数据库超期备份配置
+      class BackupConfig < TencentCloud::Common::AbstractModel
+        # @param EnableBackupPolicy: 备份策略是否启用。
+        # @type EnableBackupPolicy: Boolean
+        # @param BeginDate: 超期保留开始日期，早于开始日期的超期备份不保留，格式：yyyy-mm-dd。
+        # @type BeginDate: String
+        # @param MaxRetentionDays: 超期备份保留时长，超出保留时间的超期备份将被删除，可填写1-3650整数。
+        # @type MaxRetentionDays: Integer
+        # @param Frequency: 备份模式，可选择按年月周模式保存
+        # * 按年：annually
+        # * 按月：monthly
+        # * 按周：weekly
+        # @type Frequency: String
+        # @param WeekDays: Frequency等于weekly时生效。
+        # 表示保留特定工作日备份。可选择周一到周日，支持多选，取星期英文：
+        # * 星期一 ：Monday
+        # * 星期二 ：Tuesday
+        # * 星期三：Wednesday
+        # * 星期四：Thursday
+        # * 星期五：Friday
+        # * 星期六：Saturday
+        # * 星期日：Sunday
+        # @type WeekDays: Array
+        # @param BackupCount: 保留备份个数，Frequency等于monthly或weekly时生效。
+        # 备份模式选择按月时，可填写1-28整数；
+        # 备份模式选择年时，可填写1-336整数。
+        # @type BackupCount: Integer
+
+        attr_accessor :EnableBackupPolicy, :BeginDate, :MaxRetentionDays, :Frequency, :WeekDays, :BackupCount
+
+        def initialize(enablebackuppolicy=nil, begindate=nil, maxretentiondays=nil, frequency=nil, weekdays=nil, backupcount=nil)
+          @EnableBackupPolicy = enablebackuppolicy
+          @BeginDate = begindate
+          @MaxRetentionDays = maxretentiondays
+          @Frequency = frequency
+          @WeekDays = weekdays
+          @BackupCount = backupcount
+        end
+
+        def deserialize(params)
+          @EnableBackupPolicy = params['EnableBackupPolicy']
+          @BeginDate = params['BeginDate']
+          @MaxRetentionDays = params['MaxRetentionDays']
+          @Frequency = params['Frequency']
+          @WeekDays = params['WeekDays']
+          @BackupCount = params['BackupCount']
+        end
+      end
+
       # 描述分片DB节点信息
       class BriefNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: DB节点ID
@@ -1848,6 +1897,73 @@ module TencentCloud
               dbaccount_tmp = DBAccount.new
               dbaccount_tmp.deserialize(i)
               @Users << dbaccount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupConfigs请求参数结构体
+      class DescribeBackupConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBackupConfigs返回参数结构体
+      class DescribeBackupConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param Days: 常规备份存储时长，范围[1, 3650]。
+        # @type Days: Integer
+        # @param StartBackupTime: 每天备份执行的区间的开始时间，格式 mm:ss，形如 22:00。
+        # @type StartBackupTime: String
+        # @param EndBackupTime: 每天备份执行的区间的结束时间，格式 mm:ss，形如 23:59。
+        # @type EndBackupTime: String
+        # @param WeekDays: 执行备份周期，枚举值：Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+        # @type WeekDays: Array
+        # @param ArchiveDays: 沉降到归档存储时长，-1表示关闭归档设置。
+        # @type ArchiveDays: Integer
+        # @param BackupConfigSet: 超期备份配置。
+        # @type BackupConfigSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Days, :StartBackupTime, :EndBackupTime, :WeekDays, :ArchiveDays, :BackupConfigSet, :RequestId
+
+        def initialize(instanceid=nil, days=nil, startbackuptime=nil, endbackuptime=nil, weekdays=nil, archivedays=nil, backupconfigset=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Days = days
+          @StartBackupTime = startbackuptime
+          @EndBackupTime = endbackuptime
+          @WeekDays = weekdays
+          @ArchiveDays = archivedays
+          @BackupConfigSet = backupconfigset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Days = params['Days']
+          @StartBackupTime = params['StartBackupTime']
+          @EndBackupTime = params['EndBackupTime']
+          @WeekDays = params['WeekDays']
+          @ArchiveDays = params['ArchiveDays']
+          unless params['BackupConfigSet'].nil?
+            @BackupConfigSet = []
+            params['BackupConfigSet'].each do |i|
+              backupconfig_tmp = BackupConfig.new
+              backupconfig_tmp.deserialize(i)
+              @BackupConfigSet << backupconfig_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4519,6 +4635,69 @@ module TencentCloud
         end
       end
 
+      # ModifyBackupConfigs请求参数结构体
+      class ModifyBackupConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param Days: 常规备份存储时长，范围[1, 3650]。
+        # @type Days: Integer
+        # @param StartBackupTime: 每天备份执行的区间的开始时间，格式 mm:ss，形如 22:00。
+        # @type StartBackupTime: String
+        # @param EndBackupTime: 每天备份执行的区间的结束时间，格式 mm:ss，形如 23:59。
+        # @type EndBackupTime: String
+        # @param WeekDays: 执行备份周期，枚举值：Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+        # @type WeekDays: Array
+        # @param ArchiveDays: 沉降到归档存储时长，-1表示关闭归档设置。
+        # @type ArchiveDays: Integer
+        # @param BackupConfigSet: 超期备份配置。
+        # @type BackupConfigSet: Array
+
+        attr_accessor :InstanceId, :Days, :StartBackupTime, :EndBackupTime, :WeekDays, :ArchiveDays, :BackupConfigSet
+
+        def initialize(instanceid=nil, days=nil, startbackuptime=nil, endbackuptime=nil, weekdays=nil, archivedays=nil, backupconfigset=nil)
+          @InstanceId = instanceid
+          @Days = days
+          @StartBackupTime = startbackuptime
+          @EndBackupTime = endbackuptime
+          @WeekDays = weekdays
+          @ArchiveDays = archivedays
+          @BackupConfigSet = backupconfigset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Days = params['Days']
+          @StartBackupTime = params['StartBackupTime']
+          @EndBackupTime = params['EndBackupTime']
+          @WeekDays = params['WeekDays']
+          @ArchiveDays = params['ArchiveDays']
+          unless params['BackupConfigSet'].nil?
+            @BackupConfigSet = []
+            params['BackupConfigSet'].each do |i|
+              newbackupconfig_tmp = NewBackupConfig.new
+              newbackupconfig_tmp.deserialize(i)
+              @BackupConfigSet << newbackupconfig_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyBackupConfigs返回参数结构体
+      class ModifyBackupConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBEncryptAttributes请求参数结构体
       class ModifyDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id，形如：tdsqlshard-ow728lmc。
@@ -4942,6 +5121,55 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据库超期备份配置
+      class NewBackupConfig < TencentCloud::Common::AbstractModel
+        # @param EnableBackupPolicy: 备份策略是否启用。
+        # @type EnableBackupPolicy: Boolean
+        # @param BeginDate: 超期保留开始日期，早于开始日期的超期备份不保留，格式：yyyy-mm-dd。
+        # @type BeginDate: String
+        # @param MaxRetentionDays: 超期备份保留时长，超出保留时间的超期备份将被删除，可填写1-3650整数。
+        # @type MaxRetentionDays: Integer
+        # @param Frequency: 备份模式，可选择按年月周模式保存
+        # * 按年：annually
+        # * 按月：monthly
+        # * 按周：weekly
+        # @type Frequency: String
+        # @param WeekDays: Frequency等于weekly时生效。
+        # 表示保留特定工作日备份。可选择周一到周日，支持多选，取星期英文：
+        # * 星期一 ：Monday
+        # * 星期二 ：Tuesday
+        # * 星期三：Wednesday
+        # * 星期四：Thursday
+        # * 星期五：Friday
+        # * 星期六：Saturday
+        # * 星期日：Sunday
+        # @type WeekDays: Array
+        # @param BackupCount: 保留备份个数，Frequency等于monthly或weekly时生效。
+        # 备份模式选择按月时，可填写1-28整数；
+        # 备份模式选择年时，可填写1-336整数。
+        # @type BackupCount: Integer
+
+        attr_accessor :EnableBackupPolicy, :BeginDate, :MaxRetentionDays, :Frequency, :WeekDays, :BackupCount
+
+        def initialize(enablebackuppolicy=nil, begindate=nil, maxretentiondays=nil, frequency=nil, weekdays=nil, backupcount=nil)
+          @EnableBackupPolicy = enablebackuppolicy
+          @BeginDate = begindate
+          @MaxRetentionDays = maxretentiondays
+          @Frequency = frequency
+          @WeekDays = weekdays
+          @BackupCount = backupcount
+        end
+
+        def deserialize(params)
+          @EnableBackupPolicy = params['EnableBackupPolicy']
+          @BeginDate = params['BeginDate']
+          @MaxRetentionDays = params['MaxRetentionDays']
+          @Frequency = params['Frequency']
+          @WeekDays = params['WeekDays']
+          @BackupCount = params['BackupCount']
         end
       end
 

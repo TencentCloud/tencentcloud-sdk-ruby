@@ -773,6 +773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceLogDelivery）用于查询实例的日志投递配置。
+
+        # @param request: Request instance for DescribeInstanceLogDelivery.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceLogDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstanceLogDeliveryResponse`
+        def DescribeInstanceLogDelivery(request)
+          body = send_request('DescribeInstanceLogDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceLogDeliveryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见[查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
 
         # @param request: Request instance for DescribeInstanceMonitorBigKey.
@@ -2007,6 +2031,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceLogDelivery）用于开启或关闭投递实例日志到CLS。
+
+        # @param request: Request instance for ModifyInstanceLogDelivery.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceLogDeliveryRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstanceLogDeliveryResponse`
+        def ModifyInstanceLogDelivery(request)
+          body = send_request('ModifyInstanceLogDelivery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceLogDeliveryResponse.new
             model.deserialize(response['Response'])
             model
           else

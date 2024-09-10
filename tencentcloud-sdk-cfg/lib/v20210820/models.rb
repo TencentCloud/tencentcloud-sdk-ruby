@@ -1492,10 +1492,13 @@ module TencentCloud
         # @param TaskIssue: 问题和改进
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIssue: String
+        # @param TaskRegionName: region信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskRegionName: String
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType, :TaskPlanStartTime, :TaskPlanEndTime, :TaskOrg, :TaskIssue, :TaskRegionName
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil, taskplanstarttime=nil, taskplanendtime=nil, taskorg=nil, taskissue=nil, taskregionname=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1529,6 +1532,7 @@ module TencentCloud
           @TaskPlanEndTime = taskplanendtime
           @TaskOrg = taskorg
           @TaskIssue = taskissue
+          @TaskRegionName = taskregionname
         end
 
         def deserialize(params)
@@ -1603,6 +1607,7 @@ module TencentCloud
             end
           end
           @TaskIssue = params['TaskIssue']
+          @TaskRegionName = params['TaskRegionName']
         end
       end
 

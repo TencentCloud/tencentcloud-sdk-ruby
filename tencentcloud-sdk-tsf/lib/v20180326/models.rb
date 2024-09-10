@@ -657,10 +657,19 @@ module TencentCloud
         # @param UpdatedTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
+        # @param Limit: 分页参数limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param Offset: 分页参数offset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param AppId: AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
 
-        attr_accessor :RuleId, :ApiId, :RuleName, :MaxQps, :UsableStatus, :RuleContent, :TsfRuleId, :Description, :CreatedTime, :UpdatedTime
+        attr_accessor :RuleId, :ApiId, :RuleName, :MaxQps, :UsableStatus, :RuleContent, :TsfRuleId, :Description, :CreatedTime, :UpdatedTime, :Limit, :Offset, :AppId
 
-        def initialize(ruleid=nil, apiid=nil, rulename=nil, maxqps=nil, usablestatus=nil, rulecontent=nil, tsfruleid=nil, description=nil, createdtime=nil, updatedtime=nil)
+        def initialize(ruleid=nil, apiid=nil, rulename=nil, maxqps=nil, usablestatus=nil, rulecontent=nil, tsfruleid=nil, description=nil, createdtime=nil, updatedtime=nil, limit=nil, offset=nil, appid=nil)
           @RuleId = ruleid
           @ApiId = apiid
           @RuleName = rulename
@@ -671,6 +680,9 @@ module TencentCloud
           @Description = description
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
+          @Limit = limit
+          @Offset = offset
+          @AppId = appid
         end
 
         def deserialize(params)
@@ -684,6 +696,9 @@ module TencentCloud
           @Description = params['Description']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @AppId = params['AppId']
         end
       end
 
@@ -1209,8 +1224,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 7
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 7
+        deprecate :ConfigAssociatedGroups, :none, 2024, 9
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 9
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
@@ -3040,17 +3055,21 @@ module TencentCloud
         # @type GroupId: String
         # @param MicroserviceId: 微服务ID
         # @type MicroserviceId: String
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
 
-        attr_accessor :GroupId, :MicroserviceId
+        attr_accessor :GroupId, :MicroserviceId, :NamespaceId
 
-        def initialize(groupid=nil, microserviceid=nil)
+        def initialize(groupid=nil, microserviceid=nil, namespaceid=nil)
           @GroupId = groupid
           @MicroserviceId = microserviceid
+          @NamespaceId = namespaceid
         end
 
         def deserialize(params)
           @GroupId = params['GroupId']
           @MicroserviceId = params['MicroserviceId']
+          @NamespaceId = params['NamespaceId']
         end
       end
 

@@ -256,10 +256,18 @@ module TencentCloud
         # @type Strength: Float
         # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
         # @type RspImgType: String
+        # @param EnhanceImage: 画质增强开关，默认关闭。
+        # 1：开启
+        # 0：关闭
+        # 开启后将增强图像的画质清晰度，生成耗时有所增加。
+        # @type EnhanceImage: Integer
+        # @param RestoreFace: 细节优化的面部数量上限，支持0 ~ 6，默认为0。
+        # 若上传大于0的值，将以此为上限对每张图片中面积占比较小的面部进行细节修复，生成耗时根据实际优化的面部个数有所增加。
+        # @type RestoreFace: Integer
 
-        attr_accessor :InputImage, :InputUrl, :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam, :Strength, :RspImgType
+        attr_accessor :InputImage, :InputUrl, :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam, :Strength, :RspImgType, :EnhanceImage, :RestoreFace
 
-        def initialize(inputimage=nil, inputurl=nil, prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil, strength=nil, rspimgtype=nil)
+        def initialize(inputimage=nil, inputurl=nil, prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil, strength=nil, rspimgtype=nil, enhanceimage=nil, restoreface=nil)
           @InputImage = inputimage
           @InputUrl = inputurl
           @Prompt = prompt
@@ -270,6 +278,8 @@ module TencentCloud
           @LogoParam = logoparam
           @Strength = strength
           @RspImgType = rspimgtype
+          @EnhanceImage = enhanceimage
+          @RestoreFace = restoreface
         end
 
         def deserialize(params)
@@ -289,6 +299,8 @@ module TencentCloud
           end
           @Strength = params['Strength']
           @RspImgType = params['RspImgType']
+          @EnhanceImage = params['EnhanceImage']
+          @RestoreFace = params['RestoreFace']
         end
       end
 
@@ -639,6 +651,78 @@ module TencentCloud
 
         def deserialize(params)
           @Resolution = params['Resolution']
+        end
+      end
+
+      # SketchToImage请求参数结构体
+      class SketchToImageRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 用于线稿生图的文本描述。
+        # 最多支持200个 utf-8 字符。
+        # 建议格式：线稿中的主体对象+画面场景+配色/材质/元素/风格等
+        # @type Prompt: String
+        # @param InputImage: 线稿图 Base64 数据。
+        # Base64 和 Url 必须提供一个，如果都提供以Url 为准。
+        # 图片限制：黑白线稿图片，单边分辨率小于5000且大于512（分辨率过小会导致效果受损），转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputImage: String
+        # @param InputUrl: 线稿图 Url。
+        # Base64 和 Url 必须提供一个，如果都提供以Url 为准。
+        # 图片限制：黑白线稿图片，单边分辨率小于5000且大于512（分辨率过小会导致效果受损），转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputUrl: String
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。生成图分辨率较大时建议选择 url，使用 base64 可能因图片过大导致返回失败。
+        # @type RspImgType: String
+
+        attr_accessor :Prompt, :InputImage, :InputUrl, :LogoAdd, :LogoParam, :RspImgType
+
+        def initialize(prompt=nil, inputimage=nil, inputurl=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
+          @Prompt = prompt
+          @InputImage = inputimage
+          @InputUrl = inputurl
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+          @RspImgType = rspimgtype
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @InputImage = params['InputImage']
+          @InputUrl = params['InputUrl']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+          @RspImgType = params['RspImgType']
+        end
+      end
+
+      # SketchToImage返回参数结构体
+      class SketchToImageResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :RequestId
+
+        def initialize(resultimage=nil, requestid=nil)
+          @ResultImage = resultimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @RequestId = params['RequestId']
         end
       end
 

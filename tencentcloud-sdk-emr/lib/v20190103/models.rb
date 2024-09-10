@@ -1620,6 +1620,80 @@ module TencentCloud
         end
       end
 
+      # CreateSLInstance请求参数结构体
+      class CreateSLInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param PayMode: 实例计费模式，0表示后付费，即按量计费。
+        # @type PayMode: Integer
+        # @param DiskType: 实例存储类型，填写CLOUD_HSSD，表示性能云存储。
+        # @type DiskType: String
+        # @param DiskSize: 实例单节点磁盘容量，单位GB，单节点磁盘容量需大于等于100，小于等于10000，容量调整步长为20。
+        # @type DiskSize: Integer
+        # @param NodeType: 实例节点规格，可填写4C16G、8C32G、16C64G、32C128G，不区分大小写。
+        # @type NodeType: String
+        # @param ZoneSettings: 实例可用区详细配置，当前支持多可用区，可用区数量只能为1或3，包含区域名称，VPC信息、节点数量，其中所有区域节点总数需大于等于3，小于等于50。
+        # @type ZoneSettings: Array
+        # @param Tags: 实例要绑定的标签列表。
+        # @type Tags: Array
+
+        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags
+
+        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil)
+          @InstanceName = instancename
+          @PayMode = paymode
+          @DiskType = disktype
+          @DiskSize = disksize
+          @NodeType = nodetype
+          @ZoneSettings = zonesettings
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @PayMode = params['PayMode']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @NodeType = params['NodeType']
+          unless params['ZoneSettings'].nil?
+            @ZoneSettings = []
+            params['ZoneSettings'].each do |i|
+              zonesetting_tmp = ZoneSetting.new
+              zonesetting_tmp.deserialize(i)
+              @ZoneSettings << zonesetting_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSLInstance返回参数结构体
+      class CreateSLInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一标识符（字符串表示）
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户Hive-MetaDB信息
       class CustomMetaDBInfo < TencentCloud::Common::AbstractModel
         # @param MetaDataJdbcUrl: 自定义MetaDB的JDBC连接，示例: jdbc:mysql://10.10.10.10:3306/dbname
@@ -3157,6 +3231,155 @@ module TencentCloud
           @Scheduler = params['Scheduler']
           @FSInfo = params['FSInfo']
           @CSInfo = params['CSInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSLInstanceList请求参数结构体
+      class DescribeSLInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param DisplayStrategy: 实例筛选策略。取值范围：<li>clusterList：表示查询除了已销毁实例之外的实例列表。</li><li>monitorManage：表示查询除了已销毁、创建中以及创建失败的实例之外的实例列表。</li>
+        # @type DisplayStrategy: String
+        # @param Offset: 页编号，默认值为0，表示第一页。
+        # @type Offset: Integer
+        # @param Limit: 每页返回数量，默认值为10，最大值为100。
+        # @type Limit: Integer
+        # @param OrderField: 排序字段。取值范围：<li>clusterId：表示按照实例ID排序。</li><li>addTime：表示按照实例创建时间排序。</li><li>status：表示按照实例的状态码排序。</li>
+        # @type OrderField: String
+        # @param Asc: 按照OrderField升序或者降序进行排序。取值范围：<li>0：表示降序。</li><li>1：表示升序。</li>默认值为0。
+        # @type Asc: Integer
+        # @param Filters: 自定义查询过滤器。
+        # @type Filters: Array
+
+        attr_accessor :DisplayStrategy, :Offset, :Limit, :OrderField, :Asc, :Filters
+
+        def initialize(displaystrategy=nil, offset=nil, limit=nil, orderfield=nil, asc=nil, filters=nil)
+          @DisplayStrategy = displaystrategy
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Asc = asc
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @DisplayStrategy = params['DisplayStrategy']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Asc = params['Asc']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSLInstanceList返回参数结构体
+      class DescribeSLInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 符合条件的实例总数。
+        # @type TotalCnt: Integer
+        # @param InstancesList: 实例信息列表，如果进行了分页，只显示当前分页的示例信息列表。
+        # @type InstancesList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :InstancesList, :RequestId
+
+        def initialize(totalcnt=nil, instanceslist=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @InstancesList = instanceslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['InstancesList'].nil?
+            @InstancesList = []
+            params['InstancesList'].each do |i|
+              slinstanceinfo_tmp = SLInstanceInfo.new
+              slinstanceinfo_tmp.deserialize(i)
+              @InstancesList << slinstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSLInstance请求参数结构体
+      class DescribeSLInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一标识符（字符串表示）
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSLInstance返回参数结构体
+      class DescribeSLInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param PayMode: 实例计费模式。0表示后付费，即按量计费，1表示预付费，即包年包月。
+        # @type PayMode: Integer
+        # @param DiskType: 实例存储类型。
+        # @type DiskType: String
+        # @param DiskSize: 实例单节点磁盘容量，单位GB。
+        # @type DiskSize: Integer
+        # @param NodeType: 实例节点规格。
+        # @type NodeType: String
+        # @param ZoneSettings: 实例可用区详细配置，包含可用区名称，VPC信息、节点数量。
+        # @type ZoneSettings: Array
+        # @param Tags: 实例绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :RequestId
+
+        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, requestid=nil)
+          @InstanceName = instancename
+          @PayMode = paymode
+          @DiskType = disktype
+          @DiskSize = disksize
+          @NodeType = nodetype
+          @ZoneSettings = zonesettings
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @PayMode = params['PayMode']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @NodeType = params['NodeType']
+          unless params['ZoneSettings'].nil?
+            @ZoneSettings = []
+            params['ZoneSettings'].each do |i|
+              zonesetting_tmp = ZoneSetting.new
+              zonesetting_tmp.deserialize(i)
+              @ZoneSettings << zonesetting_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5989,19 +6212,23 @@ module TencentCloud
         # @type ResourceIds: Array
         # @param RenewFlag: NOTIFY_AND_MANUAL_RENEW：表示通知即将过期，但不自动续费  NOTIFY_AND_AUTO_RENEW：表示通知即将过期，而且自动续费  DISABLE_NOTIFY_AND_MANUAL_RENEW：表示不通知即将过期，也不自动续费。
         # @type RenewFlag: String
+        # @param ComputeResourceId: 计算资源id
+        # @type ComputeResourceId: String
 
-        attr_accessor :InstanceId, :ResourceIds, :RenewFlag
+        attr_accessor :InstanceId, :ResourceIds, :RenewFlag, :ComputeResourceId
 
-        def initialize(instanceid=nil, resourceids=nil, renewflag=nil)
+        def initialize(instanceid=nil, resourceids=nil, renewflag=nil, computeresourceid=nil)
           @InstanceId = instanceid
           @ResourceIds = resourceids
           @RenewFlag = renewflag
+          @ComputeResourceId = computeresourceid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ResourceIds = params['ResourceIds']
           @RenewFlag = params['RenewFlag']
+          @ComputeResourceId = params['ComputeResourceId']
         end
       end
 
@@ -6355,6 +6582,46 @@ module TencentCloud
               @ClusterToFlowIdList << clusteridtoflowid_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySLInstance请求参数结构体
+      class ModifySLInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一标识符（字符串表示）。
+        # @type InstanceId: String
+        # @param Zone: 需要变更的区域名称。
+        # @type Zone: String
+        # @param NodeNum: 该区域变配后的目标节点数量，所有区域节点总数应大于等于3，小于等于50。
+        # @type NodeNum: Integer
+
+        attr_accessor :InstanceId, :Zone, :NodeNum
+
+        def initialize(instanceid=nil, zone=nil, nodenum=nil)
+          @InstanceId = instanceid
+          @Zone = zone
+          @NodeNum = nodenum
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+          @NodeNum = params['NodeNum']
+        end
+      end
+
+      # ModifySLInstance返回参数结构体
+      class ModifySLInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -8549,6 +8816,94 @@ module TencentCloud
         end
       end
 
+      # EMR Lite HBase 实例信息
+      class SLInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群实例字符串ID
+        # @type ClusterId: String
+        # @param Id: 集群实例数字ID
+        # @type Id: Integer
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param ClusterName: 实例名称
+        # @type ClusterName: String
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param ZoneId: 主可用区ID
+        # @type ZoneId: Integer
+        # @param Zone: 主可用区
+        # @type Zone: String
+        # @param AppId: 用户APPID
+        # @type AppId: Integer
+        # @param VpcId: 主可用区私有网络ID
+        # @type VpcId: Integer
+        # @param SubnetId: 主可用区子网ID
+        # @type SubnetId: Integer
+        # @param Status: 状态码
+        # @type Status: Integer
+        # @param AddTime: 创建时间
+        # @type AddTime: String
+        # @param PayMode: 集群计费类型。0表示按量计费，1表示包年包月
+        # @type PayMode: Integer
+        # @param ZoneSettings: 多可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneSettings: Array
+        # @param Tags: 实例标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :ClusterId, :Id, :StatusDesc, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags
+
+        def initialize(clusterid=nil, id=nil, statusdesc=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil)
+          @ClusterId = clusterid
+          @Id = id
+          @StatusDesc = statusdesc
+          @ClusterName = clustername
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @Zone = zone
+          @AppId = appid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @AddTime = addtime
+          @PayMode = paymode
+          @ZoneSettings = zonesettings
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Id = params['Id']
+          @StatusDesc = params['StatusDesc']
+          @ClusterName = params['ClusterName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @Zone = params['Zone']
+          @AppId = params['AppId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @AddTime = params['AddTime']
+          @PayMode = params['PayMode']
+          unless params['ZoneSettings'].nil?
+            @ZoneSettings = []
+            params['ZoneSettings'].each do |i|
+              zonesetting_tmp = ZoneSetting.new
+              zonesetting_tmp.deserialize(i)
+              @ZoneSettings << zonesetting_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
       # ScaleOutCluster请求参数结构体
       class ScaleOutClusterRequest < TencentCloud::Common::AbstractModel
         # @param InstanceChargeType: 节点计费模式。取值范围：
@@ -9833,6 +10188,38 @@ module TencentCloud
         end
       end
 
+      # TerminateSLInstance请求参数结构体
+      class TerminateSLInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一标识符（字符串表示）
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # TerminateSLInstance返回参数结构体
+      class TerminateSLInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # TerminateTasks请求参数结构体
       class TerminateTasksRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -10690,6 +11077,33 @@ module TencentCloud
             @AllNodeResourceSpec.deserialize(params['AllNodeResourceSpec'])
           end
           @ZoneTag = params['ZoneTag']
+        end
+      end
+
+      # 可用区配置描述。
+      class ZoneSetting < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区名称
+        # @type Zone: String
+        # @param VPCSettings: 可用区VPC和子网
+        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
+        # @param NodeNum: 可用区节点数量
+        # @type NodeNum: Integer
+
+        attr_accessor :Zone, :VPCSettings, :NodeNum
+
+        def initialize(zone=nil, vpcsettings=nil, nodenum=nil)
+          @Zone = zone
+          @VPCSettings = vpcsettings
+          @NodeNum = nodenum
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          unless params['VPCSettings'].nil?
+            @VPCSettings = VPCSettings.new
+            @VPCSettings.deserialize(params['VPCSettings'])
+          end
+          @NodeNum = params['NodeNum']
         end
       end
 

@@ -9132,6 +9132,9 @@ module TencentCloud
         # @type MaxMessageByte: Integer
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
+        extend Gem::Deprecate
+        deprecate :DynamicDiskConfig, :none, 2024, 9
+        deprecate :DynamicDiskConfig=, :none, 2024, 9
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
           @InstanceId = instanceid
@@ -9298,7 +9301,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param MaintenanceType: 自动化运维类别
         # @type MaintenanceType: String
-        # @param MaintenanceSubtype: 自动化运维子类别
+        # @param MaintenanceSubtype: INSTANCE_STORAGE_CAPACITY(磁盘自动扩容)/MESSAGE_RETENTION_PERIOD(磁盘动态消息保留策略)
         # @type MaintenanceSubtype: String
         # @param TopicName: 主题名称
         # @type TopicName: String

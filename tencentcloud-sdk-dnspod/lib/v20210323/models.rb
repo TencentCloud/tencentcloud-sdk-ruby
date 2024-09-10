@@ -2339,6 +2339,53 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainShareUserList请求参数结构体
+      class DescribeDomainShareUserListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeDomainShareUserList返回参数结构体
+      class DescribeDomainShareUserListResponse < TencentCloud::Common::AbstractModel
+        # @param DomainShareList: 域名套餐信息
+        # @type DomainShareList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainShareList, :RequestId
+
+        def initialize(domainsharelist=nil, requestid=nil)
+          @DomainShareList = domainsharelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainShareList'].nil?
+            @DomainShareList = []
+            params['DomainShareList'].each do |i|
+              domainshareuserinfo_tmp = DomainShareUserInfo.new
+              domainshareuserinfo_tmp.deserialize(i)
+              @DomainShareList << domainshareuserinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainWhois请求参数结构体
       class DescribeDomainWhoisRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3957,6 +4004,47 @@ module TencentCloud
           @ShareTo = params['ShareTo']
           @Mode = params['Mode']
           @Status = params['Status']
+        end
+      end
+
+      # 域名共享信息
+      class DomainShareUserInfo < TencentCloud::Common::AbstractModel
+        # @param DomainShareId: 共享记录ID
+        # @type DomainShareId: Integer
+        # @param Mode: 共享模式。r-只读；w-可写；rw-可读写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Nickname: 共享到的用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nickname: String
+        # @param QCloudUIN: 共享到的用户UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QCloudUIN: String
+        # @param Status: 共享状态。enabled-有效；pause-无效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param SubDomain: 共享的子域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubDomain: String
+
+        attr_accessor :DomainShareId, :Mode, :Nickname, :QCloudUIN, :Status, :SubDomain
+
+        def initialize(domainshareid=nil, mode=nil, nickname=nil, qclouduin=nil, status=nil, subdomain=nil)
+          @DomainShareId = domainshareid
+          @Mode = mode
+          @Nickname = nickname
+          @QCloudUIN = qclouduin
+          @Status = status
+          @SubDomain = subdomain
+        end
+
+        def deserialize(params)
+          @DomainShareId = params['DomainShareId']
+          @Mode = params['Mode']
+          @Nickname = params['Nickname']
+          @QCloudUIN = params['QCloudUIN']
+          @Status = params['Status']
+          @SubDomain = params['SubDomain']
         end
       end
 

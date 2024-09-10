@@ -702,6 +702,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # space维度的kibana获取登录token
+
+        # @param request: Request instance for DescribeSpaceKibanaTools.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeSpaceKibanaToolsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeSpaceKibanaToolsResponse`
+        def DescribeSpaceKibanaTools(request)
+          body = send_request('DescribeSpaceKibanaTools', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSpaceKibanaToolsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询快照信息接口
 
         # @param request: Request instance for DescribeUserCosSnapshotList.

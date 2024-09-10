@@ -2332,6 +2332,46 @@ module TencentCloud
         end
       end
 
+      # DescribeSpaceKibanaTools请求参数结构体
+      class DescribeSpaceKibanaToolsRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: space的ID
+        # @type SpaceId: String
+
+        attr_accessor :SpaceId
+
+        def initialize(spaceid=nil)
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribeSpaceKibanaTools返回参数结构体
+      class DescribeSpaceKibanaToolsResponse < TencentCloud::Common::AbstractModel
+        # @param KibanaToken: 该token用于登录内嵌kibana
+        # @type KibanaToken: String
+        # @param ExpireTime: token的过期时间
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KibanaToken, :ExpireTime, :RequestId
+
+        def initialize(kibanatoken=nil, expiretime=nil, requestid=nil)
+          @KibanaToken = kibanatoken
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KibanaToken = params['KibanaToken']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserCosSnapshotList请求参数结构体
       class DescribeUserCosSnapshotListRequest < TencentCloud::Common::AbstractModel
         # @param CosBucket: cos桶名

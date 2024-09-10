@@ -126,6 +126,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateSLInstance）用于创建 Lite HBase 实例
+        # - 接口调用成功，会创建Lite HBase实例，创建实例请求成功会返回创建实例的 InstaceId 和请求的 RequestID。
+        # - 接口为异步接口，接口返回时操作并未立即完成，实例操作结果可以通过调用 DescribeInstancesList 查看当前实例的 StatusDesc 状态。
+
+        # @param request: Request instance for CreateSLInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::CreateSLInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::CreateSLInstanceResponse`
+        def CreateSLInstance(request)
+          body = send_request('CreateSLInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSLInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除自动扩缩容规则，后台销毁根据该规则扩缩容出来的节点
 
         # @param request: Request instance for DeleteAutoScaleStrategy.
@@ -630,6 +656,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSLInstance）用于查询 Lite HBase 实例基本信息
+
+        # @param request: Request instance for DescribeSLInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeSLInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeSLInstanceResponse`
+        def DescribeSLInstance(request)
+          body = send_request('DescribeSLInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSLInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSLInstanceList）用于查询 Lite HBase 实例列表详细信息
+
+        # @param request: Request instance for DescribeSLInstanceList.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeSLInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeSLInstanceListResponse`
+        def DescribeSLInstanceList(request)
+          body = send_request('DescribeSLInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSLInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询服务进程信息
 
         # @param request: Request instance for DescribeServiceNodeInfos.
@@ -1040,6 +1114,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifySLInstance）用于修改Lite HBase 实例节点数。
+        # - 接口调用成功，会创建Lite HBase实例，创建实例请求成功会返回请求的 RequestID。
+        # - 接口为异步接口，接口返回时操作并未立即完成，实例操作结果可以通过调用 DescribeInstancesList 查看当前实例的 StatusDesc 状态。
+
+        # @param request: Request instance for ModifySLInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifySLInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifySLInstanceResponse`
+        def ModifySLInstance(request)
+          body = send_request('ModifySLInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySLInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户密码（用户管理）
 
         # @param request: Request instance for ModifyUserManagerPwd.
@@ -1290,6 +1390,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TerminateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（TerminateSLInstance）用于销毁 Lite HBase 实例
+
+        # @param request: Request instance for TerminateSLInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::TerminateSLInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::TerminateSLInstanceResponse`
+        def TerminateSLInstance(request)
+          body = send_request('TerminateSLInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateSLInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

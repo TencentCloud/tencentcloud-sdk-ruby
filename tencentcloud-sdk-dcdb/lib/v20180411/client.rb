@@ -367,6 +367,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeBackupConfigs)用于查询数据库备份配置信息。
+
+        # @param request: Request instance for DescribeBackupConfigs.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeBackupConfigsRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeBackupConfigsResponse`
+        def DescribeBackupConfigs(request)
+          body = send_request('DescribeBackupConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeBackupFiles)用于查看备份文件列表。
 
         # @param request: Request instance for DescribeBackupFiles.
@@ -1369,6 +1393,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAccountPrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyBackupConfigs)用于修改数据库备份配置信息。
+
+        # 1. 修改数据库超期备份配置，目前按年、按月、按日只支持一种，存在互斥关系，如当前策略按年备份，如果传入按月备份策略将会覆盖当前的按年备份策略，务必注意。
+
+        # @param request: Request instance for ModifyBackupConfigs.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyBackupConfigsRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyBackupConfigsResponse`
+        def ModifyBackupConfigs(request)
+          body = send_request('ModifyBackupConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupConfigsResponse.new
             model.deserialize(response['Response'])
             model
           else

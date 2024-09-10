@@ -17,6 +17,129 @@
 module TencentCloud
   module Vdb
     module V20230616
+      # AssociateSecurityGroups请求参数结构体
+      class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupIds: 要绑定的安全组 ID，类似sg-efil7***。
+        # @type SecurityGroupIds: Array
+        # @param InstanceIds: 实例 ID，格式如：vdb-c1nl9***，支持指定多个实例
+        # @type InstanceIds: Array
+
+        attr_accessor :SecurityGroupIds, :InstanceIds
+
+        def initialize(securitygroupids=nil, instanceids=nil)
+          @SecurityGroupIds = securitygroupids
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # AssociateSecurityGroups返回参数结构体
+      class AssociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBSecurityGroups请求参数结构体
+      class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：vdb-c1nl9***。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBSecurityGroups返回参数结构体
+      class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: 安全组规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :RequestId
+
+        def initialize(groups=nil, requestid=nil)
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              securitygroup_tmp = SecurityGroup.new
+              securitygroup_tmp.deserialize(i)
+              @Groups << securitygroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceNodes请求参数结构体
+      class DescribeInstanceNodesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeInstanceNodes返回参数结构体
+      class DescribeInstanceNodesResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 实例pod列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: 查询结果总数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              nodeinfo_tmp = NodeInfo.new
+              nodeinfo_tmp.deserialize(i)
+              @Items << nodeinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID数组。
@@ -117,6 +240,86 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateSecurityGroups请求参数结构体
+      class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupIds: 要绑定的安全组 ID，类似sg-efil****。
+        # @type SecurityGroupIds: String
+        # @param InstanceIds: 实例 ID，格式如：vdb-c1nl****，支持指定多个实例。
+        # @type InstanceIds: Array
+
+        attr_accessor :SecurityGroupIds, :InstanceIds
+
+        def initialize(securitygroupids=nil, instanceids=nil)
+          @SecurityGroupIds = securitygroupids
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DisassociateSecurityGroups返回参数结构体
+      class DisassociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全组入站规则
+      class Inbound < TencentCloud::Common::AbstractModel
+        # @param Action: 策略，ACCEPT或者DROP。
+        # @type Action: String
+        # @param AddressModule: 地址组id代表的地址集合。
+        # @type AddressModule: String
+        # @param CidrIp: 来源Ip或Ip段，例如192.168.0.0/16。
+        # @type CidrIp: String
+        # @param Desc: 描述。
+        # @type Desc: String
+        # @param IpProtocol: 网络协议，支持udp、tcp等。
+        # @type IpProtocol: String
+        # @param PortRange: 端口。
+        # @type PortRange: String
+        # @param ServiceModule: 服务组id代表的协议和端口集合。
+        # @type ServiceModule: String
+        # @param Id: 安全组id代表的地址集合。
+        # @type Id: String
+
+        attr_accessor :Action, :AddressModule, :CidrIp, :Desc, :IpProtocol, :PortRange, :ServiceModule, :Id
+
+        def initialize(action=nil, addressmodule=nil, cidrip=nil, desc=nil, ipprotocol=nil, portrange=nil, servicemodule=nil, id=nil)
+          @Action = action
+          @AddressModule = addressmodule
+          @CidrIp = cidrip
+          @Desc = desc
+          @IpProtocol = ipprotocol
+          @PortRange = portrange
+          @ServiceModule = servicemodule
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @AddressModule = params['AddressModule']
+          @CidrIp = params['CidrIp']
+          @Desc = params['Desc']
+          @IpProtocol = params['IpProtocol']
+          @PortRange = params['PortRange']
+          @ServiceModule = params['ServiceModule']
+          @Id = params['Id']
         end
       end
 
@@ -281,6 +484,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceSecurityGroups请求参数结构体
+      class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组 ID 组成的数组。
+        # @type SecurityGroupIds: Array
+        # @param InstanceIds: 实例ID，格式如：vdb-c9s3****。
+        # @type InstanceIds: Array
+
+        attr_accessor :SecurityGroupIds, :InstanceIds
+
+        def initialize(securitygroupids=nil, instanceids=nil)
+          @SecurityGroupIds = securitygroupids
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroups返回参数结构体
+      class ModifyDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网络信息
       class Network < TencentCloud::Common::AbstractModel
         # @param VpcId: VpcId(VPC网络下有效)
@@ -310,6 +549,125 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Vip = params['Vip']
           @Port = params['Port']
+        end
+      end
+
+      # 实例pod信息，仅包含 pod 名称
+      class NodeInfo < TencentCloud::Common::AbstractModel
+        # @param Name: Pod名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # 安全组出站规则
+      class Outbound < TencentCloud::Common::AbstractModel
+        # @param Action: 策略，ACCEPT或者DROP。
+        # @type Action: String
+        # @param AddressModule: 地址组id代表的地址集合。
+        # @type AddressModule: String
+        # @param CidrIp: 来源Ip或Ip段，例如192.168.0.0/16。
+        # @type CidrIp: String
+        # @param Desc: 描述。
+        # @type Desc: String
+        # @param IpProtocol: 网络协议，支持udp、tcp等。
+        # @type IpProtocol: String
+        # @param PortRange: 端口。
+        # @type PortRange: String
+        # @param ServiceModule: 服务组id代表的协议和端口集合。
+        # @type ServiceModule: String
+        # @param Id: 安全组id代表的地址集合。
+        # @type Id: String
+
+        attr_accessor :Action, :AddressModule, :CidrIp, :Desc, :IpProtocol, :PortRange, :ServiceModule, :Id
+
+        def initialize(action=nil, addressmodule=nil, cidrip=nil, desc=nil, ipprotocol=nil, portrange=nil, servicemodule=nil, id=nil)
+          @Action = action
+          @AddressModule = addressmodule
+          @CidrIp = cidrip
+          @Desc = desc
+          @IpProtocol = ipprotocol
+          @PortRange = portrange
+          @ServiceModule = servicemodule
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @AddressModule = params['AddressModule']
+          @CidrIp = params['CidrIp']
+          @Desc = params['Desc']
+          @IpProtocol = params['IpProtocol']
+          @PortRange = params['PortRange']
+          @ServiceModule = params['ServiceModule']
+          @Id = params['Id']
+        end
+      end
+
+      # 安全组规则
+      class SecurityGroup < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 创建时间，时间格式：yyyy-mm-dd hh:mm:ss。
+        # @type CreateTime: String
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: String
+        # @param SecurityGroupId: 安全组ID。
+        # @type SecurityGroupId: String
+        # @param SecurityGroupName: 安全组名称。
+        # @type SecurityGroupName: String
+        # @param SecurityGroupRemark: 安全组备注。
+        # @type SecurityGroupRemark: String
+        # @param Outbound: 出站规则。
+        # @type Outbound: Array
+        # @param Inbound: 入站规则。
+        # @type Inbound: Array
+        # @param UpdateTime: 修改时间，时间格式：yyyy-mm-dd hh:mm:ss。
+        # @type UpdateTime: String
+
+        attr_accessor :CreateTime, :ProjectId, :SecurityGroupId, :SecurityGroupName, :SecurityGroupRemark, :Outbound, :Inbound, :UpdateTime
+
+        def initialize(createtime=nil, projectid=nil, securitygroupid=nil, securitygroupname=nil, securitygroupremark=nil, outbound=nil, inbound=nil, updatetime=nil)
+          @CreateTime = createtime
+          @ProjectId = projectid
+          @SecurityGroupId = securitygroupid
+          @SecurityGroupName = securitygroupname
+          @SecurityGroupRemark = securitygroupremark
+          @Outbound = outbound
+          @Inbound = inbound
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @ProjectId = params['ProjectId']
+          @SecurityGroupId = params['SecurityGroupId']
+          @SecurityGroupName = params['SecurityGroupName']
+          @SecurityGroupRemark = params['SecurityGroupRemark']
+          unless params['Outbound'].nil?
+            @Outbound = []
+            params['Outbound'].each do |i|
+              outbound_tmp = Outbound.new
+              outbound_tmp.deserialize(i)
+              @Outbound << outbound_tmp
+            end
+          end
+          unless params['Inbound'].nil?
+            @Inbound = []
+            params['Inbound'].each do |i|
+              inbound_tmp = Inbound.new
+              inbound_tmp.deserialize(i)
+              @Inbound << inbound_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
         end
       end
 

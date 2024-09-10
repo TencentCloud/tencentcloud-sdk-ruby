@@ -2286,6 +2286,45 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceLogDelivery请求参数结构体
+      class DescribeInstanceLogDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceLogDelivery返回参数结构体
+      class DescribeInstanceLogDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param SlowLog: 实例慢日志投递信息。
+        # @type SlowLog: :class:`Tencentcloud::Redis.v20180412.models.LogDeliveryInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SlowLog, :RequestId
+
+        def initialize(slowlog=nil, requestid=nil)
+          @SlowLog = slowlog
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SlowLog'].nil?
+            @SlowLog = LogDeliveryInfo.new
+            @SlowLog.deserialize(params['SlowLog'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceMonitorBigKey请求参数结构体
       class DescribeInstanceMonitorBigKeyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -5877,6 +5916,38 @@ module TencentCloud
         end
       end
 
+      # 日志投递信息
+      class LogDeliveryInfo < TencentCloud::Common::AbstractModel
+        # @param Enabled: 日志投递开启状态，开启：true，关闭：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param LogsetId: 日志集ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetId: String
+        # @param TopicId: 日志主题ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param LogRegion: 日志集所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogRegion: String
+
+        attr_accessor :Enabled, :LogsetId, :TopicId, :LogRegion
+
+        def initialize(enabled=nil, logsetid=nil, topicid=nil, logregion=nil)
+          @Enabled = enabled
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @LogRegion = logregion
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @LogRegion = params['LogRegion']
+        end
+      end
+
       # ManualBackupInstance请求参数结构体
       class ManualBackupInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -6347,6 +6418,76 @@ module TencentCloud
 
         def deserialize(params)
           @EventId = params['EventId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceLogDelivery请求参数结构体
+      class ModifyInstanceLogDeliveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param LogType: 日志类型。当前仅支持设置为slowlog，指慢查询日志。
+        # @type LogType: String
+        # @param Enabled: 日志投递开启状态。
+        # - true：开启。
+        # - false：关闭。
+        # @type Enabled: Boolean
+        # @param LogsetId: 投递的日志集ID。
+        # @type LogsetId: String
+        # @param TopicId: 投递的日志主题ID。
+        # @type TopicId: String
+        # @param LogsetName: 日志集名称。若**LogsetId**未指定具体的日志集ID，请配置该参数，设置日志集名称，系统会以设置的日志集名称自动创建新的日志集。
+        # @type LogsetName: String
+        # @param TopicName: 日志主题名称，TopicId为空时必传，会自动创建新的日志主题。
+        # @type TopicName: String
+        # @param LogRegion: 日志集所在地域，不传默认使用实例所在地域。
+        # @type LogRegion: String
+        # @param Period: 日志存储时间，默认为30天，可选范围1-3600天。
+        # @type Period: Integer
+        # @param CreateIndex: 创建日志主题时，是否创建索引。
+        # @type CreateIndex: Boolean
+
+        attr_accessor :InstanceId, :LogType, :Enabled, :LogsetId, :TopicId, :LogsetName, :TopicName, :LogRegion, :Period, :CreateIndex
+
+        def initialize(instanceid=nil, logtype=nil, enabled=nil, logsetid=nil, topicid=nil, logsetname=nil, topicname=nil, logregion=nil, period=nil, createindex=nil)
+          @InstanceId = instanceid
+          @LogType = logtype
+          @Enabled = enabled
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @LogsetName = logsetname
+          @TopicName = topicname
+          @LogRegion = logregion
+          @Period = period
+          @CreateIndex = createindex
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @Enabled = params['Enabled']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @LogsetName = params['LogsetName']
+          @TopicName = params['TopicName']
+          @LogRegion = params['LogRegion']
+          @Period = params['Period']
+          @CreateIndex = params['CreateIndex']
+        end
+      end
+
+      # ModifyInstanceLogDelivery返回参数结构体
+      class ModifyInstanceLogDeliveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
