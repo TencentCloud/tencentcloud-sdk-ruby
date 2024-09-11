@@ -5428,14 +5428,16 @@ module TencentCloud
         # @type Type: String
         # @param Profile: RetProfile为True时返回头像字段， Base64编码
         # @type Profile: String
+        # @param Nationality: 国籍
+        # @type Nationality: String
         # @param MainlandTravelPermitBackInfos: 背面字段信息
         # @type MainlandTravelPermitBackInfos: :class:`Tencentcloud::Ocr.v20181119.models.MainlandTravelPermitBackInfos`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :EnglishName, :Sex, :Birthday, :IssueAuthority, :ValidDate, :Number, :IssueAddress, :IssueNumber, :Type, :Profile, :MainlandTravelPermitBackInfos, :RequestId
+        attr_accessor :Name, :EnglishName, :Sex, :Birthday, :IssueAuthority, :ValidDate, :Number, :IssueAddress, :IssueNumber, :Type, :Profile, :Nationality, :MainlandTravelPermitBackInfos, :RequestId
 
-        def initialize(name=nil, englishname=nil, sex=nil, birthday=nil, issueauthority=nil, validdate=nil, number=nil, issueaddress=nil, issuenumber=nil, type=nil, profile=nil, mainlandtravelpermitbackinfos=nil, requestid=nil)
+        def initialize(name=nil, englishname=nil, sex=nil, birthday=nil, issueauthority=nil, validdate=nil, number=nil, issueaddress=nil, issuenumber=nil, type=nil, profile=nil, nationality=nil, mainlandtravelpermitbackinfos=nil, requestid=nil)
           @Name = name
           @EnglishName = englishname
           @Sex = sex
@@ -5447,6 +5449,7 @@ module TencentCloud
           @IssueNumber = issuenumber
           @Type = type
           @Profile = profile
+          @Nationality = nationality
           @MainlandTravelPermitBackInfos = mainlandtravelpermitbackinfos
           @RequestId = requestid
         end
@@ -5463,6 +5466,7 @@ module TencentCloud
           @IssueNumber = params['IssueNumber']
           @Type = params['Type']
           @Profile = params['Profile']
+          @Nationality = params['Nationality']
           unless params['MainlandTravelPermitBackInfos'].nil?
             @MainlandTravelPermitBackInfos = MainlandTravelPermitBackInfos.new
             @MainlandTravelPermitBackInfos.deserialize(params['MainlandTravelPermitBackInfos'])

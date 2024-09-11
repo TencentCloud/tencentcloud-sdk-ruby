@@ -2323,10 +2323,12 @@ module TencentCloud
         # @type InstanceDataDiskMountSettings: Array
         # @param ExtensionAddons: 需要安装的扩展组件信息
         # @type ExtensionAddons: Array
+        # @param CdcId: 本地专用集群Id
+        # @type CdcId: String
 
-        attr_accessor :ClusterType, :ClusterCIDRSettings, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons
+        attr_accessor :ClusterType, :ClusterCIDRSettings, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons, :CdcId
 
-        def initialize(clustertype=nil, clustercidrsettings=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil)
+        def initialize(clustertype=nil, clustercidrsettings=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil, cdcid=nil)
           @ClusterType = clustertype
           @ClusterCIDRSettings = clustercidrsettings
           @RunInstancesForNode = runinstancesfornode
@@ -2336,6 +2338,7 @@ module TencentCloud
           @ExistedInstancesForNode = existedinstancesfornode
           @InstanceDataDiskMountSettings = instancedatadiskmountsettings
           @ExtensionAddons = extensionaddons
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -2388,6 +2391,7 @@ module TencentCloud
               @ExtensionAddons << extensionaddon_tmp
             end
           end
+          @CdcId = params['CdcId']
         end
       end
 

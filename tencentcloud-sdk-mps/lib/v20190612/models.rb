@@ -752,10 +752,13 @@ module TencentCloud
         # @param DescriptionTask: 视频内容分析摘要任务的查询结果，当任务类型为 Description 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescriptionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionResult`
+        # @param HorizontalToVerticalTask: 视频内容分析横转竖任务的查询结果，当任务类型为 HorizontalToVertical 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HorizontalToVerticalTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHorizontalToVerticalResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -766,6 +769,7 @@ module TencentCloud
           @SegmentTask = segmenttask
           @HeadTailTask = headtailtask
           @DescriptionTask = descriptiontask
+          @HorizontalToVerticalTask = horizontaltoverticaltask
         end
 
         def deserialize(params)
@@ -805,6 +809,10 @@ module TencentCloud
           unless params['DescriptionTask'].nil?
             @DescriptionTask = AiAnalysisTaskDescriptionResult.new
             @DescriptionTask.deserialize(params['DescriptionTask'])
+          end
+          unless params['HorizontalToVerticalTask'].nil?
+            @HorizontalToVerticalTask = AiAnalysisTaskHorizontalToVerticalResult.new
+            @HorizontalToVerticalTask.deserialize(params['HorizontalToVerticalTask'])
           end
         end
       end
@@ -1391,6 +1399,96 @@ module TencentCloud
         end
       end
 
+      # 智能横转竖任务输入类型
+      class AiAnalysisTaskHorizontalToVerticalInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频智能横转竖模板 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能横转竖结果信息
+      class AiAnalysisTaskHorizontalToVerticalOutput < TencentCloud::Common::AbstractModel
+        # @param Path: 视频智能横转竖列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param OutputStorage: 智能横转竖视频的存储位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param Confidence: 置信度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Confidence: Float
+
+        attr_accessor :Path, :OutputStorage, :Confidence
+
+        def initialize(path=nil, outputstorage=nil, confidence=nil)
+          @Path = path
+          @OutputStorage = outputstorage
+          @Confidence = confidence
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @Confidence = params['Confidence']
+        end
+      end
+
+      # 智能横转竖结果类型
+      class AiAnalysisTaskHorizontalToVerticalResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Input: 智能横转竖任务输入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHorizontalToVerticalInput`
+        # @param Output: 智能横转竖任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHorizontalToVerticalOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskHorizontalToVerticalInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskHorizontalToVerticalOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
       # AI 视频智能分析输入参数类型
       class AiAnalysisTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频内容分析模板 ID。
@@ -1919,8 +2017,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 8
-        deprecate :OutputStorage=, :none, 2024, 8
+        deprecate :OutputStorage, :none, 2024, 9
+        deprecate :OutputStorage=, :none, 2024, 9
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -12362,19 +12460,24 @@ module TencentCloud
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: 片段结束时间偏移。
         # @type EndTimeOffset: Float
+        # @param SegmentTags: 片段标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentTags: Array
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentTags
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenttags=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
+          @SegmentTags = segmenttags
         end
 
         def deserialize(params)
           @Confidence = params['Confidence']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
+          @SegmentTags = params['SegmentTags']
         end
       end
 
@@ -13003,10 +13106,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2024, 8
-        deprecate :QualityControlResults=, :none, 2024, 8
-        deprecate :DiagnoseResults, :none, 2024, 8
-        deprecate :DiagnoseResults=, :none, 2024, 8
+        deprecate :QualityControlResults, :none, 2024, 9
+        deprecate :QualityControlResults=, :none, 2024, 9
+        deprecate :DiagnoseResults, :none, 2024, 9
+        deprecate :DiagnoseResults=, :none, 2024, 9
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults

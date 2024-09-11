@@ -272,6 +272,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口可基于海康ISUP 5.0协议实现透传ISAPI的请求数据，调用接口前需确保设备采用ISUP协议成功注册至本平台
+
+        # @param request: Request instance for CallISAPI.
+        # @type request: :class:`Tencentcloud::iss::V20230517::CallISAPIRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::CallISAPIResponse`
+        def CallISAPI(request)
+          body = send_request('CallISAPI', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CallISAPIResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于检测域名是否备案。
 
         # @param request: Request instance for CheckDomain.

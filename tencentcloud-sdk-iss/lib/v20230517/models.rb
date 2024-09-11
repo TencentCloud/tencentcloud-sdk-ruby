@@ -1376,6 +1376,53 @@ module TencentCloud
         end
       end
 
+      # CallISAPI请求参数结构体
+      class CallISAPIRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+        # @param Url: url 资源
+        # @type Url: String
+        # @param InputData: 输入参数
+        # @type InputData: String
+
+        attr_accessor :DeviceId, :Url, :InputData
+
+        def initialize(deviceid=nil, url=nil, inputdata=nil)
+          @DeviceId = deviceid
+          @Url = url
+          @InputData = inputdata
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Url = params['Url']
+          @InputData = params['InputData']
+        end
+      end
+
+      # CallISAPI返回参数结构体
+      class CallISAPIResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ISAPIOutputData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ISAPIOutputData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 车辆车牌识别结果信息
       class CarAIResultInfo < TencentCloud::Common::AbstractModel
         # @param Serial: 车系
@@ -4395,6 +4442,23 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @DeviceNum = params['DeviceNum']
+        end
+      end
+
+      # ISUP智能安全接入 API返回数据
+      class ISAPIOutputData < TencentCloud::Common::AbstractModel
+        # @param OutputData: 输出参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputData: String
+
+        attr_accessor :OutputData
+
+        def initialize(outputdata=nil)
+          @OutputData = outputdata
+        end
+
+        def deserialize(params)
+          @OutputData = params['OutputData']
         end
       end
 

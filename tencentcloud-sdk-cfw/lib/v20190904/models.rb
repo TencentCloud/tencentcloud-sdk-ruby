@@ -529,15 +529,19 @@ module TencentCloud
         # @param CustomRule: 自定义白名单规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: :class:`Tencentcloud::Cfw.v20190904.models.CustomWhiteRule`
+        # @param FwType: 放通的引擎: 1针对互联网边界 2针对nat防火墙 4针对vpc防火墙
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: Integer
 
-        attr_accessor :Ioc, :DirectionList, :EndTime, :Comment, :CustomRule
+        attr_accessor :Ioc, :DirectionList, :EndTime, :Comment, :CustomRule, :FwType
 
-        def initialize(ioc=nil, directionlist=nil, endtime=nil, comment=nil, customrule=nil)
+        def initialize(ioc=nil, directionlist=nil, endtime=nil, comment=nil, customrule=nil, fwtype=nil)
           @Ioc = ioc
           @DirectionList = directionlist
           @EndTime = endtime
           @Comment = comment
           @CustomRule = customrule
+          @FwType = fwtype
         end
 
         def deserialize(params)
@@ -549,6 +553,7 @@ module TencentCloud
             @CustomRule = CustomWhiteRule.new
             @CustomRule.deserialize(params['CustomRule'])
           end
+          @FwType = params['FwType']
         end
       end
 
@@ -557,7 +562,7 @@ module TencentCloud
         # @param Ioc: 封禁和放通对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ioc: String
-        # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的
+        # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的 （DeleteBlockIgnoreRuleNew接口，该字段无效）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectionList: String
         # @param RuleType: 规则类型
@@ -677,10 +682,13 @@ module TencentCloud
         # @param CustomRule: 自定义规则细节
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: :class:`Tencentcloud::Cfw.v20190904.models.CustomWhiteRule`
+        # @param FwType: 1 border 2 nat 4 vpc 8 border-serial
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: Integer
 
-        attr_accessor :RuleType, :Ioc, :IocName, :IocInfo, :Domain, :IP, :Level, :EventName, :Direction, :DirectionList, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment, :LastHitTime, :CustomRule
+        attr_accessor :RuleType, :Ioc, :IocName, :IocInfo, :Domain, :IP, :Level, :EventName, :Direction, :DirectionList, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment, :LastHitTime, :CustomRule, :FwType
 
-        def initialize(ruletype=nil, ioc=nil, iocname=nil, iocinfo=nil, domain=nil, ip=nil, level=nil, eventname=nil, direction=nil, directionlist=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil, lasthittime=nil, customrule=nil)
+        def initialize(ruletype=nil, ioc=nil, iocname=nil, iocinfo=nil, domain=nil, ip=nil, level=nil, eventname=nil, direction=nil, directionlist=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil, lasthittime=nil, customrule=nil, fwtype=nil)
           @RuleType = ruletype
           @Ioc = ioc
           @IocName = iocname
@@ -704,6 +712,7 @@ module TencentCloud
           @Comment = comment
           @LastHitTime = lasthittime
           @CustomRule = customrule
+          @FwType = fwtype
         end
 
         def deserialize(params)
@@ -733,6 +742,7 @@ module TencentCloud
             @CustomRule = CustomWhiteRule.new
             @CustomRule.deserialize(params['CustomRule'])
           end
+          @FwType = params['FwType']
         end
       end
 
@@ -1621,10 +1631,12 @@ module TencentCloud
         # @type ParamTemplateId: String
         # @param InternalUuid: 内部id
         # @type InternalUuid: Integer
+        # @param Scope: 规则生效的范围：ALL，全局生效；ap-guangzhou，生效的地域；cfwnat-xxx，生效基于实例维度
+        # @type Scope: String
 
-        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description, :ParamTemplateId, :InternalUuid
+        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description, :ParamTemplateId, :InternalUuid, :Scope
 
-        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil, paramtemplateid=nil, internaluuid=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil, paramtemplateid=nil, internaluuid=nil, scope=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @TargetContent = targetcontent
@@ -1639,6 +1651,7 @@ module TencentCloud
           @Description = description
           @ParamTemplateId = paramtemplateid
           @InternalUuid = internaluuid
+          @Scope = scope
         end
 
         def deserialize(params)
@@ -1656,6 +1669,7 @@ module TencentCloud
           @Description = params['Description']
           @ParamTemplateId = params['ParamTemplateId']
           @InternalUuid = params['InternalUuid']
+          @Scope = params['Scope']
         end
       end
 
@@ -2520,9 +2534,13 @@ module TencentCloud
         # @param BetaList: 关联任务详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
-        # @param Scope: 生效范围：serial，串行；side，旁路；all，全局
+        # @param Scope: （1）互联网边界防火墙，生效范围：serial，串行；side，旁路；all，全局；
+        # （2）NAT边界防火墙：ALL，全局生效；ap-guangzhou，生效的地域；cfwnat-xxx，生效基于实例维度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scope: String
+        # @param ScopeDesc: 生效范围描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScopeDesc: String
         # @param InternetBorderUuid: 互联网边界防火墙使用的内部规则id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetBorderUuid: String
@@ -2542,9 +2560,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastHitTime: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2571,6 +2589,7 @@ module TencentCloud
           @Status = status
           @BetaList = betalist
           @Scope = scope
+          @ScopeDesc = scopedesc
           @InternetBorderUuid = internetborderuuid
           @ParamTemplateName = paramtemplatename
           @ParamTemplateId = paramtemplateid
@@ -2613,6 +2632,7 @@ module TencentCloud
             end
           end
           @Scope = params['Scope']
+          @ScopeDesc = params['ScopeDesc']
           @InternetBorderUuid = params['InternetBorderUuid']
           @ParamTemplateName = params['ParamTemplateName']
           @ParamTemplateId = params['ParamTemplateId']
@@ -5400,10 +5420,13 @@ module TencentCloud
         # @param Domain: 域名化CLB的域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
+        # @param OverUsedStatus: IP超量状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverUsedStatus: Integer
 
-        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight, :Domain
+        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight, :Domain, :OverUsedStatus
 
-        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil, domain=nil)
+        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil, domain=nil, overusedstatus=nil)
           @PublicIp = publicip
           @PublicIpType = publiciptype
           @InstanceId = instanceid
@@ -5426,6 +5449,7 @@ module TencentCloud
           @SwitchMode = switchmode
           @SwitchWeight = switchweight
           @Domain = domain
+          @OverUsedStatus = overusedstatus
         end
 
         def deserialize(params)
@@ -5451,6 +5475,7 @@ module TencentCloud
           @SwitchMode = params['SwitchMode']
           @SwitchWeight = params['SwitchWeight']
           @Domain = params['Domain']
+          @OverUsedStatus = params['OverUsedStatus']
         end
       end
 
@@ -7986,10 +8011,19 @@ module TencentCloud
         # @param Abnormal: 开关是否异常,0:正常,1:异常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Abnormal: Integer
+        # @param ORTableId: nat防火墙出口路由表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ORTableId: String
+        # @param ORTableName: nat防火墙出口路由表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ORTableName: String
+        # @param Ohavips: 出口Snat Ip列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ohavips: Array
 
-        attr_accessor :Id, :SubnetId, :SubnetName, :SubnetCidr, :RouteId, :RouteName, :CvmNum, :VpcId, :VpcName, :Enable, :Status, :NatId, :NatName, :NatInsId, :NatInsName, :Region, :Abnormal
+        attr_accessor :Id, :SubnetId, :SubnetName, :SubnetCidr, :RouteId, :RouteName, :CvmNum, :VpcId, :VpcName, :Enable, :Status, :NatId, :NatName, :NatInsId, :NatInsName, :Region, :Abnormal, :ORTableId, :ORTableName, :Ohavips
 
-        def initialize(id=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, routeid=nil, routename=nil, cvmnum=nil, vpcid=nil, vpcname=nil, enable=nil, status=nil, natid=nil, natname=nil, natinsid=nil, natinsname=nil, region=nil, abnormal=nil)
+        def initialize(id=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, routeid=nil, routename=nil, cvmnum=nil, vpcid=nil, vpcname=nil, enable=nil, status=nil, natid=nil, natname=nil, natinsid=nil, natinsname=nil, region=nil, abnormal=nil, ortableid=nil, ortablename=nil, ohavips=nil)
           @Id = id
           @SubnetId = subnetid
           @SubnetName = subnetname
@@ -8007,6 +8041,9 @@ module TencentCloud
           @NatInsName = natinsname
           @Region = region
           @Abnormal = abnormal
+          @ORTableId = ortableid
+          @ORTableName = ortablename
+          @Ohavips = ohavips
         end
 
         def deserialize(params)
@@ -8027,6 +8064,9 @@ module TencentCloud
           @NatInsName = params['NatInsName']
           @Region = params['Region']
           @Abnormal = params['Abnormal']
+          @ORTableId = params['ORTableId']
+          @ORTableName = params['ORTableName']
+          @Ohavips = params['Ohavips']
         end
       end
 

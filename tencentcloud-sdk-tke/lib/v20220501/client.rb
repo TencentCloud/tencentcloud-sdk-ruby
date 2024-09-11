@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建健康检测策略
+
+        # @param request: Request instance for CreateHealthCheckPolicy.
+        # @type request: :class:`Tencentcloud::tke::V20220501::CreateHealthCheckPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::CreateHealthCheckPolicyResponse`
+        def CreateHealthCheckPolicy(request)
+          body = send_request('CreateHealthCheckPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHealthCheckPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 TKE 节点池
 
         # @param request: Request instance for CreateNodePool.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateNodePoolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除健康检测策略
+
+        # @param request: Request instance for DeleteHealthCheckPolicy.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DeleteHealthCheckPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DeleteHealthCheckPolicyResponse`
+        def DeleteHealthCheckPolicy(request)
+          body = send_request('DeleteHealthCheckPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteHealthCheckPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -101,6 +149,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询健康检测策略
+
+        # @param request: Request instance for DescribeHealthCheckPolicies.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DescribeHealthCheckPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DescribeHealthCheckPoliciesResponse`
+        def DescribeHealthCheckPolicies(request)
+          body = send_request('DescribeHealthCheckPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHealthCheckPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询健康检测策略绑定关系
+
+        # @param request: Request instance for DescribeHealthCheckPolicyBindings.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DescribeHealthCheckPolicyBindingsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DescribeHealthCheckPolicyBindingsResponse`
+        def DescribeHealthCheckPolicyBindings(request)
+          body = send_request('DescribeHealthCheckPolicyBindings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHealthCheckPolicyBindingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询健康检测策略模板
+
+        # @param request: Request instance for DescribeHealthCheckTemplate.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DescribeHealthCheckTemplateRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DescribeHealthCheckTemplateResponse`
+        def DescribeHealthCheckTemplate(request)
+          body = send_request('DescribeHealthCheckTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHealthCheckTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 TKE 节点池列表
 
         # @param request: Request instance for DescribeNodePools.
@@ -111,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNodePoolsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改健康检测策略
+
+        # @param request: Request instance for ModifyHealthCheckPolicy.
+        # @type request: :class:`Tencentcloud::tke::V20220501::ModifyHealthCheckPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::ModifyHealthCheckPolicyResponse`
+        def ModifyHealthCheckPolicy(request)
+          body = send_request('ModifyHealthCheckPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHealthCheckPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

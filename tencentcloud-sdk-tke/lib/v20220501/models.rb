@@ -92,6 +92,49 @@ module TencentCloud
         end
       end
 
+      # CreateHealthCheckPolicy请求参数结构体
+      class CreateHealthCheckPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param HealthCheckPolicy: 健康检测策略
+        # @type HealthCheckPolicy: :class:`Tencentcloud::Tke.v20220501.models.HealthCheckPolicy`
+
+        attr_accessor :ClusterId, :HealthCheckPolicy
+
+        def initialize(clusterid=nil, healthcheckpolicy=nil)
+          @ClusterId = clusterid
+          @HealthCheckPolicy = healthcheckpolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['HealthCheckPolicy'].nil?
+            @HealthCheckPolicy = HealthCheckPolicy.new
+            @HealthCheckPolicy.deserialize(params['HealthCheckPolicy'])
+          end
+        end
+      end
+
+      # CreateHealthCheckPolicy返回参数结构体
+      class CreateHealthCheckPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param HealthCheckPolicyName: 健康检测策略名称
+        # @type HealthCheckPolicyName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HealthCheckPolicyName, :RequestId
+
+        def initialize(healthcheckpolicyname=nil, requestid=nil)
+          @HealthCheckPolicyName = healthcheckpolicyname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HealthCheckPolicyName = params['HealthCheckPolicyName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 原生节点池创建参数
       class CreateNativeNodePoolParam < TencentCloud::Common::AbstractModel
         # @param Scaling: 节点池伸缩配置
@@ -377,6 +420,42 @@ module TencentCloud
         end
       end
 
+      # DeleteHealthCheckPolicy请求参数结构体
+      class DeleteHealthCheckPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param HealthCheckPolicyName: 健康检测策略名称
+        # @type HealthCheckPolicyName: String
+
+        attr_accessor :ClusterId, :HealthCheckPolicyName
+
+        def initialize(clusterid=nil, healthcheckpolicyname=nil)
+          @ClusterId = clusterid
+          @HealthCheckPolicyName = healthcheckpolicyname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @HealthCheckPolicyName = params['HealthCheckPolicyName']
+        end
+      end
+
+      # DeleteHealthCheckPolicy返回参数结构体
+      class DeleteHealthCheckPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNodePool请求参数结构体
       class DeleteNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
@@ -488,6 +567,182 @@ module TencentCloud
             end
           end
           @Errors = params['Errors']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHealthCheckPolicies请求参数结构体
+      class DescribeHealthCheckPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Filters: ·  HealthCheckPolicyName
+        #     按照【健康检测策略名称】进行过滤。
+        #     类型：String
+        #     必选：否
+        # @type Filters: Array
+        # @param Limit: 最大输出条数，默认20，最大为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+
+        attr_accessor :ClusterId, :Filters, :Limit, :Offset
+
+        def initialize(clusterid=nil, filters=nil, limit=nil, offset=nil)
+          @ClusterId = clusterid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeHealthCheckPolicies返回参数结构体
+      class DescribeHealthCheckPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param HealthCheckPolicies: 健康检测策略数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckPolicies: Array
+        # @param TotalCount: 数组总数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HealthCheckPolicies, :TotalCount, :RequestId
+
+        def initialize(healthcheckpolicies=nil, totalcount=nil, requestid=nil)
+          @HealthCheckPolicies = healthcheckpolicies
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HealthCheckPolicies'].nil?
+            @HealthCheckPolicies = []
+            params['HealthCheckPolicies'].each do |i|
+              healthcheckpolicy_tmp = HealthCheckPolicy.new
+              healthcheckpolicy_tmp.deserialize(i)
+              @HealthCheckPolicies << healthcheckpolicy_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHealthCheckPolicyBindings请求参数结构体
+      class DescribeHealthCheckPolicyBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Filter: ·  HealthCheckPolicyName
+        #     按照【健康检测规则名称】进行过滤。
+        #     类型：String
+        #     必选：否
+        # @type Filter: Array
+        # @param Limit: 最大输出条数，默认20，最大为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+
+        attr_accessor :ClusterId, :Filter, :Limit, :Offset
+
+        def initialize(clusterid=nil, filter=nil, limit=nil, offset=nil)
+          @ClusterId = clusterid
+          @Filter = filter
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filter << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeHealthCheckPolicyBindings返回参数结构体
+      class DescribeHealthCheckPolicyBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param HealthCheckPolicyBindings: 健康检测规则数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckPolicyBindings: Array
+        # @param TotalCount: 健康检测规则数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HealthCheckPolicyBindings, :TotalCount, :RequestId
+
+        def initialize(healthcheckpolicybindings=nil, totalcount=nil, requestid=nil)
+          @HealthCheckPolicyBindings = healthcheckpolicybindings
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HealthCheckPolicyBindings'].nil?
+            @HealthCheckPolicyBindings = []
+            params['HealthCheckPolicyBindings'].each do |i|
+              healthcheckpolicybinding_tmp = HealthCheckPolicyBinding.new
+              healthcheckpolicybinding_tmp.deserialize(i)
+              @HealthCheckPolicyBindings << healthcheckpolicybinding_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHealthCheckTemplate请求参数结构体
+      class DescribeHealthCheckTemplateRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeHealthCheckTemplate返回参数结构体
+      class DescribeHealthCheckTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param HealthCheckTemplate: 健康检测策略模板
+        # @type HealthCheckTemplate: :class:`Tencentcloud::Tke.v20220501.models.HealthCheckTemplate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HealthCheckTemplate, :RequestId
+
+        def initialize(healthchecktemplate=nil, requestid=nil)
+          @HealthCheckTemplate = healthchecktemplate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HealthCheckTemplate'].nil?
+            @HealthCheckTemplate = HealthCheckTemplate.new
+            @HealthCheckTemplate.deserialize(params['HealthCheckTemplate'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -682,6 +937,144 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 健康检测规则
+      class HealthCheckPolicy < TencentCloud::Common::AbstractModel
+        # @param Name: 健康检测策略名称
+        # @type Name: String
+        # @param Rules: 健康检测策略规则列表
+        # @type Rules: Array
+
+        attr_accessor :Name, :Rules
+
+        def initialize(name=nil, rules=nil)
+          @Name = name
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              healthcheckpolicyrule_tmp = HealthCheckPolicyRule.new
+              healthcheckpolicyrule_tmp.deserialize(i)
+              @Rules << healthcheckpolicyrule_tmp
+            end
+          end
+        end
+      end
+
+      # 健康检测策略和节点池的绑定关系
+      class HealthCheckPolicyBinding < TencentCloud::Common::AbstractModel
+        # @param Name: 健康检测策略名称
+        # @type Name: String
+        # @param CreatedAt: 规则创建时间
+        # @type CreatedAt: String
+        # @param NodePools: 关联节点池数组
+        # @type NodePools: Array
+
+        attr_accessor :Name, :CreatedAt, :NodePools
+
+        def initialize(name=nil, createdat=nil, nodepools=nil)
+          @Name = name
+          @CreatedAt = createdat
+          @NodePools = nodepools
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CreatedAt = params['CreatedAt']
+          @NodePools = params['NodePools']
+        end
+      end
+
+      # 健康检测规则
+      class HealthCheckPolicyRule < TencentCloud::Common::AbstractModel
+        # @param Name: 健康检测规则
+        # @type Name: String
+        # @param Enabled: 是否检测此项目
+        # @type Enabled: Boolean
+        # @param AutoRepairEnabled: 是否启用修复
+        # @type AutoRepairEnabled: Boolean
+
+        attr_accessor :Name, :Enabled, :AutoRepairEnabled
+
+        def initialize(name=nil, enabled=nil, autorepairenabled=nil)
+          @Name = name
+          @Enabled = enabled
+          @AutoRepairEnabled = autorepairenabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+          @AutoRepairEnabled = params['AutoRepairEnabled']
+        end
+      end
+
+      # 健康检测模板
+      class HealthCheckTemplate < TencentCloud::Common::AbstractModel
+        # @param Rules: 健康检测项
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              healthchecktemplaterule_tmp = HealthCheckTemplateRule.new
+              healthchecktemplaterule_tmp.deserialize(i)
+              @Rules << healthchecktemplaterule_tmp
+            end
+          end
+        end
+      end
+
+      # 健康检测模板规则
+      class HealthCheckTemplateRule < TencentCloud::Common::AbstractModel
+        # @param Name: 健康检测项目名称
+        # @type Name: String
+        # @param Description: 健康检测规则描述
+        # @type Description: String
+        # @param RepairAction: 修复动作
+        # @type RepairAction: String
+        # @param RepairEffect: 修复影响
+        # @type RepairEffect: String
+        # @param ShouldEnable: 是否建议开启检测
+        # @type ShouldEnable: Boolean
+        # @param ShouldRepair: 是否建议修复
+        # @type ShouldRepair: Boolean
+        # @param Severity: 问题严重程度
+        # @type Severity: String
+
+        attr_accessor :Name, :Description, :RepairAction, :RepairEffect, :ShouldEnable, :ShouldRepair, :Severity
+
+        def initialize(name=nil, description=nil, repairaction=nil, repaireffect=nil, shouldenable=nil, shouldrepair=nil, severity=nil)
+          @Name = name
+          @Description = description
+          @RepairAction = repairaction
+          @RepairEffect = repaireffect
+          @ShouldEnable = shouldenable
+          @ShouldRepair = shouldrepair
+          @Severity = severity
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @RepairAction = params['RepairAction']
+          @RepairEffect = params['RepairEffect']
+          @ShouldEnable = params['ShouldEnable']
+          @ShouldRepair = params['ShouldRepair']
+          @Severity = params['Severity']
         end
       end
 
@@ -1067,6 +1460,45 @@ module TencentCloud
           @Initializing = params['Initializing']
           @Normal = params['Normal']
           @Total = params['Total']
+        end
+      end
+
+      # ModifyHealthCheckPolicy请求参数结构体
+      class ModifyHealthCheckPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param HealthCheckPolicy: 健康检测策略
+        # @type HealthCheckPolicy: :class:`Tencentcloud::Tke.v20220501.models.HealthCheckPolicy`
+
+        attr_accessor :ClusterId, :HealthCheckPolicy
+
+        def initialize(clusterid=nil, healthcheckpolicy=nil)
+          @ClusterId = clusterid
+          @HealthCheckPolicy = healthcheckpolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['HealthCheckPolicy'].nil?
+            @HealthCheckPolicy = HealthCheckPolicy.new
+            @HealthCheckPolicy.deserialize(params['HealthCheckPolicy'])
+          end
+        end
+      end
+
+      # ModifyHealthCheckPolicy返回参数结构体
+      class ModifyHealthCheckPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

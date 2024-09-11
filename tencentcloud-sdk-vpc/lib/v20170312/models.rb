@@ -4978,14 +4978,17 @@ module TencentCloud
         # @type ProjectId: String
         # @param SecurityGroupPolicySet: 安全组规则集合。
         # @type SecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :GroupName, :GroupDescription, :ProjectId, :SecurityGroupPolicySet
+        attr_accessor :GroupName, :GroupDescription, :ProjectId, :SecurityGroupPolicySet, :Tags
 
-        def initialize(groupname=nil, groupdescription=nil, projectid=nil, securitygrouppolicyset=nil)
+        def initialize(groupname=nil, groupdescription=nil, projectid=nil, securitygrouppolicyset=nil, tags=nil)
           @GroupName = groupname
           @GroupDescription = groupdescription
           @ProjectId = projectid
           @SecurityGroupPolicySet = securitygrouppolicyset
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4995,6 +4998,14 @@ module TencentCloud
           unless params['SecurityGroupPolicySet'].nil?
             @SecurityGroupPolicySet = SecurityGroupPolicySet.new
             @SecurityGroupPolicySet.deserialize(params['SecurityGroupPolicySet'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
