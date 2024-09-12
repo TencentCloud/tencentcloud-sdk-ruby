@@ -1637,15 +1637,17 @@ module TencentCloud
         # @type AutoSignScene: String
         # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
 
-        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator
+        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 9
         deprecate :CallbackUrl=, :none, 2024, 9
         deprecate :Operator, :none, 2024, 9
         deprecate :Operator=, :none, 2024, 9
 
-        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil)
+        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -1665,6 +1667,7 @@ module TencentCloud
           @CcNotifyType = ccnotifytype
           @AutoSignScene = autosignscene
           @Operator = operator
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -1714,6 +1717,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 
@@ -2110,7 +2114,7 @@ module TencentCloud
         # 若为子客企业签署方则需传OpenId、OrganizationOpenId，其他可不传。
 
         # 注:
-        # `1. 签署人只能有手写签名、时间类型、印章类型的签署控件和内容填写控件，其他类型的签署控件暂时未支持。`
+        # `1. 签署人只能有手写签名、时间类型、印章类型、签批类型的签署控件和内容填写控件，其他类型的签署控件暂时未支持。`
         # `2. 生成发起方预览链接时，该字段（FlowApproverInfos）传空或者不传`
         # @type FlowApproverInfos: Array
         # @param Operator: 用户信息，暂未开放
@@ -8160,13 +8164,15 @@ module TencentCloud
         # @type CustomShowMap: String
         # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批
         # @type NeedSignReview: Boolean
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
 
-        attr_accessor :FileIds, :FlowName, :FlowApprovers, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :CustomerData, :Unordered, :Components, :CustomShowMap, :NeedSignReview
+        attr_accessor :FileIds, :FlowName, :FlowApprovers, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :CustomerData, :Unordered, :Components, :CustomShowMap, :NeedSignReview, :FlowDisplayType
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 9
         deprecate :CallbackUrl=, :none, 2024, 9
 
-        def initialize(fileids=nil, flowname=nil, flowapprovers=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, customerdata=nil, unordered=nil, components=nil, customshowmap=nil, needsignreview=nil)
+        def initialize(fileids=nil, flowname=nil, flowapprovers=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, customerdata=nil, unordered=nil, components=nil, customshowmap=nil, needsignreview=nil, flowdisplaytype=nil)
           @FileIds = fileids
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -8179,6 +8185,7 @@ module TencentCloud
           @Components = components
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -8208,6 +8215,7 @@ module TencentCloud
           end
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 
@@ -8379,13 +8387,15 @@ module TencentCloud
         # <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>
         # 注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
         # @type AutoSignScene: String
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
 
-        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType, :AutoSignScene
+        attr_accessor :FlowName, :Deadline, :TemplateId, :FlowApprovers, :FormFields, :CallbackUrl, :FlowType, :FlowDescription, :CustomerData, :CustomShowMap, :CcInfos, :NeedSignReview, :CcNotifyType, :AutoSignScene, :FlowDisplayType
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 9
         deprecate :CallbackUrl=, :none, 2024, 9
 
-        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil, ccnotifytype=nil, autosignscene=nil)
+        def initialize(flowname=nil, deadline=nil, templateid=nil, flowapprovers=nil, formfields=nil, callbackurl=nil, flowtype=nil, flowdescription=nil, customerdata=nil, customshowmap=nil, ccinfos=nil, needsignreview=nil, ccnotifytype=nil, autosignscene=nil, flowdisplaytype=nil)
           @FlowName = flowname
           @Deadline = deadline
           @TemplateId = templateid
@@ -8400,6 +8410,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @CcNotifyType = ccnotifytype
           @AutoSignScene = autosignscene
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -8438,6 +8449,7 @@ module TencentCloud
           @NeedSignReview = params['NeedSignReview']
           @CcNotifyType = params['CcNotifyType']
           @AutoSignScene = params['AutoSignScene']
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 

@@ -3414,7 +3414,7 @@ module TencentCloud
         # "-3"代表存在隐患
         # "-4"代表未探测
         # @type HealthStateId: String
-        # @param ServiceName: 服务组件名称，都是大写比如YARN
+        # @param ServiceName: 服务组件名称，都是大写例如YARN
         # @type ServiceName: String
         # @param NodeTypeName: 节点名称
         # master

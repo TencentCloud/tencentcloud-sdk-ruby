@@ -278,10 +278,14 @@ module TencentCloud
         # @type SubStreamSet: Array
         # @param CopyRightWatermarkText: 版权信息。
         # @type CopyRightWatermarkText: String
+        # @param SubtitleSet: 字幕信息列表。
+        # @type SubtitleSet: Array
+        # @param DefaultSubtitleId: 默认字幕的唯一标识。
+        # @type DefaultSubtitleId: String
 
-        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText
+        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText, :SubtitleSet, :DefaultSubtitleId
 
-        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil)
+        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil, subtitleset=nil, defaultsubtitleid=nil)
           @Definition = definition
           @Package = package
           @DrmType = drmtype
@@ -290,6 +294,8 @@ module TencentCloud
           @DigitalWatermarkType = digitalwatermarktype
           @SubStreamSet = substreamset
           @CopyRightWatermarkText = copyrightwatermarktext
+          @SubtitleSet = subtitleset
+          @DefaultSubtitleId = defaultsubtitleid
         end
 
         def deserialize(params)
@@ -308,6 +314,15 @@ module TencentCloud
             end
           end
           @CopyRightWatermarkText = params['CopyRightWatermarkText']
+          unless params['SubtitleSet'].nil?
+            @SubtitleSet = []
+            params['SubtitleSet'].each do |i|
+              mediasubtitleitem_tmp = MediaSubtitleItem.new
+              mediasubtitleitem_tmp.deserialize(i)
+              @SubtitleSet << mediasubtitleitem_tmp
+            end
+          end
+          @DefaultSubtitleId = params['DefaultSubtitleId']
         end
       end
 
@@ -4252,16 +4267,19 @@ module TencentCloud
         # @type AdaptiveDynamicStreamingDefinition: Integer
         # @param SubtitleIds: 字幕的唯一标识。
         # @type SubtitleIds: Array
+        # @param DefaultSubtitleId: 默认字幕的唯一标识。不填则不设置默认字幕。
+        # @type DefaultSubtitleId: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
-        attr_accessor :FileId, :Operation, :AdaptiveDynamicStreamingDefinition, :SubtitleIds, :SubAppId
+        attr_accessor :FileId, :Operation, :AdaptiveDynamicStreamingDefinition, :SubtitleIds, :DefaultSubtitleId, :SubAppId
 
-        def initialize(fileid=nil, operation=nil, adaptivedynamicstreamingdefinition=nil, subtitleids=nil, subappid=nil)
+        def initialize(fileid=nil, operation=nil, adaptivedynamicstreamingdefinition=nil, subtitleids=nil, defaultsubtitleid=nil, subappid=nil)
           @FileId = fileid
           @Operation = operation
           @AdaptiveDynamicStreamingDefinition = adaptivedynamicstreamingdefinition
           @SubtitleIds = subtitleids
+          @DefaultSubtitleId = defaultsubtitleid
           @SubAppId = subappid
         end
 
@@ -4270,6 +4288,7 @@ module TencentCloud
           @Operation = params['Operation']
           @AdaptiveDynamicStreamingDefinition = params['AdaptiveDynamicStreamingDefinition']
           @SubtitleIds = params['SubtitleIds']
+          @DefaultSubtitleId = params['DefaultSubtitleId']
           @SubAppId = params['SubAppId']
         end
       end

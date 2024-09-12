@@ -1178,8 +1178,7 @@ module TencentCloud
       class Column < TencentCloud::Common::AbstractModel
         # @param Name: 列名称，不区分大小写，最大支持25个字符。
         # @type Name: String
-        # @param Type: 列类型，支持如下类型定义:
-        # string|tinyint|smallint|int|bigint|boolean|float|double|decimal|timestamp|date|binary|array<data_type>|map<primitive_type, data_type>|struct<col_name : data_type [COMMENT col_comment], ...>|uniontype<data_type, data_type, ...>。
+        # @param Type: string|tinyint|smallint|int|bigint|boolean|float|double|decimal|timestamp|date|binary|array|map|struct|uniontype
         # @type Type: String
         # @param Comment: 对该类的注释。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1205,10 +1204,13 @@ module TencentCloud
         # @param IsPartition: 是否为分区字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPartition: Boolean
+        # @param DataMaskStrategyInfo: 数据脱敏策略信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataMaskStrategyInfo: :class:`Tencentcloud::Dlc.v20210125.models.DataMaskStrategyInfo`
 
-        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime, :IsPartition
+        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable, :Position, :CreateTime, :ModifiedTime, :IsPartition, :DataMaskStrategyInfo
 
-        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil, ispartition=nil)
+        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil, position=nil, createtime=nil, modifiedtime=nil, ispartition=nil, datamaskstrategyinfo=nil)
           @Name = name
           @Type = type
           @Comment = comment
@@ -1219,6 +1221,7 @@ module TencentCloud
           @CreateTime = createtime
           @ModifiedTime = modifiedtime
           @IsPartition = ispartition
+          @DataMaskStrategyInfo = datamaskstrategyinfo
         end
 
         def deserialize(params)
@@ -1232,6 +1235,10 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
           @IsPartition = params['IsPartition']
+          unless params['DataMaskStrategyInfo'].nil?
+            @DataMaskStrategyInfo = DataMaskStrategyInfo.new
+            @DataMaskStrategyInfo.deserialize(params['DataMaskStrategyInfo'])
+          end
         end
       end
 
@@ -2205,7 +2212,7 @@ module TencentCloud
         # @type TaskId: String
         # @param Format: 下载格式
         # @type Format: String
-        # @param Force: 是否重新生成下载文件，仅当之前任务为 Timout | Error 时有效
+        # @param Force: 是否重新生成下载文件，仅当之前任务状态为 timeout | error 时有效
         # @type Force: Boolean
 
         attr_accessor :TaskId, :Format, :Force
@@ -4005,6 +4012,55 @@ module TencentCloud
         end
       end
 
+      # 数据脱敏策略信息
+      class DataMaskStrategyInfo < TencentCloud::Common::AbstractModel
+        # @param StrategyName: 策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
+        # @param StrategyType: MASK_SHOW_FIRST_4; MASK_SHOW_LAST_4;MASK_HASH; MASK_DATE_SHOW_YEAR; MASK_NULL; MASK_DEFAULT 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyType: String
+        # @param StrategyDesc: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyDesc: String
+        # @param Groups: 用户组策略列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param Users: 用户子账号uin列表，按;拼接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Users: String
+        # @param StrategyId: 策略Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: String
+
+        attr_accessor :StrategyName, :StrategyType, :StrategyDesc, :Groups, :Users, :StrategyId
+
+        def initialize(strategyname=nil, strategytype=nil, strategydesc=nil, groups=nil, users=nil, strategyid=nil)
+          @StrategyName = strategyname
+          @StrategyType = strategytype
+          @StrategyDesc = strategydesc
+          @Groups = groups
+          @Users = users
+          @StrategyId = strategyid
+        end
+
+        def deserialize(params)
+          @StrategyName = params['StrategyName']
+          @StrategyType = params['StrategyType']
+          @StrategyDesc = params['StrategyDesc']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+          @Users = params['Users']
+          @StrategyId = params['StrategyId']
+        end
+      end
+
       # 数据源详细信息
       class DataSourceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据源实例的唯一ID
@@ -4193,10 +4249,13 @@ module TencentCloud
         # @param TDSQLPostgreSql: TDSQL-PostgreSQL数据源连接的属性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TDSQLPostgreSql: :class:`Tencentcloud::Dlc.v20210125.models.DataSourceInfo`
+        # @param TCHouseD: Doris数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TCHouseD: :class:`Tencentcloud::Dlc.v20210125.models.TCHouseD`
 
-        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql
+        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql, :TCHouseD
 
-        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil)
+        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil, tchoused=nil)
           @Mysql = mysql
           @Hive = hive
           @Kafka = kafka
@@ -4206,6 +4265,7 @@ module TencentCloud
           @ClickHouse = clickhouse
           @Elasticsearch = elasticsearch
           @TDSQLPostgreSql = tdsqlpostgresql
+          @TCHouseD = tchoused
         end
 
         def deserialize(params)
@@ -4244,6 +4304,10 @@ module TencentCloud
           unless params['TDSQLPostgreSql'].nil?
             @TDSQLPostgreSql = DataSourceInfo.new
             @TDSQLPostgreSql.deserialize(params['TDSQLPostgreSql'])
+          end
+          unless params['TCHouseD'].nil?
+            @TCHouseD = TCHouseD.new
+            @TCHouseD.deserialize(params['TCHouseD'])
           end
         end
       end
@@ -6384,10 +6448,10 @@ module TencentCloud
         # @param Reason: 任务异常原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
-        # @param SecretId: 临时AK
+        # @param SecretId: 临时SecretId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretId: String
-        # @param SecretKey: 临时SK
+        # @param SecretKey: 临时SecretKey
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
         # @param Token: 临时Token
@@ -8739,6 +8803,28 @@ module TencentCloud
         end
       end
 
+      # 数据脱敏用户组信息
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 用户组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupId: Integer
+        # @param StrategyType: 策略类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyType: String
+
+        attr_accessor :WorkGroupId, :StrategyType
+
+        def initialize(workgroupid=nil, strategytype=nil)
+          @WorkGroupId = workgroupid
+          @StrategyType = strategytype
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @StrategyType = params['StrategyType']
+        end
+      end
+
       # hive类型数据源的信息
       class HiveInfo < TencentCloud::Common::AbstractModel
         # @param MetaStoreUrl: hive metastore的地址
@@ -10819,16 +10905,20 @@ module TencentCloud
         # @param Status: 状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param ResourceGroupName: 标准引擎资源组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
 
-        attr_accessor :AttributionType, :ResourceType, :Name, :Instance, :Favor, :Status
+        attr_accessor :AttributionType, :ResourceType, :Name, :Instance, :Favor, :Status, :ResourceGroupName
 
-        def initialize(attributiontype=nil, resourcetype=nil, name=nil, instance=nil, favor=nil, status=nil)
+        def initialize(attributiontype=nil, resourcetype=nil, name=nil, instance=nil, favor=nil, status=nil, resourcegroupname=nil)
           @AttributionType = attributiontype
           @ResourceType = resourcetype
           @Name = name
           @Instance = instance
           @Favor = favor
           @Status = status
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -10845,6 +10935,7 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -11788,6 +11879,61 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Doirs数据源详细信息
+      class TCHouseD < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 数据源实例的唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param JdbcUrl: 数据源的JDBC
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JdbcUrl: String
+        # @param User: 用于访问数据源的用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Password: 数据源访问密码，需要base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Location: 数据源的VPC和子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+        # @param DbName: 默认数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param AccessInfo: 访问信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessInfo: String
+
+        attr_accessor :InstanceId, :InstanceName, :JdbcUrl, :User, :Password, :Location, :DbName, :AccessInfo
+
+        def initialize(instanceid=nil, instancename=nil, jdbcurl=nil, user=nil, password=nil, location=nil, dbname=nil, accessinfo=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @JdbcUrl = jdbcurl
+          @User = user
+          @Password = password
+          @Location = location
+          @DbName = dbname
+          @AccessInfo = accessinfo
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @JdbcUrl = params['JdbcUrl']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
+          @DbName = params['DbName']
+          @AccessInfo = params['AccessInfo']
         end
       end
 

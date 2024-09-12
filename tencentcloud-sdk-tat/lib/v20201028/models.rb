@@ -119,6 +119,9 @@ module TencentCloud
         # @param DefaultParameterConfs: 自定义参数的默认取值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultParameterConfs: Array
+        # @param Scenes: 命令关联的场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scenes: Array
         # @param FormattedDescription: 命令的结构化描述。公共命令有值，用户命令为空字符串。
         # @type FormattedDescription: String
         # @param CreatedBy: 命令创建者。TAT 代表公共命令，USER 代表个人命令。
@@ -132,9 +135,9 @@ module TencentCloud
         # @param OutputCOSKeyPrefix: 日志在cos bucket中的目录。
         # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :DefaultParameterConfs, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :DefaultParameterConfs, :Scenes, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
 
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, defaultparameterconfs=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, defaultparameterconfs=nil, scenes=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -147,6 +150,7 @@ module TencentCloud
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
           @DefaultParameterConfs = defaultparameterconfs
+          @Scenes = scenes
           @FormattedDescription = formatteddescription
           @CreatedBy = createdby
           @Tags = tags
@@ -175,6 +179,7 @@ module TencentCloud
               @DefaultParameterConfs << defaultparameterconf_tmp
             end
           end
+          @Scenes = params['Scenes']
           @FormattedDescription = params['FormattedDescription']
           @CreatedBy = params['CreatedBy']
           unless params['Tags'].nil?

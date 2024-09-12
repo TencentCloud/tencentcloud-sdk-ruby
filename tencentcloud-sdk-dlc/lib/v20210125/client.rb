@@ -1493,7 +1493,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDataEngines）用于查询DataEngines信息列表
+        # 本接口（DescribeDataEngines）用于查询DataEngines信息列表.
 
         # @param request: Request instance for DescribeDataEngines.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDataEnginesRequest`

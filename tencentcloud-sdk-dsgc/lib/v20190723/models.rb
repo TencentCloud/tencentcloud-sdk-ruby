@@ -2816,17 +2816,22 @@ module TencentCloud
         # @param ValidStatus: 绑定的状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidStatus: String
+        # @param BindType: 绑定的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindType: String
 
-        attr_accessor :DbName, :ValidStatus
+        attr_accessor :DbName, :ValidStatus, :BindType
 
-        def initialize(dbname=nil, validstatus=nil)
+        def initialize(dbname=nil, validstatus=nil, bindtype=nil)
           @DbName = dbname
           @ValidStatus = validstatus
+          @BindType = bindtype
         end
 
         def deserialize(params)
           @DbName = params['DbName']
           @ValidStatus = params['ValidStatus']
+          @BindType = params['BindType']
         end
       end
 
@@ -5161,7 +5166,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 结果集个数限制。默认为20，最大值为100
         # @type Limit: Integer
-        # @param Filters: 过滤项。支持模糊搜索：（TemplateId，TemplateName）支持过滤：Source：模板来源，system / userUseType：模板类型，auto，semi-auto，law等Status：模板启用状态，draft / launched
+        # @param Filters: 过滤项。支持模糊搜索：（TemplateId，TemplateName）支持过滤：Source：模板来源，system / userUseType：模板类型，auto，semi-auto，law等Status：模板启用状态，draft / launched，ComplianceId：关联的分类分级模版id
         # @type Filters: Array
 
         attr_accessor :DspaId, :Offset, :Limit, :Filters

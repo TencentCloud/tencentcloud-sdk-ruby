@@ -744,8 +744,8 @@ module TencentCloud
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 8
-        deprecate :SessTime=, :none, 2024, 8
+        deprecate :SessTime, :none, 2024, 9
+        deprecate :SessTime=, :none, 2024, 9
 
         def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Cmd = cmd
@@ -2516,6 +2516,68 @@ module TencentCloud
         end
       end
 
+      # DescribeDomains请求参数结构体
+      class DescribeDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条目数量，默认20，最大500
+        # @type Limit: Integer
+        # @param Filters: 过滤数组
+        # @type Filters: Array
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Filters, :Offset
+
+        def initialize(limit=nil, filters=nil, offset=nil)
+          @Limit = limit
+          @Filters = filters
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDomains返回参数结构体
+      class DescribeDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 网络域总数
+        # @type TotalCount: Integer
+        # @param DomainSet: 网络域列表
+        # @type DomainSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DomainSet, :RequestId
+
+        def initialize(totalcount=nil, domainset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DomainSet = domainset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DomainSet'].nil?
+            @DomainSet = []
+            params['DomainSet'].each do |i|
+              domain_tmp = Domain.new
+              domain_tmp.deserialize(i)
+              @DomainSet << domain_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoginEvent请求参数结构体
       class DescribeLoginEventRequest < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名，如果不包含其他条件时对user_name or real_name两个字段模糊查询
@@ -3094,6 +3156,61 @@ module TencentCloud
           @Account = params['Account']
           @BoundPassword = params['BoundPassword']
           @BoundPrivateKey = params['BoundPrivateKey']
+        end
+      end
+
+      # 网络域
+      class Domain < TencentCloud::Common::AbstractModel
+        # @param Id: 自增id
+        # @type Id: Integer
+        # @param DomainId: 网络域id
+        # @type DomainId: String
+        # @param DomainName: 网络域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainName: String
+        # @param ResourceId: 堡垒机id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param WhiteIpSet: ip，网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WhiteIpSet: Array
+        # @param Enabled: 是否启用  默认 1启用 0禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Integer
+        # @param Status: 状态 0-已断开  1-已连接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreateTime: 网络域创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Default: 是否资源默认网络域 1-资源默认网络域 0-用户添加网络域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Default: Integer
+
+        attr_accessor :Id, :DomainId, :DomainName, :ResourceId, :WhiteIpSet, :Enabled, :Status, :CreateTime, :Default
+
+        def initialize(id=nil, domainid=nil, domainname=nil, resourceid=nil, whiteipset=nil, enabled=nil, status=nil, createtime=nil, default=nil)
+          @Id = id
+          @DomainId = domainid
+          @DomainName = domainname
+          @ResourceId = resourceid
+          @WhiteIpSet = whiteipset
+          @Enabled = enabled
+          @Status = status
+          @CreateTime = createtime
+          @Default = default
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DomainId = params['DomainId']
+          @DomainName = params['DomainName']
+          @ResourceId = params['ResourceId']
+          @WhiteIpSet = params['WhiteIpSet']
+          @Enabled = params['Enabled']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @Default = params['Default']
         end
       end
 
@@ -4528,8 +4645,8 @@ module TencentCloud
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 8
-        deprecate :SessTime=, :none, 2024, 8
+        deprecate :SessTime, :none, 2024, 9
+        deprecate :SessTime=, :none, 2024, 9
 
         def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Time = time

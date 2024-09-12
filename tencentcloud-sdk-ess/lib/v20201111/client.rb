@@ -2159,7 +2159,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询流程填写控件内容，可以根据合同流程ID查询该合同流程相关联的填写控件信息和填写内容。
+        # 可以根据合同流程ID查询该合同流程相关联的填写控件信息和填写内容，包括填写控件的归属方、填写控件是否已经填写以及填写的内容等信息。
 
         # @param request: Request instance for DescribeFlowComponents.
         # @type request: :class:`Tencentcloud::ess::V20201111::DescribeFlowComponentsRequest`

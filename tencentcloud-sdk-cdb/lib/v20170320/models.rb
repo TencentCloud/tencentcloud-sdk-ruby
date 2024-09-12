@@ -7768,9 +7768,11 @@ module TencentCloud
 
       # DescribeSSLStatus请求参数结构体
       class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。只读组 ID为空时必填。
+        # @param InstanceId: 实例 ID。
+        # 说明：实例 ID 和实例组 ID 两个参数选其一填写即可。若要查询双节点、三节点实例 SSL 开通情况，请填写实例 ID 参数进行查询。单节点（云盘）、集群版实例不支持开启 SSL，因此不支持查询。
         # @type InstanceId: String
-        # @param RoGroupId: 只读组 ID。实例 ID为空时必填。
+        # @param RoGroupId: 只读组 ID。
+        # 说明：实例 ID 和实例组 ID 两个参数选其一填写即可。若要查询只读实例或只读组 SSL 开通情况，请填写 RoGroupId 参数，并注意填写的都是只读组 ID。单节点（云盘）、集群版实例不支持开启 SSL，因此不支持查询。
         # @type RoGroupId: String
 
         attr_accessor :InstanceId, :RoGroupId

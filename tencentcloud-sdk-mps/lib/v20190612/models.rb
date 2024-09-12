@@ -8400,14 +8400,17 @@ module TencentCloud
         # * Preset：系统预置模板；
         # * Custom：用户自定义模板。
         # @type Type: String
+        # @param Name: 视频内容分析模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -8415,6 +8418,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -8461,14 +8465,17 @@ module TencentCloud
         # * Preset：系统预置模板；
         # * Custom：用户自定义模板。
         # @type Type: String
+        # @param Name: 视频内容识别模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -8476,6 +8483,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -8524,15 +8532,18 @@ module TencentCloud
         # @type Type: String
         # @param PureAudio: 是否为纯音频，0表示视频，1表示纯音频
         # @type PureAudio: Integer
+        # @param Name: 自适应转码模板标识过滤条件，长度限制：64 个字符
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type, :PureAudio
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :PureAudio, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, pureaudio=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, pureaudio=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
           @PureAudio = pureaudio
+          @Name = name
         end
 
         def deserialize(params)
@@ -8541,6 +8552,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Type = params['Type']
           @PureAudio = params['PureAudio']
+          @Name = params['Name']
         end
       end
 
@@ -8587,14 +8599,17 @@ module TencentCloud
         # <li>Preset：系统预置模板；</li>
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
+        # @param Name: 转动图模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -8602,6 +8617,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -8648,14 +8664,17 @@ module TencentCloud
         # * Preset：系统预置模板；
         # * Custom：用户自定义模板。
         # @type Type: String
+        # @param Name: 智能审核模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -8663,6 +8682,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -8851,14 +8871,17 @@ module TencentCloud
         # <li>Preset：系统预置模板；</li>
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
+        # @param Name: 雪碧图模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -8866,6 +8889,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -9695,14 +9719,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param Type: "Preset"：预设，Custom":客户魔板
         # @type Type: String
+        # @param Name: 媒体质检模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -9710,6 +9737,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -9796,14 +9824,17 @@ module TencentCloud
         # <li>Preset：系统预置模板；</li>
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
+        # @param Name: 采样截图模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -9811,6 +9842,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -9926,14 +9958,17 @@ module TencentCloud
         # <li>Preset：系统预置模板；</li>
         # <li>Custom：用户自定义模板。</li>
         # @type Type: String
+        # @param Name: 指定时间点截图模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @Name = name
         end
 
         def deserialize(params)
@@ -9941,6 +9976,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @Name = params['Name']
         end
       end
 
@@ -10856,10 +10892,12 @@ module TencentCloud
         # <li>Enhance：音视频增强模板。</li>
         # 默认空，不限制类型。
         # @type TranscodeType: String
+        # @param Name: 转码模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType
+        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType, :Name
 
-        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil)
+        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil, name=nil)
           @Definitions = definitions
           @Type = type
           @ContainerType = containertype
@@ -10867,6 +10905,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @TranscodeType = transcodetype
+          @Name = name
         end
 
         def deserialize(params)
@@ -10877,6 +10916,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TranscodeType = params['TranscodeType']
+          @Name = params['Name']
         end
       end
 
@@ -10925,14 +10965,17 @@ module TencentCloud
         # <li>默认值：10；</li>
         # <li>最大值：100。</li>
         # @type Limit: Integer
+        # @param Name: 水印模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
 
-        attr_accessor :Definitions, :Type, :Offset, :Limit
+        attr_accessor :Definitions, :Type, :Offset, :Limit, :Name
 
-        def initialize(definitions=nil, type=nil, offset=nil, limit=nil)
+        def initialize(definitions=nil, type=nil, offset=nil, limit=nil, name=nil)
           @Definitions = definitions
           @Type = type
           @Offset = offset
           @Limit = limit
+          @Name = name
         end
 
         def deserialize(params)
@@ -10940,6 +10983,7 @@ module TencentCloud
           @Type = params['Type']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Name = params['Name']
         end
       end
 
@@ -20947,7 +20991,7 @@ module TencentCloud
         # @type Switch: String
         # @param LabelSet: 用户自定义文本过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
         # 标签个数最多 10 个，每个标签长度最多 16 个字符。
-        # @type LabelSet: String
+        # @type LabelSet: Array
         # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         # @type BlockConfidence: Integer
         # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
@@ -21108,12 +21152,14 @@ module TencentCloud
         # <li>vp9：VP9 编码</li>
         # <li>mpeg2：MPEG2 编码</li>
         # <li>dnxhd：DNxHD 编码</li>
+        # <li>mv-hevc：MV-HEVC 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
 
         # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv。
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
+        # 注意：MV-HEVC编码容器目前只支持mp4，hls，mov。其中hls格式只支持mp4分片格式。
         # @type Codec: String
         # @param Fps: 视频帧率，取值范围：
         # 当FpsDenominator的值为空时，范围：[0, 120]，单位：Hz；
@@ -21143,8 +21189,7 @@ module TencentCloud
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
         # @type Height: Integer
-        # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
-        # 当填 0 或不填时，系统将自动设置 gop 长度。
+        # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。 当填 0 或不填时，系统将自动设置 gop 长度。
         # @type Gop: Integer
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
@@ -21170,10 +21215,16 @@ module TencentCloud
         # 注意：值必须大于0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FpsDenominator: Integer
+        # @param Stereo3dType: 3D视频拼接方式，仅mv-hevc，3D视频生效，可选值：
+        # <li>side_by_side：左右视角</li>
+        # <li>top_bottom：上下视角</li>
+        # 默认值:side_by_side
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stereo3dType: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :SegmentType, :FpsDenominator
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :SegmentType, :FpsDenominator, :Stereo3dType
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, segmenttype=nil, fpsdenominator=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21185,6 +21236,7 @@ module TencentCloud
           @Vcrf = vcrf
           @SegmentType = segmenttype
           @FpsDenominator = fpsdenominator
+          @Stereo3dType = stereo3dtype
         end
 
         def deserialize(params)
@@ -21199,6 +21251,7 @@ module TencentCloud
           @Vcrf = params['Vcrf']
           @SegmentType = params['SegmentType']
           @FpsDenominator = params['FpsDenominator']
+          @Stereo3dType = params['Stereo3dType']
         end
       end
 
@@ -21213,12 +21266,14 @@ module TencentCloud
         # <li>vp9：VP9 编码</li>
         # <li>mpeg2：MPEG2 编码</li>
         # <li>dnxhd：DNxHD 编码</li>
+        # <li>mv-hevc：MV-HEVC 编码</li>
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
 
         # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv。
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
+        # 注意：MV-HEVC编码容器目前只支持mp4，hls，mov。其中hls格式只支持mp4分片格式。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codec: String
         # @param Fps: 视频帧率，取值范围：
@@ -21279,10 +21334,16 @@ module TencentCloud
         # 注意：值必须大于0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FpsDenominator: Integer
+        # @param Stereo3dType: 3D视频拼接方式，仅mv-hevc，3D视频生效，可选值：
+        # <li>side_by_side：左右视角</li>
+        # <li>top_bottom：上下视角</li>
+        # 默认值:side_by_side
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stereo3dType: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream, :SegmentType, :FpsDenominator
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream, :SegmentType, :FpsDenominator, :Stereo3dType
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, segmenttype=nil, fpsdenominator=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21295,6 +21356,7 @@ module TencentCloud
           @ContentAdaptStream = contentadaptstream
           @SegmentType = segmenttype
           @FpsDenominator = fpsdenominator
+          @Stereo3dType = stereo3dtype
         end
 
         def deserialize(params)
@@ -21310,6 +21372,7 @@ module TencentCloud
           @ContentAdaptStream = params['ContentAdaptStream']
           @SegmentType = params['SegmentType']
           @FpsDenominator = params['FpsDenominator']
+          @Stereo3dType = params['Stereo3dType']
         end
       end
 

@@ -1274,6 +1274,38 @@ module TencentCloud
         end
       end
 
+      # DeleteMessageReceiver请求参数结构体
+      class DeleteMessageReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 消息接受者的名称
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteMessageReceiver返回参数结构体
+      class DeleteMessageReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteOIDCConfig请求参数结构体
       class DeleteOIDCConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: OIDC身份提供商名称
@@ -2191,8 +2223,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2024, 7
-        deprecate :Idps=, :none, 2024, 7
+        deprecate :Idps, :none, 2024, 9
+        deprecate :Idps=, :none, 2024, 9
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -3755,6 +3787,57 @@ module TencentCloud
         end
       end
 
+      # ListReceiver请求参数结构体
+      class ListReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页限制数目
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListReceiver返回参数结构体
+      class ListReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Receivers: 联系人列表
+        # @type Receivers: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Receivers, :RequestId
+
+        def initialize(totalcount=nil, receivers=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Receivers = receivers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Receivers'].nil?
+            @Receivers = []
+            params['Receivers'].each do |i|
+              receiver_tmp = Receiver.new
+              receiver_tmp.deserialize(i)
+              @Receivers << receiver_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListSAMLProviders请求参数结构体
       class ListSAMLProvidersRequest < TencentCloud::Common::AbstractModel
 
@@ -4211,6 +4294,61 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 消息接收人信息
+      class Receiver < TencentCloud::Common::AbstractModel
+        # @param Uid: id
+        # @type Uid: Integer
+        # @param Name: 名字
+        # @type Name: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param PhoneNumber: 手机号码
+        # @type PhoneNumber: String
+        # @param PhoneFlag: 手机号码是否验证
+        # @type PhoneFlag: Integer
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param EmailFlag: 邮箱是否验证
+        # @type EmailFlag: Integer
+        # @param IsReceiverOwner: 是否主联系人
+        # @type IsReceiverOwner: Integer
+        # @param WechatFlag: 是否允许微信接收通知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatFlag: Integer
+        # @param Uin: 账号uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: Integer
+
+        attr_accessor :Uid, :Name, :Remark, :PhoneNumber, :PhoneFlag, :Email, :EmailFlag, :IsReceiverOwner, :WechatFlag, :Uin
+
+        def initialize(uid=nil, name=nil, remark=nil, phonenumber=nil, phoneflag=nil, email=nil, emailflag=nil, isreceiverowner=nil, wechatflag=nil, uin=nil)
+          @Uid = uid
+          @Name = name
+          @Remark = remark
+          @PhoneNumber = phonenumber
+          @PhoneFlag = phoneflag
+          @Email = email
+          @EmailFlag = emailflag
+          @IsReceiverOwner = isreceiverowner
+          @WechatFlag = wechatflag
+          @Uin = uin
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @PhoneNumber = params['PhoneNumber']
+          @PhoneFlag = params['PhoneFlag']
+          @Email = params['Email']
+          @EmailFlag = params['EmailFlag']
+          @IsReceiverOwner = params['IsReceiverOwner']
+          @WechatFlag = params['WechatFlag']
+          @Uin = params['Uin']
         end
       end
 

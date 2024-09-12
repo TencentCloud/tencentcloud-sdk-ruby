@@ -2591,10 +2591,12 @@ module TencentCloud
         # <li> 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>
         # 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         # @type NeedSignReview: Boolean
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowDescription, :FlowType, :Components, :CcInfos, :CcNotifyType, :NeedPreview, :PreviewType, :Deadline, :Unordered, :UserData, :RemindedOn, :ApproverVerifyType, :SignBeanTag, :CustomShowMap, :Agent, :AutoSignScene, :NeedSignReview
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowDescription, :FlowType, :Components, :CcInfos, :CcNotifyType, :NeedPreview, :PreviewType, :Deadline, :Unordered, :UserData, :RemindedOn, :ApproverVerifyType, :SignBeanTag, :CustomShowMap, :Agent, :AutoSignScene, :NeedSignReview, :FlowDisplayType
 
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowdescription=nil, flowtype=nil, components=nil, ccinfos=nil, ccnotifytype=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, userdata=nil, remindedon=nil, approververifytype=nil, signbeantag=nil, customshowmap=nil, agent=nil, autosignscene=nil, needsignreview=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowdescription=nil, flowtype=nil, components=nil, ccinfos=nil, ccnotifytype=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, userdata=nil, remindedon=nil, approververifytype=nil, signbeantag=nil, customshowmap=nil, agent=nil, autosignscene=nil, needsignreview=nil, flowdisplaytype=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -2616,6 +2618,7 @@ module TencentCloud
           @Agent = agent
           @AutoSignScene = autosignscene
           @NeedSignReview = needsignreview
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -2667,6 +2670,7 @@ module TencentCloud
           end
           @AutoSignScene = params['AutoSignScene']
           @NeedSignReview = params['NeedSignReview']
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 
@@ -3338,15 +3342,21 @@ module TencentCloud
         # @type RelatedFlowId: String
         # @param CallbackUrl: 暂未开放
         # @type CallbackUrl: String
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：
+        #  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl
+        # 效果如下:
+        # ![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
+
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowDescription, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl, :FlowDisplayType
         extend Gem::Deprecate
         deprecate :RelatedFlowId, :none, 2024, 9
         deprecate :RelatedFlowId=, :none, 2024, 9
         deprecate :CallbackUrl, :none, 2024, 9
         deprecate :CallbackUrl=, :none, 2024, 9
 
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowdescription=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil, flowdisplaytype=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -3364,6 +3374,7 @@ module TencentCloud
           @AutoSignScene = autosignscene
           @RelatedFlowId = relatedflowid
           @CallbackUrl = callbackurl
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -3404,6 +3415,7 @@ module TencentCloud
           @AutoSignScene = params['AutoSignScene']
           @RelatedFlowId = params['RelatedFlowId']
           @CallbackUrl = params['CallbackUrl']
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 
@@ -3525,7 +3537,7 @@ module TencentCloud
         # @param FlowApproverInfos: 流程签署人列表，其中结构体的ApproverName，ApproverMobile和ApproverType必传，企业签署人则需传OrganizationName，其他可不传。
 
         # 注:
-        # `1. 签署人只能有手写签名、时间类型、印章类型的签署控件和内容填写控件，其他类型的签署控件暂时未支持。`
+        # `1. 签署人只能有手写签名、时间类型、印章类型、签批类型的签署控件和内容填写控件，其他类型的签署控件暂时未支持。`
         # `2. 生成发起方预览链接时，该字段（FlowApproverInfos）传空或者不传`
         # @type FlowApproverInfos: Array
         # @param Organization: 机构信息，暂未开放
@@ -6940,8 +6952,8 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 合同流程ID，为32位字符串。
-        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
-        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+
+        # [点击产看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
         # @type FlowId: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -6970,7 +6982,7 @@ module TencentCloud
 
       # DescribeFlowComponents返回参数结构体
       class DescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
-        # @param RecipientComponentInfos: 合同流程关联的填写控件信息，按照参与方进行分类返回。
+        # @param RecipientComponentInfos: 合同流程关联的填写控件信息，包括填写控件的归属方以及是否填写等内容。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientComponentInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -9303,13 +9315,15 @@ module TencentCloud
         # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         # 示例值：E_PRESCRIPTION_AUTO_SIGN
         # @type AutoSignScene: String
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
 
-        attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene
+        attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene, :FlowDisplayType
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 9
         deprecate :CallbackUrl=, :none, 2024, 9
 
-        def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil)
+        def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil, flowdisplaytype=nil)
           @FlowName = flowname
           @Approvers = approvers
           @FileIds = fileids
@@ -9323,6 +9337,7 @@ module TencentCloud
           @Components = components
           @NeedSignReview = needsignreview
           @AutoSignScene = autosignscene
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -9353,6 +9368,7 @@ module TencentCloud
           end
           @NeedSignReview = params['NeedSignReview']
           @AutoSignScene = params['AutoSignScene']
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 
@@ -11055,12 +11071,15 @@ module TencentCloud
 
       # 参与方填写控件信息
       class RecipientComponentInfo < TencentCloud::Common::AbstractModel
-        # @param RecipientId: 参与方Id
+        # @param RecipientId: 签署方经办人在合同流程中的参与方ID，与控件绑定，是控件的归属方
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param RecipientFillStatus: 参与方填写状态
-        # <ul><li>0-未填写</li>
-        # <li>1-已填写</li></ul>
+        # <ul>
+        # <li>**空值** : 此参与方没有填写控件</li>
+        # <li>**0**:  未填写, 表示此参与方还没有填写合同的填写控件</li>
+        # <li>**1**:  已填写, 表示此参与方已经填写所有的填写控件</li></ul>
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientFillStatus: String
         # @param IsPromoter: 是否为发起方
@@ -11068,7 +11087,7 @@ module TencentCloud
         # <li>false-参与方</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPromoter: Boolean
-        # @param Components: 填写控件列表
+        # @param Components: 改参与方填写控件信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
 
@@ -11099,10 +11118,13 @@ module TencentCloud
       # 发起流程快速注册相关信息
       class RegisterInfo < TencentCloud::Common::AbstractModel
         # @param LegalName: 法人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LegalName: String
         # @param Uscc: 社会统一信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uscc: String
         # @param UnifiedSocialCreditCode: 社会统一信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnifiedSocialCreditCode: String
 
         attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode

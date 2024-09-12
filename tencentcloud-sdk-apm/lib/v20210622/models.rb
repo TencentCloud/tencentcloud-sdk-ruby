@@ -345,10 +345,13 @@ module TencentCloud
         # @param PayModeEffective: 实例计费模式是否生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayModeEffective: Boolean
+        # @param ResponseDurationWarningThreshold: 响应时间满意阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseDurationWarningThreshold: Integer
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective
+        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold
 
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil)
+        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
           @Tags = tags
@@ -378,6 +381,7 @@ module TencentCloud
           @CustomShowTags = customshowtags
           @PayMode = paymode
           @PayModeEffective = paymodeeffective
+          @ResponseDurationWarningThreshold = responsedurationwarningthreshold
         end
 
         def deserialize(params)
@@ -417,6 +421,7 @@ module TencentCloud
           @CustomShowTags = params['CustomShowTags']
           @PayMode = params['PayMode']
           @PayModeEffective = params['PayModeEffective']
+          @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
         end
       end
 
@@ -1336,10 +1341,12 @@ module TencentCloud
         # 1为预付费
         # 0为按量付费
         # @type PayMode: Integer
+        # @param ResponseDurationWarningThreshold: 响应时间满意阈值
+        # @type ResponseDurationWarningThreshold: Integer
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1358,6 +1365,7 @@ module TencentCloud
           @LogSource = logsource
           @CustomShowTags = customshowtags
           @PayMode = paymode
+          @ResponseDurationWarningThreshold = responsedurationwarningthreshold
         end
 
         def deserialize(params)
@@ -1386,6 +1394,7 @@ module TencentCloud
           @LogSource = params['LogSource']
           @CustomShowTags = params['CustomShowTags']
           @PayMode = params['PayMode']
+          @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
         end
       end
 

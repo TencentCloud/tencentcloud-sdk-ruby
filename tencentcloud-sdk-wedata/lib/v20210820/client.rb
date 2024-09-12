@@ -2741,7 +2741,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取待提交任务预提交校验信息
+        # 获取待提交任务预提交校验信息（注意：工作流编号或者任务编号列表，必须填一项）
 
         # @param request: Request instance for DescribePendingSubmitTaskList.
         # @type request: :class:`Tencentcloud::wedata::V20210820::DescribePendingSubmitTaskListRequest`

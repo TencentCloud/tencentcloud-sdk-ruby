@@ -510,6 +510,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除消息接收人
+
+        # @param request: Request instance for DeleteMessageReceiver.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DeleteMessageReceiverRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DeleteMessageReceiverResponse`
+        def DeleteMessageReceiver(request)
+          body = send_request('DeleteMessageReceiver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMessageReceiverResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除OIDC身份提供商
 
         # @param request: Request instance for DeleteOIDCConfig.
@@ -1600,6 +1624,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListPolicyVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取消息接收人列表
+
+        # @param request: Request instance for ListReceiver.
+        # @type request: :class:`Tencentcloud::cam::V20190116::ListReceiverRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::ListReceiverResponse`
+        def ListReceiver(request)
+          body = send_request('ListReceiver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListReceiverResponse.new
             model.deserialize(response['Response'])
             model
           else
