@@ -99,6 +99,8 @@ module TencentCloud
 
       # DescribeInstanceNodes请求参数结构体
       class DescribeInstanceNodesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
         # @param Limit: limit
         # @type Limit: Integer
         # @param Offset: offset
@@ -106,15 +108,17 @@ module TencentCloud
         # @param Component: component
         # @type Component: String
 
-        attr_accessor :Limit, :Offset, :Component
+        attr_accessor :InstanceId, :Limit, :Offset, :Component
 
-        def initialize(limit=nil, offset=nil, component=nil)
+        def initialize(instanceid=nil, limit=nil, offset=nil, component=nil)
+          @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
           @Component = component
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Component = params['Component']

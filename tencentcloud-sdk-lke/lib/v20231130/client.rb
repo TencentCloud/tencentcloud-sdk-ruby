@@ -1762,7 +1762,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 是否意图转人工
+        # 点赞点踩消息
 
         # @param request: Request instance for RateMsgRecord.
         # @type request: :class:`Tencentcloud::lke::V20231130::RateMsgRecordRequest`

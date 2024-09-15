@@ -3463,6 +3463,92 @@ module TencentCloud
         end
       end
 
+      # DescribeEnterpriseSecurityGroupRuleList请求参数结构体
+      class DescribeEnterpriseSecurityGroupRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页每页数量
+        # @type Limit: Integer
+        # @param Offset: 分页当前页
+        # @type Offset: Integer
+        # @param Status: 启用状态 1启用 0 未启用
+        # @type Status: String
+        # @param Area: 地域
+        # @type Area: String
+        # @param Filter: 规则下发方式筛选  1 新规则和延迟下发  2  仅看新规则
+        # @type Filter: Integer
+        # @param SearchValue: 查询条件
+        # @type SearchValue: String
+        # @param SearchFilters: 查询条件新
+        # @type SearchFilters: Array
+
+        attr_accessor :Limit, :Offset, :Status, :Area, :Filter, :SearchValue, :SearchFilters
+
+        def initialize(limit=nil, offset=nil, status=nil, area=nil, filter=nil, searchvalue=nil, searchfilters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+          @Area = area
+          @Filter = filter
+          @SearchValue = searchvalue
+          @SearchFilters = searchfilters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+          @Area = params['Area']
+          @Filter = params['Filter']
+          @SearchValue = params['SearchValue']
+          unless params['SearchFilters'].nil?
+            @SearchFilters = []
+            params['SearchFilters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @SearchFilters << commonfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeEnterpriseSecurityGroupRuleList返回参数结构体
+      class DescribeEnterpriseSecurityGroupRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 查询结果总数
+        # @type Total: Integer
+        # @param AllTotal: 规则总数
+        # @type AllTotal: Integer
+        # @param Data: 规则列表
+        # @type Data: Array
+        # @param Enable: 规则整体启用状态
+        # @type Enable: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :AllTotal, :Data, :Enable, :RequestId
+
+        def initialize(total=nil, alltotal=nil, data=nil, enable=nil, requestid=nil)
+          @Total = total
+          @AllTotal = alltotal
+          @Data = data
+          @Enable = enable
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @AllTotal = params['AllTotal']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              enterprisesecuritygroupruleruleinfo_tmp = EnterpriseSecurityGroupRuleRuleInfo.new
+              enterprisesecuritygroupruleruleinfo_tmp.deserialize(i)
+              @Data << enterprisesecuritygroupruleruleinfo_tmp
+            end
+          end
+          @Enable = params['Enable']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnterpriseSecurityGroupRule请求参数结构体
       class DescribeEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
         # @param PageNo: 分页查询时，显示的当前页的页码。
@@ -5504,6 +5590,202 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @EndpointIp = params['EndpointIp']
           @SwitchMode = params['SwitchMode']
+        end
+      end
+
+      # 企业安全组自动化任务信息
+      class EnterpriseSecurityGroupRuleBetaInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param LastTime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastTime: String
+
+        attr_accessor :TaskId, :TaskName, :LastTime
+
+        def initialize(taskid=nil, taskname=nil, lasttime=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @LastTime = lasttime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @LastTime = params['LastTime']
+        end
+      end
+
+      # 企业安全组规则列表信息
+      class EnterpriseSecurityGroupRuleRuleInfo < TencentCloud::Common::AbstractModel
+        # @param OrderIndex: 排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderIndex: Integer
+        # @param RuleUuid: 主键id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleUuid: Integer
+        # @param Uuid: 规则uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param SourceId: 源规则内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceId: String
+        # @param SourceType: 源规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: Integer
+        # @param TargetId: 目的规则内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetId: String
+        # @param TargetType: 目的规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetType: Integer
+        # @param Protocol: 协议名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param Strategy: 策略，1阻断，2放行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Strategy: Integer
+        # @param Status: 启用状态 ，0未开启，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Detail: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+        # @param AclTags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclTags: String
+        # @param IsNew: 是否最新一次改动的规则,0否，1是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNew: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param IsDelay: 是否延迟下发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDelay: Integer
+        # @param ServiceTemplateId: 服务模版id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceTemplateId: String
+        # @param SouInstanceName: 源资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SouInstanceName: String
+        # @param SouPublicIp: 源资产公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SouPublicIp: String
+        # @param SouPrivateIp: 源资产内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SouPrivateIp: String
+        # @param SouCidr: 源资产网段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SouCidr: String
+        # @param SouParameterName: 源模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SouParameterName: String
+        # @param InstanceName: 目的资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param PublicIp: 目的资产公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIp: String
+        # @param PrivateIp: 目的资产内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIp: String
+        # @param Cidr: 目的资产网段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cidr: String
+        # @param ParameterName: 目的模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterName: String
+        # @param ProtocolPortName: 端口模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolPortName: String
+        # @param BetaList: 自动化任务任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BetaList: Array
+        # @param Id: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id
+
+        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil)
+          @OrderIndex = orderindex
+          @RuleUuid = ruleuuid
+          @Uuid = uuid
+          @SourceId = sourceid
+          @SourceType = sourcetype
+          @TargetId = targetid
+          @TargetType = targettype
+          @Protocol = protocol
+          @Port = port
+          @Strategy = strategy
+          @Status = status
+          @Detail = detail
+          @AclTags = acltags
+          @IsNew = isnew
+          @Region = region
+          @IsDelay = isdelay
+          @ServiceTemplateId = servicetemplateid
+          @SouInstanceName = souinstancename
+          @SouPublicIp = soupublicip
+          @SouPrivateIp = souprivateip
+          @SouCidr = soucidr
+          @SouParameterName = souparametername
+          @InstanceName = instancename
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Cidr = cidr
+          @ParameterName = parametername
+          @ProtocolPortName = protocolportname
+          @BetaList = betalist
+          @Id = id
+        end
+
+        def deserialize(params)
+          @OrderIndex = params['OrderIndex']
+          @RuleUuid = params['RuleUuid']
+          @Uuid = params['Uuid']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+          @TargetId = params['TargetId']
+          @TargetType = params['TargetType']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @Strategy = params['Strategy']
+          @Status = params['Status']
+          @Detail = params['Detail']
+          @AclTags = params['AclTags']
+          @IsNew = params['IsNew']
+          @Region = params['Region']
+          @IsDelay = params['IsDelay']
+          @ServiceTemplateId = params['ServiceTemplateId']
+          @SouInstanceName = params['SouInstanceName']
+          @SouPublicIp = params['SouPublicIp']
+          @SouPrivateIp = params['SouPrivateIp']
+          @SouCidr = params['SouCidr']
+          @SouParameterName = params['SouParameterName']
+          @InstanceName = params['InstanceName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Cidr = params['Cidr']
+          @ParameterName = params['ParameterName']
+          @ProtocolPortName = params['ProtocolPortName']
+          unless params['BetaList'].nil?
+            @BetaList = []
+            params['BetaList'].each do |i|
+              enterprisesecuritygrouprulebetainfo_tmp = EnterpriseSecurityGroupRuleBetaInfo.new
+              enterprisesecuritygrouprulebetainfo_tmp.deserialize(i)
+              @BetaList << enterprisesecuritygrouprulebetainfo_tmp
+            end
+          end
+          @Id = params['Id']
         end
       end
 

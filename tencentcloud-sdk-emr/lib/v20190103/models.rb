@@ -1222,7 +1222,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ScriptBootstrapActionConfig: [引导操作](https://cloud.tencent.com/document/product/589/35656)脚本设置。
         # @type ScriptBootstrapActionConfig: Array
-        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-751a-41b6-aad6-fae360632808
+        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
         # @type ClientToken: String
         # @param NeedMasterWan: 是否开启集群Master节点公网。取值范围：
         # <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
@@ -1431,7 +1431,7 @@ module TencentCloud
         # <li>0：表示不自动续费。</li>
         # <li>1：表示自动续费。</li>
         # @type AutoRenew: Integer
-        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-751a-41b6-aad6-fae36063280
+        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-****-****-****-fae36063280
         # @type ClientToken: String
         # @param NeedMasterWan: 是否开启集群Master节点公网。取值范围：
         # <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
@@ -8915,7 +8915,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param ScaleOutNodeConfig: 扩容节点类型以及数量
         # @type ScaleOutNodeConfig: :class:`Tencentcloud::Emr.v20190103.models.ScaleOutNodeConfig`
-        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-751a-41b6-aad6-fae36063280
+        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-****-****-****-fae36063280
         # @type ClientToken: String
         # @param InstanceChargePrepaid: 即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Emr.v20190103.models.InstanceChargePrepaid`
@@ -9086,7 +9086,7 @@ module TencentCloud
         # <li>0：表示按量计费。</li>
         # <li>1：表示包年包月。</li>
         # @type PayMode: Integer
-        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-751a-41b6-aad6-fae36063280
+        # @param ClientToken: 唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，例如 a9a90aa6-****-****-****-fae36063280
         # @type ClientToken: String
         # @param PreExecutedFileSettings: 引导操作脚本设置。
         # @type PreExecutedFileSettings: Array

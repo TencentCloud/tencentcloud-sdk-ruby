@@ -1037,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询新企业安全组规则  从node接口迁移   原接口DescribeSecurityGroupNewList
+
+        # @param request: Request instance for DescribeEnterpriseSecurityGroupRuleList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeEnterpriseSecurityGroupRuleListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeEnterpriseSecurityGroupRuleListResponse`
+        def DescribeEnterpriseSecurityGroupRuleList(request)
+          body = send_request('DescribeEnterpriseSecurityGroupRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnterpriseSecurityGroupRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 串行防火墙IP开关列表
 
         # @param request: Request instance for DescribeFwEdgeIps.

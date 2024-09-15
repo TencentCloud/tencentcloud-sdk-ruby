@@ -7836,10 +7836,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param InstType: 仅在实例为主实例或者灾备实例时生效，可选值：slave，代表拉取从机的日志。
         # @type InstType: String
+        # @param OpResourceId: 节点ID
+        # @type OpResourceId: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :UserHosts, :UserNames, :DataBases, :SortBy, :OrderBy, :Offset, :Limit, :InstType
+        attr_accessor :InstanceId, :StartTime, :EndTime, :UserHosts, :UserNames, :DataBases, :SortBy, :OrderBy, :Offset, :Limit, :InstType, :OpResourceId
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, userhosts=nil, usernames=nil, databases=nil, sortby=nil, orderby=nil, offset=nil, limit=nil, insttype=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, userhosts=nil, usernames=nil, databases=nil, sortby=nil, orderby=nil, offset=nil, limit=nil, insttype=nil, opresourceid=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -7851,6 +7853,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @InstType = insttype
+          @OpResourceId = opresourceid
         end
 
         def deserialize(params)
@@ -7865,6 +7868,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @InstType = params['InstType']
+          @OpResourceId = params['OpResourceId']
         end
       end
 

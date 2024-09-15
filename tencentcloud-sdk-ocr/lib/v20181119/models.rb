@@ -708,12 +708,14 @@ module TencentCloud
         # @type SerialNumber: String
         # @param RegistrationAuthority: 登记机关
         # @type RegistrationAuthority: String
+        # @param Electronic: 是否是电子营业执照。0为不是，1为是。
+        # @type Electronic: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :NationalEmblem, :QRCode, :Seal, :Title, :SerialNumber, :RegistrationAuthority, :RequestId
+        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :NationalEmblem, :QRCode, :Seal, :Title, :SerialNumber, :RegistrationAuthority, :Electronic, :RequestId
 
-        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, nationalemblem=nil, qrcode=nil, seal=nil, title=nil, serialnumber=nil, registrationauthority=nil, requestid=nil)
+        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, nationalemblem=nil, qrcode=nil, seal=nil, title=nil, serialnumber=nil, registrationauthority=nil, electronic=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
           @Capital = capital
@@ -735,6 +737,7 @@ module TencentCloud
           @Title = title
           @SerialNumber = serialnumber
           @RegistrationAuthority = registrationauthority
+          @Electronic = electronic
           @RequestId = requestid
         end
 
@@ -760,6 +763,7 @@ module TencentCloud
           @Title = params['Title']
           @SerialNumber = params['SerialNumber']
           @RegistrationAuthority = params['RegistrationAuthority']
+          @Electronic = params['Electronic']
           @RequestId = params['RequestId']
         end
       end

@@ -360,16 +360,19 @@ module TencentCloud
         # @type ItemCnt: Integer
         # @param CurrentItemId: 当场景是相关推荐时该值必填，场景是非相关推荐时该值无效
         # @type CurrentItemId: String
+        # @param Extension: 扩展字段，json字符串，需要base64加密
+        # @type Extension: String
 
-        attr_accessor :InstanceId, :SceneId, :UserId, :UserIdList, :ItemCnt, :CurrentItemId
+        attr_accessor :InstanceId, :SceneId, :UserId, :UserIdList, :ItemCnt, :CurrentItemId, :Extension
 
-        def initialize(instanceid=nil, sceneid=nil, userid=nil, useridlist=nil, itemcnt=nil, currentitemid=nil)
+        def initialize(instanceid=nil, sceneid=nil, userid=nil, useridlist=nil, itemcnt=nil, currentitemid=nil, extension=nil)
           @InstanceId = instanceid
           @SceneId = sceneid
           @UserId = userid
           @UserIdList = useridlist
           @ItemCnt = itemcnt
           @CurrentItemId = currentitemid
+          @Extension = extension
         end
 
         def deserialize(params)
@@ -386,12 +389,13 @@ module TencentCloud
           end
           @ItemCnt = params['ItemCnt']
           @CurrentItemId = params['CurrentItemId']
+          @Extension = params['Extension']
         end
       end
 
       # FeedRecommend返回参数结构体
       class FeedRecommendResponse < TencentCloud::Common::AbstractModel
-        # @param DataList: 推荐返回的内容信息列表
+        # @param DataList: 推荐返回的内容信息列表，返回结果已按策略规则做好了排序
         # @type DataList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

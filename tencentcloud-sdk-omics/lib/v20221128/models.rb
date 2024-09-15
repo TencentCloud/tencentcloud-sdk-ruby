@@ -1325,20 +1325,23 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resume: Boolean
         # @param NFVersion: Nextflow引擎版本，取值范围：
-        # - 22.10.4
-        # - 22.10.8
+        # - 22.10.7
         # - 23.10.1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NFVersion: String
+        # @param LaunchDir: 启动路径。可填写指定缓存卷内的绝对路径，nextflow run 命令将在此路径执行。当WorkDir为COS路径时必填；当WorkDir为缓存卷路径时选填，不填默认使用WorkDir作为LaunchDir。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchDir: String
 
-        attr_accessor :Config, :Profile, :Report, :Resume, :NFVersion
+        attr_accessor :Config, :Profile, :Report, :Resume, :NFVersion, :LaunchDir
 
-        def initialize(config=nil, profile=nil, report=nil, resume=nil, nfversion=nil)
+        def initialize(config=nil, profile=nil, report=nil, resume=nil, nfversion=nil, launchdir=nil)
           @Config = config
           @Profile = profile
           @Report = report
           @Resume = resume
           @NFVersion = nfversion
+          @LaunchDir = launchdir
         end
 
         def deserialize(params)
@@ -1347,6 +1350,7 @@ module TencentCloud
           @Report = params['Report']
           @Resume = params['Resume']
           @NFVersion = params['NFVersion']
+          @LaunchDir = params['LaunchDir']
         end
       end
 
@@ -1533,8 +1537,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2024, 6
-        deprecate :Option=, :none, 2024, 6
+        deprecate :Option, :none, 2024, 9
+        deprecate :Option=, :none, 2024, 9
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1612,7 +1616,7 @@ module TencentCloud
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
         # @param NFOption: Nextflow运行选项。
         # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
-        # @param WorkDir: 工作目录，可填写指定缓存卷内的绝对路径，不填使用默认缓存卷内的默认路径，暂时仅支持Nextflow。
+        # @param WorkDir: 工作目录，当前仅支持Nextflow。可填写指定缓存卷内的绝对路径或者COS路径，不填使用默认缓存卷内的默认路径。如果使用COS路径，NFOption中LaunchDir需填写指定缓存卷内的绝对路径作为启动路径。
         # @type WorkDir: String
         # @param AccessMode: 访问模式，不填默认私有。取值范围
         # - PRIVATE：私有应用

@@ -1383,7 +1383,7 @@ module TencentCloud
 
       # AssociateNetworkInterfaceSecurityGroups请求参数结构体
       class AssociateNetworkInterfaceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkInterfaceIds: 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。
+        # @param NetworkInterfaceIds: 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。本接口不支持主网卡绑定安全组。
         # @type NetworkInterfaceIds: Array
         # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。
         # @type SecurityGroupIds: Array
@@ -15311,9 +15311,9 @@ module TencentCloud
       class EnableRoutesRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表唯一ID。
         # @type RouteTableId: String
-        # @param RouteIds: 路由策略ID。不能和RouteItemIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
+        # @param RouteIds: 路由策略ID。不能和RouteItemIds同时使用，但至少输入一个。单次处理上限100个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         # @type RouteIds: Array
-        # @param RouteItemIds: 路由策略唯一ID。不能和RouteIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
+        # @param RouteItemIds: 路由策略唯一ID。不能和RouteIds同时使用，但至少输入一个。单次处理上限100个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         # @type RouteItemIds: Array
 
         attr_accessor :RouteTableId, :RouteIds, :RouteItemIds

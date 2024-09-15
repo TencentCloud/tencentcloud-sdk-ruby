@@ -544,16 +544,20 @@ module TencentCloud
         # @param FileInfos: 文档信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileInfos: Array
+        # @param ReplyMethod: 回复方式，15：澄清确认回复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplyMethod: Integer
 
-        attr_accessor :RecordBizId, :IsVisitor, :NickName, :Avatar, :Content, :FileInfos
+        attr_accessor :RecordBizId, :IsVisitor, :NickName, :Avatar, :Content, :FileInfos, :ReplyMethod
 
-        def initialize(recordbizid=nil, isvisitor=nil, nickname=nil, avatar=nil, content=nil, fileinfos=nil)
+        def initialize(recordbizid=nil, isvisitor=nil, nickname=nil, avatar=nil, content=nil, fileinfos=nil, replymethod=nil)
           @RecordBizId = recordbizid
           @IsVisitor = isvisitor
           @NickName = nickname
           @Avatar = avatar
           @Content = content
           @FileInfos = fileinfos
+          @ReplyMethod = replymethod
         end
 
         def deserialize(params)
@@ -570,6 +574,7 @@ module TencentCloud
               @FileInfos << msgfileinfo_tmp
             end
           end
+          @ReplyMethod = params['ReplyMethod']
         end
       end
 
@@ -3101,7 +3106,7 @@ module TencentCloud
         # @type SessionId: String
         # @param LastRecordId: 最后一条记录ID
         # @type LastRecordId: String
-        # @param BotAppKey: 应用AppKey
+        # @param BotAppKey: 应用AppKey, 当Type=5[API访客]时, 该字段必填
         # @type BotAppKey: String
         # @param Scene: 场景, 体验: 1; 正式: 2
         # @type Scene: Integer
@@ -5736,6 +5741,7 @@ module TencentCloud
         # @param IsLlmGenerated: 是否大模型
         # @type IsLlmGenerated: Boolean
         # @param ImageUrls: 图片链接，可公有读
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrls: Array
         # @param TokenStat: 当次 token 统计信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5766,10 +5772,13 @@ module TencentCloud
         # @param FileInfos: 用户传入的文件信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileInfos: Array
+        # @param QuoteInfos: 参考来源引用位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuoteInfos: Array
 
-        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos
+        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos
 
-        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil)
+        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil)
           @Content = content
           @SessionId = sessionid
           @RecordId = recordid
@@ -5792,6 +5801,7 @@ module TencentCloud
           @OptionCards = optioncards
           @TaskFlow = taskflow
           @FileInfos = fileinfos
+          @QuoteInfos = quoteinfos
         end
 
         def deserialize(params)
@@ -5835,6 +5845,14 @@ module TencentCloud
               fileinfo_tmp = FileInfo.new
               fileinfo_tmp.deserialize(i)
               @FileInfos << fileinfo_tmp
+            end
+          end
+          unless params['QuoteInfos'].nil?
+            @QuoteInfos = []
+            params['QuoteInfos'].each do |i|
+              quoteinfo_tmp = QuoteInfo.new
+              quoteinfo_tmp.deserialize(i)
+              @QuoteInfos << quoteinfo_tmp
             end
           end
         end
@@ -6360,6 +6378,28 @@ module TencentCloud
         end
       end
 
+      # 搜索引擎参考来源索引
+      class QuoteInfo < TencentCloud::Common::AbstractModel
+        # @param Position: 参考来源位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param Index: 参考来源索引顺序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+
+        attr_accessor :Position, :Index
+
+        def initialize(position=nil, index=nil)
+          @Position = position
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Position = params['Position']
+          @Index = params['Index']
+        end
+      end
+
       # RateMsgRecord请求参数结构体
       class RateMsgRecordRequest < TencentCloud::Common::AbstractModel
         # @param BotAppKey: 应用appKey
@@ -6542,10 +6582,19 @@ module TencentCloud
         # @param OrgData: 原始内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgData: String
+        # @param PageInfos: 页码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageInfos: Array
+        # @param SheetInfos: sheet信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SheetInfos: Array
+        # @param DocBizId: 文档ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocBizId: String
 
-        attr_accessor :ReferBizId, :DocType, :DocName, :PageContent, :Question, :Answer, :Confidence, :Mark, :Highlights, :OrgData
+        attr_accessor :ReferBizId, :DocType, :DocName, :PageContent, :Question, :Answer, :Confidence, :Mark, :Highlights, :OrgData, :PageInfos, :SheetInfos, :DocBizId
 
-        def initialize(referbizid=nil, doctype=nil, docname=nil, pagecontent=nil, question=nil, answer=nil, confidence=nil, mark=nil, highlights=nil, orgdata=nil)
+        def initialize(referbizid=nil, doctype=nil, docname=nil, pagecontent=nil, question=nil, answer=nil, confidence=nil, mark=nil, highlights=nil, orgdata=nil, pageinfos=nil, sheetinfos=nil, docbizid=nil)
           @ReferBizId = referbizid
           @DocType = doctype
           @DocName = docname
@@ -6556,6 +6605,9 @@ module TencentCloud
           @Mark = mark
           @Highlights = highlights
           @OrgData = orgdata
+          @PageInfos = pageinfos
+          @SheetInfos = sheetinfos
+          @DocBizId = docbizid
         end
 
         def deserialize(params)
@@ -6576,6 +6628,9 @@ module TencentCloud
             end
           end
           @OrgData = params['OrgData']
+          @PageInfos = params['PageInfos']
+          @SheetInfos = params['SheetInfos']
+          @DocBizId = params['DocBizId']
         end
       end
 
