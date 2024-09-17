@@ -101,11 +101,11 @@ module TencentCloud
         # 3. 关闭时将直接由主模型生成回复内容，可以降低响应时延（对于流式输出时的首字时延尤为明显）。但在少数场景里，回复效果可能会下降。
         # 4. 安全审核能力不属于功能增强范围，不受此字段影响。
         # @type EnableEnhancement: Boolean
-        # @param Tools: 可调用的工具列表，仅对 hunyuan-functioncall 模型生效。
+        # @param Tools: 可调用的工具列表，仅对 hunyuan-pro、hunyuan-turbo、hunyuan-functioncall 模型生效。
         # @type Tools: Array
         # @param ToolChoice: 工具使用选项，可选值包括 none、auto、custom。
         # 说明：
-        # 1. 仅对 hunyuan-functioncall 模型生效。
+        # 1. 仅对 hunyuan-pro、hunyuan-turbo、hunyuan-functioncall 模型生效。
         # 2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。
         # 3. 未设置时，默认值为auto
         # @type ToolChoice: String
@@ -121,10 +121,17 @@ module TencentCloud
         # @type Citation: Boolean
         # @param EnableSpeedSearch: 是否开启极速版搜索，默认false，不开启；在开启且命中搜索时，会启用极速版搜索，流式输出首字返回更快。
         # @type EnableSpeedSearch: Boolean
+        # @param EnableMultimedia: 图文并茂开关。
+        # 说明：
+        # 1. 该参数仅在功能增强（如搜索）开关开启（EnableEnhancement=true）时生效。
+        # 2. hunyuan-lite 无图文并茂能力，该参数对 hunyuan-lite 版本不生效。
+        # 3. 未传值时默认关闭。
+        # 4. 开启并搜索到对应的多媒体信息时，会输出对应的多媒体地址，可以定制个性化的图文消息。
+        # @type EnableMultimedia: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -138,6 +145,7 @@ module TencentCloud
           @SearchInfo = searchinfo
           @Citation = citation
           @EnableSpeedSearch = enablespeedsearch
+          @EnableMultimedia = enablemultimedia
         end
 
         def deserialize(params)
@@ -171,6 +179,7 @@ module TencentCloud
           @SearchInfo = params['SearchInfo']
           @Citation = params['Citation']
           @EnableSpeedSearch = params['EnableSpeedSearch']
+          @EnableMultimedia = params['EnableMultimedia']
         end
       end
 
@@ -195,12 +204,17 @@ module TencentCloud
         # @type ModerationLevel: String
         # @param SearchInfo: 搜索结果信息
         # @type SearchInfo: :class:`Tencentcloud::Hunyuan.v20230901.models.SearchInfo`
+        # @param Replaces: 多媒体信息。
+        # 说明：
+        # 1. 可以用多媒体信息替换回复内容里的占位符，得到完整的图文信息。
+        # 2. 可能会出现回复内容里存在占位符，但是因为审核等原因没有返回多媒体信息。
+        # @type Replaces: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :RequestId
+        attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RequestId
 
-        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, requestid=nil)
+        def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, requestid=nil)
           @Created = created
           @Usage = usage
           @Note = note
@@ -209,6 +223,7 @@ module TencentCloud
           @ErrorMsg = errormsg
           @ModerationLevel = moderationlevel
           @SearchInfo = searchinfo
+          @Replaces = replaces
           @RequestId = requestid
         end
 
@@ -236,6 +251,14 @@ module TencentCloud
           unless params['SearchInfo'].nil?
             @SearchInfo = SearchInfo.new
             @SearchInfo.deserialize(params['SearchInfo'])
+          end
+          unless params['Replaces'].nil?
+            @Replaces = []
+            params['Replaces'].each do |i|
+              replace_tmp = Replace.new
+              replace_tmp.deserialize(i)
+              @Replaces << replace_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -660,6 +683,30 @@ module TencentCloud
         end
       end
 
+      # 图文并茂详情
+      class Multimedia < TencentCloud::Common::AbstractModel
+        # @param Type: 多媒体类型，image：图片。
+        # @type Type: String
+        # @param Url: 多媒体预览地址。
+        # @type Url: String
+        # @param JumpUrl: 多媒体详情地址。
+        # @type JumpUrl: String
+
+        attr_accessor :Type, :Url, :JumpUrl
+
+        def initialize(type=nil, url=nil, jumpurl=nil)
+          @Type = type
+          @Url = url
+          @JumpUrl = jumpurl
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Url = params['Url']
+          @JumpUrl = params['JumpUrl']
+        end
+      end
+
       # QueryHunyuanImageChatJob请求参数结构体
       class QueryHunyuanImageChatJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务 ID。
@@ -792,6 +839,33 @@ module TencentCloud
           @ResultDetails = params['ResultDetails']
           @RevisedPrompt = params['RevisedPrompt']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 图文并茂占位符替换信息
+      class Replace < TencentCloud::Common::AbstractModel
+        # @param Id: 占位符序号
+        # @type Id: String
+        # @param Multimedia: 多媒体详情
+        # @type Multimedia: Array
+
+        attr_accessor :Id, :Multimedia
+
+        def initialize(id=nil, multimedia=nil)
+          @Id = id
+          @Multimedia = multimedia
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Multimedia'].nil?
+            @Multimedia = []
+            params['Multimedia'].each do |i|
+              multimedia_tmp = Multimedia.new
+              multimedia_tmp.deserialize(i)
+              @Multimedia << multimedia_tmp
+            end
+          end
         end
       end
 
