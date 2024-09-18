@@ -812,10 +812,13 @@ module TencentCloud
         # @param ClusterEtcdNodeNum: 集群当前etcd数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterEtcdNodeNum: Integer
+        # @param CdcId: 本地专用集群Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId
 
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -840,6 +843,7 @@ module TencentCloud
           @QGPUShareEnable = qgpushareenable
           @RuntimeVersion = runtimeversion
           @ClusterEtcdNodeNum = clusteretcdnodenum
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -877,6 +881,7 @@ module TencentCloud
           @QGPUShareEnable = params['QGPUShareEnable']
           @RuntimeVersion = params['RuntimeVersion']
           @ClusterEtcdNodeNum = params['ClusterEtcdNodeNum']
+          @CdcId = params['CdcId']
         end
       end
 
@@ -7780,14 +7785,17 @@ module TencentCloud
         # @type Progress: Array
         # @param EnabledPublicConnect: 是否开启第三方节点公网连接支持
         # @type EnabledPublicConnect: Boolean
-        # @param PublicConnectUrl: 公网连接地址
+        # @param PublicConnectUrl: 注册节点公网版公网连接地址
         # @type PublicConnectUrl: String
+        # @param PublicCustomDomain: 注册节点公网版自定义域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicCustomDomain: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterCIDR, :NetworkType, :SubnetId, :Enabled, :AS, :SwitchIP, :Status, :FailedReason, :Master, :Proxy, :Progress, :EnabledPublicConnect, :PublicConnectUrl, :RequestId
+        attr_accessor :ClusterCIDR, :NetworkType, :SubnetId, :Enabled, :AS, :SwitchIP, :Status, :FailedReason, :Master, :Proxy, :Progress, :EnabledPublicConnect, :PublicConnectUrl, :PublicCustomDomain, :RequestId
 
-        def initialize(clustercidr=nil, networktype=nil, subnetid=nil, enabled=nil, as=nil, switchip=nil, status=nil, failedreason=nil, master=nil, proxy=nil, progress=nil, enabledpublicconnect=nil, publicconnecturl=nil, requestid=nil)
+        def initialize(clustercidr=nil, networktype=nil, subnetid=nil, enabled=nil, as=nil, switchip=nil, status=nil, failedreason=nil, master=nil, proxy=nil, progress=nil, enabledpublicconnect=nil, publicconnecturl=nil, publiccustomdomain=nil, requestid=nil)
           @ClusterCIDR = clustercidr
           @NetworkType = networktype
           @SubnetId = subnetid
@@ -7801,6 +7809,7 @@ module TencentCloud
           @Progress = progress
           @EnabledPublicConnect = enabledpublicconnect
           @PublicConnectUrl = publicconnecturl
+          @PublicCustomDomain = publiccustomdomain
           @RequestId = requestid
         end
 
@@ -7825,6 +7834,7 @@ module TencentCloud
           end
           @EnabledPublicConnect = params['EnabledPublicConnect']
           @PublicConnectUrl = params['PublicConnectUrl']
+          @PublicCustomDomain = params['PublicCustomDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -8059,6 +8069,54 @@ module TencentCloud
               switch_tmp = Switch.new
               switch_tmp.deserialize(i)
               @SwitchSet << switch_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOpenPolicyList请求参数结构体
+      class DescribeOpenPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Category: 策略分类 基线：baseline 优选：priority 可选：optional
+        # @type Category: String
+
+        attr_accessor :ClusterId, :Category
+
+        def initialize(clusterid=nil, category=nil)
+          @ClusterId = clusterid
+          @Category = category
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Category = params['Category']
+        end
+      end
+
+      # DescribeOpenPolicyList返回参数结构体
+      class DescribeOpenPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param OpenPolicyInfoList: 策略信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenPolicyInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OpenPolicyInfoList, :RequestId
+
+        def initialize(openpolicyinfolist=nil, requestid=nil)
+          @OpenPolicyInfoList = openpolicyinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OpenPolicyInfoList'].nil?
+            @OpenPolicyInfoList = []
+            params['OpenPolicyInfoList'].each do |i|
+              openpolicyinfo_tmp = OpenPolicyInfo.new
+              openpolicyinfo_tmp.deserialize(i)
+              @OpenPolicyInfoList << openpolicyinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14119,6 +14177,53 @@ module TencentCloud
         end
       end
 
+      # ModifyOpenPolicyList请求参数结构体
+      class ModifyOpenPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param OpenPolicyInfoList: 修改的策略列表，目前仅支持修改EnforcementAction字段
+        # @type OpenPolicyInfoList: Array
+        # @param Category: 策略分类 基线：baseline 优选：priority 可选：optional
+        # @type Category: String
+
+        attr_accessor :ClusterId, :OpenPolicyInfoList, :Category
+
+        def initialize(clusterid=nil, openpolicyinfolist=nil, category=nil)
+          @ClusterId = clusterid
+          @OpenPolicyInfoList = openpolicyinfolist
+          @Category = category
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['OpenPolicyInfoList'].nil?
+            @OpenPolicyInfoList = []
+            params['OpenPolicyInfoList'].each do |i|
+              openpolicyswitch_tmp = OpenPolicySwitch.new
+              openpolicyswitch_tmp.deserialize(i)
+              @OpenPolicyInfoList << openpolicyswitch_tmp
+            end
+          end
+          @Category = params['Category']
+        end
+      end
+
+      # ModifyOpenPolicyList返回参数结构体
+      class ModifyOpenPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrometheusAgentExternalLabels请求参数结构体
       class ModifyPrometheusAgentExternalLabelsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -14849,6 +14954,141 @@ module TencentCloud
           @AutoCreateOIDCConfig = params['AutoCreateOIDCConfig']
           @AutoCreateClientId = params['AutoCreateClientId']
           @AutoInstallPodIdentityWebhookAddon = params['AutoInstallPodIdentityWebhookAddon']
+        end
+      end
+
+      # 策略实例信息
+      class OpenConstraintInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 策略实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param EventNums: 策略实例关联事件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventNums: Integer
+        # @param YamlDetail: 实例yaml详情base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YamlDetail: String
+
+        attr_accessor :Name, :EventNums, :YamlDetail
+
+        def initialize(name=nil, eventnums=nil, yamldetail=nil)
+          @Name = name
+          @EventNums = eventnums
+          @YamlDetail = yamldetail
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @EventNums = params['EventNums']
+          @YamlDetail = params['YamlDetail']
+        end
+      end
+
+      # opa策略信息
+      class OpenPolicyInfo < TencentCloud::Common::AbstractModel
+        # @param PolicyCategory: 策略分类：cluster集群策略、node节点策略、namespace命名空间策略、configuration配置相关策略、compute计算资源策略、storage存储资源策略、network网络资源策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyCategory: String
+        # @param PolicyName: 策略中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param PolicyDesc: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDesc: String
+        # @param EnforcementAction: 策略运行模式：dryrun空跑不生效，deny拦截生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnforcementAction: String
+        # @param EventNums: 关联的事件数量(最近7d)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventNums: Integer
+        # @param Name: 策略英文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Kind: 策略模版类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kind: String
+        # @param EnabledStatus: 策略开关状态：open打开，close关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnabledStatus: String
+        # @param ConstraintYamlExample: 策略的实例的yaml示例base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConstraintYamlExample: String
+        # @param OpenConstraintInfoList: 策略关联的实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenConstraintInfoList: Array
+
+        attr_accessor :PolicyCategory, :PolicyName, :PolicyDesc, :EnforcementAction, :EventNums, :Name, :Kind, :EnabledStatus, :ConstraintYamlExample, :OpenConstraintInfoList
+
+        def initialize(policycategory=nil, policyname=nil, policydesc=nil, enforcementaction=nil, eventnums=nil, name=nil, kind=nil, enabledstatus=nil, constraintyamlexample=nil, openconstraintinfolist=nil)
+          @PolicyCategory = policycategory
+          @PolicyName = policyname
+          @PolicyDesc = policydesc
+          @EnforcementAction = enforcementaction
+          @EventNums = eventnums
+          @Name = name
+          @Kind = kind
+          @EnabledStatus = enabledstatus
+          @ConstraintYamlExample = constraintyamlexample
+          @OpenConstraintInfoList = openconstraintinfolist
+        end
+
+        def deserialize(params)
+          @PolicyCategory = params['PolicyCategory']
+          @PolicyName = params['PolicyName']
+          @PolicyDesc = params['PolicyDesc']
+          @EnforcementAction = params['EnforcementAction']
+          @EventNums = params['EventNums']
+          @Name = params['Name']
+          @Kind = params['Kind']
+          @EnabledStatus = params['EnabledStatus']
+          @ConstraintYamlExample = params['ConstraintYamlExample']
+          unless params['OpenConstraintInfoList'].nil?
+            @OpenConstraintInfoList = []
+            params['OpenConstraintInfoList'].each do |i|
+              openconstraintinfo_tmp = OpenConstraintInfo.new
+              openconstraintinfo_tmp.deserialize(i)
+              @OpenConstraintInfoList << openconstraintinfo_tmp
+            end
+          end
+        end
+      end
+
+      # opa策略开关
+      class OpenPolicySwitch < TencentCloud::Common::AbstractModel
+        # @param EnforcementAction: 策略运行模式：dryrun空跑不生效，deny拦截生效
+        # @type EnforcementAction: String
+        # @param Name: 策略英文名称
+        # @type Name: String
+        # @param Kind: 策略模版类型
+        # @type Kind: String
+        # @param EnabledStatus: 策略开关状态：open打开，close关闭
+        # @type EnabledStatus: String
+        # @param OpenConstraintInfoList: 策略关联的实例列表
+        # @type OpenConstraintInfoList: Array
+
+        attr_accessor :EnforcementAction, :Name, :Kind, :EnabledStatus, :OpenConstraintInfoList
+
+        def initialize(enforcementaction=nil, name=nil, kind=nil, enabledstatus=nil, openconstraintinfolist=nil)
+          @EnforcementAction = enforcementaction
+          @Name = name
+          @Kind = kind
+          @EnabledStatus = enabledstatus
+          @OpenConstraintInfoList = openconstraintinfolist
+        end
+
+        def deserialize(params)
+          @EnforcementAction = params['EnforcementAction']
+          @Name = params['Name']
+          @Kind = params['Kind']
+          @EnabledStatus = params['EnabledStatus']
+          unless params['OpenConstraintInfoList'].nil?
+            @OpenConstraintInfoList = []
+            params['OpenConstraintInfoList'].each do |i|
+              openconstraintinfo_tmp = OpenConstraintInfo.new
+              openconstraintinfo_tmp.deserialize(i)
+              @OpenConstraintInfoList << openconstraintinfo_tmp
+            end
+          end
         end
       end
 

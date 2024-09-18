@@ -5670,7 +5670,7 @@ module TencentCloud
         # @param IsDelay: 是否延迟下发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelay: Integer
-        # @param ServiceTemplateId: 服务模版id
+        # @param ServiceTemplateId: 服务模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
         # @param SouInstanceName: 源资产名称
@@ -5685,7 +5685,7 @@ module TencentCloud
         # @param SouCidr: 源资产网段信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouCidr: String
-        # @param SouParameterName: 源模版名称
+        # @param SouParameterName: 源模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouParameterName: String
         # @param InstanceName: 目的资产名称
@@ -5700,10 +5700,10 @@ module TencentCloud
         # @param Cidr: 目的资产网段信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
-        # @param ParameterName: 目的模版名称
+        # @param ParameterName: 目的模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
-        # @param ProtocolPortName: 端口模版名称
+        # @param ProtocolPortName: 端口模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolPortName: String
         # @param BetaList: 自动化任务任务信息

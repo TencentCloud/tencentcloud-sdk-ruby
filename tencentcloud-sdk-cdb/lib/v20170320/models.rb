@@ -1925,15 +1925,19 @@ module TencentCloud
       class CloseWanServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         # @type InstanceId: String
+        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @type OpResourceId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :OpResourceId
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, opresourceid=nil)
           @InstanceId = instanceid
+          @OpResourceId = opresourceid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @OpResourceId = params['OpResourceId']
         end
       end
 
@@ -10520,19 +10524,23 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
         # @type ForReadonlyInstance: Boolean
+        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @type OpResourceId: String
 
-        attr_accessor :InstanceId, :SecurityGroupIds, :ForReadonlyInstance
+        attr_accessor :InstanceId, :SecurityGroupIds, :ForReadonlyInstance, :OpResourceId
 
-        def initialize(instanceid=nil, securitygroupids=nil, forreadonlyinstance=nil)
+        def initialize(instanceid=nil, securitygroupids=nil, forreadonlyinstance=nil, opresourceid=nil)
           @InstanceId = instanceid
           @SecurityGroupIds = securitygroupids
           @ForReadonlyInstance = forreadonlyinstance
+          @OpResourceId = opresourceid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SecurityGroupIds = params['SecurityGroupIds']
           @ForReadonlyInstance = params['ForReadonlyInstance']
+          @OpResourceId = params['OpResourceId']
         end
       end
 
@@ -10566,16 +10574,19 @@ module TencentCloud
         # @type UniqSubnetId: String
         # @param ReleaseDuration: 进行基础网络转 VPC 网络和 VPC 网络下的子网变更时，原网络中旧IP的回收时间，单位为小时，取值范围为0-168，默认值为24小时。
         # @type ReleaseDuration: Integer
+        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @type OpResourceId: String
 
-        attr_accessor :InstanceId, :DstIp, :DstPort, :UniqVpcId, :UniqSubnetId, :ReleaseDuration
+        attr_accessor :InstanceId, :DstIp, :DstPort, :UniqVpcId, :UniqSubnetId, :ReleaseDuration, :OpResourceId
 
-        def initialize(instanceid=nil, dstip=nil, dstport=nil, uniqvpcid=nil, uniqsubnetid=nil, releaseduration=nil)
+        def initialize(instanceid=nil, dstip=nil, dstport=nil, uniqvpcid=nil, uniqsubnetid=nil, releaseduration=nil, opresourceid=nil)
           @InstanceId = instanceid
           @DstIp = dstip
           @DstPort = dstport
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
           @ReleaseDuration = releaseduration
+          @OpResourceId = opresourceid
         end
 
         def deserialize(params)
@@ -10585,6 +10596,7 @@ module TencentCloud
           @UniqVpcId = params['UniqVpcId']
           @UniqSubnetId = params['UniqSubnetId']
           @ReleaseDuration = params['ReleaseDuration']
+          @OpResourceId = params['OpResourceId']
         end
       end
 
@@ -11303,15 +11315,19 @@ module TencentCloud
       class OpenWanServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         # @type InstanceId: String
+        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @type OpResourceId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :OpResourceId
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, opresourceid=nil)
           @InstanceId = instanceid
+          @OpResourceId = opresourceid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @OpResourceId = params['OpResourceId']
         end
       end
 
@@ -13477,14 +13493,17 @@ module TencentCloud
         # @type ForceSwitch: Boolean
         # @param WaitSwitch: 是否时间窗内切换。默认为 False，即不在时间窗内切换。注意，如果设置了 ForceSwitch 参数为 True，则该参数不生效。
         # @type WaitSwitch: Boolean
+        # @param DstNodeId: 集群版实例指定节点id发起主从切换。
+        # @type DstNodeId: String
 
-        attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch
+        attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId
 
-        def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil)
+        def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil)
           @InstanceId = instanceid
           @DstSlave = dstslave
           @ForceSwitch = forceswitch
           @WaitSwitch = waitswitch
+          @DstNodeId = dstnodeid
         end
 
         def deserialize(params)
@@ -13492,6 +13511,7 @@ module TencentCloud
           @DstSlave = params['DstSlave']
           @ForceSwitch = params['ForceSwitch']
           @WaitSwitch = params['WaitSwitch']
+          @DstNodeId = params['DstNodeId']
         end
       end
 

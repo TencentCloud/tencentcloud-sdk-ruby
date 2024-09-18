@@ -5383,16 +5383,19 @@ module TencentCloud
         # @type EndPointVip: String
         # @param SecurityGroupId: 安全组ID。
         # @type SecurityGroupId: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :SubnetId, :EndPointName, :EndPointServiceId, :EndPointVip, :SecurityGroupId
+        attr_accessor :VpcId, :SubnetId, :EndPointName, :EndPointServiceId, :EndPointVip, :SecurityGroupId, :Tags
 
-        def initialize(vpcid=nil, subnetid=nil, endpointname=nil, endpointserviceid=nil, endpointvip=nil, securitygroupid=nil)
+        def initialize(vpcid=nil, subnetid=nil, endpointname=nil, endpointserviceid=nil, endpointvip=nil, securitygroupid=nil, tags=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @EndPointName = endpointname
           @EndPointServiceId = endpointserviceid
           @EndPointVip = endpointvip
           @SecurityGroupId = securitygroupid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5402,6 +5405,14 @@ module TencentCloud
           @EndPointServiceId = params['EndPointServiceId']
           @EndPointVip = params['EndPointVip']
           @SecurityGroupId = params['SecurityGroupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

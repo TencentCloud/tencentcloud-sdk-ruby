@@ -2935,6 +2935,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询opa策略列表
+
+        # @param request: Request instance for DescribeOpenPolicyList.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeOpenPolicyListRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeOpenPolicyListResponse`
+        def DescribeOpenPolicyList(request)
+          body = send_request('DescribeOpenPolicyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOpenPolicyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询正在运行中Pod的计费信息。可以通过 Namespace 和 Name 来查询某个 Pod 的信息，也可以通过 Pod 的 Uid 批量查询。
 
         # @param request: Request instance for DescribePodChargeInfo.
@@ -4577,6 +4601,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNodePoolInstanceTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改opa策略
+
+        # @param request: Request instance for ModifyOpenPolicyList.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyOpenPolicyListRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyOpenPolicyListResponse`
+        def ModifyOpenPolicyList(request)
+          body = send_request('ModifyOpenPolicyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOpenPolicyListResponse.new
             model.deserialize(response['Response'])
             model
           else
