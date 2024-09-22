@@ -1555,6 +1555,206 @@ module TencentCloud
         end
       end
 
+      # DescribeCallStatsGraph请求参数结构体
+      class DescribeCallStatsGraphRequest < TencentCloud::Common::AbstractModel
+        # @param UinAccount: uin
+        # @type UinAccount: Array
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+        # @param SubBizType: 子业务类型
+        # @type SubBizType: String
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AppBizIds: 应用id列表
+        # @type AppBizIds: Array
+
+        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds
+
+        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil)
+          @UinAccount = uinaccount
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @SubBizType = subbiztype
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @UinAccount = params['UinAccount']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @SubBizType = params['SubBizType']
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeCallStatsGraph返回参数结构体
+      class DescribeCallStatsGraphResponse < TencentCloud::Common::AbstractModel
+        # @param List: 统计信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              stat_tmp = Stat.new
+              stat_tmp.deserialize(i)
+              @List << stat_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConcurrencyUsageGraph请求参数结构体
+      class DescribeConcurrencyUsageGraphRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param UinAccount: uin
+        # @type UinAccount: Array
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+        # @param SubBizType: 子业务类型
+        # @type SubBizType: String
+        # @param AppBizIds: 应用id列表
+        # @type AppBizIds: Array
+
+        attr_accessor :ModelName, :StartTime, :EndTime, :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :AppBizIds
+
+        def initialize(modelname=nil, starttime=nil, endtime=nil, uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, appbizids=nil)
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @UinAccount = uinaccount
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @SubBizType = subbiztype
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UinAccount = params['UinAccount']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @SubBizType = params['SubBizType']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeConcurrencyUsageGraph返回参数结构体
+      class DescribeConcurrencyUsageGraphResponse < TencentCloud::Common::AbstractModel
+        # @param X: 统计信息
+        # @type X: Array
+        # @param AvailableY: 可用并发y轴坐标
+        # @type AvailableY: Array
+        # @param SuccessCallY: 成功调用并发y轴坐标
+        # @type SuccessCallY: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :X, :AvailableY, :SuccessCallY, :RequestId
+
+        def initialize(x=nil, availabley=nil, successcally=nil, requestid=nil)
+          @X = x
+          @AvailableY = availabley
+          @SuccessCallY = successcally
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @AvailableY = params['AvailableY']
+          @SuccessCallY = params['SuccessCallY']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConcurrencyUsage请求参数结构体
+      class DescribeConcurrencyUsageRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AppBizIds: 应用id列表
+        # @type AppBizIds: Array
+
+        attr_accessor :ModelName, :StartTime, :EndTime, :AppBizIds
+
+        def initialize(modelname=nil, starttime=nil, endtime=nil, appbizids=nil)
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeConcurrencyUsage返回参数结构体
+      class DescribeConcurrencyUsageResponse < TencentCloud::Common::AbstractModel
+        # @param AvailableConcurrency: 可用并发数
+        # @type AvailableConcurrency: Integer
+        # @param ConcurrencyPeak: 并发峰值
+        # @type ConcurrencyPeak: Integer
+        # @param ExceedUsageTime: 调用超可用次数
+        # @type ExceedUsageTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvailableConcurrency, :ConcurrencyPeak, :ExceedUsageTime, :RequestId
+
+        def initialize(availableconcurrency=nil, concurrencypeak=nil, exceedusagetime=nil, requestid=nil)
+          @AvailableConcurrency = availableconcurrency
+          @ConcurrencyPeak = concurrencypeak
+          @ExceedUsageTime = exceedusagetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AvailableConcurrency = params['AvailableConcurrency']
+          @ConcurrencyPeak = params['ConcurrencyPeak']
+          @ExceedUsageTime = params['ExceedUsageTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCorp请求参数结构体
       class DescribeCorpRequest < TencentCloud::Common::AbstractModel
 
@@ -1725,6 +1925,88 @@ module TencentCloud
               @AttrLabels << attrlabel_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKnowledgeUsagePieGraph请求参数结构体
+      class DescribeKnowledgeUsagePieGraphRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizIds: 应用ID数组
+        # @type AppBizIds: Array
+
+        attr_accessor :AppBizIds
+
+        def initialize(appbizids=nil)
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeKnowledgeUsagePieGraph返回参数结构体
+      class DescribeKnowledgeUsagePieGraphResponse < TencentCloud::Common::AbstractModel
+        # @param AvailableCharSize: 所有应用已用的字符总数
+        # @type AvailableCharSize: String
+        # @param List: 应用饼图详情列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvailableCharSize, :List, :RequestId
+
+        def initialize(availablecharsize=nil, list=nil, requestid=nil)
+          @AvailableCharSize = availablecharsize
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AvailableCharSize = params['AvailableCharSize']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              knowledgecapacitypiegraphdetail_tmp = KnowledgeCapacityPieGraphDetail.new
+              knowledgecapacitypiegraphdetail_tmp.deserialize(i)
+              @List << knowledgecapacitypiegraphdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKnowledgeUsage请求参数结构体
+      class DescribeKnowledgeUsageRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeKnowledgeUsage返回参数结构体
+      class DescribeKnowledgeUsageResponse < TencentCloud::Common::AbstractModel
+        # @param AvailableCharSize: 可用字符数
+        # @type AvailableCharSize: String
+        # @param ExceedCharSize: 超量字符数
+        # @type ExceedCharSize: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvailableCharSize, :ExceedCharSize, :RequestId
+
+        def initialize(availablecharsize=nil, exceedcharsize=nil, requestid=nil)
+          @AvailableCharSize = availablecharsize
+          @ExceedCharSize = exceedcharsize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AvailableCharSize = params['AvailableCharSize']
+          @ExceedCharSize = params['ExceedCharSize']
           @RequestId = params['RequestId']
         end
       end
@@ -2077,6 +2359,78 @@ module TencentCloud
         end
       end
 
+      # DescribeSearchStatsGraph请求参数结构体
+      class DescribeSearchStatsGraphRequest < TencentCloud::Common::AbstractModel
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+        # @param UinAccount: uin列表
+        # @type UinAccount: Array
+        # @param SubBizType: 子业务类型
+        # @type SubBizType: String
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AppBizIds: 应用id列表
+        # @type AppBizIds: Array
+
+        attr_accessor :LoginUin, :LoginSubAccountUin, :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds
+
+        def initialize(loginuin=nil, loginsubaccountuin=nil, uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil)
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @UinAccount = uinaccount
+          @SubBizType = subbiztype
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @UinAccount = params['UinAccount']
+          @SubBizType = params['SubBizType']
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeSearchStatsGraph返回参数结构体
+      class DescribeSearchStatsGraphResponse < TencentCloud::Common::AbstractModel
+        # @param List: 统计结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              stat_tmp = Stat.new
+              stat_tmp.deserialize(i)
+              @List << stat_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSegments请求参数结构体
       class DescribeSegmentsRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -2208,6 +2562,171 @@ module TencentCloud
           @CorpUin = params['CorpUin']
           @ImagePath = params['ImagePath']
           @UploadPath = params['UploadPath']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTokenUsageGraph请求参数结构体
+      class DescribeTokenUsageGraphRequest < TencentCloud::Common::AbstractModel
+        # @param UinAccount: 腾讯云主账号
+        # @type UinAccount: Array
+        # @param SubBizType: 知识引擎子业务类型:  FileParse(文档解析)、Embedding、Rewrite(多轮改写)、 Concurrency(并发)、KnowledgeSummary(知识总结)   KnowledgeQA(知识问答)、KnowledgeCapacity(知识库容量)、SearchEngine(搜索引擎)
+        # @type SubBizType: String
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AppBizIds: 应用id列表
+        # @type AppBizIds: Array
+
+        attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds
+
+        def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil)
+          @UinAccount = uinaccount
+          @SubBizType = subbiztype
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @UinAccount = params['UinAccount']
+          @SubBizType = params['SubBizType']
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeTokenUsageGraph返回参数结构体
+      class DescribeTokenUsageGraphResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总消耗
+        # @type Total: Array
+        # @param Input: 输入消耗
+        # @type Input: Array
+        # @param Output: 输出消耗
+        # @type Output: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Input, :Output, :RequestId
+
+        def initialize(total=nil, input=nil, output=nil, requestid=nil)
+          @Total = total
+          @Input = input
+          @Output = output
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Total'].nil?
+            @Total = []
+            params['Total'].each do |i|
+              stat_tmp = Stat.new
+              stat_tmp.deserialize(i)
+              @Total << stat_tmp
+            end
+          end
+          unless params['Input'].nil?
+            @Input = []
+            params['Input'].each do |i|
+              stat_tmp = Stat.new
+              stat_tmp.deserialize(i)
+              @Input << stat_tmp
+            end
+          end
+          unless params['Output'].nil?
+            @Output = []
+            params['Output'].each do |i|
+              stat_tmp = Stat.new
+              stat_tmp.deserialize(i)
+              @Output << stat_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTokenUsage请求参数结构体
+      class DescribeTokenUsageRequest < TencentCloud::Common::AbstractModel
+        # @param UinAccount: 腾讯云主账号
+        # @type UinAccount: Array
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+        # @param SubBizType: 知识引擎子业务类型:  FileParse(文档解析)、Embedding、Rewrite(多轮改写)、 Concurrency(并发)、KnowledgeSummary(知识总结)   KnowledgeQA(知识问答)、KnowledgeCapacity(知识库容量)、SearchEngine(搜索引擎)
+        # @type SubBizType: String
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AppBizIds: 应用id列表
+        # @type AppBizIds: Array
+
+        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds
+
+        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil)
+          @UinAccount = uinaccount
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @SubBizType = subbiztype
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @UinAccount = params['UinAccount']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @SubBizType = params['SubBizType']
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # DescribeTokenUsage返回参数结构体
+      class DescribeTokenUsageResponse < TencentCloud::Common::AbstractModel
+        # @param TotalTokenUsage: 总token消耗量
+        # @type TotalTokenUsage: Float
+        # @param InputTokenUsage: 输入token消耗
+        # @type InputTokenUsage: Float
+        # @param OutputTokenUsage: 输出token消耗
+        # @type OutputTokenUsage: Float
+        # @param ApiCallStats: 接口调用次数
+        # @type ApiCallStats: Integer
+        # @param SearchUsage: 搜索服务调用次数
+        # @type SearchUsage: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :RequestId
+
+        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, requestid=nil)
+          @TotalTokenUsage = totaltokenusage
+          @InputTokenUsage = inputtokenusage
+          @OutputTokenUsage = outputtokenusage
+          @ApiCallStats = apicallstats
+          @SearchUsage = searchusage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalTokenUsage = params['TotalTokenUsage']
+          @InputTokenUsage = params['InputTokenUsage']
+          @OutputTokenUsage = params['OutputTokenUsage']
+          @ApiCallStats = params['ApiCallStats']
+          @SearchUsage = params['SearchUsage']
           @RequestId = params['RequestId']
         end
       end
@@ -3611,6 +4130,33 @@ module TencentCloud
         def deserialize(params)
           @Hit = params['Hit']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 知识库容量饼图详情
+      class KnowledgeCapacityPieGraphDetail < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param UsedCharSize: 应用使用的字符数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedCharSize: String
+        # @param Proportion: 应用占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proportion: Float
+
+        attr_accessor :AppName, :UsedCharSize, :Proportion
+
+        def initialize(appname=nil, usedcharsize=nil, proportion=nil)
+          @AppName = appname
+          @UsedCharSize = usedcharsize
+          @Proportion = proportion
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UsedCharSize = params['UsedCharSize']
+          @Proportion = params['Proportion']
         end
       end
 
@@ -7235,6 +7781,28 @@ module TencentCloud
               @DeleteQuestions << similarquestion_tmp
             end
           end
+        end
+      end
+
+      # 计费统计信息
+      class Stat < TencentCloud::Common::AbstractModel
+        # @param X: x轴时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type X: String
+        # @param Y: y轴统计值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Y: Float
+
+        attr_accessor :X, :Y
+
+        def initialize(x=nil, y=nil)
+          @X = x
+          @Y = y
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
         end
       end
 

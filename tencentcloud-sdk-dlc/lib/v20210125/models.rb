@@ -2781,15 +2781,18 @@ module TencentCloud
         # @type DataEngineName: String
         # @param ResourceGroupName: spark集群资源组名称
         # @type ResourceGroupName: String
+        # @param IsMultiStatement: 是否使用multi- statement方式运行一批次任务，true: 是，false: 否
+        # @type IsMultiStatement: Boolean
 
-        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName
+        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName, :DataEngineName, :ResourceGroupName, :IsMultiStatement
 
-        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil)
+        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil, dataenginename=nil, resourcegroupname=nil, ismultistatement=nil)
           @DatabaseName = databasename
           @Tasks = tasks
           @DatasourceConnectionName = datasourceconnectionname
           @DataEngineName = dataenginename
           @ResourceGroupName = resourcegroupname
+          @IsMultiStatement = ismultistatement
         end
 
         def deserialize(params)
@@ -2801,6 +2804,7 @@ module TencentCloud
           @DatasourceConnectionName = params['DatasourceConnectionName']
           @DataEngineName = params['DataEngineName']
           @ResourceGroupName = params['ResourceGroupName']
+          @IsMultiStatement = params['IsMultiStatement']
         end
       end
 

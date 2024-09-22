@@ -1117,15 +1117,18 @@ module TencentCloud
         # @type Summary: String
         # @param Issue: 问题以及改进
         # @type Issue: String
+        # @param Record: 演练记录
+        # @type Record: String
 
-        attr_accessor :TaskId, :Status, :IsExpect, :Summary, :Issue
+        attr_accessor :TaskId, :Status, :IsExpect, :Summary, :Issue, :Record
 
-        def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil, issue=nil)
+        def initialize(taskid=nil, status=nil, isexpect=nil, summary=nil, issue=nil, record=nil)
           @TaskId = taskid
           @Status = status
           @IsExpect = isexpect
           @Summary = summary
           @Issue = issue
+          @Record = record
         end
 
         def deserialize(params)
@@ -1134,6 +1137,7 @@ module TencentCloud
           @IsExpect = params['IsExpect']
           @Summary = params['Summary']
           @Issue = params['Issue']
+          @Record = params['Record']
         end
       end
 

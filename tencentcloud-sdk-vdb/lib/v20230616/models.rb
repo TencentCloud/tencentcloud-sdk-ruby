@@ -402,6 +402,9 @@ module TencentCloud
         # @param EngineVersion: 引擎版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineVersion: String
+        # @param ApiVersion: api版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiVersion: String
         # @param PayMode: 计费模式。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
@@ -424,9 +427,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenew: Integer
 
-        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
+        attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :WanAddress, :IsolateAt, :AutoRenew
 
-        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil)
+        def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, wanaddress=nil, isolateat=nil, autorenew=nil)
           @InstanceId = instanceid
           @Name = name
           @AppId = appid
@@ -447,6 +450,7 @@ module TencentCloud
           @Status = status
           @EngineName = enginename
           @EngineVersion = engineversion
+          @ApiVersion = apiversion
           @PayMode = paymode
           @Extend = extend
           @ExpiredAt = expiredat
@@ -491,6 +495,7 @@ module TencentCloud
           @Status = params['Status']
           @EngineName = params['EngineName']
           @EngineVersion = params['EngineVersion']
+          @ApiVersion = params['ApiVersion']
           @PayMode = params['PayMode']
           @Extend = params['Extend']
           @ExpiredAt = params['ExpiredAt']

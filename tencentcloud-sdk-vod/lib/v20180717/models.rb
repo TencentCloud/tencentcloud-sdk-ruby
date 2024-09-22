@@ -10077,16 +10077,19 @@ module TencentCloud
         # @type UploadMediaCompleteEventSwitch: String
         # @param DeleteMediaCompleteEventSwitch: 是否接收 [视频删除完成](https://cloud.tencent.com/document/product/266/13434) 事件通知，"OFF" 为忽略该事件通知，"ON" 为接收事件通知。
         # @type DeleteMediaCompleteEventSwitch: String
+        # @param PersistenceCompleteEventSwitch: 是否接收剪辑固化完成事件通知，"OFF" 为忽略该事件通知，"ON" 为接收事件通知。
+        # @type PersistenceCompleteEventSwitch: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Mode, :NotificationUrl, :UploadMediaCompleteEventSwitch, :DeleteMediaCompleteEventSwitch, :RequestId
+        attr_accessor :Mode, :NotificationUrl, :UploadMediaCompleteEventSwitch, :DeleteMediaCompleteEventSwitch, :PersistenceCompleteEventSwitch, :RequestId
 
-        def initialize(mode=nil, notificationurl=nil, uploadmediacompleteeventswitch=nil, deletemediacompleteeventswitch=nil, requestid=nil)
+        def initialize(mode=nil, notificationurl=nil, uploadmediacompleteeventswitch=nil, deletemediacompleteeventswitch=nil, persistencecompleteeventswitch=nil, requestid=nil)
           @Mode = mode
           @NotificationUrl = notificationurl
           @UploadMediaCompleteEventSwitch = uploadmediacompleteeventswitch
           @DeleteMediaCompleteEventSwitch = deletemediacompleteeventswitch
+          @PersistenceCompleteEventSwitch = persistencecompleteeventswitch
           @RequestId = requestid
         end
 
@@ -10095,6 +10098,7 @@ module TencentCloud
           @NotificationUrl = params['NotificationUrl']
           @UploadMediaCompleteEventSwitch = params['UploadMediaCompleteEventSwitch']
           @DeleteMediaCompleteEventSwitch = params['DeleteMediaCompleteEventSwitch']
+          @PersistenceCompleteEventSwitch = params['PersistenceCompleteEventSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -13252,7 +13256,8 @@ module TencentCloud
         # <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
         # <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
         # <li>QualityInspectComplete：音画质检测完成；</li>
-        # <li>QualityEnhanceComplete：音画质重生任务完成。</li>
+        # <li>QualityEnhanceComplete：音画质重生任务完成；</li>
+        # <li>PersistenceComplete：剪辑固化完成。</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -13335,10 +13340,13 @@ module TencentCloud
         # @param MediaCastStatusChangedEvent: 媒体转推状态变化事件，当事件类型为 MediaCastStatusChanged 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaCastStatusChangedEvent: :class:`Tencentcloud::Vod.v20180717.models.MediaCastEvent`
+        # @param PersistenceCompleteEvent: 剪辑固化完成事件，当事件类型为 PersistenceComplete 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersistenceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.PersistenceCompleteTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -13366,6 +13374,7 @@ module TencentCloud
           @QualityInspectCompleteEvent = qualityinspectcompleteevent
           @QualityEnhanceCompleteEvent = qualityenhancecompleteevent
           @MediaCastStatusChangedEvent = mediacaststatuschangedevent
+          @PersistenceCompleteEvent = persistencecompleteevent
         end
 
         def deserialize(params)
@@ -13470,6 +13479,10 @@ module TencentCloud
           unless params['MediaCastStatusChangedEvent'].nil?
             @MediaCastStatusChangedEvent = MediaCastEvent.new
             @MediaCastStatusChangedEvent.deserialize(params['MediaCastStatusChangedEvent'])
+          end
+          unless params['PersistenceCompleteEvent'].nil?
+            @PersistenceCompleteEvent = PersistenceCompleteTask.new
+            @PersistenceCompleteEvent.deserialize(params['PersistenceCompleteEvent'])
           end
         end
       end
@@ -18330,16 +18343,19 @@ module TencentCloud
         # @type UploadMediaCompleteEventSwitch: String
         # @param DeleteMediaCompleteEventSwitch: 是否接收 [视频删除完成](https://cloud.tencent.com/document/product/266/13434) 事件通知，  默认 "OFF" 为忽略该事件通知，"ON" 为接收事件通知。
         # @type DeleteMediaCompleteEventSwitch: String
+        # @param PersistenceCompleteEventSwitch: 是否接收剪辑固化完成事件通知，  默认 "OFF" 为忽略该事件通知，"ON" 为接收事件通知。
+        # @type PersistenceCompleteEventSwitch: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
-        attr_accessor :Mode, :NotificationUrl, :UploadMediaCompleteEventSwitch, :DeleteMediaCompleteEventSwitch, :SubAppId
+        attr_accessor :Mode, :NotificationUrl, :UploadMediaCompleteEventSwitch, :DeleteMediaCompleteEventSwitch, :PersistenceCompleteEventSwitch, :SubAppId
 
-        def initialize(mode=nil, notificationurl=nil, uploadmediacompleteeventswitch=nil, deletemediacompleteeventswitch=nil, subappid=nil)
+        def initialize(mode=nil, notificationurl=nil, uploadmediacompleteeventswitch=nil, deletemediacompleteeventswitch=nil, persistencecompleteeventswitch=nil, subappid=nil)
           @Mode = mode
           @NotificationUrl = notificationurl
           @UploadMediaCompleteEventSwitch = uploadmediacompleteeventswitch
           @DeleteMediaCompleteEventSwitch = deletemediacompleteeventswitch
+          @PersistenceCompleteEventSwitch = persistencecompleteeventswitch
           @SubAppId = subappid
         end
 
@@ -18348,6 +18364,7 @@ module TencentCloud
           @NotificationUrl = params['NotificationUrl']
           @UploadMediaCompleteEventSwitch = params['UploadMediaCompleteEventSwitch']
           @DeleteMediaCompleteEventSwitch = params['DeleteMediaCompleteEventSwitch']
+          @PersistenceCompleteEventSwitch = params['PersistenceCompleteEventSwitch']
           @SubAppId = params['SubAppId']
         end
       end
@@ -20228,6 +20245,31 @@ module TencentCloud
         def deserialize(params)
           @MediaSegmentSet = params['MediaSegmentSet']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 剪辑固化任务信息。
+      class PersistenceCompleteTask < TencentCloud::Common::AbstractModel
+        # @param FileId: 固化生成的媒体 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileId: String
+        # @param PersistenceSource: 剪辑固化的来源，有以下三种。
+        # <li>SimpleHlsClip：来自简单 HLS 剪辑；</li>
+        # <li>FastEditMedia：来自快速媒体编辑；</li>
+        # <li>LiveRealTimeClip:来自直播即时剪辑。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersistenceSource: String
+
+        attr_accessor :FileId, :PersistenceSource
+
+        def initialize(fileid=nil, persistencesource=nil)
+          @FileId = fileid
+          @PersistenceSource = persistencesource
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @PersistenceSource = params['PersistenceSource']
         end
       end
 

@@ -4645,7 +4645,7 @@ module TencentCloud
         end
       end
 
-      # 高位命令策略
+      # 高危命令策略
       class BashPolicy < TencentCloud::Common::AbstractModel
         # @param Name: 策略名称
         # @type Name: String
@@ -4655,7 +4655,7 @@ module TencentCloud
         # @type White: Integer
         # @param BashAction: 0:告警 1:白名单 2:拦截
         # @type BashAction: Integer
-        # @param Rule: 正则表达式
+        # @param Rule: 正则表达式 base64 加密,该字段废弃,如果写入则自动替换为Rules.Process.CmdLine
         # @type Rule: String
         # @param Level: 危险等级(0:无，1: 高危 2:中危 3: 低危)
         # @type Level: Integer
@@ -4683,10 +4683,13 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Uuids: 老版本兼容可能会用到
         # @type Uuids: Array
+        # @param Rules: 规则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: :class:`Tencentcloud::Cwp.v20180228.models.PolicyRules`
 
-        attr_accessor :Name, :Enable, :White, :BashAction, :Rule, :Level, :Scope, :Id, :Descript, :EventId, :DealOldEvents, :Quuids, :Category, :CreateTime, :ModifyTime, :Uuids
+        attr_accessor :Name, :Enable, :White, :BashAction, :Rule, :Level, :Scope, :Id, :Descript, :EventId, :DealOldEvents, :Quuids, :Category, :CreateTime, :ModifyTime, :Uuids, :Rules
 
-        def initialize(name=nil, enable=nil, white=nil, bashaction=nil, rule=nil, level=nil, scope=nil, id=nil, descript=nil, eventid=nil, dealoldevents=nil, quuids=nil, category=nil, createtime=nil, modifytime=nil, uuids=nil)
+        def initialize(name=nil, enable=nil, white=nil, bashaction=nil, rule=nil, level=nil, scope=nil, id=nil, descript=nil, eventid=nil, dealoldevents=nil, quuids=nil, category=nil, createtime=nil, modifytime=nil, uuids=nil, rules=nil)
           @Name = name
           @Enable = enable
           @White = white
@@ -4703,6 +4706,7 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Uuids = uuids
+          @Rules = rules
         end
 
         def deserialize(params)
@@ -4722,6 +4726,10 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Uuids = params['Uuids']
+          unless params['Rules'].nil?
+            @Rules = PolicyRules.new
+            @Rules.deserialize(params['Rules'])
+          end
         end
       end
 
@@ -5420,25 +5428,32 @@ module TencentCloud
 
       # CheckBashPolicyParams请求参数结构体
       class CheckBashPolicyParamsRequest < TencentCloud::Common::AbstractModel
-        # @param CheckField: 校验内容 Name或Rule ，两个都要校验时逗号分割
+        # @param CheckField: 校验内容字段,如果需要检测多个字段时,用逗号分割
+        # <li>Name 策略名称</li>
+        # <li>Process 进程</li>
+        # <li>Name PProcess 父进程</li>
+        # <li>Name AProcess 祖先进程</li>
         # @type CheckField: String
         # @param EventId: 在事件列表中新增白名时需要提交事件ID
         # @type EventId: Integer
         # @param Name: 填入的规则名称
         # @type Name: String
-        # @param Rule: 用户填入的正则表达式："正则表达式" 需与 "提交EventId对应的命令内容" 相匹配
+        # @param Rule: 该字段不在维护,如果填入该参数,自动替换到Rules.Process
         # @type Rule: String
         # @param Id: 编辑时传的规则id
         # @type Id: Integer
+        # @param Rules: 规则表达式
+        # @type Rules: :class:`Tencentcloud::Cwp.v20180228.models.PolicyRules`
 
-        attr_accessor :CheckField, :EventId, :Name, :Rule, :Id
+        attr_accessor :CheckField, :EventId, :Name, :Rule, :Id, :Rules
 
-        def initialize(checkfield=nil, eventid=nil, name=nil, rule=nil, id=nil)
+        def initialize(checkfield=nil, eventid=nil, name=nil, rule=nil, id=nil, rules=nil)
           @CheckField = checkfield
           @EventId = eventid
           @Name = name
           @Rule = rule
           @Id = id
+          @Rules = rules
         end
 
         def deserialize(params)
@@ -5447,6 +5462,10 @@ module TencentCloud
           @Name = params['Name']
           @Rule = params['Rule']
           @Id = params['Id']
+          unless params['Rules'].nil?
+            @Rules = PolicyRules.new
+            @Rules.deserialize(params['Rules'])
+          end
         end
       end
 
@@ -5721,6 +5740,28 @@ module TencentCloud
           @Config = params['Config']
           @ServiceName = params['ServiceName']
           @BeginTime = params['BeginTime']
+        end
+      end
+
+      # 命令行内容
+      class CommandLine < TencentCloud::Common::AbstractModel
+        # @param Exe: 路径,需要base64加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exe: String
+        # @param Cmdline: 命令行,需要base64加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cmdline: String
+
+        attr_accessor :Exe, :Cmdline
+
+        def initialize(exe=nil, cmdline=nil)
+          @Exe = exe
+          @Cmdline = cmdline
+        end
+
+        def deserialize(params)
+          @Exe = params['Exe']
+          @Cmdline = params['Cmdline']
         end
       end
 
@@ -16611,7 +16652,9 @@ module TencentCloud
 
       # DescribeJavaMemShellList请求参数结构体
       class DescribeJavaMemShellListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件：Keywords: ip或者主机名模糊查询, Type，Status精确匹配，CreateBeginTime，CreateEndTime时间段
+        # @param Filters: 过滤条件：InstanceID、IP、
+
+        # MachineName主机名模糊查询, Type，Status精确匹配，CreateBeginTime，CreateEndTime时间段
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -31479,10 +31522,25 @@ module TencentCloud
         # @param Uuid: 服务器uuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
+        # @param ClassName: 类名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassName: String
+        # @param SuperClassName: 父类名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperClassName: String
+        # @param Interfaces: 继承的接口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interfaces: String
+        # @param Annotations: 注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Annotations: String
+        # @param LoaderClassName: 所属的类加载器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoaderClassName: String
 
-        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid, :MachineExtraInfo, :Uuid
+        attr_accessor :Id, :Alias, :HostIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :Quuid, :MachineExtraInfo, :Uuid, :ClassName, :SuperClassName, :Interfaces, :Annotations, :LoaderClassName
 
-        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil, machineextrainfo=nil, uuid=nil)
+        def initialize(id=nil, _alias=nil, hostip=nil, type=nil, description=nil, createtime=nil, recentfoundtime=nil, status=nil, quuid=nil, machineextrainfo=nil, uuid=nil, classname=nil, superclassname=nil, interfaces=nil, annotations=nil, loaderclassname=nil)
           @Id = id
           @Alias = _alias
           @HostIp = hostip
@@ -31494,6 +31552,11 @@ module TencentCloud
           @Quuid = quuid
           @MachineExtraInfo = machineextrainfo
           @Uuid = uuid
+          @ClassName = classname
+          @SuperClassName = superclassname
+          @Interfaces = interfaces
+          @Annotations = annotations
+          @LoaderClassName = loaderclassname
         end
 
         def deserialize(params)
@@ -31511,6 +31574,11 @@ module TencentCloud
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
           @Uuid = params['Uuid']
+          @ClassName = params['ClassName']
+          @SuperClassName = params['SuperClassName']
+          @Interfaces = params['Interfaces']
+          @Annotations = params['Annotations']
+          @LoaderClassName = params['LoaderClassName']
         end
       end
 
@@ -33823,21 +33891,25 @@ module TencentCloud
 
       # ModifyJavaMemShellsStatus请求参数结构体
       class ModifyJavaMemShellsStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 事件Id数组
-        # @type Ids: Array
         # @param Status: 目标处理状态： 0 - 待处理 1 - 已加白 2 - 已删除 3 - 已忽略 4 - 已手动处理
         # @type Status: Integer
+        # @param Ids: 事件Id数组
+        # @type Ids: Array
+        # @param UpdateAll: 是否更新全部，只支持忽略、已处理、删除
+        # @type UpdateAll: Boolean
 
-        attr_accessor :Ids, :Status
+        attr_accessor :Status, :Ids, :UpdateAll
 
-        def initialize(ids=nil, status=nil)
-          @Ids = ids
+        def initialize(status=nil, ids=nil, updateall=nil)
           @Status = status
+          @Ids = ids
+          @UpdateAll = updateall
         end
 
         def deserialize(params)
-          @Ids = params['Ids']
           @Status = params['Status']
+          @Ids = params['Ids']
+          @UpdateAll = params['UpdateAll']
         end
       end
 
@@ -36204,6 +36276,42 @@ module TencentCloud
           @ProvinceId = params['ProvinceId']
           @CountryId = params['CountryId']
           @Location = params['Location']
+        end
+      end
+
+      # 策略规则表达式
+      class PolicyRules < TencentCloud::Common::AbstractModel
+        # @param Process: 进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: :class:`Tencentcloud::Cwp.v20180228.models.CommandLine`
+        # @param PProcess: 父进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PProcess: :class:`Tencentcloud::Cwp.v20180228.models.CommandLine`
+        # @param AProcess: 祖先进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AProcess: :class:`Tencentcloud::Cwp.v20180228.models.CommandLine`
+
+        attr_accessor :Process, :PProcess, :AProcess
+
+        def initialize(process=nil, pprocess=nil, aprocess=nil)
+          @Process = process
+          @PProcess = pprocess
+          @AProcess = aprocess
+        end
+
+        def deserialize(params)
+          unless params['Process'].nil?
+            @Process = CommandLine.new
+            @Process.deserialize(params['Process'])
+          end
+          unless params['PProcess'].nil?
+            @PProcess = CommandLine.new
+            @PProcess.deserialize(params['PProcess'])
+          end
+          unless params['AProcess'].nil?
+            @AProcess = CommandLine.new
+            @AProcess.deserialize(params['AProcess'])
+          end
         end
       end
 

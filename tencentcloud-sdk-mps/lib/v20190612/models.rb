@@ -9717,7 +9717,7 @@ module TencentCloud
         # <li>默认值：10；</li>
         # <li>最大值：100。</li>
         # @type Limit: Integer
-        # @param Type: "Preset"：预设，Custom":客户魔板
+        # @param Type: "Preset"：预设，Custom":自定义模板
         # @type Type: String
         # @param Name: 媒体质检模板标识过滤条件，长度限制：64 个字符。
         # @type Name: String
@@ -16051,10 +16051,12 @@ module TencentCloud
         # @type MaxConcurrent: Integer
         # @param SecurityGroupIds: 绑定的安全组 ID。 仅支持关联一组安全组。
         # @type SecurityGroupIds: Array
+        # @param Zones: 可用区
+        # @type Zones: Array
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -16065,6 +16067,7 @@ module TencentCloud
           @AllowIpList = allowiplist
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -16087,6 +16090,7 @@ module TencentCloud
           @AllowIpList = params['AllowIpList']
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @Zones = params['Zones']
         end
       end
 
@@ -17918,6 +17922,7 @@ module TencentCloud
         # @param InputInfo: 媒体处理的文件输入信息。
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
         # @param OutputStorage: 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
+        # 注意：当InputInfo.Type为URL时，该参数是必填项
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
         # 如果不填，表示与 InputInfo 中文件所在的目录一致。
@@ -21306,7 +21311,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gop: Integer
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
+        #  <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
         # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>

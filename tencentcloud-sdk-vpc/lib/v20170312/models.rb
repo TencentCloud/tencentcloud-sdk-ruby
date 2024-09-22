@@ -361,10 +361,13 @@ module TencentCloud
         # @param BandwidthPackageId: 当前公网IP所关联的带宽包ID，如果该公网IP未使用带宽包计费，则返回为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthPackageId: String
+        # @param UnVpcId: 传统弹性公网IPv6所属vpc唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnVpcId: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId, :RenewFlag, :BandwidthPackageId
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId, :RenewFlag, :BandwidthPackageId, :UnVpcId
 
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil, renewflag=nil, bandwidthpackageid=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil, renewflag=nil, bandwidthpackageid=nil, unvpcid=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -390,6 +393,7 @@ module TencentCloud
           @AntiDDoSPackageId = antiddospackageid
           @RenewFlag = renewflag
           @BandwidthPackageId = bandwidthpackageid
+          @UnVpcId = unvpcid
         end
 
         def deserialize(params)
@@ -428,6 +432,7 @@ module TencentCloud
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
           @RenewFlag = params['RenewFlag']
           @BandwidthPackageId = params['BandwidthPackageId']
+          @UnVpcId = params['UnVpcId']
         end
       end
 
@@ -21043,25 +21048,36 @@ module TencentCloud
 
       # 描述配额信息
       class Quota < TencentCloud::Common::AbstractModel
-        # @param QuotaId: 配额名称，取值范围：<br><li>`TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；<br><li>`DAILY_EIP_APPLY`：用户当前地域下今日申购次数；<br><li>`DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。
+        # @param QuotaId: 配额名称，取值范围：
+        # - `TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；
+        # - `DAILY_EIP_APPLY`：用户当前地域下今日申购次数；
+        # - `DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数；
+        # - `TOTAL_EIP6_QUOTA`：用户当前地域下，传统弹性公网IPv6的配额数；
+        # - `BGP_EIPv6_QUOTA`：用户当前地域下，可申请的 BGP 弹性公网IPv6 的配额数；
+        # - `SINGLEISP_EIPv6_QUOTA`：用户当前地域下，可申请的静态单线弹性公网IPv6 的配额数；
         # @type QuotaId: String
         # @param QuotaCurrent: 当前数量
         # @type QuotaCurrent: Integer
         # @param QuotaLimit: 配额数量
         # @type QuotaLimit: Integer
+        # @param QuotaGroup: 配额所属的网络组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaGroup: String
 
-        attr_accessor :QuotaId, :QuotaCurrent, :QuotaLimit
+        attr_accessor :QuotaId, :QuotaCurrent, :QuotaLimit, :QuotaGroup
 
-        def initialize(quotaid=nil, quotacurrent=nil, quotalimit=nil)
+        def initialize(quotaid=nil, quotacurrent=nil, quotalimit=nil, quotagroup=nil)
           @QuotaId = quotaid
           @QuotaCurrent = quotacurrent
           @QuotaLimit = quotalimit
+          @QuotaGroup = quotagroup
         end
 
         def deserialize(params)
           @QuotaId = params['QuotaId']
           @QuotaCurrent = params['QuotaCurrent']
           @QuotaLimit = params['QuotaLimit']
+          @QuotaGroup = params['QuotaGroup']
         end
       end
 

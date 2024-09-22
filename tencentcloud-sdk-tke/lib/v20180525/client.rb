@@ -1373,6 +1373,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除集群内采集规则
+
+        # @param request: Request instance for DeleteLogConfigs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteLogConfigsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteLogConfigsResponse`
+        def DeleteLogConfigs(request)
+          body = send_request('DeleteLogConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLogConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除2.0实例告警策略
 
         # @param request: Request instance for DeletePrometheusAlertPolicy.
@@ -2897,6 +2921,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询日志采集规则
+
+        # @param request: Request instance for DescribeLogConfigs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeLogConfigsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeLogConfigsResponse`
+        def DescribeLogConfigs(request)
+          body = send_request('DescribeLogConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogConfigsResponse.new
             model.deserialize(response['Response'])
             model
           else

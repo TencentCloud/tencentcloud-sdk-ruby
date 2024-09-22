@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2024, 8
-        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 8
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 9
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 9
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2656,8 +2656,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2024, 8
-        deprecate :AutomationService=, :none, 2024, 8
+        deprecate :AutomationService, :none, 2024, 9
+        deprecate :AutomationService=, :none, 2024, 9
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -5047,19 +5047,27 @@ module TencentCloud
         # @type ScalingMode: String
         # @param ReplaceLoadBalancerUnhealthy: 开启负载均衡不健康替换服务。若开启则对于负载均衡健康检查判断不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。
         # @type ReplaceLoadBalancerUnhealthy: Boolean
+        # @param ReplaceMode: 不健康替换服务的替换模式。取值范围：
+        # RECREATE：重建实例替代原有不健康实例；
+        # RESET：对原有不健康实例进行重装系统操作，可保持数据盘、内网IP、实例id等信息不发生变化，实例登录设置、主机名、增强服务和 UserData 与当前启动配置保持一致。
+        # 默认取值：RECREATE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplaceMode: String
 
-        attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy
+        attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy, :ReplaceMode
 
-        def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil)
+        def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil, replacemode=nil)
           @ReplaceMonitorUnhealthy = replacemonitorunhealthy
           @ScalingMode = scalingmode
           @ReplaceLoadBalancerUnhealthy = replaceloadbalancerunhealthy
+          @ReplaceMode = replacemode
         end
 
         def deserialize(params)
           @ReplaceMonitorUnhealthy = params['ReplaceMonitorUnhealthy']
           @ScalingMode = params['ScalingMode']
           @ReplaceLoadBalancerUnhealthy = params['ReplaceLoadBalancerUnhealthy']
+          @ReplaceMode = params['ReplaceMode']
         end
       end
 

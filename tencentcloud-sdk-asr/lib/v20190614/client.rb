@@ -494,6 +494,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户用量
+
+        # @param request: Request instance for GetUsageByDate.
+        # @type request: :class:`Tencentcloud::asr::V20190614::GetUsageByDateRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::GetUsageByDateResponse`
+        def GetUsageByDate(request)
+          body = send_request('GetUsageByDate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetUsageByDateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
 
         # @param request: Request instance for ModifyCustomization.

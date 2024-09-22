@@ -4607,6 +4607,51 @@ module TencentCloud
         end
       end
 
+      # DeleteLogConfigs请求参数结构体
+      class DeleteLogConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogConfigNames: 待删除采集规则名称，多个采集规则使用","分隔
+        # @type LogConfigNames: String
+        # @param ClusterType: 集群集群类型, tke/eks 默认为 tke 集群
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :LogConfigNames, :ClusterType
+
+        def initialize(clusterid=nil, logconfignames=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @LogConfigNames = logconfignames
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogConfigNames = params['LogConfigNames']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DeleteLogConfigs返回参数结构体
+      class DeleteLogConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Message: 删除采集规则遇到错误时返回错误原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Message, :RequestId
+
+        def initialize(message=nil, requestid=nil)
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePrometheusAlertPolicy请求参数结构体
       class DeletePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -8023,6 +8068,69 @@ module TencentCloud
               @ImageInstanceSet << imageinstance_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogConfigs请求参数结构体
+      class DescribeLogConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterType: 当前集群类型支持tke、eks。默认为tke
+        # @type ClusterType: String
+        # @param LogConfigNames: 按照采集规则名称查找，多个采集规则使用 "," 分隔。
+        # @type LogConfigNames: String
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认20，最大为100
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :ClusterType, :LogConfigNames, :Offset, :Limit
+
+        def initialize(clusterid=nil, clustertype=nil, logconfignames=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+          @LogConfigNames = logconfignames
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+          @LogConfigNames = params['LogConfigNames']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLogConfigs返回参数结构体
+      class DescribeLogConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 分页查找时返回采集规则总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Message: 指定采集规则名称查找，部分失败时返回失败采集规则名称及最后一个失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param LogConfigs: 采集规则查询结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogConfigs: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Message, :LogConfigs, :RequestId
+
+        def initialize(total=nil, message=nil, logconfigs=nil, requestid=nil)
+          @Total = total
+          @Message = message
+          @LogConfigs = logconfigs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Message = params['Message']
+          @LogConfigs = params['LogConfigs']
           @RequestId = params['RequestId']
         end
       end
@@ -15136,7 +15244,7 @@ module TencentCloud
         # @param Namespace: 应用命名空间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
-        # @param Status: 应用状态
+        # @param Status: 应用状态(参考helm的发布状态： unknown, deployed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade 或 pending-rollback)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param UpdatedTime: 更新时间

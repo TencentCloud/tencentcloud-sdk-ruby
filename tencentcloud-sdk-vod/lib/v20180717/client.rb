@@ -410,7 +410,7 @@ module TencentCloud
         end
 
         # 创建片头片尾模板。
-        # - 最大支持模版数量为 100 个。
+        # - 最大支持模板数量为 100 个。
 
         # @param request: Request instance for CreateHeadTailTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::CreateHeadTailTemplateRequest`

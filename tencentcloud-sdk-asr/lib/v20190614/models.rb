@@ -1131,6 +1131,59 @@ module TencentCloud
         end
       end
 
+      # GetUsageByDate请求参数结构体
+      class GetUsageByDateRequest < TencentCloud::Common::AbstractModel
+        # @param BizNameList: 需要查询的业务类型名字列表
+        # - asr_rt 实时识别
+        # - asr_rec 录音文件识别
+        # @type BizNameList: Array
+        # @param StartDate: 查询开始时间
+        # 开始时间包含当天，支持 YYYY-MM-DD 日期以国内时区为准
+        # 开始时间到结束时间需要在3个月以内
+        # @type StartDate: String
+        # @param EndDate: 查询结束时间
+        # 结束时间包含当天，，支持 YYYY-MM-DD 日期以国内时区为准
+        # 开始时间到结束时间需要在3个月以内
+        # @type EndDate: String
+
+        attr_accessor :BizNameList, :StartDate, :EndDate
+
+        def initialize(biznamelist=nil, startdate=nil, enddate=nil)
+          @BizNameList = biznamelist
+          @StartDate = startdate
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @BizNameList = params['BizNameList']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # GetUsageByDate返回参数结构体
+      class GetUsageByDateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 用量次数
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.UsageByDateInfoData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UsageByDateInfoData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # [热词的词和权重](https://cloud.tencent.com/document/product/1093/41111#2.-.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0)
       class HotWord < TencentCloud::Common::AbstractModel
         # @param Word: 热词
@@ -1929,6 +1982,59 @@ module TencentCloud
         def deserialize(params)
           @VocabId = params['VocabId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户用量信息
+      class UsageByDateInfo < TencentCloud::Common::AbstractModel
+        # @param BizName: 业务类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizName: String
+        # @param Count: 识别次数
+        # 单位：次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Duration: 识别时长
+        # 单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+
+        attr_accessor :BizName, :Count, :Duration
+
+        def initialize(bizname=nil, count=nil, duration=nil)
+          @BizName = bizname
+          @Count = count
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @BizName = params['BizName']
+          @Count = params['Count']
+          @Duration = params['Duration']
+        end
+      end
+
+      # 用户用量信息
+      class UsageByDateInfoData < TencentCloud::Common::AbstractModel
+        # @param UsageByDateInfoList: 用量信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsageByDateInfoList: Array
+
+        attr_accessor :UsageByDateInfoList
+
+        def initialize(usagebydateinfolist=nil)
+          @UsageByDateInfoList = usagebydateinfolist
+        end
+
+        def deserialize(params)
+          unless params['UsageByDateInfoList'].nil?
+            @UsageByDateInfoList = []
+            params['UsageByDateInfoList'].each do |i|
+              usagebydateinfo_tmp = UsageByDateInfo.new
+              usagebydateinfo_tmp.deserialize(i)
+              @UsageByDateInfoList << usagebydateinfo_tmp
+            end
+          end
         end
       end
 

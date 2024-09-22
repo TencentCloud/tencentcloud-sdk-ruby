@@ -488,6 +488,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口调用折线图
+
+        # @param request: Request instance for DescribeCallStatsGraph.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeCallStatsGraphRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeCallStatsGraphResponse`
+        def DescribeCallStatsGraph(request)
+          body = send_request('DescribeCallStatsGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCallStatsGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 并发调用响应
+
+        # @param request: Request instance for DescribeConcurrencyUsage.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeConcurrencyUsageRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeConcurrencyUsageResponse`
+        def DescribeConcurrencyUsage(request)
+          body = send_request('DescribeConcurrencyUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConcurrencyUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 并发调用折线图
+
+        # @param request: Request instance for DescribeConcurrencyUsageGraph.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeConcurrencyUsageGraphRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeConcurrencyUsageGraphResponse`
+        def DescribeConcurrencyUsageGraph(request)
+          body = send_request('DescribeConcurrencyUsageGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConcurrencyUsageGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 企业详情
 
         # @param request: Request instance for DescribeCorp.
@@ -522,6 +594,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询知识库用量
+
+        # @param request: Request instance for DescribeKnowledgeUsage.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeKnowledgeUsageRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeKnowledgeUsageResponse`
+        def DescribeKnowledgeUsage(request)
+          body = send_request('DescribeKnowledgeUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKnowledgeUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询企业知识库容量饼图
+
+        # @param request: Request instance for DescribeKnowledgeUsagePieGraph.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeKnowledgeUsagePieGraphRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeKnowledgeUsagePieGraphResponse`
+        def DescribeKnowledgeUsagePieGraph(request)
+          body = send_request('DescribeKnowledgeUsagePieGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKnowledgeUsagePieGraphResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -656,6 +776,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询搜索服务调用折线图
+
+        # @param request: Request instance for DescribeSearchStatsGraph.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeSearchStatsGraphRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeSearchStatsGraphResponse`
+        def DescribeSearchStatsGraph(request)
+          body = send_request('DescribeSearchStatsGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSearchStatsGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取片段详情
 
         # @param request: Request instance for DescribeSegments.
@@ -690,6 +834,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStorageCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口调用token详情
+
+        # @param request: Request instance for DescribeTokenUsage.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeTokenUsageRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeTokenUsageResponse`
+        def DescribeTokenUsage(request)
+          body = send_request('DescribeTokenUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTokenUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口调用token折线图
+
+        # @param request: Request instance for DescribeTokenUsageGraph.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DescribeTokenUsageGraphRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DescribeTokenUsageGraphResponse`
+        def DescribeTokenUsageGraph(request)
+          body = send_request('DescribeTokenUsageGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTokenUsageGraphResponse.new
             model.deserialize(response['Response'])
             model
           else
