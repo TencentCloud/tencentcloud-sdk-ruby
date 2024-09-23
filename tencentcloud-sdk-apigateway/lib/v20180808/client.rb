@@ -1049,6 +1049,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Get the list of supported regions for dedicated instances
+
+        # @param request: Request instance for DescribeExclusiveInstanceRegions.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstanceRegionsRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstanceRegionsResponse`
+        def DescribeExclusiveInstanceRegions(request)
+          body = send_request('DescribeExclusiveInstanceRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExclusiveInstanceRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。
 
         # @param request: Request instance for DescribeExclusiveInstances.

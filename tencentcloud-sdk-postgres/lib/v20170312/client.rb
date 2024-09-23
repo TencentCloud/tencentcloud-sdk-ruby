@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于创建数据库，需指定数据库名及所有者。
+
+        # @param request: Request instance for CreateDatabase.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateDatabaseResponse`
+        def CreateDatabase(request)
+          body = send_request('CreateDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
         # <li>实例创建成功后将自动开机启动，实例状态变为“运行中”。</li>
         # <li>预付费实例的购买会预先扣除本次实例购买所需金额，按小时后付费实例购买会预先冻结本次实例购买一小时内所需金额，在调用本接口前请确保账户余额充足。</li>
@@ -1965,6 +1989,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstancesProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改数据库所有者
+
+        # @param request: Request instance for ModifyDatabaseOwner.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDatabaseOwnerRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDatabaseOwnerResponse`
+        def ModifyDatabaseOwner(request)
+          body = send_request('ModifyDatabaseOwner', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatabaseOwnerResponse.new
             model.deserialize(response['Response'])
             model
           else

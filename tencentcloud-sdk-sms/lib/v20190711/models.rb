@@ -255,7 +255,7 @@ module TencentCloud
         # @param StartDateTime: 开始时间，yyyymmddhh 需要拉取的起始时间，精确到小时。
         # @type StartDateTime: Integer
         # @param EndDataTime: 结束时间，yyyymmddhh 需要拉取的截止时间，精确到小时。
-        # 注：EndDataTime 必须大于 StartDateTime。
+        # 注：EndDataTime 必须大于等于 StartDateTime。
         # @type EndDataTime: Integer
         # @param SmsSdkAppid: 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际SdkAppid，示例如1400006666。
         # @type SmsSdkAppid: String
@@ -1244,7 +1244,7 @@ module TencentCloud
         # @param StartDateTime: 拉取起始时间，yyyymmddhh 需要拉取的起始时间，精确到小时。
         # @type StartDateTime: Integer
         # @param EndDataTime: 结束时间，yyyymmddhh 需要拉取的截止时间，精确到小时
-        # 注：EndDataTime 必须大于 StartDateTime。
+        # 注：EndDataTime 必须大于等于 StartDateTime。
         # @type EndDataTime: Integer
         # @param SmsSdkAppid: 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际SdkAppid，示例如1400006666。
         # @type SmsSdkAppid: String
@@ -1354,9 +1354,9 @@ module TencentCloud
         # @param SmsSdkAppid: 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际SdkAppid，示例如1400006666。
         # @type SmsSdkAppid: String
         # @param Limit: 最大上限(需要拉取的套餐包个数)。
+        # 注：Limit默认最大值为500，可结合Offset实现分页查询。
         # @type Limit: Integer
         # @param Offset: 偏移量。
-        # 注：目前固定设置为0。
         # @type Offset: Integer
 
         attr_accessor :SmsSdkAppid, :Limit, :Offset

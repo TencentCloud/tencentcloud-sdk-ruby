@@ -416,6 +416,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询YARN资源调度的全局配置
+
+        # @param request: Request instance for DescribeGlobalConfig.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeGlobalConfigRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeGlobalConfigResponse`
+        def DescribeGlobalConfig(request)
+          body = send_request('DescribeGlobalConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGlobalConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取Hbase表级监控数据概览接口
 
         # @param request: Request instance for DescribeHBaseTableOverview.
@@ -1004,6 +1028,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAutoScaleStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改YARN资源调度的全局配置
+
+        # @param request: Request instance for ModifyGlobalConfig.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyGlobalConfigRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyGlobalConfigResponse`
+        def ModifyGlobalConfig(request)
+          body = send_request('ModifyGlobalConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

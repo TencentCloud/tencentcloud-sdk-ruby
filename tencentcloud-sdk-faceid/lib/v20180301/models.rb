@@ -306,8 +306,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 8
-        deprecate :Idcard=, :none, 2024, 8
+        deprecate :Idcard, :none, 2024, 9
+        deprecate :Idcard=, :none, 2024, 9
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -2830,8 +2830,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 8
-        deprecate :AsrResultSimilarity=, :none, 2024, 8
+        deprecate :AsrResultSimilarity, :none, 2024, 9
+        deprecate :AsrResultSimilarity=, :none, 2024, 9
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3791,19 +3791,27 @@ module TencentCloud
         # @type IntentionType: Integer
         # @param MouthOpenRecognition: 用户语音回答过程中是否开启张嘴识别检测，默认不开启，仅在意愿核身问答模式中使用。
         # @type MouthOpenRecognition: Boolean
+        # @param Speed: 意愿核身语音播报速度，配置后问答模式和点头模式的语音播报环节都会生效，默认值为0：
+        # 0：智能语速（根据播报文案的长度自动调整语音播报速度）
+        # 1：固定1倍速
+        # 2：固定1.2倍速
+        # 3：固定1.5倍速
+        # @type Speed: Integer
 
-        attr_accessor :IntentionRecognition, :IntentionType, :MouthOpenRecognition
+        attr_accessor :IntentionRecognition, :IntentionType, :MouthOpenRecognition, :Speed
 
-        def initialize(intentionrecognition=nil, intentiontype=nil, mouthopenrecognition=nil)
+        def initialize(intentionrecognition=nil, intentiontype=nil, mouthopenrecognition=nil, speed=nil)
           @IntentionRecognition = intentionrecognition
           @IntentionType = intentiontype
           @MouthOpenRecognition = mouthopenrecognition
+          @Speed = speed
         end
 
         def deserialize(params)
           @IntentionRecognition = params['IntentionRecognition']
           @IntentionType = params['IntentionType']
           @MouthOpenRecognition = params['MouthOpenRecognition']
+          @Speed = params['Speed']
         end
       end
 

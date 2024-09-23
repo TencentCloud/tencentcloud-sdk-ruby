@@ -467,6 +467,44 @@ module TencentCloud
         end
       end
 
+      # 资源调度-容量调度器的全局设置
+      class CapacityGlobalConfig < TencentCloud::Common::AbstractModel
+        # @param EnableLabel: 是否开启了标签调度
+        # @type EnableLabel: Boolean
+        # @param LabelDir: 如果开启了标签调度，标签信息存放的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelDir: String
+        # @param QueueMappingOverride: 是否覆盖用户指定队列，为true表示覆盖。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueMappingOverride: Boolean
+        # @param DefaultSettings: 高级设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultSettings: Array
+
+        attr_accessor :EnableLabel, :LabelDir, :QueueMappingOverride, :DefaultSettings
+
+        def initialize(enablelabel=nil, labeldir=nil, queuemappingoverride=nil, defaultsettings=nil)
+          @EnableLabel = enablelabel
+          @LabelDir = labeldir
+          @QueueMappingOverride = queuemappingoverride
+          @DefaultSettings = defaultsettings
+        end
+
+        def deserialize(params)
+          @EnableLabel = params['EnableLabel']
+          @LabelDir = params['LabelDir']
+          @QueueMappingOverride = params['QueueMappingOverride']
+          unless params['DefaultSettings'].nil?
+            @DefaultSettings = []
+            params['DefaultSettings'].each do |i|
+              defaultsetting_tmp = DefaultSetting.new
+              defaultsetting_tmp.deserialize(i)
+              @DefaultSettings << defaultsetting_tmp
+            end
+          end
+        end
+      end
+
       # 出参
       class CdbInfo < TencentCloud::Common::AbstractModel
         # @param InstanceName: 数据库实例
@@ -1795,6 +1833,39 @@ module TencentCloud
         end
       end
 
+      # 资源调度的默认设置
+      class DefaultSetting < TencentCloud::Common::AbstractModel
+        # @param Name: 名称，作为入参的key
+        # @type Name: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Prompt: 提示
+        # @type Prompt: String
+        # @param Key: key，用于展示，该配置对应与配置文件中的配置项
+        # @type Key: String
+        # @param Value: Name对应的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Desc, :Prompt, :Key, :Value
+
+        def initialize(name=nil, desc=nil, prompt=nil, key=nil, value=nil)
+          @Name = name
+          @Desc = desc
+          @Prompt = prompt
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Prompt = params['Prompt']
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # DeleteAutoScaleStrategy请求参数结构体
       class DeleteAutoScaleStrategyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -2574,6 +2645,66 @@ module TencentCloud
               @Result << overviewmetricdata_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalConfig请求参数结构体
+      class DescribeGlobalConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeGlobalConfig返回参数结构体
+      class DescribeGlobalConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EnableResourceSchedule: 是否开启了资源调度功能
+        # @type EnableResourceSchedule: Boolean
+        # @param ActiveScheduler: 当前生效的资源调度器
+        # @type ActiveScheduler: String
+        # @param CapacityGlobalConfig: 公平调度器的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapacityGlobalConfig: :class:`Tencentcloud::Emr.v20190103.models.CapacityGlobalConfig`
+        # @param FairGlobalConfig: 容量调度器的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FairGlobalConfig: :class:`Tencentcloud::Emr.v20190103.models.FairGlobalConfig`
+        # @param Scheduler: 最新的资源调度器
+        # @type Scheduler: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnableResourceSchedule, :ActiveScheduler, :CapacityGlobalConfig, :FairGlobalConfig, :Scheduler, :RequestId
+
+        def initialize(enableresourceschedule=nil, activescheduler=nil, capacityglobalconfig=nil, fairglobalconfig=nil, scheduler=nil, requestid=nil)
+          @EnableResourceSchedule = enableresourceschedule
+          @ActiveScheduler = activescheduler
+          @CapacityGlobalConfig = capacityglobalconfig
+          @FairGlobalConfig = fairglobalconfig
+          @Scheduler = scheduler
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnableResourceSchedule = params['EnableResourceSchedule']
+          @ActiveScheduler = params['ActiveScheduler']
+          unless params['CapacityGlobalConfig'].nil?
+            @CapacityGlobalConfig = CapacityGlobalConfig.new
+            @CapacityGlobalConfig.deserialize(params['CapacityGlobalConfig'])
+          end
+          unless params['FairGlobalConfig'].nil?
+            @FairGlobalConfig = FairGlobalConfig.new
+            @FairGlobalConfig.deserialize(params['FairGlobalConfig'])
+          end
+          @Scheduler = params['Scheduler']
           @RequestId = params['RequestId']
         end
       end
@@ -4146,19 +4277,24 @@ module TencentCloud
         # @param DiskSize: 数据容量，单位为GB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
+        # @param ExtraPerformance: 额外性能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraPerformance: Integer
 
-        attr_accessor :Count, :DiskType, :DiskSize
+        attr_accessor :Count, :DiskType, :DiskSize, :ExtraPerformance
 
-        def initialize(count=nil, disktype=nil, disksize=nil)
+        def initialize(count=nil, disktype=nil, disksize=nil, extraperformance=nil)
           @Count = count
           @DiskType = disktype
           @DiskSize = disksize
+          @ExtraPerformance = extraperformance
         end
 
         def deserialize(params)
           @Count = params['Count']
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+          @ExtraPerformance = params['ExtraPerformance']
         end
       end
 
@@ -4694,6 +4830,23 @@ module TencentCloud
           end
           @Service = params['Service']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # 资源调度-公平调度器的全局配置
+      class FairGlobalConfig < TencentCloud::Common::AbstractModel
+        # @param UserMaxAppsDefault: 对应与页面的<p>程序上限</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserMaxAppsDefault: Integer
+
+        attr_accessor :UserMaxAppsDefault
+
+        def initialize(usermaxappsdefault=nil)
+          @UserMaxAppsDefault = usermaxappsdefault
+        end
+
+        def deserialize(params)
+          @UserMaxAppsDefault = params['UserMaxAppsDefault']
         end
       end
 
@@ -6310,6 +6463,57 @@ module TencentCloud
         end
       end
 
+      # ModifyGlobalConfig请求参数结构体
+      class ModifyGlobalConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: emr集群的英文id
+        # @type InstanceId: String
+        # @param Items: 修改的配置列表。其中Key的取值与`DescribeGlobalConfig`接口的出参一一对应，不区分大小写（如果报错找不到Key，以出参为准），分别为：
+        # 1. 开启或关闭资源调度：enableResourceSchedule；在关闭时会有一个同步的选项，Key为sync，取值为true或false。
+        # 2. 调度器类型：scheduler。
+        # 2. 开启或关闭标签：enableLabel，取值为true或false。
+        # 2. 标签目录：labelDir。
+        # 3. 是否覆盖用户指定队列：queueMappingOverride，取值为true、false。
+        # 4. 程序上限：userMaxAppsDefault。
+        # 5. 动态配置项：`DescribeGlobalConfig`接口返回的DefaultSettings中的Name字段。
+        # Value的取值都是字符串，对于**是否覆盖用户指定队列**、**程序上限**，json规范中的null表示清空该配置的值。支持修改单个配置项的值。对于**动态配置项**则需要全量传递以进行覆盖。
+        # @type Items: Array
+
+        attr_accessor :InstanceId, :Items
+
+        def initialize(instanceid=nil, items=nil)
+          @InstanceId = instanceid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              item_tmp = Item.new
+              item_tmp.deserialize(i)
+              @Items << item_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGlobalConfig返回参数结构体
+      class ModifyGlobalConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResourcePools请求参数结构体
       class ModifyResourcePoolsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: emr集群id
@@ -6826,21 +7030,26 @@ module TencentCloud
         # @param Type: 磁盘类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
+        # @param Size: 磁盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: String
         # @param Volume: 云盘大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volume: Integer
 
-        attr_accessor :Count, :Type, :Volume
+        attr_accessor :Count, :Type, :Size, :Volume
 
-        def initialize(count=nil, type=nil, volume=nil)
+        def initialize(count=nil, type=nil, size=nil, volume=nil)
           @Count = count
           @Type = type
+          @Size = size
           @Volume = volume
         end
 
         def deserialize(params)
           @Count = params['Count']
           @Type = params['Type']
+          @Size = params['Size']
           @Volume = params['Volume']
         end
       end
@@ -7126,10 +7335,16 @@ module TencentCloud
         # @param Remark: 备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param SharedClusterId: 共享集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharedClusterId: String
+        # @param SharedClusterIdDesc: 共享集群id描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharedClusterIdDesc: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec, :SupportModifyPayMode, :RootStorageType, :Zone, :SubnetInfo, :Clients, :CurrentTime, :IsFederation, :DeviceName, :ServiceClient, :DisableApiTermination, :TradeVersion, :ServicesStatus, :Remark, :SharedClusterId, :SharedClusterIdDesc
 
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil, supportmodifypaymode=nil, rootstoragetype=nil, zone=nil, subnetinfo=nil, clients=nil, currenttime=nil, isfederation=nil, devicename=nil, serviceclient=nil, disableapitermination=nil, tradeversion=nil, servicesstatus=nil, remark=nil, sharedclusterid=nil, sharedclusteriddesc=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -7182,6 +7397,8 @@ module TencentCloud
           @TradeVersion = tradeversion
           @ServicesStatus = servicesstatus
           @Remark = remark
+          @SharedClusterId = sharedclusterid
+          @SharedClusterIdDesc = sharedclusteriddesc
         end
 
         def deserialize(params)
@@ -7257,6 +7474,8 @@ module TencentCloud
           @TradeVersion = params['TradeVersion']
           @ServicesStatus = params['ServicesStatus']
           @Remark = params['Remark']
+          @SharedClusterId = params['SharedClusterId']
+          @SharedClusterIdDesc = params['SharedClusterIdDesc']
         end
       end
 

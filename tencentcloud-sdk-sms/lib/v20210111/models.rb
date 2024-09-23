@@ -248,10 +248,10 @@ module TencentCloud
 
       # CallbackStatusStatistics请求参数结构体
       class CallbackStatusStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2021050113，表示2021年5月1号13时。
+        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2024050113，表示2024年5月1号13时。
         # @type BeginTime: String
-        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2021050118，表示2021年5月1号18时。
-        # 注：EndTime 必须大于 BeginTime，且相差不超过32天。
+        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2024050118，表示2024年5月1号18时。
+        # 注：EndTime 必须大于等于 BeginTime，且相差不超过32天。
         # @type EndTime: String
         # @param SmsSdkAppId: 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         # @type SmsSdkAppId: String
@@ -1403,10 +1403,10 @@ module TencentCloud
 
       # SendStatusStatistics请求参数结构体
       class SendStatusStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2021050113，表示2021年5月1号13时。
+        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2024050113，表示2024年5月1号13时。
         # @type BeginTime: String
-        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2021050118，表示2021年5月1号18时。
-        # 注：EndTime 必须大于 BeginTime。
+        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2024050118，表示2024年5月1号18时。
+        # 注：EndTime 必须大于等于 BeginTime。
         # @type EndTime: String
         # @param SmsSdkAppId: 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         # @type SmsSdkAppId: String
@@ -1504,13 +1504,14 @@ module TencentCloud
         # @param SmsSdkAppId: 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         # @type SmsSdkAppId: String
         # @param Limit: 最大上限(需要拉取的套餐包个数)。
+        # 注：Limit默认最大值为500，可结合Offset实现分页查询。
         # @type Limit: Integer
         # @param Offset: 偏移量。
         # @type Offset: Integer
-        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2021050113，表示2021年5月1号13时。
+        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2024050113，表示2024年5月1号13时。
         # 注：接口会返回 BeginTime 到 EndTime 之间创建的套餐包的统计信息。
         # @type BeginTime: String
-        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2021050118，表示2021年5月1号18时。
+        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2024050118，表示2024年5月1号18时。
         # 注：EndTime 必须大于 BeginTime 且小于当前时间。
         # @type EndTime: String
 

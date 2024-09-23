@@ -856,6 +856,58 @@ module TencentCloud
         end
       end
 
+      # CreateDatabase请求参数结构体
+      class CreateDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，形如postgres-6fego161
+        # @type DBInstanceId: String
+        # @param DatabaseName: 创建的数据库名
+        # @type DatabaseName: String
+        # @param DatabaseOwner: 数据库的所有者
+        # @type DatabaseOwner: String
+        # @param Encoding: 数据库的字符编码
+        # @type Encoding: String
+        # @param Collate: 数据库的排序规则
+        # @type Collate: String
+        # @param Ctype: 数据库的字符分类
+        # @type Ctype: String
+
+        attr_accessor :DBInstanceId, :DatabaseName, :DatabaseOwner, :Encoding, :Collate, :Ctype
+
+        def initialize(dbinstanceid=nil, databasename=nil, databaseowner=nil, encoding=nil, collate=nil, ctype=nil)
+          @DBInstanceId = dbinstanceid
+          @DatabaseName = databasename
+          @DatabaseOwner = databaseowner
+          @Encoding = encoding
+          @Collate = collate
+          @Ctype = ctype
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @DatabaseName = params['DatabaseName']
+          @DatabaseOwner = params['DatabaseOwner']
+          @Encoding = params['Encoding']
+          @Collate = params['Collate']
+          @Ctype = params['Ctype']
+        end
+      end
+
+      # CreateDatabase返回参数结构体
+      class CreateDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属主可用区， 如：ap-guangzhou-3；若需要支持多可用区，在DBNodeSet.N字段中进行添加主可用区和备可用区信息；
@@ -1142,28 +1194,28 @@ module TencentCloud
         # @param InstanceCount: 购买实例数量，取值范围：[1-10]。一次性购买支持最大数量10个，若超过该数量，可进行多次调用进行购买。
         # @type InstanceCount: Integer
         # @param Period: 购买时长，单位：月。
-        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
-        # <li>后付费：只支持1
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36</li>
+        # <li>后付费：只支持1</li>
         # @type Period: Integer
-        # @param VpcId: 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
+        # @param VpcId: 私有网络ID，形如vpc-xxxxxxxx（该参数当前必传）。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
         # @type VpcId: String
-        # @param SubnetId: 私有网络子网ID，形如subnet-xxxxxxxx。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
+        # @param SubnetId: 私有网络子网ID，形如subnet-xxxxxxxx（该参数当前必传）。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
         # @type SubnetId: String
         # @param InstanceChargeType: 实例计费类型，目前支持：
-        # <li>PREPAID：预付费，即包年包月。
-        # <li>POSTPAID_BY_HOUR：后付费，即按量计费。
+        # <li>PREPAID：预付费，即包年包月。</li>
+        # <li>POSTPAID_BY_HOUR：后付费，即按量计费。</li>
         # 默认值：PREPAID。如果主实例为后付费，只读实例必须也为后付费。
         # @type InstanceChargeType: String
         # @param AutoVoucher: 是否自动使用代金券：
-        # <li>0：否
-        # <li>1：是
+        # <li>0：否</li>
+        # <li>1：是</li>
         # 默认值：0
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
         # @type VoucherIds: Array
         # @param AutoRenewFlag: 续费标记：
-        # <li>0：手动续费
-        # <li>1：自动续费
+        # <li>0：手动续费</li>
+        # <li>1：自动续费</li>
         # 默认值：0
         # @type AutoRenewFlag: Integer
         # @param ProjectId: 项目ID。
@@ -1177,8 +1229,8 @@ module TencentCloud
         # @param SecurityGroupIds: 实例所属安全组，该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         # @type SecurityGroupIds: Array
         # @param NeedSupportIpv6: 是否需要支持Ipv6：
-        # <li>0：否
-        # <li>1：是
+        # <li>0：否</li>
+        # <li>1：是</li>
         # 默认值：0
         # @type NeedSupportIpv6: Integer
         # @param Name: 实例名(后续支持)
@@ -1815,7 +1867,7 @@ module TencentCloud
         end
       end
 
-      # 描述实例节点信息，包括节点类型、节点所在可用区。
+      # 描述实例节点信息，包括节点类型、节点所在可用区、节点所在专属集群。
       class DBNode < TencentCloud::Common::AbstractModel
         # @param Role: 节点类型，值可以为：
         # Primary，代表主节点；
@@ -1834,6 +1886,58 @@ module TencentCloud
         def deserialize(params)
           @Role = params['Role']
           @Zone = params['Zone']
+        end
+      end
+
+      # 描述数据库详细信息，包括所有者、字符编码等
+      class Database < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param DatabaseOwner: 数据库所有者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseOwner: String
+        # @param Encoding: 数据库字符编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encoding: String
+        # @param Collate: 数据库排序规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Collate: String
+        # @param Ctype: 数据库字符分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ctype: String
+        # @param AllowConn: 数据库是否允许连接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowConn: Boolean
+        # @param ConnLimit: 数据库最大连接数，-1表示无限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnLimit: Integer
+        # @param Privileges: 数据库权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privileges: String
+
+        attr_accessor :DatabaseName, :DatabaseOwner, :Encoding, :Collate, :Ctype, :AllowConn, :ConnLimit, :Privileges
+
+        def initialize(databasename=nil, databaseowner=nil, encoding=nil, collate=nil, ctype=nil, allowconn=nil, connlimit=nil, privileges=nil)
+          @DatabaseName = databasename
+          @DatabaseOwner = databaseowner
+          @Encoding = encoding
+          @Collate = collate
+          @Ctype = ctype
+          @AllowConn = allowconn
+          @ConnLimit = connlimit
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @DatabaseOwner = params['DatabaseOwner']
+          @Encoding = params['Encoding']
+          @Collate = params['Collate']
+          @Ctype = params['Ctype']
+          @AllowConn = params['AllowConn']
+          @ConnLimit = params['ConnLimit']
+          @Privileges = params['Privileges']
         end
       end
 
@@ -3190,6 +3294,7 @@ module TencentCloud
         # db-tag-key：按照标签键过滤，类型为string
         # db-private-ip： 按照实例私有网络IP过滤，类型为string
         # db-public-address： 按照实例外网地址过滤，类型为string
+        # db-dedicated-cluster-id: 按照私有集群Id过滤，类型为string
         # @type Filters: Array
         # @param Limit: 每页显示数量，取值范围为1-100，默认为返回10条。
         # @type Limit: Integer
@@ -3536,20 +3641,31 @@ module TencentCloud
         # @type Items: Array
         # @param TotalCount: 数据库总数
         # @type TotalCount: Integer
+        # @param Databases: 数据库详情列表
+        # @type Databases: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :TotalCount, :RequestId
+        attr_accessor :Items, :TotalCount, :Databases, :RequestId
 
-        def initialize(items=nil, totalcount=nil, requestid=nil)
+        def initialize(items=nil, totalcount=nil, databases=nil, requestid=nil)
           @Items = items
           @TotalCount = totalcount
+          @Databases = databases
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Items = params['Items']
           @TotalCount = params['TotalCount']
+          unless params['Databases'].nil?
+            @Databases = []
+            params['Databases'].each do |i|
+              database_tmp = Database.new
+              database_tmp.deserialize(i)
+              @Databases << database_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5771,6 +5887,46 @@ module TencentCloud
 
         def deserialize(params)
           @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatabaseOwner请求参数结构体
+      class ModifyDatabaseOwnerRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param DatabaseOwner: 数据库新所有者
+        # @type DatabaseOwner: String
+
+        attr_accessor :DBInstanceId, :DatabaseName, :DatabaseOwner
+
+        def initialize(dbinstanceid=nil, databasename=nil, databaseowner=nil)
+          @DBInstanceId = dbinstanceid
+          @DatabaseName = databasename
+          @DatabaseOwner = databaseowner
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @DatabaseName = params['DatabaseName']
+          @DatabaseOwner = params['DatabaseOwner']
+        end
+      end
+
+      # ModifyDatabaseOwner返回参数结构体
+      class ModifyDatabaseOwnerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

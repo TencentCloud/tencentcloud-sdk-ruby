@@ -1730,10 +1730,12 @@ module TencentCloud
         # 注：
         # `不指定该值时，默认为签署方自行选择。`
         # @type SignTypeSelector: Integer
+        # @param FlowBatchUrlInfo: 批量签署合同相关信息，指定合同和签署方的信息，用于补充动态签署人。
+        # @type FlowBatchUrlInfo: :class:`Tencentcloud::Ess.v20201111.models.FlowBatchUrlInfo`
 
-        attr_accessor :FlowApproverInfo, :Agent, :Operator, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector
+        attr_accessor :FlowApproverInfo, :Agent, :Operator, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo
 
-        def initialize(flowapproverinfo=nil, agent=nil, operator=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil)
+        def initialize(flowapproverinfo=nil, agent=nil, operator=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil)
           @FlowApproverInfo = flowapproverinfo
           @Agent = agent
           @Operator = operator
@@ -1743,6 +1745,7 @@ module TencentCloud
           @SignatureTypes = signaturetypes
           @ApproverSignTypes = approversigntypes
           @SignTypeSelector = signtypeselector
+          @FlowBatchUrlInfo = flowbatchurlinfo
         end
 
         def deserialize(params)
@@ -1764,6 +1767,10 @@ module TencentCloud
           @SignatureTypes = params['SignatureTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
           @SignTypeSelector = params['SignTypeSelector']
+          unless params['FlowBatchUrlInfo'].nil?
+            @FlowBatchUrlInfo = FlowBatchUrlInfo.new
+            @FlowBatchUrlInfo.deserialize(params['FlowBatchUrlInfo'])
+          end
         end
       end
 
@@ -4752,10 +4759,12 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param InitiatorComponents: 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
         # @type InitiatorComponents: Array
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents
+        attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents, :FlowDisplayType
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, resourcetype=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, resourcetype=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil, flowdisplaytype=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
@@ -4775,6 +4784,7 @@ module TencentCloud
           @FlowId = flowid
           @Agent = agent
           @InitiatorComponents = initiatorcomponents
+          @FlowDisplayType = flowdisplaytype
         end
 
         def deserialize(params)
@@ -4826,6 +4836,7 @@ module TencentCloud
               @InitiatorComponents << component_tmp
             end
           end
+          @FlowDisplayType = params['FlowDisplayType']
         end
       end
 
