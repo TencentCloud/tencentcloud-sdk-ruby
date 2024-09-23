@@ -146,19 +146,30 @@ module TencentCloud
         # @type Name: String
         # @param Remark: 备注。
         # @type Remark: String
+        # @param Tags: 部门标签列表。最大10个
+        # @type Tags: Array
 
-        attr_accessor :ParentNodeId, :Name, :Remark
+        attr_accessor :ParentNodeId, :Name, :Remark, :Tags
 
-        def initialize(parentnodeid=nil, name=nil, remark=nil)
+        def initialize(parentnodeid=nil, name=nil, remark=nil, tags=nil)
           @ParentNodeId = parentnodeid
           @Name = name
           @Remark = remark
+          @Tags = tags
         end
 
         def deserialize(params)
           @ParentNodeId = params['ParentNodeId']
           @Name = params['Name']
           @Remark = params['Remark']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -188,11 +199,11 @@ module TencentCloud
         # @type ZoneId: String
         # @param RoleConfigurationId: 权限配置 ID
         # @type RoleConfigurationId: String
-        # @param RolePolicyType: 权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。 前期只支持系统策略，自定义策略后期在支持
+        # @param RolePolicyType: 权限策略类型。取值：  System：系统策略。复用 CAM 的系统策略。 Custom: 自定义策略。按照 CAM 权限策略语法和结构编写的自定义策略。
         # @type RolePolicyType: String
-        # @param RolePolicyNames: 权限策略名称，长度最大为 20策略，每个策略长度最大32个字符。
+        # @param RolePolicyNames: 权限策略名称，长度最大为 20策略，每个策略长度最大32个字符。如果要添加系统策略，建议使用RolePolicies参数。自定义策略时，数组长度最大为1。
         # @type RolePolicyNames: Array
-        # @param RolePolicies: 策略详情。
+        # @param RolePolicies: 添加的系统策略详情。
         # @type RolePolicies: Array
         # @param CustomPolicyDocument: 自定义策略内容。长度：最大 4096 个字符。当RolePolicyType为Inline时，该参数必须配置。关于权限策略的语法和结构，请参见权限策略语法和结构。
         # @type CustomPolicyDocument: String
@@ -498,6 +509,28 @@ module TencentCloud
             @Manager = MemberMainInfo.new
             @Manager.deserialize(params['Manager'])
           end
+        end
+      end
+
+      # 野鹤实名互信申请证明文件
+      class AuthRelationFile < TencentCloud::Common::AbstractModel
+        # @param Name: 文件名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Url: 文件路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Name, :Url
+
+        def initialize(name=nil, url=nil)
+          @Name = name
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Url = params['Url']
         end
       end
 
@@ -910,10 +943,12 @@ module TencentCloud
         # @type IdentityRoleID: Array
         # @param AuthRelationId: 认证主体关系ID。给不同主体创建成员时需要，可以调用DescribeOrganizationAuthNode获取
         # @type AuthRelationId: Integer
+        # @param Tags: 成员标签列表。最大10个
+        # @type Tags: Array
 
-        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId, :PayUin, :IdentityRoleID, :AuthRelationId
+        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId, :PayUin, :IdentityRoleID, :AuthRelationId, :Tags
 
-        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil, payuin=nil, identityroleid=nil, authrelationid=nil)
+        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil, payuin=nil, identityroleid=nil, authrelationid=nil, tags=nil)
           @Name = name
           @PolicyType = policytype
           @PermissionIds = permissionids
@@ -924,6 +959,7 @@ module TencentCloud
           @PayUin = payuin
           @IdentityRoleID = identityroleid
           @AuthRelationId = authrelationid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -937,6 +973,14 @@ module TencentCloud
           @PayUin = params['PayUin']
           @IdentityRoleID = params['IdentityRoleID']
           @AuthRelationId = params['AuthRelationId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2589,16 +2633,19 @@ module TencentCloud
         # @type AuthName: String
         # @param Product: 可信服务产品简称。可信服务管理员查询时必须指定
         # @type Product: String
+        # @param Tags: 成员标签搜索列表，最大10个
+        # @type Tags: Array
 
-        attr_accessor :Offset, :Limit, :Lang, :SearchKey, :AuthName, :Product
+        attr_accessor :Offset, :Limit, :Lang, :SearchKey, :AuthName, :Product, :Tags
 
-        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil, authname=nil, product=nil)
+        def initialize(offset=nil, limit=nil, lang=nil, searchkey=nil, authname=nil, product=nil, tags=nil)
           @Offset = offset
           @Limit = limit
           @Lang = lang
           @SearchKey = searchkey
           @AuthName = authname
           @Product = product
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2608,6 +2655,14 @@ module TencentCloud
           @SearchKey = params['SearchKey']
           @AuthName = params['AuthName']
           @Product = params['Product']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2648,17 +2703,28 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
         # @type Offset: Integer
+        # @param Tags: 部门标签搜索列表，最大10个
+        # @type Tags: Array
 
-        attr_accessor :Limit, :Offset
+        attr_accessor :Limit, :Offset, :Tags
 
-        def initialize(limit=nil, offset=nil)
+        def initialize(limit=nil, offset=nil, tags=nil)
           @Limit = limit
           @Offset = offset
+          @Tags = tags
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3851,6 +3917,92 @@ module TencentCloud
           @PolicyName = params['PolicyName']
           @PolicyType = params['PolicyType']
           @PolicyDocument = params['PolicyDocument']
+        end
+      end
+
+      # InviteOrganizationMember请求参数结构体
+      class InviteOrganizationMemberRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 被邀请账号Uin。
+        # @type MemberUin: Integer
+        # @param Name: 成员名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&._[]-:,
+        # @type Name: String
+        # @param PolicyType: 关系策略。取值：Financial
+        # @type PolicyType: String
+        # @param PermissionIds: 成员财务权限ID列表。取值：1-查看账单、2-查看余额、3-资金划拨、4-合并出账、5-开票、6-优惠继承、7-代付费，1、2 默认必须
+        # @type PermissionIds: Array
+        # @param NodeId: 成员所属部门的节点ID。可以通过[DescribeOrganizationNodes](https://cloud.tencent.com/document/product/850/82926)获取
+        # @type NodeId: Integer
+        # @param Remark: 备注。
+        # @type Remark: String
+        # @param IsAllowQuit: 是否允许成员退出。允许：Allow，不允许：Denied。
+        # @type IsAllowQuit: String
+        # @param PayUin: 代付者Uin。成员代付费时需要
+        # @type PayUin: String
+        # @param RelationAuthName: 互信实名主体名称。
+        # @type RelationAuthName: String
+        # @param AuthFile: 互信主体证明文件列表。
+        # @type AuthFile: Array
+        # @param Tags: 成员标签列表。最大10个
+        # @type Tags: Array
+
+        attr_accessor :MemberUin, :Name, :PolicyType, :PermissionIds, :NodeId, :Remark, :IsAllowQuit, :PayUin, :RelationAuthName, :AuthFile, :Tags
+
+        def initialize(memberuin=nil, name=nil, policytype=nil, permissionids=nil, nodeid=nil, remark=nil, isallowquit=nil, payuin=nil, relationauthname=nil, authfile=nil, tags=nil)
+          @MemberUin = memberuin
+          @Name = name
+          @PolicyType = policytype
+          @PermissionIds = permissionids
+          @NodeId = nodeid
+          @Remark = remark
+          @IsAllowQuit = isallowquit
+          @PayUin = payuin
+          @RelationAuthName = relationauthname
+          @AuthFile = authfile
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @Name = params['Name']
+          @PolicyType = params['PolicyType']
+          @PermissionIds = params['PermissionIds']
+          @NodeId = params['NodeId']
+          @Remark = params['Remark']
+          @IsAllowQuit = params['IsAllowQuit']
+          @PayUin = params['PayUin']
+          @RelationAuthName = params['RelationAuthName']
+          unless params['AuthFile'].nil?
+            @AuthFile = []
+            params['AuthFile'].each do |i|
+              authrelationfile_tmp = AuthRelationFile.new
+              authrelationfile_tmp.deserialize(i)
+              @AuthFile << authrelationfile_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # InviteOrganizationMember返回参数结构体
+      class InviteOrganizationMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5707,10 +5859,13 @@ module TencentCloud
         # @param PermissionStatus: 成员权限状态 已确认：Confirmed ，待确认：UnConfirmed
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PermissionStatus: String
+        # @param Tags: 成员标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus, :PermissionStatus
+        attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus, :PermissionStatus, :Tags
 
-        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil, bindstatus=nil, permissionstatus=nil)
+        def initialize(memberuin=nil, name=nil, membertype=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, nodeid=nil, nodename=nil, remark=nil, createtime=nil, updatetime=nil, isallowquit=nil, payuin=nil, payname=nil, orgidentity=nil, bindstatus=nil, permissionstatus=nil, tags=nil)
           @MemberUin = memberuin
           @Name = name
           @MemberType = membertype
@@ -5728,6 +5883,7 @@ module TencentCloud
           @OrgIdentity = orgidentity
           @BindStatus = bindstatus
           @PermissionStatus = permissionstatus
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5762,6 +5918,14 @@ module TencentCloud
           end
           @BindStatus = params['BindStatus']
           @PermissionStatus = params['PermissionStatus']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5988,16 +6152,20 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param Tags: 成员标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :NodeId, :Name, :ParentNodeId, :Remark, :CreateTime, :UpdateTime
+        attr_accessor :NodeId, :Name, :ParentNodeId, :Remark, :CreateTime, :UpdateTime, :Tags
 
-        def initialize(nodeid=nil, name=nil, parentnodeid=nil, remark=nil, createtime=nil, updatetime=nil)
+        def initialize(nodeid=nil, name=nil, parentnodeid=nil, remark=nil, createtime=nil, updatetime=nil, tags=nil)
           @NodeId = nodeid
           @Name = name
           @ParentNodeId = parentnodeid
           @Remark = remark
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6007,6 +6175,14 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6241,8 +6417,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 8
-        deprecate :ResourceGrantLast=, :none, 2024, 8
+        deprecate :ResourceGrantLast, :none, 2024, 9
+        deprecate :ResourceGrantLast=, :none, 2024, 9
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7044,8 +7220,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 8
-        deprecate :ResourceId=, :none, 2024, 8
+        deprecate :ResourceId, :none, 2024, 9
+        deprecate :ResourceId=, :none, 2024, 9
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -7120,6 +7296,28 @@ module TencentCloud
           @SharedMemberNum = params['SharedMemberNum']
           @SharedMemberUseNum = params['SharedMemberUseNum']
           @ShareManagerUin = params['ShareManagerUin']
+        end
+      end
+
+      # 标签键值对
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -7256,6 +7454,50 @@ module TencentCloud
           @TaskId = params['TaskId']
           @TaskType = params['TaskType']
           @FailureReason = params['FailureReason']
+        end
+      end
+
+      # UpdateCustomPolicyForRoleConfiguration请求参数结构体
+      class UpdateCustomPolicyForRoleConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间 ID
+        # @type ZoneId: String
+        # @param RoleConfigurationId: 权限配置 ID
+        # @type RoleConfigurationId: String
+        # @param CustomPolicyName: 权限策略名称，长度最大为 32 个字符。
+        # @type CustomPolicyName: String
+        # @param NewCustomPolicyDocument: 自定义策略内容。长度：最大 4096 个字符。当RolePolicyType为Inline时，该参数必须配置。关于权限策略的语法和结构，请参见权限策略语法和结构。
+        # @type NewCustomPolicyDocument: String
+
+        attr_accessor :ZoneId, :RoleConfigurationId, :CustomPolicyName, :NewCustomPolicyDocument
+
+        def initialize(zoneid=nil, roleconfigurationid=nil, custompolicyname=nil, newcustompolicydocument=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationId = roleconfigurationid
+          @CustomPolicyName = custompolicyname
+          @NewCustomPolicyDocument = newcustompolicydocument
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @CustomPolicyName = params['CustomPolicyName']
+          @NewCustomPolicyDocument = params['NewCustomPolicyDocument']
+        end
+      end
+
+      # UpdateCustomPolicyForRoleConfiguration返回参数结构体
+      class UpdateCustomPolicyForRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

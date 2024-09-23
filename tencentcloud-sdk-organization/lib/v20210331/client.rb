@@ -1853,6 +1853,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 邀请组织成员
+
+        # @param request: Request instance for InviteOrganizationMember.
+        # @type request: :class:`Tencentcloud::organization::V20210331::InviteOrganizationMemberRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::InviteOrganizationMemberResponse`
+        def InviteOrganizationMember(request)
+          body = send_request('InviteOrganizationMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InviteOrganizationMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询SAML签名证书列表
 
         # @param request: Request instance for ListExternalSAMLIdPCertificates.
@@ -2511,6 +2535,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetExternalSAMLIdentityProviderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为权限配置修改自定义策略
+
+        # @param request: Request instance for UpdateCustomPolicyForRoleConfiguration.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdateCustomPolicyForRoleConfigurationRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdateCustomPolicyForRoleConfigurationResponse`
+        def UpdateCustomPolicyForRoleConfiguration(request)
+          body = send_request('UpdateCustomPolicyForRoleConfiguration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCustomPolicyForRoleConfigurationResponse.new
             model.deserialize(response['Response'])
             model
           else
