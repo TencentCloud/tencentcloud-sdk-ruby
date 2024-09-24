@@ -5526,15 +5526,18 @@ module TencentCloud
         # @type DefaultTextSlotInfo: :class:`Tencentcloud::Cme.v20191029.models.TextSlotInfo`
         # @param Duration: 素材时长，单位秒。
         # @type Duration: Float
+        # @param StartTime: 卡槽起始时间，单位秒。
+        # @type StartTime: Float
 
-        attr_accessor :Id, :Type, :DefaultMaterialId, :DefaultTextSlotInfo, :Duration
+        attr_accessor :Id, :Type, :DefaultMaterialId, :DefaultTextSlotInfo, :Duration, :StartTime
 
-        def initialize(id=nil, type=nil, defaultmaterialid=nil, defaulttextslotinfo=nil, duration=nil)
+        def initialize(id=nil, type=nil, defaultmaterialid=nil, defaulttextslotinfo=nil, duration=nil, starttime=nil)
           @Id = id
           @Type = type
           @DefaultMaterialId = defaultmaterialid
           @DefaultTextSlotInfo = defaulttextslotinfo
           @Duration = duration
+          @StartTime = starttime
         end
 
         def deserialize(params)
@@ -5546,6 +5549,7 @@ module TencentCloud
             @DefaultTextSlotInfo.deserialize(params['DefaultTextSlotInfo'])
           end
           @Duration = params['Duration']
+          @StartTime = params['StartTime']
         end
       end
 

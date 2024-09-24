@@ -6833,38 +6833,6 @@ module TencentCloud
         end
       end
 
-      # DescribeApplicationBusinessLogConfig请求参数结构体
-      class DescribeApplicationBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: TSF应用ID
-        # @type ApplicationId: String
-
-        attr_accessor :ApplicationId
-
-        def initialize(applicationid=nil)
-          @ApplicationId = applicationid
-        end
-
-        def deserialize(params)
-          @ApplicationId = params['ApplicationId']
-        end
-      end
-
-      # DescribeApplicationBusinessLogConfig返回参数结构体
-      class DescribeApplicationBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeApplication请求参数结构体
       class DescribeApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID

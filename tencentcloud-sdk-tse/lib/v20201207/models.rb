@@ -10643,17 +10643,27 @@ module TencentCloud
         # @param Values: 限流条件的Values
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
+        # @param Operator: 操作符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param Name: header或query对应的name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
-        attr_accessor :Key, :Values
+        attr_accessor :Key, :Values, :Operator, :Name
 
-        def initialize(key=nil, values=nil)
+        def initialize(key=nil, values=nil, operator=nil, name=nil)
           @Key = key
           @Values = values
+          @Operator = operator
+          @Name = name
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Values = params['Values']
+          @Operator = params['Operator']
+          @Name = params['Name']
         end
       end
 

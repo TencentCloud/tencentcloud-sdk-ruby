@@ -101,32 +101,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口功能是检查是否为prometheus新用户，已有其他功能更加全面的接口替代
-
-        # 判断用户是否为云原生监控新用户，即在任何地域下均未创建过监控实例的用户
-
-        # @param request: Request instance for CheckIsPrometheusNewUser.
-        # @type request: :class:`Tencentcloud::monitor::V20180724::CheckIsPrometheusNewUserRequest`
-        # @rtype: :class:`Tencentcloud::monitor::V20180724::CheckIsPrometheusNewUserResponse`
-        def CheckIsPrometheusNewUser(request)
-          body = send_request('CheckIsPrometheusNewUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CheckIsPrometheusNewUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 强制销毁 Grafana 实例
 
         # @param request: Request instance for CleanGrafanaInstance.
@@ -2288,32 +2262,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePrometheusInstancesOverviewResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # DescribePrometheusRecordRules 接口可完全代替该接口。近30天仅有3次调用，且都是报错请求
-
-        # 拉取Prometheus聚合规则yaml列表
-
-        # @param request: Request instance for DescribePrometheusRecordRuleYaml.
-        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusRecordRuleYamlRequest`
-        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusRecordRuleYamlResponse`
-        def DescribePrometheusRecordRuleYaml(request)
-          body = send_request('DescribePrometheusRecordRuleYaml', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribePrometheusRecordRuleYamlResponse.new
             model.deserialize(response['Response'])
             model
           else

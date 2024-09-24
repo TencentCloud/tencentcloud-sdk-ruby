@@ -1758,32 +1758,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口未使用，废弃录用
-
-        # 查询应用关联日志配置项信息
-
-        # @param request: Request instance for DescribeApplicationBusinessLogConfig.
-        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeApplicationBusinessLogConfigRequest`
-        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeApplicationBusinessLogConfigResponse`
-        def DescribeApplicationBusinessLogConfig(request)
-          body = send_request('DescribeApplicationBusinessLogConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeApplicationBusinessLogConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取应用列表
 
         # @param request: Request instance for DescribeApplications.

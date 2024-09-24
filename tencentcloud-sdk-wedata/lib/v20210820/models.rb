@@ -27301,10 +27301,13 @@ module TencentCloud
         # @param ExtResourceFlag: 资源获取标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtResourceFlag: :class:`Tencentcloud::Wedata.v20210820.models.ExtResourceFlagDto`
+        # @param NewParentTaskInfos: 父任务simple信息(新)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewParentTaskInfos: Array
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -27393,6 +27396,7 @@ module TencentCloud
           @DLCResourceConfig = dlcresourceconfig
           @ParentTaskInfos = parenttaskinfos
           @ExtResourceFlag = extresourceflag
+          @NewParentTaskInfos = newparenttaskinfos
         end
 
         def deserialize(params)
@@ -27508,6 +27512,14 @@ module TencentCloud
           unless params['ExtResourceFlag'].nil?
             @ExtResourceFlag = ExtResourceFlagDto.new
             @ExtResourceFlag.deserialize(params['ExtResourceFlag'])
+          end
+          unless params['NewParentTaskInfos'].nil?
+            @NewParentTaskInfos = []
+            params['NewParentTaskInfos'].each do |i|
+              aiopssimpletaskdto_tmp = AiopsSimpleTaskDto.new
+              aiopssimpletaskdto_tmp.deserialize(i)
+              @NewParentTaskInfos << aiopssimpletaskdto_tmp
+            end
           end
         end
       end

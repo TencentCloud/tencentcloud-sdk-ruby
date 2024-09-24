@@ -1331,7 +1331,7 @@ module TencentCloud
         # @param Scheduler: 监听器转发的方式。可选值：WRR、LEAST_CONN
         # 分别表示按权重轮询、最小连接数， 默认为 WRR。此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。
         # @type Scheduler: String
-        # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。0表示开启，1表示未开启。
+        # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。0表示未开启，1表示开启。
         # @type SniSwitch: Integer
         # @param TargetType: 后端目标类型，NODE表示绑定普通节点，TARGETGROUP表示绑定目标组。此参数仅适用于TCP/UDP监听器。七层监听器应在转发规则中设置。
         # @type TargetType: String
@@ -1355,10 +1355,14 @@ module TencentCloud
         # @type SnatEnable: Boolean
         # @param FullEndPorts: 全端口段监听器的结束端口
         # @type FullEndPorts: Array
+        # @param H2cSwitch: 内网http监听器开启h2c开关
+        # @type H2cSwitch: Boolean
+        # @param SslCloseSwitch: TCP_SSL监听器支持关闭SSL后仍然支持混绑，此参数为关闭开关
+        # @type SslCloseSwitch: Boolean
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :FullEndPorts
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch
 
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, fullendports=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1379,6 +1383,8 @@ module TencentCloud
           @IdleConnectTimeout = idleconnecttimeout
           @SnatEnable = snatenable
           @FullEndPorts = fullendports
+          @H2cSwitch = h2cswitch
+          @SslCloseSwitch = sslcloseswitch
         end
 
         def deserialize(params)
@@ -1411,6 +1417,8 @@ module TencentCloud
           @IdleConnectTimeout = params['IdleConnectTimeout']
           @SnatEnable = params['SnatEnable']
           @FullEndPorts = params['FullEndPorts']
+          @H2cSwitch = params['H2cSwitch']
+          @SslCloseSwitch = params['SslCloseSwitch']
         end
       end
 

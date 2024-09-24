@@ -1170,33 +1170,6 @@ module TencentCloud
         end
       end
 
-      # CheckIsPrometheusNewUser请求参数结构体
-      class CheckIsPrometheusNewUserRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # CheckIsPrometheusNewUser返回参数结构体
-      class CheckIsPrometheusNewUserResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CleanGrafanaInstance请求参数结构体
       class CleanGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
@@ -8322,59 +8295,6 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribePrometheusRecordRuleYaml请求参数结构体
-      class DescribePrometheusRecordRuleYamlRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
-        # @type InstanceId: String
-        # @param Offset: 分页
-        # @type Offset: Integer
-        # @param Limit: 分页
-        # @type Limit: Integer
-        # @param Filters: 过滤，当前支持
-        # Name = Name
-        # Values = 目标名称列表
-        # @type Filters: Array
-
-        attr_accessor :InstanceId, :Offset, :Limit, :Filters
-
-        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
-          @InstanceId = instanceid
-          @Offset = offset
-          @Limit = limit
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribePrometheusRecordRuleYaml返回参数结构体
-      class DescribePrometheusRecordRuleYamlResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

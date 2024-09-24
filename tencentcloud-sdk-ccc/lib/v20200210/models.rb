@@ -240,8 +240,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2024, 8
-        deprecate :SkillGroupList=, :none, 2024, 8
+        deprecate :SkillGroupList, :none, 2024, 9
+        deprecate :SkillGroupList=, :none, 2024, 9
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -652,6 +652,162 @@ module TencentCloud
         end
       end
 
+      # CreateAICall请求参数结构体
+      class CreateAICallRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Callee: 被叫
+        # @type Callee: String
+        # @param SystemPrompt: 用于设定AI座席人设、说话规则、任务等的全局提示词。
+        # @type SystemPrompt: String
+        # @param LLMType: LLM类型
+        # @type LLMType: String
+        # @param Model: 模型（当前仅支持openai协议的模型）
+        # @type Model: String
+        # @param APIKey: API密钥
+        # @type APIKey: String
+        # @param APIUrl: API URL，仅支持兼容openai协议的模型，填写url时后缀不要带/chat/completions
+        # @type APIUrl: String
+        # @param VoiceType: 音色，目前仅支持以下音色:
+        # 汉语：
+        # ZhiMei：智美，客服女声
+        # ZhiXi： 智希 通用女声
+        # ZhiQi：智琪 客服女声
+        # ZhiTian：智甜 女童声
+        # AiXiaoJing：爱小静 对话女声
+
+        # 英语:
+        # WeRose：英文女声
+        # Monika：英文女声
+
+        # 日语：
+        # Nanami
+
+        # 韩语：
+        # SunHi
+
+        # 印度尼西亚语(印度尼西亚)：
+        # Gadis
+
+        # 马来语（马来西亚）:
+        # Yasmin
+
+        #  泰米尔语（马来西亚）:
+        # Kani
+
+        # 泰语（泰国）:
+        # Achara
+
+        # 越南语(越南):
+        # HoaiMy
+
+        # @type VoiceType: String
+        # @param Callers: 主叫号码列表
+        # @type Callers: Array
+        # @param WelcomeMessage: 用于设定AI座席欢迎语。
+        # @type WelcomeMessage: String
+        # @param WelcomeType: 0：使用welcomeMessage(为空时，被叫先说话；不为空时，机器人先说话)
+        # 1:   使用ai根据prompt自动生成welcomeMessage并先说话
+        # @type WelcomeType: Integer
+        # @param MaxDuration: 最大等待时长(毫秒)，默认60秒，超过这个时间用户没说话，自动挂断
+        # @type MaxDuration: Integer
+        # @param Languages: 语音识别支持的语言, 默认是"zh" 中文,
+        # 填写数组,最长4个语言，第一个语言为主要识别语言，后面为可选语言，
+        # 注意:主要语言为中国方言时，可选语言无效
+        # 目前全量支持的语言如下，等号左面是语言英文名，右面是Language字段需要填写的值，该值遵循ISO639：
+        # 1. Chinese = "zh" # 中文
+        # 2. Chinese_TW = "zh-TW" # 中国台湾
+        # 3. Chinese_DIALECT = "zh-dialect" # 中国方言
+        # 4. English = "en" # 英语
+        # 5. Vietnamese = "vi" # 越南语
+        # 6. Japanese = "ja" # 日语
+        # 7. Korean = "ko" # 汉语
+        # 8. Indonesia = "id" # 印度尼西亚语
+        # 9. Thai = "th" # 泰语
+        # 10. Portuguese = "pt" # 葡萄牙语
+        # 11. Turkish = "tr" # 土耳其语
+        # 12. Arabic = "ar" # 阿拉伯语
+        # 13. Spanish = "es" # 西班牙语
+        # 14. Hindi = "hi" # 印地语
+        # 15. French = "fr" # 法语
+        # 16. Malay = "ms" # 马来语
+        # 17. Filipino = "fil" # 菲律宾语
+        # 18. German = "de" # 德语
+        # 19. Italian = "it" # 意大利语
+        # 20. Russian = "ru" # 俄语
+        # @type Languages: Array
+        # @param InterruptMode: 打断AI说话模式，默认为0，0表示服务端自动打断，1表示服务端不打断，由端上发送打断信令进行打断
+        # @type InterruptMode: Integer
+        # @param InterruptSpeechDuration: InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断。
+        # @type InterruptSpeechDuration: Integer
+        # @param EndFunctionEnable: 模型是否支持(或者开启)call_end function calling
+        # @type EndFunctionEnable: Boolean
+        # @param EndFunctionDesc: EndFunctionEnable为true时生效；call_end function calling的desc，默认为 "End the call when user has to leave (like says bye) or you are instructed to do so."
+        # @type EndFunctionDesc: String
+
+        attr_accessor :SdkAppId, :Callee, :SystemPrompt, :LLMType, :Model, :APIKey, :APIUrl, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc
+
+        def initialize(sdkappid=nil, callee=nil, systemprompt=nil, llmtype=nil, model=nil, apikey=nil, apiurl=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil)
+          @SdkAppId = sdkappid
+          @Callee = callee
+          @SystemPrompt = systemprompt
+          @LLMType = llmtype
+          @Model = model
+          @APIKey = apikey
+          @APIUrl = apiurl
+          @VoiceType = voicetype
+          @Callers = callers
+          @WelcomeMessage = welcomemessage
+          @WelcomeType = welcometype
+          @MaxDuration = maxduration
+          @Languages = languages
+          @InterruptMode = interruptmode
+          @InterruptSpeechDuration = interruptspeechduration
+          @EndFunctionEnable = endfunctionenable
+          @EndFunctionDesc = endfunctiondesc
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callee = params['Callee']
+          @SystemPrompt = params['SystemPrompt']
+          @LLMType = params['LLMType']
+          @Model = params['Model']
+          @APIKey = params['APIKey']
+          @APIUrl = params['APIUrl']
+          @VoiceType = params['VoiceType']
+          @Callers = params['Callers']
+          @WelcomeMessage = params['WelcomeMessage']
+          @WelcomeType = params['WelcomeType']
+          @MaxDuration = params['MaxDuration']
+          @Languages = params['Languages']
+          @InterruptMode = params['InterruptMode']
+          @InterruptSpeechDuration = params['InterruptSpeechDuration']
+          @EndFunctionEnable = params['EndFunctionEnable']
+          @EndFunctionDesc = params['EndFunctionDesc']
+        end
+      end
+
+      # CreateAICall返回参数结构体
+      class CreateAICallResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: 新创建的会话 ID
+        # @type SessionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionId, :RequestId
+
+        def initialize(sessionid=nil, requestid=nil)
+          @SessionId = sessionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAdminURL请求参数结构体
       class CreateAdminURLRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -856,8 +1012,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 8
-        deprecate :Uui=, :none, 2024, 8
+        deprecate :Uui, :none, 2024, 9
+        deprecate :Uui=, :none, 2024, 9
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -1877,10 +2033,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 8
-        deprecate :InstanceId=, :none, 2024, 8
-        deprecate :CdrId, :none, 2024, 8
-        deprecate :CdrId=, :none, 2024, 8
+        deprecate :InstanceId, :none, 2024, 9
+        deprecate :InstanceId=, :none, 2024, 9
+        deprecate :CdrId, :none, 2024, 9
+        deprecate :CdrId=, :none, 2024, 9
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -2209,8 +2365,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 8
-        deprecate :InstanceId=, :none, 2024, 8
+        deprecate :InstanceId, :none, 2024, 9
+        deprecate :InstanceId=, :none, 2024, 9
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -2247,8 +2403,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2024, 8
-        deprecate :IMCdrs=, :none, 2024, 8
+        deprecate :IMCdrs, :none, 2024, 9
+        deprecate :IMCdrs=, :none, 2024, 9
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -2750,8 +2906,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 8
-        deprecate :TelCdrs=, :none, 2024, 8
+        deprecate :TelCdrs, :none, 2024, 9
+        deprecate :TelCdrs=, :none, 2024, 9
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3016,8 +3172,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2024, 8
-        deprecate :VoipCallInCount=, :none, 2024, 8
+        deprecate :VoipCallInCount, :none, 2024, 9
+        deprecate :VoipCallInCount=, :none, 2024, 9
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -3065,8 +3221,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 8
-        deprecate :InstanceId=, :none, 2024, 8
+        deprecate :InstanceId, :none, 2024, 9
+        deprecate :InstanceId=, :none, 2024, 9
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -3108,8 +3264,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 8
-        deprecate :TelCdrs=, :none, 2024, 8
+        deprecate :TelCdrs, :none, 2024, 9
+        deprecate :TelCdrs=, :none, 2024, 9
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4809,8 +4965,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 8
-        deprecate :Uui=, :none, 2024, 8
+        deprecate :Uui, :none, 2024, 9
+        deprecate :Uui=, :none, 2024, 9
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller

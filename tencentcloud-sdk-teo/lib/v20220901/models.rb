@@ -8446,6 +8446,34 @@ module TencentCloud
         end
       end
 
+      # 四层远程鉴权信息
+      class L4ProxyRemoteAuth < TencentCloud::Common::AbstractModel
+        # @param Switch: 四层远程鉴权开关，取值有：
+        # <li>on：表示开启;</li>
+        # <li>off：表示关闭。</li>
+        # @type Switch: String
+        # @param Address: 远程鉴权服务地址，格式为: domain/ip:port。例：example.auth.com:8888
+        # @type Address: String
+        # @param ServerFaultyBehavior: 远程鉴权服务不可访问后，经过四层转发规则默认回源行为，取值有：
+        # <li>reject：表示进行拦截，拒绝访问;</li>
+        # <li>allow：表示允许通过。</li>
+        # @type ServerFaultyBehavior: String
+
+        attr_accessor :Switch, :Address, :ServerFaultyBehavior
+
+        def initialize(switch=nil, address=nil, serverfaultybehavior=nil)
+          @Switch = switch
+          @Address = address
+          @ServerFaultyBehavior = serverfaultybehavior
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Address = params['Address']
+          @ServerFaultyBehavior = params['ServerFaultyBehavior']
+        end
+      end
+
       # 四层代理转发规则详情。
       class L4ProxyRule < TencentCloud::Common::AbstractModel
         # @param RuleId: 转发规则 ID。
@@ -8507,10 +8535,14 @@ module TencentCloud
         # @type Status: String
         # @param BuId: BuID。
         # @type BuId: String
+        # @param RemoteAuth: 远程鉴权信息。
+        # 注意：RemoteAuth 在 CreateL4ProxyRules 或 ModifyL4ProxyRules 不可作为入参使用，如有传此参数，会忽略。在 DescribeL4ProxyRules 返回为空时，表示没有开启远程鉴权。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteAuth: :class:`Tencentcloud::Teo.v20220901.models.L4ProxyRemoteAuth`
 
-        attr_accessor :RuleId, :Protocol, :PortRange, :OriginType, :OriginValue, :OriginPortRange, :ClientIPPassThroughMode, :SessionPersist, :SessionPersistTime, :RuleTag, :Status, :BuId
+        attr_accessor :RuleId, :Protocol, :PortRange, :OriginType, :OriginValue, :OriginPortRange, :ClientIPPassThroughMode, :SessionPersist, :SessionPersistTime, :RuleTag, :Status, :BuId, :RemoteAuth
 
-        def initialize(ruleid=nil, protocol=nil, portrange=nil, origintype=nil, originvalue=nil, originportrange=nil, clientippassthroughmode=nil, sessionpersist=nil, sessionpersisttime=nil, ruletag=nil, status=nil, buid=nil)
+        def initialize(ruleid=nil, protocol=nil, portrange=nil, origintype=nil, originvalue=nil, originportrange=nil, clientippassthroughmode=nil, sessionpersist=nil, sessionpersisttime=nil, ruletag=nil, status=nil, buid=nil, remoteauth=nil)
           @RuleId = ruleid
           @Protocol = protocol
           @PortRange = portrange
@@ -8523,6 +8555,7 @@ module TencentCloud
           @RuleTag = ruletag
           @Status = status
           @BuId = buid
+          @RemoteAuth = remoteauth
         end
 
         def deserialize(params)
@@ -8538,6 +8571,10 @@ module TencentCloud
           @RuleTag = params['RuleTag']
           @Status = params['Status']
           @BuId = params['BuId']
+          unless params['RemoteAuth'].nil?
+            @RemoteAuth = L4ProxyRemoteAuth.new
+            @RemoteAuth.deserialize(params['RemoteAuth'])
+          end
         end
       end
 

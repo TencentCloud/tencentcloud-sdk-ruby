@@ -9401,20 +9401,24 @@ module TencentCloud
         # @param Err: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Err: String
+        # @param LatestSyncSuccessTime: 最后一次同步成功时间
+        # @type LatestSyncSuccessTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Err, :RequestId
+        attr_accessor :Status, :Err, :LatestSyncSuccessTime, :RequestId
 
-        def initialize(status=nil, err=nil, requestid=nil)
+        def initialize(status=nil, err=nil, latestsyncsuccesstime=nil, requestid=nil)
           @Status = status
           @Err = err
+          @LatestSyncSuccessTime = latestsyncsuccesstime
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
           @Err = params['Err']
+          @LatestSyncSuccessTime = params['LatestSyncSuccessTime']
           @RequestId = params['RequestId']
         end
       end
@@ -10165,16 +10169,20 @@ module TencentCloud
 
       # DescribeAssetImageRegistrySummary返回参数结构体
       class DescribeAssetImageRegistrySummaryResponse < TencentCloud::Common::AbstractModel
+        # @param UnScannedImageCnt: 待扫描镜像个数
+        # @type UnScannedImageCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :UnScannedImageCnt, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(unscannedimagecnt=nil, requestid=nil)
+          @UnScannedImageCnt = unscannedimagecnt
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UnScannedImageCnt = params['UnScannedImageCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -10640,15 +10648,21 @@ module TencentCloud
         # @param ExcludeImages: 排除的扫描镜像
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeImages: Array
+        # @param LastScanTime: 最后一次扫描时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastScanTime: String
+        # @param ScanResult: 扫描结果(Success|InsufficientLicense|ImageNeedIsEmpty|InternalError)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanResult: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :RequestId
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
         deprecate :All, :none, 2024, 9
         deprecate :All=, :none, 2024, 9
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, requestid=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -10661,6 +10675,8 @@ module TencentCloud
           @ScanScope = scanscope
           @ScanEndTime = scanendtime
           @ExcludeImages = excludeimages
+          @LastScanTime = lastscantime
+          @ScanResult = scanresult
           @RequestId = requestid
         end
 
@@ -10677,6 +10693,8 @@ module TencentCloud
           @ScanScope = params['ScanScope']
           @ScanEndTime = params['ScanEndTime']
           @ExcludeImages = params['ExcludeImages']
+          @LastScanTime = params['LastScanTime']
+          @ScanResult = params['ScanResult']
           @RequestId = params['RequestId']
         end
       end
@@ -10756,18 +10774,30 @@ module TencentCloud
       class DescribeAssetImageScanTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskID: 任务id
         # @type TaskID: String
+        # @param LastScanTime: 最近扫描时间
+        # @type LastScanTime: String
+        # @param Status: 扫描状态(READY:准备 SCANNING:扫描中 END:完成)
+        # @type Status: String
+        # @param SubStatus: 扫描子状态(Success:成功 Timeout:超时 Cancel:取消 Error:错误)
+        # @type SubStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskID, :RequestId
+        attr_accessor :TaskID, :LastScanTime, :Status, :SubStatus, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, lastscantime=nil, status=nil, substatus=nil, requestid=nil)
           @TaskID = taskid
+          @LastScanTime = lastscantime
+          @Status = status
+          @SubStatus = substatus
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskID = params['TaskID']
+          @LastScanTime = params['LastScanTime']
+          @Status = params['Status']
+          @SubStatus = params['SubStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -11323,12 +11353,14 @@ module TencentCloud
         # @type RecommendedFixImageCnt: Integer
         # @param ScannedImageCnt: 已扫描镜像个数
         # @type ScannedImageCnt: Integer
+        # @param UnScannedImageCnt: 待扫描镜像个数
+        # @type UnScannedImageCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppCnt, :ContainerCnt, :ContainerPause, :ContainerRunning, :ContainerStop, :CreateTime, :DbCnt, :ImageCnt, :HostOnline, :HostCnt, :ImageHasRiskInfoCnt, :ImageHasVirusCnt, :ImageHasVulsCnt, :ImageUntrustCnt, :ListenPortCnt, :ProcessCnt, :WebServiceCnt, :LatestImageScanTime, :ImageUnsafeCnt, :HostUnInstallCnt, :SuperNodeCnt, :SuperNodeRunningCnt, :TodayNewImageCnt, :TodayUnsafeImageCnt, :RecommendedFixImageCnt, :ScannedImageCnt, :RequestId
+        attr_accessor :AppCnt, :ContainerCnt, :ContainerPause, :ContainerRunning, :ContainerStop, :CreateTime, :DbCnt, :ImageCnt, :HostOnline, :HostCnt, :ImageHasRiskInfoCnt, :ImageHasVirusCnt, :ImageHasVulsCnt, :ImageUntrustCnt, :ListenPortCnt, :ProcessCnt, :WebServiceCnt, :LatestImageScanTime, :ImageUnsafeCnt, :HostUnInstallCnt, :SuperNodeCnt, :SuperNodeRunningCnt, :TodayNewImageCnt, :TodayUnsafeImageCnt, :RecommendedFixImageCnt, :ScannedImageCnt, :UnScannedImageCnt, :RequestId
 
-        def initialize(appcnt=nil, containercnt=nil, containerpause=nil, containerrunning=nil, containerstop=nil, createtime=nil, dbcnt=nil, imagecnt=nil, hostonline=nil, hostcnt=nil, imagehasriskinfocnt=nil, imagehasviruscnt=nil, imagehasvulscnt=nil, imageuntrustcnt=nil, listenportcnt=nil, processcnt=nil, webservicecnt=nil, latestimagescantime=nil, imageunsafecnt=nil, hostuninstallcnt=nil, supernodecnt=nil, supernoderunningcnt=nil, todaynewimagecnt=nil, todayunsafeimagecnt=nil, recommendedfiximagecnt=nil, scannedimagecnt=nil, requestid=nil)
+        def initialize(appcnt=nil, containercnt=nil, containerpause=nil, containerrunning=nil, containerstop=nil, createtime=nil, dbcnt=nil, imagecnt=nil, hostonline=nil, hostcnt=nil, imagehasriskinfocnt=nil, imagehasviruscnt=nil, imagehasvulscnt=nil, imageuntrustcnt=nil, listenportcnt=nil, processcnt=nil, webservicecnt=nil, latestimagescantime=nil, imageunsafecnt=nil, hostuninstallcnt=nil, supernodecnt=nil, supernoderunningcnt=nil, todaynewimagecnt=nil, todayunsafeimagecnt=nil, recommendedfiximagecnt=nil, scannedimagecnt=nil, unscannedimagecnt=nil, requestid=nil)
           @AppCnt = appcnt
           @ContainerCnt = containercnt
           @ContainerPause = containerpause
@@ -11355,6 +11387,7 @@ module TencentCloud
           @TodayUnsafeImageCnt = todayunsafeimagecnt
           @RecommendedFixImageCnt = recommendedfiximagecnt
           @ScannedImageCnt = scannedimagecnt
+          @UnScannedImageCnt = unscannedimagecnt
           @RequestId = requestid
         end
 
@@ -11385,6 +11418,7 @@ module TencentCloud
           @TodayUnsafeImageCnt = params['TodayUnsafeImageCnt']
           @RecommendedFixImageCnt = params['RecommendedFixImageCnt']
           @ScannedImageCnt = params['ScannedImageCnt']
+          @UnScannedImageCnt = params['UnScannedImageCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -13685,12 +13719,16 @@ module TencentCloud
         # @type UsedPurchasedAuthorizedCnt: Integer
         # @param CanApplyFreeImageAuthorize: 是否可免费领取镜像授权数
         # @type CanApplyFreeImageAuthorize: Boolean
+        # @param ImageScanInquireInfo: 镜像扫描计费信息
+        # @type ImageScanInquireInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageScanInquireInfo`
+        # @param RepeatImageIdCnt: 重复镜像数(本地镜像和仓库镜像)
+        # @type RepeatImageIdCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalAuthorizedCnt, :UsedAuthorizedCnt, :ScannedImageCnt, :NotScannedImageCnt, :NotScannedLocalImageCnt, :TrialAuthorizedCnt, :UsedTrialAuthorizedCnt, :PurchasedAuthorizedCnt, :UsedPurchasedAuthorizedCnt, :CanApplyFreeImageAuthorize, :RequestId
+        attr_accessor :TotalAuthorizedCnt, :UsedAuthorizedCnt, :ScannedImageCnt, :NotScannedImageCnt, :NotScannedLocalImageCnt, :TrialAuthorizedCnt, :UsedTrialAuthorizedCnt, :PurchasedAuthorizedCnt, :UsedPurchasedAuthorizedCnt, :CanApplyFreeImageAuthorize, :ImageScanInquireInfo, :RepeatImageIdCnt, :RequestId
 
-        def initialize(totalauthorizedcnt=nil, usedauthorizedcnt=nil, scannedimagecnt=nil, notscannedimagecnt=nil, notscannedlocalimagecnt=nil, trialauthorizedcnt=nil, usedtrialauthorizedcnt=nil, purchasedauthorizedcnt=nil, usedpurchasedauthorizedcnt=nil, canapplyfreeimageauthorize=nil, requestid=nil)
+        def initialize(totalauthorizedcnt=nil, usedauthorizedcnt=nil, scannedimagecnt=nil, notscannedimagecnt=nil, notscannedlocalimagecnt=nil, trialauthorizedcnt=nil, usedtrialauthorizedcnt=nil, purchasedauthorizedcnt=nil, usedpurchasedauthorizedcnt=nil, canapplyfreeimageauthorize=nil, imagescaninquireinfo=nil, repeatimageidcnt=nil, requestid=nil)
           @TotalAuthorizedCnt = totalauthorizedcnt
           @UsedAuthorizedCnt = usedauthorizedcnt
           @ScannedImageCnt = scannedimagecnt
@@ -13701,6 +13739,8 @@ module TencentCloud
           @PurchasedAuthorizedCnt = purchasedauthorizedcnt
           @UsedPurchasedAuthorizedCnt = usedpurchasedauthorizedcnt
           @CanApplyFreeImageAuthorize = canapplyfreeimageauthorize
+          @ImageScanInquireInfo = imagescaninquireinfo
+          @RepeatImageIdCnt = repeatimageidcnt
           @RequestId = requestid
         end
 
@@ -13715,6 +13755,11 @@ module TencentCloud
           @PurchasedAuthorizedCnt = params['PurchasedAuthorizedCnt']
           @UsedPurchasedAuthorizedCnt = params['UsedPurchasedAuthorizedCnt']
           @CanApplyFreeImageAuthorize = params['CanApplyFreeImageAuthorize']
+          unless params['ImageScanInquireInfo'].nil?
+            @ImageScanInquireInfo = ImageScanInquireInfo.new
+            @ImageScanInquireInfo.deserialize(params['ImageScanInquireInfo'])
+          end
+          @RepeatImageIdCnt = params['RepeatImageIdCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -14114,15 +14159,20 @@ module TencentCloud
         # @param ExcludeImageAssetIds: 排除的镜像资产id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeImageAssetIds: Array
+        # @param LastScanTime: 最近扫描时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastScanTime: String
+        # @param ScanResult: 扫描结果(Success|InsufficientLicense|ImageNeedIsEmpty|InternalError)
+        # @type ScanResult: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :RequestId
+        attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
         deprecate :All, :none, 2024, 9
         deprecate :All=, :none, 2024, 9
 
-        def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, requestid=nil)
+        def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
           @ScanTime = scantime
           @ScanPeriod = scanperiod
@@ -14137,6 +14187,8 @@ module TencentCloud
           @ScanScope = scanscope
           @Namespace = namespace
           @ExcludeImageAssetIds = excludeimageassetids
+          @LastScanTime = lastscantime
+          @ScanResult = scanresult
           @RequestId = requestid
         end
 
@@ -14162,6 +14214,8 @@ module TencentCloud
           @ScanScope = params['ScanScope']
           @Namespace = params['Namespace']
           @ExcludeImageAssetIds = params['ExcludeImageAssetIds']
+          @LastScanTime = params['LastScanTime']
+          @ScanResult = params['ScanResult']
           @RequestId = params['RequestId']
         end
       end
@@ -22405,6 +22459,49 @@ module TencentCloud
             end
           end
           @ImageRiskType = params['ImageRiskType']
+        end
+      end
+
+      # 镜像扫描计费信息
+      class ImageScanInquireInfo < TencentCloud::Common::AbstractModel
+        # @param InquireKey: 计费项
+        # @type InquireKey: String
+        # @param Capcity: 容量
+        # @type Capcity: Integer
+        # @param Useage: 已使用量
+        # @type Useage: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 截止时间
+        # @type EndTime: String
+        # @param PurchaseStatus: 计费状态
+        # (Pending:待购)
+        # (Normal:正常)
+        # (Isolate:隔离)
+        # @type PurchaseStatus: String
+        # @param ResourceID: 资源ID
+        # @type ResourceID: String
+
+        attr_accessor :InquireKey, :Capcity, :Useage, :StartTime, :EndTime, :PurchaseStatus, :ResourceID
+
+        def initialize(inquirekey=nil, capcity=nil, useage=nil, starttime=nil, endtime=nil, purchasestatus=nil, resourceid=nil)
+          @InquireKey = inquirekey
+          @Capcity = capcity
+          @Useage = useage
+          @StartTime = starttime
+          @EndTime = endtime
+          @PurchaseStatus = purchasestatus
+          @ResourceID = resourceid
+        end
+
+        def deserialize(params)
+          @InquireKey = params['InquireKey']
+          @Capcity = params['Capcity']
+          @Useage = params['Useage']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PurchaseStatus = params['PurchaseStatus']
+          @ResourceID = params['ResourceID']
         end
       end
 

@@ -1835,10 +1835,12 @@ module TencentCloud
         # @type IsSupportHMTResidentPermitOCR: Boolean
         # @param MouthOpenRecognition: 用户语音回答过程中是否开启张嘴识别检测，默认不开启，仅在意愿核身问答模式中使用。
         # @type MouthOpenRecognition: Boolean
+        # @param Speed: 意愿核身语音播报速度，配置后问答模式和点头模式的语音播报环节都会生效，默认值为0： 0：智能语速（根据播报文案的长度自动调整语音播报速度） 1：固定1倍速 2：固定1.2倍速 3：固定1.5倍速
+        # @type Speed: Integer
 
-        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionActions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR, :MouthOpenRecognition
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionActions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR, :MouthOpenRecognition, :Speed
 
-        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionactions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil, mouthopenrecognition=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionactions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil, mouthopenrecognition=nil, speed=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
           @IntentionMode = intentionmode
@@ -1848,6 +1850,7 @@ module TencentCloud
           @IntentionRecognition = intentionrecognition
           @IsSupportHMTResidentPermitOCR = issupporthmtresidentpermitocr
           @MouthOpenRecognition = mouthopenrecognition
+          @Speed = speed
         end
 
         def deserialize(params)
@@ -1874,6 +1877,7 @@ module TencentCloud
           @IntentionRecognition = params['IntentionRecognition']
           @IsSupportHMTResidentPermitOCR = params['IsSupportHMTResidentPermitOCR']
           @MouthOpenRecognition = params['MouthOpenRecognition']
+          @Speed = params['Speed']
         end
       end
 

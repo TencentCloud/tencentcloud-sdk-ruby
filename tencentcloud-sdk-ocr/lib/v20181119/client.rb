@@ -1814,7 +1814,7 @@ module TencentCloud
 
         # 印尼身份证识别
 
-        # 默认接口请求频率限制：20次/秒。
+        # 默认接口请求频率限制：5次/秒。
 
         # @param request: Request instance for RecognizeIndonesiaIDCardOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeIndonesiaIDCardOCRRequest`

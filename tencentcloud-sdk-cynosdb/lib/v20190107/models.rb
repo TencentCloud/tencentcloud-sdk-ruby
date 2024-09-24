@@ -7265,62 +7265,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRollbackTimeValidity请求参数结构体
-      class DescribeRollbackTimeValidityRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
-        # @param ExpectTime: 期望回滚的时间点
-        # @type ExpectTime: String
-        # @param ExpectTimeThresh: 回滚时间点的允许误差范围
-        # @type ExpectTimeThresh: Integer
-
-        attr_accessor :ClusterId, :ExpectTime, :ExpectTimeThresh
-
-        def initialize(clusterid=nil, expecttime=nil, expecttimethresh=nil)
-          @ClusterId = clusterid
-          @ExpectTime = expecttime
-          @ExpectTimeThresh = expecttimethresh
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @ExpectTime = params['ExpectTime']
-          @ExpectTimeThresh = params['ExpectTimeThresh']
-        end
-      end
-
-      # DescribeRollbackTimeValidity返回参数结构体
-      class DescribeRollbackTimeValidityResponse < TencentCloud::Common::AbstractModel
-        # @param PoolId: 存储poolID
-        # @type PoolId: Integer
-        # @param QueryId: 回滚任务ID，后续按该时间点回滚时，需要传入
-        # @type QueryId: Integer
-        # @param Status: 时间点是否有效：pass，检测通过；fail，检测失败
-        # @type Status: String
-        # @param SuggestTime: 建议时间点，在Status为fail时，该值才有效
-        # @type SuggestTime: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :PoolId, :QueryId, :Status, :SuggestTime, :RequestId
-
-        def initialize(poolid=nil, queryid=nil, status=nil, suggesttime=nil, requestid=nil)
-          @PoolId = poolid
-          @QueryId = queryid
-          @Status = status
-          @SuggestTime = suggesttime
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @PoolId = params['PoolId']
-          @QueryId = params['QueryId']
-          @Status = params['Status']
-          @SuggestTime = params['SuggestTime']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeServerlessStrategy请求参数结构体
       class DescribeServerlessStrategyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: serverless集群id

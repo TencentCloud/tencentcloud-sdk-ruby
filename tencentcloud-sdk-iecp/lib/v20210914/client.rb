@@ -29,32 +29,6 @@ module TencentCloud
         end
 
 
-        # 产品停售，预下线
-
-        # 从组件市场选中组件并添加到应用模板列表
-
-        # @param request: Request instance for ApplyMarketComponent.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::ApplyMarketComponentRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::ApplyMarketComponentResponse`
-        def ApplyMarketComponent(request)
-          body = send_request('ApplyMarketComponent', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ApplyMarketComponentResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 建立消息路由
 
         # @param request: Request instance for BuildMessageRoute.
@@ -65,32 +39,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = BuildMessageRouteResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 创建可视化创建应用模板
-
-        # @param request: Request instance for CreateApplicationVisualization.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateApplicationVisualizationRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateApplicationVisualizationResponse`
-        def CreateApplicationVisualization(request)
-          body = send_request('CreateApplicationVisualization', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateApplicationVisualizationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -211,58 +159,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateEdgeNodeUnitTemplateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 可视化创建应用
-
-        # @param request: Request instance for CreateEdgeUnitApplicationVisualization.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateEdgeUnitApplicationVisualizationRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateEdgeUnitApplicationVisualizationResponse`
-        def CreateEdgeUnitApplicationVisualization(request)
-          body = send_request('CreateEdgeUnitApplicationVisualization', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateEdgeUnitApplicationVisualizationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # yaml方式创建应用
-
-        # @param request: Request instance for CreateEdgeUnitApplicationYaml.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::CreateEdgeUnitApplicationYamlRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::CreateEdgeUnitApplicationYamlResponse`
-        def CreateEdgeUnitApplicationYaml(request)
-          body = send_request('CreateEdgeUnitApplicationYaml', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateEdgeUnitApplicationYamlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -469,32 +365,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 产品停售，预下线
-
-        # 删除应用模板
-
-        # @param request: Request instance for DeleteApplications.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteApplicationsRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DeleteApplicationsResponse`
-        def DeleteApplications(request)
-          body = send_request('DeleteApplications', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteApplicationsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除ConfigMap
 
         # @param request: Request instance for DeleteConfigMap.
@@ -577,32 +447,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEdgeNodesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 删除应用列表
-
-        # @param request: Request instance for DeleteEdgeUnitApplications.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DeleteEdgeUnitApplicationsRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DeleteEdgeUnitApplicationsResponse`
-        def DeleteEdgeUnitApplications(request)
-          body = send_request('DeleteEdgeUnitApplications', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteEdgeUnitApplicationsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -843,110 +687,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSecretResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取应用模板可视化配置信息
-
-        # @param request: Request instance for DescribeApplicationVisualization.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationVisualizationRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationVisualizationResponse`
-        def DescribeApplicationVisualization(request)
-          body = send_request('DescribeApplicationVisualization', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeApplicationVisualizationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 查询应用模板Yaml
-
-        # @param request: Request instance for DescribeApplicationYaml.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationYamlRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationYamlResponse`
-        def DescribeApplicationYaml(request)
-          body = send_request('DescribeApplicationYaml', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeApplicationYamlResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 检查应用模板的Yaml配置
-
-        # @param request: Request instance for DescribeApplicationYamlError.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationYamlErrorRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationYamlErrorResponse`
-        def DescribeApplicationYamlError(request)
-          body = send_request('DescribeApplicationYamlError', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeApplicationYamlErrorResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取应用模板列表
-
-        # @param request: Request instance for DescribeApplications.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationsRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeApplicationsResponse`
-        def DescribeApplications(request)
-          body = send_request('DescribeApplications', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeApplicationsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1297,188 +1037,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 产品停售，预下线
-
-        # 获取应用事件列表
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationEvents.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationEventsRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationEventsResponse`
-        def DescribeEdgeUnitApplicationEvents(request)
-          body = send_request('DescribeEdgeUnitApplicationEvents', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationEventsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取应用日志
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationLogs.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationLogsRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationLogsResponse`
-        def DescribeEdgeUnitApplicationLogs(request)
-          body = send_request('DescribeEdgeUnitApplicationLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationLogsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取应用容器状态
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationPodContainers.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationPodContainersRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationPodContainersResponse`
-        def DescribeEdgeUnitApplicationPodContainers(request)
-          body = send_request('DescribeEdgeUnitApplicationPodContainers', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationPodContainersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取应用下Pod状态
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationPods.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationPodsRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationPodsResponse`
-        def DescribeEdgeUnitApplicationPods(request)
-          body = send_request('DescribeEdgeUnitApplicationPods', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationPodsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取单元可视化配置信息
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationVisualization.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationVisualizationRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationVisualizationResponse`
-        def DescribeEdgeUnitApplicationVisualization(request)
-          body = send_request('DescribeEdgeUnitApplicationVisualization', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationVisualizationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 获取应用的Yaml配置
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationYaml.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationYamlRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationYamlResponse`
-        def DescribeEdgeUnitApplicationYaml(request)
-          body = send_request('DescribeEdgeUnitApplicationYaml', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationYamlResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 检查单元应用的Yaml配置
-
-        # @param request: Request instance for DescribeEdgeUnitApplicationYamlError.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationYamlErrorRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitApplicationYamlErrorResponse`
-        def DescribeEdgeUnitApplicationYamlError(request)
-          body = send_request('DescribeEdgeUnitApplicationYamlError', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitApplicationYamlErrorResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取单元下应用列表
 
         # @param request: Request instance for DescribeEdgeUnitApplications.
@@ -1489,32 +1047,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEdgeUnitApplicationsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 查询边缘集群详情
-
-        # @param request: Request instance for DescribeEdgeUnitCloud.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitCloudRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::DescribeEdgeUnitCloudResponse`
-        def DescribeEdgeUnitCloud(request)
-          body = send_request('DescribeEdgeUnitCloud', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEdgeUnitCloudResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2115,58 +1647,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetMarketComponentListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 修改应用模板基本信息
-
-        # @param request: Request instance for ModifyApplicationBasicInfo.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::ModifyApplicationBasicInfoRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::ModifyApplicationBasicInfoResponse`
-        def ModifyApplicationBasicInfo(request)
-          body = send_request('ModifyApplicationBasicInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyApplicationBasicInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 产品停售，预下线
-
-        # 修改应用模板配置
-
-        # @param request: Request instance for ModifyApplicationVisualization.
-        # @type request: :class:`Tencentcloud::iecp::V20210914::ModifyApplicationVisualizationRequest`
-        # @rtype: :class:`Tencentcloud::iecp::V20210914::ModifyApplicationVisualizationResponse`
-        def ModifyApplicationVisualization(request)
-          body = send_request('ModifyApplicationVisualization', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyApplicationVisualizationResponse.new
             model.deserialize(response['Response'])
             model
           else

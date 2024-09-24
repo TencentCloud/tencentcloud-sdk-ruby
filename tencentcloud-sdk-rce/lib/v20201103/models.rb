@@ -102,17 +102,17 @@ module TencentCloud
 
       # 数据授权信息
       class DataAuthorizationInfo < TencentCloud::Common::AbstractModel
-        # @param DataProviderName: 客户主体名称。
+        # @param DataProviderName: 数据委托方、需求方：客户主体名称。
 
         # 示例值：某某有限公司。
         # @type DataProviderName: String
-        # @param DataRecipientName: 接收方主体名称。
+        # @param DataRecipientName: 数据受托方、提供方：腾讯云主体名称。
 
         # 固定填：腾讯云计算（北京）有限责任公司
 
         # 示例值：腾讯云计算（北京）有限责任公司
         # @type DataRecipientName: String
-        # @param UserDataType: 客户请求RCE所涉及的用户敏感数据类型，支持多选。实际以接口请求传参为准。
+        # @param UserDataType: 客户请求RCE所提供的用户数据类型，支持多选。实际以接口请求传参为准。
 
         # 1-手机号；
 
@@ -122,24 +122,18 @@ module TencentCloud
 
         # 4-IP地址；
 
-        # 5-设备指纹；
-
         # 999-其它；
 
         # 示例值：[1, 4]
         # @type UserDataType: Array
-        # @param IsAuthorize: 客户是否已经获取用户授权。
-
+        # @param IsAuthorize: 客户是否已按[合规指南](https://rule.tencent.com/rule/202409130001)要求获取用户授权，同意客户委托腾讯云处理入参信息
         # 1-已授权；其它值为未授权。
-
         # 示例值：1
         # @type IsAuthorize: Integer
-        # @param IsPersonalData: 是否是用户个人敏感数据。
-
-        # 固定填：1。
-
+        # @param IsOrderHandling: 客户是否已按[合规指南](https://rule.tencent.com/rule/202409130001)要求获取用户授权，同意腾讯云结合客户提供的信息，对已合法收集的用户数据进行必要处理得出服务结果，并返回给客户。
+        # 1-已授权；其它值为未授权。
         # 示例值：1
-        # @type IsPersonalData: Integer
+        # @type IsOrderHandling: Integer
         # @param AuthorizationTerm: 客户获得的用户授权期限时间戳（单位秒）。
 
         # 不填默认无固定期限。
@@ -148,19 +142,26 @@ module TencentCloud
         # @type AuthorizationTerm: Integer
         # @param PrivacyPolicyLink: 客户获得用户授权所依赖的协议地址。
 
-        # 示例值：https://www.*****.com/*****
+        # 示例值：https://www.*****.com/*
         # @type PrivacyPolicyLink: String
+        # @param IsPersonalData: 是否是用户个人敏感数据。
 
-        attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsPersonalData, :AuthorizationTerm, :PrivacyPolicyLink
+        # 固定填：1。
 
-        def initialize(dataprovidername=nil, datarecipientname=nil, userdatatype=nil, isauthorize=nil, ispersonaldata=nil, authorizationterm=nil, privacypolicylink=nil)
+        # 示例值：1
+        # @type IsPersonalData: Integer
+
+        attr_accessor :DataProviderName, :DataRecipientName, :UserDataType, :IsAuthorize, :IsOrderHandling, :AuthorizationTerm, :PrivacyPolicyLink, :IsPersonalData
+
+        def initialize(dataprovidername=nil, datarecipientname=nil, userdatatype=nil, isauthorize=nil, isorderhandling=nil, authorizationterm=nil, privacypolicylink=nil, ispersonaldata=nil)
           @DataProviderName = dataprovidername
           @DataRecipientName = datarecipientname
           @UserDataType = userdatatype
           @IsAuthorize = isauthorize
-          @IsPersonalData = ispersonaldata
+          @IsOrderHandling = isorderhandling
           @AuthorizationTerm = authorizationterm
           @PrivacyPolicyLink = privacypolicylink
+          @IsPersonalData = ispersonaldata
         end
 
         def deserialize(params)
@@ -168,9 +169,10 @@ module TencentCloud
           @DataRecipientName = params['DataRecipientName']
           @UserDataType = params['UserDataType']
           @IsAuthorize = params['IsAuthorize']
-          @IsPersonalData = params['IsPersonalData']
+          @IsOrderHandling = params['IsOrderHandling']
           @AuthorizationTerm = params['AuthorizationTerm']
           @PrivacyPolicyLink = params['PrivacyPolicyLink']
+          @IsPersonalData = params['IsPersonalData']
         end
       end
 

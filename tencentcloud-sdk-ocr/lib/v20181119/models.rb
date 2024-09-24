@@ -1264,6 +1264,8 @@ module TencentCloud
         # HmtResidentPermitBack: 港澳台居住证背面
         # EstateCert: 不动产证
         # BizLicense: 营业执照
+        # ForeignPermanentResidentFront: 外国人永居证正面识别
+        # ForeignPermanentResidentBack: 外国人永居证背面识别
         # @type DiscernType: Array
 
         attr_accessor :ImageBase64, :ImageUrl, :DiscernType

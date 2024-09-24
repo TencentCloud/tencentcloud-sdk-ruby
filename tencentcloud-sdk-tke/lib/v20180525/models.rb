@@ -400,7 +400,7 @@ module TencentCloud
         end
       end
 
-      # 自动扩所容的节点
+      # 自动扩缩容的节点
       class AutoscalingAdded < TencentCloud::Common::AbstractModel
         # @param Joining: 正在加入中的节点数量
         # @type Joining: Integer

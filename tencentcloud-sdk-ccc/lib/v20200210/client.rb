@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建ai外呼会话(仅支持高级版座席)
+
+        # @param request: Request instance for CreateAICall.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateAICallRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateAICallResponse`
+        def CreateAICall(request)
+          body = send_request('CreateAICall', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAICallResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建管理端访问链接
 
         # @param request: Request instance for CreateAdminURL.

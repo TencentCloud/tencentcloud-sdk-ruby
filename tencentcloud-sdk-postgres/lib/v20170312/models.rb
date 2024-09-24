@@ -1237,10 +1237,12 @@ module TencentCloud
         # @type Name: String
         # @param DBVersion: 【废弃】不再需要指定，内核版本号与主实例保持一致
         # @type DBVersion: String
+        # @param DedicatedClusterId: 专属集群ID
+        # @type DedicatedClusterId: String
 
-        attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion
+        attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId
 
-        def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil)
+        def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil)
           @Zone = zone
           @MasterDBInstanceId = masterdbinstanceid
           @SpecCode = speccode
@@ -1261,6 +1263,7 @@ module TencentCloud
           @NeedSupportIpv6 = needsupportipv6
           @Name = name
           @DBVersion = dbversion
+          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
@@ -1287,6 +1290,7 @@ module TencentCloud
           @NeedSupportIpv6 = params['NeedSupportIpv6']
           @Name = params['Name']
           @DBVersion = params['DBVersion']
+          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 
@@ -1875,17 +1879,22 @@ module TencentCloud
         # @type Role: String
         # @param Zone: 节点所在可用区，例如 ap-guangzhou-1。
         # @type Zone: String
+        # @param DedicatedClusterId: 专属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DedicatedClusterId: String
 
-        attr_accessor :Role, :Zone
+        attr_accessor :Role, :Zone, :DedicatedClusterId
 
-        def initialize(role=nil, zone=nil)
+        def initialize(role=nil, zone=nil, dedicatedclusterid=nil)
           @Role = role
           @Zone = zone
+          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Zone = params['Zone']
+          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 
@@ -2000,6 +2009,73 @@ module TencentCloud
             @Object.deserialize(params['Object'])
           end
           @PrivilegeSet = params['PrivilegeSet']
+        end
+      end
+
+      # 专属集群相关信息，用于查询用户的专属集群列表
+      class DedicatedCluster < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterId: 专属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DedicatedClusterId: String
+        # @param Name: 专属集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Zone: 专属集群所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param StandbyDedicatedClusterSet: 灾备集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandbyDedicatedClusterSet: Array
+        # @param InstanceCount: 实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCount: Integer
+        # @param CpuTotal: Cpu总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTotal: Integer
+        # @param CpuAvailable: Cpu可用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuAvailable: Integer
+        # @param MemTotal: 内存总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemTotal: Integer
+        # @param MemAvailable: 内存可用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemAvailable: Integer
+        # @param DiskTotal: 磁盘总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskTotal: Integer
+        # @param DiskAvailable: 磁盘可用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskAvailable: Integer
+
+        attr_accessor :DedicatedClusterId, :Name, :Zone, :StandbyDedicatedClusterSet, :InstanceCount, :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable, :DiskTotal, :DiskAvailable
+
+        def initialize(dedicatedclusterid=nil, name=nil, zone=nil, standbydedicatedclusterset=nil, instancecount=nil, cputotal=nil, cpuavailable=nil, memtotal=nil, memavailable=nil, disktotal=nil, diskavailable=nil)
+          @DedicatedClusterId = dedicatedclusterid
+          @Name = name
+          @Zone = zone
+          @StandbyDedicatedClusterSet = standbydedicatedclusterset
+          @InstanceCount = instancecount
+          @CpuTotal = cputotal
+          @CpuAvailable = cpuavailable
+          @MemTotal = memtotal
+          @MemAvailable = memavailable
+          @DiskTotal = disktotal
+          @DiskAvailable = diskavailable
+        end
+
+        def deserialize(params)
+          @DedicatedClusterId = params['DedicatedClusterId']
+          @Name = params['Name']
+          @Zone = params['Zone']
+          @StandbyDedicatedClusterSet = params['StandbyDedicatedClusterSet']
+          @InstanceCount = params['InstanceCount']
+          @CpuTotal = params['CpuTotal']
+          @CpuAvailable = params['CpuAvailable']
+          @MemTotal = params['MemTotal']
+          @MemAvailable = params['MemAvailable']
+          @DiskTotal = params['DiskTotal']
+          @DiskAvailable = params['DiskAvailable']
         end
       end
 
@@ -3664,6 +3740,57 @@ module TencentCloud
               database_tmp = Database.new
               database_tmp.deserialize(i)
               @Databases << database_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDedicatedClusters请求参数结构体
+      class DescribeDedicatedClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
+        # dedicated-cluster-id: 按照专属集群ID筛选，类型为string
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDedicatedClusters返回参数结构体
+      class DescribeDedicatedClustersResponse < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterSet: 专属集群信息
+        # @type DedicatedClusterSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DedicatedClusterSet, :RequestId
+
+        def initialize(dedicatedclusterset=nil, requestid=nil)
+          @DedicatedClusterSet = dedicatedclusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DedicatedClusterSet'].nil?
+            @DedicatedClusterSet = []
+            params['DedicatedClusterSet'].each do |i|
+              dedicatedcluster_tmp = DedicatedCluster.new
+              dedicatedcluster_tmp.deserialize(i)
+              @DedicatedClusterSet << dedicatedcluster_tmp
             end
           end
           @RequestId = params['RequestId']

@@ -1829,32 +1829,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 历史废弃接口，从云API下线
-
-        # 指定时间和集群查询是否可回滚
-
-        # @param request: Request instance for DescribeRollbackTimeValidity.
-        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeRollbackTimeValidityRequest`
-        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeRollbackTimeValidityResponse`
-        def DescribeRollbackTimeValidity(request)
-          body = send_request('DescribeRollbackTimeValidity', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRollbackTimeValidityResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询serverless策略
 
         # @param request: Request instance for DescribeServerlessStrategy.
