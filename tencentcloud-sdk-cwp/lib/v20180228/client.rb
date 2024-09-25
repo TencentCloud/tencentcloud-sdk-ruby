@@ -4860,6 +4860,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃
+
         # 获取索引列表
 
         # @param request: Request instance for DescribeIndexList.

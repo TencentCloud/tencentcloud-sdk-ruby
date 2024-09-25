@@ -112,10 +112,13 @@ module TencentCloud
         # @param WhiteCmds: 关联的白命令命令
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhiteCmds: Array
+        # @param AllowKeyboardLogger: 是否允许记录键盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowKeyboardLogger: Boolean
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger
 
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -146,6 +149,7 @@ module TencentCloud
           @AllowAccessCredential = allowaccesscredential
           @ACTemplateSet = actemplateset
           @WhiteCmds = whitecmds
+          @AllowKeyboardLogger = allowkeyboardlogger
         end
 
         def deserialize(params)
@@ -224,6 +228,7 @@ module TencentCloud
             end
           end
           @WhiteCmds = params['WhiteCmds']
+          @AllowKeyboardLogger = params['AllowKeyboardLogger']
         end
       end
 
@@ -846,10 +851,12 @@ module TencentCloud
         # @type DepartmentId: String
         # @param AllowAccessCredential: 是否允许使用访问串，默认允许
         # @type AllowAccessCredential: Boolean
+        # @param AllowKeyboardLogger: 是否允许记录键盘
+        # @type AllowKeyboardLogger: Boolean
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -877,6 +884,7 @@ module TencentCloud
           @ValidateTo = validateto
           @DepartmentId = departmentid
           @AllowAccessCredential = allowaccesscredential
+          @AllowKeyboardLogger = allowkeyboardlogger
         end
 
         def deserialize(params)
@@ -907,6 +915,7 @@ module TencentCloud
           @ValidateTo = params['ValidateTo']
           @DepartmentId = params['DepartmentId']
           @AllowAccessCredential = params['AllowAccessCredential']
+          @AllowKeyboardLogger = params['AllowKeyboardLogger']
         end
       end
 
@@ -3445,10 +3454,12 @@ module TencentCloud
         # @type DepartmentId: String
         # @param AllowAccessCredential: 是否允许使用访问串
         # @type AllowAccessCredential: Boolean
+        # @param AllowKeyboardLogger: 是否允许键盘记录
+        # @type AllowKeyboardLogger: Boolean
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential, :AllowKeyboardLogger
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil, allowkeyboardlogger=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -3477,6 +3488,7 @@ module TencentCloud
           @ValidateTo = validateto
           @DepartmentId = departmentid
           @AllowAccessCredential = allowaccesscredential
+          @AllowKeyboardLogger = allowkeyboardlogger
         end
 
         def deserialize(params)
@@ -3508,6 +3520,7 @@ module TencentCloud
           @ValidateTo = params['ValidateTo']
           @DepartmentId = params['DepartmentId']
           @AllowAccessCredential = params['AllowAccessCredential']
+          @AllowKeyboardLogger = params['AllowKeyboardLogger']
         end
       end
 

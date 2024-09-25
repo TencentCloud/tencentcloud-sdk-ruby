@@ -1137,14 +1137,18 @@ module TencentCloud
         # @param NfsVolumes: Nfs挂载信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NfsVolumes: Array
+        # @param MountPropagation: 挂载配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountPropagation: String
 
-        attr_accessor :Name, :MountPath, :ReadOnly, :NfsVolumes
+        attr_accessor :Name, :MountPath, :ReadOnly, :NfsVolumes, :MountPropagation
 
-        def initialize(name=nil, mountpath=nil, readonly=nil, nfsvolumes=nil)
+        def initialize(name=nil, mountpath=nil, readonly=nil, nfsvolumes=nil, mountpropagation=nil)
           @Name = name
           @MountPath = mountpath
           @ReadOnly = readonly
           @NfsVolumes = nfsvolumes
+          @MountPropagation = mountpropagation
         end
 
         def deserialize(params)
@@ -1159,6 +1163,7 @@ module TencentCloud
               @NfsVolumes << cloudbaserunnfsvolumesource_tmp
             end
           end
+          @MountPropagation = params['MountPropagation']
         end
       end
 
@@ -2577,16 +2582,19 @@ module TencentCloud
         # @type IsDeleteImage: Boolean
         # @param OperatorRemark: 操作备注
         # @type OperatorRemark: String
+        # @param DelayedDeletionTime: 延迟删除版本时间
+        # @type DelayedDeletionTime: Integer
 
-        attr_accessor :EnvId, :ServerName, :VersionName, :IsDeleteServer, :IsDeleteImage, :OperatorRemark
+        attr_accessor :EnvId, :ServerName, :VersionName, :IsDeleteServer, :IsDeleteImage, :OperatorRemark, :DelayedDeletionTime
 
-        def initialize(envid=nil, servername=nil, versionname=nil, isdeleteserver=nil, isdeleteimage=nil, operatorremark=nil)
+        def initialize(envid=nil, servername=nil, versionname=nil, isdeleteserver=nil, isdeleteimage=nil, operatorremark=nil, delayeddeletiontime=nil)
           @EnvId = envid
           @ServerName = servername
           @VersionName = versionname
           @IsDeleteServer = isdeleteserver
           @IsDeleteImage = isdeleteimage
           @OperatorRemark = operatorremark
+          @DelayedDeletionTime = delayeddeletiontime
         end
 
         def deserialize(params)
@@ -2596,6 +2604,7 @@ module TencentCloud
           @IsDeleteServer = params['IsDeleteServer']
           @IsDeleteImage = params['IsDeleteImage']
           @OperatorRemark = params['OperatorRemark']
+          @DelayedDeletionTime = params['DelayedDeletionTime']
         end
       end
 

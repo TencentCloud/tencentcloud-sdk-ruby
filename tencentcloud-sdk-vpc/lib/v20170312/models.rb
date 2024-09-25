@@ -364,10 +364,13 @@ module TencentCloud
         # @param UnVpcId: 传统弹性公网IPv6所属vpc唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnVpcId: String
+        # @param DedicatedClusterId: CDC唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DedicatedClusterId: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId, :RenewFlag, :BandwidthPackageId, :UnVpcId
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId, :RenewFlag, :BandwidthPackageId, :UnVpcId, :DedicatedClusterId
 
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil, renewflag=nil, bandwidthpackageid=nil, unvpcid=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil, renewflag=nil, bandwidthpackageid=nil, unvpcid=nil, dedicatedclusterid=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -394,6 +397,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @BandwidthPackageId = bandwidthpackageid
           @UnVpcId = unvpcid
+          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
@@ -433,6 +437,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @BandwidthPackageId = params['BandwidthPackageId']
           @UnVpcId = params['UnVpcId']
+          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 
@@ -731,6 +736,8 @@ module TencentCloud
         # @type BandwidthPackageId: String
         # @param AddressName: EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名
         # @type AddressName: String
+        # @param DedicatedClusterId: CDC唯一ID
+        # @type DedicatedClusterId: String
         # @param Egress: 网络出口，当前仅支持精品BGP、静态单线，这2种IP 地址类型的指定出口传入，默认值：center_egress1，其它可选值：center_egress2、center_egress3
         # @type Egress: String
         # @param AntiDDoSPackageId: 高防包ID， 申请高防IP时，该字段必传。
@@ -738,9 +745,9 @@ module TencentCloud
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :Egress, :AntiDDoSPackageId, :ClientToken
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :Egress, :AntiDDoSPackageId, :ClientToken
 
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
@@ -752,6 +759,7 @@ module TencentCloud
           @Tags = tags
           @BandwidthPackageId = bandwidthpackageid
           @AddressName = addressname
+          @DedicatedClusterId = dedicatedclusterid
           @Egress = egress
           @AntiDDoSPackageId = antiddospackageid
           @ClientToken = clienttoken
@@ -779,6 +787,7 @@ module TencentCloud
           end
           @BandwidthPackageId = params['BandwidthPackageId']
           @AddressName = params['AddressName']
+          @DedicatedClusterId = params['DedicatedClusterId']
           @Egress = params['Egress']
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
           @ClientToken = params['ClientToken']

@@ -688,10 +688,16 @@ module TencentCloud
         # @param CertRevokedTime: 证书吊销完成时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertRevokedTime: String
+        # @param HostingResourceTypes: 托管资源类型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostingResourceTypes: Array
+        # @param HostingConfig: 托管配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostingConfig: :class:`Tencentcloud::Ssl.v20191205.models.HostingConfig`
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime, :HostingResourceTypes, :HostingConfig
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil, hostingresourcetypes=nil, hostingconfig=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -746,6 +752,8 @@ module TencentCloud
           @KeyPasswordCustomFlag = keypasswordcustomflag
           @SupportDownloadType = supportdownloadtype
           @CertRevokedTime = certrevokedtime
+          @HostingResourceTypes = hostingresourcetypes
+          @HostingConfig = hostingconfig
         end
 
         def deserialize(params)
@@ -822,6 +830,11 @@ module TencentCloud
             @SupportDownloadType.deserialize(params['SupportDownloadType'])
           end
           @CertRevokedTime = params['CertRevokedTime']
+          @HostingResourceTypes = params['HostingResourceTypes']
+          unless params['HostingConfig'].nil?
+            @HostingConfig = HostingConfig.new
+            @HostingConfig.deserialize(params['HostingConfig'])
+          end
         end
       end
 
@@ -4822,6 +4835,28 @@ module TencentCloud
           @BindDomains = params['BindDomains']
           @CertSource = params['CertSource']
           @CertId = params['CertId']
+        end
+      end
+
+      # 托管配置
+      class HostingConfig < TencentCloud::Common::AbstractModel
+        # @param ReplaceTime: 托管资源替换时间， 默认为证书过期前30天存在续费证书则替换
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplaceTime: Integer
+        # @param MessageTypes: 托管发送消息类型：0，托管开始前消息提醒（没有续费证书也会收到该提示消息）； 1， 托管开始消息提醒（存在续费证书才会收到消息提醒）； 2， 托管资源替换失败消息提醒； 3 托管资源替换成功消息提醒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageTypes: Array
+
+        attr_accessor :ReplaceTime, :MessageTypes
+
+        def initialize(replacetime=nil, messagetypes=nil)
+          @ReplaceTime = replacetime
+          @MessageTypes = messagetypes
+        end
+
+        def deserialize(params)
+          @ReplaceTime = params['ReplaceTime']
+          @MessageTypes = params['MessageTypes']
         end
       end
 

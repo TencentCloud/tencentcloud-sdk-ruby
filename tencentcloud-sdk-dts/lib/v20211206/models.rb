@@ -760,15 +760,15 @@ module TencentCloud
         # @type ExpectRunTime: String
         # @param SrcConnectType: 源端tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，SrcInfos中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。
         # @type SrcConnectType: String
-        # @param SrcInfo: 源端信息，单节点数据库使用，且SrcNodeType传single
+        # @param SrcInfo: 源端信息，单机版类型数据库配置使用，且SrcNodeType传single。例如mysql、percona、mariadb等。
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param SrcInfos: 源端信息，多节点数据库使用，且SrcNodeType传cluster
+        # @param SrcInfos: 源端信息，分布式类型数据库配置使用，且SrcNodeType传cluster。例如分布式数据库tdsqlmysql等。
         # @type SrcInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param SrcNodeType: 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
         # @type SrcNodeType: String
-        # @param DstInfo: 目标端信息，单节点数据库使用
+        # @param DstInfo: 目标端信息，单机版类型数据库配置使用，且SrcNodeType传single。例如mysql、percona、mariadb等。
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param DstInfos: 目标端信息，多节点数据库使用，且DstNodeType传cluster
+        # @param DstInfos: 目标端信息，分布式类型数据库配置使用，且SrcNodeType传cluster。例如分布式数据库tdsqlmysql等。
         # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
         # @type DstNodeType: String
