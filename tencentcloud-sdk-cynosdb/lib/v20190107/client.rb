@@ -2597,7 +2597,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例小版本升级限制时间
+        # 本接口（ModifyInstanceUpgradeLimitDays）用于修改实例内核小版本的升级限制时间。
 
         # @param request: Request instance for ModifyInstanceUpgradeLimitDays.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyInstanceUpgradeLimitDaysRequest`
@@ -2837,7 +2837,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 销毁集群
+        # 本接口（OfflineCluster）用于销毁集群。
 
         # @param request: Request instance for OfflineCluster.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::OfflineClusterRequest`
@@ -3341,7 +3341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开启日志投递
+        # 本接口（StartCLSDelivery）用于开启日志投递功能。
 
         # @param request: Request instance for StartCLSDelivery.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::StartCLSDeliveryRequest`
@@ -3365,7 +3365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 停止日志投递
+        # 本接口（StopCLSDelivery）用于停止日志投递功能。
 
         # @param request: Request instance for StopCLSDelivery.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::StopCLSDeliveryRequest`
@@ -3485,7 +3485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新内核小版本
+        # 本接口（UpgradeClusterVersion）用于更新内核小版本。
 
         # @param request: Request instance for UpgradeClusterVersion.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeClusterVersionRequest`
@@ -3509,7 +3509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例变配
+        # 本接口（UpgradeInstance）用于实例变配。
 
         # @param request: Request instance for UpgradeInstance.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeInstanceRequest`

@@ -3552,10 +3552,12 @@ module TencentCloud
         # @param Satisfaction: 满意度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Satisfaction: :class:`Tencentcloud::Ccc.v20200210.models.IMSatisfaction`
+        # @param ClientUserId: 用户ID
+        # @type ClientUserId: String
 
-        attr_accessor :Id, :Duration, :EndStatus, :Nickname, :Type, :StaffId, :Timestamp, :SessionId, :SkillGroupId, :SkillGroupName, :Satisfaction
+        attr_accessor :Id, :Duration, :EndStatus, :Nickname, :Type, :StaffId, :Timestamp, :SessionId, :SkillGroupId, :SkillGroupName, :Satisfaction, :ClientUserId
 
-        def initialize(id=nil, duration=nil, endstatus=nil, nickname=nil, type=nil, staffid=nil, timestamp=nil, sessionid=nil, skillgroupid=nil, skillgroupname=nil, satisfaction=nil)
+        def initialize(id=nil, duration=nil, endstatus=nil, nickname=nil, type=nil, staffid=nil, timestamp=nil, sessionid=nil, skillgroupid=nil, skillgroupname=nil, satisfaction=nil, clientuserid=nil)
           @Id = id
           @Duration = duration
           @EndStatus = endstatus
@@ -3567,6 +3569,7 @@ module TencentCloud
           @SkillGroupId = skillgroupid
           @SkillGroupName = skillgroupname
           @Satisfaction = satisfaction
+          @ClientUserId = clientuserid
         end
 
         def deserialize(params)
@@ -3584,6 +3587,7 @@ module TencentCloud
             @Satisfaction = IMSatisfaction.new
             @Satisfaction.deserialize(params['Satisfaction'])
           end
+          @ClientUserId = params['ClientUserId']
         end
       end
 

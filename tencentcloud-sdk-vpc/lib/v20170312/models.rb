@@ -3503,6 +3503,60 @@ module TencentCloud
         end
       end
 
+      # CreateCdcLDCXList请求参数结构体
+      class CreateCdcLDCXListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateCdcLDCXList返回参数结构体
+      class CreateCdcLDCXListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCdcNetPlanes请求参数结构体
+      class CreateCdcNetPlanesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateCdcNetPlanes返回参数结构体
+      class CreateCdcNetPlanesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomerGateway请求参数结构体
       class CreateCustomerGatewayRequest < TencentCloud::Common::AbstractModel
         # @param CustomerGatewayName: 对端网关名称，可任意命名，但不得超过60个字符。
@@ -3956,6 +4010,114 @@ module TencentCloud
           unless params['HaVip'].nil?
             @HaVip = HaVip.new
             @HaVip.deserialize(params['HaVip'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateHighPriorityRouteTable请求参数结构体
+      class CreateHighPriorityRouteTableRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @type VpcId: String
+        # @param Name: 高优路由表名称，最大长度不能超过60个字节。
+        # @type Name: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @type Tags: Array
+
+        attr_accessor :VpcId, :Name, :Tags
+
+        def initialize(vpcid=nil, name=nil, tags=nil)
+          @VpcId = vpcid
+          @Name = name
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @Name = params['Name']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateHighPriorityRouteTable返回参数结构体
+      class CreateHighPriorityRouteTableResponse < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTable: 高优路由表信息
+        # @type HighPriorityRouteTable: :class:`Tencentcloud::Vpc.v20170312.models.HighPriorityRouteTable`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighPriorityRouteTable, :RequestId
+
+        def initialize(highpriorityroutetable=nil, requestid=nil)
+          @HighPriorityRouteTable = highpriorityroutetable
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HighPriorityRouteTable'].nil?
+            @HighPriorityRouteTable = HighPriorityRouteTable.new
+            @HighPriorityRouteTable.deserialize(params['HighPriorityRouteTable'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateHighPriorityRoutes请求参数结构体
+      class CreateHighPriorityRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param HighPriorityRoutes: 高优路由表条目信息。
+        # @type HighPriorityRoutes: Array
+
+        attr_accessor :HighPriorityRouteTableId, :HighPriorityRoutes
+
+        def initialize(highpriorityroutetableid=nil, highpriorityroutes=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @HighPriorityRoutes = highpriorityroutes
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          unless params['HighPriorityRoutes'].nil?
+            @HighPriorityRoutes = []
+            params['HighPriorityRoutes'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRoutes << highpriorityroute_tmp
+            end
+          end
+        end
+      end
+
+      # CreateHighPriorityRoutes返回参数结构体
+      class CreateHighPriorityRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteSet: 高优路由表信息。
+        # @type HighPriorityRouteSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighPriorityRouteSet, :RequestId
+
+        def initialize(highpriorityrouteset=nil, requestid=nil)
+          @HighPriorityRouteSet = highpriorityrouteset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HighPriorityRouteSet'].nil?
+            @HighPriorityRouteSet = []
+            params['HighPriorityRouteSet'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRouteSet << highpriorityroute_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -6627,6 +6789,60 @@ module TencentCloud
         end
       end
 
+      # DeleteCdcLDCXList请求参数结构体
+      class DeleteCdcLDCXListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteCdcLDCXList返回参数结构体
+      class DeleteCdcLDCXListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCdcNetPlanes请求参数结构体
+      class DeleteCdcNetPlanesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteCdcNetPlanes返回参数结构体
+      class DeleteCdcNetPlanesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCustomerGateway请求参数结构体
       class DeleteCustomerGatewayRequest < TencentCloud::Common::AbstractModel
         # @param CustomerGatewayId: 对端网关ID，例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/api/215/17516)接口查询对端网关。
@@ -6823,6 +7039,85 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteHighPriorityRouteTables请求参数结构体
+      class DeleteHighPriorityRouteTablesRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableIds: 高优路由表表唯一ID 列表。
+        # @type HighPriorityRouteTableIds: Array
+
+        attr_accessor :HighPriorityRouteTableIds
+
+        def initialize(highpriorityroutetableids=nil)
+          @HighPriorityRouteTableIds = highpriorityroutetableids
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableIds = params['HighPriorityRouteTableIds']
+        end
+      end
+
+      # DeleteHighPriorityRouteTables返回参数结构体
+      class DeleteHighPriorityRouteTablesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteHighPriorityRoutes请求参数结构体
+      class DeleteHighPriorityRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param HighPriorityRouteIds: 高优路由表条目唯一 ID 列表。
+        # @type HighPriorityRouteIds: Array
+
+        attr_accessor :HighPriorityRouteTableId, :HighPriorityRouteIds
+
+        def initialize(highpriorityroutetableid=nil, highpriorityrouteids=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @HighPriorityRouteIds = highpriorityrouteids
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          @HighPriorityRouteIds = params['HighPriorityRouteIds']
+        end
+      end
+
+      # DeleteHighPriorityRoutes返回参数结构体
+      class DeleteHighPriorityRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteSet: 高优路由表条目信息。
+        # @type HighPriorityRouteSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighPriorityRouteSet, :RequestId
+
+        def initialize(highpriorityrouteset=nil, requestid=nil)
+          @HighPriorityRouteSet = highpriorityrouteset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HighPriorityRouteSet'].nil?
+            @HighPriorityRouteSet = []
+            params['HighPriorityRouteSet'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRouteSet << highpriorityroute_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9105,6 +9400,87 @@ module TencentCloud
         end
       end
 
+      # DescribeCdcLDCXList请求参数结构体
+      class DescribeCdcLDCXListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCdcLDCXList返回参数结构体
+      class DescribeCdcLDCXListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCdcNetPlanes请求参数结构体
+      class DescribeCdcNetPlanesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCdcNetPlanes返回参数结构体
+      class DescribeCdcNetPlanesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCdcUsedIdcVlan请求参数结构体
+      class DescribeCdcUsedIdcVlanRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCdcUsedIdcVlan返回参数结构体
+      class DescribeCdcUsedIdcVlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClassicLinkInstances请求参数结构体
       class DescribeClassicLinkInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -10085,6 +10461,156 @@ module TencentCloud
               @HaVipSet << havip_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHighPriorityRouteTables请求参数结构体
+      class DescribeHighPriorityRouteTablesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，参数不支持同时指定HighPriorityRouteTableIds和Filters。
+        # <li>high-priority-route-table-id - String - （过滤条件）高优路由表实例ID。</li>
+        # <li>name - String - （过滤条件）高优路由表名称。</li>
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        # <li>tag-key - String -是否必填：否 - （过滤条件）按照标签键进行过滤。</li>
+        # <li>next-hop-type - String - 是否必填：否 - （过滤条件）按下一跳类型进行过滤。使用next-hop-type进行过滤时，必须同时携带route-table-id与vpc-id。
+        # 目前我们支持的类型有：
+        # HAVIP：高可用虚拟IP；
+        # NORMAL_CVM：普通云服务器；
+        # </li>
+        # @type Filters: Array
+        # @param HighPriorityRouteTableIds: 高优路由表实例ID，例如：hprtb-18mot1fm。
+        # @type HighPriorityRouteTableIds: Array
+        # @param Offset: 偏移量。
+        # @type Offset: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: String
+        # @param NeedRouterInfo: 是否需要获取路由策略信息，默认获取，当控制台不需要拉取路由策略信息时，改为False。
+        # @type NeedRouterInfo: Boolean
+
+        attr_accessor :Filters, :HighPriorityRouteTableIds, :Offset, :Limit, :NeedRouterInfo
+
+        def initialize(filters=nil, highpriorityroutetableids=nil, offset=nil, limit=nil, needrouterinfo=nil)
+          @Filters = filters
+          @HighPriorityRouteTableIds = highpriorityroutetableids
+          @Offset = offset
+          @Limit = limit
+          @NeedRouterInfo = needrouterinfo
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @HighPriorityRouteTableIds = params['HighPriorityRouteTableIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NeedRouterInfo = params['NeedRouterInfo']
+        end
+      end
+
+      # DescribeHighPriorityRouteTables返回参数结构体
+      class DescribeHighPriorityRouteTablesResponse < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableSet: 高优路由表对象。
+        # @type HighPriorityRouteTableSet: Array
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighPriorityRouteTableSet, :TotalCount, :RequestId
+
+        def initialize(highpriorityroutetableset=nil, totalcount=nil, requestid=nil)
+          @HighPriorityRouteTableSet = highpriorityroutetableset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HighPriorityRouteTableSet'].nil?
+            @HighPriorityRouteTableSet = []
+            params['HighPriorityRouteTableSet'].each do |i|
+              highpriorityroutetable_tmp = HighPriorityRouteTable.new
+              highpriorityroutetable_tmp.deserialize(i)
+              @HighPriorityRouteTableSet << highpriorityroutetable_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHighPriorityRoutes请求参数结构体
+      class DescribeHighPriorityRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param Filters: <li>gateway-id - String - （过滤条件）网关ID。</li>
+        # <li>description - String - （过滤条件）路由描述。</li>
+        # <li>dest-cidr - String - （过滤条件）目的端地址，支持模糊左匹配。</li>
+        # <li>subnet-route-algorithm - String - （过滤条件）现在支持的算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。</li>
+        # <li>is-cdc - String - （过滤条件）CDC属性高优路由表。</li>
+        # <li>cdc-id - String - （过滤条件）CDC 集群唯一 ID 。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+
+        attr_accessor :HighPriorityRouteTableId, :Filters, :Offset, :Limit
+
+        def initialize(highpriorityroutetableid=nil, filters=nil, offset=nil, limit=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHighPriorityRoutes返回参数结构体
+      class DescribeHighPriorityRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteSet: 高优路由表条目信息。
+        # @type HighPriorityRouteSet: Array
+        # @param TotalCount: 高优路由表条目个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighPriorityRouteSet, :TotalCount, :RequestId
+
+        def initialize(highpriorityrouteset=nil, totalcount=nil, requestid=nil)
+          @HighPriorityRouteSet = highpriorityrouteset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HighPriorityRouteSet'].nil?
+            @HighPriorityRouteSet = []
+            params['HighPriorityRouteSet'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRouteSet << highpriorityroute_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -11878,6 +12404,73 @@ module TencentCloud
               @RouteTableSet << routetable_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoutes请求参数结构体
+      class DescribeRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，参数不支持同时指定RouteTableIds和Filters。
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        # <li>gateway-id - String - （过滤条件）网关ID。</li>
+        # <li>description - String - （过滤条件）路由描述。</li>
+        # <li>route-table-id - String - （过滤条件）路由表实例ID。</li>
+        # <li>dest-cidr - String - （过滤条件）目的端地址，支持模糊左匹配。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRoutes返回参数结构体
+      class DescribeRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RouteSet: 路由对象。
+        # @type RouteSet: Array
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RouteSet, :TotalCount, :RequestId
+
+        def initialize(routeset=nil, totalcount=nil, requestid=nil)
+          @RouteSet = routeset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RouteSet'].nil?
+            @RouteSet = []
+            params['RouteSet'].each do |i|
+              route_tmp = Route.new
+              route_tmp.deserialize(i)
+              @RouteSet << route_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -15514,13 +16107,16 @@ module TencentCloud
         # @param ServiceName: 终端节点服务名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
+        # @param CdcId: CDC 集群唯一 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
         # @param TagSet: 标签键值对。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :EndPointId, :VpcId, :SubnetId, :EndPointOwner, :EndPointName, :ServiceVpcId, :ServiceVip, :EndPointServiceId, :EndPointVip, :State, :CreateTime, :GroupSet, :ServiceName, :TagSet
+        attr_accessor :EndPointId, :VpcId, :SubnetId, :EndPointOwner, :EndPointName, :ServiceVpcId, :ServiceVip, :EndPointServiceId, :EndPointVip, :State, :CreateTime, :GroupSet, :ServiceName, :CdcId, :TagSet
 
-        def initialize(endpointid=nil, vpcid=nil, subnetid=nil, endpointowner=nil, endpointname=nil, servicevpcid=nil, servicevip=nil, endpointserviceid=nil, endpointvip=nil, state=nil, createtime=nil, groupset=nil, servicename=nil, tagset=nil)
+        def initialize(endpointid=nil, vpcid=nil, subnetid=nil, endpointowner=nil, endpointname=nil, servicevpcid=nil, servicevip=nil, endpointserviceid=nil, endpointvip=nil, state=nil, createtime=nil, groupset=nil, servicename=nil, cdcid=nil, tagset=nil)
           @EndPointId = endpointid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -15534,6 +16130,7 @@ module TencentCloud
           @CreateTime = createtime
           @GroupSet = groupset
           @ServiceName = servicename
+          @CdcId = cdcid
           @TagSet = tagset
         end
 
@@ -15551,6 +16148,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @GroupSet = params['GroupSet']
           @ServiceName = params['ServiceName']
+          @CdcId = params['CdcId']
           unless params['TagSet'].nil?
             @TagSet = []
             params['TagSet'].each do |i|
@@ -15588,6 +16186,9 @@ module TencentCloud
         # @type CreateTime: String
         # @param ServiceType: 挂载的PAAS服务类型，CLB,CDB,CRS
         # @type ServiceType: String
+        # @param CdcId: CDC 集群唯一 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
         # @param ServiceUin: Uin
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceUin: String
@@ -15598,9 +16199,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType, :ServiceUin, :BusinessIpType, :TagSet
+        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType, :CdcId, :ServiceUin, :BusinessIpType, :TagSet
 
-        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil, serviceuin=nil, businessiptype=nil, tagset=nil)
+        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil, cdcid=nil, serviceuin=nil, businessiptype=nil, tagset=nil)
           @EndPointServiceId = endpointserviceid
           @VpcId = vpcid
           @ServiceOwner = serviceowner
@@ -15612,6 +16213,7 @@ module TencentCloud
           @EndPointSet = endpointset
           @CreateTime = createtime
           @ServiceType = servicetype
+          @CdcId = cdcid
           @ServiceUin = serviceuin
           @BusinessIpType = businessiptype
           @TagSet = tagset
@@ -15636,6 +16238,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ServiceType = params['ServiceType']
+          @CdcId = params['CdcId']
           @ServiceUin = params['ServiceUin']
           @BusinessIpType = params['BusinessIpType']
           unless params['TagSet'].nil?
@@ -16013,6 +16616,9 @@ module TencentCloud
         # @param CheckAssociate: 是否开启`HAVIP`的飘移范围校验。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckAssociate: Boolean
+        # @param CdcId: CDC实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
         # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发 FlushTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlushedTime: String
@@ -16020,9 +16626,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 
-        attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :FlushedTime, :TagSet
+        attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :CdcId, :FlushedTime, :TagSet
 
-        def initialize(havipid=nil, havipname=nil, vip=nil, vpcid=nil, subnetid=nil, networkinterfaceid=nil, instanceid=nil, addressip=nil, state=nil, createdtime=nil, business=nil, havipassociationset=nil, checkassociate=nil, flushedtime=nil, tagset=nil)
+        def initialize(havipid=nil, havipname=nil, vip=nil, vpcid=nil, subnetid=nil, networkinterfaceid=nil, instanceid=nil, addressip=nil, state=nil, createdtime=nil, business=nil, havipassociationset=nil, checkassociate=nil, cdcid=nil, flushedtime=nil, tagset=nil)
           @HaVipId = havipid
           @HaVipName = havipname
           @Vip = vip
@@ -16036,6 +16642,7 @@ module TencentCloud
           @Business = business
           @HaVipAssociationSet = havipassociationset
           @CheckAssociate = checkassociate
+          @CdcId = cdcid
           @FlushedTime = flushedtime
           @TagSet = tagset
         end
@@ -16061,6 +16668,7 @@ module TencentCloud
             end
           end
           @CheckAssociate = params['CheckAssociate']
+          @CdcId = params['CdcId']
           @FlushedTime = params['FlushedTime']
           unless params['TagSet'].nil?
             @TagSet = []
@@ -16197,6 +16805,137 @@ module TencentCloud
           @ProbeInterval = params['ProbeInterval']
           @ProbeThreshold = params['ProbeThreshold']
           @ProbeTimeout = params['ProbeTimeout']
+        end
+      end
+
+      # 高优路由表条目修改属性。
+      class HighPriorityModifyItem < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteId: 高优路由条目唯一ID。
+        # @type HighPriorityRouteId: String
+        # @param Description: 高优路由条目描述。
+        # @type Description: String
+
+        attr_accessor :HighPriorityRouteId, :Description
+
+        def initialize(highpriorityrouteid=nil, description=nil)
+          @HighPriorityRouteId = highpriorityrouteid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteId = params['HighPriorityRouteId']
+          @Description = params['Description']
+        end
+      end
+
+      # 高优路由表条目信息
+      class HighPriorityRoute < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighPriorityRouteTableId: String
+        # @param HighPriorityRouteId: 高优路由表条目唯一 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighPriorityRouteId: String
+        # @param DestinationCidrBlock: 目标网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestinationCidrBlock: String
+        # @param GatewayType: 网关类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayType: String
+        # @param GatewayId: 网关唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param Description: 高优路由条目描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param SubnetRouteAlgorithm: ECMP算法，支持的算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetRouteAlgorithm: String
+        # @param IsCdc: 出参展示，是否为CDC属性高优路由
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCdc: Boolean
+        # @param CdcId: 出参展示，CDC 唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
+        # @param CreatedTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :HighPriorityRouteTableId, :HighPriorityRouteId, :DestinationCidrBlock, :GatewayType, :GatewayId, :Description, :SubnetRouteAlgorithm, :IsCdc, :CdcId, :CreatedTime
+
+        def initialize(highpriorityroutetableid=nil, highpriorityrouteid=nil, destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, description=nil, subnetroutealgorithm=nil, iscdc=nil, cdcid=nil, createdtime=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @HighPriorityRouteId = highpriorityrouteid
+          @DestinationCidrBlock = destinationcidrblock
+          @GatewayType = gatewaytype
+          @GatewayId = gatewayid
+          @Description = description
+          @SubnetRouteAlgorithm = subnetroutealgorithm
+          @IsCdc = iscdc
+          @CdcId = cdcid
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          @HighPriorityRouteId = params['HighPriorityRouteId']
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @GatewayType = params['GatewayType']
+          @GatewayId = params['GatewayId']
+          @Description = params['Description']
+          @SubnetRouteAlgorithm = params['SubnetRouteAlgorithm']
+          @IsCdc = params['IsCdc']
+          @CdcId = params['CdcId']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 高优路由表信息
+      class HighPriorityRouteTable < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighPriorityRouteTableId: String
+        # @param VpcId: VPC实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Name: 高优路由表名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param SubnetSet: 高优路由表关联的子网列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetSet: Array
+        # @param HighPriorityRouteSet: 高优路由表条目信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighPriorityRouteSet: Array
+        # @param CreatedTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :HighPriorityRouteTableId, :VpcId, :Name, :SubnetSet, :HighPriorityRouteSet, :CreatedTime
+
+        def initialize(highpriorityroutetableid=nil, vpcid=nil, name=nil, subnetset=nil, highpriorityrouteset=nil, createdtime=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @VpcId = vpcid
+          @Name = name
+          @SubnetSet = subnetset
+          @HighPriorityRouteSet = highpriorityrouteset
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          @VpcId = params['VpcId']
+          @Name = params['Name']
+          @SubnetSet = params['SubnetSet']
+          unless params['HighPriorityRouteSet'].nil?
+            @HighPriorityRouteSet = []
+            params['HighPriorityRouteSet'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRouteSet << highpriorityroute_tmp
+            end
+          end
+          @CreatedTime = params['CreatedTime']
         end
       end
 
@@ -17689,6 +18428,60 @@ module TencentCloud
         end
       end
 
+      # ModifyCdcLDCXAttribute请求参数结构体
+      class ModifyCdcLDCXAttributeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyCdcLDCXAttribute返回参数结构体
+      class ModifyCdcLDCXAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCdcNetPlaneAttribute请求参数结构体
+      class ModifyCdcNetPlaneAttributeRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyCdcNetPlaneAttribute返回参数结构体
+      class ModifyCdcNetPlaneAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCustomerGatewayAttribute请求参数结构体
       class ModifyCustomerGatewayAttributeRequest < TencentCloud::Common::AbstractModel
         # @param CustomerGatewayId: 对端网关ID，例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/api/215/17516)接口查询对端网关。
@@ -17918,6 +18711,128 @@ module TencentCloud
 
       # ModifyHaVipAttribute返回参数结构体
       class ModifyHaVipAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHighPriorityRouteAttribute请求参数结构体
+      class ModifyHighPriorityRouteAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param HighPriorityModifyItems: 高优路由表条目修改属性。
+        # @type HighPriorityModifyItems: Array
+
+        attr_accessor :HighPriorityRouteTableId, :HighPriorityModifyItems
+
+        def initialize(highpriorityroutetableid=nil, highprioritymodifyitems=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @HighPriorityModifyItems = highprioritymodifyitems
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          unless params['HighPriorityModifyItems'].nil?
+            @HighPriorityModifyItems = []
+            params['HighPriorityModifyItems'].each do |i|
+              highprioritymodifyitem_tmp = HighPriorityModifyItem.new
+              highprioritymodifyitem_tmp.deserialize(i)
+              @HighPriorityModifyItems << highprioritymodifyitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyHighPriorityRouteAttribute返回参数结构体
+      class ModifyHighPriorityRouteAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHighPriorityRouteECMPAlgorithm请求参数结构体
+      class ModifyHighPriorityRouteECMPAlgorithmRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表实例唯一ID。
+        # @type HighPriorityRouteTableId: String
+        # @param RouteECMPAlgorithms: 高优路由表HASH策略。
+        # @type RouteECMPAlgorithms: Array
+
+        attr_accessor :HighPriorityRouteTableId, :RouteECMPAlgorithms
+
+        def initialize(highpriorityroutetableid=nil, routeecmpalgorithms=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @RouteECMPAlgorithms = routeecmpalgorithms
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          unless params['RouteECMPAlgorithms'].nil?
+            @RouteECMPAlgorithms = []
+            params['RouteECMPAlgorithms'].each do |i|
+              routeecmpalgorithm_tmp = RouteECMPAlgorithm.new
+              routeecmpalgorithm_tmp.deserialize(i)
+              @RouteECMPAlgorithms << routeecmpalgorithm_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyHighPriorityRouteECMPAlgorithm返回参数结构体
+      class ModifyHighPriorityRouteECMPAlgorithmResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHighPriorityRouteTableAttribute请求参数结构体
+      class ModifyHighPriorityRouteTableAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表表唯一ID
+        # @type HighPriorityRouteTableId: String
+        # @param Name: 高优路由表表名称
+        # @type Name: String
+
+        attr_accessor :HighPriorityRouteTableId, :Name
+
+        def initialize(highpriorityroutetableid=nil, name=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          @Name = params['Name']
+        end
+      end
+
+      # ModifyHighPriorityRouteTableAttribute返回参数结构体
+      class ModifyHighPriorityRouteTableAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -21603,6 +22518,107 @@ module TencentCloud
         end
       end
 
+      # ReplaceHighPriorityRouteTableAssociation请求参数结构体
+      class ReplaceHighPriorityRouteTableAssociationRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param SubnetId: 子网唯一 ID
+        # @type SubnetId: String
+
+        attr_accessor :HighPriorityRouteTableId, :SubnetId
+
+        def initialize(highpriorityroutetableid=nil, subnetid=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # ReplaceHighPriorityRouteTableAssociation返回参数结构体
+      class ReplaceHighPriorityRouteTableAssociationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReplaceHighPriorityRoutes请求参数结构体
+      class ReplaceHighPriorityRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param HighPriorityRoutes: 高优路由表条目信息。
+        # @type HighPriorityRoutes: Array
+
+        attr_accessor :HighPriorityRouteTableId, :HighPriorityRoutes
+
+        def initialize(highpriorityroutetableid=nil, highpriorityroutes=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @HighPriorityRoutes = highpriorityroutes
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          unless params['HighPriorityRoutes'].nil?
+            @HighPriorityRoutes = []
+            params['HighPriorityRoutes'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRoutes << highpriorityroute_tmp
+            end
+          end
+        end
+      end
+
+      # ReplaceHighPriorityRoutes返回参数结构体
+      class ReplaceHighPriorityRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param NewHighPriorityRouteSet: 新的高优路由表条目列表。
+        # @type NewHighPriorityRouteSet: Array
+        # @param OldHighPriorityRouteSet: 旧的高优路由表条目列表。
+        # @type OldHighPriorityRouteSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NewHighPriorityRouteSet, :OldHighPriorityRouteSet, :RequestId
+
+        def initialize(newhighpriorityrouteset=nil, oldhighpriorityrouteset=nil, requestid=nil)
+          @NewHighPriorityRouteSet = newhighpriorityrouteset
+          @OldHighPriorityRouteSet = oldhighpriorityrouteset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NewHighPriorityRouteSet'].nil?
+            @NewHighPriorityRouteSet = []
+            params['NewHighPriorityRouteSet'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @NewHighPriorityRouteSet << highpriorityroute_tmp
+            end
+          end
+          unless params['OldHighPriorityRouteSet'].nil?
+            @OldHighPriorityRouteSet = []
+            params['OldHighPriorityRouteSet'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @OldHighPriorityRouteSet << highpriorityroute_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplaceRouteTableAssociation请求参数结构体
       class ReplaceRouteTableAssociationRequest < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例ID，例如：subnet-3x5lf5q0。可通过DescribeSubnets接口查询。
@@ -21829,6 +22845,53 @@ module TencentCloud
 
       # ResetAttachCcnInstances返回参数结构体
       class ResetAttachCcnInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetHighPriorityRoutes请求参数结构体
+      class ResetHighPriorityRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
+        # @type HighPriorityRouteTableId: String
+        # @param Name: 高优路由表名称。
+        # @type Name: String
+        # @param HighPriorityRoutes: 高优路由表条目信息。
+        # @type HighPriorityRoutes: Array
+
+        attr_accessor :HighPriorityRouteTableId, :Name, :HighPriorityRoutes
+
+        def initialize(highpriorityroutetableid=nil, name=nil, highpriorityroutes=nil)
+          @HighPriorityRouteTableId = highpriorityroutetableid
+          @Name = name
+          @HighPriorityRoutes = highpriorityroutes
+        end
+
+        def deserialize(params)
+          @HighPriorityRouteTableId = params['HighPriorityRouteTableId']
+          @Name = params['Name']
+          unless params['HighPriorityRoutes'].nil?
+            @HighPriorityRoutes = []
+            params['HighPriorityRoutes'].each do |i|
+              highpriorityroute_tmp = HighPriorityRoute.new
+              highpriorityroute_tmp.deserialize(i)
+              @HighPriorityRoutes << highpriorityroute_tmp
+            end
+          end
+        end
+      end
+
+      # ResetHighPriorityRoutes返回参数结构体
+      class ResetHighPriorityRoutesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -22380,10 +23443,13 @@ module TencentCloud
         # @type PublishedToVbc: Boolean
         # @param CreatedTime: 路由策略创建时间
         # @type CreatedTime: String
+        # @param CdcId: CDC 集群唯一 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
 
-        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteId, :RouteDescription, :Enabled, :RouteType, :RouteTableId, :DestinationIpv6CidrBlock, :RouteItemId, :PublishedToVbc, :CreatedTime
+        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteId, :RouteDescription, :Enabled, :RouteType, :RouteTableId, :DestinationIpv6CidrBlock, :RouteItemId, :PublishedToVbc, :CreatedTime, :CdcId
 
-        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeid=nil, routedescription=nil, enabled=nil, routetype=nil, routetableid=nil, destinationipv6cidrblock=nil, routeitemid=nil, publishedtovbc=nil, createdtime=nil)
+        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeid=nil, routedescription=nil, enabled=nil, routetype=nil, routetableid=nil, destinationipv6cidrblock=nil, routeitemid=nil, publishedtovbc=nil, createdtime=nil, cdcid=nil)
           @DestinationCidrBlock = destinationcidrblock
           @GatewayType = gatewaytype
           @GatewayId = gatewayid
@@ -22396,6 +23462,7 @@ module TencentCloud
           @RouteItemId = routeitemid
           @PublishedToVbc = publishedtovbc
           @CreatedTime = createdtime
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -22411,6 +23478,7 @@ module TencentCloud
           @RouteItemId = params['RouteItemId']
           @PublishedToVbc = params['PublishedToVbc']
           @CreatedTime = params['CreatedTime']
+          @CdcId = params['CdcId']
         end
       end
 
@@ -22442,6 +23510,28 @@ module TencentCloud
               @ConflictSet << route_tmp
             end
           end
+        end
+      end
+
+      # 用于修改入路由表ECMP算法。现在支持的算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
+      class RouteECMPAlgorithm < TencentCloud::Common::AbstractModel
+        # @param DestinationCidrBlock:  目标网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestinationCidrBlock: String
+        # @param SubnetRouteAlgorithm: 支持的 ECMP算法有：ECMP_QUINTUPLE_HASH：五元组hash，ECMP_SOURCE_DESTINATION_IP_HASH：源和目的IP hash，ECMP_DESTINATION_IP_HASH：目的IP hash，ECMP_SOURCE_IP_HASH：源IP hash。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetRouteAlgorithm: String
+
+        attr_accessor :DestinationCidrBlock, :SubnetRouteAlgorithm
+
+        def initialize(destinationcidrblock=nil, subnetroutealgorithm=nil)
+          @DestinationCidrBlock = destinationcidrblock
+          @SubnetRouteAlgorithm = subnetroutealgorithm
+        end
+
+        def deserialize(params)
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @SubnetRouteAlgorithm = params['SubnetRouteAlgorithm']
         end
       end
 

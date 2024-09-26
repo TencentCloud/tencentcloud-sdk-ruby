@@ -5162,12 +5162,21 @@ module TencentCloud
         # @type Type: String
         # @param PassportRecognizeInfos: 信息区证件内容
         # @type PassportRecognizeInfos: :class:`Tencentcloud::Ocr.v20181119.models.PassportRecognizeInfos`
+        # @param WarnCardInfos: 告警码
+        # -9101 证件边框不完整告警
+        # -9102 证件复印件告警
+        # -9103 证件翻拍告警
+        # -9104 证件PS告警
+        # -9107 证件反光告警
+        # -9108 证件模糊告警
+        # -9109 告警能力未开通
+        # @type WarnCardInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :RequestId
+        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :RequestId
 
-        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, requestid=nil)
+        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, requestid=nil)
           @ID = id
           @Name = name
           @DateOfBirth = dateofbirth
@@ -5184,6 +5193,7 @@ module TencentCloud
           @GivenName = givenname
           @Type = type
           @PassportRecognizeInfos = passportrecognizeinfos
+          @WarnCardInfos = warncardinfos
           @RequestId = requestid
         end
 
@@ -5207,6 +5217,7 @@ module TencentCloud
             @PassportRecognizeInfos = PassportRecognizeInfos.new
             @PassportRecognizeInfos.deserialize(params['PassportRecognizeInfos'])
           end
+          @WarnCardInfos = params['WarnCardInfos']
           @RequestId = params['RequestId']
         end
       end

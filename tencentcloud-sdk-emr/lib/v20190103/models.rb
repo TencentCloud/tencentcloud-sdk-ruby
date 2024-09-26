@@ -2949,15 +2949,18 @@ module TencentCloud
         # @type PageSize: Integer
         # @param Page: 分页查询时的页号，从1开始
         # @type Page: Integer
+        # @param Type: 查询类型,支持HIVE,SPARK,MAPREDUCE,TRINO等类型,默认查询全部
+        # @type Type: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page, :Type
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil, type=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @PageSize = pagesize
           @Page = page
+          @Type = type
         end
 
         def deserialize(params)
@@ -2966,6 +2969,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @PageSize = params['PageSize']
           @Page = params['Page']
+          @Type = params['Type']
         end
       end
 

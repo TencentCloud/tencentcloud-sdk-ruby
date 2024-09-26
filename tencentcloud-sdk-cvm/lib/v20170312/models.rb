@@ -4923,12 +4923,14 @@ module TencentCloud
         # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
         # @param HpcClusterId: 高性能计算集群ID。
         # @type HpcClusterId: String
+        # @param CpuTopology: 描述了实例CPU拓扑结构的相关信息。若不指定该参数，则按系统资源情况决定。
+        # @type CpuTopology: :class:`Tencentcloud::Cvm.v20170312.models.CpuTopology`
         # @param LaunchTemplate: 实例启动模板。
         # @type LaunchTemplate: :class:`Tencentcloud::Cvm.v20170312.models.LaunchTemplate`
 
-        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :HpcClusterId, :LaunchTemplate
+        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :HpcClusterId, :CpuTopology, :LaunchTemplate
 
-        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, hpcclusterid=nil, launchtemplate=nil)
+        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, hpcclusterid=nil, cputopology=nil, launchtemplate=nil)
           @Placement = placement
           @ImageId = imageid
           @InstanceChargeType = instancechargetype
@@ -4948,6 +4950,7 @@ module TencentCloud
           @TagSpecification = tagspecification
           @InstanceMarketOptions = instancemarketoptions
           @HpcClusterId = hpcclusterid
+          @CpuTopology = cputopology
           @LaunchTemplate = launchtemplate
         end
 
@@ -5009,6 +5012,10 @@ module TencentCloud
             @InstanceMarketOptions.deserialize(params['InstanceMarketOptions'])
           end
           @HpcClusterId = params['HpcClusterId']
+          unless params['CpuTopology'].nil?
+            @CpuTopology = CpuTopology.new
+            @CpuTopology.deserialize(params['CpuTopology'])
+          end
           unless params['LaunchTemplate'].nil?
             @LaunchTemplate = LaunchTemplate.new
             @LaunchTemplate.deserialize(params['LaunchTemplate'])

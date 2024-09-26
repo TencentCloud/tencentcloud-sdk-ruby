@@ -947,6 +947,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 IDC 通道
+
+        # @param request: Request instance for CreateCdcLDCXList.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateCdcLDCXListRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateCdcLDCXListResponse`
+        def CreateCdcLDCXList(request)
+          body = send_request('CreateCdcLDCXList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCdcLDCXListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建虚拟连接，用于支持 CDC 多租户模式
+
+        # @param request: Request instance for CreateCdcNetPlanes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateCdcNetPlanesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateCdcNetPlanesResponse`
+        def CreateCdcNetPlanes(request)
+          body = send_request('CreateCdcNetPlanes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCdcNetPlanesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateCustomerGateway）用于创建对端网关。
 
         # @param request: Request instance for CreateCustomerGateway.
@@ -1136,6 +1184,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateHaVipResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 高优路由表创建
+
+        # @param request: Request instance for CreateHighPriorityRouteTable.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateHighPriorityRouteTableRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateHighPriorityRouteTableResponse`
+        def CreateHighPriorityRouteTable(request)
+          body = send_request('CreateHighPriorityRouteTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHighPriorityRouteTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建高优路由表条目。
+
+        # @param request: Request instance for CreateHighPriorityRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateHighPriorityRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateHighPriorityRoutesResponse`
+        def CreateHighPriorityRoutes(request)
+          body = send_request('CreateHighPriorityRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHighPriorityRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2201,6 +2297,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除 IDC通道
+
+        # @param request: Request instance for DeleteCdcLDCXList.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteCdcLDCXListRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteCdcLDCXListResponse`
+        def DeleteCdcLDCXList(request)
+          body = send_request('DeleteCdcLDCXList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCdcLDCXListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除虚拟连接
+
+        # @param request: Request instance for DeleteCdcNetPlanes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteCdcNetPlanesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteCdcNetPlanesResponse`
+        def DeleteCdcNetPlanes(request)
+          body = send_request('DeleteCdcNetPlanes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCdcNetPlanesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteCustomerGateway）用于删除对端网关。
 
         # @param request: Request instance for DeleteCustomerGateway.
@@ -2337,6 +2481,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteHaVipResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除高优路由表
+
+        # @param request: Request instance for DeleteHighPriorityRouteTables.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteHighPriorityRouteTablesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteHighPriorityRouteTablesResponse`
+        def DeleteHighPriorityRouteTables(request)
+          body = send_request('DeleteHighPriorityRouteTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteHighPriorityRouteTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除高优路由表的路由条目。
+
+        # @param request: Request instance for DeleteHighPriorityRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteHighPriorityRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteHighPriorityRoutesResponse`
+        def DeleteHighPriorityRoutes(request)
+          body = send_request('DeleteHighPriorityRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteHighPriorityRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3597,6 +3789,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 IDC通道信息
+
+        # @param request: Request instance for DescribeCdcLDCXList.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeCdcLDCXListRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeCdcLDCXListResponse`
+        def DescribeCdcLDCXList(request)
+          body = send_request('DescribeCdcLDCXList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCdcLDCXListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询虚拟连接
+
+        # @param request: Request instance for DescribeCdcNetPlanes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeCdcNetPlanesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeCdcNetPlanesResponse`
+        def DescribeCdcNetPlanes(request)
+          body = send_request('DescribeCdcNetPlanes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCdcNetPlanesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询IDC使用的 VLAN
+
+        # @param request: Request instance for DescribeCdcUsedIdcVlan.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeCdcUsedIdcVlanRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeCdcUsedIdcVlanResponse`
+        def DescribeCdcUsedIdcVlan(request)
+          body = send_request('DescribeCdcUsedIdcVlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCdcUsedIdcVlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeClassicLinkInstances）用于查询私有网络和基础网络设备互通列表。
 
         # @param request: Request instance for DescribeClassicLinkInstances.
@@ -3924,6 +4188,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeHaVipsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询高优路由表。
+
+        # @param request: Request instance for DescribeHighPriorityRouteTables.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeHighPriorityRouteTablesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeHighPriorityRouteTablesResponse`
+        def DescribeHighPriorityRouteTables(request)
+          body = send_request('DescribeHighPriorityRouteTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHighPriorityRouteTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询高优路由表条目信息。
+
+        # @param request: Request instance for DescribeHighPriorityRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeHighPriorityRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeHighPriorityRoutesResponse`
+        def DescribeHighPriorityRoutes(request)
+          body = send_request('DescribeHighPriorityRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHighPriorityRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4599,6 +4911,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRouteTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeRoutes）用于查询路由列表。
+
+        # @param request: Request instance for DescribeRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeRoutesResponse`
+        def DescribeRoutes(request)
+          body = send_request('DescribeRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6720,6 +7056,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改 IDC通道信息
+
+        # @param request: Request instance for ModifyCdcLDCXAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyCdcLDCXAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyCdcLDCXAttributeResponse`
+        def ModifyCdcLDCXAttribute(request)
+          body = send_request('ModifyCdcLDCXAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCdcLDCXAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改虚拟连接
+
+        # @param request: Request instance for ModifyCdcNetPlaneAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyCdcNetPlaneAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyCdcNetPlaneAttributeResponse`
+        def ModifyCdcNetPlaneAttribute(request)
+          body = send_request('ModifyCdcNetPlaneAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCdcNetPlaneAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
 
         # @param request: Request instance for ModifyCustomerGatewayAttribute.
@@ -6850,6 +7234,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyHaVipAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改高优路由表条目属性。
+
+        # @param request: Request instance for ModifyHighPriorityRouteAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyHighPriorityRouteAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyHighPriorityRouteAttributeResponse`
+        def ModifyHighPriorityRouteAttribute(request)
+          body = send_request('ModifyHighPriorityRouteAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHighPriorityRouteAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改高优路由表 HASH 策略。
+
+        # @param request: Request instance for ModifyHighPriorityRouteECMPAlgorithm.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyHighPriorityRouteECMPAlgorithmRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyHighPriorityRouteECMPAlgorithmResponse`
+        def ModifyHighPriorityRouteECMPAlgorithm(request)
+          body = send_request('ModifyHighPriorityRouteECMPAlgorithm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHighPriorityRouteECMPAlgorithmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改高优路由表属性
+
+        # @param request: Request instance for ModifyHighPriorityRouteTableAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyHighPriorityRouteTableAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyHighPriorityRouteTableAttributeResponse`
+        def ModifyHighPriorityRouteTableAttribute(request)
+          body = send_request('ModifyHighPriorityRouteTableAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHighPriorityRouteTableAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -8172,6 +8628,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 替换高优路由表和子网绑定关系。
+
+        # @param request: Request instance for ReplaceHighPriorityRouteTableAssociation.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ReplaceHighPriorityRouteTableAssociationRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ReplaceHighPriorityRouteTableAssociationResponse`
+        def ReplaceHighPriorityRouteTableAssociation(request)
+          body = send_request('ReplaceHighPriorityRouteTableAssociation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceHighPriorityRouteTableAssociationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 替换高优路由表条目信息。
+
+        # @param request: Request instance for ReplaceHighPriorityRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ReplaceHighPriorityRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ReplaceHighPriorityRoutesResponse`
+        def ReplaceHighPriorityRoutes(request)
+          body = send_request('ReplaceHighPriorityRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceHighPriorityRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ReplaceRouteTableAssociation）用于修改子网（Subnet）关联的路由表（RouteTable）。
         # * 一个子网只能关联一个路由表。
 
@@ -8281,6 +8785,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetAttachCcnInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置高优路由表。
+
+        # @param request: Request instance for ResetHighPriorityRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResetHighPriorityRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResetHighPriorityRoutesResponse`
+        def ResetHighPriorityRoutes(request)
+          body = send_request('ResetHighPriorityRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetHighPriorityRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
