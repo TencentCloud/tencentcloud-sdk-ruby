@@ -682,6 +682,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeImageFromFamily) 用于查看镜像族内可用镜像信息。
+
+        # @param request: Request instance for DescribeImageFromFamily.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeImageFromFamilyRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeImageFromFamilyResponse`
+        def DescribeImageFromFamily(request)
+          body = send_request('DescribeImageFromFamily', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageFromFamilyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeImageQuota)用于查询用户账号的镜像配额。
 
         # @param request: Request instance for DescribeImageQuota.

@@ -937,7 +937,7 @@ module TencentCloud
       class CreateLaunchConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param LaunchConfigurationName: 启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
         # @type LaunchConfigurationName: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像Id与镜像族名称，二者必填一个且只能填写一个。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
         # @type ImageId: String
         # @param ProjectId: 启动配置所属项目ID。不填为默认项目。
         # 注意：伸缩组内实例所属项目ID取伸缩组项目ID，与这里取值无关。
@@ -1000,10 +1000,12 @@ module TencentCloud
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
         # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
         # @type DisasterRecoverGroupIds: Array
+        # @param ImageFamily: 镜像族名称。镜像Id与镜像族名称，二者必填一个且只能填写一个。
+        # @type ImageFamily: String
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily
 
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -1029,6 +1031,7 @@ module TencentCloud
           @HpcClusterId = hpcclusterid
           @IPv6InternetAccessible = ipv6internetaccessible
           @DisasterRecoverGroupIds = disasterrecovergroupids
+          @ImageFamily = imagefamily
         end
 
         def deserialize(params)
@@ -1105,6 +1108,7 @@ module TencentCloud
             @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
           end
           @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          @ImageFamily = params['ImageFamily']
         end
       end
 
@@ -2034,8 +2038,7 @@ module TencentCloud
         # <li> vague-launch-configuration-name - String - 是否必填：否 -（过滤条件）按照启动配置名称模糊搜索。</li>
         # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
         # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
-        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3
-        # </li>
+        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3</li>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`LaunchConfigurationIds`和`Filters`。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -3289,10 +3292,13 @@ module TencentCloud
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
         # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
         # @type DisasterRecoverGroupIds: Array
+        # @param ImageFamily: 镜像族名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageFamily: String
 
-        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
+        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily
 
-        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
+        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
           @LaunchConfigurationName = launchconfigurationname
@@ -3324,6 +3330,7 @@ module TencentCloud
           @HpcClusterId = hpcclusterid
           @IPv6InternetAccessible = ipv6internetaccessible
           @DisasterRecoverGroupIds = disasterrecovergroupids
+          @ImageFamily = imagefamily
         end
 
         def deserialize(params)
@@ -3413,6 +3420,7 @@ module TencentCloud
             @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
           end
           @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          @ImageFamily = params['ImageFamily']
         end
       end
 
@@ -3909,10 +3917,12 @@ module TencentCloud
         # @param InstanceTags: 实例标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。
         # 该参数会覆盖原有的实例标签列表，如需新增标签，需将新标签和原有标签一并传入。
         # @type InstanceTags: Array
+        # @param ImageFamily: 镜像族名称。
+        # @type ImageFamily: String
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags, :ImageFamily
 
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil, imagefamily=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3936,6 +3946,7 @@ module TencentCloud
           @DisasterRecoverGroupIds = disasterrecovergroupids
           @LoginSettings = loginsettings
           @InstanceTags = instancetags
+          @ImageFamily = imagefamily
         end
 
         def deserialize(params)
@@ -4003,6 +4014,7 @@ module TencentCloud
               @InstanceTags << instancetag_tmp
             end
           end
+          @ImageFamily = params['ImageFamily']
         end
       end
 

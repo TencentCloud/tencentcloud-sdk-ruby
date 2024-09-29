@@ -1254,6 +1254,61 @@ module TencentCloud
         end
       end
 
+      # CreateOwnNumberApply请求参数结构体
+      class CreateOwnNumberApplyRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SipTrunkId: SIP通道ID
+        # @type SipTrunkId: Integer
+        # @param DetailList: 线路相关参数
+        # @type DetailList: Array
+        # @param Prefix: 送号前缀
+        # @type Prefix: String
+
+        attr_accessor :SdkAppId, :SipTrunkId, :DetailList, :Prefix
+
+        def initialize(sdkappid=nil, siptrunkid=nil, detaillist=nil, prefix=nil)
+          @SdkAppId = sdkappid
+          @SipTrunkId = siptrunkid
+          @DetailList = detaillist
+          @Prefix = prefix
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SipTrunkId = params['SipTrunkId']
+          unless params['DetailList'].nil?
+            @DetailList = []
+            params['DetailList'].each do |i|
+              ownnumberapplydetailitem_tmp = OwnNumberApplyDetailItem.new
+              ownnumberapplydetailitem_tmp.deserialize(i)
+              @DetailList << ownnumberapplydetailitem_tmp
+            end
+          end
+          @Prefix = params['Prefix']
+        end
+      end
+
+      # CreateOwnNumberApply返回参数结构体
+      class CreateOwnNumberApplyResponse < TencentCloud::Common::AbstractModel
+        # @param ApplyId: 审批单号
+        # @type ApplyId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplyId, :RequestId
+
+        def initialize(applyid=nil, requestid=nil)
+          @ApplyId = applyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplyId = params['ApplyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePredictiveDialingCampaign请求参数结构体
       class CreatePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -3773,6 +3828,57 @@ module TencentCloud
         end
       end
 
+      # ModifyOwnNumberApply请求参数结构体
+      class ModifyOwnNumberApplyRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param DetailList: 线路相关参数
+        # @type DetailList: Array
+        # @param ApplyId: 审批单号
+        # @type ApplyId: Integer
+        # @param Prefix: 送号前缀
+        # @type Prefix: String
+
+        attr_accessor :SdkAppId, :DetailList, :ApplyId, :Prefix
+
+        def initialize(sdkappid=nil, detaillist=nil, applyid=nil, prefix=nil)
+          @SdkAppId = sdkappid
+          @DetailList = detaillist
+          @ApplyId = applyid
+          @Prefix = prefix
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['DetailList'].nil?
+            @DetailList = []
+            params['DetailList'].each do |i|
+              ownnumberapplydetailitem_tmp = OwnNumberApplyDetailItem.new
+              ownnumberapplydetailitem_tmp.deserialize(i)
+              @DetailList << ownnumberapplydetailitem_tmp
+            end
+          end
+          @ApplyId = params['ApplyId']
+          @Prefix = params['Prefix']
+        end
+      end
+
+      # ModifyOwnNumberApply返回参数结构体
+      class ModifyOwnNumberApplyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyStaffPassword请求参数结构体
       class ModifyStaffPasswordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -3898,6 +4004,34 @@ module TencentCloud
           @Number = params['Number']
           @CallOutSkillGroupIds = params['CallOutSkillGroupIds']
           @State = params['State']
+        end
+      end
+
+      # 用户自带号码审批明细数据类型
+      class OwnNumberApplyDetailItem < TencentCloud::Common::AbstractModel
+        # @param CallType: 号码类型：0-呼入|1-呼出|2-呼入呼出
+        # @type CallType: Integer
+        # @param PhoneNumber: 线路号码
+        # @type PhoneNumber: String
+        # @param MaxCallCount: 最大并发呼叫数
+        # @type MaxCallCount: Integer
+        # @param MaxCallPSec: 每秒最大并发数
+        # @type MaxCallPSec: Integer
+
+        attr_accessor :CallType, :PhoneNumber, :MaxCallCount, :MaxCallPSec
+
+        def initialize(calltype=nil, phonenumber=nil, maxcallcount=nil, maxcallpsec=nil)
+          @CallType = calltype
+          @PhoneNumber = phonenumber
+          @MaxCallCount = maxcallcount
+          @MaxCallPSec = maxcallpsec
+        end
+
+        def deserialize(params)
+          @CallType = params['CallType']
+          @PhoneNumber = params['PhoneNumber']
+          @MaxCallCount = params['MaxCallCount']
+          @MaxCallPSec = params['MaxCallPSec']
         end
       end
 

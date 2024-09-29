@@ -47,7 +47,7 @@ module TencentCloud
         # @param Username: 用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
-        # @param Ip: ip地址
+        # @param Ip: IP地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Qos: 0，1，2

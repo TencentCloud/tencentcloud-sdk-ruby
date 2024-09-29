@@ -791,7 +791,7 @@ module TencentCloud
         # @param ImageDescription: 镜像描述
         # @type ImageDescription: String
         # @param ForcePoweroff: 是否执行强制关机以制作镜像。
-        # 取值范围：<br><li>true：表示关机之后制作镜像<br><li>false：表示开机状态制作镜像<br><br>默认取值：false。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
+        # 取值范围：<br><li>true：表示关机之后制作镜像</li><br><li>false：表示开机状态制作镜像</li><br><br>默认取值：false。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
         # @type ForcePoweroff: String
         # @param Sysprep: 创建Windows镜像时是否启用Sysprep。
         # 取值范围：true或false，传true表示启用Sysprep，传false表示不启用，默认取值为false。
@@ -806,10 +806,12 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到自定义镜像。
         # @type TagSpecification: Array
+        # @param ImageFamily: 镜像族
+        # @type ImageFamily: String
 
-        attr_accessor :ImageName, :InstanceId, :ImageDescription, :ForcePoweroff, :Sysprep, :DataDiskIds, :SnapshotIds, :DryRun, :TagSpecification
+        attr_accessor :ImageName, :InstanceId, :ImageDescription, :ForcePoweroff, :Sysprep, :DataDiskIds, :SnapshotIds, :DryRun, :TagSpecification, :ImageFamily
 
-        def initialize(imagename=nil, instanceid=nil, imagedescription=nil, forcepoweroff=nil, sysprep=nil, datadiskids=nil, snapshotids=nil, dryrun=nil, tagspecification=nil)
+        def initialize(imagename=nil, instanceid=nil, imagedescription=nil, forcepoweroff=nil, sysprep=nil, datadiskids=nil, snapshotids=nil, dryrun=nil, tagspecification=nil, imagefamily=nil)
           @ImageName = imagename
           @InstanceId = instanceid
           @ImageDescription = imagedescription
@@ -819,6 +821,7 @@ module TencentCloud
           @SnapshotIds = snapshotids
           @DryRun = dryrun
           @TagSpecification = tagspecification
+          @ImageFamily = imagefamily
         end
 
         def deserialize(params)
@@ -838,6 +841,7 @@ module TencentCloud
               @TagSpecification << tagspecification_tmp
             end
           end
+          @ImageFamily = params['ImageFamily']
         end
       end
 
@@ -2055,6 +2059,46 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImageFromFamily请求参数结构体
+      class DescribeImageFromFamilyRequest < TencentCloud::Common::AbstractModel
+        # @param ImageFamily: 镜像族
+        # @type ImageFamily: String
+
+        attr_accessor :ImageFamily
+
+        def initialize(imagefamily=nil)
+          @ImageFamily = imagefamily
+        end
+
+        def deserialize(params)
+          @ImageFamily = params['ImageFamily']
+        end
+      end
+
+      # DescribeImageFromFamily返回参数结构体
+      class DescribeImageFromFamilyResponse < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像信息，没有可用镜像是返回为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Image: :class:`Tencentcloud::Cvm.v20170312.models.Image`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Image, :RequestId
+
+        def initialize(image=nil, requestid=nil)
+          @Image = image
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Image'].nil?
+            @Image = Image.new
+            @Image.deserialize(params['Image'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4170,10 +4214,15 @@ module TencentCloud
         # @type Tags: Array
         # @param LicenseType: 镜像许可类型
         # @type LicenseType: String
+        # @param ImageFamily: 镜像族
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageFamily: String
+        # @param ImageDeprecated: 镜像是否废弃
+        # @type ImageDeprecated: Boolean
 
-        attr_accessor :ImageId, :OsName, :ImageType, :CreatedTime, :ImageName, :ImageDescription, :ImageSize, :Architecture, :ImageState, :Platform, :ImageCreator, :ImageSource, :SyncPercent, :IsSupportCloudinit, :SnapshotSet, :Tags, :LicenseType
+        attr_accessor :ImageId, :OsName, :ImageType, :CreatedTime, :ImageName, :ImageDescription, :ImageSize, :Architecture, :ImageState, :Platform, :ImageCreator, :ImageSource, :SyncPercent, :IsSupportCloudinit, :SnapshotSet, :Tags, :LicenseType, :ImageFamily, :ImageDeprecated
 
-        def initialize(imageid=nil, osname=nil, imagetype=nil, createdtime=nil, imagename=nil, imagedescription=nil, imagesize=nil, architecture=nil, imagestate=nil, platform=nil, imagecreator=nil, imagesource=nil, syncpercent=nil, issupportcloudinit=nil, snapshotset=nil, tags=nil, licensetype=nil)
+        def initialize(imageid=nil, osname=nil, imagetype=nil, createdtime=nil, imagename=nil, imagedescription=nil, imagesize=nil, architecture=nil, imagestate=nil, platform=nil, imagecreator=nil, imagesource=nil, syncpercent=nil, issupportcloudinit=nil, snapshotset=nil, tags=nil, licensetype=nil, imagefamily=nil, imagedeprecated=nil)
           @ImageId = imageid
           @OsName = osname
           @ImageType = imagetype
@@ -4191,6 +4240,8 @@ module TencentCloud
           @SnapshotSet = snapshotset
           @Tags = tags
           @LicenseType = licensetype
+          @ImageFamily = imagefamily
+          @ImageDeprecated = imagedeprecated
         end
 
         def deserialize(params)
@@ -4225,6 +4276,8 @@ module TencentCloud
             end
           end
           @LicenseType = params['LicenseType']
+          @ImageFamily = params['ImageFamily']
+          @ImageDeprecated = params['ImageDeprecated']
         end
       end
 
@@ -4567,7 +4620,7 @@ module TencentCloud
         # @type HostIds: Array
         # @param HostChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。
         # @type HostChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.ChargePrepaid`
-        # @param DryRun: 试运行，测试使用，不执行具体逻辑。取值范围：<br><li>TRUE：跳过执行逻辑<br><li>FALSE：执行逻辑<br><br>默认取值：FALSE。
+        # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制和云服务器库存。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
 
         attr_accessor :HostIds, :HostChargePrepaid, :DryRun
@@ -6194,13 +6247,13 @@ module TencentCloud
 
       # 描述了实例登录相关配置与信息。
       class LoginSettings < TencentCloud::Common::AbstractModel
-        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。</li><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。</li>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param KeyIds: 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口[DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699)获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyIds: Array
-        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
+        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为true。取值范围：<li>true：表示保持镜像的登录设置</li><li>false：表示不保持镜像的登录设置</li>默认取值：false。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepImageLogin: String
 
@@ -6399,19 +6452,27 @@ module TencentCloud
         # @type ImageName: String
         # @param ImageDescription: 设置新的镜像描述；必须满足下列限制： <li> 不得超过 256 个字符。</li>
         # @type ImageDescription: String
+        # @param ImageFamily: 设置镜像族；
+        # @type ImageFamily: String
+        # @param ImageDeprecated: 设置镜像是否废弃；
+        # @type ImageDeprecated: Boolean
 
-        attr_accessor :ImageId, :ImageName, :ImageDescription
+        attr_accessor :ImageId, :ImageName, :ImageDescription, :ImageFamily, :ImageDeprecated
 
-        def initialize(imageid=nil, imagename=nil, imagedescription=nil)
+        def initialize(imageid=nil, imagename=nil, imagedescription=nil, imagefamily=nil, imagedeprecated=nil)
           @ImageId = imageid
           @ImageName = imagename
           @ImageDescription = imagedescription
+          @ImageFamily = imagefamily
+          @ImageDeprecated = imagedeprecated
         end
 
         def deserialize(params)
           @ImageId = params['ImageId']
           @ImageName = params['ImageName']
           @ImageDescription = params['ImageDescription']
+          @ImageFamily = params['ImageFamily']
+          @ImageDeprecated = params['ImageDeprecated']
         end
       end
 
@@ -7606,14 +7667,22 @@ module TencentCloud
         # @type OriginalUsagePrice: Float
         # @param DiscountUsagePrice: 后续合计费用的折扣价，单位：元/小时
         # @type DiscountUsagePrice: Float
+        # @param FixedPriceDiscount: 预支费用的折扣，如20.0代表2折。 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixedPriceDiscount: Float
+        # @param UsagePriceDiscount: 后续费用的折扣，如20.0代表2折。 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsagePriceDiscount: Float
 
-        attr_accessor :OriginalFixedPrice, :DiscountFixedPrice, :OriginalUsagePrice, :DiscountUsagePrice
+        attr_accessor :OriginalFixedPrice, :DiscountFixedPrice, :OriginalUsagePrice, :DiscountUsagePrice, :FixedPriceDiscount, :UsagePriceDiscount
 
-        def initialize(originalfixedprice=nil, discountfixedprice=nil, originalusageprice=nil, discountusageprice=nil)
+        def initialize(originalfixedprice=nil, discountfixedprice=nil, originalusageprice=nil, discountusageprice=nil, fixedpricediscount=nil, usagepricediscount=nil)
           @OriginalFixedPrice = originalfixedprice
           @DiscountFixedPrice = discountfixedprice
           @OriginalUsagePrice = originalusageprice
           @DiscountUsagePrice = discountusageprice
+          @FixedPriceDiscount = fixedpricediscount
+          @UsagePriceDiscount = usagepricediscount
         end
 
         def deserialize(params)
@@ -7621,6 +7690,8 @@ module TencentCloud
           @DiscountFixedPrice = params['DiscountFixedPrice']
           @OriginalUsagePrice = params['OriginalUsagePrice']
           @DiscountUsagePrice = params['DiscountUsagePrice']
+          @FixedPriceDiscount = params['FixedPriceDiscount']
+          @UsagePriceDiscount = params['UsagePriceDiscount']
         end
       end
 
@@ -7642,10 +7713,14 @@ module TencentCloud
         # @param ProductDescription: 预留实例计费的平台描述（即操作系统）。形如：Linux。
         # 返回项： Linux 。
         # @type ProductDescription: String
+        # @param DiscountUsagePrice: 预支合计费用，单位：元。
+        # @type DiscountUsagePrice: Float
+        # @param DiscountFixedPrice: 后续合计费用的折扣价，单位：元/小时
+        # @type DiscountFixedPrice: Float
 
-        attr_accessor :OfferingType, :FixedPrice, :UsagePrice, :ReservedInstancesOfferingId, :Zone, :Duration, :ProductDescription
+        attr_accessor :OfferingType, :FixedPrice, :UsagePrice, :ReservedInstancesOfferingId, :Zone, :Duration, :ProductDescription, :DiscountUsagePrice, :DiscountFixedPrice
 
-        def initialize(offeringtype=nil, fixedprice=nil, usageprice=nil, reservedinstancesofferingid=nil, zone=nil, duration=nil, productdescription=nil)
+        def initialize(offeringtype=nil, fixedprice=nil, usageprice=nil, reservedinstancesofferingid=nil, zone=nil, duration=nil, productdescription=nil, discountusageprice=nil, discountfixedprice=nil)
           @OfferingType = offeringtype
           @FixedPrice = fixedprice
           @UsagePrice = usageprice
@@ -7653,6 +7728,8 @@ module TencentCloud
           @Zone = zone
           @Duration = duration
           @ProductDescription = productdescription
+          @DiscountUsagePrice = discountusageprice
+          @DiscountFixedPrice = discountfixedprice
         end
 
         def deserialize(params)
@@ -7663,6 +7740,8 @@ module TencentCloud
           @Zone = params['Zone']
           @Duration = params['Duration']
           @ProductDescription = params['ProductDescription']
+          @DiscountUsagePrice = params['DiscountUsagePrice']
+          @DiscountFixedPrice = params['DiscountFixedPrice']
         end
       end
 

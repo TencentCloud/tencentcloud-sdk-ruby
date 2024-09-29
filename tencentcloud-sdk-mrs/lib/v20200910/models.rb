@@ -5599,16 +5599,19 @@ module TencentCloud
         # （2）病理报告 15，默认使用 V1，最高支持 V2。
         # （3）入院记录29、出院记录 28、病历记录 216、病程记录 217、门诊记录 210，默认使用 V1，最高支持 V2。
         # @type ReportTypeVersion: Array
+        # @param OcrInfoList: 可选。 图片OCR信息列表，每一个元素是一张图片的OCR结果。适用于不想将医疗报告图片传入腾讯云的客户，客户可对图片OCR信息中的敏感信息去除之后再传入。与 ImageInfoList 二选一，同时存在则使用OcrInfoList
+        # @type OcrInfoList: Array
 
-        attr_accessor :ImageInfoList, :HandleParam, :Type, :IsUsedClassify, :UserType, :ReportTypeVersion
+        attr_accessor :ImageInfoList, :HandleParam, :Type, :IsUsedClassify, :UserType, :ReportTypeVersion, :OcrInfoList
 
-        def initialize(imageinfolist=nil, handleparam=nil, type=nil, isusedclassify=nil, usertype=nil, reporttypeversion=nil)
+        def initialize(imageinfolist=nil, handleparam=nil, type=nil, isusedclassify=nil, usertype=nil, reporttypeversion=nil, ocrinfolist=nil)
           @ImageInfoList = imageinfolist
           @HandleParam = handleparam
           @Type = type
           @IsUsedClassify = isusedclassify
           @UserType = usertype
           @ReportTypeVersion = reporttypeversion
+          @OcrInfoList = ocrinfolist
         end
 
         def deserialize(params)
@@ -5633,6 +5636,14 @@ module TencentCloud
               reporttypeversion_tmp = ReportTypeVersion.new
               reporttypeversion_tmp.deserialize(i)
               @ReportTypeVersion << reporttypeversion_tmp
+            end
+          end
+          unless params['OcrInfoList'].nil?
+            @OcrInfoList = []
+            params['OcrInfoList'].each do |i|
+              ocrinfo_tmp = OcrInfo.new
+              ocrinfo_tmp.deserialize(i)
+              @OcrInfoList << ocrinfo_tmp
             end
           end
         end
@@ -7898,6 +7909,67 @@ module TencentCloud
           unless params['FertilityHistory'].nil?
             @FertilityHistory = FertilityHistoryBlock.new
             @FertilityHistory.deserialize(params['FertilityHistory'])
+          end
+        end
+      end
+
+      # 图片完整的OCR信息
+      class OcrInfo < TencentCloud::Common::AbstractModel
+        # @param Items: 图片进行OCR之后得到的所有包含字块的OCR信息
+        # @type Items: Array
+        # @param Text: 图片进行OCR之后得到的所有字符
+        # @type Text: String
+
+        attr_accessor :Items, :Text
+
+        def initialize(items=nil, text=nil)
+          @Items = items
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              ocritem_tmp = OcrItem.new
+              ocritem_tmp.deserialize(i)
+              @Items << ocritem_tmp
+            end
+          end
+          @Text = params['Text']
+        end
+      end
+
+      # 图片进行OCR之后,包含字符块的信息，包含字符与坐标，一个图片进行OCR之后可能分为多个这样的块
+      class OcrItem < TencentCloud::Common::AbstractModel
+        # @param Words: 图片中文字的字符串
+        # @type Words: String
+        # @param Coords: Words 中每个文字的坐标数组，顺序与Words中的字符顺序一致
+        # @type Coords: Array
+        # @param WordCoords: 整个字符块的坐标信息
+        # @type WordCoords: :class:`Tencentcloud::Mrs.v20200910.models.Coordinate`
+
+        attr_accessor :Words, :Coords, :WordCoords
+
+        def initialize(words=nil, coords=nil, wordcoords=nil)
+          @Words = words
+          @Coords = coords
+          @WordCoords = wordcoords
+        end
+
+        def deserialize(params)
+          @Words = params['Words']
+          unless params['Coords'].nil?
+            @Coords = []
+            params['Coords'].each do |i|
+              coordinate_tmp = Coordinate.new
+              coordinate_tmp.deserialize(i)
+              @Coords << coordinate_tmp
+            end
+          end
+          unless params['WordCoords'].nil?
+            @WordCoords = Coordinate.new
+            @WordCoords.deserialize(params['WordCoords'])
           end
         end
       end

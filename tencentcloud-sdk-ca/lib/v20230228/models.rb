@@ -19,17 +19,17 @@ module TencentCloud
     module V20230228
       # CreateVerifyReport请求参数结构体
       class CreateVerifyReportRequest < TencentCloud::Common::AbstractModel
-        # @param ApplyCustomerType: 客户类型 1:个人，2:企业
+        # @param ApplyCustomerType: 申请者类型 1:个人，2:企业
         # @type ApplyCustomerType: String
         # @param ApplyCustomerName: 申请企业 or 自然人名称
         # @type ApplyCustomerName: String
-        # @param ApplyName: 验签申请人姓名
+        # @param ApplyName: 验签申请经办人姓名
         # @type ApplyName: String
-        # @param ApplyMobile: 验签申请人电弧
+        # @param ApplyMobile: 验签申请经办人电话
         # @type ApplyMobile: String
         # @param FileId: 验签文件id
         # @type FileId: String
-        # @param ApplyEmail: 验签申请人邮箱
+        # @param ApplyEmail: 验签申请经办人邮箱
         # @type ApplyEmail: String
 
         attr_accessor :ApplyCustomerType, :ApplyCustomerName, :ApplyName, :ApplyMobile, :FileId, :ApplyEmail
@@ -129,7 +129,7 @@ module TencentCloud
       class FileInfo < TencentCloud::Common::AbstractModel
         # @param FileBody: BASE64编码后的文件内容
         # @type FileBody: String
-        # @param FileName: 文件名，最大长度不超过200字符
+        # @param FileName: 文件名及类型，最大长度不超过200字符
         # @type FileName: String
 
         attr_accessor :FileBody, :FileName

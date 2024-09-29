@@ -358,7 +358,8 @@ module TencentCloud
 
       # AssociateSecurityGroups请求参数结构体
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例组ID数组
+        # @param InstanceIds: 实例组 ID 数组，cynosdbmysql-grp-前缀开头或集群 ID。
+        # 说明：要获取集群的实例组 ID，可通过 [查询集群实例组](https://cloud.tencent.com/document/product/1003/103934) 进行。
         # @type InstanceIds: Array
         # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组Id组成的数组。
         # @type SecurityGroupIds: Array
@@ -7488,11 +7489,13 @@ module TencentCloud
 
       # DisassociateSecurityGroups请求参数结构体
       class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例组ID数组
+        # @param InstanceIds: 实例组 ID 数组，cynosdbmysql-grp-前缀开头或集群 ID。
+        # 说明：要获取集群的实例组 ID，可通过 [查询集群实例组](https://cloud.tencent.com/document/product/1003/103934) 进行。
         # @type InstanceIds: Array
         # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组ID组成的数组。
         # @type SecurityGroupIds: Array
-        # @param Zone: 可用区
+        # @param Zone: 可用区。
+        # 说明：请正确输入集群所在的主可用区，若输入非集群所在的主可用区可能显示调用成功，但实际执行会失败。
         # @type Zone: String
 
         attr_accessor :InstanceIds, :SecurityGroupIds, :Zone

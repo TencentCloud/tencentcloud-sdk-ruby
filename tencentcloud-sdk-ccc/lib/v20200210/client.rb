@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建客户自携号码接入审核
+
+        # @param request: Request instance for CreateOwnNumberApply.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreateOwnNumberApplyRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreateOwnNumberApplyResponse`
+        def CreateOwnNumberApply(request)
+          body = send_request('CreateOwnNumberApply', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOwnNumberApplyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建预测式外呼任务
 
         # @param request: Request instance for CreatePredictiveDialingCampaign.
@@ -1169,6 +1193,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyExtensionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改客户自携号码审批单
+
+        # @param request: Request instance for ModifyOwnNumberApply.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ModifyOwnNumberApplyRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ModifyOwnNumberApplyResponse`
+        def ModifyOwnNumberApply(request)
+          body = send_request('ModifyOwnNumberApply', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwnNumberApplyResponse.new
             model.deserialize(response['Response'])
             model
           else

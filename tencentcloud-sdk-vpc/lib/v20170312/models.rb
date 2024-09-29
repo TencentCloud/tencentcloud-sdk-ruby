@@ -5734,10 +5734,12 @@ module TencentCloud
         # @type ChargeType: String
         # @param QosLevel: 服务分级：PT、AU、AG。
         # @type QosLevel: String
+        # @param Tags: 标签键值对
+        # @type Tags: Array
 
-        attr_accessor :SourceVpcId, :PeeringConnectionName, :DestinationVpcId, :DestinationUin, :DestinationRegion, :Bandwidth, :Type, :ChargeType, :QosLevel
+        attr_accessor :SourceVpcId, :PeeringConnectionName, :DestinationVpcId, :DestinationUin, :DestinationRegion, :Bandwidth, :Type, :ChargeType, :QosLevel, :Tags
 
-        def initialize(sourcevpcid=nil, peeringconnectionname=nil, destinationvpcid=nil, destinationuin=nil, destinationregion=nil, bandwidth=nil, type=nil, chargetype=nil, qoslevel=nil)
+        def initialize(sourcevpcid=nil, peeringconnectionname=nil, destinationvpcid=nil, destinationuin=nil, destinationregion=nil, bandwidth=nil, type=nil, chargetype=nil, qoslevel=nil, tags=nil)
           @SourceVpcId = sourcevpcid
           @PeeringConnectionName = peeringconnectionname
           @DestinationVpcId = destinationvpcid
@@ -5747,6 +5749,7 @@ module TencentCloud
           @Type = type
           @ChargeType = chargetype
           @QosLevel = qoslevel
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5759,6 +5762,14 @@ module TencentCloud
           @Type = params['Type']
           @ChargeType = params['ChargeType']
           @QosLevel = params['QosLevel']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
         end
       end
 
@@ -24711,6 +24722,28 @@ module TencentCloud
 
       # 标签键值对
       class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 标签描述信息
+      class Tags < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
