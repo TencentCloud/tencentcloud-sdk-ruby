@@ -296,6 +296,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建并部署边缘函数至 EdgeOne 的边缘节点。
+
+        # @param request: Request instance for CreateFunction.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateFunctionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateFunctionResponse`
+        def CreateFunction(request)
+          body = send_request('CreateFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建边缘函数的触发规则。
+
+        # @param request: Request instance for CreateFunctionRule.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateFunctionRuleRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateFunctionRuleResponse`
+        def CreateFunctionRule(request)
+          body = send_request('CreateFunctionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFunctionRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于创建四层代理实例。
 
         # @param request: Request instance for CreateL4Proxy.
@@ -697,6 +745,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCustomErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除边缘函数，删除后函数无法恢复，关联的触发规则会一并删除。
+
+        # @param request: Request instance for DeleteFunction.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteFunctionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteFunctionResponse`
+        def DeleteFunction(request)
+          body = send_request('DeleteFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除边缘函数触发规则。
+
+        # @param request: Request instance for DeleteFunctionRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteFunctionRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteFunctionRulesResponse`
+        def DeleteFunctionRules(request)
+          body = send_request('DeleteFunctionRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFunctionRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1273,6 +1369,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEnvironmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘函数触发规则列表，支持按照规则 ID、函数 ID、规则描述等条件进行过滤。
+
+        # @param request: Request instance for DescribeFunctionRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeFunctionRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeFunctionRulesResponse`
+        def DescribeFunctionRules(request)
+          body = send_request('DescribeFunctionRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFunctionRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘函数运行环境，包括环境变量。
+
+        # @param request: Request instance for DescribeFunctionRuntimeEnvironment.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeFunctionRuntimeEnvironmentRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeFunctionRuntimeEnvironmentResponse`
+        def DescribeFunctionRuntimeEnvironment(request)
+          body = send_request('DescribeFunctionRuntimeEnvironment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFunctionRuntimeEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询边缘函数列表，支持函数 ID、函数名称、描述等条件的过滤。
+
+        # @param request: Request instance for DescribeFunctions.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeFunctionsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeFunctionsResponse`
+        def DescribeFunctions(request)
+          body = send_request('DescribeFunctions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFunctionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1921,6 +2089,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 操作边缘函数运行环境，支持环境变量的相关设置。
+        # 设置环境变量后，可在函数代码中使用，具体参考 [边缘函数引入环境变量](https://cloud.tencent.com/document/product/1552/109151#0151fd9a-8b0e-407b-ae37-54553a60ded6)。
+
+        # @param request: Request instance for HandleFunctionRuntimeEnvironment.
+        # @type request: :class:`Tencentcloud::teo::V20220901::HandleFunctionRuntimeEnvironmentRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::HandleFunctionRuntimeEnvironmentResponse`
+        def HandleFunctionRuntimeEnvironment(request)
+          body = send_request('HandleFunctionRuntimeEnvironment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = HandleFunctionRuntimeEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于验证站点所有权。
 
         # @param request: Request instance for IdentifyZone.
@@ -2175,6 +2368,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改边缘函数，支持修改函数的内容及描述信息，修改且重新部署后，函数立刻生效。
+
+        # @param request: Request instance for ModifyFunction.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyFunctionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyFunctionResponse`
+        def ModifyFunction(request)
+          body = send_request('ModifyFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改边缘函数触发规则，支持修改规则条件、执行函数以及描述信息。
+
+        # @param request: Request instance for ModifyFunctionRule.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyFunctionRuleRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyFunctionRuleResponse`
+        def ModifyFunctionRule(request)
+          body = send_request('ModifyFunctionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFunctionRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改边缘函数触发规则的优先级。
+
+        # @param request: Request instance for ModifyFunctionRulePriority.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyFunctionRulePriorityRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyFunctionRulePriorityResponse`
+        def ModifyFunctionRulePriority(request)
+          body = send_request('ModifyFunctionRulePriority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFunctionRulePriorityResponse.new
             model.deserialize(response['Response'])
             model
           else

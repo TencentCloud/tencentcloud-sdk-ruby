@@ -2355,6 +2355,109 @@ module TencentCloud
         end
       end
 
+      # CreateFunction请求参数结构体
+      class CreateFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 函数名称，只能包含小写字母、数字、连字符，以数字或字母开头，以数字或字母结尾，最大支持 30 个字符。
+        # @type Name: String
+        # @param Content: 函数内容，当前仅支持 JavaScript 代码，最大支持 5MB 大小。
+        # @type Content: String
+        # @param Remark: 函数描述，最大支持 60 个字符。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :Name, :Content, :Remark
+
+        def initialize(zoneid=nil, name=nil, content=nil, remark=nil)
+          @ZoneId = zoneid
+          @Name = name
+          @Content = content
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @Content = params['Content']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateFunction返回参数结构体
+      class CreateFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionId, :RequestId
+
+        def initialize(functionid=nil, requestid=nil)
+          @FunctionId = functionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFunctionRule请求参数结构体
+      class CreateFunctionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionRuleConditions: 规则条件列表，相同触发规则的不同条件匹配项之间为或关系。
+        # @type FunctionRuleConditions: Array
+        # @param FunctionId: 函数 ID，命中触发规则条件后执行的函数。
+        # @type FunctionId: String
+        # @param Remark: 规则描述，最大支持 60 个字符。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :FunctionRuleConditions, :FunctionId, :Remark
+
+        def initialize(zoneid=nil, functionruleconditions=nil, functionid=nil, remark=nil)
+          @ZoneId = zoneid
+          @FunctionRuleConditions = functionruleconditions
+          @FunctionId = functionid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['FunctionRuleConditions'].nil?
+            @FunctionRuleConditions = []
+            params['FunctionRuleConditions'].each do |i|
+              functionrulecondition_tmp = FunctionRuleCondition.new
+              functionrulecondition_tmp.deserialize(i)
+              @FunctionRuleConditions << functionrulecondition_tmp
+            end
+          end
+          @FunctionId = params['FunctionId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateFunctionRule返回参数结构体
+      class CreateFunctionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID。
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateL4Proxy请求参数结构体
       class CreateL4ProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -3692,6 +3795,78 @@ module TencentCloud
 
       # DeleteCustomErrorPage返回参数结构体
       class DeleteCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFunction请求参数结构体
+      class DeleteFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+
+        attr_accessor :ZoneId, :FunctionId
+
+        def initialize(zoneid=nil, functionid=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+        end
+      end
+
+      # DeleteFunction返回参数结构体
+      class DeleteFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFunctionRules请求参数结构体
+      class DeleteFunctionRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleIds: 规则 ID 列表。
+        # @type RuleIds: Array
+
+        attr_accessor :ZoneId, :RuleIds
+
+        def initialize(zoneid=nil, ruleids=nil)
+          @ZoneId = zoneid
+          @RuleIds = ruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleIds = params['RuleIds']
+        end
+      end
+
+      # DeleteFunctionRules返回参数结构体
+      class DeleteFunctionRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5166,6 +5341,182 @@ module TencentCloud
               envinfo_tmp = EnvInfo.new
               envinfo_tmp.deserialize(i)
               @EnvInfos << envinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFunctionRules请求参数结构体
+      class DescribeFunctionRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Filters: 过滤条件列表，多个条件为且关系，Filters.Values 的上限为 20。详细的过滤条件如下：
+        # <li>rule-id：按照【规则 ID】进行精确匹配。</li>
+        # <li>function-id：按照【函数 ID】进行精确匹配。</li>
+        # <li>remark：按照【规则描述】进行模糊匹配。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Filters
+
+        def initialize(zoneid=nil, filters=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeFunctionRules返回参数结构体
+      class DescribeFunctionRulesResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionRules: 规则详情列表。
+        # @type FunctionRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionRules, :RequestId
+
+        def initialize(functionrules=nil, requestid=nil)
+          @FunctionRules = functionrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FunctionRules'].nil?
+            @FunctionRules = []
+            params['FunctionRules'].each do |i|
+              functionrule_tmp = FunctionRule.new
+              functionrule_tmp.deserialize(i)
+              @FunctionRules << functionrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFunctionRuntimeEnvironment请求参数结构体
+      class DescribeFunctionRuntimeEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+
+        attr_accessor :ZoneId, :FunctionId
+
+        def initialize(zoneid=nil, functionid=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+        end
+      end
+
+      # DescribeFunctionRuntimeEnvironment返回参数结构体
+      class DescribeFunctionRuntimeEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param EnvironmentVariables: 环境变量列表。
+        # @type EnvironmentVariables: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvironmentVariables, :RequestId
+
+        def initialize(environmentvariables=nil, requestid=nil)
+          @EnvironmentVariables = environmentvariables
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EnvironmentVariables'].nil?
+            @EnvironmentVariables = []
+            params['EnvironmentVariables'].each do |i|
+              functionenvironmentvariable_tmp = FunctionEnvironmentVariable.new
+              functionenvironmentvariable_tmp.deserialize(i)
+              @EnvironmentVariables << functionenvironmentvariable_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFunctions请求参数结构体
+      class DescribeFunctionsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionIds: 按照函数 ID 列表过滤。
+        # @type FunctionIds: Array
+        # @param Filters: 过滤条件列表，多个条件为且关系，Filters.Values 的上限为 20。详细的过滤条件如下：
+        # <li>name：按照【函数名称】进行模糊匹配。</li>
+        # <li>remark：按照【函数描述】进行模糊匹配。</li>
+        # @type Filters: Array
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：200。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :FunctionIds, :Filters, :Offset, :Limit
+
+        def initialize(zoneid=nil, functionids=nil, filters=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @FunctionIds = functionids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionIds = params['FunctionIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeFunctions返回参数结构体
+      class DescribeFunctionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的函数总数。
+        # @type TotalCount: Integer
+        # @param Functions: 符合查询条件的所有函数信息。
+        # @type Functions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Functions, :RequestId
+
+        def initialize(totalcount=nil, functions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Functions = functions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Functions'].nil?
+            @Functions = []
+            params['Functions'].each do |i|
+              function_tmp = Function.new
+              function_tmp.deserialize(i)
+              @Functions << function_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7769,6 +8120,150 @@ module TencentCloud
         end
       end
 
+      # 边缘函数详情
+      class Function < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 函数名字。
+        # @type Name: String
+        # @param Remark: 函数描述。
+        # @type Remark: String
+        # @param Content: 函数内容。
+        # @type Content: String
+        # @param Domain: 函数默认域名。
+        # @type Domain: String
+        # @param CreateTime: 创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type CreateTime: String
+        # @param UpdateTime: 修改时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type UpdateTime: String
+
+        attr_accessor :FunctionId, :ZoneId, :Name, :Remark, :Content, :Domain, :CreateTime, :UpdateTime
+
+        def initialize(functionid=nil, zoneid=nil, name=nil, remark=nil, content=nil, domain=nil, createtime=nil, updatetime=nil)
+          @FunctionId = functionid
+          @ZoneId = zoneid
+          @Name = name
+          @Remark = remark
+          @Content = content
+          @Domain = domain
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @Content = params['Content']
+          @Domain = params['Domain']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 边缘函数环境变量
+      class FunctionEnvironmentVariable < TencentCloud::Common::AbstractModel
+        # @param Key: 变量的名称，限制只能包含大小写字母、数字，特殊字符仅支持 @ . - _ ，最大 64 个字节，不支持重复。
+        # @type Key: String
+        # @param Value: 变量的值，限制最大 5000 字节，默认值为空。
+        # @type Value: String
+        # @param Type: 变量的类型，取值有：
+        # <li>string：字符串类型；</li>
+        # <li>json：json 对象类型。</li>默认值为：string。
+        # @type Type: String
+
+        attr_accessor :Key, :Value, :Type
+
+        def initialize(key=nil, value=nil, type=nil)
+          @Key = key
+          @Value = value
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Type = params['Type']
+        end
+      end
+
+      # 边缘函数触发规则。
+      class FunctionRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID。
+        # @type RuleId: String
+        # @param FunctionRuleConditions: 规则条件列表，列表项之间为或关系。
+        # @type FunctionRuleConditions: Array
+        # @param FunctionId: 函数 ID，命中触发规则条件后执行的函数。
+        # @type FunctionId: String
+        # @param Remark: 规则描述。
+        # @type Remark: String
+        # @param FunctionName: 函数名称。
+        # @type FunctionName: String
+        # @param Priority: 函数触发规则优先级，数值越大，优先级越高。
+        # @type Priority: Integer
+        # @param CreateTime: 创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type UpdateTime: String
+
+        attr_accessor :RuleId, :FunctionRuleConditions, :FunctionId, :Remark, :FunctionName, :Priority, :CreateTime, :UpdateTime
+
+        def initialize(ruleid=nil, functionruleconditions=nil, functionid=nil, remark=nil, functionname=nil, priority=nil, createtime=nil, updatetime=nil)
+          @RuleId = ruleid
+          @FunctionRuleConditions = functionruleconditions
+          @FunctionId = functionid
+          @Remark = remark
+          @FunctionName = functionname
+          @Priority = priority
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          unless params['FunctionRuleConditions'].nil?
+            @FunctionRuleConditions = []
+            params['FunctionRuleConditions'].each do |i|
+              functionrulecondition_tmp = FunctionRuleCondition.new
+              functionrulecondition_tmp.deserialize(i)
+              @FunctionRuleConditions << functionrulecondition_tmp
+            end
+          end
+          @FunctionId = params['FunctionId']
+          @Remark = params['Remark']
+          @FunctionName = params['FunctionName']
+          @Priority = params['Priority']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 边缘函数触发规则条件。
+      class FunctionRuleCondition < TencentCloud::Common::AbstractModel
+        # @param RuleConditions: 边缘函数触发规则条件，该列表内所有项全部满足即判断该条件满足。
+        # @type RuleConditions: Array
+
+        attr_accessor :RuleConditions
+
+        def initialize(ruleconditions=nil)
+          @RuleConditions = ruleconditions
+        end
+
+        def deserialize(params)
+          unless params['RuleConditions'].nil?
+            @RuleConditions = []
+            params['RuleConditions'].each do |i|
+              rulecondition_tmp = RuleCondition.new
+              rulecondition_tmp.deserialize(i)
+              @RuleConditions << rulecondition_tmp
+            end
+          end
+        end
+      end
+
       # Grpc配置项
       class Grpc < TencentCloud::Common::AbstractModel
         # @param Switch: 是否开启 Grpc 配置，取值有：
@@ -7784,6 +8279,61 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # HandleFunctionRuntimeEnvironment请求参数结构体
+      class HandleFunctionRuntimeEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param Operation: 操作类型，取值有：
+        # <li>setEnvironmentVariable：设置环境变量，当环境变量存在时为修改行为，否则为添加行为；</li>
+        # <li>deleteEnvironmentVariable：删除环境变量变量；</li>
+        # <li>clearEnvironmentVariable：清空环境变量变量；</li>
+        # <li>resetEnvironmentVariable：重置环境变量变量。</li>
+        # @type Operation: String
+        # @param EnvironmentVariables: 环境变量列表，函数运行环境最多支持 64 个变量。当 Operation 取值为 setEnvironmentVariable、deleteEnvironmentVariable、resetEnvironmentVariable 时必填。
+        # @type EnvironmentVariables: Array
+
+        attr_accessor :ZoneId, :FunctionId, :Operation, :EnvironmentVariables
+
+        def initialize(zoneid=nil, functionid=nil, operation=nil, environmentvariables=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @Operation = operation
+          @EnvironmentVariables = environmentvariables
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @Operation = params['Operation']
+          unless params['EnvironmentVariables'].nil?
+            @EnvironmentVariables = []
+            params['EnvironmentVariables'].each do |i|
+              functionenvironmentvariable_tmp = FunctionEnvironmentVariable.new
+              functionenvironmentvariable_tmp.deserialize(i)
+              @EnvironmentVariables << functionenvironmentvariable_tmp
+            end
+          end
+        end
+      end
+
+      # HandleFunctionRuntimeEnvironment返回参数结构体
+      class HandleFunctionRuntimeEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -9188,6 +9738,141 @@ module TencentCloud
 
       # ModifyCustomErrorPage返回参数结构体
       class ModifyCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFunction请求参数结构体
+      class ModifyFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param FunctionId: 函数 ID。
+        # @type FunctionId: String
+        # @param Remark: 函数描述，最大支持 60 个字符，不填写保持原有配置。
+        # @type Remark: String
+        # @param Content: 函数内容，当前仅支持 JavaScript 代码，最大支持 5MB 大小，不填写保持原有配置。
+        # @type Content: String
+
+        attr_accessor :ZoneId, :FunctionId, :Remark, :Content
+
+        def initialize(zoneid=nil, functionid=nil, remark=nil, content=nil)
+          @ZoneId = zoneid
+          @FunctionId = functionid
+          @Remark = remark
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @FunctionId = params['FunctionId']
+          @Remark = params['Remark']
+          @Content = params['Content']
+        end
+      end
+
+      # ModifyFunction返回参数结构体
+      class ModifyFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFunctionRulePriority请求参数结构体
+      class ModifyFunctionRulePriorityRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleIds: 规则 ID 列表，必须填入调整优先级后的所有规则 ID，多条规则执行顺序依次从上往下，不填写保持原优先级顺序。
+        # @type RuleIds: Array
+
+        attr_accessor :ZoneId, :RuleIds
+
+        def initialize(zoneid=nil, ruleids=nil)
+          @ZoneId = zoneid
+          @RuleIds = ruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleIds = params['RuleIds']
+        end
+      end
+
+      # ModifyFunctionRulePriority返回参数结构体
+      class ModifyFunctionRulePriorityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFunctionRule请求参数结构体
+      class ModifyFunctionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RuleId: 规则 ID。
+        # @type RuleId: String
+        # @param FunctionRuleConditions: 规则条件列表，相同触发规则的不同条件匹配项之间为或关系，不填写保持原有配置。
+        # @type FunctionRuleConditions: Array
+        # @param FunctionId: 函数 ID，命中触发规则条件后执行的函数，不填写保持原有配置。
+        # @type FunctionId: String
+        # @param Remark: 规则描述，最大支持 60 个字符，不填写保持原有配置。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :RuleId, :FunctionRuleConditions, :FunctionId, :Remark
+
+        def initialize(zoneid=nil, ruleid=nil, functionruleconditions=nil, functionid=nil, remark=nil)
+          @ZoneId = zoneid
+          @RuleId = ruleid
+          @FunctionRuleConditions = functionruleconditions
+          @FunctionId = functionid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RuleId = params['RuleId']
+          unless params['FunctionRuleConditions'].nil?
+            @FunctionRuleConditions = []
+            params['FunctionRuleConditions'].each do |i|
+              functionrulecondition_tmp = FunctionRuleCondition.new
+              functionrulecondition_tmp.deserialize(i)
+              @FunctionRuleConditions << functionrulecondition_tmp
+            end
+          end
+          @FunctionId = params['FunctionId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyFunctionRule返回参数结构体
+      class ModifyFunctionRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
