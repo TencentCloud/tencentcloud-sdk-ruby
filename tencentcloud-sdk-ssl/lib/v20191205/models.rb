@@ -1587,12 +1587,21 @@ module TencentCloud
 
       # DeleteCertificates请求参数结构体
       class DeleteCertificatesRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateIds: 要删除的证书ID。单次最多100个
+        # @type CertificateIds: Array
+        # @param IsSync: 删除时是否检查证书关联了云资源。默认不检查。如需要检查关联云资源 (需授权服务角色SSL_QCSLinkedRoleInReplaceLoadCertificate)，完成授权后，删除将变成异步任务，接口会返回异步任务ID。需搭配 DescribeDeleteCertificatesTaskResult接口使用，查询删除任务是否成功。
+        # @type IsSync: Boolean
 
+        attr_accessor :CertificateIds, :IsSync
 
-        def initialize()
+        def initialize(certificateids=nil, issync=nil)
+          @CertificateIds = certificateids
+          @IsSync = issync
         end
 
         def deserialize(params)
+          @CertificateIds = params['CertificateIds']
+          @IsSync = params['IsSync']
         end
       end
 
@@ -4304,10 +4313,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2024, 9
-        deprecate :Limit=, :none, 2024, 9
-        deprecate :Offset, :none, 2024, 9
-        deprecate :Offset=, :none, 2024, 9
+        deprecate :Limit, :none, 2024, 10
+        deprecate :Limit=, :none, 2024, 10
+        deprecate :Offset, :none, 2024, 10
+        deprecate :Offset=, :none, 2024, 10
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -6633,8 +6642,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 9
-        deprecate :Regions=, :none, 2024, 9
+        deprecate :Regions, :none, 2024, 10
+        deprecate :Regions=, :none, 2024, 10
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid
