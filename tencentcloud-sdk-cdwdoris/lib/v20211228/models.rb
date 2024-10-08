@@ -510,8 +510,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 9
-        deprecate :FileKeyValues=, :none, 2024, 9
+        deprecate :FileKeyValues, :none, 2024, 10
+        deprecate :FileKeyValues=, :none, 2024, 10
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -1653,14 +1653,18 @@ module TencentCloud
         # @type ClusterConfList: Array
         # @param BuildVersion: 返回当前内核版本 如果不存在则返回空字符串
         # @type BuildVersion: String
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterConfList, :BuildVersion, :RequestId
+        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :RequestId
 
-        def initialize(clusterconflist=nil, buildversion=nil, requestid=nil)
+        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, requestid=nil)
           @ClusterConfList = clusterconflist
           @BuildVersion = buildversion
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
@@ -1674,6 +1678,7 @@ module TencentCloud
             end
           end
           @BuildVersion = params['BuildVersion']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -1991,14 +1996,18 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param SlowQueryRecords: 记录列表
         # @type SlowQueryRecords: :class:`Tencentcloud::Cdwdoris.v20211228.models.DataBaseAuditRecord`
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :SlowQueryRecords, :RequestId
+        attr_accessor :TotalCount, :SlowQueryRecords, :ErrorMsg, :RequestId
 
-        def initialize(totalcount=nil, slowqueryrecords=nil, requestid=nil)
+        def initialize(totalcount=nil, slowqueryrecords=nil, errormsg=nil, requestid=nil)
           @TotalCount = totalcount
           @SlowQueryRecords = slowqueryrecords
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
@@ -2008,6 +2017,7 @@ module TencentCloud
             @SlowQueryRecords = DataBaseAuditRecord.new
             @SlowQueryRecords.deserialize(params['SlowQueryRecords'])
           end
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -2416,8 +2426,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2024, 9
-        deprecate :InstanceID=, :none, 2024, 9
+        deprecate :InstanceID, :none, 2024, 10
+        deprecate :InstanceID=, :none, 2024, 10
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -3406,8 +3416,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 9
-        deprecate :IfExistCatalog=, :none, 2024, 9
+        deprecate :IfExistCatalog, :none, 2024, 10
+        deprecate :IfExistCatalog=, :none, 2024, 10
 
         def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil)
           @InstanceId = instanceid
@@ -4240,10 +4250,13 @@ module TencentCloud
         # @param Zone: 节点所在可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
+        # @param Id: Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
 
-        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone
+        attr_accessor :Ip, :Status, :NodeName, :ComponentName, :NodeRole, :LastRestartTime, :Zone, :Id
 
-        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil)
+        def initialize(ip=nil, status=nil, nodename=nil, componentname=nil, noderole=nil, lastrestarttime=nil, zone=nil, id=nil)
           @Ip = ip
           @Status = status
           @NodeName = nodename
@@ -4251,6 +4264,7 @@ module TencentCloud
           @NodeRole = noderole
           @LastRestartTime = lastrestarttime
           @Zone = zone
+          @Id = id
         end
 
         def deserialize(params)
@@ -4261,6 +4275,7 @@ module TencentCloud
           @NodeRole = params['NodeRole']
           @LastRestartTime = params['LastRestartTime']
           @Zone = params['Zone']
+          @Id = params['Id']
         end
       end
 
@@ -4278,16 +4293,24 @@ module TencentCloud
         # @type ComponentName: String
         # @param LastRestartTime: 上一次重启时间
         # @type LastRestartTime: String
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
 
-        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime
+        attr_accessor :NodeName, :Status, :Ip, :NodeRole, :ComponentName, :LastRestartTime, :Id, :Zone
 
-        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil)
+        def initialize(nodename=nil, status=nil, ip=nil, noderole=nil, componentname=nil, lastrestarttime=nil, id=nil, zone=nil)
           @NodeName = nodename
           @Status = status
           @Ip = ip
           @NodeRole = noderole
           @ComponentName = componentname
           @LastRestartTime = lastrestarttime
+          @Id = id
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -4297,6 +4320,8 @@ module TencentCloud
           @NodeRole = params['NodeRole']
           @ComponentName = params['ComponentName']
           @LastRestartTime = params['LastRestartTime']
+          @Id = params['Id']
+          @Zone = params['Zone']
         end
       end
 
@@ -5245,10 +5270,16 @@ module TencentCloud
         # @param DurationSec: DurationMs的秒表示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DurationSec: Float
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param CatalogName: Catalog  Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec, :State, :CatalogName
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil, state=nil, catalogname=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -5264,6 +5295,8 @@ module TencentCloud
           @ResultBytesMB = resultbytesmb
           @MemoryUsageMB = memoryusagemb
           @DurationSec = durationsec
+          @State = state
+          @CatalogName = catalogname
         end
 
         def deserialize(params)
@@ -5282,6 +5315,8 @@ module TencentCloud
           @ResultBytesMB = params['ResultBytesMB']
           @MemoryUsageMB = params['MemoryUsageMB']
           @DurationSec = params['DurationSec']
+          @State = params['State']
+          @CatalogName = params['CatalogName']
         end
       end
 
@@ -5484,14 +5519,18 @@ module TencentCloud
         # @param Encrypt: Encryptid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Integer
+        # @param Main: 是否为主力园区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Main: Boolean
 
-        attr_accessor :Name, :Desc, :ZoneId, :Encrypt
+        attr_accessor :Name, :Desc, :ZoneId, :Encrypt, :Main
 
-        def initialize(name=nil, desc=nil, zoneid=nil, encrypt=nil)
+        def initialize(name=nil, desc=nil, zoneid=nil, encrypt=nil, main=nil)
           @Name = name
           @Desc = desc
           @ZoneId = zoneid
           @Encrypt = encrypt
+          @Main = main
         end
 
         def deserialize(params)
@@ -5499,6 +5538,7 @@ module TencentCloud
           @Desc = params['Desc']
           @ZoneId = params['ZoneId']
           @Encrypt = params['Encrypt']
+          @Main = params['Main']
         end
       end
 
