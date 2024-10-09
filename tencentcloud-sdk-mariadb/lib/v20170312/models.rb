@@ -2801,6 +2801,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDBSyncMode请求参数结构体
+      class DescribeDBSyncModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如：tdsql-ow728lmc
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBSyncMode返回参数结构体
+      class DescribeDBSyncModeResponse < TencentCloud::Common::AbstractModel
+        # @param SyncMode: 同步模式：0 异步，1 强同步， 2 强同步可退化
+        # @type SyncMode: Integer
+        # @param IsModifying: 是否有修改流程在执行中：1 是， 0 否。
+        # @type IsModifying: Integer
+        # @param CurrentSyncMode: 当前复制方式，0 异步，1 同步
+        # @type CurrentSyncMode: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SyncMode, :IsModifying, :CurrentSyncMode, :RequestId
+
+        def initialize(syncmode=nil, ismodifying=nil, currentsyncmode=nil, requestid=nil)
+          @SyncMode = syncmode
+          @IsModifying = ismodifying
+          @CurrentSyncMode = currentsyncmode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SyncMode = params['SyncMode']
+          @IsModifying = params['IsModifying']
+          @CurrentSyncMode = params['CurrentSyncMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBTmpInstances请求参数结构体
       class DescribeDBTmpInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

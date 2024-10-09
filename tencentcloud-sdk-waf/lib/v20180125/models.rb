@@ -80,8 +80,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 9
-        deprecate :BTime=, :none, 2024, 9
+        deprecate :BTime, :none, 2024, 10
+        deprecate :BTime=, :none, 2024, 10
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -939,22 +939,34 @@ module TencentCloud
         # @type SniType: Integer
         # @param SniHost: SniType为3时，需要填此参数，表示自定义的SNI；
         # @type SniHost: String
-        # @param XFFReset: 是否开启XFF重置。
-        # 0：关闭
-        # 1：开启
+        # @param XFFReset: 是否开启XFF重置。0：关闭 1：开启
         # @type XFFReset: Integer
         # @param Note: 域名备注信息
         # @type Note: String
         # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
         # @type UpstreamHost: String
-        # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
+        # @param ProxyBuffer: 是否开启缓存。 0：关闭 1：开启
         # @type ProxyBuffer: Integer
-        # @param ProbeStatus: 0: 禁用拨测, 1: 启用拨测。默认启用拨测
+        # @param ProbeStatus: 是否开启拨测。 0: 禁用拨测  1: 启用拨测。默认启用拨测
         # @type ProbeStatus: Integer
+        # @param GmType: 国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问
+        # @type GmType: Integer
+        # @param GmCertType: 国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # @type GmCertType: Integer
+        # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
+        # @type GmCert: String
+        # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
+        # @type GmPrivateKey: String
+        # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
+        # @type GmEncCert: String
+        # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
+        # @type GmEncPrivateKey: String
+        # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @type GmSSLId: String
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -993,6 +1005,13 @@ module TencentCloud
           @UpstreamHost = upstreamhost
           @ProxyBuffer = proxybuffer
           @ProbeStatus = probestatus
+          @GmType = gmtype
+          @GmCertType = gmcerttype
+          @GmCert = gmcert
+          @GmPrivateKey = gmprivatekey
+          @GmEncCert = gmenccert
+          @GmEncPrivateKey = gmencprivatekey
+          @GmSSLId = gmsslid
         end
 
         def deserialize(params)
@@ -1041,6 +1060,13 @@ module TencentCloud
           @UpstreamHost = params['UpstreamHost']
           @ProxyBuffer = params['ProxyBuffer']
           @ProbeStatus = params['ProbeStatus']
+          @GmType = params['GmType']
+          @GmCertType = params['GmCertType']
+          @GmCert = params['GmCert']
+          @GmPrivateKey = params['GmPrivateKey']
+          @GmEncCert = params['GmEncCert']
+          @GmEncPrivateKey = params['GmEncPrivateKey']
+          @GmSSLId = params['GmSSLId']
         end
       end
 
@@ -1844,10 +1870,13 @@ module TencentCloud
         # @param Note: 域名备注信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
+        # @param Labels: 域名标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note
+        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note, :Labels
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil, labels=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -1862,6 +1891,7 @@ module TencentCloud
           @CdcClusters = cdcclusters
           @CloudType = cloudtype
           @Note = note
+          @Labels = labels
         end
 
         def deserialize(params)
@@ -1886,6 +1916,7 @@ module TencentCloud
           @CdcClusters = params['CdcClusters']
           @CloudType = params['CloudType']
           @Note = params['Note']
+          @Labels = params['Labels']
         end
       end
 
@@ -1942,10 +1973,13 @@ module TencentCloud
         # @param ObjectFlowMode: 对象接入模式，0表示镜像模式，1表示清洗模式，2表示体检模式，默认为清洗模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectFlowMode: Integer
+        # @param NumericalVpcId: 数值形式的私有网络 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumericalVpcId: Integer
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1968,6 +2002,7 @@ module TencentCloud
           @BotStatus = botstatus
           @ApiStatus = apistatus
           @ObjectFlowMode = objectflowmode
+          @NumericalVpcId = numericalvpcid
         end
 
         def deserialize(params)
@@ -1993,6 +2028,7 @@ module TencentCloud
           @BotStatus = params['BotStatus']
           @ApiStatus = params['ApiStatus']
           @ObjectFlowMode = params['ObjectFlowMode']
+          @NumericalVpcId = params['NumericalVpcId']
         end
       end
 
@@ -2997,13 +3033,13 @@ module TencentCloud
       class DeleteIpAccessControlV2Request < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param RuleIds: 规则ID列表，支持批量删除
+        # @param RuleIds: 规则ID列表，支持批量删除，在DeleteAll参数为true的时候可以不传
         # @type RuleIds: Array
-        # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
+        # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定IP名单，批量防护不支持
         # @type DeleteAll: Boolean
         # @param SourceType: batch表示为批量防护的IP黑白名单
         # @type SourceType: String
-        # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单
+        # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单，在DeleteAll为true的时候必传此参数
         # @type ActionType: Integer
 
         attr_accessor :Domain, :RuleIds, :DeleteAll, :SourceType, :ActionType
@@ -3205,8 +3241,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 9
-        deprecate :TopicId=, :none, 2024, 9
+        deprecate :TopicId, :none, 2024, 10
+        deprecate :TopicId=, :none, 2024, 10
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -4414,7 +4450,7 @@ module TencentCloud
       class DescribeCertificateVerifyResultRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param CertType: 证书类型。 0：仅配置HTTP监听端口，没有证书 1：证书来源为自有证书 2：证书来源为托管证书
+        # @param CertType: 证书类型。 0：不检测国际标准证书 1：证书来源为自有证书 2：证书来源为托管证书
         # @type CertType: Integer
         # @param Certificate: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Certificate: String
@@ -4422,15 +4458,33 @@ module TencentCloud
         # @type CertID: String
         # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
         # @type PrivateKey: String
+        # @param GmCertType: 国密证书类型。0：不检测国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # @type GmCertType: Integer
+        # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
+        # @type GmCert: String
+        # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
+        # @type GmPrivateKey: String
+        # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
+        # @type GmEncCert: String
+        # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
+        # @type GmEncPrivateKey: String
+        # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @type GmSSLId: String
 
-        attr_accessor :Domain, :CertType, :Certificate, :CertID, :PrivateKey
+        attr_accessor :Domain, :CertType, :Certificate, :CertID, :PrivateKey, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId
 
-        def initialize(domain=nil, certtype=nil, certificate=nil, certid=nil, privatekey=nil)
+        def initialize(domain=nil, certtype=nil, certificate=nil, certid=nil, privatekey=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil)
           @Domain = domain
           @CertType = certtype
           @Certificate = certificate
           @CertID = certid
           @PrivateKey = privatekey
+          @GmCertType = gmcerttype
+          @GmCert = gmcert
+          @GmPrivateKey = gmprivatekey
+          @GmEncCert = gmenccert
+          @GmEncPrivateKey = gmencprivatekey
+          @GmSSLId = gmsslid
         end
 
         def deserialize(params)
@@ -4439,6 +4493,12 @@ module TencentCloud
           @Certificate = params['Certificate']
           @CertID = params['CertID']
           @PrivateKey = params['PrivateKey']
+          @GmCertType = params['GmCertType']
+          @GmCert = params['GmCert']
+          @GmPrivateKey = params['GmPrivateKey']
+          @GmEncCert = params['GmEncCert']
+          @GmEncPrivateKey = params['GmEncPrivateKey']
+          @GmSSLId = params['GmSSLId']
         end
       end
 
@@ -5085,7 +5145,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回域名的数量
         # @type Limit: Integer
-        # @param Filters: 过滤数组
+        # @param Filters: 过滤数组，过滤字段包括：Edition：实例版本，sparta-waf或clb-waf Domain：域名 DomainId：域名ID InstanceName：实例名称 InstanceId：实例ID FlowMode：流量接入模式，仅支持CLBWAF FlowCheckMode：流量体检模式，仅支持CLBWAF ClsStatus：日志开关 Status：WAF开关BotStatus：BOT开关 ApiStatus：API安全开关 Engine：引擎模式 UpstreamIP：源站IP，仅支持SAAS型WAF UpstreamDomain：源站域名，仅支持SAAS型WAF DomainState：域名状态，仅支持SAAS型WAF SgState：安全组状态，仅支持SAAS型WAF Label：分组标签，同时仅支持一种标签过滤
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -5591,10 +5651,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 9
-        deprecate :VtsMin=, :none, 2024, 9
-        deprecate :VtsMax, :none, 2024, 9
-        deprecate :VtsMax=, :none, 2024, 9
+        deprecate :VtsMin, :none, 2024, 10
+        deprecate :VtsMin=, :none, 2024, 10
+        deprecate :VtsMax, :none, 2024, 10
+        deprecate :VtsMax=, :none, 2024, 10
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -5699,10 +5759,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 9
-        deprecate :VtsMin=, :none, 2024, 9
-        deprecate :VtsMax, :none, 2024, 9
-        deprecate :VtsMax=, :none, 2024, 9
+        deprecate :VtsMin, :none, 2024, 10
+        deprecate :VtsMin=, :none, 2024, 10
+        deprecate :VtsMax, :none, 2024, 10
+        deprecate :VtsMax=, :none, 2024, 10
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -6507,12 +6567,17 @@ module TencentCloud
 
       # DescribeUserClbWafRegions请求参数结构体
       class DescribeUserClbWafRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param AlbType: 流量来源，不填默认clb。clb：负载均衡器，tsegw：云原生API网关，scf：云函数，apisix：腾讯云上其他网关
+        # @type AlbType: String
 
+        attr_accessor :AlbType
 
-        def initialize()
+        def initialize(albtype=nil)
+          @AlbType = albtype
         end
 
         def deserialize(params)
+          @AlbType = params['AlbType']
         end
       end
 
@@ -7071,10 +7136,13 @@ module TencentCloud
         # @param AccessStatus: clbwaf接入状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessStatus: Integer
+        # @param Labels: 域名标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus, :Labels
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil, labels=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -7110,6 +7178,7 @@ module TencentCloud
           @UpstreamDomainList = upstreamdomainlist
           @SgID = sgid
           @AccessStatus = accessstatus
+          @Labels = labels
         end
 
         def deserialize(params)
@@ -7162,6 +7231,7 @@ module TencentCloud
           @UpstreamDomainList = params['UpstreamDomainList']
           @SgID = params['SgID']
           @AccessStatus = params['AccessStatus']
+          @Labels = params['Labels']
         end
       end
 
@@ -7395,10 +7465,34 @@ module TencentCloud
         # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyBuffer: Integer
+        # @param GmType: 国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmType: Integer
+        # @param GmCertType: 国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmCertType: Integer
+        # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmCert: String
+        # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmPrivateKey: String
+        # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmEncCert: String
+        # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmEncPrivateKey: String
+        # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GmSSLId: String
+        # @param Labels: 域名标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -7441,6 +7535,14 @@ module TencentCloud
           @UpstreamHost = upstreamhost
           @Level = level
           @ProxyBuffer = proxybuffer
+          @GmType = gmtype
+          @GmCertType = gmcerttype
+          @GmCert = gmcert
+          @GmPrivateKey = gmprivatekey
+          @GmEncCert = gmenccert
+          @GmEncPrivateKey = gmencprivatekey
+          @GmSSLId = gmsslid
+          @Labels = labels
         end
 
         def deserialize(params)
@@ -7493,6 +7595,14 @@ module TencentCloud
           @UpstreamHost = params['UpstreamHost']
           @Level = params['Level']
           @ProxyBuffer = params['ProxyBuffer']
+          @GmType = params['GmType']
+          @GmCertType = params['GmCertType']
+          @GmCert = params['GmCert']
+          @GmPrivateKey = params['GmPrivateKey']
+          @GmEncCert = params['GmEncCert']
+          @GmEncPrivateKey = params['GmEncPrivateKey']
+          @GmSSLId = params['GmSSLId']
+          @Labels = params['Labels']
         end
       end
 
@@ -8300,10 +8410,13 @@ module TencentCloud
         # @param ResourceId: 资源id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
+        # @param MicroVersion: 模式clb-waf或者saas-waf
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MicroVersion: String
 
-        attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId, :ResourceId
+        attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId, :ResourceId, :MicroVersion
 
-        def initialize(timespan=nil, timeunit=nil, subproductcode=nil, pid=nil, instancename=nil, autorenewflag=nil, realregion=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil, resourceid=nil)
+        def initialize(timespan=nil, timeunit=nil, subproductcode=nil, pid=nil, instancename=nil, autorenewflag=nil, realregion=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil, resourceid=nil, microversion=nil)
           @TimeSpan = timespan
           @TimeUnit = timeunit
           @SubProductCode = subproductcode
@@ -8316,6 +8429,7 @@ module TencentCloud
           @CurDeadline = curdeadline
           @InstanceId = instanceid
           @ResourceId = resourceid
+          @MicroVersion = microversion
         end
 
         def deserialize(params)
@@ -8331,6 +8445,7 @@ module TencentCloud
           @CurDeadline = params['CurDeadline']
           @InstanceId = params['InstanceId']
           @ResourceId = params['ResourceId']
+          @MicroVersion = params['MicroVersion']
         end
       end
 
@@ -11260,14 +11375,28 @@ module TencentCloud
         # @type Note: String
         # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
         # @type UpstreamHost: String
-        # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
+        # @param ProxyBuffer: 是否开启缓存。 0：关闭 1：开启
         # @type ProxyBuffer: Integer
-        # @param ProbeStatus: 0: 禁用拨测, 1: 启用拨测。默认启用拨测
+        # @param ProbeStatus: 是否开启拨测。 0: 禁用拨测 1: 启用拨测。默认启用拨测
         # @type ProbeStatus: Integer
+        # @param GmType: 国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问
+        # @type GmType: Integer
+        # @param GmCertType: 国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
+        # @type GmCertType: Integer
+        # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
+        # @type GmCert: String
+        # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
+        # @type GmPrivateKey: String
+        # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
+        # @type GmEncCert: String
+        # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
+        # @type GmEncPrivateKey: String
+        # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
+        # @type GmSSLId: String
 
-        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus
+        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceID = instanceid
@@ -11305,6 +11434,13 @@ module TencentCloud
           @UpstreamHost = upstreamhost
           @ProxyBuffer = proxybuffer
           @ProbeStatus = probestatus
+          @GmType = gmtype
+          @GmCertType = gmcerttype
+          @GmCert = gmcert
+          @GmPrivateKey = gmprivatekey
+          @GmEncCert = gmenccert
+          @GmEncPrivateKey = gmencprivatekey
+          @GmSSLId = gmsslid
         end
 
         def deserialize(params)
@@ -11352,6 +11488,13 @@ module TencentCloud
           @UpstreamHost = params['UpstreamHost']
           @ProxyBuffer = params['ProxyBuffer']
           @ProbeStatus = params['ProbeStatus']
+          @GmType = params['GmType']
+          @GmCertType = params['GmCertType']
+          @GmCert = params['GmCert']
+          @GmPrivateKey = params['GmPrivateKey']
+          @GmEncCert = params['GmEncCert']
+          @GmEncPrivateKey = params['GmEncPrivateKey']
+          @GmSSLId = params['GmSSLId']
         end
       end
 
@@ -12530,14 +12673,19 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arg: String
+        # @param CaseNotSensitive: 0：大小写敏感
+        # 1：大小写不敏感
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaseNotSensitive: Integer
 
-        attr_accessor :Field, :CompareFunc, :Content, :Arg
+        attr_accessor :Field, :CompareFunc, :Content, :Arg, :CaseNotSensitive
 
-        def initialize(field=nil, comparefunc=nil, content=nil, arg=nil)
+        def initialize(field=nil, comparefunc=nil, content=nil, arg=nil, casenotsensitive=nil)
           @Field = field
           @CompareFunc = comparefunc
           @Content = content
           @Arg = arg
+          @CaseNotSensitive = casenotsensitive
         end
 
         def deserialize(params)
@@ -12545,6 +12693,7 @@ module TencentCloud
           @CompareFunc = params['CompareFunc']
           @Content = params['Content']
           @Arg = params['Arg']
+          @CaseNotSensitive = params['CaseNotSensitive']
         end
       end
 

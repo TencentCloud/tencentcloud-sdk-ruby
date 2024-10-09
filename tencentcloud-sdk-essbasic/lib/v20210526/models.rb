@@ -4304,10 +4304,18 @@ module TencentCloud
         #   <li>**"AuthorizationLegalIdentity"**： 法人直接认证</li>
         # </ul>
         # @type AuthorizationType: String
+        # @param ActiveStatus: 子企业激活状态。值如下：
+        # <ul>
+        #   <li>**0**： 未激活</li>
+        #   <li>**1**： 已激活</li>
+        # </ul>
+        # @type ActiveStatus: Integer
+        # @param LicenseExpireTime: 账号过期时间，时间戳
+        # @type LicenseExpireTime: Integer
 
-        attr_accessor :OrganizationId, :OrganizationOpenId, :OrganizationName, :UnifiedSocialCreditCode, :LegalName, :LegalOpenId, :AdminName, :AdminOpenId, :AdminMobile, :AuthorizationStatus, :AuthorizationType
+        attr_accessor :OrganizationId, :OrganizationOpenId, :OrganizationName, :UnifiedSocialCreditCode, :LegalName, :LegalOpenId, :AdminName, :AdminOpenId, :AdminMobile, :AuthorizationStatus, :AuthorizationType, :ActiveStatus, :LicenseExpireTime
 
-        def initialize(organizationid=nil, organizationopenid=nil, organizationname=nil, unifiedsocialcreditcode=nil, legalname=nil, legalopenid=nil, adminname=nil, adminopenid=nil, adminmobile=nil, authorizationstatus=nil, authorizationtype=nil)
+        def initialize(organizationid=nil, organizationopenid=nil, organizationname=nil, unifiedsocialcreditcode=nil, legalname=nil, legalopenid=nil, adminname=nil, adminopenid=nil, adminmobile=nil, authorizationstatus=nil, authorizationtype=nil, activestatus=nil, licenseexpiretime=nil)
           @OrganizationId = organizationid
           @OrganizationOpenId = organizationopenid
           @OrganizationName = organizationname
@@ -4319,6 +4327,8 @@ module TencentCloud
           @AdminMobile = adminmobile
           @AuthorizationStatus = authorizationstatus
           @AuthorizationType = authorizationtype
+          @ActiveStatus = activestatus
+          @LicenseExpireTime = licenseexpiretime
         end
 
         def deserialize(params)
@@ -4333,6 +4343,8 @@ module TencentCloud
           @AdminMobile = params['AdminMobile']
           @AuthorizationStatus = params['AuthorizationStatus']
           @AuthorizationType = params['AuthorizationType']
+          @ActiveStatus = params['ActiveStatus']
+          @LicenseExpireTime = params['LicenseExpireTime']
         end
       end
 
@@ -5339,6 +5351,60 @@ module TencentCloud
         def deserialize(params)
           @Url = params['Url']
           @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateChannelSubOrganizationActive请求参数结构体
+      class CreateChannelSubOrganizationActiveRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SubOrganizationOpenIds: 要进行激活或者续期的子客企业OrganizationOpenId列表，请确保所有列出的子客企业均已完成认证。
+        # @type SubOrganizationOpenIds: Array
+        # @param Renew: 操作类型，可以选择如下：
+
+        # **false**：（默认）激活子客企业
+        # **true**：续期子客企业
+        # @type Renew: Boolean
+
+        attr_accessor :Agent, :SubOrganizationOpenIds, :Renew
+
+        def initialize(agent=nil, suborganizationopenids=nil, renew=nil)
+          @Agent = agent
+          @SubOrganizationOpenIds = suborganizationopenids
+          @Renew = renew
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SubOrganizationOpenIds = params['SubOrganizationOpenIds']
+          @Renew = params['Renew']
+        end
+      end
+
+      # CreateChannelSubOrganizationActive返回参数结构体
+      class CreateChannelSubOrganizationActiveResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -6084,13 +6084,16 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页单页的限制数目，默认值为20，最大值100
         # @type Limit: Integer
+        # @param PreciseSearch: 控制Filters相关字段是否为精确匹配。  0: 默认值，shipperName模糊匹配 1: shipperName 精确匹配
+        # @type PreciseSearch: Integer
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :PreciseSearch
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, precisesearch=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @PreciseSearch = precisesearch
         end
 
         def deserialize(params)
@@ -6104,6 +6107,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @PreciseSearch = params['PreciseSearch']
         end
       end
 
@@ -9473,8 +9477,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2024, 9
-        deprecate :DstTopicName=, :none, 2024, 9
+        deprecate :DstTopicName, :none, 2024, 10
+        deprecate :DstTopicName=, :none, 2024, 10
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -10724,8 +10728,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2024, 9
-        deprecate :HashKey=, :none, 2024, 9
+        deprecate :HashKey, :none, 2024, 10
+        deprecate :HashKey=, :none, 2024, 10
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid

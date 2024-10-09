@@ -105,17 +105,17 @@ module TencentCloud
 
       # 应用相关的配置列表项
       class ApmApplicationConfigView < TencentCloud::Common::AbstractModel
-        # @param InstanceKey: 实例ID
+        # @param InstanceKey: 业务系统ID
         # @type InstanceKey: String
-        # @param ServiceName: 服务名
+        # @param ServiceName: 应用名
         # @type ServiceName: String
         # @param OperationNameFilter: 接口过滤
         # @type OperationNameFilter: String
-        # @param ExceptionFilter: 异常过滤
+        # @param ExceptionFilter: 错误类型过滤
         # @type ExceptionFilter: String
-        # @param ErrorCodeFilter: 错误码过滤
+        # @param ErrorCodeFilter: HTTP状态码过滤
         # @type ErrorCodeFilter: String
-        # @param EventEnable: 应用诊断开关
+        # @param EventEnable: 应用诊断开关（已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventEnable: Boolean
         # @param UrlConvergenceSwitch: URL收敛开关 0 关 1 开
@@ -128,23 +128,23 @@ module TencentCloud
         # @type UrlExclude: String
         # @param IsRelatedLog: 是否开启日志 0 关 1 开
         # @type IsRelatedLog: Integer
-        # @param LogSource: 日志来源
+        # @param LogSource: 日志源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSource: String
-        # @param LogSet: CLS日志集
+        # @param LogSet: 日志集
         # @type LogSet: String
-        # @param LogTopicID: 日志主题ID
+        # @param LogTopicID: 日志主题
         # @type LogTopicID: String
-        # @param SnapshotEnable: 线程剖析开关
+        # @param SnapshotEnable: 方法栈快照开关 true 开启 false 关闭
         # @type SnapshotEnable: Boolean
-        # @param SnapshotTimeout: 线程剖析超时阈值
+        # @param SnapshotTimeout: 慢调用监听触发阈值
         # @type SnapshotTimeout: Integer
-        # @param AgentEnable: 探针开启开关
+        # @param AgentEnable: 探针总开关
         # @type AgentEnable: Boolean
-        # @param InstrumentList: 组件列表开关
+        # @param InstrumentList: 组件列表开关（已废弃）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstrumentList: Array
-        # @param TraceSquash: 链路压缩开关
+        # @param TraceSquash: 链路压缩开关（已废弃）
         # @type TraceSquash: Boolean
 
         attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash
@@ -1416,11 +1416,12 @@ module TencentCloud
 
       # ModifyGeneralApmApplicationConfig请求参数结构体
       class ModifyGeneralApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 业务系统Id
         # @type InstanceId: String
         # @param Tags: 需要修改的字段key value分别指定字段名、字段值
+        # [具体字段请见](https://cloud.tencent.com/document/product/248/111241)
         # @type Tags: Array
-        # @param ServiceNames: 需要修改配置的服务列表名称
+        # @param ServiceNames: 需要修改配置的应用列表名称
         # @type ServiceNames: Array
 
         attr_accessor :InstanceId, :Tags, :ServiceNames

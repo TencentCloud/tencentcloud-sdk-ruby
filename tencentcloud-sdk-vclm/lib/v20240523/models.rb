@@ -133,16 +133,19 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param ResultVideoUrl: 结果视频URL。有效期 24 小时。
         # @type ResultVideoUrl: String
+        # @param MaskVideoUrl: 掩码视频链接
+        # @type MaskVideoUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :RequestId
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :MaskVideoUrl, :RequestId
 
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, requestid=nil)
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, maskvideourl=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @ResultVideoUrl = resultvideourl
+          @MaskVideoUrl = maskvideourl
           @RequestId = requestid
         end
 
@@ -151,6 +154,7 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @ErrorMessage = params['ErrorMessage']
           @ResultVideoUrl = params['ResultVideoUrl']
+          @MaskVideoUrl = params['MaskVideoUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -374,15 +378,18 @@ module TencentCloud
         # @type EnableAudio: Boolean
         # @param EnableBodyJoins: 是否检测输入图人体12个身体部位（头部、颈部、右肩、右肘、右腕、左肩、左肘、左腕、右髋、左髋,、左膝、右膝）。默认不检测。
         # @type EnableBodyJoins: Boolean
+        # @param EnableSegment: 最终视频是否保留原图的背景（该模式对于tuziwu、huajiangwu不生效）
+        # @type EnableSegment: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins
+        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins, :EnableSegment
 
-        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil)
+        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil, enablesegment=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @TemplateId = templateid
           @EnableAudio = enableaudio
           @EnableBodyJoins = enablebodyjoins
+          @EnableSegment = enablesegment
         end
 
         def deserialize(params)
@@ -391,6 +398,7 @@ module TencentCloud
           @TemplateId = params['TemplateId']
           @EnableAudio = params['EnableAudio']
           @EnableBodyJoins = params['EnableBodyJoins']
+          @EnableSegment = params['EnableSegment']
         end
       end
 
