@@ -4350,10 +4350,12 @@ module TencentCloud
         # @type LicenseType: String
         # @param BootMode: 启动模式
         # @type BootMode: String
+        # @param ImageFamily:  镜像族
+        # @type ImageFamily: String
 
-        attr_accessor :Architecture, :OsType, :OsVersion, :ImageUrl, :ImageName, :ImageDescription, :DryRun, :Force, :TagSpecification, :LicenseType, :BootMode
+        attr_accessor :Architecture, :OsType, :OsVersion, :ImageUrl, :ImageName, :ImageDescription, :DryRun, :Force, :TagSpecification, :LicenseType, :BootMode, :ImageFamily
 
-        def initialize(architecture=nil, ostype=nil, osversion=nil, imageurl=nil, imagename=nil, imagedescription=nil, dryrun=nil, force=nil, tagspecification=nil, licensetype=nil, bootmode=nil)
+        def initialize(architecture=nil, ostype=nil, osversion=nil, imageurl=nil, imagename=nil, imagedescription=nil, dryrun=nil, force=nil, tagspecification=nil, licensetype=nil, bootmode=nil, imagefamily=nil)
           @Architecture = architecture
           @OsType = ostype
           @OsVersion = osversion
@@ -4365,6 +4367,7 @@ module TencentCloud
           @TagSpecification = tagspecification
           @LicenseType = licensetype
           @BootMode = bootmode
+          @ImageFamily = imagefamily
         end
 
         def deserialize(params)
@@ -4386,6 +4389,7 @@ module TencentCloud
           end
           @LicenseType = params['LicenseType']
           @BootMode = params['BootMode']
+          @ImageFamily = params['ImageFamily']
         end
       end
 

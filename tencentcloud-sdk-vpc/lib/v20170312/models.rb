@@ -1889,7 +1889,7 @@ module TencentCloud
         # @type DirectConnectAccelerateChannelFlag: Boolean
         # @param Ipv6Flag: 是否支持ipv6路由表
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Ipv6Flag: String
+        # @type Ipv6Flag: Boolean
         # @param MrtbAggregatePolicyFlag: 是否支持路由表聚合策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MrtbAggregatePolicyFlag: Boolean
@@ -1898,9 +1898,6 @@ module TencentCloud
         # @type MrtbPolicyValueFlag: Boolean
 
         attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag
-        extend Gem::Deprecate
-        deprecate :Ipv6Flag, :none, 2024, 10
-        deprecate :Ipv6Flag=, :none, 2024, 10
 
         def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil)
           @CcnId = ccnid

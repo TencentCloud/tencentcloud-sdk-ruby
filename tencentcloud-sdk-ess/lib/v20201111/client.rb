@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 该接口用于结束动态签署流程，若当前合同还存在签署方未签署，无法结束。
+
+        # @param request: Request instance for ArchiveDynamicFlow.
+        # @type request: :class:`Tencentcloud::ess::V20201111::ArchiveDynamicFlowRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::ArchiveDynamicFlowResponse`
+        def ArchiveDynamicFlow(request)
+          body = send_request('ArchiveDynamicFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ArchiveDynamicFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（BindEmployeeUserIdWithClientOpenId）用于将电子签系统员工UserId与客户系统员工OpenId进行绑定。
 
         # 此OpenId只在 [更新企业员工信息 ](https://qian.tencent.com/developers/companyApis/staffs/UpdateIntegrationEmployees)、[移除企业员工](https://qian.tencent.com/developers/companyApis/staffs/DeleteIntegrationEmployees) 等场景下可以使用
@@ -435,6 +459,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDocumentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（CreateDynamicFlowApprover）用来补充动态合同的签署人信息。<br/>
+        # 适用场景：使用CreateFlowByFiles指定：OpenDynamicSignFlow=true发起的合同，可以使用该接口补充后续签署人。<br/>
+
+        # @param request: Request instance for CreateDynamicFlowApprover.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateDynamicFlowApproverRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateDynamicFlowApproverResponse`
+        def CreateDynamicFlowApprover(request)
+          body = send_request('CreateDynamicFlowApprover', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDynamicFlowApproverResponse.new
             model.deserialize(response['Response'])
             model
           else

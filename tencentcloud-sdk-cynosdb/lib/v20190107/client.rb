@@ -2069,6 +2069,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 变配预付费集群询价
+
+        # @param request: Request instance for InquirePriceModify.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceModifyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceModifyResponse`
+        def InquirePriceModify(request)
+          body = send_request('InquirePriceModify', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceModifyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询续费集群价格
 
         # @param request: Request instance for InquirePriceRenew.
