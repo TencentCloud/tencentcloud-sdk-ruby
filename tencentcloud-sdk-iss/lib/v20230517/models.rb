@@ -3618,14 +3618,17 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 检索结束时间，UTC秒数，例如：1662114246，开始和结束时间段最长为一天，且不能跨天
         # @type EndTime: Integer
+        # @param WithUrl: 是否携带每个时间段的播放url
+        # @type WithUrl: Boolean
 
-        attr_accessor :DeviceId, :ChannelId, :StartTime, :EndTime
+        attr_accessor :DeviceId, :ChannelId, :StartTime, :EndTime, :WithUrl
 
-        def initialize(deviceid=nil, channelid=nil, starttime=nil, endtime=nil)
+        def initialize(deviceid=nil, channelid=nil, starttime=nil, endtime=nil, withurl=nil)
           @DeviceId = deviceid
           @ChannelId = channelid
           @StartTime = starttime
           @EndTime = endtime
+          @WithUrl = withurl
         end
 
         def deserialize(params)
@@ -3633,6 +3636,7 @@ module TencentCloud
           @ChannelId = params['ChannelId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @WithUrl = params['WithUrl']
         end
       end
 
@@ -6397,17 +6401,22 @@ module TencentCloud
         # @type Begin: Integer
         # @param End: 时间片段结束时间，UTC秒数，例如：1662114146
         # @type End: Integer
+        # @param HlsUrl: 对应时间片段的播放url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsUrl: String
 
-        attr_accessor :Begin, :End
+        attr_accessor :Begin, :End, :HlsUrl
 
-        def initialize(_begin=nil, _end=nil)
+        def initialize(_begin=nil, _end=nil, hlsurl=nil)
           @Begin = _begin
           @End = _end
+          @HlsUrl = hlsurl
         end
 
         def deserialize(params)
           @Begin = params['Begin']
           @End = params['End']
+          @HlsUrl = params['HlsUrl']
         end
       end
 
