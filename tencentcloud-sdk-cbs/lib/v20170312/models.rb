@@ -1960,11 +1960,11 @@ module TencentCloud
         end
       end
 
-      # 描述键值对过滤器，用于条件过滤查询。
+      # 过滤条件
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤键的名称。
+        # @param Name: 过滤键的名称
         # @type Name: String
-        # @param Values: 一个或者多个过滤值。
+        # @param Values: 一个或者多个过滤值
         # @type Values: Array
 
         attr_accessor :Name, :Values

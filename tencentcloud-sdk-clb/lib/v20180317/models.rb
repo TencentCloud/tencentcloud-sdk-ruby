@@ -1276,8 +1276,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2024, 9
-        deprecate :Period=, :none, 2024, 9
+        deprecate :Period, :none, 2024, 10
+        deprecate :Period=, :none, 2024, 10
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -5219,8 +5219,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive
         extend Gem::Deprecate
-        deprecate :Log, :none, 2024, 9
-        deprecate :Log=, :none, 2024, 9
+        deprecate :Log, :none, 2024, 10
+        deprecate :Log=, :none, 2024, 10
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil)
           @LoadBalancerId = loadbalancerid
@@ -7198,10 +7198,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2024, 9
-        deprecate :Domain=, :none, 2024, 9
-        deprecate :Url, :none, 2024, 9
-        deprecate :Url=, :none, 2024, 9
+        deprecate :Domain, :none, 2024, 10
+        deprecate :Domain=, :none, 2024, 10
+        deprecate :Url, :none, 2024, 10
+        deprecate :Url=, :none, 2024, 10
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -7578,15 +7578,20 @@ module TencentCloud
 
       # SetCustomizedConfigForLoadBalancer请求参数结构体
       class SetCustomizedConfigForLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param OperationType: 操作类型：'ADD', 'DELETE', 'UPDATE', 'BIND', 'UNBIND'
+        # @param OperationType: 操作类型。
+        # - ADD：添加
+        # - DELETE：删除
+        # - UPDATE：修改
+        # - BIND：绑定
+        # - UNBIND：解绑
         # @type OperationType: String
-        # @param UconfigId: 除了创建个性化配置外，必传此字段，如：pz-1234abcd
+        # @param UconfigId: 个性化配置ID。除了创建个性化配置外，必传此字段，如：pz-1234abcd
         # @type UconfigId: String
-        # @param ConfigContent: 创建个性化配置或修改个性化配置的内容时，必传此字段
+        # @param ConfigContent: 个性化配置内容。创建个性化配置或修改个性化配置的内容时，必传此字段
         # @type ConfigContent: String
-        # @param ConfigName: 创建个性化配置或修改个性化配置的名字时，必传此字段
+        # @param ConfigName: 个性化配置名称。创建个性化配置或修改个性化配置的名字时，必传此字段
         # @type ConfigName: String
-        # @param LoadBalancerIds: 绑定解绑时，必传此字段
+        # @param LoadBalancerIds: 负载均衡实例ID。绑定解绑时，必传此字段
         # @type LoadBalancerIds: Array
 
         attr_accessor :OperationType, :UconfigId, :ConfigContent, :ConfigName, :LoadBalancerIds
@@ -8120,8 +8125,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2024, 9
-        deprecate :HealthStatusDetial=, :none, 2024, 9
+        deprecate :HealthStatusDetial, :none, 2024, 10
+        deprecate :HealthStatusDetial=, :none, 2024, 10
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip

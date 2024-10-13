@@ -1925,7 +1925,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+        # 本接口（ModifyDBInstanceSecurityGroups）用于对实例原有的安全组列表进行修改。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyDBInstanceSecurityGroupsRequest`
@@ -2079,6 +2079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceParamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstancePassword）用于修改实例访问密码。
+
+        # @param request: Request instance for ModifyInstancePassword.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstancePasswordRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstancePasswordResponse`
+        def ModifyInstancePassword(request)
+          body = send_request('ModifyInstancePassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstancePasswordResponse.new
             model.deserialize(response['Response'])
             model
           else

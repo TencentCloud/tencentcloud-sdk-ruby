@@ -1877,7 +1877,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询任务列表
+        # 本接口（DescribeTasks）用于查询任务列表。
 
         # @param request: Request instance for DescribeTasks.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeTasksRequest`

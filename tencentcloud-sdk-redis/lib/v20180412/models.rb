@@ -6214,7 +6214,7 @@ module TencentCloud
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：redis。
         # @type Product: String
-        # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。
+        # @param SecurityGroupIds: 更换为新的安全组 ID 列表，即一个或者多个安全组 ID 组成的数组。若实例第一次配置安全组，请使用接口[AssociateSecurityGroups](https://cloud.tencent.com/document/product/239/41260)先绑定安全组。
         # @type SecurityGroupIds: Array
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
@@ -6538,6 +6538,53 @@ module TencentCloud
 
         def deserialize(params)
           @Changed = params['Changed']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstancePassword请求参数结构体
+      class ModifyInstancePasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param OldPassword: 实例旧密码。
+        # @type OldPassword: String
+        # @param Password: 实例新密码。密码复杂度要求如下：
+        # - 长度8 - 30位, 推荐使用12位以上的密码。
+        # - 不能以"/"开头。
+        # - 至少包含小写字母a - z、大写字母A - Z、数字0 - 9、特殊字符 ()~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
+        # @type Password: String
+
+        attr_accessor :InstanceId, :OldPassword, :Password
+
+        def initialize(instanceid=nil, oldpassword=nil, password=nil)
+          @InstanceId = instanceid
+          @OldPassword = oldpassword
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OldPassword = params['OldPassword']
+          @Password = params['Password']
+        end
+      end
+
+      # ModifyInstancePassword返回参数结构体
+      class ModifyInstancePasswordResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end

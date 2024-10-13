@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取作业运行时的信息
+
+        # @param request: Request instance for DescribeJobRuntimeInfo.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeJobRuntimeInfoRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeJobRuntimeInfoResponse`
+        def DescribeJobRuntimeInfo(request)
+          body = send_request('DescribeJobRuntimeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobRuntimeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查找Savepoint列表
 
         # @param request: Request instance for DescribeJobSavepoint.

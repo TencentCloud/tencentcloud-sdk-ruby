@@ -496,6 +496,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对URL链接或COS中的视频发起入库任务。
+        # 可选在任务完成后向回调方发送任务完成状态信息。
+
+        # @param request: Request instance for CreateVideoDatabaseEntryTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateVideoDatabaseEntryTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateVideoDatabaseEntryTaskResponse`
+        def CreateVideoDatabaseEntryTask(request)
+          body = send_request('CreateVideoDatabaseEntryTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoDatabaseEntryTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用检索值检索库中最接近检索值的若干视频。
+
+        # @param request: Request instance for CreateVideoSearchTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateVideoSearchTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateVideoSearchTaskResponse`
+        def CreateVideoSearchTask(request)
+          body = send_request('CreateVideoSearchTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoSearchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义水印模板，数量上限：1000。
 
         # @param request: Request instance for CreateWatermarkTemplate.
@@ -1649,6 +1698,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTranscodeTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据任务ID查询视频入库任务的状态。
+
+        # @param request: Request instance for DescribeVideoDatabaseEntryTaskDetail.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeVideoDatabaseEntryTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeVideoDatabaseEntryTaskDetailResponse`
+        def DescribeVideoDatabaseEntryTaskDetail(request)
+          body = send_request('DescribeVideoDatabaseEntryTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoDatabaseEntryTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据任务ID查询视频检索任务的状态。
+
+        # @param request: Request instance for DescribeVideoSearchTaskDetail.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeVideoSearchTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeVideoSearchTaskDetailResponse`
+        def DescribeVideoSearchTaskDetail(request)
+          body = send_request('DescribeVideoSearchTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoSearchTaskDetailResponse.new
             model.deserialize(response['Response'])
             model
           else

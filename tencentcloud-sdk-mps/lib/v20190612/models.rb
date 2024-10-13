@@ -2017,8 +2017,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 9
-        deprecate :OutputStorage=, :none, 2024, 9
+        deprecate :OutputStorage, :none, 2024, 10
+        deprecate :OutputStorage=, :none, 2024, 10
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -7568,6 +7568,104 @@ module TencentCloud
         end
       end
 
+      # CreateVideoDatabaseEntryTask请求参数结构体
+      class CreateVideoDatabaseEntryTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: 待入库视频信息
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param TaskNotifyConfig: 可选，入库任务完成后向指定的回调地址传递任务结果，目前仅支持URL
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+
+        attr_accessor :InputInfo, :TaskNotifyConfig
+
+        def initialize(inputinfo=nil, tasknotifyconfig=nil)
+          @InputInfo = inputinfo
+          @TaskNotifyConfig = tasknotifyconfig
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+        end
+      end
+
+      # CreateVideoDatabaseEntryTask返回参数结构体
+      class CreateVideoDatabaseEntryTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVideoSearchTask请求参数结构体
+      class CreateVideoSearchTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SearchValueInput: 用于检索任务的输入
+        # @type SearchValueInput: :class:`Tencentcloud::Mps.v20190612.models.SearchValueInput`
+        # @param Limit: 返回视频的最大数量，取值范围[1,20]，将返回最相近的前Limit条视频,默认为5
+        # @type Limit: Integer
+        # @param TaskNotifyConfig: 可选，用于检索任务完成后向回调方发送检索结果，目前仅支持URL方式
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+
+        attr_accessor :SearchValueInput, :Limit, :TaskNotifyConfig
+
+        def initialize(searchvalueinput=nil, limit=nil, tasknotifyconfig=nil)
+          @SearchValueInput = searchvalueinput
+          @Limit = limit
+          @TaskNotifyConfig = tasknotifyconfig
+        end
+
+        def deserialize(params)
+          unless params['SearchValueInput'].nil?
+            @SearchValueInput = SearchValueInput.new
+            @SearchValueInput.deserialize(params['SearchValueInput'])
+          end
+          @Limit = params['Limit']
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+        end
+      end
+
+      # CreateVideoSearchTask返回参数结构体
+      class CreateVideoSearchTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 检索任务的Id，用于后续查询任务状态和返回任务结果时标识任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateWatermarkTemplate请求参数结构体
       class CreateWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Type: 水印类型，可选值：
@@ -10951,6 +11049,114 @@ module TencentCloud
         end
       end
 
+      # DescribeVideoDatabaseEntryTaskDetail请求参数结构体
+      class DescribeVideoDatabaseEntryTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 待查询的任务Id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeVideoDatabaseEntryTaskDetail返回参数结构体
+      class DescribeVideoDatabaseEntryTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 查询的任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param Status: 查询的任务的状态，可能为WAITING、PROCESSING、FAIL、SUCCESS。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param VideoDBEntryTaskResults: 查询的任务的结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoDBEntryTaskResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :VideoDBEntryTaskResults, :RequestId
+
+        def initialize(taskid=nil, status=nil, videodbentrytaskresults=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @VideoDBEntryTaskResults = videodbentrytaskresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          unless params['VideoDBEntryTaskResults'].nil?
+            @VideoDBEntryTaskResults = []
+            params['VideoDBEntryTaskResults'].each do |i|
+              videodbentrytaskresult_tmp = VideoDBEntryTaskResult.new
+              videodbentrytaskresult_tmp.deserialize(i)
+              @VideoDBEntryTaskResults << videodbentrytaskresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoSearchTaskDetail请求参数结构体
+      class DescribeVideoSearchTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 待查询的任务Id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeVideoSearchTaskDetail返回参数结构体
+      class DescribeVideoSearchTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 查询的任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param Status: 查询的任务的状态，可能为WAITING、PROCESSING、FAIL、SUCCESS。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param SearchTaskResults: 查询的任务的结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchTaskResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :SearchTaskResults, :RequestId
+
+        def initialize(taskid=nil, status=nil, searchtaskresults=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @SearchTaskResults = searchtaskresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          unless params['SearchTaskResults'].nil?
+            @SearchTaskResults = []
+            params['SearchTaskResults'].each do |i|
+              searchtaskresult_tmp = SearchTaskResult.new
+              searchtaskresult_tmp.deserialize(i)
+              @SearchTaskResults << searchtaskresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWatermarkTemplates请求参数结构体
       class DescribeWatermarkTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 水印模板唯一标识过滤条件，数组长度限制：100。
@@ -13150,10 +13356,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2024, 9
-        deprecate :QualityControlResults=, :none, 2024, 9
-        deprecate :DiagnoseResults, :none, 2024, 9
-        deprecate :DiagnoseResults=, :none, 2024, 9
+        deprecate :QualityControlResults, :none, 2024, 10
+        deprecate :QualityControlResults=, :none, 2024, 10
+        deprecate :DiagnoseResults, :none, 2024, 10
+        deprecate :DiagnoseResults=, :none, 2024, 10
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -19541,6 +19747,50 @@ module TencentCloud
         end
       end
 
+      # 视频检索的检索结果
+      class SearchTaskResult < TencentCloud::Common::AbstractModel
+        # @param Score: 视频在本次检索中的得分，得分越高和检索值越相似，取值范围[0,1]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Float
+        # @param VideoId: 检索获得的视频ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoId: String
+
+        attr_accessor :Score, :VideoId
+
+        def initialize(score=nil, videoid=nil)
+          @Score = score
+          @VideoId = videoid
+        end
+
+        def deserialize(params)
+          @Score = params['Score']
+          @VideoId = params['VideoId']
+        end
+      end
+
+      # 视频检索的检索输入
+      class SearchValueInput < TencentCloud::Common::AbstractModel
+        # @param SearchValueType: 检索输入的类型，目前支持：
+        # Text：文本检索
+        # @type SearchValueType: String
+        # @param TextInput: 当SearchValueType为Text时有效且必填，用于检索视频的文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextInput: String
+
+        attr_accessor :SearchValueType, :TextInput
+
+        def initialize(searchvaluetype=nil, textinput=nil)
+          @SearchValueType = searchvaluetype
+          @TextInput = textinput
+        end
+
+        def deserialize(params)
+          @SearchValueType = params['SearchValueType']
+          @TextInput = params['TextInput']
+        end
+      end
+
       # 智能拆条片段。
       class SegmentRecognitionItem < TencentCloud::Common::AbstractModel
         # @param Confidence: 置信度。
@@ -19577,6 +19827,36 @@ module TencentCloud
           @SegmentUrl = params['SegmentUrl']
           @Title = params['Title']
           @Summary = params['Summary']
+        end
+      end
+
+      # 切片特殊配置信息。
+      class SegmentSpecificInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 启动分片时长开关，可选值：
+        # on：打开
+        # off：关闭
+        # 默认off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param FragmentTime: 启动时分片时长，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentTime: Integer
+        # @param FragmentEndNum: 生效分片数，表示前FragmentEndNum个分片以FragmentTime时长切片，取值>=1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentEndNum: Integer
+
+        attr_accessor :Switch, :FragmentTime, :FragmentEndNum
+
+        def initialize(switch=nil, fragmenttime=nil, fragmentendnum=nil)
+          @Switch = switch
+          @FragmentTime = fragmenttime
+          @FragmentEndNum = fragmentendnum
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @FragmentTime = params['FragmentTime']
+          @FragmentEndNum = params['FragmentEndNum']
         end
       end
 
@@ -21019,6 +21299,23 @@ module TencentCloud
         end
       end
 
+      # 视频检索入库任务的结果
+      class VideoDBEntryTaskResult < TencentCloud::Common::AbstractModel
+        # @param VideoId: 入库的视频ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoId: String
+
+        attr_accessor :VideoId
+
+        def initialize(videoid=nil)
+          @VideoId = videoid
+        end
+
+        def deserialize(params)
+          @VideoId = params['VideoId']
+        end
+      end
+
       # 视频降噪配置
       class VideoDenoiseConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -21158,7 +21455,6 @@ module TencentCloud
         # <li>mpeg2：MPEG2 编码</li>
         # <li>dnxhd：DNxHD 编码</li>
         # <li>mv-hevc：MV-HEVC 编码</li>
-        # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
 
         # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv。
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
@@ -21194,20 +21490,37 @@ module TencentCloud
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
         # @type Height: Integer
-        # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。 当填 0 或不填时，系统将自动设置 gop 长度。
+        # @param Gop: 关键帧 I 帧之间的间隔，允许按帧或秒自定义GOP长度，取值范围：0 和 [1, 100000]，
+        # 当填 0 或不填时，系统将自动设置 gop 长度。
         # @type Gop: Integer
+        # @param GopUnit: Gop数值单位，可选值：
+        # frame：表示帧
+        # second：表示秒
+        # 默认值：frame
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GopUnit: String
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
         # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        # <li>smarttailor：智能剪裁：智能选取视频画面，来保证画面比例裁剪。</li>
         # 默认值：black 。
         # 注意：自适应码流只支持 stretch、black。
         # @type FillType: String
-        # @param Vcrf: 视频恒定码率控制因子，取值范围为[1, 51]。
+        # @param Vcrf: 视频恒定码率控制因子，取值范围为[0, 51]。
         # 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）。
         # 如果没有特殊需求，不建议指定该参数。
+        # 注意：
+        # 若Mode选择ABR，无需配置Vcrf值
+        # 若Mode选择CBR，无需配置Vcrf值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vcrf: Integer
+        # @param HlsTime: 分片平均时长，范围：（0-10]，单位：秒
+        # 默认值：10
+        # 注意：只能在封装格式hls的情况下使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsTime: Integer
         # @param SegmentType: hls 分片类型，可选值 ：
         # <li>0：HLS+TS 切片</li>
         # <li>2：HLS+TS byte range</li>
@@ -21226,10 +21539,62 @@ module TencentCloud
         # 默认值:side_by_side
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stereo3dType: String
+        # @param VideoProfile: Profile，适用于不同场景。
+        # baseline: 只支持I/P帧，并只支持无交错的场景，适用于视频通话、手机视频等场景。
+        # main: 主流Profile，提供I帧、P帧、B帧，并支持无交错模式和交错模式。主要用在主流的音视频消费产品如视频播放器、流媒体传输设备上。
+        # high: 最高编码等级，在Main Profile上添加了8X8的预测，并支持自定义量化。广泛应用在蓝光存储、高清电视等场景。
+        # default：随原视频自动填充。
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :SegmentType, :FpsDenominator, :Stereo3dType
+        # 仅编码标准选择h264时出现该配置， 支持 baseline/main/high，默认为：default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoProfile: String
+        # @param VideoLevel: 编码器级别，默认为自动（""）
+        # 若编码标准选择H264: 支持以下选项：""，1 , 1.1 , 1.2 , 1.3 , 2 , 2.1 , 2.2 , 3 , 3.1 , 3.2 , 4 , 4.1 , 4.2 , 5 , 5.1
+        # 若编码标准选择H265: 支持以下选项：""，1 , 2 , 2.1 , 3 , 3.1 , 4 , 4.1 , 5 , 5.1 , 5.2 , 6 , 6.1 , 6.2 , 8.5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoLevel: String
+        # @param Bframes: 参考帧之间的B帧数，默认选自动，支持 0 - 16
+        # 注意：不填表示使用自动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bframes: Integer
+        # @param Mode: 码率控制模式：可选值：
+        # VBR（Variable Bit Rate）：动态比特率，根据视频画面的复杂度动态调整输出的码率，使得画面质量更高，适用于存储场景和对画面质量要求较高的应用。
+        # ABR（Average Bit Rate）：平均比特率，尽量保持输出视频的平均码率稳定，但允许短期内的码率波动，适用于需要在保持一定画质的情况下尽量减少整体码率的场景。
+        # CBR（Constant Bit Rate）：恒定比特率，指视频编码时输出的码率保持恒定不变，不考虑画面复杂度的变化，适用于对网络带宽要求较为严格的场景，如直播等。
+        # VCRF（Constant Rate Factor）：恒定质量因子，通过设定一个质量因子来控制视频质量，实现视频的恒定质量编码，码率会根据内容的复杂度自动调整，适用于希望保持一定画质的场景。
+        # 默认选择 VBR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Sar: 显示高宽比，可选值：[1:1，2:1，default]
+        # 默认值：default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sar: String
+        # @param NoScenecut: 自适应I帧决策，开启后，媒体处理将自动识别视频中不同场景之间的过渡点（通常是视觉上显著不同的帧，比如从一个镜头切换到另一个镜头），在这些点自适应插入关键帧（I帧），从而提高视频的随机访问性和编码效率。可选值：
+        # 0：关闭自适应I帧决策
+        # 1：使用自适应I帧决策
+        # 默认值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoScenecut: Integer
+        # @param BitDepth: 比特位：支持8/10，默认为8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitDepth: Integer
+        # @param RawPts: 保持原始时间戳：可选值：
+        # 0：表示关闭
+        # 1：表示打开
+        # 默认是关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawPts: Integer
+        # @param Compress: 按比例压缩码率，开启后，将根据比例来调整输出视频的码率。填写压缩率后，系统会根据视频源码率自动计算目标输出码率。压缩率范围0-100
+        # 不填此值表示不开启，默认不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compress: Integer
+        # @param SegmentSpecificInfo: 切片特殊配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentSpecificInfo: :class:`Tencentcloud::Mps.v20190612.models.SegmentSpecificInfo`
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil)
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :GopUnit, :FillType, :Vcrf, :HlsTime, :SegmentType, :FpsDenominator, :Stereo3dType, :VideoProfile, :VideoLevel, :Bframes, :Mode, :Sar, :NoScenecut, :BitDepth, :RawPts, :Compress, :SegmentSpecificInfo
+
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, gopunit=nil, filltype=nil, vcrf=nil, hlstime=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil, videoprofile=nil, videolevel=nil, bframes=nil, mode=nil, sar=nil, noscenecut=nil, bitdepth=nil, rawpts=nil, compress=nil, segmentspecificinfo=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21237,11 +21602,23 @@ module TencentCloud
           @Width = width
           @Height = height
           @Gop = gop
+          @GopUnit = gopunit
           @FillType = filltype
           @Vcrf = vcrf
+          @HlsTime = hlstime
           @SegmentType = segmenttype
           @FpsDenominator = fpsdenominator
           @Stereo3dType = stereo3dtype
+          @VideoProfile = videoprofile
+          @VideoLevel = videolevel
+          @Bframes = bframes
+          @Mode = mode
+          @Sar = sar
+          @NoScenecut = noscenecut
+          @BitDepth = bitdepth
+          @RawPts = rawpts
+          @Compress = compress
+          @SegmentSpecificInfo = segmentspecificinfo
         end
 
         def deserialize(params)
@@ -21252,11 +21629,26 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @Gop = params['Gop']
+          @GopUnit = params['GopUnit']
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
+          @HlsTime = params['HlsTime']
           @SegmentType = params['SegmentType']
           @FpsDenominator = params['FpsDenominator']
           @Stereo3dType = params['Stereo3dType']
+          @VideoProfile = params['VideoProfile']
+          @VideoLevel = params['VideoLevel']
+          @Bframes = params['Bframes']
+          @Mode = params['Mode']
+          @Sar = params['Sar']
+          @NoScenecut = params['NoScenecut']
+          @BitDepth = params['BitDepth']
+          @RawPts = params['RawPts']
+          @Compress = params['Compress']
+          unless params['SegmentSpecificInfo'].nil?
+            @SegmentSpecificInfo = SegmentSpecificInfo.new
+            @SegmentSpecificInfo.deserialize(params['SegmentSpecificInfo'])
+          end
         end
       end
 
@@ -21272,7 +21664,6 @@ module TencentCloud
         # <li>mpeg2：MPEG2 编码</li>
         # <li>dnxhd：DNxHD 编码</li>
         # <li>mv-hevc：MV-HEVC 编码</li>
-        # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
 
         # 注意：av1 编码容器目前只支持 mp4 ，webm，mkv。
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
@@ -21307,18 +21698,32 @@ module TencentCloud
         # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
-        # @param Gop: 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。当填 0 时，系统将自动设置 gop 长度。
+        # @param Gop: 关键帧 I 帧之间的间隔，允许按帧或秒自定义GOP长度，取值范围：0 和 [1, 100000]。
+        # 当填 0 时，系统将自动设置 gop 长度。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gop: Integer
+        # @param GopUnit: Gop数值单位，可选值：
+        # frame：表示帧
+        # second：表示秒
+        # 默认值：frame
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GopUnit: String
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         #  <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
         # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        # <li>smarttailor：智能剪裁：智能选取视频画面，来保证画面比例裁剪。</li>
+        # 默认值：black 。
+        # 注意：自适应码流只支持 stretch、black。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FillType: String
-        # @param Vcrf: 视频恒定码率控制因子。取值范围为[0, 51]，填0表示禁用该参数。
+        # @param Vcrf: 视频恒定码率控制因子。取值范围为[0, 51]和100。
         # 如果没有特殊需求，不建议指定该参数。
+        # 注意：
+        # 需要修改为自动时，填100
+        # 若Mode选择ABR，无需配置Vcrf值
+        # 若Mode选择CBR，无需配置Vcrf值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vcrf: Integer
         # @param ContentAdaptStream: 内容自适应编码。可选值：
@@ -21327,6 +21732,11 @@ module TencentCloud
         # 默认值: 0.   当开启该参数时，将会自适应生成多个不同分辨率，不同码率的码流， 其中VideoTemplate的宽和高为多个码流中的最大分辨率，VideoTemplate中的码率为多个码流中的最高码率， VideoTemplate中的vcrf为多个码流中的最高质量。 当不设置分辨率、码率和vcrf时， ContentAdaptStream 参数生成的最高分辨率为视频源的分辨率，视频质量为接近vmaf95分。 若要开启该参数或了解计费细节, 请联系您的腾讯云商务。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentAdaptStream: Integer
+        # @param HlsTime: 分片平均时长，取值范围：（0-10]，单位：秒
+        # 默认值：10
+        # 注意：只在封装格式HLS时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HlsTime: Integer
         # @param SegmentType: hls 分片类型，可选值：
         # <li>0：HLS+TS 切片</li>
         # <li>2：HLS+TS byte range</li>
@@ -21345,10 +21755,63 @@ module TencentCloud
         # 默认值:side_by_side
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stereo3dType: String
+        # @param VideoProfile: Profile，适用于不同场景。
+        # baseline: 只支持I/P帧，并只支持无交错的场景，适用于视频通话、手机视频等场景。
+        # main: 主流Profile，提供I帧、P帧、B帧，并支持无交错模式和交错模式。主要用在主流的音视频消费产品如视频播放器、流媒体传输设备上。
+        # high: 最高编码等级，在Main Profile上添加了8X8的预测，并支持自定义量化。广泛应用在蓝光存储、高清电视等场景。
+        # default：随原视频自动填充
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf, :ContentAdaptStream, :SegmentType, :FpsDenominator, :Stereo3dType
+        # 仅编码标准选择h264时出现该配置，默认为：default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoProfile: String
+        # @param VideoLevel: 编码器级别，默认为自动（""）
+        # 若编码标准选择H264: 支持以下选项：""，1 , 1.1 , 1.2 , 1.3 , 2 , 2.1 , 2.2 , 3 , 3.1 , 3.2 , 4 , 4.1 , 4.2 , 5 , 5.1
+        # 若编码标准选择H265: 支持以下选项：""，1 , 2 , 2.1 , 3 , 3.1 , 4 , 4.1 , 5 , 5.1 , 5.2 , 6 , 6.1 , 6.2 , 8.5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoLevel: String
+        # @param Bframes: 最大连续B帧数，默认选自动，支持 0 - 16和-1
+        # 注意：
+        # -1表示修改为自动值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bframes: Integer
+        # @param Mode: 码率控制模式：可选值：
+        # VBR（Variable Bit Rate）：动态比特率，根据视频画面的复杂度动态调整输出的码率，使得画面质量更高，适用于存储场景和对画面质量要求较高的应用。
+        # ABR（Average Bit Rate）：平均比特率，尽量保持输出视频的平均码率稳定，但允许短期内的码率波动，适用于需要在保持一定画质的情况下尽量减少整体码率的场景。
+        # CBR（Constant Bit Rate）：恒定比特率，指视频编码时输出的码率保持恒定不变，不考虑画面复杂度的变化，适用于对网络带宽要求较为严格的场景，如直播等。
+        # VCRF（Constant Rate Factor）：恒定质量因子，通过设定一个质量因子来控制视频质量，实现视频的恒定质量编码，码率会根据内容的复杂度自动调整，适用于希望保持一定画质的场景。
+        # 默认选择 VBR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Sar: 显示高宽比，可选值：[1:1，2:1，default]
+        # 默认值：default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sar: String
+        # @param NoScenecut: 自适应I帧决策，开启后，媒体处理将自动识别视频中不同场景之间的过渡点（通常是视觉上显著不同的帧，比如从一个镜头切换到另一个镜头），在这些点自适应插入关键帧（I帧），从而提高视频的随机访问性和编码效率。可选值：
+        # 0：关闭自适应I帧决策
+        # 1：使用自适应I帧决策
+        # 默认值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoScenecut: Integer
+        # @param BitDepth: 比特位：支持8/10，默认为8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitDepth: Integer
+        # @param RawPts: 保持原始时间戳：可选值：
+        # 0：表示关闭
+        # 1：表示打开
+        # 默认是关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawPts: Integer
+        # @param Compress: 按比例压缩码率，开启后，将根据比例来调整输出视频的码率。填写压缩率后，系统会根据视频源码率自动计算目标输出码率。压缩率范围0-100，可选值：[0-100]和-1
+        # 注意：-1表示修改为自动
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compress: Integer
+        # @param SegmentSpecificInfo: 切片特殊配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentSpecificInfo: :class:`Tencentcloud::Mps.v20190612.models.SegmentSpecificInfo`
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil)
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :GopUnit, :FillType, :Vcrf, :ContentAdaptStream, :HlsTime, :SegmentType, :FpsDenominator, :Stereo3dType, :VideoProfile, :VideoLevel, :Bframes, :Mode, :Sar, :NoScenecut, :BitDepth, :RawPts, :Compress, :SegmentSpecificInfo
+
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, gopunit=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, hlstime=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil, videoprofile=nil, videolevel=nil, bframes=nil, mode=nil, sar=nil, noscenecut=nil, bitdepth=nil, rawpts=nil, compress=nil, segmentspecificinfo=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21356,12 +21819,24 @@ module TencentCloud
           @Width = width
           @Height = height
           @Gop = gop
+          @GopUnit = gopunit
           @FillType = filltype
           @Vcrf = vcrf
           @ContentAdaptStream = contentadaptstream
+          @HlsTime = hlstime
           @SegmentType = segmenttype
           @FpsDenominator = fpsdenominator
           @Stereo3dType = stereo3dtype
+          @VideoProfile = videoprofile
+          @VideoLevel = videolevel
+          @Bframes = bframes
+          @Mode = mode
+          @Sar = sar
+          @NoScenecut = noscenecut
+          @BitDepth = bitdepth
+          @RawPts = rawpts
+          @Compress = compress
+          @SegmentSpecificInfo = segmentspecificinfo
         end
 
         def deserialize(params)
@@ -21372,12 +21847,27 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @Gop = params['Gop']
+          @GopUnit = params['GopUnit']
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @ContentAdaptStream = params['ContentAdaptStream']
+          @HlsTime = params['HlsTime']
           @SegmentType = params['SegmentType']
           @FpsDenominator = params['FpsDenominator']
           @Stereo3dType = params['Stereo3dType']
+          @VideoProfile = params['VideoProfile']
+          @VideoLevel = params['VideoLevel']
+          @Bframes = params['Bframes']
+          @Mode = params['Mode']
+          @Sar = params['Sar']
+          @NoScenecut = params['NoScenecut']
+          @BitDepth = params['BitDepth']
+          @RawPts = params['RawPts']
+          @Compress = params['Compress']
+          unless params['SegmentSpecificInfo'].nil?
+            @SegmentSpecificInfo = SegmentSpecificInfo.new
+            @SegmentSpecificInfo.deserialize(params['SegmentSpecificInfo'])
+          end
         end
       end
 

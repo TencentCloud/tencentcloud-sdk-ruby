@@ -611,15 +611,21 @@ module TencentCloud
         # @type ResourceRegion: String
         # @param ResourcesAccount: 用户授权的账户信息，如果是一键自动授权模式，则不需要填写账户名与密码。
         # @type ResourcesAccount: Array
+        # @param CreateDefaultTask: 创建默认主模板扫描任务
+        # @type CreateDefaultTask: Boolean
+        # @param AuthRange: 授权范围（all:授权整个数据源 manual:手动指定数据库）
+        # @type AuthRange: String
 
-        attr_accessor :DspaId, :AuthType, :MetaType, :ResourceRegion, :ResourcesAccount
+        attr_accessor :DspaId, :AuthType, :MetaType, :ResourceRegion, :ResourcesAccount, :CreateDefaultTask, :AuthRange
 
-        def initialize(dspaid=nil, authtype=nil, metatype=nil, resourceregion=nil, resourcesaccount=nil)
+        def initialize(dspaid=nil, authtype=nil, metatype=nil, resourceregion=nil, resourcesaccount=nil, createdefaulttask=nil, authrange=nil)
           @DspaId = dspaid
           @AuthType = authtype
           @MetaType = metatype
           @ResourceRegion = resourceregion
           @ResourcesAccount = resourcesaccount
+          @CreateDefaultTask = createdefaulttask
+          @AuthRange = authrange
         end
 
         def deserialize(params)
@@ -635,6 +641,8 @@ module TencentCloud
               @ResourcesAccount << dsparesourceaccount_tmp
             end
           end
+          @CreateDefaultTask = params['CreateDefaultTask']
+          @AuthRange = params['AuthRange']
         end
       end
 
@@ -1475,12 +1483,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2024, 9
-        deprecate :BusinessName=, :none, 2024, 9
-        deprecate :BusinessDept, :none, 2024, 9
-        deprecate :BusinessDept=, :none, 2024, 9
-        deprecate :BusinessOwner, :none, 2024, 9
-        deprecate :BusinessOwner=, :none, 2024, 9
+        deprecate :BusinessName, :none, 2024, 10
+        deprecate :BusinessName=, :none, 2024, 10
+        deprecate :BusinessDept, :none, 2024, 10
+        deprecate :BusinessDept=, :none, 2024, 10
+        deprecate :BusinessOwner, :none, 2024, 10
+        deprecate :BusinessOwner=, :none, 2024, 10
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -1831,10 +1839,10 @@ module TencentCloud
 
         attr_accessor :DspaId, :ResourceRegion, :Buckets, :CosBucketItems
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2024, 9
-        deprecate :ResourceRegion=, :none, 2024, 9
-        deprecate :Buckets, :none, 2024, 9
-        deprecate :Buckets=, :none, 2024, 9
+        deprecate :ResourceRegion, :none, 2024, 10
+        deprecate :ResourceRegion=, :none, 2024, 10
+        deprecate :Buckets, :none, 2024, 10
+        deprecate :Buckets=, :none, 2024, 10
 
         def initialize(dspaid=nil, resourceregion=nil, buckets=nil, cosbucketitems=nil)
           @DspaId = dspaid
@@ -1893,14 +1901,14 @@ module TencentCloud
 
         attr_accessor :DspaId, :MetaType, :ResourceRegion, :UpdateStatus, :UpdateId, :Items, :CloudResourceItems
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2024, 9
-        deprecate :ResourceRegion=, :none, 2024, 9
-        deprecate :UpdateStatus, :none, 2024, 9
-        deprecate :UpdateStatus=, :none, 2024, 9
-        deprecate :UpdateId, :none, 2024, 9
-        deprecate :UpdateId=, :none, 2024, 9
-        deprecate :Items, :none, 2024, 9
-        deprecate :Items=, :none, 2024, 9
+        deprecate :ResourceRegion, :none, 2024, 10
+        deprecate :ResourceRegion=, :none, 2024, 10
+        deprecate :UpdateStatus, :none, 2024, 10
+        deprecate :UpdateStatus=, :none, 2024, 10
+        deprecate :UpdateId, :none, 2024, 10
+        deprecate :UpdateId=, :none, 2024, 10
+        deprecate :Items, :none, 2024, 10
+        deprecate :Items=, :none, 2024, 10
 
         def initialize(dspaid=nil, metatype=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil, cloudresourceitems=nil)
           @DspaId = dspaid
@@ -1952,10 +1960,10 @@ module TencentCloud
 
         attr_accessor :UpdateId, :MetaType, :DspaId, :ResourceRegion, :RequestId
         extend Gem::Deprecate
-        deprecate :UpdateId, :none, 2024, 9
-        deprecate :UpdateId=, :none, 2024, 9
-        deprecate :ResourceRegion, :none, 2024, 9
-        deprecate :ResourceRegion=, :none, 2024, 9
+        deprecate :UpdateId, :none, 2024, 10
+        deprecate :UpdateId=, :none, 2024, 10
+        deprecate :ResourceRegion, :none, 2024, 10
+        deprecate :ResourceRegion=, :none, 2024, 10
 
         def initialize(updateid=nil, metatype=nil, dspaid=nil, resourceregion=nil, requestid=nil)
           @UpdateId = updateid
@@ -2288,10 +2296,6 @@ module TencentCloud
         # @type ResourceRegion: String
         # @param ResourceId: 自建云资源ID。
         # @type ResourceId: String
-        # @param ResourceVip: 可用于访问自建云资源的IP。
-        # @type ResourceVip: String
-        # @param ResourceVPort: 可用于访问自建云资源的端口。
-        # @type ResourceVPort: Integer
         # @param ResourceUniqueVpcId: 自建云资源的VPC ID。
         # @type ResourceUniqueVpcId: String
         # @param ResourceUniqueSubnetId: 自建云资源的Subnet ID。
@@ -2300,9 +2304,15 @@ module TencentCloud
         # cvm - 通过云服务器直接访问。
         # clb - 通过LB的方式进行访问。
         # @type ResourceAccessType: String
-        # @param UserName: 账户名。
+        # @param ResourceVip: 可用于访问自建云资源的IP。
+        # emr的连接不需要使用该字段
+        # @type ResourceVip: String
+        # @param ResourceVPort: 可用于访问自建云资源的端口。
+        # emr的连接不需要使用该字段
+        # @type ResourceVPort: Integer
+        # @param UserName: 账户名。如果emr_hive的连接方式为“LDAP”，则复用该字段
         # @type UserName: String
-        # @param Password: 账户密码。
+        # @param Password: 账户密码。如果emr_hive的连接方式为“LDAP”，则复用该字段
         # @type Password: String
         # @param ResourceName: 资源名称，1-60个字符。
         # @type ResourceName: String
@@ -2313,24 +2323,27 @@ module TencentCloud
         # @type InstanceType: String
         # @param InstanceValue: 实例值
         # @type InstanceValue: String
+        # @param AuthRange: 授权范围（all:授权整个数据源 manual:手动指定数据库）
+        # @type AuthRange: String
 
-        attr_accessor :DspaId, :MetaType, :ResourceRegion, :ResourceId, :ResourceVip, :ResourceVPort, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :ResourceAccessType, :UserName, :Password, :ResourceName, :InstanceType, :InstanceValue
+        attr_accessor :DspaId, :MetaType, :ResourceRegion, :ResourceId, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :ResourceAccessType, :ResourceVip, :ResourceVPort, :UserName, :Password, :ResourceName, :InstanceType, :InstanceValue, :AuthRange
 
-        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, resourceid=nil, resourcevip=nil, resourcevport=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, resourceaccesstype=nil, username=nil, password=nil, resourcename=nil, instancetype=nil, instancevalue=nil)
+        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, resourceid=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, resourceaccesstype=nil, resourcevip=nil, resourcevport=nil, username=nil, password=nil, resourcename=nil, instancetype=nil, instancevalue=nil, authrange=nil)
           @DspaId = dspaid
           @MetaType = metatype
           @ResourceRegion = resourceregion
           @ResourceId = resourceid
-          @ResourceVip = resourcevip
-          @ResourceVPort = resourcevport
           @ResourceUniqueVpcId = resourceuniquevpcid
           @ResourceUniqueSubnetId = resourceuniquesubnetid
           @ResourceAccessType = resourceaccesstype
+          @ResourceVip = resourcevip
+          @ResourceVPort = resourcevport
           @UserName = username
           @Password = password
           @ResourceName = resourcename
           @InstanceType = instancetype
           @InstanceValue = instancevalue
+          @AuthRange = authrange
         end
 
         def deserialize(params)
@@ -2338,16 +2351,17 @@ module TencentCloud
           @MetaType = params['MetaType']
           @ResourceRegion = params['ResourceRegion']
           @ResourceId = params['ResourceId']
-          @ResourceVip = params['ResourceVip']
-          @ResourceVPort = params['ResourceVPort']
           @ResourceUniqueVpcId = params['ResourceUniqueVpcId']
           @ResourceUniqueSubnetId = params['ResourceUniqueSubnetId']
           @ResourceAccessType = params['ResourceAccessType']
+          @ResourceVip = params['ResourceVip']
+          @ResourceVPort = params['ResourceVPort']
           @UserName = params['UserName']
           @Password = params['Password']
           @ResourceName = params['ResourceName']
           @InstanceType = params['InstanceType']
           @InstanceValue = params['InstanceValue']
+          @AuthRange = params['AuthRange']
         end
       end
 
@@ -2564,10 +2578,12 @@ module TencentCloud
         # @type BindStatus: String
         # @param Storage: COS桶存储量
         # @type Storage: Float
+        # @param GovernAuthStatus: 治理授权状态，0:关闭 1：开启
+        # @type GovernAuthStatus: Integer
 
-        attr_accessor :Bucket, :CreateTime, :Valid, :ResourceId, :ResourceRegion, :BindStatus, :Storage
+        attr_accessor :Bucket, :CreateTime, :Valid, :ResourceId, :ResourceRegion, :BindStatus, :Storage, :GovernAuthStatus
 
-        def initialize(bucket=nil, createtime=nil, valid=nil, resourceid=nil, resourceregion=nil, bindstatus=nil, storage=nil)
+        def initialize(bucket=nil, createtime=nil, valid=nil, resourceid=nil, resourceregion=nil, bindstatus=nil, storage=nil, governauthstatus=nil)
           @Bucket = bucket
           @CreateTime = createtime
           @Valid = valid
@@ -2575,6 +2591,7 @@ module TencentCloud
           @ResourceRegion = resourceregion
           @BindStatus = bindstatus
           @Storage = storage
+          @GovernAuthStatus = governauthstatus
         end
 
         def deserialize(params)
@@ -2585,6 +2602,7 @@ module TencentCloud
           @ResourceRegion = params['ResourceRegion']
           @BindStatus = params['BindStatus']
           @Storage = params['Storage']
+          @GovernAuthStatus = params['GovernAuthStatus']
         end
       end
 
@@ -9373,10 +9391,16 @@ module TencentCloud
         # @param Channel: 实例渠道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Channel: String
+        # @param InsAuthCount: 已授权的实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsAuthCount: Integer
+        # @param InsTotalQuota: 已购买的实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsTotalQuota: Integer
 
-        attr_accessor :DspaId, :DspaName, :DspaDescription, :DBAuthCount, :CosBindCount, :InstanceVersion, :Status, :ExpiredAt, :AppId, :TrialVersion, :TrialEndAt, :DbTotalQuota, :CosTotalQuota, :CosQuotaUnit, :RenewFlag, :Channel
+        attr_accessor :DspaId, :DspaName, :DspaDescription, :DBAuthCount, :CosBindCount, :InstanceVersion, :Status, :ExpiredAt, :AppId, :TrialVersion, :TrialEndAt, :DbTotalQuota, :CosTotalQuota, :CosQuotaUnit, :RenewFlag, :Channel, :InsAuthCount, :InsTotalQuota
 
-        def initialize(dspaid=nil, dspaname=nil, dspadescription=nil, dbauthcount=nil, cosbindcount=nil, instanceversion=nil, status=nil, expiredat=nil, appid=nil, trialversion=nil, trialendat=nil, dbtotalquota=nil, costotalquota=nil, cosquotaunit=nil, renewflag=nil, channel=nil)
+        def initialize(dspaid=nil, dspaname=nil, dspadescription=nil, dbauthcount=nil, cosbindcount=nil, instanceversion=nil, status=nil, expiredat=nil, appid=nil, trialversion=nil, trialendat=nil, dbtotalquota=nil, costotalquota=nil, cosquotaunit=nil, renewflag=nil, channel=nil, insauthcount=nil, instotalquota=nil)
           @DspaId = dspaid
           @DspaName = dspaname
           @DspaDescription = dspadescription
@@ -9393,6 +9417,8 @@ module TencentCloud
           @CosQuotaUnit = cosquotaunit
           @RenewFlag = renewflag
           @Channel = channel
+          @InsAuthCount = insauthcount
+          @InsTotalQuota = instotalquota
         end
 
         def deserialize(params)
@@ -9412,6 +9438,8 @@ module TencentCloud
           @CosQuotaUnit = params['CosQuotaUnit']
           @RenewFlag = params['RenewFlag']
           @Channel = params['Channel']
+          @InsAuthCount = params['InsAuthCount']
+          @InsTotalQuota = params['InsTotalQuota']
         end
       end
 
@@ -9729,10 +9757,15 @@ module TencentCloud
         # @param InstanceValue: 实例值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceValue: String
+        # @param GovernAuthStatus: //治理授权状态（0：关闭 1：开启）
+        # @type GovernAuthStatus: Integer
+        # @param AuthRange: 授权范围：all - 授权整个数据源 manual:手动指定数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthRange: String
 
-        attr_accessor :ResourceId, :ResourceName, :ResourceVip, :ResourceVPort, :ResourceCreateTime, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :MetaType, :ResourceRegion, :ResourceSyncTime, :AuthStatus, :BuildType, :MasterInsId, :ResourceVpcId, :ResourceSubnetId, :Protocol, :ResourceVersion, :ResourceAuthType, :ResourceAuthAccount, :InstanceType, :InstanceValue
+        attr_accessor :ResourceId, :ResourceName, :ResourceVip, :ResourceVPort, :ResourceCreateTime, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :MetaType, :ResourceRegion, :ResourceSyncTime, :AuthStatus, :BuildType, :MasterInsId, :ResourceVpcId, :ResourceSubnetId, :Protocol, :ResourceVersion, :ResourceAuthType, :ResourceAuthAccount, :InstanceType, :InstanceValue, :GovernAuthStatus, :AuthRange
 
-        def initialize(resourceid=nil, resourcename=nil, resourcevip=nil, resourcevport=nil, resourcecreatetime=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, metatype=nil, resourceregion=nil, resourcesynctime=nil, authstatus=nil, buildtype=nil, masterinsid=nil, resourcevpcid=nil, resourcesubnetid=nil, protocol=nil, resourceversion=nil, resourceauthtype=nil, resourceauthaccount=nil, instancetype=nil, instancevalue=nil)
+        def initialize(resourceid=nil, resourcename=nil, resourcevip=nil, resourcevport=nil, resourcecreatetime=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, metatype=nil, resourceregion=nil, resourcesynctime=nil, authstatus=nil, buildtype=nil, masterinsid=nil, resourcevpcid=nil, resourcesubnetid=nil, protocol=nil, resourceversion=nil, resourceauthtype=nil, resourceauthaccount=nil, instancetype=nil, instancevalue=nil, governauthstatus=nil, authrange=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @ResourceVip = resourcevip
@@ -9754,6 +9787,8 @@ module TencentCloud
           @ResourceAuthAccount = resourceauthaccount
           @InstanceType = instancetype
           @InstanceValue = instancevalue
+          @GovernAuthStatus = governauthstatus
+          @AuthRange = authrange
         end
 
         def deserialize(params)
@@ -9778,6 +9813,8 @@ module TencentCloud
           @ResourceAuthAccount = params['ResourceAuthAccount']
           @InstanceType = params['InstanceType']
           @InstanceValue = params['InstanceValue']
+          @GovernAuthStatus = params['GovernAuthStatus']
+          @AuthRange = params['AuthRange']
         end
       end
 
@@ -10440,12 +10477,18 @@ module TencentCloud
         # @type DBUnbindNum: Integer
         # @param COSUnbindNum: cos月解绑次数
         # @type COSUnbindNum: Integer
+        # @param InsTotalQuota: 用户购买的实例配额。
+        # @type InsTotalQuota: Integer
+        # @param InsRemainQuota: 用户可用的实例配额。
+        # @type InsRemainQuota: Integer
+        # @param Version: 用户购买的版本
+        # @type Version: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DspaId, :DbTotalQuota, :CosTotalQuota, :DbRemainQuota, :CosRemainQuota, :CosQuotaUnit, :DBUnbindNum, :COSUnbindNum, :RequestId
+        attr_accessor :DspaId, :DbTotalQuota, :CosTotalQuota, :DbRemainQuota, :CosRemainQuota, :CosQuotaUnit, :DBUnbindNum, :COSUnbindNum, :InsTotalQuota, :InsRemainQuota, :Version, :RequestId
 
-        def initialize(dspaid=nil, dbtotalquota=nil, costotalquota=nil, dbremainquota=nil, cosremainquota=nil, cosquotaunit=nil, dbunbindnum=nil, cosunbindnum=nil, requestid=nil)
+        def initialize(dspaid=nil, dbtotalquota=nil, costotalquota=nil, dbremainquota=nil, cosremainquota=nil, cosquotaunit=nil, dbunbindnum=nil, cosunbindnum=nil, instotalquota=nil, insremainquota=nil, version=nil, requestid=nil)
           @DspaId = dspaid
           @DbTotalQuota = dbtotalquota
           @CosTotalQuota = costotalquota
@@ -10454,6 +10497,9 @@ module TencentCloud
           @CosQuotaUnit = cosquotaunit
           @DBUnbindNum = dbunbindnum
           @COSUnbindNum = cosunbindnum
+          @InsTotalQuota = instotalquota
+          @InsRemainQuota = insremainquota
+          @Version = version
           @RequestId = requestid
         end
 
@@ -10466,6 +10512,9 @@ module TencentCloud
           @CosQuotaUnit = params['CosQuotaUnit']
           @DBUnbindNum = params['DBUnbindNum']
           @COSUnbindNum = params['COSUnbindNum']
+          @InsTotalQuota = params['InsTotalQuota']
+          @InsRemainQuota = params['InsRemainQuota']
+          @Version = params['Version']
           @RequestId = params['RequestId']
         end
       end
@@ -10745,6 +10794,8 @@ module TencentCloud
         # MetaType - cdb（云数据Mysql）、dcdb（TDSQL MySQL版）、mariadb（云数据库 MariaDB）、postgres（云数据库 PostgreSQL）、cynosdbmysql（TDSQL-C MySQL版）、cos（对象存储）、mysql_like_proto（自建型Mysql协议类关系型数据库）、postgre_like_proto（自建型Postgre协议类关系型数据库）。
 
         # ResourceId - 资源ID，支持模糊搜索。
+
+        # CvmID - 自建资源对应CvmId，如：ins-xxxxxxxx。该字段用于casb调用dsgc接口时，根据cvmId和vport确定具体的自建实例
         # @type Filters: Array
         # @param Limit: 分页步长，默认为100。
         # @type Limit: Integer
@@ -10885,8 +10936,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :Status, :RiskLatestTableId, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2024, 9
-        deprecate :RiskLatestTableId=, :none, 2024, 9
+        deprecate :RiskLatestTableId, :none, 2024, 10
+        deprecate :RiskLatestTableId=, :none, 2024, 10
 
         def initialize(dspaid=nil, status=nil, risklatesttableid=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid
@@ -12300,10 +12351,13 @@ module TencentCloud
         # @param ProgressPercent: 进度百分比
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgressPercent: Integer
+        # @param ReportTemplateName: 报告模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportTemplateName: String
 
-        attr_accessor :Id, :ReportName, :ReportType, :ReportPeriod, :ReportPlan, :ReportStatus, :TimingStartTime, :CreateTime, :FinishedTime, :SubUin, :FailedMessage, :Enable, :ComplianceName, :ProgressPercent
+        attr_accessor :Id, :ReportName, :ReportType, :ReportPeriod, :ReportPlan, :ReportStatus, :TimingStartTime, :CreateTime, :FinishedTime, :SubUin, :FailedMessage, :Enable, :ComplianceName, :ProgressPercent, :ReportTemplateName
 
-        def initialize(id=nil, reportname=nil, reporttype=nil, reportperiod=nil, reportplan=nil, reportstatus=nil, timingstarttime=nil, createtime=nil, finishedtime=nil, subuin=nil, failedmessage=nil, enable=nil, compliancename=nil, progresspercent=nil)
+        def initialize(id=nil, reportname=nil, reporttype=nil, reportperiod=nil, reportplan=nil, reportstatus=nil, timingstarttime=nil, createtime=nil, finishedtime=nil, subuin=nil, failedmessage=nil, enable=nil, compliancename=nil, progresspercent=nil, reporttemplatename=nil)
           @Id = id
           @ReportName = reportname
           @ReportType = reporttype
@@ -12318,6 +12372,7 @@ module TencentCloud
           @Enable = enable
           @ComplianceName = compliancename
           @ProgressPercent = progresspercent
+          @ReportTemplateName = reporttemplatename
         end
 
         def deserialize(params)
@@ -12335,6 +12390,7 @@ module TencentCloud
           @Enable = params['Enable']
           @ComplianceName = params['ComplianceName']
           @ProgressPercent = params['ProgressPercent']
+          @ReportTemplateName = params['ReportTemplateName']
         end
       end
 
@@ -13202,15 +13258,18 @@ module TencentCloud
         # @param Password: 账户密码，为空则表示不更新。
         # UserName和Password必须同时填写或同时为空。
         # @type Password: String
+        # @param AuthRange: 授权范围：all 授权全部  manual：手动指定
+        # @type AuthRange: String
 
-        attr_accessor :DspaId, :ResourceId, :ResourceVPort, :UserName, :Password
+        attr_accessor :DspaId, :ResourceId, :ResourceVPort, :UserName, :Password, :AuthRange
 
-        def initialize(dspaid=nil, resourceid=nil, resourcevport=nil, username=nil, password=nil)
+        def initialize(dspaid=nil, resourceid=nil, resourcevport=nil, username=nil, password=nil, authrange=nil)
           @DspaId = dspaid
           @ResourceId = resourceid
           @ResourceVPort = resourcevport
           @UserName = username
           @Password = password
+          @AuthRange = authrange
         end
 
         def deserialize(params)
@@ -13219,6 +13278,7 @@ module TencentCloud
           @ResourceVPort = params['ResourceVPort']
           @UserName = params['UserName']
           @Password = params['Password']
+          @AuthRange = params['AuthRange']
         end
       end
 

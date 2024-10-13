@@ -2247,8 +2247,10 @@ module TencentCloud
         # @type ApproverRestrictions: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverRestriction`
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param ForbidPersonalMultipleSign: 禁止个人用户重复签署，默认不禁止，即同一用户可多次扫码签署多份合同。若要求同一用户仅能扫码签署一份合同，请传入true。
+        # @type ForbidPersonalMultipleSign: Boolean
 
-        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :ApproverComponentLimitTypes, :CallbackUrl, :ApproverRestrictions, :Operator
+        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :ApproverComponentLimitTypes, :CallbackUrl, :ApproverRestrictions, :Operator, :ForbidPersonalMultipleSign
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 10
         deprecate :CallbackUrl=, :none, 2024, 10
@@ -2257,7 +2259,7 @@ module TencentCloud
         deprecate :Operator, :none, 2024, 10
         deprecate :Operator=, :none, 2024, 10
 
-        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, approvercomponentlimittypes=nil, callbackurl=nil, approverrestrictions=nil, operator=nil)
+        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, approvercomponentlimittypes=nil, callbackurl=nil, approverrestrictions=nil, operator=nil, forbidpersonalmultiplesign=nil)
           @Agent = agent
           @TemplateId = templateid
           @FlowName = flowname
@@ -2269,6 +2271,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @ApproverRestrictions = approverrestrictions
           @Operator = operator
+          @ForbidPersonalMultipleSign = forbidpersonalmultiplesign
         end
 
         def deserialize(params)
@@ -2306,6 +2309,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @ForbidPersonalMultipleSign = params['ForbidPersonalMultipleSign']
         end
       end
 
@@ -3432,6 +3436,67 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelDescribeAccountBillDetail请求参数结构体
+      class ChannelDescribeAccountBillDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # </ul>
+        # 第三方平台子客企业必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :Agent
+
+        def initialize(agent=nil)
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ChannelDescribeAccountBillDetail返回参数结构体
+      class ChannelDescribeAccountBillDetailResponse < TencentCloud::Common::AbstractModel
+        # @param BoundAccountsNumber: 当前绑定中账号数量
+        # @type BoundAccountsNumber: Integer
+        # @param RemainAvailableAccountsNumber: 剩余可绑定账号数量
+        # @type RemainAvailableAccountsNumber: Integer
+        # @param InvalidAccountsNumber: 已失效账号数量
+        # @type InvalidAccountsNumber: Integer
+        # @param TotalBuyAccountsNumber: 购买数量
+        # @type TotalBuyAccountsNumber: Integer
+        # @param TotalGiftAccountsNumber: 赠送数量
+        # @type TotalGiftAccountsNumber: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BoundAccountsNumber, :RemainAvailableAccountsNumber, :InvalidAccountsNumber, :TotalBuyAccountsNumber, :TotalGiftAccountsNumber, :RequestId
+
+        def initialize(boundaccountsnumber=nil, remainavailableaccountsnumber=nil, invalidaccountsnumber=nil, totalbuyaccountsnumber=nil, totalgiftaccountsnumber=nil, requestid=nil)
+          @BoundAccountsNumber = boundaccountsnumber
+          @RemainAvailableAccountsNumber = remainavailableaccountsnumber
+          @InvalidAccountsNumber = invalidaccountsnumber
+          @TotalBuyAccountsNumber = totalbuyaccountsnumber
+          @TotalGiftAccountsNumber = totalgiftaccountsnumber
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BoundAccountsNumber = params['BoundAccountsNumber']
+          @RemainAvailableAccountsNumber = params['RemainAvailableAccountsNumber']
+          @InvalidAccountsNumber = params['InvalidAccountsNumber']
+          @TotalBuyAccountsNumber = params['TotalBuyAccountsNumber']
+          @TotalGiftAccountsNumber = params['TotalGiftAccountsNumber']
           @RequestId = params['RequestId']
         end
       end
@@ -9181,11 +9246,12 @@ module TencentCloud
 
       # ModifyExtendedService返回参数结构体
       class ModifyExtendedServiceResponse < TencentCloud::Common::AbstractModel
-        # @param OperateUrl: 操作跳转链接，有效期24小时
-        # 若操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通/关闭服务。
+        # @param OperateUrl: 操作跳转链接
+        # <ul><li><strong>链接有效期：</strong> 跳转链接的有效期为24小时。</li>
+        # <li><strong>没有返回链接的情形：</strong> 如果在操作时没有返回跳转链接，说明此次操作无需进行跳转，服务将会直接被开通或关闭。</li>
+        # <li><strong>返回链接的情形：</strong> 当操作类型为“OPEN”（开通服务），并且扩展服务类型为“AUTO_SIGN”（自动签名）、“DOWNLOAD_FLOW”（下载流程）或“OVERSEA_SIGN”（海外签名）时，系统将返回一个操作链接。收到操作链接后，贵方需主动联系超级管理员（超管）或法人。由超管或法人点击链接，以完成服务的开通操作。</li>
+        # </ul>
 
-        # 当操作类型是 OPEN 且 扩展服务类型是 AUTO_SIGN 或 DOWNLOAD_FLOW 或者 OVERSEA_SIGN 时返回操作链接，
-        # 返回的链接需要平台方自行触达超管或法人，超管或法人点击链接完成服务开通操作
         # @type OperateUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

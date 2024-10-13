@@ -1815,6 +1815,57 @@ module TencentCloud
         end
       end
 
+      # DescribeJobRuntimeInfo请求参数结构体
+      class DescribeJobRuntimeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业ID
+        # @type JobId: String
+        # @param WorkSpaceId: 工作空间ID
+        # @type WorkSpaceId: String
+        # @param IncludeInfo: 作业运行信息 key
+        # @type IncludeInfo: Array
+
+        attr_accessor :JobId, :WorkSpaceId, :IncludeInfo
+
+        def initialize(jobid=nil, workspaceid=nil, includeinfo=nil)
+          @JobId = jobid
+          @WorkSpaceId = workspaceid
+          @IncludeInfo = includeinfo
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @WorkSpaceId = params['WorkSpaceId']
+          @IncludeInfo = params['IncludeInfo']
+        end
+      end
+
+      # DescribeJobRuntimeInfo返回参数结构体
+      class DescribeJobRuntimeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param JobRuntimeInfo: 作业运行时信息
+        # @type JobRuntimeInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobRuntimeInfo, :RequestId
+
+        def initialize(jobruntimeinfo=nil, requestid=nil)
+          @JobRuntimeInfo = jobruntimeinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['JobRuntimeInfo'].nil?
+            @JobRuntimeInfo = []
+            params['JobRuntimeInfo'].each do |i|
+              jobruntimeinfo_tmp = JobRuntimeInfo.new
+              jobruntimeinfo_tmp.deserialize(i)
+              @JobRuntimeInfo << jobruntimeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobSavepoint请求参数结构体
       class DescribeJobSavepointRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业 SerialId
@@ -3325,6 +3376,28 @@ module TencentCloud
           @RunningOrderId = params['RunningOrderId']
           @JobInstanceStartTime = params['JobInstanceStartTime']
           @StartingMillis = params['StartingMillis']
+        end
+      end
+
+      # 作业运行时信息
+      class JobRuntimeInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 运行信息的key，目前支持：TaskManagers：taskmanager pod 列表； StreamGraph：作业对应的 StreamGraph；SubTasks：作业的 subtask 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 运行信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

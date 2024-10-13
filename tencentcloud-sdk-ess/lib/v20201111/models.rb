@@ -4243,15 +4243,17 @@ module TencentCloud
         # @type ApproverRestrictions: :class:`Tencentcloud::Ess.v20201111.models.ApproverRestriction`
         # @param ApproverComponentLimitTypes: 指定签署方在使用个人印章签署控件（SIGN_SIGNATURE） 时可使用的签署方式：自由书写、正楷临摹、系统签名、个人印章。
         # @type ApproverComponentLimitTypes: Array
+        # @param ForbidPersonalMultipleSign: 禁止个人用户重复签署，默认不禁止，即同一用户可多次扫码签署多份合同。若要求同一用户仅能扫码签署一份合同，请传入true。
+        # @type ForbidPersonalMultipleSign: Boolean
 
-        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes
+        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes, :ForbidPersonalMultipleSign
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 10
         deprecate :CallbackUrl=, :none, 2024, 10
         deprecate :ApproverRestrictions, :none, 2024, 10
         deprecate :ApproverRestrictions=, :none, 2024, 10
 
-        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil)
+        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil, forbidpersonalmultiplesign=nil)
           @Operator = operator
           @TemplateId = templateid
           @FlowName = flowname
@@ -4264,6 +4266,7 @@ module TencentCloud
           @Agent = agent
           @ApproverRestrictions = approverrestrictions
           @ApproverComponentLimitTypes = approvercomponentlimittypes
+          @ForbidPersonalMultipleSign = forbidpersonalmultiplesign
         end
 
         def deserialize(params)
@@ -4302,6 +4305,7 @@ module TencentCloud
               @ApproverComponentLimitTypes << approvercomponentlimittype_tmp
             end
           end
+          @ForbidPersonalMultipleSign = params['ForbidPersonalMultipleSign']
         end
       end
 
@@ -5316,12 +5320,7 @@ module TencentCloud
         # @type FlowId: String
         # @param FlowGroupId: 合同流程组的组ID, 在合同流程组场景下，生成合同流程组的签署链接时需要赋值
         # @type FlowGroupId: String
-        # @param PathType: 要跳转到的页面类型
-
-        # <ul><li> **0** : 腾讯电子签小程序个人首页 (默认) <a href="https://qcloudimg.tencent-cloud.cn/raw/a2667ea84ec993cc060321afe3191d65.jpg" target="_blank" >点击查看示例页面</a></li>
-        # <li> **1** : 腾讯电子签小程序流程合同的详情页 (即合同签署页面)<a href="https://qcloudimg.tencent-cloud.cn/raw/446a679f09b1b7f40eb84e67face8acc.jpg" target="_blank" >点击查看示例页面</a></li>
-        # <li> **2** : 腾讯电子签小程序合同列表页 <a href="https://qcloudimg.tencent-cloud.cn/raw/c7b80e44c1d68ae3270a6fc4939c7214.jpg" target="_blank" >点击查看示例页面</a> </li>
-        # <li> **3** : 腾讯电子签小程序合同封面页  （注：`生成动态签署人补充链接时，必须指定为封面页`）<a href="https://qcloudimg.tencent-cloud.cn/raw/0d22cc587be4bf084877c151350c3bf7.jpg" target="_blank" >点击查看示例页面</a></li></ul>
+        # @param PathType: 要跳转到的页面类型 <ul><li> **0** : 腾讯电子签小程序个人首页 (默认) <a href="https://qcloudimg.tencent-cloud.cn/raw/a2667ea84ec993cc060321afe3191d65.jpg" target="_blank" >点击查看示例页面</a></li><li> **1** : 腾讯电子签小程序流程合同的详情页,即合同签署页面(注:`仅生成短链或者小程序Path时支持跳转合同详情页,即EndPoint传HTTP_SHORT_URL或者APP`)<a href="https://qcloudimg.tencent-cloud.cn/raw/446a679f09b1b7f40eb84e67face8acc.jpg" target="_blank" >点击查看示例页面</a></li><li> **2** : 腾讯电子签小程序合同列表页 <a href="https://qcloudimg.tencent-cloud.cn/raw/c7b80e44c1d68ae3270a6fc4939c7214.jpg" target="_blank" >点击查看示例页面</a> </li><li> **3** : 腾讯电子签小程序合同封面页  （注：`生成动态签署人补充链接时，必须指定为封面页`）<a href="https://qcloudimg.tencent-cloud.cn/raw/0d22cc587be4bf084877c151350c3bf7.jpg" target="_blank" >点击查看示例页面</a></li></ul>
         # @type PathType: Integer
         # @param AutoJumpBack: 签署完成后是否自动回跳
         # <ul><li>**false**：否, 签署完成不会自动跳转回来(默认)</li><li>**true**：是, 签署完成会自动跳转回来</li></ul>
@@ -8533,6 +8532,33 @@ module TencentCloud
         end
       end
 
+      # 印章扩展信息
+      class ExtendScene < TencentCloud::Common::AbstractModel
+        # @param GenerateType: 印章来源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenerateType: String
+        # @param GenerateTypeDesc: 印章来源类型描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenerateTypeDesc: String
+        # @param GenerateTypeLogo: 印章来源logo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenerateTypeLogo: String
+
+        attr_accessor :GenerateType, :GenerateTypeDesc, :GenerateTypeLogo
+
+        def initialize(generatetype=nil, generatetypedesc=nil, generatetypelogo=nil)
+          @GenerateType = generatetype
+          @GenerateTypeDesc = generatetypedesc
+          @GenerateTypeLogo = generatetypelogo
+        end
+
+        def deserialize(params)
+          @GenerateType = params['GenerateType']
+          @GenerateTypeDesc = params['GenerateTypeDesc']
+          @GenerateTypeLogo = params['GenerateTypeLogo']
+        end
+      end
+
       # 绑定角色失败信息
       class FailedCreateRoleData < TencentCloud::Common::AbstractModel
         # @param UserId: 用户userId
@@ -10546,11 +10572,17 @@ module TencentCloud
 
       # ModifyExtendedService返回参数结构体
       class ModifyExtendedServiceResponse < TencentCloud::Common::AbstractModel
-        # @param OperateUrl: 操作跳转链接，有效期24小时
-        # 若操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通/关闭服务。
+        # @param OperateUrl: 操作跳转链接
+        # <ul>
+        # <li><strong>有效期：</strong> 跳转链接的有效期为24小时。</li>
+        # <li><strong>无跳转链接返回的情况：</strong> 如果在操作过程中没有返回跳转链接，这意味着无需进行跳转操作。在这种情况下，服务将会直接被开通或关闭。
+        # <li><strong>有跳转链接返回的情况：</strong> 当操作类型为“OPEN”（开通服务），并且扩展服务类型为以下之一时，  系统将返回一个操作链接。当前操作人（超级管理员或法人）需要点击此链接，以完成服务的开通操作。
 
-        # 当操作类型是 OPEN 且 扩展服务类型是  OPEN_SERVER_SIGN 或者 OVERSEA_SIGN 时返回操作链接，
-        # 返回的链接当前操作人（超管或法人）点击链接完成服务开通操作。
+        # <ul>
+        # <li><strong>OPEN_SERVER_SIGN</strong>（开放服务器签名）</li>
+        # <li><strong>OVERSEA_SIGN</strong>（海外签名）</li>
+        # </ul></li></li>
+        # </ul>
         # @type OperateUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10845,10 +10877,13 @@ module TencentCloud
         # @param AuthorizedUsers: 授权人列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizedUsers: Array
+        # @param ExtendScene: 印章扩展数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendScene: :class:`Tencentcloud::Ess.v20201111.models.ExtendScene`
 
-        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers
+        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers, :ExtendScene
 
-        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil)
+        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil, extendscene=nil)
           @SealId = sealid
           @SealName = sealname
           @CreateOn = createon
@@ -10860,6 +10895,7 @@ module TencentCloud
           @SealType = sealtype
           @IsAllTime = isalltime
           @AuthorizedUsers = authorizedusers
+          @ExtendScene = extendscene
         end
 
         def deserialize(params)
@@ -10880,6 +10916,10 @@ module TencentCloud
               authorizeduser_tmp.deserialize(i)
               @AuthorizedUsers << authorizeduser_tmp
             end
+          end
+          unless params['ExtendScene'].nil?
+            @ExtendScene = ExtendScene.new
+            @ExtendScene.deserialize(params['ExtendScene'])
           end
         end
       end

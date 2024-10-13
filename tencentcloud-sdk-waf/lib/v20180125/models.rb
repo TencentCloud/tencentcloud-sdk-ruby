@@ -1086,6 +1086,201 @@ module TencentCloud
         end
       end
 
+      # api列表
+      class ApiAsset < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Method: 请求方法
+        # @type Method: String
+        # @param ApiName: api名称
+        # @type ApiName: String
+        # @param Scene: 场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scene: String
+        # @param Label: 数据标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: Array
+        # @param Active: 过去7天是否活跃
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Active: Boolean
+        # @param Timestamp: 最近更新时间
+        # @type Timestamp: Integer
+        # @param InsertTime: api发现时间
+        # @type InsertTime: Integer
+        # @param Mode: 资产状态，1:新发现，2，确认中，3，已确认，4，已下线，5，已忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Level: 风险等级，100,200,300对应低中高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param Count: 近30天调用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param IsAuth: 是否鉴权，1标识是，0表示否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAuth: Integer
+        # @param ApiRequestRuleId: 如果添加了api入参检测规则，则此id返回值不为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiRequestRuleId: Integer
+        # @param ApiLimitRuleId: 如果添加了api限流规则，则此id返回值不为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiLimitRuleId: Integer
+        # @param HostList: 对象接入和泛域名接入时，展示host列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostList: Array
+
+        attr_accessor :Domain, :Method, :ApiName, :Scene, :Label, :Active, :Timestamp, :InsertTime, :Mode, :Level, :Count, :Remark, :IsAuth, :ApiRequestRuleId, :ApiLimitRuleId, :HostList
+
+        def initialize(domain=nil, method=nil, apiname=nil, scene=nil, label=nil, active=nil, timestamp=nil, inserttime=nil, mode=nil, level=nil, count=nil, remark=nil, isauth=nil, apirequestruleid=nil, apilimitruleid=nil, hostlist=nil)
+          @Domain = domain
+          @Method = method
+          @ApiName = apiname
+          @Scene = scene
+          @Label = label
+          @Active = active
+          @Timestamp = timestamp
+          @InsertTime = inserttime
+          @Mode = mode
+          @Level = level
+          @Count = count
+          @Remark = remark
+          @IsAuth = isauth
+          @ApiRequestRuleId = apirequestruleid
+          @ApiLimitRuleId = apilimitruleid
+          @HostList = hostlist
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Method = params['Method']
+          @ApiName = params['ApiName']
+          @Scene = params['Scene']
+          @Label = params['Label']
+          @Active = params['Active']
+          @Timestamp = params['Timestamp']
+          @InsertTime = params['InsertTime']
+          @Mode = params['Mode']
+          @Level = params['Level']
+          @Count = params['Count']
+          @Remark = params['Remark']
+          @IsAuth = params['IsAuth']
+          @ApiRequestRuleId = params['ApiRequestRuleId']
+          @ApiLimitRuleId = params['ApiLimitRuleId']
+          @HostList = params['HostList']
+        end
+      end
+
+      # api资产列表过滤器
+      class ApiDataFilter < TencentCloud::Common::AbstractModel
+        # @param Entity: 数据标签，是否活跃，功能场景
+        # @type Entity: String
+        # @param Operator: 等于
+        # @type Operator: String
+        # @param Value: 日期，手机号，邮箱等
+        # @type Value: String
+
+        attr_accessor :Entity, :Operator, :Value
+
+        def initialize(entity=nil, operator=nil, value=nil)
+          @Entity = entity
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Entity = params['Entity']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
+      # api历史样例返回结构体
+      class ApiDetailSampleHistory < TencentCloud::Common::AbstractModel
+        # @param SampleNme: 样例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SampleNme: String
+        # @param RepLog: 请求样例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepLog: String
+        # @param RspLog: 响应样例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RspLog: String
+
+        attr_accessor :SampleNme, :RepLog, :RspLog
+
+        def initialize(samplenme=nil, replog=nil, rsplog=nil)
+          @SampleNme = samplenme
+          @RepLog = replog
+          @RspLog = rsplog
+        end
+
+        def deserialize(params)
+          @SampleNme = params['SampleNme']
+          @RepLog = params['RepLog']
+          @RspLog = params['RspLog']
+        end
+      end
+
+      # api请求参数类型
+      class ApiParameterType < TencentCloud::Common::AbstractModel
+        # @param ParameterName: 参数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterName: String
+        # @param Type: 参数类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Location: 参数位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param Label: 数据标签(敏感字段)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: Array
+        # @param Timestamp: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Source: 来源是请求或者响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param IsPan: 是否需要泛化 ，0表示不需要，1表示需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPan: Integer
+        # @param IsAuth: 是否鉴权，1表示是，0表示否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAuth: Integer
+
+        attr_accessor :ParameterName, :Type, :Location, :Label, :Timestamp, :Remark, :Source, :IsPan, :IsAuth
+
+        def initialize(parametername=nil, type=nil, location=nil, label=nil, timestamp=nil, remark=nil, source=nil, ispan=nil, isauth=nil)
+          @ParameterName = parametername
+          @Type = type
+          @Location = location
+          @Label = label
+          @Timestamp = timestamp
+          @Remark = remark
+          @Source = source
+          @IsPan = ispan
+          @IsAuth = isauth
+        end
+
+        def deserialize(params)
+          @ParameterName = params['ParameterName']
+          @Type = params['Type']
+          @Location = params['Location']
+          @Label = params['Label']
+          @Timestamp = params['Timestamp']
+          @Remark = params['Remark']
+          @Source = params['Source']
+          @IsPan = params['IsPan']
+          @IsAuth = params['IsAuth']
+        end
+      end
+
       # API安全资源信息
       class ApiPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
@@ -3785,6 +3980,216 @@ module TencentCloud
           end
           @Uri = params['Uri']
           @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # DescribeApiDetail请求参数结构体
+      class DescribeApiDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param ApiName: Api名称
+        # @type ApiName: String
+        # @param Method: 请求方法
+        # @type Method: String
+        # @param IsSensitive: 是否仅查询敏感的，1表示查询，0表示不查询
+        # @type IsSensitive: Integer
+        # @param IsPan: 是否仅查询泛化的，1表示查询，0表示不查询
+        # @type IsPan: Integer
+
+        attr_accessor :Domain, :ApiName, :Method, :IsSensitive, :IsPan
+
+        def initialize(domain=nil, apiname=nil, method=nil, issensitive=nil, ispan=nil)
+          @Domain = domain
+          @ApiName = apiname
+          @Method = method
+          @IsSensitive = issensitive
+          @IsPan = ispan
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @ApiName = params['ApiName']
+          @Method = params['Method']
+          @IsSensitive = params['IsSensitive']
+          @IsPan = params['IsPan']
+        end
+      end
+
+      # DescribeApiDetail返回参数结构体
+      class DescribeApiDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Log: 请求样例，json字符串格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Log: String
+        # @param ParameterList: 请求参数样例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterList: Array
+        # @param Scene: 当前场景标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scene: String
+        # @param SensitiveFields: 敏感字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SensitiveFields: Array
+        # @param IsActive: 7天内是否活跃
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsActive: Boolean
+        # @param IpCount: 访问ip数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpCount: Integer
+        # @param RegionCount: 访问地域数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCount: Integer
+        # @param EventCount: 关联事件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventCount: Integer
+        # @param SensitiveCount: 涉敏数据条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SensitiveCount: Integer
+        # @param Level: 风险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param RspLog: 响应体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RspLog: String
+        # @param MaxQPS: 昨日访问峰值QPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxQPS: Integer
+        # @param ApiDetailSampleHistory: 历史样例
+        # @type ApiDetailSampleHistory: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Log, :ParameterList, :Scene, :SensitiveFields, :IsActive, :IpCount, :RegionCount, :EventCount, :SensitiveCount, :Level, :RspLog, :MaxQPS, :ApiDetailSampleHistory, :RequestId
+
+        def initialize(log=nil, parameterlist=nil, scene=nil, sensitivefields=nil, isactive=nil, ipcount=nil, regioncount=nil, eventcount=nil, sensitivecount=nil, level=nil, rsplog=nil, maxqps=nil, apidetailsamplehistory=nil, requestid=nil)
+          @Log = log
+          @ParameterList = parameterlist
+          @Scene = scene
+          @SensitiveFields = sensitivefields
+          @IsActive = isactive
+          @IpCount = ipcount
+          @RegionCount = regioncount
+          @EventCount = eventcount
+          @SensitiveCount = sensitivecount
+          @Level = level
+          @RspLog = rsplog
+          @MaxQPS = maxqps
+          @ApiDetailSampleHistory = apidetailsamplehistory
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Log = params['Log']
+          unless params['ParameterList'].nil?
+            @ParameterList = []
+            params['ParameterList'].each do |i|
+              apiparametertype_tmp = ApiParameterType.new
+              apiparametertype_tmp.deserialize(i)
+              @ParameterList << apiparametertype_tmp
+            end
+          end
+          @Scene = params['Scene']
+          @SensitiveFields = params['SensitiveFields']
+          @IsActive = params['IsActive']
+          @IpCount = params['IpCount']
+          @RegionCount = params['RegionCount']
+          @EventCount = params['EventCount']
+          @SensitiveCount = params['SensitiveCount']
+          @Level = params['Level']
+          @RspLog = params['RspLog']
+          @MaxQPS = params['MaxQPS']
+          unless params['ApiDetailSampleHistory'].nil?
+            @ApiDetailSampleHistory = []
+            params['ApiDetailSampleHistory'].each do |i|
+              apidetailsamplehistory_tmp = ApiDetailSampleHistory.new
+              apidetailsamplehistory_tmp.deserialize(i)
+              @ApiDetailSampleHistory << apidetailsamplehistory_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiListVersionTwo请求参数结构体
+      class DescribeApiListVersionTwoRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param PageIndex: 页面索引，第几页
+        # @type PageIndex: Integer
+        # @param PageSize: 页面大小
+        # @type PageSize: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Sort: 排序方法，1 升序，-1 降序
+        # @type Sort: Array
+        # @param NeedTotalCount: 是否进行总数查询
+        # @type NeedTotalCount: Boolean
+        # @param StartTs: 查询开始时间
+        # @type StartTs: Integer
+        # @param EndTs: 查询结束时间
+        # @type EndTs: Integer
+
+        attr_accessor :Domain, :PageIndex, :PageSize, :Filters, :Sort, :NeedTotalCount, :StartTs, :EndTs
+
+        def initialize(domain=nil, pageindex=nil, pagesize=nil, filters=nil, sort=nil, needtotalcount=nil, startts=nil, endts=nil)
+          @Domain = domain
+          @PageIndex = pageindex
+          @PageSize = pagesize
+          @Filters = filters
+          @Sort = sort
+          @NeedTotalCount = needtotalcount
+          @StartTs = startts
+          @EndTs = endts
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              apidatafilter_tmp = ApiDataFilter.new
+              apidatafilter_tmp.deserialize(i)
+              @Filters << apidatafilter_tmp
+            end
+          end
+          @Sort = params['Sort']
+          @NeedTotalCount = params['NeedTotalCount']
+          @StartTs = params['StartTs']
+          @EndTs = params['EndTs']
+        end
+      end
+
+      # DescribeApiListVersionTwo返回参数结构体
+      class DescribeApiListVersionTwoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: api资产列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              apiasset_tmp = ApiAsset.new
+              apiasset_tmp.deserialize(i)
+              @Data << apiasset_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
         end
       end
 

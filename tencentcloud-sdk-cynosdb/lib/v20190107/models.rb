@@ -1068,6 +1068,8 @@ module TencentCloud
         extend Gem::Deprecate
         deprecate :InstanceGrpId, :none, 2024, 10
         deprecate :InstanceGrpId=, :none, 2024, 10
+        deprecate :ModifyParamsData, :none, 2024, 10
+        deprecate :ModifyParamsData=, :none, 2024, 10
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil)
           @ID = id
@@ -2679,6 +2681,33 @@ module TencentCloud
           @BigDealIds = params['BigDealIds']
           @DealNames = params['DealNames']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 跨地域备份各地域备份信息
+      class CrossRegionBackupItem < TencentCloud::Common::AbstractModel
+        # @param CrossRegion: 备份的目标地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossRegion: String
+        # @param BackupId: 目标地域的备份任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupId: String
+        # @param BackupStatus: 目标地域的备份状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStatus: String
+
+        attr_accessor :CrossRegion, :BackupId, :BackupStatus
+
+        def initialize(crossregion=nil, backupid=nil, backupstatus=nil)
+          @CrossRegion = crossregion
+          @BackupId = backupid
+          @BackupStatus = backupstatus
+        end
+
+        def deserialize(params)
+          @CrossRegion = params['CrossRegion']
+          @BackupId = params['BackupId']
+          @BackupStatus = params['BackupStatus']
         end
       end
 
@@ -7352,20 +7381,31 @@ module TencentCloud
         # @param CurrentProxyVersion: 当前proxy版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentProxyVersion: String
+        # @param SupportProxyVersionDetail: 代理版本详情
+        # @type SupportProxyVersionDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SupportProxyVersions, :CurrentProxyVersion, :RequestId
+        attr_accessor :SupportProxyVersions, :CurrentProxyVersion, :SupportProxyVersionDetail, :RequestId
 
-        def initialize(supportproxyversions=nil, currentproxyversion=nil, requestid=nil)
+        def initialize(supportproxyversions=nil, currentproxyversion=nil, supportproxyversiondetail=nil, requestid=nil)
           @SupportProxyVersions = supportproxyversions
           @CurrentProxyVersion = currentproxyversion
+          @SupportProxyVersionDetail = supportproxyversiondetail
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SupportProxyVersions = params['SupportProxyVersions']
           @CurrentProxyVersion = params['CurrentProxyVersion']
+          unless params['SupportProxyVersionDetail'].nil?
+            @SupportProxyVersionDetail = []
+            params['SupportProxyVersionDetail'].each do |i|
+              proxyversioninfo_tmp = ProxyVersionInfo.new
+              proxyversioninfo_tmp.deserialize(i)
+              @SupportProxyVersionDetail << proxyversioninfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8783,19 +8823,31 @@ module TencentCloud
         # @type BackupMethod: String
         # @param SnapshotTime: 备份时间
         # @type SnapshotTime: String
+        # @param CrossRegionBackupInfos: 跨地域备份项详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossRegionBackupInfos: Array
 
-        attr_accessor :BackupType, :BackupMethod, :SnapshotTime
+        attr_accessor :BackupType, :BackupMethod, :SnapshotTime, :CrossRegionBackupInfos
 
-        def initialize(backuptype=nil, backupmethod=nil, snapshottime=nil)
+        def initialize(backuptype=nil, backupmethod=nil, snapshottime=nil, crossregionbackupinfos=nil)
           @BackupType = backuptype
           @BackupMethod = backupmethod
           @SnapshotTime = snapshottime
+          @CrossRegionBackupInfos = crossregionbackupinfos
         end
 
         def deserialize(params)
           @BackupType = params['BackupType']
           @BackupMethod = params['BackupMethod']
           @SnapshotTime = params['SnapshotTime']
+          unless params['CrossRegionBackupInfos'].nil?
+            @CrossRegionBackupInfos = []
+            params['CrossRegionBackupInfos'].each do |i|
+              crossregionbackupitem_tmp = CrossRegionBackupItem.new
+              crossregionbackupitem_tmp.deserialize(i)
+              @CrossRegionBackupInfos << crossregionbackupitem_tmp
+            end
+          end
         end
       end
 
@@ -11880,6 +11932,28 @@ module TencentCloud
         def deserialize(params)
           @Cpu = params['Cpu']
           @Mem = params['Mem']
+        end
+      end
+
+      # TDSQL-C MySQL支持的proxy版本信息
+      class ProxyVersionInfo < TencentCloud::Common::AbstractModel
+        # @param ProxyVersion: proxy版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyVersion: String
+        # @param ProxyVersionType: 版本描述：GA:稳定版  BETA:尝鲜版，DEPRECATED:过旧，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyVersionType: String
+
+        attr_accessor :ProxyVersion, :ProxyVersionType
+
+        def initialize(proxyversion=nil, proxyversiontype=nil)
+          @ProxyVersion = proxyversion
+          @ProxyVersionType = proxyversiontype
+        end
+
+        def deserialize(params)
+          @ProxyVersion = params['ProxyVersion']
+          @ProxyVersionType = params['ProxyVersionType']
         end
       end
 

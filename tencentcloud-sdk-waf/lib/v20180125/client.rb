@@ -875,6 +875,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Api请求详情信息
+
+        # @param request: Request instance for DescribeApiDetail.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeApiDetailRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeApiDetailResponse`
+        def DescribeApiDetail(request)
+          body = send_request('DescribeApiDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # api资产列表
+
+        # @param request: Request instance for DescribeApiListVersionTwo.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeApiListVersionTwoRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeApiListVersionTwoResponse`
+        def DescribeApiListVersionTwo(request)
+          body = send_request('DescribeApiListVersionTwo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiListVersionTwoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取地域封禁配置包括地域封禁开关，设置封禁的地区信息
 
         # @param request: Request instance for DescribeAreaBanAreas.

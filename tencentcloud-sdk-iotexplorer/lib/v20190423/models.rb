@@ -1102,6 +1102,65 @@ module TencentCloud
         end
       end
 
+      # CreateExternalSourceAIServiceTask请求参数结构体
+      class CreateExternalSourceAIServiceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param ServiceType: 云存 AI 服务类型。可选值：
+        # - `RealtimeObjectDetect`：目标检测
+        # - `Highlight`：视频浓缩
+        # - `VideoToText`：视频语义理解
+        # @type ServiceType: String
+        # @param VideoURLs: 分析外部传入的视频 URL 列表，支持 HLS 点播（m3u8）及常见视频格式（mp4 等）
+        # @type VideoURLs: Array
+        # @param CustomId: 自定义任务 ID
+        # @type CustomId: String
+        # @param Config: 视频分析配置参数
+        # @type Config: String
+        # @param ROI: 视频分析识别区域
+        # @type ROI: String
+
+        attr_accessor :ProductId, :ServiceType, :VideoURLs, :CustomId, :Config, :ROI
+
+        def initialize(productid=nil, servicetype=nil, videourls=nil, customid=nil, config=nil, roi=nil)
+          @ProductId = productid
+          @ServiceType = servicetype
+          @VideoURLs = videourls
+          @CustomId = customid
+          @Config = config
+          @ROI = roi
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ServiceType = params['ServiceType']
+          @VideoURLs = params['VideoURLs']
+          @CustomId = params['CustomId']
+          @Config = params['Config']
+          @ROI = params['ROI']
+        end
+      end
+
+      # CreateExternalSourceAIServiceTask返回参数结构体
+      class CreateExternalSourceAIServiceTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFenceBind请求参数结构体
       class CreateFenceBindRequest < TencentCloud::Common::AbstractModel
         # @param FenceId: 围栏Id
@@ -6842,6 +6901,77 @@ module TencentCloud
           @BillingTag = params['BillingTag']
           @EverydayFreeMessageCount = params['EverydayFreeMessageCount']
           @MaxDeviceOnlineCount = params['MaxDeviceOnlineCount']
+        end
+      end
+
+      # InvokeExternalSourceAIServiceTask请求参数结构体
+      class InvokeExternalSourceAIServiceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param ServiceType: 云存 AI 服务类型。可选值：
+        # - `RealtimeObjectDetect`：目标检测
+        # - `Highlight`：视频浓缩
+        # - `VideoToText`：视频语义理解
+        # @type ServiceType: String
+        # @param VideoURLs: 分析外部传入的视频 URL 列表，支持 HLS 点播（m3u8）及常见视频格式（mp4 等）
+        # @type VideoURLs: Array
+        # @param CustomId: 自定义任务 ID
+        # @type CustomId: String
+        # @param Config: 视频分析配置参数
+        # @type Config: String
+        # @param ROI: 视频分析识别区域
+        # @type ROI: String
+
+        attr_accessor :ProductId, :ServiceType, :VideoURLs, :CustomId, :Config, :ROI
+
+        def initialize(productid=nil, servicetype=nil, videourls=nil, customid=nil, config=nil, roi=nil)
+          @ProductId = productid
+          @ServiceType = servicetype
+          @VideoURLs = videourls
+          @CustomId = customid
+          @Config = config
+          @ROI = roi
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ServiceType = params['ServiceType']
+          @VideoURLs = params['VideoURLs']
+          @CustomId = params['CustomId']
+          @Config = params['Config']
+          @ROI = params['ROI']
+        end
+      end
+
+      # InvokeExternalSourceAIServiceTask返回参数结构体
+      class InvokeExternalSourceAIServiceTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Completed: 任务是否执行完成
+        # @type Completed: Boolean
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param TaskInfo: 任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.CloudStorageAIServiceTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Completed, :TaskId, :TaskInfo, :RequestId
+
+        def initialize(completed=nil, taskid=nil, taskinfo=nil, requestid=nil)
+          @Completed = completed
+          @TaskId = taskid
+          @TaskInfo = taskinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Completed = params['Completed']
+          @TaskId = params['TaskId']
+          unless params['TaskInfo'].nil?
+            @TaskInfo = CloudStorageAIServiceTask.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
