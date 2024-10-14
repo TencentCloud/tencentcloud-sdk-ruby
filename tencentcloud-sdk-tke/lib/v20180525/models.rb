@@ -7730,54 +7730,6 @@ module TencentCloud
         end
       end
 
-      # DescribeExternalClusterSpec请求参数结构体
-      class DescribeExternalClusterSpecRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 注册集群ID
-        # @type ClusterId: String
-        # @param IsExtranet: 默认false 获取内网，是否获取外网版注册命令
-        # @type IsExtranet: Boolean
-        # @param IsRefreshExpirationTime: 默认false 不刷新有效时间 ，true刷新有效时间
-        # @type IsRefreshExpirationTime: Boolean
-
-        attr_accessor :ClusterId, :IsExtranet, :IsRefreshExpirationTime
-
-        def initialize(clusterid=nil, isextranet=nil, isrefreshexpirationtime=nil)
-          @ClusterId = clusterid
-          @IsExtranet = isextranet
-          @IsRefreshExpirationTime = isrefreshexpirationtime
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @IsExtranet = params['IsExtranet']
-          @IsRefreshExpirationTime = params['IsRefreshExpirationTime']
-        end
-      end
-
-      # DescribeExternalClusterSpec返回参数结构体
-      class DescribeExternalClusterSpecResponse < TencentCloud::Common::AbstractModel
-        # @param Spec: 导入第三方集群YAML定义
-        # @type Spec: String
-        # @param Expiration: agent.yaml文件过期时间字符串，时区UTC
-        # @type Expiration: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Spec, :Expiration, :RequestId
-
-        def initialize(spec=nil, expiration=nil, requestid=nil)
-          @Spec = spec
-          @Expiration = expiration
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Spec = params['Spec']
-          @Expiration = params['Expiration']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeExternalNodeSupportConfig请求参数结构体
       class DescribeExternalNodeSupportConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id

@@ -2813,32 +2813,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # tdcc接口已迁移至tdcc产品下，tke下的接口下线
-
-        # 获取导入第三方集群YAML定义
-
-        # @param request: Request instance for DescribeExternalClusterSpec.
-        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalClusterSpecRequest`
-        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeExternalClusterSpecResponse`
-        def DescribeExternalClusterSpec(request)
-          body = send_request('DescribeExternalClusterSpec', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeExternalClusterSpecResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查看开启第三方节点池配置信息
 
         # @param request: Request instance for DescribeExternalNodeSupportConfig.

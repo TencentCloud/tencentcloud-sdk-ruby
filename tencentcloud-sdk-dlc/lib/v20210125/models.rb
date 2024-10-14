@@ -376,6 +376,89 @@ module TencentCloud
         end
       end
 
+      # 洞察分析结果返回体
+      class AnalysisTaskResults < TencentCloud::Common::AbstractModel
+        # @param Id: 任务Id
+        # @type Id: String
+        # @param InstanceStartTime: 任务创建时间，毫秒时间戳
+        # @type InstanceStartTime: Integer
+        # @param InstanceCompleteTime: 任务结束时间，毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceCompleteTime: Integer
+        # @param State: 任务状态：0 初始化， 1 执行中， 2 执行成功，3 数据写入中，4 排队中。-1 执行失败，-3 已取消。
+        # @type State: Integer
+        # @param SQL: 任务SQL语句
+        # @type SQL: String
+        # @param DataEngineName: 计算资源名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineName: String
+        # @param JobTimeSum: 单位毫秒，引擎内执行耗时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobTimeSum: Integer
+        # @param TaskTimeSum: 单位秒，CU资源消耗
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTimeSum: Integer
+        # @param InputRecordsSum: 数据扫描总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputRecordsSum: Integer
+        # @param InputBytesSum: 数据扫描总 bytes
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputBytesSum: Integer
+        # @param OutputRecordsSum: 输出总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputRecordsSum: Integer
+        # @param OutputBytesSum: 输出总 bytes
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputBytesSum: Integer
+        # @param ShuffleReadBytesSum: shuffle read 总 bytes
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShuffleReadBytesSum: Integer
+        # @param ShuffleReadRecordsSum: shuffle read 总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShuffleReadRecordsSum: Integer
+        # @param AnalysisStatus: 洞察结果类型分类，一个 json 数组，有如下几种类型：SPARK-StageScheduleDelay（资源抢占）, SPARK-ShuffleFailure（Shuffle异常）, SPARK-SlowTask（慢task）, SPARK-DataSkew（数据倾斜）, SPARK-InsufficientResource（磁盘或内存不足）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisStatus: String
+
+        attr_accessor :Id, :InstanceStartTime, :InstanceCompleteTime, :State, :SQL, :DataEngineName, :JobTimeSum, :TaskTimeSum, :InputRecordsSum, :InputBytesSum, :OutputRecordsSum, :OutputBytesSum, :ShuffleReadBytesSum, :ShuffleReadRecordsSum, :AnalysisStatus
+
+        def initialize(id=nil, instancestarttime=nil, instancecompletetime=nil, state=nil, sql=nil, dataenginename=nil, jobtimesum=nil, tasktimesum=nil, inputrecordssum=nil, inputbytessum=nil, outputrecordssum=nil, outputbytessum=nil, shufflereadbytessum=nil, shufflereadrecordssum=nil, analysisstatus=nil)
+          @Id = id
+          @InstanceStartTime = instancestarttime
+          @InstanceCompleteTime = instancecompletetime
+          @State = state
+          @SQL = sql
+          @DataEngineName = dataenginename
+          @JobTimeSum = jobtimesum
+          @TaskTimeSum = tasktimesum
+          @InputRecordsSum = inputrecordssum
+          @InputBytesSum = inputbytessum
+          @OutputRecordsSum = outputrecordssum
+          @OutputBytesSum = outputbytessum
+          @ShuffleReadBytesSum = shufflereadbytessum
+          @ShuffleReadRecordsSum = shufflereadrecordssum
+          @AnalysisStatus = analysisstatus
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @InstanceStartTime = params['InstanceStartTime']
+          @InstanceCompleteTime = params['InstanceCompleteTime']
+          @State = params['State']
+          @SQL = params['SQL']
+          @DataEngineName = params['DataEngineName']
+          @JobTimeSum = params['JobTimeSum']
+          @TaskTimeSum = params['TaskTimeSum']
+          @InputRecordsSum = params['InputRecordsSum']
+          @InputBytesSum = params['InputBytesSum']
+          @OutputRecordsSum = params['OutputRecordsSum']
+          @OutputBytesSum = params['OutputBytesSum']
+          @ShuffleReadBytesSum = params['ShuffleReadBytesSum']
+          @ShuffleReadRecordsSum = params['ShuffleReadRecordsSum']
+          @AnalysisStatus = params['AnalysisStatus']
+        end
+      end
+
       # 元数据基本对象
       class Asset < TencentCloud::Common::AbstractModel
         # @param Id: 主键
@@ -1635,8 +1718,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 9
-        deprecate :DefaultDataEngine=, :none, 2024, 9
+        deprecate :DefaultDataEngine, :none, 2024, 10
+        deprecate :DefaultDataEngine=, :none, 2024, 10
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -7366,6 +7449,88 @@ module TencentCloud
         end
       end
 
+      # DescribeTasksAnalysis请求参数结构体
+      class DescribeTasksAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: 数据引擎名称，用于筛选
+        # @type DataEngineName: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个: task-id - String - （任务ID准确过滤）task-id 取值形如：e386471f-139a-4e59-877f-50ece8135b99。task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)，rule-id - String - （洞察类型）取值范围 SPARK-StageScheduleDelay（资源抢占）, SPARK-ShuffleFailure（Shuffle异常）, SPARK-SlowTask（慢task）, SPARK-DataSkew（数据倾斜）, SPARK-InsufficientResource（磁盘或内存不足）
+        # @type Filters: Array
+        # @param SortBy: 排序字段，支持如下字段类型，instance-start-time (任务开始时间）, instance-complete-time (任务结束时间）,job-time-sum （单位毫秒，引擎内执行耗时）,task-time-sum （CU资源消耗，单位秒）,input-bytes-sum（数据扫描总大小，单位bytes）,shuffle-read-bytes-sum（数据shuffle总大小，单位bytes）
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc。
+        # @type Sorting: String
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
+        # @type EndTime: String
+
+        attr_accessor :DataEngineName, :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime
+
+        def initialize(dataenginename=nil, limit=nil, offset=nil, filters=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil)
+          @DataEngineName = dataenginename
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @SortBy = sortby
+          @Sorting = sorting
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeTasksAnalysis返回参数结构体
+      class DescribeTasksAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param TaskList: 洞察结果分页列表
+        # @type TaskList: Array
+        # @param TotalCount: 洞察结果总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskList, :TotalCount, :RequestId
+
+        def initialize(tasklist=nil, totalcount=nil, requestid=nil)
+          @TaskList = tasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              analysistaskresults_tmp = AnalysisTaskResults.new
+              analysistaskresults_tmp.deserialize(i)
+              @TaskList << analysistaskresults_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTasksCostInfo请求参数结构体
       class DescribeTasksCostInfoRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。
@@ -12079,10 +12244,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2024, 9
-        deprecate :GovernPolicy=, :none, 2024, 9
-        deprecate :DbGovernPolicyIsDisable, :none, 2024, 9
-        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 9
+        deprecate :GovernPolicy, :none, 2024, 10
+        deprecate :GovernPolicy=, :none, 2024, 10
+        deprecate :DbGovernPolicyIsDisable, :none, 2024, 10
+        deprecate :DbGovernPolicyIsDisable=, :none, 2024, 10
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename

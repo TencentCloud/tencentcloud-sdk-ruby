@@ -810,10 +810,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 9
-        deprecate :Ftitle=, :none, 2024, 9
-        deprecate :Config, :none, 2024, 9
-        deprecate :Config=, :none, 2024, 9
+        deprecate :Ftitle, :none, 2024, 10
+        deprecate :Ftitle=, :none, 2024, 10
+        deprecate :Config, :none, 2024, 10
+        deprecate :Config=, :none, 2024, 10
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -2949,7 +2949,7 @@ module TencentCloud
         # @type PageSize: Integer
         # @param Page: 分页查询时的页号，从1开始
         # @type Page: Integer
-        # @param Type: 查询类型,支持HIVE,SPARK,MAPREDUCE,TRINO等类型,默认查询全部
+        # @param Type: 查询类型,支持HIVE,SPARK,DLC_SPARK,SPARK_SQL,SCHEDULE,MAPREDUCE,TRINO等类型,默认查询全部
         # @type Type: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page, :Type
@@ -9875,12 +9875,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2024, 9
-        deprecate :DetetcFunctionKey=, :none, 2024, 9
-        deprecate :DetetcFunctionValue, :none, 2024, 9
-        deprecate :DetetcFunctionValue=, :none, 2024, 9
-        deprecate :DetetcTime, :none, 2024, 9
-        deprecate :DetetcTime=, :none, 2024, 9
+        deprecate :DetetcFunctionKey, :none, 2024, 10
+        deprecate :DetetcFunctionKey=, :none, 2024, 10
+        deprecate :DetetcFunctionValue, :none, 2024, 10
+        deprecate :DetetcFunctionValue=, :none, 2024, 10
+        deprecate :DetetcTime, :none, 2024, 10
+        deprecate :DetetcTime=, :none, 2024, 10
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

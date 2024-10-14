@@ -1140,15 +1140,18 @@ module TencentCloud
         # @type PrivateIpAddress: String
         # @param EipDirectConnection: 指定绑定时是否设置直通。弹性公网 IP 直通请参见 [EIP 直通](https://cloud.tencent.com/document/product/1199/41709)。取值：True、False，默认值为 False。当绑定 CVM 实例、EKS 弹性集群时，可设定此参数为 True。此参数目前处于内测中，如需使用，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&level3_id=1071&queue=96&scene_code=34639&step=2)。
         # @type EipDirectConnection: Boolean
+        # @param InstanceRegion: 要绑定的实例所在的地域
+        # @type InstanceRegion: String
 
-        attr_accessor :AddressId, :InstanceId, :NetworkInterfaceId, :PrivateIpAddress, :EipDirectConnection
+        attr_accessor :AddressId, :InstanceId, :NetworkInterfaceId, :PrivateIpAddress, :EipDirectConnection, :InstanceRegion
 
-        def initialize(addressid=nil, instanceid=nil, networkinterfaceid=nil, privateipaddress=nil, eipdirectconnection=nil)
+        def initialize(addressid=nil, instanceid=nil, networkinterfaceid=nil, privateipaddress=nil, eipdirectconnection=nil, instanceregion=nil)
           @AddressId = addressid
           @InstanceId = instanceid
           @NetworkInterfaceId = networkinterfaceid
           @PrivateIpAddress = privateipaddress
           @EipDirectConnection = eipdirectconnection
+          @InstanceRegion = instanceregion
         end
 
         def deserialize(params)
@@ -1157,6 +1160,7 @@ module TencentCloud
           @NetworkInterfaceId = params['NetworkInterfaceId']
           @PrivateIpAddress = params['PrivateIpAddress']
           @EipDirectConnection = params['EipDirectConnection']
+          @InstanceRegion = params['InstanceRegion']
         end
       end
 
@@ -15252,7 +15256,7 @@ module TencentCloud
       class DisableCcnRoutesRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
         # @type CcnId: String
-        # @param RouteIds: CCN路由策略唯一ID。形如：ccnr-f49l6u0z。
+        # @param RouteIds: CCN路由策略唯一ID。形如：ccnr-f49l6u0z。可通过DescribeCcnRoutes获取。
         # @type RouteIds: Array
 
         attr_accessor :CcnId, :RouteIds
@@ -15837,7 +15841,7 @@ module TencentCloud
       class EnableCcnRoutesRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
         # @type CcnId: String
-        # @param RouteIds: CCN路由策略唯一ID。形如：ccnr-f49l6u0z。
+        # @param RouteIds: CCN路由策略唯一ID。形如：ccnr-f49l6u0z。可通过DescribeCcnRoutes接口获取。
         # @type RouteIds: Array
 
         attr_accessor :CcnId, :RouteIds
@@ -19753,9 +19757,9 @@ module TencentCloud
       class ModifyRouteTableInfo < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 云联网路由表id。
         # @type RouteTableId: String
-        # @param Name: 云联网路由表名称。
+        # @param Name: 云联网路由表名称。Name和Description 两者必传一个。
         # @type Name: String
-        # @param Description: 云联网路由表描述。
+        # @param Description: 云联网路由表描述。Name和Description 两者必传一个。
         # @type Description: String
 
         attr_accessor :RouteTableId, :Name, :Description

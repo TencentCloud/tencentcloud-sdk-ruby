@@ -57,6 +57,33 @@ module TencentCloud
         end
       end
 
+      # 高级过滤规则
+      class AdvanceFilterRuleInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Rule: 过滤规则，0:等于，1:字段存在，2:字段不存在
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: Integer
+        # @param Value: 过滤值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Rule, :Value
+
+        def initialize(key=nil, rule=nil, value=nil)
+          @Key = key
+          @Rule = rule
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Rule = params['Rule']
+          @Value = params['Value']
+        end
+      end
+
       # 告警多维分析一些配置信息
       class AlarmAnalysisConfig < TencentCloud::Common::AbstractModel
         # @param Key: 键。支持以下key：
@@ -6449,10 +6476,16 @@ module TencentCloud
         # @type MetaTags: Array
         # @param EventLogRules: Windows事件日志采集规则，只有在LogType为windows_event_log时生效，其余类型无需填写。
         # @type EventLogRules: Array
+        # @param AdvanceFilterRules: 日志过滤规则列表（新版）。
+        # 注意：
+        # - 2.9.3以下版本LogListener不支持， 请使用FilterKeyRegex配置日志过滤规则。
+        # - 自建k8s采集配置（CreateConfigExtra、ModifyConfigExtra）不支持此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceFilterRules: Array
 
-        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags, :EventLogRules
+        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags, :EventLogRules, :AdvanceFilterRules
 
-        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil, metadatatype=nil, pathregex=nil, metatags=nil, eventlogrules=nil)
+        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil, metadatatype=nil, pathregex=nil, metatags=nil, eventlogrules=nil, advancefilterrules=nil)
           @TimeKey = timekey
           @TimeFormat = timeformat
           @Delimiter = delimiter
@@ -6472,6 +6505,7 @@ module TencentCloud
           @PathRegex = pathregex
           @MetaTags = metatags
           @EventLogRules = eventlogrules
+          @AdvanceFilterRules = advancefilterrules
         end
 
         def deserialize(params)
@@ -6513,6 +6547,14 @@ module TencentCloud
               eventlog_tmp = EventLog.new
               eventlog_tmp.deserialize(i)
               @EventLogRules << eventlog_tmp
+            end
+          end
+          unless params['AdvanceFilterRules'].nil?
+            @AdvanceFilterRules = []
+            params['AdvanceFilterRules'].each do |i|
+              advancefilterruleinfo_tmp = AdvanceFilterRuleInfo.new
+              advancefilterruleinfo_tmp.deserialize(i)
+              @AdvanceFilterRules << advancefilterruleinfo_tmp
             end
           end
         end
