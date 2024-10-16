@@ -1153,6 +1153,23 @@ module TencentCloud
         # @param LivenessDetail: 本次流程进行的活体一比一流水。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessDetail: Array
+        # @param LivenessInfoTag: 描述当前请求活体阶段被拒绝的详细原因，详情如下：
+        # 01-用户全程闭眼
+        # 02-用户未完成指定动作
+        # 03-疑似翻拍攻击
+        # 04-疑似合成攻击
+        # 05-疑似黑产模版
+        # 06-疑似存在水印
+        # 07-反光校验未通过
+        # 08-疑似中途换人
+        # 09-人脸质量过差
+        # 10-距离校验不通过
+        # 11-疑似对抗样本攻击
+        # 12-嘴巴区域疑似存在攻击痕迹
+        # 13-眼睛区域疑似存在攻击痕迹
+        # 14-眼睛或嘴巴被遮挡
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessInfoTag: Array
         # @param Mobile: 手机号码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
@@ -1184,9 +1201,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VisaNum: String
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :UseIDType, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :UseIDType, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :LivenessInfoTag, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum
 
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, useidtype=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, useidtype=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, livenessinfotag=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
@@ -1209,6 +1226,7 @@ module TencentCloud
           @Location = location
           @Extra = extra
           @LivenessDetail = livenessdetail
+          @LivenessInfoTag = livenessinfotag
           @Mobile = mobile
           @CompareLibType = comparelibtype
           @LivenessMode = livenessmode
@@ -1248,6 +1266,7 @@ module TencentCloud
               @LivenessDetail << detectdetail_tmp
             end
           end
+          @LivenessInfoTag = params['LivenessInfoTag']
           @Mobile = params['Mobile']
           @CompareLibType = params['CompareLibType']
           @LivenessMode = params['LivenessMode']

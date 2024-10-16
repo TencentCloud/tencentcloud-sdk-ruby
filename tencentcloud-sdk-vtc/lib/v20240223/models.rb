@@ -245,6 +245,8 @@ module TencentCloud
         # 大小要求：不超过 100M。
         # 示例值：http://xxx/audio.mp3
         # @type AudioUrl: String
+        # @param RemoveVocal: 是否需要去除VideoUrl或AudioUrl中背景音，取值范围：0-不需要，1-需要，默认0 。
+        # @type RemoveVocal: Integer
         # @param Confirm: 是否需要确认翻译结果0：不需要，1：需要
         # @type Confirm: Integer
         # @param LipSync: 是否开启口型驱动，0：不开启，1：开启。默认开启。
@@ -256,13 +258,14 @@ module TencentCloud
         # 具体音色包含请见“支持音色种别列表”
         # @type VoiceType: String
 
-        attr_accessor :VideoUrl, :SrcLang, :DstLang, :AudioUrl, :Confirm, :LipSync, :VoiceType
+        attr_accessor :VideoUrl, :SrcLang, :DstLang, :AudioUrl, :RemoveVocal, :Confirm, :LipSync, :VoiceType
 
-        def initialize(videourl=nil, srclang=nil, dstlang=nil, audiourl=nil, confirm=nil, lipsync=nil, voicetype=nil)
+        def initialize(videourl=nil, srclang=nil, dstlang=nil, audiourl=nil, removevocal=nil, confirm=nil, lipsync=nil, voicetype=nil)
           @VideoUrl = videourl
           @SrcLang = srclang
           @DstLang = dstlang
           @AudioUrl = audiourl
+          @RemoveVocal = removevocal
           @Confirm = confirm
           @LipSync = lipsync
           @VoiceType = voicetype
@@ -273,6 +276,7 @@ module TencentCloud
           @SrcLang = params['SrcLang']
           @DstLang = params['DstLang']
           @AudioUrl = params['AudioUrl']
+          @RemoveVocal = params['RemoveVocal']
           @Confirm = params['Confirm']
           @LipSync = params['LipSync']
           @VoiceType = params['VoiceType']

@@ -248,6 +248,66 @@ module TencentCloud
         end
       end
 
+      # CreateEndPoint请求参数结构体
+      class CreateEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointName: 终端节点名称
+        # @type EndPointName: String
+        # @param EndPointServiceId: 终端节点服务ID（vpc终端节点服务ID）
+        # @type EndPointServiceId: String
+        # @param EndPointRegion: 终端节点地域，必须要和终端节点服务所属地域一致
+        # @type EndPointRegion: String
+        # @param IpNum: 终端节点ip数量
+        # @type IpNum: Integer
+
+        attr_accessor :EndPointName, :EndPointServiceId, :EndPointRegion, :IpNum
+
+        def initialize(endpointname=nil, endpointserviceid=nil, endpointregion=nil, ipnum=nil)
+          @EndPointName = endpointname
+          @EndPointServiceId = endpointserviceid
+          @EndPointRegion = endpointregion
+          @IpNum = ipnum
+        end
+
+        def deserialize(params)
+          @EndPointName = params['EndPointName']
+          @EndPointServiceId = params['EndPointServiceId']
+          @EndPointRegion = params['EndPointRegion']
+          @IpNum = params['IpNum']
+        end
+      end
+
+      # CreateEndPoint返回参数结构体
+      class CreateEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点id
+        # @type EndPointId: String
+        # @param EndPointName: 终端节点名称
+        # @type EndPointName: String
+        # @param EndPointServiceId: 终端节点服务ID
+        # @type EndPointServiceId: String
+        # @param EndPointVipSet: 终端节点的IP列表
+        # @type EndPointVipSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndPointId, :EndPointName, :EndPointServiceId, :EndPointVipSet, :RequestId
+
+        def initialize(endpointid=nil, endpointname=nil, endpointserviceid=nil, endpointvipset=nil, requestid=nil)
+          @EndPointId = endpointid
+          @EndPointName = endpointname
+          @EndPointServiceId = endpointserviceid
+          @EndPointVipSet = endpointvipset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+          @EndPointName = params['EndPointName']
+          @EndPointServiceId = params['EndPointServiceId']
+          @EndPointVipSet = params['EndPointVipSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrivateDNSAccount请求参数结构体
       class CreatePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
         # @param Account: 私有域解析账号

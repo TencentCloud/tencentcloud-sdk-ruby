@@ -15064,7 +15064,7 @@ module TencentCloud
         # @param Name: 策略英文名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Kind: 策略模版类型
+        # @param Kind: 策略模板类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kind: String
         # @param EnabledStatus: 策略开关状态：open打开，close关闭
@@ -15119,7 +15119,7 @@ module TencentCloud
         # @type EnforcementAction: String
         # @param Name: 策略英文名称
         # @type Name: String
-        # @param Kind: 策略模版类型
+        # @param Kind: 策略模板类型
         # @type Kind: String
         # @param EnabledStatus: 策略开关状态：open打开，close关闭
         # @type EnabledStatus: String

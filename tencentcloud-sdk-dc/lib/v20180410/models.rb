@@ -224,6 +224,104 @@ module TencentCloud
         end
       end
 
+      # 敏捷上云服务信息
+      class CloudAttachInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 敏捷上云实例id
+        # @type InstanceId: String
+        # @param Name: 敏捷上云名称
+        # @type Name: String
+        # @param IapId: 合作伙伴的AppId
+        # @type IapId: String
+        # @param IdcAddress: 需要接入敏捷上云的IDC的地址
+        # @type IdcAddress: String
+        # @param IdcType: 需要接入敏捷上云的IDC的互联网服务提供商类型
+        # @type IdcType: String
+        # @param Bandwidth: 敏捷上云的带宽，单位为MB
+        # @type Bandwidth: Integer
+        # @param Telephone: 联系电话
+        # @type Telephone: String
+        # @param Status: 敏捷上云的状态
+        # available：就绪状态
+        # applying：申请，待审核状态
+        # pendingpay：代付款状态
+        # building：建设中状态
+        # confirming：待确认状态
+        # isolate: 隔离状态
+        # stoped：终止状态
+        # @type Status: String
+        # @param ApplyTime: 敏捷上云申请的时间
+        # @type ApplyTime: String
+        # @param ReadyTime: 敏捷上云建设完成的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadyTime: String
+        # @param ExpireTime: 敏捷上云过期时间
+        # @type ExpireTime: String
+        # @param Remarks: 备注信息
+        # @type Remarks: String
+        # @param RegionStatus: 敏捷上云的地域状态。
+        # same-region：同地域
+        # cross-region：跨地域
+        # @type RegionStatus: String
+        # @param AppId: 用户的AppId
+        # @type AppId: String
+        # @param Uin: 用户的Uin
+        # @type Uin: String
+        # @param CustomerAuthName: 用户注册名称
+        # @type CustomerAuthName: String
+        # @param DirectConnectId: 物理专线实例ID
+        # @type DirectConnectId: String
+        # @param CloudAttachServiceGatewaysSupport: 敏捷上云是否支持创建高速上云专线网关
+        # @type CloudAttachServiceGatewaysSupport: Boolean
+        # @param BUpdateBandwidth: 敏捷上云服务是否处于升降配中
+        # @type BUpdateBandwidth: Boolean
+
+        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth
+
+        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @IapId = iapid
+          @IdcAddress = idcaddress
+          @IdcType = idctype
+          @Bandwidth = bandwidth
+          @Telephone = telephone
+          @Status = status
+          @ApplyTime = applytime
+          @ReadyTime = readytime
+          @ExpireTime = expiretime
+          @Remarks = remarks
+          @RegionStatus = regionstatus
+          @AppId = appid
+          @Uin = uin
+          @CustomerAuthName = customerauthname
+          @DirectConnectId = directconnectid
+          @CloudAttachServiceGatewaysSupport = cloudattachservicegatewayssupport
+          @BUpdateBandwidth = bupdatebandwidth
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @IapId = params['IapId']
+          @IdcAddress = params['IdcAddress']
+          @IdcType = params['IdcType']
+          @Bandwidth = params['Bandwidth']
+          @Telephone = params['Telephone']
+          @Status = params['Status']
+          @ApplyTime = params['ApplyTime']
+          @ReadyTime = params['ReadyTime']
+          @ExpireTime = params['ExpireTime']
+          @Remarks = params['Remarks']
+          @RegionStatus = params['RegionStatus']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CustomerAuthName = params['CustomerAuthName']
+          @DirectConnectId = params['DirectConnectId']
+          @CloudAttachServiceGatewaysSupport = params['CloudAttachServiceGatewaysSupport']
+          @BUpdateBandwidth = params['BUpdateBandwidth']
+        end
+      end
+
       # 坐标，经维度描述
       class Coordinate < TencentCloud::Common::AbstractModel
         # @param Lat: 纬度
@@ -241,6 +339,84 @@ module TencentCloud
         def deserialize(params)
           @Lat = params['Lat']
           @Lng = params['Lng']
+        end
+      end
+
+      # 创建敏捷上云入参
+      class CreateCasInput < TencentCloud::Common::AbstractModel
+        # @param Name: 敏捷上云名称
+        # @type Name: String
+        # @param IdcAddress: 需要接入敏捷上云的IDC的地址
+        # @type IdcAddress: String
+        # @param IdcType: 需要接入敏捷上云的IDC的互联网服务提供商类型
+        # @type IdcType: String
+        # @param Bandwidth: 敏捷上云的带宽，单位为MB
+        # @type Bandwidth: Integer
+        # @param Telephone: 联系电话
+        # @type Telephone: String
+        # @param Remarks: 备注信息
+        # @type Remarks: String
+
+        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks
+
+        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil)
+          @Name = name
+          @IdcAddress = idcaddress
+          @IdcType = idctype
+          @Bandwidth = bandwidth
+          @Telephone = telephone
+          @Remarks = remarks
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IdcAddress = params['IdcAddress']
+          @IdcType = params['IdcType']
+          @Bandwidth = params['Bandwidth']
+          @Telephone = params['Telephone']
+          @Remarks = params['Remarks']
+        end
+      end
+
+      # CreateCloudAttachService请求参数结构体
+      class CreateCloudAttachServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Data: 创建敏捷上云入参
+        # @type Data: :class:`Tencentcloud::Dc.v20180410.models.CreateCasInput`
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateCasInput.new
+            @Data.deserialize(params['Data'])
+          end
+        end
+      end
+
+      # CreateCloudAttachService返回参数结构体
+      class CreateCloudAttachServiceResponse < TencentCloud::Common::AbstractModel
+        # @param CloudAttach: 敏捷上云服务详情
+        # @type CloudAttach: :class:`Tencentcloud::Dc.v20180410.models.CloudAttachInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CloudAttach, :RequestId
+
+        def initialize(cloudattach=nil, requestid=nil)
+          @CloudAttach = cloudattach
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CloudAttach'].nil?
+            @CloudAttach = CloudAttachInfo.new
+            @CloudAttach.deserialize(params['CloudAttach'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

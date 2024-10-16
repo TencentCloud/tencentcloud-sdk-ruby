@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建通知内容。
+
+        # @param request: Request instance for CreateNoticeContent.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateNoticeContentRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateNoticeContentResponse`
+        def CreateNoticeContent(request)
+          body = send_request('CreateNoticeContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNoticeContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建定时SQL分析任务
 
         # @param request: Request instance for CreateScheduledSql.
@@ -975,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMachineGroupInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于删除通知内容配置
+
+        # @param request: Request instance for DeleteNoticeContent.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteNoticeContentRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteNoticeContentResponse`
+        def DeleteNoticeContent(request)
+          body = send_request('DeleteNoticeContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNoticeContentResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1614,6 +1662,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取通知内容列表
+
+        # @param request: Request instance for DescribeNoticeContents.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeNoticeContentsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeNoticeContentsResponse`
+        def DescribeNoticeContents(request)
+          body = send_request('DescribeNoticeContents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNoticeContentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口已废弃，如需获取分区数量，请使用DescribeTopics接口。
 
         # @param request: Request instance for DescribePartitions.
@@ -2128,6 +2200,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改通知内容配置
+
+        # @param request: Request instance for ModifyNoticeContent.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyNoticeContentRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyNoticeContentResponse`
+        def ModifyNoticeContent(request)
+          body = send_request('ModifyNoticeContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNoticeContentResponse.new
             model.deserialize(response['Response'])
             model
           else

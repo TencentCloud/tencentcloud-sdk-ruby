@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建敏捷上云服务
+
+        # @param request: Request instance for CreateCloudAttachService.
+        # @type request: :class:`Tencentcloud::dc::V20180410::CreateCloudAttachServiceRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::CreateCloudAttachServiceResponse`
+        def CreateCloudAttachService(request)
+          body = send_request('CreateCloudAttachService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudAttachServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 申请物理专线接入。
         # 调用该接口时，请注意：
         # 账号要进行实名认证，否则不允许申请物理专线；

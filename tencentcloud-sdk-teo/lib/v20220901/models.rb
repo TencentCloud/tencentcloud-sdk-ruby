@@ -1513,8 +1513,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2024, 9
-        deprecate :IgnoreCacheControl=, :none, 2024, 9
+        deprecate :IgnoreCacheControl, :none, 2024, 10
+        deprecate :IgnoreCacheControl=, :none, 2024, 10
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2847,8 +2847,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2024, 9
-        deprecate :EncodeUrl=, :none, 2024, 9
+        deprecate :EncodeUrl, :none, 2024, 10
+        deprecate :EncodeUrl=, :none, 2024, 10
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -2933,7 +2933,7 @@ module TencentCloud
         # @type Area: String
         # @param Fields: 投递的预设字段列表。
         # @type Fields: Array
-        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie 中提取指定字段值。自定义字段名称不能重复，且最多不能超过 200 个字段。
+        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie、请求正文中提取指定内容。自定义字段名称不能重复，且最多不能超过 200 个字段。单个实时日志推送任务最多添加 5 个请求正文类型的自定义字段。目前仅站点加速日志（LogType=domain）支持添加自定义字段。
         # @type CustomFields: Array
         # @param DeliveryConditions: 日志投递的过滤条件，不填表示投递全量日志。
         # @type DeliveryConditions: Array
@@ -3215,10 +3215,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2024, 9
-        deprecate :AllowDuplicates=, :none, 2024, 9
-        deprecate :JumpStart, :none, 2024, 9
-        deprecate :JumpStart=, :none, 2024, 9
+        deprecate :AllowDuplicates, :none, 2024, 10
+        deprecate :AllowDuplicates=, :none, 2024, 10
+        deprecate :JumpStart, :none, 2024, 10
+        deprecate :JumpStart=, :none, 2024, 10
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -3378,13 +3378,16 @@ module TencentCloud
 
       # 实时日志投递任务中的自定义日志字段。
       class CustomField < TencentCloud::Common::AbstractModel
-        # @param Name: 从 HTTP 请求和响应中的指定位置提取数据，取值有：
+        # @param Name: 自定义日志字段类型。从 HTTP 请求和响应中的指定位置提取数据，取值有：
         # <li>ReqHeader：从 HTTP 请求头中提取指定字段值；</li>
         # <li>RspHeader：从 HTTP 响应头中提取指定字段值；</li>
-        # <li>Cookie: 从 Cookie 中提取指定字段值。</li>
+        # <li>Cookie: 从 Cookie 中提取指定字段值；</li>
+        # <li>ReqBody: 从 HTTP 请求正文中通过 Google RE2 正则表达式提取指定内容。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Value: 需要提取值的参数名称，例如：Accept-Language。
+        # @param Value: 根据字段类型（Name）填入字段值的定义。需要区分大小写。
+        # <li>当字段类型为 ReqHeader、RspHeader、Cookie 时，填入需要提取值的参数名称，例如：Accept-Language。可输入 1-100 个字符，允许的字符开头为字母，中间为字母、数字、-，结尾为字母、数字；</li>
+        # <li>当字段类型为 ReqBody 时，填入 Google RE2 正则表达式，正则表达式长度上限为 4KB。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Enabled: 是否投递该字段，不填表示不投递此字段。
@@ -9912,8 +9915,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2024, 9
-        deprecate :ApplyType=, :none, 2024, 9
+        deprecate :ApplyType, :none, 2024, 10
+        deprecate :ApplyType=, :none, 2024, 10
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
           @ZoneId = zoneid
@@ -10262,7 +10265,7 @@ module TencentCloud
         # @type EntityList: Array
         # @param Fields: 投递的预设字段列表。不填保持原有配置。
         # @type Fields: Array
-        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie 中提取指定字段值。自定义字段名称不能重复，且最多不能超过 200 个字段。不填保持原有配置。
+        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie、请求正文中提取指定内容。不填保持原有配置。自定义字段名称不能重复，且最多不能超过 200 个字段。单个实时日志推送任务最多添加 5 个请求正文类型的自定义字段。目前仅站点加速日志（LogType=domain）支持添加自定义字段。
         # @type CustomFields: Array
         # @param DeliveryConditions: 日志投递的过滤条件。不填表示投递全量日志。
         # @type DeliveryConditions: Array
@@ -10989,12 +10992,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2024, 9
-        deprecate :VodeoSubAppId=, :none, 2024, 9
-        deprecate :VodeoDistributionRange, :none, 2024, 9
-        deprecate :VodeoDistributionRange=, :none, 2024, 9
-        deprecate :VodeoBucketId, :none, 2024, 9
-        deprecate :VodeoBucketId=, :none, 2024, 9
+        deprecate :VodeoSubAppId, :none, 2024, 10
+        deprecate :VodeoSubAppId=, :none, 2024, 10
+        deprecate :VodeoDistributionRange, :none, 2024, 10
+        deprecate :VodeoDistributionRange=, :none, 2024, 10
+        deprecate :VodeoBucketId, :none, 2024, 10
+        deprecate :VodeoBucketId=, :none, 2024, 10
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil)
           @OriginType = origintype
@@ -11159,12 +11162,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2024, 9
-        deprecate :VodeoSubAppId=, :none, 2024, 9
-        deprecate :VodeoDistributionRange, :none, 2024, 9
-        deprecate :VodeoDistributionRange=, :none, 2024, 9
-        deprecate :VodeoBucketId, :none, 2024, 9
-        deprecate :VodeoBucketId=, :none, 2024, 9
+        deprecate :VodeoSubAppId, :none, 2024, 10
+        deprecate :VodeoSubAppId=, :none, 2024, 10
+        deprecate :VodeoDistributionRange, :none, 2024, 10
+        deprecate :VodeoDistributionRange=, :none, 2024, 10
+        deprecate :VodeoBucketId, :none, 2024, 10
+        deprecate :VodeoBucketId=, :none, 2024, 10
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil)
           @OriginType = origintype
@@ -12349,8 +12352,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2024, 9
-        deprecate :IgnoreNameCase=, :none, 2024, 9
+        deprecate :IgnoreNameCase, :none, 2024, 10
+        deprecate :IgnoreNameCase=, :none, 2024, 10
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

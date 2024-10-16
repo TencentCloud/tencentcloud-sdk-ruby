@@ -38,10 +38,13 @@ module TencentCloud
         # @param NoSupportTransparentDataEncryptionReason: 不支持透明数据加密原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoSupportTransparentDataEncryptionReason: String
+        # @param IsSupportManualLogic: 是否支持手动发起逻辑备份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportManualLogic: String
 
-        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason
+        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason, :IsSupportManualLogic
 
-        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil, issupporttransparentdataencryption=nil, nosupporttransparentdataencryptionreason=nil)
+        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil, issupporttransparentdataencryption=nil, nosupporttransparentdataencryptionreason=nil, issupportmanuallogic=nil)
           @IsSupportSlaveZone = issupportslavezone
           @NonsupportSlaveZoneReason = nonsupportslavezonereason
           @IsSupportRo = issupportro
@@ -49,6 +52,7 @@ module TencentCloud
           @IsSupportManualSnapshot = issupportmanualsnapshot
           @IsSupportTransparentDataEncryption = issupporttransparentdataencryption
           @NoSupportTransparentDataEncryptionReason = nosupporttransparentdataencryptionreason
+          @IsSupportManualLogic = issupportmanuallogic
         end
 
         def deserialize(params)
@@ -59,6 +63,7 @@ module TencentCloud
           @IsSupportManualSnapshot = params['IsSupportManualSnapshot']
           @IsSupportTransparentDataEncryption = params['IsSupportTransparentDataEncryption']
           @NoSupportTransparentDataEncryptionReason = params['NoSupportTransparentDataEncryptionReason']
+          @IsSupportManualLogic = params['IsSupportManualLogic']
         end
       end
 

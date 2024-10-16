@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建终端节点
+
+        # @param request: Request instance for CreateEndPoint.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreateEndPointRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreateEndPointResponse`
+        def CreateEndPoint(request)
+          body = send_request('CreateEndPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEndPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建私有域解析账号
 
         # @param request: Request instance for CreatePrivateDNSAccount.

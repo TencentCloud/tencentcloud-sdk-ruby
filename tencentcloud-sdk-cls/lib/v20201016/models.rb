@@ -3052,6 +3052,57 @@ module TencentCloud
         end
       end
 
+      # CreateNoticeContent请求参数结构体
+      class CreateNoticeContentRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模版名称。
+        # @type Name: String
+        # @param Type: 模版内容语言。0：中文1：英文
+        # @type Type: Integer
+        # @param NoticeContents: 模版详细配置。
+        # @type NoticeContents: Array
+
+        attr_accessor :Name, :Type, :NoticeContents
+
+        def initialize(name=nil, type=nil, noticecontents=nil)
+          @Name = name
+          @Type = type
+          @NoticeContents = noticecontents
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['NoticeContents'].nil?
+            @NoticeContents = []
+            params['NoticeContents'].each do |i|
+              noticecontent_tmp = NoticeContent.new
+              noticecontent_tmp.deserialize(i)
+              @NoticeContents << noticecontent_tmp
+            end
+          end
+        end
+      end
+
+      # CreateNoticeContent返回参数结构体
+      class CreateNoticeContentResponse < TencentCloud::Common::AbstractModel
+        # @param NoticeContentId: 通知内容配置ID
+        # @type NoticeContentId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NoticeContentId, :RequestId
+
+        def initialize(noticecontentid=nil, requestid=nil)
+          @NoticeContentId = noticecontentid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NoticeContentId = params['NoticeContentId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScheduledSql请求参数结构体
       class CreateScheduledSqlRequest < TencentCloud::Common::AbstractModel
         # @param SrcTopicId: 源日志主题
@@ -4210,6 +4261,38 @@ module TencentCloud
 
       # DeleteMachineGroup返回参数结构体
       class DeleteMachineGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNoticeContent请求参数结构体
+      class DeleteNoticeContentRequest < TencentCloud::Common::AbstractModel
+        # @param NoticeContentId: 通知内容模版ID
+        # @type NoticeContentId: String
+
+        attr_accessor :NoticeContentId
+
+        def initialize(noticecontentid=nil)
+          @NoticeContentId = noticecontentid
+        end
+
+        def deserialize(params)
+          @NoticeContentId = params['NoticeContentId']
+        end
+      end
+
+      # DeleteNoticeContent返回参数结构体
+      class DeleteNoticeContentResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5920,6 +6003,79 @@ module TencentCloud
           @UpdateEndTime = params['UpdateEndTime']
           @LatestAgentVersion = params['LatestAgentVersion']
           @ServiceLogging = params['ServiceLogging']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNoticeContents请求参数结构体
+      class DescribeNoticeContentsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li> name
+        # 按照【通知内容模版名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # </li>
+        # <li> noticeContentId
+        # 按照【通知内容模版ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # </li>
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeNoticeContents返回参数结构体
+      class DescribeNoticeContentsResponse < TencentCloud::Common::AbstractModel
+        # @param NoticeContents: 通知内容模版列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContents: Array
+        # @param TotalCount: 符合条件的通知内容模版总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NoticeContents, :TotalCount, :RequestId
+
+        def initialize(noticecontents=nil, totalcount=nil, requestid=nil)
+          @NoticeContents = noticecontents
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NoticeContents'].nil?
+            @NoticeContents = []
+            params['NoticeContents'].each do |i|
+              noticecontenttemplate_tmp = NoticeContentTemplate.new
+              noticecontenttemplate_tmp.deserialize(i)
+              @NoticeContents << noticecontenttemplate_tmp
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -8798,6 +8954,59 @@ module TencentCloud
         end
       end
 
+      # ModifyNoticeContent请求参数结构体
+      class ModifyNoticeContentRequest < TencentCloud::Common::AbstractModel
+        # @param NoticeContentId: 通知内容模版ID。
+        # @type NoticeContentId: String
+        # @param Name: 通知内容模版名称。
+        # @type Name: String
+        # @param Type: 通知内容语言。
+
+        # 0：中文 1：英文
+        # @type Type: Integer
+        # @param NoticeContents: 通知内容模版详细信息。
+        # @type NoticeContents: Array
+
+        attr_accessor :NoticeContentId, :Name, :Type, :NoticeContents
+
+        def initialize(noticecontentid=nil, name=nil, type=nil, noticecontents=nil)
+          @NoticeContentId = noticecontentid
+          @Name = name
+          @Type = type
+          @NoticeContents = noticecontents
+        end
+
+        def deserialize(params)
+          @NoticeContentId = params['NoticeContentId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['NoticeContents'].nil?
+            @NoticeContents = []
+            params['NoticeContents'].each do |i|
+              noticecontent_tmp = NoticeContent.new
+              noticecontent_tmp.deserialize(i)
+              @NoticeContents << noticecontent_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNoticeContent返回参数结构体
+      class ModifyNoticeContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyScheduledSql请求参数结构体
       class ModifyScheduledSqlRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -9076,17 +9285,23 @@ module TencentCloud
         # @param Time: 执行的周期，或者定制执行的时间节点。单位为分钟，取值范围为1~1440。
         # 当type为`Period`,`Fixed`时，time字段生效。
         # @type Time: Integer
+        # @param CronExpression: 执行的周期cron表达式。示例：`"*/1 * * * *"` 从左到右每个field的含义 Minutes field, Hours field,Day of month field,Month field,Day of week field， 不支持秒级别。
+        # 当type为`Cron`时，CronExpression字段生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronExpression: String
 
-        attr_accessor :Type, :Time
+        attr_accessor :Type, :Time, :CronExpression
 
-        def initialize(type=nil, time=nil)
+        def initialize(type=nil, time=nil, cronexpression=nil)
           @Type = type
           @Time = time
+          @CronExpression = cronexpression
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Time = params['Time']
+          @CronExpression = params['CronExpression']
         end
       end
 
@@ -9133,6 +9348,139 @@ module TencentCloud
         end
       end
 
+      # 通知内容模版详细配置
+      class NoticeContent < TencentCloud::Common::AbstractModel
+        # @param Type: 渠道类型
+
+        # Email:邮件;Sms:短信;WeChat:微信;Phone:电话;WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调;
+        # @type Type: String
+        # @param TriggerContent: 告警触发通知内容模版。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerContent: :class:`Tencentcloud::Cls.v20201016.models.NoticeContentInfo`
+        # @param RecoveryContent: 告警恢复通知内容模版。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecoveryContent: :class:`Tencentcloud::Cls.v20201016.models.NoticeContentInfo`
+
+        attr_accessor :Type, :TriggerContent, :RecoveryContent
+
+        def initialize(type=nil, triggercontent=nil, recoverycontent=nil)
+          @Type = type
+          @TriggerContent = triggercontent
+          @RecoveryContent = recoverycontent
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['TriggerContent'].nil?
+            @TriggerContent = NoticeContentInfo.new
+            @TriggerContent.deserialize(params['TriggerContent'])
+          end
+          unless params['RecoveryContent'].nil?
+            @RecoveryContent = NoticeContentInfo.new
+            @RecoveryContent.deserialize(params['RecoveryContent'])
+          end
+        end
+      end
+
+      # 通知模板内容
+      class NoticeContentInfo < TencentCloud::Common::AbstractModel
+        # @param Title: 通知内容模板标题信息。
+        # 部分通知渠道类型不支持“标题”，请参照腾讯云控制台页面。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Content: 通知内容模板正文信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Headers: 请求头（Request Headers）：在HTTP请求中，请求头包含了客户端向服务器发送的附加信息，如用户代理、授权凭证、期望的响应格式等。
+        # 仅“自定义回调”支持该配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: Array
+
+        attr_accessor :Title, :Content, :Headers
+
+        def initialize(title=nil, content=nil, headers=nil)
+          @Title = title
+          @Content = content
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Content = params['Content']
+          @Headers = params['Headers']
+        end
+      end
+
+      # 通知内容模板信息
+      class NoticeContentTemplate < TencentCloud::Common::AbstractModel
+        # @param NoticeContentId: 通知内容模板ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentId: String
+        # @param Name: 通知内容模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 语言类型。
+
+        # 0： 中文
+        # 1： 英文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param NoticeContents: 通知内容模板信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContents: Array
+        # @param Flag: 通知内容模板标记。
+
+        # 0： 用户自定义
+        # 1： 系统内置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Flag: Integer
+        # @param Uin: 创建者主账号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: Integer
+        # @param SubUin: 创建/修改者子账号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubUin: Integer
+        # @param CreateTime: 创建时间 秒级时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间 秒级时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+
+        attr_accessor :NoticeContentId, :Name, :Type, :NoticeContents, :Flag, :Uin, :SubUin, :CreateTime, :UpdateTime
+
+        def initialize(noticecontentid=nil, name=nil, type=nil, noticecontents=nil, flag=nil, uin=nil, subuin=nil, createtime=nil, updatetime=nil)
+          @NoticeContentId = noticecontentid
+          @Name = name
+          @Type = type
+          @NoticeContents = noticecontents
+          @Flag = flag
+          @Uin = uin
+          @SubUin = subuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @NoticeContentId = params['NoticeContentId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['NoticeContents'].nil?
+            @NoticeContents = []
+            params['NoticeContents'].each do |i|
+              noticecontent_tmp = NoticeContent.new
+              noticecontent_tmp.deserialize(i)
+              @NoticeContents << noticecontent_tmp
+            end
+          end
+          @Flag = params['Flag']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 告警通知接收者信息
       class NoticeReceiver < TencentCloud::Common::AbstractModel
         # @param ReceiverType: 接受者类型。可选值：
@@ -9159,16 +9507,20 @@ module TencentCloud
         # - 入参时无效。
         # - 出参时有效。
         # @type Index: Integer
+        # @param NoticeContentId: 通知内容模板ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentId: String
 
-        attr_accessor :ReceiverType, :ReceiverIds, :ReceiverChannels, :StartTime, :EndTime, :Index
+        attr_accessor :ReceiverType, :ReceiverIds, :ReceiverChannels, :StartTime, :EndTime, :Index, :NoticeContentId
 
-        def initialize(receivertype=nil, receiverids=nil, receiverchannels=nil, starttime=nil, endtime=nil, index=nil)
+        def initialize(receivertype=nil, receiverids=nil, receiverchannels=nil, starttime=nil, endtime=nil, index=nil, noticecontentid=nil)
           @ReceiverType = receivertype
           @ReceiverIds = receiverids
           @ReceiverChannels = receiverchannels
           @StartTime = starttime
           @EndTime = endtime
           @Index = index
+          @NoticeContentId = noticecontentid
         end
 
         def deserialize(params)
@@ -9178,6 +9530,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Index = params['Index']
+          @NoticeContentId = params['NoticeContentId']
         end
       end
 
