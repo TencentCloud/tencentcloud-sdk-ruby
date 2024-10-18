@@ -464,6 +464,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询HDFS存储文件信息
+
+        # @param request: Request instance for DescribeHDFSStorageInfo.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeHDFSStorageInfoRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeHDFSStorageInfoResponse`
+        def DescribeHDFSStorageInfo(request)
+          body = send_request('DescribeHDFSStorageInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHDFSStorageInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取hive查询信息
 
         # @param request: Request instance for DescribeHiveQueries.
@@ -632,6 +656,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Kyuubi查询信息
+
+        # @param request: Request instance for DescribeKyuubiQueryInfo.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeKyuubiQueryInfoRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeKyuubiQueryInfoResponse`
+        def DescribeKyuubiQueryInfo(request)
+          body = send_request('DescribeKyuubiQueryInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKyuubiQueryInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询YARN资源调度数据信息。已废弃，请使用`DescribeYarnQueue`去查询队列信息。
 
         # @param request: Request instance for DescribeResourceSchedule.
@@ -738,6 +786,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeServiceNodeInfosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Spark查询信息列表
+
+        # @param request: Request instance for DescribeSparkQueries.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeSparkQueriesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeSparkQueriesResponse`
+        def DescribeSparkQueries(request)
+          body = send_request('DescribeSparkQueries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSparkQueriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询StarRocks查询信息
+
+        # @param request: Request instance for DescribeStarRocksQueryInfo.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeStarRocksQueryInfoRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeStarRocksQueryInfoResponse`
+        def DescribeStarRocksQueryInfo(request)
+          body = send_request('DescribeStarRocksQueryInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStarRocksQueryInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

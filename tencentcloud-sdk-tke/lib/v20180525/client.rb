@@ -1781,6 +1781,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询批量修改标签状态
+
+        # @param request: Request instance for DescribeBatchModifyTagsStatus.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeBatchModifyTagsStatusRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeBatchModifyTagsStatusResponse`
+        def DescribeBatchModifyTagsStatus(request)
+          body = send_request('DescribeBatchModifyTagsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchModifyTagsStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 集群弹性伸缩配置
 
         # @param request: Request instance for DescribeClusterAsGroupOption.
@@ -4551,6 +4575,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterRuntimeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群标签
+
+        # @param request: Request instance for ModifyClusterTags.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterTagsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyClusterTagsResponse`
+        def ModifyClusterTags(request)
+          body = send_request('ModifyClusterTags', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterTagsResponse.new
             model.deserialize(response['Response'])
             model
           else

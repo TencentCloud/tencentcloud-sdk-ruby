@@ -2549,7 +2549,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+        # 本接口（ModifyDBInstanceSecurityGroups）用于修改实例绑定的安全组。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyDBInstanceSecurityGroupsRequest`

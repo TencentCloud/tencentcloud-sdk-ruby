@@ -202,10 +202,13 @@ module TencentCloud
         # @param IsNewAction: 是否是新动作
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAction: Boolean
+        # @param ObjectTypeId: 对象类型ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectTypeId: Integer
 
-        attr_accessor :ActionName, :Desc, :ActionType, :CreateTime, :Creator, :UpdateTime, :RiskDesc, :ActionId, :AttributeId, :RelationActionId, :ActionCommand, :ActionCommandType, :ActionContent, :ResourceType, :ActionDetail, :IsAllowed, :ActionBestCase, :ObjectType, :MetricIdList, :IsNewAction
+        attr_accessor :ActionName, :Desc, :ActionType, :CreateTime, :Creator, :UpdateTime, :RiskDesc, :ActionId, :AttributeId, :RelationActionId, :ActionCommand, :ActionCommandType, :ActionContent, :ResourceType, :ActionDetail, :IsAllowed, :ActionBestCase, :ObjectType, :MetricIdList, :IsNewAction, :ObjectTypeId
 
-        def initialize(actionname=nil, desc=nil, actiontype=nil, createtime=nil, creator=nil, updatetime=nil, riskdesc=nil, actionid=nil, attributeid=nil, relationactionid=nil, actioncommand=nil, actioncommandtype=nil, actioncontent=nil, resourcetype=nil, actiondetail=nil, isallowed=nil, actionbestcase=nil, objecttype=nil, metricidlist=nil, isnewaction=nil)
+        def initialize(actionname=nil, desc=nil, actiontype=nil, createtime=nil, creator=nil, updatetime=nil, riskdesc=nil, actionid=nil, attributeid=nil, relationactionid=nil, actioncommand=nil, actioncommandtype=nil, actioncontent=nil, resourcetype=nil, actiondetail=nil, isallowed=nil, actionbestcase=nil, objecttype=nil, metricidlist=nil, isnewaction=nil, objecttypeid=nil)
           @ActionName = actionname
           @Desc = desc
           @ActionType = actiontype
@@ -226,6 +229,7 @@ module TencentCloud
           @ObjectType = objecttype
           @MetricIdList = metricidlist
           @IsNewAction = isnewaction
+          @ObjectTypeId = objecttypeid
         end
 
         def deserialize(params)
@@ -249,6 +253,7 @@ module TencentCloud
           @ObjectType = params['ObjectType']
           @MetricIdList = params['MetricIdList']
           @IsNewAction = params['IsNewAction']
+          @ObjectTypeId = params['ObjectTypeId']
         end
       end
 
@@ -1956,8 +1961,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 9
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 9
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 10
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 10
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2176,10 +2181,13 @@ module TencentCloud
         # @type ArchiveStage: Integer
         # @param ArchiveTime: 归档时间
         # @type ArchiveTime: String
+        # @param ArchiveUuid: 归档ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArchiveUuid: String
 
-        attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log, :ArchiveStage, :ArchiveTime
+        attr_accessor :Stage, :CreateTime, :ExpirationTime, :Expired, :CosUrl, :Log, :ArchiveStage, :ArchiveTime, :ArchiveUuid
 
-        def initialize(stage=nil, createtime=nil, expirationtime=nil, expired=nil, cosurl=nil, log=nil, archivestage=nil, archivetime=nil)
+        def initialize(stage=nil, createtime=nil, expirationtime=nil, expired=nil, cosurl=nil, log=nil, archivestage=nil, archivetime=nil, archiveuuid=nil)
           @Stage = stage
           @CreateTime = createtime
           @ExpirationTime = expirationtime
@@ -2188,6 +2196,7 @@ module TencentCloud
           @Log = log
           @ArchiveStage = archivestage
           @ArchiveTime = archivetime
+          @ArchiveUuid = archiveuuid
         end
 
         def deserialize(params)
@@ -2199,6 +2208,7 @@ module TencentCloud
           @Log = params['Log']
           @ArchiveStage = params['ArchiveStage']
           @ArchiveTime = params['ArchiveTime']
+          @ArchiveUuid = params['ArchiveUuid']
         end
       end
 

@@ -749,8 +749,8 @@ module TencentCloud
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 9
-        deprecate :SessTime=, :none, 2024, 9
+        deprecate :SessTime, :none, 2024, 10
+        deprecate :SessTime=, :none, 2024, 10
 
         def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Cmd = cmd
@@ -2268,10 +2268,12 @@ module TencentCloud
 
       # DescribeDeviceGroupMembers请求参数结构体
       class DescribeDeviceGroupMembersRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 资产组ID
-        # @type Id: Integer
         # @param Bound: true - 查询已在该资产组的资产，false - 查询未在该资产组的资产
         # @type Bound: Boolean
+        # @param Id: 资产组ID，Id和IdSet二选一
+        # @type Id: Integer
+        # @param IdSet: 资产组ID集合，传Id，IdSet不生效。
+        # @type IdSet: Array
         # @param Name: 资产名或资产IP，模糊查询
         # @type Name: String
         # @param Offset: 分页偏移位置，默认值为0
@@ -2285,11 +2287,12 @@ module TencentCloud
         # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         # @type TagFilters: Array
 
-        attr_accessor :Id, :Bound, :Name, :Offset, :Limit, :Kind, :DepartmentId, :TagFilters
+        attr_accessor :Bound, :Id, :IdSet, :Name, :Offset, :Limit, :Kind, :DepartmentId, :TagFilters
 
-        def initialize(id=nil, bound=nil, name=nil, offset=nil, limit=nil, kind=nil, departmentid=nil, tagfilters=nil)
-          @Id = id
+        def initialize(bound=nil, id=nil, idset=nil, name=nil, offset=nil, limit=nil, kind=nil, departmentid=nil, tagfilters=nil)
           @Bound = bound
+          @Id = id
+          @IdSet = idset
           @Name = name
           @Offset = offset
           @Limit = limit
@@ -2299,8 +2302,9 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Id = params['Id']
           @Bound = params['Bound']
+          @Id = params['Id']
+          @IdSet = params['IdSet']
           @Name = params['Name']
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -4658,8 +4662,8 @@ module TencentCloud
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 9
-        deprecate :SessTime=, :none, 2024, 9
+        deprecate :SessTime, :none, 2024, 10
+        deprecate :SessTime=, :none, 2024, 10
 
         def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Time = time

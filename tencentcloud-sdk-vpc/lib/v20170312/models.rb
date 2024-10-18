@@ -4267,30 +4267,33 @@ module TencentCloud
         # @type NatGatewayName: String
         # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         # @type VpcId: String
-        # @param InternetMaxBandwidthOut: NAT网关最大外网出带宽(单位:Mbps)，支持的参数值：`20, 50, 100, 200, 500, 1000, 2000, 5000`，默认: `100Mbps`。
+        # @param InternetMaxBandwidthOut: NAT网关最大外网出带宽(单位：Mbps)，支持的参数值：20, 50, 100, 200, 500, 1000, 2000, 5000，默认: 100Mbps。  当以下NatProductVersion参数值为2即标准型时，此参数无需填写，默认为5000Mbps。
         # @type InternetMaxBandwidthOut: Integer
-        # @param MaxConcurrentConnection: NAT网关并发连接上限，支持参数值：`1000000、3000000、10000000`，默认值为`100000`。
+        # @param MaxConcurrentConnection: NAT网关并发连接数上限，支持参数值：1000000、3000000、10000000，默认值为100000。  当以下NatProductVersion参数值为2即标准型时，此参数无需填写，默认为2000000。
         # @type MaxConcurrentConnection: Integer
-        # @param AddressCount: 需要申请的弹性IP个数，系统会按您的要求生产N个弹性IP，其中AddressCount和PublicAddresses至少传递一个。
+        # @param AddressCount: 新建弹性公网IP个数，系统会按您的要求创建对应数量的弹性公网IP，其中AddressCount和PublicAddresses两个参数至少填写一个。
         # @type AddressCount: Integer
-        # @param PublicIpAddresses: 绑定NAT网关的弹性IP数组，其中AddressCount和PublicAddresses至少传递一个。
+        # @param PublicIpAddresses: 绑定NAT网关的已有弹性公网IP数组，其中AddressCount和PublicAddresses两个参数至少填写一个。 示例值：["139.199.232.119"]
         # @type PublicIpAddresses: Array
         # @param Zone: 可用区，形如：`ap-guangzhou-1`。
         # @type Zone: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
-        # @param SubnetId: NAT网关所属子网
+        # @param SubnetId: NAT网关所属子网，已废弃
         # @type SubnetId: String
-        # @param StockPublicIpAddressesBandwidthOut: 绑定NAT网关的弹性IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
+        # @param StockPublicIpAddressesBandwidthOut: 绑定NAT网关的弹性公网IP带宽值（单位：Mbps）。不填写此参数时：则该参数默认为弹性公网IP的带宽值，部分用户默认为该用户类型的弹性公网IP的带宽上限。
         # @type StockPublicIpAddressesBandwidthOut: Integer
         # @param PublicIpAddressesBandwidthOut: 需要申请公网IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
         # @type PublicIpAddressesBandwidthOut: Integer
         # @param PublicIpFromSameZone: 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
         # @type PublicIpFromSameZone: Boolean
-        # @param NatProductVersion: NAT网关大版本号，1是传统型，2是标准型，默认是1
+        # @param NatProductVersion: NAT网关类型，1表示传统型NAT网关，2表示标准型NAT网关，默认值是1。
         # @type NatProductVersion: Integer
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
+        extend Gem::Deprecate
+        deprecate :SubnetId, :none, 2024, 10
+        deprecate :SubnetId=, :none, 2024, 10
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -20795,7 +20798,7 @@ module TencentCloud
         # @param RestrictState: NAT网关是否被封禁。“NORMAL”：未被封禁，“RESTRICTED”：已被封禁。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestrictState: String
-        # @param NatProductVersion: NAT网关大版本号，传统型=1，标准型=2
+        # @param NatProductVersion: NAT网关类型，1表示传统型NAT网关，2表示标准型NAT网关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatProductVersion: Integer
         # @param SmartScheduleMode: 是否启用根据目的网段选择SNAT使用的EIP功能
@@ -21520,29 +21523,29 @@ module TencentCloud
 
       # 弹性网卡绑定关系
       class NetworkInterfaceAttachment < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 云主机实例ID。
-        # @type InstanceId: String
         # @param DeviceIndex: 网卡在云主机实例内的序号。
         # @type DeviceIndex: Integer
         # @param InstanceAccountId: 云主机所有者账户信息。
         # @type InstanceAccountId: String
         # @param AttachTime: 绑定时间。
         # @type AttachTime: String
+        # @param InstanceId: 云主机实例ID。
+        # @type InstanceId: String
 
-        attr_accessor :InstanceId, :DeviceIndex, :InstanceAccountId, :AttachTime
+        attr_accessor :DeviceIndex, :InstanceAccountId, :AttachTime, :InstanceId
 
-        def initialize(instanceid=nil, deviceindex=nil, instanceaccountid=nil, attachtime=nil)
-          @InstanceId = instanceid
+        def initialize(deviceindex=nil, instanceaccountid=nil, attachtime=nil, instanceid=nil)
           @DeviceIndex = deviceindex
           @InstanceAccountId = instanceaccountid
           @AttachTime = attachtime
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
-          @InstanceId = params['InstanceId']
           @DeviceIndex = params['DeviceIndex']
           @InstanceAccountId = params['InstanceAccountId']
           @AttachTime = params['AttachTime']
+          @InstanceId = params['InstanceId']
         end
       end
 

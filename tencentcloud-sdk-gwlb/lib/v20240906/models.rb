@@ -58,9 +58,9 @@ module TencentCloud
 
       # 目标组关联到的规则
       class AssociationItem < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 关联到的负载均衡ID
+        # @param LoadBalancerId: 关联到的网关负载均衡实例ID
         # @type LoadBalancerId: String
-        # @param LoadBalancerName: 负载均衡名称
+        # @param LoadBalancerName: 网关负载均衡实例名称
         # @type LoadBalancerName: String
 
         attr_accessor :LoadBalancerId, :LoadBalancerName
@@ -82,7 +82,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 网关负载均衡后端目标设备所属的私有网络的子网ID。
         # @type SubnetId: String
-        # @param LoadBalancerName: 网关负载均衡实例名称。可支持输入1-60个字符，允许英文字母、数字、中文字符、“-”、“_”、“.”。不填写时默认自动生成。
+        # @param LoadBalancerName: 网关负载均衡实例名称。可支持输入1-60个字符。不填写时默认自动生成。
         # @type LoadBalancerName: String
         # @param Number: 创建网关负载均衡的个数，默认值为 1。批量创建数量最大支持10个。
         # @type Number: Integer
@@ -148,7 +148,7 @@ module TencentCloud
 
       # CreateTargetGroup请求参数结构体
       class CreateTargetGroupRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupName: 目标组名称，限定50个字符
+        # @param TargetGroupName: 目标组名称，限定60个字符。
         # @type TargetGroupName: String
         # @param VpcId: 目标组的vpcid属性，不填则使用默认vpc
         # @type VpcId: String
@@ -157,12 +157,12 @@ module TencentCloud
         # @param TargetGroupInstances: 目标组绑定的后端服务器
         # @type TargetGroupInstances: Array
         # @param Protocol: 网关负载均衡目标组协议。
-        # - AWS_GENEVE：GENEVE 兼容协议
         # - TENCENT_GENEVE ：GENEVE 标准协议
+        # - AWS_GENEVE：GENEVE 兼容协议（需要提交工单申请开白）
         # @type Protocol: String
-        # @param HealthCheck: 健康检查。
+        # @param HealthCheck: 健康检查设置。
         # @type HealthCheck: :class:`Tencentcloud::Gwlb.v20240906.models.TargetGroupHealthCheck`
-        # @param ScheduleAlgorithm: RS调度算法。
+        # @param ScheduleAlgorithm: 均衡算法。
         # - IP_HASH_3_ELASTIC：弹性哈希
         # @type ScheduleAlgorithm: String
         # @param AllDeadToAlive: 是否支持全死全活。默认支持。
@@ -257,7 +257,7 @@ module TencentCloud
 
       # DeleteTargetGroups请求参数结构体
       class DeleteTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupIds: 目标组列表。
+        # @param TargetGroupIds: 目标组ID列表。
         # @type TargetGroupIds: Array
 
         attr_accessor :TargetGroupIds
@@ -917,7 +917,7 @@ module TencentCloud
       class ModifyGatewayLoadBalancerAttributeRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 网关负载均衡的唯一ID。
         # @type LoadBalancerId: String
-        # @param LoadBalancerName: 网关负载均衡名称。
+        # @param LoadBalancerName: 网关负载均衡实例名称。可支持输入1-60个字符。
         # @type LoadBalancerName: String
 
         attr_accessor :LoadBalancerId, :LoadBalancerName
@@ -1000,7 +1000,7 @@ module TencentCloud
       class ModifyTargetGroupInstancesWeightRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待修改权重的服务器数组。
+        # @param TargetGroupInstances: 实例绑定配置数组。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -1044,7 +1044,7 @@ module TencentCloud
         # @param InstancePrice: 描述了实例价格。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstancePrice: :class:`Tencentcloud::Gwlb.v20240906.models.ItemPrice`
-        # @param LcuPrice: 描述了实例价格。
+        # @param LcuPrice: 描述了GLCU的价格。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LcuPrice: :class:`Tencentcloud::Gwlb.v20240906.models.ItemPrice`
 
@@ -1132,7 +1132,7 @@ module TencentCloud
 
       # 规则与目标组的关联关系。
       class TargetGroupAssociation < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡ID。
+        # @param LoadBalancerId: 网关负载均衡实例ID。
         # @type LoadBalancerId: String
         # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
@@ -1216,7 +1216,10 @@ module TencentCloud
       class TargetGroupHealthCheck < TencentCloud::Common::AbstractModel
         # @param HealthSwitch: 是否开启健康检查。
         # @type HealthSwitch: Boolean
-        # @param Protocol: 健康检查使用的协议。支持icmp和tcp，默认为icmp。
+        # @param Protocol: 健康检查使用的协议。支持ping和tcp，默认为ping。
+
+        # - PING: icmp
+        # - TCP: tcp
         # @type Protocol: String
         # @param Port: 健康检查端口，探测协议未tcp时，该参数必填。
         # @type Port: Integer
@@ -1274,8 +1277,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param ScheduleAlgorithm: 调度算法。
-        # ip_hash_3：3元组对称弹性Hash
-        # ip_hash_3_consistent：3元组对称一致性Hash
+        # ip_hash_3：弹性哈希
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleAlgorithm: String
         # @param HealthCheck: 健康检查详情。

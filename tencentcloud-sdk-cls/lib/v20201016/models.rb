@@ -9214,10 +9214,12 @@ module TencentCloud
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
         # @param PartitionCount: 日志主题分区数量
         # @type PartitionCount: Integer
+        # @param CancelTopicAsyncTaskID: 取消切换存储任务的id
+        # @type CancelTopicAsyncTaskID: String
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID
 
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -9230,6 +9232,7 @@ module TencentCloud
           @IsWebTracking = iswebtracking
           @Extends = extends
           @PartitionCount = partitioncount
+          @CancelTopicAsyncTaskID = canceltopicasynctaskid
         end
 
         def deserialize(params)
@@ -9255,6 +9258,7 @@ module TencentCloud
             @Extends.deserialize(params['Extends'])
           end
           @PartitionCount = params['PartitionCount']
+          @CancelTopicAsyncTaskID = params['CancelTopicAsyncTaskID']
         end
       end
 
@@ -9900,7 +9904,7 @@ module TencentCloud
         # @type Query: String
         # @param TopicId: 指标主题ID
         # @type TopicId: String
-        # @param Time: 查询时间，秒级Unix时间戳
+        # @param Time: 查询时间，秒级Unix时间戳。为空时代表当前时间戳。
         # @type Time: Integer
 
         attr_accessor :Query, :TopicId, :Time
@@ -11054,10 +11058,19 @@ module TencentCloud
         # @param Extends: 日志主题扩展信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
+        # @param TopicAsyncTaskID: 异步迁移任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicAsyncTaskID: String
+        # @param MigrationStatus: 异步迁移状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrationStatus: Integer
+        # @param EffectiveDate: 异步迁移完成后，预计生效日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveDate: String
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil, extends=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -11077,6 +11090,9 @@ module TencentCloud
           @BizType = biztype
           @IsWebTracking = iswebtracking
           @Extends = extends
+          @TopicAsyncTaskID = topicasynctaskid
+          @MigrationStatus = migrationstatus
+          @EffectiveDate = effectivedate
         end
 
         def deserialize(params)
@@ -11109,6 +11125,9 @@ module TencentCloud
             @Extends = TopicExtendInfo.new
             @Extends.deserialize(params['Extends'])
           end
+          @TopicAsyncTaskID = params['TopicAsyncTaskID']
+          @MigrationStatus = params['MigrationStatus']
+          @EffectiveDate = params['EffectiveDate']
         end
       end
 
@@ -11206,27 +11225,35 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
         # @param Headers: 请求头。
-        # 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求头。
+        # 注意：该参数已废弃，请使用NoticeContentId。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
         # @param Body: 请求内容。
-        # 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求内容。
+        # 注意：该参数已废弃，请使用NoticeContentId。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
         # @param Index: 序号。
         # - 入参无效。
         # - 出参有效。
         # @type Index: Integer
+        # @param NoticeContentId: 通知内容模板ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentId: String
+        # @param WebCallbackId: 集成配置ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCallbackId: String
 
-        attr_accessor :Url, :CallbackType, :Method, :Headers, :Body, :Index
+        attr_accessor :Url, :CallbackType, :Method, :Headers, :Body, :Index, :NoticeContentId, :WebCallbackId
 
-        def initialize(url=nil, callbacktype=nil, method=nil, headers=nil, body=nil, index=nil)
+        def initialize(url=nil, callbacktype=nil, method=nil, headers=nil, body=nil, index=nil, noticecontentid=nil, webcallbackid=nil)
           @Url = url
           @CallbackType = callbacktype
           @Method = method
           @Headers = headers
           @Body = body
           @Index = index
+          @NoticeContentId = noticecontentid
+          @WebCallbackId = webcallbackid
         end
 
         def deserialize(params)
@@ -11236,6 +11263,8 @@ module TencentCloud
           @Headers = params['Headers']
           @Body = params['Body']
           @Index = params['Index']
+          @NoticeContentId = params['NoticeContentId']
+          @WebCallbackId = params['WebCallbackId']
         end
       end
 

@@ -5315,6 +5315,68 @@ module TencentCloud
         end
       end
 
+      # DescribeBatchModifyTagsStatus请求参数结构体
+      class DescribeBatchModifyTagsStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBatchModifyTagsStatus返回参数结构体
+      class DescribeBatchModifyTagsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param FailedResources: 失败资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedResources: Array
+        # @param Status: 任务状态：
+        # - running 运行中
+        # - failed 失败
+        # - done 成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param SyncSubresource: 是否同步集群内子资源标签
+        # @type SyncSubresource: Boolean
+        # @param Tags: 集群标签
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedResources, :Status, :SyncSubresource, :Tags, :RequestId
+
+        def initialize(failedresources=nil, status=nil, syncsubresource=nil, tags=nil, requestid=nil)
+          @FailedResources = failedresources
+          @Status = status
+          @SyncSubresource = syncsubresource
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedResources'].nil?
+            @FailedResources = []
+            params['FailedResources'].each do |i|
+              failedresource_tmp = FailedResource.new
+              failedresource_tmp.deserialize(i)
+              @FailedResources << failedresource_tmp
+            end
+          end
+          @Status = params['Status']
+          @SyncSubresource = params['SyncSubresource']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterAsGroupOption请求参数结构体
       class DescribeClusterAsGroupOptionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -11914,6 +11976,28 @@ module TencentCloud
         end
       end
 
+      # 修改标签失败的资源
+      class FailedResource < TencentCloud::Common::AbstractModel
+        # @param Resource: 资源六段式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param Error: 执行失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
+
+        attr_accessor :Resource, :Error
+
+        def initialize(resource=nil, error=nil)
+          @Resource = resource
+          @Error = error
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Error = params['Error']
+        end
+      end
+
       # 过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -14083,6 +14167,65 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterTags请求参数结构体
+      class ModifyClusterTagsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Tags: 集群标签
+        # @type Tags: Array
+        # @param SyncSubresource: 是否同步集群内子资源标签
+        # @type SyncSubresource: Boolean
+
+        attr_accessor :ClusterId, :Tags, :SyncSubresource
+
+        def initialize(clusterid=nil, tags=nil, syncsubresource=nil)
+          @ClusterId = clusterid
+          @Tags = tags
+          @SyncSubresource = syncsubresource
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @SyncSubresource = params['SyncSubresource']
+        end
+      end
+
+      # ModifyClusterTags返回参数结构体
+      class ModifyClusterTagsResponse < TencentCloud::Common::AbstractModel
+        # @param Tags: 集群标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tags, :RequestId
+
+        def initialize(tags=nil, requestid=nil)
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

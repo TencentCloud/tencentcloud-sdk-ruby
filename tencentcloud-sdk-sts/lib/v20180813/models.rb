@@ -392,7 +392,7 @@ module TencentCloud
 
       # QueryApiKey请求参数结构体
       class QueryApiKeyRequest < TencentCloud::Common::AbstractModel
-        # @param TargetUin: 待查询的账号(不填默认查当前账号)
+        # @param TargetUin: 待查询的账号uin(不填默认查当前账号uin)
         # @type TargetUin: Integer
 
         attr_accessor :TargetUin
@@ -408,7 +408,7 @@ module TencentCloud
 
       # QueryApiKey返回参数结构体
       class QueryApiKeyResponse < TencentCloud::Common::AbstractModel
-        # @param IdKeys: 密钥ID列表
+        # @param IdKeys: 密钥ID列表。
         # @type IdKeys: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

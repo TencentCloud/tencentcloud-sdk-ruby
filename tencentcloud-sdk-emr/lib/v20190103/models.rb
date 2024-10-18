@@ -2787,6 +2787,63 @@ module TencentCloud
         end
       end
 
+      # DescribeHDFSStorageInfo请求参数结构体
+      class DescribeHDFSStorageInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param StartTime: 获取查询信息开始时间 (s)
+        # @type StartTime: Integer
+        # @param EndTime: 获取查询信息结束时间 (s)
+        # @type EndTime: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeHDFSStorageInfo返回参数结构体
+      class DescribeHDFSStorageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param SampleTime: 采样时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SampleTime: Integer
+        # @param StorageSummaryDistribution: hdfs存储详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSummaryDistribution: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SampleTime, :StorageSummaryDistribution, :RequestId
+
+        def initialize(sampletime=nil, storagesummarydistribution=nil, requestid=nil)
+          @SampleTime = sampletime
+          @StorageSummaryDistribution = storagesummarydistribution
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SampleTime = params['SampleTime']
+          unless params['StorageSummaryDistribution'].nil?
+            @StorageSummaryDistribution = []
+            params['StorageSummaryDistribution'].each do |i|
+              storagesummarydistribution_tmp = StorageSummaryDistribution.new
+              storagesummarydistribution_tmp.deserialize(i)
+              @StorageSummaryDistribution << storagesummarydistribution_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHiveQueries请求参数结构体
       class DescribeHiveQueriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群ID
@@ -3274,6 +3331,70 @@ module TencentCloud
         end
       end
 
+      # DescribeKyuubiQueryInfo请求参数结构体
+      class DescribeKyuubiQueryInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 获取查询信息开始时间 (s)
+        # @type StartTime: Integer
+        # @param EndTime: 获取查询信息结束时间 (s)
+        # @type EndTime: Integer
+        # @param PageSize: 分页查询时的分页大小，最小1，最大100
+        # @type PageSize: Integer
+        # @param Page: 分页查询时的页号，从1开始
+        # @type Page: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageSize = pagesize
+          @Page = page
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageSize = params['PageSize']
+          @Page = params['Page']
+        end
+      end
+
+      # DescribeKyuubiQueryInfo返回参数结构体
+      class DescribeKyuubiQueryInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数，分页查询时使用
+        # @type TotalCount: Integer
+        # @param KyuubiQueryInfoList: Kyuubi查询信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KyuubiQueryInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KyuubiQueryInfoList, :RequestId
+
+        def initialize(totalcount=nil, kyuubiqueryinfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KyuubiQueryInfoList = kyuubiqueryinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KyuubiQueryInfoList'].nil?
+            @KyuubiQueryInfoList = []
+            params['KyuubiQueryInfoList'].each do |i|
+              kyuubiqueryinfo_tmp = KyuubiQueryInfo.new
+              kyuubiqueryinfo_tmp.deserialize(i)
+              @KyuubiQueryInfoList << kyuubiqueryinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceScheduleDiffDetail请求参数结构体
       class DescribeResourceScheduleDiffDetailRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: emr集群的英文id
@@ -3644,6 +3765,138 @@ module TencentCloud
           end
           @AliasInfo = params['AliasInfo']
           @SupportNodeFlagFilterList = params['SupportNodeFlagFilterList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSparkQueries请求参数结构体
+      class DescribeSparkQueriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Offset: 分页起始偏移，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页大小，合法范围[1,100]
+        # @type Limit: Integer
+        # @param Status: 执行状态:RUNNING,COMPLETED,FAILED
+        # @type Status: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :Status
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, status=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeSparkQueries返回参数结构体
+      class DescribeSparkQueriesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Results: 结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Results, :RequestId
+
+        def initialize(total=nil, results=nil, requestid=nil)
+          @Total = total
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              sparkquery_tmp = SparkQuery.new
+              sparkquery_tmp.deserialize(i)
+              @Results << sparkquery_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStarRocksQueryInfo请求参数结构体
+      class DescribeStarRocksQueryInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 获取查询信息开始时间 (s)
+        # @type StartTime: Integer
+        # @param EndTime: 获取查询信息结束时间 (s)
+        # @type EndTime: Integer
+        # @param PageSize: 分页查询时的分页大小，最小1，最大100
+        # @type PageSize: Integer
+        # @param Page: 分页查询时的页号，从1开始
+        # @type Page: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageSize = pagesize
+          @Page = page
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageSize = params['PageSize']
+          @Page = params['Page']
+        end
+      end
+
+      # DescribeStarRocksQueryInfo返回参数结构体
+      class DescribeStarRocksQueryInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数，分页查询时使用
+        # @type TotalCount: Integer
+        # @param StarRocksQueryInfoList: Starrocks 查询信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StarRocksQueryInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :StarRocksQueryInfoList, :RequestId
+
+        def initialize(totalcount=nil, starrocksqueryinfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @StarRocksQueryInfoList = starrocksqueryinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['StarRocksQueryInfoList'].nil?
+            @StarRocksQueryInfoList = []
+            params['StarRocksQueryInfoList'].each do |i|
+              starrocksqueryinfo_tmp = StarRocksQueryInfo.new
+              starrocksqueryinfo_tmp.deserialize(i)
+              @StarRocksQueryInfoList << starrocksqueryinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4207,6 +4460,28 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @ExtraPerformance = params['ExtraPerformance']
+        end
+      end
+
+      # 采样序列
+      class Dps < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param Value: 采样值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Timestamp, :Value
+
+        def initialize(timestamp=nil, value=nil)
+          @Timestamp = timestamp
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Value = params['Value']
         end
       end
 
@@ -6026,6 +6301,78 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # Kyuubi查询信息
+      class KyuubiQueryInfo < TencentCloud::Common::AbstractModel
+        # @param ClientIP: 提交IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIP: String
+        # @param Duration: 执行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param EngineID: Engine Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineID: String
+        # @param EngineType: 计算引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
+        # @param Id: ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param SessionID: Session Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionID: String
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: Integer
+        # @param ExecutionState: 执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionState: String
+        # @param ExecutionStatement: 执行语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionStatement: String
+        # @param StatementID: Statement Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatementID: String
+        # @param User: 提交用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+
+        attr_accessor :ClientIP, :Duration, :EndTime, :EngineID, :EngineType, :Id, :SessionID, :BeginTime, :ExecutionState, :ExecutionStatement, :StatementID, :User
+
+        def initialize(clientip=nil, duration=nil, endtime=nil, engineid=nil, enginetype=nil, id=nil, sessionid=nil, begintime=nil, executionstate=nil, executionstatement=nil, statementid=nil, user=nil)
+          @ClientIP = clientip
+          @Duration = duration
+          @EndTime = endtime
+          @EngineID = engineid
+          @EngineType = enginetype
+          @Id = id
+          @SessionID = sessionid
+          @BeginTime = begintime
+          @ExecutionState = executionstate
+          @ExecutionStatement = executionstatement
+          @StatementID = statementid
+          @User = user
+        end
+
+        def deserialize(params)
+          @ClientIP = params['ClientIP']
+          @Duration = params['Duration']
+          @EndTime = params['EndTime']
+          @EngineID = params['EngineID']
+          @EngineType = params['EngineType']
+          @Id = params['Id']
+          @SessionID = params['SessionID']
+          @BeginTime = params['BeginTime']
+          @ExecutionState = params['ExecutionState']
+          @ExecutionStatement = params['ExecutionStatement']
+          @StatementID = params['StatementID']
+          @User = params['User']
         end
       end
 
@@ -9853,6 +10200,89 @@ module TencentCloud
         end
       end
 
+      # spark查询详情
+      class SparkQuery < TencentCloud::Common::AbstractModel
+        # @param Statement: 执行语句
+        # @type Statement: String
+        # @param Duration: 执行时长（单位毫秒）
+        # @type Duration: Integer
+        # @param Status: 执行状态
+        # @type Status: String
+        # @param Id: 查询ID
+        # @type Id: String
+        # @param ScanPartitionNum: 扫描分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanPartitionNum: Integer
+        # @param ScanRowNum: 扫描总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRowNum: Integer
+        # @param ScanFileNum: 扫描总文件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanFileNum: Integer
+        # @param ScanTotalData: 查询扫描总数据量(单位B)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanTotalData: Integer
+        # @param ApplicationId: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: Array
+        # @param OutputRowNum: 输出总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputRowNum: Integer
+        # @param OutputFileNum: 输出总文件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputFileNum: Integer
+        # @param OutputPartitionNum: 输出分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputPartitionNum: Integer
+        # @param OutputTotalData: 输出总数据量（单位B）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputTotalData: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+
+        attr_accessor :Statement, :Duration, :Status, :Id, :ScanPartitionNum, :ScanRowNum, :ScanFileNum, :ScanTotalData, :ApplicationId, :OutputRowNum, :OutputFileNum, :OutputPartitionNum, :OutputTotalData, :BeginTime, :EndTime
+
+        def initialize(statement=nil, duration=nil, status=nil, id=nil, scanpartitionnum=nil, scanrownum=nil, scanfilenum=nil, scantotaldata=nil, applicationid=nil, outputrownum=nil, outputfilenum=nil, outputpartitionnum=nil, outputtotaldata=nil, begintime=nil, endtime=nil)
+          @Statement = statement
+          @Duration = duration
+          @Status = status
+          @Id = id
+          @ScanPartitionNum = scanpartitionnum
+          @ScanRowNum = scanrownum
+          @ScanFileNum = scanfilenum
+          @ScanTotalData = scantotaldata
+          @ApplicationId = applicationid
+          @OutputRowNum = outputrownum
+          @OutputFileNum = outputfilenum
+          @OutputPartitionNum = outputpartitionnum
+          @OutputTotalData = outputtotaldata
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Statement = params['Statement']
+          @Duration = params['Duration']
+          @Status = params['Status']
+          @Id = params['Id']
+          @ScanPartitionNum = params['ScanPartitionNum']
+          @ScanRowNum = params['ScanRowNum']
+          @ScanFileNum = params['ScanFileNum']
+          @ScanTotalData = params['ScanTotalData']
+          @ApplicationId = params['ApplicationId']
+          @OutputRowNum = params['OutputRowNum']
+          @OutputFileNum = params['OutputFileNum']
+          @OutputPartitionNum = params['OutputPartitionNum']
+          @OutputTotalData = params['OutputTotalData']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 任务步骤详情
       class StageInfoDetail < TencentCloud::Common::AbstractModel
         # @param Stage: 步骤id
@@ -9933,6 +10363,113 @@ module TencentCloud
           @LanguageKey = params['LanguageKey']
           @FailedReason = params['FailedReason']
           @TimeConsuming = params['TimeConsuming']
+        end
+      end
+
+      # StarRocks 查询信息
+      class StarRocksQueryInfo < TencentCloud::Common::AbstractModel
+        # @param ClientIP: 提交IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIP: String
+        # @param CPUCost: CPU总时间(ns)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPUCost: Integer
+        # @param DefaultDB: 默认DB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDB: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param ExecutionIP: 执行IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionIP: String
+        # @param QueryID: 查询ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryID: String
+        # @param QueryType: 查询类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryType: String
+        # @param MemCost: 消耗总内存(bytes)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemCost: Integer
+        # @param PlanCpuCosts: plan阶段CPU占用(ns)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanCpuCosts: Integer
+        # @param PlanMemCosts: plan阶段内存占用(bytes)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanMemCosts: Integer
+        # @param QueryTime: 执行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryTime: Integer
+        # @param ResourceGroup: 资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroup: String
+        # @param ReturnRows: 获取行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnRows: Integer
+        # @param ScanBytes: 扫描数据量(bytes)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanBytes: Integer
+        # @param ScanRows: 扫描行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRows: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: Integer
+        # @param ExecutionState: 执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionState: String
+        # @param ExecutionStatement: 执行语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionStatement: String
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+
+        attr_accessor :ClientIP, :CPUCost, :DefaultDB, :EndTime, :ExecutionIP, :QueryID, :QueryType, :MemCost, :PlanCpuCosts, :PlanMemCosts, :QueryTime, :ResourceGroup, :ReturnRows, :ScanBytes, :ScanRows, :BeginTime, :ExecutionState, :ExecutionStatement, :User
+
+        def initialize(clientip=nil, cpucost=nil, defaultdb=nil, endtime=nil, executionip=nil, queryid=nil, querytype=nil, memcost=nil, plancpucosts=nil, planmemcosts=nil, querytime=nil, resourcegroup=nil, returnrows=nil, scanbytes=nil, scanrows=nil, begintime=nil, executionstate=nil, executionstatement=nil, user=nil)
+          @ClientIP = clientip
+          @CPUCost = cpucost
+          @DefaultDB = defaultdb
+          @EndTime = endtime
+          @ExecutionIP = executionip
+          @QueryID = queryid
+          @QueryType = querytype
+          @MemCost = memcost
+          @PlanCpuCosts = plancpucosts
+          @PlanMemCosts = planmemcosts
+          @QueryTime = querytime
+          @ResourceGroup = resourcegroup
+          @ReturnRows = returnrows
+          @ScanBytes = scanbytes
+          @ScanRows = scanrows
+          @BeginTime = begintime
+          @ExecutionState = executionstate
+          @ExecutionStatement = executionstatement
+          @User = user
+        end
+
+        def deserialize(params)
+          @ClientIP = params['ClientIP']
+          @CPUCost = params['CPUCost']
+          @DefaultDB = params['DefaultDB']
+          @EndTime = params['EndTime']
+          @ExecutionIP = params['ExecutionIP']
+          @QueryID = params['QueryID']
+          @QueryType = params['QueryType']
+          @MemCost = params['MemCost']
+          @PlanCpuCosts = params['PlanCpuCosts']
+          @PlanMemCosts = params['PlanMemCosts']
+          @QueryTime = params['QueryTime']
+          @ResourceGroup = params['ResourceGroup']
+          @ReturnRows = params['ReturnRows']
+          @ScanBytes = params['ScanBytes']
+          @ScanRows = params['ScanRows']
+          @BeginTime = params['BeginTime']
+          @ExecutionState = params['ExecutionState']
+          @ExecutionStatement = params['ExecutionStatement']
+          @User = params['User']
         end
       end
 
@@ -10053,6 +10590,40 @@ module TencentCloud
         def deserialize(params)
           @StopPolicy = params['StopPolicy']
           @ThreadCount = params['ThreadCount']
+        end
+      end
+
+      # HDFS文件存储详情
+      class StorageSummaryDistribution < TencentCloud::Common::AbstractModel
+        # @param MetricItem: 数据项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricItem: String
+        # @param MetricName: 数据项描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param Dps: 采样值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dps: Array
+
+        attr_accessor :MetricItem, :MetricName, :Dps
+
+        def initialize(metricitem=nil, metricname=nil, dps=nil)
+          @MetricItem = metricitem
+          @MetricName = metricname
+          @Dps = dps
+        end
+
+        def deserialize(params)
+          @MetricItem = params['MetricItem']
+          @MetricName = params['MetricName']
+          unless params['Dps'].nil?
+            @Dps = []
+            params['Dps'].each do |i|
+              dps_tmp = Dps.new
+              dps_tmp.deserialize(i)
+              @Dps << dps_tmp
+            end
+          end
         end
       end
 

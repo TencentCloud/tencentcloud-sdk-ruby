@@ -12849,15 +12849,19 @@ module TencentCloud
       class DescribeESAggregationsRequest < TencentCloud::Common::AbstractModel
         # @param Query: ES聚合条件JSON
         # @type Query: String
+        # @param LogTypes: 日志类型列表
+        # @type LogTypes: Array
 
-        attr_accessor :Query
+        attr_accessor :Query, :LogTypes
 
-        def initialize(query=nil)
+        def initialize(query=nil, logtypes=nil)
           @Query = query
+          @LogTypes = logtypes
         end
 
         def deserialize(params)
           @Query = params['Query']
+          @LogTypes = params['LogTypes']
         end
       end
 
@@ -12889,19 +12893,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，最大值为100。
         # @type Limit: Integer
+        # @param LogTypes: 日志类型列表
+        # @type LogTypes: Array
 
-        attr_accessor :Query, :Offset, :Limit
+        attr_accessor :Query, :Offset, :Limit, :LogTypes
 
-        def initialize(query=nil, offset=nil, limit=nil)
+        def initialize(query=nil, offset=nil, limit=nil, logtypes=nil)
           @Query = query
           @Offset = offset
           @Limit = limit
+          @LogTypes = logtypes
         end
 
         def deserialize(params)
           @Query = params['Query']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @LogTypes = params['LogTypes']
         end
       end
 
@@ -17190,15 +17198,19 @@ module TencentCloud
       class DescribeSearchExportListRequest < TencentCloud::Common::AbstractModel
         # @param Query: ES查询条件JSON
         # @type Query: String
+        # @param LogTypes: 日志类型列表
+        # @type LogTypes: Array
 
-        attr_accessor :Query
+        attr_accessor :Query, :LogTypes
 
-        def initialize(query=nil)
+        def initialize(query=nil, logtypes=nil)
           @Query = query
+          @LogTypes = logtypes
         end
 
         def deserialize(params)
           @Query = params['Query']
+          @LogTypes = params['LogTypes']
         end
       end
 
@@ -17704,14 +17716,23 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param List: 接入对象列表
         # @type List: Array
+        # @param RangeType: 日志节点范围类型,0自选 1全部
+        # @type RangeType: Integer
+        # @param AutoJoin: 新增资产是否自动加入，节点范围为全部时生效
+        # @type AutoJoin: Boolean
+        # @param ExcludedCount: 剔除节点数
+        # @type ExcludedCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :List, :RequestId
+        attr_accessor :TotalCount, :List, :RangeType, :AutoJoin, :ExcludedCount, :RequestId
 
-        def initialize(totalcount=nil, list=nil, requestid=nil)
+        def initialize(totalcount=nil, list=nil, rangetype=nil, autojoin=nil, excludedcount=nil, requestid=nil)
           @TotalCount = totalcount
           @List = list
+          @RangeType = rangetype
+          @AutoJoin = autojoin
+          @ExcludedCount = excludedcount
           @RequestId = requestid
         end
 
@@ -17725,6 +17746,9 @@ module TencentCloud
               @List << seclogjoinobjectinfo_tmp
             end
           end
+          @RangeType = params['RangeType']
+          @AutoJoin = params['AutoJoin']
+          @ExcludedCount = params['ExcludedCount']
           @RequestId = params['RequestId']
         end
       end
@@ -24569,22 +24593,28 @@ module TencentCloud
         # 容器启动: container_launch
         # k8sApi: k8s_api
         # @type LogType: String
-        # @param BindList: 绑定主机quuid列表
+        # @param BindList: 绑定列表
         # @type BindList: Array
-        # @param UnBindList: 待解绑主机quuid列表
+        # @param UnBindList: 待解绑列表，节点范围为全部时，含义为需剔除资产列表
         # @type UnBindList: Array
         # @param NodeType: 节点类型:
         # NORMAL: 普通节点(默认值)
         # SUPER: 超级节点
         # @type NodeType: String
+        # @param RangeType: 日志节点范围类型,0自选 1全部
+        # @type RangeType: Integer
+        # @param AutoJoin: 新增资产是否自动加入，节点范围为全部时生效
+        # @type AutoJoin: Boolean
 
-        attr_accessor :LogType, :BindList, :UnBindList, :NodeType
+        attr_accessor :LogType, :BindList, :UnBindList, :NodeType, :RangeType, :AutoJoin
 
-        def initialize(logtype=nil, bindlist=nil, unbindlist=nil, nodetype=nil)
+        def initialize(logtype=nil, bindlist=nil, unbindlist=nil, nodetype=nil, rangetype=nil, autojoin=nil)
           @LogType = logtype
           @BindList = bindlist
           @UnBindList = unbindlist
           @NodeType = nodetype
+          @RangeType = rangetype
+          @AutoJoin = autojoin
         end
 
         def deserialize(params)
@@ -24592,6 +24622,8 @@ module TencentCloud
           @BindList = params['BindList']
           @UnBindList = params['UnBindList']
           @NodeType = params['NodeType']
+          @RangeType = params['RangeType']
+          @AutoJoin = params['AutoJoin']
         end
       end
 
@@ -27317,14 +27349,17 @@ module TencentCloud
         # k8sApi: "k8s_api"
         # )
         # @type LogType: String
+        # @param ClusterCount: 已接入集群数量
+        # @type ClusterCount: Integer
 
-        attr_accessor :Count, :SuperNodeCount, :IsJoined, :LogType
+        attr_accessor :Count, :SuperNodeCount, :IsJoined, :LogType, :ClusterCount
 
-        def initialize(count=nil, supernodecount=nil, isjoined=nil, logtype=nil)
+        def initialize(count=nil, supernodecount=nil, isjoined=nil, logtype=nil, clustercount=nil)
           @Count = count
           @SuperNodeCount = supernodecount
           @IsJoined = isjoined
           @LogType = logtype
+          @ClusterCount = clustercount
         end
 
         def deserialize(params)
@@ -27332,6 +27367,7 @@ module TencentCloud
           @SuperNodeCount = params['SuperNodeCount']
           @IsJoined = params['IsJoined']
           @LogType = params['LogType']
+          @ClusterCount = params['ClusterCount']
         end
       end
 
@@ -27363,10 +27399,17 @@ module TencentCloud
         # @type ClusterVersion: String
         # @param ClusterMainAddress: 集群主节点地址
         # @type ClusterMainAddress: String
+        # @param ContainerCnt: 容器数
+        # @type ContainerCnt: Integer
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterStatus: 集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: String
 
-        attr_accessor :HostID, :HostName, :HostIP, :HostStatus, :ClusterID, :ClusterName, :PublicIP, :JoinState, :ClusterVersion, :ClusterMainAddress
+        attr_accessor :HostID, :HostName, :HostIP, :HostStatus, :ClusterID, :ClusterName, :PublicIP, :JoinState, :ClusterVersion, :ClusterMainAddress, :ContainerCnt, :ClusterType, :ClusterStatus
 
-        def initialize(hostid=nil, hostname=nil, hostip=nil, hoststatus=nil, clusterid=nil, clustername=nil, publicip=nil, joinstate=nil, clusterversion=nil, clustermainaddress=nil)
+        def initialize(hostid=nil, hostname=nil, hostip=nil, hoststatus=nil, clusterid=nil, clustername=nil, publicip=nil, joinstate=nil, clusterversion=nil, clustermainaddress=nil, containercnt=nil, clustertype=nil, clusterstatus=nil)
           @HostID = hostid
           @HostName = hostname
           @HostIP = hostip
@@ -27377,6 +27420,9 @@ module TencentCloud
           @JoinState = joinstate
           @ClusterVersion = clusterversion
           @ClusterMainAddress = clustermainaddress
+          @ContainerCnt = containercnt
+          @ClusterType = clustertype
+          @ClusterStatus = clusterstatus
         end
 
         def deserialize(params)
@@ -27390,6 +27436,9 @@ module TencentCloud
           @JoinState = params['JoinState']
           @ClusterVersion = params['ClusterVersion']
           @ClusterMainAddress = params['ClusterMainAddress']
+          @ContainerCnt = params['ContainerCnt']
+          @ClusterType = params['ClusterType']
+          @ClusterStatus = params['ClusterStatus']
         end
       end
 

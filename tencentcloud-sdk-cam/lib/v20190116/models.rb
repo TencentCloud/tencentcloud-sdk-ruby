@@ -2223,8 +2223,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2024, 9
-        deprecate :Idps=, :none, 2024, 9
+        deprecate :Idps, :none, 2024, 10
+        deprecate :Idps=, :none, 2024, 10
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -2350,7 +2350,7 @@ module TencentCloud
 
       # GetPolicy请求参数结构体
       class GetPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略Id
+        # @param PolicyId: 策略Id。
         # @type PolicyId: Integer
 
         attr_accessor :PolicyId
@@ -2366,28 +2366,28 @@ module TencentCloud
 
       # GetPolicy返回参数结构体
       class GetPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param PolicyName: 策略名
+        # @param PolicyName: 策略名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
-        # @param Description: 策略描述
+        # @param Description: 策略描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Type: 1 表示自定义策略，2 表示预设策略
+        # @param Type: 1 表示自定义策略，2 表示预设策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
-        # @param AddTime: 创建时间
+        # @param AddTime: 策略创建时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
-        # @param UpdateTime: 最近更新时间
+        # @param UpdateTime: 策略最近更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param PolicyDocument: 策略文档
+        # @param PolicyDocument: 策略文档。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDocument: String
-        # @param PresetAlias: 备注
+        # @param PresetAlias: 备注。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PresetAlias: String
-        # @param IsServiceLinkedRolePolicy: 是否服务相关策略
+        # @param IsServiceLinkedRolePolicy: 是否是服务相关策略，0代表不是服务相关策略，1代表是服务相关策略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsServiceLinkedRolePolicy: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3160,15 +3160,15 @@ module TencentCloud
 
       # ListAttachedUserAllPolicies请求参数结构体
       class ListAttachedUserAllPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param TargetUin: 目标用户ID
+        # @param TargetUin: 目标用户Uin
         # @type TargetUin: Integer
-        # @param Rp: 每页数量，必须大于 0 且小于或等于 200
+        # @param Rp: 每页数量，必须大于 0 且小于等于 200。
         # @type Rp: Integer
-        # @param Page: 页码，从 1开始，不能大于 200
+        # @param Page: 页码，从 1开始，不能大于 200。
         # @type Page: Integer
-        # @param AttachType: 0:返回直接关联和随组关联策略，1:只返回直接关联策略，2:只返回随组关联策略
+        # @param AttachType: 关联类型。0:返回直接关联和随组关联策略，1:只返回直接关联策略，2:只返回随组关联策略。
         # @type AttachType: Integer
-        # @param StrategyType: 策略类型
+        # @param StrategyType: 策略类型。1表示自定义策略，2表示预设策略。
         # @type StrategyType: Integer
         # @param Keyword: 搜索关键字
         # @type Keyword: String
@@ -3196,9 +3196,9 @@ module TencentCloud
 
       # ListAttachedUserAllPolicies返回参数结构体
       class ListAttachedUserAllPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param PolicyList: 策略列表数据
+        # @param PolicyList: 策略列表数据。
         # @type PolicyList: Array
-        # @param TotalNum: 策略总数
+        # @param TotalNum: 策略总数。
         # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

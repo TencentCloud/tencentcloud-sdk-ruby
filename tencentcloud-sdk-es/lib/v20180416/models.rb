@@ -525,10 +525,14 @@ module TencentCloud
         # @type SubProductCode: String
         # @param ReadWriteMode: 读写分离模式：0-不开启，1-本地读写分离，2-远端读写分离
         # @type ReadWriteMode: Integer
+        # @param EnableScheduleRecoverGroup: 置放群组是否开启异步任务
+        # @type EnableScheduleRecoverGroup: Boolean
+        # @param EnableScheduleOperationDuration: 置放群组开启异步任务的可维护时间段
+        # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration
 
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -567,6 +571,8 @@ module TencentCloud
           @DisasterRecoverGroupAffinity = disasterrecovergroupaffinity
           @SubProductCode = subproductcode
           @ReadWriteMode = readwritemode
+          @EnableScheduleRecoverGroup = enableschedulerecovergroup
+          @EnableScheduleOperationDuration = enablescheduleoperationduration
         end
 
         def deserialize(params)
@@ -635,6 +641,11 @@ module TencentCloud
           @DisasterRecoverGroupAffinity = params['DisasterRecoverGroupAffinity']
           @SubProductCode = params['SubProductCode']
           @ReadWriteMode = params['ReadWriteMode']
+          @EnableScheduleRecoverGroup = params['EnableScheduleRecoverGroup']
+          unless params['EnableScheduleOperationDuration'].nil?
+            @EnableScheduleOperationDuration = EnableScheduleOperationDuration.new
+            @EnableScheduleOperationDuration.deserialize(params['EnableScheduleOperationDuration'])
+          end
         end
       end
 
@@ -3056,6 +3067,38 @@ module TencentCloud
         end
       end
 
+      # 置放群组异步任务维护的时间段
+      class EnableScheduleOperationDuration < TencentCloud::Common::AbstractModel
+        # @param Periods: 支持开启异步任务的日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Periods: Array
+        # @param TimeStart: 支持开启异步的开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeStart: String
+        # @param TimeEnd: 支持开启异步的结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeEnd: String
+        # @param TimeZone: 支持开启异步的时区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeZone: String
+
+        attr_accessor :Periods, :TimeStart, :TimeEnd, :TimeZone
+
+        def initialize(periods=nil, timestart=nil, timeend=nil, timezone=nil)
+          @Periods = periods
+          @TimeStart = timestart
+          @TimeEnd = timeend
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @Periods = params['Periods']
+          @TimeStart = params['TimeStart']
+          @TimeEnd = params['TimeEnd']
+          @TimeZone = params['TimeZone']
+        end
+      end
+
       # ES集群配置项
       class EsAcl < TencentCloud::Common::AbstractModel
         # @param BlackIpList: kibana访问黑名单
@@ -3547,7 +3590,7 @@ module TencentCloud
       class InstallInstanceModelRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param UsrCosModelUrlList: 客户上传到自己cos的地址列表
+        # @param UsrCosModelUrlList: 客户上传到cos的模型地址，单次请求限制一个。cos文件为压缩文件，格式包括：zip、tgz和tar.gz
         # @type UsrCosModelUrlList: Array
 
         attr_accessor :InstanceId, :UsrCosModelUrlList
@@ -4946,10 +4989,16 @@ module TencentCloud
         # @type IsCoordinationNode: Boolean
         # @param CVMStatus: CVM运行状态
         # @type CVMStatus: String
+        # @param CVMDisasterRecoverGroupId: cvm绑定的置放群组的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVMDisasterRecoverGroupId: String
+        # @param CVMDisasterRecoverGroupStatus: cvm绑定置放群组的状态。2: 已绑定；1: 绑定中；0: 未开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVMDisasterRecoverGroupStatus: Integer
 
-        attr_accessor :NodeId, :NodeIp, :Visible, :Break, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeRole, :NodeHttpIp, :JvmMemUsage, :ShardNum, :DiskIds, :Hidden, :IsCoordinationNode, :CVMStatus
+        attr_accessor :NodeId, :NodeIp, :Visible, :Break, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeRole, :NodeHttpIp, :JvmMemUsage, :ShardNum, :DiskIds, :Hidden, :IsCoordinationNode, :CVMStatus, :CVMDisasterRecoverGroupId, :CVMDisasterRecoverGroupStatus
 
-        def initialize(nodeid=nil, nodeip=nil, visible=nil, _break=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, noderole=nil, nodehttpip=nil, jvmmemusage=nil, shardnum=nil, diskids=nil, hidden=nil, iscoordinationnode=nil, cvmstatus=nil)
+        def initialize(nodeid=nil, nodeip=nil, visible=nil, _break=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, noderole=nil, nodehttpip=nil, jvmmemusage=nil, shardnum=nil, diskids=nil, hidden=nil, iscoordinationnode=nil, cvmstatus=nil, cvmdisasterrecovergroupid=nil, cvmdisasterrecovergroupstatus=nil)
           @NodeId = nodeid
           @NodeIp = nodeip
           @Visible = visible
@@ -4969,6 +5018,8 @@ module TencentCloud
           @Hidden = hidden
           @IsCoordinationNode = iscoordinationnode
           @CVMStatus = cvmstatus
+          @CVMDisasterRecoverGroupId = cvmdisasterrecovergroupid
+          @CVMDisasterRecoverGroupStatus = cvmdisasterrecovergroupstatus
         end
 
         def deserialize(params)
@@ -4991,6 +5042,8 @@ module TencentCloud
           @Hidden = params['Hidden']
           @IsCoordinationNode = params['IsCoordinationNode']
           @CVMStatus = params['CVMStatus']
+          @CVMDisasterRecoverGroupId = params['CVMDisasterRecoverGroupId']
+          @CVMDisasterRecoverGroupStatus = params['CVMDisasterRecoverGroupStatus']
         end
       end
 
@@ -5388,10 +5441,14 @@ module TencentCloud
         # @type ShardAllocationConcurrents: Integer
         # @param ShardAllocationBytes: 分片迁移并发速度
         # @type ShardAllocationBytes: Integer
+        # @param EnableScheduleRecoverGroup: 是否开启置放群组异步任务
+        # @type EnableScheduleRecoverGroup: Boolean
+        # @param EnableScheduleOperationDuration: 置放群组异步任务时间段
+        # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
 
-        attr_accessor :InstanceId, :NodeNames, :ForceRestart, :RestartMode, :IsOffline, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes
+        attr_accessor :InstanceId, :NodeNames, :ForceRestart, :RestartMode, :IsOffline, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration
 
-        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil, restartmode=nil, isoffline=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil)
+        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil, restartmode=nil, isoffline=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil)
           @InstanceId = instanceid
           @NodeNames = nodenames
           @ForceRestart = forcerestart
@@ -5400,6 +5457,8 @@ module TencentCloud
           @CvmDelayOnlineTime = cvmdelayonlinetime
           @ShardAllocationConcurrents = shardallocationconcurrents
           @ShardAllocationBytes = shardallocationbytes
+          @EnableScheduleRecoverGroup = enableschedulerecovergroup
+          @EnableScheduleOperationDuration = enablescheduleoperationduration
         end
 
         def deserialize(params)
@@ -5411,6 +5470,11 @@ module TencentCloud
           @CvmDelayOnlineTime = params['CvmDelayOnlineTime']
           @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
           @ShardAllocationBytes = params['ShardAllocationBytes']
+          @EnableScheduleRecoverGroup = params['EnableScheduleRecoverGroup']
+          unless params['EnableScheduleOperationDuration'].nil?
+            @EnableScheduleOperationDuration = EnableScheduleOperationDuration.new
+            @EnableScheduleOperationDuration.deserialize(params['EnableScheduleOperationDuration'])
+          end
         end
       end
 
@@ -6344,10 +6408,14 @@ module TencentCloud
         # @type ShardAllocationBytes: Integer
         # @param ReadWriteMode: 读写分离模式：-1-不开启，1-本地读写分离，2-远端读写分离
         # @type ReadWriteMode: Integer
+        # @param EnableScheduleRecoverGroup: 是否开启置放群组异步任务
+        # @type EnableScheduleRecoverGroup: Boolean
+        # @param EnableScheduleOperationDuration: 置放群组异步任务可维护时间段
+        # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -6389,6 +6457,8 @@ module TencentCloud
           @ShardAllocationConcurrents = shardallocationconcurrents
           @ShardAllocationBytes = shardallocationbytes
           @ReadWriteMode = readwritemode
+          @EnableScheduleRecoverGroup = enableschedulerecovergroup
+          @EnableScheduleOperationDuration = enablescheduleoperationduration
         end
 
         def deserialize(params)
@@ -6472,6 +6542,11 @@ module TencentCloud
           @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
           @ShardAllocationBytes = params['ShardAllocationBytes']
           @ReadWriteMode = params['ReadWriteMode']
+          @EnableScheduleRecoverGroup = params['EnableScheduleRecoverGroup']
+          unless params['EnableScheduleOperationDuration'].nil?
+            @EnableScheduleOperationDuration = EnableScheduleOperationDuration.new
+            @EnableScheduleOperationDuration.deserialize(params['EnableScheduleOperationDuration'])
+          end
         end
       end
 
@@ -6875,10 +6950,14 @@ module TencentCloud
         # @type ShardAllocationConcurrents: Integer
         # @param ShardAllocationBytes: 分片迁移并发速度
         # @type ShardAllocationBytes: Integer
+        # @param EnableScheduleRecoverGroup: 是否开启置放群组异步任务
+        # @type EnableScheduleRecoverGroup: Boolean
+        # @param EnableScheduleOperationDuration: 置放群组异步任务时间段
+        # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
 
-        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup, :SkipCheckForceRestart, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes
+        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode, :CosBackup, :SkipCheckForceRestart, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration
 
-        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil, skipcheckforcerestart=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil)
+        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil, cosbackup=nil, skipcheckforcerestart=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil)
           @InstanceId = instanceid
           @EsVersion = esversion
           @CheckOnly = checkonly
@@ -6890,6 +6969,8 @@ module TencentCloud
           @CvmDelayOnlineTime = cvmdelayonlinetime
           @ShardAllocationConcurrents = shardallocationconcurrents
           @ShardAllocationBytes = shardallocationbytes
+          @EnableScheduleRecoverGroup = enableschedulerecovergroup
+          @EnableScheduleOperationDuration = enablescheduleoperationduration
         end
 
         def deserialize(params)
@@ -6904,6 +6985,11 @@ module TencentCloud
           @CvmDelayOnlineTime = params['CvmDelayOnlineTime']
           @ShardAllocationConcurrents = params['ShardAllocationConcurrents']
           @ShardAllocationBytes = params['ShardAllocationBytes']
+          @EnableScheduleRecoverGroup = params['EnableScheduleRecoverGroup']
+          unless params['EnableScheduleOperationDuration'].nil?
+            @EnableScheduleOperationDuration = EnableScheduleOperationDuration.new
+            @EnableScheduleOperationDuration.deserialize(params['EnableScheduleOperationDuration'])
+          end
         end
       end
 

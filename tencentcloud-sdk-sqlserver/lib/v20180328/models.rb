@@ -6520,10 +6520,12 @@ module TencentCloud
         # @type OrderBy: String
         # @param OrderByType: 排序规则（desc-降序，asc-升序），默认desc
         # @type OrderByType: String
+        # @param FlowId: 回档异步任务ID
+        # @type FlowId: Integer
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :RestoreType, :TargetRegion, :TargetType, :Status, :Offset, :Limit, :OrderBy, :OrderByType
+        attr_accessor :InstanceId, :StartTime, :EndTime, :RestoreType, :TargetRegion, :TargetType, :Status, :Offset, :Limit, :OrderBy, :OrderByType, :FlowId
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, restoretype=nil, targetregion=nil, targettype=nil, status=nil, offset=nil, limit=nil, orderby=nil, orderbytype=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, restoretype=nil, targetregion=nil, targettype=nil, status=nil, offset=nil, limit=nil, orderby=nil, orderbytype=nil, flowid=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -6535,6 +6537,7 @@ module TencentCloud
           @Limit = limit
           @OrderBy = orderby
           @OrderByType = orderbytype
+          @FlowId = flowid
         end
 
         def deserialize(params)
@@ -6549,6 +6552,7 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderBy = params['OrderBy']
           @OrderByType = params['OrderByType']
+          @FlowId = params['FlowId']
         end
       end
 
@@ -10620,10 +10624,12 @@ module TencentCloud
         # @type EndTime: String
         # @param Status: 回档状态，0-初始化，1-运行中，2-成功，3-失败
         # @type Status: Integer
+        # @param FlowId: 回档异步任务ID
+        # @type FlowId: Integer
 
-        attr_accessor :TargetInstanceId, :TargetInstanceName, :TargetInstanceStatus, :TargetRegion, :RestoreId, :TargetType, :RestoreType, :RestoreTime, :StartTime, :EndTime, :Status
+        attr_accessor :TargetInstanceId, :TargetInstanceName, :TargetInstanceStatus, :TargetRegion, :RestoreId, :TargetType, :RestoreType, :RestoreTime, :StartTime, :EndTime, :Status, :FlowId
 
-        def initialize(targetinstanceid=nil, targetinstancename=nil, targetinstancestatus=nil, targetregion=nil, restoreid=nil, targettype=nil, restoretype=nil, restoretime=nil, starttime=nil, endtime=nil, status=nil)
+        def initialize(targetinstanceid=nil, targetinstancename=nil, targetinstancestatus=nil, targetregion=nil, restoreid=nil, targettype=nil, restoretype=nil, restoretime=nil, starttime=nil, endtime=nil, status=nil, flowid=nil)
           @TargetInstanceId = targetinstanceid
           @TargetInstanceName = targetinstancename
           @TargetInstanceStatus = targetinstancestatus
@@ -10635,6 +10641,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @Status = status
+          @FlowId = flowid
         end
 
         def deserialize(params)
@@ -10649,6 +10656,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Status = params['Status']
+          @FlowId = params['FlowId']
         end
       end
 

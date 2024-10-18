@@ -1346,6 +1346,11 @@ module TencentCloud
       class DescribeBackUpJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
         # @type InstanceId: String
+        # @param ApplicationType: 任务类型：
+        # 0-不限制，或使用TypeFilters过滤；
+        # 1-备份恢复（包括周期备份和一次性备份）；
+        # 2-数据迁移（包括跨集群迁移和cos迁移）
+        # @type ApplicationType: Integer
         # @param PageSize: 分页大小
         # @type PageSize: Integer
         # @param PageNum: 页号
@@ -1357,10 +1362,11 @@ module TencentCloud
         # @param JobIdFiltersStr: jobid的string类型
         # @type JobIdFiltersStr: String
 
-        attr_accessor :InstanceId, :PageSize, :PageNum, :BeginTime, :EndTime, :JobIdFiltersStr
+        attr_accessor :InstanceId, :ApplicationType, :PageSize, :PageNum, :BeginTime, :EndTime, :JobIdFiltersStr
 
-        def initialize(instanceid=nil, pagesize=nil, pagenum=nil, begintime=nil, endtime=nil, jobidfiltersstr=nil)
+        def initialize(instanceid=nil, applicationtype=nil, pagesize=nil, pagenum=nil, begintime=nil, endtime=nil, jobidfiltersstr=nil)
           @InstanceId = instanceid
+          @ApplicationType = applicationtype
           @PageSize = pagesize
           @PageNum = pagenum
           @BeginTime = begintime
@@ -1370,6 +1376,7 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @ApplicationType = params['ApplicationType']
           @PageSize = params['PageSize']
           @PageNum = params['PageNum']
           @BeginTime = params['BeginTime']
@@ -1408,12 +1415,20 @@ module TencentCloud
 
       # DescribeBackUpSchedules请求参数结构体
       class DescribeBackUpSchedulesRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationType: 任务类型
+        # 0-不限制，或使用TypeFilters过滤；
+        # 1-备份恢复（包括周期备份和一次性备份）；
+        # 2-数据迁移（包括跨集群迁移和cos迁移）
+        # @type ApplicationType: Integer
 
+        attr_accessor :ApplicationType
 
-        def initialize()
+        def initialize(applicationtype=nil)
+          @ApplicationType = applicationtype
         end
 
         def deserialize(params)
+          @ApplicationType = params['ApplicationType']
         end
       end
 

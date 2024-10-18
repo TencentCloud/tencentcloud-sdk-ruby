@@ -493,7 +493,7 @@ module TencentCloud
 
       # AddOrganization请求参数结构体
       class AddOrganizationRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 组织名称（仅支持中文、英文、数字、_、-的组合，长度不超过16个字符，且组织名称不能重复）
+        # @param Name: 组织名称（仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过64位，且组织名称不能重复）
         # @type Name: String
         # @param ParentId: 组织父节点 ID（从查询组织接口DescribeOrganization中获取，填0代表根组织）
         # @type ParentId: String
@@ -796,10 +796,12 @@ module TencentCloud
         # @type Channels: Array
         # @param OrganizationId: 添加组织目录下所有设备通道，Json数组，可以为空，通道总数量不超过5000个（包括Channel字段的数量）
         # @type OrganizationId: Array
+        # @param RepairMode: 录像补录模式（0:不启用，1:启用），无该字段，默认不启用
+        # @type RepairMode: Integer
 
-        attr_accessor :PlanName, :TemplateId, :LifeCycle, :Describe, :StreamType, :Channels, :OrganizationId
+        attr_accessor :PlanName, :TemplateId, :LifeCycle, :Describe, :StreamType, :Channels, :OrganizationId, :RepairMode
 
-        def initialize(planname=nil, templateid=nil, lifecycle=nil, describe=nil, streamtype=nil, channels=nil, organizationid=nil)
+        def initialize(planname=nil, templateid=nil, lifecycle=nil, describe=nil, streamtype=nil, channels=nil, organizationid=nil, repairmode=nil)
           @PlanName = planname
           @TemplateId = templateid
           @LifeCycle = lifecycle
@@ -807,6 +809,7 @@ module TencentCloud
           @StreamType = streamtype
           @Channels = channels
           @OrganizationId = organizationid
+          @RepairMode = repairmode
         end
 
         def deserialize(params)
@@ -827,6 +830,7 @@ module TencentCloud
             end
           end
           @OrganizationId = params['OrganizationId']
+          @RepairMode = params['RepairMode']
         end
       end
 
@@ -904,7 +908,7 @@ module TencentCloud
 
       # AddRecordRetrieveTask请求参数结构体
       class AddRecordRetrieveTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名称，仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复
+        # @param TaskName: 任务名称，仅支持中文、英文、数字、_、-，长度不超过32个字符，名称全局唯一，不能为空，不能重复
         # @type TaskName: String
         # @param StartTime: 取回录像的开始时间，UTC秒数，例如：1662114146，开始和结束时间段最长为一天，且不能跨天
         # @type StartTime: Integer
@@ -1139,7 +1143,7 @@ module TencentCloud
 
       # AddUserDevice请求参数结构体
       class AddUserDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 设备名称，仅支持中文、英文、数字、_、-，长度不超过32个字符；（设备名称无需全局唯一，可以重复）
+        # @param Name: 设备名称，仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位；（设备名称无需全局唯一，可以重复）
         # @type Name: String
         # @param AccessProtocol: 设备接入协议（1:RTMP,2:GB,3:GW,4:IVCP）
         # @type AccessProtocol: Integer
@@ -1151,9 +1155,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP；(国标设备有效，不填写则默认UDP协议)
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码（国标，网关设备必填，仅支持数字组合，长度为1-64个字符）
+        # @param Password: 设备密码（国标，网关设备必填，长度为1-64个字符）
         # @type Password: String
-        # @param Description: 设备描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
+        # @param Description: 设备描述，长度不超过128个字符
         # @type Description: String
         # @param GatewayId: 设备接入网关ID，从查询网关列表接口中ListGateways获取（仅网关接入需要）
         # @type GatewayId: String
@@ -1167,9 +1171,9 @@ module TencentCloud
         # @type Username: String
         # @param SNCode: 设备 SN，仅IVCP 协议设备需要
         # @type SNCode: String
-        # @param AppName: RTMP推流地址自定义AppName（仅RTMP需要，支持英文、数字组合限制32个字符内）
+        # @param AppName: RTMP推流地址自定义AppName（仅RTMP需要，支持英文、数字、_、-、.、长度不超过64位）
         # @type AppName: String
-        # @param StreamName: RTMP推流地址自定义StreamName（仅RTMP需要，支持英文、数字组合限制32个字符内）
+        # @param StreamName: RTMP推流地址自定义StreamName（仅RTMP需要，支持英文、数字、_、-、.、长度不超过64位）
         # @type StreamName: String
 
         attr_accessor :Name, :AccessProtocol, :Type, :OrganizationId, :ClusterId, :TransportProtocol, :Password, :Description, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :SNCode, :AppName, :StreamName
@@ -1284,7 +1288,7 @@ module TencentCloud
       class BatchOperateDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIds: 设备 ID 数组（从获取设备列表接口ListDevices中获取）
         # @type DeviceIds: Array
-        # @param Cmd: 操作命令（enable：启用；disable：禁用；delete：删除；upgrade：固件升级；reset：恢复出厂设置；reboot：重启）
+        # @param Cmd: 操作命令（enable：启用；disable：禁用；delete：删除；sync：同步设备通道；upgrade：固件升级；reset：恢复出厂设置；reboot：重启）
         # @type Cmd: String
 
         attr_accessor :DeviceIds, :Cmd
@@ -6107,10 +6111,12 @@ module TencentCloud
         # @type Status: Integer
         # @param ChannelCount: 通道总数
         # @type ChannelCount: Integer
+        # @param RepairMode: 录像补录模式（0:不启用，1:启用）
+        # @type RepairMode: Integer
 
-        attr_accessor :PlanId, :PlanName, :TemplateId, :Describe, :StreamType, :LifeCycle, :Status, :ChannelCount
+        attr_accessor :PlanId, :PlanName, :TemplateId, :Describe, :StreamType, :LifeCycle, :Status, :ChannelCount, :RepairMode
 
-        def initialize(planid=nil, planname=nil, templateid=nil, describe=nil, streamtype=nil, lifecycle=nil, status=nil, channelcount=nil)
+        def initialize(planid=nil, planname=nil, templateid=nil, describe=nil, streamtype=nil, lifecycle=nil, status=nil, channelcount=nil, repairmode=nil)
           @PlanId = planid
           @PlanName = planname
           @TemplateId = templateid
@@ -6119,6 +6125,7 @@ module TencentCloud
           @LifeCycle = lifecycle
           @Status = status
           @ChannelCount = channelcount
+          @RepairMode = repairmode
         end
 
         def deserialize(params)
@@ -6133,6 +6140,7 @@ module TencentCloud
           end
           @Status = params['Status']
           @ChannelCount = params['ChannelCount']
+          @RepairMode = params['RepairMode']
         end
       end
 
@@ -6151,15 +6159,18 @@ module TencentCloud
         # @param OrganizationName: 所属组织名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationName: String
+        # @param AccessProtocol: 通道所属设备的接入协议类型
+        # @type AccessProtocol: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :ChannelId, :ChannelName, :OrganizationName
+        attr_accessor :DeviceId, :DeviceName, :ChannelId, :ChannelName, :OrganizationName, :AccessProtocol
 
-        def initialize(deviceid=nil, devicename=nil, channelid=nil, channelname=nil, organizationname=nil)
+        def initialize(deviceid=nil, devicename=nil, channelid=nil, channelname=nil, organizationname=nil, accessprotocol=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @ChannelId = channelid
           @ChannelName = channelname
           @OrganizationName = organizationname
+          @AccessProtocol = accessprotocol
         end
 
         def deserialize(params)
@@ -6168,6 +6179,7 @@ module TencentCloud
           @ChannelId = params['ChannelId']
           @ChannelName = params['ChannelName']
           @OrganizationName = params['OrganizationName']
+          @AccessProtocol = params['AccessProtocol']
         end
       end
 
@@ -6187,16 +6199,19 @@ module TencentCloud
         # @param StreamType: 码流类型，default:设备默认码流类型，main:主码流，sub:子码流，其他根据设备能力集自定义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamType: String
+        # @param RepairMode: 录像补录模式（0:不启用，1:启用）
+        # @type RepairMode: Integer
 
-        attr_accessor :PlanId, :PlanName, :TemplateId, :Describe, :LifeCycle, :StreamType
+        attr_accessor :PlanId, :PlanName, :TemplateId, :Describe, :LifeCycle, :StreamType, :RepairMode
 
-        def initialize(planid=nil, planname=nil, templateid=nil, describe=nil, lifecycle=nil, streamtype=nil)
+        def initialize(planid=nil, planname=nil, templateid=nil, describe=nil, lifecycle=nil, streamtype=nil, repairmode=nil)
           @PlanId = planid
           @PlanName = planname
           @TemplateId = templateid
           @Describe = describe
           @LifeCycle = lifecycle
           @StreamType = streamtype
+          @RepairMode = repairmode
         end
 
         def deserialize(params)
@@ -6209,6 +6224,7 @@ module TencentCloud
             @LifeCycle.deserialize(params['LifeCycle'])
           end
           @StreamType = params['StreamType']
+          @RepairMode = params['RepairMode']
         end
       end
 
@@ -7216,7 +7232,7 @@ module TencentCloud
       class UpdateOrganizationRequest < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织ID（从查询组织接口DescribeOrganization中获取）
         # @type OrganizationId: String
-        # @param Name: 组织名称
+        # @param Name: 组织名称，支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过64位，且组织名称不能重复
         # @type Name: String
 
         attr_accessor :OrganizationId, :Name
@@ -7569,10 +7585,12 @@ module TencentCloud
         # @type Del: Array
         # @param OrganizationId: 组织目录ID，添加组织目录下所有设备通道，Json数组，可以为空，并且通道总数量不超过5000个（包括Add字段通道数量）
         # @type OrganizationId: Array
+        # @param RepairMode: 录像补录模式（0:不启用，1:启用）
+        # @type RepairMode: Integer
 
-        attr_accessor :PlanName, :TemplateId, :Describe, :StreamType, :LifeCycle, :Add, :Del, :OrganizationId
+        attr_accessor :PlanName, :TemplateId, :Describe, :StreamType, :LifeCycle, :Add, :Del, :OrganizationId, :RepairMode
 
-        def initialize(planname=nil, templateid=nil, describe=nil, streamtype=nil, lifecycle=nil, add=nil, del=nil, organizationid=nil)
+        def initialize(planname=nil, templateid=nil, describe=nil, streamtype=nil, lifecycle=nil, add=nil, del=nil, organizationid=nil, repairmode=nil)
           @PlanName = planname
           @TemplateId = templateid
           @Describe = describe
@@ -7581,6 +7599,7 @@ module TencentCloud
           @Add = add
           @Del = del
           @OrganizationId = organizationid
+          @RepairMode = repairmode
         end
 
         def deserialize(params)
@@ -7602,6 +7621,7 @@ module TencentCloud
           end
           @Del = params['Del']
           @OrganizationId = params['OrganizationId']
+          @RepairMode = params['RepairMode']
         end
       end
 
@@ -7728,13 +7748,13 @@ module TencentCloud
       class UpdateUserDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID（从获取设备列表接口ListDevices中获取）
         # @type DeviceId: String
-        # @param Name: 设备名称（仅支持中文、英文、数字、_、-，长度不超过32个字符）
+        # @param Name: 设备名称（仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位）
         # @type Name: String
         # @param TransportProtocol: 设备流传输协议，仅国标设备有效，填0则不做更改（1:UDP,2:TCP）
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码（仅国标，网关设备支持）
+        # @param Password: 设备密码（仅国标，网关设备支持，长度不超过 64 位）
         # @type Password: String
-        # @param Description: 设备描述（仅支持中文、英文、数字、_、-，长度不超过128位）
+        # @param Description: 设备描述（长度不超过128位）
         # @type Description: String
         # @param Ip: 设备接入Ip（仅网关接入支持）
         # @type Ip: String

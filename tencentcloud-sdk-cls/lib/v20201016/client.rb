@@ -2358,7 +2358,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询指定时刻指标的最新值
+        # 查询指定时刻指标的最新值。
+        # 如果该时刻向前推5分钟内均无指标数据，则无相应的查询结果。
 
         # @param request: Request instance for QueryMetric.
         # @type request: :class:`Tencentcloud::cls::V20201016::QueryMetricRequest`
