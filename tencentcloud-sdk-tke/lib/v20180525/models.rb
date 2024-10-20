@@ -5317,12 +5317,17 @@ module TencentCloud
 
       # DescribeBatchModifyTagsStatus请求参数结构体
       class DescribeBatchModifyTagsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 

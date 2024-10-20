@@ -495,7 +495,7 @@ module TencentCloud
       class BatchModifyTopicAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
         # @type InstanceId: String
-        # @param Topic: 主题属性列表
+        # @param Topic: 主题属性列表 (同一个批次最多支持10个)
         # @type Topic: Array
 
         attr_accessor :InstanceId, :Topic
@@ -2369,8 +2369,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 9
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 9
+        deprecate :DeleteRouteTimestamp, :none, 2024, 10
+        deprecate :DeleteRouteTimestamp=, :none, 2024, 10
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -9192,8 +9192,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2024, 9
-        deprecate :DynamicDiskConfig=, :none, 2024, 9
+        deprecate :DynamicDiskConfig, :none, 2024, 10
+        deprecate :DynamicDiskConfig=, :none, 2024, 10
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
           @InstanceId = instanceid
@@ -12372,8 +12372,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 9
-        deprecate :Exflag=, :none, 2024, 9
+        deprecate :Exflag, :none, 2024, 10
+        deprecate :Exflag=, :none, 2024, 10
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

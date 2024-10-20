@@ -3557,7 +3557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升级数据库代理配置
+        # 本接口（UpgradeProxy）用于升级数据库代理配置。
 
         # @param request: Request instance for UpgradeProxy.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeProxyRequest`

@@ -6520,7 +6520,7 @@ module TencentCloud
 
       # CreateSignUrls返回参数结构体
       class CreateSignUrlsResponse < TencentCloud::Common::AbstractModel
-        # @param SignUrlInfos: 签署参与者签署H5链接信息数组
+        # @param SignUrlInfos: 生成的签署参与者的签署链接信息数组。
         # @type SignUrlInfos: Array
         # @param ErrorMessages: 生成失败时的错误信息，成功返回”“，顺序和出参SignUrlInfos保持一致
         # @type ErrorMessages: Array

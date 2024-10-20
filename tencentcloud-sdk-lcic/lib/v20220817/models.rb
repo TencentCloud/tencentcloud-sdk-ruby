@@ -940,8 +940,8 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 9
-        deprecate :RecordLang=, :none, 2024, 9
+        deprecate :RecordLang, :none, 2024, 10
+        deprecate :RecordLang=, :none, 2024, 10
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name
@@ -3088,7 +3088,7 @@ module TencentCloud
         # @type EndTime: Integer
         # @param Page: 分页查询当前页数，从1开始递增
         # @type Page: Integer
-        # @param Limit: 默认是10条
+        # @param Limit: 默认10条，最大上限为100条
         # @type Limit: Integer
         # @param Status: 课堂状态。默认展示所有课堂，0为未开始，1为正在上课，2为已结束，3为已过期
         # @type Status: Array
@@ -3814,8 +3814,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 9
-        deprecate :RecordLang=, :none, 2024, 9
+        deprecate :RecordLang, :none, 2024, 10
+        deprecate :RecordLang=, :none, 2024, 10
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil)
           @RoomId = roomid
@@ -4158,8 +4158,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 9
-        deprecate :RecordLang=, :none, 2024, 9
+        deprecate :RTCAudienceNumber, :none, 2024, 10
+        deprecate :RTCAudienceNumber=, :none, 2024, 10
+        deprecate :RecordLang, :none, 2024, 10
+        deprecate :RecordLang=, :none, 2024, 10
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name
@@ -4254,7 +4256,7 @@ module TencentCloud
         # 3 全高清
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resolution: Integer
-        # @param MaxRTCMember: 最大允许连麦人数
+        # @param MaxRTCMember: 最大允许连麦人数。已废弃，使用字段 MaxMicNumber
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRTCMember: Integer
         # @param ReplayUrl: 房间录制地址。已废弃，使用新字段 RecordUrl
@@ -4263,7 +4265,7 @@ module TencentCloud
         # @param RecordUrl: 录制地址（协议为https)。仅在房间结束后存在。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
-        # @param MaxMicNumber: 最高房间内人数（不包括老师），0表示不限制，默认为0
+        # @param MaxMicNumber: 课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMicNumber: Integer
         # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
