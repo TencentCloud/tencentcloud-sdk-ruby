@@ -791,7 +791,7 @@ module TencentCloud
 
       # DescribeCaptchaMiniResult请求参数结构体
       class DescribeCaptchaMiniResultRequest < TencentCloud::Common::AbstractModel
-        # @param CaptchaType: 固定填值：9（滑块验证码）
+        # @param CaptchaType: 固定填值：9
         # @type CaptchaType: Integer
         # @param Ticket: 验证码返回给用户的票据
         # @type Ticket: String
@@ -1035,7 +1035,7 @@ module TencentCloud
 
       # DescribeCaptchaRceResult请求参数结构体
       class DescribeCaptchaRceResultRequest < TencentCloud::Common::AbstractModel
-        # @param CaptchaType: 固定填值：9。可在控制台配置不同验证码类型。
+        # @param CaptchaType: 固定填值：9。
         # @type CaptchaType: Integer
         # @param Ticket: 前端回调函数返回的用户验证票据
         # @type Ticket: String
@@ -1152,7 +1152,7 @@ module TencentCloud
 
       # DescribeCaptchaResult请求参数结构体
       class DescribeCaptchaResultRequest < TencentCloud::Common::AbstractModel
-        # @param CaptchaType: 固定填值：9。可在控制台配置不同验证码类型。
+        # @param CaptchaType: 固定填值：9。
         # @type CaptchaType: Integer
         # @param Ticket: 前端回调函数返回的用户验证票据
         # @type Ticket: String
@@ -1233,18 +1233,22 @@ module TencentCloud
         # @type EvilBitmap: Integer
         # @param SubmitCaptchaTime: 提交验证码时间
         # @type SubmitCaptchaTime: Integer
+        # @param DeviceRiskCategory: 设备风险大类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceRiskCategory: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RequestId
+        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :DeviceRiskCategory, :RequestId
 
-        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, requestid=nil)
+        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, deviceriskcategory=nil, requestid=nil)
           @CaptchaCode = captchacode
           @CaptchaMsg = captchamsg
           @EvilLevel = evillevel
           @GetCaptchaTime = getcaptchatime
           @EvilBitmap = evilbitmap
           @SubmitCaptchaTime = submitcaptchatime
+          @DeviceRiskCategory = deviceriskcategory
           @RequestId = requestid
         end
 
@@ -1255,6 +1259,7 @@ module TencentCloud
           @GetCaptchaTime = params['GetCaptchaTime']
           @EvilBitmap = params['EvilBitmap']
           @SubmitCaptchaTime = params['SubmitCaptchaTime']
+          @DeviceRiskCategory = params['DeviceRiskCategory']
           @RequestId = params['RequestId']
         end
       end

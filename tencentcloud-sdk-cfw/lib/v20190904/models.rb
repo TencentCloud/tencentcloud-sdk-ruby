@@ -613,7 +613,7 @@ module TencentCloud
 
       # 入侵防御放通封禁规则
       class BlockIgnoreRule < TencentCloud::Common::AbstractModel
-        # @param RuleType: 1 封禁 2外部IP 3域名 4情报 5assets 6udf  7入侵防御规则id （2-7属于白名单类型）
+        # @param RuleType: 规则类型，取值：1 封禁，2外部IP，3域名，4情报，5assets，6自定义策略，7入侵防御规则id （2-7属于白名单类型）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: Integer
         # @param Ioc: 规则ip或白名单内容
@@ -2889,15 +2889,15 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 条数，分页用
         # @type Limit: Integer
-        # @param By: 排序字段，取值 'UpdateTime' | 'RulesNum'
+        # @param By: 排序字段，取值：UpdateTime最近更新时间，RulesNum关联规则数
         # @type By: String
-        # @param Order: 排序，取值 'asc'|'desc'
+        # @param Order: 排序，取值 ：asc正序，desc逆序
         # @type Order: String
         # @param SearchValue: 搜索值
         # @type SearchValue: String
         # @param Uuid: 检索地址模板唯一id
         # @type Uuid: String
-        # @param TemplateType: 1：ip模板，5：域名模板，6：协议端口模板
+        # @param TemplateType: 模板类型，取值：1：ip模板，5：域名模板，6：协议端口模板
         # @type TemplateType: String
         # @param TemplateId: 模板Id
         # @type TemplateId: String
@@ -3518,7 +3518,11 @@ module TencentCloud
         # @type AllTotal: Integer
         # @param Data: 规则列表
         # @type Data: Array
-        # @param Enable: 规则整体启用状态
+        # @param Enable: 规则列表整体启用状态
+        # 取值范围 0/1/2
+        # 0.表示没有启用的(可以批量启用)
+        # 1.表示没有禁用的(可以批量禁用)
+        # 2 表示混合情况（不可批量操作）
         # @type Enable: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5635,24 +5639,57 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceId: String
         # @param SourceType: 源规则类型
+        # 取值范围 0/1/2/3/4/5/6/7/8/9/100
+        # 0表示ip(net),
+        # 1表示VPC实例(intance)
+        # 2表示子网实例(intance)
+        # 3表示CVM实例(intance)
+        # 4表示CLB实例(intance)
+        # 5表示ENI实例(intance)
+        # 6表示数据库实例(intance)
+        # 7表示模版(template)
+        # 8表示标签(tag)
+        # 9表示地域(region)
+        # 100表示资产分组(resourcegroup)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: Integer
         # @param TargetId: 目的规则内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetId: String
         # @param TargetType: 目的规则类型
+        # 取值范围 0/1/2/3/4/5/6/7/8/9/100
+        # 0表示ip(net),
+        # 1表示VPC实例(intance)
+        # 2表示子网实例(intance)
+        # 3表示CVM实例(intance)
+        # 4表示CLB实例(intance)
+        # 5表示ENI实例(intance)
+        # 6表示数据库实例(intance)
+        # 7表示模版(template)
+        # 8表示标签(tag)
+        # 9表示地域(region)
+        # 100表示资产分组(resourcegroup)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: Integer
         # @param Protocol: 协议名称
+        # 取值范围:TCP/ANY/ICMP/UDP
+        # ANY:表示所有
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
-        # @param Strategy: 策略，1阻断，2放行
+        # @param Strategy: 规则策略
+        # 取值范围:1/2
+        # 1:阻断
+        # 2:放行
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Strategy: Integer
-        # @param Status: 启用状态 ，0未开启，1开启
+        # @param Status: 规则启用状态
+        # 取值范围： 0/1
+        # 0:未开启
+        # 1:开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Detail: 描述
@@ -5661,13 +5698,18 @@ module TencentCloud
         # @param AclTags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclTags: String
-        # @param IsNew: 是否最新一次改动的规则,0否，1是
+        # @param IsNew: 规则最新一次是否有改动
+        # 取值范围：0/1
+        # 0:否
+        # 1:是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNew: Integer
         # @param Region: 地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param IsDelay: 是否延迟下发
+        # @param IsDelay: 是否延迟下发规则
+        # 取值范围：0/1
+        # 0:立即下发 1:延迟下发
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelay: Integer
         # @param ServiceTemplateId: 服务模板id
@@ -5706,10 +5748,10 @@ module TencentCloud
         # @param ProtocolPortName: 端口模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolPortName: String
-        # @param BetaList: 自动化任务任务信息
+        # @param BetaList: 自动化任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
-        # @param Id: 规则id
+        # @param Id: 规则id  等同RuleUuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 
@@ -6278,20 +6320,20 @@ module TencentCloud
         # @type IP: String
         # @param Domain: 规则域名，IP与Domain必填其中之一
         # @type Domain: String
-        # @param Comment: 备注信息，长度不能超过50
-        # @type Comment: String
         # @param StartTime: 规则开始时间
         # @type StartTime: String
+        # @param Comment: 备注信息，长度不能超过50
+        # @type Comment: String
 
-        attr_accessor :Direction, :EndTime, :IP, :Domain, :Comment, :StartTime
+        attr_accessor :Direction, :EndTime, :IP, :Domain, :StartTime, :Comment
 
-        def initialize(direction=nil, endtime=nil, ip=nil, domain=nil, comment=nil, starttime=nil)
+        def initialize(direction=nil, endtime=nil, ip=nil, domain=nil, starttime=nil, comment=nil)
           @Direction = direction
           @EndTime = endtime
           @IP = ip
           @Domain = domain
-          @Comment = comment
           @StartTime = starttime
+          @Comment = comment
         end
 
         def deserialize(params)
@@ -6299,8 +6341,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @IP = params['IP']
           @Domain = params['Domain']
-          @Comment = params['Comment']
           @StartTime = params['StartTime']
+          @Comment = params['Comment']
         end
       end
 
@@ -6861,7 +6903,7 @@ module TencentCloud
 
       # ModifyBlockIgnoreRule请求参数结构体
       class ModifyBlockIgnoreRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rule: 规则
+        # @param Rule: 规则列表
         # @type Rule: :class:`Tencentcloud::Cfw.v20190904.models.IntrusionDefenseRule`
         # @param RuleType: 规则类型，1封禁，2放通
         # @type RuleType: Integer
@@ -9622,10 +9664,13 @@ module TencentCloud
         # @param IPNum: 模板包含地址数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPNum: Integer
+        # @param IpVersion: IP版本,0,IPv4;1,IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpVersion: Integer
 
-        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType, :IPNum
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType, :IPNum, :IpVersion
 
-        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil, templateid=nil, protocoltype=nil, ipnum=nil)
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil, templateid=nil, protocoltype=nil, ipnum=nil, ipversion=nil)
           @Uuid = uuid
           @Name = name
           @Detail = detail
@@ -9637,6 +9682,7 @@ module TencentCloud
           @TemplateId = templateid
           @ProtocolType = protocoltype
           @IPNum = ipnum
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
@@ -9651,6 +9697,7 @@ module TencentCloud
           @TemplateId = params['TemplateId']
           @ProtocolType = params['ProtocolType']
           @IPNum = params['IPNum']
+          @IpVersion = params['IpVersion']
         end
       end
 

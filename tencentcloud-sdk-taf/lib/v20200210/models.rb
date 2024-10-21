@@ -39,12 +39,29 @@ module TencentCloud
 
       # 业务入参
       class InputBusinessEncryptData < TencentCloud::Common::AbstractModel
+        # @param EncryptMethod: 加密方式；0：AES;1:DES
+        # @type EncryptMethod: Integer
+        # @param EncryptData: 业务数据加密字符串
+        # @type EncryptData: String
+        # @param EncryptMode: 加密模式；0：ECB,1:CBC;2:CTR;3:CFB;4:OFB
+        # @type EncryptMode: Integer
+        # @param PaddingType: 填充模式;0:ZERO ;1:PKCS5;3:PKCS7
+        # @type PaddingType: Integer
 
+        attr_accessor :EncryptMethod, :EncryptData, :EncryptMode, :PaddingType
 
-        def initialize()
+        def initialize(encryptmethod=nil, encryptdata=nil, encryptmode=nil, paddingtype=nil)
+          @EncryptMethod = encryptmethod
+          @EncryptData = encryptdata
+          @EncryptMode = encryptmode
+          @PaddingType = paddingtype
         end
 
         def deserialize(params)
+          @EncryptMethod = params['EncryptMethod']
+          @EncryptData = params['EncryptData']
+          @EncryptMode = params['EncryptMode']
+          @PaddingType = params['PaddingType']
         end
       end
 

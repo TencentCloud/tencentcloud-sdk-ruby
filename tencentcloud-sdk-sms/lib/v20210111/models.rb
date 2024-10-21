@@ -307,10 +307,8 @@ module TencentCloud
       # 删除签名响应
       class DeleteSignStatus < TencentCloud::Common::AbstractModel
         # @param DeleteStatus: 删除状态信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteStatus: String
         # @param DeleteTime: 删除时间，UNIX 时间戳（单位：秒）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime
@@ -427,7 +425,7 @@ module TencentCloud
       # DescribePhoneNumberInfo请求参数结构体
       class DescribePhoneNumberInfoRequest < TencentCloud::Common::AbstractModel
         # @param PhoneNumberSet: 查询手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号。
-        # 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # 例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # @type PhoneNumberSet: Array
 
         attr_accessor :PhoneNumberSet
@@ -852,7 +850,7 @@ module TencentCloud
         # @type Message: String
         # @param NationCode: 国家（或地区）码。
         # @type NationCode: String
-        # @param SubscriberNumber: 用户号码，去除国家或地区码前缀的普通格式，示例如：13711112222。
+        # @param SubscriberNumber: 用户号码，去除国家或地区码前缀的普通格式，示例如：18501234444。
         # @type SubscriberNumber: String
         # @param PhoneNumber: 解析后的规范的 E.164 号码，与下发短信的号码解析结果一致。解析失败时会原样返回。
         # @type PhoneNumber: String
@@ -890,7 +888,7 @@ module TencentCloud
         # @type ExtendCode: String
         # @param CountryCode: 国家（或地区）码。
         # @type CountryCode: String
-        # @param PhoneNumber: 手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # @param PhoneNumber: 手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # @type PhoneNumber: String
         # @param SignName: 短信签名名称。
         # @type SignName: String
@@ -898,7 +896,7 @@ module TencentCloud
         # @type ReplyContent: String
         # @param ReplyTime: 回复时间，UNIX 时间戳（单位：秒）。
         # @type ReplyTime: Integer
-        # @param SubscriberNumber: 用户号码，普通格式，示例如：13711112222。
+        # @param SubscriberNumber: 用户号码，普通格式，示例如：18501234444。
         # @type SubscriberNumber: String
 
         attr_accessor :ExtendCode, :CountryCode, :PhoneNumber, :SignName, :ReplyContent, :ReplyTime, :SubscriberNumber
@@ -934,7 +932,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 拉取最大条数，最多 100。
         # @type Limit: Integer
-        # @param PhoneNumber: 下发目的手机号码，依据 E.164 标准为：+[国家（或地区）码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # @param PhoneNumber: 下发目的手机号码，依据 E.164 标准为：+[国家（或地区）码][手机号] ，示例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # @type PhoneNumber: String
         # @param SmsSdkAppId: 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         # @type SmsSdkAppId: String
@@ -1042,9 +1040,9 @@ module TencentCloud
         # @type UserReceiveTime: Integer
         # @param CountryCode: 国家（或地区）码。
         # @type CountryCode: String
-        # @param SubscriberNumber: 用户号码，普通格式，示例如：13711112222。
+        # @param SubscriberNumber: 用户号码，普通格式，示例如：18501234444。
         # @type SubscriberNumber: String
-        # @param PhoneNumber: 手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # @param PhoneNumber: 手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # @type PhoneNumber: String
         # @param SerialNo: 本次发送标识 ID。
         # @type SerialNo: String
@@ -1053,7 +1051,6 @@ module TencentCloud
         # @param Description: 用户接收短信状态描述。
         # @type Description: String
         # @param SessionContext: 用户的 session 内容。与请求中的 SessionContext 一致，默认为空，如需开通请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 评估。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionContext: String
 
         attr_accessor :UserReceiveTime, :CountryCode, :SubscriberNumber, :PhoneNumber, :SerialNo, :ReportStatus, :Description, :SessionContext
@@ -1091,7 +1088,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 拉取最大条数，最多 100。
         # @type Limit: Integer
-        # @param PhoneNumber: 下发目的手机号码，依据 E.164 标准为：+[国家（或地区）码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # @param PhoneNumber: 下发目的手机号码，依据 E.164 标准为：+[国家（或地区）码][手机号] ，示例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # @type PhoneNumber: String
         # @param SmsSdkAppId: 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
         # @type SmsSdkAppId: String
@@ -1263,7 +1260,7 @@ module TencentCloud
       # SendSms请求参数结构体
       class SendSmsRequest < TencentCloud::Common::AbstractModel
         # @param PhoneNumberSet: 下发手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号且要求全为境内手机号或全为境外手机号。
-        # 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # 例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # 注：发送国内短信格式还支持0086、86或无任何国家或地区码的11位手机号码，前缀默认为+86。
         # @type PhoneNumberSet: Array
         # @param SmsSdkAppId: 短信 SdkAppId，在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
@@ -1341,7 +1338,7 @@ module TencentCloud
       class SendStatus < TencentCloud::Common::AbstractModel
         # @param SerialNo: 发送流水号。
         # @type SerialNo: String
-        # @param PhoneNumber: 手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # @param PhoneNumber: 手机号码，E.164标准，+[国家或地区码][手机号] ，示例如：+8618501234444， 其中前面有一个+号 ，86为国家码，18501234444为手机号。
         # @type PhoneNumber: String
         # @param Fee: 计费条数，计费规则请查询 [计费策略](https://cloud.tencent.com/document/product/382/36135)。
         # @type Fee: Integer

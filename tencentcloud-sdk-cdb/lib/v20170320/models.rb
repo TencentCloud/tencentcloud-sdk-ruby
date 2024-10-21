@@ -14005,12 +14005,14 @@ module TencentCloud
         # @type ZoneId: String
         # @param RoTransType: 针对跨集群搬迁场景，选择同可用区RO的处理逻辑。together-同可用区RO跟随主实例迁移至目标可用区（默认选项），severally-同可用区RO保持原部署模式、不迁移至目标可用区。
         # @type RoTransType: String
+        # @param ClusterTopology: 集群版节点拓扑配置。
+        # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
         # @param CheckFastUpgradeReboot: 检查原地升级是否需要重启，1 检查， 0 不检查。如果值为1，检查为原地升级需要重启，则会停止升级并进行返回提示，如果为原地升级不重启，则正常执行升级流程。
         # @type CheckFastUpgradeReboot: Integer
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType, :CheckFastUpgradeReboot
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu, :FastUpgrade, :MaxDelayTime, :CrossCluster, :ZoneId, :RoTransType, :ClusterTopology, :CheckFastUpgradeReboot
 
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil, checkfastupgradereboot=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil, fastupgrade=nil, maxdelaytime=nil, crosscluster=nil, zoneid=nil, rotranstype=nil, clustertopology=nil, checkfastupgradereboot=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -14028,6 +14030,7 @@ module TencentCloud
           @CrossCluster = crosscluster
           @ZoneId = zoneid
           @RoTransType = rotranstype
+          @ClusterTopology = clustertopology
           @CheckFastUpgradeReboot = checkfastupgradereboot
         end
 
@@ -14049,6 +14052,10 @@ module TencentCloud
           @CrossCluster = params['CrossCluster']
           @ZoneId = params['ZoneId']
           @RoTransType = params['RoTransType']
+          unless params['ClusterTopology'].nil?
+            @ClusterTopology = ClusterTopology.new
+            @ClusterTopology.deserialize(params['ClusterTopology'])
+          end
           @CheckFastUpgradeReboot = params['CheckFastUpgradeReboot']
         end
       end

@@ -2229,8 +2229,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 9
-        deprecate :TaskId=, :none, 2024, 9
+        deprecate :TaskId, :none, 2024, 10
+        deprecate :TaskId=, :none, 2024, 10
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -8007,12 +8007,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 9
-        deprecate :EventType=, :none, 2024, 9
-        deprecate :EventBroadcastType, :none, 2024, 9
-        deprecate :EventBroadcastType=, :none, 2024, 9
-        deprecate :Status, :none, 2024, 9
-        deprecate :Status=, :none, 2024, 9
+        deprecate :EventType, :none, 2024, 10
+        deprecate :EventType=, :none, 2024, 10
+        deprecate :EventBroadcastType, :none, 2024, 10
+        deprecate :EventBroadcastType=, :none, 2024, 10
+        deprecate :Status, :none, 2024, 10
+        deprecate :Status=, :none, 2024, 10
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -10234,6 +10234,75 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = Project.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProjectUsers请求参数结构体
+      class DescribeProjectUsersRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页号
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Filters: 【过滤参数】自定义条件查询
+        # @type Filters: Array
+        # @param OrderFields: 【排序参数】排序字段
+        # @type OrderFields: Array
+        # @param IsProjectAdmin: 是否项目管理员
+        # @type IsProjectAdmin: Boolean
+
+        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields, :IsProjectAdmin
+
+        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, isprojectadmin=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+          @OrderFields = orderfields
+          @IsProjectAdmin = isprojectadmin
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filteroptional_tmp = FilterOptional.new
+              filteroptional_tmp.deserialize(i)
+              @Filters << filteroptional_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfieldoptional_tmp = OrderFieldOptional.new
+              orderfieldoptional_tmp.deserialize(i)
+              @OrderFields << orderfieldoptional_tmp
+            end
+          end
+          @IsProjectAdmin = params['IsProjectAdmin']
+        end
+      end
+
+      # DescribeProjectUsers返回参数结构体
+      class DescribeProjectUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 项目列表
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ProjectUsersPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectUsersPage.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -13908,8 +13977,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 9
-        deprecate :DimType=, :none, 2024, 9
+        deprecate :DimType, :none, 2024, 10
+        deprecate :DimType=, :none, 2024, 10
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -19437,8 +19506,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2024, 9
-        deprecate :InCharge=, :none, 2024, 9
+        deprecate :InCharge, :none, 2024, 10
+        deprecate :InCharge=, :none, 2024, 10
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -21030,6 +21099,104 @@ module TencentCloud
         end
       end
 
+      # 项目的用户对象
+      class ProjectUserRole < TencentCloud::Common::AbstractModel
+        # @param Roles: 用户角色对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Roles: Array
+        # @param UserName: mc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param UserId: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Creator: 是否创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: Boolean
+        # @param DisplayName: 显示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param IsProjectAdmin: 是否项目管理员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsProjectAdmin: Boolean
+
+        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin
+
+        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil)
+          @Roles = roles
+          @UserName = username
+          @UserId = userid
+          @CreateTime = createtime
+          @Creator = creator
+          @DisplayName = displayname
+          @IsProjectAdmin = isprojectadmin
+        end
+
+        def deserialize(params)
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              systemrole_tmp = SystemRole.new
+              systemrole_tmp.deserialize(i)
+              @Roles << systemrole_tmp
+            end
+          end
+          @UserName = params['UserName']
+          @UserId = params['UserId']
+          @CreateTime = params['CreateTime']
+          @Creator = params['Creator']
+          @DisplayName = params['DisplayName']
+          @IsProjectAdmin = params['IsProjectAdmin']
+        end
+      end
+
+      # 项目下的用户集合
+      class ProjectUsersPage < TencentCloud::Common::AbstractModel
+        # @param Rows: 用户集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param TotalCount: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Rows, :PageSize, :PageNumber, :TotalCount, :TotalPageNumber
+
+        def initialize(rows=nil, pagesize=nil, pagenumber=nil, totalcount=nil, totalpagenumber=nil)
+          @Rows = rows
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              projectuserrole_tmp = ProjectUserRole.new
+              projectuserrole_tmp.deserialize(i)
+              @Rows << projectuserrole_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # dlc建表属性
       class Property < TencentCloud::Common::AbstractModel
         # @param Key: key值
@@ -21757,6 +21924,53 @@ module TencentCloud
         def deserialize(params)
           @IsRob = params['IsRob']
           @Locker = params['Locker']
+        end
+      end
+
+      # 角色权限对象
+      class RolePrivilege < TencentCloud::Common::AbstractModel
+        # @param PrivilegeId: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeId: String
+        # @param PrivilegeName: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeName: String
+        # @param RestPath: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestPath: String
+        # @param RestMethod: 方法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestMethod: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ModuleId: 模块id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModuleId: String
+        # @param Type: 权限类型 N、R、RW、RWD
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :PrivilegeId, :PrivilegeName, :RestPath, :RestMethod, :Description, :ModuleId, :Type
+
+        def initialize(privilegeid=nil, privilegename=nil, restpath=nil, restmethod=nil, description=nil, moduleid=nil, type=nil)
+          @PrivilegeId = privilegeid
+          @PrivilegeName = privilegename
+          @RestPath = restpath
+          @RestMethod = restmethod
+          @Description = description
+          @ModuleId = moduleid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @PrivilegeId = params['PrivilegeId']
+          @PrivilegeName = params['PrivilegeName']
+          @RestPath = params['RestPath']
+          @RestMethod = params['RestMethod']
+          @Description = params['Description']
+          @ModuleId = params['ModuleId']
+          @Type = params['Type']
         end
       end
 
@@ -25235,6 +25449,69 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 角色对象
+      class SystemRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param Name: 角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param NameCn: 角色昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameCn: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Privileges: 角色权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privileges: Array
+        # @param MethodPaths: 方法路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MethodPaths: Array
+        # @param RoleType: 角色类型, 分为System,Tenant,Project,Commercial
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleType: String
+        # @param SystemInit: 是否系统默认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemInit: Boolean
+        # @param Params: 自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+
+        attr_accessor :RoleId, :Name, :NameCn, :Description, :Privileges, :MethodPaths, :RoleType, :SystemInit, :Params
+
+        def initialize(roleid=nil, name=nil, namecn=nil, description=nil, privileges=nil, methodpaths=nil, roletype=nil, systeminit=nil, params=nil)
+          @RoleId = roleid
+          @Name = name
+          @NameCn = namecn
+          @Description = description
+          @Privileges = privileges
+          @MethodPaths = methodpaths
+          @RoleType = roletype
+          @SystemInit = systeminit
+          @Params = params
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @Name = params['Name']
+          @NameCn = params['NameCn']
+          @Description = params['Description']
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              roleprivilege_tmp = RolePrivilege.new
+              roleprivilege_tmp.deserialize(i)
+              @Privileges << roleprivilege_tmp
+            end
+          end
+          @MethodPaths = params['MethodPaths']
+          @RoleType = params['RoleType']
+          @SystemInit = params['SystemInit']
+          @Params = params['Params']
         end
       end
 

@@ -848,7 +848,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取trino查询结果
+        # 查询Trino(PrestoSQL)查询信息
 
         # @param request: Request instance for DescribeTrinoQueryInfo.
         # @type request: :class:`Tencentcloud::emr::V20190103::DescribeTrinoQueryInfoRequest`

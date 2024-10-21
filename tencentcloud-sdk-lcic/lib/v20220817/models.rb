@@ -940,6 +940,8 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
+        deprecate :RTCAudienceNumber, :none, 2024, 10
+        deprecate :RTCAudienceNumber=, :none, 2024, 10
         deprecate :RecordLang, :none, 2024, 10
         deprecate :RecordLang=, :none, 2024, 10
 

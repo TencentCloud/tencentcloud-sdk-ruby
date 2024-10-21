@@ -223,10 +223,13 @@ module TencentCloud
         # @param MetricName: 指标名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricName: String
+        # @param PolicyPermissions: 策略是否有权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyPermissions: Integer
 
-        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions, :AlarmLevel, :ShieldFlag, :AlarmShieldingType, :AlarmShieldingTime, :AlarmShieldingShowType, :AlarmShieldingShowTime, :AlarmShieldReason, :InternalDimensions, :MetricName
+        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions, :AlarmLevel, :ShieldFlag, :AlarmShieldingType, :AlarmShieldingTime, :AlarmShieldingShowType, :AlarmShieldingShowTime, :AlarmShieldReason, :InternalDimensions, :MetricName, :PolicyPermissions
 
-        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil, alarmlevel=nil, shieldflag=nil, alarmshieldingtype=nil, alarmshieldingtime=nil, alarmshieldingshowtype=nil, alarmshieldingshowtime=nil, alarmshieldreason=nil, internaldimensions=nil, metricname=nil)
+        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil, alarmlevel=nil, shieldflag=nil, alarmshieldingtype=nil, alarmshieldingtime=nil, alarmshieldingshowtype=nil, alarmshieldingshowtime=nil, alarmshieldreason=nil, internaldimensions=nil, metricname=nil, policypermissions=nil)
           @AlarmId = alarmid
           @MonitorType = monitortype
           @Namespace = namespace
@@ -260,6 +263,7 @@ module TencentCloud
           @AlarmShieldReason = alarmshieldreason
           @InternalDimensions = internaldimensions
           @MetricName = metricname
+          @PolicyPermissions = policypermissions
         end
 
         def deserialize(params)
@@ -310,6 +314,7 @@ module TencentCloud
           @AlarmShieldReason = params['AlarmShieldReason']
           @InternalDimensions = params['InternalDimensions']
           @MetricName = params['MetricName']
+          @PolicyPermissions = params['PolicyPermissions']
         end
       end
 
@@ -3824,10 +3829,12 @@ module TencentCloud
         # @type AlarmLevels: Array
         # @param ConvergenceHistoryIDs: 收敛历史的唯一id
         # @type ConvergenceHistoryIDs: Array
+        # @param AlarmTypes: 告警类型
+        # @type AlarmTypes: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds, :AlarmLevels, :ConvergenceHistoryIDs
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds, :AlarmLevels, :ConvergenceHistoryIDs, :AlarmTypes
 
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil, alarmlevels=nil, convergencehistoryids=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil, alarmlevels=nil, convergencehistoryids=nil, alarmtypes=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -3848,6 +3855,7 @@ module TencentCloud
           @PolicyIds = policyids
           @AlarmLevels = alarmlevels
           @ConvergenceHistoryIDs = convergencehistoryids
+          @AlarmTypes = alarmtypes
         end
 
         def deserialize(params)
@@ -3878,6 +3886,7 @@ module TencentCloud
           @PolicyIds = params['PolicyIds']
           @AlarmLevels = params['AlarmLevels']
           @ConvergenceHistoryIDs = params['ConvergenceHistoryIDs']
+          @AlarmTypes = params['AlarmTypes']
         end
       end
 

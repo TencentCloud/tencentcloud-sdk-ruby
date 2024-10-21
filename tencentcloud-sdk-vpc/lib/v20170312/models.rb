@@ -6236,10 +6236,10 @@ module TencentCloud
         # @type VpnGatewayId: String
         # @param SslVpnServerName: SSL-VPN-SERVER 实例名称，长度不超过60个字节。
         # @type SslVpnServerName: String
-        # @param LocalAddress: 云端地址（CIDR）列表。
-        # @type LocalAddress: Array
         # @param RemoteAddress: 客户端地址网段。
         # @type RemoteAddress: String
+        # @param LocalAddress: 云端地址（CIDR）列表。
+        # @type LocalAddress: Array
         # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP，默认UDP。
         # @type SslVpnProtocol: String
         # @param SslVpnPort: SSL VPN服务端监听协议端口，默认1194。
@@ -6259,13 +6259,13 @@ module TencentCloud
         # @param Tags: 指定绑定的标签列表
         # @type Tags: Array
 
-        attr_accessor :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData, :Tags
+        attr_accessor :VpnGatewayId, :SslVpnServerName, :RemoteAddress, :LocalAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData, :Tags
 
-        def initialize(vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil, tags=nil)
+        def initialize(vpngatewayid=nil, sslvpnservername=nil, remoteaddress=nil, localaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil, tags=nil)
           @VpnGatewayId = vpngatewayid
           @SslVpnServerName = sslvpnservername
-          @LocalAddress = localaddress
           @RemoteAddress = remoteaddress
+          @LocalAddress = localaddress
           @SslVpnProtocol = sslvpnprotocol
           @SslVpnPort = sslvpnport
           @IntegrityAlgorithm = integrityalgorithm
@@ -6280,8 +6280,8 @@ module TencentCloud
         def deserialize(params)
           @VpnGatewayId = params['VpnGatewayId']
           @SslVpnServerName = params['SslVpnServerName']
-          @LocalAddress = params['LocalAddress']
           @RemoteAddress = params['RemoteAddress']
+          @LocalAddress = params['LocalAddress']
           @SslVpnProtocol = params['SslVpnProtocol']
           @SslVpnPort = params['SslVpnPort']
           @IntegrityAlgorithm = params['IntegrityAlgorithm']

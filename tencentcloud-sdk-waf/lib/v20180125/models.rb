@@ -6584,6 +6584,53 @@ module TencentCloud
         end
       end
 
+      # DescribeProtectionModes请求参数结构体
+      class DescribeProtectionModesRequest < TencentCloud::Common::AbstractModel
+        # @param Edition: sparta-waf或clb
+        # @type Edition: String
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Edition, :Domain
+
+        def initialize(edition=nil, domain=nil)
+          @Edition = edition
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Edition = params['Edition']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeProtectionModes返回参数结构体
+      class DescribeProtectionModesResponse < TencentCloud::Common::AbstractModel
+        # @param Modes: 规则大类ID及防护模式
+        # @type Modes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Modes, :RequestId
+
+        def initialize(modes=nil, requestid=nil)
+          @Modes = modes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Modes'].nil?
+            @Modes = []
+            params['Modes'].each do |i|
+              tigamainclassmode_tmp = TigaMainClassMode.new
+              tigamainclassmode_tmp.deserialize(i)
+              @Modes << tigamainclassmode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRuleLimit请求参数结构体
       class DescribeRuleLimitRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -13282,6 +13329,28 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Domain = params['Domain']
+        end
+      end
+
+      # Tiga引擎中Mainclass的TypeID和防护模式
+      class TigaMainClassMode < TencentCloud::Common::AbstractModel
+        # @param TypeID: MainclassID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeID: String
+        # @param Mode: 防护模式，0表示观察，1表示拦截
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: Integer
+
+        attr_accessor :TypeID, :Mode
+
+        def initialize(typeid=nil, mode=nil)
+          @TypeID = typeid
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @TypeID = params['TypeID']
+          @Mode = params['Mode']
         end
       end
 

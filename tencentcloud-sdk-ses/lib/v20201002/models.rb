@@ -143,19 +143,14 @@ module TencentCloud
       # 黑名单详情
       class BlackAddressDetail < TencentCloud::Common::AbstractModel
         # @param Id: 黑名单地址id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Email: 邮箱地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ExpireDate: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireDate: String
         # @param Status: 黑名单状态，0:已过期，1:生效中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :Id, :Email, :CreateTime, :ExpireDate, :Status
@@ -225,19 +220,14 @@ module TencentCloud
       # CreateCustomBlacklist返回参数结构体
       class CreateCustomBlacklistResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 收件人总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ValidCount: 实际上传数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidCount: Integer
         # @param TooLongCount: 数据过长数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TooLongCount: Integer
         # @param RepeatCount: 重复数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepeatCount: Integer
         # @param InvalidCount: 格式不正确数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvalidCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

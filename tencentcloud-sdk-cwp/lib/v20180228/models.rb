@@ -4774,8 +4774,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 9
-        deprecate :Decription=, :none, 2024, 9
+        deprecate :Decription, :none, 2024, 10
+        deprecate :Decription=, :none, 2024, 10
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -28481,8 +28481,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 9
-        deprecate :Fileds=, :none, 2024, 9
+        deprecate :Fileds, :none, 2024, 10
+        deprecate :Fileds=, :none, 2024, 10
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters
@@ -38803,7 +38803,7 @@ module TencentCloud
         # @type Description: String
         # @param Id: id唯一
         # @type Id: Integer
-        # @param FailType: 失败详情
+        # @param FailType: 失败类型  3离线、4超时、5失败、8agent版本过低
         # @type FailType: Integer
         # @param MachineWanIp: 外网ip
         # @type MachineWanIp: String
@@ -42006,10 +42006,13 @@ module TencentCloud
         # @param Method: 检测方式0 - 版本比对, 1 - POC验证
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: Integer
+        # @param VulFixSwitch: 漏洞是否支持修复 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulFixSwitch: Integer
 
-        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId, :IsSupportDefense, :DefenseAttackCount, :FirstAppearTime, :VulCategory, :AttackLevel, :FixNoNeedRestart, :Method
+        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr, :CveId, :CvssScore, :Labels, :FixSwitch, :TaskId, :IsSupportDefense, :DefenseAttackCount, :FirstAppearTime, :VulCategory, :AttackLevel, :FixNoNeedRestart, :Method, :VulFixSwitch
 
-        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil, issupportdefense=nil, defenseattackcount=nil, firstappeartime=nil, vulcategory=nil, attacklevel=nil, fixnoneedrestart=nil, method=nil)
+        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil, cveid=nil, cvssscore=nil, labels=nil, fixswitch=nil, taskid=nil, issupportdefense=nil, defenseattackcount=nil, firstappeartime=nil, vulcategory=nil, attacklevel=nil, fixnoneedrestart=nil, method=nil, vulfixswitch=nil)
           @Ids = ids
           @Name = name
           @Status = status
@@ -42036,6 +42039,7 @@ module TencentCloud
           @AttackLevel = attacklevel
           @FixNoNeedRestart = fixnoneedrestart
           @Method = method
+          @VulFixSwitch = vulfixswitch
         end
 
         def deserialize(params)
@@ -42065,6 +42069,7 @@ module TencentCloud
           @AttackLevel = params['AttackLevel']
           @FixNoNeedRestart = params['FixNoNeedRestart']
           @Method = params['Method']
+          @VulFixSwitch = params['VulFixSwitch']
         end
       end
 
@@ -42147,7 +42152,7 @@ module TencentCloud
         # @param AttackLevel: 漏洞攻击热度
         # @type AttackLevel: Integer
         # @param FixSwitch: 漏洞是否支持自动修复
-        # 0-windows/linux均关闭; 1-windows/linux均打开; 2-仅linux; 3-仅windows
+        # 0-Windows/Linux均关闭; 1-Windows/Linux均打开; 2-仅Linux; 3-仅Windows
         # @type FixSwitch: Integer
         # @param SupportDefense: 漏洞是否支持防御
         # 0:不支持 1:支持

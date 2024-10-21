@@ -53,7 +53,9 @@ module TencentCloud
         # @param Qos: 0，1，2
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qos: String
-        # @param Retain: 1、2、3
+        # @param Retain: 1：表示匹配retain消息
+        # 2：表示匹配非retain消息
+        # 3：表示匹配retain和非retain消息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Retain: Integer
         # @param Remark: 描述
@@ -910,7 +912,7 @@ module TencentCloud
 
       # MQTT认证器信息
       class MQTTAuthenticatorItem < TencentCloud::Common::AbstractModel
-        # @param Type: 认证器类型
+        # @param Type: 认证器类型: JWT：JWT认证器 JWKS：JWKS认证器 BYOC：一端一证认证器
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Config: 认证器配置

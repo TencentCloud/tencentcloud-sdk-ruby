@@ -2789,6 +2789,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取项目下的用户，分页返回
+
+        # @param request: Request instance for DescribeProjectUsers.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeProjectUsersRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeProjectUsersResponse`
+        def DescribeProjectUsers(request)
+          body = send_request('DescribeProjectUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProjectUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 质量报告-质量评分
 
         # @param request: Request instance for DescribeQualityScore.

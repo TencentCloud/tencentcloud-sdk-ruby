@@ -1828,10 +1828,14 @@ module TencentCloud
         # @type SignTypeSelector: Integer
         # @param FlowBatchUrlInfo: 批量签署合同相关信息，指定合同和签署方的信息，用于补充动态签署人。
         # @type FlowBatchUrlInfo: :class:`Tencentcloud::Ess.v20201111.models.FlowBatchUrlInfo`
+        # @param Intention: <b>只有在生成H5签署链接的情形下</b>（ 如调用<a href="https://qian.tencent.com/developers/partnerApis/operateFlows/ChannelCreateFlowSignUrl" target="_blank">获取H5签署链接</a>、<a href="https://qian.tencent.com/developers/partnerApis/operateFlows/ChannelCreateBatchQuickSignUrl" target="_blank">获取H5批量签署链接</a>等接口），该配置才会生效。  您可以指定H5签署视频核身的意图配置，选择问答模式或点头模式的语音文本。  注意： 1. 视频认证为<b>白名单功能，使用前请联系对接的客户经理沟通</b>。 2. 使用视频认证时，<b>生成H5签署链接的时候必须将签署认证方式指定为人脸</b>（即ApproverSignTypes设置成人脸签署）。 3. 签署完成后，可以通过<a href="https://qian.tencent.com/developers/partnerApis/flows/ChannelDescribeSignFaceVideo" target="_blank">查询签署认证人脸视频</a>获取到当时的视频。
+        # @type Intention: :class:`Tencentcloud::Ess.v20201111.models.Intention`
+        # @param CacheApproverInfo: 是否开启缓存签署人信息
+        # @type CacheApproverInfo: Boolean
 
-        attr_accessor :FlowApproverInfo, :Agent, :Operator, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo
+        attr_accessor :FlowApproverInfo, :Agent, :Operator, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo, :Intention, :CacheApproverInfo
 
-        def initialize(flowapproverinfo=nil, agent=nil, operator=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil)
+        def initialize(flowapproverinfo=nil, agent=nil, operator=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil, intention=nil, cacheapproverinfo=nil)
           @FlowApproverInfo = flowapproverinfo
           @Agent = agent
           @Operator = operator
@@ -1842,6 +1846,8 @@ module TencentCloud
           @ApproverSignTypes = approversigntypes
           @SignTypeSelector = signtypeselector
           @FlowBatchUrlInfo = flowbatchurlinfo
+          @Intention = intention
+          @CacheApproverInfo = cacheapproverinfo
         end
 
         def deserialize(params)
@@ -1867,6 +1873,11 @@ module TencentCloud
             @FlowBatchUrlInfo = FlowBatchUrlInfo.new
             @FlowBatchUrlInfo.deserialize(params['FlowBatchUrlInfo'])
           end
+          unless params['Intention'].nil?
+            @Intention = Intention.new
+            @Intention.deserialize(params['Intention'])
+          end
+          @CacheApproverInfo = params['CacheApproverInfo']
         end
       end
 

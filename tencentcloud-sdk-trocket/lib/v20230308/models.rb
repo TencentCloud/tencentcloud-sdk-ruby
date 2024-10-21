@@ -76,10 +76,8 @@ module TencentCloud
 
       # CreateConsumerGroup请求参数结构体
       class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param ConsumerGroup: 消费组名称
-        # @type ConsumerGroup: String
         # @param MaxRetryTimes: 最大重试次数
         # @type MaxRetryTimes: Integer
         # @param ConsumeEnable: 是否开启消费
@@ -87,35 +85,37 @@ module TencentCloud
         # @param ConsumeMessageOrderly: 顺序投递：true
         # 并发投递：false
         # @type ConsumeMessageOrderly: Boolean
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
         # @param Remark: 备注
         # @type Remark: String
 
-        attr_accessor :InstanceId, :ConsumerGroup, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :Remark
+        attr_accessor :InstanceId, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :Remark
 
-        def initialize(instanceid=nil, consumergroup=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, remark=nil)
+        def initialize(instanceid=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, remark=nil)
           @InstanceId = instanceid
-          @ConsumerGroup = consumergroup
           @MaxRetryTimes = maxretrytimes
           @ConsumeEnable = consumeenable
           @ConsumeMessageOrderly = consumemessageorderly
+          @ConsumerGroup = consumergroup
           @Remark = remark
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @ConsumerGroup = params['ConsumerGroup']
           @MaxRetryTimes = params['MaxRetryTimes']
           @ConsumeEnable = params['ConsumeEnable']
           @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
+          @ConsumerGroup = params['ConsumerGroup']
           @Remark = params['Remark']
         end
       end
 
       # CreateConsumerGroup返回参数结构体
       class CreateConsumerGroupResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param ConsumerGroup: 消费组
+        # @param ConsumerGroup: 消费组名称
         # @type ConsumerGroup: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -234,7 +234,7 @@ module TencentCloud
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -310,28 +310,7 @@ module TencentCloud
         # @param Name: 实例名称
         # @type Name: String
         # @param SkuCode: 商品规格，可用规格如下：
-        # experiment_500,
         # basic_1k,
-        # basic_2k,
-        # basic_4k,
-        # basic_6k,
-        # pro_4k,
-        # pro_6k,
-        # pro_1w,
-        # pro_2w,
-        # pro_3w,
-        # pro_4w,
-        # pro_5w,
-        # platinum_6k,
-        # platinum_1w,
-        # platinum_2w,
-        # platinum_4w,
-        # platinum_10w,
-        # platinum_15w,
-        # platinum_20w,
-        # platinum_40w,
-        # platinum_60w,
-        # platinum_100w
         # @type SkuCode: String
         # @param Remark: 备注信息
         # @type Remark: String
@@ -424,9 +403,9 @@ module TencentCloud
 
       # CreateMQTTTopic请求参数结构体
       class CreateMQTTTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param Remark: 备注
         # @type Remark: String
@@ -472,7 +451,7 @@ module TencentCloud
 
       # CreateMQTTUser请求参数结构体
       class CreateMQTTUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Remark: 备注
         # @type Remark: String
@@ -524,7 +503,7 @@ module TencentCloud
 
       # CreateRole请求参数结构体
       class CreateRoleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Role: 角色名称
         # @type Role: String
@@ -576,9 +555,9 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param TopicType: 主题类型
         # UNSPECIFIED:未指定,
@@ -617,9 +596,9 @@ module TencentCloud
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名
         # @type Topic: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -663,7 +642,7 @@ module TencentCloud
 
       # DeleteConsumerGroup请求参数结构体
       class DeleteConsumerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param ConsumerGroup: 消费组名称
         # @type ConsumerGroup: String
@@ -699,7 +678,7 @@ module TencentCloud
 
       # DeleteInstance请求参数结构体
       class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -831,7 +810,7 @@ module TencentCloud
 
       # DeleteMQTTUser请求参数结构体
       class DeleteMQTTUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Username: 用户名
         # @type Username: String
@@ -867,7 +846,7 @@ module TencentCloud
 
       # DeleteRole请求参数结构体
       class DeleteRoleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Role: 角色名称
         # @type Role: String
@@ -903,9 +882,9 @@ module TencentCloud
 
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
 
         attr_accessor :InstanceId, :Topic
@@ -939,31 +918,29 @@ module TencentCloud
 
       # DescribeConsumerGroupList请求参数结构体
       class DescribeConsumerGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
         # @param Offset: 查询起始位置
         # @type Offset: Integer
         # @param Limit: 查询结果限制数量
         # @type Limit: Integer
-        # @param Filters: 查询条件列表
-        # @type Filters: Array
         # @param FromTopic: 查询指定主题下的消费组
         # @type FromTopic: String
 
-        attr_accessor :InstanceId, :Offset, :Limit, :Filters, :FromTopic
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :FromTopic
 
-        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil, fromtopic=nil)
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, fromtopic=nil)
           @InstanceId = instanceid
+          @Filters = filters
           @Offset = offset
           @Limit = limit
-          @Filters = filters
           @FromTopic = fromtopic
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -972,6 +949,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @FromTopic = params['FromTopic']
         end
       end
@@ -1010,7 +989,7 @@ module TencentCloud
 
       # DescribeConsumerGroup请求参数结构体
       class DescribeConsumerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param ConsumerGroup: 消费组名称
         # @type ConsumerGroup: String
@@ -1049,12 +1028,16 @@ module TencentCloud
         # @type MaxRetryTimes: Integer
         # @param Remark: 备注
         # @type Remark: String
+        # @param MessageModel: 消费模式：
+        # BROADCASTING 广播模式
+        # CLUSTERING 集群模式
+        # @type MessageModel: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :RequestId
+        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :MessageModel, :RequestId
 
-        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, requestid=nil)
+        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, messagemodel=nil, requestid=nil)
           @ConsumerNum = consumernum
           @Tps = tps
           @ConsumerLag = consumerlag
@@ -1064,6 +1047,7 @@ module TencentCloud
           @ConsumeEnable = consumeenable
           @MaxRetryTimes = maxretrytimes
           @Remark = remark
+          @MessageModel = messagemodel
           @RequestId = requestid
         end
 
@@ -1077,13 +1061,14 @@ module TencentCloud
           @ConsumeEnable = params['ConsumeEnable']
           @MaxRetryTimes = params['MaxRetryTimes']
           @Remark = params['Remark']
+          @MessageModel = params['MessageModel']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeConsumerLag请求参数结构体
       class DescribeConsumerLagRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param ConsumerGroup: 消费组名称
         # @type ConsumerGroup: String
@@ -1279,7 +1264,7 @@ module TencentCloud
 
       # DescribeInstance请求参数结构体
       class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1551,7 +1536,7 @@ module TencentCloud
 
       # DescribeMQTTInsPublicEndpoints请求参数结构体
       class DescribeMQTTInsPublicEndpointsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1665,7 +1650,7 @@ module TencentCloud
 
       # DescribeMQTTInstanceCert请求参数结构体
       class DescribeMQTTInstanceCertRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1718,7 +1703,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 查询结果限制数量
         # @type Limit: Integer
-        # @param IncludeNew: 是否包含新控制台集群
+        # @param IncludeNew: 是否包含新控制台集群：默认为包含
         # @type IncludeNew: Boolean
 
         attr_accessor :Filters, :Offset, :Limit, :IncludeNew
@@ -1779,7 +1764,7 @@ module TencentCloud
 
       # DescribeMQTTInstance请求参数结构体
       class DescribeMQTTInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1940,9 +1925,9 @@ module TencentCloud
 
       # DescribeMQTTMessage请求参数结构体
       class DescribeMQTTMessageRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param MsgId: 消息ID
         # @type MsgId: String
@@ -2281,7 +2266,7 @@ module TencentCloud
 
       # DescribeRoleList请求参数结构体
       class DescribeRoleListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Offset: 查询起始位置
         # @type Offset: Integer
@@ -2348,7 +2333,7 @@ module TencentCloud
 
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Filters: 查询条件列表
         # @type Filters: Array
@@ -2415,9 +2400,9 @@ module TencentCloud
 
       # DescribeTopic请求参数结构体
       class DescribeTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param Filters: 查询条件列表
         # @type Filters: Array
@@ -2548,10 +2533,13 @@ module TencentCloud
         # @param IpRules: 公网放通规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpRules: Array
+        # @param BillingFlow: 公网是否按流量计费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingFlow: Boolean
 
-        attr_accessor :Type, :Status, :PayMode, :EndpointUrl, :VpcId, :SubnetId, :Bandwidth, :IpRules
+        attr_accessor :Type, :Status, :PayMode, :EndpointUrl, :VpcId, :SubnetId, :Bandwidth, :IpRules, :BillingFlow
 
-        def initialize(type=nil, status=nil, paymode=nil, endpointurl=nil, vpcid=nil, subnetid=nil, bandwidth=nil, iprules=nil)
+        def initialize(type=nil, status=nil, paymode=nil, endpointurl=nil, vpcid=nil, subnetid=nil, bandwidth=nil, iprules=nil, billingflow=nil)
           @Type = type
           @Status = status
           @PayMode = paymode
@@ -2560,6 +2548,7 @@ module TencentCloud
           @SubnetId = subnetid
           @Bandwidth = bandwidth
           @IpRules = iprules
+          @BillingFlow = billingflow
         end
 
         def deserialize(params)
@@ -2578,6 +2567,7 @@ module TencentCloud
               @IpRules << iprule_tmp
             end
           end
+          @BillingFlow = params['BillingFlow']
         end
       end
 
@@ -3096,10 +3086,8 @@ module TencentCloud
         # @param Version: 实例版本
         # @type Version: String
         # @param InstanceType: 实例类型，
-        # EXPERIMENT，体验版
         # BASIC，基础版
         # PRO，专业版
-        # PLATINUM，铂金版
         # @type InstanceType: String
         # @param InstanceStatus: 实例状态，
         # RUNNING, 运行中
@@ -3356,7 +3344,7 @@ module TencentCloud
 
       # ModifyConsumerGroup请求参数结构体
       class ModifyConsumerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param ConsumerGroup: 消费组名称
         # @type ConsumerGroup: String
@@ -3469,7 +3457,7 @@ module TencentCloud
 
       # ModifyMQTTInsPublicEndpoint请求参数结构体
       class ModifyMQTTInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Bandwidth: 带宽
         # @type Bandwidth: Integer
@@ -3556,7 +3544,7 @@ module TencentCloud
 
       # ModifyMQTTInstance请求参数结构体
       class ModifyMQTTInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Name: 实例名称
         # @type Name: String
@@ -3596,9 +3584,9 @@ module TencentCloud
 
       # ModifyMQTTTopic请求参数结构体
       class ModifyMQTTTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param Remark: 备注信息
         # @type Remark: String
@@ -3636,7 +3624,7 @@ module TencentCloud
 
       # ModifyMQTTUser请求参数结构体
       class ModifyMQTTUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Username: 用户名
         # @type Username: String
@@ -3684,7 +3672,7 @@ module TencentCloud
 
       # ModifyRole请求参数结构体
       class ModifyRoleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Role: 角色名称
         # @type Role: String
@@ -3732,9 +3720,9 @@ module TencentCloud
 
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param QueueNum: 队列数量
         # @type QueueNum: Integer
@@ -3941,14 +3929,14 @@ module TencentCloud
       class RoleItem < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称
         # @type RoleName: String
-        # @param AccessKey: Access Key
-        # @type AccessKey: String
-        # @param SecretKey: Secret Key
-        # @type SecretKey: String
         # @param PermRead: 是否开启消费
         # @type PermRead: Boolean
         # @param PermWrite: 是否开启生产
         # @type PermWrite: Boolean
+        # @param AccessKey: Access Key
+        # @type AccessKey: String
+        # @param SecretKey: Secret Key
+        # @type SecretKey: String
         # @param Remark: 备注信息
         # @type Remark: String
         # @param CreatedTime: 创建时间，秒为单位
@@ -3956,14 +3944,14 @@ module TencentCloud
         # @param ModifiedTime: 修改时间，秒为单位
         # @type ModifiedTime: Integer
 
-        attr_accessor :RoleName, :AccessKey, :SecretKey, :PermRead, :PermWrite, :Remark, :CreatedTime, :ModifiedTime
+        attr_accessor :RoleName, :PermRead, :PermWrite, :AccessKey, :SecretKey, :Remark, :CreatedTime, :ModifiedTime
 
-        def initialize(rolename=nil, accesskey=nil, secretkey=nil, permread=nil, permwrite=nil, remark=nil, createdtime=nil, modifiedtime=nil)
+        def initialize(rolename=nil, permread=nil, permwrite=nil, accesskey=nil, secretkey=nil, remark=nil, createdtime=nil, modifiedtime=nil)
           @RoleName = rolename
-          @AccessKey = accesskey
-          @SecretKey = secretkey
           @PermRead = permread
           @PermWrite = permwrite
+          @AccessKey = accesskey
+          @SecretKey = secretkey
           @Remark = remark
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
@@ -3971,10 +3959,10 @@ module TencentCloud
 
         def deserialize(params)
           @RoleName = params['RoleName']
-          @AccessKey = params['AccessKey']
-          @SecretKey = params['SecretKey']
           @PermRead = params['PermRead']
           @PermWrite = params['PermWrite']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
           @Remark = params['Remark']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
@@ -4082,10 +4070,19 @@ module TencentCloud
         # Failure 失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportStatus: String
+        # @param NamespaceV4: 4.x的命名空间，出参使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceV4: String
+        # @param TopicNameV4: 4.x的主题名，出参使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNameV4: String
+        # @param FullNamespaceV4: 4.x的完整命名空间，出参使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullNamespaceV4: String
 
-        attr_accessor :TopicName, :TopicType, :QueueNum, :Remark, :Imported, :Namespace, :ImportStatus
+        attr_accessor :TopicName, :TopicType, :QueueNum, :Remark, :Imported, :Namespace, :ImportStatus, :NamespaceV4, :TopicNameV4, :FullNamespaceV4
 
-        def initialize(topicname=nil, topictype=nil, queuenum=nil, remark=nil, imported=nil, namespace=nil, importstatus=nil)
+        def initialize(topicname=nil, topictype=nil, queuenum=nil, remark=nil, imported=nil, namespace=nil, importstatus=nil, namespacev4=nil, topicnamev4=nil, fullnamespacev4=nil)
           @TopicName = topicname
           @TopicType = topictype
           @QueueNum = queuenum
@@ -4093,6 +4090,9 @@ module TencentCloud
           @Imported = imported
           @Namespace = namespace
           @ImportStatus = importstatus
+          @NamespaceV4 = namespacev4
+          @TopicNameV4 = topicnamev4
+          @FullNamespaceV4 = fullnamespacev4
         end
 
         def deserialize(params)
@@ -4103,6 +4103,9 @@ module TencentCloud
           @Imported = params['Imported']
           @Namespace = params['Namespace']
           @ImportStatus = params['ImportStatus']
+          @NamespaceV4 = params['NamespaceV4']
+          @TopicNameV4 = params['TopicNameV4']
+          @FullNamespaceV4 = params['FullNamespaceV4']
         end
       end
 
@@ -4273,11 +4276,14 @@ module TencentCloud
         # @param Topic: 主题名称
         # @type Topic: String
         # @param TopicType: 主题类型
+        # NORMAL:普通消息,
+        # FIFO:顺序消息,
+        # DELAY:延时消息,
+        # TRANSACTION:事务消息
         # @type TopicType: String
         # @param QueueNum: 队列数量
         # @type QueueNum: Integer
         # @param Remark: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param ClusterIdV4: 4.x的集群id
         # 注意：此字段可能返回 null，表示取不到有效值。

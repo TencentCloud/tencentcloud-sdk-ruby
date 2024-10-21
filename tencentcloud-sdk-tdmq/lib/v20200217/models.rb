@@ -1620,6 +1620,73 @@ module TencentCloud
         end
       end
 
+      # CreateRabbitMQBinding请求参数结构体
+      class CreateRabbitMQBindingRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param VirtualHost: Vhost参数
+        # @type VirtualHost: String
+        # @param Source: 源exchange
+        # @type Source: String
+        # @param DestinationType: 目标类型,取值queue或exchange
+        # @type DestinationType: String
+        # @param Destination: 目标
+        # @type Destination: String
+        # @param RoutingKey: 绑定key
+        # @type RoutingKey: String
+
+        attr_accessor :InstanceId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey
+
+        def initialize(instanceid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @Source = source
+          @DestinationType = destinationtype
+          @Destination = destination
+          @RoutingKey = routingkey
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @Source = params['Source']
+          @DestinationType = params['DestinationType']
+          @Destination = params['Destination']
+          @RoutingKey = params['RoutingKey']
+        end
+      end
+
+      # CreateRabbitMQBinding返回参数结构体
+      class CreateRabbitMQBindingResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 队列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param VirtualHost: vhost参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualHost: String
+        # @param BindingId: 路由关系Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindingId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :VirtualHost, :BindingId, :RequestId
+
+        def initialize(instanceid=nil, virtualhost=nil, bindingid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @BindingId = bindingid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @BindingId = params['BindingId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRabbitMQUser请求参数结构体
       class CreateRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -6194,8 +6261,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 9
-        deprecate :QueryDlqMsg=, :none, 2024, 9
+        deprecate :QueryDlqMsg, :none, 2024, 10
+        deprecate :QueryDlqMsg=, :none, 2024, 10
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6300,8 +6367,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 9
-        deprecate :QueryDLQMsg=, :none, 2024, 9
+        deprecate :QueryDLQMsg, :none, 2024, 10
+        deprecate :QueryDLQMsg=, :none, 2024, 10
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7123,8 +7190,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 9
-        deprecate :QueryDlqMsg=, :none, 2024, 9
+        deprecate :QueryDlqMsg, :none, 2024, 10
+        deprecate :QueryDlqMsg=, :none, 2024, 10
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7426,6 +7493,7 @@ module TencentCloud
         # @param Filters: 查询条件过滤器，支持的查询条件如下：
         # instanceIds - 实例ID
         # instanceName - 实例名称
+        # status - 实例状态
         # @type Filters: Array
         # @param Limit: 查询数目上限，默认20
         # @type Limit: Integer

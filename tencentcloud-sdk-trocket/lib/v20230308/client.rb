@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除实例
+        # 删除 RocketMQ 5.x 集群。
 
         # @param request: Request instance for DeleteInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteInstanceRequest`
@@ -488,11 +488,11 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例列表，Filters参数使用说明如下：
+        # 查询集群列表，支持 4.x 和 5.x 集群，其中 Filters 参数使用说明如下：
         # 1. InstanceName, 名称模糊查询
-        # 2. InstanceId，实例ID查询
-        # 3. InstanceType, 实例类型查询，支持多选
-        # 4. Version，实例版本查询
+        # 2. InstanceId，集群ID查询
+        # 3. InstanceType, 集群类型查询，支持多选
+        # 4. Version，集群版本查询
         # 当使用TagFilters查询时，Filters参数失效。
 
         # @param request: Request instance for DescribeFusionInstanceList.
@@ -517,7 +517,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例信息
+        # 查询 RocketMQ 5.x 集群信息。
 
         # @param request: Request instance for DescribeInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeInstanceRequest`

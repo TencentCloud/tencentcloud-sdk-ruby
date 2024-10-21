@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建用户账号
+        # 本接口（CreateAccounts）用于创建用户账号。
 
         # @param request: Request instance for CreateAccounts.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateAccountsRequest`
@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为集群创建手动备份
+        # 本接口（CreateBackup）用于为集群创建手动备份。
 
         # @param request: Request instance for CreateBackup.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateBackupRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建数据库
+        # 本接口（CreateClusterDatabase）用于创建数据库。
 
         # @param request: Request instance for CreateClusterDatabase.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateClusterDatabaseRequest`
@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateParamTemplate）用于创建参数模板
+        # 本接口（CreateParamTemplate）用于创建参数模板。
 
         # @param request: Request instance for CreateParamTemplate.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateParamTemplateRequest`
@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建数据库代理连接点
+        # 本接口（CreateProxyEndPoint）用于创建数据库代理连接点。
 
         # @param request: Request instance for CreateProxyEndPoint.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateProxyEndPointRequest`
@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除用户账号
+        # 本接口（DeleteAccounts）用于删除用户账号。
 
         # @param request: Request instance for DeleteAccounts.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteAccountsRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除审计规则模板
+        # 本接口（DeleteAuditRuleTemplates）用于删除审计规则模板。
 
         # @param request: Request instance for DeleteAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteAuditRuleTemplatesRequest`
@@ -725,7 +725,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询账号已有权限
+        # 本接口（DescribeAccountPrivileges）用于查询账号已有权限。
 
         # @param request: Request instance for DescribeAccountPrivileges.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAccountPrivilegesRequest`
@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询审计规则模板信息
+        # 本接口（DescribeAuditRuleTemplates）用于查询审计规则模板信息。
 
         # @param request: Request instance for DescribeAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleTemplatesRequest`
@@ -1229,7 +1229,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeClusterParams）用于查询集群参数
+        # 本接口（DescribeClusterParams）用于查询集群参数。
 
         # @param request: Request instance for DescribeClusterParams.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterParamsRequest`
@@ -1253,7 +1253,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeClusterPasswordComplexity）用于查看集群密码复杂度详情
+        # 本接口（DescribeClusterPasswordComplexity）用于查看集群密码复杂度详情。
 
         # @param request: Request instance for DescribeClusterPasswordComplexity.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterPasswordComplexityRequest`
@@ -1301,7 +1301,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例安全组信息
+        # 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息。
 
         # @param request: Request instance for DescribeDBSecurityGroups.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeDBSecurityGroupsRequest`
@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例错误日志列表
+        # 本接口（DescribeInstanceErrorLogs）用于查询实例错误日志列表。
 
         # @param request: Request instance for DescribeInstanceErrorLogs.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceErrorLogsRequest`
@@ -1421,7 +1421,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口(DescribeInstanceParams)查询实例参数列表
+        # 本接口（DescribeInstanceParams）用于查询实例参数列表。
 
         # @param request: Request instance for DescribeInstanceParams.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceParamsRequest`
@@ -1565,7 +1565,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeParamTemplateDetail）用于查询用户参数模板详情
+        # 本接口（DescribeParamTemplateDetail）用于查询用户参数模板详情。
 
         # @param request: Request instance for DescribeParamTemplateDetail.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeParamTemplateDetailRequest`
@@ -1589,7 +1589,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户指定产品下的所有参数模板信息
+        # 本接口（DescribeParamTemplates）用于查询用户指定产品下的所有参数模板信息。
 
         # @param request: Request instance for DescribeParamTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeParamTemplatesRequest`
@@ -1637,7 +1637,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询数据库代理列表
+        # 本接口（DescribeProxies）用于查询数据库代理列表。
 
         # @param request: Request instance for DescribeProxies.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxiesRequest`
@@ -1781,7 +1781,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询订单关联实例
+        # 本接口（DescribeResourcesByDealName）用于查询订单关联实例。
 
         # @param request: Request instance for DescribeResourcesByDealName.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcesByDealNameRequest`
@@ -1853,7 +1853,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询支持的数据库代理版本
+        # 本接口（DescribeSupportProxyVersion）用于查询支持的数据库代理版本。
 
         # @param request: Request instance for DescribeSupportProxyVersion.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeSupportProxyVersionRequest`
@@ -2021,7 +2021,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量授权账号权限
+        # 本接口（GrantAccountPrivileges）用于批量授权账号权限。
 
         # @param request: Request instance for GrantAccountPrivileges.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::GrantAccountPrivilegesRequest`
@@ -2093,7 +2093,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询续费集群价格
+        # 本接口（InquirePriceRenew）用于查询续费集群价格。
 
         # @param request: Request instance for InquirePriceRenew.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceRenewRequest`
@@ -2189,7 +2189,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改账号主机
+        # 本接口（ModifyAccountHost）用于修改账号主机。
 
         # @param request: Request instance for ModifyAccountHost.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountHostRequest`
@@ -2213,7 +2213,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改账号配置
+        # 本接口（ModifyAccountParams）用于修改账号配置。
 
         # @param request: Request instance for ModifyAccountParams.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountParamsRequest`
@@ -2237,7 +2237,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改账号库表权限
+        # 本接口（ModifyAccountPrivileges）用于修改账号库表权限。
 
         # @param request: Request instance for ModifyAccountPrivileges.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAccountPrivilegesRequest`
@@ -2453,7 +2453,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改集群参数
+        # 本接口（ModifyClusterParam）用于修改集群参数。
 
         # @param request: Request instance for ModifyClusterParam.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterParamRequest`
@@ -2525,7 +2525,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 调整包年包月存储容量
+        # 本接口（ModifyClusterStorage）用于调整包年包月存储容量。
 
         # @param request: Request instance for ModifyClusterStorage.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterStorageRequest`
@@ -2693,7 +2693,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改数据库代理描述
+        # 本接口（ModifyProxyDesc）用于修改数据库代理描述。
 
         # @param request: Request instance for ModifyProxyDesc.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyProxyDescRequest`
@@ -2717,7 +2717,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 配置数据库代理读写分离
+        # 本接口（ModifyProxyRwSplit）用于配置数据库代理读写分离。
 
         # @param request: Request instance for ModifyProxyRwSplit.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyProxyRwSplitRequest`
@@ -2837,7 +2837,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例组ip，端口
+        # 本接口（ModifyVipVport）用于修改实例组ip，端口。
 
         # @param request: Request instance for ModifyVipVport.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyVipVportRequest`
@@ -2885,7 +2885,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 销毁实例
+        # 本接口（OfflineInstance）用于销毁实例。
 
         # @param request: Request instance for OfflineInstance.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::OfflineInstanceRequest`
@@ -3077,7 +3077,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 负载均衡数据库代理
+        # 本接口（ReloadBalanceProxyNode）用于负载均衡数据库代理。
 
         # @param request: Request instance for ReloadBalanceProxyNode.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ReloadBalanceProxyNodeRequest`
@@ -3149,7 +3149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ResetAccountPassword)用于修改数据库账号密码
+        # 本接口（ResetAccountPassword）用于修改数据库账号密码。
 
         # @param request: Request instance for ResetAccountPassword.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ResetAccountPasswordRequest`
@@ -3173,7 +3173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重启实例
+        # 本接口（RestartInstance）用于重启实例。
 
         # @param request: Request instance for RestartInstance.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::RestartInstanceRequest`
@@ -3245,7 +3245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（RollBackCluster）用于集群回档
+        # 本接口（RollBackCluster）用于集群回档。
 
         # @param request: Request instance for RollBackCluster.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::RollBackClusterRequest`
@@ -3317,7 +3317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(SearchClusterTables)搜索集群数据表列表
+        # 本接口（SearchClusterTables）用于搜索集群数据表列表。
 
         # @param request: Request instance for SearchClusterTables.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::SearchClusterTablesRequest`
@@ -3341,7 +3341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # SetRenewFlag设置实例的自动续费功能
+        # 本接口（SetRenewFlag）用于设置实例的自动续费功能。
 
         # @param request: Request instance for SetRenewFlag.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::SetRenewFlagRequest`
@@ -3413,7 +3413,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更换集群vpc
+        # 本接口（SwitchClusterVpc）用于更换集群vpc。
 
         # @param request: Request instance for SwitchClusterVpc.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::SwitchClusterVpcRequest`
@@ -3461,7 +3461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(SwitchProxyVpc)更换数据库代理vpc
+        # 本接口（SwitchProxyVpc）用于更换数据库代理vpc。
 
         # @param request: Request instance for SwitchProxyVpc.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::SwitchProxyVpcRequest`
@@ -3581,7 +3581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升级数据库代理版本
+        # 本接口（UpgradeProxyVersion）用于升级数据库代理版本。
 
         # @param request: Request instance for UpgradeProxyVersion.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeProxyVersionRequest`
