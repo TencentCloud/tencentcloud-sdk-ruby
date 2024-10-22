@@ -1454,7 +1454,7 @@ module TencentCloud
         # @type LoadBalancerName: String
         # @param VpcId: 负载均衡后端目标设备所属的网络 ID，如vpc-12345678，可以通过 [DescribeVpcEx](https://cloud.tencent.com/document/product/215/1372) 接口获取。 不填此参数则默认为DefaultVPC。创建内网负载均衡实例时，此参数必填。
         # @type VpcId: String
-        # @param SubnetId: 在私有网络内购买内网负载均衡实例的情况下，必须指定子网 ID，内网负载均衡实例的 VIP 将从这个子网中产生。创建内网负载均衡实例时，此参数必填。
+        # @param SubnetId: 在私有网络内购买内网负载均衡实例的情况下，必须指定子网 ID，内网负载均衡实例的 VIP 将从这个子网中产生。创建内网负载均衡实例时，此参数必填，创建公网IPv4负载均衡实例时，不支持指定该参数。
         # @type SubnetId: String
         # @param ProjectId: 负载均衡实例所属的项目 ID，可以通过 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 接口获取。不填此参数则视为默认项目。
         # @type ProjectId: Integer
@@ -1506,10 +1506,14 @@ module TencentCloud
         # @type Egress: String
         # @param LBChargePrepaid: 负载均衡实例的预付费相关属性
         # @type LBChargePrepaid: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
+        # @param LBChargeType: 负载均衡实例计费类型，取值：POSTPAID_BY_HOUR，PREPAID，默认是POSTPAID_BY_HOUR。
+        # @type LBChargeType: String
+        # @param AccessLogTopicId: 七层访问日志主题ID
+        # @type AccessLogTopicId: String
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClusterIds, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress, :LBChargePrepaid
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClusterIds, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress, :LBChargePrepaid, :LBChargeType, :AccessLogTopicId
 
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clusterids=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil, lbchargeprepaid=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clusterids=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil, lbchargeprepaid=nil, lbchargetype=nil, accesslogtopicid=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1538,6 +1542,8 @@ module TencentCloud
           @DynamicVip = dynamicvip
           @Egress = egress
           @LBChargePrepaid = lbchargeprepaid
+          @LBChargeType = lbchargetype
+          @AccessLogTopicId = accesslogtopicid
         end
 
         def deserialize(params)
@@ -1592,6 +1598,8 @@ module TencentCloud
             @LBChargePrepaid = LBChargePrepaid.new
             @LBChargePrepaid.deserialize(params['LBChargePrepaid'])
           end
+          @LBChargeType = params['LBChargeType']
+          @AccessLogTopicId = params['AccessLogTopicId']
         end
       end
 

@@ -1951,7 +1951,7 @@ module TencentCloud
 
       # CreateRocketMQEnvironmentRole请求参数结构体
       class CreateRocketMQEnvironmentRoleRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间
         # @type EnvironmentId: String
         # @param RoleName: 角色名称。
         # @type RoleName: String
@@ -2779,6 +2779,61 @@ module TencentCloud
         end
       end
 
+      # DeleteRabbitMQBinding请求参数结构体
+      class DeleteRabbitMQBindingRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param VirtualHost: Vhost参数
+        # @type VirtualHost: String
+        # @param BindingId: 路由关系Id
+        # @type BindingId: Integer
+
+        attr_accessor :InstanceId, :VirtualHost, :BindingId
+
+        def initialize(instanceid=nil, virtualhost=nil, bindingid=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @BindingId = bindingid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @BindingId = params['BindingId']
+        end
+      end
+
+      # DeleteRabbitMQBinding返回参数结构体
+      class DeleteRabbitMQBindingResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 队列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param VirtualHost: vhost参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualHost: String
+        # @param BindingId: 路由关系Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindingId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :VirtualHost, :BindingId, :RequestId
+
+        def initialize(instanceid=nil, virtualhost=nil, bindingid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @BindingId = bindingid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @BindingId = params['BindingId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRabbitMQUser请求参数结构体
       class DeleteRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -2935,7 +2990,7 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param RoleNames: 角色名称数组。
         # @type RoleNames: Array
-        # @param ClusterId: 必填字段，集群的ID
+        # @param ClusterId: 集群的ID
         # @type ClusterId: String
 
         attr_accessor :EnvironmentId, :RoleNames, :ClusterId
@@ -4886,6 +4941,83 @@ module TencentCloud
         end
       end
 
+      # DescribeRabbitMQBindings请求参数结构体
+      class DescribeRabbitMQBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param VirtualHost: Vhost参数
+        # @type VirtualHost: String
+        # @param Offset: 分页offset
+        # @type Offset: Integer
+        # @param Limit: 分页limit
+        # @type Limit: Integer
+        # @param SearchWord: 搜索关键词，根据源exchange名称/目标资源名称/绑定key进行模糊搜索
+        # @type SearchWord: String
+        # @param SourceExchange: 根据源Exchange精准搜索过滤
+        # @type SourceExchange: String
+        # @param QueueName: 根据目标QueueName精准搜索过滤，和DestinationExchange过滤不可同时设置
+        # @type QueueName: String
+        # @param DestinationExchange: 根据目标Exchange精准搜索过滤，和QueueName过滤不可同时设置
+        # @type DestinationExchange: String
+
+        attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :SourceExchange, :QueueName, :DestinationExchange
+
+        def initialize(instanceid=nil, virtualhost=nil, offset=nil, limit=nil, searchword=nil, sourceexchange=nil, queuename=nil, destinationexchange=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @SourceExchange = sourceexchange
+          @QueueName = queuename
+          @DestinationExchange = destinationexchange
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @SourceExchange = params['SourceExchange']
+          @QueueName = params['QueueName']
+          @DestinationExchange = params['DestinationExchange']
+        end
+      end
+
+      # DescribeRabbitMQBindings返回参数结构体
+      class DescribeRabbitMQBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param BindingInfoList: 路由关系列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindingInfoList: Array
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BindingInfoList, :TotalCount, :RequestId
+
+        def initialize(bindinginfolist=nil, totalcount=nil, requestid=nil)
+          @BindingInfoList = bindinginfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BindingInfoList'].nil?
+            @BindingInfoList = []
+            params['BindingInfoList'].each do |i|
+              rabbitmqbindinglistinfo_tmp = RabbitMQBindingListInfo.new
+              rabbitmqbindinglistinfo_tmp.deserialize(i)
+              @BindingInfoList << rabbitmqbindinglistinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRabbitMQExchanges请求参数结构体
       class DescribeRabbitMQExchangesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 id
@@ -6014,7 +6146,7 @@ module TencentCloud
       class DescribeRocketMQEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 必填字段，RocketMQ集群的ID
         # @type ClusterId: String
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
@@ -6022,10 +6154,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param RoleName: 角色名称
         # @type RoleName: String
-        # @param Filters: * RoleName
-        # 按照角色名进行过滤，精确查询。
-        # 类型：String
-        # 必选：否
+        # @param Filters: RoleName按照角色名进行过滤，精确查询。类型：String必选：否
         # @type Filters: Array
 
         attr_accessor :ClusterId, :EnvironmentId, :Offset, :Limit, :RoleName, :Filters
@@ -6393,48 +6522,7 @@ module TencentCloud
 
       # DescribeRocketMQMsgTrace返回参数结构体
       class DescribeRocketMQMsgTraceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: [
-        #     {
-        #         "Stage": "produce",
-        #         "Data": {
-        #             "ProducerName": "生产者名",
-        #             "ProduceTime": "消息生产时间",
-        #             "ProducerAddr": "客户端地址",
-        #             "Duration": "耗时ms",
-        #             "Status": "状态（0：成功，1：失败）"
-        #         }
-        #     },
-        #     {
-        #         "Stage": "persist",
-        #         "Data": {
-        #             "PersistTime": "存储时间",
-        #             "Duration": "耗时ms",
-        #             "Status": "状态（0：成功，1：失败）"
-        #         }
-        #     },
-        #     {
-        #         "Stage": "consume",
-        #         "Data": {
-        #             "TotalCount": 2,
-        #             "RocketMqConsumeLogs": [
-        #                 {
-        #                     "ConsumerGroup": "消费组",
-        #                     "ConsumeModel": "消费模式",
-        #                     "ConsumerAddr": "消费者地址",
-        #                     "ConsumeTime": "推送时间",
-        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
-        #                 },
-        #                 {
-        #                     "ConsumerGroup": "消费组",
-        #                     "ConsumeModel": "消费模式",
-        #                     "ConsumerAddr": "消费者地址",
-        #                     "ConsumeTime": "推送时间",
-        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
-        #                 }
-        #             ]
-        #         }
-        #     }
-        # ]
+        # @param Result: 轨迹详情列表
         # @type Result: Array
         # @param ShowTopicName: 消息轨迹页展示的topic名称
         # @type ShowTopicName: String
@@ -6697,10 +6785,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param RoleName: 角色名称，模糊查询
         # @type RoleName: String
-        # @param Filters: * RoleName
-        # 按照角色名进行过滤，精确查询。
-        # 类型：String
-        # 必选：否
+        # @param Filters: RoleName按照角色名进行过滤，精确查询。类型：String必选：否
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :ClusterId, :RoleName, :Filters
@@ -10129,6 +10214,63 @@ module TencentCloud
         end
       end
 
+      # Rabbitmq路由关系列表成员
+      class RabbitMQBindingListInfo < TencentCloud::Common::AbstractModel
+        # @param BindingId: 路由关系id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindingId: Integer
+        # @param VirtualHost: Vhost参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualHost: String
+        # @param Source: 源exchange名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param DestinationType: 目标类型,queue或exchange
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestinationType: String
+        # @param Destination: 目标资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destination: String
+        # @param RoutingKey: 绑定key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingKey: String
+        # @param SourceExchangeType: 源exchange类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceExchangeType: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+
+        attr_accessor :BindingId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey, :SourceExchangeType, :CreateTime, :ModifyTime
+
+        def initialize(bindingid=nil, virtualhost=nil, source=nil, destinationtype=nil, destination=nil, routingkey=nil, sourceexchangetype=nil, createtime=nil, modifytime=nil)
+          @BindingId = bindingid
+          @VirtualHost = virtualhost
+          @Source = source
+          @DestinationType = destinationtype
+          @Destination = destination
+          @RoutingKey = routingkey
+          @SourceExchangeType = sourceexchangetype
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @BindingId = params['BindingId']
+          @VirtualHost = params['VirtualHost']
+          @Source = params['Source']
+          @DestinationType = params['DestinationType']
+          @Destination = params['Destination']
+          @RoutingKey = params['RoutingKey']
+          @SourceExchangeType = params['SourceExchangeType']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # RabbitMQ集群访问信息
       class RabbitMQClusterAccessInfo < TencentCloud::Common::AbstractModel
         # @param PublicAccessEndpoint: 集群公网接入地址
@@ -11481,7 +11623,7 @@ module TencentCloud
       class RocketMQConsumerTopic < TencentCloud::Common::AbstractModel
         # @param Topic: 主题名称
         # @type Topic: String
-        # @param Type: 主题类型，Default表示普通，GlobalOrder表示全局顺序，PartitionedOrder表示局部顺序，Transaction表示事务，Retry表示重试，DeadLetter表示死信
+        # @param Type: 主题类型，Normal表示普通，GlobalOrder表示全局顺序，PartitionedOrder表示局部顺序，Transaction表示事务，Retry表示重试，DeadLetter表示死信
         # @type Type: String
         # @param PartitionNum: 分区数
         # @type PartitionNum: Integer
@@ -12031,6 +12173,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOnline: Boolean
         # @param ConsumeType: 消费类型
+        # 0: 广播消费
+        # 1: 集群消费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumeType: Integer
         # @param Consistency: 订阅一致性
@@ -13219,7 +13363,7 @@ module TencentCloud
         # @type MsgId: String
         # @param ClientId: 客户端ID
         # @type ClientId: String
-        # @param TopicName: topic名称
+        # @param TopicName: 主题名称
         # @type TopicName: String
 
         attr_accessor :ClusterId, :NamespaceId, :GroupId, :MsgId, :ClientId, :TopicName

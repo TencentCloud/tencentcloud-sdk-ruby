@@ -541,7 +541,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取集群列表，仅支持 5.x 集群，Filters参数使用说明如下：
+        # 查询集群列表，仅支持 5.x 集群。Filters参数使用说明如下：
         # 1. InstanceName, 名称模糊查询
         # 2. InstanceId，集群ID查询
         # 3. InstanceType, 集群类型查询，支持多选
@@ -1045,7 +1045,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例属性
+        # 修改 RocketMQ 5.x 集群属性。
 
         # @param request: Request instance for ModifyInstance.
         # @type request: :class:`Tencentcloud::trocket::V20230308::ModifyInstanceRequest`

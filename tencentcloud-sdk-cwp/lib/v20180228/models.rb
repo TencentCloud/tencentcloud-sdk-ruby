@@ -1963,9 +1963,9 @@ module TencentCloud
         # @type Name: String
         # @param ProjectId: 主机业务组ID
         # @type ProjectId: Integer
-        # @param UserType: 账号类型：0访客用户，1标准用户，2管理员用户 ,999为空,仅windows
+        # @param UserType: 账号类型：0访客用户，1标准用户，2管理员用户 ,999为空,仅Windows
         # @type UserType: Integer
-        # @param IsDomain: 是否域账号：0否， 1是，2否, 999为空  仅windows
+        # @param IsDomain: 是否域账号：0否， 1是，2否, 999为空  仅Windows
         # @type IsDomain: Integer
         # @param IsSudo: 是否有sudo权限，1是，0否, 999为空, 仅linux
         # @type IsSudo: Integer
@@ -2088,9 +2088,9 @@ module TencentCloud
         # @type LastLoginTime: String
         # @param Name: 账号名称
         # @type Name: String
-        # @param UserType: 账号类型：0访客用户，1标准用户，2管理员用户 ,999为空,仅windows
+        # @param UserType: 账号类型：0访客用户，1标准用户，2管理员用户 ,999为空,仅Windows
         # @type UserType: Integer
-        # @param IsDomain: 是否域账号：0否， 1是, 999为空  仅windows
+        # @param IsDomain: 是否域账号：0否， 1是, 999为空  仅Windows
         # @type IsDomain: Integer
         # @param IsSshLogin: 是否允许ssh登录，1是，0否, 999为空, 仅linux
         # @type IsSshLogin: Integer
@@ -19415,7 +19415,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Order: 排序方式: [ASC:升序|DESC:降序]
         # @type Order: String
-        # @param By: 可选排序列: [EventsCount]
+        # @param By: 可选排序列: [EventsCount|CreateTime|ModifyTime]
         # @type By: String
 
         attr_accessor :Offset, :Limit, :Filters, :Order, :By
@@ -22765,7 +22765,7 @@ module TencentCloud
         # @type BeginDate: String
         # @param EndDate: 筛选发布日期：结束时间
         # @type EndDate: String
-        # @param BroadcastType: 过滤安全播报类型：0-紧急通知，1-功能更新，2-行业荣誉，3-版本发布
+        # @param BroadcastType: 过滤安全播报类型：0-紧急通知，1-功能更新，2-行业荣誉，3-版本发布，4-最佳实践
         # @type BroadcastType: String
 
         attr_accessor :Offset, :Limit, :BeginDate, :EndDate, :BroadcastType
@@ -26657,22 +26657,7 @@ module TencentCloud
       class ExportAssetAppListRequest < TencentCloud::Common::AbstractModel
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
-        # @param Filters: 过滤条件。
-        # <li>AppName- string - 是否必填：否 - 应用名搜索</li>
-        # <li>IP - String - 是否必填：否 - 主机ip</li>
-        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
-        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
-        # <li>Type - int - 是否必填：否 - 类型	: 仅linux
-        # 0: 全部
-        # 1: 运维
-        # 2 : 数据库
-        # 3 : 安全
-        # 4 : 可疑应用
-        # 5 : 系统架构
-        # 6 : 系统应用
-        # 7 : WEB服务
-        # 99:其他</li>
-        # <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
+        # @param Filters: 过滤条件。<li>AppName- string - 是否必填：否 - 应用名搜索</li><li>IP - String - 是否必填：否 - 主机ip</li><li>MachineName - String - 是否必填：否 - 主机名称</li><li>InstanceID - string - 是否必填：否 - 实例ID</li><li>Type - int - 是否必填：否 - 类型	: 仅linux0: 全部1: 运维2 : 数据库3 : 安全4 : 可疑应用5 : 系统架构6 : 系统应用7 : WEB服务99:其他</li><li>OsType - uint64 - 是否必填：否 - Windows/Linux</li>
         # @type Filters: Array
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
@@ -32906,10 +32891,13 @@ module TencentCloud
         # @param MachineExtraInfo: 附加信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param References: 参考链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type References: Array
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime, :MachineExtraInfo
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status, :Level, :CheckPlatform, :Uuid, :ModifyTime, :StrFileAccessTime, :MachineExtraInfo, :References
 
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil, machineextrainfo=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil, level=nil, checkplatform=nil, uuid=nil, modifytime=nil, strfileaccesstime=nil, machineextrainfo=nil, references=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -32940,6 +32928,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @StrFileAccessTime = strfileaccesstime
           @MachineExtraInfo = machineextrainfo
+          @References = references
         end
 
         def deserialize(params)
@@ -32976,6 +32965,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @References = params['References']
         end
       end
 
@@ -33095,10 +33085,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param EventsCount: 受影响记录
         # @type EventsCount: Integer
+        # @param ModifyTime: 规则修改时间
+        # @type ModifyTime: String
 
-        attr_accessor :Id, :QuuidList, :Md5List, :IsGlobal, :Mode, :MatchType, :FileName, :FileDirectory, :FileExtension, :CreateTime, :EventsCount
+        attr_accessor :Id, :QuuidList, :Md5List, :IsGlobal, :Mode, :MatchType, :FileName, :FileDirectory, :FileExtension, :CreateTime, :EventsCount, :ModifyTime
 
-        def initialize(id=nil, quuidlist=nil, md5list=nil, isglobal=nil, mode=nil, matchtype=nil, filename=nil, filedirectory=nil, fileextension=nil, createtime=nil, eventscount=nil)
+        def initialize(id=nil, quuidlist=nil, md5list=nil, isglobal=nil, mode=nil, matchtype=nil, filename=nil, filedirectory=nil, fileextension=nil, createtime=nil, eventscount=nil, modifytime=nil)
           @Id = id
           @QuuidList = quuidlist
           @Md5List = md5list
@@ -33110,6 +33102,7 @@ module TencentCloud
           @FileExtension = fileextension
           @CreateTime = createtime
           @EventsCount = eventscount
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -33124,6 +33117,7 @@ module TencentCloud
           @FileExtension = params['FileExtension']
           @CreateTime = params['CreateTime']
           @EventsCount = params['EventsCount']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -37171,10 +37165,13 @@ module TencentCloud
         # @type ModifyTime: String
         # @param RegionInfo: 可用区信息
         # @type RegionInfo: :class:`Tencentcloud::Cwp.v20180228.models.RegionInfo`
+        # @param InstanceId: 主机示例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :MachineName, :Status, :Disks, :CreateTime, :BackupTime, :ModifyTime, :RegionInfo
+        attr_accessor :Id, :Uuid, :Quuid, :MachineName, :Status, :Disks, :CreateTime, :BackupTime, :ModifyTime, :RegionInfo, :InstanceId
 
-        def initialize(id=nil, uuid=nil, quuid=nil, machinename=nil, status=nil, disks=nil, createtime=nil, backuptime=nil, modifytime=nil, regioninfo=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, machinename=nil, status=nil, disks=nil, createtime=nil, backuptime=nil, modifytime=nil, regioninfo=nil, instanceid=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -37185,6 +37182,7 @@ module TencentCloud
           @BackupTime = backuptime
           @ModifyTime = modifytime
           @RegionInfo = regioninfo
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -37201,6 +37199,7 @@ module TencentCloud
             @RegionInfo = RegionInfo.new
             @RegionInfo.deserialize(params['RegionInfo'])
           end
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -37429,10 +37428,13 @@ module TencentCloud
         # @param BackupSuccessCount: 备份成功次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupSuccessCount: Integer
+        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-普惠版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostVersion: Integer
 
-        attr_accessor :Uuid, :Quuid, :MachineName, :InstanceId, :MachineIp, :MachineWanIp, :CloudTags, :RegionInfo, :Tag, :Status, :StrategyId, :DiskInfo, :StrategyName, :BackupCount, :LastBackupStatus, :LastBackupMessage, :LastBackupTime, :RollBackPercent, :RollBackStatus, :BackupSuccessCount
+        attr_accessor :Uuid, :Quuid, :MachineName, :InstanceId, :MachineIp, :MachineWanIp, :CloudTags, :RegionInfo, :Tag, :Status, :StrategyId, :DiskInfo, :StrategyName, :BackupCount, :LastBackupStatus, :LastBackupMessage, :LastBackupTime, :RollBackPercent, :RollBackStatus, :BackupSuccessCount, :HostVersion
 
-        def initialize(uuid=nil, quuid=nil, machinename=nil, instanceid=nil, machineip=nil, machinewanip=nil, cloudtags=nil, regioninfo=nil, tag=nil, status=nil, strategyid=nil, diskinfo=nil, strategyname=nil, backupcount=nil, lastbackupstatus=nil, lastbackupmessage=nil, lastbackuptime=nil, rollbackpercent=nil, rollbackstatus=nil, backupsuccesscount=nil)
+        def initialize(uuid=nil, quuid=nil, machinename=nil, instanceid=nil, machineip=nil, machinewanip=nil, cloudtags=nil, regioninfo=nil, tag=nil, status=nil, strategyid=nil, diskinfo=nil, strategyname=nil, backupcount=nil, lastbackupstatus=nil, lastbackupmessage=nil, lastbackuptime=nil, rollbackpercent=nil, rollbackstatus=nil, backupsuccesscount=nil, hostversion=nil)
           @Uuid = uuid
           @Quuid = quuid
           @MachineName = machinename
@@ -37453,6 +37455,7 @@ module TencentCloud
           @RollBackPercent = rollbackpercent
           @RollBackStatus = rollbackstatus
           @BackupSuccessCount = backupsuccesscount
+          @HostVersion = hostversion
         end
 
         def deserialize(params)
@@ -37493,6 +37496,7 @@ module TencentCloud
           @RollBackPercent = params['RollBackPercent']
           @RollBackStatus = params['RollBackStatus']
           @BackupSuccessCount = params['BackupSuccessCount']
+          @HostVersion = params['HostVersion']
         end
       end
 
@@ -39882,9 +39886,9 @@ module TencentCloud
 
       # SeparateMalwares返回参数结构体
       class SeparateMalwaresResponse < TencentCloud::Common::AbstractModel
-        # @param SuccessIds: 隔离成功的id数组，若无则返回空数组
+        # @param SuccessIds: 隔离成功的ID数组，若无则返回空数组
         # @type SuccessIds: Array
-        # @param FailedIds: 隔离失败的id数组，若无则返回空数组
+        # @param FailedIds: 隔离失败的ID数组，若无则返回空数组
         # @type FailedIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

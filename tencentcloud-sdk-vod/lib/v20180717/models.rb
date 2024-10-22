@@ -96,6 +96,10 @@ module TencentCloud
         # @type Name: String
         # @param Comment: 视频内容识别模板描述信息。
         # @type Comment: String
+        # @param Type: 模板类型，取值：
+        # <li>Preset：系统预置模板；</li>
+        # <li>Custom：用户自定义模板。</li>
+        # @type Type: String
         # @param HeadTailConfigure: 头尾识别控制参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTailConfigure: :class:`Tencentcloud::Vod.v20180717.models.HeadTailConfigureInfo`
@@ -117,6 +121,9 @@ module TencentCloud
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfo`
+        # @param AsrTranslateConfigure: 语音翻译控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfo`
         # @param ObjectConfigure: 物体识别控制参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfo`
@@ -127,12 +134,13 @@ module TencentCloud
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
 
-        attr_accessor :Definition, :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :ObjectConfigure, :ScreenshotInterval, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :Type, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :AsrTranslateConfigure, :ObjectConfigure, :ScreenshotInterval, :CreateTime, :UpdateTime
 
-        def initialize(definition=nil, name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, objectconfigure=nil, screenshotinterval=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, asrtranslateconfigure=nil, objectconfigure=nil, screenshotinterval=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
+          @Type = type
           @HeadTailConfigure = headtailconfigure
           @SegmentConfigure = segmentconfigure
           @FaceConfigure = faceconfigure
@@ -140,6 +148,7 @@ module TencentCloud
           @OcrWordsConfigure = ocrwordsconfigure
           @AsrFullTextConfigure = asrfulltextconfigure
           @AsrWordsConfigure = asrwordsconfigure
+          @AsrTranslateConfigure = asrtranslateconfigure
           @ObjectConfigure = objectconfigure
           @ScreenshotInterval = screenshotinterval
           @CreateTime = createtime
@@ -150,6 +159,7 @@ module TencentCloud
           @Definition = params['Definition']
           @Name = params['Name']
           @Comment = params['Comment']
+          @Type = params['Type']
           unless params['HeadTailConfigure'].nil?
             @HeadTailConfigure = HeadTailConfigureInfo.new
             @HeadTailConfigure.deserialize(params['HeadTailConfigure'])
@@ -177,6 +187,10 @@ module TencentCloud
           unless params['AsrWordsConfigure'].nil?
             @AsrWordsConfigure = AsrWordsConfigureInfo.new
             @AsrWordsConfigure.deserialize(params['AsrWordsConfigure'])
+          end
+          unless params['AsrTranslateConfigure'].nil?
+            @AsrTranslateConfigure = AsrTranslateConfigureInfo.new
+            @AsrTranslateConfigure.deserialize(params['AsrTranslateConfigure'])
           end
           unless params['ObjectConfigure'].nil?
             @ObjectConfigure = ObjectConfigureInfo.new
@@ -1223,6 +1237,7 @@ module TencentCloud
         # <li>AsrWordsRecognition：语音关键词识别，</li>
         # <li>OcrWordsRecognition：文本关键词识别，</li>
         # <li>AsrFullTextRecognition：语音全文识别，</li>
+        # <li>AsrTranslateRecognition：语音翻译识别，</li>
         # <li>OcrFullTextRecognition：文本全文识别，</li>
         # <li>HeadTailRecognition：视频片头片尾识别，</li>
         # <li>ObjectRecognition：物体识别。</li>
@@ -1247,6 +1262,9 @@ module TencentCloud
         #  AsrFullTextRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrFullTextTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrFullTextResult`
+        # @param AsrTranslateTask: 语音翻译结果，当 Type 为 AsrTranslateRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrTranslateTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrTranslateResult`
         # @param OcrWordsTask: 文本关键词识别结果，当 Type 为
         #  OcrWordsRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1260,15 +1278,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskObjectResult`
 
-        attr_accessor :Type, :HeadTailTask, :SegmentTask, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :OcrWordsTask, :OcrFullTextTask, :ObjectTask
+        attr_accessor :Type, :HeadTailTask, :SegmentTask, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :AsrTranslateTask, :OcrWordsTask, :OcrFullTextTask, :ObjectTask
 
-        def initialize(type=nil, headtailtask=nil, segmenttask=nil, facetask=nil, asrwordstask=nil, asrfulltexttask=nil, ocrwordstask=nil, ocrfulltexttask=nil, objecttask=nil)
+        def initialize(type=nil, headtailtask=nil, segmenttask=nil, facetask=nil, asrwordstask=nil, asrfulltexttask=nil, asrtranslatetask=nil, ocrwordstask=nil, ocrfulltexttask=nil, objecttask=nil)
           @Type = type
           @HeadTailTask = headtailtask
           @SegmentTask = segmenttask
           @FaceTask = facetask
           @AsrWordsTask = asrwordstask
           @AsrFullTextTask = asrfulltexttask
+          @AsrTranslateTask = asrtranslatetask
           @OcrWordsTask = ocrwordstask
           @OcrFullTextTask = ocrfulltexttask
           @ObjectTask = objecttask
@@ -1295,6 +1314,10 @@ module TencentCloud
           unless params['AsrFullTextTask'].nil?
             @AsrFullTextTask = AiRecognitionTaskAsrFullTextResult.new
             @AsrFullTextTask.deserialize(params['AsrFullTextTask'])
+          end
+          unless params['AsrTranslateTask'].nil?
+            @AsrTranslateTask = AiRecognitionTaskAsrTranslateResult.new
+            @AsrTranslateTask.deserialize(params['AsrTranslateTask'])
           end
           unless params['OcrWordsTask'].nil?
             @OcrWordsTask = AiRecognitionTaskOcrWordsResult.new
@@ -1431,6 +1454,14 @@ module TencentCloud
 
       # 字幕信息。
       class AiRecognitionTaskAsrFullTextResultOutputSubtitleItem < TencentCloud::Common::AbstractModel
+        # @param Id: 媒资字幕 ID，用于媒资字幕管理，仅当 Format 为 vtt 时有效。
+        # <font color=red>注意：</font>2024-11-01T10:00:00Z 之前的任务返回此字段无效。
+        # @type Id: String
+        # @param Name: 媒资字幕名字，用于播放器展示，仅当 Format 为 vtt 时有效。
+        # <font color=red>注意：</font>2024-11-01T10:00:00Z 之前的任务返回此字段无效。
+        # @type Name: String
+        # @param Language: 字幕语言。
+        # @type Language: String
         # @param Format: 字幕文件格式，取值范围：
         # <li>vtt：WebVTT 字幕文件；</li>
         # <li>srt：SRT 字幕文件。</li>
@@ -1438,14 +1469,20 @@ module TencentCloud
         # @param Url: 字幕文件 Url。
         # @type Url: String
 
-        attr_accessor :Format, :Url
+        attr_accessor :Id, :Name, :Language, :Format, :Url
 
-        def initialize(format=nil, url=nil)
+        def initialize(id=nil, name=nil, language=nil, format=nil, url=nil)
+          @Id = id
+          @Name = name
+          @Language = language
           @Format = format
           @Url = url
         end
 
         def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Language = params['Language']
           @Format = params['Format']
           @Url = params['Url']
         end
@@ -1476,6 +1513,152 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @Text = params['Text']
+        end
+      end
+
+      # 语音翻译结果。
+      class AiRecognitionTaskAsrTranslateResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 语音翻译任务输入信息。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrTranslateResultInput`
+        # @param Output: 语音翻译任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskAsrTranslateResultOutput`
+        # @param Progress: 语音翻译任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param BeginProcessTime: 语音翻译任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 语音翻译任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiRecognitionTaskAsrTranslateResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiRecognitionTaskAsrTranslateResultOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 语音翻译的输入。
+      class AiRecognitionTaskAsrTranslateResultInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 语音翻译模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 语音翻译结果。
+      class AiRecognitionTaskAsrTranslateResultOutput < TencentCloud::Common::AbstractModel
+        # @param SegmentSet: 语音翻译片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 语音翻译片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 语音翻译片段列表文件 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
+        # @param SubtitleSet: 生成的字幕列表。
+        # @type SubtitleSet: Array
+
+        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime, :SubtitleSet
+
+        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil, subtitleset=nil)
+          @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
+          @SubtitleSet = subtitleset
+        end
+
+        def deserialize(params)
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              airecognitiontaskasrtranslatesegmentitem_tmp = AiRecognitionTaskAsrTranslateSegmentItem.new
+              airecognitiontaskasrtranslatesegmentitem_tmp.deserialize(i)
+              @SegmentSet << airecognitiontaskasrtranslatesegmentitem_tmp
+            end
+          end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
+          unless params['SubtitleSet'].nil?
+            @SubtitleSet = []
+            params['SubtitleSet'].each do |i|
+              airecognitiontaskasrfulltextresultoutputsubtitleitem_tmp = AiRecognitionTaskAsrFullTextResultOutputSubtitleItem.new
+              airecognitiontaskasrfulltextresultoutputsubtitleitem_tmp.deserialize(i)
+              @SubtitleSet << airecognitiontaskasrfulltextresultoutputsubtitleitem_tmp
+            end
+          end
+        end
+      end
+
+      # 语音翻译片段。
+      class AiRecognitionTaskAsrTranslateSegmentItem < TencentCloud::Common::AbstractModel
+        # @param Confidence: 语音翻译片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param StartTimeOffset: 语音翻译片段起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 语音翻译片段终止的偏移时间，单位：秒。
+        # @type EndTimeOffset: Float
+        # @param Text: 识别文本。
+        # @type Text: String
+        # @param Translation: 翻译文本。
+        # @type Translation: String
+
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Translation
+
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, translation=nil)
+          @Confidence = confidence
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Text = text
+          @Translation = translation
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Text = params['Text']
+          @Translation = params['Translation']
         end
       end
 
@@ -4137,7 +4320,7 @@ module TencentCloud
         # @type Switch: String
         # @param SubtitleFormats: 生成的字幕文件格式列表，不填或者填空数组表示不生成字幕文件，可选值：
         # <li>vtt：生成 WebVTT 字幕文件；</li>
-        # <li>srt：生成 SRT 字幕文件。</li>
+        # <li>srt：生成 SRT 字幕文件。</li><font color=red>注意：</font>云点播媒资信息仅支持添加 vtt 字幕，因此当且仅当 SubtitleFormats 包含 vtt 时，云点播将生成的字幕添加到媒资。
         # @type SubtitleFormats: Array
         # @param SubtitleFormat: 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
         # <li>vtt：生成 WebVTT 字幕文件；</li>
@@ -4151,14 +4334,18 @@ module TencentCloud
         # <li>zh-ca：粤语。</li>
         # <font color=red>注意：</font> 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
         # @type SrcLanguage: String
+        # @param SubtitleName: 指定字幕名称，长度限制：64 个字符。该值将用于播放器展示，若不填则云点播自动生成。
+        # <font color=red>注意：</font>仅当 SubtitleFormats 包含 vtt 时，该字段有效。
+        # @type SubtitleName: String
 
-        attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage
+        attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
 
-        def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil)
+        def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
           @SubtitleFormats = subtitleformats
           @SubtitleFormat = subtitleformat
           @SrcLanguage = srclanguage
+          @SubtitleName = subtitlename
         end
 
         def deserialize(params)
@@ -4166,6 +4353,7 @@ module TencentCloud
           @SubtitleFormats = params['SubtitleFormats']
           @SubtitleFormat = params['SubtitleFormat']
           @SrcLanguage = params['SrcLanguage']
+          @SubtitleName = params['SubtitleName']
         end
       end
 
@@ -4188,14 +4376,17 @@ module TencentCloud
         # <li>ja：日语；</li>
         # <li>zh-ca：粤语。</li>
         # @type SrcLanguage: String
+        # @param SubtitleName: 指定字幕名称，长度限制：64 个字符。该值将用于播放器展示。
+        # @type SubtitleName: String
 
-        attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage
+        attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
 
-        def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil)
+        def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
           @SubtitleFormatsOperation = subtitleformatsoperation
           @SubtitleFormat = subtitleformat
           @SrcLanguage = srclanguage
+          @SubtitleName = subtitlename
         end
 
         def deserialize(params)
@@ -4206,6 +4397,269 @@ module TencentCloud
           end
           @SubtitleFormat = params['SubtitleFormat']
           @SrcLanguage = params['SrcLanguage']
+          @SubtitleName = params['SubtitleName']
+        end
+      end
+
+      # 语音翻译任务控制参数
+      class AsrTranslateConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 语音翻译任务开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li><font color=red>注意：</font>语音翻译任务本身会返回 ASR 全文识别结果，为避免重复收费，因此禁止同时开启语音翻译和 ASR 全文识别功能项。
+        # @type Switch: String
+        # @param SrcLanguage: 媒体源语言，当 Switch 为 ON 时，此参数必填。取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>vi：越南语；</li>
+        # <li>ms：马来语；</li>
+        # <li>th：泰语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ar：阿拉伯语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>hi：印地语；</li>
+        # <li>fr：法语。</li>
+        # @type SrcLanguage: String
+        # @param DstLanguage: 翻译目标语言，当 Switch 为 ON 时，此参数必填。
+        # 当 SrcLanguage 为 zh（中文）时，取值范围：
+        # <li>en：英文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>vi：越南语；</li>
+        # <li>id：印尼语；</li>
+        # <li>th：泰语；</li>
+        # <li>ms：马来语。</li>
+        # 当 SrcLanguage 为 en（英文）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>vi：越南语；</li>
+        # <li>id：印尼语；</li>
+        # <li>th：泰语；</li>
+        # <li>ms：马来语；</li>
+        # <li>ar：阿拉伯语；</li>
+        # <li>hi：印地语。</li>
+        # 当 SrcLanguage 为 ja（日文）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ko：韩文。</li>
+        # 当 SrcLanguage 为 ko（韩文）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ja：日文。</li>
+        # 当 SrcLanguage 为 vi（越南语）或 ms（马来语）或 th（泰语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文。</li>
+        # 当 SrcLanguage 为 pt（葡萄牙语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语。</li>
+        # 当 SrcLanguage 为 tr（土耳其语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语。</li>
+        # 当 SrcLanguage 为 es（西班牙语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>fr：法语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语。</li>
+        # 当 SrcLanguage 为 ar（阿拉伯语）或 hi（印地语）时，取值范围：
+        # <li>en：英文。</li>
+        # 当 SrcLanguage 为 fr（法语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语。</li>
+        # @type DstLanguage: String
+        # @param SubtitleFormats: 生成的字幕文件格式列表，不填或者填空数组表示不生成字幕文件，可选值：
+        # <li>vtt：生成 WebVTT 字幕文件；</li>
+        # <li>srt：生成 SRT 字幕文件。</li><font color=red>注意：</font> 云点播媒资信息仅支持添加 vtt 字幕，因此当且仅当 SubtitleFormats 包含 vtt 时，云点播将生成的字幕添加到媒资。
+        # @type SubtitleFormats: Array
+        # @param SubtitleName: 指定字幕名称，长度限制：64 个字符。该值将用于播放器展示，若不填则云点播自动生成。
+        # <font color=red>注意：</font>仅当 SubtitleFormats 包含 vtt 时，该字段有效。
+        # @type SubtitleName: String
+
+        attr_accessor :Switch, :SrcLanguage, :DstLanguage, :SubtitleFormats, :SubtitleName
+
+        def initialize(switch=nil, srclanguage=nil, dstlanguage=nil, subtitleformats=nil, subtitlename=nil)
+          @Switch = switch
+          @SrcLanguage = srclanguage
+          @DstLanguage = dstlanguage
+          @SubtitleFormats = subtitleformats
+          @SubtitleName = subtitlename
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @SrcLanguage = params['SrcLanguage']
+          @DstLanguage = params['DstLanguage']
+          @SubtitleFormats = params['SubtitleFormats']
+          @SubtitleName = params['SubtitleName']
+        end
+      end
+
+      # 语音翻译控制参数
+      class AsrTranslateConfigureInfoForUpdate < TencentCloud::Common::AbstractModel
+        # @param Switch: 语音翻译任务开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # @type Switch: String
+        # @param SrcLanguage: 媒体源语言，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>vi：越南语；</li>
+        # <li>ms：马来语；</li>
+        # <li>th：泰语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ar：阿拉伯语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>hi：印地语；</li>
+        # <li>fr：法语。</li>
+        # @type SrcLanguage: String
+        # @param DstLanguage: 翻译目标语言。
+        # 当 SrcLanguage 为 zh（中文）时，取值范围：
+        # <li>en：英文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>vi：越南语；</li>
+        # <li>id：印尼语；</li>
+        # <li>th：泰语；</li>
+        # <li>ms：马来语。</li>
+        # 当 SrcLanguage 为 en（英文）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>vi：越南语；</li>
+        # <li>id：印尼语；</li>
+        # <li>th：泰语；</li>
+        # <li>ms：马来语；</li>
+        # <li>ar：阿拉伯语；</li>
+        # <li>hi：印地语。</li>
+        # 当 SrcLanguage 为 ja（日文）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ko：韩文。</li>
+        # 当 SrcLanguage 为 ko（韩文）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ja：日文。</li>
+        # 当 SrcLanguage 为 vi（越南语）或 ms（马来语）或 th（泰语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文。</li>
+        # 当 SrcLanguage 为 pt（葡萄牙语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语。</li>
+        # 当 SrcLanguage 为 tr（土耳其语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>fr：法语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语。</li>
+        # 当 SrcLanguage 为 es（西班牙语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>fr：法语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语。</li>
+        # 当 SrcLanguage 为 ar（阿拉伯语）或 hi（印地语）时，取值范围：
+        # <li>en：英文。</li>
+        # 当 SrcLanguage 为 fr（法语）时，取值范围：
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>es：西班牙语；</li>
+        # <li>it：意大利语；</li>
+        # <li>de：德语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ru：俄语；</li>
+        # <li>pt：葡萄牙语。</li>
+        # @type DstLanguage: String
+        # @param SubtitleFormatsOperation: 字幕格式列表操作信息。
+        # @type SubtitleFormatsOperation: :class:`Tencentcloud::Vod.v20180717.models.SubtitleFormatsOperation`
+        # @param SubtitleName: 指定字幕名称，长度限制：64 个字符。该值将用于播放器展示。
+        # @type SubtitleName: String
+
+        attr_accessor :Switch, :SrcLanguage, :DstLanguage, :SubtitleFormatsOperation, :SubtitleName
+
+        def initialize(switch=nil, srclanguage=nil, dstlanguage=nil, subtitleformatsoperation=nil, subtitlename=nil)
+          @Switch = switch
+          @SrcLanguage = srclanguage
+          @DstLanguage = dstlanguage
+          @SubtitleFormatsOperation = subtitleformatsoperation
+          @SubtitleName = subtitlename
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @SrcLanguage = params['SrcLanguage']
+          @DstLanguage = params['DstLanguage']
+          unless params['SubtitleFormatsOperation'].nil?
+            @SubtitleFormatsOperation = SubtitleFormatsOperation.new
+            @SubtitleFormatsOperation.deserialize(params['SubtitleFormatsOperation'])
+          end
+          @SubtitleName = params['SubtitleName']
         end
       end
 
@@ -5703,14 +6157,16 @@ module TencentCloud
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrFullTextConfigureInfo`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfo`
+        # @param AsrTranslateConfigure: 语音翻译控制参数。
+        # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfo`
         # @param ObjectConfigure: 物体识别控制参数。
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfo`
         # @param ScreenshotInterval: 截帧间隔，单位为秒。当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
         # @type ScreenshotInterval: Float
 
-        attr_accessor :SubAppId, :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :ObjectConfigure, :ScreenshotInterval
+        attr_accessor :SubAppId, :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :AsrTranslateConfigure, :ObjectConfigure, :ScreenshotInterval
 
-        def initialize(subappid=nil, name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, objectconfigure=nil, screenshotinterval=nil)
+        def initialize(subappid=nil, name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, asrtranslateconfigure=nil, objectconfigure=nil, screenshotinterval=nil)
           @SubAppId = subappid
           @Name = name
           @Comment = comment
@@ -5721,6 +6177,7 @@ module TencentCloud
           @OcrWordsConfigure = ocrwordsconfigure
           @AsrFullTextConfigure = asrfulltextconfigure
           @AsrWordsConfigure = asrwordsconfigure
+          @AsrTranslateConfigure = asrtranslateconfigure
           @ObjectConfigure = objectconfigure
           @ScreenshotInterval = screenshotinterval
         end
@@ -5756,6 +6213,10 @@ module TencentCloud
           unless params['AsrWordsConfigure'].nil?
             @AsrWordsConfigure = AsrWordsConfigureInfo.new
             @AsrWordsConfigure.deserialize(params['AsrWordsConfigure'])
+          end
+          unless params['AsrTranslateConfigure'].nil?
+            @AsrTranslateConfigure = AsrTranslateConfigureInfo.new
+            @AsrTranslateConfigure.deserialize(params['AsrTranslateConfigure'])
           end
           unless params['ObjectConfigure'].nil?
             @ObjectConfigure = ObjectConfigureInfo.new
@@ -8839,16 +9300,19 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param Definitions: 音视频内容识别模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
+        # @param Type: 模板类型过滤条件，可选值：<li>Preset：系统预置模板；</li><li>Custom：用户自定义模板。</li>不填默认为空，即不对模板类型过滤。
+        # @type Type: String
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
 
-        attr_accessor :SubAppId, :Definitions, :Offset, :Limit
+        attr_accessor :SubAppId, :Definitions, :Type, :Offset, :Limit
 
-        def initialize(subappid=nil, definitions=nil, offset=nil, limit=nil)
+        def initialize(subappid=nil, definitions=nil, type=nil, offset=nil, limit=nil)
           @SubAppId = subappid
           @Definitions = definitions
+          @Type = type
           @Offset = offset
           @Limit = limit
         end
@@ -8856,6 +9320,7 @@ module TencentCloud
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @Definitions = params['Definitions']
+          @Type = params['Type']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -17331,9 +17796,19 @@ module TencentCloud
         # @param Name: 字幕名字，长度限制：64 个字符。
         # @type Name: String
         # @param Language: 字幕语言。常见的取值如下：
-        # <li>cn：中文</li>
-        # <li>ja：日文</li>
-        # <li>en-US：英文</li>
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>vi：越南语；</li>
+        # <li>ms：马来语；</li>
+        # <li>th：泰语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ar：阿拉伯语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>hi：印地语；</li>
+        # <li>fr：法语。</li>
         # 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
         # @type Language: String
         # @param Format: 字幕格式。取值范围如下：
@@ -17370,9 +17845,19 @@ module TencentCloud
         # @param Name: 字幕名字。
         # @type Name: String
         # @param Language: 字幕语言。常见的取值如下：
-        # <li>cn：中文</li>
-        # <li>ja：日文</li>
-        # <li>en-US：英文</li>
+        # <li>zh：中文；</li>
+        # <li>en：英文；</li>
+        # <li>ja：日文；</li>
+        # <li>ko：韩文；</li>
+        # <li>vi：越南语；</li>
+        # <li>ms：马来语；</li>
+        # <li>th：泰语；</li>
+        # <li>pt：葡萄牙语；</li>
+        # <li>tr：土耳其语；</li>
+        # <li>ar：阿拉伯语；</li>
+        # <li>es：西班牙语；</li>
+        # <li>hi：印地语；</li>
+        # <li>fr：法语。</li>
         # 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
         # @type Language: String
         # @param Format: 字幕格式。取值范围如下：
@@ -17380,15 +17865,20 @@ module TencentCloud
         # @type Format: String
         # @param Url: 字幕 URL。
         # @type Url: String
+        # @param Source: 字幕来源，取值范围：
+        # <li>UserUploaded：用户上传；</li>
+        # <li>AIRecognition：AI 识别，通过语音识别或语音翻译生成。</li>
+        # @type Source: String
 
-        attr_accessor :Id, :Name, :Language, :Format, :Url
+        attr_accessor :Id, :Name, :Language, :Format, :Url, :Source
 
-        def initialize(id=nil, name=nil, language=nil, format=nil, url=nil)
+        def initialize(id=nil, name=nil, language=nil, format=nil, url=nil, source=nil)
           @Id = id
           @Name = name
           @Language = language
           @Format = format
           @Url = url
+          @Source = source
         end
 
         def deserialize(params)
@@ -17397,6 +17887,7 @@ module TencentCloud
           @Language = params['Language']
           @Format = params['Format']
           @Url = params['Url']
+          @Source = params['Source']
         end
       end
 
@@ -17788,14 +18279,16 @@ module TencentCloud
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrFullTextConfigureInfoForUpdate`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfoForUpdate`
+        # @param AsrTranslateConfigure: 语音翻译控制参数。
+        # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfoForUpdate`
         # @param ObjectConfigure: 物体识别控制参数。
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfoForUpdate`
         # @param ScreenshotInterval: 截帧间隔，单位为秒，最小值为 0.5 秒。
         # @type ScreenshotInterval: Float
 
-        attr_accessor :Definition, :SubAppId, :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :ObjectConfigure, :ScreenshotInterval
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :HeadTailConfigure, :SegmentConfigure, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :AsrTranslateConfigure, :ObjectConfigure, :ScreenshotInterval
 
-        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, objectconfigure=nil, screenshotinterval=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, headtailconfigure=nil, segmentconfigure=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, asrtranslateconfigure=nil, objectconfigure=nil, screenshotinterval=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
@@ -17807,6 +18300,7 @@ module TencentCloud
           @OcrWordsConfigure = ocrwordsconfigure
           @AsrFullTextConfigure = asrfulltextconfigure
           @AsrWordsConfigure = asrwordsconfigure
+          @AsrTranslateConfigure = asrtranslateconfigure
           @ObjectConfigure = objectconfigure
           @ScreenshotInterval = screenshotinterval
         end
@@ -17843,6 +18337,10 @@ module TencentCloud
           unless params['AsrWordsConfigure'].nil?
             @AsrWordsConfigure = AsrWordsConfigureInfoForUpdate.new
             @AsrWordsConfigure.deserialize(params['AsrWordsConfigure'])
+          end
+          unless params['AsrTranslateConfigure'].nil?
+            @AsrTranslateConfigure = AsrTranslateConfigureInfoForUpdate.new
+            @AsrTranslateConfigure.deserialize(params['AsrTranslateConfigure'])
           end
           unless params['ObjectConfigure'].nil?
             @ObjectConfigure = ObjectConfigureInfoForUpdate.new

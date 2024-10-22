@@ -773,6 +773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解绑RabbitMQ路由关系
+
+        # @param request: Request instance for DeleteRabbitMQBinding.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQBindingRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQBindingResponse`
+        def DeleteRabbitMQBinding(request)
+          body = send_request('DeleteRabbitMQBinding', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRabbitMQBindingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除RabbitMQ的用户
 
         # @param request: Request instance for DeleteRabbitMQUser.
@@ -1649,6 +1673,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePulsarProInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询RabbitMQ路由关系列表
+
+        # @param request: Request instance for DescribeRabbitMQBindings.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQBindingsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRabbitMQBindingsResponse`
+        def DescribeRabbitMQBindings(request)
+          body = send_request('DescribeRabbitMQBindings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRabbitMQBindingsResponse.new
             model.deserialize(response['Response'])
             model
           else

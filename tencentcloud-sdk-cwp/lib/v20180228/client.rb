@@ -2962,6 +2962,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 已废弃
+
         # 查询攻击溯源
 
         # @param request: Request instance for DescribeAttackSource.
@@ -2985,6 +2987,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 已废弃
 
         # 查询攻击溯源事件
 

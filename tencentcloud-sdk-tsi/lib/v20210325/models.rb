@@ -33,10 +33,12 @@ module TencentCloud
         # @type EndTime: Integer
         # @param IsEnd:  当前句子是否已结束
         # @type IsEnd: Boolean
+        # @param Audio: base64编码的wav/mp3音频数据
+        # @type Audio: String
 
-        attr_accessor :SeId, :SeVer, :SourceText, :TargetText, :StartTime, :EndTime, :IsEnd
+        attr_accessor :SeId, :SeVer, :SourceText, :TargetText, :StartTime, :EndTime, :IsEnd, :Audio
 
-        def initialize(seid=nil, sever=nil, sourcetext=nil, targettext=nil, starttime=nil, endtime=nil, isend=nil)
+        def initialize(seid=nil, sever=nil, sourcetext=nil, targettext=nil, starttime=nil, endtime=nil, isend=nil, audio=nil)
           @SeId = seid
           @SeVer = sever
           @SourceText = sourcetext
@@ -44,6 +46,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @IsEnd = isend
+          @Audio = audio
         end
 
         def deserialize(params)
@@ -54,6 +57,53 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @IsEnd = params['IsEnd']
+          @Audio = params['Audio']
+        end
+      end
+
+      # 同传TTS请求参数
+      class TTS < TencentCloud::Common::AbstractModel
+        # @param Codec: 返回音频格式，可取值：wav，mp3，pcm
+        # @type Codec: String
+        # @param VoiceType: 音色 ID，只包括标准音色（注，日文只有一个固定音色）。
+        # 完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
+        # @type VoiceType: Integer
+        # @param Volume: 音量大小，范围[-10，10]，对应音量大小。默认为0，代表正常音量，值越大音量越高。
+        # @type Volume: Float
+        # @param Speed: 语速，范围：[-2，6]，分别对应不同语速：
+
+        # - -2代表0.6倍
+        # - -1代表0.8倍
+        # - 0代表1.0倍（默认）
+        # - 1代表1.2倍
+        # - 2代表1.5倍
+        # - 6代表2.5倍
+
+        # 如果需要更细化的语速，可以保留小数点后 2 位，例如0.5/1.25/2.81等。
+        # 参数值与实际语速转换，可参考[代码示例](https://sdk-1300466766.cos.ap-shanghai.myqcloud.com/sample/speed_sample.tar.gz)
+        # @type Speed: Float
+        # @param SampleRate: 音频采样率：
+
+        # - 16000：16k（默认）
+        # - 8000：8k
+        # @type SampleRate: Integer
+
+        attr_accessor :Codec, :VoiceType, :Volume, :Speed, :SampleRate
+
+        def initialize(codec=nil, voicetype=nil, volume=nil, speed=nil, samplerate=nil)
+          @Codec = codec
+          @VoiceType = voicetype
+          @Volume = volume
+          @Speed = speed
+          @SampleRate = samplerate
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @VoiceType = params['VoiceType']
+          @Volume = params['Volume']
+          @Speed = params['Speed']
+          @SampleRate = params['SampleRate']
         end
       end
 
@@ -138,10 +188,12 @@ module TencentCloud
         # @type TranslateTime: Integer
         # @param Data: 语音分片内容进行 Base64 编码后的字符串。音频内容需包含有效并可识别的文本信息。
         # @type Data: String
+        # @param TTS: TTS播报控制参数
+        # @type TTS: :class:`Tencentcloud::Tsi.v20210325.models.TTS`
 
-        attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :Utc, :IsEnd, :TranslateTime, :Data
+        attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :Utc, :IsEnd, :TranslateTime, :Data, :TTS
 
-        def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, utc=nil, isend=nil, translatetime=nil, data=nil)
+        def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, utc=nil, isend=nil, translatetime=nil, data=nil, tts=nil)
           @SessionUuid = sessionuuid
           @Source = source
           @Target = target
@@ -151,6 +203,7 @@ module TencentCloud
           @IsEnd = isend
           @TranslateTime = translatetime
           @Data = data
+          @TTS = tts
         end
 
         def deserialize(params)
@@ -163,6 +216,10 @@ module TencentCloud
           @IsEnd = params['IsEnd']
           @TranslateTime = params['TranslateTime']
           @Data = params['Data']
+          unless params['TTS'].nil?
+            @TTS = TTS.new
+            @TTS.deserialize(params['TTS'])
+          end
         end
       end
 
@@ -212,10 +269,12 @@ module TencentCloud
         # @type TranslateTime: Integer
         # @param Data: 语音分片内容进行 Base64 编码后的字符串。音频内容需包含有效并可识别的文本信息。
         # @type Data: String
+        # @param TTS: TTS播报控制参数
+        # @type TTS: :class:`Tencentcloud::Tsi.v20210325.models.TTS`
 
-        attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :Utc, :IsEnd, :TranslateTime, :Data
+        attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :Utc, :IsEnd, :TranslateTime, :Data, :TTS
 
-        def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, utc=nil, isend=nil, translatetime=nil, data=nil)
+        def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, utc=nil, isend=nil, translatetime=nil, data=nil, tts=nil)
           @SessionUuid = sessionuuid
           @Source = source
           @Target = target
@@ -225,6 +284,7 @@ module TencentCloud
           @IsEnd = isend
           @TranslateTime = translatetime
           @Data = data
+          @TTS = tts
         end
 
         def deserialize(params)
@@ -237,6 +297,10 @@ module TencentCloud
           @IsEnd = params['IsEnd']
           @TranslateTime = params['TranslateTime']
           @Data = params['Data']
+          unless params['TTS'].nil?
+            @TTS = TTS.new
+            @TTS.deserialize(params['TTS'])
+          end
         end
       end
 

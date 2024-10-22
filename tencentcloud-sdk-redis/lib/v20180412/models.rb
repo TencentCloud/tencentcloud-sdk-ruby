@@ -948,7 +948,9 @@ module TencentCloud
         # - 1：自动续费。
         # - 2：到期不续费。
         # @type AutoRenew: Integer
-        # @param SecurityGroupIdList: 安全组 ID 数组。请通过[DescribeInstanceSecurityGroup](https://cloud.tencent.com/document/product/239/34447)接口获取实例的安全组 ID。
+        # @param SecurityGroupIdList: 安全组 ID 数组。
+        # - 安全组是一种虚拟防火墙，对云数据库实例的网络访问进行控制。创建实例时，建议绑定相应的安全组。
+        # - 请通过 [DescribeInstanceSecurityGroup](https://cloud.tencent.com/document/product/239/34447) 接口获取实例的安全组 ID。
         # @type SecurityGroupIdList: Array
         # @param VPort: 用户自定义的网络端口。默认为6379，范围为 [1024,65535]。
         # @type VPort: Integer

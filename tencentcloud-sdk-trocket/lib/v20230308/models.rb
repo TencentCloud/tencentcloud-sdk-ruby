@@ -3397,7 +3397,7 @@ module TencentCloud
 
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Name: 实例名称
         # @type Name: String
@@ -3411,12 +3411,16 @@ module TencentCloud
         # @type MessageRetention: Integer
         # @param ScaledTpsEnabled: 是否开启弹性TPS
         # @type ScaledTpsEnabled: Boolean
+        # @param AclEnabled: 是否开启ACL
+        # @type AclEnabled: Boolean
         # @param MaxTopicNum: 最大可创建主题数
         # @type MaxTopicNum: Integer
+        # @param ExtraTopicNum: 免费额度之外的主题个数
+        # @type ExtraTopicNum: String
 
-        attr_accessor :InstanceId, :Name, :Remark, :SendReceiveRatio, :SkuCode, :MessageRetention, :ScaledTpsEnabled, :MaxTopicNum
+        attr_accessor :InstanceId, :Name, :Remark, :SendReceiveRatio, :SkuCode, :MessageRetention, :ScaledTpsEnabled, :AclEnabled, :MaxTopicNum, :ExtraTopicNum
 
-        def initialize(instanceid=nil, name=nil, remark=nil, sendreceiveratio=nil, skucode=nil, messageretention=nil, scaledtpsenabled=nil, maxtopicnum=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, sendreceiveratio=nil, skucode=nil, messageretention=nil, scaledtpsenabled=nil, aclenabled=nil, maxtopicnum=nil, extratopicnum=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
@@ -3424,7 +3428,9 @@ module TencentCloud
           @SkuCode = skucode
           @MessageRetention = messageretention
           @ScaledTpsEnabled = scaledtpsenabled
+          @AclEnabled = aclenabled
           @MaxTopicNum = maxtopicnum
+          @ExtraTopicNum = extratopicnum
         end
 
         def deserialize(params)
@@ -3435,7 +3441,9 @@ module TencentCloud
           @SkuCode = params['SkuCode']
           @MessageRetention = params['MessageRetention']
           @ScaledTpsEnabled = params['ScaledTpsEnabled']
+          @AclEnabled = params['AclEnabled']
           @MaxTopicNum = params['MaxTopicNum']
+          @ExtraTopicNum = params['ExtraTopicNum']
         end
       end
 

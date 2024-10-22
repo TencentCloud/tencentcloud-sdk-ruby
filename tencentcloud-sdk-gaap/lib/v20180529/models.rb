@@ -718,9 +718,9 @@ module TencentCloud
 
       # CloseSecurityPolicy请求参数结构体
       class CloseSecurityPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 通道ID
+        # @param ProxyId: 通道ID。操作通道组时无需填此参数。
         # @type ProxyId: String
-        # @param PolicyId: 安全组策略ID
+        # @param PolicyId: 安全组策略ID。操作通道组时须填此参数。
         # @type PolicyId: String
 
         attr_accessor :ProxyId, :PolicyId
@@ -1357,7 +1357,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param GroupName: 通道组别名
         # @type GroupName: String
-        # @param RealServerRegion: 源站地域，参考接口DescribeDestRegions 返回参数RegionDetail中的RegionId
+        # @param RealServerRegion: 源站地域，参考接口 [https://cloud.tencent.com/document/api/608/36964] 返回参数RegionDetail中的RegionId
         # @type RealServerRegion: String
         # @param TagSet: 标签列表
         # @type TagSet: Array
@@ -2104,7 +2104,7 @@ module TencentCloud
         # @type ListenerIds: Array
         # @param Force: 已绑定源站的监听器是否允许强制删除，1：允许， 0：不允许
         # @type Force: Integer
-        # @param GroupId: 通道组ID，该参数和GroupId必须设置一个，但不能同时设置。
+        # @param GroupId: 通道组ID，该参数和ProxyId必须设置一个，但不能同时设置。
         # @type GroupId: String
         # @param ProxyId: 通道ID，该参数和GroupId必须设置一个，但不能同时设置。
         # @type ProxyId: String
@@ -2674,12 +2674,17 @@ module TencentCloud
 
       # DescribeDestRegions请求参数结构体
       class DescribeDestRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param QualityType: 通道质量:0表示金牌，1表示银牌。默认不传该参数，表示金牌。本参数确定查询指定通道质量的源站区域
+        # @type QualityType: Integer
 
+        attr_accessor :QualityType
 
-        def initialize()
+        def initialize(qualitytype=nil)
+          @QualityType = qualitytype
         end
 
         def deserialize(params)
+          @QualityType = params['QualityType']
         end
       end
 
@@ -3094,9 +3099,11 @@ module TencentCloud
 
       # DescribeHTTPListeners请求参数结构体
       class DescribeHTTPListenersRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 通道ID
+        # @param ProxyId: 通道ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
         # @type ProxyId: String
-        # @param ListenerId: 过滤条件，按照监听器ID进行精确查询
+        # @param GroupId: 通道组ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
+        # @type GroupId: String
+        # @param ListenerId: 过滤条件，按照监听器ID进行精确查询。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
         # @type ListenerId: String
         # @param ListenerName: 过滤条件，按照监听器名称进行精确查询
         # @type ListenerName: String
@@ -3108,31 +3115,29 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchValue: 过滤条件，支持按照端口或监听器名称进行模糊查询，该参数不能与ListenerName和Port同时使用
         # @type SearchValue: String
-        # @param GroupId: 通道组ID
-        # @type GroupId: String
 
-        attr_accessor :ProxyId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue, :GroupId
+        attr_accessor :ProxyId, :GroupId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue
 
-        def initialize(proxyid=nil, listenerid=nil, listenername=nil, port=nil, offset=nil, limit=nil, searchvalue=nil, groupid=nil)
+        def initialize(proxyid=nil, groupid=nil, listenerid=nil, listenername=nil, port=nil, offset=nil, limit=nil, searchvalue=nil)
           @ProxyId = proxyid
+          @GroupId = groupid
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
           @Offset = offset
           @Limit = limit
           @SearchValue = searchvalue
-          @GroupId = groupid
         end
 
         def deserialize(params)
           @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
           @ListenerId = params['ListenerId']
           @ListenerName = params['ListenerName']
           @Port = params['Port']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SearchValue = params['SearchValue']
-          @GroupId = params['GroupId']
         end
       end
 
@@ -3169,9 +3174,11 @@ module TencentCloud
 
       # DescribeHTTPSListeners请求参数结构体
       class DescribeHTTPSListenersRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 过滤条件，通道ID
+        # @param ProxyId: 通道ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
         # @type ProxyId: String
-        # @param ListenerId: 过滤条件，根据监听器ID进行精确查询。
+        # @param GroupId: 通道组ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
+        # @type GroupId: String
+        # @param ListenerId: 过滤条件，根据监听器ID进行精确查询。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
         # @type ListenerId: String
         # @param ListenerName: 过滤条件，根据监听器名称进行精确查询。
         # @type ListenerName: String
@@ -3183,8 +3190,6 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchValue: 过滤条件，支持按照端口或监听器名称进行模糊查询
         # @type SearchValue: String
-        # @param GroupId: 过滤条件，通道组ID
-        # @type GroupId: String
         # @param Http3Supported: 支持Http3的开关，其中：
         # 0，表示不需要支持Http3接入；
         # 1，表示需要支持Http3接入。
@@ -3192,29 +3197,29 @@ module TencentCloud
         # 该功能的启停无法在监听器创建完毕后再修改。
         # @type Http3Supported: Integer
 
-        attr_accessor :ProxyId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue, :GroupId, :Http3Supported
+        attr_accessor :ProxyId, :GroupId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue, :Http3Supported
 
-        def initialize(proxyid=nil, listenerid=nil, listenername=nil, port=nil, offset=nil, limit=nil, searchvalue=nil, groupid=nil, http3supported=nil)
+        def initialize(proxyid=nil, groupid=nil, listenerid=nil, listenername=nil, port=nil, offset=nil, limit=nil, searchvalue=nil, http3supported=nil)
           @ProxyId = proxyid
+          @GroupId = groupid
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
           @Offset = offset
           @Limit = limit
           @SearchValue = searchvalue
-          @GroupId = groupid
           @Http3Supported = http3supported
         end
 
         def deserialize(params)
           @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
           @ListenerId = params['ListenerId']
           @ListenerName = params['ListenerName']
           @Port = params['Port']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SearchValue = params['SearchValue']
-          @GroupId = params['GroupId']
           @Http3Supported = params['Http3Supported']
         end
       end
@@ -5517,7 +5522,7 @@ module TencentCloud
         # @type Bandwidth: Integer
         # @param DestRegion: （旧参数，请切换到RealServerRegion）源站区域名称。
         # @type DestRegion: String
-        # @param Concurrency: （旧参数，请切换到Concurrent）通道并发量上限，表示同时在线的连接数，单位：万。
+        # @param Concurrency: （此参数为旧参数，请填写新参数Concurrent，二者必须填写一个）通道并发量上限，表示同时在线的连接数，单位：万。
         # @type Concurrency: Integer
         # @param RealServerRegion: （新参数）源站区域名称。
         # @type RealServerRegion: String
@@ -6068,7 +6073,7 @@ module TencentCloud
       class ModifyProxiesAttributeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: （旧参数，请切换到ProxyIds）一个或多个待操作的通道ID。
         # @type InstanceIds: Array
-        # @param ProxyName: 通道名称。可任意命名，但不得超过30个字符。
+        # @param ProxyName: 通道名称。可任意命名，但不得超过32个字符。
         # @type ProxyName: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # 更多详细信息请参阅：如何保证幂等性。
@@ -6213,7 +6218,7 @@ module TencentCloud
       class ModifyProxyGroupAttributeRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 需要修改的通道组ID。
         # @type GroupId: String
-        # @param GroupName: 修改后的通道组名称：不超过30个字符，超过部分会被截断。
+        # @param GroupName: 修改后的通道组名称：不超过30个字符，否则修改失败。
         # @type GroupName: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
@@ -6434,7 +6439,7 @@ module TencentCloud
         # @type ProxyId: String
         # @param ListenerName: 监听器名称
         # @type ListenerName: String
-        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
+        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。注意：lrtt需要开通白名单；RealServerType 为 DOMAIN 不支持wrr 和 lrtt。
         # @type Scheduler: String
         # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
         # @type DelayLoop: Integer
@@ -6875,7 +6880,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeatureBitmap: Integer
-        # @param IsSupportTLSChoice: 是否支持设置TSL设置
+        # @param IsSupportTLSChoice: 是否支持设置TLS设置
         # 0表示不支持；
         # 1表示支持。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6962,6 +6967,7 @@ module TencentCloud
         # CREATING表示创建中；
         # DESTROYING表示销毁中；
         # MOVING表示通道迁移中；
+        # CLOSED表示已关闭；
         # CHANGING表示部分部署中。
         # @type Status: String
         # @param TagSet: 标签列表。
@@ -7829,9 +7835,9 @@ module TencentCloud
       class SetTlsVersionRequest < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听器ID
         # @type ListenerId: String
-        # @param TLSSupportVersion: TLS版本
+        # @param TLSSupportVersion: TLS版本,可选TLSv1.0、TLSv1.1、TLSv1.2、TLSv1.3
         # @type TLSSupportVersion: Array
-        # @param TLSCiphers: 密码套件包
+        # @param TLSCiphers: 密码套件包,可选 GAAP_TLS_CIPHERS_STRICT，GAAP_TLS_CIPHERS_GENERAL，GAAP_TLS_CIPHERS_WIDE(默认)
         # @type TLSCiphers: String
 
         attr_accessor :ListenerId, :TLSSupportVersion, :TLSCiphers

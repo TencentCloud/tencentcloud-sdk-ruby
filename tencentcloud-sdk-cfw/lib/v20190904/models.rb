@@ -3596,7 +3596,7 @@ module TencentCloud
         # @type Port: String
         # @param Protocol: 协议；TCP/UDP/ICMP/ANY
         # @type Protocol: String
-        # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
+        # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id
         # @type ServiceTemplateId: String
         # @param RuleUuid: 规则的uuid
         # @type RuleUuid: Integer
@@ -5433,7 +5433,7 @@ module TencentCloud
       class EdgeIpInfo < TencentCloud::Common::AbstractModel
         # @param PublicIp: 公网IP
         # @type PublicIp: String
-        # @param PublicIpType: 公网 IP 类型
+        # @param PublicIpType: 公网 IP 类型 1 公网,2 弹性,3 弹性ipv6,4 anycastIP, 6 HighQualityEIP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpType: Integer
         # @param InstanceId: 实例ID
