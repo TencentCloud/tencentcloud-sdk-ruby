@@ -1922,15 +1922,18 @@ module TencentCloud
         # @type DisplayStrategy: String
         # @param UserGroupList: 用户组
         # @type UserGroupList: Array
+        # @param DeleteHomeDir: 是否删除家目录，只针对cvm集群
+        # @type DeleteHomeDir: Boolean
 
-        attr_accessor :InstanceId, :UserNameList, :TkeClusterId, :DisplayStrategy, :UserGroupList
+        attr_accessor :InstanceId, :UserNameList, :TkeClusterId, :DisplayStrategy, :UserGroupList, :DeleteHomeDir
 
-        def initialize(instanceid=nil, usernamelist=nil, tkeclusterid=nil, displaystrategy=nil, usergrouplist=nil)
+        def initialize(instanceid=nil, usernamelist=nil, tkeclusterid=nil, displaystrategy=nil, usergrouplist=nil, deletehomedir=nil)
           @InstanceId = instanceid
           @UserNameList = usernamelist
           @TkeClusterId = tkeclusterid
           @DisplayStrategy = displaystrategy
           @UserGroupList = usergrouplist
+          @DeleteHomeDir = deletehomedir
         end
 
         def deserialize(params)
@@ -1946,6 +1949,7 @@ module TencentCloud
               @UserGroupList << userandgroup_tmp
             end
           end
+          @DeleteHomeDir = params['DeleteHomeDir']
         end
       end
 

@@ -125,10 +125,13 @@ module TencentCloud
         # @param BackupCosInfo: 备份实例中关于cos的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupCosInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.BackupCosInfo`
+        # @param IsUserDefineBucket: 是否使用的自定义桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUserDefineBucket: Boolean
 
-        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo
+        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket
 
-        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil)
+        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil)
           @JobId = jobid
           @Snapshot = snapshot
           @BackUpSize = backupsize
@@ -141,6 +144,7 @@ module TencentCloud
           @DorisSourceInfo = dorissourceinfo
           @JobStatusNum = jobstatusnum
           @BackupCosInfo = backupcosinfo
+          @IsUserDefineBucket = isuserdefinebucket
         end
 
         def deserialize(params)
@@ -162,6 +166,7 @@ module TencentCloud
             @BackupCosInfo = BackupCosInfo.new
             @BackupCosInfo.deserialize(params['BackupCosInfo'])
           end
+          @IsUserDefineBucket = params['IsUserDefineBucket']
         end
       end
 

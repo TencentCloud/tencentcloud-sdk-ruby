@@ -9873,27 +9873,73 @@ module TencentCloud
 
       # DescribeAssetImageRegistryRegistryList请求参数结构体
       class DescribeAssetImageRegistryRegistryListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Filters: 过滤字段
+        # IsAuthorized是否授权，取值全部all，未授权0，已授权1
+        # @type Filters: Array
+        # @param By: 排序字段
+        # @type By: String
+        # @param Order: 排序方式，asc，desc
+        # @type Order: String
 
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order
 
-        def initialize()
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
         end
 
         def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
         end
       end
 
       # DescribeAssetImageRegistryRegistryList返回参数结构体
       class DescribeAssetImageRegistryRegistryListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 镜像仓库列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :List, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              imagereporegistryinfo_tmp = ImageRepoRegistryInfo.new
+              imagereporegistryinfo_tmp.deserialize(i)
+              @List << imagereporegistryinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -22384,6 +22430,94 @@ module TencentCloud
           @HasNeedFixVul = params['HasNeedFixVul']
           @SensitiveInfoCnt = params['SensitiveInfoCnt']
           @RecommendedFix = params['RecommendedFix']
+        end
+      end
+
+      # 容器安全镜像仓库列表
+      class ImageRepoRegistryInfo < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 仓库id
+        # @type RegistryId: Integer
+        # @param Name: 仓库名
+        # @type Name: String
+        # @param RegistryType: 仓库类型，列表：harbor、tcr
+        # @type RegistryType: String
+        # @param Url: 仓库url
+        # @type Url: String
+        # @param NetType: 网络类型，列表：public
+        # @type NetType: String
+        # @param RegistryRegion: 区域，列表：default
+        # @type RegistryRegion: String
+        # @param RegistryVersion: 仓库版本
+        # @type RegistryVersion: String
+        # @param ConnectMsg: 仓库连接错误信息，待废弃，请使用ConnDetectException
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectMsg: String
+        # @param ConnDetectType: 联通性检测方式
+        # @type ConnDetectType: String
+        # @param ConnDetectHostCount: 联通性检测主机数
+        # @type ConnDetectHostCount: Integer
+        # @param ConnDetectDetail: 联通性检测详情
+        # @type ConnDetectDetail: Array
+        # @param InstanceID: tcr情况下的instance_id
+        # @type InstanceID: String
+        # @param LatestSyncTime: 最近同步成功时间
+        # @type LatestSyncTime: String
+        # @param SyncStatus: 同步状态
+        # @type SyncStatus: String
+        # @param SyncFailReason: 同步失败原因
+        # @type SyncFailReason: String
+        # @param SyncSolution: 同步失败解决方案
+        # @type SyncSolution: String
+        # @param SyncMessage: 同步失败信息
+        # @type SyncMessage: String
+
+        attr_accessor :RegistryId, :Name, :RegistryType, :Url, :NetType, :RegistryRegion, :RegistryVersion, :ConnectMsg, :ConnDetectType, :ConnDetectHostCount, :ConnDetectDetail, :InstanceID, :LatestSyncTime, :SyncStatus, :SyncFailReason, :SyncSolution, :SyncMessage
+
+        def initialize(registryid=nil, name=nil, registrytype=nil, url=nil, nettype=nil, registryregion=nil, registryversion=nil, connectmsg=nil, conndetecttype=nil, conndetecthostcount=nil, conndetectdetail=nil, instanceid=nil, latestsynctime=nil, syncstatus=nil, syncfailreason=nil, syncsolution=nil, syncmessage=nil)
+          @RegistryId = registryid
+          @Name = name
+          @RegistryType = registrytype
+          @Url = url
+          @NetType = nettype
+          @RegistryRegion = registryregion
+          @RegistryVersion = registryversion
+          @ConnectMsg = connectmsg
+          @ConnDetectType = conndetecttype
+          @ConnDetectHostCount = conndetecthostcount
+          @ConnDetectDetail = conndetectdetail
+          @InstanceID = instanceid
+          @LatestSyncTime = latestsynctime
+          @SyncStatus = syncstatus
+          @SyncFailReason = syncfailreason
+          @SyncSolution = syncsolution
+          @SyncMessage = syncmessage
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          @RegistryType = params['RegistryType']
+          @Url = params['Url']
+          @NetType = params['NetType']
+          @RegistryRegion = params['RegistryRegion']
+          @RegistryVersion = params['RegistryVersion']
+          @ConnectMsg = params['ConnectMsg']
+          @ConnDetectType = params['ConnDetectType']
+          @ConnDetectHostCount = params['ConnDetectHostCount']
+          unless params['ConnDetectDetail'].nil?
+            @ConnDetectDetail = []
+            params['ConnDetectDetail'].each do |i|
+              registryconndetectresult_tmp = RegistryConnDetectResult.new
+              registryconndetectresult_tmp.deserialize(i)
+              @ConnDetectDetail << registryconndetectresult_tmp
+            end
+          end
+          @InstanceID = params['InstanceID']
+          @LatestSyncTime = params['LatestSyncTime']
+          @SyncStatus = params['SyncStatus']
+          @SyncFailReason = params['SyncFailReason']
+          @SyncSolution = params['SyncSolution']
+          @SyncMessage = params['SyncMessage']
         end
       end
 

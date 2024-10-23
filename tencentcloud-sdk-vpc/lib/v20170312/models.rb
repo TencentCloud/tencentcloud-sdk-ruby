@@ -12428,8 +12428,7 @@ module TencentCloud
 
       # DescribeRoutes请求参数结构体
       class DescribeRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，参数不支持同时指定RouteTableIds和Filters。
-        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        # @param Filters: <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
         # <li>gateway-id - String - （过滤条件）网关ID。</li>
         # <li>description - String - （过滤条件）路由描述。</li>
         # <li>route-table-id - String - （过滤条件）路由表实例ID。</li>
@@ -23861,10 +23860,10 @@ module TencentCloud
         # @param ServiceTemplate: 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplate: :class:`Tencentcloud::Vpc.v20170312.models.ServiceTemplateSpecification`
-        # @param CidrBlock: 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。
+        # @param CidrBlock: 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。作为入参时，可使用字符串`MY_PUBLIC_IP`指代发起请求的公网IP地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CidrBlock: String
-        # @param Ipv6CidrBlock: 网段或IPv6(互斥)。
+        # @param Ipv6CidrBlock: 网段或IPv6(互斥)。作为入参时，可使用字符串`MY_PUBLIC_IP`指代发起请求的公网IPv6地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6CidrBlock: String
         # @param SecurityGroupId: 安全组实例ID，例如：sg-ohuuioma。

@@ -1744,7 +1744,7 @@ module TencentCloud
         # @type ParentProcessName: String
         # @param Status: 进程状态
         # @type Status: String
-        # @param HasSign: 数字签名:0无，1有， 999 空，仅windows
+        # @param HasSign: 数字签名:0无，1有， 999 空，仅Windows
         # @type HasSign: Integer
         # @param InstallByPackage: 是否通过安装包安装：:0否，1是， 999 空，仅linux
         # @type InstallByPackage: Integer
@@ -2381,7 +2381,7 @@ module TencentCloud
         # @param Tag: 主机标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
-        # @param Name: 数据库名
+        # @param Name: Web应用名
         # @type Name: String
         # @param Version: 版本
         # @type Version: String
@@ -2671,7 +2671,7 @@ module TencentCloud
         # @param Tag: 主机标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
-        # @param Name: 数据库名
+        # @param Name: 服务名
         # @type Name: String
         # @param Version: 版本
         # @type Version: String
@@ -32532,7 +32532,8 @@ module TencentCloud
         # @type Tag: Array
         # @param RegionInfo: 地域信息
         # @type RegionInfo: :class:`Tencentcloud::Cwp.v20180228.models.RegionInfo`
-        # @param InstanceState: 实例状态 TERMINATED_PRO_VERSION 已销毁
+        # @param InstanceState: 实例状态请参考CVM实例列表InstanceState值
+        # https://cloud.tencent.com/document/api/213/15753#Instance
         # @type InstanceState: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer

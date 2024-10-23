@@ -1351,10 +1351,12 @@ module TencentCloud
         # @type CompanyId: Integer
         # @param VerifyType: 验证方式
         # @type VerifyType: String
+        # @param PriceKey: 询价参数
+        # @type PriceKey: String
 
-        attr_accessor :ProductPid, :PackageIds, :DomainCount, :Period, :OldCertificateId, :RenewGenCsrMethod, :RenewCsr, :RenewAlgorithmType, :RenewAlgorithmParam, :ProjectId, :Tags, :RenewKeyPass, :DomainNames, :CertificateCount, :ManagerId, :CompanyId, :VerifyType
+        attr_accessor :ProductPid, :PackageIds, :DomainCount, :Period, :OldCertificateId, :RenewGenCsrMethod, :RenewCsr, :RenewAlgorithmType, :RenewAlgorithmParam, :ProjectId, :Tags, :RenewKeyPass, :DomainNames, :CertificateCount, :ManagerId, :CompanyId, :VerifyType, :PriceKey
 
-        def initialize(productpid=nil, packageids=nil, domaincount=nil, period=nil, oldcertificateid=nil, renewgencsrmethod=nil, renewcsr=nil, renewalgorithmtype=nil, renewalgorithmparam=nil, projectid=nil, tags=nil, renewkeypass=nil, domainnames=nil, certificatecount=nil, managerid=nil, companyid=nil, verifytype=nil)
+        def initialize(productpid=nil, packageids=nil, domaincount=nil, period=nil, oldcertificateid=nil, renewgencsrmethod=nil, renewcsr=nil, renewalgorithmtype=nil, renewalgorithmparam=nil, projectid=nil, tags=nil, renewkeypass=nil, domainnames=nil, certificatecount=nil, managerid=nil, companyid=nil, verifytype=nil, pricekey=nil)
           @ProductPid = productpid
           @PackageIds = packageids
           @DomainCount = domaincount
@@ -1372,6 +1374,7 @@ module TencentCloud
           @ManagerId = managerid
           @CompanyId = companyid
           @VerifyType = verifytype
+          @PriceKey = pricekey
         end
 
         def deserialize(params)
@@ -1399,6 +1402,7 @@ module TencentCloud
           @ManagerId = params['ManagerId']
           @CompanyId = params['CompanyId']
           @VerifyType = params['VerifyType']
+          @PriceKey = params['PriceKey']
         end
       end
 
@@ -1428,25 +1432,40 @@ module TencentCloud
 
       # CreateCertificate请求参数结构体
       class CreateCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 证书商品ID，3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。
+        # @param ProductId: 证书商品ID，3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = Wotrus 国密域名型证书，34 = Wotrus 国密域名型多域名证书，35 = Wotrus 国密域名型通配符证书，37 = Wotrus 国密企业型证书，38 = Wotrus 国密企业型多域名证书，39 = Wotrus 国密企业型通配符证书，40 = Wotrus 国密增强型证书，41 = Wotrus 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书，43 = DNSPod-企业型(OV)SSL证书，44 = DNSPod-企业型(OV)通配符SSL证书，45 = DNSPod-企业型(OV)多域名SSL证书， 46 = DNSPod-增强型(EV)SSL证书，47 = DNSPod-增强型(EV)多域名SSL证书，48 = DNSPod-域名型(DV)SSL证书，49 = DNSPod-域名型(DV)通配符SSL证书，50 = DNSPod-域名型(DV)多域名SSL证书，51 = DNSPod（国密）-企业型(OV)SSL证书，52 = DNSPod（国密）-企业型(OV)通配符SSL证书，53 = DNSPod（国密）-企业型(OV)多域名SSL证书，54 = DNSPod（国密）-域名型(DV)SSL证书，55 = DNSPod（国密）-域名型(DV)通配符SSL证书， 56 = DNSPod（国密）-域名型(DV)多域名SSL证书，57 = SecureSite 企业型专业版多域名(OV Pro)，58 = SecureSite 企业型多域名(OV)，59 = SecureSite 增强型专业版多域名(EV Pro)，60 = SecureSite 增强型多域名(EV)，61 = Geotrust 增强型多域名(EV)
         # @type ProductId: Integer
         # @param DomainNum: 证书包含的域名数量
         # @type DomainNum: Integer
-        # @param TimeSpan: 证书年限，当前只支持 1 年证书的购买
+        # @param TimeSpan: 证书年限
         # @type TimeSpan: Integer
+        # @param AutoVoucher: 是否自动使用代金券：1是，0否；默认为1
+        # @type AutoVoucher: Integer
+        # @param Tags: 标签， 生成证书打标签
+        # @type Tags: Array
 
-        attr_accessor :ProductId, :DomainNum, :TimeSpan
+        attr_accessor :ProductId, :DomainNum, :TimeSpan, :AutoVoucher, :Tags
 
-        def initialize(productid=nil, domainnum=nil, timespan=nil)
+        def initialize(productid=nil, domainnum=nil, timespan=nil, autovoucher=nil, tags=nil)
           @ProductId = productid
           @DomainNum = domainnum
           @TimeSpan = timespan
+          @AutoVoucher = autovoucher
+          @Tags = tags
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DomainNum = params['DomainNum']
           @TimeSpan = params['TimeSpan']
+          @AutoVoucher = params['AutoVoucher']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
         end
       end
 

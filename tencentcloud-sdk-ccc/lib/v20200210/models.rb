@@ -4113,14 +4113,17 @@ module TencentCloud
         # @type MaxCallCount: Integer
         # @param MaxCallPSec: 每秒最大并发数
         # @type MaxCallPSec: Integer
+        # @param OutboundCalleeFormat: 呼出被叫格式，使用 {+E.164} 或 {E.164},
+        # @type OutboundCalleeFormat: String
 
-        attr_accessor :CallType, :PhoneNumber, :MaxCallCount, :MaxCallPSec
+        attr_accessor :CallType, :PhoneNumber, :MaxCallCount, :MaxCallPSec, :OutboundCalleeFormat
 
-        def initialize(calltype=nil, phonenumber=nil, maxcallcount=nil, maxcallpsec=nil)
+        def initialize(calltype=nil, phonenumber=nil, maxcallcount=nil, maxcallpsec=nil, outboundcalleeformat=nil)
           @CallType = calltype
           @PhoneNumber = phonenumber
           @MaxCallCount = maxcallcount
           @MaxCallPSec = maxcallpsec
+          @OutboundCalleeFormat = outboundcalleeformat
         end
 
         def deserialize(params)
@@ -4128,6 +4131,7 @@ module TencentCloud
           @PhoneNumber = params['PhoneNumber']
           @MaxCallCount = params['MaxCallCount']
           @MaxCallPSec = params['MaxCallPSec']
+          @OutboundCalleeFormat = params['OutboundCalleeFormat']
         end
       end
 

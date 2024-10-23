@@ -1640,7 +1640,7 @@ module TencentCloud
 
       # https 证书配置。
       class CertificateInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书 ID。
+        # @param CertId: 证书 ID。来源于 SSL 侧，您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/ssl) 查看 CertId。
         # @type CertId: String
         # @param Alias: 证书备注名。
         # @type Alias: String
@@ -9905,15 +9905,14 @@ module TencentCloud
         # <li>sslcert：配置 SSL 托管服务端证书；</li>
         # 不填写表示服务端证书保持原有配置。
         # @type Mode: String
-        # @param ServerCertInfo: SSL 证书配置，本参数仅在 mode 为 sslcert 时生效，传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
+        # @param ServerCertInfo: SSL 证书配置，本参数仅在 mode 为 sslcert 时生效，传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/ssl) 查看 CertId。
         # @type ServerCertInfo: Array
         # @param ApplyType: 托管类型，取值有：
         # <li>none：不托管EO；</li>
         # <li>apply：托管EO</li>
         # 不填，默认取值为none。
         # @type ApplyType: String
-        # @param ClientCertInfo: 边缘双向认证配置。
-        # 不填写表示边缘双向认证保持原有配置。
+        # @param ClientCertInfo: 在边缘双向认证场景下，该字段为客户端的 CA 证书，部署在 EO 的入口侧，用于客户端对 EO 节点进行认证。不填写表示保持原有配置。
         # @type ClientCertInfo: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
@@ -10815,7 +10814,7 @@ module TencentCloud
         # <li>off：关闭。</li>
         # @type Switch: String
         # @param CertInfos: 双向认证证书列表。
-        # 注意：MutualTLS 在 ModifyHostsCertificate 作为入参使用时，该参数传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
+        # 注意：MutualTLS 在 ModifyHostsCertificate 作为入参使用时，该参数传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/ssl) 查看 CertId。
         # @type CertInfos: Array
 
         attr_accessor :Switch, :CertInfos
@@ -12860,7 +12859,8 @@ module TencentCloud
 
       # https 服务端证书配置
       class ServerCertInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 服务器证书 ID。
+        # @param CertId: 服务器证书 ID。来源于 SSL 侧，您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/ssl) 查看 CertId。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertId: String
         # @param Alias: 证书备注名。

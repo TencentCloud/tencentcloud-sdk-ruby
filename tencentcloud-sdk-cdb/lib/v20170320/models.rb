@@ -11945,17 +11945,21 @@ module TencentCloud
         # @type IsRandomZone: String
         # @param Zone: 指定该节点分布在哪个可用区。
         # @type Zone: String
+        # @param NodeId: 升级集群版实例时，如果要调整只读节点可用区，需要指定节点id。
+        # @type NodeId: String
 
-        attr_accessor :IsRandomZone, :Zone
+        attr_accessor :IsRandomZone, :Zone, :NodeId
 
-        def initialize(israndomzone=nil, zone=nil)
+        def initialize(israndomzone=nil, zone=nil, nodeid=nil)
           @IsRandomZone = israndomzone
           @Zone = zone
+          @NodeId = nodeid
         end
 
         def deserialize(params)
           @IsRandomZone = params['IsRandomZone']
           @Zone = params['Zone']
+          @NodeId = params['NodeId']
         end
       end
 

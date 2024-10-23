@@ -1125,6 +1125,43 @@ module TencentCloud
         end
       end
 
+      # DescribeAgentRelateBigDealIds请求参数结构体
+      class DescribeAgentRelateBigDealIdsRequest < TencentCloud::Common::AbstractModel
+        # @param BigDealId: 大订单号
+        # @type BigDealId: String
+
+        attr_accessor :BigDealId
+
+        def initialize(bigdealid=nil)
+          @BigDealId = bigdealid
+        end
+
+        def deserialize(params)
+          @BigDealId = params['BigDealId']
+        end
+      end
+
+      # DescribeAgentRelateBigDealIds返回参数结构体
+      class DescribeAgentRelateBigDealIdsResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIdList: 申请合并支付的关联大订单号列表（不包含请求的订单号）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealIdList, :RequestId
+
+        def initialize(bigdealidlist=nil, requestid=nil)
+          @BigDealIdList = bigdealidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealIdList = params['BigDealIdList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAgentSelfPayDealsV2请求参数结构体
       class DescribeAgentSelfPayDealsV2Request < TencentCloud::Common::AbstractModel
         # @param OwnerUin: 下单人账号ID

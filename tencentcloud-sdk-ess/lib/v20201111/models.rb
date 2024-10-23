@@ -2338,10 +2338,18 @@ module TencentCloud
         # <li>PREVIEW_FLOW_DETAIL：生成查看合同详情的嵌入页面（仅支持PC端）</li></ul>
         # @type EmbedType: String
         # @param BusinessId: WEB嵌入的业务资源ID
-        # <ul><li>PREVIEW_SEAL_DETAIL，必填，取值为印章id</li>
-        # <li>MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模板id</li>
-        # <li>PREVIEW_FLOW，PREVIEW_FLOW_DETAIL，必填，取值为合同id</li>
+
+        # 当EmbedType取值
+        # <ul>
+        # <li>为PREVIEW_SEAL_DETAIL，必填，取值为印章id。</li>
+        # <li>为CREATE_TEMPLATE，非必填，取值为资源id。*资源Id获取可使用接口[上传文件](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)*</li>
+        # <li>为MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模板id。</li>
+        # <li>为PREVIEW_FLOW，PREVIEW_FLOW_DETAIL，必填，取值为合同id。</li>
         # </ul>
+
+        # 注意：
+        #  1. CREATE_TEMPLATE中的BusinessId仅支持PDF文件类型， 如果您的文件不是PDF， 请使用接口[创建文件转换任务
+        # ](https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi) 和[查询转换任务状态](https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi) 来进行转换成PDF资源。
         # @type BusinessId: String
         # @param Agent: 代理企业和员工的信息。
         # <br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -8490,17 +8498,26 @@ module TencentCloud
         # <ul><li> <b>true</b> :允许在模板预览页展示控件</li>
         # <li> <b>false</b> :（默认）不允许在模板预览页展示控件</li></ul>
         # @type ShowTemplateComponent: Boolean
+        # @param SkipUploadFile: 跳过上传文件，默认为false(展示上传文件页）![image](https://qcloudimg.tencent-cloud.cn/raw/8ca33745cf772e79831dbe5a70e82400.png)
+        # - false: 展示上传文件页
+        # - true: 不展示上传文件页
 
-        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent
 
-        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil)
+        # 注意: 此参数仅针对**EmbedType=CREATE_TEMPLATE(创建模板)有效**，
+        # @type SkipUploadFile: Boolean
+
+        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile
+
+        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil)
           @ShowFlowDetailComponent = showflowdetailcomponent
           @ShowTemplateComponent = showtemplatecomponent
+          @SkipUploadFile = skipuploadfile
         end
 
         def deserialize(params)
           @ShowFlowDetailComponent = params['ShowFlowDetailComponent']
           @ShowTemplateComponent = params['ShowTemplateComponent']
+          @SkipUploadFile = params['SkipUploadFile']
         end
       end
 

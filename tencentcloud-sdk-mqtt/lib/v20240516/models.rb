@@ -153,7 +153,7 @@ module TencentCloud
         # @type Username: String
         # @param ClientId: 客户端
         # @type ClientId: String
-        # @param Ip: ip
+        # @param Ip: IP地址
         # @type Ip: String
         # @param Remark: 备注信息
         # @type Remark: String
@@ -1114,7 +1114,7 @@ module TencentCloud
         # @type Retain: Integer
         # @param ClientId: 客户端
         # @type ClientId: String
-        # @param Ip: ip
+        # @param Ip: IP
         # @type Ip: String
         # @param Qos: 0、1、2
         # @type Qos: String

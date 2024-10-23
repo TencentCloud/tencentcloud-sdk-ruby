@@ -2570,10 +2570,13 @@ module TencentCloud
         # @param StreamName: RTMP推流地址自定义streamName
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamName: String
+        # @param SilentFrameSwitch: 是否开启静音帧（0：关闭；1 开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SilentFrameSwitch: Integer
 
-        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName
+        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName, :SilentFrameSwitch
 
-        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil)
+        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil, silentframeswitch=nil)
           @DeviceId = deviceid
           @Code = code
           @Name = name
@@ -2604,6 +2607,7 @@ module TencentCloud
           @SubscribeSwitch = subscribeswitch
           @AppName = appname
           @StreamName = streamname
+          @SilentFrameSwitch = silentframeswitch
         end
 
         def deserialize(params)
@@ -2637,6 +2641,7 @@ module TencentCloud
           @SubscribeSwitch = params['SubscribeSwitch']
           @AppName = params['AppName']
           @StreamName = params['StreamName']
+          @SilentFrameSwitch = params['SilentFrameSwitch']
         end
       end
 
@@ -7768,10 +7773,12 @@ module TencentCloud
         # @type AudioSwitch: Integer
         # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
         # @type SubscribeSwitch: Integer
+        # @param SilentFrameSwitch: 是否开启静音帧（0：关闭；1 开启）
+        # @type SilentFrameSwitch: Integer
 
-        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType, :AudioSwitch, :SubscribeSwitch
+        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType, :AudioSwitch, :SubscribeSwitch, :SilentFrameSwitch
 
-        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil, audioswitch=nil, subscribeswitch=nil)
+        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil, audioswitch=nil, subscribeswitch=nil, silentframeswitch=nil)
           @DeviceId = deviceid
           @Name = name
           @TransportProtocol = transportprotocol
@@ -7783,6 +7790,7 @@ module TencentCloud
           @ProtocolType = protocoltype
           @AudioSwitch = audioswitch
           @SubscribeSwitch = subscribeswitch
+          @SilentFrameSwitch = silentframeswitch
         end
 
         def deserialize(params)
@@ -7797,6 +7805,7 @@ module TencentCloud
           @ProtocolType = params['ProtocolType']
           @AudioSwitch = params['AudioSwitch']
           @SubscribeSwitch = params['SubscribeSwitch']
+          @SilentFrameSwitch = params['SilentFrameSwitch']
         end
       end
 
