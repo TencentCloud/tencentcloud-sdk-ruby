@@ -697,19 +697,23 @@ module TencentCloud
         # @type GroupName: String
         # @param Description: 用户组的描述。  长度：最大 1024 个字符。
         # @type Description: String
+        # @param GroupType: 用户组类型  Manual：手动创建，Synchronized：外部导入
+        # @type GroupType: String
 
-        attr_accessor :ZoneId, :GroupName, :Description
+        attr_accessor :ZoneId, :GroupName, :Description, :GroupType
 
-        def initialize(zoneid=nil, groupname=nil, description=nil)
+        def initialize(zoneid=nil, groupname=nil, description=nil, grouptype=nil)
           @ZoneId = zoneid
           @GroupName = groupname
           @Description = description
+          @GroupType = grouptype
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @GroupName = params['GroupName']
           @Description = params['Description']
+          @GroupType = params['GroupType']
         end
       end
 
@@ -1247,6 +1251,66 @@ module TencentCloud
         end
       end
 
+      # CreateSCIMCredential请求参数结构体
+      class CreateSCIMCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # CreateSCIMCredential返回参数结构体
+      class CreateSCIMCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母。
+        # @type ZoneId: String
+        # @param CredentialId: SCIM密钥ID。scimcred-前缀开头，后面是12位随机数字/小写字母。
+        # @type CredentialId: String
+        # @param CredentialType: SCIM密钥类型。
+        # @type CredentialType: String
+        # @param CreateTime: SCIM 密钥的创建时间。
+        # @type CreateTime: String
+        # @param ExpireTime: SCIM 密钥的过期时间。
+        # @type ExpireTime: String
+        # @param CredentialStatus: SCIM密钥状态，Enabled已开启，Disabled已关闭。
+        # @type CredentialStatus: String
+        # @param CredentialSecret: SCIM密钥。
+        # @type CredentialSecret: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :CredentialId, :CredentialType, :CreateTime, :ExpireTime, :CredentialStatus, :CredentialSecret, :RequestId
+
+        def initialize(zoneid=nil, credentialid=nil, credentialtype=nil, createtime=nil, expiretime=nil, credentialstatus=nil, credentialsecret=nil, requestid=nil)
+          @ZoneId = zoneid
+          @CredentialId = credentialid
+          @CredentialType = credentialtype
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @CredentialStatus = credentialstatus
+          @CredentialSecret = credentialsecret
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @CredentialId = params['CredentialId']
+          @CredentialType = params['CredentialType']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @CredentialStatus = params['CredentialStatus']
+          @CredentialSecret = params['CredentialSecret']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间 ID。
@@ -1265,10 +1329,12 @@ module TencentCloud
         # @type Email: String
         # @param UserStatus: 用户的状态。取值：  Enabled（默认值）：启用。 Disabled：禁用。
         # @type UserStatus: String
+        # @param UserType: 用户类型  Manual：手动创建，Synchronized：外部导入
+        # @type UserType: String
 
-        attr_accessor :ZoneId, :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus
+        attr_accessor :ZoneId, :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType
 
-        def initialize(zoneid=nil, username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil)
+        def initialize(zoneid=nil, username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil)
           @ZoneId = zoneid
           @UserName = username
           @FirstName = firstname
@@ -1277,6 +1343,7 @@ module TencentCloud
           @Description = description
           @Email = email
           @UserStatus = userstatus
+          @UserType = usertype
         end
 
         def deserialize(params)
@@ -1288,6 +1355,7 @@ module TencentCloud
           @Description = params['Description']
           @Email = params['Email']
           @UserStatus = params['UserStatus']
+          @UserType = params['UserType']
         end
       end
 
@@ -1784,6 +1852,42 @@ module TencentCloud
 
       # DeleteRoleConfiguration返回参数结构体
       class DeleteRoleConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSCIMCredential请求参数结构体
+      class DeleteSCIMCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param CredentialId: SCIM密钥ID。scimcred-前缀开头，后面是12位随机数字/小写字母。
+        # @type CredentialId: String
+
+        attr_accessor :ZoneId, :CredentialId
+
+        def initialize(zoneid=nil, credentialid=nil)
+          @ZoneId = zoneid
+          @CredentialId = credentialid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @CredentialId = params['CredentialId']
+        end
+      end
+
+      # DeleteSCIMCredential返回参数结构体
+      class DeleteSCIMCredentialResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3595,6 +3699,42 @@ module TencentCloud
         end
       end
 
+      # GetSCIMSynchronizationStatus请求参数结构体
+      class GetSCIMSynchronizationStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # GetSCIMSynchronizationStatus返回参数结构体
+      class GetSCIMSynchronizationStatusResponse < TencentCloud::Common::AbstractModel
+        # @param SCIMSynchronizationStatus: SCIM 同步状态。Enabled：启用。 Disabled：禁用。
+        # @type SCIMSynchronizationStatus: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SCIMSynchronizationStatus, :RequestId
+
+        def initialize(scimsynchronizationstatus=nil, requestid=nil)
+          @SCIMSynchronizationStatus = scimsynchronizationstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SCIMSynchronizationStatus = params['SCIMSynchronizationStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTaskStatus请求参数结构体
       class GetTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间ID。
@@ -4181,10 +4321,12 @@ module TencentCloud
         # @type SortField: String
         # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要你和SortField一起设置
         # @type SortType: String
+        # @param Offset: 翻页offset. 不要与NextToken同时使用，优先使用NextToken
+        # @type Offset: Integer
 
-        attr_accessor :ZoneId, :NextToken, :MaxResults, :Filter, :GroupType, :FilterUsers, :SortField, :SortType
+        attr_accessor :ZoneId, :NextToken, :MaxResults, :Filter, :GroupType, :FilterUsers, :SortField, :SortType, :Offset
 
-        def initialize(zoneid=nil, nexttoken=nil, maxresults=nil, filter=nil, grouptype=nil, filterusers=nil, sortfield=nil, sorttype=nil)
+        def initialize(zoneid=nil, nexttoken=nil, maxresults=nil, filter=nil, grouptype=nil, filterusers=nil, sortfield=nil, sorttype=nil, offset=nil)
           @ZoneId = zoneid
           @NextToken = nexttoken
           @MaxResults = maxresults
@@ -4193,6 +4335,7 @@ module TencentCloud
           @FilterUsers = filterusers
           @SortField = sortfield
           @SortType = sorttype
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -4204,6 +4347,7 @@ module TencentCloud
           @FilterUsers = params['FilterUsers']
           @SortField = params['SortField']
           @SortType = params['SortType']
+          @Offset = params['Offset']
         end
       end
 
@@ -5103,6 +5247,57 @@ module TencentCloud
         end
       end
 
+      # ListSCIMCredentials请求参数结构体
+      class ListSCIMCredentialsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param CredentialId: SCIM密钥ID
+        # @type CredentialId: String
+
+        attr_accessor :ZoneId, :CredentialId
+
+        def initialize(zoneid=nil, credentialid=nil)
+          @ZoneId = zoneid
+          @CredentialId = credentialid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @CredentialId = params['CredentialId']
+        end
+      end
+
+      # ListSCIMCredentials返回参数结构体
+      class ListSCIMCredentialsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCounts: SCIM密钥数量。
+        # @type TotalCounts: Integer
+        # @param SCIMCredentials: SCIM 密钥信息。
+        # @type SCIMCredentials: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCounts, :SCIMCredentials, :RequestId
+
+        def initialize(totalcounts=nil, scimcredentials=nil, requestid=nil)
+          @TotalCounts = totalcounts
+          @SCIMCredentials = scimcredentials
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCounts = params['TotalCounts']
+          unless params['SCIMCredentials'].nil?
+            @SCIMCredentials = []
+            params['SCIMCredentials'].each do |i|
+              scimcredential_tmp = SCIMCredential.new
+              scimcredential_tmp.deserialize(i)
+              @SCIMCredentials << scimcredential_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询某个指定SCP策略关联的目标列表
       class ListTargetsForPolicyNode < TencentCloud::Common::AbstractModel
         # @param Uin: scp账号uin或节点Id
@@ -5402,10 +5597,12 @@ module TencentCloud
         # @type SortField: String
         # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要你和SortField一起设置
         # @type SortType: String
+        # @param Offset: 翻页offset. 不要与NextToken同时使用，优先使用NextToken
+        # @type Offset: Integer
 
-        attr_accessor :ZoneId, :UserStatus, :UserType, :Filter, :MaxResults, :NextToken, :FilterGroups, :SortField, :SortType
+        attr_accessor :ZoneId, :UserStatus, :UserType, :Filter, :MaxResults, :NextToken, :FilterGroups, :SortField, :SortType, :Offset
 
-        def initialize(zoneid=nil, userstatus=nil, usertype=nil, filter=nil, maxresults=nil, nexttoken=nil, filtergroups=nil, sortfield=nil, sorttype=nil)
+        def initialize(zoneid=nil, userstatus=nil, usertype=nil, filter=nil, maxresults=nil, nexttoken=nil, filtergroups=nil, sortfield=nil, sorttype=nil, offset=nil)
           @ZoneId = zoneid
           @UserStatus = userstatus
           @UserType = usertype
@@ -5415,6 +5612,7 @@ module TencentCloud
           @FilterGroups = filtergroups
           @SortField = sortfield
           @SortType = sorttype
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -5427,6 +5625,7 @@ module TencentCloud
           @FilterGroups = params['FilterGroups']
           @SortField = params['SortField']
           @SortType = params['SortType']
+          @Offset = params['Offset']
         end
       end
 
@@ -7082,6 +7281,42 @@ module TencentCloud
         end
       end
 
+      # SCIM密钥
+      class SCIMCredential < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param Status: SCIM密钥状态，Enabled已开启，Disabled已关闭。
+        # @type Status: String
+        # @param CredentialId: SCIM密钥ID。scimcred-前缀开头，后面是12位随机数字/小写字母。
+        # @type CredentialId: String
+        # @param CredentialType: SCIM密钥类型。
+        # @type CredentialType: String
+        # @param CreateTime: SCIM 密钥的创建时间。
+        # @type CreateTime: String
+        # @param ExpireTime: SCIM 密钥的过期时间。
+        # @type ExpireTime: String
+
+        attr_accessor :ZoneId, :Status, :CredentialId, :CredentialType, :CreateTime, :ExpireTime
+
+        def initialize(zoneid=nil, status=nil, credentialid=nil, credentialtype=nil, createtime=nil, expiretime=nil)
+          @ZoneId = zoneid
+          @Status = status
+          @CredentialId = credentialid
+          @CredentialType = credentialtype
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Status = params['Status']
+          @CredentialId = params['CredentialId']
+          @CredentialType = params['CredentialType']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # SendOrgMemberAccountBindEmail请求参数结构体
       class SendOrgMemberAccountBindEmailRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -7843,6 +8078,82 @@ module TencentCloud
             @RoleConfigurationInfo = RoleConfiguration.new
             @RoleConfigurationInfo.deserialize(params['RoleConfigurationInfo'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateSCIMCredentialStatus请求参数结构体
+      class UpdateSCIMCredentialStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param CredentialId: SCIM密钥ID。scimcred-前缀开头，后面是12位随机数字/小写字母。
+        # @type CredentialId: String
+        # @param NewStatus: SCIM密钥状态。Enabled：启用。 Disabled：禁用。
+        # @type NewStatus: String
+
+        attr_accessor :ZoneId, :CredentialId, :NewStatus
+
+        def initialize(zoneid=nil, credentialid=nil, newstatus=nil)
+          @ZoneId = zoneid
+          @CredentialId = credentialid
+          @NewStatus = newstatus
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @CredentialId = params['CredentialId']
+          @NewStatus = params['NewStatus']
+        end
+      end
+
+      # UpdateSCIMCredentialStatus返回参数结构体
+      class UpdateSCIMCredentialStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateSCIMSynchronizationStatus请求参数结构体
+      class UpdateSCIMSynchronizationStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 空间ID。z-前缀开头，后面是12位随机数字/小写字母
+        # @type ZoneId: String
+        # @param SCIMSynchronizationStatus: SCIM 同步状态。Enabled：启用。Disabled：禁用。
+        # @type SCIMSynchronizationStatus: String
+
+        attr_accessor :ZoneId, :SCIMSynchronizationStatus
+
+        def initialize(zoneid=nil, scimsynchronizationstatus=nil)
+          @ZoneId = zoneid
+          @SCIMSynchronizationStatus = scimsynchronizationstatus
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SCIMSynchronizationStatus = params['SCIMSynchronizationStatus']
+        end
+      end
+
+      # UpdateSCIMSynchronizationStatus返回参数结构体
+      class UpdateSCIMSynchronizationStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

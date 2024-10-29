@@ -392,6 +392,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建负载均衡实例。详情请参考 [快速创建负载均衡实例](https://cloud.tencent.com/document/product/1552/104223)。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
+
+        # @param request: Request instance for CreateLoadBalancer.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateLoadBalancerResponse`
+        def CreateLoadBalancer(request)
+          body = send_request('CreateLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建源站组，以源站组的方式管理业务源站。此处配置的源站组可于**添加加速域名**和**四层代理**等功能中引用。
 
         # @param request: Request instance for CreateOriginGroup.
@@ -841,6 +865,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteL4ProxyRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除负载均衡实例，若负载均衡示例被其他服务（例如：四层代理等）引用的时候，示例无法被删除，需要先解除引用关系。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
+
+        # @param request: Request instance for DeleteLoadBalancer.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteLoadBalancerResponse`
+        def DeleteLoadBalancer(request)
+          body = send_request('DeleteLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLoadBalancerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1575,6 +1623,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询负载均衡实例列表。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
+
+        # @param request: Request instance for DescribeLoadBalancerList.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeLoadBalancerListRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeLoadBalancerListResponse`
+        def DescribeLoadBalancerList(request)
+          body = send_request('DescribeLoadBalancerList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoadBalancerListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取源站组列表
 
         # @param request: Request instance for DescribeOriginGroup.
@@ -1585,6 +1657,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeOriginGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询负载均衡实例下源站组健康状态。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
+
+        # @param request: Request instance for DescribeOriginGroupHealthStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeOriginGroupHealthStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeOriginGroupHealthStatusResponse`
+        def DescribeOriginGroupHealthStatus(request)
+          body = send_request('DescribeOriginGroupHealthStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOriginGroupHealthStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2562,6 +2658,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyL4ProxyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改负载均衡实例配置。负载均衡功能内测中，如您需要使用请 [联系我们](https://cloud.tencent.com/online-service)。
+
+        # @param request: Request instance for ModifyLoadBalancer.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyLoadBalancerResponse`
+        def ModifyLoadBalancer(request)
+          body = send_request('ModifyLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLoadBalancerResponse.new
             model.deserialize(response['Response'])
             model
           else

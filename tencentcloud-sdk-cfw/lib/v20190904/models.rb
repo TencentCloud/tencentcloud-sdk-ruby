@@ -915,15 +915,18 @@ module TencentCloud
         # @type Type: Integer
         # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议，Type=6时必填
         # @type ProtocolType: String
+        # @param IpVersion: IP版本,0 IPV4;1 IPV6
+        # @type IpVersion: Integer
 
-        attr_accessor :Name, :Detail, :IpString, :Type, :ProtocolType
+        attr_accessor :Name, :Detail, :IpString, :Type, :ProtocolType, :IpVersion
 
-        def initialize(name=nil, detail=nil, ipstring=nil, type=nil, protocoltype=nil)
+        def initialize(name=nil, detail=nil, ipstring=nil, type=nil, protocoltype=nil, ipversion=nil)
           @Name = name
           @Detail = detail
           @IpString = ipstring
           @Type = type
           @ProtocolType = protocoltype
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
@@ -932,6 +935,7 @@ module TencentCloud
           @IpString = params['IpString']
           @Type = params['Type']
           @ProtocolType = params['ProtocolType']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -3308,13 +3312,16 @@ module TencentCloud
       class DescribeBlockStaticListResponse < TencentCloud::Common::AbstractModel
         # @param Data: 无
         # @type Data: Array
+        # @param Status: 异步查询状态，1查询执行中，0查询已结束
+        # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :Status, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, status=nil, requestid=nil)
           @Data = data
+          @Status = status
           @RequestId = requestid
         end
 
@@ -3327,6 +3334,7 @@ module TencentCloud
               @Data << staticinfo_tmp
             end
           end
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -7514,11 +7522,11 @@ module TencentCloud
 
       # ModifyResourceGroup请求参数结构体
       class ModifyResourceGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 组id
+        # @param GroupId: 资产组id
         # @type GroupId: String
         # @param GroupName: 组名称
         # @type GroupName: String
-        # @param ParentId: 上级组id
+        # @param ParentId: 上级组资产组id
         # @type ParentId: String
 
         attr_accessor :GroupId, :GroupName, :ParentId
@@ -8665,17 +8673,21 @@ module TencentCloud
         # @type OrderIndex: Integer
         # @param NewOrderIndex: 新的sequence 值
         # @type NewOrderIndex: Integer
+        # @param IpVersion: Ip版本，0：IPv4，1：IPv6，默认为IPv4
+        # @type IpVersion: Integer
 
-        attr_accessor :OrderIndex, :NewOrderIndex
+        attr_accessor :OrderIndex, :NewOrderIndex, :IpVersion
 
-        def initialize(orderindex=nil, neworderindex=nil)
+        def initialize(orderindex=nil, neworderindex=nil, ipversion=nil)
           @OrderIndex = orderindex
           @NewOrderIndex = neworderindex
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
           @OrderIndex = params['OrderIndex']
           @NewOrderIndex = params['NewOrderIndex']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -10274,12 +10286,12 @@ module TencentCloud
         # @type Description: String
         # @param OrderIndex: 规则顺序，-1表示最低，1表示最高
         # @type OrderIndex: Integer
-        # @param Uuid: 规则对应的唯一id
-        # @type Uuid: Integer
         # @param Enable: 规则状态，true表示启用，false表示禁用
         # @type Enable: String
         # @param EdgeId: 规则生效的范围，是在哪对vpc之间还是针对所有vpc间生效
         # @type EdgeId: String
+        # @param Uuid: 规则对应的唯一id，添加规则时忽略该字段，修改该规则时需要填写Uuid;查询返回时会返回该参数
+        # @type Uuid: Integer
         # @param DetectedTimes: 规则的命中次数，增删改查规则时无需传入此参数，主要用于返回查询结果数据
         # @type DetectedTimes: Integer
         # @param EdgeName: EdgeId对应的这对VPC间防火墙的描述
@@ -10309,10 +10321,13 @@ module TencentCloud
         # @param SourceName: 访问源名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceName: String
+        # @param IpVersion: Ip版本，0：IPv4，1：IPv6，默认为IPv4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpVersion: Integer
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Uuid, :Enable, :EdgeId, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, uuid=nil, enable=nil, edgeid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -10322,9 +10337,9 @@ module TencentCloud
           @Port = port
           @Description = description
           @OrderIndex = orderindex
-          @Uuid = uuid
           @Enable = enable
           @EdgeId = edgeid
+          @Uuid = uuid
           @DetectedTimes = detectedtimes
           @EdgeName = edgename
           @InternalUuid = internaluuid
@@ -10336,6 +10351,7 @@ module TencentCloud
           @ParamTemplateName = paramtemplatename
           @TargetName = targetname
           @SourceName = sourcename
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
@@ -10348,9 +10364,9 @@ module TencentCloud
           @Port = params['Port']
           @Description = params['Description']
           @OrderIndex = params['OrderIndex']
-          @Uuid = params['Uuid']
           @Enable = params['Enable']
           @EdgeId = params['EdgeId']
+          @Uuid = params['Uuid']
           @DetectedTimes = params['DetectedTimes']
           @EdgeName = params['EdgeName']
           @InternalUuid = params['InternalUuid']
@@ -10369,6 +10385,7 @@ module TencentCloud
           @ParamTemplateName = params['ParamTemplateName']
           @TargetName = params['TargetName']
           @SourceName = params['SourceName']
+          @IpVersion = params['IpVersion']
         end
       end
 

@@ -84,6 +84,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义域名
+
+        # @param request: Request instance for CreateCustomDomain.
+        # @type request: :class:`Tencentcloud::scf::V20180416::CreateCustomDomainRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::CreateCustomDomainResponse`
+        def CreateCustomDomain(request)
+          body = send_request('CreateCustomDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口根据传入参数创建新的函数。
 
         # @param request: Request instance for CreateFunction.
@@ -166,6 +190,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAliasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除自定义域名
+
+        # @param request: Request instance for DeleteCustomDomain.
+        # @type request: :class:`Tencentcloud::scf::V20180416::DeleteCustomDomainRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::DeleteCustomDomainResponse`
+        def DeleteCustomDomain(request)
+          body = send_request('DeleteCustomDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomDomainResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -382,6 +430,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetAsyncEventStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看云函数自定义域名详情
+
+        # @param request: Request instance for GetCustomDomain.
+        # @type request: :class:`Tencentcloud::scf::V20180416::GetCustomDomainRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::GetCustomDomainResponse`
+        def GetCustomDomain(request)
+          body = send_request('GetCustomDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetCustomDomainResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -670,6 +742,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListAsyncEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 遍历域名列表信息
+
+        # @param request: Request instance for ListCustomDomains.
+        # @type request: :class:`Tencentcloud::scf::V20180416::ListCustomDomainsRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::ListCustomDomainsResponse`
+        def ListCustomDomains(request)
+          body = send_request('ListCustomDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListCustomDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -982,6 +1078,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAliasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自定义域名相关配置
+
+        # @param request: Request instance for UpdateCustomDomain.
+        # @type request: :class:`Tencentcloud::scf::V20180416::UpdateCustomDomainRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::UpdateCustomDomainResponse`
+        def UpdateCustomDomain(request)
+          body = send_request('UpdateCustomDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCustomDomainResponse.new
             model.deserialize(response['Response'])
             model
           else

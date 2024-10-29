@@ -6912,6 +6912,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调整EIP续费标识
+
+        # @param request: Request instance for ModifyAddressesRenewFlag.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyAddressesRenewFlagRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyAddressesRenewFlagResponse`
+        def ModifyAddressesRenewFlag(request)
+          body = send_request('ModifyAddressesRenewFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAddressesRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyAssistantCidr）用于批量修改辅助CIDR，支持新增和删除。
 
         # @param request: Request instance for ModifyAssistantCidr.

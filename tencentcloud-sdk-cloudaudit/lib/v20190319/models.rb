@@ -117,90 +117,6 @@ module TencentCloud
         end
       end
 
-      # CreateAudit请求参数结构体
-      class CreateAuditRequest < TencentCloud::Common::AbstractModel
-        # @param IsEnableCmqNotify: 是否开启cmq消息通知。1：是，0：否。目前仅支持cmq的队列服务。如果开启cmq消息通知服务，云审计会将您的日志内容实时投递到您指定地域的指定队列中。
-        # @type IsEnableCmqNotify: Integer
-        # @param ReadWriteAttribute: 管理事件的读写属性。1：只读，2：只写，3：全部。
-        # @type ReadWriteAttribute: Integer
-        # @param AuditName: 跟踪集名称。3-128字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9，下划线 _。
-        # @type AuditName: String
-        # @param CosRegion: cos地域。目前支持的地域可以使用ListCosEnableRegion来获取。
-        # @type CosRegion: String
-        # @param IsCreateNewBucket: 是否创建新的cos存储桶。1：是，0：否。
-        # @type IsCreateNewBucket: Integer
-        # @param CosBucketName: cos的存储桶名称。仅支持小写英文字母和数字即[a-z，0-9]、中划线“-”及其组合。用户自定义的字符串支持1 - 40个字符。存储桶命名不能以“-”开头或结尾。如果不是新创建的存储桶，云审计不会去校验该存储桶是否真的存在，请谨慎填写，避免日志投递不成功，导致您的数据丢失。
-        # @type CosBucketName: String
-        # @param KeyId: CMK的全局唯一标识符，如果不是新创建的kms，该值是必填值。可以通过ListKeyAliasByRegion来获取。云审计不会校验KeyId的合法性，请您谨慎填写，避免给您的数据造成损失。
-        # @type KeyId: String
-        # @param CmqQueueName: 队列名称。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。如果IsEnableCmqNotify值是1的话，此值属于必填字段。如果不是新创建的队列，云审计不会去校验该队列是否真的存在，请谨慎填写，避免日志通知不成功，导致您的数据丢失。
-        # @type CmqQueueName: String
-        # @param KmsRegion: kms地域。目前支持的地域可以使用ListKmsEnableRegion来获取。必须要和cos的地域保持一致。
-        # @type KmsRegion: String
-        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
-        # @type IsEnableKmsEncry: Integer
-        # @param CmqRegion: 队列所在的地域。可以通过ListCmqEnableRegion获取支持的cmq地域。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
-        # @type CmqRegion: String
-        # @param LogFilePrefix: 日志文件前缀。3-40个字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9。可以不填，默认以账号ID作为日志前缀。
-        # @type LogFilePrefix: String
-        # @param IsCreateNewQueue: 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
-        # @type IsCreateNewQueue: Integer
-
-        attr_accessor :IsEnableCmqNotify, :ReadWriteAttribute, :AuditName, :CosRegion, :IsCreateNewBucket, :CosBucketName, :KeyId, :CmqQueueName, :KmsRegion, :IsEnableKmsEncry, :CmqRegion, :LogFilePrefix, :IsCreateNewQueue
-
-        def initialize(isenablecmqnotify=nil, readwriteattribute=nil, auditname=nil, cosregion=nil, iscreatenewbucket=nil, cosbucketname=nil, keyid=nil, cmqqueuename=nil, kmsregion=nil, isenablekmsencry=nil, cmqregion=nil, logfileprefix=nil, iscreatenewqueue=nil)
-          @IsEnableCmqNotify = isenablecmqnotify
-          @ReadWriteAttribute = readwriteattribute
-          @AuditName = auditname
-          @CosRegion = cosregion
-          @IsCreateNewBucket = iscreatenewbucket
-          @CosBucketName = cosbucketname
-          @KeyId = keyid
-          @CmqQueueName = cmqqueuename
-          @KmsRegion = kmsregion
-          @IsEnableKmsEncry = isenablekmsencry
-          @CmqRegion = cmqregion
-          @LogFilePrefix = logfileprefix
-          @IsCreateNewQueue = iscreatenewqueue
-        end
-
-        def deserialize(params)
-          @IsEnableCmqNotify = params['IsEnableCmqNotify']
-          @ReadWriteAttribute = params['ReadWriteAttribute']
-          @AuditName = params['AuditName']
-          @CosRegion = params['CosRegion']
-          @IsCreateNewBucket = params['IsCreateNewBucket']
-          @CosBucketName = params['CosBucketName']
-          @KeyId = params['KeyId']
-          @CmqQueueName = params['CmqQueueName']
-          @KmsRegion = params['KmsRegion']
-          @IsEnableKmsEncry = params['IsEnableKmsEncry']
-          @CmqRegion = params['CmqRegion']
-          @LogFilePrefix = params['LogFilePrefix']
-          @IsCreateNewQueue = params['IsCreateNewQueue']
-        end
-      end
-
-      # CreateAudit返回参数结构体
-      class CreateAuditResponse < TencentCloud::Common::AbstractModel
-        # @param IsSuccess: 是否创建成功。
-        # @type IsSuccess: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :IsSuccess, :RequestId
-
-        def initialize(issuccess=nil, requestid=nil)
-          @IsSuccess = issuccess
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @IsSuccess = params['IsSuccess']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateAuditTrack请求参数结构体
       class CreateAuditTrackRequest < TencentCloud::Common::AbstractModel
         # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
@@ -248,7 +164,7 @@ module TencentCloud
       class CreateAuditTrackResponse < TencentCloud::Common::AbstractModel
         # @param TrackId: 跟踪集 ID
         # @type TrackId: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TrackId, :RequestId
@@ -264,38 +180,60 @@ module TencentCloud
         end
       end
 
-      # DeleteAudit请求参数结构体
-      class DeleteAuditRequest < TencentCloud::Common::AbstractModel
-        # @param AuditName: 跟踪集名称
-        # @type AuditName: String
+      # CreateEventsAuditTrack请求参数结构体
+      class CreateEventsAuditTrackRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @type Name: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
+        # @param Filters: 数据过滤条件
+        # @type Filters: :class:`Tencentcloud::Cloudaudit.v20190319.models.Filter`
+        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @type TrackForAllMembers: Integer
 
-        attr_accessor :AuditName
+        attr_accessor :Name, :Status, :Storage, :Filters, :TrackForAllMembers
 
-        def initialize(auditname=nil)
-          @AuditName = auditname
+        def initialize(name=nil, status=nil, storage=nil, filters=nil, trackforallmembers=nil)
+          @Name = name
+          @Status = status
+          @Storage = storage
+          @Filters = filters
+          @TrackForAllMembers = trackforallmembers
         end
 
         def deserialize(params)
-          @AuditName = params['AuditName']
+          @Name = params['Name']
+          @Status = params['Status']
+          unless params['Storage'].nil?
+            @Storage = Storage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          unless params['Filters'].nil?
+            @Filters = Filter.new
+            @Filters.deserialize(params['Filters'])
+          end
+          @TrackForAllMembers = params['TrackForAllMembers']
         end
       end
 
-      # DeleteAudit返回参数结构体
-      class DeleteAuditResponse < TencentCloud::Common::AbstractModel
-        # @param IsSuccess: 是否删除成功
-        # @type IsSuccess: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+      # CreateEventsAuditTrack返回参数结构体
+      class CreateEventsAuditTrackResponse < TencentCloud::Common::AbstractModel
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsSuccess, :RequestId
+        attr_accessor :TrackId, :RequestId
 
-        def initialize(issuccess=nil, requestid=nil)
-          @IsSuccess = issuccess
+        def initialize(trackid=nil, requestid=nil)
+          @TrackId = trackid
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @IsSuccess = params['IsSuccess']
+          @TrackId = params['TrackId']
           @RequestId = params['RequestId']
         end
       end
@@ -318,7 +256,7 @@ module TencentCloud
 
       # DeleteAuditTrack返回参数结构体
       class DeleteAuditTrackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -376,7 +314,7 @@ module TencentCloud
         # @type CmqRegion: String
         # @param LogFilePrefix: 日志前缀。
         # @type LogFilePrefix: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IsEnableCmqNotify, :ReadWriteAttribute, :KeyId, :AuditStatus, :AuditName, :CosRegion, :CmqQueueName, :KmsAlias, :KmsRegion, :IsEnableKmsEncry, :CosBucketName, :CmqRegion, :LogFilePrefix, :RequestId
@@ -451,12 +389,15 @@ module TencentCloud
         # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackForAllMembers: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param Filters: 数据投递过滤条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filters: :class:`Tencentcloud::Cloudaudit.v20190319.models.Filter`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :CreateTime, :TrackForAllMembers, :RequestId
+        attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :CreateTime, :TrackForAllMembers, :Filters, :RequestId
 
-        def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, createtime=nil, trackforallmembers=nil, requestid=nil)
+        def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, createtime=nil, trackforallmembers=nil, filters=nil, requestid=nil)
           @Name = name
           @ActionType = actiontype
           @ResourceType = resourcetype
@@ -465,6 +406,7 @@ module TencentCloud
           @Storage = storage
           @CreateTime = createtime
           @TrackForAllMembers = trackforallmembers
+          @Filters = filters
           @RequestId = requestid
         end
 
@@ -480,6 +422,10 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @TrackForAllMembers = params['TrackForAllMembers']
+          unless params['Filters'].nil?
+            @Filters = Filter.new
+            @Filters.deserialize(params['Filters'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -510,7 +456,7 @@ module TencentCloud
         # @type Tracks: Array
         # @param TotalCount: 总数目
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Tracks, :TotalCount, :RequestId
@@ -590,7 +536,7 @@ module TencentCloud
         # @param TotalCount: 此字段已经废弃。翻页请使用ListOver配合NextToken，在ListOver为false进行下一页数据读取。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ListOver, :NextToken, :Events, :TotalCount, :RequestId
@@ -704,6 +650,30 @@ module TencentCloud
         end
       end
 
+      # 跟踪集数据投递筛选条件
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param ResourceFields: 资源筛选条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceFields: Array
+
+        attr_accessor :ResourceFields
+
+        def initialize(resourcefields=nil)
+          @ResourceFields = resourcefields
+        end
+
+        def deserialize(params)
+          unless params['ResourceFields'].nil?
+            @ResourceFields = []
+            params['ResourceFields'].each do |i|
+              resourcefield_tmp = ResourceField.new
+              resourcefield_tmp.deserialize(i)
+              @ResourceFields << resourcefield_tmp
+            end
+          end
+        end
+      end
+
       # GetAttributeKey请求参数结构体
       class GetAttributeKeyRequest < TencentCloud::Common::AbstractModel
         # @param WebsiteType: 网站类型，取值范围是zh和en。如果不传值默认zh
@@ -724,7 +694,7 @@ module TencentCloud
       class GetAttributeKeyResponse < TencentCloud::Common::AbstractModel
         # @param AttributeKeyDetails: AttributeKey的有效取值范围
         # @type AttributeKeyDetails: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AttributeKeyDetails, :RequestId
@@ -762,7 +732,7 @@ module TencentCloud
       class InquireAuditCreditResponse < TencentCloud::Common::AbstractModel
         # @param AuditAmount: 可创建跟踪集的数量
         # @type AuditAmount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AuditAmount, :RequestId
@@ -814,7 +784,7 @@ module TencentCloud
         # @param AuditSummarys: 查询跟踪集概要集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditSummarys: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AuditSummarys, :RequestId
@@ -857,7 +827,7 @@ module TencentCloud
       class ListCmqEnableRegionResponse < TencentCloud::Common::AbstractModel
         # @param EnableRegions: 云审计支持的cmq的可用区
         # @type EnableRegions: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnableRegions, :RequestId
@@ -900,7 +870,7 @@ module TencentCloud
       class ListCosEnableRegionResponse < TencentCloud::Common::AbstractModel
         # @param EnableRegions: 云审计支持的cos可用区
         # @type EnableRegions: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnableRegions, :RequestId
@@ -953,7 +923,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param KeyMetadatas: 密钥别名
         # @type KeyMetadatas: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :KeyMetadatas, :RequestId
@@ -1032,7 +1002,7 @@ module TencentCloud
         # @param ListOver: 日志集合是否结束
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListOver: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextToken, :Events, :ListOver, :RequestId
@@ -1128,7 +1098,65 @@ module TencentCloud
 
       # ModifyAuditTrack返回参数结构体
       class ModifyAuditTrackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEventsAuditTrack请求参数结构体
+      class ModifyEventsAuditTrackRequest < TencentCloud::Common::AbstractModel
+        # @param TrackId: 跟踪集 ID
+        # @type TrackId: Integer
+        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @type Name: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
+        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @type TrackForAllMembers: Integer
+        # @param Filters: 多产品筛选过滤条件
+        # @type Filters: :class:`Tencentcloud::Cloudaudit.v20190319.models.Filter`
+
+        attr_accessor :TrackId, :Name, :Status, :Storage, :TrackForAllMembers, :Filters
+
+        def initialize(trackid=nil, name=nil, status=nil, storage=nil, trackforallmembers=nil, filters=nil)
+          @TrackId = trackid
+          @Name = name
+          @Status = status
+          @Storage = storage
+          @TrackForAllMembers = trackforallmembers
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TrackId = params['TrackId']
+          @Name = params['Name']
+          @Status = params['Status']
+          unless params['Storage'].nil?
+            @Storage = Storage.new
+            @Storage.deserialize(params['Storage'])
+          end
+          @TrackForAllMembers = params['TrackForAllMembers']
+          unless params['Filters'].nil?
+            @Filters = Filter.new
+            @Filters.deserialize(params['Filters'])
+          end
+        end
+      end
+
+      # ModifyEventsAuditTrack返回参数结构体
+      class ModifyEventsAuditTrackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1164,6 +1192,33 @@ module TencentCloud
         end
       end
 
+      # 资源筛选条件
+      class ResourceField < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cam，全部：*）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionType: String
+        # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：[""]；指定ResourceType时，支持全部接口：[""]；支持部分接口：["cos", "cls"]，接口列表上限10个）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventNames: Array
+
+        attr_accessor :ResourceType, :ActionType, :EventNames
+
+        def initialize(resourcetype=nil, actiontype=nil, eventnames=nil)
+          @ResourceType = resourcetype
+          @ActionType = actiontype
+          @EventNames = eventnames
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ActionType = params['ActionType']
+          @EventNames = params['EventNames']
+        end
+      end
+
       # StartLogging请求参数结构体
       class StartLoggingRequest < TencentCloud::Common::AbstractModel
         # @param AuditName: 跟踪集名称
@@ -1184,7 +1239,7 @@ module TencentCloud
       class StartLoggingResponse < TencentCloud::Common::AbstractModel
         # @param IsSuccess: 是否开启成功
         # @type IsSuccess: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
@@ -1220,7 +1275,7 @@ module TencentCloud
       class StopLoggingResponse < TencentCloud::Common::AbstractModel
         # @param IsSuccess: 是否关闭成功
         # @type IsSuccess: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId
@@ -1389,7 +1444,7 @@ module TencentCloud
       class UpdateAuditResponse < TencentCloud::Common::AbstractModel
         # @param IsSuccess: 是否更新成功
         # @type IsSuccess: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IsSuccess, :RequestId

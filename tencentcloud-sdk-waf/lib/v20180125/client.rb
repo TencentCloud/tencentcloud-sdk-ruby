@@ -3180,6 +3180,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户防护规则，开启关闭具体的某条规则
+
+        # @param request: Request instance for ModifyUserSignatureRuleV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyUserSignatureRuleV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyUserSignatureRuleV2Response`
+        def ModifyUserSignatureRuleV2(request)
+          body = send_request('ModifyUserSignatureRuleV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserSignatureRuleV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改ip惩罚规则
 
         # @param request: Request instance for ModifyWafAutoDenyRules.

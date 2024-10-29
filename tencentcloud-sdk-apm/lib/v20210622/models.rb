@@ -348,10 +348,16 @@ module TencentCloud
         # @param ResponseDurationWarningThreshold: 响应时间满意阈值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseDurationWarningThreshold: Integer
+        # @param Free: 是否免费（0=否，1=限额免费，2=完全免费），默认0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Free: Integer
+        # @param DefaultTSF: 是否tsf默认业务系统（0=否，1-是）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultTSF: Integer
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold
+        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF
 
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil)
+        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
           @Tags = tags
@@ -382,6 +388,8 @@ module TencentCloud
           @PayMode = paymode
           @PayModeEffective = paymodeeffective
           @ResponseDurationWarningThreshold = responsedurationwarningthreshold
+          @Free = free
+          @DefaultTSF = defaulttsf
         end
 
         def deserialize(params)
@@ -422,6 +430,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @PayModeEffective = params['PayModeEffective']
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
+          @Free = params['Free']
+          @DefaultTSF = params['DefaultTSF']
         end
       end
 

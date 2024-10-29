@@ -81,6 +81,43 @@ module TencentCloud
         end
       end
 
+      # 语音转文本信息
+      class AsrData < TencentCloud::Common::AbstractModel
+        # @param User: 用户方
+        # @type User: String
+        # @param Message: 消息内容
+        # @type Message: String
+        # @param Timestamp: 时间戳
+        # @type Timestamp: Integer
+        # @param Start: 句子开始时间，Unix 毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Start: Integer
+        # @param End: 句子结束时间，Unix 毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type End: Integer
+
+        attr_accessor :User, :Message, :Timestamp, :Start, :End
+        extend Gem::Deprecate
+        deprecate :Timestamp, :none, 2024, 10
+        deprecate :Timestamp=, :none, 2024, 10
+
+        def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
+          @User = user
+          @Message = message
+          @Timestamp = timestamp
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @User = params['User']
+          @Message = params['Message']
+          @Timestamp = params['Timestamp']
+          @Start = params['Start']
+          @End = params['End']
+        end
+      end
+
       # 音频文件审核信息
       class AudioFileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 文件ID
@@ -670,7 +707,7 @@ module TencentCloud
         # @param APIKey: API密钥
         # @type APIKey: String
         # @param APIUrl: API URL，仅支持兼容openai协议的模型，填写url时后缀不要带/chat/completions；
-        # llmType为azure时,URL填写格式需为：https://{your-resource-name}.openai.azure.com?api-version={api-version},填写url时后缀不要带/openai/deployments/{deployment-id}/chat/completions，系统会自动帮你填充后缀
+        # llmType为azure时,URL填写格式需为：https://{your-resource-name}.openai.azure.com?api-version={api-version},填写url时后缀不要带/openai/deployments/{deployment-id}/chat/completions，系统会自动帮您填充后缀
         # @type APIUrl: String
         # @param VoiceType: 音色，目前仅支持以下音色:
         # 汉语：
@@ -1040,7 +1077,7 @@ module TencentCloud
 
       # CreateCCCSkillGroup请求参数结构体
       class CreateCCCSkillGroupRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填）
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param SkillGroupName: 技能组名称
         # @type SkillGroupName: String
@@ -1154,7 +1191,7 @@ module TencentCloud
 
       # CreateCarrierPrivilegeNumberApplicant请求参数结构体
       class CreateCarrierPrivilegeNumberApplicantRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: SdkAppId
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param Callers: 主叫号码，必须为实例中存在的号码，格式为0086xxxx（暂时只支持国内号码）
         # @type Callers: Array
@@ -1763,7 +1800,7 @@ module TencentCloud
 
       # DescribeActiveCarrierPrivilegeNumber请求参数结构体
       class DescribeActiveCarrierPrivilegeNumberRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例Id
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageNumber: 默认0
         # @type PageNumber: Integer
@@ -2101,7 +2138,7 @@ module TencentCloud
 
       # DescribeCarrierPrivilegeNumberApplicants请求参数结构体
       class DescribeCarrierPrivilegeNumberApplicantsRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 实例Id
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageNumber: 默认0，从0开始
         # @type PageNumber: Integer
@@ -3447,6 +3484,54 @@ module TencentCloud
         end
       end
 
+      # DescribeTelRecordAsr请求参数结构体
+      class DescribeTelRecordAsrRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话 ID
+        # @type SessionId: String
+
+        attr_accessor :SdkAppId, :SessionId
+
+        def initialize(sdkappid=nil, sessionid=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeTelRecordAsr返回参数结构体
+      class DescribeTelRecordAsrResponse < TencentCloud::Common::AbstractModel
+        # @param AsrDataList: 录音转文本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrDataList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsrDataList, :RequestId
+
+        def initialize(asrdatalist=nil, requestid=nil)
+          @AsrDataList = asrdatalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AsrDataList'].nil?
+            @AsrDataList = []
+            params['AsrDataList'].each do |i|
+              asrdata_tmp = AsrData.new
+              asrdata_tmp.deserialize(i)
+              @AsrDataList << asrdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTelSession请求参数结构体
       class DescribeTelSessionRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -3766,23 +3851,43 @@ module TencentCloud
 
       # ivr 按键信息
       class IVRKeyPressedElement < TencentCloud::Common::AbstractModel
-        # @param Key: 按键
+        # @param Key: 命中的关键字或者按键
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Label: 按键关联的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
+        # @param Timestamp: Unix 毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param NodeLabel: 节点标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeLabel: String
+        # @param OriginalContent: 用户原始输入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalContent: String
+        # @param TTSPrompt: TTS 提示音内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TTSPrompt: String
 
-        attr_accessor :Key, :Label
+        attr_accessor :Key, :Label, :Timestamp, :NodeLabel, :OriginalContent, :TTSPrompt
 
-        def initialize(key=nil, label=nil)
+        def initialize(key=nil, label=nil, timestamp=nil, nodelabel=nil, originalcontent=nil, ttsprompt=nil)
           @Key = key
           @Label = label
+          @Timestamp = timestamp
+          @NodeLabel = nodelabel
+          @OriginalContent = originalcontent
+          @TTSPrompt = ttsprompt
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Label = params['Label']
+          @Timestamp = params['Timestamp']
+          @NodeLabel = params['NodeLabel']
+          @OriginalContent = params['OriginalContent']
+          @TTSPrompt = params['TTSPrompt']
         end
       end
 
@@ -4017,7 +4122,7 @@ module TencentCloud
 
       # ModifyStaff请求参数结构体
       class ModifyStaffRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param Email: 座席账户
         # @type Email: String
@@ -5391,7 +5496,7 @@ module TencentCloud
 
       # UpdateCCCSkillGroup请求参数结构体
       class UpdateCCCSkillGroupRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填）
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param SkillGroupID: 技能组ID
         # @type SkillGroupID: Integer

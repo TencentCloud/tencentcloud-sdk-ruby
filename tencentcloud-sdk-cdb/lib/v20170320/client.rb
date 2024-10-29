@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 调整数据库代理地址配置
+        # 本接口（AdjustCdbProxyAddress）用于调整数据库代理地址配置。
 
         # @param request: Request instance for AdjustCdbProxyAddress.
         # @type request: :class:`Tencentcloud::cdb::V20170320::AdjustCdbProxyAddressRequest`

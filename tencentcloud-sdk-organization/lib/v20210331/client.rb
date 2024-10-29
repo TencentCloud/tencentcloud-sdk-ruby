@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建SCIM密钥
+
+        # @param request: Request instance for CreateSCIMCredential.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CreateSCIMCredentialRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CreateSCIMCredentialResponse`
+        def CreateSCIMCredential(request)
+          body = send_request('CreateSCIMCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSCIMCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户
 
         # @param request: Request instance for CreateUser.
@@ -951,6 +975,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRoleConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除SCIM密钥
+
+        # @param request: Request instance for DeleteSCIMCredential.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteSCIMCredentialRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteSCIMCredentialResponse`
+        def DeleteSCIMCredential(request)
+          body = send_request('DeleteSCIMCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSCIMCredentialResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1733,6 +1781,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取SCIM同步状态
+
+        # @param request: Request instance for GetSCIMSynchronizationStatus.
+        # @type request: :class:`Tencentcloud::organization::V20210331::GetSCIMSynchronizationStatusRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::GetSCIMSynchronizationStatusResponse`
+        def GetSCIMSynchronizationStatus(request)
+          body = send_request('GetSCIMSynchronizationStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetSCIMSynchronizationStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询异步任务的状态
 
         # @param request: Request instance for GetTaskStatus.
@@ -2199,6 +2271,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListRoleConfigurationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户SCIM密钥列表
+
+        # @param request: Request instance for ListSCIMCredentials.
+        # @type request: :class:`Tencentcloud::organization::V20210331::ListSCIMCredentialsRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::ListSCIMCredentialsResponse`
+        def ListSCIMCredentials(request)
+          body = send_request('ListSCIMCredentials', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListSCIMCredentialsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2727,6 +2823,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateRoleConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用/禁用SCIM密钥
+
+        # @param request: Request instance for UpdateSCIMCredentialStatus.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdateSCIMCredentialStatusRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdateSCIMCredentialStatusResponse`
+        def UpdateSCIMCredentialStatus(request)
+          body = send_request('UpdateSCIMCredentialStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateSCIMCredentialStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用/禁用用户SCIM同步
+
+        # @param request: Request instance for UpdateSCIMSynchronizationStatus.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdateSCIMSynchronizationStatusRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdateSCIMSynchronizationStatusResponse`
+        def UpdateSCIMSynchronizationStatus(request)
+          body = send_request('UpdateSCIMSynchronizationStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateSCIMSynchronizationStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

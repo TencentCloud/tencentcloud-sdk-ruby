@@ -29,30 +29,6 @@ module TencentCloud
         end
 
 
-        # 天御文本内容安全定制标签文本审核接口为定制接口，会按照客户定制标签输出审核结果，如需使用请联系商务经理或[在线客服](https://cloud.tencent.com/online-service?from=doc_1125)咨询。
-
-        # @param request: Request instance for ModerateText.
-        # @type request: :class:`Tencentcloud::tms::V20201229::ModerateTextRequest`
-        # @rtype: :class:`Tencentcloud::tms::V20201229::ModerateTextResponse`
-        def ModerateText(request)
-          body = send_request('ModerateText', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModerateTextResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（Text Moderation）用于提交文本内容进行智能审核任务。使用前请您使用腾讯云主账号登录控制台 [开通文本内容安全服务](https://console.cloud.tencent.com/cms) 并调整好对应的业务配置。
 
         # ### 接口使用说明

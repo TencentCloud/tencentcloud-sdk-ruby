@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 集群快照手动创建
+
+        # @param request: Request instance for CreateClusterSnapshot.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateClusterSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateClusterSnapshotResponse`
+        def CreateClusterSnapshot(request)
+          body = send_request('CreateClusterSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClusterSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # cos迁移流程
 
         # @param request: Request instance for CreateCosMigrateToServerlessInstance.
@@ -197,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除快照仓库里备份的快照
+
+        # @param request: Request instance for DeleteClusterSnapshot.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteClusterSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteClusterSnapshotResponse`
+        def DeleteClusterSnapshot(request)
+          body = send_request('DeleteClusterSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClusterSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除索引
 
         # @param request: Request instance for DeleteIndex.
@@ -327,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteServerlessSpaceUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取快照备份列表
+
+        # @param request: Request instance for DescribeClusterSnapshot.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeClusterSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeClusterSnapshotResponse`
+        def DescribeClusterSnapshot(request)
+          body = send_request('DescribeClusterSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1000,6 +1072,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 快照备份恢复，从仓库中恢复快照到集群中
+
+        # @param request: Request instance for RestoreClusterSnapshot.
+        # @type request: :class:`Tencentcloud::es::V20180416::RestoreClusterSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::RestoreClusterSnapshotResponse`
+        def RestoreClusterSnapshot(request)
+          body = send_request('RestoreClusterSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestoreClusterSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3590,10 +3590,13 @@ module TencentCloud
         # @param UUID: UUID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UUID: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
 
-        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Role, :Status, :Rip, :FeRole, :UUID, :Zone
 
-        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil)
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, role=nil, status=nil, rip=nil, ferole=nil, uuid=nil, zone=nil)
           @Ip = ip
           @Spec = spec
           @Core = core
@@ -3605,6 +3608,7 @@ module TencentCloud
           @Rip = rip
           @FeRole = ferole
           @UUID = uuid
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -3619,6 +3623,7 @@ module TencentCloud
           @Rip = params['Rip']
           @FeRole = params['FeRole']
           @UUID = params['UUID']
+          @Zone = params['Zone']
         end
       end
 
@@ -5176,14 +5181,15 @@ module TencentCloud
 
       # 调度信息
       class ScheduleInfo < TencentCloud::Common::AbstractModel
-        # @param EffectivePeriod: 生效时间
+        # @param EffectivePeriod: 生效周期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EffectivePeriod: String
-        # @param ScheduleType: 调度类型：
+        # @param ScheduleType: 调度类型，不传该参数时为立即执行：
         # Day-天
         # Week-周
         # Month-月
         # Once-单次
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleType: String
         # @param ScheduleData: 执行调度的日期。调度类型为周和月时以英文逗号分隔；

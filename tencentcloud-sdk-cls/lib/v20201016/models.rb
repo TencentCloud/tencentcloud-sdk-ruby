@@ -263,10 +263,13 @@ module TencentCloud
         end
       end
 
-      # 告警通知模板类型
+      # 告警通知渠道组详细配置
       class AlarmNotice < TencentCloud::Common::AbstractModel
-        # @param Name: 告警通知模板名称。
+        # @param Name: 告警通知渠道组名称。
         # @type Name: String
+        # @param Tags: 告警通知渠道组绑定的标签信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param Type: 告警模板的类型。可选值：
         # <br><li> Trigger - 告警触发</li>
         # <br><li> Recovery - 告警恢复</li>
@@ -281,31 +284,53 @@ module TencentCloud
         # @param AlarmNoticeId: 告警通知模板ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNoticeId: String
+        # @param NoticeRules: 通知规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeRules: Array
+        # @param AlarmShieldStatus: 免登录操作告警开关。
+        # 参数值： 1：关闭 2：开启（默认开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldStatus: Integer
+        # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JumpDomain: String
+        # @param AlarmNoticeDeliverConfig: 投递相关信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmNoticeDeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.AlarmNoticeDeliverConfig`
         # @param CreateTime: 创建时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 最近更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param NoticeRules: 通知规则。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NoticeRules: Array
 
-        attr_accessor :Name, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :CreateTime, :UpdateTime, :NoticeRules
+        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :NoticeRules, :AlarmShieldStatus, :JumpDomain, :AlarmNoticeDeliverConfig, :CreateTime, :UpdateTime
 
-        def initialize(name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, createtime=nil, updatetime=nil, noticerules=nil)
+        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, noticerules=nil, alarmshieldstatus=nil, jumpdomain=nil, alarmnoticedeliverconfig=nil, createtime=nil, updatetime=nil)
           @Name = name
+          @Tags = tags
           @Type = type
           @NoticeReceivers = noticereceivers
           @WebCallbacks = webcallbacks
           @AlarmNoticeId = alarmnoticeid
+          @NoticeRules = noticerules
+          @AlarmShieldStatus = alarmshieldstatus
+          @JumpDomain = jumpdomain
+          @AlarmNoticeDeliverConfig = alarmnoticedeliverconfig
           @CreateTime = createtime
           @UpdateTime = updatetime
-          @NoticeRules = noticerules
         end
 
         def deserialize(params)
           @Name = params['Name']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @Type = params['Type']
           unless params['NoticeReceivers'].nil?
             @NoticeReceivers = []
@@ -324,8 +349,6 @@ module TencentCloud
             end
           end
           @AlarmNoticeId = params['AlarmNoticeId']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
           unless params['NoticeRules'].nil?
             @NoticeRules = []
             params['NoticeRules'].each do |i|
@@ -334,6 +357,38 @@ module TencentCloud
               @NoticeRules << noticerule_tmp
             end
           end
+          @AlarmShieldStatus = params['AlarmShieldStatus']
+          @JumpDomain = params['JumpDomain']
+          unless params['AlarmNoticeDeliverConfig'].nil?
+            @AlarmNoticeDeliverConfig = AlarmNoticeDeliverConfig.new
+            @AlarmNoticeDeliverConfig.deserialize(params['AlarmNoticeDeliverConfig'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 通知渠道投递日志配置信息
+      class AlarmNoticeDeliverConfig < TencentCloud::Common::AbstractModel
+        # @param DeliverConfig: 通知渠道投递日志配置信息。
+        # @type DeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.DeliverConfig`
+        # @param ErrMsg: 投递失败原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+
+        attr_accessor :DeliverConfig, :ErrMsg
+
+        def initialize(deliverconfig=nil, errmsg=nil)
+          @DeliverConfig = deliverconfig
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          unless params['DeliverConfig'].nil?
+            @DeliverConfig = DeliverConfig.new
+            @DeliverConfig.deserialize(params['DeliverConfig'])
+          end
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -1782,49 +1837,62 @@ module TencentCloud
       class CreateAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param Name: 通知渠道组名称。
         # @type Name: String
-        # @param Type: 通知类型。可选值：
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的通知渠道组。最大支持50个标签键值对，并且不能有重复的键值对。
+        # @type Tags: Array
+        # @param Type: 【简易模式】（简易模式/告警模式二选一，分别配置相应参数）
+        # 需要发送通知的告警类型。可选值：
         # - Trigger - 告警触发
         # - Recovery - 告警恢复
         # - All - 告警触发和告警恢复
-
-
-        #  注意:
-        # - Type、NoticeReceivers和WebCallbacks是一组rule配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空；NoticeRules是另一组rule配置，其中rule不许为空
-        # - 2组rule配置互斥
-        # - rule配置 与 deliver配置（DeliverStatus与DeliverConfig）至少填写一组配置
         # @type Type: String
-        # @param NoticeReceivers: 通知接收对象。
-        #  注意:
-        # - Type、NoticeReceivers和WebCallbacks是一组rule配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空；NoticeRules是另一组rule配置，其中rule不许为空
-        # - 2组rule配置互斥
-        # - rule配置 与 deliver配置（DeliverStatus与DeliverConfig）至少填写一组配置
+        # @param NoticeReceivers: 【简易模式】（简易模式/告警模式二选一，分别配置相应参数）
+        # 通知接收对象。
         # @type NoticeReceivers: Array
-        # @param WebCallbacks: 接口回调信息（包括企业微信）。
-        #  注意:
-        # - Type、NoticeReceivers和WebCallbacks是一组rule配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空；NoticeRules是另一组rule配置，其中rule不许为空
-        # - 2组rule配置互斥
-        # - rule配置 与 deliver配置（DeliverStatus与DeliverConfig）至少填写一组配置
+        # @param WebCallbacks: 【简易模式】（简易模式/告警模式二选一，分别配置相应参数）
+        # 接口回调信息（包括企业微信、钉钉、飞书）。
         # @type WebCallbacks: Array
-        # @param NoticeRules: 通知规则。
-        #  注意:
-        # - Type、NoticeReceivers和WebCallbacks是一组rule配置，其中Type必填，NoticeReceivers和WebCallbacks至少一个不为空；NoticeRules是另一组rule配置，其中rule不许为空
-        # - 2组rule配置互斥
-        # - rule配置 与 deliver配置（DeliverStatus与DeliverConfig）至少填写一组配置
-
+        # @param NoticeRules: 【高级模式】（简易模式/告警模式二选一，分别配置相应参数）
+        # 通知规则。
         # @type NoticeRules: Array
+        # @param JumpDomain: 查询数据链接。http:// 或者 https:// 开头，不能/结尾
+        # @type JumpDomain: String
+        # @param DeliverStatus: 投递日志开关。可取值如下：
+        # 1：关闭（默认值）；
+        # 2：开启
+        # 投递日志开关开启时， DeliverConfig参数必填。
+        # @type DeliverStatus: Integer
+        # @param DeliverConfig: 投递日志配置参数。当DeliverStatus开启时，必填。
+        # @type DeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.DeliverConfig`
+        # @param AlarmShieldStatus: 免登录操作告警开关。可取值如下：
+        # -      1：关闭
+        # -      2：开启（默认值）
+        # @type AlarmShieldStatus: Integer
 
-        attr_accessor :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules
+        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus
 
-        def initialize(name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil)
+        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil)
           @Name = name
+          @Tags = tags
           @Type = type
           @NoticeReceivers = noticereceivers
           @WebCallbacks = webcallbacks
           @NoticeRules = noticerules
+          @JumpDomain = jumpdomain
+          @DeliverStatus = deliverstatus
+          @DeliverConfig = deliverconfig
+          @AlarmShieldStatus = alarmshieldstatus
         end
 
         def deserialize(params)
           @Name = params['Name']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @Type = params['Type']
           unless params['NoticeReceivers'].nil?
             @NoticeReceivers = []
@@ -1850,6 +1918,13 @@ module TencentCloud
               @NoticeRules << noticerule_tmp
             end
           end
+          @JumpDomain = params['JumpDomain']
+          @DeliverStatus = params['DeliverStatus']
+          unless params['DeliverConfig'].nil?
+            @DeliverConfig = DeliverConfig.new
+            @DeliverConfig.deserialize(params['DeliverConfig'])
+          end
+          @AlarmShieldStatus = params['AlarmShieldStatus']
         end
       end
 
@@ -4407,6 +4482,42 @@ module TencentCloud
         end
       end
 
+      # 投递配置入参
+      class DeliverConfig < TencentCloud::Common::AbstractModel
+        # @param Region: 地域信息。
+
+        # 示例：
+        #  ap-guangzhou  广州地域；
+        # ap-nanjing 南京地域。
+
+        # 详细信息请查看官网：
+
+        # https://cloud.tencent.com/document/product/614/18940
+        # @type Region: String
+        # @param TopicId: 日志主题ID。
+        # @type TopicId: String
+        # @param Scope: 投递数据范围。
+
+        # 0: 全部日志, 包括告警策略日常周期执行的所有日志，也包括告警策略变更产生的日志，默认值
+
+        # 1:仅告警触发及恢复日志
+        # @type Scope: Integer
+
+        attr_accessor :Region, :TopicId, :Scope
+
+        def initialize(region=nil, topicid=nil, scope=nil)
+          @Region = region
+          @TopicId = topicid
+          @Scope = scope
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @TopicId = params['TopicId']
+          @Scope = params['Scope']
+        end
+      end
+
       # DescribeAlarmNotices请求参数结构体
       class DescribeAlarmNoticesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <li> name
@@ -6423,6 +6534,66 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # 升级通知
+      class EscalateNoticeInfo < TencentCloud::Common::AbstractModel
+        # @param NoticeReceivers: 告警通知模板接收者信息。
+        # @type NoticeReceivers: Array
+        # @param WebCallbacks: 告警通知模板回调信息。
+        # @type WebCallbacks: Array
+        # @param Escalate: 告警升级开关。`true`：开启告警升级、`false`：关闭告警升级，默认：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Escalate: Boolean
+        # @param Interval: 告警升级间隔。单位：分钟，范围`[1，14400]`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param Type: 升级条件。`1`：无人认领且未恢复、`2`：未恢复，默认为1
+        # - 无人认领且未恢复：告警没有恢复并且没有人认领则升级
+        # - 未恢复：当前告警持续未恢复则升级
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param EscalateNotice: 告警升级后下一个环节的通知渠道配置，最多可配置5个环节。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EscalateNotice: :class:`Tencentcloud::Cls.v20201016.models.EscalateNoticeInfo`
+
+        attr_accessor :NoticeReceivers, :WebCallbacks, :Escalate, :Interval, :Type, :EscalateNotice
+
+        def initialize(noticereceivers=nil, webcallbacks=nil, escalate=nil, interval=nil, type=nil, escalatenotice=nil)
+          @NoticeReceivers = noticereceivers
+          @WebCallbacks = webcallbacks
+          @Escalate = escalate
+          @Interval = interval
+          @Type = type
+          @EscalateNotice = escalatenotice
+        end
+
+        def deserialize(params)
+          unless params['NoticeReceivers'].nil?
+            @NoticeReceivers = []
+            params['NoticeReceivers'].each do |i|
+              noticereceiver_tmp = NoticeReceiver.new
+              noticereceiver_tmp.deserialize(i)
+              @NoticeReceivers << noticereceiver_tmp
+            end
+          end
+          unless params['WebCallbacks'].nil?
+            @WebCallbacks = []
+            params['WebCallbacks'].each do |i|
+              webcallback_tmp = WebCallback.new
+              webcallback_tmp.deserialize(i)
+              @WebCallbacks << webcallback_tmp
+            end
+          end
+          @Escalate = params['Escalate']
+          @Interval = params['Interval']
+          @Type = params['Type']
+          unless params['EscalateNotice'].nil?
+            @EscalateNotice = EscalateNoticeInfo.new
+            @EscalateNotice.deserialize(params['EscalateNotice'])
+          end
         end
       end
 
@@ -9502,50 +9673,44 @@ module TencentCloud
         # - WeChat - 微信
         # - Phone - 电话
         # @type ReceiverChannels: Array
-        # @param StartTime: 允许接收信息的开始时间。格式：`15:04:05`，必填。
+        # @param NoticeContentId: 通知内容模板ID，使用Default-zh引用默认模板（中文），使用Default-en引用DefaultTemplate(English)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentId: String
+        # @param StartTime: 允许接收信息的开始时间。格式：`15:04:05`。必填
         # @type StartTime: String
-        # @param EndTime: 允许接收信息的结束时间。格式：`15:04:05`，必填。
+        # @param EndTime: 允许接收信息的结束时间。格式：`15:04:05`。必填
         # @type EndTime: String
         # @param Index: 位序。
 
         # - 入参时无效。
         # - 出参时有效。
         # @type Index: Integer
-        # @param NoticeContentId: 通知内容模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NoticeContentId: String
 
-        attr_accessor :ReceiverType, :ReceiverIds, :ReceiverChannels, :StartTime, :EndTime, :Index, :NoticeContentId
+        attr_accessor :ReceiverType, :ReceiverIds, :ReceiverChannels, :NoticeContentId, :StartTime, :EndTime, :Index
 
-        def initialize(receivertype=nil, receiverids=nil, receiverchannels=nil, starttime=nil, endtime=nil, index=nil, noticecontentid=nil)
+        def initialize(receivertype=nil, receiverids=nil, receiverchannels=nil, noticecontentid=nil, starttime=nil, endtime=nil, index=nil)
           @ReceiverType = receivertype
           @ReceiverIds = receiverids
           @ReceiverChannels = receiverchannels
+          @NoticeContentId = noticecontentid
           @StartTime = starttime
           @EndTime = endtime
           @Index = index
-          @NoticeContentId = noticecontentid
         end
 
         def deserialize(params)
           @ReceiverType = params['ReceiverType']
           @ReceiverIds = params['ReceiverIds']
           @ReceiverChannels = params['ReceiverChannels']
+          @NoticeContentId = params['NoticeContentId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Index = params['Index']
-          @NoticeContentId = params['NoticeContentId']
         end
       end
 
       # 通知规则
       class NoticeRule < TencentCloud::Common::AbstractModel
-        # @param NoticeReceivers: 告警通知模板接收者信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NoticeReceivers: Array
-        # @param WebCallbacks: 告警通知模板回调信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WebCallbacks: Array
         # @param Rule: 匹配规则 JSON串。
         # **rule规则树格式为嵌套结构体JSON字符串**
         # `{"Value":"AND","Type":"Operation","Children":[{"Value":"OR","Type":"Operation","Children":[{"Type":"Condition","Value":"Level","Children":[{"Value":"In","Type":"Compare"},{"Value":"[1,0]","Type":"Value"}]},{"Type":"Condition","Value":"Level","Children":[{"Value":"NotIn","Type":"Compare"},{"Value":"[2]","Type":"Value"}]}]}]}`
@@ -9606,16 +9771,42 @@ module TencentCloud
         # `{\"Value\":\"AND\",\"Type\":\"Operation\",\"Children\":[{\"Value\":\"OR\",\"Type\":\"Operation\",\"Children\":[{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\">\",\"Type\":\"Compare\"},{\"Value\":1,\"Type\":\"Value\"}]},{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\">=\",\"Type\":\"Compare\"},{\"Value\":2,\"Type\":\"Value\"}]},{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\"<\",\"Type\":\"Compare\"},{\"Value\":3,\"Type\":\"Value\"}]},{\"Type\":\"Condition\",\"Value\":\"Duration\",\"Children\":[{\"Value\":\"<=\",\"Type\":\"Compare\"},{\"Value\":4,\"Type\":\"Value\"}]}]}]}`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: String
+        # @param NoticeReceivers: 告警通知接收者信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeReceivers: Array
+        # @param WebCallbacks: 告警通知模板回调信息，包括企业微信、钉钉、飞书。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCallbacks: Array
+        # @param Escalate: 告警升级开关。`true`：开启告警升级、`false`：关闭告警升级，默认：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Escalate: Boolean
+        # @param Type: 告警升级条件。`1`：无人认领且未恢复、`2`：未恢复，默认为1
+        # - 无人认领且未恢复：告警没有恢复并且没有人认领则升级
+        # - 未恢复：当前告警持续未恢复则升级
 
-        attr_accessor :NoticeReceivers, :WebCallbacks, :Rule
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Interval: 告警升级间隔。单位：分钟，范围`[1，14400]`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: Integer
+        # @param EscalateNotice: 告警升级后下一个环节的通知渠道配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EscalateNotice: :class:`Tencentcloud::Cls.v20201016.models.EscalateNoticeInfo`
 
-        def initialize(noticereceivers=nil, webcallbacks=nil, rule=nil)
+        attr_accessor :Rule, :NoticeReceivers, :WebCallbacks, :Escalate, :Type, :Interval, :EscalateNotice
+
+        def initialize(rule=nil, noticereceivers=nil, webcallbacks=nil, escalate=nil, type=nil, interval=nil, escalatenotice=nil)
+          @Rule = rule
           @NoticeReceivers = noticereceivers
           @WebCallbacks = webcallbacks
-          @Rule = rule
+          @Escalate = escalate
+          @Type = type
+          @Interval = interval
+          @EscalateNotice = escalatenotice
         end
 
         def deserialize(params)
+          @Rule = params['Rule']
           unless params['NoticeReceivers'].nil?
             @NoticeReceivers = []
             params['NoticeReceivers'].each do |i|
@@ -9632,7 +9823,13 @@ module TencentCloud
               @WebCallbacks << webcallback_tmp
             end
           end
-          @Rule = params['Rule']
+          @Escalate = params['Escalate']
+          @Type = params['Type']
+          @Interval = params['Interval']
+          unless params['EscalateNotice'].nil?
+            @EscalateNotice = EscalateNoticeInfo.new
+            @EscalateNotice.deserialize(params['EscalateNotice'])
+          end
         end
       end
 
@@ -11208,63 +11405,79 @@ module TencentCloud
 
       # 回调地址
       class WebCallback < TencentCloud::Common::AbstractModel
-        # @param Url: 回调地址。最大支持1024个字节数。
-        # @type Url: String
         # @param CallbackType: 回调的类型。可选值：
-        # - WeCom
         # - Http
+        # - WeCom
         # - DingTalk
         # - Lark
         # @type CallbackType: String
+        # @param Url: 回调地址，最大支持1024个字节。
+        # 也可使用WebCallbackId引用集成配置中的URL，此时该字段请填写为空字符串。
+        # @type Url: String
+        # @param WebCallbackId: 集成配置ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCallbackId: String
         # @param Method: 回调方法。可选值：
         # - POST（默认值）
         # - PUT
 
         # 注意：
-        # - 参数CallbackType为Http时为必选。
+        # - 参数CallbackType为Http时为必选，其它回调方式无需填写。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: String
-        # @param Headers: 请求头。
-        # 注意：该参数已废弃，请使用NoticeContentId。
+        # @param NoticeContentId: 通知内容模板ID，使用Default-zh引用默认模板（中文），使用Default-en引用DefaultTemplate(English)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentId: String
+        # @param RemindType: 提醒类型。
+
+        # 0：不提醒；1：指定人；2：所有人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemindType: Integer
+        # @param Mobiles: 电话列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mobiles: Array
+        # @param UserIds: 用户ID列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIds: Array
+        # @param Headers: 该参数已废弃，请使用NoticeContentId。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
-        # @param Body: 请求内容。
-        # 注意：该参数已废弃，请使用NoticeContentId。
+        # @param Body: 该参数已废弃，请使用NoticeContentId。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
         # @param Index: 序号。
         # - 入参无效。
         # - 出参有效。
         # @type Index: Integer
-        # @param NoticeContentId: 通知内容模板ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NoticeContentId: String
-        # @param WebCallbackId: 集成配置ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WebCallbackId: String
 
-        attr_accessor :Url, :CallbackType, :Method, :Headers, :Body, :Index, :NoticeContentId, :WebCallbackId
+        attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
 
-        def initialize(url=nil, callbacktype=nil, method=nil, headers=nil, body=nil, index=nil, noticecontentid=nil, webcallbackid=nil)
-          @Url = url
+        def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype
+          @Url = url
+          @WebCallbackId = webcallbackid
           @Method = method
+          @NoticeContentId = noticecontentid
+          @RemindType = remindtype
+          @Mobiles = mobiles
+          @UserIds = userids
           @Headers = headers
           @Body = body
           @Index = index
-          @NoticeContentId = noticecontentid
-          @WebCallbackId = webcallbackid
         end
 
         def deserialize(params)
-          @Url = params['Url']
           @CallbackType = params['CallbackType']
+          @Url = params['Url']
+          @WebCallbackId = params['WebCallbackId']
           @Method = params['Method']
+          @NoticeContentId = params['NoticeContentId']
+          @RemindType = params['RemindType']
+          @Mobiles = params['Mobiles']
+          @UserIds = params['UserIds']
           @Headers = params['Headers']
           @Body = params['Body']
           @Index = params['Index']
-          @NoticeContentId = params['NoticeContentId']
-          @WebCallbackId = params['WebCallbackId']
         end
       end
 

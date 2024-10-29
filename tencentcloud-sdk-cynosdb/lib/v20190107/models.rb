@@ -4361,6 +4361,28 @@ module TencentCloud
         end
       end
 
+      # 日志投递信息
+      class DeliverSummary < TencentCloud::Common::AbstractModel
+        # @param DeliverType: 投递类型，store（存储类），mq（消息通道）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverType: String
+        # @param DeliverSubType: 投递子类型：cls，ckafka。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverSubType: String
+
+        attr_accessor :DeliverType, :DeliverSubType
+
+        def initialize(delivertype=nil, deliversubtype=nil)
+          @DeliverType = delivertype
+          @DeliverSubType = deliversubtype
+        end
+
+        def deserialize(params)
+          @DeliverType = params['DeliverType']
+          @DeliverSubType = params['DeliverSubType']
+        end
+      end
+
       # DescribeAccountAllGrantPrivileges请求参数结构体
       class DescribeAccountAllGrantPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -8335,10 +8357,16 @@ module TencentCloud
         # @param RuleTemplateIds: 实例所应用的规则模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleTemplateIds: Array
+        # @param Deliver: 是否开启日志投递：ON，OFF
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deliver: String
+        # @param DeliverSummary: 日志投递类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliverSummary: Array
 
-        attr_accessor :InstanceId, :AuditStatus, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :RuleTemplateIds
+        attr_accessor :InstanceId, :AuditStatus, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :RuleTemplateIds, :Deliver, :DeliverSummary
 
-        def initialize(instanceid=nil, auditstatus=nil, logexpireday=nil, highlogexpireday=nil, lowlogexpireday=nil, billingamount=nil, highrealstorage=nil, lowrealstorage=nil, auditall=nil, createat=nil, instanceinfo=nil, realstorage=nil, ruletemplateids=nil)
+        def initialize(instanceid=nil, auditstatus=nil, logexpireday=nil, highlogexpireday=nil, lowlogexpireday=nil, billingamount=nil, highrealstorage=nil, lowrealstorage=nil, auditall=nil, createat=nil, instanceinfo=nil, realstorage=nil, ruletemplateids=nil, deliver=nil, deliversummary=nil)
           @InstanceId = instanceid
           @AuditStatus = auditstatus
           @LogExpireDay = logexpireday
@@ -8352,6 +8380,8 @@ module TencentCloud
           @InstanceInfo = instanceinfo
           @RealStorage = realstorage
           @RuleTemplateIds = ruletemplateids
+          @Deliver = deliver
+          @DeliverSummary = deliversummary
         end
 
         def deserialize(params)
@@ -8371,6 +8401,15 @@ module TencentCloud
           end
           @RealStorage = params['RealStorage']
           @RuleTemplateIds = params['RuleTemplateIds']
+          @Deliver = params['Deliver']
+          unless params['DeliverSummary'].nil?
+            @DeliverSummary = []
+            params['DeliverSummary'].each do |i|
+              deliversummary_tmp = DeliverSummary.new
+              deliversummary_tmp.deserialize(i)
+              @DeliverSummary << deliversummary_tmp
+            end
+          end
         end
       end
 

@@ -3878,7 +3878,7 @@ module TencentCloud
       class DeleteBackupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param BackupId: 备份任务 ID。该任务 ID 为 [创建云数据库备份](https://cloud.tencent.com/document/api/236/15844) 接口返回的任务 ID。
+        # @param BackupId: 备份任务 ID。您可通过 [查询数据备份文件列表](https://cloud.tencent.com/document/api/236/15842)  来获取目标备份任务 ID。
         # @type BackupId: Integer
 
         attr_accessor :InstanceId, :BackupId
@@ -4020,14 +4020,17 @@ module TencentCloud
         # @type Host: String
         # @param Password: 关闭密码轮转后实例账户的最新密码
         # @type Password: String
+        # @param EncryptMethod: 传入不为空则对密码进行了加密处理
+        # @type EncryptMethod: String
 
-        attr_accessor :InstanceId, :User, :Host, :Password
+        attr_accessor :InstanceId, :User, :Host, :Password, :EncryptMethod
 
-        def initialize(instanceid=nil, user=nil, host=nil, password=nil)
+        def initialize(instanceid=nil, user=nil, host=nil, password=nil, encryptmethod=nil)
           @InstanceId = instanceid
           @User = user
           @Host = host
           @Password = password
+          @EncryptMethod = encryptmethod
         end
 
         def deserialize(params)
@@ -4035,6 +4038,7 @@ module TencentCloud
           @User = params['User']
           @Host = params['Host']
           @Password = params['Password']
+          @EncryptMethod = params['EncryptMethod']
         end
       end
 

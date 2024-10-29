@@ -369,7 +369,7 @@ module TencentCloud
         # @type CanEditApprover: Boolean
         # @param FillType: 签署人信息补充类型，默认无需补充。
 
-        # <ul><li> **1** : ( 动态签署人（可发起合同后再补充签署人信息）注：`企业自动签不支持动态补充`</li></ul>
+        # <ul><li> **1** :  动态签署人（可发起合同后再补充签署人信息）注：`企业自动签不支持动态补充`</li></ul>
 
         # 注：
         # `使用动态签署人能力前，需登陆腾讯电子签控制台打开服务开关`
@@ -2534,8 +2534,9 @@ module TencentCloud
         # 注：` 如果发起方指定的补充签署人是企业微信签署人（ApproverSource=WEWORKAPP），则需要提供企业微信UserId进行补充； 如果不指定，则使用姓名和手机号进行补充。`
         # @type Approvers: Array
         # @param FlowId: 合同流程ID，为32位字符串。
-        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
-        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # - 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        # - 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # - <font color="red">不建议继续使用</font>，请使用<a href="https://qian.tencent.com/developers/companyApis/dataTypes/#fillapproverinfo/" target="_blank">补充签署人结构体</a>中的FlowId来指定需要补充的合同id
         # @type FlowId: String
         # @param FillApproverType: 签署人信息补充方式
 
@@ -5315,8 +5316,7 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息, userId 必填。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param OrganizationName: 合同流程签署方的组织机构名称。
-        # 如果名称中包含英文括号()，请使用中文括号（）代替。
+        # @param OrganizationName: 合同流程签署方的组织机构名称。如果名称中包含英文括号()，请使用中文括号（）代替。注: `获取B端动态签署人领取链接时,可指定此字段来预先设定签署人的企业,预设后只能以该企业身份去领取合同并完成签署`
         # @type OrganizationName: String
         # @param Name: 合同流程里边签署方经办人的姓名。
         # @type Name: String
@@ -6424,6 +6424,112 @@ module TencentCloud
 
         def deserialize(params)
           @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 清理的企业认证流信息
+      class DeleteOrganizationAuthorizationInfo < TencentCloud::Common::AbstractModel
+        # @param AuthorizationId: 认证流 Id 是指在企业认证过程中，当前操作人的认证流程的唯一标识。每个企业在认证过程中只能有一条认证流认证成功。这意味着在同一认证过程内，一个企业只能有一个认证流程处于成功状态，以确保认证的唯一性和有效性。
+        # @type AuthorizationId: String
+        # @param OrganizationName: 认证的企业名称
+        # @type OrganizationName: String
+        # @param Errormessage: 清除认证流产生的错误信息
+        # @type Errormessage: String
+
+        attr_accessor :AuthorizationId, :OrganizationName, :Errormessage
+
+        def initialize(authorizationid=nil, organizationname=nil, errormessage=nil)
+          @AuthorizationId = authorizationid
+          @OrganizationName = organizationname
+          @Errormessage = errormessage
+        end
+
+        def deserialize(params)
+          @AuthorizationId = params['AuthorizationId']
+          @OrganizationName = params['OrganizationName']
+          @Errormessage = params['Errormessage']
+        end
+      end
+
+      # DeleteOrganizationAuthorizations请求参数结构体
+      class DeleteOrganizationAuthorizationsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息, userId 必填。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param AuthorizationIds: 认证流Ids数组
+        # 认证流 Id 是指在企业认证过程中，当前操作人的认证流程的唯一标识。每个企业在认证过程中只能有一条认证流认证成功。这意味着在同一认证过程内，一个企业只能有一个认证流程处于成功状态，以确保认证的唯一性和有效性。
+
+
+        # 认证流 Id可以通过回调 [授权书认证审核结果回调](https://qian.tencent.com/developers/company/callback_types_staffs/#%E5%8D%81%E5%9B%9B-%E6%8E%88%E6%9D%83%E4%B9%A6%E8%AE%A4%E8%AF%81%E5%AE%A1%E6%A0%B8%E7%BB%93%E6%9E%9C%E5%9B%9E%E8%B0%83) 获取
+
+        # 注意：
+        # 如果传递了认证流Id，则下面的参数 超管二要素不会生效
+        # @type AuthorizationIds: Array
+        # @param AdminName: 认证人姓名，组织机构超管姓名。
+        # 在注册流程中，必须是超管本人进行操作。
+        # @type AdminName: String
+        # @param AdminMobile: 认证人手机号，组织机构超管手机号。 在注册流程中，必须是超管本人进行操作。
+        # @type AdminMobile: String
+        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :AuthorizationIds, :AdminName, :AdminMobile, :Agent
+
+        def initialize(operator=nil, authorizationids=nil, adminname=nil, adminmobile=nil, agent=nil)
+          @Operator = operator
+          @AuthorizationIds = authorizationids
+          @AdminName = adminname
+          @AdminMobile = adminmobile
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @AuthorizationIds = params['AuthorizationIds']
+          @AdminName = params['AdminName']
+          @AdminMobile = params['AdminMobile']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DeleteOrganizationAuthorizations返回参数结构体
+      class DeleteOrganizationAuthorizationsResponse < TencentCloud::Common::AbstractModel
+        # @param DeleteOrganizationAuthorizationInfos: 清理的认证流的详细信息，其中包括企业名称，认证流唯一 Id 以及清理过程中产生的错误信息
+        # @type DeleteOrganizationAuthorizationInfos: Array
+        # @param Status: 批量清理认证流返回的状态值
+        # 其中包括
+        # - 1 全部成功
+        # - 2 部分成功
+        # - 3 全部失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeleteOrganizationAuthorizationInfos, :Status, :RequestId
+
+        def initialize(deleteorganizationauthorizationinfos=nil, status=nil, requestid=nil)
+          @DeleteOrganizationAuthorizationInfos = deleteorganizationauthorizationinfos
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeleteOrganizationAuthorizationInfos'].nil?
+            @DeleteOrganizationAuthorizationInfos = []
+            params['DeleteOrganizationAuthorizationInfos'].each do |i|
+              deleteorganizationauthorizationinfo_tmp = DeleteOrganizationAuthorizationInfo.new
+              deleteorganizationauthorizationinfo_tmp.deserialize(i)
+              @DeleteOrganizationAuthorizationInfos << deleteorganizationauthorizationinfo_tmp
+            end
+          end
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -8807,7 +8913,9 @@ module TencentCloud
 
         # 注：`补充个人签署方时，若该用户已在电子签完成实名则可通过指定姓名和证件类型、证件号码完成补充。`
         # @type ApproverIdCardNumber: String
-        # @param FlowId: 合同流程ID，补充合同组子合同动态签署人时必传。
+        # @param FlowId: 合同流程ID
+        # - 补充合同组子合同动态签署人时必传。
+        # - 补充普通合同时，请阅读：<a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowApprovers/" target="_blank">补充签署人接口</a>的接口使用说明
         # @type FlowId: String
 
         attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile, :OrganizationName, :ApproverIdCardType, :ApproverIdCardNumber, :FlowId
@@ -8845,17 +8953,22 @@ module TencentCloud
         # @param ErrMessage: 补充失败错误说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
 
-        attr_accessor :RecipientId, :ErrMessage
+        attr_accessor :RecipientId, :ErrMessage, :FlowId
 
-        def initialize(recipientid=nil, errmessage=nil)
+        def initialize(recipientid=nil, errmessage=nil, flowid=nil)
           @RecipientId = recipientid
           @ErrMessage = errmessage
+          @FlowId = flowid
         end
 
         def deserialize(params)
           @RecipientId = params['RecipientId']
           @ErrMessage = params['ErrMessage']
+          @FlowId = params['FlowId']
         end
       end
 
@@ -11559,6 +11672,8 @@ module TencentCloud
         # @param ApproverSignRole: 参与方在合同中的角色是按照创建合同的时候来排序的，解除协议默认会将第一个参与人叫`甲方`,第二个叫`乙方`,  第三个叫`丙方`，以此类推。
 
         # 如果需改动此参与人的角色名字，可用此字段指定，由汉字,英文字符,数字组成，最大20个字。
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/973a820ab66d1ce57082c160c2b2d44a.png)
         # @type ApproverSignRole: String
         # @param ApproverSignSealId: 印章Id，签署控件类型为印章时，用于指定本企业签署方在解除协议中使用那个印章进行签署
         # @type ApproverSignSealId: String

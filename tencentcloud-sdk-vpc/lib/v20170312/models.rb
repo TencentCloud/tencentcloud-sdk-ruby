@@ -6931,17 +6931,21 @@ module TencentCloud
         # @type DirectConnectGatewayId: String
         # @param RouteIds: 路由ID。形如：ccnr-f49l6u0z。
         # @type RouteIds: Array
+        # @param AddressType: 地址类型，支持：IPv4、IPv6。默认IPv4。
+        # @type AddressType: String
 
-        attr_accessor :DirectConnectGatewayId, :RouteIds
+        attr_accessor :DirectConnectGatewayId, :RouteIds, :AddressType
 
-        def initialize(directconnectgatewayid=nil, routeids=nil)
+        def initialize(directconnectgatewayid=nil, routeids=nil, addresstype=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @RouteIds = routeids
+          @AddressType = addresstype
         end
 
         def deserialize(params)
           @DirectConnectGatewayId = params['DirectConnectGatewayId']
           @RouteIds = params['RouteIds']
+          @AddressType = params['AddressType']
         end
       end
 
@@ -9995,16 +9999,19 @@ module TencentCloud
         # <li>`BGP` - 自动学习。</li>
         # <li>`STATIC` - 静态，即用户配置，默认值。</li>
         # @type CcnRouteType: String
+        # @param AddressType: 地址类型，支持：IPv4、IPv6。默认IPv4。
+        # @type AddressType: String
         # @param Offset: 偏移量。
         # @type Offset: Integer
         # @param Limit: 返回数量。
         # @type Limit: Integer
 
-        attr_accessor :DirectConnectGatewayId, :CcnRouteType, :Offset, :Limit
+        attr_accessor :DirectConnectGatewayId, :CcnRouteType, :AddressType, :Offset, :Limit
 
-        def initialize(directconnectgatewayid=nil, ccnroutetype=nil, offset=nil, limit=nil)
+        def initialize(directconnectgatewayid=nil, ccnroutetype=nil, addresstype=nil, offset=nil, limit=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @CcnRouteType = ccnroutetype
+          @AddressType = addresstype
           @Offset = offset
           @Limit = limit
         end
@@ -10012,6 +10019,7 @@ module TencentCloud
         def deserialize(params)
           @DirectConnectGatewayId = params['DirectConnectGatewayId']
           @CcnRouteType = params['CcnRouteType']
+          @AddressType = params['AddressType']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -18186,6 +18194,42 @@ module TencentCloud
         end
       end
 
+      # ModifyAddressesRenewFlag请求参数结构体
+      class ModifyAddressesRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param AddressIds: EIP唯一标识ID列表，形如'eip-xxxx'
+        # @type AddressIds: Array
+        # @param RenewFlag: 自动续费标识。取值范围： NOTIFY_AND_AUTO_RENEW：通知过期且自动续费 NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费 DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费  若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。 示例值：NOTIFY_AND_AUTO_RENEW
+        # @type RenewFlag: String
+
+        attr_accessor :AddressIds, :RenewFlag
+
+        def initialize(addressids=nil, renewflag=nil)
+          @AddressIds = addressids
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @AddressIds = params['AddressIds']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyAddressesRenewFlag返回参数结构体
+      class ModifyAddressesRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAssistantCidr请求参数结构体
       class ModifyAssistantCidrRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
@@ -20920,7 +20964,7 @@ module TencentCloud
       class NatGatewayDestinationIpPortTranslationNatRule < TencentCloud::Common::AbstractModel
         # @param IpProtocol: 网络协议，可选值：`TCP`、`UDP`。
         # @type IpProtocol: String
-        # @param PublicIpAddress: 弹性IP。
+        # @param PublicIpAddress: 弹性公网IP。
         # @type PublicIpAddress: String
         # @param PublicPort: 公网端口。
         # @type PublicPort: Integer
@@ -22498,12 +22542,15 @@ module TencentCloud
         # @type DirectConnectGatewayId: String
         # @param Routes: 需要连通的IDC网段列表
         # @type Routes: Array
+        # @param AddressType: 地址类型，支持：IPv4、IPv6。默认IPv4。
+        # @type AddressType: String
 
-        attr_accessor :DirectConnectGatewayId, :Routes
+        attr_accessor :DirectConnectGatewayId, :Routes, :AddressType
 
-        def initialize(directconnectgatewayid=nil, routes=nil)
+        def initialize(directconnectgatewayid=nil, routes=nil, addresstype=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @Routes = routes
+          @AddressType = addresstype
         end
 
         def deserialize(params)
@@ -22516,6 +22563,7 @@ module TencentCloud
               @Routes << directconnectgatewayccnroute_tmp
             end
           end
+          @AddressType = params['AddressType']
         end
       end
 
@@ -23875,7 +23923,7 @@ module TencentCloud
         # @param Action: ACCEPT 或 DROP。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
-        # @param PolicyDescription: 安全组规则描述。
+        # @param PolicyDescription: 安全组规则描述。作为入参时，当未传递该参数或值为空，且参数CidrBlock或Ipv6CidrBlock值为MY_PUBLIC_IP时，该参数的值将会被自动填充为Replaced-From-MY_PUBLIC_IP。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyDescription: String
         # @param ModifyTime: 安全组最近修改时间。

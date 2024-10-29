@@ -202,16 +202,28 @@ module TencentCloud
         # @type CodeLocationList: Array
         # @param LicenseExpression: 第三方组件的许可证表达式
         # @type LicenseExpression: String
+        # @param VersionInfo: 第三方组件的版本信息(如果匹配到版本)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionInfo: :class:`Tencentcloud::Bsca.v20210811.models.ComponentVersionInfo`
+        # @param LastUpdateTime: 第三方组件的最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: String
+        # @param TagList: 第三方组件的类型标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
 
-        attr_accessor :PURL, :Homepage, :Summary, :NicknameList, :CodeLocationList, :LicenseExpression
+        attr_accessor :PURL, :Homepage, :Summary, :NicknameList, :CodeLocationList, :LicenseExpression, :VersionInfo, :LastUpdateTime, :TagList
 
-        def initialize(purl=nil, homepage=nil, summary=nil, nicknamelist=nil, codelocationlist=nil, licenseexpression=nil)
+        def initialize(purl=nil, homepage=nil, summary=nil, nicknamelist=nil, codelocationlist=nil, licenseexpression=nil, versioninfo=nil, lastupdatetime=nil, taglist=nil)
           @PURL = purl
           @Homepage = homepage
           @Summary = summary
           @NicknameList = nicknamelist
           @CodeLocationList = codelocationlist
           @LicenseExpression = licenseexpression
+          @VersionInfo = versioninfo
+          @LastUpdateTime = lastupdatetime
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -224,10 +236,36 @@ module TencentCloud
           @NicknameList = params['NicknameList']
           @CodeLocationList = params['CodeLocationList']
           @LicenseExpression = params['LicenseExpression']
+          unless params['VersionInfo'].nil?
+            @VersionInfo = ComponentVersionInfo.new
+            @VersionInfo.deserialize(params['VersionInfo'])
+          end
+          @LastUpdateTime = params['LastUpdateTime']
+          @TagList = params['TagList']
         end
       end
 
-      # 描述组件的一条版本信息。
+      # 筛选条件，同一个Tag不能同时出现在IncludeTags和ExcludeTags，可能的Tag包括："CopyrightUpdated", "LicenseUpdated", "ContainsVulnerability"
+      class ComponentTagFilter < TencentCloud::Common::AbstractModel
+        # @param IncludeTags: 包括的Tag
+        # @type IncludeTags: Array
+        # @param ExcludeTags: 排除的Tag
+        # @type ExcludeTags: Array
+
+        attr_accessor :IncludeTags, :ExcludeTags
+
+        def initialize(includetags=nil, excludetags=nil)
+          @IncludeTags = includetags
+          @ExcludeTags = excludetags
+        end
+
+        def deserialize(params)
+          @IncludeTags = params['IncludeTags']
+          @ExcludeTags = params['ExcludeTags']
+        end
+      end
+
+      # 描述一个组件版本。
       class ComponentVersion < TencentCloud::Common::AbstractModel
         # @param PURL: 该组件的PURL
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -235,12 +273,16 @@ module TencentCloud
         # @param LicenseExpression: 该组件版本的许可证表达式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseExpression: String
+        # @param VersionInfo: 组件的版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionInfo: :class:`Tencentcloud::Bsca.v20210811.models.ComponentVersionInfo`
 
-        attr_accessor :PURL, :LicenseExpression
+        attr_accessor :PURL, :LicenseExpression, :VersionInfo
 
-        def initialize(purl=nil, licenseexpression=nil)
+        def initialize(purl=nil, licenseexpression=nil, versioninfo=nil)
           @PURL = purl
           @LicenseExpression = licenseexpression
+          @VersionInfo = versioninfo
         end
 
         def deserialize(params)
@@ -249,6 +291,37 @@ module TencentCloud
             @PURL.deserialize(params['PURL'])
           end
           @LicenseExpression = params['LicenseExpression']
+          unless params['VersionInfo'].nil?
+            @VersionInfo = ComponentVersionInfo.new
+            @VersionInfo.deserialize(params['VersionInfo'])
+          end
+        end
+      end
+
+      # 描述组件版本的详情，包含组件发布时间、Copyright列表、组件描述Tag。
+      class ComponentVersionInfo < TencentCloud::Common::AbstractModel
+        # @param PublishTime: 版本发布时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishTime: String
+        # @param CopyrightList: 当前版本的所有copyright
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CopyrightList: Array
+        # @param TagList: 版本标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+
+        attr_accessor :PublishTime, :CopyrightList, :TagList
+
+        def initialize(publishtime=nil, copyrightlist=nil, taglist=nil)
+          @PublishTime = publishtime
+          @CopyrightList = copyrightlist
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @PublishTime = params['PublishTime']
+          @CopyrightList = params['CopyrightList']
+          @TagList = params['TagList']
         end
       end
 
@@ -368,17 +441,40 @@ module TencentCloud
       class DescribeKBComponentVersionListRequest < TencentCloud::Common::AbstractModel
         # @param PURL: 要查询的组件 PURL
         # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
+        # @param PageNumber: 页号
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param Order: 排序方式，可以是"ASC"或"DESC"，默认"DESC"
+        # @type Order: String
+        # @param OrderBy: 排序字段，可能的字段包括“Version”、"PublishTime"
+        # @type OrderBy: Array
+        # @param Filter: Tag筛选
+        # @type Filter: :class:`Tencentcloud::Bsca.v20210811.models.ComponentTagFilter`
 
-        attr_accessor :PURL
+        attr_accessor :PURL, :PageNumber, :PageSize, :Order, :OrderBy, :Filter
 
-        def initialize(purl=nil)
+        def initialize(purl=nil, pagenumber=nil, pagesize=nil, order=nil, orderby=nil, filter=nil)
           @PURL = purl
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Order = order
+          @OrderBy = orderby
+          @Filter = filter
         end
 
         def deserialize(params)
           unless params['PURL'].nil?
             @PURL = PURL.new
             @PURL.deserialize(params['PURL'])
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+          unless params['Filter'].nil?
+            @Filter = ComponentTagFilter.new
+            @Filter.deserialize(params['Filter'])
           end
         end
       end
@@ -438,13 +534,19 @@ module TencentCloud
         # @param VulnerabilityList: 漏洞信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityList: Array
+        # @param PURL: 组件purl
+        # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
+        # @param RecommendedVersion: 推荐版本，当前版本中的所有漏洞都修复了的版本
+        # @type RecommendedVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulnerabilityList, :RequestId
+        attr_accessor :VulnerabilityList, :PURL, :RecommendedVersion, :RequestId
 
-        def initialize(vulnerabilitylist=nil, requestid=nil)
+        def initialize(vulnerabilitylist=nil, purl=nil, recommendedversion=nil, requestid=nil)
           @VulnerabilityList = vulnerabilitylist
+          @PURL = purl
+          @RecommendedVersion = recommendedversion
           @RequestId = requestid
         end
 
@@ -457,6 +559,11 @@ module TencentCloud
               @VulnerabilityList << componentvulnerabilityunion_tmp
             end
           end
+          unless params['PURL'].nil?
+            @PURL = PURL.new
+            @PURL.deserialize(params['PURL'])
+          end
+          @RecommendedVersion = params['RecommendedVersion']
           @RequestId = params['RequestId']
         end
       end
@@ -896,6 +1003,8 @@ module TencentCloud
         # @type CVSSv3Info: :class:`Tencentcloud::Bsca.v20210811.models.CVSSV3Info`
         # @param SubmitTime: 漏洞提交时间
         # @type SubmitTime: String
+        # @param UpdateTime: 漏洞更新时间
+        # @type UpdateTime: String
         # @param CWEID: CWE编号
         # @type CWEID: String
         # @param CVSSv2Vector: 漏洞CVSSv2向量
@@ -905,9 +1014,9 @@ module TencentCloud
         # @param AffectedComponentList: 漏洞影响的组件列表，仅当查询单个漏洞时有效
         # @type AffectedComponentList: Array
 
-        attr_accessor :Category, :CategoryType, :Description, :OfficialSolution, :ReferenceList, :DefenseSolution, :CVSSv2Info, :CVSSv3Info, :SubmitTime, :CWEID, :CVSSv2Vector, :CVSSv3Vector, :AffectedComponentList
+        attr_accessor :Category, :CategoryType, :Description, :OfficialSolution, :ReferenceList, :DefenseSolution, :CVSSv2Info, :CVSSv3Info, :SubmitTime, :UpdateTime, :CWEID, :CVSSv2Vector, :CVSSv3Vector, :AffectedComponentList
 
-        def initialize(category=nil, categorytype=nil, description=nil, officialsolution=nil, referencelist=nil, defensesolution=nil, cvssv2info=nil, cvssv3info=nil, submittime=nil, cweid=nil, cvssv2vector=nil, cvssv3vector=nil, affectedcomponentlist=nil)
+        def initialize(category=nil, categorytype=nil, description=nil, officialsolution=nil, referencelist=nil, defensesolution=nil, cvssv2info=nil, cvssv3info=nil, submittime=nil, updatetime=nil, cweid=nil, cvssv2vector=nil, cvssv3vector=nil, affectedcomponentlist=nil)
           @Category = category
           @CategoryType = categorytype
           @Description = description
@@ -917,6 +1026,7 @@ module TencentCloud
           @CVSSv2Info = cvssv2info
           @CVSSv3Info = cvssv3info
           @SubmitTime = submittime
+          @UpdateTime = updatetime
           @CWEID = cweid
           @CVSSv2Vector = cvssv2vector
           @CVSSv3Vector = cvssv3vector
@@ -939,6 +1049,7 @@ module TencentCloud
             @CVSSv3Info.deserialize(params['CVSSv3Info'])
           end
           @SubmitTime = params['SubmitTime']
+          @UpdateTime = params['UpdateTime']
           @CWEID = params['CWEID']
           @CVSSv2Vector = params['CVSSv2Vector']
           @CVSSv3Vector = params['CVSSv3Vector']
@@ -973,10 +1084,22 @@ module TencentCloud
         # <li>Medium</li>
         # <li>Low</li>
         # @type Severity: String
+        # @param Architecture: 架构信息，如x86、ARM等，废弃，请使用ArchitectureList
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Architecture: Array
+        # @param ArchitectureList: 架构信息，如x86、ARM等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArchitectureList: Array
+        # @param PatchUrlList: patch链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PatchUrlList: Array
 
-        attr_accessor :VulID, :CVEID, :CNVDID, :CNNVDID, :Name, :IsSuggest, :Severity
+        attr_accessor :VulID, :CVEID, :CNVDID, :CNNVDID, :Name, :IsSuggest, :Severity, :Architecture, :ArchitectureList, :PatchUrlList
+        extend Gem::Deprecate
+        deprecate :Architecture, :none, 2024, 10
+        deprecate :Architecture=, :none, 2024, 10
 
-        def initialize(vulid=nil, cveid=nil, cnvdid=nil, cnnvdid=nil, name=nil, issuggest=nil, severity=nil)
+        def initialize(vulid=nil, cveid=nil, cnvdid=nil, cnnvdid=nil, name=nil, issuggest=nil, severity=nil, architecture=nil, architecturelist=nil, patchurllist=nil)
           @VulID = vulid
           @CVEID = cveid
           @CNVDID = cnvdid
@@ -984,6 +1107,9 @@ module TencentCloud
           @Name = name
           @IsSuggest = issuggest
           @Severity = severity
+          @Architecture = architecture
+          @ArchitectureList = architecturelist
+          @PatchUrlList = patchurllist
         end
 
         def deserialize(params)
@@ -994,6 +1120,9 @@ module TencentCloud
           @Name = params['Name']
           @IsSuggest = params['IsSuggest']
           @Severity = params['Severity']
+          @Architecture = params['Architecture']
+          @ArchitectureList = params['ArchitectureList']
+          @PatchUrlList = params['PatchUrlList']
         end
       end
 

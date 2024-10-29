@@ -387,7 +387,7 @@ module TencentCloud
 
         # 注意：
         # • 16k音频：仅支持单声道识别，**需设置ChannelNum=1**；
-        # • 8k电话音频：支持单声道、双声道识别，**建议设置ChannelNum=2，即双声道**。双声道能够物理区分说话人、避免说话双方重叠产生的识别错误，能达到最好的说话人分离效果和识别效果。设置双声道后，将自动区分说话人，因此**无需再开启说话人分离功能**，相关参数（**SpeakerDiarization、SpeakerNumber**）使用默认值即可
+        # • 8k电话音频：支持单声道、双声道识别，**建议设置ChannelNum=2，即双声道**。双声道能够物理区分说话人、避免说话双方重叠产生的识别错误，能达到最好的说话人分离效果和识别效果。设置双声道后，将自动区分说话人，因此**无需再开启说话人分离功能**，相关参数（**SpeakerDiarization、SpeakerNumber**）使用默认值即可，返回的ResultDetail中的speakerId的值为0代表左声道，值为1代表右声道。
         # @type ChannelNum: Integer
         # @param ResTextFormat: 识别结果返回样式
         # 0：基础识别结果（仅包含有效人声时间戳，无词粒度的[详细识别结果](https://cloud.tencent.com/document/api/1093/37824#SentenceDetail)）；
@@ -1478,6 +1478,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeechSpeed: Float
         # @param SpeakerId: 声道或说话人 Id（请求中如果设置了 speaker_diarization或者ChannelNum为双声道，可区分说话人或声道）
+        # 单声道话者分离时不同的值代表不同的说话人； 8k双声道话者分离时speakerId的值为0代表左声道，值为1代表右声道。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeakerId: Integer
         # @param EmotionalEnergy: 情绪能量值，取值为音量分贝值/10。取值范围：[1,10]。值越高情绪越强烈。
@@ -1486,7 +1487,7 @@ module TencentCloud
         # @param SilenceTime: 本句与上一句之间的静音时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SilenceTime: Integer
-        # @param EmotionType: 情绪类型（可能为空）
+        # @param EmotionType: 情绪类型（可能为空，有2种情况 1、没有对应资源包；2、情绪跟语音效果相关，如果情绪不够强烈时可能无法识别）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmotionType: Array
         # @param KeyWordResults: 关键词识别结果列表

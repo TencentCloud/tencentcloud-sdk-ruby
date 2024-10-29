@@ -23,10 +23,10 @@ module TencentCloud
         # @type MinReplicas: Integer
         # @param MaxReplicas: 弹性伸缩最大实例数
         # @type MaxReplicas: Integer
-        # @param HorizontalAutoscaler: 指标弹性伸缩策略
+        # @param HorizontalAutoscaler: 指标弹性伸缩策略(指标策略和定时策略必须填写一个)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HorizontalAutoscaler: Array
-        # @param CronHorizontalAutoscaler: 定时弹性伸缩策略
+        # @param CronHorizontalAutoscaler: 定时弹性伸缩策略(指标策略和定时策略必须填写一个)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronHorizontalAutoscaler: Array
         # @param AutoscalerId: 弹性伸缩ID
@@ -683,7 +683,7 @@ module TencentCloud
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境 Id
         # @type EnvironmentId: String
-        # @param ResourceType: 资源类型，目前支持文件系统：CFS；日志服务：CLS；注册中心：TSE_SRE
+        # @param ResourceType: 资源类型，目前支持文件系统：CFS；注册中心：TSE_SRE
         # @type ResourceType: String
         # @param ResourceId: 资源 Id
         # @type ResourceId: String
@@ -1003,9 +1003,9 @@ module TencentCloud
         # @type ApplicationId: String
         # @param InitPodNum: 初始化 pod 数
         # @type InitPodNum: Integer
-        # @param CpuSpec: cpu规格
+        # @param CpuSpec: cpu规格 单位：核
         # @type CpuSpec: Float
-        # @param MemorySpec: 内存规格
+        # @param MemorySpec: 内存规格 单位：G
         # @type MemorySpec: Float
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
@@ -1629,7 +1629,7 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param ApplicationId: 服务ID
         # @type ApplicationId: String
-        # @param SourceChannel: xx
+        # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
 
         attr_accessor :EnvironmentId, :ApplicationId, :SourceChannel
@@ -3810,12 +3810,16 @@ module TencentCloud
       # 挂载配置信息
       class MountedSettingConf < TencentCloud::Common::AbstractModel
         # @param ConfigDataName: 配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigDataName: String
         # @param MountedPath: 挂载路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountedPath: String
         # @param Data: 配置内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param SecretDataName: 加密配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretDataName: String
 
         attr_accessor :ConfigDataName, :MountedPath, :Data, :SecretDataName
@@ -4510,7 +4514,7 @@ module TencentCloud
 
       # 端口映射详细信息结构体
       class ServicePortMapping < TencentCloud::Common::AbstractModel
-        # @param Type: 服务类型
+        # @param Type: 服务类型：如：EXTERNAL，VPC，CLUSTER
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ServiceName: 服务名称

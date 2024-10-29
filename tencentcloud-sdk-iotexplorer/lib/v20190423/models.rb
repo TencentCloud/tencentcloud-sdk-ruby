@@ -1270,16 +1270,26 @@ module TencentCloud
 
       # CreateIotVideoCloudStorage返回参数结构体
       class CreateIotVideoCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 订单金额，单位为分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Integer
+        # @param Amount: 支付金额，单位为分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Price, :Amount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(price=nil, amount=nil, requestid=nil)
+          @Price = price
+          @Amount = amount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Price = params['Price']
+          @Amount = params['Amount']
           @RequestId = params['RequestId']
         end
       end
@@ -2820,17 +2830,25 @@ module TencentCloud
         # @type Status: Integer
         # @param ChannelId: 通道id
         # @type ChannelId: Integer
+        # @param Price: 订单金额，单位为分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Integer
+        # @param Amount: 支付金额，单位为分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StartTime, :ExpireTime, :PackageId, :Status, :ChannelId, :RequestId
+        attr_accessor :StartTime, :ExpireTime, :PackageId, :Status, :ChannelId, :Price, :Amount, :RequestId
 
-        def initialize(starttime=nil, expiretime=nil, packageid=nil, status=nil, channelid=nil, requestid=nil)
+        def initialize(starttime=nil, expiretime=nil, packageid=nil, status=nil, channelid=nil, price=nil, amount=nil, requestid=nil)
           @StartTime = starttime
           @ExpireTime = expiretime
           @PackageId = packageid
           @Status = status
           @ChannelId = channelid
+          @Price = price
+          @Amount = amount
           @RequestId = requestid
         end
 
@@ -2840,6 +2858,8 @@ module TencentCloud
           @PackageId = params['PackageId']
           @Status = params['Status']
           @ChannelId = params['ChannelId']
+          @Price = params['Price']
+          @Amount = params['Amount']
           @RequestId = params['RequestId']
         end
       end

@@ -4852,6 +4852,155 @@ module TencentCloud
         end
       end
 
+      # 获取数据服务API的发布态信息列表过滤条件
+      class DataServicePublishedApiListFilter < TencentCloud::Common::AbstractModel
+        # @param PathUrl: 请求路径关键词筛选
+        # @type PathUrl: String
+        # @param Keyword: Api名称关键词筛选
+        # @type Keyword: String
+        # @param AuthTypes: Api认证方式筛选 0:免认证 1:应用认证
+        # @type AuthTypes: Array
+        # @param ApiStatus: 服务Api状态 1:已上线  3:已下线
+        # @type ApiStatus: Array
+        # @param ConfigTypes: API配置方式 0:向导、1、脚本、2、注册Api
+        # @type ConfigTypes: Array
+
+        attr_accessor :PathUrl, :Keyword, :AuthTypes, :ApiStatus, :ConfigTypes
+
+        def initialize(pathurl=nil, keyword=nil, authtypes=nil, apistatus=nil, configtypes=nil)
+          @PathUrl = pathurl
+          @Keyword = keyword
+          @AuthTypes = authtypes
+          @ApiStatus = apistatus
+          @ConfigTypes = configtypes
+        end
+
+        def deserialize(params)
+          @PathUrl = params['PathUrl']
+          @Keyword = params['Keyword']
+          @AuthTypes = params['AuthTypes']
+          @ApiStatus = params['ApiStatus']
+          @ConfigTypes = params['ConfigTypes']
+        end
+      end
+
+      # 数据服务通用排序参数
+      class DataServiceRequestListOrder < TencentCloud::Common::AbstractModel
+        # @param Name: 排序参数名称
+        # 取值：
+        #   CreateTime 表示按照创建时间排序
+        #   ModifyTime 表示按照更新时间排序
+        # @type Name: String
+        # @param Direction: 排序参数顺序
+        # @type Direction: String
+
+        attr_accessor :Name, :Direction
+
+        def initialize(name=nil, direction=nil)
+          @Name = name
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Direction = params['Direction']
+        end
+      end
+
+      # 数据服务入参
+      class DataServiceRequestParam < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamName: String
+        # @param BindField: 绑定字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindField: String
+        # @param ParamType: 参数类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamType: String
+        # @param ParamPosition: 参数位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamPosition: String
+        # @param Operator: 操作符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param NonEmpty: 是否为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonEmpty: Integer
+        # @param DefaultValue: 默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param ExampleValue: 示例值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExampleValue: String
+        # @param Description: 参数描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :ParamName, :BindField, :ParamType, :ParamPosition, :Operator, :NonEmpty, :DefaultValue, :ExampleValue, :Description
+
+        def initialize(paramname=nil, bindfield=nil, paramtype=nil, paramposition=nil, operator=nil, nonempty=nil, defaultvalue=nil, examplevalue=nil, description=nil)
+          @ParamName = paramname
+          @BindField = bindfield
+          @ParamType = paramtype
+          @ParamPosition = paramposition
+          @Operator = operator
+          @NonEmpty = nonempty
+          @DefaultValue = defaultvalue
+          @ExampleValue = examplevalue
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @BindField = params['BindField']
+          @ParamType = params['ParamType']
+          @ParamPosition = params['ParamPosition']
+          @Operator = params['Operator']
+          @NonEmpty = params['NonEmpty']
+          @DefaultValue = params['DefaultValue']
+          @ExampleValue = params['ExampleValue']
+          @Description = params['Description']
+        end
+      end
+
+      # 数据服务入参
+      class DataServiceResponseParam < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamName: String
+        # @param BindField: 绑定字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindField: String
+        # @param ParamType: 参数类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamType: String
+        # @param ExampleValue: 示例值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExampleValue: String
+        # @param Description: 参数描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :ParamName, :BindField, :ParamType, :ExampleValue, :Description
+
+        def initialize(paramname=nil, bindfield=nil, paramtype=nil, examplevalue=nil, description=nil)
+          @ParamName = paramname
+          @BindField = bindfield
+          @ParamType = paramtype
+          @ExampleValue = examplevalue
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @BindField = params['BindField']
+          @ParamType = params['ParamType']
+          @ExampleValue = params['ExampleValue']
+          @Description = params['Description']
+        end
+      end
+
       # 数据源对象
       class DataSourceInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
@@ -7136,6 +7285,288 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = DataCheckStat.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataServicePublishedApiDetail请求参数结构体
+      class DescribeDataServicePublishedApiDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 服务Id
+        # @type Id: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+
+        attr_accessor :Id, :ProjectId
+
+        def initialize(id=nil, projectid=nil)
+          @Id = id
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # 查询数据服务API的发布态信息详情出参
+      class DescribeDataServicePublishedApiDetailResp < TencentCloud::Common::AbstractModel
+        # @param ApiName: 服务Api名称
+        # @type ApiName: String
+        # @param PathUrl: 服务请求Path
+        # @type PathUrl: String
+        # @param OwnerName: 服务责任人名称
+        # @type OwnerName: String
+        # @param RequestType: 服务请求方式
+        # @type RequestType: String
+        # @param ApiTagNames: 服务标签名称集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiTagNames: String
+        # @param ApiDescription: 服务描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiDescription: String
+        # @param RequestExample: 服务请求返回示例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestExample: String
+        # @param RequestSuccess: 服务请求成功返回示例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestSuccess: String
+        # @param RequestError: 服务请求失败返回示例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestError: String
+        # @param RequestParam: 服务请求参数列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestParam: Array
+        # @param ResponseParam: 服务响应参数列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseParam: Array
+        # @param MaxAllowQps: 最大qps
+        # @type MaxAllowQps: Integer
+        # @param MaxAllowPageSize: 最大记录数
+        # @type MaxAllowPageSize: Integer
+        # @param TimeoutPeriod: 超时时间，单位ms
+        # @type TimeoutPeriod: Integer
+        # @param ApiId: ApiId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiId: String
+        # @param AuthType: 0:免认证 1:应用认证
+        # @type AuthType: Integer
+        # @param GatewayApiUrl: 请求地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayApiUrl: String
+        # @param ApiStatus: 服务Api状态 1:已上线  3:已下线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiStatus: Integer
+
+        attr_accessor :ApiName, :PathUrl, :OwnerName, :RequestType, :ApiTagNames, :ApiDescription, :RequestExample, :RequestSuccess, :RequestError, :RequestParam, :ResponseParam, :MaxAllowQps, :MaxAllowPageSize, :TimeoutPeriod, :ApiId, :AuthType, :GatewayApiUrl, :ApiStatus
+
+        def initialize(apiname=nil, pathurl=nil, ownername=nil, requesttype=nil, apitagnames=nil, apidescription=nil, requestexample=nil, requestsuccess=nil, requesterror=nil, requestparam=nil, responseparam=nil, maxallowqps=nil, maxallowpagesize=nil, timeoutperiod=nil, apiid=nil, authtype=nil, gatewayapiurl=nil, apistatus=nil)
+          @ApiName = apiname
+          @PathUrl = pathurl
+          @OwnerName = ownername
+          @RequestType = requesttype
+          @ApiTagNames = apitagnames
+          @ApiDescription = apidescription
+          @RequestExample = requestexample
+          @RequestSuccess = requestsuccess
+          @RequestError = requesterror
+          @RequestParam = requestparam
+          @ResponseParam = responseparam
+          @MaxAllowQps = maxallowqps
+          @MaxAllowPageSize = maxallowpagesize
+          @TimeoutPeriod = timeoutperiod
+          @ApiId = apiid
+          @AuthType = authtype
+          @GatewayApiUrl = gatewayapiurl
+          @ApiStatus = apistatus
+        end
+
+        def deserialize(params)
+          @ApiName = params['ApiName']
+          @PathUrl = params['PathUrl']
+          @OwnerName = params['OwnerName']
+          @RequestType = params['RequestType']
+          @ApiTagNames = params['ApiTagNames']
+          @ApiDescription = params['ApiDescription']
+          @RequestExample = params['RequestExample']
+          @RequestSuccess = params['RequestSuccess']
+          @RequestError = params['RequestError']
+          unless params['RequestParam'].nil?
+            @RequestParam = []
+            params['RequestParam'].each do |i|
+              dataservicerequestparam_tmp = DataServiceRequestParam.new
+              dataservicerequestparam_tmp.deserialize(i)
+              @RequestParam << dataservicerequestparam_tmp
+            end
+          end
+          unless params['ResponseParam'].nil?
+            @ResponseParam = []
+            params['ResponseParam'].each do |i|
+              dataserviceresponseparam_tmp = DataServiceResponseParam.new
+              dataserviceresponseparam_tmp.deserialize(i)
+              @ResponseParam << dataserviceresponseparam_tmp
+            end
+          end
+          @MaxAllowQps = params['MaxAllowQps']
+          @MaxAllowPageSize = params['MaxAllowPageSize']
+          @TimeoutPeriod = params['TimeoutPeriod']
+          @ApiId = params['ApiId']
+          @AuthType = params['AuthType']
+          @GatewayApiUrl = params['GatewayApiUrl']
+          @ApiStatus = params['ApiStatus']
+        end
+      end
+
+      # DescribeDataServicePublishedApiDetail返回参数结构体
+      class DescribeDataServicePublishedApiDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 服务详情
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeDataServicePublishedApiDetailResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDataServicePublishedApiDetailResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataServicePublishedApiList请求参数结构体
+      class DescribeDataServicePublishedApiListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param Filters: 查询参数
+        # @type Filters: :class:`Tencentcloud::Wedata.v20210820.models.DataServicePublishedApiListFilter`
+        # @param OrderFields: 排序配置
+        # @type OrderFields: Array
+
+        attr_accessor :PageNumber, :PageSize, :ProjectId, :Filters, :OrderFields
+
+        def initialize(pagenumber=nil, pagesize=nil, projectid=nil, filters=nil, orderfields=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ProjectId = projectid
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ProjectId = params['ProjectId']
+          unless params['Filters'].nil?
+            @Filters = DataServicePublishedApiListFilter.new
+            @Filters.deserialize(params['Filters'])
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              dataservicerequestlistorder_tmp = DataServiceRequestListOrder.new
+              dataservicerequestlistorder_tmp.deserialize(i)
+              @OrderFields << dataservicerequestlistorder_tmp
+            end
+          end
+        end
+      end
+
+      # 获取数据服务API的发布态信息列表响应内容
+      class DescribeDataServicePublishedApiListResp < TencentCloud::Common::AbstractModel
+        # @param Id: 服务id
+        # @type Id: String
+        # @param ApiName: 服务Api名称
+        # @type ApiName: String
+        # @param ApiFolderName: 所属目录名称
+        # @type ApiFolderName: String
+        # @param ApiTagNames: 服务Api标签名称集合
+        # @type ApiTagNames: String
+        # @param OwnerName: 服务负责人
+        # @type OwnerName: String
+        # @param CreateTime: 服务创建时间
+        # @type CreateTime: String
+        # @param ApiId: Api的id
+        # @type ApiId: String
+        # @param AuthType: 服务Api认证方式 0:免认证 1:应用认证
+        # @type AuthType: Integer
+        # @param ApiStatus: 服务Api状态 0:创建 1:已上线 2:已删除 3:已下线
+        # @type ApiStatus: Integer
+        # @param ConfigType: 配置方式 0:向导、1、脚本、2、注册Api
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigType: Integer
+        # @param ModifyTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :ApiName, :ApiFolderName, :ApiTagNames, :OwnerName, :CreateTime, :ApiId, :AuthType, :ApiStatus, :ConfigType, :ModifyTime
+
+        def initialize(id=nil, apiname=nil, apifoldername=nil, apitagnames=nil, ownername=nil, createtime=nil, apiid=nil, authtype=nil, apistatus=nil, configtype=nil, modifytime=nil)
+          @Id = id
+          @ApiName = apiname
+          @ApiFolderName = apifoldername
+          @ApiTagNames = apitagnames
+          @OwnerName = ownername
+          @CreateTime = createtime
+          @ApiId = apiid
+          @AuthType = authtype
+          @ApiStatus = apistatus
+          @ConfigType = configtype
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ApiName = params['ApiName']
+          @ApiFolderName = params['ApiFolderName']
+          @ApiTagNames = params['ApiTagNames']
+          @OwnerName = params['OwnerName']
+          @CreateTime = params['CreateTime']
+          @ApiId = params['ApiId']
+          @AuthType = params['AuthType']
+          @ApiStatus = params['ApiStatus']
+          @ConfigType = params['ConfigType']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # DescribeDataServicePublishedApiList返回参数结构体
+      class DescribeDataServicePublishedApiListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param DataSet: 服务列表
+        # @type DataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataSet, :RequestId
+
+        def initialize(totalcount=nil, dataset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataSet = dataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              describedataservicepublishedapilistresp_tmp = DescribeDataServicePublishedApiListResp.new
+              describedataservicepublishedapilistresp_tmp.deserialize(i)
+              @DataSet << describedataservicepublishedapilistresp_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

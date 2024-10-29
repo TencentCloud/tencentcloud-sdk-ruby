@@ -13980,6 +13980,42 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterImage请求参数结构体
+      class ModifyClusterImageRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ImageId: 指定有效的镜像ID，格式形如img-xxxx。可通过登录控制台查询，也可调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715)，取返回信息中的ImageId字段。
+        # @type ImageId: String
+
+        attr_accessor :ClusterId, :ImageId
+
+        def initialize(clusterid=nil, imageid=nil)
+          @ClusterId = clusterid
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ImageId = params['ImageId']
+        end
+      end
+
+      # ModifyClusterImage返回参数结构体
+      class ModifyClusterImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterNodePool请求参数结构体
       class ModifyClusterNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

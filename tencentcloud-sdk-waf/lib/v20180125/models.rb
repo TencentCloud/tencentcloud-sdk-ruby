@@ -12053,6 +12053,57 @@ module TencentCloud
         end
       end
 
+      # ModifyUserSignatureRuleV2请求参数结构体
+      class ModifyUserSignatureRuleV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param MainClassID: 主类id
+        # @type MainClassID: String
+        # @param Status: 主类开关0=关闭，1=开启，2=只告警
+        # @type Status: Integer
+        # @param RuleID: 下发修改的规则列表
+        # @type RuleID: Array
+
+        attr_accessor :Domain, :MainClassID, :Status, :RuleID
+
+        def initialize(domain=nil, mainclassid=nil, status=nil, ruleid=nil)
+          @Domain = domain
+          @MainClassID = mainclassid
+          @Status = status
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @MainClassID = params['MainClassID']
+          @Status = params['Status']
+          unless params['RuleID'].nil?
+            @RuleID = []
+            params['RuleID'].each do |i|
+              requserrule_tmp = ReqUserRule.new
+              requserrule_tmp.deserialize(i)
+              @RuleID << requserrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUserSignatureRuleV2返回参数结构体
+      class ModifyUserSignatureRuleV2Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWafAutoDenyRules请求参数结构体
       class ModifyWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

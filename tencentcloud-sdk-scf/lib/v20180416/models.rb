@@ -167,6 +167,23 @@ module TencentCloud
         end
       end
 
+      # 证书配置
+      class CertConf < TencentCloud::Common::AbstractModel
+        # @param CertificateId: ssl证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificateId: String
+
+        attr_accessor :CertificateId
+
+        def initialize(certificateid=nil)
+          @CertificateId = certificateid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+        end
+      end
+
       # 文件系统(cfs)配置描述
       class CfsConfig < TencentCloud::Common::AbstractModel
         # @param CfsInsList: 文件系统信息列表
@@ -425,6 +442,67 @@ module TencentCloud
 
       # CreateAlias返回参数结构体
       class CreateAliasResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCustomDomain请求参数结构体
+      class CreateCustomDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名，不支持泛域名
+        # @type Domain: String
+        # @param Protocol: 协议，取值范围：HTTP, HTTPS, HTTP&HTTPS
+        # @type Protocol: String
+        # @param EndpointsConfig: 路由配置
+        # @type EndpointsConfig: Array
+        # @param CertConfig: 证书配置信息，HTTPS协议必穿
+        # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
+        # @param WafConfig: web 应用防火墙配置
+        # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+
+        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig
+
+        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil)
+          @Domain = domain
+          @Protocol = protocol
+          @EndpointsConfig = endpointsconfig
+          @CertConfig = certconfig
+          @WafConfig = wafconfig
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          unless params['EndpointsConfig'].nil?
+            @EndpointsConfig = []
+            params['EndpointsConfig'].each do |i|
+              endpointsconf_tmp = EndpointsConf.new
+              endpointsconf_tmp.deserialize(i)
+              @EndpointsConfig << endpointsconf_tmp
+            end
+          end
+          unless params['CertConfig'].nil?
+            @CertConfig = CertConf.new
+            @CertConfig.deserialize(params['CertConfig'])
+          end
+          unless params['WafConfig'].nil?
+            @WafConfig = WafConf.new
+            @WafConfig.deserialize(params['WafConfig'])
+          end
+        end
+      end
+
+      # CreateCustomDomain返回参数结构体
+      class CreateCustomDomainResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -810,6 +888,38 @@ module TencentCloud
         end
       end
 
+      # DeleteCustomDomain请求参数结构体
+      class DeleteCustomDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteCustomDomain返回参数结构体
+      class DeleteCustomDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteFunction请求参数结构体
       class DeleteFunctionRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 要删除的函数名称
@@ -1046,6 +1156,54 @@ module TencentCloud
         end
       end
 
+      # 云函数自定义域名详情
+      class DomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名，不支持泛域名
+        # @type Domain: String
+        # @param Protocol: 协议，取值范围：HTTP, HTTPS, HTTP&HTTPS
+        # @type Protocol: String
+        # @param EndpointsConfig: 路由配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointsConfig: Array
+        # @param CertConfig: 证书配置信息，HTTPS协议必传路由配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
+        # @param WafConfig: web 应用防火墙配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+
+        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig
+
+        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil)
+          @Domain = domain
+          @Protocol = protocol
+          @EndpointsConfig = endpointsconfig
+          @CertConfig = certconfig
+          @WafConfig = wafconfig
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          unless params['EndpointsConfig'].nil?
+            @EndpointsConfig = []
+            params['EndpointsConfig'].each do |i|
+              endpointsconf_tmp = EndpointsConf.new
+              endpointsconf_tmp.deserialize(i)
+              @EndpointsConfig << endpointsconf_tmp
+            end
+          end
+          unless params['CertConfig'].nil?
+            @CertConfig = CertConf.new
+            @CertConfig.deserialize(params['CertConfig'])
+          end
+          unless params['WafConfig'].nil?
+            @WafConfig = WafConf.new
+            @WafConfig.deserialize(params['WafConfig'])
+          end
+        end
+      end
+
       # 公网访问固定ip配置
       class EipConfigIn < TencentCloud::Common::AbstractModel
         # @param EipStatus: Eip开启状态，取值['ENABLE','DISABLE']
@@ -1100,6 +1258,50 @@ module TencentCloud
         def deserialize(params)
           @EipFixed = params['EipFixed']
           @Eips = params['Eips']
+        end
+      end
+
+      # 后端路由配置信息
+      class EndpointsConf < TencentCloud::Common::AbstractModel
+        # @param Namespace: 函数命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param FunctionName: 函数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionName: String
+        # @param Qualifier: 函数别名或版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qualifier: String
+        # @param PathMatch: 路径,取值规范：/，/*，/xxx，/xxx/a，/xxx/*"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathMatch: String
+        # @param PathRewrite: 路径重写策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathRewrite: Array
+
+        attr_accessor :Namespace, :FunctionName, :Qualifier, :PathMatch, :PathRewrite
+
+        def initialize(namespace=nil, functionname=nil, qualifier=nil, pathmatch=nil, pathrewrite=nil)
+          @Namespace = namespace
+          @FunctionName = functionname
+          @Qualifier = qualifier
+          @PathMatch = pathmatch
+          @PathRewrite = pathrewrite
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+          @PathMatch = params['PathMatch']
+          unless params['PathRewrite'].nil?
+            @PathRewrite = []
+            params['PathRewrite'].each do |i|
+              pathrewriterule_tmp = PathRewriteRule.new
+              pathrewriterule_tmp.deserialize(i)
+              @PathRewrite << pathrewriterule_tmp
+            end
+          end
         end
       end
 
@@ -1489,6 +1691,71 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = AsyncEventStatus.new
             @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetCustomDomain请求参数结构体
+      class GetCustomDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # GetCustomDomain返回参数结构体
+      class GetCustomDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param EndpointsConfig: 路由配置
+        # @type EndpointsConfig: Array
+        # @param CertConfig: 证书配置信息
+        # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
+        # @param WafConfig: web 应用防火墙配置
+        # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :Protocol, :EndpointsConfig, :CertConfig, :WafConfig, :RequestId
+
+        def initialize(domain=nil, protocol=nil, endpointsconfig=nil, certconfig=nil, wafconfig=nil, requestid=nil)
+          @Domain = domain
+          @Protocol = protocol
+          @EndpointsConfig = endpointsconfig
+          @CertConfig = certconfig
+          @WafConfig = wafconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          unless params['EndpointsConfig'].nil?
+            @EndpointsConfig = []
+            params['EndpointsConfig'].each do |i|
+              endpointsconf_tmp = EndpointsConf.new
+              endpointsconf_tmp.deserialize(i)
+              @EndpointsConfig << endpointsconf_tmp
+            end
+          end
+          unless params['CertConfig'].nil?
+            @CertConfig = CertConf.new
+            @CertConfig.deserialize(params['CertConfig'])
+          end
+          unless params['WafConfig'].nil?
+            @WafConfig = WafConf.new
+            @WafConfig.deserialize(params['WafConfig'])
           end
           @RequestId = params['RequestId']
         end
@@ -2799,6 +3066,77 @@ module TencentCloud
         end
       end
 
+      # ListCustomDomains请求参数结构体
+      class ListCustomDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+        # @param Limit: 容量，默认20
+        # @type Limit: Integer
+        # @param OrderBy: 取值范围：AddTime，ModTime， 默认AddTime
+        # @type OrderBy: String
+        # @param Order: 取值范围：DESC, ASC 默认DESC
+        # @type Order: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :OrderBy, :Order, :Filters
+
+        def initialize(offset=nil, limit=nil, orderby=nil, order=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ListCustomDomains返回参数结构体
+      class ListCustomDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Domains: 域名列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Domains, :RequestId
+
+        def initialize(total=nil, domains=nil, requestid=nil)
+          @Total = total
+          @Domains = domains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              domaininfo_tmp = DomainInfo.new
+              domaininfo_tmp.deserialize(i)
+              @Domains << domaininfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListFunctions请求参数结构体
       class ListFunctionsRequest < TencentCloud::Common::AbstractModel
         # @param Order: 以升序还是降序的方式返回结果，可选值 ASC 和 DESC
@@ -3473,6 +3811,33 @@ module TencentCloud
           @TotalConcurrencyMem = params['TotalConcurrencyMem']
           @TotalAllocatedConcurrencyMem = params['TotalAllocatedConcurrencyMem']
           @TotalAllocatedProvisionedMem = params['TotalAllocatedProvisionedMem']
+        end
+      end
+
+      # 路径路由重写规则
+      class PathRewriteRule < TencentCloud::Common::AbstractModel
+        # @param Path: 需要重路由的路径，取值规范：/，/*，/xxx，/xxx/a，/xxx/*
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Type: 匹配规，取值范围： WildcardRules 通配符匹配， ExactRules 精确匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Rewrite: 替换值：比如/, /$
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rewrite: String
+
+        attr_accessor :Path, :Type, :Rewrite
+
+        def initialize(path=nil, type=nil, rewrite=nil)
+          @Path = path
+          @Type = type
+          @Rewrite = rewrite
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Type = params['Type']
+          @Rewrite = params['Rewrite']
         end
       end
 
@@ -4388,6 +4753,67 @@ module TencentCloud
         end
       end
 
+      # UpdateCustomDomain请求参数结构体
+      class UpdateCustomDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 自定义域名
+        # @type Domain: String
+        # @param Protocol: 协议，取值范围：HTTP, HTTPS, HTTP&HTTPS
+        # @type Protocol: String
+        # @param CertConfig: 证书配置信息，HTTPS协议必穿
+        # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
+        # @param WafConfig: web 应用防火墙配置
+        # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
+        # @param EndpointsConfig: 	路由配置
+        # @type EndpointsConfig: Array
+
+        attr_accessor :Domain, :Protocol, :CertConfig, :WafConfig, :EndpointsConfig
+
+        def initialize(domain=nil, protocol=nil, certconfig=nil, wafconfig=nil, endpointsconfig=nil)
+          @Domain = domain
+          @Protocol = protocol
+          @CertConfig = certconfig
+          @WafConfig = wafconfig
+          @EndpointsConfig = endpointsconfig
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          unless params['CertConfig'].nil?
+            @CertConfig = CertConf.new
+            @CertConfig.deserialize(params['CertConfig'])
+          end
+          unless params['WafConfig'].nil?
+            @WafConfig = WafConf.new
+            @WafConfig.deserialize(params['WafConfig'])
+          end
+          unless params['EndpointsConfig'].nil?
+            @EndpointsConfig = []
+            params['EndpointsConfig'].each do |i|
+              endpointsconf_tmp = EndpointsConf.new
+              endpointsconf_tmp.deserialize(i)
+              @EndpointsConfig << endpointsconf_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateCustomDomain返回参数结构体
+      class UpdateCustomDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateFunctionCode请求参数结构体
       class UpdateFunctionCodeRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 要修改的函数名称
@@ -5014,6 +5440,28 @@ module TencentCloud
 
         def deserialize(params)
           @IdleTimeOut = params['IdleTimeOut']
+        end
+      end
+
+      # web应用防火墙配置信息
+      class WafConf < TencentCloud::Common::AbstractModel
+        # @param WafOpen: web应用防火墙是否打开， 取值范围:OPEN, CLOSE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafOpen: String
+        # @param WafInstanceId: web应用防火墙实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafInstanceId: String
+
+        attr_accessor :WafOpen, :WafInstanceId
+
+        def initialize(wafopen=nil, wafinstanceid=nil)
+          @WafOpen = wafopen
+          @WafInstanceId = wafinstanceid
+        end
+
+        def deserialize(params)
+          @WafOpen = params['WafOpen']
+          @WafInstanceId = params['WafInstanceId']
         end
       end
 

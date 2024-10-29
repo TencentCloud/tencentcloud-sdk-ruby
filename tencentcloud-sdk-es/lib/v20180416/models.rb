@@ -327,6 +327,51 @@ module TencentCloud
         end
       end
 
+      # CreateClusterSnapshot请求参数结构体
+      class CreateClusterSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param SnapshotName: 快照名称
+        # @type SnapshotName: String
+        # @param Indices: 索引名称
+        # @type Indices: String
+
+        attr_accessor :InstanceId, :SnapshotName, :Indices
+
+        def initialize(instanceid=nil, snapshotname=nil, indices=nil)
+          @InstanceId = instanceid
+          @SnapshotName = snapshotname
+          @Indices = indices
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SnapshotName = params['SnapshotName']
+          @Indices = params['Indices']
+        end
+      end
+
+      # CreateClusterSnapshot返回参数结构体
+      class CreateClusterSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCosMigrateToServerlessInstance请求参数结构体
       class CreateCosMigrateToServerlessInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Snapshot: 快照名
@@ -975,6 +1020,50 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterSnapshot请求参数结构体
+      class DeleteClusterSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id，格式：es-xxxx
+        # @type InstanceId: String
+        # @param RepositoryName: 快照仓库名称
+        # @type RepositoryName: String
+        # @param SnapshotName: 集群快照名称
+        # @type SnapshotName: String
+
+        attr_accessor :InstanceId, :RepositoryName, :SnapshotName
+
+        def initialize(instanceid=nil, repositoryname=nil, snapshotname=nil)
+          @InstanceId = instanceid
+          @RepositoryName = repositoryname
+          @SnapshotName = snapshotname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RepositoryName = params['RepositoryName']
+          @SnapshotName = params['SnapshotName']
+        end
+      end
+
+      # DeleteClusterSnapshot返回参数结构体
+      class DeleteClusterSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIndex请求参数结构体
       class DeleteIndexRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ES集群ID
@@ -1191,6 +1280,65 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterSnapshot请求参数结构体
+      class DescribeClusterSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id，格式：es-xxxx
+        # @type InstanceId: String
+        # @param RepositoryName: 快照仓库名称
+        # @type RepositoryName: String
+        # @param SnapshotName: 集群快照名称
+        # @type SnapshotName: String
+
+        attr_accessor :InstanceId, :RepositoryName, :SnapshotName
+
+        def initialize(instanceid=nil, repositoryname=nil, snapshotname=nil)
+          @InstanceId = instanceid
+          @RepositoryName = repositoryname
+          @SnapshotName = snapshotname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RepositoryName = params['RepositoryName']
+          @SnapshotName = params['SnapshotName']
+        end
+      end
+
+      # DescribeClusterSnapshot返回参数结构体
+      class DescribeClusterSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id，格式：es-xxxx
+        # @type InstanceId: String
+        # @param Snapshots: 快照备份详情列表
+        # @type Snapshots: Array
+        # @param RepositoryName: 快照仓库名称
+        # @type RepositoryName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Snapshots, :RepositoryName, :RequestId
+
+        def initialize(instanceid=nil, snapshots=nil, repositoryname=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Snapshots = snapshots
+          @RepositoryName = repositoryname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Snapshots'].nil?
+            @Snapshots = []
+            params['Snapshots'].each do |i|
+              snapshots_tmp = Snapshots.new
+              snapshots_tmp.deserialize(i)
+              @Snapshots << snapshots_tmp
+            end
+          end
+          @RepositoryName = params['RepositoryName']
           @RequestId = params['RequestId']
         end
       end
@@ -3216,6 +3364,38 @@ module TencentCloud
         def deserialize(params)
           @BlackIpList = params['BlackIpList']
           @WhiteIpList = params['WhiteIpList']
+        end
+      end
+
+      # 索引备份失败的数据结构
+      class Failures < TencentCloud::Common::AbstractModel
+        # @param Index: 备份失败的索引名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+        # @param ShardId: 快照失败的分片号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShardId: Integer
+        # @param Reason: 快照失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Status: 快照失败的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Index, :ShardId, :Reason, :Status
+
+        def initialize(index=nil, shardid=nil, reason=nil, status=nil)
+          @Index = index
+          @ShardId = shardid
+          @Reason = reason
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @ShardId = params['ShardId']
+          @Reason = params['Reason']
+          @Status = params['Status']
         end
       end
 
@@ -5494,6 +5674,78 @@ module TencentCloud
         end
       end
 
+      # RestoreClusterSnapshot请求参数结构体
+      class RestoreClusterSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id，格式：es-xxxx
+        # @type InstanceId: String
+        # @param RepositoryName: 仓库名称
+        # @type RepositoryName: String
+        # @param SnapshotName: 集群快照名称
+        # @type SnapshotName: String
+        # @param TargetInstanceId: 目标集群实例Id，格式：es-xxxx，如果是恢复到本地，则和InstanceId一致
+        # @type TargetInstanceId: String
+        # @param Password: elastic用户名对应的密码信息
+        # @type Password: String
+        # @param IndexSettings: 要在所有恢复的索引中添加或更改的设置的逗号分隔列表。使用此参数可以在恢复快照时覆盖索引设置。
+        # @type IndexSettings: String
+        # @param IncludeGlobalState: 不应从快照还原的以逗号分隔的索引设置列表。
+        # @type IncludeGlobalState: Array
+        # @param Indices: 需要恢复的索引名称，非必填，为空则表示恢复所有
+
+        # 支持传多个索引名称
+        # @type Indices: String
+        # @param Partial: 如果为 false，则如果快照中包含的一个或多个索引没有所有主分片可用，则整个恢复操作将失败。默认为 false,
+
+        # 如果为 true，则允许恢复具有不可用分片的索引的部分快照。只有成功包含在快照中的分片才会被恢复。所有丢失的碎片将被重新创建为空
+        # @type Partial: String
+
+        attr_accessor :InstanceId, :RepositoryName, :SnapshotName, :TargetInstanceId, :Password, :IndexSettings, :IncludeGlobalState, :Indices, :Partial
+
+        def initialize(instanceid=nil, repositoryname=nil, snapshotname=nil, targetinstanceid=nil, password=nil, indexsettings=nil, includeglobalstate=nil, indices=nil, partial=nil)
+          @InstanceId = instanceid
+          @RepositoryName = repositoryname
+          @SnapshotName = snapshotname
+          @TargetInstanceId = targetinstanceid
+          @Password = password
+          @IndexSettings = indexsettings
+          @IncludeGlobalState = includeglobalstate
+          @Indices = indices
+          @Partial = partial
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RepositoryName = params['RepositoryName']
+          @SnapshotName = params['SnapshotName']
+          @TargetInstanceId = params['TargetInstanceId']
+          @Password = params['Password']
+          @IndexSettings = params['IndexSettings']
+          @IncludeGlobalState = params['IncludeGlobalState']
+          @Indices = params['Indices']
+          @Partial = params['Partial']
+        end
+      end
+
+      # RestoreClusterSnapshot返回参数结构体
+      class RestoreClusterSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例id
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SaveAndDeployLogstashPipeline请求参数结构体
       class SaveAndDeployLogstashPipelineRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -5965,6 +6217,98 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Advise = params['Advise']
+        end
+      end
+
+      # 集群快照数据结构
+      class Snapshots < TencentCloud::Common::AbstractModel
+        # @param SnapshotName: 快照名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotName: String
+        # @param Uuid: 快照Uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param Version: 该快照所属集群的版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Indices: 备份的索引列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Indices: Array
+        # @param DataStreams: 备份的datastream列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataStreams: Array
+        # @param State: 备份的状态
+
+        # FAILED            备份失败
+
+        # IN_PROGRESS 备份执行中
+
+        # PARTIAL          备份部分成功，部分失败，备份失败的索引和原因会在Failures字段中展示
+
+        # SUCCESS     备份成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param StartTime: 快照备份的开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 快照备份的结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param DurationInMillis: 快照备份的耗时时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationInMillis: Integer
+        # @param TotalShards: 备份的总分片数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalShards: Integer
+        # @param FailedShards: 备份失败的分片数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedShards: Integer
+        # @param SuccessfulShards: 备份成功的分片数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessfulShards: Integer
+        # @param Failures: 备份失败的索引分片和失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Failures: Array
+
+        attr_accessor :SnapshotName, :Uuid, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures
+
+        def initialize(snapshotname=nil, uuid=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil)
+          @SnapshotName = snapshotname
+          @Uuid = uuid
+          @Version = version
+          @Indices = indices
+          @DataStreams = datastreams
+          @State = state
+          @StartTime = starttime
+          @EndTime = endtime
+          @DurationInMillis = durationinmillis
+          @TotalShards = totalshards
+          @FailedShards = failedshards
+          @SuccessfulShards = successfulshards
+          @Failures = failures
+        end
+
+        def deserialize(params)
+          @SnapshotName = params['SnapshotName']
+          @Uuid = params['Uuid']
+          @Version = params['Version']
+          @Indices = params['Indices']
+          @DataStreams = params['DataStreams']
+          @State = params['State']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DurationInMillis = params['DurationInMillis']
+          @TotalShards = params['TotalShards']
+          @FailedShards = params['FailedShards']
+          @SuccessfulShards = params['SuccessfulShards']
+          unless params['Failures'].nil?
+            @Failures = []
+            params['Failures'].each do |i|
+              failures_tmp = Failures.new
+              failures_tmp.deserialize(i)
+              @Failures << failures_tmp
+            end
+          end
         end
       end
 

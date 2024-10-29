@@ -1733,6 +1733,40 @@ module TencentCloud
         end
       end
 
+      # 各个健康检查区域下源站的健康状态。
+      class CheckRegionHealthStatus < TencentCloud::Common::AbstractModel
+        # @param Region: 健康检查区域，ISO-3166-1 两位字母代码。
+        # @type Region: String
+        # @param Healthy: 单健康检查区域下探测源站的健康状态，取值有：
+        # <li>Healthy：健康；</li>
+        # <li>Unhealthy：不健康；</li>
+        # <li> Undetected：未探测到数据。</li>说明：单健康检查区域下所有源站为健康，则状态为健康，否则为不健康。
+        # @type Healthy: String
+        # @param OriginHealthStatus: 源站健康状态。
+        # @type OriginHealthStatus: Array
+
+        attr_accessor :Region, :Healthy, :OriginHealthStatus
+
+        def initialize(region=nil, healthy=nil, originhealthstatus=nil)
+          @Region = region
+          @Healthy = healthy
+          @OriginHealthStatus = originhealthstatus
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Healthy = params['Healthy']
+          unless params['OriginHealthStatus'].nil?
+            @OriginHealthStatus = []
+            params['OriginHealthStatus'].each do |i|
+              originhealthstatus_tmp = OriginHealthStatus.new
+              originhealthstatus_tmp.deserialize(i)
+              @OriginHealthStatus << originhealthstatus_tmp
+            end
+          end
+        end
+      end
+
       # 回源时携带客户端IP所属地域信息，值的格式为ISO-3166-1两位字母代码。
       class ClientIpCountry < TencentCloud::Common::AbstractModel
         # @param Switch: 配置开关，取值有：
@@ -1762,8 +1796,7 @@ module TencentCloud
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
         # @type Switch: String
-        # @param HeaderName: 回源时，存放客户端 IP 的请求头名称。
-        # 为空则使用默认值：X-Forwarded-IP。
+        # @param HeaderName: 回源时，存放客户端 IP 的请求头名称。当 Switch 为 on 时，该参数必填。该参数不允许填写 X-Forwarded-For。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderName: String
 
@@ -2579,6 +2612,81 @@ module TencentCloud
 
         def deserialize(params)
           @L4ProxyRuleIds = params['L4ProxyRuleIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLoadBalancer请求参数结构体
+      class CreateLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。
+        # @type Name: String
+        # @param Type: 实例类型，取值有：
+        # <li>HTTP：HTTP 专用型，支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）；</li>
+        # <li>GENERAL：通用型，仅支持添加通用型源站组，能被站点加速服务（如域名服务和规则引擎）和四层代理引用。</li>
+        # @type Type: String
+        # @param OriginGroups: 源站组列表及其对应的容灾调度优先级。详情请参考 [快速创建负载均衡实例](https://cloud.tencent.com/document/product/1552/104223) 中的示例场景。
+        # @type OriginGroups: Array
+        # @param HealthChecker: 健康检查策略。详情请参考 [健康检查策略介绍](https://cloud.tencent.com/document/product/1552/104228)。不填写时，默认为不启用健康检查。
+        # @type HealthChecker: :class:`Tencentcloud::Teo.v20220901.models.HealthChecker`
+        # @param SteeringPolicy: 源站组间的流量调度策略，取值有：
+        # <li>Pritory：按优先级顺序进行故障转移。</li>默认值为 Pritory。
+        # @type SteeringPolicy: String
+        # @param FailoverPolicy: 实际访问某源站失败时的请求重试策略，详情请参考 [请求重试策略介绍](https://cloud.tencent.com/document/product/1552/104227)，取值有：
+        # <li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li>
+        # <li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>默认值为 OtherRecordInOriginGroup。
+        # @type FailoverPolicy: String
+
+        attr_accessor :ZoneId, :Name, :Type, :OriginGroups, :HealthChecker, :SteeringPolicy, :FailoverPolicy
+
+        def initialize(zoneid=nil, name=nil, type=nil, origingroups=nil, healthchecker=nil, steeringpolicy=nil, failoverpolicy=nil)
+          @ZoneId = zoneid
+          @Name = name
+          @Type = type
+          @OriginGroups = origingroups
+          @HealthChecker = healthchecker
+          @SteeringPolicy = steeringpolicy
+          @FailoverPolicy = failoverpolicy
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['OriginGroups'].nil?
+            @OriginGroups = []
+            params['OriginGroups'].each do |i|
+              origingroupinloadbalancer_tmp = OriginGroupInLoadBalancer.new
+              origingroupinloadbalancer_tmp.deserialize(i)
+              @OriginGroups << origingroupinloadbalancer_tmp
+            end
+          end
+          unless params['HealthChecker'].nil?
+            @HealthChecker = HealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
+          end
+          @SteeringPolicy = params['SteeringPolicy']
+          @FailoverPolicy = params['FailoverPolicy']
+        end
+      end
+
+      # CreateLoadBalancer返回参数结构体
+      class CreateLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 负载均衡实例 ID。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -3409,6 +3517,28 @@ module TencentCloud
         end
       end
 
+      # 负载均衡实例 HTTP/HTTPS 健康检查策略下可配置的自定义头部。
+      class CustomizedHeader < TencentCloud::Common::AbstractModel
+        # @param Key: 自定义头部 Key。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 自定义头部 Value。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # DDoS配置
       class DDoS < TencentCloud::Common::AbstractModel
         # @param Switch: 开关，取值有：
@@ -3946,6 +4076,42 @@ module TencentCloud
 
       # DeleteL4ProxyRules返回参数结构体
       class DeleteL4ProxyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLoadBalancer请求参数结构体
+      class DeleteLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param InstanceId: 负载均衡实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :ZoneId, :InstanceId
+
+        def initialize(zoneid=nil, instanceid=nil)
+          @ZoneId = zoneid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteLoadBalancer返回参数结构体
+      class DeleteLoadBalancerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5833,6 +5999,125 @@ module TencentCloud
               l4proxyrule_tmp = L4ProxyRule.new
               l4proxyrule_tmp.deserialize(i)
               @L4ProxyRules << l4proxyrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLoadBalancerList请求参数结构体
+      class DescribeLoadBalancerListRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目，默认值：20，最大值：100。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有负载均衡实例信息。详细的过滤条件如下：
+        # <li>InstanceName：按照负载均衡实例名称进行过滤；</li>
+        # <li>InstanceId：按照负载均衡实例 ID 进行过滤。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLoadBalancerList返回参数结构体
+      class DescribeLoadBalancerListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 负载均衡实例总数。
+        # @type TotalCount: Integer
+        # @param LoadBalancerList: 负载均衡实例列表。
+        # @type LoadBalancerList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LoadBalancerList, :RequestId
+
+        def initialize(totalcount=nil, loadbalancerlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LoadBalancerList = loadbalancerlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LoadBalancerList'].nil?
+            @LoadBalancerList = []
+            params['LoadBalancerList'].each do |i|
+              loadbalancer_tmp = LoadBalancer.new
+              loadbalancer_tmp.deserialize(i)
+              @LoadBalancerList << loadbalancer_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOriginGroupHealthStatus请求参数结构体
+      class DescribeOriginGroupHealthStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param LBInstanceId: 负载均衡实例 ID。
+        # @type LBInstanceId: String
+        # @param OriginGroupIds: 源站组 ID。不填写时默认获取负载均衡下所有源站组的健康状态。
+        # @type OriginGroupIds: Array
+
+        attr_accessor :ZoneId, :LBInstanceId, :OriginGroupIds
+
+        def initialize(zoneid=nil, lbinstanceid=nil, origingroupids=nil)
+          @ZoneId = zoneid
+          @LBInstanceId = lbinstanceid
+          @OriginGroupIds = origingroupids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @LBInstanceId = params['LBInstanceId']
+          @OriginGroupIds = params['OriginGroupIds']
+        end
+      end
+
+      # DescribeOriginGroupHealthStatus返回参数结构体
+      class DescribeOriginGroupHealthStatusResponse < TencentCloud::Common::AbstractModel
+        # @param OriginGroupHealthStatusList: 源站组下源站的健康状态。
+        # @type OriginGroupHealthStatusList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginGroupHealthStatusList, :RequestId
+
+        def initialize(origingrouphealthstatuslist=nil, requestid=nil)
+          @OriginGroupHealthStatusList = origingrouphealthstatuslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OriginGroupHealthStatusList'].nil?
+            @OriginGroupHealthStatusList = []
+            params['OriginGroupHealthStatusList'].each do |i|
+              origingrouphealthstatusdetail_tmp = OriginGroupHealthStatusDetail.new
+              origingrouphealthstatusdetail_tmp.deserialize(i)
+              @OriginGroupHealthStatusList << origingrouphealthstatusdetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8068,40 +8353,44 @@ module TencentCloud
         end
       end
 
-      # 缓存遵循源站配置
+      # 缓存遵循源站配置。
       class FollowOrigin < TencentCloud::Common::AbstractModel
         # @param Switch: 遵循源站配置开关，取值有：
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
         # @type Switch: String
-        # @param DefaultCacheTime: 源站未返回 Cache-Control 头时, 设置默认的缓存时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DefaultCacheTime: Integer
-        # @param DefaultCache: 源站未返回 Cache-Control 头时, 设置缓存/不缓存
+        # @param DefaultCache: 源站未返回 Cache-Control 头时，缓存/不缓存开关。当 Switch 为 on 时，此字段必填，否则此字段不生效。取值有：
+        # <li>on：缓存；</li>
+        # <li>off：不缓存。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultCache: String
-        # @param DefaultCacheStrategy: 源站未返回 Cache-Control 头时, 使用/不使用默认缓存策略
+        # @param DefaultCacheStrategy: 源站未返回 Cache-Control 头时，使用/不使用默认缓存策略开关。当 DefaultCache 为 on 时，此字段必填，否则此字段不生效；当 DefaultCacheTime 不为 0 时，此字段必须为 off。取值有：
+        # <li>on：使用默认缓存策略；</li>
+        # <li>off：不使用默认缓存策略。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultCacheStrategy: String
+        # @param DefaultCacheTime: 源站未返回 Cache-Control 头时，表示默认的缓存时间，单位为秒，取值：0～315360000。当 DefaultCache 为 on 时，此字段必填，否则此字段不生效；当 DefaultCacheStrategy 为 on 时， 此字段必须为 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultCacheTime: Integer
 
-        attr_accessor :Switch, :DefaultCacheTime, :DefaultCache, :DefaultCacheStrategy
+        attr_accessor :Switch, :DefaultCache, :DefaultCacheStrategy, :DefaultCacheTime
 
-        def initialize(switch=nil, defaultcachetime=nil, defaultcache=nil, defaultcachestrategy=nil)
+        def initialize(switch=nil, defaultcache=nil, defaultcachestrategy=nil, defaultcachetime=nil)
           @Switch = switch
-          @DefaultCacheTime = defaultcachetime
           @DefaultCache = defaultcache
           @DefaultCacheStrategy = defaultcachestrategy
+          @DefaultCacheTime = defaultcachetime
         end
 
         def deserialize(params)
           @Switch = params['Switch']
-          @DefaultCacheTime = params['DefaultCacheTime']
           @DefaultCache = params['DefaultCache']
           @DefaultCacheStrategy = params['DefaultCacheStrategy']
+          @DefaultCacheTime = params['DefaultCacheTime']
         end
       end
 
-      # 访问协议强制https跳转配置
+      # 访问协议强制 HTTPS 跳转配置。
       class ForceRedirect < TencentCloud::Common::AbstractModel
         # @param Switch: 访问强制跳转配置开关，取值有：
         # <li>on：开启；</li>
@@ -8360,6 +8649,86 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 负载均衡实例健康检查策略。
+      class HealthChecker < TencentCloud::Common::AbstractModel
+        # @param Type: 健康检查策略，取值有：
+        # <li>HTTP；</li>
+        # <li>HTTPS；</li>
+        # <li>TCP；</li>
+        # <li>UDP；</li>
+        # <li>ICMP Ping；</li>
+        # <li>NoCheck。</li>
+        # 注意：NoCheck 表示不启用健康检查策略。
+        # @type Type: String
+        # @param Port: 检查端口。当 Type=HTTP 或 Type=HTTPS 或 Type=TCP 或 Type=UDP 时为必填。
+        # @type Port: Integer
+        # @param Interval: 检查频率，表示多久发起一次健康检查任务，单位为秒。可取值有：30，60，180，300 或 600。
+        # @type Interval: Integer
+        # @param Timeout: 每一次健康检查的超时时间，若健康检查消耗时间大于此值，则检查结果判定为”不健康“， 单位为秒，默认值为 5s，取值必须小于 Interval。
+        # @type Timeout: Integer
+        # @param HealthThreshold: 健康阈值，表示连续几次健康检查结果为"健康"，则判断源站为"健康"，单位为次，默认 3 次，最小取值 1 次。
+        # @type HealthThreshold: Integer
+        # @param CriticalThreshold: 不健康阈值，表示连续几次健康检查结果为"不健康"，则判断源站为"不健康"，单位为次，默认 2 次。
+        # @type CriticalThreshold: Integer
+        # @param Path: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测路径，需要填写完整的 host/path，不包含协议部分，例如：www.example.com/test。
+        # @type Path: String
+        # @param Method: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示请求方法，取值有：
+        # <li>GET；</li>
+        # <li>HEAD。</li>
+        # @type Method: String
+        # @param ExpectedCodes: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测节点向源站发起健康检查时，响应哪些状态码可用于认定探测结果为健康。
+        # @type ExpectedCodes: Array
+        # @param Headers: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测请求携带的自定义  HTTP 请求头，至多可配置 10 个。
+        # @type Headers: Array
+        # @param FollowRedirect: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示是否启用遵循 301/302 重定向。启用后，301/302 默认为"健康"的状态码，默认跳转 3 次。
+        # @type FollowRedirect: String
+        # @param SendContext: 该参数仅当 Type=UDP 时有效，表示健康检查发送的内容。只允许 ASCII 可见字符，最大长度限制 500 个字符。
+        # @type SendContext: String
+        # @param RecvContext: 该参数仅当 Type=UDP 时有效，表示健康检查期望源站返回结果。只允许 ASCII 可见字符，最大长度限制 500 个字符。
+        # @type RecvContext: String
+
+        attr_accessor :Type, :Port, :Interval, :Timeout, :HealthThreshold, :CriticalThreshold, :Path, :Method, :ExpectedCodes, :Headers, :FollowRedirect, :SendContext, :RecvContext
+
+        def initialize(type=nil, port=nil, interval=nil, timeout=nil, healththreshold=nil, criticalthreshold=nil, path=nil, method=nil, expectedcodes=nil, headers=nil, followredirect=nil, sendcontext=nil, recvcontext=nil)
+          @Type = type
+          @Port = port
+          @Interval = interval
+          @Timeout = timeout
+          @HealthThreshold = healththreshold
+          @CriticalThreshold = criticalthreshold
+          @Path = path
+          @Method = method
+          @ExpectedCodes = expectedcodes
+          @Headers = headers
+          @FollowRedirect = followredirect
+          @SendContext = sendcontext
+          @RecvContext = recvcontext
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Port = params['Port']
+          @Interval = params['Interval']
+          @Timeout = params['Timeout']
+          @HealthThreshold = params['HealthThreshold']
+          @CriticalThreshold = params['CriticalThreshold']
+          @Path = params['Path']
+          @Method = params['Method']
+          @ExpectedCodes = params['ExpectedCodes']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              customizedheader_tmp = CustomizedHeader.new
+              customizedheader_tmp.deserialize(i)
+              @Headers << customizedheader_tmp
+            end
+          end
+          @FollowRedirect = params['FollowRedirect']
+          @SendContext = params['SendContext']
+          @RecvContext = params['RecvContext']
         end
       end
 
@@ -8875,6 +9244,24 @@ module TencentCloud
         end
       end
 
+      # 视频即时处理配置
+      class JITVideoProcess < TencentCloud::Common::AbstractModel
+        # @param Switch: 视频即时处理配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 离线日志详细信息
       class L4OfflineLog < TencentCloud::Common::AbstractModel
         # @param ProxyId: 四层代理实例 ID。
@@ -9177,6 +9564,76 @@ module TencentCloud
           @LogStartTime = params['LogStartTime']
           @LogEndTime = params['LogEndTime']
           @Size = params['Size']
+        end
+      end
+
+      # 负载均衡实例信息。
+      class LoadBalancer < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param Name: 实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。
+        # @type Name: String
+        # @param Type: 实例类型，取值有：
+        # <li>HTTP：HTTP 专用型，支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）；</li>
+        # <li>GENERAL：通用型，仅支持添加通用型源站组，能被站点加速服务（如域名服务和规则引擎）和四层代理引用。</li>
+        # @type Type: String
+        # @param HealthChecker: 健康检查策略。详情请参考 [健康检查策略介绍](https://cloud.tencent.com/document/product/1552/104228)。
+        # @type HealthChecker: :class:`Tencentcloud::Teo.v20220901.models.HealthChecker`
+        # @param SteeringPolicy: 源站组间的流量调度策略，取值有：
+        # <li>Pritory：按优先级顺序进行故障转移 。</li>
+        # @type SteeringPolicy: String
+        # @param FailoverPolicy: 实际访问某源站失败时的请求重试策略，详情请参考 [请求重试策略介绍](https://cloud.tencent.com/document/product/1552/104227)，取值有：
+        # <li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li>
+        # <li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>
+        # @type FailoverPolicy: String
+        # @param OriginGroupHealthStatus: 源站组健康状态。
+        # @type OriginGroupHealthStatus: Array
+        # @param Status: 负载均衡状态，取值有：
+        # <li>Pending：部署中；</li>
+        # <li>Deleting：删除中；</li>
+        # <li>Running：已生效。</li>
+        # @type Status: String
+        # @param L4UsedList: 该负载均衡实例绑的定四层层代理实例的列表。
+        # @type L4UsedList: Array
+        # @param L7UsedList: 该负载均衡实例绑定的七层域名列表。
+        # @type L7UsedList: Array
+
+        attr_accessor :InstanceId, :Name, :Type, :HealthChecker, :SteeringPolicy, :FailoverPolicy, :OriginGroupHealthStatus, :Status, :L4UsedList, :L7UsedList
+
+        def initialize(instanceid=nil, name=nil, type=nil, healthchecker=nil, steeringpolicy=nil, failoverpolicy=nil, origingrouphealthstatus=nil, status=nil, l4usedlist=nil, l7usedlist=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Type = type
+          @HealthChecker = healthchecker
+          @SteeringPolicy = steeringpolicy
+          @FailoverPolicy = failoverpolicy
+          @OriginGroupHealthStatus = origingrouphealthstatus
+          @Status = status
+          @L4UsedList = l4usedlist
+          @L7UsedList = l7usedlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['HealthChecker'].nil?
+            @HealthChecker = HealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
+          end
+          @SteeringPolicy = params['SteeringPolicy']
+          @FailoverPolicy = params['FailoverPolicy']
+          unless params['OriginGroupHealthStatus'].nil?
+            @OriginGroupHealthStatus = []
+            params['OriginGroupHealthStatus'].each do |i|
+              origingrouphealthstatus_tmp = OriginGroupHealthStatus.new
+              origingrouphealthstatus_tmp.deserialize(i)
+              @OriginGroupHealthStatus << origingrouphealthstatus_tmp
+            end
+          end
+          @Status = params['Status']
+          @L4UsedList = params['L4UsedList']
+          @L7UsedList = params['L7UsedList']
         end
       end
 
@@ -10149,6 +10606,75 @@ module TencentCloud
         end
       end
 
+      # ModifyLoadBalancer请求参数结构体
+      class ModifyLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param InstanceId: 负载均衡实例 ID。
+        # @type InstanceId: String
+        # @param Name: 实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。不填写表示维持原有配置。
+        # @type Name: String
+        # @param OriginGroups: 源站组列表及其对应的容灾调度优先级。详情请参考 [快速创建负载均衡实例](https://cloud.tencent.com/document/product/1552/104223) 中的示例场景。不填写表示维持原有配置。
+        # @type OriginGroups: Array
+        # @param HealthChecker: 健康检查策略。详情请参考 [健康检查策略介绍](https://cloud.tencent.com/document/product/1552/104228)。不填写表示维持原有配置。
+        # @type HealthChecker: :class:`Tencentcloud::Teo.v20220901.models.HealthChecker`
+        # @param SteeringPolicy: 源站组间的流量调度策略，取值有：
+        # <li>Pritory：按优先级顺序进行故障转移 。</li>不填写表示维持原有配置。
+        # @type SteeringPolicy: String
+        # @param FailoverPolicy: 实际访问某源站失败时的请求重试策略，详情请参考 [请求重试策略介绍](https://cloud.tencent.com/document/product/1552/104227)，取值有：
+        # <li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li>
+        # <li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>不填写表示维持原有配置。
+        # @type FailoverPolicy: String
+
+        attr_accessor :ZoneId, :InstanceId, :Name, :OriginGroups, :HealthChecker, :SteeringPolicy, :FailoverPolicy
+
+        def initialize(zoneid=nil, instanceid=nil, name=nil, origingroups=nil, healthchecker=nil, steeringpolicy=nil, failoverpolicy=nil)
+          @ZoneId = zoneid
+          @InstanceId = instanceid
+          @Name = name
+          @OriginGroups = origingroups
+          @HealthChecker = healthchecker
+          @SteeringPolicy = steeringpolicy
+          @FailoverPolicy = failoverpolicy
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          unless params['OriginGroups'].nil?
+            @OriginGroups = []
+            params['OriginGroups'].each do |i|
+              origingroupinloadbalancer_tmp = OriginGroupInLoadBalancer.new
+              origingroupinloadbalancer_tmp.deserialize(i)
+              @OriginGroups << origingroupinloadbalancer_tmp
+            end
+          end
+          unless params['HealthChecker'].nil?
+            @HealthChecker = HealthChecker.new
+            @HealthChecker.deserialize(params['HealthChecker'])
+          end
+          @SteeringPolicy = params['SteeringPolicy']
+          @FailoverPolicy = params['FailoverPolicy']
+        end
+      end
+
+      # ModifyLoadBalancer返回参数结构体
+      class ModifyLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOriginGroup请求参数结构体
       class ModifyOriginGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -10641,10 +11167,12 @@ module TencentCloud
         # @type ImageOptimize: :class:`Tencentcloud::Teo.v20220901.models.ImageOptimize`
         # @param StandardDebug: 标准 Debug 配置。
         # @type StandardDebug: :class:`Tencentcloud::Teo.v20220901.models.StandardDebug`
+        # @param JITVideoProcess: 视频即时处理配置。不填写表示保持原有配置。
+        # @type JITVideoProcess: :class:`Tencentcloud::Teo.v20220901.models.JITVideoProcess`
 
-        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry, :Grpc, :ImageOptimize, :StandardDebug
+        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry, :Grpc, :ImageOptimize, :StandardDebug, :JITVideoProcess
 
-        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, standarddebug=nil)
+        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, standarddebug=nil, jitvideoprocess=nil)
           @ZoneId = zoneid
           @CacheConfig = cacheconfig
           @CacheKey = cachekey
@@ -10666,6 +11194,7 @@ module TencentCloud
           @Grpc = grpc
           @ImageOptimize = imageoptimize
           @StandardDebug = standarddebug
+          @JITVideoProcess = jitvideoprocess
         end
 
         def deserialize(params)
@@ -10749,6 +11278,10 @@ module TencentCloud
           unless params['StandardDebug'].nil?
             @StandardDebug = StandardDebug.new
             @StandardDebug.deserialize(params['StandardDebug'])
+          end
+          unless params['JITVideoProcess'].nil?
+            @JITVideoProcess = JITVideoProcess.new
+            @JITVideoProcess.deserialize(params['JITVideoProcess'])
           end
         end
       end
@@ -11096,6 +11629,108 @@ module TencentCloud
         end
       end
 
+      # 源站组健康状态。
+      class OriginGroupHealthStatus < TencentCloud::Common::AbstractModel
+        # @param OriginGroupID: 源站组 ID。
+        # @type OriginGroupID: String
+        # @param OriginGroupName: 源站组名。
+        # @type OriginGroupName: String
+        # @param OriginType: 源站组类型，取值有：
+        # <li>HTTP：HTTP 专用型；</li>
+        # <li>GENERAL：通用型。</li>
+        # @type OriginType: String
+        # @param Priority: 优先级。
+        # @type Priority: String
+        # @param OriginHealthStatus: 源站组里各源站的健康状态。
+        # @type OriginHealthStatus: Array
+
+        attr_accessor :OriginGroupID, :OriginGroupName, :OriginType, :Priority, :OriginHealthStatus
+
+        def initialize(origingroupid=nil, origingroupname=nil, origintype=nil, priority=nil, originhealthstatus=nil)
+          @OriginGroupID = origingroupid
+          @OriginGroupName = origingroupname
+          @OriginType = origintype
+          @Priority = priority
+          @OriginHealthStatus = originhealthstatus
+        end
+
+        def deserialize(params)
+          @OriginGroupID = params['OriginGroupID']
+          @OriginGroupName = params['OriginGroupName']
+          @OriginType = params['OriginType']
+          @Priority = params['Priority']
+          unless params['OriginHealthStatus'].nil?
+            @OriginHealthStatus = []
+            params['OriginHealthStatus'].each do |i|
+              originhealthstatus_tmp = OriginHealthStatus.new
+              originhealthstatus_tmp.deserialize(i)
+              @OriginHealthStatus << originhealthstatus_tmp
+            end
+          end
+        end
+      end
+
+      # 源站组健康状态详情。
+      class OriginGroupHealthStatusDetail < TencentCloud::Common::AbstractModel
+        # @param OriginGroupId: 源站组 ID。
+        # @type OriginGroupId: String
+        # @param OriginHealthStatus: 根据所有探测区域的结果综合决策出来的源站组下各个源站的健康状态。超过一半的地域判定该源站不健康，则对应状态为不健康，否则为健康。
+        # @type OriginHealthStatus: Array
+        # @param CheckRegionHealthStatus: 各个健康检查区域下源站的健康状态。
+        # @type CheckRegionHealthStatus: Array
+
+        attr_accessor :OriginGroupId, :OriginHealthStatus, :CheckRegionHealthStatus
+
+        def initialize(origingroupid=nil, originhealthstatus=nil, checkregionhealthstatus=nil)
+          @OriginGroupId = origingroupid
+          @OriginHealthStatus = originhealthstatus
+          @CheckRegionHealthStatus = checkregionhealthstatus
+        end
+
+        def deserialize(params)
+          @OriginGroupId = params['OriginGroupId']
+          unless params['OriginHealthStatus'].nil?
+            @OriginHealthStatus = []
+            params['OriginHealthStatus'].each do |i|
+              originhealthstatus_tmp = OriginHealthStatus.new
+              originhealthstatus_tmp.deserialize(i)
+              @OriginHealthStatus << originhealthstatus_tmp
+            end
+          end
+          unless params['CheckRegionHealthStatus'].nil?
+            @CheckRegionHealthStatus = []
+            params['CheckRegionHealthStatus'].each do |i|
+              checkregionhealthstatus_tmp = CheckRegionHealthStatus.new
+              checkregionhealthstatus_tmp.deserialize(i)
+              @CheckRegionHealthStatus << checkregionhealthstatus_tmp
+            end
+          end
+        end
+      end
+
+      # 负载均衡实例中需要绑定的源站组和优先级关系。
+      class OriginGroupInLoadBalancer < TencentCloud::Common::AbstractModel
+        # @param Priority: 优先级，填写格式为 "priority_" + "数字"，最高优先级为 "priority_1"。参考取值有：
+        # <li>priority_1：第一优先级；</li>
+        # <li>priority_2：第二优先级；</li>
+        # <li>priority_3：第三优先级。</li>其他优先级可以将数字递增，最多可以递增至 "priority_10"。
+        # @type Priority: String
+        # @param OriginGroupId: 源站组 ID。
+        # @type OriginGroupId: String
+
+        attr_accessor :Priority, :OriginGroupId
+
+        def initialize(priority=nil, origingroupid=nil)
+          @Priority = priority
+          @OriginGroupId = origingroupid
+        end
+
+        def deserialize(params)
+          @Priority = params['Priority']
+          @OriginGroupId = params['OriginGroupId']
+        end
+      end
+
       # 源站组引用服务。
       class OriginGroupReference < TencentCloud::Common::AbstractModel
         # @param InstanceType: 引用服务类型，取值有：
@@ -11121,6 +11756,29 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
+        end
+      end
+
+      # 源站组里的源站健康状态。
+      class OriginHealthStatus < TencentCloud::Common::AbstractModel
+        # @param Origin: 源站。
+        # @type Origin: String
+        # @param Healthy: 源站健康状态，取值有：
+        # <li>Healthy：健康；</li>
+        # <li>Unhealthy：不健康；</li>
+        # <li>Undetected：未探测到数据。</li>
+        # @type Healthy: String
+
+        attr_accessor :Origin, :Healthy
+
+        def initialize(origin=nil, healthy=nil)
+          @Origin = origin
+          @Healthy = healthy
+        end
+
+        def deserialize(params)
+          @Origin = params['Origin']
+          @Healthy = params['Healthy']
         end
       end
 
@@ -13981,10 +14639,13 @@ module TencentCloud
         # @param StandardDebug: 标准 Debug 配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardDebug: :class:`Tencentcloud::Teo.v20220901.models.StandardDebug`
+        # @param JITVideoProcess: 视频即时处理配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JITVideoProcess: :class:`Tencentcloud::Teo.v20220901.models.JITVideoProcess`
 
-        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :ImageOptimize, :AccelerateMainland, :StandardDebug
+        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :ImageOptimize, :AccelerateMainland, :StandardDebug, :JITVideoProcess
 
-        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, acceleratemainland=nil, standarddebug=nil)
+        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, acceleratemainland=nil, standarddebug=nil, jitvideoprocess=nil)
           @ZoneName = zonename
           @Area = area
           @CacheKey = cachekey
@@ -14008,6 +14669,7 @@ module TencentCloud
           @ImageOptimize = imageoptimize
           @AccelerateMainland = acceleratemainland
           @StandardDebug = standarddebug
+          @JITVideoProcess = jitvideoprocess
         end
 
         def deserialize(params)
@@ -14096,6 +14758,10 @@ module TencentCloud
           unless params['StandardDebug'].nil?
             @StandardDebug = StandardDebug.new
             @StandardDebug.deserialize(params['StandardDebug'])
+          end
+          unless params['JITVideoProcess'].nil?
+            @JITVideoProcess = JITVideoProcess.new
+            @JITVideoProcess.deserialize(params['JITVideoProcess'])
           end
         end
       end

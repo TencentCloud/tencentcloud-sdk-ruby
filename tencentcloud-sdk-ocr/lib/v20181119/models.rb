@@ -10072,18 +10072,9 @@ module TencentCloud
 
       # SmartStructuralOCRV2请求参数结构体
       class SmartStructuralOCRV2Request < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 支持的图片像素：需介于20-10000px之间。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 支持的图片像素：需介于20-10000px之间。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
         # @type IsPdf: Boolean

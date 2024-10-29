@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为集群绑定资源包
+        # 本接口（BindClusterResourcePackages）用于为集群绑定资源包。
 
         # @param request: Request instance for BindClusterResourcePackages.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::BindClusterResourcePackagesRequest`
@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # TDSQL-C for MySQL实例关闭审计服务
+        # 本接口（CloseAuditService）用于关闭 TDSQL-C MySQL 实例的数据库审计服务。
 
         # @param request: Request instance for CloseAuditService.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseAuditServiceRequest`
@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建审计规则模板
+        # 本接口（CreateAuditRuleTemplate）用于创建审计规则模板。
 
         # @param request: Request instance for CreateAuditRuleTemplate.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateAuditRuleTemplateRequest`
@@ -365,7 +365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建日志投递
+        # 本接口（CreateCLSDelivery）用于创建日志投递。
 
         # @param request: Request instance for CreateCLSDelivery.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateCLSDeliveryRequest`
@@ -413,7 +413,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 购买新集群
+        # 本接口（CreateClusters）用于新购集群。
 
         # @param request: Request instance for CreateClusters.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateClustersRequest`
@@ -629,7 +629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除日志投递
+        # 本接口（DeleteCLSDelivery）用于删除日志投递。
 
         # @param request: Request instance for DeleteCLSDelivery.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteCLSDeliveryRequest`
@@ -773,7 +773,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取审计实例列表
+        # 本接口（DescribeAuditInstanceList）用于获取数据库审计的实例列表。
 
         # @param request: Request instance for DescribeAuditInstanceList.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditInstanceListRequest`
@@ -1085,7 +1085,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取集群数据库列表
+        # 本接口（DescribeClusterDatabases）用于获取集群数据库列表。
 
         # @param request: Request instance for DescribeClusterDatabases.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterDatabasesRequest`
@@ -1109,7 +1109,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（DescribeClusterDetail）显示集群详情
+        # 该接口（DescribeClusterDetail）用于显示集群详情。
 
         # @param request: Request instance for DescribeClusterDetail.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterDetailRequest`
@@ -1349,7 +1349,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例日志投递信息
+        # 本接口（DescribeInstanceCLSLogDelivery）用于查询实例日志投递信息。
 
         # @param request: Request instance for DescribeInstanceCLSLogDelivery.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceCLSLogDeliveryRequest`
@@ -1685,7 +1685,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询数据库代理规格
+        # 本接口（DescribeProxySpecs）用于查询数据库代理规格。
 
         # @param request: Request instance for DescribeProxySpecs.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxySpecsRequest`
@@ -1709,7 +1709,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询资源包使用详情
+        # 本接口（DescribeResourcePackageDetail）用于查询资源包使用详情。
 
         # @param request: Request instance for DescribeResourcePackageDetail.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageDetailRequest`
@@ -1733,7 +1733,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询资源包列表
+        # 本接口（DescribeResourcePackageList）用于查询资源包列表。
 
         # @param request: Request instance for DescribeResourcePackageList.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageListRequest`
@@ -1757,7 +1757,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询资源包规格
+        # 本接口（DescribeResourcePackageSaleSpec）用于查询资源包规格。
 
         # @param request: Request instance for DescribeResourcePackageSaleSpec.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeResourcePackageSaleSpecRequest`
@@ -2117,7 +2117,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 隔离集群
+        # 本接口（IsolateCluster）用于隔离集群。
 
         # @param request: Request instance for IsolateCluster.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::IsolateClusterRequest`
@@ -2261,7 +2261,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改审计规则模板
+        # 本接口（ModifyAuditRuleTemplates）用于修改审计规则模板。
 
         # @param request: Request instance for ModifyAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAuditRuleTemplatesRequest`
@@ -2741,7 +2741,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 给资源包绑定集群
+        # 本接口（ModifyResourcePackageClusters）用于修改资源包与集群之间的绑定关系。
 
         # @param request: Request instance for ModifyResourcePackageClusters.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackageClustersRequest`
@@ -2765,7 +2765,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改资源包名称
+        # 本接口（ModifyResourcePackageName）用于修改资源包名称。
 
         # @param request: Request instance for ModifyResourcePackageName.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyResourcePackageNameRequest`
@@ -2909,7 +2909,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # TDSQL-C for MySQL实例开通审计服务
+        # 本接口（OpenAuditService）用于为实例开通数据库审计服务。
 
         # @param request: Request instance for OpenAuditService.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenAuditServiceRequest`
@@ -3053,7 +3053,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 退款资源包
+        # 本接口（RefundResourcePackage）用于资源包退款。
 
         # @param request: Request instance for RefundResourcePackage.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::RefundResourcePackageRequest`
@@ -3485,7 +3485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # cynos解绑资源包
+        # 本接口（UnbindClusterResourcePackages）用于解除资源包与集群之间的绑定关系。
 
         # @param request: Request instance for UnbindClusterResourcePackages.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UnbindClusterResourcePackagesRequest`

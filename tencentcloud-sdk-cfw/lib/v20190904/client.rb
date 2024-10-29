@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 添加nat访问控制规则(地域必填)
+        # 添加nat访问控制规则
 
         # @param request: Request instance for AddNatAcRule.
         # @type request: :class:`Tencentcloud::cfw::V20190904::AddNatAcRuleRequest`
@@ -1447,7 +1447,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeResourceGroupNew资产中心资产树信息
+        # 资产中心资产组数数据信息查询
 
         # @param request: Request instance for DescribeResourceGroupNew.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeResourceGroupNewRequest`
@@ -1569,7 +1569,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeTLogInfo告警中心概况
+        # DescribeTLogInfo告警中心概况查询
 
         # @param request: Request instance for DescribeTLogInfo.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeTLogInfoRequest`
@@ -1856,6 +1856,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口已不再使用
 
         # VPC防火墙一键开关
 
@@ -2294,7 +2296,6 @@ module TencentCloud
         end
 
         # ModifyResourceGroup-资产中心资产组信息修改
-
 
         # @param request: Request instance for ModifyResourceGroup.
         # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyResourceGroupRequest`

@@ -3081,10 +3081,16 @@ module TencentCloud
         # @param DomainName: 网络域名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainName: String
+        # @param EnableSSL: 是否启用SSL，仅支持Redis资产。0：禁用 1：启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableSSL: Integer
+        # @param SSLCertName: 已上传的SSL证书名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLCertName: String
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -3103,6 +3109,8 @@ module TencentCloud
           @IpPortSet = ipportset
           @DomainId = domainid
           @DomainName = domainname
+          @EnableSSL = enablessl
+          @SSLCertName = sslcertname
         end
 
         def deserialize(params)
@@ -3137,6 +3145,8 @@ module TencentCloud
           @IpPortSet = params['IpPortSet']
           @DomainId = params['DomainId']
           @DomainName = params['DomainName']
+          @EnableSSL = params['EnableSSL']
+          @SSLCertName = params['SSLCertName']
         end
       end
 
@@ -3241,16 +3251,25 @@ module TencentCloud
         # @type DepartmentId: String
         # @param IpPortSet: 资产多节点：字段ip和端口
         # @type IpPortSet: Array
+        # @param EnableSSL: 是否启用SSL,1:启用 0：禁用，仅支持Redis资产
+        # @type EnableSSL: Integer
+        # @param SSLCert: SSL证书，EnableSSL时必填
+        # @type SSLCert: String
+        # @param SSLCertName: SSL证书名称，EnableSSL时必填
+        # @type SSLCertName: String
 
-        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId, :IpPortSet
+        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId, :IpPortSet, :EnableSSL, :SSLCert, :SSLCertName
 
-        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil, ipportset=nil)
+        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil, ipportset=nil, enablessl=nil, sslcert=nil, sslcertname=nil)
           @OsName = osname
           @Ip = ip
           @Port = port
           @Name = name
           @DepartmentId = departmentid
           @IpPortSet = ipportset
+          @EnableSSL = enablessl
+          @SSLCert = sslcert
+          @SSLCertName = sslcertname
         end
 
         def deserialize(params)
@@ -3260,6 +3279,9 @@ module TencentCloud
           @Name = params['Name']
           @DepartmentId = params['DepartmentId']
           @IpPortSet = params['IpPortSet']
+          @EnableSSL = params['EnableSSL']
+          @SSLCert = params['SSLCert']
+          @SSLCertName = params['SSLCertName']
         end
       end
 
@@ -4232,10 +4254,19 @@ module TencentCloud
         # @param Trial: 0 非试用版，1 试用版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trial: Integer
+        # @param CdcClusterId: cdc集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcClusterId: String
+        # @param LogDelivery: 日志投递规格信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogDelivery: String
+        # @param DeployModel: 部署模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployModel: Integer
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :CdcClusterId, :LogDelivery, :DeployModel
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, cdcclusterid=nil, logdelivery=nil, deploymodel=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4269,6 +4300,9 @@ module TencentCloud
           @DomainCount = domaincount
           @UsedDomainCount = useddomaincount
           @Trial = trial
+          @CdcClusterId = cdcclusterid
+          @LogDelivery = logdelivery
+          @DeployModel = deploymodel
         end
 
         def deserialize(params)
@@ -4312,6 +4346,9 @@ module TencentCloud
           @DomainCount = params['DomainCount']
           @UsedDomainCount = params['UsedDomainCount']
           @Trial = params['Trial']
+          @CdcClusterId = params['CdcClusterId']
+          @LogDelivery = params['LogDelivery']
+          @DeployModel = params['DeployModel']
         end
       end
 

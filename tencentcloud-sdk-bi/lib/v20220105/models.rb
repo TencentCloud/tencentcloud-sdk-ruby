@@ -21,22 +21,27 @@ module TencentCloud
       class ApplyEmbedIntervalRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 分享项目id，必选
         # @type ProjectId: Integer
-        # @param PageId: 分享页面id，嵌出看板时此为空值0
+        # @param PageId: 分享页面id，嵌出看板时此为空值0，ChatBI嵌出时不传
         # @type PageId: Integer
         # @param BIToken: 需要申请延期的Token
         # @type BIToken: String
         # @param ExtraParam: 备用字段
         # @type ExtraParam: String
-        # @param Scope: panel,看板；page，页面
+        # @param Intention: embed：页面/看板嵌出
+        # chatBIEmbed：ChatBI嵌出
+        # @type Intention: String
+        # @param Scope: panel, 看板；page，页面
+        # project，ChatBI嵌出时
         # @type Scope: String
 
-        attr_accessor :ProjectId, :PageId, :BIToken, :ExtraParam, :Scope
+        attr_accessor :ProjectId, :PageId, :BIToken, :ExtraParam, :Intention, :Scope
 
-        def initialize(projectid=nil, pageid=nil, bitoken=nil, extraparam=nil, scope=nil)
+        def initialize(projectid=nil, pageid=nil, bitoken=nil, extraparam=nil, intention=nil, scope=nil)
           @ProjectId = projectid
           @PageId = pageid
           @BIToken = bitoken
           @ExtraParam = extraparam
+          @Intention = intention
           @Scope = scope
         end
 
@@ -45,6 +50,7 @@ module TencentCloud
           @PageId = params['PageId']
           @BIToken = params['BIToken']
           @ExtraParam = params['ExtraParam']
+          @Intention = params['Intention']
           @Scope = params['Scope']
         end
       end
@@ -479,9 +485,11 @@ module TencentCloud
       class CreateEmbedTokenRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 分享项目id
         # @type ProjectId: Integer
-        # @param PageId: 分享页面id，嵌出看板时此为空值0
+        # @param PageId: 分享页面id，嵌出看板时此为空值0，ChatBI嵌出时不传
         # @type PageId: Integer
-        # @param Scope: page表示嵌出页面，panel表示嵌出整个看板
+        # @param Intention: embed表示页面看板嵌出，chatBIEmbed表示ChatBI嵌出
+        # @type Intention: String
+        # @param Scope: page表示嵌出页面，panel表示嵌出整个看板，ChatBI嵌出时使用project
         # @type Scope: String
         # @param ExpireTime: 过期时间。 单位：分钟 最大值：240。即，4小时 默认值：240
         # @type ExpireTime: String
@@ -534,11 +542,12 @@ module TencentCloud
         # -is     in操作符
         # @type GlobalParam: String
 
-        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam
+        attr_accessor :ProjectId, :PageId, :Intention, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam
 
-        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil)
+        def initialize(projectid=nil, pageid=nil, intention=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil)
           @ProjectId = projectid
           @PageId = pageid
+          @Intention = intention
           @Scope = scope
           @ExpireTime = expiretime
           @ExtraParam = extraparam
@@ -551,6 +560,7 @@ module TencentCloud
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @PageId = params['PageId']
+          @Intention = params['Intention']
           @Scope = params['Scope']
           @ExpireTime = params['ExpireTime']
           @ExtraParam = params['ExtraParam']
@@ -1823,10 +1833,13 @@ module TencentCloud
         # @param GlobalParam: 全局参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalParam: String
+        # @param Intention: embed表示页面看板嵌出，chatBIEmbed表示ChatBI嵌出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Intention: String
 
-        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam
+        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :Intention
 
-        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil)
+        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, intention=nil)
           @Id = id
           @BIToken = bitoken
           @ProjectId = projectid
@@ -1842,6 +1855,7 @@ module TencentCloud
           @UserId = userid
           @TicketNum = ticketnum
           @GlobalParam = globalparam
+          @Intention = intention
         end
 
         def deserialize(params)
@@ -1860,6 +1874,7 @@ module TencentCloud
           @UserId = params['UserId']
           @TicketNum = params['TicketNum']
           @GlobalParam = params['GlobalParam']
+          @Intention = params['Intention']
         end
       end
 

@@ -29,34 +29,6 @@ module TencentCloud
         end
 
 
-        # 参数要求：
-        # 1、如果IsCreateNewBucket的值存在的话，cosRegion和cosBucketName都是必填参数。
-        # 2、如果IsEnableCmqNotify的值是1的话，IsCreateNewQueue、CmqRegion和CmqQueueName都是必填参数。
-        # 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
-        # 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
-
-        # @param request: Request instance for CreateAudit.
-        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::CreateAuditRequest`
-        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::CreateAuditResponse`
-        def CreateAudit(request)
-          body = send_request('CreateAudit', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateAuditResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建操作审计跟踪集
 
         # @param request: Request instance for CreateAuditTrack.
@@ -81,16 +53,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除跟踪集
+        # 创建操作审计跟踪集
 
-        # @param request: Request instance for DeleteAudit.
-        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DeleteAuditRequest`
-        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::DeleteAuditResponse`
-        def DeleteAudit(request)
-          body = send_request('DeleteAudit', request.serialize)
+        # @param request: Request instance for CreateEventsAuditTrack.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::CreateEventsAuditTrackRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::CreateEventsAuditTrackResponse`
+        def CreateEventsAuditTrack(request)
+          body = send_request('CreateEventsAuditTrack', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAuditResponse.new
+            model = CreateEventsAuditTrackResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -403,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuditTrackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改操作审计跟踪集
+
+        # @param request: Request instance for ModifyEventsAuditTrack.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::ModifyEventsAuditTrackRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::ModifyEventsAuditTrackResponse`
+        def ModifyEventsAuditTrack(request)
+          body = send_request('ModifyEventsAuditTrack', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEventsAuditTrackResponse.new
             model.deserialize(response['Response'])
             model
           else

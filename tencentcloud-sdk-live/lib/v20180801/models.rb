@@ -12477,10 +12477,13 @@ module TencentCloud
         # @param Duration: 时移数据存储时长，单位秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
+        # @param TimeShiftSubStreams: 时移自适应码率子流列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeShiftSubStreams: Array
 
-        attr_accessor :DomainGroup, :Domain, :AppName, :StreamName, :StartTime, :EndTime, :TransCodeId, :StreamType, :Duration
+        attr_accessor :DomainGroup, :Domain, :AppName, :StreamName, :StartTime, :EndTime, :TransCodeId, :StreamType, :Duration, :TimeShiftSubStreams
 
-        def initialize(domaingroup=nil, domain=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, transcodeid=nil, streamtype=nil, duration=nil)
+        def initialize(domaingroup=nil, domain=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, transcodeid=nil, streamtype=nil, duration=nil, timeshiftsubstreams=nil)
           @DomainGroup = domaingroup
           @Domain = domain
           @AppName = appname
@@ -12490,6 +12493,7 @@ module TencentCloud
           @TransCodeId = transcodeid
           @StreamType = streamtype
           @Duration = duration
+          @TimeShiftSubStreams = timeshiftsubstreams
         end
 
         def deserialize(params)
@@ -12502,6 +12506,30 @@ module TencentCloud
           @TransCodeId = params['TransCodeId']
           @StreamType = params['StreamType']
           @Duration = params['Duration']
+          unless params['TimeShiftSubStreams'].nil?
+            @TimeShiftSubStreams = []
+            params['TimeShiftSubStreams'].each do |i|
+              timeshiftsubstream_tmp = TimeShiftSubStream.new
+              timeshiftsubstream_tmp.deserialize(i)
+              @TimeShiftSubStreams << timeshiftsubstream_tmp
+            end
+          end
+        end
+      end
+
+      # 时移自适应码率子流信息。
+      class TimeShiftSubStream < TencentCloud::Common::AbstractModel
+        # @param TransCodeId: 时移自适应码率子流转码模板ID。
+        # @type TransCodeId: Integer
+
+        attr_accessor :TransCodeId
+
+        def initialize(transcodeid=nil)
+          @TransCodeId = transcodeid
+        end
+
+        def deserialize(params)
+          @TransCodeId = params['TransCodeId']
         end
       end
 

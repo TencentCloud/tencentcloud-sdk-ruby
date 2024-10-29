@@ -4323,6 +4323,22 @@ module TencentCloud
         end
       end
 
+      # 导入镜像的数据盘信息
+      class ImportImageDataDisk < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 数据盘镜像 COS 链接
+        # @type ImageUrl: String
+
+        attr_accessor :ImageUrl
+
+        def initialize(imageurl=nil)
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
       # ImportImage请求参数结构体
       class ImportImageRequest < TencentCloud::Common::AbstractModel
         # @param Architecture: 导入镜像的操作系统架构，`x86_64` 或 `i386`
@@ -4352,10 +4368,12 @@ module TencentCloud
         # @type BootMode: String
         # @param ImageFamily:  镜像族
         # @type ImageFamily: String
+        # @param ImportImageDataDiskList: 导入的数据盘列表
+        # @type ImportImageDataDiskList: Array
 
-        attr_accessor :Architecture, :OsType, :OsVersion, :ImageUrl, :ImageName, :ImageDescription, :DryRun, :Force, :TagSpecification, :LicenseType, :BootMode, :ImageFamily
+        attr_accessor :Architecture, :OsType, :OsVersion, :ImageUrl, :ImageName, :ImageDescription, :DryRun, :Force, :TagSpecification, :LicenseType, :BootMode, :ImageFamily, :ImportImageDataDiskList
 
-        def initialize(architecture=nil, ostype=nil, osversion=nil, imageurl=nil, imagename=nil, imagedescription=nil, dryrun=nil, force=nil, tagspecification=nil, licensetype=nil, bootmode=nil, imagefamily=nil)
+        def initialize(architecture=nil, ostype=nil, osversion=nil, imageurl=nil, imagename=nil, imagedescription=nil, dryrun=nil, force=nil, tagspecification=nil, licensetype=nil, bootmode=nil, imagefamily=nil, importimagedatadisklist=nil)
           @Architecture = architecture
           @OsType = ostype
           @OsVersion = osversion
@@ -4368,6 +4386,7 @@ module TencentCloud
           @LicenseType = licensetype
           @BootMode = bootmode
           @ImageFamily = imagefamily
+          @ImportImageDataDiskList = importimagedatadisklist
         end
 
         def deserialize(params)
@@ -4390,6 +4409,14 @@ module TencentCloud
           @LicenseType = params['LicenseType']
           @BootMode = params['BootMode']
           @ImageFamily = params['ImageFamily']
+          unless params['ImportImageDataDiskList'].nil?
+            @ImportImageDataDiskList = []
+            params['ImportImageDataDiskList'].each do |i|
+              importimagedatadisk_tmp = ImportImageDataDisk.new
+              importimagedatadisk_tmp.deserialize(i)
+              @ImportImageDataDiskList << importimagedatadisk_tmp
+            end
+          end
         end
       end
 
@@ -8705,15 +8732,25 @@ module TencentCloud
         # @param ImageSetRequired: 是否需要返回目的地域的镜像ID。
         # 默认值: false
         # @type ImageSetRequired: Boolean
+        # @param Encrypt: 是否复制为加密自定义镜像。
+        # 默认值为 false。
+        # 复制加密自定义镜像仅支持同地域。
+        # @type Encrypt: Boolean
+        # @param KmsKeyId: 加密自定义镜像使用的 KMS 密钥 ID。
+        # 仅当复制加密镜像时，即 Encrypt 为 true 时，此参数有效；
+        # 不指定 KmsKeyId，默认使用 CBS 云产品 KMS 密钥。
+        # @type KmsKeyId: String
 
-        attr_accessor :ImageIds, :DestinationRegions, :DryRun, :ImageName, :ImageSetRequired
+        attr_accessor :ImageIds, :DestinationRegions, :DryRun, :ImageName, :ImageSetRequired, :Encrypt, :KmsKeyId
 
-        def initialize(imageids=nil, destinationregions=nil, dryrun=nil, imagename=nil, imagesetrequired=nil)
+        def initialize(imageids=nil, destinationregions=nil, dryrun=nil, imagename=nil, imagesetrequired=nil, encrypt=nil, kmskeyid=nil)
           @ImageIds = imageids
           @DestinationRegions = destinationregions
           @DryRun = dryrun
           @ImageName = imagename
           @ImageSetRequired = imagesetrequired
+          @Encrypt = encrypt
+          @KmsKeyId = kmskeyid
         end
 
         def deserialize(params)
@@ -8722,6 +8759,8 @@ module TencentCloud
           @DryRun = params['DryRun']
           @ImageName = params['ImageName']
           @ImageSetRequired = params['ImageSetRequired']
+          @Encrypt = params['Encrypt']
+          @KmsKeyId = params['KmsKeyId']
         end
       end
 

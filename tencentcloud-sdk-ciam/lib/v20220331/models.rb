@@ -1407,10 +1407,13 @@ module TencentCloud
         # @param Detail: 详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: String
+        # @param ActionResult: 日志结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionResult: String
 
-        attr_accessor :LogId, :TenantId, :UserStoreId, :EventCode, :EventDate, :Description, :Participant, :ApplicationClientId, :ApplicationName, :AuthSourceId, :AuthSourceName, :AuthSourceType, :AuthSourceCategory, :Ip, :UserAgent, :UserId, :Detail
+        attr_accessor :LogId, :TenantId, :UserStoreId, :EventCode, :EventDate, :Description, :Participant, :ApplicationClientId, :ApplicationName, :AuthSourceId, :AuthSourceName, :AuthSourceType, :AuthSourceCategory, :Ip, :UserAgent, :UserId, :Detail, :ActionResult
 
-        def initialize(logid=nil, tenantid=nil, userstoreid=nil, eventcode=nil, eventdate=nil, description=nil, participant=nil, applicationclientid=nil, applicationname=nil, authsourceid=nil, authsourcename=nil, authsourcetype=nil, authsourcecategory=nil, ip=nil, useragent=nil, userid=nil, detail=nil)
+        def initialize(logid=nil, tenantid=nil, userstoreid=nil, eventcode=nil, eventdate=nil, description=nil, participant=nil, applicationclientid=nil, applicationname=nil, authsourceid=nil, authsourcename=nil, authsourcetype=nil, authsourcecategory=nil, ip=nil, useragent=nil, userid=nil, detail=nil, actionresult=nil)
           @LogId = logid
           @TenantId = tenantid
           @UserStoreId = userstoreid
@@ -1428,6 +1431,7 @@ module TencentCloud
           @UserAgent = useragent
           @UserId = userid
           @Detail = detail
+          @ActionResult = actionresult
         end
 
         def deserialize(params)
@@ -1448,6 +1452,7 @@ module TencentCloud
           @UserAgent = params['UserAgent']
           @UserId = params['UserId']
           @Detail = params['Detail']
+          @ActionResult = params['ActionResult']
         end
       end
 

@@ -1661,6 +1661,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据服务API的发布态信息
+
+        # @param request: Request instance for DescribeDataServicePublishedApiDetail.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDataServicePublishedApiDetailRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDataServicePublishedApiDetailResponse`
+        def DescribeDataServicePublishedApiDetail(request)
+          body = send_request('DescribeDataServicePublishedApiDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataServicePublishedApiDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据服务API的发布态信息列表
+
+        # @param request: Request instance for DescribeDataServicePublishedApiList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDataServicePublishedApiListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDataServicePublishedApiListResponse`
+        def DescribeDataServicePublishedApiList(request)
+          body = send_request('DescribeDataServicePublishedApiList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataServicePublishedApiListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取数据源信息-数据源分页列表
 
         # @param request: Request instance for DescribeDataSourceInfoList.

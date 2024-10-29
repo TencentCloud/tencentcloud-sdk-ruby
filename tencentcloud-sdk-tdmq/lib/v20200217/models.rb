@@ -475,13 +475,13 @@ module TencentCloud
         # @param DeadLetterQueue: 死信队列。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadLetterQueue: String
-        # @param Policy: 死信队列策略。
+        # @param Policy: 死信队列策略。0:最大接收次数;1:最大未消费时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policy: Integer
         # @param MaxTimeToLive: 最大未消费过期时间。Policy为1时必选。范围300-43200，单位秒，需要小于消息最大保留时间MsgRetentionSeconds。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTimeToLive: Integer
-        # @param MaxReceiveCount: 最大接收次数。
+        # @param MaxReceiveCount: 最大接收次数。Policy为0时必选，范围在1到1000。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReceiveCount: Integer
 
@@ -536,7 +536,7 @@ module TencentCloud
         # @param Bps: 带宽限制。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bps: Integer
-        # @param MaxDelaySeconds: 飞行消息最大保留时间。
+        # @param MaxDelaySeconds: 飞行消息最大保留时间，需要小于消息保留周期。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxDelaySeconds: Integer
         # @param MaxMsgHeapNum: 最大堆积消息数。取值范围在公测期间为 1,000,000 - 10,000,000，正式上线后范围可达到 1000,000-1000,000,000。默认取值在公测期间为 10,000,000，正式上线后为 100,000,000。
@@ -800,7 +800,7 @@ module TencentCloud
         # @param MsgRetentionSeconds: 消息在主题中最长存活时间，从发送到该主题开始经过此参数指定的时间后，不论消息是否被成功推送给用户都将被删除，单位为秒。固定为一天（86400秒），该属性不能修改。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgRetentionSeconds: Integer
-        # @param MaxMsgSize: 消息最大长度。取值范围1024 - 1048576Byte（即1 - 1024K），默认值为65536。
+        # @param MaxMsgSize: 消息最大长度。取值范围1024 - 1048576Byte（即1 - 1024K），默认值为1048576。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMsgSize: Integer
         # @param Qps: 每秒钟发布消息的条数。
@@ -8626,7 +8626,7 @@ module TencentCloud
         # @type MaxQueryCount: Integer
         # @param DeadLetterQueueName: 死信队列名称
         # @type DeadLetterQueueName: String
-        # @param MaxTimeToLive: MaxTimeToLivepolicy为1时必选。最大未消费过期时间。范围300-43200，单位秒，需要小于消息最大保留时间MsgRetentionSeconds
+        # @param MaxTimeToLive: policy为1时必选。最大未消费过期时间。范围300-43200，单位秒，需要小于消息最大保留时间MsgRetentionSeconds
         # @type MaxTimeToLive: Integer
         # @param MaxReceiveCount: 最大接收次数
         # @type MaxReceiveCount: Integer

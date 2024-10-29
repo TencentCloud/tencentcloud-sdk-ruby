@@ -3828,7 +3828,18 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间(2019-03-25 12:00:00)
         # @type EndTime: String
-        # @param MetricNames: 统计指标名称列表，支持: 入带宽:InBandwidth, 出带宽:OutBandwidth, 并发:Concurrent, 入包量:InPackets, 出包量:OutPackets, 丢包率:PacketLoss, 延迟:Latency，http请求量：HttpQPS, Https请求量：HttpsQPS
+        # @param MetricNames: 统计指标名称列表，支持:
+        # 入带宽:InBandwidth,
+        # 出带宽:OutBandwidth,
+        # 并发:Concurrent,
+        # 入包量:InPackets,
+        # 出包量:OutPackets,
+        # 丢包率:PacketLoss,
+        # 延迟:Latency，
+        # HTTP请求量：HttpQPS,
+        # HTTP请求量利用率：HttpQPSPercent,
+        # HTTPS请求量：HttpsQPS,
+        # HTTPS请求量利用率：HttpsQPSPercent
         # @type MetricNames: Array
         # @param Granularity: 监控粒度，目前支持60，300，3600，86400，单位：秒。
         # 当时间范围不超过3天，支持最小粒度60秒；
@@ -4574,7 +4585,7 @@ module TencentCloud
 
       # DescribeTaskStatus请求参数结构体
       class DescribeTaskStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，值为异步接口返回的RequestId
+        # @param TaskId: 任务ID，值为异步接口返回的RequestId，此参数不能传空值。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -7785,10 +7796,16 @@ module TencentCloud
         # @type RealServerCertificateDomain: String
         # @param PolyRealServerCertificateIds: 多源站CA证书ID，从证书管理页获取。源站认证时，填写该参数或RealServerCertificateId参数
         # @type PolyRealServerCertificateIds: Array
+        # @param TLSSupportVersion: TLS支持的版本
+        # 支持TLSv1，TLSv1.1,TLSv1.2,TLSv1.3
+        # @type TLSSupportVersion: Array
+        # @param TLSCiphers: 支持的TLS密码套件，可选值为：
+        # [GAAP_TLS_CIPHERS_WIDE,GAAPTLS_CIPHERS_GENERAL,GAAPTLS_CIPHERS_STRICT]
+        # @type TLSCiphers: String
 
-        attr_accessor :ListenerId, :Domain, :BasicAuth, :GaapAuth, :RealServerAuth, :BasicAuthConfId, :GaapCertificateId, :RealServerCertificateId, :RealServerCertificateDomain, :PolyRealServerCertificateIds
+        attr_accessor :ListenerId, :Domain, :BasicAuth, :GaapAuth, :RealServerAuth, :BasicAuthConfId, :GaapCertificateId, :RealServerCertificateId, :RealServerCertificateDomain, :PolyRealServerCertificateIds, :TLSSupportVersion, :TLSCiphers
 
-        def initialize(listenerid=nil, domain=nil, basicauth=nil, gaapauth=nil, realserverauth=nil, basicauthconfid=nil, gaapcertificateid=nil, realservercertificateid=nil, realservercertificatedomain=nil, polyrealservercertificateids=nil)
+        def initialize(listenerid=nil, domain=nil, basicauth=nil, gaapauth=nil, realserverauth=nil, basicauthconfid=nil, gaapcertificateid=nil, realservercertificateid=nil, realservercertificatedomain=nil, polyrealservercertificateids=nil, tlssupportversion=nil, tlsciphers=nil)
           @ListenerId = listenerid
           @Domain = domain
           @BasicAuth = basicauth
@@ -7799,6 +7816,8 @@ module TencentCloud
           @RealServerCertificateId = realservercertificateid
           @RealServerCertificateDomain = realservercertificatedomain
           @PolyRealServerCertificateIds = polyrealservercertificateids
+          @TLSSupportVersion = tlssupportversion
+          @TLSCiphers = tlsciphers
         end
 
         def deserialize(params)
@@ -7812,6 +7831,8 @@ module TencentCloud
           @RealServerCertificateId = params['RealServerCertificateId']
           @RealServerCertificateDomain = params['RealServerCertificateDomain']
           @PolyRealServerCertificateIds = params['PolyRealServerCertificateIds']
+          @TLSSupportVersion = params['TLSSupportVersion']
+          @TLSCiphers = params['TLSCiphers']
         end
       end
 
@@ -7835,7 +7856,7 @@ module TencentCloud
       class SetTlsVersionRequest < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听器ID
         # @type ListenerId: String
-        # @param TLSSupportVersion: TLS版本,可选TLSv1.0、TLSv1.1、TLSv1.2、TLSv1.3
+        # @param TLSSupportVersion: TLS版本,可选TLSv1、TLSv1.1、TLSv1.2、TLSv1.3
         # @type TLSSupportVersion: Array
         # @param TLSCiphers: 密码套件包,可选 GAAP_TLS_CIPHERS_STRICT，GAAP_TLS_CIPHERS_GENERAL，GAAP_TLS_CIPHERS_WIDE(默认)
         # @type TLSCiphers: String
