@@ -46,10 +46,54 @@ module TencentCloud
         # @param LogId: 告警规则id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogId: String
+        # @param Status: 规则开关状态 1打开 0关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param SrcType: 规则源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcType: Integer
+        # @param DstType: 规则目的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstType: Integer
+        # @param Uuid: 规则唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param Invalid: 规则有效性
+        # 1 有效
+        # 0 无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Invalid: Integer
+        # @param IsRegion: 是否地域规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRegion: Integer
+        # @param CloudCode: 云厂商代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudCode: String
+        # @param AutoTask: 自动化助手信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoTask: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param RegionCode: 地域码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCode: String
+        # @param Country: 国家代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: Integer
+        # @param City: 城市代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: Integer
+        # @param RegName1: 国家名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegName1: String
+        # @param RegName2: 城市名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegName2: String
 
-        attr_accessor :Id, :SourceIp, :TargetIp, :Protocol, :Port, :Strategy, :Detail, :Count, :OrderIndex, :LogId
+        attr_accessor :Id, :SourceIp, :TargetIp, :Protocol, :Port, :Strategy, :Detail, :Count, :OrderIndex, :LogId, :Status, :SrcType, :DstType, :Uuid, :Invalid, :IsRegion, :CloudCode, :AutoTask, :InstanceName, :RegionCode, :Country, :City, :RegName1, :RegName2
 
-        def initialize(id=nil, sourceip=nil, targetip=nil, protocol=nil, port=nil, strategy=nil, detail=nil, count=nil, orderindex=nil, logid=nil)
+        def initialize(id=nil, sourceip=nil, targetip=nil, protocol=nil, port=nil, strategy=nil, detail=nil, count=nil, orderindex=nil, logid=nil, status=nil, srctype=nil, dsttype=nil, uuid=nil, invalid=nil, isregion=nil, cloudcode=nil, autotask=nil, instancename=nil, regioncode=nil, country=nil, city=nil, regname1=nil, regname2=nil)
           @Id = id
           @SourceIp = sourceip
           @TargetIp = targetip
@@ -60,6 +104,20 @@ module TencentCloud
           @Count = count
           @OrderIndex = orderindex
           @LogId = logid
+          @Status = status
+          @SrcType = srctype
+          @DstType = dsttype
+          @Uuid = uuid
+          @Invalid = invalid
+          @IsRegion = isregion
+          @CloudCode = cloudcode
+          @AutoTask = autotask
+          @InstanceName = instancename
+          @RegionCode = regioncode
+          @Country = country
+          @City = city
+          @RegName1 = regname1
+          @RegName2 = regname2
         end
 
         def deserialize(params)
@@ -73,6 +131,20 @@ module TencentCloud
           @Count = params['Count']
           @OrderIndex = params['OrderIndex']
           @LogId = params['LogId']
+          @Status = params['Status']
+          @SrcType = params['SrcType']
+          @DstType = params['DstType']
+          @Uuid = params['Uuid']
+          @Invalid = params['Invalid']
+          @IsRegion = params['IsRegion']
+          @CloudCode = params['CloudCode']
+          @AutoTask = params['AutoTask']
+          @InstanceName = params['InstanceName']
+          @RegionCode = params['RegionCode']
+          @Country = params['Country']
+          @City = params['City']
+          @RegName1 = params['RegName1']
+          @RegName2 = params['RegName2']
         end
       end
 
@@ -4561,81 +4633,6 @@ module TencentCloud
         end
       end
 
-      # DescribeNatSwitchList请求参数结构体
-      class DescribeNatSwitchListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，分页用
-        # @type Offset: Integer
-        # @param Limit: 条数，分页用
-        # @type Limit: Integer
-        # @param SearchValue: 搜索值
-        # @type SearchValue: String
-        # @param Status: 开关，1打开，0关闭
-        # @type Status: Integer
-        # @param VpcId: 筛选NAT防火墙子网开关所属VPC
-        # @type VpcId: String
-        # @param NatId: 筛选NAT防火墙子网开关所属NAT网关
-        # @type NatId: String
-        # @param NatInsId: 筛选NAT防火墙子网开关所属NAT防火墙实例
-        # @type NatInsId: String
-        # @param Area: 筛选NAT防火墙子网开关所属地域
-        # @type Area: String
-
-        attr_accessor :Offset, :Limit, :SearchValue, :Status, :VpcId, :NatId, :NatInsId, :Area
-
-        def initialize(offset=nil, limit=nil, searchvalue=nil, status=nil, vpcid=nil, natid=nil, natinsid=nil, area=nil)
-          @Offset = offset
-          @Limit = limit
-          @SearchValue = searchvalue
-          @Status = status
-          @VpcId = vpcid
-          @NatId = natid
-          @NatInsId = natinsid
-          @Area = area
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @SearchValue = params['SearchValue']
-          @Status = params['Status']
-          @VpcId = params['VpcId']
-          @NatId = params['NatId']
-          @NatInsId = params['NatInsId']
-          @Area = params['Area']
-        end
-      end
-
-      # DescribeNatSwitchList返回参数结构体
-      class DescribeNatSwitchListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
-        # @type Total: Integer
-        # @param Data: NAT边界防火墙开关列表数据
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Total, :Data, :RequestId
-
-        def initialize(total=nil, data=nil, requestid=nil)
-          @Total = total
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Total = params['Total']
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              natswitchlistdata_tmp = NatSwitchListData.new
-              natswitchlistdata_tmp.deserialize(i)
-              @Data << natswitchlistdata_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeResourceGroupNew请求参数结构体
       class DescribeResourceGroupNewRequest < TencentCloud::Common::AbstractModel
         # @param QueryType: 查询类型 网络结构-vpc，业务识别-resource ，资源标签-tag
@@ -8293,117 +8290,6 @@ module TencentCloud
           @ElasticSwitch = params['ElasticSwitch']
           @ElasticBandwidth = params['ElasticBandwidth']
           @IsFirstAfterPay = params['IsFirstAfterPay']
-        end
-      end
-
-      # NAT防火墙开关列表数据
-      class NatSwitchListData < TencentCloud::Common::AbstractModel
-        # @param Id: 列表ID
-        # @type Id: Integer
-        # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubnetId: String
-        # @param SubnetName: 子网名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubnetName: String
-        # @param SubnetCidr: IPv4 CIDR
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SubnetCidr: String
-        # @param RouteId: 关联路由ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RouteId: String
-        # @param RouteName: 关联路由名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RouteName: String
-        # @param CvmNum: 云服务器个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CvmNum: Integer
-        # @param VpcId: 所属VPC ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VpcId: String
-        # @param VpcName: 所属VPC名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VpcName: String
-        # @param Enable: 是否生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Enable: Integer
-        # @param Status: 开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param NatId: NAT网关ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NatId: String
-        # @param NatName: NAT网关名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NatName: String
-        # @param NatInsId: NAT防火墙实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NatInsId: String
-        # @param NatInsName: NAT防火墙实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NatInsName: String
-        # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Region: String
-        # @param Abnormal: 开关是否异常,0:正常,1:异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Abnormal: Integer
-        # @param ORTableId: nat防火墙出口路由表id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ORTableId: String
-        # @param ORTableName: nat防火墙出口路由表名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ORTableName: String
-        # @param Ohavips: 出口Snat Ip列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Ohavips: Array
-
-        attr_accessor :Id, :SubnetId, :SubnetName, :SubnetCidr, :RouteId, :RouteName, :CvmNum, :VpcId, :VpcName, :Enable, :Status, :NatId, :NatName, :NatInsId, :NatInsName, :Region, :Abnormal, :ORTableId, :ORTableName, :Ohavips
-
-        def initialize(id=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, routeid=nil, routename=nil, cvmnum=nil, vpcid=nil, vpcname=nil, enable=nil, status=nil, natid=nil, natname=nil, natinsid=nil, natinsname=nil, region=nil, abnormal=nil, ortableid=nil, ortablename=nil, ohavips=nil)
-          @Id = id
-          @SubnetId = subnetid
-          @SubnetName = subnetname
-          @SubnetCidr = subnetcidr
-          @RouteId = routeid
-          @RouteName = routename
-          @CvmNum = cvmnum
-          @VpcId = vpcid
-          @VpcName = vpcname
-          @Enable = enable
-          @Status = status
-          @NatId = natid
-          @NatName = natname
-          @NatInsId = natinsid
-          @NatInsName = natinsname
-          @Region = region
-          @Abnormal = abnormal
-          @ORTableId = ortableid
-          @ORTableName = ortablename
-          @Ohavips = ohavips
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @SubnetId = params['SubnetId']
-          @SubnetName = params['SubnetName']
-          @SubnetCidr = params['SubnetCidr']
-          @RouteId = params['RouteId']
-          @RouteName = params['RouteName']
-          @CvmNum = params['CvmNum']
-          @VpcId = params['VpcId']
-          @VpcName = params['VpcName']
-          @Enable = params['Enable']
-          @Status = params['Status']
-          @NatId = params['NatId']
-          @NatName = params['NatName']
-          @NatInsId = params['NatInsId']
-          @NatInsName = params['NatInsName']
-          @Region = params['Region']
-          @Abnormal = params['Abnormal']
-          @ORTableId = params['ORTableId']
-          @ORTableName = params['ORTableName']
-          @Ohavips = params['Ohavips']
         end
       end
 

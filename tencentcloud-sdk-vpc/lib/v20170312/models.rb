@@ -17640,16 +17640,24 @@ module TencentCloud
         # <li>`DELETING`：删除中</li>
         # <li>`AVAILABLE`：可用的</li>
         # @type State: String
+        # @param PublicIpAddress: 如果 IPv6地址是 ULA 类型，绑定的公网IP地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAddress: String
+        # @param AddressType: `IPv6`地址的类型: `GUA`, `OTHER`, `ULA`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressType: String
 
-        attr_accessor :Address, :Primary, :AddressId, :Description, :IsWanIpBlocked, :State
+        attr_accessor :Address, :Primary, :AddressId, :Description, :IsWanIpBlocked, :State, :PublicIpAddress, :AddressType
 
-        def initialize(address=nil, primary=nil, addressid=nil, description=nil, iswanipblocked=nil, state=nil)
+        def initialize(address=nil, primary=nil, addressid=nil, description=nil, iswanipblocked=nil, state=nil, publicipaddress=nil, addresstype=nil)
           @Address = address
           @Primary = primary
           @AddressId = addressid
           @Description = description
           @IsWanIpBlocked = iswanipblocked
           @State = state
+          @PublicIpAddress = publicipaddress
+          @AddressType = addresstype
         end
 
         def deserialize(params)
@@ -17659,6 +17667,8 @@ module TencentCloud
           @Description = params['Description']
           @IsWanIpBlocked = params['IsWanIpBlocked']
           @State = params['State']
+          @PublicIpAddress = params['PublicIpAddress']
+          @AddressType = params['AddressType']
         end
       end
 

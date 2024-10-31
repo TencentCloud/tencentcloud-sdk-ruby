@@ -2382,6 +2382,8 @@ module TencentCloud
         # @type DefenderStatus: String
         # @param ClusterStatus: 集群状态
         # @type ClusterStatus: String
+        # @param ClusterSubStatus: 集群运行子状态
+        # @type ClusterSubStatus: String
         # @param ClusterCheckMode: 集群的检测模式，为Cluster_Normal或者Cluster_Actived.
         # @type ClusterCheckMode: String
         # @param ClusterAutoCheck: 是否自动定期检测
@@ -2434,10 +2436,15 @@ module TencentCloud
         # @type MasterAddresses: Array
         # @param CoresCnt: 核数
         # @type CoresCnt: Integer
+        # @param ClusterAuditStatus: 集群审计开关状态：
+        # 已关闭Closed/关闭中Closing/关闭失败CloseFailed/已开启Opened/开启中Opening/开启失败OpenFailed
+        # @type ClusterAuditStatus: String
+        # @param ClusterAuditFailedInfo: 集群审计开关失败信息
+        # @type ClusterAuditFailedInfo: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount, :ChargeCoresCnt, :MasterAddresses, :CoresCnt
+        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterSubStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount, :ChargeCoresCnt, :MasterAddresses, :CoresCnt, :ClusterAuditStatus, :ClusterAuditFailedInfo
 
-        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil, chargecorescnt=nil, masteraddresses=nil, corescnt=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustersubstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil, chargecorescnt=nil, masteraddresses=nil, corescnt=nil, clusterauditstatus=nil, clusterauditfailedinfo=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterVersion = clusterversion
@@ -2447,6 +2454,7 @@ module TencentCloud
           @Region = region
           @DefenderStatus = defenderstatus
           @ClusterStatus = clusterstatus
+          @ClusterSubStatus = clustersubstatus
           @ClusterCheckMode = clustercheckmode
           @ClusterAutoCheck = clusterautocheck
           @DefenderErrorReason = defendererrorreason
@@ -2466,6 +2474,8 @@ module TencentCloud
           @ChargeCoresCnt = chargecorescnt
           @MasterAddresses = masteraddresses
           @CoresCnt = corescnt
+          @ClusterAuditStatus = clusterauditstatus
+          @ClusterAuditFailedInfo = clusterauditfailedinfo
         end
 
         def deserialize(params)
@@ -2478,6 +2488,7 @@ module TencentCloud
           @Region = params['Region']
           @DefenderStatus = params['DefenderStatus']
           @ClusterStatus = params['ClusterStatus']
+          @ClusterSubStatus = params['ClusterSubStatus']
           @ClusterCheckMode = params['ClusterCheckMode']
           @ClusterAutoCheck = params['ClusterAutoCheck']
           @DefenderErrorReason = params['DefenderErrorReason']
@@ -2497,6 +2508,8 @@ module TencentCloud
           @ChargeCoresCnt = params['ChargeCoresCnt']
           @MasterAddresses = params['MasterAddresses']
           @CoresCnt = params['CoresCnt']
+          @ClusterAuditStatus = params['ClusterAuditStatus']
+          @ClusterAuditFailedInfo = params['ClusterAuditFailedInfo']
         end
       end
 
@@ -2631,7 +2644,7 @@ module TencentCloud
         # @type HostId: String
         # @param ClusterType: 集群类型
         # @type ClusterType: String
-        # @param NodeName: abc
+        # @param NodeName: 节点名称
         # @type NodeName: String
         # @param NodeType: NORMAL：普通节点 SUPER：超级节点
         # @type NodeType: String
@@ -2782,10 +2795,16 @@ module TencentCloud
         # @param InstanceId: 主机实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param ImageRegistryInfo: 镜像仓库信息
+        # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
+        # @param ClusterID: 集群id
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
 
-        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo, :InstanceId
+        attr_accessor :CustomerAssetId, :AssetName, :AssetType, :CheckStatus, :NodeName, :LastCheckTime, :CheckResult, :HostIP, :ImageTag, :VerifyInfo, :InstanceId, :ImageRegistryInfo, :ClusterID, :ClusterName
 
-        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil, instanceid=nil)
+        def initialize(customerassetid=nil, assetname=nil, assettype=nil, checkstatus=nil, nodename=nil, lastchecktime=nil, checkresult=nil, hostip=nil, imagetag=nil, verifyinfo=nil, instanceid=nil, imageregistryinfo=nil, clusterid=nil, clustername=nil)
           @CustomerAssetId = customerassetid
           @AssetName = assetname
           @AssetType = assettype
@@ -2797,6 +2816,9 @@ module TencentCloud
           @ImageTag = imagetag
           @VerifyInfo = verifyinfo
           @InstanceId = instanceid
+          @ImageRegistryInfo = imageregistryinfo
+          @ClusterID = clusterid
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -2811,6 +2833,12 @@ module TencentCloud
           @ImageTag = params['ImageTag']
           @VerifyInfo = params['VerifyInfo']
           @InstanceId = params['InstanceId']
+          unless params['ImageRegistryInfo'].nil?
+            @ImageRegistryInfo = ImageRegistryInfo.new
+            @ImageRegistryInfo.deserialize(params['ImageRegistryInfo'])
+          end
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -2932,10 +2960,16 @@ module TencentCloud
         # @param InstanceId: 主机节点的实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param ImageRegistryInfo: 镜像仓库信息
+        # @type ImageRegistryInfo: :class:`Tencentcloud::Tcss.v20201101.models.ImageRegistryInfo`
+        # @param ClusterID: 集群id
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
 
-        attr_accessor :CustomerAssetId, :AssetType, :AssetName, :ImageTag, :HostIP, :NodeName, :CheckStatus, :PassedPolicyItemCount, :FailedPolicyItemCount, :LastCheckTime, :CheckResult, :InstanceId
+        attr_accessor :CustomerAssetId, :AssetType, :AssetName, :ImageTag, :HostIP, :NodeName, :CheckStatus, :PassedPolicyItemCount, :FailedPolicyItemCount, :LastCheckTime, :CheckResult, :InstanceId, :ImageRegistryInfo, :ClusterID, :ClusterName
 
-        def initialize(customerassetid=nil, assettype=nil, assetname=nil, imagetag=nil, hostip=nil, nodename=nil, checkstatus=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, lastchecktime=nil, checkresult=nil, instanceid=nil)
+        def initialize(customerassetid=nil, assettype=nil, assetname=nil, imagetag=nil, hostip=nil, nodename=nil, checkstatus=nil, passedpolicyitemcount=nil, failedpolicyitemcount=nil, lastchecktime=nil, checkresult=nil, instanceid=nil, imageregistryinfo=nil, clusterid=nil, clustername=nil)
           @CustomerAssetId = customerassetid
           @AssetType = assettype
           @AssetName = assetname
@@ -2948,6 +2982,9 @@ module TencentCloud
           @LastCheckTime = lastchecktime
           @CheckResult = checkresult
           @InstanceId = instanceid
+          @ImageRegistryInfo = imageregistryinfo
+          @ClusterID = clusterid
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -2963,6 +3000,12 @@ module TencentCloud
           @LastCheckTime = params['LastCheckTime']
           @CheckResult = params['CheckResult']
           @InstanceId = params['InstanceId']
+          unless params['ImageRegistryInfo'].nil?
+            @ImageRegistryInfo = ImageRegistryInfo.new
+            @ImageRegistryInfo.deserialize(params['ImageRegistryInfo'])
+          end
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -4659,8 +4702,6 @@ module TencentCloud
       class CreateComponentExportJobRequest < TencentCloud::Common::AbstractModel
         # @param ImageID: 镜像ID
         # @type ImageID: String
-        # @param ExportField: 导出字段
-        # @type ExportField: Array
         # @param Limit: 需要返回的数量，默认为10000，最大值为10000
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
@@ -4672,22 +4713,23 @@ module TencentCloud
         # @type By: String
         # @param Order: 排序方式desc ，asc
         # @type Order: String
+        # @param ExportField: 导出字段
+        # @type ExportField: Array
 
-        attr_accessor :ImageID, :ExportField, :Limit, :Offset, :Filters, :By, :Order
+        attr_accessor :ImageID, :Limit, :Offset, :Filters, :By, :Order, :ExportField
 
-        def initialize(imageid=nil, exportfield=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+        def initialize(imageid=nil, limit=nil, offset=nil, filters=nil, by=nil, order=nil, exportfield=nil)
           @ImageID = imageid
-          @ExportField = exportfield
           @Limit = limit
           @Offset = offset
           @Filters = filters
           @By = by
           @Order = order
+          @ExportField = exportfield
         end
 
         def deserialize(params)
           @ImageID = params['ImageID']
-          @ExportField = params['ExportField']
           @Limit = params['Limit']
           @Offset = params['Offset']
           unless params['Filters'].nil?
@@ -4700,6 +4742,7 @@ module TencentCloud
           end
           @By = params['By']
           @Order = params['Order']
+          @ExportField = params['ExportField']
         end
       end
 
@@ -5031,17 +5074,7 @@ module TencentCloud
 
       # CreateHostExportJob请求参数结构体
       class CreateHostExportJobRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
-        # <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li>
-        # <li>HostName - String - 是否必填：否 - 主机名筛选</li>
-        # <li>Group- String - 是否必填：否 - 主机群组搜索</li>
-        # <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
-        # <li>HostID- string - 是否必填：否 - 主机id搜索</li>
-        # <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
-        # <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li>
-        # <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li>
-        # <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
-        # <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
+        # @param Filters: 过滤条件。<li>Status-String-是否必填：否-agent状态筛选，"ALL": "全部"(或不传该字段), "UNINSTALL"："未安装", "OFFLINE"："离线", "ONLINE"："防护中"</li><li>HostName-String-是否必填：否-主机名筛选</li><li>Group-String-是否必填：否-主机群组搜索</li><li>HostIP-string-是否必填：否-主机ip搜索</li><li>HostID-string-是否必填：否-主机id搜索</li><li>DockerVersion-string-是否必填：否-docker版本搜索</li><li>MachineType-string-是否必填：否-主机来源MachineType搜索，"ALL": "全部"(或不传该字段), 主机来源：[     "CVM",     "ECM",     "LH",     "BM" ]中的之一为腾讯云服务器；[     "Other" ]之一非腾讯云服务器；</li><li>DockerStatus-string-是否必填：否-docker安装状态，"ALL": "全部"(或不传该字段), "INSTALL": "已安装", "UNINSTALL": "未安装"</li><li>ProjectID-string-是否必填：否-所属项目id搜索</li><li>Tag:(tag: key)-string-是否必填：否-标签键值搜索示例Filters":[{"Name":"tag: tke-kind","Values":["service"]}]</li>
         # @type Filters: Array
         # @param Limit: 偏移量，默认为0。
         # @type Limit: Integer
@@ -8073,18 +8106,26 @@ module TencentCloud
       class DescribeAgentDaemonSetCmdResponse < TencentCloud::Common::AbstractModel
         # @param Command: 安装命令
         # @type Command: String
+        # @param URL: 文件url
+        # @type URL: String
+        # @param FileContent: 文件内容(base64编码)
+        # @type FileContent: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Command, :RequestId
+        attr_accessor :Command, :URL, :FileContent, :RequestId
 
-        def initialize(command=nil, requestid=nil)
+        def initialize(command=nil, url=nil, filecontent=nil, requestid=nil)
           @Command = command
+          @URL = url
+          @FileContent = filecontent
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Command = params['Command']
+          @URL = params['URL']
+          @FileContent = params['FileContent']
           @RequestId = params['RequestId']
         end
       end
@@ -8103,16 +8144,19 @@ module TencentCloud
         # @type ExpireDate: String
         # @param TagIds: 标签ID列表，IsCloud=false时才会生效
         # @type TagIds: Array
+        # @param Vip: 虚拟ip
+        # @type Vip: String
 
-        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :ExpireDate, :TagIds
+        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :ExpireDate, :TagIds, :Vip
 
-        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, expiredate=nil, tagids=nil)
+        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, expiredate=nil, tagids=nil, vip=nil)
           @IsCloud = iscloud
           @NetType = nettype
           @RegionCode = regioncode
           @VpcId = vpcid
           @ExpireDate = expiredate
           @TagIds = tagids
+          @Vip = vip
         end
 
         def deserialize(params)
@@ -8122,6 +8166,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @ExpireDate = params['ExpireDate']
           @TagIds = params['TagIds']
+          @Vip = params['Vip']
         end
       end
 
@@ -8137,17 +8182,20 @@ module TencentCloud
         # @type WindowsStepTwo: String
         # @param WindowsDownloadUrl: windows版agent下载链接
         # @type WindowsDownloadUrl: String
+        # @param ARMCommand: arm架构系统安装命令
+        # @type ARMCommand: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LinuxCommand, :WindowsCommand, :WindowsStepOne, :WindowsStepTwo, :WindowsDownloadUrl, :RequestId
+        attr_accessor :LinuxCommand, :WindowsCommand, :WindowsStepOne, :WindowsStepTwo, :WindowsDownloadUrl, :ARMCommand, :RequestId
 
-        def initialize(linuxcommand=nil, windowscommand=nil, windowsstepone=nil, windowssteptwo=nil, windowsdownloadurl=nil, requestid=nil)
+        def initialize(linuxcommand=nil, windowscommand=nil, windowsstepone=nil, windowssteptwo=nil, windowsdownloadurl=nil, armcommand=nil, requestid=nil)
           @LinuxCommand = linuxcommand
           @WindowsCommand = windowscommand
           @WindowsStepOne = windowsstepone
           @WindowsStepTwo = windowssteptwo
           @WindowsDownloadUrl = windowsdownloadurl
+          @ARMCommand = armcommand
           @RequestId = requestid
         end
 
@@ -8157,6 +8205,7 @@ module TencentCloud
           @WindowsStepOne = params['WindowsStepOne']
           @WindowsStepTwo = params['WindowsStepTwo']
           @WindowsDownloadUrl = params['WindowsDownloadUrl']
+          @ARMCommand = params['ARMCommand']
           @RequestId = params['RequestId']
         end
       end
@@ -8882,7 +8931,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤条件。 <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li> <li>HostName - String - 是否必填：否 - 主机名筛选</li> <li>Group- String - 是否必填：否 - 主机群组搜索</li> <li>HostIP- string - 是否必填：否 - 主机ip搜索</li> <li>HostID- string - 是否必填：否 - 主机id搜索</li> <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li> <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li> <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li> <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li> <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li> <li>NonClusterNode: 是否查询非集群节点(true: 是,false: 否)</li>
+        # @param Filters: 过滤条件。<li>Status-String-是否必填：否-agent状态筛选，"ALL": "全部"(或不传该字段), "UNINSTALL"："未安装", "OFFLINE"："离线", "ONLINE"："防护中"</li><li>HostName-String-是否必填：否-主机名筛选</li><li>Group-String-是否必填：否-主机群组搜索</li><li>HostIP-string-是否必填：否-主机ip搜索</li><li>HostID-string-是否必填：否-主机id搜索</li><li>DockerVersion-string-是否必填：否-docker版本搜索</li><li>MachineType-string-是否必填：否-主机来源MachineType搜索，"ALL": "全部"(或不传该字段), 主机来源：[     "CVM",     "ECM",     "LH",     "BM" ]中的之一为腾讯云服务器；[     "Other" ]之一非腾讯云服务器；</li><li>DockerStatus-string-是否必填：否-docker安装状态，"ALL": "全部"(或不传该字段), "INSTALL": "已安装", "UNINSTALL": "未安装"</li><li>ProjectID-string-是否必填：否-所属项目id搜索</li><li>Tag:(tag: key)-string-是否必填：否-标签键值搜索示例Filters":[{"Name":"tag: tke-kind","Values":["service"]}]</li> <li>NonClusterNode: 是否查询非集群节点(true: 是,false: 否)</li>
         # @type Filters: Array
         # @param By: 排序字段
         # @type By: String
@@ -11816,6 +11865,8 @@ module TencentCloud
         # @type ClusterNodeNum: Integer
         # @param ClusterStatus: 集群状态 (Running 运行中 Creating 创建中 Abnormal 异常 )
         # @type ClusterStatus: String
+        # @param ClusterSubStatus: 集群运行子状态
+        # @type ClusterSubStatus: String
         # @param ClusterType: 集群类型：为托管集群MANAGED_CLUSTER、独立集群INDEPENDENT_CLUSTER
         # @type ClusterType: String
         # @param Region: 集群区域
@@ -11855,9 +11906,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterId, :ClusterName, :ScanTaskProgress, :ClusterVersion, :ContainerRuntime, :ClusterNodeNum, :ClusterStatus, :ClusterType, :Region, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckStatus, :DefenderStatus, :TaskCreateTime, :NetworkType, :ApiServerAddress, :NodeCount, :NamespaceCount, :WorkloadCount, :PodCount, :ServiceCount, :IngressCount, :MasterIps, :RequestId
+        attr_accessor :ClusterId, :ClusterName, :ScanTaskProgress, :ClusterVersion, :ContainerRuntime, :ClusterNodeNum, :ClusterStatus, :ClusterSubStatus, :ClusterType, :Region, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckStatus, :DefenderStatus, :TaskCreateTime, :NetworkType, :ApiServerAddress, :NodeCount, :NamespaceCount, :WorkloadCount, :PodCount, :ServiceCount, :IngressCount, :MasterIps, :RequestId
 
-        def initialize(clusterid=nil, clustername=nil, scantaskprogress=nil, clusterversion=nil, containerruntime=nil, clusternodenum=nil, clusterstatus=nil, clustertype=nil, region=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkstatus=nil, defenderstatus=nil, taskcreatetime=nil, networktype=nil, apiserveraddress=nil, nodecount=nil, namespacecount=nil, workloadcount=nil, podcount=nil, servicecount=nil, ingresscount=nil, masterips=nil, requestid=nil)
+        def initialize(clusterid=nil, clustername=nil, scantaskprogress=nil, clusterversion=nil, containerruntime=nil, clusternodenum=nil, clusterstatus=nil, clustersubstatus=nil, clustertype=nil, region=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkstatus=nil, defenderstatus=nil, taskcreatetime=nil, networktype=nil, apiserveraddress=nil, nodecount=nil, namespacecount=nil, workloadcount=nil, podcount=nil, servicecount=nil, ingresscount=nil, masterips=nil, requestid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ScanTaskProgress = scantaskprogress
@@ -11865,6 +11916,7 @@ module TencentCloud
           @ContainerRuntime = containerruntime
           @ClusterNodeNum = clusternodenum
           @ClusterStatus = clusterstatus
+          @ClusterSubStatus = clustersubstatus
           @ClusterType = clustertype
           @Region = region
           @SeriousRiskCount = seriousriskcount
@@ -11894,6 +11946,7 @@ module TencentCloud
           @ContainerRuntime = params['ContainerRuntime']
           @ClusterNodeNum = params['ClusterNodeNum']
           @ClusterStatus = params['ClusterStatus']
+          @ClusterSubStatus = params['ClusterSubStatus']
           @ClusterType = params['ClusterType']
           @Region = params['Region']
           @SeriousRiskCount = params['SeriousRiskCount']
@@ -12176,6 +12229,10 @@ module TencentCloud
       # DescribeComplianceAssetList请求参数结构体
       class DescribeComplianceAssetListRequest < TencentCloud::Common::AbstractModel
         # @param AssetTypeSet: 资产类型列表。
+        # ASSET_CONTAINER, 容器
+        # ASSET_IMAGE, 镜像
+        # ASSET_HOST, 主机
+        # ASSET_K8S, K8S资产
         # @type AssetTypeSet: Array
         # @param Offset: 起始偏移量，默认为0。
         # @type Offset: Integer
@@ -21592,12 +21649,13 @@ module TencentCloud
       # 修改容器逃逸扫描策略开关信息
       class EscapeRuleEnabled < TencentCloud::Common::AbstractModel
         # @param Type: 规则类型
-        #    ESCAPE_HOST_ACESS_FILE:宿主机文件访问逃逸
-        #    ESCAPE_MOUNT_NAMESPACE:MountNamespace逃逸
-        #    ESCAPE_PRIVILEDGE:程序提权逃逸
-        #    ESCAPE_PRIVILEDGE_CONTAINER_START:特权容器启动逃逸
-        #    ESCAPE_MOUNT_SENSITIVE_PTAH:敏感路径挂载
-        #    ESCAPE_SYSCALL:Syscall逃逸
+        #    ESCAPE_CGROUPS：利用cgroup机制逃逸
+        #    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
+        #    ESCAPE_DOCKER_API：访问Docker API接口逃逸
+        #    ESCAPE_VUL_OCCURRED：逃逸漏洞利用
+        #    MOUNT_SENSITIVE_PTAH：敏感路径挂载
+        #    PRIVILEGE_CONTAINER_START：特权容器
+        #    PRIVILEGE：程序提权逃逸
         # @type Type: String
         # @param IsEnable: 是否打开：false否 ，true是
         # @type IsEnable: Boolean
@@ -22227,6 +22285,37 @@ module TencentCloud
         end
       end
 
+      # 镜像仓库详情
+      class ImageRegistryInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 仓库名称
+        # @type Name: String
+        # @param Type: 仓库类型
+        # aws
+        # ccr
+        # harbor
+        # jfrog
+        # other-tcr
+        # quay
+        # tcr
+        # @type Type: String
+        # @param Address: 仓库地址
+        # @type Address: String
+
+        attr_accessor :Name, :Type, :Address
+
+        def initialize(name=nil, type=nil, address=nil)
+          @Name = name
+          @Type = type
+          @Address = address
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Address = params['Address']
+        end
+      end
+
       # 容器安全镜像仓库列表
       class ImageRepoInfo < TencentCloud::Common::AbstractModel
         # @param ImageDigest: 镜像Digest
@@ -22675,15 +22764,18 @@ module TencentCloud
         # @type ImageType: String
         # @param ContainerCnt: 关联容器数
         # @type ContainerCnt: Integer
+        # @param HostCnt: 关联主机数
+        # @type HostCnt: Integer
 
-        attr_accessor :ImageID, :ImageName, :Size, :ImageType, :ContainerCnt
+        attr_accessor :ImageID, :ImageName, :Size, :ImageType, :ContainerCnt, :HostCnt
 
-        def initialize(imageid=nil, imagename=nil, size=nil, imagetype=nil, containercnt=nil)
+        def initialize(imageid=nil, imagename=nil, size=nil, imagetype=nil, containercnt=nil, hostcnt=nil)
           @ImageID = imageid
           @ImageName = imagename
           @Size = size
           @ImageType = imagetype
           @ContainerCnt = containercnt
+          @HostCnt = hostcnt
         end
 
         def deserialize(params)
@@ -22692,6 +22784,7 @@ module TencentCloud
           @Size = params['Size']
           @ImageType = params['ImageType']
           @ContainerCnt = params['ContainerCnt']
+          @HostCnt = params['HostCnt']
         end
       end
 
@@ -23292,7 +23385,7 @@ module TencentCloud
         # @type ClusterID: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
-        # @param ClusterRunningStatus: 集群运行状态
+        # @param ClusterRunningStatus: 集群运行状态，CSR_RUNNING-运行中，CSR_EXCEPTION-异常，CSR_CREATING-创建中
         # @type ClusterRunningStatus: String
         # @param FirstCreateTime: 初次生成时间
         # @type FirstCreateTime: String
@@ -24850,7 +24943,7 @@ module TencentCloud
 
       # ModifyVirusAutoIsolateExampleSwitch请求参数结构体
       class ModifyVirusAutoIsolateExampleSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param MD5: 文件Md5值
+        # @param MD5: 文件MD5值
         # @type MD5: String
         # @param Status: 开关(开:true 关: false)
         # @type Status: Boolean
@@ -26297,10 +26390,32 @@ module TencentCloud
         # 正在重启中: RESTARTING
         # 迁移中: REMOVING
         # @type ContainerStatus: String
+        # @param ClusterID: 集群id
+        # @type ClusterID: String
+        # @param NodeType: 节点类型：NORMAL普通节点、SUPER超级节点
+        # @type NodeType: String
+        # @param PodName: pod name
+        # @type PodName: String
+        # @param PodIP: pod ip
+        # @type PodIP: String
+        # @param NodeUniqueID: 节点唯一id
+        # @type NodeUniqueID: String
+        # @param PublicIP: 节点公网ip
+        # @type PublicIP: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param HostID: uuid
+        # @type HostID: String
+        # @param HostIP: 节点内网ip
+        # @type HostIP: String
+        # @param NodeID: 节点 id
+        # @type NodeID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
 
-        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :Status, :EventId, :Remark, :PProcessName, :EventCount, :LatestFoundTime, :DstAddress, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus
+        attr_accessor :ProcessName, :ProcessPath, :ImageId, :ContainerId, :ImageName, :ContainerName, :FoundTime, :Solution, :Description, :Status, :EventId, :Remark, :PProcessName, :EventCount, :LatestFoundTime, :DstAddress, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :ClusterID, :NodeType, :PodName, :PodIP, :NodeUniqueID, :PublicIP, :NodeName, :HostID, :HostIP, :NodeID, :ClusterName
 
-        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, status=nil, eventid=nil, remark=nil, pprocessname=nil, eventcount=nil, latestfoundtime=nil, dstaddress=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil)
+        def initialize(processname=nil, processpath=nil, imageid=nil, containerid=nil, imagename=nil, containername=nil, foundtime=nil, solution=nil, description=nil, status=nil, eventid=nil, remark=nil, pprocessname=nil, eventcount=nil, latestfoundtime=nil, dstaddress=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, clusterid=nil, nodetype=nil, podname=nil, podip=nil, nodeuniqueid=nil, publicip=nil, nodename=nil, hostid=nil, hostip=nil, nodeid=nil, clustername=nil)
           @ProcessName = processname
           @ProcessPath = processpath
           @ImageId = imageid
@@ -26321,6 +26436,17 @@ module TencentCloud
           @ContainerNetSubStatus = containernetsubstatus
           @ContainerIsolateOperationSrc = containerisolateoperationsrc
           @ContainerStatus = containerstatus
+          @ClusterID = clusterid
+          @NodeType = nodetype
+          @PodName = podname
+          @PodIP = podip
+          @NodeUniqueID = nodeuniqueid
+          @PublicIP = publicip
+          @NodeName = nodename
+          @HostID = hostid
+          @HostIP = hostip
+          @NodeID = nodeid
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -26344,6 +26470,17 @@ module TencentCloud
           @ContainerNetSubStatus = params['ContainerNetSubStatus']
           @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
           @ContainerStatus = params['ContainerStatus']
+          @ClusterID = params['ClusterID']
+          @NodeType = params['NodeType']
+          @PodName = params['PodName']
+          @PodIP = params['PodIP']
+          @NodeUniqueID = params['NodeUniqueID']
+          @PublicIP = params['PublicIP']
+          @NodeName = params['NodeName']
+          @HostID = params['HostID']
+          @HostIP = params['HostIP']
+          @NodeID = params['NodeID']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -28056,10 +28193,16 @@ module TencentCloud
         # @type CVEID: String
         # @param SubmitTime: 漏洞披露时间
         # @type SubmitTime: String
+        # @param VulId: 漏洞id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulId: Integer
+        # @param Status: 状态，0:防御中，1：已加白，指的是在白名单列表中有这个漏洞的，不一定是全局型白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :PocID, :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :SubmitTime
+        attr_accessor :PocID, :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :SubmitTime, :VulId, :Status
 
-        def initialize(pocid=nil, name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, submittime=nil)
+        def initialize(pocid=nil, name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, submittime=nil, vulid=nil, status=nil)
           @PocID = pocid
           @Name = name
           @Tags = tags
@@ -28067,6 +28210,8 @@ module TencentCloud
           @Level = level
           @CVEID = cveid
           @SubmitTime = submittime
+          @VulId = vulid
+          @Status = status
         end
 
         def deserialize(params)
@@ -28077,6 +28222,8 @@ module TencentCloud
           @Level = params['Level']
           @CVEID = params['CVEID']
           @SubmitTime = params['SubmitTime']
+          @VulId = params['VulId']
+          @Status = params['Status']
         end
       end
 
@@ -29058,10 +29205,13 @@ module TencentCloud
         # @type NodeID: String
         # @param NodeName: 超级节点名称
         # @type NodeName: String
+        # @param ContainerStatus: 容器状态 "RUNNING":运行,"PAUSED":暂停,"STOPPED":停止,"CREATED":已经创建,"DESTROYED":已销毁,"RESTARTING":重启中,"REMOVING":迁移中,"DEAD":DEAD,"UNKNOWN":未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerStatus: String
 
-        attr_accessor :HostIP, :ContainerID, :ContainerName, :PodName, :PodIP, :HostName, :HostID, :PublicIP, :ClusterID, :ClusterName, :NodeType, :NodeUniqueID, :NodeID, :NodeName
+        attr_accessor :HostIP, :ContainerID, :ContainerName, :PodName, :PodIP, :HostName, :HostID, :PublicIP, :ClusterID, :ClusterName, :NodeType, :NodeUniqueID, :NodeID, :NodeName, :ContainerStatus
 
-        def initialize(hostip=nil, containerid=nil, containername=nil, podname=nil, podip=nil, hostname=nil, hostid=nil, publicip=nil, clusterid=nil, clustername=nil, nodetype=nil, nodeuniqueid=nil, nodeid=nil, nodename=nil)
+        def initialize(hostip=nil, containerid=nil, containername=nil, podname=nil, podip=nil, hostname=nil, hostid=nil, publicip=nil, clusterid=nil, clustername=nil, nodetype=nil, nodeuniqueid=nil, nodeid=nil, nodename=nil, containerstatus=nil)
           @HostIP = hostip
           @ContainerID = containerid
           @ContainerName = containername
@@ -29076,6 +29226,7 @@ module TencentCloud
           @NodeUniqueID = nodeuniqueid
           @NodeID = nodeid
           @NodeName = nodename
+          @ContainerStatus = containerstatus
         end
 
         def deserialize(params)
@@ -29093,6 +29244,7 @@ module TencentCloud
           @NodeUniqueID = params['NodeUniqueID']
           @NodeID = params['NodeID']
           @NodeName = params['NodeName']
+          @ContainerStatus = params['ContainerStatus']
         end
       end
 
@@ -29304,10 +29456,14 @@ module TencentCloud
         # @type ClusterID: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
+        # @param PodName: pod名称
+        # @type PodName: String
+        # @param PodIP: pod ip
+        # @type PodIP: String
 
-        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :EventID, :CreateTime, :ContainerNetStatus, :MergeTime, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :QUUID, :HostIP, :HostName, :NodeType, :PublicIP, :NodeUniqueID, :NodeID, :ClusterID, :ClusterName
+        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :EventID, :CreateTime, :ContainerNetStatus, :MergeTime, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :QUUID, :HostIP, :HostName, :NodeType, :PublicIP, :NodeUniqueID, :NodeID, :ClusterID, :ClusterName, :PodName, :PodIP
 
-        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, eventid=nil, createtime=nil, containernetstatus=nil, mergetime=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, quuid=nil, hostip=nil, hostname=nil, nodetype=nil, publicip=nil, nodeuniqueid=nil, nodeid=nil, clusterid=nil, clustername=nil)
+        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, eventid=nil, createtime=nil, containernetstatus=nil, mergetime=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, quuid=nil, hostip=nil, hostname=nil, nodetype=nil, publicip=nil, nodeuniqueid=nil, nodeid=nil, clusterid=nil, clustername=nil, podname=nil, podip=nil)
           @CVEID = cveid
           @VulName = vulname
           @PocID = pocid
@@ -29336,6 +29492,8 @@ module TencentCloud
           @NodeID = nodeid
           @ClusterID = clusterid
           @ClusterName = clustername
+          @PodName = podname
+          @PodIP = podip
         end
 
         def deserialize(params)
@@ -29367,6 +29525,8 @@ module TencentCloud
           @NodeID = params['NodeID']
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
+          @PodName = params['PodName']
+          @PodIP = params['PodIP']
         end
       end
 

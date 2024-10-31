@@ -192,28 +192,28 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param Autoscaler: 弹性伸缩策略
         # @type Autoscaler: :class:`Tencentcloud::Tem.v20210701.models.Autoscaler`
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :Autoscaler
+        attr_accessor :ApplicationId, :EnvironmentId, :Autoscaler, :SourceChannel
 
-        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscaler=nil)
+        def initialize(applicationid=nil, environmentid=nil, autoscaler=nil, sourcechannel=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
-          @SourceChannel = sourcechannel
           @Autoscaler = autoscaler
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
-          @SourceChannel = params['SourceChannel']
           unless params['Autoscaler'].nil?
             @Autoscaler = Autoscaler.new
             @Autoscaler.deserialize(params['Autoscaler'])
           end
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -347,28 +347,28 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param Service: 访问方式详情
         # @type Service: :class:`Tencentcloud::Tem.v20210701.models.ServicePortMapping`
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :Service
+        attr_accessor :ApplicationId, :EnvironmentId, :Service, :SourceChannel
 
-        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, service=nil)
+        def initialize(applicationid=nil, environmentid=nil, service=nil, sourcechannel=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
-          @SourceChannel = sourcechannel
           @Service = service
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
-          @SourceChannel = params['SourceChannel']
           unless params['Service'].nil?
             @Service = ServicePortMapping.new
             @Service.deserialize(params['Service'])
           end
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -399,24 +399,23 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param Name: 配置名
         # @type Name: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param Data: 配置信息
         # @type Data: Array
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :EnvironmentId, :Name, :SourceChannel, :Data
+        attr_accessor :EnvironmentId, :Name, :Data, :SourceChannel
 
-        def initialize(environmentid=nil, name=nil, sourcechannel=nil, data=nil)
+        def initialize(environmentid=nil, name=nil, data=nil, sourcechannel=nil)
           @EnvironmentId = environmentid
           @Name = name
-          @SourceChannel = sourcechannel
           @Data = data
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @Name = params['Name']
-          @SourceChannel = params['SourceChannel']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -425,6 +424,7 @@ module TencentCloud
               @Data << pair_tmp
             end
           end
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -809,25 +809,25 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param AutoscalerId: 弹性伸缩策略ID
         # @type AutoscalerId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId
+        attr_accessor :ApplicationId, :EnvironmentId, :AutoscalerId, :SourceChannel
 
-        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil)
+        def initialize(applicationid=nil, environmentid=nil, autoscalerid=nil, sourcechannel=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
-          @SourceChannel = sourcechannel
           @AutoscalerId = autoscalerid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
-          @SourceChannel = params['SourceChannel']
           @AutoscalerId = params['AutoscalerId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -904,27 +904,27 @@ module TencentCloud
       class DeleteApplicationServiceRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 服务id
         # @type ApplicationId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
         # @param ServiceName: 访问方式服务名
         # @type ServiceName: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId, :ServiceName
+        attr_accessor :ApplicationId, :EnvironmentId, :ServiceName, :SourceChannel
 
-        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil, servicename=nil)
+        def initialize(applicationid=nil, environmentid=nil, servicename=nil, sourcechannel=nil)
           @ApplicationId = applicationid
-          @SourceChannel = sourcechannel
           @EnvironmentId = environmentid
           @ServiceName = servicename
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
-          @SourceChannel = params['SourceChannel']
           @EnvironmentId = params['EnvironmentId']
           @ServiceName = params['ServiceName']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -1674,9 +1674,9 @@ module TencentCloud
       class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 命名空间ID
         # @type EnvironmentId: String
-        # @param Limit: 分页Limit
+        # @param Limit: 分页Limit，默认值：20
         # @type Limit: Integer
-        # @param Offset: 分页offset
+        # @param Offset: 分页offset,默认值：0
         # @type Offset: Integer
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
@@ -1749,21 +1749,21 @@ module TencentCloud
 
       # DescribeApplicationsStatus请求参数结构体
       class DescribeApplicationsStatusRequest < TencentCloud::Common::AbstractModel
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :SourceChannel, :EnvironmentId
+        attr_accessor :EnvironmentId, :SourceChannel
 
-        def initialize(sourcechannel=nil, environmentid=nil)
-          @SourceChannel = sourcechannel
+        def initialize(environmentid=nil, sourcechannel=nil)
           @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
-          @SourceChannel = params['SourceChannel']
           @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -2064,9 +2064,9 @@ module TencentCloud
 
       # DescribeEnvironments请求参数结构体
       class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页limit
+        # @param Limit: 分页limit，默认：20
         # @type Limit: Integer
-        # @param Offset: 分页下标
+        # @param Offset: 分页下标，默认：0
         # @type Offset: Integer
         # @param SourceChannel: 来源source
         # @type SourceChannel: Integer
@@ -2350,25 +2350,25 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param ClusterNamespace: 环境 namespace
         # @type ClusterNamespace: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param ApplicationId: 应用 ID
         # @type ApplicationId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :EnvironmentId, :ClusterNamespace, :SourceChannel, :ApplicationId
+        attr_accessor :EnvironmentId, :ClusterNamespace, :ApplicationId, :SourceChannel
 
-        def initialize(environmentid=nil, clusternamespace=nil, sourcechannel=nil, applicationid=nil)
+        def initialize(environmentid=nil, clusternamespace=nil, applicationid=nil, sourcechannel=nil)
           @EnvironmentId = environmentid
           @ClusterNamespace = clusternamespace
-          @SourceChannel = sourcechannel
           @ApplicationId = applicationid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @ClusterNamespace = params['ClusterNamespace']
-          @SourceChannel = params['SourceChannel']
           @ApplicationId = params['ApplicationId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -2487,7 +2487,7 @@ module TencentCloud
       class DestroyEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 命名空间ID
         # @type EnvironmentId: String
-        # @param SourceChannel: Namespace
+        # @param SourceChannel: 来源渠道 示例值：0
         # @type SourceChannel: Integer
 
         attr_accessor :EnvironmentId, :SourceChannel
@@ -2573,25 +2573,25 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param AutoscalerId: 弹性伸缩策略ID
         # @type AutoscalerId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId
+        attr_accessor :ApplicationId, :EnvironmentId, :AutoscalerId, :SourceChannel
 
-        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil)
+        def initialize(applicationid=nil, environmentid=nil, autoscalerid=nil, sourcechannel=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
-          @SourceChannel = sourcechannel
           @AutoscalerId = autoscalerid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
-          @SourceChannel = params['SourceChannel']
           @AutoscalerId = params['AutoscalerId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -2733,25 +2733,25 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param AutoscalerId: 弹性伸缩策略ID
         # @type AutoscalerId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId
+        attr_accessor :ApplicationId, :EnvironmentId, :AutoscalerId, :SourceChannel
 
-        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil)
+        def initialize(applicationid=nil, environmentid=nil, autoscalerid=nil, sourcechannel=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
-          @SourceChannel = sourcechannel
           @AutoscalerId = autoscalerid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
-          @SourceChannel = params['SourceChannel']
           @AutoscalerId = params['AutoscalerId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -2977,8 +2977,6 @@ module TencentCloud
         # @param EnvironmentId: 环境ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
-        # @param ClusterNamespace: 环境namespace
-        # @type ClusterNamespace: String
         # @param AddressIPVersion: ip version
         # @type AddressIPVersion: String
         # @param IngressName: ingress name
@@ -2988,6 +2986,8 @@ module TencentCloud
         # @param ClbId: clb ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClbId: String
+        # @param ClusterNamespace: 环境namespace
+        # @type ClusterNamespace: String
         # @param Tls: tls 配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tls: Array
@@ -3011,15 +3011,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
-        attr_accessor :EnvironmentId, :ClusterNamespace, :AddressIPVersion, :IngressName, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed, :RewriteType, :Domain
+        attr_accessor :EnvironmentId, :AddressIPVersion, :IngressName, :Rules, :ClbId, :ClusterNamespace, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed, :RewriteType, :Domain
 
-        def initialize(environmentid=nil, clusternamespace=nil, addressipversion=nil, ingressname=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil, rewritetype=nil, domain=nil)
+        def initialize(environmentid=nil, addressipversion=nil, ingressname=nil, rules=nil, clbid=nil, clusternamespace=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil, rewritetype=nil, domain=nil)
           @EnvironmentId = environmentid
-          @ClusterNamespace = clusternamespace
           @AddressIPVersion = addressipversion
           @IngressName = ingressname
           @Rules = rules
           @ClbId = clbid
+          @ClusterNamespace = clusternamespace
           @Tls = tls
           @ClusterId = clusterid
           @Vip = vip
@@ -3031,7 +3031,6 @@ module TencentCloud
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
-          @ClusterNamespace = params['ClusterNamespace']
           @AddressIPVersion = params['AddressIPVersion']
           @IngressName = params['IngressName']
           unless params['Rules'].nil?
@@ -3043,6 +3042,7 @@ module TencentCloud
             end
           end
           @ClbId = params['ClbId']
+          @ClusterNamespace = params['ClusterNamespace']
           unless params['Tls'].nil?
             @Tls = []
             params['Tls'].each do |i|
@@ -3389,32 +3389,32 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param AutoscalerId: 弹性伸缩策略ID
         # @type AutoscalerId: String
         # @param Autoscaler: 弹性伸缩策略
         # @type Autoscaler: :class:`Tencentcloud::Tem.v20210701.models.Autoscaler`
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel, :AutoscalerId, :Autoscaler
+        attr_accessor :ApplicationId, :EnvironmentId, :AutoscalerId, :Autoscaler, :SourceChannel
 
-        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil, autoscalerid=nil, autoscaler=nil)
+        def initialize(applicationid=nil, environmentid=nil, autoscalerid=nil, autoscaler=nil, sourcechannel=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
-          @SourceChannel = sourcechannel
           @AutoscalerId = autoscalerid
           @Autoscaler = autoscaler
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
-          @SourceChannel = params['SourceChannel']
           @AutoscalerId = params['AutoscalerId']
           unless params['Autoscaler'].nil?
             @Autoscaler = Autoscaler.new
             @Autoscaler.deserialize(params['Autoscaler'])
           end
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -3602,24 +3602,23 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param Name: 配置名
         # @type Name: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param Data: 配置信息
         # @type Data: Array
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :EnvironmentId, :Name, :SourceChannel, :Data
+        attr_accessor :EnvironmentId, :Name, :Data, :SourceChannel
 
-        def initialize(environmentid=nil, name=nil, sourcechannel=nil, data=nil)
+        def initialize(environmentid=nil, name=nil, data=nil, sourcechannel=nil)
           @EnvironmentId = environmentid
           @Name = name
-          @SourceChannel = sourcechannel
           @Data = data
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @Name = params['Name']
-          @SourceChannel = params['SourceChannel']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -3628,6 +3627,7 @@ module TencentCloud
               @Data << pair_tmp
             end
           end
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -3655,7 +3655,7 @@ module TencentCloud
       class ModifyEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境id
         # @type EnvironmentId: String
-        # @param EnvironmentName: 环境名称
+        # @param EnvironmentName: 环境名称。环境名称不可修改
         # @type EnvironmentName: String
         # @param Description: 环境描述
         # @type Description: String
@@ -4186,23 +4186,23 @@ module TencentCloud
       class RestartApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 服务id
         # @type ApplicationId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param EnvironmentId: 环境ID/命名空间ID
         # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel
 
-        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil)
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil)
           @ApplicationId = applicationid
-          @SourceChannel = sourcechannel
           @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
-          @SourceChannel = params['SourceChannel']
           @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 
@@ -4765,23 +4765,23 @@ module TencentCloud
       class StopApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 服务id
         # @type ApplicationId: String
-        # @param SourceChannel: 来源渠道
-        # @type SourceChannel: Integer
         # @param EnvironmentId: 环境ID/命名空间ID
         # @type EnvironmentId: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
 
-        attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId
+        attr_accessor :ApplicationId, :EnvironmentId, :SourceChannel
 
-        def initialize(applicationid=nil, sourcechannel=nil, environmentid=nil)
+        def initialize(applicationid=nil, environmentid=nil, sourcechannel=nil)
           @ApplicationId = applicationid
-          @SourceChannel = sourcechannel
           @EnvironmentId = environmentid
+          @SourceChannel = sourcechannel
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
-          @SourceChannel = params['SourceChannel']
           @EnvironmentId = params['EnvironmentId']
+          @SourceChannel = params['SourceChannel']
         end
       end
 

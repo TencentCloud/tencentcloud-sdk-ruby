@@ -1278,7 +1278,7 @@ module TencentCloud
 
       # CreateExtension请求参数结构体
       class CreateExtensionRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param ExtensionId: 分机号
         # @type ExtensionId: String
@@ -1687,7 +1687,7 @@ module TencentCloud
 
       # DeleteExtension请求参数结构体
       class DeleteExtensionRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param ExtensionId: 分机号
         # @type ExtensionId: String
@@ -2345,7 +2345,7 @@ module TencentCloud
 
       # DescribeExtension请求参数结构体
       class DescribeExtensionRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param ExtensionId: 分机号
         # @type ExtensionId: String
@@ -2401,7 +2401,7 @@ module TencentCloud
 
       # DescribeExtensions请求参数结构体
       class DescribeExtensionsRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageNumber: 分页页号（从0开始）
         # @type PageNumber: Integer
@@ -3717,7 +3717,7 @@ module TencentCloud
 
       # HangUpCall请求参数结构体
       class HangUpCallRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param SessionId: 会话ID
         # @type SessionId: String
@@ -3983,7 +3983,7 @@ module TencentCloud
 
       # ModifyExtension请求参数结构体
       class ModifyExtensionRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param ExtensionId: 分机号
         # @type ExtensionId: String
@@ -4490,7 +4490,7 @@ module TencentCloud
 
       # ResetExtensionPassword请求参数结构体
       class ResetExtensionPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TCCC 实例应用 ID
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param ExtensionId: 分机号
         # @type ExtensionId: String
@@ -5058,7 +5058,7 @@ module TencentCloud
 
       # StopAutoCalloutTask请求参数结构体
       class StopAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 呼叫中心实例Id
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param TaskId: 任务Id
         # @type TaskId: Integer

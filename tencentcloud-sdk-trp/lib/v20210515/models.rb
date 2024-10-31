@@ -265,8 +265,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2024, 9
-        deprecate :Ext=, :none, 2024, 9
+        deprecate :Ext, :none, 2024, 10
+        deprecate :Ext=, :none, 2024, 10
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -1025,7 +1025,7 @@ module TencentCloud
         # @type Remark: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
-        # @param CodeType: 码包来源 0:自建, 1:第三发
+        # @param CodeType: 码包来源 0:自建, 1:第三方
         # @type CodeType: Integer
         # @param CodeUrl: 码包前缀地址 第三方码包时必填
         # @type CodeUrl: String
@@ -1704,7 +1704,7 @@ module TencentCloud
         # @type BatchType: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
-        # @param Status: 批次状态
+        # @param Status: 批次状态 0: 未激活 1: 已激活 -1: 已冻结
         # @type Status: Integer
 
         attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId, :Status
@@ -2738,8 +2738,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2024, 9
-        deprecate :Products=, :none, 2024, 9
+        deprecate :Products, :none, 2024, 10
+        deprecate :Products=, :none, 2024, 10
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3039,7 +3039,7 @@ module TencentCloud
         # @type TaskId: String
         # @param PageNumber: 页数
         # @type PageNumber: Integer
-        # @param Code: 二维码
+        # @param Code: 溯源码
         # @type Code: String
         # @param Phase: 溯源阶段 0:商品 1:通用 2:内部溯源 3:外部溯源
         # @type Phase: Integer
@@ -3071,9 +3071,9 @@ module TencentCloud
 
       # DescribeTraceDataList返回参数结构体
       class DescribeTraceDataListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数量
+        # @param TotalCount: 溯源阶段数量
         # @type TotalCount: Integer
-        # @param TraceDataList: 无
+        # @param TraceDataList: 溯源明细
         # @type TraceDataList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3150,8 +3150,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2024, 9
-        deprecate :Value=, :none, 2024, 9
+        deprecate :Value, :none, 2024, 10
+        deprecate :Value=, :none, 2024, 10
 
         def initialize(value=nil)
           @Value = value
@@ -3457,7 +3457,7 @@ module TencentCloud
         # @type Remark: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
-        # @param CodeType: 码包来源 0:自建, 1:第三码包，暂不支持修改
+        # @param CodeType: 码包来源 0:自建, 1:第三方码包，暂不支持修改
         # @type CodeType: Integer
         # @param CodeUrl: 码包前缀地址 第三方码包时必填
         # @type CodeUrl: String

@@ -17,6 +17,35 @@
 module TencentCloud
   module Ioa
     module V20220601
+      # 自动划分规则数据
+      class ComplexRule < TencentCloud::Common::AbstractModel
+        # @param SimpleRules: 简单规则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimpleRules: Array
+        # @param Relation: 表达式间逻辑关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Relation: String
+
+        attr_accessor :SimpleRules, :Relation
+
+        def initialize(simplerules=nil, relation=nil)
+          @SimpleRules = simplerules
+          @Relation = relation
+        end
+
+        def deserialize(params)
+          unless params['SimpleRules'].nil?
+            @SimpleRules = []
+            params['SimpleRules'].each do |i|
+              simplerule_tmp = SimpleRule.new
+              simplerule_tmp.deserialize(i)
+              @SimpleRules << simplerule_tmp
+            end
+          end
+          @Relation = params['Relation']
+        end
+      end
+
       # - [ ] 过滤条件<br>
 
       # <li>Name - String - 是否必填：否 - 操作符: ilike  - 排序支持：否- 根据分组名称进行查询。</li>
@@ -76,12 +105,92 @@ module TencentCloud
         end
       end
 
-      # 分组名称
+      # CreateDeviceVirtualGroup请求参数结构体
+      class CreateDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceVirtualGroupName: 终端自定义分组名
+        # @type DeviceVirtualGroupName: String
+        # @param Description: 详情
+        # @type Description: String
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios   默认值0）(只支持32位)
+        # @type OsType: Integer
+        # @param TimeType: 时间设置类型（1:自动小时、2:自动每天、3:自定义、0:手动分组）(只支持32位)
+        # @type TimeType: Integer
+        # @param AutoMinute: 自动划分时间（单位min）(只支持32位)
+        # @type AutoMinute: Integer
+        # @param AutoRules: 自动划分规则数据
+        # @type AutoRules: :class:`Tencentcloud::Ioa.v20220601.models.ComplexRule`
+
+        attr_accessor :DeviceVirtualGroupName, :Description, :OsType, :TimeType, :AutoMinute, :AutoRules
+
+        def initialize(devicevirtualgroupname=nil, description=nil, ostype=nil, timetype=nil, autominute=nil, autorules=nil)
+          @DeviceVirtualGroupName = devicevirtualgroupname
+          @Description = description
+          @OsType = ostype
+          @TimeType = timetype
+          @AutoMinute = autominute
+          @AutoRules = autorules
+        end
+
+        def deserialize(params)
+          @DeviceVirtualGroupName = params['DeviceVirtualGroupName']
+          @Description = params['Description']
+          @OsType = params['OsType']
+          @TimeType = params['TimeType']
+          @AutoMinute = params['AutoMinute']
+          unless params['AutoRules'].nil?
+            @AutoRules = ComplexRule.new
+            @AutoRules.deserialize(params['AutoRules'])
+          end
+        end
+      end
+
+      # CreateDeviceVirtualGroup返回参数结构体
+      class CreateDeviceVirtualGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 响应返回的data
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreateDeviceVirtualGroupRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateDeviceVirtualGroupRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 响应返回的data
+      class CreateDeviceVirtualGroupRspData < TencentCloud::Common::AbstractModel
+        # @param Id: 返回的自定义分组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # 账号分组信息
       class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
-        # @param NamePath: 名称path
+        # @param NamePath: 账号分组名全路径，点分格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamePath: String
-        # @param IdPathArr: id patch数组(只支持32位)
+        # @param IdPathArr: 账号分组ID全路径，数组格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPathArr: Array
         # @param ExtraInfo: 扩展信息
@@ -90,31 +199,31 @@ module TencentCloud
         # @param Utime: 最后更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Utime: String
-        # @param ParentId: 父id
+        # @param ParentId: 父分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: Integer
-        # @param OrgId: 组织id
+        # @param OrgId: 源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgId: String
-        # @param Name: 账户组名称
+        # @param Name: 分组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Id: id
+        # @param Id: 分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param Description: 描述
+        # @param Description: 分组描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 同步数据源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
-        # @param IdPath: id path
+        # @param IdPath: 账号分组ID全路径，点分格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPath: String
         # @param Itime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Itime: String
-        # @param ParentOrgId: 父组织id
+        # @param ParentOrgId: 父源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentOrgId: String
         # @param ImportType: 导入类型
@@ -123,7 +232,7 @@ module TencentCloud
         # @param MiniIamId: miniIAM id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniIamId: String
-        # @param UserTotal: 该分组下用户总数
+        # @param UserTotal: 该分组下含子组的所有用户总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserTotal: Integer
         # @param IsLeaf: 是否叶子节点
@@ -222,15 +331,22 @@ module TencentCloud
 
       # DescribeAccountGroups请求参数结构体
       class DescribeAccountGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Deepin: 搜索范围,0-仅搜直接子组,1-深层搜索(只支持32位)
+        # @param Deepin: 搜索范围：0-仅当前分组的直接子组，1-当前分组的所有子组。默认为0。
         # @type Deepin: Integer
-        # @param Condition: 滤条件、分页参数
-        # <li>Name - String - 是否必填：否 - 操作符: like  - 排序支持：否- 按账号分组过滤。</li>
+        # @param Condition: 查询条件
+
+        # 过滤参数
+        # 1、Name，string类型，按分组名过滤
+        # 是否必填：否
+        # 操作符: like
+
         # 排序条件
-        # <li>Itime - string - 是否必填：否 - 排序支持：是 - 按账号分组创建时间排序。</li>
-        # <li>Utime - string - 是否必填：否 - 排序支持：是 - 按账号分组更新时间排序。</li>
+        # 1、Itime，string类型，按分组创建时间排序
+        # 是否必填：否
+        # 2、Utime，string类型，按分组更新时间排序
+        # 是否必填：否
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param ParentId: 父分组id
+        # @param ParentId: 父分组ID，获取该分组下的子组信息。默认查询全网根分组下子组信息。
         # @type ParentId: Integer
 
         attr_accessor :Deepin, :Condition, :ParentId
@@ -253,7 +369,7 @@ module TencentCloud
 
       # DescribeAccountGroups返回参数结构体
       class DescribeAccountGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 账户分组详情响应数据
+        # @param Data: 账号分组详情响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAccountGroupsPageResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -309,15 +425,55 @@ module TencentCloud
 
       # DescribeDevices请求参数结构体
       class DescribeDevicesRequest < TencentCloud::Common::AbstractModel
-        # @param Condition: 过滤条件<br>
-        # <li>Ip - String - 是否必填：否 - 操作符: eq  - 排序支持：否- 按照Ip进行过滤。</li>
-        # <li>MacAddr - String - 是否必填：否 - 操作符: eq  - 排序支持：否- 按照mac地址进行过滤。</li>
-        # <li>IoaUserName - String - 是否必填：否 - 操作符: eq  - 排序支持：否- 按照ioa用户名进行过滤。</li>
-        # 分页参数<br>
-        # <li>PageNum 从1开始，小于等于0时使用默认参数。</li>
-        # <li>PageSize 最大值5000，最好不超过100。</li>
+        # @param Condition: 过滤条件参数（字段含义请参考接口返回值）
+
+        # - Mid, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Name, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Itime, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - UserName, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - MacAddr, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - UserId, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Ip, 类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Tags，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - LocalIpList，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - SerialNum，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Version，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - StrVersion，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - RtpStatus，类型String，支持操作：【eq，like，ilike】，**不支持排序**
+        # - HostName，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - IoaUserName，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - GroupName，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - CriticalVulListCount，**类型Int**，支持操作：【eq】，**不支持排序**
+        # - RiskCount，**类型Int**，支持操作：【eq】，**不支持排序**
+        # - VulVersion，类型String，支持操作：【eq，like，ilike】，**不支持排序**
+        # - Virusver，类型String，支持操作：【eq，like，ilike】，**不支持排序**
+        # - SysRepver，类型String，支持操作：【eq，like，ilike】，**不支持排序**
+        # - BaseBoardSn，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Os，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - ConnActiveTime，类型String，支持操作：【eq，like，ilike】，**不支持排序**
+        # - FirewallStatus，**类型Int**，支持操作：【eq】，**不支持排序**
+        # - ProfileName，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - DomainName，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - SysRepVersion，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - VirusVer，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Cpu，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - Memory，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - HardDiskSize，类型String，支持操作：【eq，like，ilike】，支持排序
+        # - HardwareChangeCount，**类型Int**，支持操作：【eq】，支持排序
+        # - AccountName，类型String，支持操作：【like.ilike】，支持排序
+        # - AccountGroupName，类型String，支持操作：【like.ilike】，支持排序
+        # - ScreenRecordingPermission，**类型Int**，支持操作：【eq】，支持排序
+        # - DiskAccessPermission，**类型Int**，支持操作：【eq】，支持排序
+
+
+
+
+
+        # 分页参数
+        # - PageNum 从1开始，小于等于0时使用默认参数
+        # - PageSize 最大值5000，最好不超过100
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param GroupId: 【和GroupIds必须有一个填写】设备分组id（需要和OsType匹配）
+        # @param GroupId: 【和GroupIds必须有一个填写】设备分组id（需要和OsType匹配），下面是私有化场景下默认id：
         # id-名称-操作系统
         # 1	全网终端	Win
         # 2	未分组终端	Win
@@ -332,8 +488,11 @@ module TencentCloud
         # 40000402	未分组终端	Android
         # 40000501	全网终端	iOS
         # 40000502	未分组终端	iOS
+
+
+        # SaaS需要调用分组接口DescribeDeviceChildGroups获取对应分组id
         # @type GroupId: Integer
-        # @param OsType: 【必填】操作系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios   默认值0），需要和GroupId或者GroupIds匹配
+        # @param OsType: 【必填】操作系统类型（0: win，1：linux，2: mac，4：android，5：ios   默认值0），需要和GroupId或者GroupIds匹配
         # @type OsType: Integer
         # @param OnlineStatus: 在线状态 （2表示在线，0或者1表示离线）
         # @type OnlineStatus: Integer
@@ -345,12 +504,14 @@ module TencentCloud
         # @type PageNum: Integer
         # @param PageSize: 每页获取数--兼容旧接口,参数同Condition
         # @type PageSize: Integer
-        # @param Status: 授权状态 4未授权 5已授权
+        # @param Status: 授权状态： 4基础授权 5高级授权
         # @type Status: Integer
+        # @param GroupIds: 【和GroupId必须有一个填写】设备分组id列表（需要和OsType匹配）
+        # @type GroupIds: Array
 
-        attr_accessor :Condition, :GroupId, :OsType, :OnlineStatus, :Filters, :Sort, :PageNum, :PageSize, :Status
+        attr_accessor :Condition, :GroupId, :OsType, :OnlineStatus, :Filters, :Sort, :PageNum, :PageSize, :Status, :GroupIds
 
-        def initialize(condition=nil, groupid=nil, ostype=nil, onlinestatus=nil, filters=nil, sort=nil, pagenum=nil, pagesize=nil, status=nil)
+        def initialize(condition=nil, groupid=nil, ostype=nil, onlinestatus=nil, filters=nil, sort=nil, pagenum=nil, pagesize=nil, status=nil, groupids=nil)
           @Condition = condition
           @GroupId = groupid
           @OsType = ostype
@@ -360,6 +521,7 @@ module TencentCloud
           @PageNum = pagenum
           @PageSize = pagesize
           @Status = status
+          @GroupIds = groupids
         end
 
         def deserialize(params)
@@ -385,6 +547,7 @@ module TencentCloud
           @PageNum = params['PageNum']
           @PageSize = params['PageSize']
           @Status = params['Status']
+          @GroupIds = params['GroupIds']
         end
       end
 
@@ -582,12 +745,21 @@ module TencentCloud
 
       # DescribeLocalAccounts请求参数结构体
       class DescribeLocalAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param Condition: 滤条件、分页参数
-        # <li>UserName - String - 是否必填：否 - 操作符: eq,like  - 排序支持：否- 按账号UserName过滤。</li>
-        # <li>UserId - string - 是否必填：否 - 操作符: eq,like  - 排序支持：否 - 按账号UserNd过滤。</li>
-        # <li>Phone - string - 是否必填：否 - 操作符: eq,like - 排序支持：否 - 按手机号过滤。</li>
+        # @param Condition: 查询条件：过滤或排序
+        # 1、UserName，string类型，姓名
+        # 是否必填：否
+        # 过滤支持：是，支持eq、like、ilike
+        # 排序支持：否
+        # 2、UserId，string类型，账户
+        # 是否必填：否
+        # 过滤支持：是，支持eq、like、ilike
+        # 排序支持：否
+        # 3、Phone，string类型，手机号
+        # 是否必填：否
+        # 过滤支持：是，支持eq、like、ilike
+        # 排序支持：否
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param AccountGroupId: 获取账号的分组Id，不传默认获取全部(只支持32位)
+        # @param AccountGroupId: 获取账号的分组ID，不传默认获取全网根账号组
         # @type AccountGroupId: Integer
         # @param ShowFlag: 是否仅展示当前目录下用户 1： 递归显示 2：仅显示当前目录下用户(只支持32位)
         # @type ShowFlag: Integer
@@ -647,7 +819,7 @@ module TencentCloud
 
       # DescribeRootAccountGroup返回参数结构体
       class DescribeRootAccountGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 账户分组详情响应数据
+        # @param Data: 账号根分组响应详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.GetAccountGroupData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -710,7 +882,7 @@ module TencentCloud
         # @param LocalIpList: 设备本地IP列表, 包括IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalIpList: String
-        # @param HostId: 主机ID(只支持32位)
+        # @param HostId: 宿主机id（需要宿主机也安装iOA才能显示）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostId: Integer
         # @param GroupName: 设备所属分组名
@@ -776,13 +948,13 @@ module TencentCloud
         # @param NGNNewStrategyVer: NGN策略新版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NGNNewStrategyVer: String
-        # @param HostName: 主机名称
+        # @param HostName: 宿主机名称（需要宿主机也安装iOA才能显示）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param BaseBoardSn: 主板序列号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaseBoardSn: String
-        # @param AccountUsers: 绑定账户只有名字
+        # @param AccountUsers: 绑定账户名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountUsers: String
         # @param IdentityStrategyVer: 身份策略版本
@@ -947,12 +1119,12 @@ module TencentCloud
         end
       end
 
-      # 账户分组详情响应数据
+      # 账号分组详情响应数据
       class GetAccountGroupData < TencentCloud::Common::AbstractModel
-        # @param NamePath: 分组Namepath
+        # @param NamePath: 分组名称全路径，点分格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamePath: String
-        # @param IdPathArr: 分组Id path arr(只支持32位)
+        # @param IdPathArr: 分组ID全路径，数组格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPathArr: Array
         # @param ExtraInfo: 分组扩展信息
@@ -961,31 +1133,31 @@ module TencentCloud
         # @param Utime: 最后更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Utime: String
-        # @param ParentId: 父分组id(只支持32位)
+        # @param ParentId: 当前分组的父分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: Integer
-        # @param OrgId: 组织id
+        # @param OrgId: 源账号组ID，该字段仅适用于第三方同步的组织架构，通过OrgId-Id构成源组织架构分组ID-现组织架构分组ID映射关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgId: String
         # @param Name: 分组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Id: 分组id(只支持32位)
+        # @param Id: 分组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param Description: 描述
+        # @param Description: 分组描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 分组导入源(只支持32位)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
-        # @param IdPath: Id Path
+        # @param IdPath: 分组ID全路径，点分格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPath: String
         # @param Itime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Itime: String
-        # @param ParentOrgId: 父组织id
+        # @param ParentOrgId: 父源账号组ID，该字段仅适用于第三方同步的组织架构
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentOrgId: String
         # @param Import: 导入信息,json格式
@@ -1073,6 +1245,96 @@ module TencentCloud
           @PageNum = params['PageNum']
           @PageCount = params['PageCount']
           @Total = params['Total']
+        end
+      end
+
+      # 规则表达式
+      class RuleExpression < TencentCloud::Common::AbstractModel
+        # @param Items: 规则元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Relation: 关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Relation: String
+
+        attr_accessor :Items, :Relation
+
+        def initialize(items=nil, relation=nil)
+          @Items = items
+          @Relation = relation
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              ruleitem_tmp = RuleItem.new
+              ruleitem_tmp.deserialize(i)
+              @Items << ruleitem_tmp
+            end
+          end
+          @Relation = params['Relation']
+        end
+      end
+
+      # 规则元数据
+      class RuleItem < TencentCloud::Common::AbstractModel
+        # @param Key: 字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Operate: 操作关系（等于、不等于、包含、不包含）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operate: String
+        # @param Value: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Values: 内容，v2多值版本使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Key, :Operate, :Value, :Values
+
+        def initialize(key=nil, operate=nil, value=nil, values=nil)
+          @Key = key
+          @Operate = operate
+          @Value = value
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operate = params['Operate']
+          @Value = params['Value']
+          @Values = params['Values']
+        end
+      end
+
+      # 简单规则表达式
+      class SimpleRule < TencentCloud::Common::AbstractModel
+        # @param Expressions: 规则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expressions: Array
+        # @param Relation: 表达式间逻辑关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Relation: String
+
+        attr_accessor :Expressions, :Relation
+
+        def initialize(expressions=nil, relation=nil)
+          @Expressions = expressions
+          @Relation = relation
+        end
+
+        def deserialize(params)
+          unless params['Expressions'].nil?
+            @Expressions = []
+            params['Expressions'].each do |i|
+              ruleexpression_tmp = RuleExpression.new
+              ruleexpression_tmp.deserialize(i)
+              @Expressions << ruleexpression_tmp
+            end
+          end
+          @Relation = params['Relation']
         end
       end
 

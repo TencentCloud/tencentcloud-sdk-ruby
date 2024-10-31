@@ -4076,7 +4076,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询导出任务的结果
+        # 查询导出接口进度
 
         # @param request: Request instance for DescribeExportJobResult.
         # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeExportJobResultRequest`

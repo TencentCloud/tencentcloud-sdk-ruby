@@ -926,15 +926,36 @@ module TencentCloud
         # @param AccessKeyEscrowEnabled: true表示用户已经可以使用密钥安全托管功能，
         # false表示用户暂时不能使用密钥安全托管功能。
         # @type AccessKeyEscrowEnabled: Boolean
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: String
+        # @param QPSLimit: 计算性能限制
+        # @type QPSLimit: Integer
+        # @param SecretLimit: 凭据个数限制
+        # @type SecretLimit: Integer
+        # @param PayModel: 付费模式
+        # @type PayModel: String
+        # @param RenewFlag: 自动续费标识，0:手动续费 1:自动续费 2:到期不续
+        # @type RenewFlag: Integer
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param TotalCount: 已托管凭据个数
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :AccessKeyEscrowEnabled, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :AccessKeyEscrowEnabled, :ExpireTime, :QPSLimit, :SecretLimit, :PayModel, :RenewFlag, :ResourceId, :TotalCount, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, accesskeyescrowenabled=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, accesskeyescrowenabled=nil, expiretime=nil, qpslimit=nil, secretlimit=nil, paymodel=nil, renewflag=nil, resourceid=nil, totalcount=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @AccessKeyEscrowEnabled = accesskeyescrowenabled
+          @ExpireTime = expiretime
+          @QPSLimit = qpslimit
+          @SecretLimit = secretlimit
+          @PayModel = paymodel
+          @RenewFlag = renewflag
+          @ResourceId = resourceid
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -942,6 +963,13 @@ module TencentCloud
           @ServiceEnabled = params['ServiceEnabled']
           @InvalidType = params['InvalidType']
           @AccessKeyEscrowEnabled = params['AccessKeyEscrowEnabled']
+          @ExpireTime = params['ExpireTime']
+          @QPSLimit = params['QPSLimit']
+          @SecretLimit = params['SecretLimit']
+          @PayModel = params['PayModel']
+          @RenewFlag = params['RenewFlag']
+          @ResourceId = params['ResourceId']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

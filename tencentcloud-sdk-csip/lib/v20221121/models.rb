@@ -551,7 +551,7 @@ module TencentCloud
         # @param Victim: 受害者
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Victim: :class:`Tencentcloud::Csip.v20221121.models.RoleInfo`
-        # @param EvidenceData: 证据数据(例如攻击内容等)
+        # @param EvidenceData: 证据数据(例如攻击内容等，base64编码)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidenceData: String
         # @param EvidenceLocation: 证据位置(例如协议端口)
@@ -1131,10 +1131,13 @@ module TencentCloud
         # @param Uin: 用户uin
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
+        # @param ClbId: 当资产类型为LBL的时候，展示该字段，方便定位具体的LB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClbId: String
 
-        attr_accessor :Id, :CFGName, :CheckType, :InstanceId, :InstanceName, :InstanceType, :AffectAsset, :Level, :FirstTime, :RecentTime, :From, :Status, :CFGSTD, :CFGDescribe, :CFGFix, :CFGHelpURL, :Index, :AppId, :Nick, :Uin
+        attr_accessor :Id, :CFGName, :CheckType, :InstanceId, :InstanceName, :InstanceType, :AffectAsset, :Level, :FirstTime, :RecentTime, :From, :Status, :CFGSTD, :CFGDescribe, :CFGFix, :CFGHelpURL, :Index, :AppId, :Nick, :Uin, :ClbId
 
-        def initialize(id=nil, cfgname=nil, checktype=nil, instanceid=nil, instancename=nil, instancetype=nil, affectasset=nil, level=nil, firsttime=nil, recenttime=nil, from=nil, status=nil, cfgstd=nil, cfgdescribe=nil, cfgfix=nil, cfghelpurl=nil, index=nil, appid=nil, nick=nil, uin=nil)
+        def initialize(id=nil, cfgname=nil, checktype=nil, instanceid=nil, instancename=nil, instancetype=nil, affectasset=nil, level=nil, firsttime=nil, recenttime=nil, from=nil, status=nil, cfgstd=nil, cfgdescribe=nil, cfgfix=nil, cfghelpurl=nil, index=nil, appid=nil, nick=nil, uin=nil, clbid=nil)
           @Id = id
           @CFGName = cfgname
           @CheckType = checktype
@@ -1155,6 +1158,7 @@ module TencentCloud
           @AppId = appid
           @Nick = nick
           @Uin = uin
+          @ClbId = clbid
         end
 
         def deserialize(params)
@@ -1178,6 +1182,7 @@ module TencentCloud
           @AppId = params['AppId']
           @Nick = params['Nick']
           @Uin = params['Uin']
+          @ClbId = params['ClbId']
         end
       end
 
@@ -2593,10 +2598,16 @@ module TencentCloud
         # @param CWPFix: 0不支持，1支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPFix: Integer
+        # @param DataSupport: 产品支持状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSupport: Array
+        # @param CveId: cveId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CveId: String
 
-        attr_accessor :StateCode, :DataBug, :DataAsset, :VSSScan, :CWPScan, :CFWPatch, :WafPatch, :CWPFix
+        attr_accessor :StateCode, :DataBug, :DataAsset, :VSSScan, :CWPScan, :CFWPatch, :WafPatch, :CWPFix, :DataSupport, :CveId
 
-        def initialize(statecode=nil, databug=nil, dataasset=nil, vssscan=nil, cwpscan=nil, cfwpatch=nil, wafpatch=nil, cwpfix=nil)
+        def initialize(statecode=nil, databug=nil, dataasset=nil, vssscan=nil, cwpscan=nil, cfwpatch=nil, wafpatch=nil, cwpfix=nil, datasupport=nil, cveid=nil)
           @StateCode = statecode
           @DataBug = databug
           @DataAsset = dataasset
@@ -2605,6 +2616,8 @@ module TencentCloud
           @CFWPatch = cfwpatch
           @WafPatch = wafpatch
           @CWPFix = cwpfix
+          @DataSupport = datasupport
+          @CveId = cveid
         end
 
         def deserialize(params)
@@ -2630,6 +2643,15 @@ module TencentCloud
           @CFWPatch = params['CFWPatch']
           @WafPatch = params['WafPatch']
           @CWPFix = params['CWPFix']
+          unless params['DataSupport'].nil?
+            @DataSupport = []
+            params['DataSupport'].each do |i|
+              productsupport_tmp = ProductSupport.new
+              productsupport_tmp.deserialize(i)
+              @DataSupport << productsupport_tmp
+            end
+          end
+          @CveId = params['CveId']
         end
       end
 
@@ -3149,7 +3171,7 @@ module TencentCloud
       class DescribeCVMAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
-        # @param Filter: -
+        # @param Filter: 过滤器参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
         attr_accessor :MemberId, :Filter
@@ -3170,10 +3192,10 @@ module TencentCloud
 
       # DescribeCVMAssets返回参数结构体
       class DescribeCVMAssetsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: -
+        # @param Total: 总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Data: -
+        # @param Data: 机器列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RegionList: 地域列表
@@ -3347,16 +3369,20 @@ module TencentCloud
 
       # DescribeClusterPodAssets请求参数结构体
       class DescribeClusterPodAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -3483,7 +3509,7 @@ module TencentCloud
       class DescribeDbAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
-        # @param Filter: -
+        # @param Filter: 过滤器参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param AssetTypes: 资产类型:MYSQL/MARIADB/REDIS/MONGODB/POSTGRES/CTS/ES/KAFKA/COS/CBS/CFS
         # @type AssetTypes: Array
@@ -3603,7 +3629,7 @@ module TencentCloud
       class DescribeDomainAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
-        # @param Filter: -
+        # @param Filter: 过滤器参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 安全中心自定义标签
         # @type Tags: Array
@@ -3635,10 +3661,10 @@ module TencentCloud
 
       # DescribeDomainAssets返回参数结构体
       class DescribeDomainAssetsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: -
+        # @param Total: 总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Data: -
+        # @param Data: 域名列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param DefenseStatusList: 防护状态列表
@@ -3816,7 +3842,7 @@ module TencentCloud
       class DescribeListenerListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
-        # @param Filter: -
+        # @param Filter: 过滤器参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
         attr_accessor :MemberId, :Filter
@@ -4054,7 +4080,7 @@ module TencentCloud
       class DescribePublicIpAssetsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array
-        # @param Filter: filte过滤条件
+        # @param Filter: 过滤器参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 安全中心自定义标签
         # @type Tags: Array
@@ -5258,16 +5284,20 @@ module TencentCloud
 
       # DescribeSubnetAssets请求参数结构体
       class DescribeSubnetAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -5487,16 +5517,20 @@ module TencentCloud
 
       # DescribeTopAttackInfo请求参数结构体
       class DescribeTopAttackInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param OperatedMemberId: 被调用的集团账号的成员id
         # @type OperatedMemberId: Array
 
-        attr_accessor :OperatedMemberId
+        attr_accessor :MemberId, :OperatedMemberId
 
-        def initialize(operatedmemberid=nil)
+        def initialize(memberid=nil, operatedmemberid=nil)
+          @MemberId = memberid
           @OperatedMemberId = operatedmemberid
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           @OperatedMemberId = params['OperatedMemberId']
         end
       end
@@ -5714,16 +5748,20 @@ module TencentCloud
 
       # DescribeVpcAssets请求参数结构体
       class DescribeVpcAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -6571,15 +6609,19 @@ module TencentCloud
       class ModifyOrganizationAccountStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 修改集团账号状态，1 开启， 2关闭
         # @type Status: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
 
-        attr_accessor :Status
+        attr_accessor :Status, :MemberId
 
-        def initialize(status=nil)
+        def initialize(status=nil, memberid=nil)
           @Status = status
+          @MemberId = memberid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @MemberId = params['MemberId']
         end
       end
 
@@ -7155,6 +7197,48 @@ module TencentCloud
           @Nick = params['Nick']
           @Uin = params['Uin']
           @Service = params['Service']
+        end
+      end
+
+      # 漏洞信息产品支持状态
+      class ProductSupport < TencentCloud::Common::AbstractModel
+        # @param VSSScan: true支持扫描。false不支持扫描
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VSSScan: Boolean
+        # @param CWPScan: 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPScan: String
+        # @param CFWPatch: 1支持虚拟补丁，0或空不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFWPatch: String
+        # @param WafPatch: 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafPatch: Integer
+        # @param CWPFix: 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPFix: Integer
+        # @param CveId: cveid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CveId: String
+
+        attr_accessor :VSSScan, :CWPScan, :CFWPatch, :WafPatch, :CWPFix, :CveId
+
+        def initialize(vssscan=nil, cwpscan=nil, cfwpatch=nil, wafpatch=nil, cwpfix=nil, cveid=nil)
+          @VSSScan = vssscan
+          @CWPScan = cwpscan
+          @CFWPatch = cfwpatch
+          @WafPatch = wafpatch
+          @CWPFix = cwpfix
+          @CveId = cveid
+        end
+
+        def deserialize(params)
+          @VSSScan = params['VSSScan']
+          @CWPScan = params['CWPScan']
+          @CFWPatch = params['CFWPatch']
+          @WafPatch = params['WafPatch']
+          @CWPFix = params['CWPFix']
+          @CveId = params['CveId']
         end
       end
 
@@ -8391,14 +8475,17 @@ module TencentCloud
         # 4:取消标记处置
         # 5:取消标记忽略
         # @type OperateType: Integer
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param OperatedMemberId: 被调用的集团账号的成员id
         # @type OperatedMemberId: Array
 
-        attr_accessor :ID, :OperateType, :OperatedMemberId
+        attr_accessor :ID, :OperateType, :MemberId, :OperatedMemberId
 
-        def initialize(id=nil, operatetype=nil, operatedmemberid=nil)
+        def initialize(id=nil, operatetype=nil, memberid=nil, operatedmemberid=nil)
           @ID = id
           @OperateType = operatetype
+          @MemberId = memberid
           @OperatedMemberId = operatedmemberid
         end
 
@@ -8412,6 +8499,7 @@ module TencentCloud
             end
           end
           @OperateType = params['OperateType']
+          @MemberId = params['MemberId']
           @OperatedMemberId = params['OperatedMemberId']
         end
       end

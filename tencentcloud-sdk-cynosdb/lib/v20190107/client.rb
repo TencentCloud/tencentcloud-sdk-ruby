@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
+        # 本接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
 
         # @param request: Request instance for DescribeBackupDownloadUrl.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBackupDownloadUrlRequest`
@@ -989,7 +989,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
+        # 本接口（DescribeBinlogDownloadUrl）用于查询 Binlog 的下载地址。
 
         # @param request: Request instance for DescribeBinlogDownloadUrl.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogDownloadUrlRequest`
@@ -1037,7 +1037,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
+        # 本接口（DescribeBinlogs）用来查询集群 Binlog 日志列表。
 
         # @param request: Request instance for DescribeBinlogs.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeBinlogsRequest`
@@ -1277,7 +1277,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询集群列表
+        # 本接口（DescribeClusters）用于查询集群列表。
 
         # @param request: Request instance for DescribeClusters.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClustersRequest`
@@ -1901,7 +1901,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeZones)用于查询可售卖地域可用区信息。
+        # 本接口（DescribeZones）用于查询可售卖地域可用区信息。
 
         # @param request: Request instance for DescribeZones.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeZonesRequest`
@@ -1973,7 +1973,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
+        # 本接口（ExportInstanceSlowQueries）用于导出实例慢日志。
 
         # @param request: Request instance for ExportInstanceSlowQueries.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ExportInstanceSlowQueriesRequest`

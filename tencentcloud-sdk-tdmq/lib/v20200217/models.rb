@@ -177,7 +177,7 @@ module TencentCloud
 
       # AcknowledgeMessage返回参数结构体
       class AcknowledgeMessageResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorMsg: 如果为“”，则说明没有错误返回
+        # @param ErrorMsg: 如果为""，则说明没有错误返回，否则返回具体的错误信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8562,7 +8562,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param ClusterName: 更新后的集群名称。
         # @type ClusterName: String
-        # @param Remark: 说明信息。
+        # @param Remark: 说明信息。长度限制为 128 字节
         # @type Remark: String
         # @param PublicAccessEnabled: 开启公网访问，只能为true
         # @type PublicAccessEnabled: Boolean

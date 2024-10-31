@@ -696,11 +696,11 @@ module TencentCloud
         # @param Angle:  图片旋转角度(角度制)，文本的水平方向为0度；顺时针为正，角度范围是0-360度
 
         # @type Angle: Float
-        # @param NationalEmblem: 是否有国徽。0为没有，1为有。
+        # @param NationalEmblem: 是否有国徽。false为没有，true为有。
         # @type NationalEmblem: Boolean
-        # @param QRCode: 是否有二维码。0为没有，1为有。
+        # @param QRCode: 是否有二维码。false为没有，true为有。
         # @type QRCode: Boolean
-        # @param Seal: 是否有印章。0为没有，1为有。
+        # @param Seal: 是否有印章。false为没有，true为有。
         # @type Seal: Boolean
         # @param Title: 标题
         # @type Title: String
@@ -708,7 +708,7 @@ module TencentCloud
         # @type SerialNumber: String
         # @param RegistrationAuthority: 登记机关
         # @type RegistrationAuthority: String
-        # @param Electronic: 是否是电子营业执照。0为不是，1为是。
+        # @param Electronic: 是否是电子营业执照。false为没有，true为有。
         # @type Electronic: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7345,7 +7345,7 @@ module TencentCloud
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
         # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
         # @param CardSide: FRONT：身份证有照片的一面（人像面），

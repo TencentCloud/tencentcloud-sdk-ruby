@@ -399,10 +399,10 @@ module TencentCloud
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
         extend Gem::Deprecate
-        deprecate :Mode, :none, 2024, 9
-        deprecate :Mode=, :none, 2024, 9
-        deprecate :TransType, :none, 2024, 9
-        deprecate :TransType=, :none, 2024, 9
+        deprecate :Mode, :none, 2024, 10
+        deprecate :Mode=, :none, 2024, 10
+        deprecate :TransType, :none, 2024, 10
+        deprecate :TransType=, :none, 2024, 10
 
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid

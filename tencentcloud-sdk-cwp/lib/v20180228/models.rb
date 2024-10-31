@@ -1308,7 +1308,7 @@ module TencentCloud
         # @type EndTime: String
         # @param CoreVersion: 内核版本
         # @type CoreVersion: String
-        # @param OsType: linux/windows
+        # @param OsType: Linux/Windows
         # @type OsType: String
         # @param AgentVersion: agent版本
         # @type AgentVersion: String
@@ -17505,7 +17505,7 @@ module TencentCloud
         # @type DiskSize: Integer
         # @param Username: 用户名
         # @type Username: String
-        # @param DeliverTypeDetails: xx
+        # @param DeliverTypeDetails: 投递类型细节
         # @type DeliverTypeDetails: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -27485,22 +27485,7 @@ module TencentCloud
       class ExportAssetUserListRequest < TencentCloud::Common::AbstractModel
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
-        # @param Filters: 过滤条件。
-        # <li>Name - String - 是否必填：否 - 账户名</li>
-        # <li>Uid - uint64 - 是否必填：否 - Uid</li>
-        # <li>Guid - uint64 - 是否必填：否 - Guid</li>
-        # <li>LoginTimeStart - String - 是否必填：否 - 开始时间，如：2021-01-11</li>
-        # <li>LoginTimeEnd - String - 是否必填：否 - 结束时间，如：2021-01-11</li>
-        # <li>LoginType - uint64 - 是否必填：否 - 0-不可登录；1-只允许key登录；2只允许密码登录；3-允许key和密码 仅linux</li>
-        # <li>OsType - String - 是否必填：否 - windows或linux</li>
-        # <li>Status - uint64 - 是否必填：否 - 账号状态：0-禁用；1-启用</li>
-        # <li>Type - uint64 - 是否必填：否 - 账号类型：0访客用户，1标准用户，2管理员用户 仅windows</li>
-        # <li>IsDomain - uint64 - 是否必填：否 - 是否域账号：0 不是，1是 仅windows
-        # <li>IsRoot - uint64 - 是否必填：否 - 是否Root权限：0 不是，1是 仅linux
-        # <li>IsSudo - uint64 - 是否必填：否 - 是否Sudo权限：0 不是，1是 仅linux</li>
-        # <li>IsSshLogin - uint64 - 是否必填：否 - 是否ssh登录：0 不是，1是 仅linux</li>
-        # <li>ShellLoginStatus - uint64 - 是否必填：否 - 是否shell登录性，0不是；1是 仅linux</li>
-        # <li>PasswordStatus - uint64 - 是否必填：否 - 密码状态：1正常 2即将过期 3已过期 4已锁定 仅linux</li>
+        # @param Filters:   过滤条件。<li>Name - String - 是否必填：否 - 账户名</li> <li>Uid - uint64 - 是否必填：否 - Uid</li><li>Guid - uint64 - 是否必填：否 - Guid</li> <li>LoginTimeStart - String - 是否必填：否 - 开始时间，如：2021-01-11</li><li>LoginTimeEnd - String - 是否必填：否 - 结束时间，如：2021-01-11</li> <li>LoginType - uint64 - 是否必填：否 - 0-不可登录；1-只允许key登录；2只允许密码登录；3-允许key和密码 仅linux</li> <li>OsType - String - 是否必填：否 - windows或linux</li><li>Status - uint64 - 是否必填：否 - 账号状态：0-禁用；1-启用</li> <li>Type - uint64 - 是否必填：否 - 账号类型：0访客用户，1标准用户，2管理员用户 仅windows</li> <li>IsDomain - uint64 - 是否必填：否 - 是否域账号：0 不是，1是 仅windows</li> <li>IsRoot - uint64 - 是否必填：否 - 是否Root权限：0 不是，1是 仅linux</li> <li>IsSudo - uint64 - 是否必填：否 - 是否Sudo权限：0 不是，1是 仅linux</li> <li>IsSshLogin - uint64 - 是否必填：否 - 是否ssh登录：0 不是，1是 仅linux</li> <li>ShellLoginStatus - uint64 - 是否必填：否 - 是否shell登录性，0不是；1是 仅linux</li> <li>PasswordStatus - uint64 - 是否必填：否 - 密码状态：1正常 2即将过期 3已过期 4已锁定 仅linux</li>
         # @type Filters: Array
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
@@ -31442,7 +31427,7 @@ module TencentCloud
         # @param MachineExtraInfo:  主机额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
-        # @param MachineState: 实例状态：RUNNING,STOPPED,SHUTDOWN...
+        # @param MachineState: agent状态：OFFLINE,ONLINE
         # @type MachineState: String
 
         attr_accessor :InstanceName, :InstanceState, :PrivateIp, :PublicIp, :Type, :Description, :CreateTime, :RecentFoundTime, :Status, :ClassLoaderName, :SuperClassName, :Md5, :Interfaces, :Annotations, :Pid, :Exe, :Args, :ClassName, :ClassContent, :ClassContentPretty, :EventDescription, :SecurityAdvice, :MachineExtraInfo, :MachineState
@@ -32504,31 +32489,51 @@ module TencentCloud
       class MachineLicenseDetail < TencentCloud::Common::AbstractModel
         # @param Quuid: 主机quuid
         # @type Quuid: String
-        # @param PayMode: xx
+        # @param PayMode: 计费模式, 0 按量计费 , 1 预付费
         # @type PayMode: Integer
-        # @param ResourceId: xxx
+        # @param ResourceId: 资源ID
         # @type ResourceId: String
-        # @param InquireKey: xxx
-        # @type InquireKey: String
-        # @param SourceType: xxx
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param SourceType: 订单类型,0 默认计费订单 1 试用订单, 2 赠送 3 体验
         # @type SourceType: Integer
+        # @param InquireKey: 废弃字段,
+        # @type InquireKey: String
+        # @param AutoRenewFlag: 自动续费标识 0 默认不自动付费, 1 自动付费 2 手动设置不续费
+        # @type AutoRenewFlag: Integer
+        # @param Deadline: 到期时间,按量付费该值为空
+        # @type Deadline: String
+        # @param BuyTime: 购买时间
+        # @type BuyTime: String
+        # @param LicenseCnt: 授权数量
+        # @type LicenseCnt: Integer
 
-        attr_accessor :Quuid, :PayMode, :ResourceId, :InquireKey, :SourceType
+        attr_accessor :Quuid, :PayMode, :ResourceId, :LicenseType, :SourceType, :InquireKey, :AutoRenewFlag, :Deadline, :BuyTime, :LicenseCnt
 
-        def initialize(quuid=nil, paymode=nil, resourceid=nil, inquirekey=nil, sourcetype=nil)
+        def initialize(quuid=nil, paymode=nil, resourceid=nil, licensetype=nil, sourcetype=nil, inquirekey=nil, autorenewflag=nil, deadline=nil, buytime=nil, licensecnt=nil)
           @Quuid = quuid
           @PayMode = paymode
           @ResourceId = resourceid
-          @InquireKey = inquirekey
+          @LicenseType = licensetype
           @SourceType = sourcetype
+          @InquireKey = inquirekey
+          @AutoRenewFlag = autorenewflag
+          @Deadline = deadline
+          @BuyTime = buytime
+          @LicenseCnt = licensecnt
         end
 
         def deserialize(params)
           @Quuid = params['Quuid']
           @PayMode = params['PayMode']
           @ResourceId = params['ResourceId']
-          @InquireKey = params['InquireKey']
+          @LicenseType = params['LicenseType']
           @SourceType = params['SourceType']
+          @InquireKey = params['InquireKey']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Deadline = params['Deadline']
+          @BuyTime = params['BuyTime']
+          @LicenseCnt = params['LicenseCnt']
         end
       end
 
@@ -32724,9 +32729,9 @@ module TencentCloud
         # @type Uuid: String
         # @param FilePath: 路径
         # @type FilePath: String
-        # @param VirusName: 描述
+        # @param VirusName: 病毒名称
         # @type VirusName: String
-        # @param Status: 状态；4-:待处理，5-已信任，6-已隔离，8-文件已删除, 14:已处理
+        # @param Status: 状态；4-:待处理，5-已信任，6-已隔离，8-文件已删除, 14:已处理，13-已加白
         # @type Status: Integer
         # @param Id: 唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -34340,21 +34345,25 @@ module TencentCloud
         # @type IsModifyPeriod: Boolean
         # @param Type: 存储类型，string数组
         # @type Type: Array
-        # @param Period: 日志存储天数，3640表示不限
+        # @param Period: 日志存储时长，3640表示不限
         # @type Period: Integer
+        # @param Granularity: 日志存储时长单位，年year/月month/天day
+        # @type Granularity: String
 
-        attr_accessor :IsModifyPeriod, :Type, :Period
+        attr_accessor :IsModifyPeriod, :Type, :Period, :Granularity
 
-        def initialize(ismodifyperiod=nil, type=nil, period=nil)
+        def initialize(ismodifyperiod=nil, type=nil, period=nil, granularity=nil)
           @IsModifyPeriod = ismodifyperiod
           @Type = type
           @Period = period
+          @Granularity = granularity
         end
 
         def deserialize(params)
           @IsModifyPeriod = params['IsModifyPeriod']
           @Type = params['Type']
           @Period = params['Period']
+          @Granularity = params['Granularity']
         end
       end
 
@@ -35133,7 +35142,7 @@ module TencentCloud
 
       # ModifyRiskEventsStatus请求参数结构体
       class ModifyRiskEventsStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Operate: 操作-0:标记已处理,1:忽略,2:删除记录,3:木马隔离,4:木马恢复隔离,5:木马信任,6:木马取消信任,7:查杀异常进程
+        # @param Operate: 操作-0:标记已处理,1:忽略,2:删除记录,3:木马隔离,4:木马恢复隔离,5:木马信任,6:木马取消信任,7:查杀异常进程,8:加入白名单
         # @type Operate: Integer
         # @param RiskType: 操作事件类型，文件查杀：MALWARE，异常登录：HOST_LOGIN，密码破解：BRUTE_ATTACK，恶意请求：MALICIOUS_REQUEST，高危命令：BASH_EVENT，本地提权：PRIVILEGE_EVENT，反弹shell：REVERSE_SHELL. 异常进程:PROCESS
         # @type RiskType: String
@@ -35163,10 +35172,13 @@ module TencentCloud
         # <li>EndTime - String - 是否必填：否 - 进程启动时间-结束</li>
         # <li>Status - String - 是否必填：否 - 状态筛选 0待处理；1查杀中;2已查杀3已退出;4已信任</li>
         # @type Filters: Array
+        # @param DoClean: 当Operate 是木马隔离时
+        # <li> 本操作会修复被篡改的系统命令，计划任务等系统文件，操作中请确保yum/apt 可用。</li>
+        # @type DoClean: Boolean
 
-        attr_accessor :Operate, :RiskType, :Ids, :UpdateAll, :ExcludeId, :KillProcess, :Ip, :Filters
+        attr_accessor :Operate, :RiskType, :Ids, :UpdateAll, :ExcludeId, :KillProcess, :Ip, :Filters, :DoClean
 
-        def initialize(operate=nil, risktype=nil, ids=nil, updateall=nil, excludeid=nil, killprocess=nil, ip=nil, filters=nil)
+        def initialize(operate=nil, risktype=nil, ids=nil, updateall=nil, excludeid=nil, killprocess=nil, ip=nil, filters=nil, doclean=nil)
           @Operate = operate
           @RiskType = risktype
           @Ids = ids
@@ -35175,6 +35187,7 @@ module TencentCloud
           @KillProcess = killprocess
           @Ip = ip
           @Filters = filters
+          @DoClean = doclean
         end
 
         def deserialize(params)
@@ -35193,6 +35206,7 @@ module TencentCloud
               @Filters << filters_tmp
             end
           end
+          @DoClean = params['DoClean']
         end
       end
 
@@ -38832,7 +38846,7 @@ module TencentCloud
         # @type Uuid: String
         # @param Quuid: 唯一Quuid
         # @type Quuid: String
-        # @param Status: 状态码
+        # @param Status: 状态码Scanning、Ok、Fail
         # @type Status: String
         # @param Description: 描述
         # @type Description: String
@@ -41463,10 +41477,13 @@ module TencentCloud
         # @type PublishTime: String
         # @param VulId: 漏洞id
         # @type VulId: Integer
+        # @param Status: 状态，0:防御中，1：已加白，指的是在白名单列表中有这个漏洞的，不一定是全局型白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :VulName, :Label, :Level, :CvssScore, :CveId, :PublishTime, :VulId
+        attr_accessor :VulName, :Label, :Level, :CvssScore, :CveId, :PublishTime, :VulId, :Status
 
-        def initialize(vulname=nil, label=nil, level=nil, cvssscore=nil, cveid=nil, publishtime=nil, vulid=nil)
+        def initialize(vulname=nil, label=nil, level=nil, cvssscore=nil, cveid=nil, publishtime=nil, vulid=nil, status=nil)
           @VulName = vulname
           @Label = label
           @Level = level
@@ -41474,6 +41491,7 @@ module TencentCloud
           @CveId = cveid
           @PublishTime = publishtime
           @VulId = vulid
+          @Status = status
         end
 
         def deserialize(params)
@@ -41484,6 +41502,7 @@ module TencentCloud
           @CveId = params['CveId']
           @PublishTime = params['PublishTime']
           @VulId = params['VulId']
+          @Status = params['Status']
         end
       end
 
@@ -41906,7 +41925,7 @@ module TencentCloud
       class VulInfoByCveId < TencentCloud::Common::AbstractModel
         # @param VulId: 漏洞id
         # @type VulId: Integer
-        # @param FixSwitch: 修复支持情况：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
+        # @param FixSwitch: 修复支持情况：0-Windows/Linux均不支持修复 ;1-Windows/Linux 均支持修复 ;2-仅Linux支持修复;3-仅Windows支持修复
         # @type FixSwitch: Integer
 
         attr_accessor :VulId, :FixSwitch

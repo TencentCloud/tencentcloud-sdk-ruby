@@ -29,7 +29,31 @@ module TencentCloud
         end
 
 
-        # 以分页的方式查询账户目录列表,私有化调用path为：/capi/Assets/DescribeAccountGroups
+        # 创建终端自定义分组，私有化调用path为：/capi/Assets/Device/CreateDeviceVirtualGroup
+
+        # @param request: Request instance for CreateDeviceVirtualGroup.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::CreateDeviceVirtualGroupRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::CreateDeviceVirtualGroupResponse`
+        def CreateDeviceVirtualGroup(request)
+          body = send_request('CreateDeviceVirtualGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeviceVirtualGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 以分页的方式查询账号分组列表，私有化调用path为：/capi/Assets/DescribeAccountGroups
 
         # @param request: Request instance for DescribeAccountGroups.
         # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeAccountGroupsRequest`
@@ -101,7 +125,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询账户根分组详情，私有化调用path为：capi/Assets/DescribeRootAccountGroup
+        # 查询账号根分组详情。对应“用户与授权管理”里内置不可见的全网根账号组，所有新建的目录，都挂在该全网根账号组下。
+        # 私有化调用path为：capi/Assets/DescribeRootAccountGroup
 
         # @param request: Request instance for DescribeRootAccountGroup.
         # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeRootAccountGroupRequest`

@@ -681,19 +681,24 @@ module TencentCloud
         # @type Name: String
         # @param CmdList: 命令列表，命令之间用换行符（"\n"）分隔
         # @type CmdList: String
+        # @param Type: 命令模板类型 1-内置 2-自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
 
-        attr_accessor :Id, :Name, :CmdList
+        attr_accessor :Id, :Name, :CmdList, :Type
 
-        def initialize(id=nil, name=nil, cmdlist=nil)
+        def initialize(id=nil, name=nil, cmdlist=nil, type=nil)
           @Id = id
           @Name = name
           @CmdList = cmdlist
+          @Type = type
         end
 
         def deserialize(params)
           @Id = params['Id']
           @Name = params['Name']
           @CmdList = params['CmdList']
+          @Type = params['Type']
         end
       end
 
@@ -1872,10 +1877,12 @@ module TencentCloud
         # @type Status: Integer
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的访问权限
         # @type DepartmentId: String
+        # @param Filters: 过滤数组
+        # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status, :DepartmentId
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :Status, :DepartmentId, :Filters
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil, departmentid=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, status=nil, departmentid=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -1885,6 +1892,7 @@ module TencentCloud
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @Status = status
           @DepartmentId = departmentid
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1897,6 +1905,14 @@ module TencentCloud
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @Status = params['Status']
           @DepartmentId = params['DepartmentId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -2115,16 +2131,19 @@ module TencentCloud
         # @type IdSet: Array
         # @param Name: 命令模板名，模糊查询，最大长度64字符
         # @type Name: String
+        # @param Type: 命令模板类型 1-内置模板  2-自定义模板
+        # @type Type: Integer
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20
         # @type Limit: Integer
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit
+        attr_accessor :IdSet, :Name, :Type, :Offset, :Limit
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil)
+        def initialize(idset=nil, name=nil, type=nil, offset=nil, limit=nil)
           @IdSet = idset
           @Name = name
+          @Type = type
           @Offset = offset
           @Limit = limit
         end
@@ -2132,6 +2151,7 @@ module TencentCloud
         def deserialize(params)
           @IdSet = params['IdSet']
           @Name = params['Name']
+          @Type = params['Type']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -3689,14 +3709,17 @@ module TencentCloud
         # @param Encoding: CmdList字段前端是否base64传值。
         # 0：否，1：是
         # @type Encoding: Integer
+        # @param Type: 命令模板类型 1-内置模板 2-自定义模板
+        # @type Type: Integer
 
-        attr_accessor :Name, :CmdList, :Id, :Encoding
+        attr_accessor :Name, :CmdList, :Id, :Encoding, :Type
 
-        def initialize(name=nil, cmdlist=nil, id=nil, encoding=nil)
+        def initialize(name=nil, cmdlist=nil, id=nil, encoding=nil, type=nil)
           @Name = name
           @CmdList = cmdlist
           @Id = id
           @Encoding = encoding
+          @Type = type
         end
 
         def deserialize(params)
@@ -3704,6 +3727,7 @@ module TencentCloud
           @CmdList = params['CmdList']
           @Id = params['Id']
           @Encoding = params['Encoding']
+          @Type = params['Type']
         end
       end
 
