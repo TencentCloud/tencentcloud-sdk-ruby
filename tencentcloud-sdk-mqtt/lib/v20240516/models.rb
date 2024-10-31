@@ -19,9 +19,9 @@ module TencentCloud
     module V20240516
       # AuthorizationPolicyItem
       class AuthorizationPolicyItem < TencentCloud::Common::AbstractModel
-        # @param Id: 规则id
+        # @param Id: 规则ID
         # @type Id: Integer
-        # @param InstanceId: 集群id
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param PolicyName: 规则名
         # 注意：此字段可能返回 null，表示取不到有效值。

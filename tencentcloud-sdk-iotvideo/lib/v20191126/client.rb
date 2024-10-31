@@ -371,6 +371,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设备申请cos上传证书
+
+        # @param request: Request instance for CreateUploadTest.
+        # @type request: :class:`Tencentcloud::iotvideo::V20191126::CreateUploadTestRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20191126::CreateUploadTestResponse`
+        def CreateUploadTest(request)
+          body = send_request('CreateUploadTest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUploadTestResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
 
         # @param request: Request instance for CreateUsrToken.
@@ -1406,6 +1430,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RefundStorageServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设备刷新cos上传证书
+
+        # @param request: Request instance for RenewUploadTest.
+        # @type request: :class:`Tencentcloud::iotvideo::V20191126::RenewUploadTestRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20191126::RenewUploadTestResponse`
+        def RenewUploadTest(request)
+          body = send_request('RenewUploadTest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewUploadTestResponse.new
             model.deserialize(response['Response'])
             model
           else

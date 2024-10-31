@@ -90,16 +90,14 @@ module TencentCloud
         # @param Timestamp: 时间戳
         # @type Timestamp: Integer
         # @param Start: 句子开始时间，Unix 毫秒时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Start: Integer
         # @param End: 句子结束时间，Unix 毫秒时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type End: Integer
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2024, 10
-        deprecate :Timestamp=, :none, 2024, 10
+        deprecate :Timestamp, :none, 2024, 11
+        deprecate :Timestamp=, :none, 2024, 11
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -121,16 +119,12 @@ module TencentCloud
       # 音频文件审核信息
       class AudioFileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 文件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: Integer
         # @param CustomFileName: 文件别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomFileName: String
         # @param AudioFileName: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioFileName: String
         # @param Status: 审核状态，0-未审核，1-审核通过，2-审核拒绝
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :FileId, :CustomFileName, :AudioFileName, :Status
@@ -277,8 +271,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2024, 10
-        deprecate :SkillGroupList=, :none, 2024, 10
+        deprecate :SkillGroupList, :none, 2024, 11
+        deprecate :SkillGroupList=, :none, 2024, 11
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -477,7 +471,6 @@ module TencentCloud
         # @param Callees: 被叫号码列表
         # @type Callees: Array
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param State: 审批状态:1 待审核、2 通过、3 拒绝
         # @type State: Integer
@@ -514,73 +507,50 @@ module TencentCloud
       # 企业资质申请信息
       class CompanyApplyInfo < TencentCloud::Common::AbstractModel
         # @param ApplicantType: 申请人身份，0-公司法定代表人，1-经办人（受法定代表人委托）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicantType: Integer
         # @param CompanyName: 企业名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompanyName: String
         # @param BusinessId: 统一社会信用代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
         # @param BusinessIdPicUrl: 营业执照扫描件(加盖公章)。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessIdPicUrl: String
         # @param CorporationName: 法定代表人名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationName: String
         # @param CorporationId: 法定代表人身份证号码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationId: String
         # @param CorporationIdPicUrl: 法定代表人身份证正反面扫描件。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationIdPicUrl: String
         # @param NetworkCommitmentPicUrl: 安全合规使用承诺书。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkCommitmentPicUrl: String
         # @param IsEqualTencentCloud: 是否与腾讯云账号的资质一致,0-不一致,1-一致
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEqualTencentCloud: Integer
         # @param CorporationMobile: 法定代表人手机号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationMobile: String
         # @param CorporationMobilePicUrl: 法定代表人手机号码实名认证。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationMobilePicUrl: String
         # @param UseDescribeFileUrl: 通话话术。(支持doc、docx格式的文档不超过50MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseDescribeFileUrl: String
         # @param CompanyAuthLetterPicUrl: 公司授权函。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompanyAuthLetterPicUrl: String
         # @param AcceptPicUrl: 电话受理单。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AcceptPicUrl: String
         # @param CorporationHoldingOnIdPicUrl: 法定代表人手持身份证照，申请人类型为法定代表人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorporationHoldingOnIdPicUrl: String
         # @param OperatorName: 经办人名称，申请人类型为经办人时必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorName: String
         # @param OperatorId: 经办人证件号码，申请人类型为经办人时必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorId: String
         # @param OperatorIdPicUrl: 经办人身份证正反面扫描件，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorIdPicUrl: String
         # @param OperatorHoldingOnIdPicUrl: 经办人手持身份证照，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorHoldingOnIdPicUrl: String
         # @param CommissionPicUrl: 委托授权书，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommissionPicUrl: String
         # @param OperatorMobile: 经办人手机号，申请人类型为经办人时必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorMobile: String
         # @param OperatorEmail: 经办人邮箱，申请人类型为经办人时必填。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorEmail: String
         # @param OperatorMobilePicUrl: 经办人手机号码实名认证，申请人类型为经办人时必填。(支持jpg、png、gif、jpeg格式的图片，每张图片应大于50K，不超过5MB，模板参见控制台:https://console.cloud.tencent.com/ccc/enterprise/update)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorMobilePicUrl: String
 
         attr_accessor :ApplicantType, :CompanyName, :BusinessId, :BusinessIdPicUrl, :CorporationName, :CorporationId, :CorporationIdPicUrl, :NetworkCommitmentPicUrl, :IsEqualTencentCloud, :CorporationMobile, :CorporationMobilePicUrl, :UseDescribeFileUrl, :CompanyAuthLetterPicUrl, :AcceptPicUrl, :CorporationHoldingOnIdPicUrl, :OperatorName, :OperatorId, :OperatorIdPicUrl, :OperatorHoldingOnIdPicUrl, :CommissionPicUrl, :OperatorMobile, :OperatorEmail, :OperatorMobilePicUrl
@@ -643,25 +613,18 @@ module TencentCloud
         # @param Id: 申请单ID
         # @type Id: Integer
         # @param CompanyName: 公司名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompanyName: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param CheckTime: 审核时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckTime: Integer
         # @param CheckMsg: 审核备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckMsg: String
         # @param State: 审核状态，1-待审核，2-审核通过，3-驳回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
         # @param BusinessId: 公司统一社会信用代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessId: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: Integer
 
         attr_accessor :Id, :CompanyName, :CreateTime, :CheckTime, :CheckMsg, :State, :BusinessId, :ModifyTime
@@ -1145,8 +1108,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 10
-        deprecate :Uui=, :none, 2024, 10
+        deprecate :Uui, :none, 2024, 11
+        deprecate :Uui=, :none, 2024, 11
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -1612,7 +1575,6 @@ module TencentCloud
       # CreateStaff返回参数结构体
       class CreateStaffResponse < TencentCloud::Common::AbstractModel
         # @param ErrorStaffList: 错误坐席列表及错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorStaffList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1780,7 +1742,6 @@ module TencentCloud
       # DeleteStaff返回参数结构体
       class DeleteStaffResponse < TencentCloud::Common::AbstractModel
         # @param OnlineStaffList: 无法删除的状态为在线的客服列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineStaffList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2221,10 +2182,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 10
-        deprecate :InstanceId=, :none, 2024, 10
-        deprecate :CdrId, :none, 2024, 10
-        deprecate :CdrId=, :none, 2024, 10
+        deprecate :InstanceId, :none, 2024, 11
+        deprecate :InstanceId=, :none, 2024, 11
+        deprecate :CdrId, :none, 2024, 11
+        deprecate :CdrId=, :none, 2024, 11
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -2252,7 +2213,6 @@ module TencentCloud
         # @param TotalCount: 总记录数
         # @type TotalCount: Integer
         # @param Messages: 消息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Messages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2314,7 +2274,6 @@ module TencentCloud
       # DescribeCompanyList返回参数结构体
       class DescribeCompanyListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param CompanyInfo: 企业资质审核信息
         # @type CompanyInfo: Array
@@ -2507,7 +2466,6 @@ module TencentCloud
         # @param TotalCount: 总记录数
         # @type TotalCount: Integer
         # @param IMCdrList: 服务记录列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IMCdrList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2553,8 +2511,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 10
-        deprecate :InstanceId=, :none, 2024, 10
+        deprecate :InstanceId, :none, 2024, 11
+        deprecate :InstanceId=, :none, 2024, 11
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -2591,8 +2549,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2024, 10
-        deprecate :IMCdrs=, :none, 2024, 10
+        deprecate :IMCdrs, :none, 2024, 11
+        deprecate :IMCdrs=, :none, 2024, 11
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -2883,28 +2841,20 @@ module TencentCloud
       # 查询预测式外呼任务列表元素
       class DescribePredictiveDialingCampaignsElement < TencentCloud::Common::AbstractModel
         # @param CampaignId: 任务 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CampaignId: Integer
         # @param Name: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Status: 任务状态 0 待开始 1 进行中 2 已暂停 3 已终止 4 已完成
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StatusReason: 任务状态原因 0 正常 1 手动结束 2 超时结束
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusReason: Integer
         # @param CalleeCount: 被叫号码个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalleeCount: Integer
         # @param FinishedCalleeCount: 已完成的被叫个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishedCalleeCount: Integer
         # @param Priority: 相同应用内多个任务运行优先级，从高到底 1 - 5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
         # @param SkillGroupId: 使用的座席技能组 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupId: Integer
 
         attr_accessor :CampaignId, :Name, :Status, :StatusReason, :CalleeCount, :FinishedCalleeCount, :Priority, :SkillGroupId
@@ -2967,10 +2917,8 @@ module TencentCloud
       # DescribePredictiveDialingCampaigns返回参数结构体
       class DescribePredictiveDialingCampaignsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 数据总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param CampaignList: 数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CampaignList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3094,8 +3042,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 10
-        deprecate :TelCdrs=, :none, 2024, 10
+        deprecate :TelCdrs, :none, 2024, 11
+        deprecate :TelCdrs=, :none, 2024, 11
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3360,8 +3308,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2024, 10
-        deprecate :VoipCallInCount=, :none, 2024, 10
+        deprecate :VoipCallInCount, :none, 2024, 11
+        deprecate :VoipCallInCount=, :none, 2024, 11
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -3409,8 +3357,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 10
-        deprecate :InstanceId=, :none, 2024, 10
+        deprecate :InstanceId, :none, 2024, 11
+        deprecate :InstanceId=, :none, 2024, 11
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -3452,8 +3400,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 10
-        deprecate :TelCdrs=, :none, 2024, 10
+        deprecate :TelCdrs, :none, 2024, 11
+        deprecate :TelCdrs=, :none, 2024, 11
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3777,13 +3725,10 @@ module TencentCloud
         # @param Timestamp: 服务时间戳
         # @type Timestamp: Integer
         # @param SessionId: 会话ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionId: String
         # @param SkillGroupId: 技能组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupId: String
         # @param SkillGroupName: 技能组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupName: String
         # @param Satisfaction: 满意度
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3830,10 +3775,8 @@ module TencentCloud
       # IM满意度
       class IMSatisfaction < TencentCloud::Common::AbstractModel
         # @param Id: 满意度值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Label: 满意度标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
 
         attr_accessor :Id, :Label
@@ -3852,22 +3795,16 @@ module TencentCloud
       # ivr 按键信息
       class IVRKeyPressedElement < TencentCloud::Common::AbstractModel
         # @param Key: 命中的关键字或者按键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Label: 按键关联的标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Timestamp: Unix 毫秒时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
         # @param NodeLabel: 节点标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeLabel: String
         # @param OriginalContent: 用户原始输入
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalContent: String
         # @param TTSPrompt: TTS 提示音内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TTSPrompt: String
 
         attr_accessor :Key, :Label, :Timestamp, :NodeLabel, :OriginalContent, :TTSPrompt
@@ -4577,7 +4514,6 @@ module TencentCloud
         # @param PhoneNumBuyList: 号码购买列表
         # @type PhoneNumBuyList: Array
         # @param SipBuyNum: 办公电话购买数（还在有效期内）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SipBuyNum: Integer
 
         attr_accessor :SdkAppId, :Name, :StaffBuyNum, :StaffBuyList, :PhoneNumBuyList, :SipBuyNum
@@ -4622,7 +4558,6 @@ module TencentCloud
         # @param Mail: 座席邮箱
         # @type Mail: String
         # @param StaffNumber: 工号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaffNumber: String
         # @param Phone: 座席电话号码（带0086前缀）
         # @type Phone: String
@@ -4631,13 +4566,11 @@ module TencentCloud
         # @param UserId: 用户ID
         # @type UserId: String
         # @param SkillGroupNameList: 座席关联的技能组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupNameList: Array
         # @param Role: 1:管理员
         # 2:质检员
         # 3:普通座席
         # else:自定义角色ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: Integer
 
         attr_accessor :Name, :Mail, :StaffNumber, :Phone, :Nick, :UserId, :SkillGroupNameList, :Role
@@ -4668,58 +4601,40 @@ module TencentCloud
       # 参与者信息
       class ServeParticipant < TencentCloud::Common::AbstractModel
         # @param Mail: 座席邮箱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mail: String
         # @param Phone: 座席电话
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param RingTimestamp: 振铃时间戳，Unix 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RingTimestamp: Integer
         # @param AcceptTimestamp: 接听时间戳，Unix 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AcceptTimestamp: Integer
         # @param EndedTimestamp: 结束时间戳，Unix 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndedTimestamp: Integer
         # @param RecordId: 录音 ID，能够索引到座席侧的录音
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: String
         # @param Type: 参与者类型，"staffSeat", "outboundSeat", "staffPhoneSeat"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param TransferFrom: 转接来源座席信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferFrom: String
         # @param TransferFromType: 转接来源参与者类型，取值与 Type 一致
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferFromType: String
         # @param TransferTo: 转接去向座席信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferTo: String
         # @param TransferToType: 转接去向参与者类型，取值与 Type 一致
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferToType: String
         # @param SkillGroupId: 技能组 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupId: Integer
         # @param EndStatusString: 结束状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndStatusString: String
         # @param RecordURL: 录音 URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordURL: String
         # @param Sequence: 参与者序号，从 0 开始
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sequence: Integer
         # @param StartTimestamp: 开始时间戳，Unix 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimestamp: Integer
         # @param SkillGroupName: 技能组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupName: String
         # @param CustomRecordURL: 录音转存第三方COS地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRecordURL: String
 
         attr_accessor :Mail, :Phone, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :RecordId, :Type, :TransferFrom, :TransferFromType, :TransferTo, :TransferToType, :SkillGroupId, :EndStatusString, :RecordURL, :Sequence, :StartTimestamp, :SkillGroupName, :CustomRecordURL
@@ -4776,22 +4691,16 @@ module TencentCloud
         # @param Type: （废弃）类型：IM、TEL、ALL（全媒体）
         # @type Type: String
         # @param RoutePolicy: 会话分配策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutePolicy: String
         # @param UsingLastSeat: 会话分配是否优先上次服务座席
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsingLastSeat: Integer
         # @param MaxConcurrency: 单客服最大并发数（电话类型默认1）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxConcurrency: Integer
         # @param LastModifyTimestamp: 最后修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTimestamp: Integer
         # @param SkillGroupType: 技能组类型0-电话，1-在线，3-音频，4-视频
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupType: Integer
         # @param Alias: 技能组内线号码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
 
         attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp, :SkillGroupType, :Alias
@@ -4858,7 +4767,6 @@ module TencentCloud
         # @param EndTime: 截止时间戳
         # @type EndTime: Integer
         # @param SipNum: 购买办公电话数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SipNum: Integer
 
         attr_accessor :Num, :BuyTime, :EndTime, :SipNum
@@ -4881,26 +4789,20 @@ module TencentCloud
       # 带有技能组优先级的座席信息
       class StaffInfo < TencentCloud::Common::AbstractModel
         # @param Name: 座席名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Mail: 座席邮箱
         # @type Mail: String
         # @param Phone: 座席电话号码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param Nick: 座席昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nick: String
         # @param StaffNumber: 座席工号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaffNumber: String
         # @param RoleId: 用户角色id
         # @type RoleId: Integer
         # @param SkillGroupList: 所属技能组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupList: Array
         # @param LastModifyTimestamp: 最后修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTimestamp: Integer
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :SkillGroupList, :LastModifyTimestamp
@@ -5107,7 +5009,6 @@ module TencentCloud
         # @param RecordURL: 录音信息
         # @type RecordURL: String
         # @param RecordId: 录音 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: String
         # @param SeatUser: 座席信息
         # @type SeatUser: :class:`Tencentcloud::Ccc.v20200210.models.SeatUserInfo`
@@ -5170,28 +5071,20 @@ module TencentCloud
         # @param CallerLocation: 主叫归属地
         # @type CallerLocation: String
         # @param IVRDuration: IVR 阶段耗时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IVRDuration: Integer
         # @param RingTimestamp: 振铃时间戳，UNIX 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RingTimestamp: Integer
         # @param AcceptTimestamp: 接听时间戳，UNIX 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AcceptTimestamp: Integer
         # @param EndedTimestamp: 结束时间戳，UNIX 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndedTimestamp: Integer
         # @param IVRKeyPressed: IVR 按键信息 ，e.g. ["1","2","3"]
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IVRKeyPressed: Array
         # @param HungUpSide: 挂机方 seat 座席 user 用户 system 系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HungUpSide: String
         # @param ServeParticipants: 服务参与者列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServeParticipants: Array
         # @param SkillGroupId: 技能组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupId: Integer
         # @param EndStatusString: EndStatus与EndStatusString一一对应，具体枚举如下：
 
@@ -5246,41 +5139,29 @@ module TencentCloud
         # 电话呼出	        210	           notInService	不在服务区
 
         # 电话呼入&呼出	211    clientError    客户端错误
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndStatusString: String
         # @param StartTimestamp: 会话开始时间戳，UNIX 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimestamp: Integer
         # @param QueuedTimestamp: 进入排队时间，Unix 秒级时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueuedTimestamp: Integer
         # @param PostIVRKeyPressed: 后置IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostIVRKeyPressed: Array
         # @param QueuedSkillGroupId: 排队技能组Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueuedSkillGroupId: Integer
         # @param SessionId: 会话 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionId: String
         # @param ProtectedCaller: 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectedCaller: String
         # @param ProtectedCallee: 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectedCallee: String
         # @param Uui: 客户自定义数据（User-to-User Interface）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uui: String
         # @param UUI: 客户自定义数据（User-to-User Interface）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UUI: String
         # @param IVRKeyPressedEx: IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IVRKeyPressedEx: Array
         # @param AsrUrl: 获取录音ASR文本信息地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrUrl: String
         # @param AsrStatus: AsrUrl的状态：Complete
         # 已完成;
@@ -5288,28 +5169,22 @@ module TencentCloud
         # 正在生成中;
         # NotExists
         # 无记录(未开启生成离线asr或者无套餐包)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrStatus: String
         # @param CustomRecordURL: 录音转存第三方COS地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRecordURL: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param QueuedSkillGroupName: 排队技能组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueuedSkillGroupName: String
         # @param VoicemailRecordURL: 通话中语音留言录音URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoicemailRecordURL: Array
         # @param VoicemailAsrURL: 通话中语音留言ASR文本信息地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoicemailAsrURL: Array
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 10
-        deprecate :Uui=, :none, 2024, 10
+        deprecate :Uui, :none, 2024, 11
+        deprecate :Uui=, :none, 2024, 11
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller
@@ -5698,10 +5573,8 @@ module TencentCloud
       # UploadIvrAudio返回参数结构体
       class UploadIvrAudioResponse < TencentCloud::Common::AbstractModel
         # @param FailedFileList: 上传失败的文件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedFileList: Array
         # @param SuccessFileList: 上传成功文件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessFileList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

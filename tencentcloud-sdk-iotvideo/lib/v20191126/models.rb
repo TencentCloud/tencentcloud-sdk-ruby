@@ -66,6 +66,38 @@ module TencentCloud
         end
       end
 
+      # 证书信息
+      class CertificateInfo < TencentCloud::Common::AbstractModel
+        # @param SecretId: SecretId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretId: String
+        # @param SecretKey: SecretKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param Token: Token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
+        # @param ExpiredTime: 过期时间，UNIX时间戳，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: Integer
+
+        attr_accessor :SecretId, :SecretKey, :Token, :ExpiredTime
+
+        def initialize(secretid=nil, secretkey=nil, token=nil, expiredtime=nil)
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @Token = token
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @Token = params['Token']
+          @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
       # ClearDeviceActiveCode请求参数结构体
       class ClearDeviceActiveCodeRequest < TencentCloud::Common::AbstractModel
         # @param Tids: 设备TID列表，0<元素数量<=100
@@ -127,6 +159,46 @@ module TencentCloud
           @Cn = params['Cn']
           @Tc = params['Tc']
           @Default = params['Default']
+        end
+      end
+
+      # 申请上传证书回包
+      class CosCertificate < TencentCloud::Common::AbstractModel
+        # @param StorageBucket: cos存储桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageBucket: String
+        # @param StorageRegion: cos存储园区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageRegion: String
+        # @param StoragePath: 存储路径，录制场景下该值为存储目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoragePath: String
+        # @param TempCertificate: 证书信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TempCertificate: :class:`Tencentcloud::Iotvideo.v20191126.models.CertificateInfo`
+        # @param SessionKey: SessionKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionKey: String
+
+        attr_accessor :StorageBucket, :StorageRegion, :StoragePath, :TempCertificate, :SessionKey
+
+        def initialize(storagebucket=nil, storageregion=nil, storagepath=nil, tempcertificate=nil, sessionkey=nil)
+          @StorageBucket = storagebucket
+          @StorageRegion = storageregion
+          @StoragePath = storagepath
+          @TempCertificate = tempcertificate
+          @SessionKey = sessionkey
+        end
+
+        def deserialize(params)
+          @StorageBucket = params['StorageBucket']
+          @StorageRegion = params['StorageRegion']
+          @StoragePath = params['StoragePath']
+          unless params['TempCertificate'].nil?
+            @TempCertificate = CertificateInfo.new
+            @TempCertificate.deserialize(params['TempCertificate'])
+          end
+          @SessionKey = params['SessionKey']
         end
       end
 
@@ -819,6 +891,50 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUploadTest请求参数结构体
+      class CreateUploadTestRequest < TencentCloud::Common::AbstractModel
+        # @param PkgId: package ID
+        # @type PkgId: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+
+        attr_accessor :PkgId, :Tid
+
+        def initialize(pkgid=nil, tid=nil)
+          @PkgId = pkgid
+          @Tid = tid
+        end
+
+        def deserialize(params)
+          @PkgId = params['PkgId']
+          @Tid = params['Tid']
+        end
+      end
+
+      # CreateUploadTest返回参数结构体
+      class CreateUploadTestResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 申请设备证书返回的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotvideo.v20191126.models.CosCertificate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CosCertificate.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3422,6 +3538,74 @@ module TencentCloud
         def deserialize(params)
           @CunionId = params['CunionId']
           @IsRegisted = params['IsRegisted']
+        end
+      end
+
+      # 刷新证书信息
+      class RenewCertificate < TencentCloud::Common::AbstractModel
+        # @param TempCertificate: 刷新证书信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TempCertificate: :class:`Tencentcloud::Iotvideo.v20191126.models.CertificateInfo`
+
+        attr_accessor :TempCertificate
+
+        def initialize(tempcertificate=nil)
+          @TempCertificate = tempcertificate
+        end
+
+        def deserialize(params)
+          unless params['TempCertificate'].nil?
+            @TempCertificate = CertificateInfo.new
+            @TempCertificate.deserialize(params['TempCertificate'])
+          end
+        end
+      end
+
+      # RenewUploadTest请求参数结构体
+      class RenewUploadTestRequest < TencentCloud::Common::AbstractModel
+        # @param PkgId: package ID
+        # @type PkgId: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param SessionKey: SessionKeys
+        # @type SessionKey: String
+
+        attr_accessor :PkgId, :Tid, :SessionKey
+
+        def initialize(pkgid=nil, tid=nil, sessionkey=nil)
+          @PkgId = pkgid
+          @Tid = tid
+          @SessionKey = sessionkey
+        end
+
+        def deserialize(params)
+          @PkgId = params['PkgId']
+          @Tid = params['Tid']
+          @SessionKey = params['SessionKey']
+        end
+      end
+
+      # RenewUploadTest返回参数结构体
+      class RenewUploadTestResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 刷新证书返回的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotvideo.v20191126.models.RenewCertificate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = RenewCertificate.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

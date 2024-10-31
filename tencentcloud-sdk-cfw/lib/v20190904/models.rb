@@ -6465,7 +6465,7 @@ module TencentCloud
 
       # ModifyAclRule请求参数结构体
       class ModifyAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要编辑的规则数组
+        # @param Rules: 需要编辑的规则数组，基于Uuid唯一id修改该规则
         # @type Rules: Array
 
         attr_accessor :Rules
@@ -7245,7 +7245,7 @@ module TencentCloud
 
       # ModifyNatAcRule请求参数结构体
       class ModifyNatAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要编辑的规则数组
+        # @param Rules: 需要编辑的规则数组,基于Uuid唯一id来修改该规则
         # @type Rules: Array
 
         attr_accessor :Rules

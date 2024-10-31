@@ -4028,10 +4028,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param JoinTypeLst: 加入方式枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTypeLst: Array
         # @param CloudTypeLst: 云厂商枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudTypeLst: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

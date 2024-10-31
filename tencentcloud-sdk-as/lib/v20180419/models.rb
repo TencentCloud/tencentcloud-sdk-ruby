@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2024, 9
-        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 9
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 11
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 11
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2659,8 +2659,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2024, 9
-        deprecate :AutomationService=, :none, 2024, 9
+        deprecate :AutomationService, :none, 2024, 11
+        deprecate :AutomationService=, :none, 2024, 11
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -4671,7 +4671,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param RefreshActivityId: 刷新活动ID。
         # @type RefreshActivityId: String
-        # @param ResumeMode: 当前批次刷新失败实例的恢复方式，如不存在失败实例，该参数无效。默认值为RETRY，取值范围如下：<br><li>RETRY: 重试当前批次刷新失败实例</li><li>CONTINUE: 跳过当前批次刷新失败实例
+        # @param ResumeMode: 当前批次刷新失败实例的恢复方式，如不存在失败实例，该参数无效。默认值为RETRY，取值范围如下：<li>RETRY: 重试当前批次刷新失败实例</li><li>CONTINUE: 跳过当前批次刷新失败实例</li>
         # @type ResumeMode: String
 
         attr_accessor :AutoScalingGroupId, :RefreshActivityId, :ResumeMode
@@ -4760,19 +4760,27 @@ module TencentCloud
       class RollingUpdateSettings < TencentCloud::Common::AbstractModel
         # @param BatchNumber: 批次数量。批次数量为大于 0 的正整数，但不能大于待刷新实例数量。
         # @type BatchNumber: Integer
-        # @param BatchPause: 批次间暂停策略。默认值为 Automatic，取值范围如下：<br><li>FIRST_BATCH_PAUSE：第一批次更新完成后暂停</li><li>BATCH_INTERVAL_PAUSE：批次间暂停</li><li>AUTOMATIC：不暂停
+        # @param BatchPause: 批次间暂停策略。默认值为 Automatic，取值范围如下：
+        # <li>FIRST_BATCH_PAUSE：第一批次更新完成后暂停</li>
+        # <li>BATCH_INTERVAL_PAUSE：批次间暂停</li>
+        # <li>AUTOMATIC：不暂停</li>
         # @type BatchPause: String
+        # @param MaxSurge: 最大额外数量。设置该参数后，在滚动更新开始前根据启动配置创建一批按量计费的额外实例，滚动更新完成后销毁额外实例。
+        # 该参数用于保证滚动更新过程中可用实例的数量，最大额外数量不能超过滚动更新单个批次的刷新实例数。回滚流程暂不支持该参数。
+        # @type MaxSurge: Integer
 
-        attr_accessor :BatchNumber, :BatchPause
+        attr_accessor :BatchNumber, :BatchPause, :MaxSurge
 
-        def initialize(batchnumber=nil, batchpause=nil)
+        def initialize(batchnumber=nil, batchpause=nil, maxsurge=nil)
           @BatchNumber = batchnumber
           @BatchPause = batchpause
+          @MaxSurge = maxsurge
         end
 
         def deserialize(params)
           @BatchNumber = params['BatchNumber']
           @BatchPause = params['BatchPause']
+          @MaxSurge = params['MaxSurge']
         end
       end
 

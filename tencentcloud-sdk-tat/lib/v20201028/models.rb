@@ -1499,13 +1499,10 @@ module TencentCloud
       # 用户配额信息。
       class GeneralResourceQuotaSet < TencentCloud::Common::AbstractModel
         # @param ResourceName: 资源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param ResourceQuotaUsed: 已使用额度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceQuotaUsed: Integer
         # @param ResourceQuotaTotal: 总额度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceQuotaTotal: Integer
 
         attr_accessor :ResourceName, :ResourceQuotaUsed, :ResourceQuotaTotal
@@ -2169,39 +2166,29 @@ module TencentCloud
       # 注册码信息。
       class RegisterCodeInfo < TencentCloud::Common::AbstractModel
         # @param RegisterCodeId: 注册码ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisterCodeId: String
         # @param Description: 注册码描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param InstanceNamePrefix: 注册实例名称前缀。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNamePrefix: String
         # @param RegisterLimit: 该注册码允许注册的实例数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisterLimit: Integer
         # @param ExpiredTime: 该注册码的过期时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
         # @param IpAddressRange: 该注册码限制tat_agent只能从IpAddressRange所描述公网出口进行注册。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpAddressRange: String
         # @param Enabled: 该注册码是否可用。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
         # @param RegisteredCount: 该注册码已注册数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisteredCount: Integer
         # @param CreatedTime: 注册码创建时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param UpdatedTime: 注册码最近一次更新时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
 
@@ -2237,37 +2224,27 @@ module TencentCloud
       # 注册实例信息。
       class RegisterInstanceInfo < TencentCloud::Common::AbstractModel
         # @param RegisterCodeId: 注册码ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisterCodeId: String
         # @param InstanceId: 实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param MachineId: 机器ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineId: String
         # @param SystemName: 系统名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemName: String
         # @param HostName: 主机名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param LocalIp: 内网IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalIp: String
         # @param PublicKey: 公钥。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicKey: String
         # @param Status: 托管状态。
         # 返回Online表示实例正在托管，返回Offline表示实例未托管。
         # @type Status: String
         # @param CreatedTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param UpdatedTime: 上次更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
 
         attr_accessor :RegisterCodeId, :InstanceId, :InstanceName, :MachineId, :SystemName, :HostName, :LocalIp, :PublicKey, :Status, :CreatedTime, :UpdatedTime

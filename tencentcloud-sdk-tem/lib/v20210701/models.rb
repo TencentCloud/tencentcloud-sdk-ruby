@@ -518,17 +518,17 @@ module TencentCloud
         # @type K8sVersion: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
-        # @param EnableTswTraceService: 是否开启tsw服务
+        # @param EnableTswTraceService: 是否开启tsw服务。默认值：false
         # @type EnableTswTraceService: Boolean
         # @param Tags: 标签
         # @type Tags: Array
-        # @param EnvType: 环境类型：test、pre、prod
+        # @param EnvType: 环境类型：test、pre、prod。默认值：prod
         # @type EnvType: String
         # @param CreateRegion: 创建环境的region
         # @type CreateRegion: String
-        # @param SetupVpc: 是否创建私有网络
+        # @param SetupVpc: 是否创建私有网络.默认值:true
         # @type SetupVpc: Boolean
-        # @param SetupPrometheus: 是否创建 Prometheus 实例
+        # @param SetupPrometheus: 是否创建 Prometheus 实例。默认值：false
         # @type SetupPrometheus: Boolean
         # @param PrometheusId: prometheus 实例 id
         # @type PrometheusId: String
@@ -1009,6 +1009,9 @@ module TencentCloud
         # @type MemorySpec: Float
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
+        # @param DeployVersion: 部署类型为 IMAGE 时，该参数表示镜像 tag。
+        # 部署类型为 JAR/WAR 时，该参数表示包版本号。
+        # @type DeployVersion: String
         # @param ImgRepo: 镜像仓库
         # @type ImgRepo: String
         # @param VersionDesc: 版本描述信息
@@ -1030,9 +1033,6 @@ module TencentCloud
         # - WAR：通过 war 包部署
         # - IMAGE：通过镜像部署
         # @type DeployMode: String
-        # @param DeployVersion: 部署类型为 IMAGE 时，该参数表示镜像 tag。
-        # 部署类型为 JAR/WAR 时，该参数表示包版本号。
-        # @type DeployVersion: String
         # @param PkgName: 传入内容为 /jar包名字 的形式。也就是在 jar包名字前增加一个/。
 
         # 如上传的 jar 包名字为 demo-1.0.0.jar，那么这里传入内容为：/demo-1.0.0.jar
@@ -1114,14 +1114,15 @@ module TencentCloud
         # @param PreStopEncoded: 停止前执行的脚本，base64 编码
         # @type PreStopEncoded: String
 
-        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics, :TcrInstanceId, :RepoServer, :RepoType, :PostStartEncoded, :PreStopEncoded
+        attr_accessor :ApplicationId, :InitPodNum, :CpuSpec, :MemorySpec, :EnvironmentId, :DeployVersion, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :UseRegistryDefaultConfig, :SettingConfs, :Service, :VersionId, :PostStart, :PreStop, :Liveness, :Readiness, :DeployStrategyConf, :HorizontalAutoscaler, :CronHorizontalAutoscaler, :LogEnable, :ConfEdited, :SpeedUp, :StartupProbe, :OsFlavour, :EnablePrometheusConf, :EnableTracing, :EnableMetrics, :TcrInstanceId, :RepoServer, :RepoType, :PostStartEncoded, :PreStopEncoded
 
-        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil, tcrinstanceid=nil, reposerver=nil, repotype=nil, poststartencoded=nil, prestopencoded=nil)
+        def initialize(applicationid=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, environmentid=nil, deployversion=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, useregistrydefaultconfig=nil, settingconfs=nil, service=nil, versionid=nil, poststart=nil, prestop=nil, liveness=nil, readiness=nil, deploystrategyconf=nil, horizontalautoscaler=nil, cronhorizontalautoscaler=nil, logenable=nil, confedited=nil, speedup=nil, startupprobe=nil, osflavour=nil, enableprometheusconf=nil, enabletracing=nil, enablemetrics=nil, tcrinstanceid=nil, reposerver=nil, repotype=nil, poststartencoded=nil, prestopencoded=nil)
           @ApplicationId = applicationid
           @InitPodNum = initpodnum
           @CpuSpec = cpuspec
           @MemorySpec = memoryspec
           @EnvironmentId = environmentid
+          @DeployVersion = deployversion
           @ImgRepo = imgrepo
           @VersionDesc = versiondesc
           @JvmOpts = jvmopts
@@ -1131,7 +1132,6 @@ module TencentCloud
           @StorageConfs = storageconfs
           @StorageMountConfs = storagemountconfs
           @DeployMode = deploymode
-          @DeployVersion = deployversion
           @PkgName = pkgname
           @JdkVersion = jdkversion
           @SecurityGroupIds = securitygroupids
@@ -1172,6 +1172,7 @@ module TencentCloud
           @CpuSpec = params['CpuSpec']
           @MemorySpec = params['MemorySpec']
           @EnvironmentId = params['EnvironmentId']
+          @DeployVersion = params['DeployVersion']
           @ImgRepo = params['ImgRepo']
           @VersionDesc = params['VersionDesc']
           @JvmOpts = params['JvmOpts']
@@ -1205,7 +1206,6 @@ module TencentCloud
             end
           end
           @DeployMode = params['DeployMode']
-          @DeployVersion = params['DeployVersion']
           @PkgName = params['PkgName']
           @JdkVersion = params['JdkVersion']
           @SecurityGroupIds = params['SecurityGroupIds']

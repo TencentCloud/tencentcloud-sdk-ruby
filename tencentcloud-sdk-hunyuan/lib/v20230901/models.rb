@@ -130,10 +130,12 @@ module TencentCloud
         # 4. 未传值时默认关闭。
         # 5. 开启并搜索到对应的多媒体信息时，会输出对应的多媒体地址，可以定制个性化的图文消息。
         # @type EnableMultimedia: Boolean
+        # @param Seed: 说明：1. 确保模型的输出是可复现的。2. 取值区间为非0正整数，最大值10000。3. 非必要不建议使用，不合理的取值会影响效果。
+        # @type Seed: Integer
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :Seed
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, seed=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -148,6 +150,7 @@ module TencentCloud
           @Citation = citation
           @EnableSpeedSearch = enablespeedsearch
           @EnableMultimedia = enablemultimedia
+          @Seed = seed
         end
 
         def deserialize(params)
@@ -182,6 +185,7 @@ module TencentCloud
           @Citation = params['Citation']
           @EnableSpeedSearch = params['EnableSpeedSearch']
           @EnableMultimedia = params['EnableMultimedia']
+          @Seed = params['Seed']
         end
       end
 

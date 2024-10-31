@@ -371,6 +371,68 @@ module TencentCloud
         end
       end
 
+      # logo参数
+      class LogoParam < TencentCloud::Common::AbstractModel
+        # @param LogoUrl: 水印 Url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogoUrl: String
+        # @param LogoImage: 水印 Base64，Url 和 Base64 二选一传入，如果都提供以 Url 为准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogoImage: String
+        # @param LogoRect: 水印图片位于生成结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogoRect: :class:`Tencentcloud::Vclm.v20240523.models.LogoRect`
+
+        attr_accessor :LogoUrl, :LogoImage, :LogoRect
+
+        def initialize(logourl=nil, logoimage=nil, logorect=nil)
+          @LogoUrl = logourl
+          @LogoImage = logoimage
+          @LogoRect = logorect
+        end
+
+        def deserialize(params)
+          @LogoUrl = params['LogoUrl']
+          @LogoImage = params['LogoImage']
+          unless params['LogoRect'].nil?
+            @LogoRect = LogoRect.new
+            @LogoRect.deserialize(params['LogoRect'])
+          end
+        end
+      end
+
+      # 输入框
+      class LogoRect < TencentCloud::Common::AbstractModel
+        # @param X: 左上角X坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type X: Integer
+        # @param Y: 左上角Y坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Y: Integer
+        # @param Width: 方框宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 方框高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # SubmitImageAnimateJob请求参数结构体
       class SubmitImageAnimateJobRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片格式：支持PNG、JPG、JPEG格式；
@@ -388,16 +450,27 @@ module TencentCloud
         # @type EnableBodyJoins: Boolean
         # @param EnableSegment: 最终视频是否保留原图的背景（该模式对于tuziwu、huajiangwu不生效）
         # @type EnableSegment: Boolean
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为0。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
-        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins, :EnableSegment
+        attr_accessor :ImageUrl, :ImageBase64, :TemplateId, :EnableAudio, :EnableBodyJoins, :EnableSegment, :LogoAdd, :LogoParam
 
-        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil, enablesegment=nil)
+        def initialize(imageurl=nil, imagebase64=nil, templateid=nil, enableaudio=nil, enablebodyjoins=nil, enablesegment=nil, logoadd=nil, logoparam=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @TemplateId = templateid
           @EnableAudio = enableaudio
           @EnableBodyJoins = enablebodyjoins
           @EnableSegment = enablesegment
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
         end
 
         def deserialize(params)
@@ -407,6 +480,11 @@ module TencentCloud
           @EnableAudio = params['EnableAudio']
           @EnableBodyJoins = params['EnableBodyJoins']
           @EnableSegment = params['EnableSegment']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
         end
       end
 
