@@ -22791,43 +22791,30 @@ module TencentCloud
       # 容器安全镜像病毒信息
       class ImageVirus < TencentCloud::Common::AbstractModel
         # @param Path: 路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param RiskLevel: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param Category: 分类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
         # @param VirusName: 病毒名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusName: String
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Desc: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Solution: 解决方案
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Solution: String
         # @param FileType: 文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileType: String
         # @param FileName: 文件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param FileMd5: 文件md5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMd5: String
         # @param FileSize: 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
         # @param FirstScanTime: 首次发现时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstScanTime: String
         # @param LatestScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestScanTime: String
 
         attr_accessor :Path, :RiskLevel, :Category, :VirusName, :Tags, :Desc, :Solution, :FileType, :FileName, :FileMd5, :FileSize, :FirstScanTime, :LatestScanTime

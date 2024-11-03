@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2024, 10
-        deprecate :CosTocken=, :none, 2024, 10
+        deprecate :CosTocken, :none, 2024, 11
+        deprecate :CosTocken=, :none, 2024, 11
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -2084,7 +2084,7 @@ module TencentCloud
         # @param ResourceId: 资源id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
-        # @param EncryptState: 加固状态
+        # @param EncryptState: 加固状态：0等待，1成功，2任务中，3失败，4重试中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptState: Integer
         # @param EncryptErrno: 业务错误码
@@ -2292,6 +2292,9 @@ module TencentCloud
 
       # 加固策略信息
       class PlanInfo < TencentCloud::Common::AbstractModel
+        # @param SetFile: Dex分离，0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetFile: String
         # @param ApkSizeOpt: apk大小优化，0关闭，1开启
         # @type ApkSizeOpt: Integer
         # @param Dex: Dex加固，0关闭，1开启
@@ -2302,12 +2305,8 @@ module TencentCloud
         # @type Bugly: Integer
         # @param AntiRepack: 防止重打包，0关闭，1开启
         # @type AntiRepack: Integer
-        # @param SeperateDex: Dex分离，0关闭，1开启
-        # @type SeperateDex: Integer
         # @param Db: 内存保护，0关闭，1开启
         # @type Db: Integer
-        # @param DexSig: Dex签名校验，0关闭，1开启
-        # @type DexSig: Integer
         # @param SoInfo: So文件信息
         # @type SoInfo: :class:`Tencentcloud::Ms.v20180408.models.SoInfo`
         # @param AntiVMP: vmp，0关闭，1开启
@@ -2316,64 +2315,64 @@ module TencentCloud
         # @type SoType: Array
         # @param AntiLogLeak: 防日志泄漏，0关闭，1开启
         # @type AntiLogLeak: Integer
-        # @param AntiQemuRoot: root检测，0关闭，1开启
-        # @type AntiQemuRoot: Integer
         # @param AntiAssets: 资源防篡改，0关闭，1开启
         # @type AntiAssets: Integer
         # @param AntiScreenshot: 防止截屏，0关闭，1开启
         # @type AntiScreenshot: Integer
         # @param AntiSSL: SSL证书防窃取，0关闭，1开启
         # @type AntiSSL: Integer
-        # @param SetFile: Dex分离，0关闭，1开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SetFile: String
         # @param FileSign: Dex签名校验，0关闭，1开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSign: String
         # @param AntiRoot: root检测，0关闭，1开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AntiRoot: String
+        # @param SeperateDex: Dex分离，0关闭，1开启
+        # @type SeperateDex: Integer
+        # @param DexSig: Dex签名校验，0关闭，1开启
+        # @type DexSig: Integer
+        # @param AntiQemuRoot: root检测，0关闭，1开启
+        # @type AntiQemuRoot: Integer
 
-        attr_accessor :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :SeperateDex, :Db, :DexSig, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiQemuRoot, :AntiAssets, :AntiScreenshot, :AntiSSL, :SetFile, :FileSign, :AntiRoot
+        attr_accessor :SetFile, :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :Db, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiAssets, :AntiScreenshot, :AntiSSL, :FileSign, :AntiRoot, :SeperateDex, :DexSig, :AntiQemuRoot
         extend Gem::Deprecate
-        deprecate :SeperateDex, :none, 2024, 10
-        deprecate :SeperateDex=, :none, 2024, 10
-        deprecate :DexSig, :none, 2024, 10
-        deprecate :DexSig=, :none, 2024, 10
-        deprecate :AntiQemuRoot, :none, 2024, 10
-        deprecate :AntiQemuRoot=, :none, 2024, 10
+        deprecate :SeperateDex, :none, 2024, 11
+        deprecate :SeperateDex=, :none, 2024, 11
+        deprecate :DexSig, :none, 2024, 11
+        deprecate :DexSig=, :none, 2024, 11
+        deprecate :AntiQemuRoot, :none, 2024, 11
+        deprecate :AntiQemuRoot=, :none, 2024, 11
 
-        def initialize(apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, seperatedex=nil, db=nil, dexsig=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiqemuroot=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, setfile=nil, filesign=nil, antiroot=nil)
+        def initialize(setfile=nil, apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, db=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, filesign=nil, antiroot=nil, seperatedex=nil, dexsig=nil, antiqemuroot=nil)
+          @SetFile = setfile
           @ApkSizeOpt = apksizeopt
           @Dex = dex
           @So = so
           @Bugly = bugly
           @AntiRepack = antirepack
-          @SeperateDex = seperatedex
           @Db = db
-          @DexSig = dexsig
           @SoInfo = soinfo
           @AntiVMP = antivmp
           @SoType = sotype
           @AntiLogLeak = antilogleak
-          @AntiQemuRoot = antiqemuroot
           @AntiAssets = antiassets
           @AntiScreenshot = antiscreenshot
           @AntiSSL = antissl
-          @SetFile = setfile
           @FileSign = filesign
           @AntiRoot = antiroot
+          @SeperateDex = seperatedex
+          @DexSig = dexsig
+          @AntiQemuRoot = antiqemuroot
         end
 
         def deserialize(params)
+          @SetFile = params['SetFile']
           @ApkSizeOpt = params['ApkSizeOpt']
           @Dex = params['Dex']
           @So = params['So']
           @Bugly = params['Bugly']
           @AntiRepack = params['AntiRepack']
-          @SeperateDex = params['SeperateDex']
           @Db = params['Db']
-          @DexSig = params['DexSig']
           unless params['SoInfo'].nil?
             @SoInfo = SoInfo.new
             @SoInfo.deserialize(params['SoInfo'])
@@ -2381,13 +2380,14 @@ module TencentCloud
           @AntiVMP = params['AntiVMP']
           @SoType = params['SoType']
           @AntiLogLeak = params['AntiLogLeak']
-          @AntiQemuRoot = params['AntiQemuRoot']
           @AntiAssets = params['AntiAssets']
           @AntiScreenshot = params['AntiScreenshot']
           @AntiSSL = params['AntiSSL']
-          @SetFile = params['SetFile']
           @FileSign = params['FileSign']
           @AntiRoot = params['AntiRoot']
+          @SeperateDex = params['SeperateDex']
+          @DexSig = params['DexSig']
+          @AntiQemuRoot = params['AntiQemuRoot']
         end
       end
 
@@ -2607,10 +2607,38 @@ module TencentCloud
         # @type Errno: String
         # @param ErrMsg: 对应errno的错误信息描述
         # @type ErrMsg: String
+        # @param ErrNo: 应用错误码：0、1-表示正常；
 
-        attr_accessor :Banner, :BoutiqueRecommand, :FloatWindows, :IntegralWall, :Md5, :NotifyBar, :Official, :PluginList, :OptPluginList, :SafeType, :Sid, :SoftName, :Spot, :VirusName, :VirusDesc, :RepackageStatus, :Errno, :ErrMsg
+        # 2表示System Error(engine analysis error).
 
-        def initialize(banner=nil, boutiquerecommand=nil, floatwindows=nil, integralwall=nil, md5=nil, notifybar=nil, official=nil, pluginlist=nil, optpluginlist=nil, safetype=nil, sid=nil, softname=nil, spot=nil, virusname=nil, virusdesc=nil, repackagestatus=nil, errno=nil, errmsg=nil)
+        # 3表示App analysis error, please confirm it.
+
+        # 4表示App have not cert, please confirm it.
+
+        # 5表示App size is zero, please confirm it.
+
+        # 6表示App have not package name, please confirm it.
+
+        # 7表示App build time is empty, please confirm it.
+
+        # 8表示App have not valid cert, please confirm it.
+
+        # 99表示Other error.
+
+        # 1000表示App downloadlink download fail, please confirm it.
+
+        # 1001表示APP md5 different between real md5, please confirm it.
+
+        # 1002表示App md5 uncollect, please offer downloadlink.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrNo: String
+
+        attr_accessor :Banner, :BoutiqueRecommand, :FloatWindows, :IntegralWall, :Md5, :NotifyBar, :Official, :PluginList, :OptPluginList, :SafeType, :Sid, :SoftName, :Spot, :VirusName, :VirusDesc, :RepackageStatus, :Errno, :ErrMsg, :ErrNo
+        extend Gem::Deprecate
+        deprecate :Errno, :none, 2024, 11
+        deprecate :Errno=, :none, 2024, 11
+
+        def initialize(banner=nil, boutiquerecommand=nil, floatwindows=nil, integralwall=nil, md5=nil, notifybar=nil, official=nil, pluginlist=nil, optpluginlist=nil, safetype=nil, sid=nil, softname=nil, spot=nil, virusname=nil, virusdesc=nil, repackagestatus=nil, errmsg=nil, errno=nil)
           @Banner = banner
           @BoutiqueRecommand = boutiquerecommand
           @FloatWindows = floatwindows
@@ -2627,8 +2655,8 @@ module TencentCloud
           @VirusName = virusname
           @VirusDesc = virusdesc
           @RepackageStatus = repackagestatus
-          @Errno = errno
           @ErrMsg = errmsg
+          @ErrNo = errno
         end
 
         def deserialize(params)
@@ -2662,8 +2690,8 @@ module TencentCloud
           @VirusName = params['VirusName']
           @VirusDesc = params['VirusDesc']
           @RepackageStatus = params['RepackageStatus']
-          @Errno = params['Errno']
           @ErrMsg = params['ErrMsg']
+          @ErrNo = params['ErrNo']
         end
       end
 

@@ -1963,9 +1963,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param InstanceId: 待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。
         # @type InstanceId: String
-        # @param BeginTime: 开始时间，格式如：2017-02-08 16:46:34。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表。
+        # @param BeginTime: 开始时间，格式如：2017-02-08 16:46:34。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。
         # @type BeginTime: String
-        # @param EndTime: 结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表。
+        # @param EndTime: 结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。
         # @type EndTime: String
         # @param Status: 备份任务的状态：
         # 1：备份在流程中。
@@ -2207,13 +2207,13 @@ module TencentCloud
 
       # DescribeInstanceEvents请求参数结构体
       class DescribeInstanceEventsRequest < TencentCloud::Common::AbstractModel
-        # @param ExecutionStartDate: 配置查询事件执行计划的起始日期。
+        # @param ExecutionStartDate: 配置查询事件执行计划的起始日期，查询日期最大跨度30天。
         # @type ExecutionStartDate: String
-        # @param ExecutionEndDate: 配置查询事件执行计划的结束日期。
+        # @param ExecutionEndDate: 配置查询事件执行计划的结束日期，查询日期最大跨度30天。
         # @type ExecutionEndDate: String
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param PageSize: 输出每页显示事件的数量，默认：10。
+        # @param PageSize: 输出每页显示事件的数量，默认：10，最大100。
         # @type PageSize: Integer
         # @param PageNo: 配置查询事件的输出页码，即支持根据PageNo（页码）与 PageSize （每页输出数量）查询某一页的事件。默认：1。
         # @type PageNo: Integer
@@ -3693,15 +3693,15 @@ module TencentCloud
       class DescribeProxySlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BeginTime: 慢查询的开始时间。
+        # @param BeginTime: 慢查询的开始时间，查询时间最大跨度30天。
         # @type BeginTime: String
-        # @param EndTime: 慢查询的结束时间。
+        # @param EndTime: 慢查询的结束时间，查询时间最大跨度30天。
         # @type EndTime: String
         # @param MinQueryTime: 慢查询阈值，单位：毫秒。
         # @type MinQueryTime: Integer
-        # @param Limit: 分页大小。默认为 20，取值范围[20,1000]。
+        # @param Limit: 每页输出的任务列表大小，默认为 20，最多输出100条。
         # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍。
+        # @param Offset: 分页偏移量，取Limit整数倍，计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset
@@ -4050,13 +4050,13 @@ module TencentCloud
       class DescribeSlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BeginTime: 预查询慢日志的起始时间。
+        # @param BeginTime: 预查询慢日志的起始时间，查询时间最大跨度30天。
         # @type BeginTime: String
-        # @param EndTime: 预查询慢日志的结束时间。
+        # @param EndTime: 预查询慢日志的结束时间，查询时间最大跨度30天
         # @type EndTime: String
         # @param MinQueryTime: 慢查询平均执行时间阈值，单位：毫秒。
         # @type MinQueryTime: Integer
-        # @param Limit: 每个页面展示的慢查询条数，默认值为20。取值范围：[20,1000]。
+        # @param Limit: 每个页面展示的慢查询条数，默认值为20，最大100。
         # @type Limit: Integer
         # @param Offset: 慢查询条数的偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
@@ -4257,9 +4257,9 @@ module TencentCloud
         # - FLOW_MODIFY_PROXY_NUM："069"，加（减）Proxy 节点。
         # - FLOW_MODIFYBACKUPMOD："070"，变更实例备份模式。
         # @type TaskTypes: Array
-        # @param BeginTime: 任务执行的起始时间。格式如：2021-12-30 00:00:00。
+        # @param BeginTime: 任务执行的起始时间，格式如：2021-12-30 00:00:00，支持查询近30天内数据。
         # @type BeginTime: String
-        # @param EndTime: 任务运行的终止时间。格式如：2021-12-30 20:59:35
+        # @param EndTime: 任务运行的终止时间。格式如：2021-12-30 20:59:35，支持查询近30天内数据。
         # @type EndTime: String
         # @param TaskStatus: 该参数为内部使用，请忽略。
         # @type TaskStatus: Array

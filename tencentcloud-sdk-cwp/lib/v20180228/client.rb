@@ -4242,6 +4242,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已无效
+
         # 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
 
         # @param request: Request instance for DescribeComponentStatistics.

@@ -5176,8 +5176,8 @@ module TencentCloud
 
         attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis, :Page
         extend Gem::Deprecate
-        deprecate :AdmissionDignosis, :none, 2024, 10
-        deprecate :AdmissionDignosis=, :none, 2024, 10
+        deprecate :AdmissionDignosis, :none, 2024, 11
+        deprecate :AdmissionDignosis=, :none, 2024, 11
 
         def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil, admissiondiagnosis=nil, page=nil)
           @AdmissionTime = admissiontime
@@ -5945,8 +5945,8 @@ module TencentCloud
 
         attr_accessor :TableIndictors, :Version, :TableIndicators, :Page
         extend Gem::Deprecate
-        deprecate :TableIndictors, :none, 2024, 10
-        deprecate :TableIndictors=, :none, 2024, 10
+        deprecate :TableIndictors, :none, 2024, 11
+        deprecate :TableIndictors=, :none, 2024, 11
 
         def initialize(tableindictors=nil, version=nil, tableindicators=nil, page=nil)
           @TableIndictors = tableindictors
@@ -7784,16 +7784,23 @@ module TencentCloud
         # @param PartDetail: 部位详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartDetail: :class:`Tencentcloud::Mrs.v20200910.models.PartDesc`
+        # @param PartDetailList: 部位详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartDetailList: Array
 
-        attr_accessor :Part, :PartDirection, :Tissue, :TissueDirection, :Upper, :PartDetail
+        attr_accessor :Part, :PartDirection, :Tissue, :TissueDirection, :Upper, :PartDetail, :PartDetailList
+        extend Gem::Deprecate
+        deprecate :PartDetail, :none, 2024, 11
+        deprecate :PartDetail=, :none, 2024, 11
 
-        def initialize(part=nil, partdirection=nil, tissue=nil, tissuedirection=nil, upper=nil, partdetail=nil)
+        def initialize(part=nil, partdirection=nil, tissue=nil, tissuedirection=nil, upper=nil, partdetail=nil, partdetaillist=nil)
           @Part = part
           @PartDirection = partdirection
           @Tissue = tissue
           @TissueDirection = tissuedirection
           @Upper = upper
           @PartDetail = partdetail
+          @PartDetailList = partdetaillist
         end
 
         def deserialize(params)
@@ -7805,6 +7812,14 @@ module TencentCloud
           unless params['PartDetail'].nil?
             @PartDetail = PartDesc.new
             @PartDetail.deserialize(params['PartDetail'])
+          end
+          unless params['PartDetailList'].nil?
+            @PartDetailList = []
+            params['PartDetailList'].each do |i|
+              partdesc_tmp = PartDesc.new
+              partdesc_tmp.deserialize(i)
+              @PartDetailList << partdesc_tmp
+            end
           end
         end
       end
@@ -8289,8 +8304,8 @@ module TencentCloud
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2024, 10
-        deprecate :IsthmusThicknese=, :none, 2024, 10
+        deprecate :IsthmusThicknese, :none, 2024, 11
+        deprecate :IsthmusThicknese=, :none, 2024, 11
 
         def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil, isthmusthickness=nil)
           @Part = part
@@ -8881,8 +8896,8 @@ module TencentCloud
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
         extend Gem::Deprecate
-        deprecate :MenstruallHistoryText, :none, 2024, 10
-        deprecate :MenstruallHistoryText=, :none, 2024, 10
+        deprecate :MenstruallHistoryText, :none, 2024, 11
+        deprecate :MenstruallHistoryText=, :none, 2024, 11
 
         def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil, menstrualhistorytext=nil)
           @IncisionHealingText = incisionhealingtext
@@ -9480,8 +9495,8 @@ module TencentCloud
 
         attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
         extend Gem::Deprecate
-        deprecate :Nation, :none, 2024, 10
-        deprecate :Nation=, :none, 2024, 10
+        deprecate :Nation, :none, 2024, 11
+        deprecate :Nation=, :none, 2024, 11
 
         def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil, bedno=nil)
           @Name = name
@@ -11934,8 +11949,8 @@ module TencentCloud
 
         attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays, :AdmissionCondition
         extend Gem::Deprecate
-        deprecate :DmissionCondition, :none, 2024, 10
-        deprecate :DmissionCondition=, :none, 2024, 10
+        deprecate :DmissionCondition, :none, 2024, 11
+        deprecate :DmissionCondition=, :none, 2024, 11
 
         def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil, admissioncondition=nil)
           @DmissionCondition = dmissioncondition
@@ -12518,8 +12533,8 @@ module TencentCloud
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2024, 10
-        deprecate :IsthmusThicknese=, :none, 2024, 10
+        deprecate :IsthmusThicknese, :none, 2024, 11
+        deprecate :IsthmusThicknese=, :none, 2024, 11
 
         def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil, isthmusthickness=nil)
           @Type = type

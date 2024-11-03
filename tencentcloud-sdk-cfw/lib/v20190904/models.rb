@@ -22,73 +22,52 @@ module TencentCloud
         # @param Id: 规则id
         # @type Id: Integer
         # @param SourceIp: 访问源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIp: String
         # @param TargetIp: 访问目的
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetIp: String
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param Strategy: 策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Strategy: Integer
         # @param Detail: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: String
         # @param Count: 命中次数
         # @type Count: Integer
         # @param OrderIndex: 执行顺序
         # @type OrderIndex: Integer
         # @param LogId: 告警规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogId: String
         # @param Status: 规则开关状态 1打开 0关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param SrcType: 规则源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcType: Integer
         # @param DstType: 规则目的类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstType: Integer
         # @param Uuid: 规则唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
         # @param Invalid: 规则有效性
         # 1 有效
         # 0 无效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Invalid: Integer
         # @param IsRegion: 是否地域规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRegion: Integer
         # @param CloudCode: 云厂商代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudCode: String
         # @param AutoTask: 自动化助手信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoTask: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param RegionCode: 地域码信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionCode: String
         # @param Country: 国家代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: Integer
         # @param City: 城市代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: Integer
         # @param RegName1: 国家名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegName1: String
         # @param RegName2: 城市名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegName2: String
 
         attr_accessor :Id, :SourceIp, :TargetIp, :Protocol, :Port, :Strategy, :Detail, :Count, :OrderIndex, :LogId, :Status, :SrcType, :DstType, :Uuid, :Invalid, :IsRegion, :CloudCode, :AutoTask, :InstanceName, :RegionCode, :Country, :City, :RegName1, :RegName2
@@ -345,7 +324,7 @@ module TencentCloud
         # @type IsDelay: Integer
         # @param From: 来源 默认空 覆盖导入是 batch_import_cover
         # @type From: String
-        # @param IsUseId: 是否使用id 默认不需要
+        # @param IsUseId: 是否复用rule id，1为是，默认不需要
         # @type IsUseId: Integer
 
         attr_accessor :Data, :Type, :ClientToken, :IsDelay, :From, :IsUseId
@@ -380,8 +359,7 @@ module TencentCloud
       class AddEnterpriseSecurityGroupRulesResponse < TencentCloud::Common::AbstractModel
         # @param Status: 状态值，0：添加成功，非0：添加失败
         # @type Status: Integer
-        # @param Rules: 规则uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Rules: 添加成功的规则详情
         # @type Rules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -525,34 +503,24 @@ module TencentCloud
       # 企业安全组关联实例信息
       class AssociatedInstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param Type: 实例类型，3是cvm实例,4是clb实例,5是eni实例,6是云数据库
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param VpcId: 私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param VpcName: 私有网络名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param PublicIp: 公网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param Ip: 内网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param SecurityGroupCount: 关联安全组数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupCount: Integer
         # @param SecurityGroupRuleCount: 关联安全组规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupRuleCount: Integer
         # @param CdbId: 关联数据库代理Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdbId: String
 
         attr_accessor :InstanceId, :InstanceName, :Type, :VpcId, :VpcName, :PublicIp, :Ip, :SecurityGroupCount, :SecurityGroupRuleCount, :CdbId
@@ -586,59 +554,51 @@ module TencentCloud
 
       # 封禁列表和放通列表结构体
       class BanAndAllowRule < TencentCloud::Common::AbstractModel
-        # @param Ioc: 封禁和放通对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Ioc: String
-        # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DirectionList: String
-        # @param EndTime: 规则截止时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type EndTime: String
         # @param Comment: 规则评论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param CustomRule: 自定义白名单规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: :class:`Tencentcloud::Cfw.v20190904.models.CustomWhiteRule`
+        # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的
+        # @type DirectionList: String
+        # @param EndTime: 规则截止时间
+        # @type EndTime: String
         # @param FwType: 放通的引擎: 1针对互联网边界 2针对nat防火墙 4针对vpc防火墙
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwType: Integer
+        # @param Ioc: 封禁和放通对象
+        # @type Ioc: String
 
-        attr_accessor :Ioc, :DirectionList, :EndTime, :Comment, :CustomRule, :FwType
+        attr_accessor :Comment, :CustomRule, :DirectionList, :EndTime, :FwType, :Ioc
 
-        def initialize(ioc=nil, directionlist=nil, endtime=nil, comment=nil, customrule=nil, fwtype=nil)
-          @Ioc = ioc
-          @DirectionList = directionlist
-          @EndTime = endtime
+        def initialize(comment=nil, customrule=nil, directionlist=nil, endtime=nil, fwtype=nil, ioc=nil)
           @Comment = comment
           @CustomRule = customrule
+          @DirectionList = directionlist
+          @EndTime = endtime
           @FwType = fwtype
+          @Ioc = ioc
         end
 
         def deserialize(params)
-          @Ioc = params['Ioc']
-          @DirectionList = params['DirectionList']
-          @EndTime = params['EndTime']
           @Comment = params['Comment']
           unless params['CustomRule'].nil?
             @CustomRule = CustomWhiteRule.new
             @CustomRule.deserialize(params['CustomRule'])
           end
+          @DirectionList = params['DirectionList']
+          @EndTime = params['EndTime']
           @FwType = params['FwType']
+          @Ioc = params['Ioc']
         end
       end
 
       # 封禁列表和放通列表结构体
       class BanAndAllowRuleDel < TencentCloud::Common::AbstractModel
         # @param Ioc: 封禁和放通对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ioc: String
         # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的 （DeleteBlockIgnoreRuleNew接口，该字段无效）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectionList: String
         # @param RuleType: 规则类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # RuleType: 1黑名单 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则
         # @type RuleType: Integer
 
         attr_accessor :Ioc, :DirectionList, :RuleType
@@ -659,13 +619,10 @@ module TencentCloud
       # 规则关联的beta任务
       class BetaInfoByACL < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param LastTime: 上次执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTime: String
 
         attr_accessor :TaskId, :TaskName, :LastTime
@@ -686,76 +643,52 @@ module TencentCloud
       # 入侵防御放通封禁规则
       class BlockIgnoreRule < TencentCloud::Common::AbstractModel
         # @param RuleType: 规则类型，取值：1 封禁，2外部IP，3域名，4情报，5assets，6自定义策略，7入侵防御规则id （2-7属于白名单类型）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: Integer
         # @param Ioc: 规则ip或白名单内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ioc: String
         # @param IocName: 资产实例名称、自定义策略名称等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IocName: String
         # @param IocInfo: 白名单信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IocInfo: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param IP: IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
         # @param Level: 危险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param EventName: 来源事件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventName: String
         # @param Direction: 方向：1入站，0出站
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Direction: Integer
         # @param DirectionList: 所有方向聚合成字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectionList: String
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Address: 地理位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param Action: 规则类型：1封禁，2放通
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: Integer
         # @param StartTime: 规则生效开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 规则生效结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param IgnoreReason: 忽略原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreReason: String
         # @param Source: 安全事件来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param UniqueId: 规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UniqueId: String
         # @param MatchTimes: 规则命中次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchTimes: Integer
         # @param Country: 国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
         # @param Comment: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param LastHitTime: 上次命中时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastHitTime: String
         # @param CustomRule: 自定义规则细节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: :class:`Tencentcloud::Cfw.v20190904.models.CustomWhiteRule`
         # @param FwType: 1 border 2 nat 4 vpc 8 border-serial
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwType: Integer
 
         attr_accessor :RuleType, :Ioc, :IocName, :IocInfo, :Domain, :IP, :Level, :EventName, :Direction, :DirectionList, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment, :LastHitTime, :CustomRule, :FwType
@@ -858,8 +791,6 @@ module TencentCloud
       class CommonFilter < TencentCloud::Common::AbstractModel
         # @param Name: 检索的键值
         # @type Name: String
-        # @param Values: 检索的值，各检索值间为OR关系
-        # @type Values: Array
         # @param OperatorType: 枚举类型，代表Name与Values之间的匹配关系
         # enum FilterOperatorType {
         #     //等于
@@ -880,19 +811,21 @@ module TencentCloud
         #     FILTER_OPERATOR_TYPE_FUZZINESS = 9;
         # }
         # @type OperatorType: Integer
+        # @param Values: 检索的值，各检索值间为OR关系
+        # @type Values: Array
 
-        attr_accessor :Name, :Values, :OperatorType
+        attr_accessor :Name, :OperatorType, :Values
 
-        def initialize(name=nil, values=nil, operatortype=nil)
+        def initialize(name=nil, operatortype=nil, values=nil)
           @Name = name
-          @Values = values
           @OperatorType = operatortype
+          @Values = values
         end
 
         def deserialize(params)
           @Name = params['Name']
-          @Values = params['Values']
           @OperatorType = params['OperatorType']
+          @Values = params['Values']
         end
       end
 
@@ -952,7 +885,6 @@ module TencentCloud
         # @param Status: 状态值，0:操作成功
         # @type Status: Integer
         # @param Info: 返回多余的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1659,7 +1591,6 @@ module TencentCloud
       # CreateNatFwInstanceWithDomain返回参数结构体
       class CreateNatFwInstanceWithDomainResponse < TencentCloud::Common::AbstractModel
         # @param CfwInsId: nat实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwInsId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1947,7 +1878,6 @@ module TencentCloud
       # CreateVpcFwGroup返回参数结构体
       class CreateVpcFwGroupResponse < TencentCloud::Common::AbstractModel
         # @param FwGroupId: 防火墙组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1967,33 +1897,29 @@ module TencentCloud
 
       # 自定义白名单规则
       class CustomWhiteRule < TencentCloud::Common::AbstractModel
-        # @param SrcIP: 访问源
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SrcIP: String
         # @param DstIP: 访问目的
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstIP: String
-        # @param IdsRuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IdsRuleName: String
         # @param IdsRuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdsRuleId: String
+        # @param IdsRuleName: 规则名称
+        # @type IdsRuleName: String
+        # @param SrcIP: 访问源
+        # @type SrcIP: String
 
-        attr_accessor :SrcIP, :DstIP, :IdsRuleName, :IdsRuleId
+        attr_accessor :DstIP, :IdsRuleId, :IdsRuleName, :SrcIP
 
-        def initialize(srcip=nil, dstip=nil, idsrulename=nil, idsruleid=nil)
-          @SrcIP = srcip
+        def initialize(dstip=nil, idsruleid=nil, idsrulename=nil, srcip=nil)
           @DstIP = dstip
-          @IdsRuleName = idsrulename
           @IdsRuleId = idsruleid
+          @IdsRuleName = idsrulename
+          @SrcIP = srcip
         end
 
         def deserialize(params)
-          @SrcIP = params['SrcIP']
           @DstIP = params['DstIP']
-          @IdsRuleName = params['IdsRuleName']
           @IdsRuleId = params['IdsRuleId']
+          @IdsRuleName = params['IdsRuleName']
+          @SrcIP = params['SrcIP']
         end
       end
 
@@ -2094,7 +2020,6 @@ module TencentCloud
         # @param Status: 状态值 0: 删除成功, !0: 删除失败
         # @type Status: Integer
         # @param Info: 返回多余的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2179,7 +2104,6 @@ module TencentCloud
         # @param Status: 状态值 0: 修改成功, 非0: 修改失败
         # @type Status: Integer
         # @param Info: 删除了几条访问控制规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2478,7 +2402,6 @@ module TencentCloud
         # @param Status: 状态值，0：成功，非0：失败
         # @type Status: Integer
         # @param Info: 返回多余的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2543,102 +2466,71 @@ module TencentCloud
       # 访问控制列表对象
       class DescAcItem < TencentCloud::Common::AbstractModel
         # @param SourceContent: 访问源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceContent: String
         # @param TargetContent: 访问目的
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetContent: String
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleAction: String
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Count: 命中次数
         # @type Count: Integer
         # @param OrderIndex: 执行顺序
         # @type OrderIndex: Integer
         # @param SourceType: 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
         # @param TargetType: 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为 ip,net,domain,template,location,dnsparse
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
         # @param Uuid: 规则对应的唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: Integer
         # @param Invalid: 规则有效性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Invalid: Integer
         # @param IsRegion: 0为正常规则,1为地域规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRegion: Integer
         # @param CountryCode: 国家id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CountryCode: Integer
         # @param CityCode: 城市id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CityCode: Integer
         # @param CountryName: 国家名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CountryName: String
         # @param CityName: 省名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CityName: String
         # @param CloudCode: 云厂商code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudCode: String
         # @param IsCloud: 0为正常规则,1为云厂商规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCloud: Integer
         # @param Enable: 规则状态，true表示启用，false表示禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: String
         # @param Direction: 规则方向：1，入向；0，出向
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Direction: Integer
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param InternalUuid: 内部使用的uuid，一般情况下不会使用到该字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalUuid: Integer
         # @param Status: 规则状态，查询规则命中详情时该字段有效，0：新增，1: 已删除, 2: 编辑删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param BetaList: 关联任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
         # @param Scope: （1）互联网边界防火墙，生效范围：serial，串行；side，旁路；all，全局；
         # （2）NAT边界防火墙：ALL，全局生效；ap-guangzhou，生效的地域；cfwnat-xxx，生效基于实例维度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scope: String
         # @param ScopeDesc: 生效范围描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScopeDesc: String
         # @param InternetBorderUuid: 互联网边界防火墙使用的内部规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetBorderUuid: String
         # @param ParamTemplateName: 协议端口组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateName: String
         # @param ParamTemplateId: 协议端口组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateId: String
         # @param SourceName: 访问源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceName: String
         # @param TargetName: 访问目的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetName: String
         # @param LastHitTime: 规则最近命中时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastHitTime: String
 
         attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime
@@ -2726,34 +2618,24 @@ module TencentCloud
       # NAT防火墙Dnat规则列表
       class DescNatDnatRule < TencentCloud::Common::AbstractModel
         # @param Id: id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param IpProtocol: 网络协议，可选值：TCP、UDP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpProtocol: String
         # @param PublicIpAddress: 弹性IP。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpAddress: String
         # @param PublicPort: 公网端口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicPort: Integer
         # @param PrivateIpAddress: 内网地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIpAddress: String
         # @param PrivatePort: 内网端口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivatePort: Integer
         # @param Description: NAT防火墙转发规则描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param IsReferenced: 是否被关联引用，如被远程运维使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsReferenced: Integer
         # @param FwInsId: 所属防火墙实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsId: String
         # @param NatGwId: 关联的nat网关Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatGwId: String
 
         attr_accessor :Id, :IpProtocol, :PublicIpAddress, :PublicPort, :PrivateIpAddress, :PrivatePort, :Description, :IsReferenced, :FwInsId, :NatGwId
@@ -2846,7 +2728,6 @@ module TencentCloud
         # @param AllTotal: 不算筛选条数的总条数
         # @type AllTotal: Integer
         # @param Enable: 访问控制规则全部启用/全部停用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2891,9 +2772,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 检索的截止时间，可不传
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: 排序所用到的字段，默认为sequence
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Index, :Filters, :StartTime, :EndTime, :Order, :By
@@ -2933,7 +2814,6 @@ module TencentCloud
         # @param Total: 总条数
         # @type Total: Integer
         # @param Data: nat访问控制列表数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param AllTotal: 未过滤的总条数
         # @type AllTotal: Integer
@@ -3155,10 +3035,8 @@ module TencentCloud
       # DescribeAssociatedInstanceList返回参数结构体
       class DescribeAssociatedInstanceListResponse < TencentCloud::Common::AbstractModel
         # @param Total: 实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Data: 实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3187,45 +3065,45 @@ module TencentCloud
 
       # DescribeBlockByIpTimesList请求参数结构体
       class DescribeBlockByIpTimesListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
-        # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
         # @param Ip: ip查询条件
         # @type Ip: String
-        # @param Zone: 地域
-        # @type Zone: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
         # @param Direction: 方向
         # @type Direction: String
-        # @param Source: 来源
-        # @type Source: String
         # @param EdgeId: vpc间防火墙开关边id
         # @type EdgeId: String
         # @param LogSource: 日志来源 move：vpc间防火墙
         # @type LogSource: String
+        # @param Source: 来源
+        # @type Source: String
+        # @param Zone: 地域
+        # @type Zone: String
 
-        attr_accessor :StartTime, :EndTime, :Ip, :Zone, :Direction, :Source, :EdgeId, :LogSource
+        attr_accessor :EndTime, :Ip, :StartTime, :Direction, :EdgeId, :LogSource, :Source, :Zone
 
-        def initialize(starttime=nil, endtime=nil, ip=nil, zone=nil, direction=nil, source=nil, edgeid=nil, logsource=nil)
-          @StartTime = starttime
+        def initialize(endtime=nil, ip=nil, starttime=nil, direction=nil, edgeid=nil, logsource=nil, source=nil, zone=nil)
           @EndTime = endtime
           @Ip = ip
-          @Zone = zone
+          @StartTime = starttime
           @Direction = direction
-          @Source = source
           @EdgeId = edgeid
           @LogSource = logsource
+          @Source = source
+          @Zone = zone
         end
 
         def deserialize(params)
-          @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Ip = params['Ip']
-          @Zone = params['Zone']
+          @StartTime = params['StartTime']
           @Direction = params['Direction']
-          @Source = params['Source']
           @EdgeId = params['EdgeId']
           @LogSource = params['LogSource']
+          @Source = params['Source']
+          @Zone = params['Zone']
         end
       end
 
@@ -3350,31 +3228,31 @@ module TencentCloud
 
       # DescribeBlockStaticList请求参数结构体
       class DescribeBlockStaticListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
-        # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
         # @param QueryType: 列表类型，只能是下面三种之一：port、address、ip
         # @type QueryType: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
         # @param Top: top数
         # @type Top: Integer
         # @param SearchValue: 查询条件
         # @type SearchValue: String
 
-        attr_accessor :StartTime, :EndTime, :QueryType, :Top, :SearchValue
+        attr_accessor :EndTime, :QueryType, :StartTime, :Top, :SearchValue
 
-        def initialize(starttime=nil, endtime=nil, querytype=nil, top=nil, searchvalue=nil)
-          @StartTime = starttime
+        def initialize(endtime=nil, querytype=nil, starttime=nil, top=nil, searchvalue=nil)
           @EndTime = endtime
           @QueryType = querytype
+          @StartTime = starttime
           @Top = top
           @SearchValue = searchvalue
         end
 
         def deserialize(params)
-          @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @QueryType = params['QueryType']
+          @StartTime = params['StartTime']
           @Top = params['Top']
           @SearchValue = params['SearchValue']
         end
@@ -3806,16 +3684,12 @@ module TencentCloud
       # DescribeFwEdgeIps返回参数结构体
       class DescribeFwEdgeIpsResponse < TencentCloud::Common::AbstractModel
         # @param Data: ip 开关列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: ip 开关列表个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RegionLst: 地域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionLst: Array
         # @param InstanceTypeLst: 实例类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeLst: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3895,11 +3769,9 @@ module TencentCloud
 
       # DescribeFwGroupInstanceInfo返回参数结构体
       class DescribeFwGroupInstanceInfoResponse < TencentCloud::Common::AbstractModel
-        # @param VpcFwGroupLst: 防火墙(组)
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param VpcFwGroupLst: 防火墙(组)详细信息
         # @type VpcFwGroupLst: Array
         # @param Total: 防火墙(组)个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4183,7 +4055,6 @@ module TencentCloud
         # @param ReturnMsg: 返回信息  success 成功 其他 不成功
         # @type ReturnMsg: String
         # @param AppProtocolList: 七层协议，NTA日志有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppProtocolList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4217,15 +4088,15 @@ module TencentCloud
         # @type Offset: Integer
         # @param Index: 需要查询的索引，特定场景使用，可不填
         # @type Index: String
-        # @param Filters: 过滤条件组合
+        # @param Filters: 过滤条件组合，Direction 为0时表述查询出向规则，为1时表示查询入向规则
         # @type Filters: Array
         # @param StartTime: 检索的起始时间，可不传
         # @type StartTime: String
         # @param EndTime: 检索的截止时间，可不传
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: 排序所用到的字段，默认为sequence
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Index, :Filters, :StartTime, :EndTime, :Order, :By
@@ -4265,7 +4136,6 @@ module TencentCloud
         # @param Total: 总条数
         # @type Total: Integer
         # @param Data: nat访问控制列表数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param AllTotal: 未过滤的总条数
         # @type AllTotal: Integer
@@ -4310,9 +4180,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 检索的截止时间，可不传
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，可不传
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: 排序所用到的字段，可不传
         # @type By: String
 
         attr_accessor :Index, :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
@@ -4350,7 +4220,6 @@ module TencentCloud
       # DescribeNatFwDnatRule返回参数结构体
       class DescribeNatFwDnatRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: Dnat规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 列表总数
         # @type Total: Integer
@@ -4392,17 +4261,13 @@ module TencentCloud
 
       # DescribeNatFwInfoCount返回参数结构体
       class DescribeNatFwInfoCountResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnMsg: 返回参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ReturnMsg: 返回参数 success 成功 failed 失败
         # @type ReturnMsg: String
-        # @param NatFwInsCount: 当前租户的nat实例个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param NatFwInsCount: 当前租户的nat防火墙实例个数
         # @type NatFwInsCount: Integer
-        # @param SubnetCount: 当前租户接入子网个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SubnetCount: 当前租户接入防火墙的子网个数
         # @type SubnetCount: Integer
-        # @param OpenSwitchCount: 打开开关个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param OpenSwitchCount: 打开NAT防火墙开关个数
         # @type OpenSwitchCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4478,7 +4343,6 @@ module TencentCloud
       # DescribeNatFwInstanceWithRegion返回参数结构体
       class DescribeNatFwInstanceWithRegionResponse < TencentCloud::Common::AbstractModel
         # @param NatinsLst: 实例数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatinsLst: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4537,10 +4401,8 @@ module TencentCloud
       # DescribeNatFwInstancesInfo返回参数结构体
       class DescribeNatFwInstancesInfoResponse < TencentCloud::Common::AbstractModel
         # @param NatinsLst: 实例卡片信息数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatinsLst: Array
         # @param Total: nat 防火墙个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4598,13 +4460,10 @@ module TencentCloud
       # DescribeNatFwVpcDnsLst返回参数结构体
       class DescribeNatFwVpcDnsLstResponse < TencentCloud::Common::AbstractModel
         # @param VpcDnsSwitchLst: nat防火墙vpc dns 信息数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcDnsSwitchLst: Array
-        # @param ReturnMsg: 返回参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ReturnMsg: 返回参数 success成功 failed 失败
         # @type ReturnMsg: String
         # @param Total: 开关总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4661,30 +4520,30 @@ module TencentCloud
       class DescribeResourceGroupNewResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回树形结构
         # @type Data: String
-        # @param UnResourceNum: 未分类实例数量
-        # @type UnResourceNum: Integer
-        # @param ReturnMsg: 接口返回消息
-        # @type ReturnMsg: String
         # @param ReturnCode: 返回码；0为请求成功
         # @type ReturnCode: Integer
+        # @param ReturnMsg: 接口返回消息
+        # @type ReturnMsg: String
+        # @param UnResourceNum: 未分类实例数量
+        # @type UnResourceNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :UnResourceNum, :ReturnMsg, :ReturnCode, :RequestId
+        attr_accessor :Data, :ReturnCode, :ReturnMsg, :UnResourceNum, :RequestId
 
-        def initialize(data=nil, unresourcenum=nil, returnmsg=nil, returncode=nil, requestid=nil)
+        def initialize(data=nil, returncode=nil, returnmsg=nil, unresourcenum=nil, requestid=nil)
           @Data = data
-          @UnResourceNum = unresourcenum
-          @ReturnMsg = returnmsg
           @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @UnResourceNum = unresourcenum
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
-          @UnResourceNum = params['UnResourceNum']
-          @ReturnMsg = params['ReturnMsg']
           @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @UnResourceNum = params['UnResourceNum']
           @RequestId = params['RequestId']
         end
       end
@@ -4752,19 +4611,14 @@ module TencentCloud
       # DescribeRuleOverview返回参数结构体
       class DescribeRuleOverviewResponse < TencentCloud::Common::AbstractModel
         # @param AllTotal: 规则总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllTotal: Integer
         # @param StrategyNum: 阻断策略规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyNum: Integer
         # @param StartRuleNum: 启用规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartRuleNum: Integer
         # @param StopRuleNum: 停用规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StopRuleNum: Integer
         # @param RemainingNum: 剩余配额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainingNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4839,7 +4693,6 @@ module TencentCloud
         # @param AllTotal: 不算筛选条数的总条数
         # @type AllTotal: Integer
         # @param Enable: 访问控制规则全部启用/全部停用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4872,69 +4725,61 @@ module TencentCloud
 
       # DescribeSourceAsset请求参数结构体
       class DescribeSourceAssetRequest < TencentCloud::Common::AbstractModel
+        # @param ChooseType: ChooseType为1，查询已经分组的资产；ChooseType不为1查询没有分组的资产
+        # @type ChooseType: String
         # @param FuzzySearch: 模糊查询
         # @type FuzzySearch: String
         # @param InsType: 资产类型 1公网 2内网
         # @type InsType: String
-        # @param ChooseType: ChooseType为1，查询已经分组的资产；ChooseType不为1查询没有分组的资产
-        # @type ChooseType: String
-        # @param Zone: 地域
-        # @type Zone: String
         # @param Limit: 查询单页的最大值；eg：10；则最多返回10条结果
         # @type Limit: Integer
         # @param Offset: 查询结果的偏移量
         # @type Offset: Integer
+        # @param Zone: 地域
+        # @type Zone: String
 
-        attr_accessor :FuzzySearch, :InsType, :ChooseType, :Zone, :Limit, :Offset
+        attr_accessor :ChooseType, :FuzzySearch, :InsType, :Limit, :Offset, :Zone
 
-        def initialize(fuzzysearch=nil, instype=nil, choosetype=nil, zone=nil, limit=nil, offset=nil)
+        def initialize(choosetype=nil, fuzzysearch=nil, instype=nil, limit=nil, offset=nil, zone=nil)
+          @ChooseType = choosetype
           @FuzzySearch = fuzzysearch
           @InsType = instype
-          @ChooseType = choosetype
-          @Zone = zone
           @Limit = limit
           @Offset = offset
+          @Zone = zone
         end
 
         def deserialize(params)
+          @ChooseType = params['ChooseType']
           @FuzzySearch = params['FuzzySearch']
           @InsType = params['InsType']
-          @ChooseType = params['ChooseType']
-          @Zone = params['Zone']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Zone = params['Zone']
         end
       end
 
       # DescribeSourceAsset返回参数结构体
       class DescribeSourceAssetResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneList: 地域集合
-        # @type ZoneList: Array
         # @param Data: 数据
         # @type Data: Array
         # @param Total: 返回数据总数
         # @type Total: Integer
+        # @param ZoneList: 地域集合
+        # @type ZoneList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ZoneList, :Data, :Total, :RequestId
+        attr_accessor :Data, :Total, :ZoneList, :RequestId
 
-        def initialize(zonelist=nil, data=nil, total=nil, requestid=nil)
-          @ZoneList = zonelist
+        def initialize(data=nil, total=nil, zonelist=nil, requestid=nil)
           @Data = data
           @Total = total
+          @ZoneList = zonelist
           @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['ZoneList'].nil?
-            @ZoneList = []
-            params['ZoneList'].each do |i|
-              assetzone_tmp = AssetZone.new
-              assetzone_tmp.deserialize(i)
-              @ZoneList << assetzone_tmp
-            end
-          end
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -4944,6 +4789,14 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          unless params['ZoneList'].nil?
+            @ZoneList = []
+            params['ZoneList'].each do |i|
+              assetzone_tmp = AssetZone.new
+              assetzone_tmp.deserialize(i)
+              @ZoneList << assetzone_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5001,10 +4854,8 @@ module TencentCloud
         # @param AreaLists: 区域列表
         # @type AreaLists: Array
         # @param OnNum: 打开个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnNum: Integer
         # @param OffNum: 关闭个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5039,28 +4890,28 @@ module TencentCloud
 
       # DescribeTLogInfo请求参数结构体
       class DescribeTLogInfoRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
-        # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
         # @param QueryType: 类型 1 告警 2阻断
         # @type QueryType: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
         # @param SearchValue: 查询条件
         # @type SearchValue: String
 
-        attr_accessor :StartTime, :EndTime, :QueryType, :SearchValue
+        attr_accessor :EndTime, :QueryType, :StartTime, :SearchValue
 
-        def initialize(starttime=nil, endtime=nil, querytype=nil, searchvalue=nil)
-          @StartTime = starttime
+        def initialize(endtime=nil, querytype=nil, starttime=nil, searchvalue=nil)
           @EndTime = endtime
           @QueryType = querytype
+          @StartTime = starttime
           @SearchValue = searchvalue
         end
 
         def deserialize(params)
-          @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @QueryType = params['QueryType']
+          @StartTime = params['StartTime']
           @SearchValue = params['SearchValue']
         end
       end
@@ -5095,31 +4946,31 @@ module TencentCloud
 
       # DescribeTLogIpList请求参数结构体
       class DescribeTLogIpListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
-        # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
         # @param QueryType: 类型 1 告警 2阻断
         # @type QueryType: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
         # @param Top: top数
         # @type Top: Integer
         # @param SearchValue: 查询条件
         # @type SearchValue: String
 
-        attr_accessor :StartTime, :EndTime, :QueryType, :Top, :SearchValue
+        attr_accessor :EndTime, :QueryType, :StartTime, :Top, :SearchValue
 
-        def initialize(starttime=nil, endtime=nil, querytype=nil, top=nil, searchvalue=nil)
-          @StartTime = starttime
+        def initialize(endtime=nil, querytype=nil, starttime=nil, top=nil, searchvalue=nil)
           @EndTime = endtime
           @QueryType = querytype
+          @StartTime = starttime
           @Top = top
           @SearchValue = searchvalue
         end
 
         def deserialize(params)
-          @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @QueryType = params['QueryType']
+          @StartTime = params['StartTime']
           @Top = params['Top']
           @SearchValue = params['SearchValue']
         end
@@ -5183,7 +5034,6 @@ module TencentCloud
       # DescribeTableStatus返回参数结构体
       class DescribeTableStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0：正常，其它：不正常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5228,7 +5078,6 @@ module TencentCloud
       # DescribeUnHandleEventTabList返回参数结构体
       class DescribeUnHandleEventTabListResponse < TencentCloud::Common::AbstractModel
         # @param Data: 租户伪攻击链未处置事件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.UnHandleEvent`
         # @param ReturnCode: 错误码，0成功 非0错误
         # @type ReturnCode: Integer
@@ -5389,10 +5238,8 @@ module TencentCloud
       # DescribeVpcFwGroupSwitch返回参数结构体
       class DescribeVpcFwGroupSwitchResponse < TencentCloud::Common::AbstractModel
         # @param SwitchList: 开关列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchList: Array
         # @param Total: 开关总个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5444,57 +5291,41 @@ module TencentCloud
         # @param PublicIp: 公网IP
         # @type PublicIp: String
         # @param PublicIpType: 公网 IP 类型 1 公网,2 弹性,3 弹性ipv6,4 anycastIP, 6 HighQualityEIP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpType: Integer
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param IntranetIp: 内网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntranetIp: String
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param PortRiskCount: 风险端口数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortRiskCount: Integer
         # @param LastScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param IsRegionEip: 是否为region eip
         # 0 不为region eip，不能选择串行
         # 1 为region eip 可以选择串行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRegionEip: Integer
         # @param VpcId: EIP 所关联的VPC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param IsSerialRegion: 0: 该地域暂未支持串行
         # 1: 该用户未在该地域配置串行带宽
         # 2: 该用户已在该地域配置串行带宽，可以开启串行开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSerialRegion: Integer
         # @param IsPublicClb: 0: 不是公网CLB 可以开启串行开关
         # 1: 是公网CLB 不可以开启串行开关
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublicClb: Integer
         # @param EndpointBindEipNum: 0: 开启开关时提示要创建私有连接。
         # 1: 关闭该开关是提示删除私有连接。
         # 如果大于 1: 关闭开关 、开启开关不需提示创建删除私有连接。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndpointBindEipNum: Integer
         # @param ScanMode: 扫描深度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanMode: String
         # @param ScanStatus: 扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: Integer
         # @param Status: 开关状态
         # 0 : 关闭
@@ -5502,26 +5333,20 @@ module TencentCloud
         # 2 : 开启中
         # 3 : 关闭中
         # 4 : 异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param EndpointId: 私有连接ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndpointId: String
         # @param EndpointIp: 私有连接IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndpointIp: String
         # @param SwitchMode: 0 : 旁路
         # 1 : 串行
         # 2 : 正在模式切换
         # @type SwitchMode: Integer
         # @param SwitchWeight: 开关权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchWeight: Integer
         # @param Domain: 域名化CLB的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param OverUsedStatus: IP超量状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverUsedStatus: Integer
 
         attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight, :Domain, :OverUsedStatus
@@ -5610,13 +5435,10 @@ module TencentCloud
       # 企业安全组自动化任务信息
       class EnterpriseSecurityGroupRuleBetaInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param LastTime: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTime: String
 
         attr_accessor :TaskId, :TaskName, :LastTime
@@ -5637,16 +5459,12 @@ module TencentCloud
       # 企业安全组规则列表信息
       class EnterpriseSecurityGroupRuleRuleInfo < TencentCloud::Common::AbstractModel
         # @param OrderIndex: 排序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderIndex: Integer
         # @param RuleUuid: 主键id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleUuid: Integer
         # @param Uuid: 规则uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
         # @param SourceId: 源规则内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceId: String
         # @param SourceType: 源规则类型
         # 取值范围 0/1/2/3/4/5/6/7/8/9/100
@@ -5661,10 +5479,8 @@ module TencentCloud
         # 8表示标签(tag)
         # 9表示地域(region)
         # 100表示资产分组(resourcegroup)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: Integer
         # @param TargetId: 目的规则内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetId: String
         # @param TargetType: 目的规则类型
         # 取值范围 0/1/2/3/4/5/6/7/8/9/100
@@ -5679,90 +5495,65 @@ module TencentCloud
         # 8表示标签(tag)
         # 9表示地域(region)
         # 100表示资产分组(resourcegroup)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: Integer
         # @param Protocol: 协议名称
         # 取值范围:TCP/ANY/ICMP/UDP
         # ANY:表示所有
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param Strategy: 规则策略
         # 取值范围:1/2
         # 1:阻断
         # 2:放行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Strategy: Integer
         # @param Status: 规则启用状态
         # 取值范围： 0/1
         # 0:未开启
         # 1:开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Detail: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: String
         # @param AclTags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclTags: String
         # @param IsNew: 规则最新一次是否有改动
         # 取值范围：0/1
         # 0:否
         # 1:是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNew: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param IsDelay: 是否延迟下发规则
         # 取值范围：0/1
         # 0:立即下发 1:延迟下发
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelay: Integer
         # @param ServiceTemplateId: 服务模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
         # @param SouInstanceName: 源资产名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouInstanceName: String
         # @param SouPublicIp: 源资产公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouPublicIp: String
         # @param SouPrivateIp: 源资产内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouPrivateIp: String
         # @param SouCidr: 源资产网段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouCidr: String
         # @param SouParameterName: 源模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SouParameterName: String
         # @param InstanceName: 目的资产名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param PublicIp: 目的资产公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 目的资产内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param Cidr: 目的资产网段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
         # @param ParameterName: 目的模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
         # @param ProtocolPortName: 端口模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolPortName: String
         # @param BetaList: 自动化任务信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
         # @param Id: 规则id  等同RuleUuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 
         attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id
@@ -5972,10 +5763,8 @@ module TencentCloud
         # @param GatewayId: 防火墙网关id
         # @type GatewayId: String
         # @param VpcId: 网关所属vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param IpAddress: 网关ip地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpAddress: String
 
         attr_accessor :GatewayId, :VpcId, :IpAddress
@@ -6022,61 +5811,47 @@ module TencentCloud
         # @param SwitchId: 防火墙开关ID
         # @type SwitchId: String
         # @param SwitchName: 防火墙开关NAME
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchName: String
         # @param SwitchMode: 互通模式
         # @type SwitchMode: Integer
         # @param ConnectType: 开关边连接类型 0：对等连接， 1：云连网
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectType: Integer
         # @param ConnectId: 连接ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectId: String
         # @param ConnectName: 连接名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectName: String
         # @param SrcInstancesInfo: 源实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInstancesInfo: Array
         # @param DstInstancesInfo: 目的实例信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInstancesInfo: Array
         # @param FwGroupId: 防火墙(组)数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupId: String
         # @param FwGroupName: 防火墙(组)名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupName: String
         # @param Enable: 开关状态 0：关 ， 1：开
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
         # @param Status: 开关的状态 0：正常， 1：转换中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param AttachWithEdge: 0-非sase实例，忽略，1-未绑定状态，2-已绑定
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttachWithEdge: Integer
         # @param CrossEdgeStatus: 对等防火墙和开关状态 0：正常， 1：对等未创建防火墙，2：对等已创建防火墙，未打开开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossEdgeStatus: Integer
         # @param FwInsRegion: 网络经过VPC防火墙CVM所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsRegion: Array
         # @param IpsAction: 0 观察 1 拦截 2 严格 3 关闭 4 不支持ips 前端展示tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpsAction: Integer
         # @param FwInsLst: 开关关联的防火墙实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsLst: Array
         # @param BypassStatus: 开关是否处于bypass状态
         # 0：正常状态
         # 1：bypass状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BypassStatus: Integer
+        # @param IpVersion: 0: ipv4 , 1:ipv6
+        # @type IpVersion: Integer
 
-        attr_accessor :SwitchId, :SwitchName, :SwitchMode, :ConnectType, :ConnectId, :ConnectName, :SrcInstancesInfo, :DstInstancesInfo, :FwGroupId, :FwGroupName, :Enable, :Status, :AttachWithEdge, :CrossEdgeStatus, :FwInsRegion, :IpsAction, :FwInsLst, :BypassStatus
+        attr_accessor :SwitchId, :SwitchName, :SwitchMode, :ConnectType, :ConnectId, :ConnectName, :SrcInstancesInfo, :DstInstancesInfo, :FwGroupId, :FwGroupName, :Enable, :Status, :AttachWithEdge, :CrossEdgeStatus, :FwInsRegion, :IpsAction, :FwInsLst, :BypassStatus, :IpVersion
 
-        def initialize(switchid=nil, switchname=nil, switchmode=nil, connecttype=nil, connectid=nil, connectname=nil, srcinstancesinfo=nil, dstinstancesinfo=nil, fwgroupid=nil, fwgroupname=nil, enable=nil, status=nil, attachwithedge=nil, crossedgestatus=nil, fwinsregion=nil, ipsaction=nil, fwinslst=nil, bypassstatus=nil)
+        def initialize(switchid=nil, switchname=nil, switchmode=nil, connecttype=nil, connectid=nil, connectname=nil, srcinstancesinfo=nil, dstinstancesinfo=nil, fwgroupid=nil, fwgroupname=nil, enable=nil, status=nil, attachwithedge=nil, crossedgestatus=nil, fwinsregion=nil, ipsaction=nil, fwinslst=nil, bypassstatus=nil, ipversion=nil)
           @SwitchId = switchid
           @SwitchName = switchname
           @SwitchMode = switchmode
@@ -6095,6 +5870,7 @@ module TencentCloud
           @IpsAction = ipsaction
           @FwInsLst = fwinslst
           @BypassStatus = bypassstatus
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
@@ -6137,6 +5913,7 @@ module TencentCloud
             end
           end
           @BypassStatus = params['BypassStatus']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -6183,22 +5960,16 @@ module TencentCloud
       # 入侵防御规则白名单详情
       class IdsWhiteInfo < TencentCloud::Common::AbstractModel
         # @param Id: 白名单唯一ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param SrcIp: 源IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcIp: String
         # @param DstIp: 目的IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstIp: String
         # @param WhiteRuleType: 规则类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhiteRuleType: String
         # @param FwType: 白名单生效防火墙范围： 1 边界防火墙 2 nat防火墙 4 vpc防火墙 7 = 1+2+4 所有防火墙
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwType: Integer
         # @param RuleId: 入侵防御规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
 
         attr_accessor :Id, :SrcIp, :DstIp, :WhiteRuleType, :FwType, :RuleId
@@ -6222,101 +5993,81 @@ module TencentCloud
         end
       end
 
-      # // InstanceInfo 实例详情结果
-      # type InstanceInfo struct {
-      # 	AppID        string `json:"AppId" gorm:"column:appid"`
-      # 	Region       string `json:"Region" gorm:"column:region"`
-      # 	VPCID        string `json:"VpcId" gorm:"column:vpc_id"`
-      # 	SubNetID     string `json:"SubnetId" gorm:"column:subnet_id"`
-      # 	InstanceID   string `json:"InstanceId" gorm:"column:instance_id"`
-      # 	InstanceName string `json:"InstanceName" gorm:"column:instance_name"`
-      # 	//InsType common.CVM 3是cvm实例,4是clb实例,5是eni实例,6是mysql,7是redis,8是NAT,9是VPN,10是ES,11是MARIADB,12是KAFKA
-      # 	InsType   int    `json:"InsType" gorm:"column:instance_type"`
-      # 	PublicIP  string `json:"PublicIp" gorm:"column:public_ip"`
-      # 	PrivateIP string `json:"PrivateIp" gorm:"column:ip"`
-
-      # 	//规则下发无需管，前端展示用
-      # 	PortNum          string `json:"PortNum" gorm:"column:port_num"`
-      # 	LeakNum          string `json:"LeakNum" gorm:"column:leak_num"`
-      # 	ResourceGroupNum int    `json:"ResourceGroupNum"`
-      # 	VPCName          string `json:"VPCName" gorm:"column:VPCName"`
-      # }
+      # 实例详情结果
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param AppId: appid信息
         # @type AppId: String
-        # @param Region: 地域
-        # @type Region: String
-        # @param VpcId: vpcid信息
-        # @type VpcId: String
-        # @param VPCName: vpc名称
-        # @type VPCName: String
-        # @param SubnetId: 子网id
-        # @type SubnetId: String
+        # @param InsSource: 资产来源
+        # 1公网 2内网
+        # @type InsSource: String
+        # @param InsType: 资产类型
+        #  3是cvm实例,4是clb实例,5是eni实例,6是mysql,7是redis,8是NAT,9是VPN,10是ES,11是MARIADB,12是KAFKA 13 NATFW
+        # @type InsType: Integer
         # @param InstanceId: 资产id
         # @type InstanceId: String
         # @param InstanceName: 资产名
         # @type InstanceName: String
-        # @param InsType: 资产类型
-        #  3是cvm实例,4是clb实例,5是eni实例,6是mysql,7是redis,8是NAT,9是VPN,10是ES,11是MARIADB,12是KAFKA 13 NATFW
-        # @type InsType: Integer
-        # @param PublicIp: 公网ip
-        # @type PublicIp: String
-        # @param PrivateIp: 内网ip
-        # @type PrivateIp: String
-        # @param PortNum: 端口数
-        # @type PortNum: String
         # @param LeakNum: 漏洞数
         # @type LeakNum: String
-        # @param InsSource: 1，公网 2内网
-        # @type InsSource: String
-        # @param ResourcePath: [a,b]
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PortNum: 端口数
+        # @type PortNum: String
+        # @param PrivateIp: 内网ip
+        # @type PrivateIp: String
+        # @param PublicIp: 公网ip
+        # @type PublicIp: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param RegionKey: 地域
+        # @type RegionKey: String
+        # @param ResourcePath: 资产路径
         # @type ResourcePath: Array
         # @param Server: 扫描结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Server: Array
-        # @param RegionKey: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RegionKey: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param VPCName: vpc名称
+        # @type VPCName: String
+        # @param VpcId: vpcid信息
+        # @type VpcId: String
 
-        attr_accessor :AppId, :Region, :VpcId, :VPCName, :SubnetId, :InstanceId, :InstanceName, :InsType, :PublicIp, :PrivateIp, :PortNum, :LeakNum, :InsSource, :ResourcePath, :Server, :RegionKey
+        attr_accessor :AppId, :InsSource, :InsType, :InstanceId, :InstanceName, :LeakNum, :PortNum, :PrivateIp, :PublicIp, :Region, :RegionKey, :ResourcePath, :Server, :SubnetId, :VPCName, :VpcId
 
-        def initialize(appid=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, instanceid=nil, instancename=nil, instype=nil, publicip=nil, privateip=nil, portnum=nil, leaknum=nil, inssource=nil, resourcepath=nil, server=nil, regionkey=nil)
+        def initialize(appid=nil, inssource=nil, instype=nil, instanceid=nil, instancename=nil, leaknum=nil, portnum=nil, privateip=nil, publicip=nil, region=nil, regionkey=nil, resourcepath=nil, server=nil, subnetid=nil, vpcname=nil, vpcid=nil)
           @AppId = appid
-          @Region = region
-          @VpcId = vpcid
-          @VPCName = vpcname
-          @SubnetId = subnetid
+          @InsSource = inssource
+          @InsType = instype
           @InstanceId = instanceid
           @InstanceName = instancename
-          @InsType = instype
-          @PublicIp = publicip
-          @PrivateIp = privateip
-          @PortNum = portnum
           @LeakNum = leaknum
-          @InsSource = inssource
+          @PortNum = portnum
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @Region = region
+          @RegionKey = regionkey
           @ResourcePath = resourcepath
           @Server = server
-          @RegionKey = regionkey
+          @SubnetId = subnetid
+          @VPCName = vpcname
+          @VpcId = vpcid
         end
 
         def deserialize(params)
           @AppId = params['AppId']
-          @Region = params['Region']
-          @VpcId = params['VpcId']
-          @VPCName = params['VPCName']
-          @SubnetId = params['SubnetId']
+          @InsSource = params['InsSource']
+          @InsType = params['InsType']
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
-          @InsType = params['InsType']
-          @PublicIp = params['PublicIp']
-          @PrivateIp = params['PrivateIp']
-          @PortNum = params['PortNum']
           @LeakNum = params['LeakNum']
-          @InsSource = params['InsSource']
+          @PortNum = params['PortNum']
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          @Region = params['Region']
+          @RegionKey = params['RegionKey']
           @ResourcePath = params['ResourcePath']
           @Server = params['Server']
-          @RegionKey = params['RegionKey']
+          @SubnetId = params['SubnetId']
+          @VPCName = params['VPCName']
+          @VpcId = params['VpcId']
         end
       end
 
@@ -6359,13 +6110,10 @@ module TencentCloud
       # 封禁放通IOC列表
       class IocListData < TencentCloud::Common::AbstractModel
         # @param IP: 待处置IP地址，IP/Domain字段二选一
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
         # @param Direction: 只能为0或者1   0代表出站 1代表入站
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Direction: Integer
         # @param Domain: 待处置域名，IP/Domain字段二选一
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
         attr_accessor :IP, :Direction, :Domain
@@ -6443,7 +6191,6 @@ module TencentCloud
         # @param Status: 状态值，0:操作成功，非0：操作失败
         # @type Status: Integer
         # @param Info: 返回多余的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6591,10 +6338,8 @@ module TencentCloud
       # ModifyAllPublicIPSwitchStatus返回参数结构体
       class ModifyAllPublicIPSwitchStatusResponse < TencentCloud::Common::AbstractModel
         # @param ReturnMsg: 接口返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMsg: String
         # @param ReturnCode: 接口返回错误码，0请求成功  非0失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnCode: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6645,7 +6390,6 @@ module TencentCloud
       # ModifyAllRuleStatus返回参数结构体
       class ModifyAllRuleStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0: 修改成功, 其他: 修改失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6738,10 +6482,8 @@ module TencentCloud
       # ModifyAssetScan返回参数结构体
       class ModifyAssetScanResponse < TencentCloud::Common::AbstractModel
         # @param ReturnMsg: 接口返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMsg: String
         # @param ReturnCode: 接口返回错误码，0请求成功  非0失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnCode: Integer
         # @param Status: 状态值 0：成功，1 执行扫描中,其他：失败
         # @type Status: Integer
@@ -6952,21 +6694,21 @@ module TencentCloud
 
       # ModifyBlockTop请求参数结构体
       class ModifyBlockTopRequest < TencentCloud::Common::AbstractModel
-        # @param UniqueId: 记录id
-        # @type UniqueId: String
         # @param OpeType: 操作类型 1 置顶 0取消
         # @type OpeType: String
+        # @param UniqueId: 记录id
+        # @type UniqueId: String
 
-        attr_accessor :UniqueId, :OpeType
+        attr_accessor :OpeType, :UniqueId
 
-        def initialize(uniqueid=nil, opetype=nil)
-          @UniqueId = uniqueid
+        def initialize(opetype=nil, uniqueid=nil)
           @OpeType = opetype
+          @UniqueId = uniqueid
         end
 
         def deserialize(params)
-          @UniqueId = params['UniqueId']
           @OpeType = params['OpeType']
+          @UniqueId = params['UniqueId']
         end
       end
 
@@ -7121,7 +6863,6 @@ module TencentCloud
       # ModifyEnterpriseSecurityDispatchStatus返回参数结构体
       class ModifyEnterpriseSecurityDispatchStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0: 修改成功, 其他: 修改失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7411,7 +7152,6 @@ module TencentCloud
       # ModifyNatFwVpcDnsSwitch返回参数结构体
       class ModifyNatFwVpcDnsSwitchResponse < TencentCloud::Common::AbstractModel
         # @param ReturnMsg: 修改成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7824,7 +7564,6 @@ module TencentCloud
       # ModifySequenceRules返回参数结构体
       class ModifySequenceRulesResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0: 修改成功, 非0: 修改失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7900,7 +7639,6 @@ module TencentCloud
       # ModifyTableStatus返回参数结构体
       class ModifyTableStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0：正常，-1：不正常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8059,10 +7797,8 @@ module TencentCloud
         # @param Eip: 弹性公网ip
         # @type Eip: String
         # @param NatGatewayId: 所属的Nat网关Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatGatewayId: String
         # @param NatGatewayName: Nat网关名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatGatewayName: String
 
         attr_accessor :Eip, :NatGatewayId, :NatGatewayName
@@ -8107,16 +7843,12 @@ module TencentCloud
         # @param NatinsName: nat实例名称
         # @type NatinsName: String
         # @param Region: 实例所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param FwMode: 0:新增模式，1:接入模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwMode: Integer
         # @param Status: 0:正常状态， 1: 正在创建
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param NatIp: nat公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatIp: String
 
         attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :Status, :NatIp
@@ -8159,71 +7891,50 @@ module TencentCloud
         # @param RegionZh: 地域中文信息
         # @type RegionZh: String
         # @param EipAddress: 公网ip数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddress: Array
         # @param VpcIp: 内外使用ip数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcIp: Array
         # @param Subnets: 实例关联子网数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnets: Array
         # @param Status: 0 :正常 1：正在初始化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RegionDetail: 地域区域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionDetail: String
         # @param ZoneZh: 实例所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneZh: String
         # @param ZoneZhBak: 实例所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneZhBak: String
         # @param RuleUsed: 已使用规则数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleUsed: Integer
         # @param RuleMax: 实例的规则限制最大规格数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleMax: Integer
         # @param EngineVersion: 实例引擎版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineVersion: String
         # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateEnable: Integer
         # @param NeedProbeEngineUpdate: 是的需要升级引擎 支持 nat拨测 1需要 0不需要
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedProbeEngineUpdate: Integer
         # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficMode: String
         # @param Zone: 实例主所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param ZoneBak: 实例备所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneBak: String
         # @param ReserveTime: 引擎预约升级时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveTime: String
         # @param ReserveVersion: 引擎预约升级版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveVersion: String
-        # @param ReserveVersionState: 引擎预约升级版本状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ReserveVersionState: 引擎预约升级版本状态 stable:稳定版；previewed:预览版
         # @type ReserveVersionState: String
         # @param ElasticSwitch: 弹性开关
         # 1 打开
         # 0 关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticSwitch: Integer
         # @param ElasticBandwidth: 弹性带宽，单位Mbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBandwidth: Integer
         # @param IsFirstAfterPay: 是否首次开通按量付费
         # 1 是
         # 0 不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFirstAfterPay: Integer
 
         attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate, :TrafficMode, :Zone, :ZoneBak, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay
@@ -8296,7 +8007,6 @@ module TencentCloud
       # 网络实例信息
       class NetInstancesInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 网络实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceName: 网络实例名称
         # @type InstanceName: String
@@ -8367,10 +8077,8 @@ module TencentCloud
         # @param RuleUuid: 删除成功后返回被删除策略的uuid
         # @type RuleUuid: Integer
         # @param ReturnCode: 0代表成功，-1代表失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnCode: Integer
         # @param ReturnMsg: success代表成功，failed代表失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8457,7 +8165,6 @@ module TencentCloud
         # @param RuleUuid: 删除成功后返回被删除策略的uuid
         # @type RuleUuid: Integer
         # @param Status: 0代表成功，-1代表失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8521,15 +8228,19 @@ module TencentCloud
       class RemoveVpcAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleUuids: 规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则
         # @type RuleUuids: Array
+        # @param IpVersion: 仅当RuleUuids为-1时有效；0：删除Ipv4规则，1：删除Ipv6规则；默认为Ipv4类型规则
+        # @type IpVersion: Integer
 
-        attr_accessor :RuleUuids
+        attr_accessor :RuleUuids, :IpVersion
 
-        def initialize(ruleuuids=nil)
+        def initialize(ruleuuids=nil, ipversion=nil)
           @RuleUuids = ruleuuids
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
           @RuleUuids = params['RuleUuids']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -8667,139 +8378,114 @@ module TencentCloud
 
       # 新手引导扫描信息
       class ScanInfo < TencentCloud::Common::AbstractModel
+        # @param ScanPercent: 进度
+        # @type ScanPercent: Float
         # @param ScanResultInfo: 扫描结果信息
         # @type ScanResultInfo: :class:`Tencentcloud::Cfw.v20190904.models.ScanResultInfo`
         # @param ScanStatus: 扫描状态 0扫描中 1完成  2未勾选自动扫描
         # @type ScanStatus: Integer
-        # @param ScanPercent: 进度
-        # @type ScanPercent: Float
         # @param ScanTime: 预计完成时间
         # @type ScanTime: String
 
-        attr_accessor :ScanResultInfo, :ScanStatus, :ScanPercent, :ScanTime
+        attr_accessor :ScanPercent, :ScanResultInfo, :ScanStatus, :ScanTime
 
-        def initialize(scanresultinfo=nil, scanstatus=nil, scanpercent=nil, scantime=nil)
+        def initialize(scanpercent=nil, scanresultinfo=nil, scanstatus=nil, scantime=nil)
+          @ScanPercent = scanpercent
           @ScanResultInfo = scanresultinfo
           @ScanStatus = scanstatus
-          @ScanPercent = scanpercent
           @ScanTime = scantime
         end
 
         def deserialize(params)
+          @ScanPercent = params['ScanPercent']
           unless params['ScanResultInfo'].nil?
             @ScanResultInfo = ScanResultInfo.new
             @ScanResultInfo.deserialize(params['ScanResultInfo'])
           end
           @ScanStatus = params['ScanStatus']
-          @ScanPercent = params['ScanPercent']
           @ScanTime = params['ScanTime']
         end
       end
 
-      # 新手引导扫描结果信息PortNum   int
-      # 	LeakNum   int
-      # 	IPNum     int
-      # 	IPStatus  bool
-      # 	IdpStatus bool
-      # 	BanStatus bool
+      # 新手引导扫描结果信息
       class ScanResultInfo < TencentCloud::Common::AbstractModel
-        # @param LeakNum: 暴露漏洞数量
-        # @type LeakNum: Integer
+        # @param BanStatus: 是否禁封端口
+        # @type BanStatus: Boolean
         # @param IPNum: 防护ip数量
         # @type IPNum: Integer
-        # @param PortNum: 暴露端口数量
-        # @type PortNum: Integer
         # @param IPStatus: 是否开启防护
         # @type IPStatus: Boolean
         # @param IdpStatus: 是否拦截攻击
         # @type IdpStatus: Boolean
-        # @param BanStatus: 是否禁封端口
-        # @type BanStatus: Boolean
+        # @param LeakNum: 暴露漏洞数量
+        # @type LeakNum: Integer
+        # @param PortNum: 暴露端口数量
+        # @type PortNum: Integer
 
-        attr_accessor :LeakNum, :IPNum, :PortNum, :IPStatus, :IdpStatus, :BanStatus
+        attr_accessor :BanStatus, :IPNum, :IPStatus, :IdpStatus, :LeakNum, :PortNum
 
-        def initialize(leaknum=nil, ipnum=nil, portnum=nil, ipstatus=nil, idpstatus=nil, banstatus=nil)
-          @LeakNum = leaknum
+        def initialize(banstatus=nil, ipnum=nil, ipstatus=nil, idpstatus=nil, leaknum=nil, portnum=nil)
+          @BanStatus = banstatus
           @IPNum = ipnum
-          @PortNum = portnum
           @IPStatus = ipstatus
           @IdpStatus = idpstatus
-          @BanStatus = banstatus
+          @LeakNum = leaknum
+          @PortNum = portnum
         end
 
         def deserialize(params)
-          @LeakNum = params['LeakNum']
+          @BanStatus = params['BanStatus']
           @IPNum = params['IPNum']
-          @PortNum = params['PortNum']
           @IPStatus = params['IPStatus']
           @IdpStatus = params['IdpStatus']
-          @BanStatus = params['BanStatus']
+          @LeakNum = params['LeakNum']
+          @PortNum = params['PortNum']
         end
       end
 
       # 双向下发的企业安全组规则
       class SecurityGroupBothWayInfo < TencentCloud::Common::AbstractModel
         # @param OrderIndex: 执行顺序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderIndex: Integer
         # @param SourceId: 访问源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceId: String
         # @param SourceType: 访问源类型，默认为0，0: IP, 1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资产分组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: Integer
         # @param TargetId: 访问目的
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetId: String
         # @param TargetType: 访问目的类型，默认为0，0: IP, 1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资产分组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: Integer
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 目的端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param Strategy: 策略, 1：阻断，2：放行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Strategy: Integer
         # @param Direction: 方向，0：出站，1：入站，默认1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Direction: Integer
         # @param Region: 地域
         # @type Region: String
         # @param Detail: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: String
         # @param Status: 是否开关开启，0：未开启，1：开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsNew: 是否是正常规则，0：正常，1：异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNew: Integer
         # @param BothWay: 单/双向下发，0:单向下发，1：双向下发
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BothWay: Integer
         # @param VpcId: 私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param PublicIp: 公网IP，多个以英文逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 内网IP，多个以英文逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param Cidr: 掩码地址，多个以英文逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
         # @param ServiceTemplateId: 端口协议类型参数模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
         # @param ProtocolPortType: 是否使用端口协议模板，0：否，1：是
         # @type ProtocolPortType: Integer
@@ -8886,47 +8572,34 @@ module TencentCloud
         # @param IsNew: 是否是正常规则，0：正常，1：异常
         # @type IsNew: Integer
         # @param VpcId: 私有网络ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param PublicIp: 公网IP，多个以英文逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 内网IP，多个以英文逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param Cidr: 掩码地址，多个以英文逗号分隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cidr: String
         # @param ServiceTemplateId: 端口协议类型参数模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
         # @param BothWayInfo: 生成双向下发规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BothWayInfo: Array
         # @param Direction: 方向，0：出站，1：入站，默认1
         # @type Direction: Integer
         # @param ProtocolPortType: 是否使用端口协议模板，0：否，1：是
         # @type ProtocolPortType: Integer
         # @param Uuid: Uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param AssetGroupNameIn: 资产分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetGroupNameIn: String
         # @param AssetGroupNameOut: 资产分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetGroupNameOut: String
         # @param ParameterName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
         # @param ProtocolPortName: 端口协议类型参数模板名称
         # @type ProtocolPortName: String
@@ -9056,15 +8729,12 @@ module TencentCloud
         # @param OrderIndex: 规则顺序，-1表示最低，1表示最高，请勿和外层Type冲突（和外层的Type配合使用，当中间插入时，指定添加位置）
         # @type OrderIndex: String
         # @param Protocol: 协议；TCP/UDP/ICMP/ANY
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Port: 访问控制策略的端口。取值：
         # -1/-1：全部端口
         # 80：80端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
         # @param Id: （入参时无需填写，自动生成）规则对应的唯一id
         # @type Id: String
@@ -9118,7 +8788,6 @@ module TencentCloud
         # resourcegroup：资产分组(/全部分组/分组1/子分组1)
         # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
         # region：地域(ap-gaungzhou)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceContent: String
         # @param DestContent: 访问目的示例：
         # net：IP/CIDR(192.168.0.2)
@@ -9127,19 +8796,14 @@ module TencentCloud
         # resourcegroup：资产分组(/全部分组/分组1/子分组1)
         # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
         # region：地域(ap-gaungzhou)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestContent: String
         # @param Protocol: 协议；TCP/UDP/ICMP/ANY
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param RuleUuid: 规则对应的唯一id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleUuid: Integer
         # @param Sequence: 规则序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sequence: Integer
 
         attr_accessor :SourceContent, :DestContent, :Protocol, :Description, :RuleUuid, :Sequence
@@ -9293,39 +8957,38 @@ module TencentCloud
       end
 
       # StaticInfo 告警柱形图统计信息
-
       class StaticInfo < TencentCloud::Common::AbstractModel
-        # @param Num: 数
-        # @type Num: Integer
-        # @param Port: 端口
-        # @type Port: String
-        # @param Ip: ip信息
-        # @type Ip: String
         # @param Address: 地址
         # @type Address: String
         # @param InsID: 资产id
         # @type InsID: String
         # @param InsName: 资产名称
         # @type InsName: String
+        # @param Ip: ip信息
+        # @type Ip: String
+        # @param Num: 数
+        # @type Num: Integer
+        # @param Port: 端口
+        # @type Port: String
 
-        attr_accessor :Num, :Port, :Ip, :Address, :InsID, :InsName
+        attr_accessor :Address, :InsID, :InsName, :Ip, :Num, :Port
 
-        def initialize(num=nil, port=nil, ip=nil, address=nil, insid=nil, insname=nil)
-          @Num = num
-          @Port = port
-          @Ip = ip
+        def initialize(address=nil, insid=nil, insname=nil, ip=nil, num=nil, port=nil)
           @Address = address
           @InsID = insid
           @InsName = insname
+          @Ip = ip
+          @Num = num
+          @Port = port
         end
 
         def deserialize(params)
-          @Num = params['Num']
-          @Port = params['Port']
-          @Ip = params['Ip']
           @Address = params['Address']
           @InsID = params['InsID']
           @InsName = params['InsName']
+          @Ip = params['Ip']
+          @Num = params['Num']
+          @Port = params['Port']
         end
       end
 
@@ -9348,7 +9011,6 @@ module TencentCloud
       # StopSecurityGroupRuleDispatch返回参数结构体
       class StopSecurityGroupRuleDispatchResponse < TencentCloud::Common::AbstractModel
         # @param Status: true代表成功，false代表错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9369,40 +9031,30 @@ module TencentCloud
       # 防火墙开关列表对象
       class SwitchListsData < TencentCloud::Common::AbstractModel
         # @param PublicIp: 公网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param IntranetIp: 内网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntranetIp: String
         # @param InstanceName: 实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param InstanceId: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param AssetType: 资产类型
         # @type AssetType: String
         # @param Area: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Area: String
         # @param Switch: 防火墙开关
         # @type Switch: Integer
         # @param Id: id值
         # @type Id: Integer
         # @param PublicIpType: 公网 IP 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpType: Integer
         # @param PortTimes: 风险端口数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortTimes: Integer
         # @param LastTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTime: String
         # @param ScanMode: 扫描深度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanMode: String
         # @param ScanStatus: 扫描状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: Integer
 
         attr_accessor :PublicIp, :IntranetIp, :InstanceName, :InstanceId, :AssetType, :Area, :Switch, :Id, :PublicIpType, :PortTimes, :LastTime, :ScanMode, :ScanStatus
@@ -9478,37 +9130,37 @@ module TencentCloud
 
       # 告警中心概览数据
       class TLogInfo < TencentCloud::Common::AbstractModel
-        # @param OutNum: 失陷主机
-        # @type OutNum: Integer
-        # @param HandleNum: 待处置告警
-        # @type HandleNum: Integer
-        # @param VulNum: 漏洞攻击
-        # @type VulNum: Integer
-        # @param NetworkNum: 网络探测
-        # @type NetworkNum: Integer
         # @param BanNum: 封禁列表
         # @type BanNum: Integer
         # @param BruteForceNum: 暴力破解
         # @type BruteForceNum: Integer
+        # @param HandleNum: 待处置告警
+        # @type HandleNum: Integer
+        # @param NetworkNum: 网络探测
+        # @type NetworkNum: Integer
+        # @param OutNum: 失陷主机
+        # @type OutNum: Integer
+        # @param VulNum: 漏洞攻击
+        # @type VulNum: Integer
 
-        attr_accessor :OutNum, :HandleNum, :VulNum, :NetworkNum, :BanNum, :BruteForceNum
+        attr_accessor :BanNum, :BruteForceNum, :HandleNum, :NetworkNum, :OutNum, :VulNum
 
-        def initialize(outnum=nil, handlenum=nil, vulnum=nil, networknum=nil, bannum=nil, bruteforcenum=nil)
-          @OutNum = outnum
-          @HandleNum = handlenum
-          @VulNum = vulnum
-          @NetworkNum = networknum
+        def initialize(bannum=nil, bruteforcenum=nil, handlenum=nil, networknum=nil, outnum=nil, vulnum=nil)
           @BanNum = bannum
           @BruteForceNum = bruteforcenum
+          @HandleNum = handlenum
+          @NetworkNum = networknum
+          @OutNum = outnum
+          @VulNum = vulnum
         end
 
         def deserialize(params)
-          @OutNum = params['OutNum']
-          @HandleNum = params['HandleNum']
-          @VulNum = params['VulNum']
-          @NetworkNum = params['NetworkNum']
           @BanNum = params['BanNum']
           @BruteForceNum = params['BruteForceNum']
+          @HandleNum = params['HandleNum']
+          @NetworkNum = params['NetworkNum']
+          @OutNum = params['OutNum']
+          @VulNum = params['VulNum']
         end
       end
 
@@ -9535,40 +9187,28 @@ module TencentCloud
       # 地址模板列表数据
       class TemplateListInfo < TencentCloud::Common::AbstractModel
         # @param Uuid: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
         # @param Name: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Detail: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: String
         # @param IpString: IP模板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpString: String
         # @param InsertTime: 插入时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: String
         # @param UpdateTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Type: 模板类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param RulesNum: 关联规则条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RulesNum: Integer
         # @param TemplateId: 模板Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: String
         # @param IPNum: 模板包含地址数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPNum: Integer
         # @param IpVersion: IP版本,0,IPv4;1,IPv6
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpVersion: Integer
 
         attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType, :IPNum, :IpVersion
@@ -9615,7 +9255,6 @@ module TencentCloud
         # @param BaseLineOutSwitch: 1 打开 0 关闭
         # @type BaseLineOutSwitch: Integer
         # @param VpcFwCount: vpc间防火墙实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcFwCount: Integer
 
         attr_accessor :EventTableListStruct, :BaseLineUser, :BaseLineInSwitch, :BaseLineOutSwitch, :VpcFwCount
@@ -9677,18 +9316,14 @@ module TencentCloud
         # @param DNSEip: 外网弹性ip，防火墙 dns解析地址
         # @type DNSEip: String
         # @param NatInsId: nat网关id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatInsId: String
         # @param NatInsName: nat网关名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatInsName: String
         # @param SwitchStatus: 0：开关关闭 ， 1: 开关打开
         # @type SwitchStatus: Integer
         # @param ProtectedStatus: 0：未防护， 1: 已防护，2：忽略此字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectedStatus: Integer
         # @param SupportDNSFW: 是否支持DNS FW，0-不支持、1-支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDNSFW: Integer
 
         attr_accessor :VpcId, :VpcName, :FwMode, :VpcIpv4Cidr, :DNSEip, :NatInsId, :NatInsName, :SwitchStatus, :ProtectedStatus, :SupportDNSFW
@@ -9723,31 +9358,22 @@ module TencentCloud
       # VPC防火墙实例的CVM信息
       class VpcFwCvmInsInfo < TencentCloud::Common::AbstractModel
         # @param FwInsId: VPC防火墙实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsId: String
         # @param Region: CVM所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param RegionZh: CVM所在地域中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionZh: String
         # @param RegionDetail: CVM所在地域详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionDetail: String
         # @param ZoneZh: 主机所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneZh: String
         # @param ZoneZhBack: 备机所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneZhBack: String
         # @param BandWidth: 防火墙CVM带宽值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandWidth: Integer
         # @param Zone: 实例主机所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param ZoneBak: 实例备机所在可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneBak: String
 
         attr_accessor :FwInsId, :Region, :RegionZh, :RegionDetail, :ZoneZh, :ZoneZhBack, :BandWidth, :Zone, :ZoneBak
@@ -9780,46 +9406,33 @@ module TencentCloud
       # VPC防火墙(组)及防火墙实例详情信息
       class VpcFwGroupInfo < TencentCloud::Common::AbstractModel
         # @param FwGroupId: 防火墙(组)ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupId: String
         # @param FwGroupName: 防火墙(组)名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupName: String
         # @param FwSwitchNum: 防火墙组涉及到的开关个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwSwitchNum: Integer
         # @param RegionLst: 防火墙(组)部署的地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionLst: Array
         # @param Mode: 模式 1：CCN云联网模式；0：私有网络模式 2: sase 模式 3：ccn 高级模式 4: 私有网络(跨租户单边模式)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: Integer
         # @param SwitchMode: 防火墙实例的开关模式 1: 单点互通 2: 多点互通 3: 全互通 4: 自定义路由
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchMode: Integer
         # @param FwInstanceLst: VPC防火墙实例卡片信息数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInstanceLst: Array
         # @param Status: 防火墙(状态) 0：正常 1: 初始化或操作中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param FwVpcCidr: auto :自动选择
         # 如果为网段，则为用户自定义 192.168.0.0/20
         # @type FwVpcCidr: String
         # @param CdcId: cdc专用集群场景时表示部署所属的cdc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
         # @param CdcName: cdc专用集群场景时表示cdc名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcName: String
         # @param CrossUserMode: 跨租户模式 1管理员 2单边 0 非跨租户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrossUserMode: String
         # @param NeedSwitchCcnOverlap: 云联网模式下，当前实例是否需要开启重叠路由开关，1：需要开启，0：不需要开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedSwitchCcnOverlap: Integer
         # @param CcnId: 云联网模式下，实例关联的云联网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: String
 
         attr_accessor :FwGroupId, :FwGroupName, :FwSwitchNum, :RegionLst, :Mode, :SwitchMode, :FwInstanceLst, :Status, :FwVpcCidr, :CdcId, :CdcName, :CrossUserMode, :NeedSwitchCcnOverlap, :CcnId
@@ -9900,95 +9513,66 @@ module TencentCloud
       # VPC防火墙实例卡片信息
       class VpcFwInstanceInfo < TencentCloud::Common::AbstractModel
         # @param FwInsName: VPC防火墙实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsName: String
         # @param FwInsId: VPC防火墙实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsId: String
         # @param FwMode: VPC防火墙实例模式 0: 旧VPC模式防火墙 1: CCN模式防火墙
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwMode: Integer
         # @param JoinInsNum: VPC防火墙接入网络实例个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinInsNum: Integer
         # @param FwSwitchNum: VPC防火墙开关个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwSwitchNum: Integer
         # @param Status: VPC防火墙状态 0:正常 ， 1：创建中 2: 变更中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Time: VPC防火墙创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param CcnId: VPC 相关云联网ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnId: Array
         # @param CcnName: VPC 相关云联网名称列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnName: Array
         # @param PeerConnectionId: VPC 相关对等连接ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerConnectionId: Array
         # @param PeerConnectionName: VPC 相关对等连接名称列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerConnectionName: Array
         # @param FwCvmLst: VPC防火墙CVM的列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwCvmLst: Array
         # @param JoinInsLst: VPC防火墙接入网络实例类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinInsLst: Array
         # @param FwGateway: 防火墙网关信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGateway: Array
         # @param FwGroupId: 防火墙(组)ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupId: String
         # @param RuleUsed: 已使用规则数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleUsed: Integer
         # @param RuleMax: 最大规则数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleMax: Integer
         # @param Width: 防火墙实例带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param UserVpcWidth: 用户VPC墙总带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserVpcWidth: Integer
         # @param JoinInsIdLst: 接入的vpc列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinInsIdLst: Array
         # @param FlowMax: 内网间峰值带宽 (单位 bps )
         # @type FlowMax: Integer
         # @param EngineVersion: 实例引擎版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineVersion: String
         # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateEnable: Integer
         # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrafficMode: String
         # @param ReserveTime: 引擎预约升级时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveTime: String
         # @param ReserveVersion: 预约引擎升级版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveVersion: String
         # @param ReserveVersionState: 引擎预约升级版本状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveVersionState: String
         # @param ElasticSwitch: 弹性开关 1打开 0关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticSwitch: Integer
         # @param ElasticBandwidth: 弹性带宽，单位Mbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBandwidth: Integer
         # @param IsFirstAfterPay: 是否首次开通按量付费
         # 1 是
         # 0 不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFirstAfterPay: Integer
 
         attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable, :TrafficMode, :ReserveTime, :ReserveVersion, :ReserveVersionState, :ElasticSwitch, :ElasticBandwidth, :IsFirstAfterPay
@@ -10086,10 +9670,8 @@ module TencentCloud
         # @param FwInsId: VPC防火墙实例ID
         # @type FwInsId: String
         # @param FwInsName: VPC防火墙实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsName: String
         # @param FwInsRegion: 网络经过VPC防火墙CVM所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsRegion: String
 
         attr_accessor :FwInsId, :FwInsName, :FwInsRegion
@@ -10110,10 +9692,8 @@ module TencentCloud
       # VPC防火墙接入的网络实例类型及数量
       class VpcFwJoinInstanceType < TencentCloud::Common::AbstractModel
         # @param JoinType: 接入实例类型，VPC、DIRECTCONNECT、 VPNGW 等
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinType: String
         # @param Num: 接入的对应网络实例类型的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Num: Integer
 
         attr_accessor :JoinType, :Num
@@ -10156,7 +9736,6 @@ module TencentCloud
         # FTP
         # DNS
         # TLS/SSL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值：
         # accept：放行
@@ -10166,7 +9745,6 @@ module TencentCloud
         # @param Port: 访问控制策略的端口。取值：
         # -1/-1：全部端口
         # 80：80端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param Description: 描述
         # @type Description: String
@@ -10187,33 +9765,27 @@ module TencentCloud
         # @param Deleted: 规则被删除：1，已删除；0，未删除
         # @type Deleted: Integer
         # @param FwGroupId: 规则生效的防火墙实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupId: String
         # @param FwGroupName: 防火墙名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwGroupName: String
         # @param BetaList: beta任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
         # @param ParamTemplateId: 端口协议组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateId: String
         # @param ParamTemplateName: 端口协议组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateName: String
         # @param TargetName: 访问目的名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetName: String
         # @param SourceName: 访问源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceName: String
         # @param IpVersion: Ip版本，0：IPv4，1：IPv6，默认为IPv4
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpVersion: Integer
+        # @param Invalid: 是否是无效规则，0 表示有效规则，1 表示无效规则，出参场景返回使用
+        # @type Invalid: Integer
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion, :Invalid
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil, invalid=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -10238,6 +9810,7 @@ module TencentCloud
           @TargetName = targetname
           @SourceName = sourcename
           @IpVersion = ipversion
+          @Invalid = invalid
         end
 
         def deserialize(params)
@@ -10272,6 +9845,7 @@ module TencentCloud
           @TargetName = params['TargetName']
           @SourceName = params['SourceName']
           @IpVersion = params['IpVersion']
+          @Invalid = params['Invalid']
         end
       end
 

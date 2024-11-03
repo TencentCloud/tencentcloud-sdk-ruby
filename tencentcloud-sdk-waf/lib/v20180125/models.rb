@@ -44,13 +44,10 @@ module TencentCloud
       # DescribeAccessIndex
       class AccessFullTextInfo < TencentCloud::Common::AbstractModel
         # @param CaseSensitive: 是否大小写敏感
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaseSensitive: Boolean
         # @param Tokenizer: 全文索引的分词符，字符串中每个字符代表一个分词符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tokenizer: String
         # @param ContainZH: 是否包含中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainZH: Boolean
 
@@ -80,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 10
-        deprecate :BTime=, :none, 2024, 10
+        deprecate :BTime, :none, 2024, 11
+        deprecate :BTime=, :none, 2024, 11
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -99,10 +96,8 @@ module TencentCloud
       # 用于 DescribeAccessIndex 的出参
       class AccessKeyValueInfo < TencentCloud::Common::AbstractModel
         # @param Key: 需要配置键值或者元字段索引的字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 字段的索引描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Waf.v20180125.models.AccessValueInfo`
 
         attr_accessor :Key, :Value
@@ -124,7 +119,6 @@ module TencentCloud
       # 单条日志数据描述
       class AccessLogInfo < TencentCloud::Common::AbstractModel
         # @param Time: 日志时间，单位ms
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: Integer
         # @param TopicId: 日志主题ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -177,10 +171,8 @@ module TencentCloud
       # 日志KeyValue对
       class AccessLogItem < TencentCloud::Common::AbstractModel
         # @param Key: 日记Key
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 日志Value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -199,7 +191,6 @@ module TencentCloud
       # 日志KeyValue对数组，用于搜索访问日志
       class AccessLogItems < TencentCloud::Common::AbstractModel
         # @param Data: 分析结果返回的KV数据对
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
 
         attr_accessor :Data
@@ -262,10 +253,8 @@ module TencentCloud
       # DescribeAccessIndex接口的出参
       class AccessRuleKeyValueInfo < TencentCloud::Common::AbstractModel
         # @param CaseSensitive: 是否大小写敏感
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaseSensitive: Boolean
         # @param KeyValues: 需要建立索引的键值对信息；最大只能配置100个键值对
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyValues: Array
 
         attr_accessor :CaseSensitive, :KeyValues
@@ -291,10 +280,8 @@ module TencentCloud
       # DescribeAccessIndex接口的出参
       class AccessRuleTagInfo < TencentCloud::Common::AbstractModel
         # @param CaseSensitive: 是否大小写敏感
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaseSensitive: Boolean
         # @param KeyValues: 标签索引配置中的字段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyValues: Array
 
         attr_accessor :CaseSensitive, :KeyValues
@@ -320,16 +307,12 @@ module TencentCloud
       # 用于DescribeAccessIndex接口的出参
       class AccessValueInfo < TencentCloud::Common::AbstractModel
         # @param Type: 字段类型，目前支持的类型有：long、text、double
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Tokenizer: 字段的分词符，只有当字段类型为text时才有意义；输入字符串中的每个字符代表一个分词符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tokenizer: String
         # @param SqlFlag: 字段是否开启分析功能
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SqlFlag: Boolean
         # @param ContainZH: 是否包含中文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainZH: Boolean
 
@@ -465,7 +448,7 @@ module TencentCloud
         # @type Areas: Array
         # @param Edition: waf版本信息，spart-waf或者clb-waf，其他无效，请一定填写
         # @type Edition: String
-        # @param JobType: 定时任务类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
@@ -593,7 +576,7 @@ module TencentCloud
         # @type Strategies: Array
         # @param Domain: 需要添加策略的域名
         # @type Domain: String
-        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向
+        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
         # @type ActionType: String
         # @param Redirect: 如果动作是重定向，则表示重定向的地址；其他情况可以为空
         # @type Redirect: String
@@ -601,7 +584,7 @@ module TencentCloud
         # @type ExpireTime: String
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
-        # @param Bypass: 放行的详情
+        # @param Bypass: 放行时是否继续执行其它检查逻辑，继续执行地域封禁防护：geoip、继续执行CC策略防护：cc、继续执行WEB应用防护：owasp、继续执行AI引擎防护：ai、继续执行信息防泄漏防护：antileakage。如果多个勾选那么以,串接。默认是"geoip,cc,owasp,ai,antileakage"
         # @type Bypass: String
         # @param EventId: 添加规则的来源，默认为空
         # @type EventId: String
@@ -674,7 +657,6 @@ module TencentCloud
         # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
         # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
         # @param RuleId: 添加成功的规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -711,7 +693,7 @@ module TencentCloud
         # @type Domain: String
         # @param Bypass: 放行的详情
         # @type Bypass: String
-        # @param JobType: 定时任务类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
@@ -756,7 +738,6 @@ module TencentCloud
         # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
         # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
         # @param RuleId: 添加成功的规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1095,41 +1076,30 @@ module TencentCloud
         # @param ApiName: api名称
         # @type ApiName: String
         # @param Scene: 场景
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param Label: 数据标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: Array
         # @param Active: 过去7天是否活跃
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Active: Boolean
         # @param Timestamp: 最近更新时间
         # @type Timestamp: Integer
         # @param InsertTime: api发现时间
         # @type InsertTime: Integer
         # @param Mode: 资产状态，1:新发现，2，确认中，3，已确认，4，已下线，5，已忽略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param Level: 风险等级，100,200,300对应低中高
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param Count: 近30天调用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param IsAuth: 是否鉴权，1标识是，0表示否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAuth: Integer
         # @param ApiRequestRuleId: 如果添加了api入参检测规则，则此id返回值不为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiRequestRuleId: Integer
         # @param ApiLimitRuleId: 如果添加了api限流规则，则此id返回值不为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiLimitRuleId: Integer
         # @param HostList: 对象接入和泛域名接入时，展示host列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostList: Array
 
         attr_accessor :Domain, :Method, :ApiName, :Scene, :Label, :Active, :Timestamp, :InsertTime, :Mode, :Level, :Count, :Remark, :IsAuth, :ApiRequestRuleId, :ApiLimitRuleId, :HostList
@@ -1200,13 +1170,10 @@ module TencentCloud
       # api历史样例返回结构体
       class ApiDetailSampleHistory < TencentCloud::Common::AbstractModel
         # @param SampleNme: 样例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleNme: String
         # @param RepLog: 请求样例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepLog: String
         # @param RspLog: 响应样例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RspLog: String
 
         attr_accessor :SampleNme, :RepLog, :RspLog
@@ -1227,31 +1194,22 @@ module TencentCloud
       # api请求参数类型
       class ApiParameterType < TencentCloud::Common::AbstractModel
         # @param ParameterName: 参数名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
         # @param Type: 参数类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Location: 参数位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
         # @param Label: 数据标签(敏感字段)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: Array
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
         # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param Source: 来源是请求或者响应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param IsPan: 是否需要泛化 ，0表示不需要，1表示需要
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPan: Integer
         # @param IsAuth: 是否鉴权，1表示是，0表示否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAuth: Integer
 
         attr_accessor :ParameterName, :Type, :Location, :Label, :Timestamp, :Remark, :Source, :IsPan, :IsAuth
@@ -1284,34 +1242,24 @@ module TencentCloud
       # API安全资源信息
       class ApiPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param InquireNum: 申请数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
         # @param IsAPISecurityTrial: api安全7天试用标识。1试用。0没试用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAPISecurityTrial: Integer
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem, :IsAPISecurityTrial
@@ -1461,7 +1409,6 @@ module TencentCloud
       # 批量多域名黑白名单列表Ip
       class BatchIpAccessControlItem < TencentCloud::Common::AbstractModel
         # @param Id: mongo表自增Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param ActionType: 黑名单42或白名单40
         # @type ActionType: Integer
@@ -1478,25 +1425,18 @@ module TencentCloud
         # @param Hosts: 域名列表
         # @type Hosts: Array
         # @param RuleId: 55101145
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param IpList: IP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpList: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param JobType: 定时任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: String
         # @param CronType: 周期任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronType: String
         # @param JobDateTime: 定时任务配置详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
         # @param ValidStatus: 生效状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidStatus: Integer
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus
@@ -1544,40 +1484,28 @@ module TencentCloud
       # Bot资源信息
       class BotPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param InquireNum: 申请数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
         # @param Type: 子产品code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param BotCPWaf: 购买页bot6折
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotCPWaf: Integer
         # @param BotNPWaf: 控制台买bot5折
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotNPWaf: Integer
         # @param IsBotTrial: 7天bot试用标识 1 试用 0 没有试用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsBotTrial: Integer
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type, :RenewFlag, :BotCPWaf, :BotNPWaf, :IsBotTrial
@@ -1626,7 +1554,6 @@ module TencentCloud
         # @param MaxBotQPS: 使用qps的最大值
         # @type MaxBotQPS: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
 
         attr_accessor :ResourceIds, :ValidTime, :Count, :Region, :MaxBotQPS, :RenewFlag
@@ -1707,7 +1634,7 @@ module TencentCloud
 
       # cc规则
       class CCRuleItem < TencentCloud::Common::AbstractModel
-        # @param ActionType: 动作
+        # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截，24表示JS校验
         # @type ActionType: Integer
         # @param Advance: 高级模式
         # @type Advance: Integer
@@ -1733,19 +1660,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionsArr: String
         # @param Length: url长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Length: Integer
         # @param RuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param EventId: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: String
         # @param SessionApplied: 关联的Session规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionApplied: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
 
         attr_accessor :ActionType, :Advance, :Interval, :Limit, :MatchFunc, :Name, :Priority, :Status, :TsVersion, :Url, :ValidTime, :OptionsArr, :Length, :RuleId, :EventId, :SessionApplied, :CreateTime
@@ -1807,7 +1729,7 @@ module TencentCloud
         # @type Url: String
         # @param MatchFunc: 匹配类型
         # @type MatchFunc: Integer
-        # @param ActionType: 动作
+        # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截，24表示JS校验
         # @type ActionType: Integer
         # @param Priority: 优先级
         # @type Priority: Integer
@@ -1823,7 +1745,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: String
         # @param SessionApplied: 关联的Session规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionApplied: Array
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1949,10 +1870,8 @@ module TencentCloud
         # @param Status: 状态
         # @type Status: Integer
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :Id, :Name, :Domain, :Uri, :Protocol, :Status, :ModifyTime, :CreateTime
@@ -1985,7 +1904,6 @@ module TencentCloud
         # @param Id: cdc的集群id
         # @type Id: String
         # @param Name: cdc的集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Name
@@ -2048,25 +1966,18 @@ module TencentCloud
         # @param FlowMode: 负载均衡型WAF的流量模式，1：清洗模式，0：镜像模式
         # @type FlowMode: Integer
         # @param State: 域名绑定负载均衡器状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
         # @param AlbType: 负载均衡类型，clb或者apisix
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
         # @param IpHeaders: IsCdn=3时，表示自定义header
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
         # @param CdcClusters: cdc-clb-waf类型WAF的CDC集群信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: String
         # @param CloudType: 云类型:public:公有云；private:私有云;hybrid:混合云
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
         # @param Note: 域名备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param Labels: 域名标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
 
         attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note, :Labels
@@ -2148,28 +2059,20 @@ module TencentCloud
         # @param PostCKafkaStatus: kafka投递开关
         # @type PostCKafkaStatus: Integer
         # @param Type: 对象类型：CLB:负载均衡器，TSE:云原生网关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Region: 对象地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Proxy: 代理状态: 0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proxy: Integer
         # @param IpHeaders: 指定获取客户端IP的头部字段列表。IsCdn为3时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
         # @param BotStatus: bot防护开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotStatus: Integer
         # @param ApiStatus: api防护开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiStatus: Integer
         # @param ObjectFlowMode: 对象接入模式，0表示镜像模式，1表示清洗模式，2表示体检模式，默认为清洗模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectFlowMode: Integer
         # @param NumericalVpcId: 数值形式的私有网络 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumericalVpcId: Integer
 
         attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId
@@ -2230,16 +2133,12 @@ module TencentCloud
       # Clb-waf地域信息
       class ClbWafRegionItem < TencentCloud::Common::AbstractModel
         # @param Id: 地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Text: 地域中文说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Value: 地域英文全拼
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Code: 地域编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
 
         attr_accessor :Id, :Text, :Value, :Code
@@ -2337,13 +2236,10 @@ module TencentCloud
         # 旗舰版-CLB : 101201(新购),101202(续费),101203(变配)
         # 域名包-CLB: 101207(新购),101208(续费),101209(变配)
         # 业务扩展包-CLB: 101210(新购),101211(续费),101212(变配)
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsCategoryId: Integer
         # @param RegionId: 购买waf实例区域ID
         # 1 表示购买大陆资源;
         # 9表示购买非中国大陆资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
 
         attr_accessor :GoodsNum, :GoodsDetail, :GoodsCategoryId, :RegionId
@@ -2369,10 +2265,8 @@ module TencentCloud
       # 产品明细
       class CreateDealsGoodsDetail < TencentCloud::Common::AbstractModel
         # @param TimeSpan: 时间间隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param TimeUnit: 单位，支持购买d、m、y 即（日、月、年）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param SubProductCode: 子产品标签,。新购，续费必传，变配时放在oldConfig newConfig里面
 
@@ -2387,8 +2281,6 @@ module TencentCloud
         # 旗舰版-CLB:sp_wsm_waf_ultimate_clb
         #  业务扩展包-CLB：sp_wsm_waf_qpsep_clb
         # 域名扩展包-CLB：sp_wsm_waf_domain_clb
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
         # @param Pid: 业务产品申请的pid（对应一个定价公式），通过pid计费查询到定价模型
         # 高级版 ：1000827
@@ -2401,17 +2293,12 @@ module TencentCloud
         # 旗舰版-CLB:1001154
         # 域名包-CLB: 1001156
         # 业务扩展包-CLB : 1001160
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pid: Integer
         # @param InstanceName: waf实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param AutoRenewFlag: 1:自动续费，0:不自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param RealRegion: waf购买的实际地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealRegion: Integer
         # @param LabelTypes: 计费细项标签数组
         # Saas 高级版  sv_wsm_waf_package_premium
@@ -2431,20 +2318,14 @@ module TencentCloud
         # 非中国大陆旗舰版CLB  sv_wsm_waf_package_ultimate_clb _intl
         # 业务扩展包CLB sv_wsm_waf_qps_ep_clb
         # 域名扩展包CLB  sv_wsm_waf_domain_clb
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelTypes: Array
         # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelCounts: Array
         # @param CurDeadline: 变配使用，实例到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
         # @param InstanceId: 对存在的实例购买bot 或api 安全
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ResourceId: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
 
         attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId, :ResourceId
@@ -2506,12 +2387,10 @@ module TencentCloud
       # CreateDeals返回参数结构体
       class CreateDealsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 计费下单响应结构体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DealData`
         # @param Status: 1:成功，0:失败
         # @type Status: Integer
         # @param ReturnMessage: 返回message
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2598,12 +2477,15 @@ module TencentCloud
         # @type SourceType: String
         # @param Note: 备注
         # @type Note: String
-        # @param JobType: 定时配置类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时配置详情
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
+        extend Gem::Deprecate
+        deprecate :ValidTS, :none, 2024, 11
+        deprecate :ValidTS=, :none, 2024, 11
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -2638,7 +2520,6 @@ module TencentCloud
       # CreateIpAccessControl返回参数结构体
       class CreateIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param RuleId: 新增的规则对应的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2659,16 +2540,12 @@ module TencentCloud
       # 规则周期执行的数据结构
       class CronJob < TencentCloud::Common::AbstractModel
         # @param Days: 每个月的几号执行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Days: Array
         # @param WDays: 每个星期的星期几执行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WDays: Array
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :Days, :WDays, :StartTime, :EndTime
@@ -3084,38 +2961,6 @@ module TencentCloud
         end
       end
 
-      # DeleteDownloadRecord请求参数结构体
-      class DeleteDownloadRecordRequest < TencentCloud::Common::AbstractModel
-        # @param Flow: 记录id
-        # @type Flow: String
-
-        attr_accessor :Flow
-
-        def initialize(flow=nil)
-          @Flow = flow
-        end
-
-        def deserialize(params)
-          @Flow = params['Flow']
-        end
-      end
-
-      # DeleteDownloadRecord返回参数结构体
-      class DeleteDownloadRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteHost请求参数结构体
       class DeleteHostRequest < TencentCloud::Common::AbstractModel
         # @param HostsDel: 删除的域名列表
@@ -3201,10 +3046,8 @@ module TencentCloud
       # DeleteIpAccessControl返回参数结构体
       class DeleteIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param FailedItems: 删除失败的条目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedItems: String
         # @param FailedCount: 删除失败的条目数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3390,7 +3233,6 @@ module TencentCloud
         # @param TotalCount: 日志导出ID。
         # @type TotalCount: Integer
         # @param Exports: 日志导出列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exports: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3436,8 +3278,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2024, 10
-        deprecate :TopicId=, :none, 2024, 10
+        deprecate :TopicId, :none, 2024, 11
+        deprecate :TopicId=, :none, 2024, 11
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -3652,7 +3494,6 @@ module TencentCloud
         # @param Total: 总数
         # @type Total: Integer
         # @param Data: 返回值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3948,7 +3789,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uri: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
 
         attr_accessor :RuleId, :Name, :Status, :Action, :CreateTime, :Strategies, :Uri, :ModifyTime
@@ -4018,40 +3858,28 @@ module TencentCloud
       # DescribeApiDetail返回参数结构体
       class DescribeApiDetailResponse < TencentCloud::Common::AbstractModel
         # @param Log: 请求样例，json字符串格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Log: String
         # @param ParameterList: 请求参数样例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterList: Array
         # @param Scene: 当前场景标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param SensitiveFields: 敏感字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFields: Array
         # @param IsActive: 7天内是否活跃
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsActive: Boolean
         # @param IpCount: 访问ip数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpCount: Integer
         # @param RegionCount: 访问地域数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionCount: Integer
         # @param EventCount: 关联事件数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventCount: Integer
         # @param SensitiveCount: 涉敏数据条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveCount: Integer
         # @param Level: 风险等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param RspLog: 响应体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RspLog: String
         # @param MaxQPS: 昨日访问峰值QPS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxQPS: Integer
         # @param ApiDetailSampleHistory: 历史样例
         # @type ApiDetailSampleHistory: Array
@@ -4163,10 +3991,8 @@ module TencentCloud
       # DescribeApiListVersionTwo返回参数结构体
       class DescribeApiListVersionTwoResponse < TencentCloud::Common::AbstractModel
         # @param Data: api资产列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4212,7 +4038,6 @@ module TencentCloud
       # DescribeAreaBanAreas返回参数结构体
       class DescribeAreaBanAreasResponse < TencentCloud::Common::AbstractModel
         # @param Data: 回包内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DescribeAreaBanAreasRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4238,18 +4063,15 @@ module TencentCloud
         # @param Status: 状态 "0"：未开启地域封禁 "1"：开启地域封禁
         # @type Status: String
         # @param Source: 数据来源 custom-自定义(默认)、batch-批量防护
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param Areas: 字符串数据，配置的地域列表
         # @type Areas: Array
         # @param JobType: 定时任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: String
         # @param JobDateTime: 定时任务详细配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
         # @param CronType: 周期任务配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronType: String
 
         attr_accessor :Status, :Source, :Areas, :JobType, :JobDateTime, :CronType
@@ -4358,19 +4180,14 @@ module TencentCloud
         # @param ApiAssetsCount: api资产总数
         # @type ApiAssetsCount: Integer
         # @param ApiRiskEventCount: api风险事件数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiRiskEventCount: Integer
         # @param IPBlackCount: 黑名单总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPBlackCount: Integer
         # @param TamperCount: 防篡改总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TamperCount: Integer
         # @param LeakCount: 信息泄露总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeakCount: Integer
         # @param ApiRiskEventCircleCount: API风险事件周环比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiRiskEventCircleCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4631,7 +4448,7 @@ module TencentCloud
 
       # DescribeBatchIpAccessControl请求参数结构体
       class DescribeBatchIpAccessControlRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 筛选条件，支持 ActionType 40/42，Ip：ip地址，Domain：域名三类
+        # @param Filters: 筛选条件，支持 ActionType，可选的值为40（白名单）42（黑名单），ValidStatus，可选的值为1（生效）0（过期）
         # @type Filters: Array
         # @param OffSet: 偏移
         # @type OffSet: Integer
@@ -4667,7 +4484,6 @@ module TencentCloud
       # DescribeBatchIpAccessControl返回参数结构体
       class DescribeBatchIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param Data: 输出
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.BatchIpAccessControlData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4922,7 +4738,6 @@ module TencentCloud
         # @param Changed: 证书是否改变。
         # 0：未变化
         # 1：有变化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Changed: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4960,7 +4775,6 @@ module TencentCloud
       # DescribeCiphersDetail返回参数结构体
       class DescribeCiphersDetailResponse < TencentCloud::Common::AbstractModel
         # @param Ciphers: 加密套件信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ciphers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5065,7 +4879,7 @@ module TencentCloud
 
       # DescribeCustomRules接口回包中的复杂类型
       class DescribeCustomRulesRspRuleListItem < TencentCloud::Common::AbstractModel
-        # @param ActionType: 动作类型
+        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
         # @type ActionType: String
         # @param Bypass: 跳过的策略
         # @type Bypass: String
@@ -5086,34 +4900,24 @@ module TencentCloud
         # @param Strategies: 策略详情
         # @type Strategies: Array
         # @param EventId: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: String
         # @param ModifyTime: 修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param ValidStatus: 生效状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidStatus: Integer
         # @param Source: 来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param JobType: 定时任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: String
         # @param JobDateTime: 定时任务配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
         # @param CronType: 周期任务粒度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronType: String
         # @param Label: 自定义标签，风控规则用，用来表示是内置规则还是用户自定义的
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param PageId: 拦截页面id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageId: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
 
         attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain
@@ -5580,7 +5384,6 @@ module TencentCloud
         # @param Total: 总数
         # @type Total: Integer
         # @param Domains: domain列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domains: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5816,7 +5619,6 @@ module TencentCloud
       # DescribeHostLimit返回参数结构体
       class DescribeHostLimitResponse < TencentCloud::Common::AbstractModel
         # @param Success: 成功返回的状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5924,7 +5726,6 @@ module TencentCloud
         # @param TotalCount: 防护域名列表的长度
         # @type TotalCount: Integer
         # @param HostList: 防护域名的列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6056,10 +5857,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 10
-        deprecate :VtsMin=, :none, 2024, 10
-        deprecate :VtsMax, :none, 2024, 10
-        deprecate :VtsMax=, :none, 2024, 10
+        deprecate :VtsMin, :none, 2024, 11
+        deprecate :VtsMin=, :none, 2024, 11
+        deprecate :VtsMax, :none, 2024, 11
+        deprecate :VtsMax=, :none, 2024, 11
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -6105,10 +5906,8 @@ module TencentCloud
       # DescribeIpAccessControl返回参数结构体
       class DescribeIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param Data: 输出
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpAccessControlData`
         # @param UsedTotal: 已经使用的IP黑白名单的IP总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6164,10 +5963,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 10
-        deprecate :VtsMin=, :none, 2024, 10
-        deprecate :VtsMax, :none, 2024, 10
-        deprecate :VtsMax=, :none, 2024, 10
+        deprecate :VtsMin, :none, 2024, 11
+        deprecate :VtsMin=, :none, 2024, 11
+        deprecate :VtsMax, :none, 2024, 11
+        deprecate :VtsMax=, :none, 2024, 11
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -6207,7 +6006,6 @@ module TencentCloud
       # DescribeIpHitItems返回参数结构体
       class DescribeIpHitItemsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.IpHitItemsData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6290,13 +6088,7 @@ module TencentCloud
 
       # DescribeObjects请求参数结构体
       class DescribeObjectsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 支持的过滤器:
-        # 	ObjectId: clb实例ID
-        # 	VIP: clb实例的公网IP
-        # 	InstanceId: waf实例ID
-        # 	Domain: 精准域名
-        # 	Status: waf防护开关状态: 0关闭，1开启
-        # 	ClsStatus: waf日志开关: 0关闭，1开启
+        # @param Filters: 支持的过滤器:	ObjectId: clb实例ID	VIP: clb实例的公网IP	InstanceId: waf实例ID	Domain: 精准域名	Status: waf防护开关状态: 0关闭，1开启	ClsStatus: waf日志开关: 0关闭，1开启
         # @type Filters: Array
 
         attr_accessor :Filters
@@ -6883,7 +6675,7 @@ module TencentCloud
 
       # DescribeTlsVersion返回参数结构体
       class DescribeTlsVersionResponse < TencentCloud::Common::AbstractModel
-        # @param TLS: TLS key value
+        # @param TLS: TLS信息
         # @type TLS: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6992,7 +6784,6 @@ module TencentCloud
       # DescribeUserCdcClbWafRegions返回参数结构体
       class DescribeUserCdcClbWafRegionsResponse < TencentCloud::Common::AbstractModel
         # @param Data: CdcRegion的类型描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7036,10 +6827,8 @@ module TencentCloud
       # DescribeUserClbWafRegions返回参数结构体
       class DescribeUserClbWafRegionsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 地域（标准的ap-格式）列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RichDatas: 包含详细属性的地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RichDatas: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7188,7 +6977,6 @@ module TencentCloud
         # @param Total: 规则总数
         # @type Total: Integer
         # @param Rules: 规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7547,49 +7335,37 @@ module TencentCloud
         # 1：开启
         # @type PostCKafkaStatus: Integer
         # @param CdcClusters: cdc实例域名接入的集群信息,非cdc实例忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: String
         # @param ApiStatus: api安全开关状态。
         # 0：关闭
         # 1：开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiStatus: Integer
         # @param AlbType: 应用型负载均衡类型，默认clb。
         # clb：七层负载均衡器类型
         # apisix：apisix网关型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
         # @param SgState: 安全组状态。
         # 0：不展示
         # 1：非腾讯云源站
         # 2：安全组绑定失败
         # 3：安全组发生变更
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgState: Integer
         # @param SgDetail: 安全组状态的详细解释
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgDetail: String
         # @param CloudType: 域名云环境。hybrid：混合云域名
         # public：公有云域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
         # @param Note: 域名备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param SrcList: SAASWAF源站IP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcList: Array
         # @param UpstreamDomainList: SAASWAF源站域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamDomainList: Array
         # @param SgID: 安全组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgID: String
         # @param AccessStatus: clbwaf接入状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessStatus: Integer
         # @param Labels: 域名标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
 
         attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus, :Labels
@@ -7687,22 +7463,17 @@ module TencentCloud
         end
       end
 
-      # clb-waf 域名扩展套餐
+      # waf 域名扩展套餐
       class DomainPackageNew < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param ValidTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTime: String
         # @param RenewFlag: 是否自动续费，1：自动续费，0：不自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param Count: 套餐购买个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Region: 套餐购买地域，clb-waf暂时没有用到
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region
@@ -7727,10 +7498,8 @@ module TencentCloud
       # 域名-规则id结构体
       class DomainRuleId < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param RuleId: 规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: String
 
         attr_accessor :Domain, :RuleId
@@ -7753,7 +7522,6 @@ module TencentCloud
         # @param Edition: 版本
         # @type Edition: String
         # @param InstanceID: 实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
 
         attr_accessor :Domain, :Edition, :InstanceID
@@ -7863,83 +7631,60 @@ module TencentCloud
         # @param ActiveCheck: 是否开启主动健康检测。
         # 0：不开启
         # 1：开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveCheck: Integer
         # @param TLSVersion: TLS版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSVersion: Integer
         # @param Ciphers: 自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ciphers: Array
         # @param CipherTemplate: 加密套件模板。
         # 0：不支持选择，使用默认模板
         # 1：通用型模板
         # 2：安全型模板
         # 3：自定义模板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherTemplate: Integer
         # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyReadTimeout: Integer
         # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxySendTimeout: Integer
         # @param SniType: WAF回源时的SNI类型。
         # 0：关闭SNI，不配置client_hello中的server_name
         # 1：开启SNI，client_hello中的server_name为防护域名
         # 2：开启SNI，SNI为域名回源时的源站域名
         # 3：开启SNI，SNI为自定义域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SniType: Integer
         # @param SniHost: SniType为3时，需要填此参数，表示自定义的SNI；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SniHost: String
         # @param Weights: 回源IP权重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weights: Array
         # @param IpHeaders: IsCdn=3时，表示自定义header
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
         # @param XFFReset: 是否开启XFF重置。
         # 0：关闭
         # 1：开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XFFReset: Integer
         # @param Note: 域名备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
         # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamHost: String
         # @param Level: 防护规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param ProxyBuffer: 是否开启缓存 0-关闭 1-开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyBuffer: Integer
         # @param GmType: 国密选项。0：不开启国密 1：在原有TLS选项的基础上追加支持国密 2：开启国密并仅支持国密客户端访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmType: Integer
         # @param GmCertType: 国密证书类型。0：无国密证书 1：证书来源为自有国密证书 2：证书来源为托管国密证书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmCertType: Integer
         # @param GmCert: GmCertType为1时，需要填充此参数，表示自有国密证书的证书链
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmCert: String
         # @param GmPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的私钥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmPrivateKey: String
         # @param GmEncCert: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmEncCert: String
         # @param GmEncPrivateKey: GmCertType为1时，需要填充此参数，表示自有国密证书的加密证书的私钥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmEncPrivateKey: String
         # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GmSSLId: String
         # @param Labels: 域名标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
 
         attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels
@@ -8117,24 +7862,18 @@ module TencentCloud
       # DescribeAccessExports接口
       class ExportAccessInfo < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExportId: String
         # @param Query: 日志导出查询语句
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Query: String
         # @param FileName: 日志导出文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param FileSize: 日志文件大小
         # @type FileSize: Integer
         # @param Order: 日志导出时间排序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: String
         # @param Format: 日志导出格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
         # @param Count: 日志导出数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Status: 日志下载状态。Processing:导出正在进行中，Complete:导出完成，Failed:导出失败，Expired:日志导出已过期（三天有效期）
         # @type Status: String
@@ -8252,28 +7991,20 @@ module TencentCloud
       # 业务安全资源信息
       class FraudPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param InquireNum: 申请数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag
@@ -8367,15 +8098,12 @@ module TencentCloud
       # GenerateDealsAndPayNew返回参数结构体
       class GenerateDealsAndPayNewResponse < TencentCloud::Common::AbstractModel
         # @param Data: 计费下单响应结构体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DealData`
         # @param Status: 1:成功，0:失败
         # @type Status: Integer
         # @param ReturnMessage: 返回message
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMessage: String
         # @param InstanceId: 购买的实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8612,13 +8340,10 @@ module TencentCloud
         # 旗舰版-CLB : 101201(新购),101202(续费),101203(变配)
         # 域名包-CLB: 101207(新购),101208(续费),101209(变配)
         # 业务扩展包-CLB: 101210(新购),101211(续费),101212(变配)
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsCategoryId: Integer
         # @param RegionId: 购买waf实例区域ID
         # 1 表示购买大陆资源;
         # 9表示购买非中国大陆资源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
 
         attr_accessor :GoodsNum, :GoodsDetail, :GoodsCategoryId, :RegionId
@@ -8650,16 +8375,12 @@ module TencentCloud
         # @param GoodsDetail: 商品明细
         # @type GoodsDetail: :class:`Tencentcloud::Waf.v20180125.models.GoodsDetail`
         # @param ProjectId: 默认为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
         # @param GoodsCategoryId: 计费类目ID，对应cid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsCategoryId: Integer
         # @param Platform: 平台类型，默认1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Platform: Integer
         # @param RegionId: 购买waf实例区域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
 
         attr_accessor :PayMode, :GoodsNum, :GoodsDetail, :ProjectId, :GoodsCategoryId, :Platform, :RegionId
@@ -8701,37 +8422,26 @@ module TencentCloud
         # @param Pid: 计费策略id
         # @type Pid: Integer
         # @param ProductInfo: waf产品码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductInfo: Array
         # @param InstanceName: waf实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param ElasticQps: QPS数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticQps: Integer
         # @param FlexBill: 弹性账单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlexBill: Integer
         # @param AutoRenewFlag: 1:自动续费，0:不自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param RealRegion: waf购买的实际地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealRegion: Integer
         # @param Type: Waf实例对应的二级产品码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param LabelTypes: 计费细项标签数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelTypes: Array
         # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelCounts: Array
         # @param CurDeadline: 变配使用，实例到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
         # @param InstanceId: 对存在的实例购买bot 或api 安全
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :TimeSpan, :TimeUnit, :ProductCode, :SubProductCode, :Pid, :ProductInfo, :InstanceName, :ElasticQps, :FlexBill, :AutoRenewFlag, :RealRegion, :Type, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId
@@ -8785,10 +8495,8 @@ module TencentCloud
       # 产品明细
       class GoodsDetailNew < TencentCloud::Common::AbstractModel
         # @param TimeSpan: 时间间隔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param TimeUnit: 单位，支持购买d、m、y 即（日、月、年）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param SubProductCode: 子产品标签,。新购，续费必传，变配时放在oldConfig newConfig里面
 
@@ -8803,8 +8511,6 @@ module TencentCloud
         # 旗舰版-CLB:sp_wsm_waf_ultimate_clb
         #  业务扩展包-CLB：sp_wsm_waf_qpsep_clb
         # 域名扩展包-CLB：sp_wsm_waf_domain_clb
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
         # @param Pid: 业务产品申请的pid（对应一个定价公式），通过pid计费查询到定价模型
         # 高级版 ：1000827
@@ -8817,17 +8523,12 @@ module TencentCloud
         # 旗舰版-CLB:1001154
         # 域名包-CLB: 1001156
         # 业务扩展包-CLB : 1001160
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pid: Integer
         # @param InstanceName: waf实例名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param AutoRenewFlag: 1:自动续费，0:不自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
         # @param RealRegion: waf购买的实际地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealRegion: Integer
         # @param LabelTypes: 计费细项标签数组
         # Saas 高级版  sv_wsm_waf_package_premium
@@ -8847,23 +8548,16 @@ module TencentCloud
         # 非中国大陆旗舰版CLB  sv_wsm_waf_package_ultimate_clb _intl
         # 业务扩展包CLB sv_wsm_waf_qps_ep_clb
         # 域名扩展包CLB  sv_wsm_waf_domain_clb
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelTypes: Array
         # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelCounts: Array
         # @param CurDeadline: 变配使用，实例到期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurDeadline: String
         # @param InstanceId: 对存在的实例购买bot 或api 安全
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param ResourceId: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param MicroVersion: 模式clb-waf或者saas-waf
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroVersion: String
 
         attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId, :ResourceId, :MicroVersion
@@ -8975,32 +8669,27 @@ module TencentCloud
         # 0：关闭
         # @type ClsStatus: Integer
         # @param Level: 防护等级，可选值100,200,300
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param CdcClusters: 域名需要下发到的cdc集群列表。仅CDC场景下填充
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: Array
         # @param AlbType: 应用型负载均衡类型，默认clb。
         # clb：七层负载均衡器类型
         # apisix：apisix网关型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # tsegw：云原生API网关
+        # scf：云函数
         # @type AlbType: String
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
         # @param EngineType: 规则引擎类型。
         # 1: menshen
         # 2: tiga
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineType: Integer
         # @param CloudType: 云类型。
         # public:公有云
         # private:私有云
         # hybrid:混合云
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
         # @param Note: 域名备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
 
         attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType, :CloudType, :Note
@@ -9090,28 +8779,20 @@ module TencentCloud
       # 混合云节点资源信息
       class HybridPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param InquireNum: 申请数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag
@@ -9242,69 +8923,48 @@ module TencentCloud
         # @param Edition: clb或saas
         # @type Edition: String
         # @param FraudPkg: 业务安全包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FraudPkg: :class:`Tencentcloud::Waf.v20180125.models.FraudPkg`
         # @param BotPkg: Bot资源包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotPkg: :class:`Tencentcloud::Waf.v20180125.models.BotPkg`
         # @param BotQPS: bot的qps详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotQPS: :class:`Tencentcloud::Waf.v20180125.models.BotQPS`
         # @param ElasticBilling: qps弹性计费上限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBilling: Integer
         # @param AttackLogPost: 攻击日志投递开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackLogPost: Integer
         # @param MaxBandwidth: 带宽峰值，单位为B/s(字节每秒)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxBandwidth: Integer
         # @param APISecurity: api安全是否购买
         # @type APISecurity: Integer
         # @param QpsStandard: 购买的qps规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QpsStandard: Integer
         # @param BandwidthStandard: 购买的带宽规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthStandard: Integer
         # @param Status: 实例状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param SandboxQps: 实例沙箱qps值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SandboxQps: Integer
         # @param IsAPISecurityTrial: 是否api 安全试用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAPISecurityTrial: Integer
         # @param MajorEventsPkg: 重保包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MajorEventsPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsPkg`
         # @param HybridPkg: 混合云子节点包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HybridPkg: :class:`Tencentcloud::Waf.v20180125.models.HybridPkg`
         # @param ApiPkg: API安全资源包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiPkg: :class:`Tencentcloud::Waf.v20180125.models.ApiPkg`
         # @param MiniPkg: 小程序安全加速包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniPkg`
         # @param MiniQpsStandard: 小程序qps规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniQpsStandard: Integer
         # @param MiniMaxQPS: 小程序qps峰值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniMaxQPS: Integer
         # @param LastQpsExceedTime: 最近一次超量时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastQpsExceedTime: String
         # @param MiniExtendPkg: 小程序安全接入ID数量扩张包
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniExtendPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniExtendPkg`
         # @param BillingItem: 计费项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
         # @param FreeDelayFlag: 实例延期释放标识
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FreeDelayFlag: Integer
 
         attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag
@@ -9431,7 +9091,6 @@ module TencentCloud
       # 数据封装
       class IpAccessControlData < TencentCloud::Common::AbstractModel
         # @param Res: ip黑白名单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Res: Array
         # @param TotalCount: 计数
         # @type TotalCount: Integer
@@ -9459,7 +9118,6 @@ module TencentCloud
       # ip黑白名单
       class IpAccessControlItem < TencentCloud::Common::AbstractModel
         # @param Id: mongo表自增Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param ActionType: 动作
         # @type ActionType: Integer
@@ -9470,30 +9128,22 @@ module TencentCloud
         # @param Source: 来源
         # @type Source: String
         # @param TsVersion: 更新时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TsVersion: Integer
         # @param ValidTs: 有效截止时间戳
         # @type ValidTs: Integer
         # @param ValidStatus: 生效状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidStatus: Integer
         # @param RuleId: 55000001
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param IpList: IP列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpList: Array
         # @param CreateTime: 规则创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
         # @param JobType: 定时任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: String
         # @param CronType: 周期任务类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CronType: String
         # @param JobDateTime: 定时任务配置详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :ValidStatus, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime
@@ -9636,7 +9286,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cron: Array
         # @param TimeTZone: 时区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeTZone: String
 
         attr_accessor :Timed, :Cron, :TimeTZone
@@ -9709,13 +9358,10 @@ module TencentCloud
         # @param Zone: 负载均衡监听器所在的zone
         # @type Zone: String
         # @param NumericalVpcId: 负载均衡的VPCID，公网为-1，内网按实际填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumericalVpcId: Integer
-        # @param LoadBalancerType: 负载均衡的网络类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param LoadBalancerType: 负载均衡的网络类型。OPEN： 公网 INTERNAL ：内网
         # @type LoadBalancerType: String
         # @param LoadBalancerDomain: 负载均衡的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerDomain: String
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vip, :Vport, :Region, :Protocol, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
@@ -9754,19 +9400,14 @@ module TencentCloud
       # 负载均衡器
       class LoadBalancerPackageNew < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerId: String
         # @param ListenerName: 监听名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerName: String
         # @param LoadBalancerId: 负载均衡id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerId: String
         # @param LoadBalancerName: 负载均衡名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerName: String
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Region: 地区
         # "多伦多": "ca",
@@ -9797,25 +9438,18 @@ module TencentCloud
         #     "上海": "sh",
         #     "新加坡": "sg",
         #     "清远": "qy"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Vip: 接入IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param Vport: 接入端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vport: Integer
         # @param Zone: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param NumericalVpcId: VPCID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumericalVpcId: Integer
         # @param LoadBalancerType: CLB类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
         # @param LoadBalancerDomain: 负载均衡器的域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerDomain: String
 
         attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
@@ -9874,34 +9508,24 @@ module TencentCloud
       # 重保防护资源信息
       class MajorEventsPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param InquireNum: 申请数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedNum: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
         # @param HWState: 护网包状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HWState: Integer
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem, :HWState
@@ -9936,28 +9560,20 @@ module TencentCloud
       # 小程序安全接入ID扩展资源信息
       class MiniExtendPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Count: 购买数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :Count, :RenewFlag, :BillingItem
@@ -9985,31 +9601,23 @@ module TencentCloud
         end
       end
 
-      # API安全资源信息
+      # 小程序安全资源信息
       class MiniPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
         # @param BeginTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Count: 购买数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param RenewFlag: 续费标志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :Count, :RenewFlag, :BillingItem
@@ -10258,13 +9866,10 @@ module TencentCloud
       # ModifyApiAnalyzeStatus返回参数结构体
       class ModifyApiAnalyzeStatusResponse < TencentCloud::Common::AbstractModel
         # @param Count: 已经开启的数量,如果返回值为3（大于支持的域名开启数量），则表示开启失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param UnSupportedList: 不支持开启的域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnSupportedList: Array
         # @param FailDomainList: 开启/关闭失败的域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailDomainList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10355,7 +9960,7 @@ module TencentCloud
         # @type Domain: String
         # @param Areas: 需要调整的地域信息，一个字符串数组
         # @type Areas: Array
-        # @param JobType: 定时任务类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
@@ -10590,7 +10195,7 @@ module TencentCloud
         # @type RuleId: Integer
         # @param RuleName: 编辑的规则名称
         # @type RuleName: String
-        # @param RuleAction: 执行动作，0：放行、1：阻断、2：人机识别、3：观察、4：重定向
+        # @param RuleAction: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
         # @type RuleAction: String
         # @param Strategies: 匹配条件数组
         # @type Strategies: Array
@@ -10607,7 +10212,7 @@ module TencentCloud
         # @param ExpireTime: 规则生效截止时间，0：永久生效，其它值为对应时间的时间戳。
         # 默认是0
         # @type ExpireTime: Integer
-        # @param JobType: 定时任务类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
@@ -10768,7 +10373,7 @@ module TencentCloud
         # @type ExpireTime: Integer
         # @param Strategies: 匹配条件数组
         # @type Strategies: Array
-        # @param JobType: 定时任务类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
@@ -10930,7 +10535,7 @@ module TencentCloud
 
       # ModifyDomainPostAction请求参数结构体
       class ModifyDomainPostActionRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: www.tx.com
+        # @param Domain: 域名
         # @type Domain: String
         # @param PostCLSAction: 0-关闭投递，1-开启投递
         # @type PostCLSAction: Integer
@@ -11089,12 +10694,10 @@ module TencentCloud
       # ModifyGenerateDeals返回参数结构体
       class ModifyGenerateDealsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 计费下单响应结构体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DealData`
         # @param Status: 1:成功，0:失败
         # @type Status: Integer
         # @param ReturnMessage: 返回message
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReturnMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11213,7 +10816,6 @@ module TencentCloud
       # ModifyHostMode返回参数结构体
       class ModifyHostModeResponse < TencentCloud::Common::AbstractModel
         # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11365,7 +10967,7 @@ module TencentCloud
         # @type InstanceName: String
         # @param InstanceID: 实例id
         # @type InstanceID: String
-        # @param Edition: 版本
+        # @param Edition: 实例版本，支持clb-waf、sparta-waf
         # @type Edition: String
 
         attr_accessor :InstanceName, :InstanceID, :Edition
@@ -11484,10 +11086,10 @@ module TencentCloud
         # @type IpList: Array
         # @param ActionType: 42为黑名单，40为白名单
         # @type ActionType: Integer
-        # @param ValidTS: valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
-        # @type ValidTS: Integer
         # @param RuleId: 规则ID
         # @type RuleId: Integer
+        # @param ValidTS: valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
+        # @type ValidTS: Integer
         # @param InstanceId: 实例Id
         # @type InstanceId: String
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
@@ -11496,19 +11098,22 @@ module TencentCloud
         # @type SourceType: String
         # @param Note: 备注
         # @type Note: String
-        # @param JobType: 定时配置类型
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
         # @type JobType: String
         # @param JobDateTime: 定时配置详情
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
 
-        attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :RuleId, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
+        attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
+        extend Gem::Deprecate
+        deprecate :ValidTS, :none, 2024, 11
+        deprecate :ValidTS=, :none, 2024, 11
 
-        def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, ruleid=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
+        def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
           @IpList = iplist
           @ActionType = actiontype
-          @ValidTS = validts
           @RuleId = ruleid
+          @ValidTS = validts
           @InstanceId = instanceid
           @Edition = edition
           @SourceType = sourcetype
@@ -11521,8 +11126,8 @@ module TencentCloud
           @Domain = params['Domain']
           @IpList = params['IpList']
           @ActionType = params['ActionType']
-          @ValidTS = params['ValidTS']
           @RuleId = params['RuleId']
+          @ValidTS = params['ValidTS']
           @InstanceId = params['InstanceId']
           @Edition = params['Edition']
           @SourceType = params['SourceType']
@@ -11715,14 +11320,17 @@ module TencentCloud
         # @type Edition: String
         # @param Type: 0是修改规则引擎状态，1是修改AI的状态
         # @type Type: Integer
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
 
-        attr_accessor :Domain, :Mode, :Edition, :Type
+        attr_accessor :Domain, :Mode, :Edition, :Type, :InstanceID
 
-        def initialize(domain=nil, mode=nil, edition=nil, type=nil)
+        def initialize(domain=nil, mode=nil, edition=nil, type=nil, instanceid=nil)
           @Domain = domain
           @Mode = mode
           @Edition = edition
           @Type = type
+          @InstanceID = instanceid
         end
 
         def deserialize(params)
@@ -11730,6 +11338,7 @@ module TencentCloud
           @Mode = params['Mode']
           @Edition = params['Edition']
           @Type = params['Type']
+          @InstanceID = params['InstanceID']
         end
       end
 
@@ -12280,49 +11889,34 @@ module TencentCloud
         # @param BotAccess: Bot qps
         # @type BotAccess: Integer
         # @param StatusServerError: WAF返回给客户端状态码5xx次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusServerError: Integer
         # @param StatusClientError: WAF返回给客户端状态码4xx次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusClientError: Integer
         # @param StatusRedirect: WAF返回给客户端状态码302次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusRedirect: Integer
         # @param StatusOk: WAF返回给客户端状态码202次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusOk: Integer
         # @param UpstreamServerError: 源站返回给WAF状态码5xx次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamServerError: Integer
         # @param UpstreamClientError: 源站返回给WAF状态码4xx次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamClientError: Integer
         # @param UpstreamRedirect: 源站返回给WAF状态码302次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamRedirect: Integer
         # @param BlackIP: 黑名单次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlackIP: Integer
         # @param Tamper: 防篡改次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tamper: Integer
         # @param Leak: 信息防泄露次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Leak: Integer
         # @param ACL: 访问控制
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ACL: Integer
         # @param WxAccess: 小程序 qps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxAccess: Integer
         # @param WxCount: 小程序请求数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxCount: Integer
         # @param WxUp: 小程序上行带宽峰值，单位B
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxUp: Integer
         # @param WxDown: 小程序下行带宽峰值，单位B
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxDown: Integer
 
         attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect, :BlackIP, :Tamper, :Leak, :ACL, :WxAccess, :WxCount, :WxUp, :WxDown
@@ -12440,7 +12034,7 @@ module TencentCloud
         # @type UpstreamPort: String
         # @param UpstreamProtocol: 与Port一一对应,  表示回源协议
         # @type UpstreamProtocol: String
-        # @param NginxServerId: Nginx的服务器ID
+        # @param NginxServerId: Nginx的服务器ID,新增域名时填"0"
         # @type NginxServerId: String
 
         attr_accessor :Port, :Protocol, :UpstreamPort, :UpstreamProtocol, :NginxServerId
@@ -12525,10 +12119,8 @@ module TencentCloud
       # waf产品
       class ProductInfo < TencentCloud::Common::AbstractModel
         # @param Name: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -12547,22 +12139,16 @@ module TencentCloud
       # clb-waf QPS套餐 New
       class QPSPackageNew < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param ValidTime: 过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTime: String
         # @param RenewFlag: 是否自动续费，1：自动续费，0：不自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param Count: 套餐购买个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Region: 套餐购买地域，clb-waf暂时没有用到
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param BillingItem: 计费项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
 
         attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region, :BillingItem
@@ -12589,19 +12175,14 @@ module TencentCloud
       # 获取弹性qps的默认相关值
       class QpsData < TencentCloud::Common::AbstractModel
         # @param ElasticBillingDefault: 弹性qps默认值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBillingDefault: Integer
         # @param ElasticBillingMin: 弹性qps最小值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBillingMin: Integer
         # @param ElasticBillingMax: 弹性qps最大值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElasticBillingMax: Integer
         # @param QPSExtendMax: 业务扩展包最大qps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QPSExtendMax: Integer
-        # @param QPSExtendIntlMax: 海外业务扩展包最大qps
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param QPSExtendIntlMax: 境外业务扩展包最大qps
         # @type QPSExtendIntlMax: Integer
 
         attr_accessor :ElasticBillingDefault, :ElasticBillingMin, :ElasticBillingMax, :QPSExtendMax, :QPSExtendIntlMax
@@ -12770,7 +12351,6 @@ module TencentCloud
         # @param Status: 开关状态
         # @type Status: Integer
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :Id, :Rules, :Url, :Function, :Time, :Status, :CreateTime
@@ -12854,7 +12434,6 @@ module TencentCloud
         # @type ColNames: Array
         # @param Results: 日志查询结果；当Analysis为True时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param AnalysisResults: 日志分析结果；当Analysis为False时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值
@@ -12864,6 +12443,11 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
+        extend Gem::Deprecate
+        deprecate :ColNames, :none, 2024, 11
+        deprecate :ColNames=, :none, 2024, 11
+        deprecate :AnalysisResults, :none, 2024, 11
+        deprecate :AnalysisResults=, :none, 2024, 11
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context
@@ -13051,16 +12635,12 @@ module TencentCloud
         # @param TsVersion: 更新时间戳
         # @type TsVersion: String
         # @param SessionId: SessionID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionId: Integer
         # @param SessionName: Session名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionName: String
         # @param SessionInUsed: Session是否正在被启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionInUsed: Boolean
         # @param RelatedRuleID: Session关联的CC规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelatedRuleID: Array
 
         attr_accessor :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Source, :TsVersion, :SessionId, :SessionName, :SessionInUsed, :RelatedRuleID
@@ -13096,7 +12676,7 @@ module TencentCloud
 
       # waf斯巴达-编辑防护域名中的端口结构
       class SpartaProtectionPort < TencentCloud::Common::AbstractModel
-        # @param NginxServerId: nginx Id
+        # @param NginxServerId: 分配的服务器id
         # @type NginxServerId: Integer
         # @param Port: 端口
         # @type Port: String
@@ -13133,7 +12713,6 @@ module TencentCloud
         #     匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
         # 具体如下所示：
         # <table><thead><tr><th>匹配字段</th><th>匹配参数</th><th>逻辑符号</th><th>匹配内容</th></tr></thead><tbody><tr><td>IP（来源IP）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>多个IP以英文逗号隔开,最多20个</td></tr><tr><td>IPV6（来源IPv6）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>支持单个IPV6地址</td></tr><tr><td>Referer（Referer）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>URL（请求路径）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）<br/></td><td>请以/开头,512个字符以内</td></tr><tr><td>UserAgent（UserAgent）</td><td>不支持参数</td><td>同匹配字段<font color="Red">Referer</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>HTTP_METHOD（HTTP请求方法）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）</td><td>请输入方法名称,建议大写</td></tr><tr><td>QUERY_STRING（请求字符串）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET（GET参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_PARAMS_NAMES（GET参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST（POST参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_POST_NAMES（POST参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST_BODY（完整BODY）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入BODY内容,512个字符以内</td></tr><tr><td>COOKIE（Cookie）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>rematch（正则匹配）</td><td><font color="Red">暂不支持</font></td></tr><tr><td>GET_COOKIES_NAMES（Cookie参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>ARGS_COOKIE（Cookie参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_HEADERS_NAMES（Header参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,建议小写,512个字符以内</td></tr><tr><td>ARGS_HEADER（Header参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr></tbody></table>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Field: String
         # @param CompareFunc: 逻辑符号
 
@@ -13152,15 +12731,11 @@ module TencentCloud
         #         ipmatch （ 属于）
         #         ipnmatch （ 不属于）
         #     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareFunc: String
         # @param Content: 匹配内容
 
         #     目前 当匹配字段为COOKIE（Cookie）时，不需要输入 匹配内容
         # 其他都需要
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Arg: 匹配参数
 
@@ -13173,12 +12748,9 @@ module TencentCloud
         #         ARGS_COOKIE（Cookie参数值）
 
         #         ARGS_HEADER（Header参数值）
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arg: String
         # @param CaseNotSensitive: 0：大小写敏感
         # 1：大小写不敏感
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaseNotSensitive: Integer
 
         attr_accessor :Field, :CompareFunc, :Content, :Arg, :CaseNotSensitive
@@ -13317,13 +12889,10 @@ module TencentCloud
       # TLS 加密套件
       class TLSCiphers < TencentCloud::Common::AbstractModel
         # @param VersionId: TLS版本ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionId: Integer
         # @param CipherId: 加密套件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherId: Integer
         # @param CipherName: 加密套件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherName: String
 
         attr_accessor :VersionId, :CipherId, :CipherName
@@ -13344,10 +12913,8 @@ module TencentCloud
       # TLS信息
       class TLSVersion < TencentCloud::Common::AbstractModel
         # @param VersionId: TLSVERSION的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionId: Integer
         # @param VersionName: TLSVERSION的NAME
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
 
         attr_accessor :VersionId, :VersionName
@@ -13386,10 +12953,8 @@ module TencentCloud
       # Tiga引擎中Mainclass的TypeID和防护模式
       class TigaMainClassMode < TencentCloud::Common::AbstractModel
         # @param TypeID: MainclassID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeID: String
         # @param Mode: 防护模式，0表示观察，1表示拦截
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: Integer
 
         attr_accessor :TypeID, :Mode
@@ -13408,10 +12973,8 @@ module TencentCloud
       # 规则定时任务数据结构
       class TimedJob < TencentCloud::Common::AbstractModel
         # @param StartDateTime: 开始时间戳，单位为秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartDateTime: Integer
         # @param EndDateTime: 结束时间戳，单位为秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndDateTime: Integer
 
         attr_accessor :StartDateTime, :EndDateTime
@@ -13454,7 +13017,6 @@ module TencentCloud
       # UpsertCCAutoStatus返回参数结构体
       class UpsertCCAutoStatusResponse < TencentCloud::Common::AbstractModel
         # @param Data: 正常情况为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13490,7 +13052,7 @@ module TencentCloud
         # @type Url: String
         # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含
         # @type MatchFunc: Integer
-        # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截
+        # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截，26表示精准人机识别，27表示JS校验
         # @type ActionType: String
         # @param Priority: 优先级
         # @type Priority: Integer
@@ -13621,13 +13183,10 @@ module TencentCloud
       # UpsertIpAccessControl返回参数结构体
       class UpsertIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param FailedItems: 添加或修改失败的条目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedItems: String
         # @param FailedCount: 添加或修改失败的数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
         # @param Ids: 添加或修改的IP数据Id列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ids: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13707,7 +13266,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param SessionID: SessionID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13742,25 +13300,18 @@ module TencentCloud
         # @param Edition: waf类型
         # @type Edition: String
         # @param Level: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param WriteConfig: 指定域名访问日志字段的开关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteConfig: String
         # @param Cls: 指定域名是否写cls的开关 1:写 0:不写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cls: Integer
         # @param CloudType: 标记是否是混合云接入。hybrid表示混合云接入域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
         # @param AlbType: 标记clbwaf类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
         # @param BotStatus: BOT开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotStatus: Integer
         # @param ApiStatus: API开关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiStatus: Integer
 
         attr_accessor :Appid, :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :Level, :WriteConfig, :Cls, :CloudType, :AlbType, :BotStatus, :ApiStatus
@@ -13823,7 +13374,6 @@ module TencentCloud
         # @param Reason: 0/1
         # @type Reason: Integer
         # @param RiskLevel: 1: 高危 2:中危 3:低危
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: Integer
 
         attr_accessor :ID, :Status, :MainClassID, :SubClassID, :CveID, :CreateTime, :ModifyTime, :MainClassName, :SubClassName, :Description, :Reason, :RiskLevel
@@ -13870,7 +13420,6 @@ module TencentCloud
         # @param MatchField: 匹配域
         # @type MatchField: String
         # @param MatchParams: 匹配参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchParams: String
         # @param MatchMethod: 匹配方法
         # @type MatchMethod: String
@@ -13881,25 +13430,18 @@ module TencentCloud
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
         # @param SignatureIds: 规则ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignatureIds: Array
         # @param TypeIds: 大类规则ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeIds: Array
         # @param TypeId: 大类规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeId: String
         # @param Mode: 0:按照特定规则ID加白, 1:按照规则类型加白
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: Integer
         # @param Name: 规则名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param MatchInfo: 匹配规则列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchInfo: Array
         # @param MatchInfoStr: MatchInfo字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchInfoStr: String
 
         attr_accessor :WhiteRuleId, :SignatureId, :Status, :MatchField, :MatchParams, :MatchMethod, :MatchContent, :CreateTime, :ModifyTime, :SignatureIds, :TypeIds, :TypeId, :Mode, :Name, :MatchInfo, :MatchInfoStr
@@ -13959,7 +13501,6 @@ module TencentCloud
         # @param MatchContent: 匹配内容
         # @type MatchContent: String
         # @param MatchParams: 匹配参数名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchParams: String
 
         attr_accessor :MatchField, :MatchMethod, :MatchContent, :MatchParams
@@ -13981,23 +13522,45 @@ module TencentCloud
 
       # Vip信息
       class VipInfo < TencentCloud::Common::AbstractModel
-        # @param Vip: Virtual IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Vip: VIP地址
         # @type Vip: String
         # @param InstanceId: waf实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param InstanceCreateTime: 创建时间
+        # @type InstanceCreateTime: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param ISP: ip运营商类型
+        # @type ISP: String
+        # @param VipType: ip类型
+        # @type VipType: String
+        # @param AddressName: 域名信息
+        # @type AddressName: String
 
-        attr_accessor :Vip, :InstanceId
+        attr_accessor :Vip, :InstanceId, :InstanceCreateTime, :Region, :RegionId, :ISP, :VipType, :AddressName
 
-        def initialize(vip=nil, instanceid=nil)
+        def initialize(vip=nil, instanceid=nil, instancecreatetime=nil, region=nil, regionid=nil, isp=nil, viptype=nil, addressname=nil)
           @Vip = vip
           @InstanceId = instanceid
+          @InstanceCreateTime = instancecreatetime
+          @Region = region
+          @RegionId = regionid
+          @ISP = isp
+          @VipType = viptype
+          @AddressName = addressname
         end
 
         def deserialize(params)
           @Vip = params['Vip']
           @InstanceId = params['InstanceId']
+          @InstanceCreateTime = params['InstanceCreateTime']
+          @Region = params['Region']
+          @RegionId = params['RegionId']
+          @ISP = params['ISP']
+          @VipType = params['VipType']
+          @AddressName = params['AddressName']
         end
       end
 

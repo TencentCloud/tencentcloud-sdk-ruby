@@ -533,32 +533,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 废弃接口，无有效调用
-
-        # 删除访问日志下载记录
-
-        # @param request: Request instance for DeleteDownloadRecord.
-        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteDownloadRecordRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteDownloadRecordResponse`
-        def DeleteDownloadRecord(request)
-          body = send_request('DeleteDownloadRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteDownloadRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除负载均衡型域名，支持批量操作。
 
         # @param request: Request instance for DeleteHost.

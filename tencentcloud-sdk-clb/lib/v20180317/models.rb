@@ -890,7 +890,6 @@ module TencentCloud
         # @param InternetAccessible: 仅适用于公网负载均衡。负载均衡的网络计费模式。
         # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
         # @param VipIsp: 仅适用于公网负载均衡。目前仅广州、上海、南京、济南、杭州、福州、北京、石家庄、武汉、长沙、成都、重庆地域支持静态单线 IP 线路类型，如需体验，请联系商务经理申请。申请通过后，即可选择中国移动（CMCC）、中国联通（CUCC）或中国电信（CTCC）的运营商类型，网络计费模式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。 如果不指定本参数，则默认使用BGP。可通过 DescribeResources 接口查询一个地域所支持的Isp。
-        # 示例值：CMCC
         # @type VipIsp: String
         # @param Vip: 指定Vip申请负载均衡。
         # @type Vip: String
@@ -906,8 +905,7 @@ module TencentCloud
         # @type SnatIps: Array
         # @param ClusterIds: 公网独占集群ID或者CDCId。
         # @type ClusterIds: Array
-        # @param SlaType: 性能容量型规格。<li>clb.c2.medium（标准型）</li><li>clb.c3.small（高阶型1）</li><li>clb.c3.medium（高阶型2）</li>
-        # <li>clb.c4.small（超强型1）</li><li>clb.c4.medium（超强型2）</li><li>clb.c4.large（超强型3）</li><li>clb.c4.xlarge（超强型4）</li>
+        # @param SlaType: 性能容量型规格。<li>clb.c2.medium（标准型）</li><li>clb.c3.small（高阶型1）</li><li>clb.c3.medium（高阶型2）</li><li>clb.c4.small（超强型1）</li><li>clb.c4.medium（超强型2）</li><li>clb.c4.large（超强型3）</li><li>clb.c4.xlarge（超强型4）</li>
         # @type SlaType: String
         # @param ClusterTag: Stgw独占集群的标签。
         # @type ClusterTag: String

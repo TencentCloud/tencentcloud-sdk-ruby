@@ -1543,6 +1543,8 @@ module TencentCloud
 
         # 本接口（DescribeTaskList）用于查询指定实例的任务列表信息。
 
+        # - 可查询近30天内任务列表数据。
+
         # @param request: Request instance for DescribeTaskList.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeTaskListRequest`
         # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeTaskListResponse`

@@ -1517,8 +1517,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 历史接口，已经废弃，产品有新的替代接口
-
         # 防火墙开关列表，已废弃，请使用DescribeFwEdgeIps
 
         # @param request: Request instance for DescribeSwitchLists.
