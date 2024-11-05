@@ -51,276 +51,184 @@ module TencentCloud
       # 告警下拉字段
       class AlertExtraInfo < TencentCloud::Common::AbstractModel
         # @param RelateEvent: 相关攻击事件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelateEvent: :class:`Tencentcloud::Csip.v20221121.models.RelatedEvent`
         # @param LeakContent: 泄漏内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeakContent: String
         # @param LeakAPI: 泄漏API
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeakAPI: String
         # @param SecretID: secretID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretID: String
         # @param Rule: 命中规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: String
         # @param RuleDesc: 规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleDesc: String
         # @param ProtocolPort: 协议端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolPort: String
         # @param AttackContent: 攻击内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackContent: String
         # @param AttackIPProfile: 攻击IP画像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackIPProfile: String
         # @param AttackIPTags: 攻击IP标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackIPTags: String
         # @param RequestMethod: 请求方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestMethod: String
         # @param HttpLog: HTTP日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpLog: String
         # @param AttackDomain: 被攻击域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackDomain: String
         # @param FilePath: 文件路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePath: String
         # @param UserAgent: user_agent
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserAgent: String
         # @param RequestHeaders: 请求头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestHeaders: String
         # @param LoginUserName: 登录用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginUserName: String
         # @param VulnerabilityName: 漏洞名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityName: String
         # @param CVE: 公共漏洞和暴露
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVE: String
         # @param ServiceProcess: 服务进程
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceProcess: String
         # @param FileName: 文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param FileSize: 文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: String
         # @param FileMD5: 文件MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMD5: String
         # @param FileLastAccessTime: 文件最近访问时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileLastAccessTime: String
         # @param FileModifyTime: 文件修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileModifyTime: String
         # @param RecentAccessTime: 最近访问时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecentAccessTime: String
         # @param RecentModifyTime: 最近修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecentModifyTime: String
         # @param VirusName: 病毒名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusName: String
         # @param VirusFileTags: 病毒文件标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusFileTags: String
         # @param BehavioralCharacteristics: 行为特征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BehavioralCharacteristics: String
         # @param ProcessNamePID: 进程名（PID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessNamePID: String
         # @param ProcessPath: 进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessPath: String
         # @param ProcessCommandLine: 进程命令行
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessCommandLine: String
         # @param ProcessPermissions: 进程权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessPermissions: String
         # @param ExecutedCommand: 执行命令
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutedCommand: String
         # @param AffectedFileName: 受影响文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AffectedFileName: String
         # @param DecoyPath: 诱饵路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DecoyPath: String
         # @param MaliciousProcessFileSize: 恶意进程文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaliciousProcessFileSize: String
         # @param MaliciousProcessFileMD5: 恶意进程文件MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaliciousProcessFileMD5: String
         # @param MaliciousProcessNamePID: 恶意进程名（PID）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaliciousProcessNamePID: String
         # @param MaliciousProcessPath: 恶意进程路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaliciousProcessPath: String
         # @param MaliciousProcessStartTime: 恶意进程启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaliciousProcessStartTime: String
         # @param CommandContent: 命令内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommandContent: String
         # @param StartupUser: 启动用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartupUser: String
         # @param UserGroup: 用户所属组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroup: String
         # @param NewPermissions: 新增权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewPermissions: String
         # @param ParentProcess: 父进程
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentProcess: String
         # @param ClassName: 类名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassName: String
         # @param ClassLoader: 所属类加载器
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassLoader: String
         # @param ClassFileSize: 类文件大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassFileSize: String
         # @param ClassFileMD5: 类文件MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassFileMD5: String
         # @param ParentClassName: 父类名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentClassName: String
         # @param InheritedInterface: 继承接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InheritedInterface: String
         # @param Comment: 注释
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
         # @param PayloadContent: 载荷内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayloadContent: String
         # @param CallbackAddressPortrait: 回连地址画像
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackAddressPortrait: String
         # @param CallbackAddressTag: 回连地址标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackAddressTag: String
         # @param ProcessMD5: 进程MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessMD5: String
         # @param FilePermission: 文件权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePermission: String
         # @param FromLogAnalysisData: 来源于日志分析的信息字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromLogAnalysisData: Array
         # @param HitProbe: 命中探针
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitProbe: String
         # @param HitHoneyPot: 命中蜜罐
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitHoneyPot: String
         # @param CommandList: 命令列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommandList: String
         # @param AttackEventDesc: 攻击事件描述
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackEventDesc: String
         # @param ProcessInfo: 进程信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessInfo: String
         # @param UserNameAndPwd: 使用用户名&密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNameAndPwd: String
         # @param StrategyID: 主机防护策略ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyID: String
         # @param StrategyName: 主机防护策略名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyName: String
         # @param HitStrategy: 主机防护命中策略，是策略ID和策略名称的组合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HitStrategy: String
         # @param ProcessName: 进程名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessName: String
         # @param PID: PID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PID: String
         # @param PodName: 容器Pod名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
         # @param PodID: 容器PodID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodID: String
         # @param Response: Http响应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Response: String
         # @param SystemCall: 系统调用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemCall: String
         # @param Verb: 操作类型verb
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Verb: String
         # @param LogID: 日志ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogID: String
         # @param Different: 变更内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Different: String
         # @param EventType: 事件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventType: String
         # @param Description: 事件描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param TargetAddress: 目标地址(容器反弹shell)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetAddress: String
         # @param MaliciousRequestDomain: 恶意请求域名(容器恶意外联)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaliciousRequestDomain: String
         # @param RuleType: 规则类型(容器K8sAPI异常请求)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
         # @param RequestURI: 请求资源(容器K8sAPI异常请求)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestURI: String
         # @param RequestUser: 发起请求用户(容器K8sAPI异常请求)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestUser: String
         # @param RequestObject: 请求对象(容器K8sAPI异常请求)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestObject: String
         # @param ResponseObject: 响应对象(容器K8sAPI异常请求)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseObject: String
         # @param FileType: 文件类型(容器文件篡改)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileType: String
         # @param TIType: 标签特征(容器恶意外联)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TIType: String
         # @param SourceIP: 来源IP(容器K8sAPI异常请求)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIP: String
 
         attr_accessor :RelateEvent, :LeakContent, :LeakAPI, :SecretID, :Rule, :RuleDesc, :ProtocolPort, :AttackContent, :AttackIPProfile, :AttackIPTags, :RequestMethod, :HttpLog, :AttackDomain, :FilePath, :UserAgent, :RequestHeaders, :LoginUserName, :VulnerabilityName, :CVE, :ServiceProcess, :FileName, :FileSize, :FileMD5, :FileLastAccessTime, :FileModifyTime, :RecentAccessTime, :RecentModifyTime, :VirusName, :VirusFileTags, :BehavioralCharacteristics, :ProcessNamePID, :ProcessPath, :ProcessCommandLine, :ProcessPermissions, :ExecutedCommand, :AffectedFileName, :DecoyPath, :MaliciousProcessFileSize, :MaliciousProcessFileMD5, :MaliciousProcessNamePID, :MaliciousProcessPath, :MaliciousProcessStartTime, :CommandContent, :StartupUser, :UserGroup, :NewPermissions, :ParentProcess, :ClassName, :ClassLoader, :ClassFileSize, :ClassFileMD5, :ParentClassName, :InheritedInterface, :Comment, :PayloadContent, :CallbackAddressPortrait, :CallbackAddressTag, :ProcessMD5, :FilePermission, :FromLogAnalysisData, :HitProbe, :HitHoneyPot, :CommandList, :AttackEventDesc, :ProcessInfo, :UserNameAndPwd, :StrategyID, :StrategyName, :HitStrategy, :ProcessName, :PID, :PodName, :PodID, :Response, :SystemCall, :Verb, :LogID, :Different, :EventType, :Description, :TargetAddress, :MaliciousRequestDomain, :RuleType, :RequestURI, :RequestUser, :RequestObject, :ResponseObject, :FileType, :TIType, :SourceIP
@@ -525,17 +433,14 @@ module TencentCloud
       # 告警中心全量告警列表数据
       class AlertInfo < TencentCloud::Common::AbstractModel
         # @param ID: 告警ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: String
         # @param Name: 告警名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Source: 告警来源
         # CFW:云防火墙
         # WAF:Web应用防火墙
         # CWP:主机安全
         # CSIP:云安全中心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param Level: 告警等级
         # 1:提示
@@ -543,83 +448,57 @@ module TencentCloud
         # 3:中危
         # 4:高危
         # 5:严重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param Attacker: 攻击者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attacker: :class:`Tencentcloud::Csip.v20221121.models.RoleInfo`
         # @param Victim: 受害者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Victim: :class:`Tencentcloud::Csip.v20221121.models.RoleInfo`
         # @param EvidenceData: 证据数据(例如攻击内容等，base64编码)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidenceData: String
         # @param EvidenceLocation: 证据位置(例如协议端口)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidenceLocation: String
         # @param EvidencePath: 证据路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidencePath: String
         # @param CreateTime: 首次告警时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 最近告警时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Count: 告警次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param UrgentSuggestion: 紧急缓解建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UrgentSuggestion: String
         # @param RemediationSuggestion: 根治建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemediationSuggestion: String
         # @param Status: 处理状态
         # 0：未处置，1：已忽略，2：已处置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ProcessType: 告警处理类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessType: String
         # @param Type: 告警大类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param SubType: 告警小类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubType: String
         # @param ExtraInfo: 下拉字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: :class:`Tencentcloud::Csip.v20221121.models.AlertExtraInfo`
         # @param Key: 聚合字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Date: 告警日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
         # @param AppID: appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: String
         # @param NickName: 账户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param Uin: 账户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param Action: 行为
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: Integer
         # @param RiskInvestigation: 风险排查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskInvestigation: String
         # @param RiskTreatment: 风险处置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskTreatment: String
         # @param LogType: 日志类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
         # @param LogSearch: 语句检索
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogSearch: String
 
         attr_accessor :ID, :Name, :Source, :Level, :Attacker, :Victim, :EvidenceData, :EvidenceLocation, :EvidencePath, :CreateTime, :UpdateTime, :Count, :UrgentSuggestion, :RemediationSuggestion, :Status, :ProcessType, :Type, :SubType, :ExtraInfo, :Key, :Date, :AppID, :NickName, :Uin, :Action, :RiskInvestigation, :RiskTreatment, :LogType, :LogSearch
@@ -701,91 +580,62 @@ module TencentCloud
       # 主机资产详情
       class AssetBaseInfoResponse < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc-id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param VpcName: vpc-name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param AssetName: 资产名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param Os: 操作系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Os: String
         # @param PublicIp: 公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: String
         # @param AssetId: 资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetId: String
         # @param AccountNum: 账号数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountNum: Integer
         # @param PortNum: 端口数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortNum: Integer
         # @param ProcessNum: 进程数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessNum: Integer
         # @param SoftApplicationNum: 软件应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftApplicationNum: Integer
         # @param DatabaseNum: 数据库数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseNum: Integer
         # @param WebApplicationNum: Web应用数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebApplicationNum: Integer
         # @param ServiceNum: 服务数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceNum: Integer
         # @param WebFrameworkNum: web框架数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebFrameworkNum: Integer
         # @param WebSiteNum: Web站点数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebSiteNum: Integer
         # @param JarPackageNum: Jar包数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JarPackageNum: Integer
         # @param StartServiceNum: 启动服务数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartServiceNum: Integer
         # @param ScheduledTaskNum: 计划任务数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledTaskNum: Integer
         # @param EnvironmentVariableNum: 环境变量数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentVariableNum: Integer
         # @param KernelModuleNum: 内核模块数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KernelModuleNum: Integer
         # @param SystemInstallationPackageNum: 系统安装包数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemInstallationPackageNum: Integer
         # @param SurplusProtectDay: 剩余防护时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurplusProtectDay: Integer
         # @param CWPStatus: 客户端是否安装  1 已安装 0 未安装
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPStatus: Integer
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param ProtectLevel: 防护等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectLevel: String
         # @param ProtectedDay: 防护时长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectedDay: Integer
 
         attr_accessor :VpcId, :VpcName, :AssetName, :Os, :PublicIp, :PrivateIp, :Region, :AssetType, :AssetId, :AccountNum, :PortNum, :ProcessNum, :SoftApplicationNum, :DatabaseNum, :WebApplicationNum, :ServiceNum, :WebFrameworkNum, :WebSiteNum, :JarPackageNum, :StartServiceNum, :ScheduledTaskNum, :EnvironmentVariableNum, :KernelModuleNum, :SystemInstallationPackageNum, :SurplusProtectDay, :CWPStatus, :Tag, :ProtectLevel, :ProtectedDay
@@ -1009,13 +859,10 @@ module TencentCloud
       # 资产类型和实例类型的映射
       class AssetInstanceTypeMap < TencentCloud::Common::AbstractModel
         # @param Text: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Value: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param InstanceTypeList: 资产类型和实例类型映射关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceTypeList: Array
 
         attr_accessor :Text, :Value, :InstanceTypeList
@@ -1413,10 +1260,8 @@ module TencentCloud
         # @param AppId: 用户appid
         # @type AppId: String
         # @param Nick: 用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nick: String
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param VULType: 漏洞类型
         # @type VULType: String
@@ -1443,49 +1288,34 @@ module TencentCloud
         # @param Payload: 攻击载荷
         # @type Payload: String
         # @param EMGCVulType: 应急漏洞类型，1-应急漏洞，0-非应急漏洞
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EMGCVulType: Integer
         # @param CVSS: CVSS评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSS: Float
         # @param Index: 前端索引id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: String
         # @param PCMGRId: pcmgrId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PCMGRId: String
         # @param LogId: 报告id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogId: String
         # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param VulTag: 漏洞标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulTag: Array
         # @param DisclosureTime: 漏洞披露时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisclosureTime: String
         # @param AttackHeat: 攻击热度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackHeat: Integer
         # @param IsSuggest: 是否必修漏洞1是，0不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSuggest: Integer
         # @param HandleTaskId: 处置任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HandleTaskId: String
         # @param EngineSource: 引擎来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineSource: String
         # @param VulRiskId: 新的漏洞风险id(同全网漏洞表的riskid)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulRiskId: String
         # @param TvdID: 新版漏洞id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TvdID: String
         # @param IsOneClick: 是否可以一键体检，1-可以，0-不可以
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOneClick: Integer
 
         attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :RecentTime, :FirstTime, :Status, :RiskId, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :VULType, :Port, :AppName, :AppVersion, :VULURL, :VULName, :CVE, :POCId, :From, :CWPVersion, :InstanceUUID, :Payload, :EMGCVulType, :CVSS, :Index, :PCMGRId, :LogId, :TaskId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId, :TvdID, :IsOneClick
@@ -1676,64 +1506,44 @@ module TencentCloud
       # 漏洞详细信息
       class BugInfoDetail < TencentCloud::Common::AbstractModel
         # @param Id: 漏洞编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param PatchId: 漏洞对应pocId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PatchId: String
         # @param VULName: 漏洞名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VULName: String
         # @param Level: 漏洞严重性：high,middle，low，info
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param CVSSScore: cvss评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSSScore: String
         # @param CVEId: cve编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVEId: String
         # @param Tag: 漏洞标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
         # @param VULCategory: 漏洞种类，1:web应用，2:系统组件漏洞，3:配置风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VULCategory: Integer
         # @param ImpactOs: 漏洞影响系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImpactOs: String
         # @param ImpactCOMPENT: 漏洞影响组件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImpactCOMPENT: String
         # @param ImpactVersion: 漏洞影响版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImpactVersion: String
         # @param Reference: 链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reference: String
         # @param VULDescribe: 漏洞描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VULDescribe: String
         # @param Fix: 修复建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fix: String
         # @param ProSupport: 产品支持状态，实时返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProSupport: Integer
         # @param IsPublish: 是否公开，0为未发布，1为发布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPublish: Integer
         # @param ReleaseTime: 释放时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseTime: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param SubCategory: 漏洞子类别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubCategory: String
 
         attr_accessor :Id, :PatchId, :VULName, :Level, :CVSSScore, :CVEId, :Tag, :VULCategory, :ImpactOs, :ImpactCOMPENT, :ImpactVersion, :Reference, :VULDescribe, :Fix, :ProSupport, :IsPublish, :ReleaseTime, :CreateTime, :UpdateTime, :SubCategory
@@ -1797,199 +1607,134 @@ module TencentCloud
       # 6：已关机
       class CVMAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetId: String
         # @param AssetName: 资产名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param CWPStatus: 防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPStatus: Integer
         # @param AssetCreateTime: 资产创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetCreateTime: String
         # @param PublicIp: 公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 私网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param VpcId: vpc id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param VpcName: vpc 名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param AppId: appid信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param NickName: 昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param AvailableArea: 可用区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableArea: String
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param SubnetId: 子网id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param SubnetName: 子网名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
         # @param InstanceUuid: uuid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceUuid: String
         # @param InstanceQUuid: qquid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceQUuid: String
         # @param OsName: os名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsName: String
         # @param PartitionCount: 分区
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionCount: Integer
         # @param CPUInfo: cpu信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPUInfo: String
         # @param CPUSize: cpu大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPUSize: Integer
         # @param CPULoad: cpu负载
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPULoad: String
         # @param MemorySize: 内存大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemorySize: String
         # @param MemoryLoad: 内存负载
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemoryLoad: String
         # @param DiskSize: 硬盘大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: String
         # @param DiskLoad: 硬盘负载
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskLoad: String
         # @param AccountCount: 账号数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountCount: String
         # @param ProcessCount: 进程数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessCount: String
         # @param AppCount: 软件应用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppCount: String
         # @param PortCount: 监听端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortCount: Integer
         # @param Attack: 网络攻击
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attack: Integer
         # @param Access: 网络访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Access: Integer
         # @param Intercept: 网络拦截
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Intercept: Integer
         # @param InBandwidth: 入向峰值带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InBandwidth: String
         # @param OutBandwidth: 出向峰值带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutBandwidth: String
         # @param InFlow: 入向累计流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InFlow: String
         # @param OutFlow: 出向累计流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutFlow: String
         # @param LastScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param NetWorkOut: 恶意主动外联
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetWorkOut: Integer
         # @param PortRisk: 端口风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortRisk: Integer
         # @param VulnerabilityRisk: 漏洞风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityRisk: Integer
         # @param ConfigurationRisk: 配置风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigurationRisk: Integer
         # @param ScanTask: 扫描任务数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTask: Integer
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param MemberId: memberId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberId: String
         # @param Os: os全称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Os: String
         # @param RiskExposure: 风险服务暴露
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskExposure: Integer
         # @param BASAgentStatus: 模拟攻击工具状态。0代表未安装，1代表已安装，2代表已离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BASAgentStatus: Integer
         # @param IsNewAsset: 1新资产；0 非新资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
         # @param CVMAgentStatus: 0 未安装  1安装 2:安装中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVMAgentStatus: Integer
         # @param CVMStatus: 1:开启 0:未开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVMStatus: Integer
         # @param DefenseModel: 1:客户端已安装 0：未安装 2: Agentless
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseModel: Integer
         # @param TatStatus: 1:已安装 0:未安装
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TatStatus: Integer
         # @param CpuTrend: cpu趋势图
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuTrend: Array
         # @param MemoryTrend: 内存趋势图
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemoryTrend: Array
         # @param AgentStatus: 1:agent在线 0:agent离线 2:主机离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentStatus: Integer
         # @param CloseDefenseCount: 本月防护关闭次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloseDefenseCount: Integer
         # @param InstanceState: 运行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceState: String
         # @param SecurityGroupIds: 安全组数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
         # @param AgentMemRss: 物理内存占用KB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentMemRss: Integer
         # @param AgentCpuPer: CPU使用率百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentCpuPer: Float
         # @param RealAppid: cvm真正所属的appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealAppid: Integer
         # @param CloudType: 云资产类型：0：腾讯云，1：aws，2：azure
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: Integer
         # @param ProtectStatus: 主机防护状态枚举
         # 0：未安装
@@ -1999,10 +1744,8 @@ module TencentCloud
         # 4：旗舰版防护中
         # 5：已离线
         # 6：已关机
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectStatus: Integer
         # @param OfflineTime: 最后离线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineTime: String
 
         attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset, :CVMAgentStatus, :CVMStatus, :DefenseModel, :TatStatus, :CpuTrend, :MemoryTrend, :AgentStatus, :CloseDefenseCount, :InstanceState, :SecurityGroupIds, :AgentMemRss, :AgentCpuPer, :RealAppid, :CloudType, :ProtectStatus, :OfflineTime
@@ -2172,43 +1915,30 @@ module TencentCloud
       # clb实例和监听器信息
       class ClbListenerListInfo < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听器id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerId: String
         # @param ListenerName: 监听器名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListenerName: String
         # @param LoadBalancerId: 负载均衡Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerId: String
         # @param LoadBalancerName: 负载均衡名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerName: String
         # @param Protocol: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Vip: 负载均衡ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param VPort: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VPort: Integer
         # @param Zone: 区域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param NumericalVpcId: 私有网络id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumericalVpcId: Integer
         # @param LoadBalancerType: 负载均衡类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
         # @param Domain: 监听器域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param LoadBalancerDomain: 负载均衡域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerDomain: String
 
         attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :VPort, :Zone, :NumericalVpcId, :LoadBalancerType, :Domain, :LoadBalancerDomain
@@ -2405,73 +2135,50 @@ module TencentCloud
       # db资产输出字段
       class DBAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetId: String
         # @param AssetName: 资产名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: String
         # @param VpcId: vpcid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param VpcName: vpc标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param AssetCreateTime: 资产创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetCreateTime: String
         # @param LastScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param ConfigurationRisk: 配置风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigurationRisk: Integer
         # @param Attack: 网络攻击
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attack: Integer
         # @param Access: 网络访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Access: Integer
         # @param ScanTask: 扫描任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTask: Integer
         # @param AppId: 用户appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param NickName: 昵称别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param PrivateIp: 内网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param PublicIp: 公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param IsNewAsset: 是否新资产: 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
 
         attr_accessor :AssetId, :AssetName, :AssetType, :VpcId, :VpcName, :Region, :Domain, :AssetCreateTime, :LastScanTime, :ConfigurationRisk, :Attack, :Access, :ScanTask, :AppId, :Uin, :NickName, :Port, :Tag, :PrivateIp, :PublicIp, :Status, :IsCore, :IsNewAsset
@@ -2540,32 +2247,23 @@ module TencentCloud
       class DataSearchBug < TencentCloud::Common::AbstractModel
         # @param StateCode: 返回查询状态
         # @type StateCode: String
-        # @param DataBug: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DataBug: 漏洞详情
         # @type DataBug: Array
-        # @param DataAsset: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param DataAsset: 漏洞影响资产详情
         # @type DataAsset: Array
         # @param VSSScan: true支持扫描。false不支持扫描
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VSSScan: Boolean
         # @param CWPScan: 0不支持，1支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPScan: String
         # @param CFWPatch: 1支持虚拟补丁，0或空不支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFWPatch: String
         # @param WafPatch: 0不支持，1支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafPatch: Integer
         # @param CWPFix: 0不支持，1支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPFix: Integer
         # @param DataSupport: 产品支持状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSupport: Array
         # @param CveId: cveId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CveId: String
 
         attr_accessor :StateCode, :DataBug, :DataAsset, :VSSScan, :CWPScan, :CFWPatch, :WafPatch, :CWPFix, :DataSupport, :CveId
@@ -2621,37 +2319,26 @@ module TencentCloud
       # db资产详情
       class DbAssetInfo < TencentCloud::Common::AbstractModel
         # @param CFWStatus: 云防状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFWStatus: Integer
         # @param AssetId: 资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetId: String
         # @param VpcName: vpc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: String
         # @param PublicIp: 公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 私网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param VpcId: vpc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param AssetName: 资产名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param CFWProtectLevel: 云防保护版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFWProtectLevel: Integer
         # @param Tag: tag信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
 
         attr_accessor :CFWStatus, :AssetId, :VpcName, :AssetType, :PublicIp, :PrivateIp, :Region, :VpcId, :AssetName, :CFWProtectLevel, :Tag
@@ -2925,7 +2612,6 @@ module TencentCloud
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
         # @param Data: 资产视角的漏洞风险列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param StatusLists: 状态列表
         # @type StatusLists: Array
@@ -2938,7 +2624,6 @@ module TencentCloud
         # @param InstanceTypeLists: 资产类型列表
         # @type InstanceTypeLists: Array
         # @param Tags: tag枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3092,7 +2777,7 @@ module TencentCloud
 
       # DescribeCVMAssetInfo请求参数结构体
       class DescribeCVMAssetInfoRequest < TencentCloud::Common::AbstractModel
-        # @param AssetId: -
+        # @param AssetId: 资产id
         # @type AssetId: String
 
         attr_accessor :AssetId
@@ -3108,8 +2793,7 @@ module TencentCloud
 
       # DescribeCVMAssetInfo返回参数结构体
       class DescribeCVMAssetInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Data: -
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Data: 数据
         # @type Data: :class:`Tencentcloud::Csip.v20221121.models.AssetBaseInfoResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3156,46 +2840,32 @@ module TencentCloud
       # DescribeCVMAssets返回参数结构体
       class DescribeCVMAssetsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Data: 机器列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RegionList: 地域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionList: Array
         # @param DefenseStatusList: 防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseStatusList: Array
         # @param VpcList: vpc枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcList: Array
         # @param AssetTypeList: 资产类型枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetTypeList: Array
         # @param SystemTypeList: 操作系统枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemTypeList: Array
         # @param IpTypeList: ip列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpTypeList: Array
         # @param AppIdList: appid列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppIdList: Array
         # @param ZoneList: 可用区列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneList: Array
         # @param OsList: os列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsList: Array
         # @param AssetMapInstanceTypeList: 资产类型和实例类型的对应关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetMapInstanceTypeList: Array
         # @param PublicPrivateAttr: 公网内网枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicPrivateAttr: Array
         # @param ProtectStatusList: 主机防护状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtectStatusList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3447,7 +3117,6 @@ module TencentCloud
       # DescribeDbAssetInfo返回参数结构体
       class DescribeDbAssetInfoResponse < TencentCloud::Common::AbstractModel
         # @param Data: db资产详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Csip.v20221121.models.DbAssetInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3498,25 +3167,18 @@ module TencentCloud
       # DescribeDbAssets返回参数结构体
       class DescribeDbAssetsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Data: 资产总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RegionList: 地域枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionList: Array
         # @param AssetTypeList: 资产类型枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetTypeList: Array
         # @param VpcList: Vpc枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcList: Array
         # @param AppIdList: Appid枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppIdList: Array
         # @param PublicPrivateAttr: 公网内网枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicPrivateAttr: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3625,22 +3287,16 @@ module TencentCloud
       # DescribeDomainAssets返回参数结构体
       class DescribeDomainAssetsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Data: 域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param DefenseStatusList: 防护状态列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseStatusList: Array
         # @param AssetLocationList: 资产归属地列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetLocationList: Array
         # @param SourceTypeList: 资产类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceTypeList: Array
         # @param RegionList: 地域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4070,27 +3726,20 @@ module TencentCloud
       # DescribePublicIpAssets返回参数结构体
       class DescribePublicIpAssetsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param Total: 总数
         # @type Total: Integer
         # @param AssetLocationList: 资产归属地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetLocationList: Array
         # @param IpTypeList: ip列表枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpTypeList: Array
         # @param RegionList: 地域列表枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionList: Array
         # @param DefenseStatusList: 防护枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefenseStatusList: Array
         # @param AssetTypeList: 资产类型枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetTypeList: Array
         # @param AppIdList: AppId枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppIdList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5183,7 +4832,7 @@ module TencentCloud
 
       # DescribeSearchBugInfo请求参数结构体
       class DescribeSearchBugInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 无
+        # @param Id: 1的时候返回应急漏洞，2的时候返回应急漏洞列表，3的时候搭配输入CVEId字段展示该漏洞数据
         # @type Id: String
         # @param CVEId: id=3时传入该参数
         # @type CVEId: String
@@ -5204,7 +4853,6 @@ module TencentCloud
       # DescribeSearchBugInfo返回参数结构体
       class DescribeSearchBugInfoResponse < TencentCloud::Common::AbstractModel
         # @param Data: 漏洞信息和资产信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Csip.v20221121.models.DataSearchBug`
         # @param ReturnCode: 状态值，0：查询成功，非0：查询失败
         # @type ReturnCode: Integer
@@ -5814,7 +5462,6 @@ module TencentCloud
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
         # @param Data: 漏洞产视角的漏洞风险列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param LevelLists: 危险等级列表
         # @type LevelLists: Array
@@ -5823,7 +5470,6 @@ module TencentCloud
         # @param VULTypeLists: 漏洞类型列表
         # @type VULTypeLists: Array
         # @param Tags: tag枚举
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5889,121 +5535,82 @@ module TencentCloud
       # 域名资产
       class DomainAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetId: Array
         # @param AssetName: 资产名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: Array
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: Array
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Array
         # @param WAFStatus: Waf状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WAFStatus: Integer
         # @param AssetCreateTime: 资产创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetCreateTime: String
         # @param AppId: Appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 账号id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param NickName: 账号名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param IsCloud: 是否云上资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCloud: Integer
         # @param Attack: 网络攻击
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attack: Integer
         # @param Access: 网络访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Access: Integer
         # @param Intercept: 网络拦截
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Intercept: Integer
         # @param InBandwidth: 入站峰值带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InBandwidth: String
         # @param OutBandwidth: 出站峰值带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutBandwidth: String
         # @param InFlow: 入站累计流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InFlow: String
         # @param OutFlow: 出站累计流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutFlow: String
         # @param LastScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param PortRisk: 端口风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortRisk: Integer
         # @param VulnerabilityRisk: 漏洞风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityRisk: Integer
         # @param ConfigurationRisk: 配置风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigurationRisk: Integer
         # @param ScanTask: 扫描任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTask: Integer
         # @param SubDomain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubDomain: String
         # @param SeverIp: 解析ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeverIp: Array
         # @param BotCount: bot攻击数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotCount: Integer
         # @param WeakPassword: 弱口令风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeakPassword: Integer
         # @param WebContentRisk: 内容风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebContentRisk: Integer
         # @param Tag: tag标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param SourceType: 关联实例类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
         # @param MemberId: memberiD
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberId: String
         # @param CCAttack: cc攻击
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CCAttack: Integer
         # @param WebAttack: web攻击
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebAttack: Integer
         # @param ServiceRisk: 风险服务暴露数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceRisk: Integer
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
         # @param VerifyDomain: 待确认资产的随机三级域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyDomain: String
         # @param VerifyTXTRecord: 待确认资产的TXT记录内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyTXTRecord: String
         # @param VerifyStatus: 待确认资产的认证状态，0-待认证，1-认证成功，2-认证中，3-txt认证失败，4-人工认证失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyStatus: Integer
         # @param BotAccessCount: bot访问数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotAccessCount: Integer
 
         attr_accessor :AssetId, :AssetName, :AssetType, :Region, :WAFStatus, :AssetCreateTime, :AppId, :Uin, :NickName, :IsCore, :IsCloud, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :SubDomain, :SeverIp, :BotCount, :WeakPassword, :WebContentRisk, :Tag, :SourceType, :MemberId, :CCAttack, :WebAttack, :ServiceRisk, :IsNewAsset, :VerifyDomain, :VerifyTXTRecord, :VerifyStatus, :BotAccessCount
@@ -6103,10 +5710,8 @@ module TencentCloud
       # 统计条目
       class Element < TencentCloud::Common::AbstractModel
         # @param Key: 统计类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 统计对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -6212,7 +5817,6 @@ module TencentCloud
         # @param VpcName: 私有网络名
         # @type VpcName: String
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param OutboundPeakBandwidth: 出向峰值带宽
         # @type OutboundPeakBandwidth: String
@@ -6239,22 +5843,16 @@ module TencentCloud
         # @param Nick: 昵称
         # @type Nick: String
         # @param AddressIPV6: ipv6地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressIPV6: String
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param RiskExposure: 风险服务暴露
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskExposure: Integer
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
         # @param Status: 网关状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param EngineRegion: TSE的网关真实地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineRegion: String
 
         attr_accessor :AppId, :Uin, :AssetId, :AssetName, :AssetType, :PrivateIp, :PublicIp, :Region, :VpcId, :VpcName, :Tag, :OutboundPeakBandwidth, :InboundPeakBandwidth, :OutboundCumulativeFlow, :InboundCumulativeFlow, :NetworkAttack, :ExposedPort, :ExposedVUL, :ConfigureRisk, :CreateTime, :ScanTask, :LastScanTime, :Nick, :AddressIPV6, :IsCore, :RiskExposure, :IsNewAsset, :Status, :EngineRegion
@@ -6334,109 +5932,74 @@ module TencentCloud
       # ip列表
       class IpAssetListVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetId: String
         # @param AssetName: 资产name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param AssetType: 资产类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: String
         # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param CFWStatus: 云防状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFWStatus: Integer
         # @param AssetCreateTime: 资产创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetCreateTime: String
         # @param PublicIp: 公网ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PublicIpType: 公网ip类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIpType: Integer
         # @param VpcId: vpc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param VpcName: vpc名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param AppId: appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param NickName: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param IsCore: 核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param IsCloud: 云上
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCloud: Integer
         # @param Attack: 网络攻击
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attack: Integer
         # @param Access: 网络访问
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Access: Integer
         # @param Intercept: 网络拦截
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Intercept: Integer
         # @param InBandwidth: 入向带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InBandwidth: String
         # @param OutBandwidth: 出向带宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutBandwidth: String
         # @param InFlow: 入向流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InFlow: String
         # @param OutFlow: 出向流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutFlow: String
         # @param LastScanTime: 最近扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param PortRisk: 端口风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortRisk: Integer
         # @param VulnerabilityRisk: 漏洞风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityRisk: Integer
         # @param ConfigurationRisk: 配置风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigurationRisk: Integer
         # @param ScanTask: 扫描任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTask: Integer
         # @param WeakPassword: 弱口令
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeakPassword: Integer
         # @param WebContentRisk: 内容风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebContentRisk: Integer
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param AddressId: eip主键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressId: String
         # @param MemberId: memberid信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberId: String
         # @param RiskExposure: 风险服务暴露
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskExposure: Integer
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
         # @param VerifyStatus: 资产认证状态，0-待认证，1-认证成功，2-认证中，3+-认证失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyStatus: Integer
 
         attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CFWStatus, :AssetCreateTime, :PublicIp, :PublicIpType, :VpcId, :VpcName, :AppId, :Uin, :NickName, :IsCore, :IsCloud, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :WeakPassword, :WebContentRisk, :Tag, :AddressId, :MemberId, :RiskExposure, :IsNewAsset, :VerifyStatus
@@ -6528,10 +6091,8 @@ module TencentCloud
       # KeyValue对
       class KeyValue < TencentCloud::Common::AbstractModel
         # @param Key: 字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -6759,7 +6320,6 @@ module TencentCloud
         # @param VpcName: 私有网络名
         # @type VpcName: String
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param OutboundPeakBandwidth: 出向峰值带宽
         # @type OutboundPeakBandwidth: String
@@ -6786,10 +6346,8 @@ module TencentCloud
         # @param Nick: 昵称
         # @type Nick: String
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
 
         attr_accessor :AppId, :Uin, :AssetId, :AssetName, :AssetType, :PrivateIp, :PublicIp, :Region, :VpcId, :VpcName, :Tag, :OutboundPeakBandwidth, :InboundPeakBandwidth, :OutboundCumulativeFlow, :InboundCumulativeFlow, :NetworkAttack, :ExposedPort, :ExposedVUL, :ConfigureRisk, :CreateTime, :ScanTask, :LastScanTime, :Nick, :IsCore, :IsNewAsset
@@ -6905,78 +6463,54 @@ module TencentCloud
       # 集团账号成员详情
       class OrganizationUserInfo < TencentCloud::Common::AbstractModel
         # @param Uin: 成员账号Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param NickName: 成员账号名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param NodeName: 部门节点名称，账号所属部门
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
         # @param AssetCount: 资产数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetCount: Integer
         # @param RiskCount: 风险数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCount: Integer
         # @param AttackCount: 攻击数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackCount: Integer
         # @param Role: Member/Admin/;成员或者管理员
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param MemberId: 成员账号id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberId: String
         # @param AppId: 成员账号Appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param JoinType: 账号加入方式,create/invite
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinType: String
         # @param CFWProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFWProtect: String
         # @param WAFProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WAFProtect: String
         # @param CWPProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPProtect: String
         # @param Enable: 1启用，0未启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
         # @param CSIPProtect: "Free"       //免费版  "Advanced"   //高级版 "Enterprise" //企业版 "Ultimate"   //旗舰版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CSIPProtect: String
         # @param QuotaConsumer: 1为配额消耗者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaConsumer: Integer
         # @param CloudType: 账户类型，0为腾讯云账户，1为AWS账户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: Integer
         # @param SyncFrequency: 0为缺省值，1为10分钟，2为1小时，3为24小时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncFrequency: Integer
         # @param IsExpired: 多云账户是否过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsExpired: Boolean
         # @param PermissionList: 多云账户 权限列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PermissionList: Array
         # @param AuthType: 1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthType: Integer
         # @param TcMemberType: 0 腾讯云集团账户
         # 1 腾讯云接入账户
         # 2 非腾讯云
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcMemberType: Integer
         # @param SubUserCount: 子账号数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUserCount: Integer
         # @param JoinTypeInfo: 加入方式详细信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTypeInfo: String
 
         attr_accessor :Uin, :NickName, :NodeName, :AssetCount, :RiskCount, :AttackCount, :Role, :MemberId, :AppId, :JoinType, :CFWProtect, :WAFProtect, :CWPProtect, :Enable, :CSIPProtect, :QuotaConsumer, :CloudType, :SyncFrequency, :IsExpired, :PermissionList, :AuthType, :TcMemberType, :SubUserCount, :JoinTypeInfo
@@ -7143,22 +6677,16 @@ module TencentCloud
       # 漏洞信息产品支持状态
       class ProductSupport < TencentCloud::Common::AbstractModel
         # @param VSSScan: true支持扫描。false不支持扫描
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VSSScan: Boolean
         # @param CWPScan: 0不支持，1支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPScan: String
         # @param CFWPatch: 1支持虚拟补丁，0或空不支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFWPatch: String
         # @param WafPatch: 0不支持，1支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WafPatch: Integer
         # @param CWPFix: 0不支持，1支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPFix: Integer
         # @param CveId: cveid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CveId: String
 
         attr_accessor :VSSScan, :CWPScan, :CFWPatch, :WafPatch, :CWPFix, :CveId
@@ -7201,13 +6729,10 @@ module TencentCloud
       # 相关攻击事件结构
       class RelatedEvent < TencentCloud::Common::AbstractModel
         # @param EventID: 事件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventID: String
         # @param Description: 事件描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param RelatedCount: 与事件关联的告警数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelatedCount: Integer
 
         attr_accessor :EventID, :Description, :RelatedCount
@@ -7292,73 +6817,50 @@ module TencentCloud
       # 告警数据攻击者或受害者信息
       class RoleInfo < TencentCloud::Common::AbstractModel
         # @param IP: IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
         # @param HostIP: HostIP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostIP: String
         # @param OriginIP: 原始IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginIP: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param InstanceID: 资产ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
         # @param City: 城市
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
         # @param Province: 省份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Province: String
         # @param Country: 国家
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Country: String
         # @param Address: 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param Latitude: 纬度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Latitude: String
         # @param Longitude: 经度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Longitude: String
         # @param Info: 信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
         # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param Name: 企业名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Account: 账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Account: String
         # @param Family: 家族团伙
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Family: String
         # @param VirusName: 病毒名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusName: String
         # @param MD5: MD5值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MD5: String
         # @param FileName: 恶意进程文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param AssetType: 1:主机资产 2:域名资产 3:网络资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetType: Integer
         # @param FromLogAnalysisData: 来源日志分析的信息字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromLogAnalysisData: Array
         # @param ContainerName: 容器名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerName: String
         # @param ContainerID: 容器ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerID: String
 
         attr_accessor :IP, :HostIP, :OriginIP, :Port, :InstanceID, :City, :Province, :Country, :Address, :Latitude, :Longitude, :Info, :Domain, :Name, :Account, :Family, :VirusName, :MD5, :FileName, :AssetType, :FromLogAnalysisData, :ContainerName, :ContainerID
@@ -7486,124 +6988,84 @@ module TencentCloud
       # 扫描任务列表展示信息
       class ScanTaskInfoList < TencentCloud::Common::AbstractModel
         # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param StartTime: 任务开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 任务结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param ScanPlanContent: cron格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPlanContent: String
         # @param TaskType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
         # @param InsertTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: String
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param SelfDefiningAssets: 自定义指定扫描资产信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDefiningAssets: Array
         # @param PredictTime: 预估时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PredictTime: Integer
         # @param PredictEndTime: 预估完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PredictEndTime: String
         # @param ReportNumber: 报告数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportNumber: Integer
         # @param AssetNumber: 资产数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetNumber: Integer
         # @param ScanStatus: 扫描状态, 0-初始值，1-正在扫描，2-扫描完成，3-扫描出错，4-停止扫描
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: Integer
         # @param Percent: 任务进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Float
         # @param ScanItem: port/poc/weakpass/webcontent/configrisk
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanItem: String
         # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫，3-自定义指定资产扫描
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanAssetType: Integer
         # @param VSSTaskId: vss子任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VSSTaskId: String
         # @param CSPMTaskId: cspm子任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CSPMTaskId: String
         # @param CWPPOCId: 主机漏扫子任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPPOCId: String
         # @param CWPBlId: 主机基线子任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPBlId: String
         # @param VSSTaskProcess: vss子任务进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VSSTaskProcess: Integer
         # @param CSPMTaskProcess: cspm子任务进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CSPMTaskProcess: Integer
         # @param CWPPOCProcess: 主机漏扫子任务进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPPOCProcess: Integer
         # @param CWPBlProcess: 主机基线子任务进度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CWPBlProcess: Integer
         # @param ErrorCode: 异常状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCode: Integer
         # @param ErrorInfo: 异常信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: String
         # @param StartDay: 周期任务开始的天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartDay: Integer
         # @param Frequency: 扫描频率,单位天,1-每天,7-每周,30-月,0-扫描一次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Frequency: Integer
         # @param CompleteNumber: 完成次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompleteNumber: Integer
         # @param CompleteAssetNumber: 已完成资产个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompleteAssetNumber: Integer
         # @param RiskCount: 风险数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCount: Integer
         # @param Assets: 资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Assets: Array
         # @param AppId: 用户Appid
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param UIN: 用户主账户ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UIN: String
         # @param UserName: 用户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskMode: Integer
         # @param ScanFrom: 扫描来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanFrom: String
         # @param IsFree: 是否限免体检0不是，1是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFree: Integer
         # @param IsDelete: 是否可以删除，1-可以，0-不可以，对应多账户管理使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelete: Integer
         # @param SourceType: 任务源类型，0-默认，1-小助手，2-体检项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: Integer
 
         attr_accessor :TaskName, :StartTime, :EndTime, :ScanPlanContent, :TaskType, :InsertTime, :TaskId, :SelfDefiningAssets, :PredictTime, :PredictEndTime, :ReportNumber, :AssetNumber, :ScanStatus, :Percent, :ScanItem, :ScanAssetType, :VSSTaskId, :CSPMTaskId, :CWPPOCId, :CWPBlId, :VSSTaskProcess, :CSPMTaskProcess, :CWPPOCProcess, :CWPBlProcess, :ErrorCode, :ErrorInfo, :StartDay, :Frequency, :CompleteNumber, :CompleteAssetNumber, :RiskCount, :Assets, :AppId, :UIN, :UserName, :TaskMode, :ScanFrom, :IsFree, :IsDelete, :SourceType
@@ -7707,7 +7169,6 @@ module TencentCloud
         # @param ServiceTag: 测绘标签
         # @type ServiceTag: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param AffectAsset: 影响资产
         # @type AffectAsset: String
@@ -7730,7 +7191,6 @@ module TencentCloud
         # @param FirstTime: 首次识别时间
         # @type FirstTime: String
         # @param RiskDetails: 风险详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDetails: String
         # @param Suggestion: 处置建议
         # @type Suggestion: String
@@ -7741,28 +7201,20 @@ module TencentCloud
         # @param AppId: 用户appid
         # @type AppId: String
         # @param Nick: 用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nick: String
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param ServiceSnapshot: 服务快照
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceSnapshot: String
         # @param Url: 服务访问的url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param Index: 列表索引值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: String
         # @param RiskList: 风险列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskList: Array
         # @param SuggestionList: 建议列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuggestionList: Array
         # @param StatusCode: HTTP响应状态码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusCode: String
 
         attr_accessor :ServiceTag, :Port, :AffectAsset, :InstanceId, :InstanceName, :InstanceType, :Level, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :RiskDetails, :Suggestion, :Status, :Id, :AppId, :Nick, :Uin, :ServiceSnapshot, :Url, :Index, :RiskList, :SuggestionList, :StatusCode
@@ -7841,10 +7293,8 @@ module TencentCloud
       # 风险详情
       class ServerRiskSuggestion < TencentCloud::Common::AbstractModel
         # @param Title: 标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Body: 详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
 
         attr_accessor :Title, :Body
@@ -7953,7 +7403,6 @@ module TencentCloud
         # @param VpcName: 私有网络名
         # @type VpcName: String
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param Nick: 昵称
         # @type Nick: String
@@ -7974,10 +7423,8 @@ module TencentCloud
         # @param LastScanTime: 最后扫描时间
         # @type LastScanTime: String
         # @param IsCore: 是否核心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
 
         attr_accessor :AppId, :Uin, :AssetId, :AssetName, :Region, :VpcId, :VpcName, :Tag, :Nick, :CIDR, :Zone, :CVM, :AvailableIp, :CreateTime, :ConfigureRisk, :ScanTask, :LastScanTime, :IsCore, :IsNewAsset
@@ -8057,10 +7504,8 @@ module TencentCloud
       # 产品日志条数
       class TagCount < TencentCloud::Common::AbstractModel
         # @param Name: 产品名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Count: 日志条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :Name, :Count
@@ -8407,7 +7852,6 @@ module TencentCloud
       # UpdateAlertStatusList返回参数结构体
       class UpdateAlertStatusListResponse < TencentCloud::Common::AbstractModel
         # @param Msg: 结果信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param Code: 结果代码
         # @type Code: String
@@ -8531,16 +7975,12 @@ module TencentCloud
       # 漏洞风险信息
       class VULRiskInfo < TencentCloud::Common::AbstractModel
         # @param Fix: 修复建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fix: String
         # @param References: 技术参考/参考链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type References: String
         # @param Describe: 漏洞描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
         # @param ImpactComponent: 受影响组件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImpactComponent: Array
 
         attr_accessor :Fix, :References, :Describe, :ImpactComponent
@@ -8712,48 +8152,34 @@ module TencentCloud
         # @param VULURL: 风险点
         # @type VULURL: String
         # @param Nick: 用户昵称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nick: String
         # @param AppId: 用户appid
         # @type AppId: String
         # @param Uin: 用户uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param EMGCVulType: 应急漏洞类型，1-应急漏洞，0-非应急漏洞
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EMGCVulType: Integer
         # @param CVSS: CVSS评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVSS: Float
         # @param PCMGRId: PCMGRId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PCMGRId: String
         # @param VulTag: 漏洞标签。搜索时应急 必修传参VulTag=SuggestRepair/EMGCVul
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulTag: Array
         # @param DisclosureTime: 漏洞披露时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisclosureTime: String
         # @param AttackHeat: 攻击热度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackHeat: Integer
         # @param IsSuggest: 是否必修漏洞，1-是，0-不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSuggest: Integer
         # @param HandleTaskId: 处置任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HandleTaskId: String
         # @param EngineSource: 引擎来源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineSource: String
         # @param VulRiskId: 新的漏洞风险id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulRiskId: String
         # @param TvdID: 新版漏洞id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TvdID: String
         # @param IsOneClick: 是否可以一键体检，1-可以，0-不可以
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOneClick: Integer
 
         attr_accessor :Port, :NoHandleCount, :Level, :Component, :RecentTime, :FirstTime, :AffectAssetCount, :RiskId, :From, :Index, :VULType, :VULName, :CVE, :Payload, :AppName, :AppVersion, :VULURL, :Nick, :AppId, :Uin, :EMGCVulType, :CVSS, :PCMGRId, :VulTag, :DisclosureTime, :AttackHeat, :IsSuggest, :HandleTaskId, :EngineSource, :VulRiskId, :TvdID, :IsOneClick
@@ -8842,10 +8268,8 @@ module TencentCloud
         # @param CVM: 云服务器(只支持32位)
         # @type CVM: Integer
         # @param Tag: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: Array
         # @param DNS: dns域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DNS: Array
         # @param AssetName: 资产名称
         # @type AssetName: String
@@ -8860,10 +8284,8 @@ module TencentCloud
         # @param Nick: 昵称
         # @type Nick: String
         # @param IsNewAsset: 是否新资产 1新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
         # @param IsCore: 是否核心资产1是 2不是
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
 
         attr_accessor :Subnet, :ConnectedVpc, :AssetId, :Region, :CVM, :Tag, :DNS, :AssetName, :CIDR, :CreateTime, :AppId, :Uin, :Nick, :IsNewAsset, :IsCore
@@ -9051,16 +8473,12 @@ module TencentCloud
       # 过滤条件
       class WhereFilter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤的项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Values: 过滤的值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
         # @param OperatorType: 中台定义：
         # 1等于 2大于 3小于 4大于等于 5小于等于 6不等于 9模糊匹配 13非模糊匹配 14按位与
         # 精确匹配填 7 模糊匹配填9
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
 
         attr_accessor :Name, :Values, :OperatorType

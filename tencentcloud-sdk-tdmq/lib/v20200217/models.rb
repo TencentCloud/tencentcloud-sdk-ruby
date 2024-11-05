@@ -917,7 +917,7 @@ module TencentCloud
         end
       end
 
-      #  消费者
+      # 消费者
       class Consumer < TencentCloud::Common::AbstractModel
         # @param ConnectedSince: 消费者开始连接的时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -960,7 +960,7 @@ module TencentCloud
         # @type MsgId: String
         # @param ConsumerGroup: 消费组。
         # @type ConsumerGroup: String
-        # @param ConsumerName: 消费组名称。
+        # @param ConsumerName: 消费者名称。
         # @type ConsumerName: String
         # @param ConsumeTime: 消费时间。
         # @type ConsumeTime: String
@@ -6390,8 +6390,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 10
-        deprecate :QueryDlqMsg=, :none, 2024, 10
+        deprecate :QueryDlqMsg, :none, 2024, 11
+        deprecate :QueryDlqMsg=, :none, 2024, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6496,8 +6496,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 10
-        deprecate :QueryDLQMsg=, :none, 2024, 10
+        deprecate :QueryDLQMsg, :none, 2024, 11
+        deprecate :QueryDLQMsg=, :none, 2024, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7275,8 +7275,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 10
-        deprecate :QueryDlqMsg=, :none, 2024, 10
+        deprecate :QueryDlqMsg, :none, 2024, 11
+        deprecate :QueryDlqMsg=, :none, 2024, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid

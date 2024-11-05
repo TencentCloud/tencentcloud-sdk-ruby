@@ -1065,6 +1065,78 @@ module TencentCloud
         end
       end
 
+      # CreateTXTRecord请求参数结构体
+      class CreateTXTRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RecordLine: 记录线路，通过 API 记录线路获得，中文，比如：默认。
+        # @type RecordLine: String
+        # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
+        # @type Value: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+        # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
+        # @type SubDomain: String
+        # @param RecordLineId: 线路的 ID，通过 API 记录线路获得，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
+        # @type RecordLineId: String
+        # @param TTL: TTL，范围1-604800，不同套餐域名最小值不同。
+        # @type TTL: Integer
+        # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
+        # @type Status: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param GroupId: 记录分组 Id。可以通过接口 DescribeRecordGroupList 接口 GroupId 字段获取。
+        # @type GroupId: Integer
+
+        attr_accessor :Domain, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :TTL, :Status, :Remark, :GroupId
+
+        def initialize(domain=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, ttl=nil, status=nil, remark=nil, groupid=nil)
+          @Domain = domain
+          @RecordLine = recordline
+          @Value = value
+          @DomainId = domainid
+          @SubDomain = subdomain
+          @RecordLineId = recordlineid
+          @TTL = ttl
+          @Status = status
+          @Remark = remark
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RecordLine = params['RecordLine']
+          @Value = params['Value']
+          @DomainId = params['DomainId']
+          @SubDomain = params['SubDomain']
+          @RecordLineId = params['RecordLineId']
+          @TTL = params['TTL']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # CreateTXTRecord返回参数结构体
+      class CreateTXTRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RecordId: 记录ID
+        # @type RecordId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordId, :RequestId
+
+        def initialize(recordid=nil, requestid=nil)
+          @RecordId = recordid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 自定义线路详情
       class CustomLineInfo < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名ID
@@ -5185,6 +5257,78 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTXTRecord请求参数结构体
+      class ModifyTXTRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RecordLine: 记录线路，通过 API 记录线路获得，中文，比如：默认。
+        # @type RecordLine: String
+        # @param Value: 记录值，如 IP : 200.200.200.200， CNAME : cname.dnspod.com.， MX : mail.dnspod.com.。
+        # @type Value: String
+        # @param RecordId: 记录 ID 。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
+        # @type RecordId: Integer
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @type DomainId: Integer
+        # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
+        # @type SubDomain: String
+        # @param RecordLineId: 线路的 ID，通过 API 记录线路获得，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
+        # @type RecordLineId: String
+        # @param TTL: TTL，范围1-604800，不同等级域名最小值不同。
+        # @type TTL: Integer
+        # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
+        # @type Status: String
+        # @param Remark: 记录的备注信息。传空删除备注。
+        # @type Remark: String
+
+        attr_accessor :Domain, :RecordLine, :Value, :RecordId, :DomainId, :SubDomain, :RecordLineId, :TTL, :Status, :Remark
+
+        def initialize(domain=nil, recordline=nil, value=nil, recordid=nil, domainid=nil, subdomain=nil, recordlineid=nil, ttl=nil, status=nil, remark=nil)
+          @Domain = domain
+          @RecordLine = recordline
+          @Value = value
+          @RecordId = recordid
+          @DomainId = domainid
+          @SubDomain = subdomain
+          @RecordLineId = recordlineid
+          @TTL = ttl
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RecordLine = params['RecordLine']
+          @Value = params['Value']
+          @RecordId = params['RecordId']
+          @DomainId = params['DomainId']
+          @SubDomain = params['SubDomain']
+          @RecordLineId = params['RecordLineId']
+          @TTL = params['TTL']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyTXTRecord返回参数结构体
+      class ModifyTXTRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RecordId: 记录ID
+        # @type RecordId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordId, :RequestId
+
+        def initialize(recordid=nil, requestid=nil)
+          @RecordId = recordid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
           @RequestId = params['RequestId']
         end
       end

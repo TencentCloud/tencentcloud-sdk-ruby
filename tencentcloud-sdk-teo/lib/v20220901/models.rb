@@ -5944,8 +5944,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。不填写时返回当前四层实例下所有的规则信息，详细的过滤条件如下：
-        #  <li>rule-tag：按照规则标签对四层代理实例下的规则进行过滤。</li>
+        # @param Filters: 过滤条件，Filters.Values的上限为20。不填写时返回当前四层实例下所有的规则信息，详细的过滤条件如下：  <li>rule-id：按照规则 ID 对四层代理实例下的规则进行过滤。规则 ID 形如：rule-31vv7qig0vjy；</li> <li>rule-tag：按照规则标签对四层代理实例下的规则进行过滤。</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :ProxyId, :Offset, :Limit, :Filters

@@ -5989,19 +5989,24 @@ module TencentCloud
         # @param SinkCycleAge: 标准存储时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SinkCycleAge: String
+        # @param StandardStorageAge: 标准存储时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardStorageAge: String
 
-        attr_accessor :ExpireMaxAge, :TimestampField, :SinkCycleAge
+        attr_accessor :ExpireMaxAge, :TimestampField, :SinkCycleAge, :StandardStorageAge
 
-        def initialize(expiremaxage=nil, timestampfield=nil, sinkcycleage=nil)
+        def initialize(expiremaxage=nil, timestampfield=nil, sinkcycleage=nil, standardstorageage=nil)
           @ExpireMaxAge = expiremaxage
           @TimestampField = timestampfield
           @SinkCycleAge = sinkcycleage
+          @StandardStorageAge = standardstorageage
         end
 
         def deserialize(params)
           @ExpireMaxAge = params['ExpireMaxAge']
           @TimestampField = params['TimestampField']
           @SinkCycleAge = params['SinkCycleAge']
+          @StandardStorageAge = params['StandardStorageAge']
         end
       end
 

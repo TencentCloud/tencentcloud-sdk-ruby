@@ -121,25 +121,18 @@ module TencentCloud
         # @param Time: 日志时间，单位ms
         # @type Time: Integer
         # @param TopicId: 日志主题ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param TopicName: 日志主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param Source: 日志来源IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param FileName: 日志文件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param PkgId: 日志上报请求包的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PkgId: String
         # @param PkgLogId: 请求包内日志的ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PkgLogId: String
         # @param LogJson: 日志内容的Json序列化字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogJson: String
 
@@ -215,14 +208,11 @@ module TencentCloud
       class AccessRuleInfo < TencentCloud::Common::AbstractModel
         # @param FullText: 全文索引配置
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullText: :class:`Tencentcloud::Waf.v20180125.models.AccessFullTextInfo`
         # @param KeyValue: 键值索引配置
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyValue: :class:`Tencentcloud::Waf.v20180125.models.AccessRuleKeyValueInfo`
         # @param Tag: 元字段索引配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: :class:`Tencentcloud::Waf.v20180125.models.AccessRuleTagInfo`
 
@@ -1657,7 +1647,6 @@ module TencentCloud
         # @param ValidTime: 策略动作有效时间
         # @type ValidTime: Integer
         # @param OptionsArr: 高级参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionsArr: String
         # @param Length: url长度
         # @type Length: Integer
@@ -1742,12 +1731,10 @@ module TencentCloud
         # @param RuleId: 规则ID
         # @type RuleId: Integer
         # @param EventId: 事件id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: String
         # @param SessionApplied: 关联的Session规则
         # @type SessionApplied: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
 
         attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime
@@ -1796,7 +1783,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param Res: 规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Res: Array
 
         attr_accessor :TotalCount, :Res
@@ -1816,42 +1802,6 @@ module TencentCloud
               @Res << ccruleitems_tmp
             end
           end
-        end
-      end
-
-      # 防篡改url元素
-      class CacheUrlItem < TencentCloud::Common::AbstractModel
-        # @param Id: Id
-        # @type Id: String
-        # @param Name: 名称
-        # @type Name: String
-        # @param Domain: 域名
-        # @type Domain: String
-        # @param Uri: uri
-        # @type Uri: String
-        # @param Protocol: 协议
-        # @type Protocol: String
-        # @param Status: 状态
-        # @type Status: String
-
-        attr_accessor :Id, :Name, :Domain, :Uri, :Protocol, :Status
-
-        def initialize(id=nil, name=nil, domain=nil, uri=nil, protocol=nil, status=nil)
-          @Id = id
-          @Name = name
-          @Domain = domain
-          @Uri = uri
-          @Protocol = protocol
-          @Status = status
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @Name = params['Name']
-          @Domain = params['Domain']
-          @Uri = params['Uri']
-          @Protocol = params['Protocol']
-          @Status = params['Status']
         end
       end
 
@@ -1924,7 +1874,6 @@ module TencentCloud
         # @param Region: 地域
         # @type Region: String
         # @param Clusters: 该地域对应的集群信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clusters: Array
 
         attr_accessor :Region, :Clusters
@@ -2748,7 +2697,6 @@ module TencentCloud
       # DeleteAttackWhiteRule返回参数结构体
       class DeleteAttackWhiteRuleResponse < TencentCloud::Common::AbstractModel
         # @param FailIds: 删除失败的规则序号组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2797,7 +2745,6 @@ module TencentCloud
       # DeleteCCRule返回参数结构体
       class DeleteCCRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: 一般为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RuleId: 操作的规则Id
         # @type RuleId: Integer
@@ -2943,7 +2890,6 @@ module TencentCloud
       # DeleteDomainWhiteRules返回参数结构体
       class DeleteDomainWhiteRulesResponse < TencentCloud::Common::AbstractModel
         # @param Data: 出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3146,7 +3092,6 @@ module TencentCloud
       # DeleteSession返回参数结构体
       class DeleteSessionResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3305,7 +3250,6 @@ module TencentCloud
       # DescribeAccessFastAnalysis返回参数结构体
       class DescribeAccessFastAnalysisResponse < TencentCloud::Common::AbstractModel
         # @param FieldValueRatioInfos: 注意：此字段可能返回 null，表示取不到有效值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldValueRatioInfos: Array
         # @param TotalCount: 日志条数
         # @type TotalCount: Integer
@@ -3373,7 +3317,6 @@ module TencentCloud
         # @param TotalCount: 满足条件的日志条数
         # @type TotalCount: Integer
         # @param HistogramInfos: 注意：此字段可能返回 null，表示取不到有效值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistogramInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3418,7 +3361,6 @@ module TencentCloud
         # @param Status: 是否生效，true表示生效，false表示未生效
         # @type Status: Boolean
         # @param Rule: 索引配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: :class:`Tencentcloud::Waf.v20180125.models.AccessRuleInfo`
         # @param ModifyTime: 索引修改时间，初始值为索引创建时间。
@@ -3517,161 +3459,6 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAntiFakeUrl请求参数结构体
-      class DescribeAntiFakeUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
-        # @type Domain: String
-        # @param PageInfo: 翻页参数
-        # @type PageInfo: :class:`Tencentcloud::Waf.v20180125.models.PageInfo`
-
-        attr_accessor :Domain, :PageInfo
-
-        def initialize(domain=nil, pageinfo=nil)
-          @Domain = domain
-          @PageInfo = pageinfo
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-          unless params['PageInfo'].nil?
-            @PageInfo = PageInfo.new
-            @PageInfo.deserialize(params['PageInfo'])
-          end
-        end
-      end
-
-      # DescribeAntiFakeUrl返回参数结构体
-      class DescribeAntiFakeUrlResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
-        # @type Total: String
-        # @param List: 信息
-        # @type List: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Total, :List, :RequestId
-
-        def initialize(total=nil, list=nil, requestid=nil)
-          @Total = total
-          @List = list
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Total = params['Total']
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              cacheurlitem_tmp = CacheUrlItem.new
-              cacheurlitem_tmp.deserialize(i)
-              @List << cacheurlitem_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAntiInfoLeakRules请求参数结构体
-      class DescribeAntiInfoLeakRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
-        # @type Domain: String
-        # @param ActionType: 动作类型
-        # @type ActionType: Integer
-        # @param PageInfo: 翻页
-        # @type PageInfo: :class:`Tencentcloud::Waf.v20180125.models.PageInfo`
-
-        attr_accessor :Domain, :ActionType, :PageInfo
-
-        def initialize(domain=nil, actiontype=nil, pageinfo=nil)
-          @Domain = domain
-          @ActionType = actiontype
-          @PageInfo = pageinfo
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-          @ActionType = params['ActionType']
-          unless params['PageInfo'].nil?
-            @PageInfo = PageInfo.new
-            @PageInfo.deserialize(params['PageInfo'])
-          end
-        end
-      end
-
-      # DescribeAntiInfoLeakRules返回参数结构体
-      class DescribeAntiInfoLeakRulesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录条数
-        # @type TotalCount: String
-        # @param RuleList: 规则列表
-        # @type RuleList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :RuleList, :RequestId
-
-        def initialize(totalcount=nil, rulelist=nil, requestid=nil)
-          @TotalCount = totalcount
-          @RuleList = rulelist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['RuleList'].nil?
-            @RuleList = []
-            params['RuleList'].each do |i|
-              describeantiinfoleakrulesruleitem_tmp = DescribeAntiInfoLeakRulesRuleItem.new
-              describeantiinfoleakrulesruleitem_tmp.deserialize(i)
-              @RuleList << describeantiinfoleakrulesruleitem_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAntiInfoLeakRules返回的规则列表元素
-      class DescribeAntiInfoLeakRulesRuleItem < TencentCloud::Common::AbstractModel
-        # @param RuleId: 规则ID
-        # @type RuleId: String
-        # @param Name: 规则名称
-        # @type Name: String
-        # @param Status: 规则状态
-        # @type Status: String
-        # @param ActionType: 规则动作类型
-        # @type ActionType: String
-        # @param CreateTime: 规则创建时间
-        # @type CreateTime: String
-        # @param Strategies: 详细的规则
-        # @type Strategies: Array
-
-        attr_accessor :RuleId, :Name, :Status, :ActionType, :CreateTime, :Strategies
-
-        def initialize(ruleid=nil, name=nil, status=nil, actiontype=nil, createtime=nil, strategies=nil)
-          @RuleId = ruleid
-          @Name = name
-          @Status = status
-          @ActionType = actiontype
-          @CreateTime = createtime
-          @Strategies = strategies
-        end
-
-        def deserialize(params)
-          @RuleId = params['RuleId']
-          @Name = params['Name']
-          @Status = params['Status']
-          @ActionType = params['ActionType']
-          @CreateTime = params['CreateTime']
-          unless params['Strategies'].nil?
-            @Strategies = []
-            params['Strategies'].each do |i|
-              describeantiinfoleakrulesstrategyitem_tmp = DescribeAntiInfoLeakRulesStrategyItem.new
-              describeantiinfoleakrulesstrategyitem_tmp.deserialize(i)
-              @Strategies << describeantiinfoleakrulesstrategyitem_tmp
-            end
-          end
         end
       end
 
@@ -3783,10 +3570,8 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param Strategies: 匹配条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Strategies: Array
         # @param Uri: 匹配的URL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uri: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
@@ -4069,7 +3854,6 @@ module TencentCloud
         # @param JobType: 定时任务类型
         # @type JobType: String
         # @param JobDateTime: 定时任务详细配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
         # @param CronType: 周期任务配置
         # @type CronType: String
@@ -4336,7 +4120,6 @@ module TencentCloud
         # @param Total: 规则总数
         # @type Total: Integer
         # @param List: 规则白名单列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4586,7 +4369,6 @@ module TencentCloud
       # DescribeCCRuleList返回参数结构体
       class DescribeCCRuleListResponse < TencentCloud::Common::AbstractModel
         # @param Data: 查询到的CC规则的列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.CCRuleLists`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4646,7 +4428,6 @@ module TencentCloud
       # DescribeCCRule返回参数结构体
       class DescribeCCRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.CCRuleData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5418,7 +5199,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Key: 过滤条件
         # @type Key: String
-        # @param IsWafDomain: 是否接入waf
+        # @param IsWafDomain: 是否接入waf；传"1"返回接入域名的详情，传"0"返回未接入域名的详情，传""返回接入和未接入域名的详情
         # @type IsWafDomain: String
         # @param By: 排序参数
         # @type By: String
@@ -6466,6 +6247,89 @@ module TencentCloud
         end
       end
 
+      # DescribeScanIp请求参数结构体
+      class DescribeScanIpRequest < TencentCloud::Common::AbstractModel
+        # @param Ip: 要查询的ip地址
+        # @type Ip: String
+
+        attr_accessor :Ip
+
+        def initialize(ip=nil)
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+        end
+      end
+
+      # DescribeScanIp返回参数结构体
+      class DescribeScanIpResponse < TencentCloud::Common::AbstractModel
+        # @param IpList: ip列表,当入参Ip为all时，返回该值
+        # @type IpList: Array
+        # @param Bussiness: 所属业务
+        # @type Bussiness: String
+        # @param Characteristic: 业务特征
+        # @type Characteristic: String
+        # @param Descibe: 扫描说明
+        # @type Descibe: String
+        # @param Referer: 官方公告
+        # @type Referer: String
+        # @param Demo: 扫描示例
+        # @type Demo: String
+        # @param Target: 扫描对象
+        # @type Target: String
+        # @param Purpose: 扫描目的
+        # @type Purpose: String
+        # @param Announcement: 产品文案
+        # @type Announcement: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param IpOwner: ipowner
+        # @type IpOwner: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IpList, :Bussiness, :Characteristic, :Descibe, :Referer, :Demo, :Target, :Purpose, :Announcement, :UpdateTime, :IpOwner, :RequestId
+
+        def initialize(iplist=nil, bussiness=nil, characteristic=nil, descibe=nil, referer=nil, demo=nil, target=nil, purpose=nil, announcement=nil, updatetime=nil, ipowner=nil, requestid=nil)
+          @IpList = iplist
+          @Bussiness = bussiness
+          @Characteristic = characteristic
+          @Descibe = descibe
+          @Referer = referer
+          @Demo = demo
+          @Target = target
+          @Purpose = purpose
+          @Announcement = announcement
+          @UpdateTime = updatetime
+          @IpOwner = ipowner
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IpList'].nil?
+            @IpList = []
+            params['IpList'].each do |i|
+              scanipinfo_tmp = ScanIpInfo.new
+              scanipinfo_tmp.deserialize(i)
+              @IpList << scanipinfo_tmp
+            end
+          end
+          @Bussiness = params['Bussiness']
+          @Characteristic = params['Characteristic']
+          @Descibe = params['Descibe']
+          @Referer = params['Referer']
+          @Demo = params['Demo']
+          @Target = params['Target']
+          @Purpose = params['Purpose']
+          @Announcement = params['Announcement']
+          @UpdateTime = params['UpdateTime']
+          @IpOwner = params['IpOwner']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSession请求参数结构体
       class DescribeSessionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -6489,7 +6353,6 @@ module TencentCloud
       # DescribeSession返回参数结构体
       class DescribeSessionResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Waf.v20180125.models.SessionData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6587,7 +6450,6 @@ module TencentCloud
         # @param IsKeepAlive: 与源站是否保持长连接
         # @type IsKeepAlive: String
         # @param Anycast: 0：BGP 1：Anycast
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Anycast: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7077,8 +6939,6 @@ module TencentCloud
         # @param DefenseStatus: 自动封禁状态
         # @type DefenseStatus: Integer
         # @param Source: 数据来源Source字段 custom-自定义(默认)、batch-domain-批量域名
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
         # @param HWState: 重保护网域名状态
         # @type HWState: Integer
@@ -9280,10 +9140,8 @@ module TencentCloud
       # 规则执行的时间结构体
       class JobDateTime < TencentCloud::Common::AbstractModel
         # @param Timed: 定时执行的时间参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timed: Array
         # @param Cron: 周期执行的时间参数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cron: Array
         # @param TimeTZone: 时区
         # @type TimeTZone: String
@@ -10155,13 +10013,10 @@ module TencentCloud
       # ModifyBotStatus返回参数结构体
       class ModifyBotStatusResponse < TencentCloud::Common::AbstractModel
         # @param Data: 正常情况为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param UnSupportedList: 未购买BOT的域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnSupportedList: Array
         # @param FailDomainList: 已购买但操作失败的域名列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailDomainList: Array
         # @param Count: 成功数目
         # @type Count: Integer
@@ -11852,26 +11707,6 @@ module TencentCloud
         end
       end
 
-      # 公共翻页参数
-      class PageInfo < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 页码
-        # @type PageNumber: String
-        # @param PageSize: 页条目数量
-        # @type PageSize: String
-
-        attr_accessor :PageNumber, :PageSize
-
-        def initialize(pagenumber=nil, pagesize=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-        end
-      end
-
       # PeakPoints数组项
       class PeakPointsItem < TencentCloud::Common::AbstractModel
         # @param Time: 秒级别时间戳
@@ -12293,22 +12128,18 @@ module TencentCloud
         # @param Id: 规则id
         # @type Id: Integer
         # @param Type: 规则类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Level: 规则等级
         # @type Level: String
         # @param Description: 规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CVE: 规则防护的CVE编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVE: String
         # @param Status: 规则的状态
         # @type Status: Integer
         # @param ModifyTime: 规则修改的时间
         # @type ModifyTime: String
         # @param AddTime: 门神规则新增/更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
 
         attr_accessor :Id, :Type, :Level, :Description, :CVE, :Status, :ModifyTime, :AddTime
@@ -12376,6 +12207,42 @@ module TencentCloud
         end
       end
 
+      # 扫描ip信息
+      class ScanIpInfo < TencentCloud::Common::AbstractModel
+        # @param Bussiness: 所属业务
+        # @type Bussiness: String
+        # @param Target: 扫描对象
+        # @type Target: String
+        # @param IpList: ip列表
+        # @type IpList: Array
+        # @param Descibe: 扫描说明
+        # @type Descibe: String
+        # @param Referer: 官方公告
+        # @type Referer: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :Bussiness, :Target, :IpList, :Descibe, :Referer, :UpdateTime
+
+        def initialize(bussiness=nil, target=nil, iplist=nil, descibe=nil, referer=nil, updatetime=nil)
+          @Bussiness = bussiness
+          @Target = target
+          @IpList = iplist
+          @Descibe = descibe
+          @Referer = referer
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Bussiness = params['Bussiness']
+          @Target = params['Target']
+          @IpList = params['IpList']
+          @Descibe = params['Descibe']
+          @Referer = params['Referer']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # SearchAccessLog请求参数结构体
       class SearchAccessLogRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题，新版本此字段填空字符串
@@ -12430,14 +12297,12 @@ module TencentCloud
         # @type Analysis: Boolean
         # @param ColNames: 如果Analysis为True，则返回分析结果的列名，否则为空
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColNames: Array
         # @param Results: 日志查询结果；当Analysis为True时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值
         # @type Results: Array
         # @param AnalysisResults: 日志分析结果；当Analysis为False时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisResults: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13125,7 +12990,6 @@ module TencentCloud
       # UpsertCCRule返回参数结构体
       class UpsertCCRuleResponse < TencentCloud::Common::AbstractModel
         # @param Data: 一般为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RuleId: 操作的RuleId
         # @type RuleId: Integer
@@ -13263,7 +13127,6 @@ module TencentCloud
       # UpsertSession返回参数结构体
       class UpsertSessionResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param SessionID: SessionID
         # @type SessionID: Integer
@@ -13631,7 +13494,6 @@ module TencentCloud
       # 当前WAF威胁情报封禁模块详情
       class WafThreatenIntelligenceDetails < TencentCloud::Common::AbstractModel
         # @param Tags: 封禁属性标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param DefenseStatus: 封禁模组启用状态
         # @type DefenseStatus: Integer

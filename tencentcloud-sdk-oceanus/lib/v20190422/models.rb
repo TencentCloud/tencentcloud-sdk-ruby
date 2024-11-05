@@ -526,6 +526,9 @@ module TencentCloud
         # @param Properties: session集群高级参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
+        # @param ResourceRefs: 引用资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRefs: Array
         # @param JobManagerCuSpec: JobManager的规格
         # @type JobManagerCuSpec: Float
         # @param TaskManagerCuSpec: TaskManager的规格
@@ -536,10 +539,18 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
+        # @param JobManagerCpu: JobManagerCpu
+        # @type JobManagerCpu: Float
+        # @param JobManagerMem: JobManagerMem
+        # @type JobManagerMem: Float
+        # @param TaskManagerCpu: TaskManagerCpu
+        # @type TaskManagerCpu: Float
+        # @param TaskManagerMem: TaskManagerMem
+        # @type TaskManagerMem: Float
 
-        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime
+        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :ResourceRefs, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem
 
-        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil)
+        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, resourcerefs=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil)
           @ClusterGroupSerialId = clustergroupserialid
           @AppId = appid
           @OwnerUin = owneruin
@@ -551,11 +562,16 @@ module TencentCloud
           @FlinkVersion = flinkversion
           @WebUIUrl = webuiurl
           @Properties = properties
+          @ResourceRefs = resourcerefs
           @JobManagerCuSpec = jobmanagercuspec
           @TaskManagerCuSpec = taskmanagercuspec
           @TaskManagerNum = taskmanagernum
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @JobManagerCpu = jobmanagercpu
+          @JobManagerMem = jobmanagermem
+          @TaskManagerCpu = taskmanagercpu
+          @TaskManagerMem = taskmanagermem
         end
 
         def deserialize(params)
@@ -577,11 +593,23 @@ module TencentCloud
               @Properties << property_tmp
             end
           end
+          unless params['ResourceRefs'].nil?
+            @ResourceRefs = []
+            params['ResourceRefs'].each do |i|
+              sessionclusterrefitem_tmp = SessionClusterRefItem.new
+              sessionclusterrefitem_tmp.deserialize(i)
+              @ResourceRefs << sessionclusterrefitem_tmp
+            end
+          end
           @JobManagerCuSpec = params['JobManagerCuSpec']
           @TaskManagerCuSpec = params['TaskManagerCuSpec']
           @TaskManagerNum = params['TaskManagerNum']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @JobManagerCpu = params['JobManagerCpu']
+          @JobManagerMem = params['JobManagerMem']
+          @TaskManagerCpu = params['TaskManagerCpu']
+          @TaskManagerMem = params['TaskManagerMem']
         end
       end
 
@@ -3505,10 +3533,20 @@ module TencentCloud
         # @param Description: 描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param ScalingType: 0:代表没开启调优任务，1:开启智能调优，2:代表定时调优
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalingType: Integer
+        # @param RunningCpu: 使用CPU数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningCpu: Float
+        # @param RunningMem: 使用内存数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningMem: Float
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil)
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem
+
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -3543,6 +3581,9 @@ module TencentCloud
           @Tags = tags
           @EventInfo = eventinfo
           @Description = description
+          @ScalingType = scalingtype
+          @RunningCpu = runningcpu
+          @RunningMem = runningmem
         end
 
         def deserialize(params)
@@ -3590,6 +3631,9 @@ module TencentCloud
             @EventInfo.deserialize(params['EventInfo'])
           end
           @Description = params['Description']
+          @ScalingType = params['ScalingType']
+          @RunningCpu = params['RunningCpu']
+          @RunningMem = params['RunningMem']
         end
       end
 
@@ -4569,6 +4613,38 @@ module TencentCloud
           @SerialId = params['SerialId']
           @TimeConsuming = params['TimeConsuming']
           @PathStatus = params['PathStatus']
+        end
+      end
+
+      # session集群引用资源信息
+      class SessionClusterRefItem < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 空间唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkspaceId: String
+        # @param ResourceId: 资源唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param Version: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
+        # @param Type: 引用类型，0:用户资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+
+        attr_accessor :WorkspaceId, :ResourceId, :Version, :Type
+
+        def initialize(workspaceid=nil, resourceid=nil, version=nil, type=nil)
+          @WorkspaceId = workspaceid
+          @ResourceId = resourceid
+          @Version = version
+          @Type = type
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @ResourceId = params['ResourceId']
+          @Version = params['Version']
+          @Type = params['Type']
         end
       end
 

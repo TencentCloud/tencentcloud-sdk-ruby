@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # cvm列表
+        # 获取cvm列表
 
         # @param request: Request instance for DescribeCVMAssets.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCVMAssetsRequest`

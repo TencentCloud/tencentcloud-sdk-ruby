@@ -2017,8 +2017,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 10
-        deprecate :OutputStorage=, :none, 2024, 10
+        deprecate :OutputStorage, :none, 2024, 11
+        deprecate :OutputStorage=, :none, 2024, 11
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -11590,7 +11590,10 @@ module TencentCloud
         # @param Container: 封装格式，可选值：mp4、hls、mov、flv、avi。默认是 mp4。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Container: String
-        # @param Type: 剪辑模式，可选值 normal、fast。默认是精确剪辑 normal
+        # @param Type: 剪辑模式，可选值：
+        # normal（默认）：精准编辑
+        # fast：快速编辑，处理速度更快但精准度一定程度降低
+        # 注意：fast只支持单文件，normal默认输出转码格式是h264
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
@@ -13356,10 +13359,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2024, 10
-        deprecate :QualityControlResults=, :none, 2024, 10
-        deprecate :DiagnoseResults, :none, 2024, 10
-        deprecate :DiagnoseResults=, :none, 2024, 10
+        deprecate :QualityControlResults, :none, 2024, 11
+        deprecate :QualityControlResults=, :none, 2024, 11
+        deprecate :DiagnoseResults, :none, 2024, 11
+        deprecate :DiagnoseResults=, :none, 2024, 11
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -19808,16 +19811,24 @@ module TencentCloud
         # @param Summary: 分段概要。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: String
+        # @param BeginTime: 直播切片对应直播起始时间点，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :Title, :Summary
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :Title, :Summary, :BeginTime, :EndTime
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, title=nil, summary=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, title=nil, summary=nil, begintime=nil, endtime=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @SegmentUrl = segmenturl
           @Title = title
           @Summary = summary
+          @BeginTime = begintime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -19827,6 +19838,8 @@ module TencentCloud
           @SegmentUrl = params['SegmentUrl']
           @Title = params['Title']
           @Summary = params['Summary']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
         end
       end
 

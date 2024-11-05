@@ -321,20 +321,16 @@ module TencentCloud
         # @param CreateTime: 密钥创建时间，unix时间戳
         # @type CreateTime: Integer
         # @param Description: CMK的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param KeyState: CMK的状态
         # @type KeyState: String
         # @param KeyUsage: CMK的用途
         # @type KeyUsage: String
         # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagCode: Integer
         # @param TagMsg: 标签操作的返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
         # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HsmClusterId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -412,10 +408,8 @@ module TencentCloud
         # @param KeyId: 白盒密钥的全局唯一标识符
         # @type KeyId: String
         # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagCode: Integer
         # @param TagMsg: 标签操作的返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -577,7 +571,6 @@ module TencentCloud
       # DescribeKey返回参数结构体
       class DescribeKeyResponse < TencentCloud::Common::AbstractModel
         # @param KeyMetadata: 密钥属性信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyMetadata: :class:`Tencentcloud::Kms.v20190118.models.KeyMetadata`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -617,7 +610,6 @@ module TencentCloud
       # DescribeKeys返回参数结构体
       class DescribeKeysResponse < TencentCloud::Common::AbstractModel
         # @param KeyMetadatas: 返回的属性信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyMetadatas: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -761,7 +753,6 @@ module TencentCloud
         # @param KeyInfos: 白盒密钥信息列表。
         # @type KeyInfos: Array
         # @param TotalCount: 白盒密钥总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -863,7 +854,6 @@ module TencentCloud
         # @param Identity: 指纹信息，由设备指纹采集工具采集获得，格式满足正则表达式：^[0-9a-f]{8}[\-][0-9a-f]{14}[\-][0-9a-f]{14}[\-][0-9a-f]{14}[\-][0-9a-f]{16}$
         # @type Identity: String
         # @param Description: 描述信息，如：IP，设备名称等，最大1024字节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :Identity, :Description
@@ -1550,7 +1540,6 @@ module TencentCloud
       # GetRegions返回参数结构体
       class GetRegionsResponse < TencentCloud::Common::AbstractModel
         # @param Regions: 可用region列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Regions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1584,27 +1573,20 @@ module TencentCloud
         # @param ServiceEnabled: KMS服务是否开通， true 表示已开通
         # @type ServiceEnabled: Boolean
         # @param InvalidType: 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvalidType: Integer
         # @param UserLevel: 0-普通版，1-旗舰版
         # @type UserLevel: Integer
         # @param ProExpireTime: 旗舰版到期时间（Epoch Unix Timestamp）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProExpireTime: Integer
         # @param ProRenewFlag: 旗舰版是否自动续费：0-不自动续费，1-自动续费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProRenewFlag: Integer
         # @param ProResourceId: 旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProResourceId: String
         # @param ExclusiveVSMEnabled: 是否开通 KMS 托管版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveVSMEnabled: Boolean
         # @param ExclusiveHSMEnabled: 是否开通 KMS 独享版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveHSMEnabled: Boolean
         # @param SubscriptionInfo: KMS 订阅信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1723,18 +1705,14 @@ module TencentCloud
         # @param NextRotateTime: 在密钥轮换开启状态下，下次轮换的时间
         # @type NextRotateTime: Integer
         # @param DeletionDate: 计划删除的时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionDate: Integer
         # @param Origin: CMK 密钥材料类型，由KMS创建的为： TENCENT_KMS， 由用户导入的类型为：EXTERNAL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Origin: String
         # @param ValidTo: 在Origin为  EXTERNAL 时有效，表示密钥材料的有效日期， 0 表示不过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTo: Integer
         # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$keyId
         # @type ResourceId: String
         # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HsmClusterId: String
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId
@@ -1902,7 +1880,6 @@ module TencentCloud
         # @param TotalCount: CMK的总数量
         # @type TotalCount: Integer
         # @param KeyMetadatas: 返回的属性信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyMetadatas: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1960,7 +1937,6 @@ module TencentCloud
       # ListKeys返回参数结构体
       class ListKeysResponse < TencentCloud::Common::AbstractModel
         # @param Keys: CMK列表数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
         # @param TotalCount: CMK的总数量
         # @type TotalCount: Integer
@@ -2590,7 +2566,6 @@ module TencentCloud
         # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$keyId
         # @type ResourceId: String
         # @param DeviceFingerprintBind: 是否有设备指纹与当前密钥绑定
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceFingerprintBind: Boolean
 
         attr_accessor :KeyId, :Alias, :CreatorUin, :Description, :CreateTime, :Status, :OwnerUin, :Algorithm, :EncryptKey, :DecryptKey, :ResourceId, :DeviceFingerprintBind

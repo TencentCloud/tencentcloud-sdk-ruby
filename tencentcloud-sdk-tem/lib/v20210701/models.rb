@@ -2487,7 +2487,7 @@ module TencentCloud
       class DestroyEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 命名空间ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道 示例值：0
+        # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
 
         attr_accessor :EnvironmentId, :SourceChannel

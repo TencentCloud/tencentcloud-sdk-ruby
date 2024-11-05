@@ -1448,32 +1448,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口不再支持
-
-        # 对转录的文本进行总结。
-
-        # @param request: Request instance for SummarizeTranscription.
-        # @type request: :class:`Tencentcloud::trtc::V20190722::SummarizeTranscriptionRequest`
-        # @rtype: :class:`Tencentcloud::trtc::V20190722::SummarizeTranscriptionResponse`
-        def SummarizeTranscription(request)
-          body = send_request('SummarizeTranscription', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SummarizeTranscriptionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 更新AIConversation参数
 
         # @param request: Request instance for UpdateAIConversation.

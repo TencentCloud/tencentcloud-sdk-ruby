@@ -8686,61 +8686,6 @@ module TencentCloud
         end
       end
 
-      # InitDBInstances请求参数结构体
-      class InitDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，可使用[查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
-        # @type InstanceIds: Array
-        # @param NewPassword: 实例新的密码，密码规则：8-64个字符，至少包含字母、数字、字符（支持的字符：!@#$%^*()）中的两种。
-        # @type NewPassword: String
-        # @param Parameters: 实例的参数列表，目前支持设置“character_set_server”、“lower_case_table_names”参数。其中，“character_set_server”参数可选值为["utf8","latin1","gbk","utf8mb4"]；“lower_case_table_names”可选值为[“0”,“1”]。
-        # @type Parameters: Array
-        # @param Vport: 实例的端口，取值范围为[1024, 65535]
-        # @type Vport: Integer
-
-        attr_accessor :InstanceIds, :NewPassword, :Parameters, :Vport
-
-        def initialize(instanceids=nil, newpassword=nil, parameters=nil, vport=nil)
-          @InstanceIds = instanceids
-          @NewPassword = newpassword
-          @Parameters = parameters
-          @Vport = vport
-        end
-
-        def deserialize(params)
-          @InstanceIds = params['InstanceIds']
-          @NewPassword = params['NewPassword']
-          unless params['Parameters'].nil?
-            @Parameters = []
-            params['Parameters'].each do |i|
-              paraminfo_tmp = ParamInfo.new
-              paraminfo_tmp.deserialize(i)
-              @Parameters << paraminfo_tmp
-            end
-          end
-          @Vport = params['Vport']
-        end
-      end
-
-      # InitDBInstances返回参数结构体
-      class InitDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestIds: 异步任务的请求ID数组，可使用此ID查询异步任务的执行结果
-        # @type AsyncRequestIds: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AsyncRequestIds, :RequestId
-
-        def initialize(asyncrequestids=nil, requestid=nil)
-          @AsyncRequestIds = asyncrequestids
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @AsyncRequestIds = params['AsyncRequestIds']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # InquiryPriceUpgradeInstances请求参数结构体
       class InquiryPriceUpgradeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。

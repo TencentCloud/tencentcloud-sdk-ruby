@@ -773,58 +773,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 废弃接口
-
-        # 获取防篡改url
-
-        # @param request: Request instance for DescribeAntiFakeUrl.
-        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAntiFakeUrlRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAntiFakeUrlResponse`
-        def DescribeAntiFakeUrl(request)
-          body = send_request('DescribeAntiFakeUrl', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAntiFakeUrlResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 老接口已经不再使用。
-
-        # 获取信息防泄漏规则列表
-
-        # @param request: Request instance for DescribeAntiInfoLeakRules.
-        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAntiInfoLeakRulesRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAntiInfoLeakRulesResponse`
-        def DescribeAntiInfoLeakRules(request)
-          body = send_request('DescribeAntiInfoLeakRules', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAntiInfoLeakRulesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 取得信息防泄漏规则列表
 
         # @param request: Request instance for DescribeAntiInfoLeakageRules.
@@ -1795,6 +1743,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRuleLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询扫描ip
+
+        # @param request: Request instance for DescribeScanIp.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeScanIpRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeScanIpResponse`
+        def DescribeScanIp(request)
+          body = send_request('DescribeScanIp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanIpResponse.new
             model.deserialize(response['Response'])
             model
           else

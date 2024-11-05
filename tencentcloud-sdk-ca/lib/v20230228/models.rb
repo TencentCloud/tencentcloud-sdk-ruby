@@ -17,6 +17,43 @@
 module TencentCloud
   module Ca
     module V20230228
+      # 证书用户信息和身份鉴别信息。则该字段无需传入，默认为空。对电子签名者身份鉴别类型及措施有特殊展示要求的可使用该字段。
+      class CertificateIdentityUser < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名
+        # @type Name: String
+        # @param IdentityUniqueId: 唯一身份id
+        # @type IdentityUniqueId: String
+        # @param IdCardNumber: 身份证号
+        # @type IdCardNumber: String
+        # @param IdentificationType: 身份鉴别类型
+        # 1：授权金融机构身份鉴别
+        # @type IdentificationType: String
+        # @param IdentificationMeasures: 身份鉴别措施
+        # 1、身份证鉴别
+        # 2、银行卡鉴别
+        # 3、支付账户密码验证
+        # 4、人脸识别验证
+        # @type IdentificationMeasures: Array
+
+        attr_accessor :Name, :IdentityUniqueId, :IdCardNumber, :IdentificationType, :IdentificationMeasures
+
+        def initialize(name=nil, identityuniqueid=nil, idcardnumber=nil, identificationtype=nil, identificationmeasures=nil)
+          @Name = name
+          @IdentityUniqueId = identityuniqueid
+          @IdCardNumber = idcardnumber
+          @IdentificationType = identificationtype
+          @IdentificationMeasures = identificationmeasures
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IdentityUniqueId = params['IdentityUniqueId']
+          @IdCardNumber = params['IdCardNumber']
+          @IdentificationType = params['IdentificationType']
+          @IdentificationMeasures = params['IdentificationMeasures']
+        end
+      end
+
       # CreateVerifyReport请求参数结构体
       class CreateVerifyReportRequest < TencentCloud::Common::AbstractModel
         # @param ApplyCustomerType: 申请者类型 1:个人，2:企业
@@ -31,16 +68,19 @@ module TencentCloud
         # @type FileId: String
         # @param ApplyEmail: 验签申请经办人邮箱
         # @type ApplyEmail: String
+        # @param CertificateIdentityUsers: 证书用户身份及身份鉴别信息
+        # @type CertificateIdentityUsers: Array
 
-        attr_accessor :ApplyCustomerType, :ApplyCustomerName, :ApplyName, :ApplyMobile, :FileId, :ApplyEmail
+        attr_accessor :ApplyCustomerType, :ApplyCustomerName, :ApplyName, :ApplyMobile, :FileId, :ApplyEmail, :CertificateIdentityUsers
 
-        def initialize(applycustomertype=nil, applycustomername=nil, applyname=nil, applymobile=nil, fileid=nil, applyemail=nil)
+        def initialize(applycustomertype=nil, applycustomername=nil, applyname=nil, applymobile=nil, fileid=nil, applyemail=nil, certificateidentityusers=nil)
           @ApplyCustomerType = applycustomertype
           @ApplyCustomerName = applycustomername
           @ApplyName = applyname
           @ApplyMobile = applymobile
           @FileId = fileid
           @ApplyEmail = applyemail
+          @CertificateIdentityUsers = certificateidentityusers
         end
 
         def deserialize(params)
@@ -50,6 +90,14 @@ module TencentCloud
           @ApplyMobile = params['ApplyMobile']
           @FileId = params['FileId']
           @ApplyEmail = params['ApplyEmail']
+          unless params['CertificateIdentityUsers'].nil?
+            @CertificateIdentityUsers = []
+            params['CertificateIdentityUsers'].each do |i|
+              certificateidentityuser_tmp = CertificateIdentityUser.new
+              certificateidentityuser_tmp.deserialize(i)
+              @CertificateIdentityUsers << certificateidentityuser_tmp
+            end
+          end
         end
       end
 

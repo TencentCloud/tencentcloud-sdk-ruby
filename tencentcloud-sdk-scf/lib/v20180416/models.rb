@@ -2298,7 +2298,7 @@ module TencentCloud
         # @type Location: String
         # @param AddTime: 版本的创建时间
         # @type AddTime: String
-        # @param Description: 版本的描述
+        # @param Description: 版本的描述信息
         # @type Description: String
         # @param LicenseInfo: 许可证信息
         # @type LicenseInfo: String
@@ -4492,12 +4492,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 10
-        deprecate :ResourceId=, :none, 2024, 10
-        deprecate :BindStatus, :none, 2024, 10
-        deprecate :BindStatus=, :none, 2024, 10
-        deprecate :TriggerAttribute, :none, 2024, 10
-        deprecate :TriggerAttribute=, :none, 2024, 10
+        deprecate :ResourceId, :none, 2024, 11
+        deprecate :ResourceId=, :none, 2024, 11
+        deprecate :BindStatus, :none, 2024, 11
+        deprecate :BindStatus=, :none, 2024, 11
+        deprecate :TriggerAttribute, :none, 2024, 11
+        deprecate :TriggerAttribute=, :none, 2024, 11
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4658,12 +4658,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 10
-        deprecate :ResourceId=, :none, 2024, 10
-        deprecate :BindStatus, :none, 2024, 10
-        deprecate :BindStatus=, :none, 2024, 10
-        deprecate :TriggerAttribute, :none, 2024, 10
-        deprecate :TriggerAttribute=, :none, 2024, 10
+        deprecate :ResourceId, :none, 2024, 11
+        deprecate :ResourceId=, :none, 2024, 11
+        deprecate :BindStatus, :none, 2024, 11
+        deprecate :BindStatus=, :none, 2024, 11
+        deprecate :TriggerAttribute, :none, 2024, 11
+        deprecate :TriggerAttribute=, :none, 2024, 11
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable

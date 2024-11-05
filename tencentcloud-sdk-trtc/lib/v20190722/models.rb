@@ -3700,10 +3700,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
         extend Gem::Deprecate
-        deprecate :Model, :none, 2024, 10
-        deprecate :Model=, :none, 2024, 10
-        deprecate :TranslationLanguage, :none, 2024, 10
-        deprecate :TranslationLanguage=, :none, 2024, 10
+        deprecate :Model, :none, 2024, 11
+        deprecate :Model=, :none, 2024, 11
+        deprecate :TranslationLanguage, :none, 2024, 11
+        deprecate :TranslationLanguage=, :none, 2024, 11
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil)
           @Language = language
@@ -4638,12 +4638,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2024, 10
-        deprecate :VideoEncodeParams=, :none, 2024, 10
-        deprecate :AudioEncodeParams, :none, 2024, 10
-        deprecate :AudioEncodeParams=, :none, 2024, 10
-        deprecate :SourceUrl, :none, 2024, 10
-        deprecate :SourceUrl=, :none, 2024, 10
+        deprecate :VideoEncodeParams, :none, 2024, 11
+        deprecate :VideoEncodeParams=, :none, 2024, 11
+        deprecate :AudioEncodeParams, :none, 2024, 11
+        deprecate :AudioEncodeParams=, :none, 2024, 11
+        deprecate :SourceUrl, :none, 2024, 11
+        deprecate :SourceUrl=, :none, 2024, 11
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil)
           @SdkAppId = sdkappid
@@ -5121,33 +5121,6 @@ module TencentCloud
         end
       end
 
-      # SummarizeTranscription请求参数结构体
-      class SummarizeTranscriptionRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # SummarizeTranscription返回参数结构体
-      class SummarizeTranscriptionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # TRTC数据大盘/实时监控 API接口数据出参
       class TRTCDataResp < TencentCloud::Common::AbstractModel
         # @param StatementID: StatementID值，监控仪表盘下固定为0。
@@ -5308,10 +5281,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2024, 10
-        deprecate :IMAdminUserId=, :none, 2024, 10
-        deprecate :IMAdminUserSig, :none, 2024, 10
-        deprecate :IMAdminUserSig=, :none, 2024, 10
+        deprecate :IMAdminUserId, :none, 2024, 11
+        deprecate :IMAdminUserId=, :none, 2024, 11
+        deprecate :IMAdminUserSig, :none, 2024, 11
+        deprecate :IMAdminUserSig=, :none, 2024, 11
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
           @UserId = userid

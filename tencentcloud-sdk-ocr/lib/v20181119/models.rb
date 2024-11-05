@@ -1629,8 +1629,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
         extend Gem::Deprecate
-        deprecate :Angle, :none, 2024, 10
-        deprecate :Angle=, :none, 2024, 10
+        deprecate :Angle, :none, 2024, 11
+        deprecate :Angle=, :none, 2024, 11
 
         def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
           @PageNumber = pagenumber
@@ -3436,8 +3436,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 10
-        deprecate :Angel=, :none, 2024, 10
+        deprecate :Angel, :none, 2024, 11
+        deprecate :Angel=, :none, 2024, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3543,8 +3543,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 10
-        deprecate :Angel=, :none, 2024, 10
+        deprecate :Angel, :none, 2024, 11
+        deprecate :Angel=, :none, 2024, 11
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3934,8 +3934,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2024, 10
-        deprecate :DetectFake=, :none, 2024, 10
+        deprecate :DetectFake, :none, 2024, 11
+        deprecate :DetectFake=, :none, 2024, 11
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4004,10 +4004,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2024, 10
-        deprecate :FakeDetectResult=, :none, 2024, 10
-        deprecate :WarningCode, :none, 2024, 10
-        deprecate :WarningCode=, :none, 2024, 10
+        deprecate :FakeDetectResult, :none, 2024, 11
+        deprecate :FakeDetectResult=, :none, 2024, 11
+        deprecate :WarningCode, :none, 2024, 11
+        deprecate :WarningCode=, :none, 2024, 11
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -5059,8 +5059,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2024, 10
-        deprecate :Warn=, :none, 2024, 10
+        deprecate :Warn, :none, 2024, 11
+        deprecate :Warn=, :none, 2024, 11
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -10173,6 +10173,84 @@ module TencentCloud
         end
       end
 
+      # SmartStructuralPro请求参数结构体
+      class SmartStructuralProRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户只想返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
+        # @type ItemNames: Array
+        # @param ReturnFullText: 是否开启全文字段识别
+        # @type ReturnFullText: Boolean
+        # @param ConfigId: 配置id支持：General -- 通用场景 InvoiceEng -- 海运提单、国际invoice模版 WayBillEng --海运订单模板
+        # @type ConfigId: String
+
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId
+
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @PdfPageNumber = pdfpagenumber
+          @ItemNames = itemnames
+          @ReturnFullText = returnfulltext
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @PdfPageNumber = params['PdfPageNumber']
+          @ItemNames = params['ItemNames']
+          @ReturnFullText = params['ReturnFullText']
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # SmartStructuralPro返回参数结构体
+      class SmartStructuralProResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StructuralList: 配置结构化文本信息
+        # @type StructuralList: Array
+        # @param WordList: 还原文本信息
+        # @type WordList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralList, :WordList, :RequestId
+
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, requestid=nil)
+          @Angle = angle
+          @StructuralList = structurallist
+          @WordList = wordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralList'].nil?
+            @StructuralList = []
+            params['StructuralList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @StructuralList << groupinfo_tmp
+            end
+          end
+          unless params['WordList'].nil?
+            @WordList = []
+            params['WordList'].each do |i|
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordList << worditem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 门头照识别结果
       class StoreInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，如商店名称
@@ -10741,7 +10819,7 @@ module TencentCloud
         # ‘10’: 脱式计算
         # ‘11’: 解方程
         # @type ExpressionType: String
-        # @param Answer: 错题推荐答案，算式运算结果正确返回为""，算式运算结果错误返回推荐答案 (注：暂不支持多个关系运算符（如1<10<7）、无关系运算符（如frac(1,2)+frac(2,3)）、单位换算（如1元=100角）错题的推荐答案返回)
+        # @param Answer: 错题推荐答案，算式运算结果正确返回为""，算式运算结果错误返回推荐答案 (注：暂不支持多个关系运算符（如`1<10<7`）、无关系运算符（如frac(1,2)+frac(2,3)）、单位换算（如1元=100角）错题的推荐答案返回)
         # @type Answer: String
 
         attr_accessor :DetectedText, :Result, :Confidence, :Polygon, :AdvancedInfo, :ItemCoord, :ExpressionType, :Answer

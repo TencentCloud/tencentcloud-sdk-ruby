@@ -107,17 +107,17 @@ module TencentCloud
 
       # CreateDeviceVirtualGroup请求参数结构体
       class CreateDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceVirtualGroupName: 终端自定义分组名
+        # @param DeviceVirtualGroupName: 必填，终端自定义分组名
         # @type DeviceVirtualGroupName: String
         # @param Description: 详情
         # @type Description: String
-        # @param OsType: 系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios   默认值0）(只支持32位)
+        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios ）(只支持32位)
         # @type OsType: Integer
-        # @param TimeType: 时间设置类型（1:自动小时、2:自动每天、3:自定义、0:手动分组）(只支持32位)
+        # @param TimeType: 必填，分组类型（0:手动分组；非0为自动划分分组；具体枚举值为：1:自动每小时划分分组、2:自动每天划分分组、3:自定义时间划分分组）(只支持32位)
         # @type TimeType: Integer
-        # @param AutoMinute: 自动划分时间（单位min）(只支持32位)
+        # @param AutoMinute: 选填，TimeType=3时的自动划分时间，其他情况为0（单位min）(只支持32位)
         # @type AutoMinute: Integer
-        # @param AutoRules: 自动划分规则数据
+        # @param AutoRules: 选填，手动分组不填，自动划分分组的划分规则数据
         # @type AutoRules: :class:`Tencentcloud::Ioa.v20220601.models.ComplexRule`
 
         attr_accessor :DeviceVirtualGroupName, :Description, :OsType, :TimeType, :AutoMinute, :AutoRules
@@ -147,7 +147,6 @@ module TencentCloud
       # CreateDeviceVirtualGroup返回参数结构体
       class CreateDeviceVirtualGroupResponse < TencentCloud::Common::AbstractModel
         # @param Data: 响应返回的data
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreateDeviceVirtualGroupRspData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -171,7 +170,6 @@ module TencentCloud
       # 响应返回的data
       class CreateDeviceVirtualGroupRspData < TencentCloud::Common::AbstractModel
         # @param Id: 返回的自定义分组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 
         attr_accessor :Id
@@ -188,64 +186,44 @@ module TencentCloud
       # 账号分组信息
       class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
         # @param NamePath: 账号分组名全路径，点分格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamePath: String
         # @param IdPathArr: 账号分组ID全路径，数组格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPathArr: Array
         # @param ExtraInfo: 扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: String
         # @param Utime: 最后更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Utime: String
         # @param ParentId: 父分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: Integer
         # @param OrgId: 源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgId: String
         # @param Name: 分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Id: 分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Description: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 同步数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
         # @param IdPath: 账号分组ID全路径，点分格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPath: String
         # @param Itime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Itime: String
         # @param ParentOrgId: 父源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentOrgId: String
         # @param ImportType: 导入类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportType: String
         # @param MiniIamId: miniIAM id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniIamId: String
         # @param UserTotal: 该分组下含子组的所有用户总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserTotal: Integer
         # @param IsLeaf: 是否叶子节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLeaf: Boolean
         # @param ReadOnly: 是否该账户的直接权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Boolean
         # @param LatestSyncResult: 最新一次同步任务的结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestSyncResult: String
         # @param LatestSyncTime: 最新一次同步任务的结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestSyncTime: String
 
         attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :ImportType, :MiniIamId, :UserTotal, :IsLeaf, :ReadOnly, :LatestSyncResult, :LatestSyncTime
@@ -300,10 +278,8 @@ module TencentCloud
       # 账户分组详情响应数据
       class DescribeAccountGroupsPageResp < TencentCloud::Common::AbstractModel
         # @param Items: 账户分响应对象集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Page: 分页公共对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
 
         attr_accessor :Items, :Page
@@ -370,7 +346,6 @@ module TencentCloud
       # DescribeAccountGroups返回参数结构体
       class DescribeAccountGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 账号分组详情响应数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAccountGroupsPageResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -394,10 +369,8 @@ module TencentCloud
       # 分页的data数据
       class DescribeDevicesPageRsp < TencentCloud::Common::AbstractModel
         # @param Paging: 数据分页信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paging: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
         # @param Items: 业务响应数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
 
         attr_accessor :Paging, :Items
@@ -554,7 +527,6 @@ module TencentCloud
       # DescribeDevices返回参数结构体
       class DescribeDevicesResponse < TencentCloud::Common::AbstractModel
         # @param Data: 分页的data数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDevicesPageRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -578,7 +550,6 @@ module TencentCloud
       # 所属组
       class DescribeLocalAccountAccountGroupsData < TencentCloud::Common::AbstractModel
         # @param AccountGroupId: 组Id(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupId: Integer
 
         attr_accessor :AccountGroupId
@@ -595,64 +566,44 @@ module TencentCloud
       # 获取账号列表响应的单个对象
       class DescribeLocalAccountsData < TencentCloud::Common::AbstractModel
         # @param Id: uid，数据库中唯一
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param UserId: 账号，登录账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param UserName: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param AccountId: 账号id，同Id字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountId: Integer
         # @param GroupId: 账号所在的分组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
         # @param GroupName: 账号所在的分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param NamePath: 账号所在的分组名称路径，用英文.分割
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamePath: String
         # @param Source: 账号来源,0表示本地账号(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
         # @param Status: 账号状态,0禁用，1启用(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Itime: 账号的创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Itime: String
         # @param Utime: 账号的最后更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Utime: String
         # @param ExtraInfo: 账号的扩展信息，包含邮箱、手机号、身份证、职位等信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: String
         # @param RiskLevel: 用户风险等级，枚举：none, low, middle, high
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param AccountGroups: 所属组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroups: Array
         # @param MobileBindNum: 绑定手机端设备数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MobileBindNum: Integer
         # @param PcBindNum: 绑定Pc端设备数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PcBindNum: Integer
         # @param OnlineStatus: 账号在线状态 1：在线 2：离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineStatus: Integer
         # @param ActiveStatus: 账号活跃状态 1：活跃 2：非活跃
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveStatus: Integer
         # @param LoginTime: 账号登录时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginTime: String
         # @param LogoutTime: 账号登出时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoutTime: String
 
         attr_accessor :Id, :UserId, :UserName, :AccountId, :GroupId, :GroupName, :NamePath, :Source, :Status, :Itime, :Utime, :ExtraInfo, :RiskLevel, :AccountGroups, :MobileBindNum, :PcBindNum, :OnlineStatus, :ActiveStatus, :LoginTime, :LogoutTime
@@ -714,10 +665,8 @@ module TencentCloud
       # 获取账号列表响应的分页对象
       class DescribeLocalAccountsPage < TencentCloud::Common::AbstractModel
         # @param Page: 公共分页对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
         # @param Items: 获取账号列表响应的单个对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
 
         attr_accessor :Page, :Items
@@ -785,7 +734,6 @@ module TencentCloud
       # DescribeLocalAccounts返回参数结构体
       class DescribeLocalAccountsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 获取账号列表响应的分页对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeLocalAccountsPage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -820,7 +768,6 @@ module TencentCloud
       # DescribeRootAccountGroup返回参数结构体
       class DescribeRootAccountGroupResponse < TencentCloud::Common::AbstractModel
         # @param Data: 账号根分组响应详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.GetAccountGroupData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -844,133 +791,90 @@ module TencentCloud
       # 业务响应数据
       class DeviceDetail < TencentCloud::Common::AbstractModel
         # @param Id: 设备ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Mid: 设备唯一标识码，在ioa中每个设备有唯一标识码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mid: String
         # @param Name: 终端名（设备名）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param GroupId: 设备所在分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
         # @param OsType: OS平台，0：Windows 、1： Linux、 2：macOS 、4： Android、 5: iOS。默认是0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsType: Integer
         # @param Ip: 设备IP地址（出口IP）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param OnlineStatus: 在线状态，2：在线、0或者1:离线
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineStatus: Integer
         # @param Version: 客户端版本号-大整数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param StrVersion: 客户端版本号-点分字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrVersion: String
         # @param Itime: 首次在线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Itime: String
         # @param ConnActiveTime: 最后一次在线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnActiveTime: String
         # @param Locked: 设备是否加锁 ，1：锁定 0或者2：未锁定。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Locked: Integer
         # @param LocalIpList: 设备本地IP列表, 包括IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalIpList: String
         # @param HostId: 宿主机id（需要宿主机也安装iOA才能显示）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostId: Integer
         # @param GroupName: 设备所属分组名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
         # @param GroupNamePath: 设备所属分组路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupNamePath: String
         # @param CriticalVulListCount: 未修复高危漏洞数(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CriticalVulListCount: Integer
         # @param ComputerName: 设备名，和Name相同
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputerName: String
         # @param DomainName: 登录域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainName: String
         # @param MacAddr: MAC地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MacAddr: String
         # @param VulCount: 漏洞数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCount: Integer
         # @param RiskCount: 病毒风险数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCount: Integer
         # @param VirusVer: 病毒库版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirusVer: String
         # @param VulVersion: 漏洞库版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulVersion: String
         # @param SysRepVersion: 系统修复引擎版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SysRepVersion: String
         # @param VulCriticalList: 高危补丁列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulCriticalList: Array
         # @param Tags: 标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: String
         # @param UserName: 终端用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param FirewallStatus: 防火墙状态，不等于0表示开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirewallStatus: Integer
         # @param SerialNum: SN序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialNum: String
         # @param DeviceStrategyVer: 设备管控策略版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceStrategyVer: String
         # @param NGNStrategyVer: NGN策略版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NGNStrategyVer: String
         # @param IOAUserName: 最近登录账户的账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IOAUserName: String
         # @param DeviceNewStrategyVer: 设备管控新策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceNewStrategyVer: String
         # @param NGNNewStrategyVer: NGN策略新版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NGNNewStrategyVer: String
         # @param HostName: 宿主机名称（需要宿主机也安装iOA才能显示）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
         # @param BaseBoardSn: 主板序列号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaseBoardSn: String
         # @param AccountUsers: 绑定账户名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountUsers: String
         # @param IdentityStrategyVer: 身份策略版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityStrategyVer: String
         # @param IdentityNewStrategyVer: 身份策略新版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityNewStrategyVer: String
         # @param AccountGroupName: 最近登录账号部门
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupName: String
         # @param AccountName: 最近登录账户的姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountName: String
         # @param AccountGroupId: 账号组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupId: Integer
 
         attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId
@@ -1122,55 +1026,38 @@ module TencentCloud
       # 账号分组详情响应数据
       class GetAccountGroupData < TencentCloud::Common::AbstractModel
         # @param NamePath: 分组名称全路径，点分格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamePath: String
         # @param IdPathArr: 分组ID全路径，数组格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPathArr: Array
         # @param ExtraInfo: 分组扩展信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: String
         # @param Utime: 最后更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Utime: String
         # @param ParentId: 当前分组的父分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: Integer
         # @param OrgId: 源账号组ID，该字段仅适用于第三方同步的组织架构，通过OrgId-Id构成源组织架构分组ID-现组织架构分组ID映射关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgId: String
         # @param Name: 分组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Id: 分组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Description: 分组描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 分组导入源(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
         # @param IdPath: 分组ID全路径，点分格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdPath: String
         # @param Itime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Itime: String
         # @param ParentOrgId: 父源账号组ID，该字段仅适用于第三方同步的组织架构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentOrgId: String
         # @param Import: 导入信息,json格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Import: String
         # @param ImportEnable: 是否开启导入架构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportEnable: Boolean
         # @param ImportType: 导入类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImportType: String
         # @param MiniIamId: miniIAMId，MiniIAM源才有
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniIamId: String
 
         attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :Import, :ImportEnable, :ImportType, :MiniIamId
@@ -1218,17 +1105,13 @@ module TencentCloud
 
       # 页码
       class Paging < TencentCloud::Common::AbstractModel
-        # @param PageSize: 每页条数(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageSize: 每页条数
         # @type PageSize: Integer
-        # @param PageNum: 页码(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageNum: 页码
         # @type PageNum: Integer
-        # @param PageCount: 总页数(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param PageCount: 总页数
         # @type PageCount: Integer
         # @param Total: 记录总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
 
         attr_accessor :PageSize, :PageNum, :PageCount, :Total

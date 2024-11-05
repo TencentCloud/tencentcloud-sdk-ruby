@@ -6483,8 +6483,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 10
-        deprecate :Operate=, :none, 2024, 10
+        deprecate :Operate, :none, 2024, 11
+        deprecate :Operate=, :none, 2024, 11
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name

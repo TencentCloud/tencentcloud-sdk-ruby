@@ -330,8 +330,8 @@ module TencentCloud
 
         attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :ISPType, :SkipCheckIPv6Address, :SkipAllocateBandwidth, :Ipv6ISP
         extend Gem::Deprecate
-        deprecate :Ipv6ISP, :none, 2024, 8
-        deprecate :Ipv6ISP=, :none, 2024, 8
+        deprecate :Ipv6ISP, :none, 2024, 11
+        deprecate :Ipv6ISP=, :none, 2024, 11
 
         def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, isptype=nil, skipcheckipv6address=nil, skipallocatebandwidth=nil, ipv6isp=nil)
           @EcmRegion = ecmregion
@@ -1419,7 +1419,7 @@ module TencentCloud
         # @type SecurityGroups: Array
         # @param AddressIPVersion: 仅适用于公网负载均衡。IP版本，可取值：IPV4、IPv6FullChain，默认值 IPV4。说明：取值为IPv6FullChain，表示为IPv6版本。
         # @type AddressIPVersion: String
-        # @param SubnetId: 在购买IPV6负载均衡实例的情况下，必须指定子网 ID, 此参数必填。
+        # @param SubnetId: 在购买IPV6负载均衡实例的情况下，必须指定子网 ID, 此参数必填；IPv4实例不支持该参数。
         # @type SubnetId: String
 
         attr_accessor :EcmRegion, :LoadBalancerType, :VipIsp, :LoadBalancerName, :VpcId, :Number, :InternetAccessible, :Tags, :SecurityGroups, :AddressIPVersion, :SubnetId
@@ -5706,8 +5706,8 @@ module TencentCloud
 
         attr_accessor :ProviderName, :ProviderNodeNum, :ProvederInstanceNum, :ZoneInstanceInfoSet, :ProviderInstanceNum
         extend Gem::Deprecate
-        deprecate :ProvederInstanceNum, :none, 2024, 8
-        deprecate :ProvederInstanceNum=, :none, 2024, 8
+        deprecate :ProvederInstanceNum, :none, 2024, 11
+        deprecate :ProvederInstanceNum=, :none, 2024, 11
 
         def initialize(providername=nil, providernodenum=nil, provederinstancenum=nil, zoneinstanceinfoset=nil, providerinstancenum=nil)
           @ProviderName = providername

@@ -4342,15 +4342,15 @@ module TencentCloud
       class DescribeTendisSlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id：crs-ngvou0i1
         # @type InstanceId: String
-        # @param BeginTime: 开始时间：2019-09-08 12:12:41
+        # @param BeginTime: 开始时间：2019-09-08 12:12:41，查询时间最大跨度30天。
         # @type BeginTime: String
-        # @param EndTime: 结束时间：2019-09-09 12:12:41
+        # @param EndTime: 结束时间：2019-09-09 12:12:41，查询时间最大跨度30天。
         # @type EndTime: String
         # @param MinQueryTime: 慢查询阈值（毫秒）
         # @type MinQueryTime: Integer
-        # @param Limit: 页面大小：默认20
+        # @param Limit: 页面大小：默认20，最大100。
         # @type Limit: Integer
-        # @param Offset: 偏移量，取Limit整数倍
+        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset

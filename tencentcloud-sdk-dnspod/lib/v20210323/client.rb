@@ -103,6 +103,8 @@ module TencentCloud
 
         # 添加域名
 
+        # 备注：该接口不支持添加子域名。
+
         # @param request: Request instance for CreateDomain.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateDomainRequest`
         # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateDomainResponse`
@@ -304,6 +306,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加TXT记录
+        # 备注：新添加的解析记录存在短暂的索引延迟，如果查询不到新增记录，请在 30 秒后重试
+
+        # @param request: Request instance for CreateTXTRecord.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateTXTRecordRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateTXTRecordResponse`
+        def CreateTXTRecord(request)
+          body = send_request('CreateTXTRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTXTRecordResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1728,6 +1755,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySubdomainStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改TXT记录
+
+        # @param request: Request instance for ModifyTXTRecord.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyTXTRecordRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyTXTRecordResponse`
+        def ModifyTXTRecord(request)
+          body = send_request('ModifyTXTRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTXTRecordResponse.new
             model.deserialize(response['Response'])
             model
           else
