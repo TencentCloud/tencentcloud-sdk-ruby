@@ -239,7 +239,7 @@ module TencentCloud
       class AttachNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
         # @type ClusterId: String
-        # @param ResourceSet: 节点的资源类型。<li>CVM：CVM实例类型资源</li><li>WORKSPACE：工作空间类型实例资源</li>默认值：CVM。
+        # @param ResourceSet: 节点的实例id列表
         # @type ResourceSet: Array
         # @param QueueName: 队列名称。不指定则为默认队列：
         # SLURM默认队列为：compute。
@@ -455,7 +455,7 @@ module TencentCloud
         # @type LoginNodeSet: Array
         # @param LoginNodeCount: 登录节点数量。
         # @type LoginNodeCount: Integer
-        # @param AutoScalingType: 弹性伸缩类型。取值范围：<li>THPC_AS：集群自动扩缩容由THPC产品内部实现。</li><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。</li>
+        # @param AutoScalingType: 弹性伸缩类型。
         # @type AutoScalingType: String
         # @param VpcId: 集群所属私有网络ID。
         # @type VpcId: String
@@ -653,7 +653,7 @@ module TencentCloud
         # @type LoginNodeCount: Integer
         # @param Tags: 创建集群时同时绑定的标签对说明。
         # @type Tags: Array
-        # @param AutoScalingType: 弹性伸缩类型。默认值：THPC_AS<li>THPC_AS：集群自动扩缩容由THPC产品内部实现。</li><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。</li>
+        # @param AutoScalingType: 弹性伸缩类型。默认值：THPC_AS
         # @type AutoScalingType: String
         # @param InitNodeScripts: 节点初始化脚本信息列表。
         # @type InitNodeScripts: Array

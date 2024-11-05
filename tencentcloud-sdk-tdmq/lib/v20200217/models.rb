@@ -1658,7 +1658,7 @@ module TencentCloud
 
       # CreateRabbitMQBinding返回参数结构体
       class CreateRabbitMQBindingResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 队列名称
+        # @param InstanceId: 实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: vhost参数
@@ -5216,7 +5216,7 @@ module TencentCloud
 
       # DescribeRabbitMQQueueDetail返回参数结构体
       class DescribeRabbitMQQueueDetailResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 队列名称
+        # @param InstanceId: 实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: Vhost参数
@@ -10303,8 +10303,7 @@ module TencentCloud
         # @param PrometheusEndpointInfo: Prometheus信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrometheusEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PrometheusEndpointInfo`
-        # @param WebConsoleDomainEndpoint: http://amqp-k3eb47gm.dashboard.rabbitmq.cq.public.tencenttdmq.com:15672/
-        # 公网域名接入点
+        # @param WebConsoleDomainEndpoint: 公网域名接入点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebConsoleDomainEndpoint: String
 

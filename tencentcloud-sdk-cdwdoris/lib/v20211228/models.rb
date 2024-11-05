@@ -515,8 +515,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 10
-        deprecate :FileKeyValues=, :none, 2024, 10
+        deprecate :FileKeyValues, :none, 2024, 11
+        deprecate :FileKeyValues=, :none, 2024, 11
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -1123,10 +1123,13 @@ module TencentCloud
         # @param Catalog: catalog名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Catalog: String
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :SqlType, :Catalog
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :SqlType, :Catalog, :State
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, sqltype=nil, catalog=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, sqltype=nil, catalog=nil, state=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -1140,6 +1143,7 @@ module TencentCloud
           @DbName = dbname
           @SqlType = sqltype
           @Catalog = catalog
+          @State = state
         end
 
         def deserialize(params)
@@ -1156,6 +1160,7 @@ module TencentCloud
           @DbName = params['DbName']
           @SqlType = params['SqlType']
           @Catalog = params['Catalog']
+          @State = params['State']
         end
       end
 
@@ -1395,13 +1400,21 @@ module TencentCloud
         # @param BackUpJobs: 任务列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackUpJobs: Array
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackUpJobs, :RequestId
+        attr_accessor :BackUpJobs, :ErrorMsg, :TotalCount, :RequestId
 
-        def initialize(backupjobs=nil, requestid=nil)
+        def initialize(backupjobs=nil, errormsg=nil, totalcount=nil, requestid=nil)
           @BackUpJobs = backupjobs
+          @ErrorMsg = errormsg
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -1414,6 +1427,8 @@ module TencentCloud
               @BackUpJobs << backupjobdisplay_tmp
             end
           end
+          @ErrorMsg = params['ErrorMsg']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2446,8 +2461,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2024, 10
-        deprecate :InstanceID=, :none, 2024, 10
+        deprecate :InstanceID, :none, 2024, 11
+        deprecate :InstanceID=, :none, 2024, 11
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -3436,8 +3451,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 10
-        deprecate :IfExistCatalog=, :none, 2024, 10
+        deprecate :IfExistCatalog, :none, 2024, 11
+        deprecate :IfExistCatalog=, :none, 2024, 11
 
         def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil)
           @InstanceId = instanceid

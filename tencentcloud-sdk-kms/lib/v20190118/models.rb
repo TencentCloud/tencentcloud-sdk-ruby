@@ -1714,10 +1714,14 @@ module TencentCloud
         # @type ResourceId: String
         # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
         # @type HsmClusterId: String
+        # @param RotateDays: 密钥轮转周期（天）
+        # @type RotateDays: Integer
+        # @param LastRotateTime: 上次乱转时间（Unix timestamp）
+        # @type LastRotateTime: Integer
 
-        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId
+        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime
 
-        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil)
           @KeyId = keyid
           @Alias = _alias
           @CreateTime = createtime
@@ -1734,6 +1738,8 @@ module TencentCloud
           @ValidTo = validto
           @ResourceId = resourceid
           @HsmClusterId = hsmclusterid
+          @RotateDays = rotatedays
+          @LastRotateTime = lastrotatetime
         end
 
         def deserialize(params)
@@ -1753,6 +1759,8 @@ module TencentCloud
           @ValidTo = params['ValidTo']
           @ResourceId = params['ResourceId']
           @HsmClusterId = params['HsmClusterId']
+          @RotateDays = params['RotateDays']
+          @LastRotateTime = params['LastRotateTime']
         end
       end
 

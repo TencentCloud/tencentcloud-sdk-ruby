@@ -13680,10 +13680,13 @@ module TencentCloud
         # @param RowFilterInfo: 行过滤信息集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowFilterInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param CatalogPolicyInfo: 数据目录权限集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policy`
 
-        attr_accessor :WorkGroupId, :WorkGroupName, :Type, :UserInfo, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupDescription, :RowFilterInfo
+        attr_accessor :WorkGroupId, :WorkGroupName, :Type, :UserInfo, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupDescription, :RowFilterInfo, :CatalogPolicyInfo
 
-        def initialize(workgroupid=nil, workgroupname=nil, type=nil, userinfo=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupdescription=nil, rowfilterinfo=nil)
+        def initialize(workgroupid=nil, workgroupname=nil, type=nil, userinfo=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupdescription=nil, rowfilterinfo=nil, catalogpolicyinfo=nil)
           @WorkGroupId = workgroupid
           @WorkGroupName = workgroupname
           @Type = type
@@ -13692,6 +13695,7 @@ module TencentCloud
           @EnginePolicyInfo = enginepolicyinfo
           @WorkGroupDescription = workgroupdescription
           @RowFilterInfo = rowfilterinfo
+          @CatalogPolicyInfo = catalogpolicyinfo
         end
 
         def deserialize(params)
@@ -13714,6 +13718,10 @@ module TencentCloud
           unless params['RowFilterInfo'].nil?
             @RowFilterInfo = Policys.new
             @RowFilterInfo.deserialize(params['RowFilterInfo'])
+          end
+          unless params['CatalogPolicyInfo'].nil?
+            @CatalogPolicyInfo = Policy.new
+            @CatalogPolicyInfo.deserialize(params['CatalogPolicyInfo'])
           end
         end
       end

@@ -342,6 +342,53 @@ module TencentCloud
         end
       end
 
+      # CreateThread请求参数结构体
+      class CreateThreadRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateThread返回参数结构体
+      class CreateThreadResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 会话 ID
+        # @type ID: String
+        # @param Object: 对象类型
+        # @type Object: String
+        # @param CreatedAt: 创建时间，Unix 时间戳，单位为秒。
+        # @type CreatedAt: Integer
+        # @param ToolResources: 提供给工具的资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToolResources: :class:`Tencentcloud::Hunyuan.v20230901.models.ThreadToolResources`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :ID, :Object, :CreatedAt, :ToolResources, :RequestId
+
+        def initialize(id=nil, object=nil, createdat=nil, toolresources=nil, requestid=nil)
+          @ID = id
+          @Object = object
+          @CreatedAt = createdat
+          @ToolResources = toolresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @CreatedAt = params['CreatedAt']
+          unless params['ToolResources'].nil?
+            @ToolResources = ThreadToolResources.new
+            @ToolResources.deserialize(params['ToolResources'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 返回的内容（流式返回）
       class Delta < TencentCloud::Common::AbstractModel
         # @param Role: 角色名称。
@@ -446,6 +493,201 @@ module TencentCloud
         end
       end
 
+      # 已上传的文件对象。
+      class FileObject < TencentCloud::Common::AbstractModel
+        # @param ID: 文件标识符，可在各个API中引用。
+        # @type ID: String
+        # @param Object: 对象类型，始终为 file。
+        # @type Object: String
+        # @param Bytes: 文件大小，单位为字节。
+        # @type Bytes: Integer
+        # @param CreatedAt: 文件创建时的 Unix 时间戳（秒）。
+        # @type CreatedAt: Integer
+        # @param Filename: 文件名。
+        # @type Filename: String
+        # @param Purpose: 上传文件的用途。
+        # @type Purpose: String
+
+        attr_accessor :ID, :Object, :Bytes, :CreatedAt, :Filename, :Purpose
+
+        def initialize(id=nil, object=nil, bytes=nil, createdat=nil, filename=nil, purpose=nil)
+          @ID = id
+          @Object = object
+          @Bytes = bytes
+          @CreatedAt = createdat
+          @Filename = filename
+          @Purpose = purpose
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @Bytes = params['Bytes']
+          @CreatedAt = params['CreatedAt']
+          @Filename = params['Filename']
+          @Purpose = params['Purpose']
+        end
+      end
+
+      # FilesDeletions请求参数结构体
+      class FilesDeletionsRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 文件标识符。
+        # @type ID: String
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # FilesDeletions返回参数结构体
+      class FilesDeletionsResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 文件标识符。
+        # @type ID: String
+        # @param Object: 对象类型，始终为 file。
+        # @type Object: String
+        # @param Deleted: 是否删除成功。
+        # @type Deleted: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :ID, :Object, :Deleted, :RequestId
+
+        def initialize(id=nil, object=nil, deleted=nil, requestid=nil)
+          @ID = id
+          @Object = object
+          @Deleted = deleted
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @Deleted = params['Deleted']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # FilesList请求参数结构体
+      class FilesListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+        # @param Limit: 每页数量，最大 100。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # FilesList返回参数结构体
+      class FilesListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 文件数量。
+        # @type Total: Integer
+        # @param Object: 对象类型，始终为 list。
+        # @type Object: String
+        # @param Data: FileObject 列表。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Object, :Data, :RequestId
+
+        def initialize(total=nil, object=nil, data=nil, requestid=nil)
+          @Total = total
+          @Object = object
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Object = params['Object']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              fileobject_tmp = FileObject.new
+              fileobject_tmp.deserialize(i)
+              @Data << fileobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # FilesUploads请求参数结构体
+      class FilesUploadsRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 文件名。
+        # @type Name: String
+        # @param URL: 文件链接。目前仅支持 pdf 格式，单文件大小限制为100M。
+        # @type URL: String
+
+        attr_accessor :Name, :URL
+
+        def initialize(name=nil, url=nil)
+          @Name = name
+          @URL = url
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @URL = params['URL']
+        end
+      end
+
+      # FilesUploads返回参数结构体
+      class FilesUploadsResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 文件标识符，可在各个API中引用。
+        # @type ID: String
+        # @param Object: 对象类型，始终为 file。
+        # @type Object: String
+        # @param Bytes: 文件大小，单位为字节。
+        # @type Bytes: Integer
+        # @param CreatedAt: 文件创建时的 Unix 时间戳（秒）。
+        # @type CreatedAt: Integer
+        # @param Filename: 文件名。
+        # @type Filename: String
+        # @param Purpose: 上传文件的用途。
+        # @type Purpose: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :ID, :Object, :Bytes, :CreatedAt, :Filename, :Purpose, :RequestId
+
+        def initialize(id=nil, object=nil, bytes=nil, createdat=nil, filename=nil, purpose=nil, requestid=nil)
+          @ID = id
+          @Object = object
+          @Bytes = bytes
+          @CreatedAt = createdat
+          @Filename = filename
+          @Purpose = purpose
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @Bytes = params['Bytes']
+          @CreatedAt = params['CreatedAt']
+          @Filename = params['Filename']
+          @Purpose = params['Purpose']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetEmbedding请求参数结构体
       class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
         # @param Input: 输入文本。总长度不超过 1024 个 Token，超过则会截断最后面的内容。
@@ -491,6 +733,231 @@ module TencentCloud
           unless params['Usage'].nil?
             @Usage = EmbeddingUsage.new
             @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetThreadMessageList请求参数结构体
+      class GetThreadMessageListRequest < TencentCloud::Common::AbstractModel
+        # @param ThreadID: 会话 ID
+        # @type ThreadID: String
+        # @param Limit: 返回的消息条数，1 - 100 条
+        # @type Limit: Integer
+        # @param Order: 排序方式，按创建时间升序（asc）或降序（desc），默认为 desc
+        # @type Order: String
+
+        attr_accessor :ThreadID, :Limit, :Order
+
+        def initialize(threadid=nil, limit=nil, order=nil)
+          @ThreadID = threadid
+          @Limit = limit
+          @Order = order
+        end
+
+        def deserialize(params)
+          @ThreadID = params['ThreadID']
+          @Limit = params['Limit']
+          @Order = params['Order']
+        end
+      end
+
+      # GetThreadMessageList返回参数结构体
+      class GetThreadMessageListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 消息列表
+        # @type Data: Array
+        # @param FirstID: 第一条消息 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstID: String
+        # @param LastID: 最后一条消息 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastID: Integer
+        # @param HasMore: 是否还有更多消息
+        # @type HasMore: Boolean
+        # @param Object: 对象类型
+        # @type Object: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :RequestId
+
+        def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, requestid=nil)
+          @Data = data
+          @FirstID = firstid
+          @LastID = lastid
+          @HasMore = hasmore
+          @Object = object
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              threadmessage_tmp = ThreadMessage.new
+              threadmessage_tmp.deserialize(i)
+              @Data << threadmessage_tmp
+            end
+          end
+          @FirstID = params['FirstID']
+          @LastID = params['LastID']
+          @HasMore = params['HasMore']
+          @Object = params['Object']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetThreadMessage请求参数结构体
+      class GetThreadMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ThreadID: 会话 ID
+        # @type ThreadID: String
+        # @param MessageID: 消息 ID
+        # @type MessageID: String
+
+        attr_accessor :ThreadID, :MessageID
+
+        def initialize(threadid=nil, messageid=nil)
+          @ThreadID = threadid
+          @MessageID = messageid
+        end
+
+        def deserialize(params)
+          @ThreadID = params['ThreadID']
+          @MessageID = params['MessageID']
+        end
+      end
+
+      # GetThreadMessage返回参数结构体
+      class GetThreadMessageResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 消息 ID
+        # @type ID: String
+        # @param Object: 对象类型
+        # @type Object: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: Integer
+        # @param ThreadID: 会话 ID
+        # @type ThreadID: String
+        # @param Status: 状态，处理中 in_progress，已完成 completed，未完成 incomplete。
+        # @type Status: String
+        # @param InCompleteDetails: 未完成原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InCompleteDetails: :class:`Tencentcloud::Hunyuan.v20230901.models.ThreadMessageInCompleteDetailsObject`
+        # @param CompletedAt: 完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompletedAt: Integer
+        # @param InCompleteAt: 未完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InCompleteAt: Integer
+        # @param Role: 角色
+        # @type Role: String
+        # @param Content: 内容
+        # @type Content: String
+        # @param AssistantID: 助手 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssistantID: String
+        # @param RunID: 运行 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunID: String
+        # @param Attachments: 附件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Attachments: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :ID, :Object, :CreatedAt, :ThreadID, :Status, :InCompleteDetails, :CompletedAt, :InCompleteAt, :Role, :Content, :AssistantID, :RunID, :Attachments, :RequestId
+
+        def initialize(id=nil, object=nil, createdat=nil, threadid=nil, status=nil, incompletedetails=nil, completedat=nil, incompleteat=nil, role=nil, content=nil, assistantid=nil, runid=nil, attachments=nil, requestid=nil)
+          @ID = id
+          @Object = object
+          @CreatedAt = createdat
+          @ThreadID = threadid
+          @Status = status
+          @InCompleteDetails = incompletedetails
+          @CompletedAt = completedat
+          @InCompleteAt = incompleteat
+          @Role = role
+          @Content = content
+          @AssistantID = assistantid
+          @RunID = runid
+          @Attachments = attachments
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @CreatedAt = params['CreatedAt']
+          @ThreadID = params['ThreadID']
+          @Status = params['Status']
+          unless params['InCompleteDetails'].nil?
+            @InCompleteDetails = ThreadMessageInCompleteDetailsObject.new
+            @InCompleteDetails.deserialize(params['InCompleteDetails'])
+          end
+          @CompletedAt = params['CompletedAt']
+          @InCompleteAt = params['InCompleteAt']
+          @Role = params['Role']
+          @Content = params['Content']
+          @AssistantID = params['AssistantID']
+          @RunID = params['RunID']
+          unless params['Attachments'].nil?
+            @Attachments = []
+            params['Attachments'].each do |i|
+              threadmessageattachmentobject_tmp = ThreadMessageAttachmentObject.new
+              threadmessageattachmentobject_tmp.deserialize(i)
+              @Attachments << threadmessageattachmentobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetThread请求参数结构体
+      class GetThreadRequest < TencentCloud::Common::AbstractModel
+        # @param ThreadID: 会话 ID
+        # @type ThreadID: String
+
+        attr_accessor :ThreadID
+
+        def initialize(threadid=nil)
+          @ThreadID = threadid
+        end
+
+        def deserialize(params)
+          @ThreadID = params['ThreadID']
+        end
+      end
+
+      # GetThread返回参数结构体
+      class GetThreadResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 会话 ID
+        # @type ID: String
+        # @param Object: 对象类型
+        # @type Object: String
+        # @param CreatedAt: 创建时间，Unix 时间戳，单位为秒。
+        # @type CreatedAt: Integer
+        # @param ToolResources: 提供给工具的资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToolResources: :class:`Tencentcloud::Hunyuan.v20230901.models.ThreadToolResources`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :ID, :Object, :CreatedAt, :ToolResources, :RequestId
+
+        def initialize(id=nil, object=nil, createdat=nil, toolresources=nil, requestid=nil)
+          @ID = id
+          @Object = object
+          @CreatedAt = createdat
+          @ToolResources = toolresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @CreatedAt = params['CreatedAt']
+          unless params['ToolResources'].nil?
+            @ToolResources = ThreadToolResources.new
+            @ToolResources.deserialize(params['ToolResources'])
           end
           @RequestId = params['RequestId']
         end
@@ -693,6 +1160,28 @@ module TencentCloud
         end
       end
 
+      # 脑图
+      class Mindmap < TencentCloud::Common::AbstractModel
+        # @param ThumbUrl: 脑图缩略图链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThumbUrl: String
+        # @param Url: 脑图图片链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :ThumbUrl, :Url
+
+        def initialize(thumburl=nil, url=nil)
+          @ThumbUrl = thumburl
+          @Url = url
+        end
+
+        def deserialize(params)
+          @ThumbUrl = params['ThumbUrl']
+          @Url = params['Url']
+        end
+      end
+
       # 多媒体详情
       class Multimedia < TencentCloud::Common::AbstractModel
         # @param Type: 多媒体类型，可选值包括 image、music、album、playlist。
@@ -889,6 +1378,65 @@ module TencentCloud
         end
       end
 
+      # 相关组织及人物
+      class RelevantEntity < TencentCloud::Common::AbstractModel
+        # @param Name: 相关组织及人物名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Content: 相关组织及人物内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Reference: 相关事件引用文章标号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reference: Array
+
+        attr_accessor :Name, :Content, :Reference
+
+        def initialize(name=nil, content=nil, reference=nil)
+          @Name = name
+          @Content = content
+          @Reference = reference
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Content = params['Content']
+          @Reference = params['Reference']
+        end
+      end
+
+      # 相关事件
+      class RelevantEvent < TencentCloud::Common::AbstractModel
+        # @param Title: 相关事件标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Content: 相关事件内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Datetime: 相关事件时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Datetime: String
+        # @param Reference: 相关事件引用文章标号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reference: Array
+
+        attr_accessor :Title, :Content, :Datetime, :Reference
+
+        def initialize(title=nil, content=nil, datetime=nil, reference=nil)
+          @Title = title
+          @Content = content
+          @Datetime = datetime
+          @Reference = reference
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Content = params['Content']
+          @Datetime = params['Datetime']
+          @Reference = params['Reference']
+        end
+      end
+
       # 多媒体占位符替换信息
       class Replace < TencentCloud::Common::AbstractModel
         # @param Id: 占位符序号
@@ -916,16 +1464,126 @@ module TencentCloud
         end
       end
 
+      # RunThread请求参数结构体
+      class RunThreadRequest < TencentCloud::Common::AbstractModel
+        # @param ThreadID: 会话 ID
+        # @type ThreadID: String
+        # @param AssistantID: 助手 ID
+        # @type AssistantID: String
+        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-pro、 hunyuan-code、 hunyuan-role、 hunyuan-functioncall、 hunyuan-vision、 hunyuan-turbo。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
+        # @type Model: String
+        # @param AdditionalMessages: 附加消息
+        # @type AdditionalMessages: Array
+        # @param Temperature: 说明：1. 影响模型输出多样性，模型已有默认参数，不传值时使用各模型推荐值，不推荐用户修改。2. 取值区间为 [0.0, 2.0]。较高的数值会使输出更加多样化和不可预测，而较低的数值会使其更加集中和确定。
+        # @type Temperature: Float
+        # @param TopP: 说明：1. 影响输出文本的多样性。模型已有默认参数，不传值时使用各模型推荐值，不推荐用户修改。2. 取值区间为 [0.0, 1.0]。取值越大，生成文本的多样性越强。
+        # @type TopP: Float
+        # @param Stream: 是否流式输出，当前只允许 true
+        # @type Stream: Boolean
+        # @param MaxPromptTokens: 运行过程中可使用的 token 最大数量。
+        # @type MaxPromptTokens: Integer
+        # @param MaxCompletionTokens: 运行过程中可使用的完成 token 的最大数量。
+        # @type MaxCompletionTokens: Integer
+        # @param Tools: 可调用的工具列表，仅对 hunyuan-pro、hunyuan-turbo、hunyuan-functioncall 模型生效。
+        # @type Tools: Array
+        # @param ToolChoice: 工具使用选项，可选值包括 none、auto、custom。说明：1. 仅对 hunyuan-pro、hunyuan-turbo、hunyuan-functioncall 模型生效。2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。3. 未设置时，默认值为auto
+        # @type ToolChoice: String
+
+        attr_accessor :ThreadID, :AssistantID, :Model, :AdditionalMessages, :Temperature, :TopP, :Stream, :MaxPromptTokens, :MaxCompletionTokens, :Tools, :ToolChoice
+
+        def initialize(threadid=nil, assistantid=nil, model=nil, additionalmessages=nil, temperature=nil, topp=nil, stream=nil, maxprompttokens=nil, maxcompletiontokens=nil, tools=nil, toolchoice=nil)
+          @ThreadID = threadid
+          @AssistantID = assistantid
+          @Model = model
+          @AdditionalMessages = additionalmessages
+          @Temperature = temperature
+          @TopP = topp
+          @Stream = stream
+          @MaxPromptTokens = maxprompttokens
+          @MaxCompletionTokens = maxcompletiontokens
+          @Tools = tools
+          @ToolChoice = toolchoice
+        end
+
+        def deserialize(params)
+          @ThreadID = params['ThreadID']
+          @AssistantID = params['AssistantID']
+          @Model = params['Model']
+          unless params['AdditionalMessages'].nil?
+            @AdditionalMessages = []
+            params['AdditionalMessages'].each do |i|
+              threadadditionalmessage_tmp = ThreadAdditionalMessage.new
+              threadadditionalmessage_tmp.deserialize(i)
+              @AdditionalMessages << threadadditionalmessage_tmp
+            end
+          end
+          @Temperature = params['Temperature']
+          @TopP = params['TopP']
+          @Stream = params['Stream']
+          @MaxPromptTokens = params['MaxPromptTokens']
+          @MaxCompletionTokens = params['MaxCompletionTokens']
+          unless params['Tools'].nil?
+            @Tools = []
+            params['Tools'].each do |i|
+              tool_tmp = Tool.new
+              tool_tmp.deserialize(i)
+              @Tools << tool_tmp
+            end
+          end
+          @ToolChoice = params['ToolChoice']
+        end
+      end
+
+      # RunThread返回参数结构体
+      class RunThreadResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 搜索结果信息
       class SearchInfo < TencentCloud::Common::AbstractModel
         # @param SearchResults: 搜索引文信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchResults: Array
+        # @param Mindmap: 脑图（回复中不一定存在，流式协议中，仅在最后一条流式数据中返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mindmap: :class:`Tencentcloud::Hunyuan.v20230901.models.Mindmap`
+        # @param RelevantEvents: 相关事件（回复中不一定存在，流式协议中，仅在最后一条流式数据中返回，深度模式下返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelevantEvents: Array
+        # @param RelevantEntities: 相关组织及人物（回复中不一定存在，流式协议中，仅在最后一条流式数据中返回，深度模式下返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelevantEntities: Array
+        # @param Timeline: 时间线（回复中不一定存在，流式协议中，仅在最后一条流式数据中返回，深度模式下返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeline: Array
+        # @param SupportDeepSearch: 是否命中搜索深度模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDeepSearch: Boolean
+        # @param Outline: 搜索回复大纲（深度模式下返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Outline: Array
 
-        attr_accessor :SearchResults
+        attr_accessor :SearchResults, :Mindmap, :RelevantEvents, :RelevantEntities, :Timeline, :SupportDeepSearch, :Outline
 
-        def initialize(searchresults=nil)
+        def initialize(searchresults=nil, mindmap=nil, relevantevents=nil, relevantentities=nil, timeline=nil, supportdeepsearch=nil, outline=nil)
           @SearchResults = searchresults
+          @Mindmap = mindmap
+          @RelevantEvents = relevantevents
+          @RelevantEntities = relevantentities
+          @Timeline = timeline
+          @SupportDeepSearch = supportdeepsearch
+          @Outline = outline
         end
 
         def deserialize(params)
@@ -937,6 +1595,36 @@ module TencentCloud
               @SearchResults << searchresult_tmp
             end
           end
+          unless params['Mindmap'].nil?
+            @Mindmap = Mindmap.new
+            @Mindmap.deserialize(params['Mindmap'])
+          end
+          unless params['RelevantEvents'].nil?
+            @RelevantEvents = []
+            params['RelevantEvents'].each do |i|
+              relevantevent_tmp = RelevantEvent.new
+              relevantevent_tmp.deserialize(i)
+              @RelevantEvents << relevantevent_tmp
+            end
+          end
+          unless params['RelevantEntities'].nil?
+            @RelevantEntities = []
+            params['RelevantEntities'].each do |i|
+              relevantentity_tmp = RelevantEntity.new
+              relevantentity_tmp.deserialize(i)
+              @RelevantEntities << relevantentity_tmp
+            end
+          end
+          unless params['Timeline'].nil?
+            @Timeline = []
+            params['Timeline'].each do |i|
+              timeline_tmp = Timeline.new
+              timeline_tmp.deserialize(i)
+              @Timeline << timeline_tmp
+            end
+          end
+          @SupportDeepSearch = params['SupportDeepSearch']
+          @Outline = params['Outline']
         end
       end
 
@@ -1243,6 +1931,198 @@ module TencentCloud
         def deserialize(params)
           @ResultImage = params['ResultImage']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 会话额外消息
+      class ThreadAdditionalMessage < TencentCloud::Common::AbstractModel
+        # @param Role: 角色
+        # @type Role: String
+        # @param Content: 内容
+        # @type Content: String
+        # @param Attachments: 附件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Attachments: Array
+
+        attr_accessor :Role, :Content, :Attachments
+
+        def initialize(role=nil, content=nil, attachments=nil)
+          @Role = role
+          @Content = content
+          @Attachments = attachments
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+          unless params['Attachments'].nil?
+            @Attachments = []
+            params['Attachments'].each do |i|
+              threadmessageattachmentobject_tmp = ThreadMessageAttachmentObject.new
+              threadmessageattachmentobject_tmp.deserialize(i)
+              @Attachments << threadmessageattachmentobject_tmp
+            end
+          end
+        end
+      end
+
+      # 会话消息
+      class ThreadMessage < TencentCloud::Common::AbstractModel
+        # @param ID: 消息 ID
+        # @type ID: String
+        # @param Object: 对象类型
+        # @type Object: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: Integer
+        # @param ThreadID: 会话 ID
+        # @type ThreadID: String
+        # @param Status: 状态，处理中 in_progress，已完成 completed，未完成 incomplete。
+        # @type Status: String
+        # @param InCompleteDetails: 未完成原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InCompleteDetails: :class:`Tencentcloud::Hunyuan.v20230901.models.ThreadMessageInCompleteDetailsObject`
+        # @param CompletedAt: 完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompletedAt: Integer
+        # @param InCompleteAt: 未完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InCompleteAt: Integer
+        # @param Role: 角色
+        # @type Role: String
+        # @param Content: 内容
+        # @type Content: String
+        # @param AssistantID: 助手 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssistantID: String
+        # @param RunID: 运行 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunID: String
+        # @param Attachments: 附件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Attachments: Array
+
+        attr_accessor :ID, :Object, :CreatedAt, :ThreadID, :Status, :InCompleteDetails, :CompletedAt, :InCompleteAt, :Role, :Content, :AssistantID, :RunID, :Attachments
+
+        def initialize(id=nil, object=nil, createdat=nil, threadid=nil, status=nil, incompletedetails=nil, completedat=nil, incompleteat=nil, role=nil, content=nil, assistantid=nil, runid=nil, attachments=nil)
+          @ID = id
+          @Object = object
+          @CreatedAt = createdat
+          @ThreadID = threadid
+          @Status = status
+          @InCompleteDetails = incompletedetails
+          @CompletedAt = completedat
+          @InCompleteAt = incompleteat
+          @Role = role
+          @Content = content
+          @AssistantID = assistantid
+          @RunID = runid
+          @Attachments = attachments
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Object = params['Object']
+          @CreatedAt = params['CreatedAt']
+          @ThreadID = params['ThreadID']
+          @Status = params['Status']
+          unless params['InCompleteDetails'].nil?
+            @InCompleteDetails = ThreadMessageInCompleteDetailsObject.new
+            @InCompleteDetails.deserialize(params['InCompleteDetails'])
+          end
+          @CompletedAt = params['CompletedAt']
+          @InCompleteAt = params['InCompleteAt']
+          @Role = params['Role']
+          @Content = params['Content']
+          @AssistantID = params['AssistantID']
+          @RunID = params['RunID']
+          unless params['Attachments'].nil?
+            @Attachments = []
+            params['Attachments'].each do |i|
+              threadmessageattachmentobject_tmp = ThreadMessageAttachmentObject.new
+              threadmessageattachmentobject_tmp.deserialize(i)
+              @Attachments << threadmessageattachmentobject_tmp
+            end
+          end
+        end
+      end
+
+      # 会话消息附件
+      class ThreadMessageAttachmentObject < TencentCloud::Common::AbstractModel
+        # @param FileID: 文件 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileID: String
+
+        attr_accessor :FileID
+
+        def initialize(fileid=nil)
+          @FileID = fileid
+        end
+
+        def deserialize(params)
+          @FileID = params['FileID']
+        end
+      end
+
+      # 会话消息未完成原因
+      class ThreadMessageInCompleteDetailsObject < TencentCloud::Common::AbstractModel
+        # @param Reason: 会话消息未完成原因
+        # @type Reason: String
+
+        attr_accessor :Reason
+
+        def initialize(reason=nil)
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Reason = params['Reason']
+        end
+      end
+
+      # 在会话中提供给助手工具的一系列资源。不同类型的工具会有各自对应的资源。比如代码解释器需要一个文件 ID 的列表，而文件搜索工具则需要一个向量存储 ID 的列表。
+      class ThreadToolResources < TencentCloud::Common::AbstractModel
+        # @param CodeInterpreter: 文件 ID 列表
+        # @type CodeInterpreter: Array
+        # @param VectorStoreIDs: 向量存储 ID 列表
+        # @type VectorStoreIDs: Array
+
+        attr_accessor :CodeInterpreter, :VectorStoreIDs
+
+        def initialize(codeinterpreter=nil, vectorstoreids=nil)
+          @CodeInterpreter = codeinterpreter
+          @VectorStoreIDs = vectorstoreids
+        end
+
+        def deserialize(params)
+          @CodeInterpreter = params['CodeInterpreter']
+          @VectorStoreIDs = params['VectorStoreIDs']
+        end
+      end
+
+      # 时间线
+      class Timeline < TencentCloud::Common::AbstractModel
+        # @param Title: 标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Datetime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Datetime: String
+        # @param Url: 相关网页链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Title, :Datetime, :Url
+
+        def initialize(title=nil, datetime=nil, url=nil)
+          @Title = title
+          @Datetime = datetime
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Datetime = params['Datetime']
+          @Url = params['Url']
         end
       end
 

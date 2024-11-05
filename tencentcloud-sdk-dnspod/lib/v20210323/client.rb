@@ -223,6 +223,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建域名的线路分组
+
+        # @param request: Request instance for CreateLineGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateLineGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateLineGroupResponse`
+        def CreateLineGroup(request)
+          body = send_request('CreateLineGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 复制域名的线路分组
+
+        # @param request: Request instance for CreateLineGroupCopy.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateLineGroupCopyRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateLineGroupCopyResponse`
+        def CreateLineGroupCopy(request)
+          body = send_request('CreateLineGroupCopy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLineGroupCopyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加记录
         # 备注：新添加的解析记录存在短暂的索引延迟，如果查询不到新增记录，请在 30 秒后重试
 
@@ -427,6 +475,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDomainCustomLineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除域名的线路分组
+
+        # @param request: Request instance for DeleteLineGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DeleteLineGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DeleteLineGroupResponse`
+        def DeleteLineGroup(request)
+          body = send_request('DeleteLineGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLineGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -885,6 +957,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainWhoisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取域名的线路分组列表
+
+        # @param request: Request instance for DescribeLineGroupList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeLineGroupListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeLineGroupListResponse`
+        def DescribeLineGroupList(request)
+          body = send_request('DescribeLineGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLineGroupListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1515,6 +1611,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDynamicDNSResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改域名的线路分组
+
+        # @param request: Request instance for ModifyLineGroup.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyLineGroupRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyLineGroupResponse`
+        def ModifyLineGroup(request)
+          body = send_request('ModifyLineGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLineGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -4323,9 +4323,9 @@ module TencentCloud
       class DeleteClusterVirtualNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NodePoolIds: 虚拟节点池ID列表
+        # @param NodePoolIds: 超级节点池ID列表
         # @type NodePoolIds: Array
-        # @param Force: 是否强制删除，在虚拟节点上有pod的情况下，如果选择非强制删除，则删除会失败
+        # @param Force: 是否强制删除，在超级节点上有pod的情况下，如果选择非强制删除，则删除会失败
         # @type Force: Boolean
 
         attr_accessor :ClusterId, :NodePoolIds, :Force

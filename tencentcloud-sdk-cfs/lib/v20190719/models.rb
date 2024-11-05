@@ -17,6 +17,30 @@
 module TencentCloud
   module Cfs
     module V20190719
+      # 自动扩容规则
+      class AutoScaleUpRule < TencentCloud::Common::AbstractModel
+        # @param Status: 自动扩容策略开启，关闭
+        # @type Status: String
+        # @param ScaleThreshold: 集群用量占比，到达这个值后开始扩容,范围[10-90]
+        # @type ScaleThreshold: Integer
+        # @param TargetThreshold: 扩容后使用量跟集群总量比例,范围[1-90]
+        # @type TargetThreshold: Integer
+
+        attr_accessor :Status, :ScaleThreshold, :TargetThreshold
+
+        def initialize(status=nil, scalethreshold=nil, targetthreshold=nil)
+          @Status = status
+          @ScaleThreshold = scalethreshold
+          @TargetThreshold = targetthreshold
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ScaleThreshold = params['ScaleThreshold']
+          @TargetThreshold = params['TargetThreshold']
+        end
+      end
+
       # 快照策略信息
       class AutoSnapshotPolicyInfo < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 快照策略ID
@@ -1957,6 +1981,10 @@ module TencentCloud
         # @type AppId: Integer
         # @param BandwidthLimit: 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定. 单位MiB/s
         # @type BandwidthLimit: Float
+        # @param AutoSnapshotPolicyId: 文件系统关联的快照策略
+        # @type AutoSnapshotPolicyId: String
+        # @param SnapStatus: 文件系统处理快照状态
+        # @type SnapStatus: String
         # @param Capacity: 文件系统容量规格上限
         # 单位:GiB
         # @type Capacity: Integer
@@ -1969,10 +1997,16 @@ module TencentCloud
         # @param TieringDetail: 分层存储详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TieringDetail: :class:`Tencentcloud::Cfs.v20190719.models.TieringDetailInfo`
+        # @param AutoScaleUpRule: 文件系统自动扩容策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoScaleUpRule: :class:`Tencentcloud::Cfs.v20190719.models.AutoScaleUpRule`
+        # @param Version: 文件系统版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :Capacity, :Tags, :TieringState, :TieringDetail
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version
 
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -1991,10 +2025,14 @@ module TencentCloud
           @KmsKeyId = kmskeyid
           @AppId = appid
           @BandwidthLimit = bandwidthlimit
+          @AutoSnapshotPolicyId = autosnapshotpolicyid
+          @SnapStatus = snapstatus
           @Capacity = capacity
           @Tags = tags
           @TieringState = tieringstate
           @TieringDetail = tieringdetail
+          @AutoScaleUpRule = autoscaleuprule
+          @Version = version
         end
 
         def deserialize(params)
@@ -2019,6 +2057,8 @@ module TencentCloud
           @KmsKeyId = params['KmsKeyId']
           @AppId = params['AppId']
           @BandwidthLimit = params['BandwidthLimit']
+          @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
+          @SnapStatus = params['SnapStatus']
           @Capacity = params['Capacity']
           unless params['Tags'].nil?
             @Tags = []
@@ -2033,6 +2073,11 @@ module TencentCloud
             @TieringDetail = TieringDetailInfo.new
             @TieringDetail.deserialize(params['TieringDetail'])
           end
+          unless params['AutoScaleUpRule'].nil?
+            @AutoScaleUpRule = AutoScaleUpRule.new
+            @AutoScaleUpRule.deserialize(params['AutoScaleUpRule'])
+          end
+          @Version = params['Version']
         end
       end
 

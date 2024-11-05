@@ -153,18 +153,21 @@ module TencentCloud
       class AccelerationDomainCertificate < TencentCloud::Common::AbstractModel
         # @param Mode: 配置证书的模式，取值有： <li>disable：不配置证书；</li> <li>eofreecert：配置 EdgeOne 免费证书；</li> <li>sslcert：配置 SSL 证书。</li>
         # @type Mode: String
-        # @param List: 服务端证书列表。
+        # @param List: 服务端证书列表，相关证书部署在 EO 的入口侧。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param ClientCertInfo: 边缘双向认证配置。
+        # @param ClientCertInfo: 在边缘双向认证场景下，该字段为客户端的 CA 证书，部署在 EO 节点内，用于 EO 节点认证客户端证书。
         # @type ClientCertInfo: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
+        # @param UpstreamCertInfo: 用于 EO 节点回源时携带的证书，源站启用双向认证握手时使用，用于源站认证客户端证书是否有效，确保请求来源于受信任的 EO 节点。
+        # @type UpstreamCertInfo: :class:`Tencentcloud::Teo.v20220901.models.UpstreamCertInfo`
 
-        attr_accessor :Mode, :List, :ClientCertInfo
+        attr_accessor :Mode, :List, :ClientCertInfo, :UpstreamCertInfo
 
-        def initialize(mode=nil, list=nil, clientcertinfo=nil)
+        def initialize(mode=nil, list=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @Mode = mode
           @List = list
           @ClientCertInfo = clientcertinfo
+          @UpstreamCertInfo = upstreamcertinfo
         end
 
         def deserialize(params)
@@ -180,6 +183,10 @@ module TencentCloud
           unless params['ClientCertInfo'].nil?
             @ClientCertInfo = MutualTLS.new
             @ClientCertInfo.deserialize(params['ClientCertInfo'])
+          end
+          unless params['UpstreamCertInfo'].nil?
+            @UpstreamCertInfo = UpstreamCertInfo.new
+            @UpstreamCertInfo.deserialize(params['UpstreamCertInfo'])
           end
         end
       end
@@ -10368,7 +10375,7 @@ module TencentCloud
         # <li>apply：托管EO</li>
         # 不填，默认取值为none。
         # @type ApplyType: String
-        # @param ClientCertInfo: 在边缘双向认证场景下，该字段为客户端的 CA 证书，部署在 EO 的入口侧，用于客户端对 EO 节点进行认证。不填写表示保持原有配置。
+        # @param ClientCertInfo: 在边缘双向认证场景下，该字段为客户端的 CA 证书，部署在 EO 节点内，用于客户端对 EO 节点进行认证。默认关闭，不填写表示保持原有配置。
         # @type ClientCertInfo: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
@@ -14198,6 +14205,25 @@ module TencentCloud
         def deserialize(params)
           @DealName = params['DealName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用于 EO 节点回源时携带的证书，源站启用双向认证握手时使用，用于源站认证客户端证书是否有效，确保请求来源于受信任的 EO 节点。
+      class UpstreamCertInfo < TencentCloud::Common::AbstractModel
+        # @param UpstreamMutualTLS: 在回源双向认证场景下，该字段为 EO 节点回源时携带的证书（包含公钥、私钥即可），部署在 EO 节点，用于源站对 EO 节点进行认证。在作为入参使用时，不填写表示保持原有配置。
+        # @type UpstreamMutualTLS: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
+
+        attr_accessor :UpstreamMutualTLS
+
+        def initialize(upstreammutualtls=nil)
+          @UpstreamMutualTLS = upstreammutualtls
+        end
+
+        def deserialize(params)
+          unless params['UpstreamMutualTLS'].nil?
+            @UpstreamMutualTLS = MutualTLS.new
+            @UpstreamMutualTLS.deserialize(params['UpstreamMutualTLS'])
+          end
         end
       end
 

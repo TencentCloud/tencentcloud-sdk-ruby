@@ -1353,10 +1353,14 @@ module TencentCloud
         # @type PayMode: Integer
         # @param ResponseDurationWarningThreshold: 响应时间满意阈值
         # @type ResponseDurationWarningThreshold: Integer
+        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # @type IsRelatedDashboard: Integer
+        # @param DashboardTopicID: dashboard ID
+        # @type DashboardTopicID: String
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :IsRelatedDashboard, :DashboardTopicID
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, isrelateddashboard=nil, dashboardtopicid=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1376,6 +1380,8 @@ module TencentCloud
           @CustomShowTags = customshowtags
           @PayMode = paymode
           @ResponseDurationWarningThreshold = responsedurationwarningthreshold
+          @IsRelatedDashboard = isrelateddashboard
+          @DashboardTopicID = dashboardtopicid
         end
 
         def deserialize(params)
@@ -1405,6 +1411,8 @@ module TencentCloud
           @CustomShowTags = params['CustomShowTags']
           @PayMode = params['PayMode']
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
+          @IsRelatedDashboard = params['IsRelatedDashboard']
+          @DashboardTopicID = params['DashboardTopicID']
         end
       end
 

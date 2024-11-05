@@ -108,11 +108,8 @@ module TencentCloud
         # @param SecretName: 创建的凭据名称。
         # @type SecretName: String
         # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagCode: Integer
         # @param TagMsg: 标签操作的返回信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
         # @param FlowID: 创建云产品凭据异步任务ID号。
         # @type FlowID: Integer
@@ -191,11 +188,9 @@ module TencentCloud
         # @type SSHKeyID: String
         # @param SSHKeyName: 创建的SSH密钥名称。
         # @type SSHKeyName: String
-        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
         # @type TagCode: Integer
         # @param TagMsg: 标签操作的返回信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -231,7 +226,7 @@ module TencentCloud
         # @type Description: String
         # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。您也可以指定在同region 下自行创建的KMS CMK进行加密。
         # @type KmsKeyId: String
-        # @param SecretType: 凭据类型，默认为自定义凭据。
+        # @param SecretType: 凭据类型，默认为0自定义凭据。
         # @type SecretType: Integer
         # @param SecretBinary: 二进制凭据信息base64编码后的明文。SecretBinary 和 SecretString 必须且只能设置一个，最大支持32KB字节。
         # @type SecretBinary: String
@@ -283,10 +278,8 @@ module TencentCloud
         # @param VersionId: 新创建的凭据版本。
         # @type VersionId: String
         # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagCode: Integer
         # @param TagMsg: 标签操作的返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -407,7 +400,7 @@ module TencentCloud
 
       # DescribeAsyncRequestInfo请求参数结构体
       class DescribeAsyncRequestInfoRequest < TencentCloud::Common::AbstractModel
-        # @param FlowID: 异步任务ID号。
+        # @param FlowID: 异步任务ID号
         # @type FlowID: Integer
 
         attr_accessor :FlowID
@@ -466,13 +459,10 @@ module TencentCloud
         # @param EnableRotation: 否允许轮转，true表示开启轮转，false表示禁止轮转。
         # @type EnableRotation: Boolean
         # @param Frequency: 轮转的频率，以天为单位，默认为1天。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Frequency: Integer
         # @param LatestRotateTime: 最近一次轮转的时间，显式可见的时间字符串，格式 2006-01-02 15:04:05。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestRotateTime: String
         # @param NextRotateBeginTime: 下一次开始轮转的时间，显式可见的时间字符串，格式 2006-01-02 15:04:05。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextRotateBeginTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -514,7 +504,7 @@ module TencentCloud
 
       # DescribeRotationHistory返回参数结构体
       class DescribeRotationHistoryResponse < TencentCloud::Common::AbstractModel
-        # @param VersionIDs: 版本号列表。
+        # @param VersionIDs: 版本号列表
         # @type VersionIDs: Array
         # @param TotalCount: 版本号个数，可以给用户展示的版本号个数上限为10个。
         # @type TotalCount: Integer
@@ -569,34 +559,25 @@ module TencentCloud
         # @param CreateTime: 创建日期。
         # @type CreateTime: Integer
         # @param SecretType: 0 --  用户自定义凭据类型；1 -- 数据库凭据类型；2 -- SSH密钥对凭据类型；3 -- 云API密钥（AKSK）凭据类型（使用此功能需要联系云助手单独开启白名单）；4 -- Redis类型凭据。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretType: Integer
         # @param ProductName: 云产品名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ResourceID: 云产品实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceID: String
         # @param RotationStatus: 是否开启轮转：True -- 开启轮转；False -- 关闭轮转。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationStatus: Boolean
         # @param RotationFrequency: 轮转周期，默认以天为单位。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationFrequency: Integer
         # @param ResourceName: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectID: Integer
         # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIDs: Array
         # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示此云API密钥对所属的用户UIN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetUin: Integer
         # @param AdditionalConfig: 凭据额外配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdditionalConfig: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -976,7 +957,7 @@ module TencentCloud
 
       # ListSecretVersionIds请求参数结构体
       class ListSecretVersionIdsRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称。
+        # @param SecretName: 凭据名称
         # @type SecretName: String
 
         attr_accessor :SecretName
@@ -995,7 +976,6 @@ module TencentCloud
         # @param SecretName: 凭据名称。
         # @type SecretName: String
         # @param Versions: VersionId列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Versions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1320,41 +1300,31 @@ module TencentCloud
         # @param KmsKeyType: 用于加密凭据的KMS CMK类型，DEFAULT 表示SecretsManager 创建的默认密钥， CUSTOMER 表示用户指定的密钥
         # @type KmsKeyType: String
         # @param RotationStatus: 1:--开启轮转；0--禁止轮转
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationStatus: Integer
         # @param NextRotationTime: 下一次轮转开始时间，uinx 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextRotationTime: Integer
         # @param SecretType: 0 -- 用户自定义凭据；
         # 1 -- 云产品凭据；
         # 2 -- SSH密钥对凭据；
         # 3 -- 云API密钥对凭据；
         # 4 -- Redis类型凭据；
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretType: Integer
         # @param ProductName: 云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ResourceName: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectID: Integer
         # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIDs: Array
         # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetUin: Integer
         # @param RotationFrequency: 轮转的频率，以天作为单位，在轮转开启状态下生效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationFrequency: Integer
         # @param ResourceID: 云产品凭据对应的云产品实例 ID 号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceID: String
         # @param RotationBeginTime: 用户指定的轮转开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationBeginTime: String
 
         attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :RotationFrequency, :ResourceID, :RotationBeginTime
@@ -1586,7 +1556,7 @@ module TencentCloud
 
       # 凭据版本号列表信息
       class VersionInfo < TencentCloud::Common::AbstractModel
-        # @param VersionId: 版本号。
+        # @param VersionId: 版本号
         # @type VersionId: String
         # @param CreateTime: 创建时间，unix时间戳。
         # @type CreateTime: Integer

@@ -715,6 +715,97 @@ module TencentCloud
         end
       end
 
+      # CreateLineGroupCopy请求参数结构体
+      class CreateLineGroupCopyRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainIds: 要复制的域名ID。要从多个域名复制线路分组时，用英文逗号分隔，例如1002,1005
+        # @type DomainIds: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainIds, :DomainId
+
+        def initialize(domain=nil, domainids=nil, domainid=nil)
+          @Domain = domain
+          @DomainIds = domainids
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainIds = params['DomainIds']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CreateLineGroupCopy返回参数结构体
+      class CreateLineGroupCopyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLineGroup请求参数结构体
+      class CreateLineGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 自定义线路分组的名称。
+        # @type Name: String
+        # @param Lines: 自定义线路分组包含的线路列表，包含多个线路时用英文逗号分隔。例如，铁通,奇虎
+        # @type Lines: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Name, :Lines, :Domain, :DomainId
+
+        def initialize(name=nil, lines=nil, domain=nil, domainid=nil)
+          @Name = name
+          @Lines = lines
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Lines = params['Lines']
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CreateLineGroup返回参数结构体
+      class CreateLineGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 自定义线路分组详情
+        # @type Data: :class:`Tencentcloud::Dnspod.v20210323.models.LineGroupDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LineGroupDetail.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量添加记录返回结构
       class CreateRecordBatchDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见RecordInfoBatch
@@ -1371,6 +1462,46 @@ module TencentCloud
 
       # DeleteDomain返回参数结构体
       class DeleteDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLineGroup请求参数结构体
+      class DeleteLineGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param LineGroupId: 自定义线路分组ID
+        # @type LineGroupId: Integer
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :LineGroupId, :DomainId
+
+        def initialize(domain=nil, linegroupid=nil, domainid=nil)
+          @Domain = domain
+          @LineGroupId = linegroupid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @LineGroupId = params['LineGroupId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DeleteLineGroup返回参数结构体
+      class DeleteLineGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2491,6 +2622,72 @@ module TencentCloud
         def deserialize(params)
           unless params['Info'].nil?
             @Info = WhoisInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLineGroupList请求参数结构体
+      class DescribeLineGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Offset: 偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Length: 限制数量，传0或不传会返回所有。
+        # @type Length: Integer
+        # @param SortType: 按自定义线路分组名称排序的方向。升序传asc，降序传desc。
+        # @type SortType: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :Offset, :Length, :SortType, :DomainId
+
+        def initialize(domain=nil, offset=nil, length=nil, sorttype=nil, domainid=nil)
+          @Domain = domain
+          @Offset = offset
+          @Length = length
+          @SortType = sorttype
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Length = params['Length']
+          @SortType = params['SortType']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeLineGroupList返回参数结构体
+      class DescribeLineGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param LineGroups: 自定义线路分组列表
+        # @type LineGroups: Array
+        # @param Info: 自定义线路分组数量信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.LineGroupSum`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LineGroups, :Info, :RequestId
+
+        def initialize(linegroups=nil, info=nil, requestid=nil)
+          @LineGroups = linegroups
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LineGroups'].nil?
+            @LineGroups = []
+            params['LineGroups'].each do |i|
+              linegroupitem_tmp = LineGroupItem.new
+              linegroupitem_tmp.deserialize(i)
+              @LineGroups << linegroupitem_tmp
+            end
+          end
+          unless params['Info'].nil?
+            @Info = LineGroupSum.new
             @Info.deserialize(params['Info'])
           end
           @RequestId = params['RequestId']
@@ -4211,6 +4408,30 @@ module TencentCloud
         end
       end
 
+      # 自定义线路分组详细信息
+      class LineGroupDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 自定义线路分组ID
+        # @type Id: Integer
+        # @param Name: 自定线路分组名称
+        # @type Name: String
+        # @param Lines: 自定义线路分组包含的线路列表
+        # @type Lines: Array
+
+        attr_accessor :Id, :Name, :Lines
+
+        def initialize(id=nil, name=nil, lines=nil)
+          @Id = id
+          @Name = name
+          @Lines = lines
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Lines = params['Lines']
+        end
+      end
+
       # 线路分组信息
       class LineGroupInfo < TencentCloud::Common::AbstractModel
         # @param LineId: 线路分组ID
@@ -4236,6 +4457,66 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @LineList = params['LineList']
+        end
+      end
+
+      # 自定义线路分组元素
+      class LineGroupItem < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: Integer
+        # @param Id: 自定义线路分组ID
+        # @type Id: Integer
+        # @param Name: 自定义线路分组名称
+        # @type Name: String
+        # @param Lines: 自定义线路分组包含的线路
+        # @type Lines: Array
+        # @param CreatedOn: 创建时间
+        # @type CreatedOn: String
+        # @param UpdatedOn: 更新时间
+        # @type UpdatedOn: String
+
+        attr_accessor :DomainId, :Id, :Name, :Lines, :CreatedOn, :UpdatedOn
+
+        def initialize(domainid=nil, id=nil, name=nil, lines=nil, createdon=nil, updatedon=nil)
+          @DomainId = domainid
+          @Id = id
+          @Name = name
+          @Lines = lines
+          @CreatedOn = createdon
+          @UpdatedOn = updatedon
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @Id = params['Id']
+          @Name = params['Name']
+          @Lines = params['Lines']
+          @CreatedOn = params['CreatedOn']
+          @UpdatedOn = params['UpdatedOn']
+        end
+      end
+
+      # 自定义线路数量信息
+      class LineGroupSum < TencentCloud::Common::AbstractModel
+        # @param NowTotal: 本次请求返回自定义线路分组个数
+        # @type NowTotal: Integer
+        # @param Total: 自定义线路分组总数
+        # @type Total: Integer
+        # @param AvailableCount: 还可允许添加的自定义线路分组个数
+        # @type AvailableCount: Integer
+
+        attr_accessor :NowTotal, :Total, :AvailableCount
+
+        def initialize(nowtotal=nil, total=nil, availablecount=nil)
+          @NowTotal = nowtotal
+          @Total = total
+          @AvailableCount = availablecount
+        end
+
+        def deserialize(params)
+          @NowTotal = params['NowTotal']
+          @Total = params['Total']
+          @AvailableCount = params['AvailableCount']
         end
       end
 
@@ -4685,6 +4966,54 @@ module TencentCloud
 
         def deserialize(params)
           @RecordId = params['RecordId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLineGroup请求参数结构体
+      class ModifyLineGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 自定义线路分组的名称。
+        # @type Name: String
+        # @param Lines: 自定义线路分组包含的线路列表，包含多个线路时用英文逗号分隔。例如，铁通,奇虎
+        # @type Lines: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param LineGroupId: 自定义线路分组ID
+        # @type LineGroupId: Integer
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Name, :Lines, :Domain, :LineGroupId, :DomainId
+
+        def initialize(name=nil, lines=nil, domain=nil, linegroupid=nil, domainid=nil)
+          @Name = name
+          @Lines = lines
+          @Domain = domain
+          @LineGroupId = linegroupid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Lines = params['Lines']
+          @Domain = params['Domain']
+          @LineGroupId = params['LineGroupId']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyLineGroup返回参数结构体
+      class ModifyLineGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -3129,11 +3129,11 @@ module TencentCloud
 
       # CreateNoticeContent请求参数结构体
       class CreateNoticeContentRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 模版名称。
+        # @param Name: 模板名称。
         # @type Name: String
-        # @param Type: 模版内容语言。0：中文1：英文
+        # @param Type: 模板内容语言。0：中文1：英文
         # @type Type: Integer
-        # @param NoticeContents: 模版详细配置。
+        # @param NoticeContents: 模板详细配置。
         # @type NoticeContents: Array
 
         attr_accessor :Name, :Type, :NoticeContents
@@ -4352,7 +4352,7 @@ module TencentCloud
 
       # DeleteNoticeContent请求参数结构体
       class DeleteNoticeContentRequest < TencentCloud::Common::AbstractModel
-        # @param NoticeContentId: 通知内容模版ID
+        # @param NoticeContentId: 通知内容模板ID
         # @type NoticeContentId: String
 
         attr_accessor :NoticeContentId
@@ -6122,12 +6122,12 @@ module TencentCloud
       # DescribeNoticeContents请求参数结构体
       class DescribeNoticeContentsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <li> name
-        # 按照【通知内容模版名称】进行过滤。
+        # 按照【通知内容模板名称】进行过滤。
         # 类型：String
         # 必选：否
         # </li>
         # <li> noticeContentId
-        # 按照【通知内容模版ID】进行过滤。
+        # 按照【通知内容模板ID】进行过滤。
         # 类型：String
         # 必选：否
         # </li>
@@ -6162,10 +6162,10 @@ module TencentCloud
 
       # DescribeNoticeContents返回参数结构体
       class DescribeNoticeContentsResponse < TencentCloud::Common::AbstractModel
-        # @param NoticeContents: 通知内容模版列表。
+        # @param NoticeContents: 通知内容模板列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContents: Array
-        # @param TotalCount: 符合条件的通知内容模版总数。
+        # @param TotalCount: 符合条件的通知内容模板总数。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9127,15 +9127,15 @@ module TencentCloud
 
       # ModifyNoticeContent请求参数结构体
       class ModifyNoticeContentRequest < TencentCloud::Common::AbstractModel
-        # @param NoticeContentId: 通知内容模版ID。
+        # @param NoticeContentId: 通知内容模板ID。
         # @type NoticeContentId: String
-        # @param Name: 通知内容模版名称。
+        # @param Name: 通知内容模板名称。
         # @type Name: String
         # @param Type: 通知内容语言。
 
         # 0：中文 1：英文
         # @type Type: Integer
-        # @param NoticeContents: 通知内容模版详细信息。
+        # @param NoticeContents: 通知内容模板详细信息。
         # @type NoticeContents: Array
 
         attr_accessor :NoticeContentId, :Name, :Type, :NoticeContents
@@ -9523,16 +9523,16 @@ module TencentCloud
         end
       end
 
-      # 通知内容模版详细配置
+      # 通知内容模板详细配置
       class NoticeContent < TencentCloud::Common::AbstractModel
         # @param Type: 渠道类型
 
         # Email:邮件;Sms:短信;WeChat:微信;Phone:电话;WeCom:企业微信;DingTalk:钉钉;Lark:飞书;Http:自定义回调;
         # @type Type: String
-        # @param TriggerContent: 告警触发通知内容模版。
+        # @param TriggerContent: 告警触发通知内容模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerContent: :class:`Tencentcloud::Cls.v20201016.models.NoticeContentInfo`
-        # @param RecoveryContent: 告警恢复通知内容模版。
+        # @param RecoveryContent: 告警恢复通知内容模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecoveryContent: :class:`Tencentcloud::Cls.v20201016.models.NoticeContentInfo`
 
@@ -10073,8 +10073,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2024, 10
-        deprecate :DstTopicName=, :none, 2024, 10
+        deprecate :DstTopicName, :none, 2024, 11
+        deprecate :DstTopicName=, :none, 2024, 11
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -11339,8 +11339,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2024, 10
-        deprecate :HashKey=, :none, 2024, 10
+        deprecate :HashKey, :none, 2024, 11
+        deprecate :HashKey=, :none, 2024, 11
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid

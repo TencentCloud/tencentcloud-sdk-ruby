@@ -6265,7 +6265,7 @@ module TencentCloud
 
       # DescribeScanIp返回参数结构体
       class DescribeScanIpResponse < TencentCloud::Common::AbstractModel
-        # @param IpList: ip列表,当入参Ip为all时，返回该值
+        # @param IpList: ip列表,当入参Ip为all时，返回所有已知ip列表
         # @type IpList: Array
         # @param Bussiness: 所属业务
         # @type Bussiness: String

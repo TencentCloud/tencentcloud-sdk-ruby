@@ -4862,9 +4862,7 @@ module TencentCloud
         # 注: `个人用户认证证书的编号和证明图片绑定, 获取新的证明图片编号会变动`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCertId: String
-        # @param SerialNumber: CA供应商下发给用户的证书编号，在证书到期后自动续期后此证书编号会发生变动，且不会合成到个人用户证书证明图片中。
-
-        # 注意：`腾讯电子签接入多家CA供应商以提供容灾能力，不同CA下发的证书编号区别较大，但基本都是由数字和字母组成，长度在200以下。`
+        # @param SerialNumber: 在数字证书申请过程中，系统会自动生成一个独一无二的序列号。请注意，当证书到期并自动续期时，该序列号将会发生变化。值得注意的是，此序列号不会被合成至个人用户证书的证明图片中。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialNumber: String
         # @param ValidFrom: CA证书颁发时间，格式为Unix标准时间戳（秒）
@@ -11237,9 +11235,7 @@ module TencentCloud
         # @type SignTime: Integer
         # @param SignAlgorithm: 证书签名算法,  如SHA1withRSA等算法
         # @type SignAlgorithm: String
-        # @param CertSn: CA供应商下发给用户的证书编号
-
-        # 注意：`腾讯电子签接入多家CA供应商以提供容灾能力，不同CA下发的证书编号区别较大，但基本都是由数字和字母组成，长度在200以下`。
+        # @param CertSn: 在数字证书申请过程中，系统会自动生成一个独一无二的序列号。
         # @type CertSn: String
         # @param CertNotBefore: 证书起始时间的Unix时间戳，单位毫秒
         # @type CertNotBefore: Integer

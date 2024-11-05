@@ -2181,8 +2181,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2024, 10
-        deprecate :SegmentSet=, :none, 2024, 10
+        deprecate :SegmentSet, :none, 2024, 11
+        deprecate :SegmentSet=, :none, 2024, 11
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -5348,6 +5348,155 @@ module TencentCloud
           @MediaUrl = params['MediaUrl']
           @CoverUrl = params['CoverUrl']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 自适应码流任务信息。
+      class ComplexAdaptiveDynamicStreamingTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ComplexAdaptiveDynamicStreamingTaskResultSet: 自适应码流任务的执行状态与结果，每个元素对应一个自适应码流模版。
+        # @type ComplexAdaptiveDynamicStreamingTaskResultSet: Array
+
+        attr_accessor :TaskId, :Status, :ComplexAdaptiveDynamicStreamingTaskResultSet
+
+        def initialize(taskid=nil, status=nil, complexadaptivedynamicstreamingtaskresultset=nil)
+          @TaskId = taskid
+          @Status = status
+          @ComplexAdaptiveDynamicStreamingTaskResultSet = complexadaptivedynamicstreamingtaskresultset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          unless params['ComplexAdaptiveDynamicStreamingTaskResultSet'].nil?
+            @ComplexAdaptiveDynamicStreamingTaskResultSet = []
+            params['ComplexAdaptiveDynamicStreamingTaskResultSet'].each do |i|
+              complexadaptivedynamicstreamingtaskresult_tmp = ComplexAdaptiveDynamicStreamingTaskResult.new
+              complexadaptivedynamicstreamingtaskresult_tmp.deserialize(i)
+              @ComplexAdaptiveDynamicStreamingTaskResultSet << complexadaptivedynamicstreamingtaskresult_tmp
+            end
+          end
+        end
+      end
+
+      # 自适应码流任务的输入参数。
+      class ComplexAdaptiveDynamicStreamingTaskInput < TencentCloud::Common::AbstractModel
+        # @param StreamPara: 自适应码流参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamPara: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTaskStreamPara`
+
+        attr_accessor :StreamPara
+
+        def initialize(streampara=nil)
+          @StreamPara = streampara
+        end
+
+        def deserialize(params)
+          unless params['StreamPara'].nil?
+            @StreamPara = ComplexAdaptiveDynamicStreamingTaskStreamPara.new
+            @StreamPara.deserialize(params['StreamPara'])
+          end
+        end
+      end
+
+      # 自适应码流任务的输出结果。
+      class ComplexAdaptiveDynamicStreamingTaskOutput < TencentCloud::Common::AbstractModel
+        # @param Definition: 自适应码流模版 ID。
+        # @type Definition: Integer
+        # @param Format: 自适应码流打包格式。可选值：
+        # <li>HLS；</li>
+        # <li>MPEG-DASH。</li>
+        # @type Format: String
+        # @param DrmType: DRM 方案类型。可选值：
+        # <li>空字符串：无加密；</li>
+        # <li>SimpleAES；</li>
+        # <li>Widevine；</li>
+        # <li>FairPlay。</li>
+        # @type DrmType: String
+        # @param Url: 自适应码流的播放地址。
+        # @type Url: String
+
+        attr_accessor :Definition, :Format, :DrmType, :Url
+
+        def initialize(definition=nil, format=nil, drmtype=nil, url=nil)
+          @Definition = definition
+          @Format = format
+          @DrmType = drmtype
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Format = params['Format']
+          @DrmType = params['DrmType']
+          @Url = params['Url']
+        end
+      end
+
+      # 自适应码流任务信息。
+      class ComplexAdaptiveDynamicStreamingTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，取值：
+        # <li>PROCESSING：处理中；</li>
+        # <li>SUCCESS：已完成；</li>
+        # <li>FAIL：失败。</li>
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Progress: 转码进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param Input: 自适应码流任务的输入。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTaskInput`
+        # @param Output: 自适应码流任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTaskOutput`
+
+        attr_accessor :Status, :ErrCodeExt, :Message, :Progress, :Input, :Output
+
+        def initialize(status=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = ComplexAdaptiveDynamicStreamingTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = ComplexAdaptiveDynamicStreamingTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 自适应码流任务的流参数。
+      class ComplexAdaptiveDynamicStreamingTaskStreamPara < TencentCloud::Common::AbstractModel
+        # @param Definition: 自适应码流模版 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
         end
       end
 
@@ -10344,8 +10493,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2024, 10
-        deprecate :DomainName=, :none, 2024, 10
+        deprecate :DomainName, :none, 2024, 11
+        deprecate :DomainName=, :none, 2024, 11
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -12299,23 +12448,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型，取值：
-        # <li>Procedure：视频处理任务；</li>
-        # <li>EditMedia：视频编辑任务；</li>
-        # <li>SplitMedia：视频拆条任务；</li>
-        # <li>ComposeMedia：制作媒体文件任务；</li>
-        # <li>WechatPublish：微信发布任务；</li>
-        # <li>WechatMiniProgramPublish：微信小程序视频发布任务；</li>
-        # <li>PullUpload：拉取上传媒体文件任务；</li>
-        # <li>FastClipMedia：快速剪辑任务；</li>
-        # <li>RemoveWatermarkTask：智能去除水印任务；</li>
-        # <li>DescribeFileAttributesTask：获取文件属性任务；</li>
-        # <li>RebuildMedia：音画质重生任务（不推荐使用）；</li>
-        # <li>ReviewAudioVideo：音视频审核任务；</li>
-        # <li>ExtractTraceWatermark：提取溯源水印任务；</li>
-        # <li>ExtractCopyRightWatermark：提取版权水印任务；</li>
-        # <li>QualityInspect：音画质检测任务；</li>
-        # <li>QualityEnhance：音画质重生任务。</li>
+        # @param TaskType: 任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -12392,12 +12525,15 @@ module TencentCloud
         # @param QualityEnhanceTask: 音画质重生任务信息，仅当 TaskType 为 QualityEnhance，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEnhanceTask: :class:`Tencentcloud::Vod.v20180717.models.QualityEnhanceTask`
+        # @param ComplexAdaptiveDynamicStreamingTask: 复杂自适应码流任务信息，仅当 TaskType 为 ComplexAdaptiveDynamicStreaming，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplexAdaptiveDynamicStreamingTask: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -12424,6 +12560,7 @@ module TencentCloud
           @DescribeFileAttributesTask = describefileattributestask
           @QualityInspectTask = qualityinspecttask
           @QualityEnhanceTask = qualityenhancetask
+          @ComplexAdaptiveDynamicStreamingTask = complexadaptivedynamicstreamingtask
           @RequestId = requestid
         end
 
@@ -12516,6 +12653,10 @@ module TencentCloud
           unless params['QualityEnhanceTask'].nil?
             @QualityEnhanceTask = QualityEnhanceTask.new
             @QualityEnhanceTask.deserialize(params['QualityEnhanceTask'])
+          end
+          unless params['ComplexAdaptiveDynamicStreamingTask'].nil?
+            @ComplexAdaptiveDynamicStreamingTask = ComplexAdaptiveDynamicStreamingTask.new
+            @ComplexAdaptiveDynamicStreamingTask.deserialize(params['ComplexAdaptiveDynamicStreamingTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -13722,7 +13863,8 @@ module TencentCloud
         # <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
         # <li>QualityInspectComplete：音画质检测完成；</li>
         # <li>QualityEnhanceComplete：音画质重生任务完成；</li>
-        # <li>PersistenceComplete：剪辑固化完成。</li>
+        # <li>PersistenceComplete：剪辑固化完成；</li>
+        # <li>ComplexAdaptiveDynamicStreamingComplete：复杂自适应码流任务完成。</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -13808,10 +13950,13 @@ module TencentCloud
         # @param PersistenceCompleteEvent: 剪辑固化完成事件，当事件类型为 PersistenceComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersistenceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.PersistenceCompleteTask`
+        # @param ComplexAdaptiveDynamicStreamingCompleteEvent: 自适应码流任务信息，仅当 EventType 为ComplexAdaptiveDynamicStreamingComplete 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplexAdaptiveDynamicStreamingCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -13840,6 +13985,7 @@ module TencentCloud
           @QualityEnhanceCompleteEvent = qualityenhancecompleteevent
           @MediaCastStatusChangedEvent = mediacaststatuschangedevent
           @PersistenceCompleteEvent = persistencecompleteevent
+          @ComplexAdaptiveDynamicStreamingCompleteEvent = complexadaptivedynamicstreamingcompleteevent
         end
 
         def deserialize(params)
@@ -13948,6 +14094,10 @@ module TencentCloud
           unless params['PersistenceCompleteEvent'].nil?
             @PersistenceCompleteEvent = PersistenceCompleteTask.new
             @PersistenceCompleteEvent.deserialize(params['PersistenceCompleteEvent'])
+          end
+          unless params['ComplexAdaptiveDynamicStreamingCompleteEvent'].nil?
+            @ComplexAdaptiveDynamicStreamingCompleteEvent = ComplexAdaptiveDynamicStreamingTask.new
+            @ComplexAdaptiveDynamicStreamingCompleteEvent.deserialize(params['ComplexAdaptiveDynamicStreamingCompleteEvent'])
           end
         end
       end
@@ -18102,8 +18252,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2024, 10
-        deprecate :Transitions=, :none, 2024, 10
+        deprecate :Transitions, :none, 2024, 11
+        deprecate :Transitions=, :none, 2024, 11
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22049,8 +22199,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2024, 10
-        deprecate :ProductInstanceResourceSet=, :none, 2024, 10
+        deprecate :ProductInstanceResourceSet, :none, 2024, 11
+        deprecate :ProductInstanceResourceSet=, :none, 2024, 11
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
