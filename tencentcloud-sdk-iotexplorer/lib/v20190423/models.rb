@@ -2277,18 +2277,26 @@ module TencentCloud
         # @type GenerationMethod: Integer
         # @param UploadUrl: 上传URL。
         # @type UploadUrl: String
+        # @param SuccessCount: 成功数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param LastFailedReason: 量产最后失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastFailedReason: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BatchCnt, :BurnMethod, :CreateTime, :DownloadUrl, :GenerationMethod, :UploadUrl, :RequestId
+        attr_accessor :BatchCnt, :BurnMethod, :CreateTime, :DownloadUrl, :GenerationMethod, :UploadUrl, :SuccessCount, :LastFailedReason, :RequestId
 
-        def initialize(batchcnt=nil, burnmethod=nil, createtime=nil, downloadurl=nil, generationmethod=nil, uploadurl=nil, requestid=nil)
+        def initialize(batchcnt=nil, burnmethod=nil, createtime=nil, downloadurl=nil, generationmethod=nil, uploadurl=nil, successcount=nil, lastfailedreason=nil, requestid=nil)
           @BatchCnt = batchcnt
           @BurnMethod = burnmethod
           @CreateTime = createtime
           @DownloadUrl = downloadurl
           @GenerationMethod = generationmethod
           @UploadUrl = uploadurl
+          @SuccessCount = successcount
+          @LastFailedReason = lastfailedreason
           @RequestId = requestid
         end
 
@@ -2299,6 +2307,8 @@ module TencentCloud
           @DownloadUrl = params['DownloadUrl']
           @GenerationMethod = params['GenerationMethod']
           @UploadUrl = params['UploadUrl']
+          @SuccessCount = params['SuccessCount']
+          @LastFailedReason = params['LastFailedReason']
           @RequestId = params['RequestId']
         end
       end

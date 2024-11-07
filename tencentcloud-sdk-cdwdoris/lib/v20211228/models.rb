@@ -772,6 +772,11 @@ module TencentCloud
         # @type CosBucket: String
 
         attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket
+        extend Gem::Deprecate
+        deprecate :WeekDays, :none, 2024, 11
+        deprecate :WeekDays=, :none, 2024, 11
+        deprecate :ExecuteHour, :none, 2024, 11
+        deprecate :ExecuteHour=, :none, 2024, 11
 
         def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil)
           @InstanceId = instanceid
@@ -830,16 +835,21 @@ module TencentCloud
 
       # CreateBackUpSchedule返回参数结构体
       class CreateBackUpScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ErrorMsg, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(errormsg=nil, requestid=nil)
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end

@@ -20,10 +20,8 @@ module TencentCloud
       # 自动划分规则数据
       class ComplexRule < TencentCloud::Common::AbstractModel
         # @param SimpleRules: 简单规则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SimpleRules: Array
         # @param Relation: 表达式间逻辑关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
 
         attr_accessor :SimpleRules, :Relation
@@ -46,27 +44,17 @@ module TencentCloud
         end
       end
 
-      # - [ ] 过滤条件<br>
-
-      # <li>Name - String - 是否必填：否 - 操作符: ilike  - 排序支持：否- 根据分组名称进行查询。</li>
-      # 分页参数<br>
-      # <li>PageNum 从1开始，小于等于0时使用默认参数。</li>
-      # <li>PageSize 最大值5000，最好不超过100。</li>
+      # 这是一个多接口的公共数据结构，用于接口根据条件进行过滤和分页。具体支持哪些过滤条件，参考具体使用该结构的接口字段描述
       class Condition < TencentCloud::Common::AbstractModel
         # @param Filters: Filters 条件过滤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filters: Array
         # @param FilterGroups: FilterGroups 条件过滤组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterGroups: Array
         # @param Sort: Sort 排序字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sort: :class:`Tencentcloud::Ioa.v20220601.models.Sort`
         # @param PageSize: PageSize 每页获取数(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
         # @param PageNum: PageNum 获取第几页(只支持32位)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNum: Integer
 
         attr_accessor :Filters, :FilterGroups, :Sort, :PageSize, :PageNum
@@ -710,7 +698,7 @@ module TencentCloud
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
         # @param AccountGroupId: 获取账号的分组ID，不传默认获取全网根账号组
         # @type AccountGroupId: Integer
-        # @param ShowFlag: 是否仅展示当前目录下用户 1： 递归显示 2：仅显示当前目录下用户(只支持32位)
+        # @param ShowFlag: 是否仅展示当前目录下用户 1： 递归显示 2：仅显示当前目录下用户
         # @type ShowFlag: Integer
 
         attr_accessor :Condition, :AccountGroupId, :ShowFlag
@@ -975,13 +963,10 @@ module TencentCloud
       # Filters 条件过滤
       class Filter < TencentCloud::Common::AbstractModel
         # @param Field: 过滤字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Field: String
-        # @param Operator: 过滤方式 eq:等于,net:不等于,like,nlike,gt:大于,lt:小于,egt:大于等于,elt:小于等于
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Operator: 过滤方式： eq:等于,net:不等于,like,nlike,gt:大于,lt:小于,egt:大于等于,elt:小于等于。具体支持哪些过滤方式，结合具体接口字段描述来定
         # @type Operator: String
         # @param Values: 过滤条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Field, :Operator, :Values
@@ -1002,7 +987,6 @@ module TencentCloud
       # FilterGroups 条件过滤组
       class FilterGroup < TencentCloud::Common::AbstractModel
         # @param Filters: Filters 条件过滤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filters: Array
 
         attr_accessor :Filters
@@ -1224,10 +1208,8 @@ module TencentCloud
       # Sort 排序字段
       class Sort < TencentCloud::Common::AbstractModel
         # @param Field: 排序字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Field: String
         # @param Order: 排序方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: String
 
         attr_accessor :Field, :Order

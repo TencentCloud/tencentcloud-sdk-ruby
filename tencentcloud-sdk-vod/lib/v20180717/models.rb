@@ -5384,6 +5384,36 @@ module TencentCloud
         end
       end
 
+      # 自适应码流任务多语言音频流输入参数。
+      class ComplexAdaptiveDynamicStreamingTaskAudioInput < TencentCloud::Common::AbstractModel
+        # @param FileId: 音频源的媒体 ID。固定取该媒体中的首个音频流，视频流和其它音频流（如有）将被忽略。
+        # @type FileId: String
+        # @param Name: 输出的自适应码流中的音频流名称，长度限制为16个字符。
+        # @type Name: String
+        # @param Language: 输出的自适应码流中的音频流语言，长度限制为16个字符。要求符合 RFC5646 规范。
+        # @type Language: String
+        # @param Default: 是否设置为自适应码流的默认音频。取值：
+        # <li>YES：设置为默认音频；</li>
+        # <li>NO：不设置为默认音频（默认值）。</li>
+        # @type Default: String
+
+        attr_accessor :FileId, :Name, :Language, :Default
+
+        def initialize(fileid=nil, name=nil, language=nil, default=nil)
+          @FileId = fileid
+          @Name = name
+          @Language = language
+          @Default = default
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Name = params['Name']
+          @Language = params['Language']
+          @Default = params['Default']
+        end
+      end
+
       # 自适应码流任务的输入参数。
       class ComplexAdaptiveDynamicStreamingTaskInput < TencentCloud::Common::AbstractModel
         # @param StreamPara: 自适应码流参数。
@@ -5497,6 +5527,28 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+        end
+      end
+
+      # 自适应码流任务多语言字幕的输入参数。
+      class ComplexAdaptiveDynamicStreamingTaskSubtitleInput < TencentCloud::Common::AbstractModel
+        # @param Id: 字幕 ID。该字幕必须归属于自适应码流任务的输入主媒体。
+        # @type Id: String
+        # @param Default: 是否设置为自适应码流的默认字幕。取值：
+        # <li>YES：设置为默认字幕；</li>
+        # <li>NO：不设置为默认字幕（默认值）。</li>
+        # @type Default: String
+
+        attr_accessor :Id, :Default
+
+        def initialize(id=nil, default=nil)
+          @Id = id
+          @Default = default
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Default = params['Default']
         end
       end
 
@@ -6694,6 +6746,96 @@ module TencentCloud
 
         def deserialize(params)
           @ClassId = params['ClassId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateComplexAdaptiveDynamicStreamingTask请求参数结构体
+      class CreateComplexAdaptiveDynamicStreamingTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param FileId: 主媒体文件的媒体 ID。
+        # @type FileId: String
+        # @param StreamParaSet: 自适应码流参数，最大支持8个。
+        # @type StreamParaSet: Array
+        # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 4 个。
+        # 如果填写了该字段，AudioSet 和 SubtitleSet 中指定的媒体的起始时间将会自动调整，和主媒体保持同步。
+        # @type HeadTailSet: Array
+        # @param AudioSet: 多语言音频流参数，最大支持16个。
+        # 每个数组元素对应自适应码流中的一条音频流。如果要将主媒体文件中的音频流添加到输出的自适应码流中，那么也需要在此处指定。
+        # 数组中元素的顺序将决定自适应码流中的音频流顺序。
+        # 如果输入的媒体文件同时带有视频流和音频流，那么视频流将被忽略。
+        # @type AudioSet: Array
+        # @param SubtitleSet: 多语言字幕参数，最大可支持16个。
+        # 每个数组元素对应自适应码流中的一条字幕流。
+        # 数组中元素的顺序将决定自适应码流中的字幕流顺序。
+        # @type SubtitleSet: Array
+
+        attr_accessor :SubAppId, :FileId, :StreamParaSet, :HeadTailSet, :AudioSet, :SubtitleSet
+
+        def initialize(subappid=nil, fileid=nil, streamparaset=nil, headtailset=nil, audioset=nil, subtitleset=nil)
+          @SubAppId = subappid
+          @FileId = fileid
+          @StreamParaSet = streamparaset
+          @HeadTailSet = headtailset
+          @AudioSet = audioset
+          @SubtitleSet = subtitleset
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @FileId = params['FileId']
+          unless params['StreamParaSet'].nil?
+            @StreamParaSet = []
+            params['StreamParaSet'].each do |i|
+              complexadaptivedynamicstreamingtaskstreampara_tmp = ComplexAdaptiveDynamicStreamingTaskStreamPara.new
+              complexadaptivedynamicstreamingtaskstreampara_tmp.deserialize(i)
+              @StreamParaSet << complexadaptivedynamicstreamingtaskstreampara_tmp
+            end
+          end
+          unless params['HeadTailSet'].nil?
+            @HeadTailSet = []
+            params['HeadTailSet'].each do |i|
+              headtailtaskinput_tmp = HeadTailTaskInput.new
+              headtailtaskinput_tmp.deserialize(i)
+              @HeadTailSet << headtailtaskinput_tmp
+            end
+          end
+          unless params['AudioSet'].nil?
+            @AudioSet = []
+            params['AudioSet'].each do |i|
+              complexadaptivedynamicstreamingtaskaudioinput_tmp = ComplexAdaptiveDynamicStreamingTaskAudioInput.new
+              complexadaptivedynamicstreamingtaskaudioinput_tmp.deserialize(i)
+              @AudioSet << complexadaptivedynamicstreamingtaskaudioinput_tmp
+            end
+          end
+          unless params['SubtitleSet'].nil?
+            @SubtitleSet = []
+            params['SubtitleSet'].each do |i|
+              complexadaptivedynamicstreamingtasksubtitleinput_tmp = ComplexAdaptiveDynamicStreamingTaskSubtitleInput.new
+              complexadaptivedynamicstreamingtasksubtitleinput_tmp.deserialize(i)
+              @SubtitleSet << complexadaptivedynamicstreamingtasksubtitleinput_tmp
+            end
+          end
+        end
+      end
+
+      # CreateComplexAdaptiveDynamicStreamingTask返回参数结构体
+      class CreateComplexAdaptiveDynamicStreamingTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

@@ -51,7 +51,7 @@ module TencentCloud
 
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-pro、 hunyuan-code、 hunyuan-role、 hunyuan-functioncall、 hunyuan-vision、 hunyuan-turbo、 hunyuan-turbo-latest。
+        # @param Model: 模型名称，可选值包括 hunyuan-lite、hunyuan-standard、hunyuan-standard-256K、hunyuan-pro、 hunyuan-code、 hunyuan-role、 hunyuan-functioncall、 hunyuan-vision、 hunyuan-turbo、 hunyuan-turbo-latest、 hunyuan-large。
         # 各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。
 
         # 注意：
@@ -1657,7 +1657,7 @@ module TencentCloud
 
       # SetPayMode请求参数结构体
       class SetPayModeRequest < TencentCloud::Common::AbstractModel
-        # @param PayMode: 设置后付费状态，0：后付费；1：预付费
+        # @param PayMode: 设置后付费状态，0：后付费打开；1：后付费关闭
         # @type PayMode: Integer
 
         attr_accessor :PayMode
@@ -2157,13 +2157,16 @@ module TencentCloud
         # @type Type: String
         # @param Function: 具体的function调用
         # @type Function: :class:`Tencentcloud::Hunyuan.v20230901.models.ToolCallFunction`
+        # @param Index: 索引值
+        # @type Index: Integer
 
-        attr_accessor :Id, :Type, :Function
+        attr_accessor :Id, :Type, :Function, :Index
 
-        def initialize(id=nil, type=nil, function=nil)
+        def initialize(id=nil, type=nil, function=nil, index=nil)
           @Id = id
           @Type = type
           @Function = function
+          @Index = index
         end
 
         def deserialize(params)
@@ -2173,6 +2176,7 @@ module TencentCloud
             @Function = ToolCallFunction.new
             @Function.deserialize(params['Function'])
           end
+          @Index = params['Index']
         end
       end
 

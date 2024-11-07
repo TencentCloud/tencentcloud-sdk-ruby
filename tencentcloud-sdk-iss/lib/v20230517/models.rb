@@ -4661,7 +4661,7 @@ module TencentCloud
         # @type CurrentUin: Integer
         # @param PageNumber: 页码，默认为1。
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量，默认为20。
+        # @param PageSize: 每页数量，默认为20，单页最大10000条
         # @type PageSize: Integer
 
         attr_accessor :OrganizationId, :IsContainSubLevel, :IsContainUser, :AccessProtocol, :Type, :Status, :ClusterId, :Keyword, :CurrentUin, :PageNumber, :PageSize

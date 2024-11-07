@@ -5272,10 +5272,13 @@ module TencentCloud
         # @type InstanceRestrictState: String
         # @param InitInvocationId: 创建实例后自动执行TAT命令的调用ID。
         # @type InitInvocationId: String
+        # @param InstanceViolationDetail: 实例违规详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceViolationDetail: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceViolationDetail`
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :LatestOperationStartedTime, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :InitInvocationId
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :LatestOperationStartedTime, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :InitInvocationId, :InstanceViolationDetail
 
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, latestoperationstartedtime=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, initinvocationid=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, latestoperationstartedtime=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, initinvocationid=nil, instanceviolationdetail=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -5305,6 +5308,7 @@ module TencentCloud
           @Tags = tags
           @InstanceRestrictState = instancerestrictstate
           @InitInvocationId = initinvocationid
+          @InstanceViolationDetail = instanceviolationdetail
         end
 
         def deserialize(params)
@@ -5353,6 +5357,10 @@ module TencentCloud
           end
           @InstanceRestrictState = params['InstanceRestrictState']
           @InitInvocationId = params['InitInvocationId']
+          unless params['InstanceViolationDetail'].nil?
+            @InstanceViolationDetail = InstanceViolationDetail.new
+            @InstanceViolationDetail.deserialize(params['InstanceViolationDetail'])
+          end
         end
       end
 
@@ -5546,6 +5554,38 @@ module TencentCloud
               @TrafficPackageSet << trafficpackage_tmp
             end
           end
+        end
+      end
+
+      # 实例违规详情。
+      class InstanceViolationDetail < TencentCloud::Common::AbstractModel
+        # @param Source:  来源：RESTRICT：封禁、FREEZW：冻结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param State: 是否允许自助解封：1是，2否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Reason: 违规类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param Content: 违规内容（URL、关联域名）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Source, :State, :Reason, :Content
+
+        def initialize(source=nil, state=nil, reason=nil, content=nil)
+          @Source = source
+          @State = state
+          @Reason = reason
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @State = params['State']
+          @Reason = params['Reason']
+          @Content = params['Content']
         end
       end
 

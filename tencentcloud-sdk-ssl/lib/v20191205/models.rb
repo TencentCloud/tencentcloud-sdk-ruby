@@ -4332,10 +4332,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2024, 10
-        deprecate :Limit=, :none, 2024, 10
-        deprecate :Offset, :none, 2024, 10
-        deprecate :Offset=, :none, 2024, 10
+        deprecate :Limit, :none, 2024, 11
+        deprecate :Limit=, :none, 2024, 11
+        deprecate :Offset, :none, 2024, 11
+        deprecate :Offset=, :none, 2024, 11
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -6661,8 +6661,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 10
-        deprecate :Regions=, :none, 2024, 10
+        deprecate :Regions, :none, 2024, 11
+        deprecate :Regions=, :none, 2024, 11
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid
@@ -7096,7 +7096,7 @@ module TencentCloud
         # @type CertificateUse: String
         # @param Tags: 标签列表
         # @type Tags: Array
-        # @param Repeatable: 相同的证书是否允许重复上传
+        # @param Repeatable: 相同的证书是否允许重复上传； true：允许上传相同指纹的证书；  false：不允许上传相同指纹的证书； 默认值：true
         # @type Repeatable: Boolean
 
         attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Tags, :Repeatable
