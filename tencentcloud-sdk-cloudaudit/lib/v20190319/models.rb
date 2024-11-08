@@ -80,8 +80,10 @@ module TencentCloud
       # cmq地域信息
       class CmqRegionInfo < TencentCloud::Common::AbstractModel
         # @param CmqRegionName: 地域描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CmqRegionName: String
         # @param CmqRegion: cmq地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CmqRegion: String
 
         attr_accessor :CmqRegionName, :CmqRegion
@@ -100,8 +102,10 @@ module TencentCloud
       # cos地域信息
       class CosRegionInfo < TencentCloud::Common::AbstractModel
         # @param CosRegion: cos地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosRegion: String
         # @param CosRegionName: 地域描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosRegionName: String
 
         attr_accessor :CosRegion, :CosRegionName
@@ -121,41 +125,41 @@ module TencentCloud
       class CreateAuditTrackRequest < TencentCloud::Common::AbstractModel
         # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
         # @type Name: String
+        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @type Status: Integer
+        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
         # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
         # @type ActionType: String
         # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）
         # @type ResourceType: String
-        # @param Status: 跟踪集状态（未开启：0；开启：1）
-        # @type Status: Integer
         # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：["*"]；指定ResourceType时，支持全部接口：["*"]；支持部分接口：["cos", "cls"]，接口列表上限10个）
         # @type EventNames: Array
-        # @param Storage: 数据投递存储（目前支持 cos、cls）
-        # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
         # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
         # @type TrackForAllMembers: Integer
 
-        attr_accessor :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :TrackForAllMembers
+        attr_accessor :Name, :Status, :Storage, :ActionType, :ResourceType, :EventNames, :TrackForAllMembers
 
-        def initialize(name=nil, actiontype=nil, resourcetype=nil, status=nil, eventnames=nil, storage=nil, trackforallmembers=nil)
+        def initialize(name=nil, status=nil, storage=nil, actiontype=nil, resourcetype=nil, eventnames=nil, trackforallmembers=nil)
           @Name = name
+          @Status = status
+          @Storage = storage
           @ActionType = actiontype
           @ResourceType = resourcetype
-          @Status = status
           @EventNames = eventnames
-          @Storage = storage
           @TrackForAllMembers = trackforallmembers
         end
 
         def deserialize(params)
           @Name = params['Name']
-          @ActionType = params['ActionType']
-          @ResourceType = params['ResourceType']
           @Status = params['Status']
-          @EventNames = params['EventNames']
           unless params['Storage'].nil?
             @Storage = Storage.new
             @Storage.deserialize(params['Storage'])
           end
+          @ActionType = params['ActionType']
+          @ResourceType = params['ResourceType']
+          @EventNames = params['EventNames']
           @TrackForAllMembers = params['TrackForAllMembers']
         end
       end
@@ -825,7 +829,7 @@ module TencentCloud
 
       # ListCmqEnableRegion返回参数结构体
       class ListCmqEnableRegionResponse < TencentCloud::Common::AbstractModel
-        # @param EnableRegions: 云审计支持的cmq的可用区
+        # @param EnableRegions: 操作审计支持的cmq的可用区
         # @type EnableRegions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -868,7 +872,7 @@ module TencentCloud
 
       # ListCosEnableRegion返回参数结构体
       class ListCosEnableRegionResponse < TencentCloud::Common::AbstractModel
-        # @param EnableRegions: 云审计支持的cos可用区
+        # @param EnableRegions: 操作审计支持的cos可用区
         # @type EnableRegions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -960,7 +964,7 @@ module TencentCloud
         # @type NextToken: String
         # @param MaxResults: 返回日志的最大条数
         # @type MaxResults: Integer
-        # @param Mode: 云审计模式，有效值：standard | quick，其中standard是标准模式，quick是极速模式。默认为标准模式
+        # @param Mode: 操作审计模式，有效值：standard | quick，其中standard是标准模式，quick是极速模式。默认为标准模式
         # @type Mode: String
 
         attr_accessor :StartTime, :EndTime, :LookupAttributes, :NextToken, :MaxResults, :Mode
@@ -1002,15 +1006,19 @@ module TencentCloud
         # @param ListOver: 日志集合是否结束
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListOver: Boolean
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NextToken, :Events, :ListOver, :RequestId
+        attr_accessor :NextToken, :Events, :ListOver, :TotalCount, :RequestId
 
-        def initialize(nexttoken=nil, events=nil, listover=nil, requestid=nil)
+        def initialize(nexttoken=nil, events=nil, listover=nil, totalcount=nil, requestid=nil)
           @NextToken = nexttoken
           @Events = events
           @ListOver = listover
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -1025,6 +1033,7 @@ module TencentCloud
             end
           end
           @ListOver = params['ListOver']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

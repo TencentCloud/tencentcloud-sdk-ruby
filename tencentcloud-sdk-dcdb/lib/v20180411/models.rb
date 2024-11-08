@@ -1020,6 +1020,82 @@ module TencentCloud
         end
       end
 
+      # CreateOnlineDDLJob请求参数结构体
+      class CreateOnlineDDLJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Alter: 要执行的 DDL 语句。常用的在线DDL参考此API文档示例部分
+        # @type Alter: String
+        # @param DbName: 要修改的数据库
+        # @type DbName: String
+        # @param Table: 要修改的表
+        # @type Table: String
+        # @param User: 指定账号执行DDL，需确保账号有 ALTER, CREATE, INSERT, UPDATE, DROP, DELETE, INDEX, CREATE TEMPORARY TABLES, LOCK TABLES, TRIGGER, REPLICATION CLIENT, REPLICATION SLAVE 等相关权限 （若不填写将默认使用系统账号）
+        # @type User: String
+        # @param Password: 指定账号的密码
+        # @type Password: String
+        # @param CriticalLoad: 运行线程数大于此值时，将终止DDL。不填则默认58
+        # @type CriticalLoad: Integer
+        # @param CheckAutoInc: 是否检查自增字段。为1则不允许修改自增字段，0或不填写则不检查
+        # @type CheckAutoInc: Integer
+        # @param MaxDelay: 允许的主备延迟时间(单位s)，0或不填写则不检查延迟
+        # @type MaxDelay: Integer
+        # @param UsePt: 是否使用pt-osc工具做DDL
+        # @type UsePt: Integer
+        # @param StartTime: 开始执行时间
+        # @type StartTime: String
+
+        attr_accessor :InstanceId, :Alter, :DbName, :Table, :User, :Password, :CriticalLoad, :CheckAutoInc, :MaxDelay, :UsePt, :StartTime
+
+        def initialize(instanceid=nil, alter=nil, dbname=nil, table=nil, user=nil, password=nil, criticalload=nil, checkautoinc=nil, maxdelay=nil, usept=nil, starttime=nil)
+          @InstanceId = instanceid
+          @Alter = alter
+          @DbName = dbname
+          @Table = table
+          @User = user
+          @Password = password
+          @CriticalLoad = criticalload
+          @CheckAutoInc = checkautoinc
+          @MaxDelay = maxdelay
+          @UsePt = usept
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Alter = params['Alter']
+          @DbName = params['DbName']
+          @Table = params['Table']
+          @User = params['User']
+          @Password = params['Password']
+          @CriticalLoad = params['CriticalLoad']
+          @CheckAutoInc = params['CheckAutoInc']
+          @MaxDelay = params['MaxDelay']
+          @UsePt = params['UsePt']
+          @StartTime = params['StartTime']
+        end
+      end
+
+      # CreateOnlineDDLJob返回参数结构体
+      class CreateOnlineDDLJobResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 在线DDL任务Id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTmpDCDBInstance请求参数结构体
       class CreateTmpDCDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 回档实例的ID

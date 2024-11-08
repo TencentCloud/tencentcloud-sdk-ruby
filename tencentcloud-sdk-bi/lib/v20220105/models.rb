@@ -541,10 +541,14 @@ module TencentCloud
         # -eq  等于=操作符
         # -is     in操作符
         # @type GlobalParam: String
+        # @param TokenType: 100 不绑定用户  200 单用户单token  300 单用户多token
+        # @type TokenType: Integer
+        # @param TokenNum: 一次创建的token数
+        # @type TokenNum: Integer
 
-        attr_accessor :ProjectId, :PageId, :Intention, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam
+        attr_accessor :ProjectId, :PageId, :Intention, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :TokenType, :TokenNum
 
-        def initialize(projectid=nil, pageid=nil, intention=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil)
+        def initialize(projectid=nil, pageid=nil, intention=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, tokentype=nil, tokennum=nil)
           @ProjectId = projectid
           @PageId = pageid
           @Intention = intention
@@ -555,6 +559,8 @@ module TencentCloud
           @UserId = userid
           @TicketNum = ticketnum
           @GlobalParam = globalparam
+          @TokenType = tokentype
+          @TokenNum = tokennum
         end
 
         def deserialize(params)
@@ -568,6 +574,8 @@ module TencentCloud
           @UserId = params['UserId']
           @TicketNum = params['TicketNum']
           @GlobalParam = params['GlobalParam']
+          @TokenType = params['TokenType']
+          @TokenNum = params['TokenNum']
         end
       end
 
@@ -1836,10 +1844,21 @@ module TencentCloud
         # @param Intention: embed表示页面看板嵌出，chatBIEmbed表示ChatBI嵌出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Intention: String
+        # @param TokenType: 100 无绑定用户
+        # 200 单用户单token
+        # 300 单用户 多token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenType: Integer
+        # @param TokenNum: token 数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenNum: Integer
+        # @param SingleUserMultiToken: 是否单用户多token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SingleUserMultiToken: Boolean
 
-        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :Intention
+        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum, :GlobalParam, :Intention, :TokenType, :TokenNum, :SingleUserMultiToken
 
-        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, intention=nil)
+        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil, globalparam=nil, intention=nil, tokentype=nil, tokennum=nil, singleusermultitoken=nil)
           @Id = id
           @BIToken = bitoken
           @ProjectId = projectid
@@ -1856,6 +1875,9 @@ module TencentCloud
           @TicketNum = ticketnum
           @GlobalParam = globalparam
           @Intention = intention
+          @TokenType = tokentype
+          @TokenNum = tokennum
+          @SingleUserMultiToken = singleusermultitoken
         end
 
         def deserialize(params)
@@ -1875,6 +1897,9 @@ module TencentCloud
           @TicketNum = params['TicketNum']
           @GlobalParam = params['GlobalParam']
           @Intention = params['Intention']
+          @TokenType = params['TokenType']
+          @TokenNum = params['TokenNum']
+          @SingleUserMultiToken = params['SingleUserMultiToken']
         end
       end
 

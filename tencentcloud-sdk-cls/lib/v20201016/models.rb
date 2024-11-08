@@ -3773,10 +3773,16 @@ module TencentCloud
         # @param DataTransformType: 数据加工类型。0：标准加工任务；1：前置加工任务。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataTransformType: Integer
+        # @param KeepFailureLog: 保留失败日志状态。 1:不保留，2:保留
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeepFailureLog: Integer
+        # @param FailureLogKey: 失败日志的字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureLogKey: String
 
-        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :DataTransformType
+        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :DataTransformType, :KeepFailureLog, :FailureLogKey
 
-        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil, datatransformtype=nil)
+        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil)
           @Name = name
           @TaskId = taskid
           @EnableFlag = enableflag
@@ -3791,6 +3797,8 @@ module TencentCloud
           @DstResources = dstresources
           @EtlContent = etlcontent
           @DataTransformType = datatransformtype
+          @KeepFailureLog = keepfailurelog
+          @FailureLogKey = failurelogkey
         end
 
         def deserialize(params)
@@ -3815,6 +3823,8 @@ module TencentCloud
           end
           @EtlContent = params['EtlContent']
           @DataTransformType = params['DataTransformType']
+          @KeepFailureLog = params['KeepFailureLog']
+          @FailureLogKey = params['FailureLogKey']
         end
       end
 
@@ -6368,11 +6378,21 @@ module TencentCloud
 
       # DescribeShippers请求参数结构体
       class DescribeShippersRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: - shipperName：按照【投递规则名称】进行过滤。类型：String。必选：否
-        # - shipperId：按照【投递规则ID】进行过滤。类型：String。必选：否
-        # - topicId：按照【日志主题】进行过滤。类型：String。必选：否
+        # @param Filters: - shipperName：按照【投递规则名称】进行过滤。
+        #     类型：String。
+        #     必选：否
+        # - shipperId：按照【投递规则ID】进行过滤。
+        #     类型：String。
+        #     必选：否
+        # - topicId：按照【日志主题】进行过滤。
+        #     类型：String。
+        #     必选：否
+        # - taskStatus
+        # 按照【任务运行状态】进行过滤。 支持`0`：停止，`1`：运行中，`2`：异常
+        # 类型：String
+        # 必选：否
 
-        # 每次请求的Filters的上限为10，Filter.Values的上限为5。
+        # 每次请求的Filters的上限为10，Filter.Values的上限为10。
         # @type Filters: Array
         # @param Offset: 分页的偏移量，默认值为0
         # @type Offset: Integer

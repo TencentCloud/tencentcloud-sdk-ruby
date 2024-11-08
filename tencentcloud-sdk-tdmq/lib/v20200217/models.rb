@@ -4356,48 +4356,7 @@ module TencentCloud
 
       # DescribeMqMsgTrace返回参数结构体
       class DescribeMqMsgTraceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: [
-        #     {
-        #         "Stage": "produce",
-        #         "Data": {
-        #             "ProducerName": "生产者名",
-        #             "ProduceTime": "消息生产时间",
-        #             "ProducerAddr": "客户端地址",
-        #             "Duration": "耗时ms",
-        #             "Status": "状态（0：成功，1：失败）"
-        #         }
-        #     },
-        #     {
-        #         "Stage": "persist",
-        #         "Data": {
-        #             "PersistTime": "存储时间",
-        #             "Duration": "耗时ms",
-        #             "Status": "状态（0：成功，1：失败）"
-        #         }
-        #     },
-        #     {
-        #         "Stage": "consume",
-        #         "Data": {
-        #             "TotalCount": 2,
-        #             "RocketMqConsumeLogs": [
-        #                 {
-        #                     "ConsumerGroup": "消费组",
-        #                     "ConsumeModel": "消费模式",
-        #                     "ConsumerAddr": "消费者地址",
-        #                     "ConsumeTime": "推送时间",
-        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
-        #                 },
-        #                 {
-        #                     "ConsumerGroup": "消费组",
-        #                     "ConsumeModel": "消费模式",
-        #                     "ConsumerAddr": "消费者地址",
-        #                     "ConsumeTime": "推送时间",
-        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
-        #                 }
-        #             ]
-        #         }
-        #     }
-        # ]
+        # @param Result: 消息内容
         # @type Result: Array
         # @param ShowTopicName: 消息轨迹页展示的topic名称
         # @type ShowTopicName: String
@@ -8342,19 +8301,23 @@ module TencentCloud
         # @type ZoneId: String
         # @param NodeCount: 节点数
         # @type NodeCount: Integer
+        # @param NodePermWipeFlag: 有调度任务且没有切回的可用区，此标识为true
+        # @type NodePermWipeFlag: Boolean
 
-        attr_accessor :ZoneName, :ZoneId, :NodeCount
+        attr_accessor :ZoneName, :ZoneId, :NodeCount, :NodePermWipeFlag
 
-        def initialize(zonename=nil, zoneid=nil, nodecount=nil)
+        def initialize(zonename=nil, zoneid=nil, nodecount=nil, nodepermwipeflag=nil)
           @ZoneName = zonename
           @ZoneId = zoneid
           @NodeCount = nodecount
+          @NodePermWipeFlag = nodepermwipeflag
         end
 
         def deserialize(params)
           @ZoneName = params['ZoneName']
           @ZoneId = params['ZoneId']
           @NodeCount = params['NodeCount']
+          @NodePermWipeFlag = params['NodePermWipeFlag']
         end
       end
 
@@ -9957,10 +9920,21 @@ module TencentCloud
         # @param AccessPointsType: 接入点类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessPointsType: String
+        # @param Bandwidth: 带宽，目前只有公网会有这个值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param SecurityPolicy: 类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityPolicy: Array
+        # @param StandardAccessPoint: 是否是标准的接入点 true是标准的 false不是标准的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardAccessPoint: Boolean
+        # @param ZoneName: 可用区信息
+        # @type ZoneName: String
 
-        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType
+        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType, :Bandwidth, :SecurityPolicy, :StandardAccessPoint, :ZoneName
 
-        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil)
+        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil, bandwidth=nil, securitypolicy=nil, standardaccesspoint=nil, zonename=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @Endpoint = endpoint
@@ -9968,6 +9942,10 @@ module TencentCloud
           @RouteType = routetype
           @OperationType = operationtype
           @AccessPointsType = accesspointstype
+          @Bandwidth = bandwidth
+          @SecurityPolicy = securitypolicy
+          @StandardAccessPoint = standardaccesspoint
+          @ZoneName = zonename
         end
 
         def deserialize(params)
@@ -9978,6 +9956,17 @@ module TencentCloud
           @RouteType = params['RouteType']
           @OperationType = params['OperationType']
           @AccessPointsType = params['AccessPointsType']
+          @Bandwidth = params['Bandwidth']
+          unless params['SecurityPolicy'].nil?
+            @SecurityPolicy = []
+            params['SecurityPolicy'].each do |i|
+              securitypolicy_tmp = SecurityPolicy.new
+              securitypolicy_tmp.deserialize(i)
+              @SecurityPolicy << securitypolicy_tmp
+            end
+          end
+          @StandardAccessPoint = params['StandardAccessPoint']
+          @ZoneName = params['ZoneName']
         end
       end
 
@@ -10009,10 +9998,17 @@ module TencentCloud
         # @param ExpireTime: 实例到期时间戳，毫秒级精度。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
+        # @param AutoCreateTopicStatus: 是否开启自动创建主题
+        # true就是开启了，false是关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoCreateTopicStatus: Boolean
+        # @param DefaultPartitionNumber: 自动创建主题的默认分区数，如果没开启就是0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultPartitionNumber: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -10024,6 +10020,8 @@ module TencentCloud
           @CanEditRoute = caneditroute
           @BillingLabelVersion = billinglabelversion
           @ExpireTime = expiretime
+          @AutoCreateTopicStatus = autocreatetopicstatus
+          @DefaultPartitionNumber = defaultpartitionnumber
         end
 
         def deserialize(params)
@@ -10045,6 +10043,8 @@ module TencentCloud
           @CanEditRoute = params['CanEditRoute']
           @BillingLabelVersion = params['BillingLabelVersion']
           @ExpireTime = params['ExpireTime']
+          @AutoCreateTopicStatus = params['AutoCreateTopicStatus']
+          @DefaultPartitionNumber = params['DefaultPartitionNumber']
         end
       end
 
@@ -12530,6 +12530,34 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 安全策略
+      class SecurityPolicy < TencentCloud::Common::AbstractModel
+        # @param Route: ip或者网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Route: String
+        # @param Policy: 策略 true就是允许，白名单或者 false 拒绝 黑名单
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: Boolean
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :Route, :Policy, :Remark
+
+        def initialize(route=nil, policy=nil, remark=nil)
+          @Route = route
+          @Policy = policy
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Route = params['Route']
+          @Policy = params['Policy']
+          @Remark = params['Remark']
         end
       end
 

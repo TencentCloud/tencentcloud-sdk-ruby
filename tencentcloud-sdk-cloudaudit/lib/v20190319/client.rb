@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云审计支持的cmq的可用区
+        # 查询操作审计支持的cmq的可用区
 
         # @param request: Request instance for ListCmqEnableRegion.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::ListCmqEnableRegionRequest`
@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云审计支持的cos可用区
+        # 查询操作审计支持的cos可用区
 
         # @param request: Request instance for ListCosEnableRegion.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::ListCosEnableRegionRequest`

@@ -42,18 +42,14 @@ module TencentCloud
         # @param ExpireTime: 实例过期时间，格式：yyyy-mm-dd HH:ii:ss
         # @type ExpireTime: String
         # @param InstanceName: 实例名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
         # @param PublicIp: 实例公网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIp: String
         # @param PrivateIp: 实例私网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIp: String
         # @param InstanceType: 实例类型（版本）
         # @type InstanceType: String
         # @param Pdomain: 实例域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pdomain: String
 
         attr_accessor :InstanceId, :AppId, :Uin, :ProjectId, :RenewFlag, :Region, :PayMode, :Status, :IsolatedTimestamp, :CreateTime, :ExpireTime, :InstanceName, :PublicIp, :PrivateIp, :InstanceType, :Pdomain

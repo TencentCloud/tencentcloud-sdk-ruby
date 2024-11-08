@@ -1118,10 +1118,8 @@ module TencentCloud
       # 规则表达式
       class RuleExpression < TencentCloud::Common::AbstractModel
         # @param Items: 规则元数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Relation: 关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
 
         attr_accessor :Items, :Relation
@@ -1147,16 +1145,12 @@ module TencentCloud
       # 规则元数据
       class RuleItem < TencentCloud::Common::AbstractModel
         # @param Key: 字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Operate: 操作关系（等于、不等于、包含、不包含）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operate: String
         # @param Value: 内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Values: 内容，v2多值版本使用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Key, :Operate, :Value, :Values
@@ -1179,10 +1173,8 @@ module TencentCloud
       # 简单规则表达式
       class SimpleRule < TencentCloud::Common::AbstractModel
         # @param Expressions: 规则表达式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expressions: Array
         # @param Relation: 表达式间逻辑关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
 
         attr_accessor :Expressions, :Relation

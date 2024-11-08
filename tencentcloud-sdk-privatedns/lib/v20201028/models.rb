@@ -691,6 +691,38 @@ module TencentCloud
         end
       end
 
+      # DeleteForwardRule请求参数结构体
+      class DeleteForwardRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIdSet: 转发规则ID数组
+        # @type RuleIdSet: Array
+
+        attr_accessor :RuleIdSet
+
+        def initialize(ruleidset=nil)
+          @RuleIdSet = ruleidset
+        end
+
+        def deserialize(params)
+          @RuleIdSet = params['RuleIdSet']
+        end
+      end
+
+      # DeleteForwardRule返回参数结构体
+      class DeleteForwardRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePrivateDNSAccount请求参数结构体
       class DeletePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
         # @param Account: 私有域解析账号
@@ -1136,6 +1168,44 @@ module TencentCloud
         end
       end
 
+      # DescribeEndPointRegion请求参数结构体
+      class DescribeEndPointRegionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEndPointRegion返回参数结构体
+      class DescribeEndPointRegionResponse < TencentCloud::Common::AbstractModel
+        # @param RegionSet: 地域数组
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionSet, :RequestId
+
+        def initialize(regionset=nil, requestid=nil)
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionSet << regioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeForwardRuleList请求参数结构体
       class DescribeForwardRuleListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量，从0开始
@@ -1193,6 +1263,45 @@ module TencentCloud
               forwardrule_tmp.deserialize(i)
               @ForwardRuleSet << forwardrule_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeForwardRule请求参数结构体
+      class DescribeForwardRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 转发规则ID
+        # @type RuleId: String
+
+        attr_accessor :RuleId
+
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DescribeForwardRule返回参数结构体
+      class DescribeForwardRuleResponse < TencentCloud::Common::AbstractModel
+        # @param ForwardRule: 转发规则详情
+        # @type ForwardRule: :class:`Tencentcloud::Privatedns.v20201028.models.ForwardRule`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ForwardRule, :RequestId
+
+        def initialize(forwardrule=nil, requestid=nil)
+          @ForwardRule = forwardrule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ForwardRule'].nil?
+            @ForwardRule = ForwardRule.new
+            @ForwardRule.deserialize(params['ForwardRule'])
           end
           @RequestId = params['RequestId']
         end
@@ -1755,6 +1864,46 @@ module TencentCloud
         end
       end
 
+      # ModifyForwardRule请求参数结构体
+      class ModifyForwardRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 转发规则ID
+        # @type RuleId: String
+        # @param RuleName: 转发规则名称
+        # @type RuleName: String
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+
+        attr_accessor :RuleId, :RuleName, :EndPointId
+
+        def initialize(ruleid=nil, rulename=nil, endpointid=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # ModifyForwardRule返回参数结构体
+      class ModifyForwardRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrivateZoneRecord请求参数结构体
       class ModifyPrivateZoneRecordRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 私有域ID
@@ -2247,6 +2396,41 @@ module TencentCloud
           @Status = params['Status']
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 地域信息
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param RegionCode: 地域编码
+        # @type RegionCode: String
+        # @param CnName: 地域中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CnName: String
+        # @param EnName: 地域英文名
+        # @type EnName: String
+        # @param RegionId: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param AvailableZoneNum: 可用区数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableZoneNum: Integer
+
+        attr_accessor :RegionCode, :CnName, :EnName, :RegionId, :AvailableZoneNum
+
+        def initialize(regioncode=nil, cnname=nil, enname=nil, regionid=nil, availablezonenum=nil)
+          @RegionCode = regioncode
+          @CnName = cnname
+          @EnName = enname
+          @RegionId = regionid
+          @AvailableZoneNum = availablezonenum
+        end
+
+        def deserialize(params)
+          @RegionCode = params['RegionCode']
+          @CnName = params['CnName']
+          @EnName = params['EnName']
+          @RegionId = params['RegionId']
+          @AvailableZoneNum = params['AvailableZoneNum']
         end
       end
 

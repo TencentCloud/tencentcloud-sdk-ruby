@@ -940,10 +940,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2024, 10
-        deprecate :RTCAudienceNumber=, :none, 2024, 10
-        deprecate :RecordLang, :none, 2024, 10
-        deprecate :RecordLang=, :none, 2024, 10
+        deprecate :RTCAudienceNumber, :none, 2024, 11
+        deprecate :RTCAudienceNumber=, :none, 2024, 11
+        deprecate :RecordLang, :none, 2024, 11
+        deprecate :RecordLang=, :none, 2024, 11
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name
@@ -3816,8 +3816,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2024, 10
-        deprecate :RecordLang=, :none, 2024, 10
+        deprecate :RecordLang, :none, 2024, 11
+        deprecate :RecordLang=, :none, 2024, 11
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil)
           @RoomId = roomid
@@ -4160,10 +4160,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2024, 10
-        deprecate :RTCAudienceNumber=, :none, 2024, 10
-        deprecate :RecordLang, :none, 2024, 10
-        deprecate :RecordLang=, :none, 2024, 10
+        deprecate :RTCAudienceNumber, :none, 2024, 11
+        deprecate :RTCAudienceNumber=, :none, 2024, 11
+        deprecate :RecordLang, :none, 2024, 11
+        deprecate :RecordLang=, :none, 2024, 11
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil)
           @Name = name

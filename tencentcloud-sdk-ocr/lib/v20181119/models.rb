@@ -1182,6 +1182,48 @@ module TencentCloud
         end
       end
 
+      # 卡证告警信息返回
+      class CardWarnInfo < TencentCloud::Common::AbstractModel
+        # @param BorderCheck: 证件边缘是否完整
+        # 0：正常
+        # 1：边缘不完整
+        # @type BorderCheck: Integer
+        # @param OcclusionCheck: 证件是否被遮挡
+        # 0：正常
+        # 1：有遮挡
+        # @type OcclusionCheck: Integer
+        # @param CopyCheck: 是否复印
+        # 0:正常
+        # 1:复印件
+        # @type CopyCheck: Integer
+        # @param ReshootCheck: 是否屏幕翻拍
+        # 0:正常
+        # 1:翻拍
+        # @type ReshootCheck: Integer
+        # @param PSCheck: 证件是否有PS
+        # 0：正常
+        # 1：有PS
+        # @type PSCheck: Integer
+
+        attr_accessor :BorderCheck, :OcclusionCheck, :CopyCheck, :ReshootCheck, :PSCheck
+
+        def initialize(bordercheck=nil, occlusioncheck=nil, copycheck=nil, reshootcheck=nil, pscheck=nil)
+          @BorderCheck = bordercheck
+          @OcclusionCheck = occlusioncheck
+          @CopyCheck = copycheck
+          @ReshootCheck = reshootcheck
+          @PSCheck = pscheck
+        end
+
+        def deserialize(params)
+          @BorderCheck = params['BorderCheck']
+          @OcclusionCheck = params['OcclusionCheck']
+          @CopyCheck = params['CopyCheck']
+          @ReshootCheck = params['ReshootCheck']
+          @PSCheck = params['PSCheck']
+        end
+      end
+
       # 单元格识别结果
       class CellContent < TencentCloud::Common::AbstractModel
         # @param ParagNo: 段落编号
@@ -1351,6 +1393,38 @@ module TencentCloud
         def deserialize(params)
           @StoreLabel = params['StoreLabel']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 卡证字段信息返回值
+      class ContentInfo < TencentCloud::Common::AbstractModel
+        # @param Content: 字段内容
+        # @type Content: String
+        # @param Confidence: 结果置信度
+        # @type Confidence: Integer
+        # @param IsInComplete: 字段是否不完整
+        # 0 字段正常
+        # 1 字段不完整
+        # @type IsInComplete: Integer
+        # @param IsReflect: 字段反光
+        # 0 字段正常
+        # 1 字段有反光
+        # @type IsReflect: Integer
+
+        attr_accessor :Content, :Confidence, :IsInComplete, :IsReflect
+
+        def initialize(content=nil, confidence=nil, isincomplete=nil, isreflect=nil)
+          @Content = content
+          @Confidence = confidence
+          @IsInComplete = isincomplete
+          @IsReflect = isreflect
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Confidence = params['Confidence']
+          @IsInComplete = params['IsInComplete']
+          @IsReflect = params['IsReflect']
         end
       end
 
@@ -4063,19 +4137,23 @@ module TencentCloud
         # BACK：无照片的一面（国徽面），
         # 该参数如果不填或填错，将为您自动判断正反面。
         # @type CardSide: String
+        # @param CropPortrait: 是否返回头像和位置坐标
+        # @type CropPortrait: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardSide
+        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :CropPortrait
 
-        def initialize(imagebase64=nil, imageurl=nil, cardside=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, cropportrait=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardSide = cardside
+          @CropPortrait = cropportrait
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @CardSide = params['CardSide']
+          @CropPortrait = params['CropPortrait']
         end
       end
 
@@ -4102,12 +4180,14 @@ module TencentCloud
         # @type VisaNum: String
         # @param PassNo: 通行证号码
         # @type PassNo: String
+        # @param PortraitImageInfo: 头像和坐标信息
+        # @type PortraitImageInfo: :class:`Tencentcloud::Ocr.v20181119.models.PortraitImageInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Birth, :Address, :IdCardNo, :CardType, :ValidDate, :Authority, :VisaNum, :PassNo, :RequestId
+        attr_accessor :Name, :Sex, :Birth, :Address, :IdCardNo, :CardType, :ValidDate, :Authority, :VisaNum, :PassNo, :PortraitImageInfo, :RequestId
 
-        def initialize(name=nil, sex=nil, birth=nil, address=nil, idcardno=nil, cardtype=nil, validdate=nil, authority=nil, visanum=nil, passno=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, birth=nil, address=nil, idcardno=nil, cardtype=nil, validdate=nil, authority=nil, visanum=nil, passno=nil, portraitimageinfo=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Birth = birth
@@ -4118,6 +4198,7 @@ module TencentCloud
           @Authority = authority
           @VisaNum = visanum
           @PassNo = passno
+          @PortraitImageInfo = portraitimageinfo
           @RequestId = requestid
         end
 
@@ -4132,7 +4213,100 @@ module TencentCloud
           @Authority = params['Authority']
           @VisaNum = params['VisaNum']
           @PassNo = params['PassNo']
+          unless params['PortraitImageInfo'].nil?
+            @PortraitImageInfo = PortraitImageInfo.new
+            @PortraitImageInfo.deserialize(params['PortraitImageInfo'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 身份证信息返回
+      class IDCardInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名（人像面）
+        # @type Name: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Sex: 性别（人像面）
+        # @type Sex: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Nation: 民族（人像面）
+        # @type Nation: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Birth: 出生日期（人像面）
+        # @type Birth: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Address: 地址（人像面）
+        # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param IdNum: 公民身份号码（人像面）
+        # @type IdNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Authority: 发证机关（国徽面）
+        # @type Authority: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param ValidDate: 证件有效期（国徽面）
+        # @type ValidDate: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param WarnInfos: WarnInfos，告警信息
+        # @type WarnInfos: :class:`Tencentcloud::Ocr.v20181119.models.CardWarnInfo`
+        # @param CardImage: IdCard，裁剪后身份证照片的base64编码，请求 EnableCropImage 时返回；
+        # @type CardImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param PortraitImage: Portrait，身份证头像照片的base64编码，请求 EnablePortrait 时返回；
+        # @type PortraitImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+
+        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :WarnInfos, :CardImage, :PortraitImage
+
+        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, warninfos=nil, cardimage=nil, portraitimage=nil)
+          @Name = name
+          @Sex = sex
+          @Nation = nation
+          @Birth = birth
+          @Address = address
+          @IdNum = idnum
+          @Authority = authority
+          @ValidDate = validdate
+          @WarnInfos = warninfos
+          @CardImage = cardimage
+          @PortraitImage = portraitimage
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = ContentInfo.new
+            @Name.deserialize(params['Name'])
+          end
+          unless params['Sex'].nil?
+            @Sex = ContentInfo.new
+            @Sex.deserialize(params['Sex'])
+          end
+          unless params['Nation'].nil?
+            @Nation = ContentInfo.new
+            @Nation.deserialize(params['Nation'])
+          end
+          unless params['Birth'].nil?
+            @Birth = ContentInfo.new
+            @Birth.deserialize(params['Birth'])
+          end
+          unless params['Address'].nil?
+            @Address = ContentInfo.new
+            @Address.deserialize(params['Address'])
+          end
+          unless params['IdNum'].nil?
+            @IdNum = ContentInfo.new
+            @IdNum.deserialize(params['IdNum'])
+          end
+          unless params['Authority'].nil?
+            @Authority = ContentInfo.new
+            @Authority.deserialize(params['Authority'])
+          end
+          unless params['ValidDate'].nil?
+            @ValidDate = ContentInfo.new
+            @ValidDate.deserialize(params['ValidDate'])
+          end
+          unless params['WarnInfos'].nil?
+            @WarnInfos = CardWarnInfo.new
+            @WarnInfos.deserialize(params['WarnInfos'])
+          end
+          unless params['CardImage'].nil?
+            @CardImage = ContentInfo.new
+            @CardImage.deserialize(params['CardImage'])
+          end
+          unless params['PortraitImage'].nil?
+            @PortraitImage = ContentInfo.new
+            @PortraitImage.deserialize(params['PortraitImage'])
+          end
         end
       end
 
@@ -4272,6 +4446,38 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 头像位置坐标
+      class ImageCoordinates < TencentCloud::Common::AbstractModel
+        # @param X: 头像左上角横坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type X: Integer
+        # @param Y: 头像左上角纵坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Y: Integer
+        # @param Width: 头像框宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 头像框高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 
@@ -6412,19 +6618,23 @@ module TencentCloud
         # @param Type: 默认填写CN
         # 支持中国大陆地区护照。
         # @type Type: String
+        # @param CropPortrait: 是否返回头像和位置坐标
+        # @type CropPortrait: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Type
+        attr_accessor :ImageBase64, :ImageUrl, :Type, :CropPortrait
 
-        def initialize(imagebase64=nil, imageurl=nil, type=nil)
+        def initialize(imagebase64=nil, imageurl=nil, type=nil, cropportrait=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Type = type
+          @CropPortrait = cropportrait
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @Type = params['Type']
+          @CropPortrait = params['CropPortrait']
         end
       end
 
@@ -6460,12 +6670,14 @@ module TencentCloud
         # @type FamilyName: String
         # @param FirstName: 名
         # @type FirstName: String
+        # @param PortraitImageInfo: 头像和坐标信息
+        # @type PortraitImageInfo: :class:`Tencentcloud::Ocr.v20181119.models.PortraitImageInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Country, :PassportNo, :Sex, :Nationality, :BirthDate, :BirthPlace, :IssueDate, :IssuePlace, :ExpiryDate, :Signature, :CodeSet, :CodeCrc, :Name, :FamilyName, :FirstName, :RequestId
+        attr_accessor :Country, :PassportNo, :Sex, :Nationality, :BirthDate, :BirthPlace, :IssueDate, :IssuePlace, :ExpiryDate, :Signature, :CodeSet, :CodeCrc, :Name, :FamilyName, :FirstName, :PortraitImageInfo, :RequestId
 
-        def initialize(country=nil, passportno=nil, sex=nil, nationality=nil, birthdate=nil, birthplace=nil, issuedate=nil, issueplace=nil, expirydate=nil, signature=nil, codeset=nil, codecrc=nil, name=nil, familyname=nil, firstname=nil, requestid=nil)
+        def initialize(country=nil, passportno=nil, sex=nil, nationality=nil, birthdate=nil, birthplace=nil, issuedate=nil, issueplace=nil, expirydate=nil, signature=nil, codeset=nil, codecrc=nil, name=nil, familyname=nil, firstname=nil, portraitimageinfo=nil, requestid=nil)
           @Country = country
           @PassportNo = passportno
           @Sex = sex
@@ -6481,6 +6693,7 @@ module TencentCloud
           @Name = name
           @FamilyName = familyname
           @FirstName = firstname
+          @PortraitImageInfo = portraitimageinfo
           @RequestId = requestid
         end
 
@@ -6500,6 +6713,10 @@ module TencentCloud
           @Name = params['Name']
           @FamilyName = params['FamilyName']
           @FirstName = params['FirstName']
+          unless params['PortraitImageInfo'].nil?
+            @PortraitImageInfo = PortraitImageInfo.new
+            @PortraitImageInfo.deserialize(params['PortraitImageInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6575,6 +6792,109 @@ module TencentCloud
           @Signature = params['Signature']
           @IssuePlace = params['IssuePlace']
           @IssuingAuthority = params['IssuingAuthority']
+        end
+      end
+
+      # 外国人永久居留证信息返回
+      class PermanentResidencePermitInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名（人像面）
+        # @type Name: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Sex: 性别（人像面）
+        # @type Sex: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Nation: 民族（人像面）
+        # @type Nation: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Birth: 出生日期（人像面）
+        # @type Birth: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Address: 地址（人像面）
+        # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param IdNum: 公民身份号码（人像面）
+        # @type IdNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Authority: 发证机关（国徽面）
+        # @type Authority: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param ValidDate: 证件有效期（国徽面）
+        # @type ValidDate: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param WarnInfos: WarnInfos，告警信息
+        # @type WarnInfos: :class:`Tencentcloud::Ocr.v20181119.models.CardWarnInfo`
+        # @param CardImage: IdCard，裁剪后身份证照片的base64编码，请求 EnableCropImage 时返回；
+        # @type CardImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param PortraitImage: Portrait，身份证头像照片的base64编码，请求 EnablePortrait 时返回；
+        # @type PortraitImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param HolderNum: 持证人持有号码，外国人永久居留证 返回该字段
+        # @type HolderNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Nationality: 国籍，外国人永久居留证 返回该字段
+        # @type Nationality: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+
+        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :WarnInfos, :CardImage, :PortraitImage, :HolderNum, :Nationality
+
+        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, warninfos=nil, cardimage=nil, portraitimage=nil, holdernum=nil, nationality=nil)
+          @Name = name
+          @Sex = sex
+          @Nation = nation
+          @Birth = birth
+          @Address = address
+          @IdNum = idnum
+          @Authority = authority
+          @ValidDate = validdate
+          @WarnInfos = warninfos
+          @CardImage = cardimage
+          @PortraitImage = portraitimage
+          @HolderNum = holdernum
+          @Nationality = nationality
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = ContentInfo.new
+            @Name.deserialize(params['Name'])
+          end
+          unless params['Sex'].nil?
+            @Sex = ContentInfo.new
+            @Sex.deserialize(params['Sex'])
+          end
+          unless params['Nation'].nil?
+            @Nation = ContentInfo.new
+            @Nation.deserialize(params['Nation'])
+          end
+          unless params['Birth'].nil?
+            @Birth = ContentInfo.new
+            @Birth.deserialize(params['Birth'])
+          end
+          unless params['Address'].nil?
+            @Address = ContentInfo.new
+            @Address.deserialize(params['Address'])
+          end
+          unless params['IdNum'].nil?
+            @IdNum = ContentInfo.new
+            @IdNum.deserialize(params['IdNum'])
+          end
+          unless params['Authority'].nil?
+            @Authority = ContentInfo.new
+            @Authority.deserialize(params['Authority'])
+          end
+          unless params['ValidDate'].nil?
+            @ValidDate = ContentInfo.new
+            @ValidDate.deserialize(params['ValidDate'])
+          end
+          unless params['WarnInfos'].nil?
+            @WarnInfos = CardWarnInfo.new
+            @WarnInfos.deserialize(params['WarnInfos'])
+          end
+          unless params['CardImage'].nil?
+            @CardImage = ContentInfo.new
+            @CardImage.deserialize(params['CardImage'])
+          end
+          unless params['PortraitImage'].nil?
+            @PortraitImage = ContentInfo.new
+            @PortraitImage.deserialize(params['PortraitImage'])
+          end
+          unless params['HolderNum'].nil?
+            @HolderNum = ContentInfo.new
+            @HolderNum.deserialize(params['HolderNum'])
+          end
+          unless params['Nationality'].nil?
+            @Nationality = ContentInfo.new
+            @Nationality.deserialize(params['Nationality'])
+          end
         end
       end
 
@@ -6702,6 +7022,31 @@ module TencentCloud
           unless params['LeftBottom'].nil?
             @LeftBottom = Coord.new
             @LeftBottom.deserialize(params['LeftBottom'])
+          end
+        end
+      end
+
+      # 头像照片和坐标
+      class PortraitImageInfo < TencentCloud::Common::AbstractModel
+        # @param PortraitImage: 头像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PortraitImage: String
+        # @param ImageCoordinates: 头像坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCoordinates: :class:`Tencentcloud::Ocr.v20181119.models.ImageCoordinates`
+
+        attr_accessor :PortraitImage, :ImageCoordinates
+
+        def initialize(portraitimage=nil, imagecoordinates=nil)
+          @PortraitImage = portraitimage
+          @ImageCoordinates = imagecoordinates
+        end
+
+        def deserialize(params)
+          @PortraitImage = params['PortraitImage']
+          unless params['ImageCoordinates'].nil?
+            @ImageCoordinates = ImageCoordinates.new
+            @ImageCoordinates.deserialize(params['ImageCoordinates'])
           end
         end
       end
@@ -7518,14 +7863,17 @@ module TencentCloud
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。
         # 示例值：1
         # @type PdfPageNumber: Integer
+        # @param CropPortrait: 是否返回头像和位置坐标
+        # @type CropPortrait: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber
+        attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber, :CropPortrait
 
-        def initialize(imageurl=nil, imagebase64=nil, enablepdf=nil, pdfpagenumber=nil)
+        def initialize(imageurl=nil, imagebase64=nil, enablepdf=nil, pdfpagenumber=nil, cropportrait=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @EnablePdf = enablepdf
           @PdfPageNumber = pdfpagenumber
+          @CropPortrait = cropportrait
         end
 
         def deserialize(params)
@@ -7533,6 +7881,7 @@ module TencentCloud
           @ImageBase64 = params['ImageBase64']
           @EnablePdf = params['EnablePdf']
           @PdfPageNumber = params['PdfPageNumber']
+          @CropPortrait = params['CropPortrait']
         end
       end
 
@@ -7556,12 +7905,14 @@ module TencentCloud
         # @type PreviousNumber: String
         # @param IssuedAuthority: 签发机关。
         # @type IssuedAuthority: String
+        # @param PortraitImageInfo: 头像和坐标信息。
+        # @type PortraitImageInfo: :class:`Tencentcloud::Ocr.v20181119.models.PortraitImageInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :PreviousNumber, :IssuedAuthority, :RequestId
+        attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :PreviousNumber, :IssuedAuthority, :PortraitImageInfo, :RequestId
 
-        def initialize(cnname=nil, enname=nil, sex=nil, dateofbirth=nil, nationality=nil, periodofvalidity=nil, no=nil, previousnumber=nil, issuedauthority=nil, requestid=nil)
+        def initialize(cnname=nil, enname=nil, sex=nil, dateofbirth=nil, nationality=nil, periodofvalidity=nil, no=nil, previousnumber=nil, issuedauthority=nil, portraitimageinfo=nil, requestid=nil)
           @CnName = cnname
           @EnName = enname
           @Sex = sex
@@ -7571,6 +7922,7 @@ module TencentCloud
           @No = no
           @PreviousNumber = previousnumber
           @IssuedAuthority = issuedauthority
+          @PortraitImageInfo = portraitimageinfo
           @RequestId = requestid
         end
 
@@ -7584,6 +7936,10 @@ module TencentCloud
           @No = params['No']
           @PreviousNumber = params['PreviousNumber']
           @IssuedAuthority = params['IssuedAuthority']
+          unless params['PortraitImageInfo'].nil?
+            @PortraitImageInfo = PortraitImageInfo.new
+            @PortraitImageInfo.deserialize(params['PortraitImageInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9026,6 +9382,140 @@ module TencentCloud
         end
       end
 
+      # RecognizeValidIDCardOCR请求参数结构体
+      class RecognizeValidIDCardOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
+        # @param CardType: 0 自动，自动判断输入证件的类型
+        # 1 身份证人像面，指定输入证件类型为二代身份证人像面
+        # 2 身份证国徽面，指定输入证件类型为二代身份证国徽面
+        # 3 身份证人像国徽面，指定输入证件类型为二代身份证人像面或者国徽面
+        # 4 临时身份证人像面，指定输入证件类型为临时身份证人像面
+        # 5 临时身份证国徽面，指定输入证件类型为临时身份证国徽面
+        # 6 临时身份证人像国徽面，指定输入证件类型为临时身份证人像面或者国徽面
+        # 7 港澳台居住证人像面，指定输入证件类型为港澳台居住证人像面
+        # 8 港澳台居住证国徽面，指定输入证件类型为港澳台居住证国徽面
+        # 9 港澳台居住证人像国徽面，指定输入证件类型为港澳台居住证人像面或者国徽面
+        # 10 外国人永久居留身份证人像面，指定输入证件类型为外国人永久居留证人像面
+        # 11 外国人永久居留身份证国徽面，指定输入证件类型为外国人永久居留证国徽面
+        # 12 外国人永久居留身份证人像国徽面，指定输入证件类型为外国人永久居留证人像或者国徽面
+        # 该参数如果不填，将为您自动判断卡证类型。
+        # @type CardType: Integer
+        # @param EnablePortrait: 默认值为false，打开返回证件头像切图。
+        # @type EnablePortrait: Boolean
+        # @param EnableCropImage: 默认值为false，打开返回证件主体切图。
+        # @type EnableCropImage: Boolean
+        # @param EnableBorderCheck: 默认值为false，打开返回边缘完整性判断。
+        # @type EnableBorderCheck: Boolean
+        # @param EnableOcclusionCheck: 默认值为false，打开返回证件是否被遮挡。
+        # @type EnableOcclusionCheck: Boolean
+        # @param EnableCopyCheck: 默认值为false，打开返回证件是否存在复印。
+        # @type EnableCopyCheck: Boolean
+        # @param EnableReshootCheck: 默认值为false，打开返回证件是否存在屏幕翻拍。
+        # @type EnableReshootCheck: Boolean
+        # @param EnablePSCheck: 默认值为false，打开返回证件是否存在PS。类型为：临时、港澳台居住证、外国人居住证失效
+        # @type EnablePSCheck: Boolean
+        # @param EnableWordCheck: 默认值为false，打开返回字段级反光和字段级完整性告警。类型为：临时、港澳台居住证、外国人居住证失效
+        # @type EnableWordCheck: Boolean
+
+        attr_accessor :ImageBase64, :ImageUrl, :CardType, :EnablePortrait, :EnableCropImage, :EnableBorderCheck, :EnableOcclusionCheck, :EnableCopyCheck, :EnableReshootCheck, :EnablePSCheck, :EnableWordCheck
+
+        def initialize(imagebase64=nil, imageurl=nil, cardtype=nil, enableportrait=nil, enablecropimage=nil, enablebordercheck=nil, enableocclusioncheck=nil, enablecopycheck=nil, enablereshootcheck=nil, enablepscheck=nil, enablewordcheck=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @CardType = cardtype
+          @EnablePortrait = enableportrait
+          @EnableCropImage = enablecropimage
+          @EnableBorderCheck = enablebordercheck
+          @EnableOcclusionCheck = enableocclusioncheck
+          @EnableCopyCheck = enablecopycheck
+          @EnableReshootCheck = enablereshootcheck
+          @EnablePSCheck = enablepscheck
+          @EnableWordCheck = enablewordcheck
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @CardType = params['CardType']
+          @EnablePortrait = params['EnablePortrait']
+          @EnableCropImage = params['EnableCropImage']
+          @EnableBorderCheck = params['EnableBorderCheck']
+          @EnableOcclusionCheck = params['EnableOcclusionCheck']
+          @EnableCopyCheck = params['EnableCopyCheck']
+          @EnableReshootCheck = params['EnableReshootCheck']
+          @EnablePSCheck = params['EnablePSCheck']
+          @EnableWordCheck = params['EnableWordCheck']
+        end
+      end
+
+      # RecognizeValidIDCardOCR返回参数结构体
+      class RecognizeValidIDCardOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 卡证类型
+        # 身份证人像面
+        # 身份证国徽面
+
+        # 临时身份证人像面
+        # 临时身份证人像面
+
+        # 港澳台居住证人像面
+        # 港澳台居住证国徽面
+
+        # 外国人永久居留证人像面
+        # 外国人永久居留证国徽面
+        # @type Type: String
+        # @param IDCardInfo: 身份证信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IDCardInfo: :class:`Tencentcloud::Ocr.v20181119.models.IDCardInfo`
+        # @param TemporaryIDCardInfo: 临时身份证信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemporaryIDCardInfo: :class:`Tencentcloud::Ocr.v20181119.models.TemporaryIDCardInfo`
+        # @param ResidencePermitInfo: 港澳台居住证信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResidencePermitInfo: :class:`Tencentcloud::Ocr.v20181119.models.ResidencePermitInfo`
+        # @param PermanentResidencePermitInfo: 外国人永久居留证信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PermanentResidencePermitInfo: :class:`Tencentcloud::Ocr.v20181119.models.PermanentResidencePermitInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :IDCardInfo, :TemporaryIDCardInfo, :ResidencePermitInfo, :PermanentResidencePermitInfo, :RequestId
+
+        def initialize(type=nil, idcardinfo=nil, temporaryidcardinfo=nil, residencepermitinfo=nil, permanentresidencepermitinfo=nil, requestid=nil)
+          @Type = type
+          @IDCardInfo = idcardinfo
+          @TemporaryIDCardInfo = temporaryidcardinfo
+          @ResidencePermitInfo = residencepermitinfo
+          @PermanentResidencePermitInfo = permanentresidencepermitinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['IDCardInfo'].nil?
+            @IDCardInfo = IDCardInfo.new
+            @IDCardInfo.deserialize(params['IDCardInfo'])
+          end
+          unless params['TemporaryIDCardInfo'].nil?
+            @TemporaryIDCardInfo = TemporaryIDCardInfo.new
+            @TemporaryIDCardInfo.deserialize(params['TemporaryIDCardInfo'])
+          end
+          unless params['ResidencePermitInfo'].nil?
+            @ResidencePermitInfo = ResidencePermitInfo.new
+            @ResidencePermitInfo.deserialize(params['ResidencePermitInfo'])
+          end
+          unless params['PermanentResidencePermitInfo'].nil?
+            @PermanentResidencePermitInfo = PermanentResidencePermitInfo.new
+            @PermanentResidencePermitInfo.deserialize(params['PermanentResidencePermitInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReconstructDocument配置选项
       class ReconstructDocumentConfig < TencentCloud::Common::AbstractModel
         # @param EnableInsetImage: 生成的Markdown中是否嵌入图片
@@ -9319,6 +9809,109 @@ module TencentCloud
           @RegistrationDate = params['RegistrationDate']
           @FormerName = params['FormerName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 港澳台居住证信息返回
+      class ResidencePermitInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名（人像面）
+        # @type Name: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Sex: 性别（人像面）
+        # @type Sex: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Nation: 民族（人像面）
+        # @type Nation: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Birth: 出生日期（人像面）
+        # @type Birth: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Address: 地址（人像面）
+        # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param IdNum: 公民身份号码（人像面）
+        # @type IdNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Authority: 发证机关（国徽面）
+        # @type Authority: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param ValidDate: 证件有效期（国徽面）
+        # @type ValidDate: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param WarnInfos: WarnInfos，告警信息
+        # @type WarnInfos: :class:`Tencentcloud::Ocr.v20181119.models.CardWarnInfo`
+        # @param CardImage: IdCard，裁剪后身份证照片的base64编码，请求 EnableCropImage 时返回；
+        # @type CardImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param PortraitImage: Portrait，身份证头像照片的base64编码，请求 EnablePortrait 时返回；
+        # @type PortraitImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param PassNum: 通行证号码，港澳台居住证国徽面 返回该字段
+        # @type PassNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param IssueNum: 签发次数，港澳台居住证国徽面 返回该字段
+        # @type IssueNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+
+        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :WarnInfos, :CardImage, :PortraitImage, :PassNum, :IssueNum
+
+        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, warninfos=nil, cardimage=nil, portraitimage=nil, passnum=nil, issuenum=nil)
+          @Name = name
+          @Sex = sex
+          @Nation = nation
+          @Birth = birth
+          @Address = address
+          @IdNum = idnum
+          @Authority = authority
+          @ValidDate = validdate
+          @WarnInfos = warninfos
+          @CardImage = cardimage
+          @PortraitImage = portraitimage
+          @PassNum = passnum
+          @IssueNum = issuenum
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = ContentInfo.new
+            @Name.deserialize(params['Name'])
+          end
+          unless params['Sex'].nil?
+            @Sex = ContentInfo.new
+            @Sex.deserialize(params['Sex'])
+          end
+          unless params['Nation'].nil?
+            @Nation = ContentInfo.new
+            @Nation.deserialize(params['Nation'])
+          end
+          unless params['Birth'].nil?
+            @Birth = ContentInfo.new
+            @Birth.deserialize(params['Birth'])
+          end
+          unless params['Address'].nil?
+            @Address = ContentInfo.new
+            @Address.deserialize(params['Address'])
+          end
+          unless params['IdNum'].nil?
+            @IdNum = ContentInfo.new
+            @IdNum.deserialize(params['IdNum'])
+          end
+          unless params['Authority'].nil?
+            @Authority = ContentInfo.new
+            @Authority.deserialize(params['Authority'])
+          end
+          unless params['ValidDate'].nil?
+            @ValidDate = ContentInfo.new
+            @ValidDate.deserialize(params['ValidDate'])
+          end
+          unless params['WarnInfos'].nil?
+            @WarnInfos = CardWarnInfo.new
+            @WarnInfos.deserialize(params['WarnInfos'])
+          end
+          unless params['CardImage'].nil?
+            @CardImage = ContentInfo.new
+            @CardImage.deserialize(params['CardImage'])
+          end
+          unless params['PortraitImage'].nil?
+            @PortraitImage = ContentInfo.new
+            @PortraitImage.deserialize(params['PortraitImage'])
+          end
+          unless params['PassNum'].nil?
+            @PassNum = ContentInfo.new
+            @PassNum.deserialize(params['PassNum'])
+          end
+          unless params['IssueNum'].nil?
+            @IssueNum = ContentInfo.new
+            @IssueNum.deserialize(params['IssueNum'])
+          end
         end
       end
 
@@ -10788,6 +11381,95 @@ module TencentCloud
           @FuelFee = params['FuelFee']
           @BookingCallFee = params['BookingCallFee']
           @CompanySealMark = params['CompanySealMark']
+        end
+      end
+
+      # 临时身份证信息返回
+      class TemporaryIDCardInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名（人像面）
+        # @type Name: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Sex: 性别（人像面）
+        # @type Sex: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Nation: 民族（人像面）
+        # @type Nation: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Birth: 出生日期（人像面）
+        # @type Birth: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Address: 地址（人像面）
+        # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param IdNum: 公民身份号码（人像面）
+        # @type IdNum: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param Authority: 发证机关（国徽面）
+        # @type Authority: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param ValidDate: 证件有效期（国徽面）
+        # @type ValidDate: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param WarnInfos: WarnInfos，告警信息
+        # @type WarnInfos: :class:`Tencentcloud::Ocr.v20181119.models.CardWarnInfo`
+        # @param CardImage: IdCard，裁剪后身份证照片的base64编码，请求 EnableCropImage 时返回；
+        # @type CardImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+        # @param PortraitImage: Portrait，身份证头像照片的base64编码，请求 EnablePortrait 时返回；
+        # @type PortraitImage: :class:`Tencentcloud::Ocr.v20181119.models.ContentInfo`
+
+        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :WarnInfos, :CardImage, :PortraitImage
+
+        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, warninfos=nil, cardimage=nil, portraitimage=nil)
+          @Name = name
+          @Sex = sex
+          @Nation = nation
+          @Birth = birth
+          @Address = address
+          @IdNum = idnum
+          @Authority = authority
+          @ValidDate = validdate
+          @WarnInfos = warninfos
+          @CardImage = cardimage
+          @PortraitImage = portraitimage
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = ContentInfo.new
+            @Name.deserialize(params['Name'])
+          end
+          unless params['Sex'].nil?
+            @Sex = ContentInfo.new
+            @Sex.deserialize(params['Sex'])
+          end
+          unless params['Nation'].nil?
+            @Nation = ContentInfo.new
+            @Nation.deserialize(params['Nation'])
+          end
+          unless params['Birth'].nil?
+            @Birth = ContentInfo.new
+            @Birth.deserialize(params['Birth'])
+          end
+          unless params['Address'].nil?
+            @Address = ContentInfo.new
+            @Address.deserialize(params['Address'])
+          end
+          unless params['IdNum'].nil?
+            @IdNum = ContentInfo.new
+            @IdNum.deserialize(params['IdNum'])
+          end
+          unless params['Authority'].nil?
+            @Authority = ContentInfo.new
+            @Authority.deserialize(params['Authority'])
+          end
+          unless params['ValidDate'].nil?
+            @ValidDate = ContentInfo.new
+            @ValidDate.deserialize(params['ValidDate'])
+          end
+          unless params['WarnInfos'].nil?
+            @WarnInfos = CardWarnInfo.new
+            @WarnInfos.deserialize(params['WarnInfos'])
+          end
+          unless params['CardImage'].nil?
+            @CardImage = ContentInfo.new
+            @CardImage.deserialize(params['CardImage'])
+          end
+          unless params['PortraitImage'].nil?
+            @PortraitImage = ContentInfo.new
+            @PortraitImage.deserialize(params['PortraitImage'])
+          end
         end
       end
 

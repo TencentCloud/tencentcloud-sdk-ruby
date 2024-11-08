@@ -265,8 +265,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2024, 10
-        deprecate :Ext=, :none, 2024, 10
+        deprecate :Ext, :none, 2024, 11
+        deprecate :Ext=, :none, 2024, 11
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -2738,8 +2738,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2024, 10
-        deprecate :Products=, :none, 2024, 10
+        deprecate :Products, :none, 2024, 11
+        deprecate :Products=, :none, 2024, 11
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3150,8 +3150,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2024, 10
-        deprecate :Value=, :none, 2024, 10
+        deprecate :Value, :none, 2024, 11
+        deprecate :Value=, :none, 2024, 11
 
         def initialize(value=nil)
           @Value = value
@@ -4734,7 +4734,7 @@ module TencentCloud
         # @param ChainCnt: 区块链上链次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainCnt: Integer
-        # @param RiskCnt: 营销风控次数
+        # @param RiskCnt: 风险检测次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskCnt: Integer
         # @param UpdateTime: 时间
@@ -4742,6 +4742,9 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :CorpId, :FactoryCnt, :ItemCnt, :TrackCnt, :SaleCnt, :ChainCnt, :RiskCnt, :UpdateTime
+        extend Gem::Deprecate
+        deprecate :RiskCnt, :none, 2024, 11
+        deprecate :RiskCnt=, :none, 2024, 11
 
         def initialize(corpid=nil, factorycnt=nil, itemcnt=nil, trackcnt=nil, salecnt=nil, chaincnt=nil, riskcnt=nil, updatetime=nil)
           @CorpId = corpid

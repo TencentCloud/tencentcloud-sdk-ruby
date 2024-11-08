@@ -270,6 +270,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建在线DDL任务
+
+        # @param request: Request instance for CreateOnlineDDLJob.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::CreateOnlineDDLJobRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::CreateOnlineDDLJobResponse`
+        def CreateOnlineDDLJob(request)
+          body = send_request('CreateOnlineDDLJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOnlineDDLJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 回档TDSQL实例
 
         # @param request: Request instance for CreateTmpDCDBInstance.

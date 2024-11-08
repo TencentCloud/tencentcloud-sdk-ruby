@@ -2143,6 +2143,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持二代身份证、临时身份证、港澳台居住证、外国人永久居留证，字段内容识别功能，包括姓名、性别、民族、出生、出生日期、住址、公民身份号码、签发机关、有效期限、国籍、通行证号码、持证人持有号码；支持返回证件类型；支持翻拍、复印、边框不完整、遮挡、字段级反光和字段级完整性告警；支持卡片主体框裁剪和头像裁剪。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for RecognizeValidIDCardOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeValidIDCardOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeValidIDCardOCRResponse`
+        def RecognizeValidIDCardOCR(request)
+          body = send_request('RecognizeValidIDCardOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeValidIDCardOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 服务已迁移至 [文档解析](https://cloud.tencent.com/document/product/1759/107504)，请跳转查看接口文档。该接口支持将图片或PDF文件转换成Markdown格式文件，可解析包括表格、公式、图片、标题、段落、页眉、页脚等内容元素，并将内容智能转换成阅读顺序。
 
         # @param request: Request instance for ReconstructDocument.

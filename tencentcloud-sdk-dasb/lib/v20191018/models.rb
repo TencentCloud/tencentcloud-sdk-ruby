@@ -20,13 +20,10 @@ module TencentCloud
       # 权限控制模板对象
       class ACTemplate < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
         # @param Description: 模板描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :TemplateId, :TemplateName, :Description
@@ -101,19 +98,14 @@ module TencentCloud
         # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
         # @param Department: 所属部门的信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
         # @param AllowAccessCredential: 是否允许使用访问串，默认允许
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowAccessCredential: Boolean
         # @param ACTemplateSet: 关联的数据库高危命令列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ACTemplateSet: Array
         # @param WhiteCmds: 关联的白命令命令
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhiteCmds: Array
         # @param AllowKeyboardLogger: 是否允许记录键盘
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowKeyboardLogger: Boolean
 
         attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger
@@ -503,13 +495,10 @@ module TencentCloud
       # 查询改密计划详情
       class ChangePwdTaskDetail < TencentCloud::Common::AbstractModel
         # @param Device: 资产信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Device: :class:`Tencentcloud::Dasb.v20191018.models.Device`
         # @param Account: 资产账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Account: String
         # @param LastChangeStatus: 上次改密结果。0-未改密  1-改密成功 2-改密失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastChangeStatus: Integer
 
         attr_accessor :Device, :Account, :LastChangeStatus
@@ -533,66 +522,46 @@ module TencentCloud
       # 修改密码任务信息
       class ChangePwdTaskInfo < TencentCloud::Common::AbstractModel
         # @param Id: id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param OperationId: 任务id
         # @type OperationId: String
         # @param TaskName: 任务名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param Department: 所属部门信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
         # @param ChangeMethod: 改密方式。1：使用执行账号。2：修改自身密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChangeMethod: Integer
         # @param RunAccount: 执行账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunAccount: String
         # @param AuthGenerationStrategy: 密码生成策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthGenerationStrategy: Integer
         # @param PasswordLength: 密码长度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PasswordLength: Integer
         # @param SmallLetter: 包含小写字母
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmallLetter: Integer
         # @param BigLetter: 包含大写字母
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigLetter: Integer
         # @param Digit: 包含数字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Digit: Integer
         # @param Symbol: 包含的特殊字符，base64
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Symbol: String
         # @param CompleteNotify: 改密完成通知。0-通知，1-不通知
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompleteNotify: Integer
         # @param NotifyEmails: 通知人邮箱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyEmails: Array
         # @param FilePassword: 加密附件密码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilePassword: String
         # @param AccountSet: 需要改密的账户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountSet: Array
         # @param DeviceSet: 需要改密的主机
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceSet: Array
         # @param Type: 任务类型：4手动，5自动
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param Period: 周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
         # @param FirstTime: 首次执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstTime: String
         # @param NextTime: 下次执行时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextTime: String
 
         attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime
@@ -659,7 +628,6 @@ module TencentCloud
       # 负载均衡
       class Clb < TencentCloud::Common::AbstractModel
         # @param ClbIp: 负载均衡IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClbIp: String
 
         attr_accessor :ClbIp
@@ -682,7 +650,6 @@ module TencentCloud
         # @param CmdList: 命令列表，命令之间用换行符（"\n"）分隔
         # @type CmdList: String
         # @param Type: 命令模板类型 1-内置 2-自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
 
         attr_accessor :Id, :Name, :CmdList, :Type
@@ -713,43 +680,31 @@ module TencentCloud
         # @param Action: 命令执行情况，1--允许，2--拒绝，3--确认
         # @type Action: Integer
         # @param Sid: 会话id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sid: String
         # @param UserName: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
         # @param Account: 设备account
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Account: String
         # @param InstanceId: 设备ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param FromIp: source ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromIp: String
         # @param SessionTime: 该命令所属会话的会话开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionTime: String
         # @param SessTime: 该命令所属会话的会话开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessTime: String
         # @param ConfirmTime: 复核时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfirmTime: String
         # @param UserDepartmentId: 用户部门id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDepartmentId: String
         # @param UserDepartmentName: 用户部门name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDepartmentName: String
         # @param DeviceDepartmentId: 设备部门id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentId: String
         # @param DeviceDepartmentName: 设备部门name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentName: String
         # @param Size: 会话大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
@@ -1270,7 +1225,6 @@ module TencentCloud
       # CreateResource返回参数结构体
       class CreateResourceResponse < TencentCloud::Common::AbstractModel
         # @param ResourceId: 实例Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1737,10 +1691,8 @@ module TencentCloud
         # @param Name: 部门名称，1 - 256个字符
         # @type Name: String
         # @param Managers: 部门管理员账号ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Managers: Array
         # @param ManagerUsers: 管理员用户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagerUsers: Array
 
         attr_accessor :Id, :Name, :Managers, :ManagerUsers
@@ -1770,10 +1722,8 @@ module TencentCloud
       # 部门管理员信息
       class DepartmentManagerUser < TencentCloud::Common::AbstractModel
         # @param ManagerId: 管理员Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagerId: String
         # @param ManagerName: 管理员姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagerName: String
 
         attr_accessor :ManagerId, :ManagerName
@@ -2030,7 +1980,6 @@ module TencentCloud
         # @param TotalCount: 总数
         # @type TotalCount: Integer
         # @param Details: 任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2095,10 +2044,8 @@ module TencentCloud
       # DescribeChangePwdTask返回参数结构体
       class DescribeChangePwdTaskResponse < TencentCloud::Common::AbstractModel
         # @param Tasks: 任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
         # @param TotalCount: 任务总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2445,7 +2392,7 @@ module TencentCloud
         # @type Ip: String
         # @param ApCodeSet: 地域码集合
         # @type ApCodeSet: Array
-        # @param Kind: 操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
+        # @param Kind: 操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer, 5 - TDSQL MySQL, 6 - TDSQL-C MySQL, 7 - MariaDB, 8 - PostgreSQL, 9 - MongoDB副本集群, 10 - MongoDB分片集群, 11 - Redis
         # @type Kind: Integer
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
@@ -2455,7 +2402,7 @@ module TencentCloud
         # @type AuthorizedUserIdSet: Array
         # @param ResourceIdSet: 过滤条件，资产绑定的堡垒机服务ID集合
         # @type ResourceIdSet: Array
-        # @param KindSet: 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
+        # @param KindSet: 可提供按照多种类型过滤, 取值范围与Kind一致
         # @type KindSet: Array
         # @param ManagedAccount: 资产是否包含托管账号。1，包含；0，不包含
         # @type ManagedAccount: String
@@ -2806,7 +2753,6 @@ module TencentCloud
         # @param ResourceSet: 堡垒机资源列表
         # @type ResourceSet: Array
         # @param TotalCount: 堡垒机资源数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3087,25 +3033,18 @@ module TencentCloud
         # @param SubnetId: 子网ID
         # @type SubnetId: String
         # @param Resource: 堡垒机服务信息，注意没有绑定服务时为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Dasb.v20191018.models.Resource`
         # @param Department: 资产所属部门
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
         # @param IpPortSet: 数据库资产的多节点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpPortSet: Array
         # @param DomainId: 网络域Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainId: String
         # @param DomainName: 网络域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainName: String
         # @param EnableSSL: 是否启用SSL，仅支持Redis资产。0：禁用 1：启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableSSL: Integer
         # @param SSLCertName: 已上传的SSL证书名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSLCertName: String
 
         attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName
@@ -3212,22 +3151,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainName: String
         # @param ResourceId: 堡垒机id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param WhiteIpSet: ip，网段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhiteIpSet: Array
         # @param Enabled: 是否启用  默认 1启用 0禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Integer
         # @param Status: 状态 0-已断开  1-已连接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 网络域创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Default: 是否资源默认网络域 1-资源默认网络域 0-用户添加网络域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Default: Integer
 
         attr_accessor :Id, :DomainId, :DomainName, :ResourceId, :WhiteIpSet, :Enabled, :Status, :CreateTime, :Default
@@ -3334,10 +3267,8 @@ module TencentCloud
         # @param Name: 组名称
         # @type Name: String
         # @param Department: 所属部门信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
         # @param Count: 个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :Id, :Name, :Department, :Count
@@ -3386,7 +3317,6 @@ module TencentCloud
       # ImportExternalDevice返回参数结构体
       class ImportExternalDeviceResponse < TencentCloud::Common::AbstractModel
         # @param DeviceIdSet: 资产ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceIdSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4264,25 +4194,18 @@ module TencentCloud
         # @param PackageNode: 授权点数扩展包个数(50点)
         # @type PackageNode: Integer
         # @param LogDeliveryArgs: 日志投递规格信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogDeliveryArgs: String
         # @param ClbSet: 堡垒机资源LB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClbSet: Array
         # @param DomainCount: 网络域个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainCount: Integer
         # @param UsedDomainCount: 已使用网络域个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedDomainCount: Integer
         # @param Trial: 0 非试用版，1 试用版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trial: Integer
         # @param CdcClusterId: cdc集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusterId: String
         # @param LogDelivery: 日志投递规格信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogDelivery: String
         # @param DeployModel: 部署模式
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4691,34 +4614,25 @@ module TencentCloud
         # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
         # @type TimeOffset: Integer
         # @param Account: 账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Account: String
         # @param FromIp: source ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromIp: String
         # @param SessionTime: 该命令所属会话的会话开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionTime: String
         # @param SessTime: 该命令所属会话的会话开始时间（废弃，使用SessionTime）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessTime: String
         # @param ConfirmTime: 复核时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfirmTime: String
         # @param UserDepartmentId: 部门id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDepartmentId: String
         # @param UserDepartmentName: 用户部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDepartmentName: String
         # @param DeviceDepartmentId: 设备部门id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentId: String
         # @param DeviceDepartmentName: 设备部门名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentName: String
         # @param Size: 会话大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
@@ -4827,7 +4741,6 @@ module TencentCloud
         # @param TotalCount: 记录数
         # @type TotalCount: Integer
         # @param SearchFileBySidResult: 某会话的文件操作列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchFileBySidResult: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4865,10 +4778,8 @@ module TencentCloud
         # @param FileCurr: method为上传、下载、删除时文件在服务器上的位置, 或重命名、移动文件前文件的位置
         # @type FileCurr: String
         # @param FileNew: method为重命名、移动文件时代表移动后的新位置.其他情况为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileNew: String
         # @param Size: method为上传文件、下载文件、删除文件时显示文件大小。其他情况为null
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
         # @param Action: 堡垒机拦截情况, 1-已执行，  2-被阻断
         # @type Action: Integer
@@ -4965,7 +4876,6 @@ module TencentCloud
         # @param TotalCount: 记录数
         # @type TotalCount: Integer
         # @param Files: 文件操作列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Files: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5431,22 +5341,16 @@ module TencentCloud
         # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
         # @type ValidateTime: String
         # @param Department: 用户所属部门（用于出参）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
         # @param DepartmentId: 用户所属部门（用于入参）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
         # @param ActiveStatus: 激活状态 0 - 未激活 1 - 激活
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveStatus: Integer
         # @param LockStatus: 锁定状态 0 - 未锁定 1 - 锁定
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LockStatus: Integer
         # @param Status: 状态 与Filter中一致
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param AclVersion: 权限版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AclVersion: Integer
 
         attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :Status, :AclVersion

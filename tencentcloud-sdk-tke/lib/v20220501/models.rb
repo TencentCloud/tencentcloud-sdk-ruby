@@ -177,10 +177,12 @@ module TencentCloud
         # @type DataDisks: Array
         # @param KeyIds: 节点池ssh公钥id数组
         # @type KeyIds: Array
+        # @param MachineType: 节点池类型
+        # @type MachineType: String
 
-        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :KeyIds
+        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :KeyIds, :MachineType
 
-        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, keyids=nil)
+        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, keyids=nil, machinetype=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @InstanceChargeType = instancechargetype
@@ -201,6 +203,7 @@ module TencentCloud
           @InternetAccessible = internetaccessible
           @DataDisks = datadisks
           @KeyIds = keyids
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -252,6 +255,7 @@ module TencentCloud
             end
           end
           @KeyIds = params['KeyIds']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -1773,10 +1777,13 @@ module TencentCloud
         # @param DataDisks: 原生节点池数据盘
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
+        # @param MachineType: 原生节点机型 Native, NativeCVM
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineType: String
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :ReadyReplicas, :InternetAccessible, :DataDisks
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :KeyIds, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :ReadyReplicas, :InternetAccessible, :DataDisks, :MachineType
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, keyids=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, readyreplicas=nil, internetaccessible=nil, datadisks=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, keyids=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, readyreplicas=nil, internetaccessible=nil, datadisks=nil, machinetype=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -1798,6 +1805,7 @@ module TencentCloud
           @ReadyReplicas = readyreplicas
           @InternetAccessible = internetaccessible
           @DataDisks = datadisks
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -1850,6 +1858,7 @@ module TencentCloud
               @DataDisks << datadisk_tmp
             end
           end
+          @MachineType = params['MachineType']
         end
       end
 

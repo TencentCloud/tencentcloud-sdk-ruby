@@ -1808,10 +1808,12 @@ module TencentCloud
         # @param TaskGroupActionExecuteTime: 动作运行时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupActionExecuteTime: Integer
+        # @param TaskGroupActionStartTime: 动作开始执行时间
+        # @type TaskGroupActionStartTime: String
 
-        attr_accessor :TaskGroupActionId, :TaskGroupInstances, :ActionId, :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration, :TaskGroupActionStatus, :TaskGroupActionCreateTime, :TaskGroupActionUpdateTime, :ActionTitle, :TaskGroupActionStatusType, :TaskGroupActionRandomId, :TaskGroupActionRecoverId, :TaskGroupActionExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :IsExecuteRedo, :ActionRisk, :TaskGroupActionExecuteTime
+        attr_accessor :TaskGroupActionId, :TaskGroupInstances, :ActionId, :TaskGroupActionOrder, :TaskGroupActionGeneralConfiguration, :TaskGroupActionCustomConfiguration, :TaskGroupActionStatus, :TaskGroupActionCreateTime, :TaskGroupActionUpdateTime, :ActionTitle, :TaskGroupActionStatusType, :TaskGroupActionRandomId, :TaskGroupActionRecoverId, :TaskGroupActionExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :IsExecuteRedo, :ActionRisk, :TaskGroupActionExecuteTime, :TaskGroupActionStartTime
 
-        def initialize(taskgroupactionid=nil, taskgroupinstances=nil, actionid=nil, taskgroupactionorder=nil, taskgroupactiongeneralconfiguration=nil, taskgroupactioncustomconfiguration=nil, taskgroupactionstatus=nil, taskgroupactioncreatetime=nil, taskgroupactionupdatetime=nil, actiontitle=nil, taskgroupactionstatustype=nil, taskgroupactionrandomid=nil, taskgroupactionrecoverid=nil, taskgroupactionexecuteid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, isexecuteredo=nil, actionrisk=nil, taskgroupactionexecutetime=nil)
+        def initialize(taskgroupactionid=nil, taskgroupinstances=nil, actionid=nil, taskgroupactionorder=nil, taskgroupactiongeneralconfiguration=nil, taskgroupactioncustomconfiguration=nil, taskgroupactionstatus=nil, taskgroupactioncreatetime=nil, taskgroupactionupdatetime=nil, actiontitle=nil, taskgroupactionstatustype=nil, taskgroupactionrandomid=nil, taskgroupactionrecoverid=nil, taskgroupactionexecuteid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, isexecuteredo=nil, actionrisk=nil, taskgroupactionexecutetime=nil, taskgroupactionstarttime=nil)
           @TaskGroupActionId = taskgroupactionid
           @TaskGroupInstances = taskgroupinstances
           @ActionId = actionid
@@ -1832,6 +1834,7 @@ module TencentCloud
           @IsExecuteRedo = isexecuteredo
           @ActionRisk = actionrisk
           @TaskGroupActionExecuteTime = taskgroupactionexecutetime
+          @TaskGroupActionStartTime = taskgroupactionstarttime
         end
 
         def deserialize(params)
@@ -1862,6 +1865,7 @@ module TencentCloud
           @IsExecuteRedo = params['IsExecuteRedo']
           @ActionRisk = params['ActionRisk']
           @TaskGroupActionExecuteTime = params['TaskGroupActionExecuteTime']
+          @TaskGroupActionStartTime = params['TaskGroupActionStartTime']
         end
       end
 
@@ -1961,8 +1965,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 10
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 10
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 11
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 11
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid

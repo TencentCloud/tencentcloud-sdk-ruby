@@ -573,7 +573,6 @@ module TencentCloud
         # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
         # @type ProjectID: Integer
         # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIDs: Array
         # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示此云API密钥对所属的用户UIN。
         # @type TargetUin: Integer
@@ -1316,7 +1315,6 @@ module TencentCloud
         # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
         # @type ProjectID: Integer
         # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedInstanceIDs: Array
         # @param TargetUin: 当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。
         # @type TargetUin: Integer

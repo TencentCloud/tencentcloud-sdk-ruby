@@ -2223,8 +2223,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2024, 10
-        deprecate :Idps=, :none, 2024, 10
+        deprecate :Idps, :none, 2024, 11
+        deprecate :Idps=, :none, 2024, 11
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -3282,9 +3282,9 @@ module TencentCloud
 
       # ListCollaborators请求参数结构体
       class ListCollaboratorsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页条数，缺省为20
+        # @param Limit: 分页的条数，默认是20条。
         # @type Limit: Integer
-        # @param Offset: 分页起始值，缺省为0
+        # @param Offset: 分页的起始值，默认从0开始。
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
@@ -4024,21 +4024,21 @@ module TencentCloud
         end
       end
 
-      # 登录和敏感操作flag
+      # 登录和敏感操作flag（校验方式是单选）
       class LoginActionFlag < TencentCloud::Common::AbstractModel
-        # @param Phone: 手机
+        # @param Phone: 0: 非安全手机校验 1: 安全手机校验。
         # @type Phone: Integer
-        # @param Token: 硬token
+        # @param Token: 0: 非硬token校验 1: 硬token校验。
         # @type Token: Integer
-        # @param Stoken: 软token
+        # @param Stoken: 0: 非软token校验 1: 软token校验
         # @type Stoken: Integer
-        # @param Wechat: 微信
+        # @param Wechat: 0: 非微信校验 1: 微信校验
         # @type Wechat: Integer
-        # @param Custom: 自定义
+        # @param Custom: 0: 非自定义校验 1: 自定义校验
         # @type Custom: Integer
-        # @param Mail: 邮箱
+        # @param Mail: 0: 非邮箱校验 1: 邮箱校验
         # @type Mail: Integer
-        # @param U2FToken: u2f硬件token
+        # @param U2FToken: 0: 非u2f硬件token 1: u2f硬件token
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type U2FToken: Integer
 

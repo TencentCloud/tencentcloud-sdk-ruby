@@ -207,16 +207,19 @@ module TencentCloud
         # @type RolePolicies: Array
         # @param CustomPolicyDocument: 自定义策略内容。长度：最大 4096 个字符。当RolePolicyType为Inline时，该参数必须配置。关于权限策略的语法和结构，请参见权限策略语法和结构。
         # @type CustomPolicyDocument: String
+        # @param CustomPolicyDocuments: 自定义策略内容列表（跟RolePolicyNames一一对应）
+        # @type CustomPolicyDocuments: Array
 
-        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :RolePolicyNames, :RolePolicies, :CustomPolicyDocument
+        attr_accessor :ZoneId, :RoleConfigurationId, :RolePolicyType, :RolePolicyNames, :RolePolicies, :CustomPolicyDocument, :CustomPolicyDocuments
 
-        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, rolepolicynames=nil, rolepolicies=nil, custompolicydocument=nil)
+        def initialize(zoneid=nil, roleconfigurationid=nil, rolepolicytype=nil, rolepolicynames=nil, rolepolicies=nil, custompolicydocument=nil, custompolicydocuments=nil)
           @ZoneId = zoneid
           @RoleConfigurationId = roleconfigurationid
           @RolePolicyType = rolepolicytype
           @RolePolicyNames = rolepolicynames
           @RolePolicies = rolepolicies
           @CustomPolicyDocument = custompolicydocument
+          @CustomPolicyDocuments = custompolicydocuments
         end
 
         def deserialize(params)
@@ -233,6 +236,7 @@ module TencentCloud
             end
           end
           @CustomPolicyDocument = params['CustomPolicyDocument']
+          @CustomPolicyDocuments = params['CustomPolicyDocuments']
         end
       end
 
@@ -4319,7 +4323,7 @@ module TencentCloud
         # @type FilterUsers: Array
         # @param SortField: 排序的字段，目前只支持CreateTime，默认是CreateTime字段
         # @type SortField: String
-        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要你和SortField一起设置
+        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要您和SortField一起设置
         # @type SortType: String
         # @param Offset: 翻页offset. 不要与NextToken同时使用，优先使用NextToken
         # @type Offset: Integer
@@ -5176,7 +5180,7 @@ module TencentCloud
         # @type NextToken: String
         # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
         # @type MaxResults: Integer
-        # @param Filter: 过滤条件。不区分大小写。目前，只支持 RoleConfigurationName，只支持 eq（Equals）和 sw（Start With）。 示例：Filter = "RoleConfigurationName，只支持 sw test"，表示查询名称以 test 开头的全部权限配置。Filter = "RoleConfigurationName，只支持 eq TestRoleConfiguration"，表示查询名称为 TestRoleConfiguration 的权限配置。
+        # @param Filter: 过滤文本。不区分大小写。目前，支持 RoleConfigurationName和Description. 示例：Filter = "test"，表示查询名称或描述里包含 test 的权限配置。
         # @type Filter: String
         # @param FilterTargets: 检索成员账号是否配置过权限，如果配置过返回IsSelected: true, 否则返回false。
         # @type FilterTargets: Array
@@ -5595,7 +5599,7 @@ module TencentCloud
         # @type FilterGroups: Array
         # @param SortField: 排序的字段，目前只支持CreateTime，默认是CreateTime字段
         # @type SortField: String
-        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要你和SortField一起设置
+        # @param SortType: 排序类型：Desc 倒序 Asc  正序，需要您和SortField一起设置
         # @type SortType: String
         # @param Offset: 翻页offset. 不要与NextToken同时使用，优先使用NextToken
         # @type Offset: Integer
@@ -6616,8 +6620,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 10
-        deprecate :ResourceGrantLast=, :none, 2024, 10
+        deprecate :ResourceGrantLast, :none, 2024, 11
+        deprecate :ResourceGrantLast=, :none, 2024, 11
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7455,8 +7459,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 10
-        deprecate :ResourceId=, :none, 2024, 10
+        deprecate :ResourceId, :none, 2024, 11
+        deprecate :ResourceId=, :none, 2024, 11
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

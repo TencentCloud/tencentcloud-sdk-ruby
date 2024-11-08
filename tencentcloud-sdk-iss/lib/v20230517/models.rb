@@ -3721,14 +3721,17 @@ module TencentCloud
         # @type EndTime: Integer
         # @param IsInternal: 是否获取内网地址
         # @type IsInternal: Boolean
+        # @param CorrectTimestamp: 云录像回放时，是否需要开启时间戳矫正，主要解决时间戳反转，会退等问题导致无法播放
+        # @type CorrectTimestamp: Boolean
 
-        attr_accessor :ChannelId, :StartTime, :EndTime, :IsInternal
+        attr_accessor :ChannelId, :StartTime, :EndTime, :IsInternal, :CorrectTimestamp
 
-        def initialize(channelid=nil, starttime=nil, endtime=nil, isinternal=nil)
+        def initialize(channelid=nil, starttime=nil, endtime=nil, isinternal=nil, correcttimestamp=nil)
           @ChannelId = channelid
           @StartTime = starttime
           @EndTime = endtime
           @IsInternal = isinternal
+          @CorrectTimestamp = correcttimestamp
         end
 
         def deserialize(params)
@@ -3736,6 +3739,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @IsInternal = params['IsInternal']
+          @CorrectTimestamp = params['CorrectTimestamp']
         end
       end
 
