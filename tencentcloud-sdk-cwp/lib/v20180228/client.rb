@@ -341,32 +341,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云护航计费产品已下线
-
-        # 云护航服务使用完成后，该接口可以确认收货
-
-        # @param request: Request instance for CreateCloudProtectServiceOrderRecord.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::CreateCloudProtectServiceOrderRecordRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::CreateCloudProtectServiceOrderRecordResponse`
-        def CreateCloudProtectServiceOrderRecord(request)
-          body = send_request('CreateCloudProtectServiceOrderRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateCloudProtectServiceOrderRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建应急漏洞扫描任务
 
         # @param request: Request instance for CreateEmergencyVulScan.

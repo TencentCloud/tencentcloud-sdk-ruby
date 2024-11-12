@@ -692,7 +692,6 @@ module TencentCloud
         # @param SessionTime: 该命令所属会话的会话开始时间
         # @type SessionTime: String
         # @param SessTime: 该命令所属会话的会话开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessTime: String
         # @param ConfirmTime: 复核时间
         # @type ConfirmTime: String
@@ -3148,7 +3147,6 @@ module TencentCloud
         # @param DomainId: 网络域id
         # @type DomainId: String
         # @param DomainName: 网络域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainName: String
         # @param ResourceId: 堡垒机id
         # @type ResourceId: String
@@ -4208,7 +4206,6 @@ module TencentCloud
         # @param LogDelivery: 日志投递规格信息
         # @type LogDelivery: String
         # @param DeployModel: 部署模式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployModel: Integer
 
         attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :CdcClusterId, :LogDelivery, :DeployModel
@@ -4620,7 +4617,6 @@ module TencentCloud
         # @param SessionTime: 该命令所属会话的会话开始时间
         # @type SessionTime: String
         # @param SessTime: 该命令所属会话的会话开始时间（废弃，使用SessionTime）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessTime: String
         # @param ConfirmTime: 复核时间
         # @type ConfirmTime: String

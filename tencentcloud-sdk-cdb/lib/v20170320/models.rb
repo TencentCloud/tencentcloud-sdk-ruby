@@ -81,7 +81,7 @@ module TencentCloud
 
       # AddTimeWindow请求参数结构体
       class AddTimeWindowRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
         # @param Monday: 星期一的可维护时间段，其中每一个时间段的格式形如：10:00-12:00；起始时间按半个小时对齐；最短半个小时，最长三个小时；可设置多个时间段。 一周中应至少设置一天的时间窗。下同。
         # @type Monday: Array
@@ -97,7 +97,7 @@ module TencentCloud
         # @type Saturday: Array
         # @param Sunday: 星期日的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Sunday: Array
-        # @param MaxDelayTime: 最大延迟阈值，仅对主实例和灾备实例有效
+        # @param MaxDelayTime: 最大延迟阈值，仅对主实例和灾备实例有效。
         # @type MaxDelayTime: Integer
 
         attr_accessor :InstanceId, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday, :MaxDelayTime
@@ -3634,8 +3634,10 @@ module TencentCloud
       # 云数据库切换记录
       class DBSwitchInfo < TencentCloud::Common::AbstractModel
         # @param SwitchTime: 切换时间，格式为：2017-09-03 01:34:31
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchTime: String
         # @param SwitchType: 切换类型，可能的返回值为：TRANSFER - 数据迁移；MASTER2SLAVE - 主备切换；RECOVERY - 主从恢复
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchType: String
 
         attr_accessor :SwitchTime, :SwitchType
@@ -5557,7 +5559,7 @@ module TencentCloud
 
       # DescribeClusterInfo请求参数结构体
       class DescribeClusterInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id。
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5944,7 +5946,7 @@ module TencentCloud
 
       # DescribeDBInstanceInfo请求参数结构体
       class DescribeDBInstanceInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -6056,6 +6058,11 @@ module TencentCloud
       # DescribeDBInstanceRebootTime请求参数结构体
       class DescribeDBInstanceRebootTimeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # 说明：可输入多个实例 ID 进行查询，json 格式如下。
+        # [
+        #     "cdb-30z11v8s",
+        #     "cdb-93h11efg"
+        #   ]
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -6302,9 +6309,9 @@ module TencentCloud
         # @type Zone: String
         # @param GoodsNum: 实例数量，默认值为 1，最小值 1，最大值为 100。InstanceId为空时该参数为必填项。
         # @type GoodsNum: Integer
-        # @param Memory: 实例内存大小，单位：MB。InstanceId为空时该参数为必填项。
+        # @param Memory: 实例内存大小，单位：MB。InstanceId 为空时该参数为必填项。为保证传入值有效，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口获取可售卖的实例内存大小范围。
         # @type Memory: Integer
-        # @param Volume: 实例硬盘大小，单位：GB。InstanceId为空时该参数为必填项。
+        # @param Volume: 实例硬盘大小，单位：GB。InstanceId 为空时该参数为必填项。为保证传入值有效，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口获取可售卖的硬盘大小范围。
         # @type Volume: Integer
         # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，ro - 表示只读实例，dr - 表示灾备实例。InstanceId为空时该参数为必填项。
         # @type InstanceRole: String
@@ -6443,7 +6450,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Offset: 分页偏移量。
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认值为 50，最小值为 1，最大值为 2000。
+        # @param Limit: 分页大小，默认值为50，最小值为1，最大值为1000。
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit
@@ -7061,29 +7068,29 @@ module TencentCloud
 
       # DescribeInstanceUpgradeType请求参数结构体
       class DescribeInstanceUpgradeTypeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param DstCpu: 目标实例cpu
+        # @param DstCpu: 目标实例 CPU 的核数。
         # @type DstCpu: Float
-        # @param DstMemory: 目标实例内存
+        # @param DstMemory: 目标实例内存大小，单位：MB。
         # @type DstMemory: Integer
-        # @param DstDisk: 目标实例磁盘
+        # @param DstDisk: 目标实例磁盘大小，单位：GB。
         # @type DstDisk: Integer
-        # @param DstVersion: 目标实例版本
+        # @param DstVersion: 目标实例数据库版本。
         # @type DstVersion: String
-        # @param DstDeployMode: 目标实例部署模型
+        # @param DstDeployMode: 目标实例部署模型。
         # @type DstDeployMode: Integer
-        # @param DstProtectMode: 目标实例复制类型
+        # @param DstProtectMode: 目标实例复制类型。
         # @type DstProtectMode: Integer
-        # @param DstSlaveZone: 目标实例备机1可用区
+        # @param DstSlaveZone: 目标实例备机1可用区。
         # @type DstSlaveZone: Integer
-        # @param DstBackupZone: 目标实例备机2可用区
+        # @param DstBackupZone: 目标实例备机2可用区。
         # @type DstBackupZone: Integer
-        # @param DstCdbType: 目标实例类型
+        # @param DstCdbType: 目标实例类型。
         # @type DstCdbType: String
-        # @param DstZoneId: 目标实例主可用区
+        # @param DstZoneId: 目标实例主可用区。
         # @type DstZoneId: Integer
-        # @param NodeDistribution: 独享集群CDB实例的节点分布情况
+        # @param NodeDistribution: 独享集群 CDB 实例的节点分布情况。
         # @type NodeDistribution: :class:`Tencentcloud::Cdb.v20170320.models.NodeDistribution`
         # @param ClusterTopology: 集群版的节点拓扑配置
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
@@ -7131,9 +7138,9 @@ module TencentCloud
 
       # DescribeInstanceUpgradeType返回参数结构体
       class DescribeInstanceUpgradeTypeResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param UpgradeType: 实例升级类型
+        # @param UpgradeType: 实例升级类型。
         # @type UpgradeType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7574,7 +7581,7 @@ module TencentCloud
 
       # DescribeRoGroups请求参数结构体
       class DescribeRoGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv或者cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -7590,7 +7597,7 @@ module TencentCloud
 
       # DescribeRoGroups返回参数结构体
       class DescribeRoGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param RoGroups: RO组信息数组，一个实例可关联多个RO组。
+        # @param RoGroups: RO 组信息数组，一个实例可关联多个 RO 组。
         # @type RoGroups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9149,8 +9156,10 @@ module TencentCloud
       # 实例预期重启时间
       class InstanceRebootTime < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param TimeInSeconds: 预期重启时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeInSeconds: Integer
 
         attr_accessor :InstanceId, :TimeInSeconds
@@ -9953,6 +9962,11 @@ module TencentCloud
       # ModifyAutoRenewFlag请求参数结构体
       class ModifyAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # 说明：可输入多个实例 ID 进行修改，json 格式如下。
+        # [
+        #     "cdb-30z11v8s",
+        #     "cdb-93h11efg"
+        #   ]
         # @type InstanceIds: Array
         # @param AutoRenew: 自动续费标记，可取值的有：0 - 不自动续费，1 - 自动续费。
         # @type AutoRenew: Integer
@@ -10431,9 +10445,14 @@ module TencentCloud
 
       # ModifyDBInstanceProject请求参数结构体
       class ModifyDBInstanceProjectRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 数组，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @param InstanceIds: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # 说明：可输入多个实例 ID 进行修改，json 格式如下。
+        # [
+        #     "cdb-30z11v8s",
+        #     "cdb-93h11efg"
+        #   ]
         # @type InstanceIds: Array
-        # @param NewProjectId: 项目的 ID。
+        # @param NewProjectId: 实例所属项目的 ID，可在账号中心下的项目管理页面查询。
         # @type NewProjectId: Integer
 
         attr_accessor :InstanceIds, :NewProjectId
@@ -10451,6 +10470,42 @@ module TencentCloud
 
       # ModifyDBInstanceProject返回参数结构体
       class ModifyDBInstanceProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceReadOnlyStatus请求参数结构体
+      class ModifyDBInstanceReadOnlyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，可使用[查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @type InstanceId: String
+        # @param ReadOnly: 是否设置为只读。其中：1表示设置实例为只读，0表示解除只读状态
+        # @type ReadOnly: Integer
+
+        attr_accessor :InstanceId, :ReadOnly
+
+        def initialize(instanceid=nil, readonly=nil)
+          @InstanceId = instanceid
+          @ReadOnly = readonly
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ReadOnly = params['ReadOnly']
+        end
+      end
+
+      # ModifyDBInstanceReadOnlyStatus返回参数结构体
+      class ModifyDBInstanceReadOnlyStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10981,8 +11036,18 @@ module TencentCloud
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
         # @param TimeRanges: 修改后的可维护时间段，其中每一个时间段的格式形如：10:00-12:00；起止时间按半个小时对齐；最短半个小时，最长三个小时；最多设置两个时间段；起止时间范围为：[00:00, 24:00]。
+        # 说明：设置两个时间段的 json 示例如下。
+        # [
+        #     "01:00-01:30",
+        #     "02:00-02:30"
+        #   ]
         # @type TimeRanges: Array
-        # @param Weekdays: 指定修改哪一天的客户时间段，可能的取值为：monday，tuesday，wednesday，thursday，friday，saturday，sunday。如果不指定该值或者为空，则默认一周七天都修改。
+        # @param Weekdays: 指定修改哪一天的可维护时间段，可能的取值为：monday，tuesday，wednesday，thursday，friday，saturday，sunday。如果不指定该值或者为空，则默认一周七天都修改。
+        # 说明：指定修改多天的 json 示例如下。
+        # [
+        #     "monday",
+        #     "tuesday"
+        #   ]
         # @type Weekdays: Array
         # @param MaxDelayTime: 数据延迟阈值，仅对主实例和灾备实例有效，不传默认修改为10
         # @type MaxDelayTime: Integer
@@ -11148,9 +11213,9 @@ module TencentCloud
       class OpenDBInstanceEncryptionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 云数据库实例 ID。
         # @type InstanceId: String
-        # @param KeyId: 用户自定义密钥ID，CMK唯一标识符。该值为空时，将使用腾讯云自动生成的密钥KMS-CDB。
+        # @param KeyId: 用户自定义密钥 ID，CMK 唯一标识符。该值为空时，将使用腾讯云自动生成的密钥 KMS-CDB。
         # @type KeyId: String
-        # @param KeyRegion: 用户自定义密钥的存储地域。如：ap-guangzhou 。KeyId不为空时，该参数必填。
+        # @param KeyRegion: 用户自定义密钥的存储地域。如：ap-guangzhou 。KeyId 不为空时，该参数必填。
         # @type KeyRegion: String
 
         attr_accessor :InstanceId, :KeyId, :KeyRegion
@@ -11914,7 +11979,12 @@ module TencentCloud
 
       # ReleaseIsolatedDBInstances请求参数结构体
       class ReleaseIsolatedDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 数组，单个实例 ID 格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @param InstanceIds: 实例 ID，单个实例 ID 格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # 说明：可输入多个实例 ID 进行操作，json 格式如下。
+        # [
+        #     "cdb-30z11v8s",
+        #     "cdb-93h11efg"
+        #   ]
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -13362,9 +13432,9 @@ module TencentCloud
 
       # SubmitInstanceUpgradeCheckJob请求参数结构体
       class SubmitInstanceUpgradeCheckJobRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例D
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
-        # @param DstMysqlVersion: 目标数据库版本
+        # @param DstMysqlVersion: 目标数据库版本。
         # @type DstMysqlVersion: String
 
         attr_accessor :InstanceId, :DstMysqlVersion
@@ -13382,7 +13452,7 @@ module TencentCloud
 
       # SubmitInstanceUpgradeCheckJob返回参数结构体
       class SubmitInstanceUpgradeCheckJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID
+        # @param JobId: 任务 ID
         # @type JobId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13446,7 +13516,7 @@ module TencentCloud
         # @type ForceSwitch: Boolean
         # @param WaitSwitch: 是否时间窗内切换。默认为 False，即不在时间窗内切换。注意，如果设置了 ForceSwitch 参数为 True，则该参数不生效。
         # @type WaitSwitch: Boolean
-        # @param DstNodeId: 集群版实例指定节点id发起主从切换。
+        # @param DstNodeId: 集群版实例指定节点 ID 发起主从切换。
         # @type DstNodeId: String
 
         attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId
@@ -13490,7 +13560,7 @@ module TencentCloud
 
       # SwitchDrInstanceToMaster请求参数结构体
       class SwitchDrInstanceToMasterRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 灾备实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceId: 灾备实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
 
         attr_accessor :InstanceId

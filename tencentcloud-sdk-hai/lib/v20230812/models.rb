@@ -211,7 +211,7 @@ module TencentCloud
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例元组
         # @type InstanceIds: Array
-        # @param Filters: 描述键值对过滤器，用于条件过滤查询。目前支持的过滤器有：instance-id，实例id；instance-state，实例状态
+        # @param Filters: 描述键值对过滤器，用于条件过滤查询。目前支持的过滤器有：instance-id，实例id；instance-state，实例状态；charge-type，付费方式；public-ip-address，公网IP过滤
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -447,10 +447,14 @@ module TencentCloud
         # @type ClientToken: String
         # @param DryRun: DryRun为True就是只验接口连通性，默认为False
         # @type DryRun: Boolean
+        # @param InstanceChargeType: 付费方式，POSTPAID_BY_HOUR按量后付费，PREPAID_BY_MONTH预付费按月，PREPAID_BY_DAY预付费按天
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: 预付费参数
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Hai.v20230812.models.InstanceChargePrepaid`
 
-        attr_accessor :ApplicationId, :BundleType, :SystemDisk, :InstanceCount, :InstanceName, :ClientToken, :DryRun
+        attr_accessor :ApplicationId, :BundleType, :SystemDisk, :InstanceCount, :InstanceName, :ClientToken, :DryRun, :InstanceChargeType, :InstanceChargePrepaid
 
-        def initialize(applicationid=nil, bundletype=nil, systemdisk=nil, instancecount=nil, instancename=nil, clienttoken=nil, dryrun=nil)
+        def initialize(applicationid=nil, bundletype=nil, systemdisk=nil, instancecount=nil, instancename=nil, clienttoken=nil, dryrun=nil, instancechargetype=nil, instancechargeprepaid=nil)
           @ApplicationId = applicationid
           @BundleType = bundletype
           @SystemDisk = systemdisk
@@ -458,6 +462,8 @@ module TencentCloud
           @InstanceName = instancename
           @ClientToken = clienttoken
           @DryRun = dryrun
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
         end
 
         def deserialize(params)
@@ -471,6 +477,11 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @ClientToken = params['ClientToken']
           @DryRun = params['DryRun']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
         end
       end
 
@@ -645,6 +656,34 @@ module TencentCloud
         end
       end
 
+      # 实例预付费入参
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 时长，默认值：1
+        # @type Period: Integer
+        # @param RenewFlag: 续费标志可选参数：
+        # NOTIFY_AND_MANUAL_RENEW：表示默认状态(用户未设置，即初始状态：若用户有预付费不停服特权，也会对该值进行自动续费)
+        # NOTIFY_AND_AUTO_RENEW：表示自动续费
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW：表示明确不自动续费(用户设置)
+        # 默认值：NOTIFY_AND_MANUAL_RENEW
+        # @type RenewFlag: String
+        # @param TimeUnit: 时长单位，默认值MONTH
+        # @type TimeUnit: String
+
+        attr_accessor :Period, :RenewFlag, :TimeUnit
+
+        def initialize(period=nil, renewflag=nil, timeunit=nil)
+          @Period = period
+          @RenewFlag = renewflag
+          @TimeUnit = timeunit
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+          @TimeUnit = params['TimeUnit']
+        end
+      end
+
       # 套餐价格
       class ItemPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 原单价
@@ -656,7 +695,7 @@ module TencentCloud
         # @param Discount: 折扣
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
-        # @param ChargeUnit: 单位：时
+        # @param ChargeUnit: 单位：时/月
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
@@ -680,6 +719,47 @@ module TencentCloud
           @Discount = params['Discount']
           @ChargeUnit = params['ChargeUnit']
           @Amount = params['Amount']
+        end
+      end
+
+      # 分实例价格
+      class ItemPriceDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstancePrice: 实例价格详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+        # @param CloudDiskPrice: 磁盘价格详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudDiskPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+        # @param InstanceTotalPrice: 该实例的总价钱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTotalPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+
+        attr_accessor :InstanceId, :InstancePrice, :CloudDiskPrice, :InstanceTotalPrice
+
+        def initialize(instanceid=nil, instanceprice=nil, clouddiskprice=nil, instancetotalprice=nil)
+          @InstanceId = instanceid
+          @InstancePrice = instanceprice
+          @CloudDiskPrice = clouddiskprice
+          @InstanceTotalPrice = instancetotalprice
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['InstancePrice'].nil?
+            @InstancePrice = ItemPrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['CloudDiskPrice'].nil?
+            @CloudDiskPrice = ItemPrice.new
+            @CloudDiskPrice.deserialize(params['CloudDiskPrice'])
+          end
+          unless params['InstanceTotalPrice'].nil?
+            @InstanceTotalPrice = ItemPrice.new
+            @InstanceTotalPrice.deserialize(params['InstanceTotalPrice'])
+          end
         end
       end
 
@@ -767,12 +847,16 @@ module TencentCloud
         # @param CloudDiskPrice: 云盘价格信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudDiskPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+        # @param PriceDetailSet: 分实例价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceDetailSet: Array
 
-        attr_accessor :InstancePrice, :CloudDiskPrice
+        attr_accessor :InstancePrice, :CloudDiskPrice, :PriceDetailSet
 
-        def initialize(instanceprice=nil, clouddiskprice=nil)
+        def initialize(instanceprice=nil, clouddiskprice=nil, pricedetailset=nil)
           @InstancePrice = instanceprice
           @CloudDiskPrice = clouddiskprice
+          @PriceDetailSet = pricedetailset
         end
 
         def deserialize(params)
@@ -783,6 +867,14 @@ module TencentCloud
           unless params['CloudDiskPrice'].nil?
             @CloudDiskPrice = ItemPrice.new
             @CloudDiskPrice.deserialize(params['CloudDiskPrice'])
+          end
+          unless params['PriceDetailSet'].nil?
+            @PriceDetailSet = []
+            params['PriceDetailSet'].each do |i|
+              itempricedetail_tmp = ItemPriceDetail.new
+              itempricedetail_tmp.deserialize(i)
+              @PriceDetailSet << itempricedetail_tmp
+            end
           end
         end
       end

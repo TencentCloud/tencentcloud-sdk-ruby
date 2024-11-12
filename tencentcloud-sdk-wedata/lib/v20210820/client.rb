@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据建模，提供给云应用使用，实现“Wedata数据建模”的下单发货
+
+        # @param request: Request instance for CreateDataModel.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::CreateDataModelRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::CreateDataModelResponse`
+        def CreateDataModel(request)
+          body = send_request('CreateDataModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataModelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据源
 
         # @param request: Request instance for CreateDataSource.
@@ -1023,6 +1047,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCustomFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁数据建模，提供给云应用使用，实现“Wedata数据建模”的销毁
+
+        # @param request: Request instance for DeleteDataModel.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteDataModelRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DeleteDataModelResponse`
+        def DeleteDataModel(request)
+          body = send_request('DeleteDataModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataModelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5618,6 +5666,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnlockIntegrationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 数语向wedata注册，提供自身cam角色信息，跳转域名、ip、端口信息等
+
+        # @param request: Request instance for UpdateDataModelRegistryInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::UpdateDataModelRegistryInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::UpdateDataModelRegistryInfoResponse`
+        def UpdateDataModelRegistryInfo(request)
+          body = send_request('UpdateDataModelRegistryInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataModelRegistryInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

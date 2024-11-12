@@ -1527,46 +1527,6 @@ module TencentCloud
         end
       end
 
-      # CheckDomain请求参数结构体
-      class CheckDomainRequest < TencentCloud::Common::AbstractModel
-        # @param PlayDomain: 播放域名
-        # @type PlayDomain: String
-        # @param InternalDomain: CNAME 记录值
-        # @type InternalDomain: String
-
-        attr_accessor :PlayDomain, :InternalDomain
-
-        def initialize(playdomain=nil, internaldomain=nil)
-          @PlayDomain = playdomain
-          @InternalDomain = internaldomain
-        end
-
-        def deserialize(params)
-          @PlayDomain = params['PlayDomain']
-          @InternalDomain = params['InternalDomain']
-        end
-      end
-
-      # CheckDomain返回参数结构体
-      class CheckDomainResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否备案
-        # @type Data: Boolean
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Data = params['Data']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 厨师服识别结果详情
       class ChefClothAIResultInfo < TencentCloud::Common::AbstractModel
         # @param Time: 时间字符串

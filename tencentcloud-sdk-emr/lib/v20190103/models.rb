@@ -2590,7 +2590,7 @@ module TencentCloud
       class DescribeEmrOverviewMetricsRequest < TencentCloud::Common::AbstractModel
         # @param End: 结束时间
         # @type End: Integer
-        # @param Metric: 指标名
+        # @param Metric: 指标名，NODE.CPU：节点平均CPU利用率和总核数；NODE.CPU.SLHBASE：Serverless实例平均CPU利用率和总核数；HDFS.NN.CAPACITY：存储使用率和总量
         # @type Metric: String
         # @param InstanceId: 集群id
         # @type InstanceId: String
@@ -8874,10 +8874,19 @@ module TencentCloud
         # @type Spec: String
         # @param StorageType: 磁盘类型
         # @type StorageType: Integer
+        # @param RootSize: 系统盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootSize: Integer
+        # @param RootStorageType: 系统盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootStorageType: Integer
+        # @param MCMultiDisk: 数据盘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MCMultiDisk: Array
 
-        attr_accessor :EmrResourceId, :Flag, :Ip, :MemDesc, :CpuNum, :DiskSize, :ExpireTime, :Spec, :StorageType
+        attr_accessor :EmrResourceId, :Flag, :Ip, :MemDesc, :CpuNum, :DiskSize, :ExpireTime, :Spec, :StorageType, :RootSize, :RootStorageType, :MCMultiDisk
 
-        def initialize(emrresourceid=nil, flag=nil, ip=nil, memdesc=nil, cpunum=nil, disksize=nil, expiretime=nil, spec=nil, storagetype=nil)
+        def initialize(emrresourceid=nil, flag=nil, ip=nil, memdesc=nil, cpunum=nil, disksize=nil, expiretime=nil, spec=nil, storagetype=nil, rootsize=nil, rootstoragetype=nil, mcmultidisk=nil)
           @EmrResourceId = emrresourceid
           @Flag = flag
           @Ip = ip
@@ -8887,6 +8896,9 @@ module TencentCloud
           @ExpireTime = expiretime
           @Spec = spec
           @StorageType = storagetype
+          @RootSize = rootsize
+          @RootStorageType = rootstoragetype
+          @MCMultiDisk = mcmultidisk
         end
 
         def deserialize(params)
@@ -8899,6 +8911,16 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @Spec = params['Spec']
           @StorageType = params['StorageType']
+          @RootSize = params['RootSize']
+          @RootStorageType = params['RootStorageType']
+          unless params['MCMultiDisk'].nil?
+            @MCMultiDisk = []
+            params['MCMultiDisk'].each do |i|
+              multidiskmc_tmp = MultiDiskMC.new
+              multidiskmc_tmp.deserialize(i)
+              @MCMultiDisk << multidiskmc_tmp
+            end
+          end
         end
       end
 

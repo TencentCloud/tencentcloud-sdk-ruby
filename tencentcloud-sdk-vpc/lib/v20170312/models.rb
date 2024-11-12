@@ -18333,6 +18333,42 @@ module TencentCloud
         end
       end
 
+      # ModifyBandwidthPackageBandwidth请求参数结构体
+      class ModifyBandwidthPackageBandwidthRequest < TencentCloud::Common::AbstractModel
+        # @param InternetMaxBandwidth: 带宽包限速大小。单位：Mbps。
+        # @type InternetMaxBandwidth: Integer
+        # @param BandwidthPackageId: 共享带宽包ID
+        # @type BandwidthPackageId: String
+
+        attr_accessor :InternetMaxBandwidth, :BandwidthPackageId
+
+        def initialize(internetmaxbandwidth=nil, bandwidthpackageid=nil)
+          @InternetMaxBandwidth = internetmaxbandwidth
+          @BandwidthPackageId = bandwidthpackageid
+        end
+
+        def deserialize(params)
+          @InternetMaxBandwidth = params['InternetMaxBandwidth']
+          @BandwidthPackageId = params['BandwidthPackageId']
+        end
+      end
+
+      # ModifyBandwidthPackageBandwidth返回参数结构体
+      class ModifyBandwidthPackageBandwidthResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCcnAttachedInstancesAttribute请求参数结构体
       class ModifyCcnAttachedInstancesAttributeRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。

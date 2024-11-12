@@ -8017,6 +8017,8 @@ module TencentCloud
       class ModifyAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param AlarmNoticeId: 通知渠道组ID。
         # @type AlarmNoticeId: String
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的通知渠道组。最大支持10个标签键值对，并且不能有重复的键值对。
+        # @type Tags: Array
         # @param Name: 通知渠道组名称。
         # @type Name: String
         # @param Type: 通知类型。可选值：
@@ -8026,7 +8028,7 @@ module TencentCloud
         # @type Type: String
         # @param NoticeReceivers: 通知接收对象。
         # @type NoticeReceivers: Array
-        # @param WebCallbacks: 接口回调信息（包括企业微信）。
+        # @param WebCallbacks: 接口回调信息（包括企业微信等）。
         # @type WebCallbacks: Array
         # @param NoticeRules: 通知规则。
 
@@ -8035,20 +8037,50 @@ module TencentCloud
         # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
         # - 传其中一组数据，则另一组数据置空。
         # @type NoticeRules: Array
+        # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
+        # @type JumpDomain: String
+        # @param DeliverStatus: 投递日志开关。
 
-        attr_accessor :AlarmNoticeId, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules
+        # 参数值：
+        # 1：关闭；
 
-        def initialize(alarmnoticeid=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil)
+        # 2：开启
+        # @type DeliverStatus: Integer
+        # @param DeliverConfig: 投递日志配置。
+        # @type DeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.DeliverConfig`
+        # @param AlarmShieldStatus: 免登录操作告警开关。
+
+        # 参数值：
+        #         1：关闭
+        #         2：开启（默认开启）
+        # @type AlarmShieldStatus: Integer
+
+        attr_accessor :AlarmNoticeId, :Tags, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus
+
+        def initialize(alarmnoticeid=nil, tags=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil)
           @AlarmNoticeId = alarmnoticeid
+          @Tags = tags
           @Name = name
           @Type = type
           @NoticeReceivers = noticereceivers
           @WebCallbacks = webcallbacks
           @NoticeRules = noticerules
+          @JumpDomain = jumpdomain
+          @DeliverStatus = deliverstatus
+          @DeliverConfig = deliverconfig
+          @AlarmShieldStatus = alarmshieldstatus
         end
 
         def deserialize(params)
           @AlarmNoticeId = params['AlarmNoticeId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @Name = params['Name']
           @Type = params['Type']
           unless params['NoticeReceivers'].nil?
@@ -8075,6 +8107,13 @@ module TencentCloud
               @NoticeRules << noticerule_tmp
             end
           end
+          @JumpDomain = params['JumpDomain']
+          @DeliverStatus = params['DeliverStatus']
+          unless params['DeliverConfig'].nil?
+            @DeliverConfig = DeliverConfig.new
+            @DeliverConfig.deserialize(params['DeliverConfig'])
+          end
+          @AlarmShieldStatus = params['AlarmShieldStatus']
         end
       end
 

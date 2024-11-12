@@ -130,7 +130,7 @@ module TencentCloud
         # 4. 未传值时默认关闭。
         # 5. 开启并搜索到对应的多媒体信息时，会输出对应的多媒体地址，可以定制个性化的图文消息。
         # @type EnableMultimedia: Boolean
-        # @param EnableDeepSearch: 是否开启搜索深度模式，默认是false，在值为true且命中搜索时，会请求深度搜索。
+        # @param EnableDeepSearch: 是否开启深度研究该问题，默认是false，在值为true且命中深度研究该问题时，会返回深度研究该问题信息。
         # @type EnableDeepSearch: Boolean
         # @param Seed: 说明： 1. 确保模型的输出是可复现的。 2. 取值区间为非0正整数，最大值10000。 3. 非必要不建议使用，不合理的取值会影响效果。
         # @type Seed: Integer
@@ -692,21 +692,25 @@ module TencentCloud
       class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
         # @param Input: 输入文本。总长度不超过 1024 个 Token，超过则会截断最后面的内容。
         # @type Input: String
+        # @param InputList: 输入文本数组。输入数组总长度不超过 200 。
+        # @type InputList: Array
 
-        attr_accessor :Input
+        attr_accessor :Input, :InputList
 
-        def initialize(input=nil)
+        def initialize(input=nil, inputlist=nil)
           @Input = input
+          @InputList = inputlist
         end
 
         def deserialize(params)
           @Input = params['Input']
+          @InputList = params['InputList']
         end
       end
 
       # GetEmbedding返回参数结构体
       class GetEmbeddingResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回的 Embedding 信息。当前不支持批量，所以数组元素数目为 1。
+        # @param Data: 返回的 Embedding 信息。
         # @type Data: Array
         # @param Usage: Token 使用计数，按照总 Token 数量收费。
         # @type Usage: :class:`Tencentcloud::Hunyuan.v20230901.models.EmbeddingUsage`

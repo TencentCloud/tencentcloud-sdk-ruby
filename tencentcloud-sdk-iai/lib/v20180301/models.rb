@@ -2749,9 +2749,9 @@ module TencentCloud
 
       # 坐标
       class Point < TencentCloud::Common::AbstractModel
-        # @param X: x坐标
+        # @param X: x坐标。
         # @type X: Integer
-        # @param Y: Y坐标
+        # @param Y: Y坐标。
         # @type Y: Integer
 
         attr_accessor :X, :Y

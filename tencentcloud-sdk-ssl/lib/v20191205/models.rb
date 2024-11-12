@@ -426,6 +426,38 @@ module TencentCloud
         end
       end
 
+      # 证书基本信息
+      class CertBasicInfo < TencentCloud::Common::AbstractModel
+        # @param Issuer: 颁发者
+        # @type Issuer: String
+        # @param Subject: 颁发给
+        # @type Subject: String
+        # @param Fingerprint: 证书指纹
+        # @type Fingerprint: String
+        # @param ValidFrom: 证书有效期开始时间
+        # @type ValidFrom: String
+        # @param ValidTo: 证书有效期结束时间
+        # @type ValidTo: String
+
+        attr_accessor :Issuer, :Subject, :Fingerprint, :ValidFrom, :ValidTo
+
+        def initialize(issuer=nil, subject=nil, fingerprint=nil, validfrom=nil, validto=nil)
+          @Issuer = issuer
+          @Subject = subject
+          @Fingerprint = fingerprint
+          @ValidFrom = validfrom
+          @ValidTo = validto
+        end
+
+        def deserialize(params)
+          @Issuer = params['Issuer']
+          @Subject = params['Subject']
+          @Fingerprint = params['Fingerprint']
+          @ValidFrom = params['ValidFrom']
+          @ValidTo = params['ValidTo']
+        end
+      end
+
       # 证书异步任务ID
       class CertTaskId < TencentCloud::Common::AbstractModel
         # @param CertId: 证书ID
@@ -2445,12 +2477,15 @@ module TencentCloud
         # @param DvRevokeAuthDetail: DV证书吊销验证值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DvRevokeAuthDetail: Array
+        # @param CertChainInfo: 证书链信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertChainInfo: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :CertChainInfo, :RequestId
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, certchaininfo=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -2492,6 +2527,7 @@ module TencentCloud
           @EncryptCertFingerprint = encryptcertfingerprint
           @EncryptAlgorithm = encryptalgorithm
           @DvRevokeAuthDetail = dvrevokeauthdetail
+          @CertChainInfo = certchaininfo
           @RequestId = requestid
         end
 
@@ -2561,6 +2597,14 @@ module TencentCloud
               dvauths_tmp = DvAuths.new
               dvauths_tmp.deserialize(i)
               @DvRevokeAuthDetail << dvauths_tmp
+            end
+          end
+          unless params['CertChainInfo'].nil?
+            @CertChainInfo = []
+            params['CertChainInfo'].each do |i|
+              certbasicinfo_tmp = CertBasicInfo.new
+              certbasicinfo_tmp.deserialize(i)
+              @CertChainInfo << certbasicinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4874,17 +4918,25 @@ module TencentCloud
         # @param MessageTypes: 托管发送消息类型：0，托管开始前消息提醒（没有续费证书也会收到该提示消息）； 1， 托管开始消息提醒（存在续费证书才会收到消息提醒）； 2， 托管资源替换失败消息提醒； 3 托管资源替换成功消息提醒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTypes: Array
+        # @param ReplaceStartTime: 资源替换开始时间
+        # @type ReplaceStartTime: String
+        # @param ReplaceEndTime: 资源替换结束时间
+        # @type ReplaceEndTime: String
 
-        attr_accessor :ReplaceTime, :MessageTypes
+        attr_accessor :ReplaceTime, :MessageTypes, :ReplaceStartTime, :ReplaceEndTime
 
-        def initialize(replacetime=nil, messagetypes=nil)
+        def initialize(replacetime=nil, messagetypes=nil, replacestarttime=nil, replaceendtime=nil)
           @ReplaceTime = replacetime
           @MessageTypes = messagetypes
+          @ReplaceStartTime = replacestarttime
+          @ReplaceEndTime = replaceendtime
         end
 
         def deserialize(params)
           @ReplaceTime = params['ReplaceTime']
           @MessageTypes = params['MessageTypes']
+          @ReplaceStartTime = params['ReplaceStartTime']
+          @ReplaceEndTime = params['ReplaceEndTime']
         end
       end
 

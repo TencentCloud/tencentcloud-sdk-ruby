@@ -6984,6 +6984,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口用于调整[共享带宽包](https://cloud.tencent.com/document/product/684/15245)(BWP)带宽
+
+        # @param request: Request instance for ModifyBandwidthPackageBandwidth.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyBandwidthPackageBandwidthRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyBandwidthPackageBandwidthResponse`
+        def ModifyBandwidthPackageBandwidth(request)
+          body = send_request('ModifyBandwidthPackageBandwidth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBandwidthPackageBandwidthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改CCN关联实例属性，目前仅修改备注description
 
         # @param request: Request instance for ModifyCcnAttachedInstancesAttribute.

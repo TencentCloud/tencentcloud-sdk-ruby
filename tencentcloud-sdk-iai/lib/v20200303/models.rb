@@ -19,24 +19,31 @@ module TencentCloud
     module V20200303
       # AnalyzeDenseLandmarks请求参数结构体
       class AnalyzeDenseLandmarksRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 检测模式。0 为检测所有出现的人脸， 1 为检测面积最大的人脸。
-        # 默认为 0。
-        # 最多返回 5 张人脸的五官定位（人脸关键点）具体信息。
+        # @param Mode: 检测模式。
+        # - 取值范围：0 为检测所有出现的人脸， 1 为检测面积最大的人脸。
+        # - 默认为 0。
+        # - 最多返回 5 张人脸的五官定位（人脸关键点）具体信息。
         # @type Mode: Integer
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
-        # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Url: 图片的 Url 。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持 “3.0“ 输入。
         # @type FaceModelVersion: String
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 取值范围：0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
 
         attr_accessor :Mode, :Image, :Url, :FaceModelVersion, :NeedRotateDetection
@@ -99,30 +106,37 @@ module TencentCloud
 
       # AnalyzeFace请求参数结构体
       class AnalyzeFaceRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 检测模式。0 为检测所有出现的人脸， 1 为检测面积最大的人脸。默认为 0。最多返回 10 张人脸的五官定位（人脸关键点）具体信息。
+        # @param Mode: 检测模式。
+        # - 取值范围：
+        # 0 为检测所有出现的人脸。
+        # 1 为检测面积最大的人脸。
+        # - 默认为 0。
+        # - 最多返回 10 张人脸的五官定位（人脸关键点）具体信息。
         # @type Mode: Integer
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
-        # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Url: 图片的 Url 。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
-
-        # 目前入参支持 “2.0”和“3.0“ 两个输入。
-
-        # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
-
-        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
-
-        # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
+        # - 目前入参支持 “2.0”和“3.0“ 两个输入。
+        # - 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+        # - 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+        # - 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
 
         attr_accessor :Mode, :Image, :Url, :FaceModelVersion, :NeedRotateDetection
@@ -185,9 +199,10 @@ module TencentCloud
 
       # 人脸属性信息
       class AttributeItem < TencentCloud::Common::AbstractModel
-        # @param Type: 属性值
+        # @param Type: 属性值。
         # @type Type: Integer
-        # @param Probability: Type识别概率值,[0,1],代表判断正确的概率。
+        # @param Probability: Type识别概率值。
+        # - 取值范围：[0,1]，代表判断正确的概率。
         # @type Probability: Float
 
         attr_accessor :Type, :Probability
@@ -205,25 +220,25 @@ module TencentCloud
 
       # 识别出的最相似候选人
       class Candidate < TencentCloud::Common::AbstractModel
-        # @param PersonId: 人员ID
+        # @param PersonId: 人员ID。
         # @type PersonId: String
-        # @param FaceId: 人脸ID，仅在SearchFaces/SearchFacesReturnsByGroup接口返回时有效。人员搜索类接口采用融合特征方式检索，该字段无意义
+        # @param FaceId: 人脸ID。
+        # - 仅在SearchFaces/SearchFacesReturnsByGroup接口返回时有效。
+        # - 人员搜索类接口采用融合特征方式检索，该字段无意义。
         # @type FaceId: String
         # @param Score: 候选者的匹配得分。
-
-        # 1万大小人脸底库下，误识率百分之一对应分数为70分，误识率千分之一对应分数为80分，误识率万分之一对应分数为90分；
-        # 10万大小人脸底库下，误识率百分之一对应分数为80分，误识率千分之一对应分数为90分，误识率万分之一对应分数为100分；
-        # 30万大小人脸底库下，误识率百分之一对应分数为85分，误识率千分之一对应分数为95分。
-
-        # 一般80分左右可适用大部分场景，建议分数不要超过90分。您可以根据实际情况选择合适的分数。
+        # - 1万大小人脸底库下，误识率百分之一对应分数为70分，误识率千分之一对应分数为80分，误识率万分之一对应分数为90分。
+        # - 10万大小人脸底库下，误识率百分之一对应分数为80分，误识率千分之一对应分数为90分，误识率万分之一对应分数为100分。
+        # - 30万大小人脸底库下，误识率百分之一对应分数为85分，误识率千分之一对应分数为95分。
+        # - 一般80分左右可适用大部分场景，建议分数不要超过90分。您可以根据实际情况选择合适的分数。
         # @type Score: Float
-        # @param PersonName: 人员名称
+        # @param PersonName: 人员名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersonName: String
-        # @param Gender: 人员性别
+        # @param Gender: 人员性别。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gender: Integer
-        # @param PersonGroupInfos: 包含此人员的人员库及描述字段内容列表
+        # @param PersonGroupInfos: 包含此人员的人员库及描述字段内容列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersonGroupInfos: Array
 
@@ -1105,30 +1120,36 @@ module TencentCloud
       # DetectFaceAttributes请求参数结构体
       class DetectFaceAttributesRequest < TencentCloud::Common::AbstractModel
         # @param MaxFaceNum: 最多处理的人脸数目。
-        # 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
-        # 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
+        # - 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
+        # - 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
         # @type MaxFaceNum: Integer
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。 所有格式的图片短边像素不小于64。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
         # @param Url: 图片的 Url 。
-        # 对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param FaceAttributesType: 是否返回年龄、性别、情绪等属性。
-        # 合法值为（大小写不敏感）：None、Age、Beauty、Emotion、Eye、Eyebrow、
-        # Gender、Hair、Hat、Headpose、Mask、Mouth、Moustache、Nose、Shape、Skin、Smile。
-        # None为不需要返回。默认为 None。即FaceAttributesType属性为空时，各属性返回值为0。
-        # 需要将属性组成一个用逗号分隔的字符串，属性之间的顺序没有要求。
-        # 关于各属性的详细描述，参见下文出参。
-        # 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 AttributesInfo 不具备参考意义。
+        # - 合法值为（大小写不敏感）：None、Age、Beauty、Emotion、Eye、Eyebrow、Gender、Hair、Hat、Headpose、Mask、Mouth、Moustache、Nose、Shape、Skin、Smile。
+        # - None为不需要返回。
+        # - 默认为 None。即FaceAttributesType属性为空时，各属性返回值为0。
+        # - 需要将属性组成一个用逗号分隔的字符串，属性之间的顺序没有要求。
+        # - 关于各属性的详细描述，参见下文出参。
+        # - 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 AttributesInfo 不具备参考意义。
         # @type FaceAttributesType: String
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持“3.0”输入
         # @type FaceModelVersion: String
@@ -1195,40 +1216,53 @@ module TencentCloud
 
       # DetectFace请求参数结构体
       class DetectFaceRequest < TencentCloud::Common::AbstractModel
-        # @param MaxFaceNum: 最多处理的人脸数目。默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
-        # 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
+        # @param MaxFaceNum: 最多处理的人脸数目。
+        # - 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
+        # - 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
         # @type MaxFaceNum: Integer
         # @param MinFaceSize: 人脸长和宽的最小尺寸，单位为像素，低于MinFaceSize值的人脸不会被检测。
-        # 只支持设置34和20，建议使用34。
+        # - 只支持设置34和20，建议使用34。
         # @type MinFaceSize: Integer
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
-        # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。所有格式的图片短边像素不小于64。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Url: 图片的 Url 。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param NeedFaceAttributes: 是否需要返回人脸属性信息（FaceAttributesInfo）。0 为不需要返回，1 为需要返回。默认为 0。
-        # 非 1 值均视为不需要返回，此时 FaceAttributesInfo 不具备参考意义。
-        # 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 FaceAttributesInfo 不具备参考意义。
-        # 提取人脸属性信息较为耗时，如不需要人脸属性信息，建议关闭此项功能，加快人脸检测速度。
+        # @param NeedFaceAttributes: 是否需要返回人脸属性信息（FaceAttributesInfo）。
+        # - 0 为不需要返回，1 为需要返回。
+        # - 默认为 0。
+        # - 非 1 值均视为不需要返回，此时 FaceAttributesInfo 不具备参考意义。
+        # - 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 FaceAttributesInfo 不具备参考意义。
+        # - 提取人脸属性信息较为耗时，如不需要人脸属性信息，建议关闭此项功能，加快人脸检测速度。
         # @type NeedFaceAttributes: Integer
-        # @param NeedQualityDetection: 是否开启质量检测。0 为关闭，1 为开启。默认为 0。
-        # 非 1 值均视为不进行质量检测。
-        # 最多返回面积最大的 30 张人脸质量分信息，超过 30 张人脸（第 31 张及以后的人脸）的 FaceQualityInfo不具备参考意义。
-        # 建议：人脸入库操作建议开启此功能。
+        # @param NeedQualityDetection: 是否开启质量检测。
+        # - 0 为关闭，1 为开启。
+        # - 默认为 0。
+        # - 非 1 值均视为不进行质量检测。
+        # - 最多返回面积最大的 30 张人脸质量分信息，超过 30 张人脸（第 31 张及以后的人脸）的 FaceQualityInfo不具备参考意义。
+        # - 建议：人脸入库操作建议开启此功能。
         # @type NeedQualityDetection: Integer
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
-        # 目前入参支持 “2.0”和“3.0“ 两个输入。
-        # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
-        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
-        # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
+        # - 目前入参支持 “2.0”和“3.0“ 两个输入。
+        # - 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+        # - 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+        # - 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
 
         attr_accessor :MaxFaceNum, :MinFaceSize, :Image, :Url, :NeedFaceAttributes, :NeedQualityDetection, :FaceModelVersion, :NeedRotateDetection
@@ -1262,7 +1296,8 @@ module TencentCloud
         # @type ImageWidth: Integer
         # @param ImageHeight: 请求的图片高度。
         # @type ImageHeight: Integer
-        # @param FaceInfos: 人脸信息列表。包含人脸坐标信息、属性信息（若需要）、质量分信息（若需要）。
+        # @param FaceInfos: 人脸信息列表。
+        # - 包含人脸坐标信息、属性信息（若需要）、质量分信息（若需要）。
         # @type FaceInfos: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
@@ -1297,19 +1332,21 @@ module TencentCloud
 
       # DetectLiveFaceAccurate请求参数结构体
       class DetectLiveFaceAccurateRequest < TencentCloud::Common::AbstractModel
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # 图片的宽高比请接近 3:4，手机拍摄比例最佳。
-        # 人脸尺寸大于100X100像素。
-        # 图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 图片的宽高比请接近 3:4，手机拍摄比例最佳。
+        # - 人脸尺寸大于100X100像素。
+        # - 图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
-        # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片的宽高比请接近 3:4，手机拍摄比例最佳。
-        # 人脸尺寸大于100X100像素。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Url: 图片的 Url 。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片的宽高比请接近 3:4，手机拍摄比例最佳。
+        # - 人脸尺寸大于100X100像素。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。目前入参支持“3.0“。
         # @type FaceModelVersion: String
@@ -1331,7 +1368,10 @@ module TencentCloud
 
       # DetectLiveFaceAccurate返回参数结构体
       class DetectLiveFaceAccurateResponse < TencentCloud::Common::AbstractModel
-        # @param Score: 活体打分，取值范围 [0,100]，根据活体分数对应的阈值区间来判断是否为翻拍。目前阈值可分为[5,10,40,70,90]，其中推荐阈值为40。
+        # @param Score: 活体打分。
+        # - 取值范围 [0,100]。
+        # - 根据活体分数对应的阈值区间来判断是否为翻拍。
+        # - 目前阈值可分为[5,10,40,70,90]，其中推荐阈值为40。
         # @type Score: Float
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
@@ -1426,16 +1466,16 @@ module TencentCloud
       # 眼睛信息
       class Eye < TencentCloud::Common::AbstractModel
         # @param Glass: 识别是否佩戴眼镜。
-        # AttributeItem对应的Type为 —— 0：无眼镜，1：普通眼镜，2：墨镜
+        # - AttributeItem对应的Type为 —— 0：无眼镜，1：普通眼镜，2：墨镜
         # @type Glass: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param EyeOpen: 识别眼睛的睁开、闭合状态。
-        # AttributeItem对应的Type为 —— 0：睁开，1：闭眼
+        # - AttributeItem对应的Type为 —— 0：睁开，1：闭眼
         # @type EyeOpen: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param EyelidType: 识别是否双眼皮。
-        # AttributeItem对应的Type为 —— 0：无，1：有。
+        # - AttributeItem对应的Type为 —— 0：无，1：有。
         # @type EyelidType: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param EyeSize: 眼睛大小。
-        # AttributeItem对应的Type为 —— 0：小眼睛，1：普通眼睛，2：大眼睛。
+        # - AttributeItem对应的Type为 —— 0：小眼睛，1：普通眼睛，2：大眼睛。
         # @type EyeSize: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
 
         attr_accessor :Glass, :EyeOpen, :EyelidType, :EyeSize
@@ -1470,13 +1510,13 @@ module TencentCloud
       # 眉毛信息
       class Eyebrow < TencentCloud::Common::AbstractModel
         # @param EyebrowDensity: 眉毛浓密。
-        # AttributeItem对应的Type为 —— 0：淡眉，1：浓眉。
+        # - AttributeItem对应的Type为 —— 0：淡眉，1：浓眉。
         # @type EyebrowDensity: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param EyebrowCurve: 眉毛弯曲。
-        # AttributeItem对应的Type为 —— 0：不弯，1：弯眉。
+        # - AttributeItem对应的Type为 —— 0：不弯，1：弯眉。
         # @type EyebrowCurve: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param EyebrowLength: 眉毛长短。
-        # AttributeItem对应的Type为 —— 0：短眉毛，1：长眉毛。
+        # - AttributeItem对应的Type为 —— 0：短眉毛，1：长眉毛。
         # @type EyebrowLength: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
 
         attr_accessor :EyebrowDensity, :EyebrowCurve, :EyebrowLength
@@ -1506,35 +1546,59 @@ module TencentCloud
       # 人脸属性信息，包含性别( gender )、年龄( age )、表情( expression )、
       # 魅力( beauty )、眼镜( glass )、口罩（mask）、头发（hair）和姿态 (pitch，roll，yaw )。只有当 NeedFaceAttributes 设为 1 时才返回有效信息，最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 FaceAttributesInfo 不具备参考意义。
       class FaceAttributesInfo < TencentCloud::Common::AbstractModel
-        # @param Gender: 性别[0~49]为女性，[50，100]为男性，越接近0和100表示置信度越高。NeedFaceAttributes 不为 1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Gender: 性别。
+        # - 取值说明：[0~49]为女性，[50，100]为男性，越接近0和100表示置信度越高。
+        # - NeedFaceAttributes 不为 1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Gender: Integer
-        # @param Age: 年龄 [0~100]。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Age: 年龄 。
+        # - 取值范围：[0~100]。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Age: Integer
-        # @param Expression: 微笑[0(normal，正常)~100(laugh，大笑)]。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Expression: 微笑。
+        # - 取值说明：[0(normal，正常)~100(laugh，大笑)]。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Expression: Integer
-        # @param Glass: 是否有眼镜 [true,false]。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Glass: 是否有眼镜。
+        # - 取值范围： [true,false]。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Glass: Boolean
-        # @param Pitch: 上下偏移[-30,30]，单位角度。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
-        # 建议：人脸入库选择[-10,10]的图片。
+        # @param Pitch: 上下偏移。
+        # - 取值范围：[-30,30]，单位角度。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - 建议：人脸入库选择[-10,10]的图片。
         # @type Pitch: Integer
-        # @param Yaw: 左右偏移[-30,30]，单位角度。 NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
-        # 建议：人脸入库选择[-10,10]的图片。
+        # @param Yaw: 左右偏移。
+        # - 取值范围：[-30,30]，单位角度。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - 建议：人脸入库选择[-10,10]的图片。
         # @type Yaw: Integer
-        # @param Roll: 平面旋转[-180,180]，单位角度。 NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
-        # 建议：人脸入库选择[-20,20]的图片。
+        # @param Roll: 平面旋转。
+        # - 取值范围：[-180,180]，单位角度。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - 建议：人脸入库选择[-20,20]的图片。
         # @type Roll: Integer
-        # @param Beauty: 魅力[0~100]。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Beauty: 魅力。
+        # - 取值范围：[0~100]。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Beauty: Integer
-        # @param Hat: 是否有帽子 [true,false]。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Hat: 是否有帽子。
+        # - 取值范围： [true,false]。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hat: Boolean
-        # @param Mask: 是否有口罩 [true,false]。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Mask: 是否有口罩。
+        # - 取值范围： [true,false]。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mask: Boolean
-        # @param Hair: 头发信息，包含头发长度（length）、有无刘海（bang）、头发颜色（color）。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Hair: 头发信息，包含头发长度（length）、有无刘海（bang）、头发颜色（color）。
+        # - NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hair: :class:`Tencentcloud::Iai.v20200303.models.FaceHairAttributesInfo`
-        # @param EyeOpen: 双眼是否睁开 [true,false]。只要有超过一只眼睛闭眼，就返回false。 NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param EyeOpen: 双眼是否睁开。
+        # - 取值范围： [true,false]。
+        # - 只要有超过一只眼睛闭眼，就返回false。
+        # -  NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EyeOpen: Boolean
 
@@ -1580,60 +1644,63 @@ module TencentCloud
       # 鼻子（Nose）、脸型（Shape）、肤色（Skin）、微笑（Smile）等人脸属性信息。
       # 若 FaceAttributesType 没有输入相关类型，则FaceDetaiAttributesInfo返回的细项不具备参考意义。
       class FaceDetailAttributesInfo < TencentCloud::Common::AbstractModel
-        # @param Age: 年龄 [0,65]，其中65代表“65岁及以上”。
-        # FaceAttributesType 不含Age 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Age: 年龄。
+        # - 取值范围： [0,65]，其中65代表“65岁及以上”。
+        # - FaceAttributesType 不含Age 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Age: Integer
-        # @param Beauty: 美丑打分[0,100]。
-        # FaceAttributesType 不含 Beauty 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Beauty: 美丑打分。
+        # - 取值范围：[0,100]。
+        # - FaceAttributesType 不含 Beauty 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Beauty: Integer
         # @param Emotion: 情绪，可识别自然、高兴、惊讶、生气、悲伤、厌恶、害怕。
-        # AttributeItem对应的Type为 —— 0：自然，1：高兴，2：惊讶，3：生气，4：悲伤，5：厌恶，6：害怕
-        # FaceAttributesType 不含Emotion 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：自然，1：高兴，2：惊讶，3：生气，4：悲伤，5：厌恶，6：害怕。
+        # - FaceAttributesType 不含Emotion 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Emotion: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param Eye: 眼睛相关信息，可识别是否戴眼镜、是否闭眼、是否双眼皮和眼睛大小。
-        # FaceAttributesType 不含Eye 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - FaceAttributesType 不含Eye 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Eye: :class:`Tencentcloud::Iai.v20200303.models.Eye`
         # @param Eyebrow: 眉毛相关信息，可识别眉毛浓密、弯曲、长短信息。
         # FaceAttributesType 不含Eyebrow 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Eyebrow: :class:`Tencentcloud::Iai.v20200303.models.Eyebrow`
         # @param Gender: 性别信息。
-        # AttributeItem对应的Type为 —— 	0：男性，1：女性。
-        # FaceAttributesType 不含Gender 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 	0：男性，1：女性。
+        # - FaceAttributesType 不含Gender 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Gender: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param Hair: 头发信息，包含头发长度、有无刘海、头发颜色。
-        # FaceAttributesType 不含Hair 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - FaceAttributesType 不含Hair 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Hair: :class:`Tencentcloud::Iai.v20200303.models.Hair`
         # @param Hat: 帽子信息，可识别是否佩戴帽子、帽子款式、帽子颜色。
-        # FaceAttributesType 不含Hat 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - FaceAttributesType 不含Hat 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Hat: :class:`Tencentcloud::Iai.v20200303.models.Hat`
         # @param HeadPose: 姿态信息，包含人脸的上下偏移、左右偏移、平面旋转信息。
-        # FaceAttributesType 不含Headpose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - FaceAttributesType 不含Headpose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type HeadPose: :class:`Tencentcloud::Iai.v20200303.models.HeadPose`
         # @param Mask: 口罩佩戴信息。
-        # AttributeItem对应的Type为 —— 0: 无口罩， 1: 有口罩不遮脸，2: 有口罩遮下巴，3: 有口罩遮嘴，4: 正确佩戴口罩。
-        # FaceAttributesType 不含Mask 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0: 无口罩， 1: 有口罩不遮脸，2: 有口罩遮下巴，3: 有口罩遮嘴，4: 正确佩戴口罩。
+        # - FaceAttributesType 不含Mask 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Mask: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param Mouth: 嘴巴信息，可识别是否张嘴、嘴唇厚度。
-        # FaceAttributesType 不含 Mouth 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - FaceAttributesType 不含 Mouth 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Mouth: :class:`Tencentcloud::Iai.v20200303.models.Mouth`
         # @param Moustache: 胡子信息。
-        # AttributeItem对应的Type为 —— 0：无胡子，1：有胡子。
-        # FaceAttributesType 不含 Moustache 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：无胡子，1：有胡子。
+        # - FaceAttributesType 不含 Moustache 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Moustache: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param Nose: 鼻子信息。
-        # AttributeItem对应的Type为 —— 0：朝天鼻，1：鹰钩鼻，2：普通，3：圆鼻头
-        # FaceAttributesType 不含 Nose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：朝天鼻，1：鹰钩鼻，2：普通，3：圆鼻头
+        # - FaceAttributesType 不含 Nose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Nose: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param Shape: 脸型信息。
-        # AttributeItem对应的Type为 —— 0：方脸，1：三角脸，2：鹅蛋脸，3：心形脸，4：圆脸。
-        # FaceAttributesType 不含 Shape 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：方脸，1：三角脸，2：鹅蛋脸，3：心形脸，4：圆脸。
+        # - FaceAttributesType 不含 Shape 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Shape: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
         # @param Skin: 肤色信息。
-        # AttributeItem对应的Type为 —— 0：黄色皮肤，1：棕色皮肤，2：黑色皮肤，3：白色皮肤。
-        # FaceAttributesType 不含 Skin 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # - AttributeItem对应的Type为 —— 0：黄色皮肤，1：棕色皮肤，2：黑色皮肤，3：白色皮肤。
+        # - FaceAttributesType 不含 Skin 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Skin: :class:`Tencentcloud::Iai.v20200303.models.AttributeItem`
-        # @param Smile: 微笑程度，[0,100]。
-        # FaceAttributesType 不含 Smile 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @param Smile: 微笑程度
+        # - 取值范围：[0,100]。
+        # - FaceAttributesType 不含 Smile 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         # @type Smile: Integer
 
         attr_accessor :Age, :Beauty, :Emotion, :Eye, :Eyebrow, :Gender, :Hair, :Hat, :HeadPose, :Mask, :Mouth, :Moustache, :Nose, :Shape, :Skin, :Smile
@@ -1720,11 +1787,9 @@ module TencentCloud
       class FaceDetailInfo < TencentCloud::Common::AbstractModel
         # @param FaceRect: 检测出的人脸框位置。
         # @type FaceRect: :class:`Tencentcloud::Iai.v20200303.models.FaceRect`
-        # @param FaceDetailAttributesInfo: 人脸属性信息，根据 FaceAttributesType 输入的类型，返回年龄（Age）、颜值（Beauty）
-        # 情绪（Emotion）、眼睛信息（Eye）、眉毛（Eyebrow）、性别（Gender）
-        # 头发（Hair）、帽子（Hat）、姿态（Headpose）、口罩（Mask）、嘴巴（Mouth）、胡子（Moustache）
-        # 鼻子（Nose）、脸型（Shape）、肤色（Skin）、微笑（Smile）等人脸属性信息。
-        # 若 FaceAttributesType 没有输入相关类型，则FaceDetaiAttributesInfo返回的细项不具备参考意义。
+        # @param FaceDetailAttributesInfo: 人脸属性信息。
+        # - 根据 FaceAttributesType 输入的类型，返回年龄（Age）、颜值（Beauty）、情绪（Emotion）、眼睛信息（Eye）、眉毛（Eyebrow）、性别（Gender）、头发（Hair）、帽子（Hat）、姿态（Headpose）、口罩（Mask）、嘴巴（Mouth）、胡子（Moustache） 、鼻子（Nose）、脸型（Shape）、肤色（Skin）、微笑（Smile）等人脸属性信息。
+        # - 若 FaceAttributesType 没有输入相关类型，则FaceDetaiAttributesInfo返回的细项不具备参考意义。
         # @type FaceDetailAttributesInfo: :class:`Tencentcloud::Iai.v20200303.models.FaceDetailAttributesInfo`
 
         attr_accessor :FaceRect, :FaceDetailAttributesInfo
@@ -1748,13 +1813,13 @@ module TencentCloud
 
       # 人脸属性中的发型信息。
       class FaceHairAttributesInfo < TencentCloud::Common::AbstractModel
-        # @param Length: 0：光头，1：短发，2：中发，3：长发，4：绑发
+        # @param Length: 取值范围：0：光头，1：短发，2：中发，3：长发，4：绑发。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Length: Integer
-        # @param Bang: 0：有刘海，1：无刘海
+        # @param Bang: 取值范围：0：有刘海，1：无刘海。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bang: Integer
-        # @param Color: 0：黑色，1：金色，2：棕色，3：灰白色
+        # @param Color: 取值范围：0：黑色，1：金色，2：棕色，3：灰白色。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Color: Integer
 
@@ -1776,21 +1841,24 @@ module TencentCloud
       # 人脸信息列表。
       class FaceInfo < TencentCloud::Common::AbstractModel
         # @param X: 人脸框左上角横坐标。
-        # 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
-        # 若需截取完整人脸，可以在完整分completeness满足需求的情况下，将负值坐标取0。
+        # - 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
+        # - 若需截取完整人脸，可以在完整分completeness满足需求的情况下，将负值坐标取0。
         # @type X: Integer
         # @param Y: 人脸框左上角纵坐标。
-        # 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
-        # 若需截取完整人脸，可以在完整分completeness满足需求的情况下，将负值坐标取0。
+        # - 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
+        # - 若需截取完整人脸，可以在完整分completeness满足需求的情况下，将负值坐标取0。
         # @type Y: Integer
         # @param Width: 人脸框宽度。
         # @type Width: Integer
         # @param Height: 人脸框高度。
         # @type Height: Integer
-        # @param FaceAttributesInfo: 人脸属性信息，包含性别( gender )、年龄( age )、表情( expression )、
-        # 魅力( beauty )、眼镜( glass )、口罩（mask）、头发（hair）和姿态 (pitch，roll，yaw )。只有当 NeedFaceAttributes 设为 1 时才返回有效信息。
+        # @param FaceAttributesInfo: 人脸属性信息。
+        # - 包含性别( gender )、年龄( age )、表情( expression )、魅力( beauty )、眼镜( glass )、口罩（mask）、头发（hair）和姿态 (pitch，roll，yaw )。
+        # - 只有当 NeedFaceAttributes 设为 1 时才返回有效信息。
         # @type FaceAttributesInfo: :class:`Tencentcloud::Iai.v20200303.models.FaceAttributesInfo`
-        # @param FaceQualityInfo: 人脸质量信息，包含质量分（score）、模糊分（sharpness）、光照分（brightness）、遮挡分（completeness）。只有当NeedFaceDetection设为1时才返回有效信息。
+        # @param FaceQualityInfo: 人脸质量信息。
+        # - 包含质量分（score）、模糊分（sharpness）、光照分（brightness）、遮挡分（completeness）。
+        # - 只有当NeedFaceDetection设为1时才返回有效信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceQualityInfo: :class:`Tencentcloud::Iai.v20200303.models.FaceQualityInfo`
 
@@ -1823,28 +1891,34 @@ module TencentCloud
 
       # 五官遮挡分，评价眉毛（Eyebrow）、眼睛（Eye）、鼻子（Nose）、脸颊（Cheek）、嘴巴（Mouth）、下巴（Chin）的被遮挡程度。
       class FaceQualityCompleteness < TencentCloud::Common::AbstractModel
-        # @param Eyebrow: 眉毛的遮挡分数[0,100]，分数越高遮挡越少。
-        # 参考范围：[0,80]表示发生遮挡。
+        # @param Eyebrow: 眉毛的遮挡分数。
+        # - 取值范围：[0,100]，分数越高遮挡越少。
+        # - 参考范围：[0,80]表示发生遮挡。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Eyebrow: Integer
-        # @param Eye: 眼睛的遮挡分数[0,100],分数越高遮挡越少。
-        # 参考范围：[0,80]表示发生遮挡。
+        # @param Eye: 眼睛的遮挡分数。
+        # - 取值范围：[0,100],分数越高遮挡越少。
+        # - 参考范围：[0,80]表示发生遮挡。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Eye: Integer
-        # @param Nose: 鼻子的遮挡分数[0,100],分数越高遮挡越少。
-        # 参考范围：[0,60]表示发生遮挡。
+        # @param Nose: 鼻子的遮挡分数。
+        # - 取值范围：[0,100],分数越高遮挡越少。
+        # - 参考范围：[0,60]表示发生遮挡。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nose: Integer
-        # @param Cheek: 脸颊的遮挡分数[0,100],分数越高遮挡越少。
-        # 参考范围：[0,70]表示发生遮挡。
+        # @param Cheek: 脸颊的遮挡分数。
+        # - 取值范围：[0,100],分数越高遮挡越少。
+        # - 参考范围：[0,70]表示发生遮挡。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cheek: Integer
-        # @param Mouth: 嘴巴的遮挡分数[0,100],分数越高遮挡越少。
-        # 参考范围：[0,50]表示发生遮挡。
+        # @param Mouth: 嘴巴的遮挡分数。
+        # - 取值范围：[0,100],分数越高遮挡越少。
+        # - 参考范围：[0,50]表示发生遮挡。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mouth: Integer
-        # @param Chin: 下巴的遮挡分数[0,100],分数越高遮挡越少。
-        # 参考范围：[0,70]表示发生遮挡。
+        # @param Chin: 下巴的遮挡分数。
+        # - 取值范围：[0,100],分数越高遮挡越少。
+        # - 参考范围：[0,70]表示发生遮挡。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Chin: Integer
 
@@ -1871,20 +1945,23 @@ module TencentCloud
 
       # 人脸质量信息，包含质量分（score）、模糊分（sharpness）、光照分（brightness）、遮挡分（completeness）。只有当NeedFaceDetection设为1时才返回有效信息。
       class FaceQualityInfo < TencentCloud::Common::AbstractModel
-        # @param Score: 质量分: [0,100]，综合评价图像质量是否适合人脸识别，分数越高质量越好。
-        # 正常情况，只需要使用Score作为质量分总体的判断标准即可。Sharpness、Brightness、Completeness等细项分仅供参考。
-        # 参考范围：[0,40]较差，[40,60] 一般，[60,80]较好，[80,100]很好。
-        # 建议：人脸入库选取70以上的图片。
+        # @param Score: 质量分。
+        # - 取值范围：[0,100]，综合评价图像质量是否适合人脸识别，分数越高质量越好。
+        # - 正常情况，只需要使用Score作为质量分总体的判断标准即可。Sharpness、Brightness、Completeness等细项分仅供参考。
+        # - 参考范围：[0,40]较差，[40,60] 一般，[60,80]较好，[80,100]很好。
+        # - 建议：人脸入库选取70以上的图片。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
-        # @param Sharpness: 清晰分：[0,100]，评价图片清晰程度，分数越高越清晰。
-        # 参考范围：[0,40]特别模糊，[40,60]模糊，[60,80]一般，[80,100]清晰。
-        # 建议：人脸入库选取80以上的图片。
+        # @param Sharpness: 清晰分。
+        # - 取值范围：[0,100]，评价图片清晰程度，分数越高越清晰。
+        # - 参考范围：[0,40]特别模糊，[40,60]模糊，[60,80]一般，[80,100]清晰。
+        # - 建议：人脸入库选取80以上的图片。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sharpness: Integer
-        # @param Brightness: 光照分：[0,100]，评价图片光照程度，分数越高越亮。
-        # 参考范围： [0,30]偏暗，[30,70]光照正常，[70,100]偏亮。
-        # 建议：人脸入库选取[30,70]的图片。
+        # @param Brightness: 光照分。
+        # - 取值范围：[0,100]，评价图片光照程度，分数越高越亮。
+        # - 参考范围： [0,30]偏暗，[30,70]光照正常，[70,100]偏亮。
+        # - 建议：人脸入库选取[30,70]的图片。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Brightness: Integer
         # @param Completeness: 五官遮挡分，评价眉毛（Eyebrow）、眼睛（Eye）、鼻子（Nose）、脸颊（Cheek）、嘴巴（Mouth）、下巴（Chin）的被遮挡程度。
@@ -1914,16 +1991,16 @@ module TencentCloud
       # 检测出的人脸框的位置
       class FaceRect < TencentCloud::Common::AbstractModel
         # @param X: 人脸框左上角横坐标。
-        # 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
-        # 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
+        # - 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
+        # - 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
         # @type X: Integer
         # @param Y: 人脸框左上角纵坐标。
-        # 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
-        # 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
+        # - 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
+        # - 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
         # @type Y: Integer
-        # @param Width: 人脸宽度
+        # @param Width: 人脸宽度。
         # @type Width: Integer
-        # @param Height: 人脸高度
+        # @param Height: 人脸高度。
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
@@ -2522,9 +2599,9 @@ module TencentCloud
 
       # 需要修改的人员库自定义描述字段key-value
       class GroupExDescriptionInfo < TencentCloud::Common::AbstractModel
-        # @param GroupExDescriptionIndex: 人员库自定义描述字段Index，从0开始
+        # @param GroupExDescriptionIndex: 人员库自定义描述字段Index，从0开始。
         # @type GroupExDescriptionIndex: Integer
-        # @param GroupExDescription: 需要更新的人员库自定义描述字段内容
+        # @param GroupExDescription: 需要更新的人员库自定义描述字段内容。
         # @type GroupExDescription: String
 
         attr_accessor :GroupExDescriptionIndex, :GroupExDescription
@@ -2542,21 +2619,23 @@ module TencentCloud
 
       # 返回的人员库信息
       class GroupInfo < TencentCloud::Common::AbstractModel
-        # @param GroupName: 人员库名称
+        # @param GroupName: 人员库名称。
         # @type GroupName: String
-        # @param GroupId: 人员库ID
+        # @param GroupId: 人员库ID。
         # @type GroupId: String
-        # @param GroupExDescriptions: 人员库自定义描述字段
+        # @param GroupExDescriptions: 人员库自定义描述字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupExDescriptions: Array
-        # @param Tag: 人员库信息备注
+        # @param Tag: 人员库信息备注。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceModelVersion: String
-        # @param CreationTimestamp: Group的创建时间和日期 CreationTimestamp。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
-        # Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。有关更多信息，请参阅 Unix 时间。
+        # @param CreationTimestamp: Group的创建时间和日期 CreationTimestamp。
+        # - CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
+        # - Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
+        # - 有关更多信息，请参阅 Unix 时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreationTimestamp: Integer
 
@@ -2829,9 +2908,9 @@ module TencentCloud
 
       # 需要修改的人员描述字段内容，key-value
       class PersonExDescriptionInfo < TencentCloud::Common::AbstractModel
-        # @param PersonExDescriptionIndex: 人员描述字段Index，从0开始
+        # @param PersonExDescriptionIndex: 人员描述字段Index，从0开始。
         # @type PersonExDescriptionIndex: Integer
-        # @param PersonExDescription: 需要更新的人员描述字段内容
+        # @param PersonExDescription: 需要更新的人员描述字段内容。
         # @type PersonExDescription: String
 
         attr_accessor :PersonExDescriptionIndex, :PersonExDescription
@@ -2849,9 +2928,9 @@ module TencentCloud
 
       # 包含此人员的人员库及描述字段内容列表
       class PersonGroupInfo < TencentCloud::Common::AbstractModel
-        # @param GroupId: 包含此人员的人员库ID
+        # @param GroupId: 包含此人员的人员库ID。
         # @type GroupId: String
-        # @param PersonExDescriptions: 人员描述字段内容
+        # @param PersonExDescriptions: 人员描述字段内容。
         # @type PersonExDescriptions: Array
 
         attr_accessor :GroupId, :PersonExDescriptions
@@ -2869,18 +2948,20 @@ module TencentCloud
 
       # 返回的人员信息
       class PersonInfo < TencentCloud::Common::AbstractModel
-        # @param PersonName: 人员名称
+        # @param PersonName: 人员名称。
         # @type PersonName: String
-        # @param PersonId: 人员Id
+        # @param PersonId: 人员Id。
         # @type PersonId: String
-        # @param Gender: 人员性别
+        # @param Gender: 人员性别。
         # @type Gender: Integer
-        # @param PersonExDescriptions: 人员描述字段内容
+        # @param PersonExDescriptions: 人员描述字段内容。
         # @type PersonExDescriptions: Array
-        # @param FaceIds: 包含的人脸照片列表
+        # @param FaceIds: 包含的人脸照片列表。
         # @type FaceIds: Array
-        # @param CreationTimestamp: 人员的创建时间和日期 CreationTimestamp。CreationTimestamp 的值是自 Unix 纪元时间到Person创建时间的毫秒数。
-        # Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。有关更多信息，请参阅 Unix 时间。
+        # @param CreationTimestamp: 人员的创建时间和日期 CreationTimestamp。
+        # - CreationTimestamp 的值是自 Unix 纪元时间到Person创建时间的毫秒数。
+        # - Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
+        # - 有关更多信息，请参阅 Unix 时间。
         # @type CreationTimestamp: Integer
 
         attr_accessor :PersonName, :PersonId, :Gender, :PersonExDescriptions, :FaceIds, :CreationTimestamp
@@ -2906,9 +2987,9 @@ module TencentCloud
 
       # 坐标
       class Point < TencentCloud::Common::AbstractModel
-        # @param X: x坐标
+        # @param X: x坐标。
         # @type X: Integer
-        # @param Y: Y坐标
+        # @param Y: Y坐标。
         # @type Y: Integer
 
         attr_accessor :X, :Y
@@ -2926,12 +3007,13 @@ module TencentCloud
 
       # 人脸的识别结果
       class Result < TencentCloud::Common::AbstractModel
-        # @param Candidates: 识别出的最相似候选人
+        # @param Candidates: 识别出的最相似候选人。
         # @type Candidates: Array
-        # @param FaceRect: 检测出的人脸框位置
+        # @param FaceRect: 检测出的人脸框位置。
         # @type FaceRect: :class:`Tencentcloud::Iai.v20200303.models.FaceRect`
-        # @param RetCode: 检测出的人脸图片状态返回码。0 表示正常。
-        # -1601代表不符合图片质量控制要求，此时Candidate内容为空。
+        # @param RetCode: 检测出的人脸图片状态返回码。
+        # - 0 表示正常。
+        # - -1601代表不符合图片质量控制要求，此时Candidate内容为空。
         # @type RetCode: Integer
 
         attr_accessor :Candidates, :FaceRect, :RetCode
@@ -2965,8 +3047,9 @@ module TencentCloud
         # @type FaceRect: :class:`Tencentcloud::Iai.v20200303.models.FaceRect`
         # @param GroupCandidates: 识别结果。
         # @type GroupCandidates: Array
-        # @param RetCode: 检测出的人脸图片状态返回码。0 表示正常。
-        # -1601代表不符合图片质量控制要求，此时Candidate内容为空。
+        # @param RetCode: 检测出的人脸图片状态返回码。
+        # - 0 表示正常。
+        # - -1601代表不符合图片质量控制要求，此时Candidate内容为空。
         # @type RetCode: Integer
 
         attr_accessor :FaceRect, :GroupCandidates, :RetCode
@@ -3533,29 +3616,38 @@ module TencentCloud
       class VerifyFaceRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
         # @type PersonId: String
-        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: 图片 base64 数据。
+        # - base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # - 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
-        # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Url: 图片的 Url 。
+        # - 对应图片 base64 编码后大小不可超过5M。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # - Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param QualityControl: 图片质量控制。
-        # 0: 不进行控制；
-        # 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况；
-        # 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况；
-        # 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况；
-        # 4: 很高的质量要求，各个维度均为最好或最多在某一维度上存在轻微问题；
-        # 默认 0。
-        # 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
+        # - 取值范围：
+        # 0: 不进行控制。
+        # 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况。
+        # 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况。
+        # 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况。
+        # 4: 很高的质量要求，各个维度均为最好或最多在某一维度上存在轻微问题。
+        # - 默认 0。
+        # - 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
         # @type QualityControl: Integer
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 取值范围：0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
 
         attr_accessor :PersonId, :Image, :Url, :QualityControl, :NeedRotateDetection
@@ -3579,15 +3671,16 @@ module TencentCloud
 
       # VerifyFace返回参数结构体
       class VerifyFaceResponse < TencentCloud::Common::AbstractModel
-        # @param Score: 给定的人脸图片与 PersonId 对应人脸的相似度。若 PersonId 下有多张人脸（Face），返回相似度最大的分数。
-
-        # 不同算法版本返回的相似度分数不同。
-        # 若需要验证两张图片中人脸是否为同一人，3.0版本误识率千分之一对应分数为40分，误识率万分之一对应分数为50分，误识率十万分之一对应分数为60分。 一般超过50分则可认定为同一人。
-        # 2.0版本误识率千分之一对应分数为70分，误识率万分之一对应分数为80分，误识率十万分之一对应分数为90分。 一般超过80分则可认定为同一人。
+        # @param Score: 给定的人脸图片与 PersonId 对应人脸的相似度。
+        # - 若 PersonId 下有多张人脸（Face），返回相似度最大的分数。
+        # - 不同算法版本返回的相似度分数不同。
+        # - 若需要验证两张图片中人脸是否为同一人，3.0版本误识率千分之一对应分数为40分，误识率万分之一对应分数为50分，误识率十万分之一对应分数为60分。 一般超过50分则可认定为同一人。
+        # - 2.0版本误识率千分之一对应分数为70分，误识率万分之一对应分数为80分，误识率十万分之一对应分数为90分。 一般超过80分则可认定为同一人。
         # @type Score: Float
-        # @param IsMatch: 是否为同一人判断，固定阈值分数为60分，若想更灵活地调整阈值可取Score参数返回进行判断
+        # @param IsMatch: 是否为同一人判断，固定阈值分数为60分，若想更灵活地调整阈值可取Score参数返回进行判断。
         # @type IsMatch: Boolean
-        # @param FaceModelVersion: 人脸识别所用的算法模型版本，是该 Person 所在的人员库的算法模型版本。在创建人员库时设置，详情可参考[算法模型版本](https://cloud.tencent.com/document/product/867/40042)
+        # @param FaceModelVersion: 人脸识别所用的算法模型版本，是该 Person 所在的人员库的算法模型版本。
+        # - 在创建人员库时设置，详情可参考[算法模型版本](https://cloud.tencent.com/document/product/867/40042)
         # @type FaceModelVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3614,28 +3707,35 @@ module TencentCloud
         # @param PersonId: 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
         # @type PersonId: String
         # @param Image: 图片 base64 数据。
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # - 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
         # @param Url: 图片的 Url
-        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。。
-        #  图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
-        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
-        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # - 所有格式的图片短边像素不小于64。
+        # -  图片的 Url、Image必须提供一个，如果都提供，只使用 Url。
+        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # - 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # - 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
+        # - 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
         # @param QualityControl: 图片质量控制。
-        # 0: 不进行控制；
-        # 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况；
-        # 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况；
-        # 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况；
-        # 4: 很高的质量要求，各个维度均为最好或最多在某一维度上存在轻微问题；
-        # 默认 0。
-        # 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
+        # - 取值范围：
+        # 0: 不进行控制。
+        # 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况。
+        # 2: 一般的质量要求，图像存在偏亮，偏暗，模糊或一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，至少其中三种的情况。
+        # 3: 较高的质量要求，图像存在偏亮，偏暗，一般模糊，眉毛遮挡，脸颊遮挡，下巴遮挡，其中一到两种的情况。
+        # 4: 很高的质量要求，各个维度均为最好或最多在某一维度上存在轻微问题。
+        # - 默认 0。
+        # - 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
         # @type QualityControl: Integer
-        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。
+        # - 取值范围：0为不开启，1为开启。
+        # - 默认为0。
+        # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
+        # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
 
         attr_accessor :PersonId, :Image, :Url, :QualityControl, :NeedRotateDetection
@@ -3663,7 +3763,8 @@ module TencentCloud
         # @type Score: Float
         # @param IsMatch: 是否为同一人的判断。
         # @type IsMatch: Boolean
-        # @param FaceModelVersion: 人脸识别所用的算法模型版本，是该 Person 所在的人员库的算法模型版本。在创建人员库时设置，详情可参考[算法模型版本](https://cloud.tencent.com/document/product/867/40042)
+        # @param FaceModelVersion: 人脸识别所用的算法模型版本，是该 Person 所在的人员库的算法模型版本。
+        # - 在创建人员库时设置，详情可参考[算法模型版本](https://cloud.tencent.com/document/product/867/40042)
         # @type FaceModelVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

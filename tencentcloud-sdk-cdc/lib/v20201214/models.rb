@@ -825,7 +825,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param Period: 时间范围精度，1分钟/5分钟
+        # @param Period: 时间范围精度，1分钟(ONE_MINUTE)/5分钟(FIVE_MINUTE)
         # @type Period: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type MaxWeight: Integer
         # @param PowerDrawKva: 功耗(KW)
         # @type PowerDrawKva: Integer
-        # @param UplinkSpeedGbps: 网络到腾讯云Region区域的上行链路速度
+        # @param UplinkSpeedGbps: 网络到腾讯云Region区域的上行链路速度(Gbps)
         # @type UplinkSpeedGbps: Integer
         # @param UplinkCount: 将CDC连接到网络时，每台CDC网络设备(每个机架 2 台设备)使用的上行链路数量。
         # @type UplinkCount: Integer

@@ -3547,6 +3547,62 @@ module TencentCloud
         end
       end
 
+      # CreateDataModel请求参数结构体
+      class CreateDataModelRequest < TencentCloud::Common::AbstractModel
+        # @param CloudappId: 云应用的实例id
+        # @type CloudappId: String
+        # @param UserId: 用户的子账号id
+        # @type UserId: String
+        # @param TimeUnit: Wedata数据建模购买参数，包年包月类型单位，年：y，月：m，默认m
+        # @type TimeUnit: String
+        # @param TimeSpan: Wedata数据建模购买参数，购买时长，默认1
+        # @type TimeSpan: Integer
+        # @param AutoRenewFlag: Wedata数据建模购买参数，是否自动续费，是：1，否：0，默认0
+        # @type AutoRenewFlag: Integer
+        # @param DataModelVersion: Wedata数据建模购买参数，标准版：DATA_MODEL_STANDARD，企业版：DATA_MODEL_PRO，默认DATA_MODEL_STANDARD
+        # @type DataModelVersion: String
+
+        attr_accessor :CloudappId, :UserId, :TimeUnit, :TimeSpan, :AutoRenewFlag, :DataModelVersion
+
+        def initialize(cloudappid=nil, userid=nil, timeunit=nil, timespan=nil, autorenewflag=nil, datamodelversion=nil)
+          @CloudappId = cloudappid
+          @UserId = userid
+          @TimeUnit = timeunit
+          @TimeSpan = timespan
+          @AutoRenewFlag = autorenewflag
+          @DataModelVersion = datamodelversion
+        end
+
+        def deserialize(params)
+          @CloudappId = params['CloudappId']
+          @UserId = params['UserId']
+          @TimeUnit = params['TimeUnit']
+          @TimeSpan = params['TimeSpan']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @DataModelVersion = params['DataModelVersion']
+        end
+      end
+
+      # CreateDataModel返回参数结构体
+      class CreateDataModelResponse < TencentCloud::Common::AbstractModel
+        # @param Data: “Wedata数据建模”的实例id
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDataSource请求参数结构体
       class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 数据源名称，在相同SpaceName下，数据源名称不能为空
@@ -5569,6 +5625,50 @@ module TencentCloud
         def deserialize(params)
           @FunctionId = params['FunctionId']
           @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDataModel请求参数结构体
+      class DeleteDataModelRequest < TencentCloud::Common::AbstractModel
+        # @param CloudappId: 云应用的实例id
+        # @type CloudappId: String
+        # @param DataModelId: 数据建模的实例id
+        # @type DataModelId: String
+        # @param UserId: 用户的子账号id
+        # @type UserId: String
+
+        attr_accessor :CloudappId, :DataModelId, :UserId
+
+        def initialize(cloudappid=nil, datamodelid=nil, userid=nil)
+          @CloudappId = cloudappid
+          @DataModelId = datamodelid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @CloudappId = params['CloudappId']
+          @DataModelId = params['DataModelId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteDataModel返回参数结构体
+      class DeleteDataModelResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否销毁成功
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -28941,6 +29041,70 @@ module TencentCloud
       # UnlockIntegrationTask返回参数结构体
       class UnlockIntegrationTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 操作成功与否标识
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDataModelRegistryInfo请求参数结构体
+      class UpdateDataModelRegistryInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CloudappId: 云应用的实例id
+        # @type CloudappId: String
+        # @param AppCamRole: 数语的CAM角色
+        # @type AppCamRole: String
+        # @param Vip: 数语的ip
+        # @type Vip: String
+        # @param Vport: 数语的端口
+        # @type Vport: Integer
+        # @param AppCamRoleId: 数语的CAM角色id
+        # @type AppCamRoleId: String
+        # @param Provider: 服务提供方
+        # @type Provider: String
+        # @param TenantId: 租户id
+        # @type TenantId: String
+        # @param OwnId: 主账号id
+        # @type OwnId: String
+
+        attr_accessor :CloudappId, :AppCamRole, :Vip, :Vport, :AppCamRoleId, :Provider, :TenantId, :OwnId
+
+        def initialize(cloudappid=nil, appcamrole=nil, vip=nil, vport=nil, appcamroleid=nil, provider=nil, tenantid=nil, ownid=nil)
+          @CloudappId = cloudappid
+          @AppCamRole = appcamrole
+          @Vip = vip
+          @Vport = vport
+          @AppCamRoleId = appcamroleid
+          @Provider = provider
+          @TenantId = tenantid
+          @OwnId = ownid
+        end
+
+        def deserialize(params)
+          @CloudappId = params['CloudappId']
+          @AppCamRole = params['AppCamRole']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @AppCamRoleId = params['AppCamRoleId']
+          @Provider = params['Provider']
+          @TenantId = params['TenantId']
+          @OwnId = params['OwnId']
+        end
+      end
+
+      # UpdateDataModelRegistryInfo返回参数结构体
+      class UpdateDataModelRegistryInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数语向wedata注册成功
         # @type Data: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
