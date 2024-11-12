@@ -23,19 +23,25 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param ActivityId: 伸缩活动ID。
         # @type ActivityId: String
-        # @param ActivityType: 伸缩活动类型。取值如下：<br>
-        # <li>SCALE_OUT：扩容活动<li>SCALE_IN：缩容活动<li>ATTACH_INSTANCES：添加实例<li>REMOVE_INSTANCES：销毁实例<li>DETACH_INSTANCES：移出实例<li>TERMINATE_INSTANCES_UNEXPECTEDLY：实例在CVM控制台被销毁<li>REPLACE_UNHEALTHY_INSTANCE：替换不健康实例
-        # <li>START_INSTANCES：开启实例
-        # <li>STOP_INSTANCES：关闭实例
-        # <li>INVOKE_COMMAND：执行命令
+        # @param ActivityType: 伸缩活动类型。取值如下：
+        # <li>SCALE_OUT：扩容活动</li>
+        # <li>SCALE_IN：缩容活动</li>
+        # <li>ATTACH_INSTANCES：添加实例</li>
+        # <li>REMOVE_INSTANCES：销毁实例</li>
+        # <li>DETACH_INSTANCES：移出实例</li>
+        # <li>TERMINATE_INSTANCES_UNEXPECTEDLY：实例在CVM控制台被销毁</li>
+        # <li>REPLACE_UNHEALTHY_INSTANCE：替换不健康实例</li>
+        # <li>START_INSTANCES：开启实例</li>
+        # <li>STOP_INSTANCES：关闭实例</li>
+        # <li>INVOKE_COMMAND：执行命令</li>
         # @type ActivityType: String
-        # @param StatusCode: 伸缩活动状态。取值如下：<br>
-        # <li>INIT：初始化中
-        # <li>RUNNING：运行中
-        # <li>SUCCESSFUL：活动成功
-        # <li>PARTIALLY_SUCCESSFUL：活动部分成功
-        # <li>FAILED：活动失败
-        # <li>CANCELLED：活动取消
+        # @param StatusCode: 伸缩活动状态。取值如下
+        # <li>INIT：初始化中</li>
+        # <li>RUNNING：运行中</li>
+        # <li>SUCCESSFUL：活动成功</li>
+        # <li>PARTIALLY_SUCCESSFUL：活动部分成功</li>
+        # <li>FAILED：活动失败</li>
+        # <li>CANCELLED：活动取消</li>
         # @type StatusCode: String
         # @param StatusMessage: 伸缩活动状态描述。
         # @type StatusMessage: String
@@ -145,11 +151,7 @@ module TencentCloud
       class ActivtyRelatedInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param InstanceStatus: 实例在伸缩活动中的状态。取值如下：
-        # <li>INIT：初始化中
-        # <li>RUNNING：实例操作中
-        # <li>SUCCESSFUL：活动成功
-        # <li>FAILED：活动失败
+        # @param InstanceStatus: 实例在伸缩活动中的状态。取值如下：<br><li>INIT：初始化中</li><li>RUNNING：实例操作中</li><li>SUCCESSFUL：活动成功</li><li>FAILED：活动失败
         # @type InstanceStatus: String
 
         attr_accessor :InstanceId, :InstanceStatus
@@ -173,9 +175,9 @@ module TencentCloud
         # @type Detail: String
         # @param Solution: 建议解决方案。
         # @type Solution: String
-        # @param Level: 伸缩建议警告级别。取值范围：<br>
-        # <li>WARNING：警告级别<br>
-        # <li>CRITICAL：严重级别<br>
+        # @param Level: 伸缩建议警告级别。取值范围：
+        # <li>WARNING：警告级别</li>
+        # <li>CRITICAL：严重级别</li>
         # @type Level: String
 
         attr_accessor :Problem, :Detail, :Solution, :Level
@@ -290,10 +292,10 @@ module TencentCloud
       class AutoScalingAdvice < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID。
         # @type AutoScalingGroupId: String
-        # @param Level: 伸缩组警告级别。取值范围：<br>
-        # <li>NORMAL：正常<br>
-        # <li>WARNING：警告级别<br>
-        # <li>CRITICAL：严重级别<br>
+        # @param Level: 伸缩组警告级别。取值范围：
+        # <li>NORMAL：正常</li>
+        # <li>WARNING：警告级别</li>
+        # <li>CRITICAL：严重级别</li>
         # @type Level: String
         # @param Advices: 伸缩组配置建议集合。
         # @type Advices: Array
@@ -326,17 +328,17 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param AutoScalingGroupName: 伸缩组名称
         # @type AutoScalingGroupName: String
-        # @param AutoScalingGroupStatus: 伸缩组当前状态。取值范围：<br>
-        # <li>NORMAL：正常<br>
-        # <li>CVM_ABNORMAL：启动配置异常<br>
-        # <li>LB_ABNORMAL：负载均衡器异常<br>
-        # <li>LB_LISTENER_ABNORMAL：负载均衡器监听器异常<br>
-        # <li>LB_LOCATION_ABNORMAL：负载均衡器监听器转发配置异常<br>
-        # <li>VPC_ABNORMAL：VPC网络异常<br>
-        # <li>SUBNET_ABNORMAL：VPC子网异常<br>
-        # <li>INSUFFICIENT_BALANCE：余额不足<br>
-        # <li>LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配<br>
-        # <li>LB_BACKEND_VPC_NOT_MATCH：CLB实例VPC与伸缩组VPC不匹配
+        # @param AutoScalingGroupStatus: 伸缩组当前状态。取值范围：
+        # <li>NORMAL：正常</li>
+        # <li>CVM_ABNORMAL：启动配置异常</li>
+        # <li>LB_ABNORMAL：负载均衡器异常</li>
+        # <li>LB_LISTENER_ABNORMAL：负载均衡器监听器异常</li>
+        # <li>LB_LOCATION_ABNORMAL：负载均衡器监听器转发配置异常</li>
+        # <li>VPC_ABNORMAL：VPC网络异常</li>
+        # <li>SUBNET_ABNORMAL：VPC子网异常</li>
+        # <li>INSUFFICIENT_BALANCE：余额不足</li>
+        # <li>LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配</li>
+        # <li>LB_BACKEND_VPC_NOT_MATCH：CLB实例VPC与伸缩组VPC不匹配</li>
         # @type AutoScalingGroupStatus: String
         # @param CreatedTime: 创建时间，采用UTC标准计时
         # @type CreatedTime: String
@@ -383,23 +385,25 @@ module TencentCloud
         # @param Ipv6AddressCount: 实例具有IPv6地址数量的配置
         # @type Ipv6AddressCount: Integer
         # @param MultiZoneSubnetPolicy: 多可用区/子网策略。
-        # <br><li> PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。
-        # <br><li> EQUALITY：每次选择当前实例数最少的可用区/子网进行扩容，使得每个可用区/子网都有机会发生扩容，多次扩容出的实例会打散到多个可用区/子网。
+        # <li> PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。</li>
+        # <li> EQUALITY：每次选择当前实例数最少的可用区/子网进行扩容，使得每个可用区/子网都有机会发生扩容，多次扩容出的实例会打散到多个可用区/子网。</li>
         # @type MultiZoneSubnetPolicy: String
-        # @param HealthCheckType: 伸缩组实例健康检查类型，取值如下：<br><li>CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)<br><li>CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097)
+        # @param HealthCheckType: 伸缩组实例健康检查类型，取值如下：
+        # <li>CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)</li>
+        # <li>CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097)</li>
         # @type HealthCheckType: String
         # @param LoadBalancerHealthCheckGracePeriod: CLB健康检查宽限期
         # @type LoadBalancerHealthCheckGracePeriod: Integer
         # @param InstanceAllocationPolicy: 实例分配策略，取值包括 LAUNCH_CONFIGURATION 和 SPOT_MIXED。
-        # <br><li> LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。
-        # <br><li> SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。
+        # <li> LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。</li>
+        # <li> SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。</li>
         # @type InstanceAllocationPolicy: String
         # @param SpotMixedAllocationPolicy: 竞价混合模式下，各计费类型实例的分配策略。
         # 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时才会返回有效值。
         # @type SpotMixedAllocationPolicy: :class:`Tencentcloud::As.v20180419.models.SpotMixedAllocationPolicy`
         # @param CapacityRebalance: 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
-        # <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
-        # <br><li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
+        # <li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。</li>
+        # <li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。</li>
         # @type CapacityRebalance: Boolean
         # @param InstanceNameIndexSettings: 实例名称序号相关设置。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -779,19 +783,19 @@ module TencentCloud
         # @param SubnetIds: 子网ID列表，VPC场景下必须指定子网。多个子网以填写顺序为优先级，依次进行尝试，直至可以成功创建实例。
         # @type SubnetIds: Array
         # @param TerminationPolicies: 销毁策略，目前长度上限为1。取值包括 OLDEST_INSTANCE 和 NEWEST_INSTANCE，默认取值为 OLDEST_INSTANCE。
-        # <br><li> OLDEST_INSTANCE 优先销毁伸缩组中最旧的实例。
-        # <br><li> NEWEST_INSTANCE，优先销毁伸缩组中最新的实例。
+        # <li> OLDEST_INSTANCE 优先销毁伸缩组中最旧的实例。</li>
+        # <li> NEWEST_INSTANCE，优先销毁伸缩组中最新的实例。</li>
         # @type TerminationPolicies: Array
         # @param Zones: 可用区列表，基础网络场景下必须指定可用区。多个可用区以填写顺序为优先级，依次进行尝试，直至可以成功创建实例。
         # @type Zones: Array
         # @param RetryPolicy: 重试策略，取值包括 IMMEDIATE_RETRY、 INCREMENTAL_INTERVALS、NO_RETRY，默认取值为 IMMEDIATE_RETRY。部分成功的伸缩活动判定为一次失败活动。
-        # <br><li> IMMEDIATE_RETRY，立即重试，在较短时间内快速重试，连续失败超过一定次数（5次）后不再重试。
-        # <br><li> INCREMENTAL_INTERVALS，间隔递增重试，随着连续失败次数的增加，重试间隔逐渐增大，重试间隔从秒级到1天不等。
-        # <br><li> NO_RETRY，不进行重试，直到再次收到用户调用或者告警信息后才会重试。
+        # <li> IMMEDIATE_RETRY，立即重试，在较短时间内快速重试，连续失败超过一定次数（5次）后不再重试。</li>
+        # <li> INCREMENTAL_INTERVALS，间隔递增重试，随着连续失败次数的增加，重试间隔逐渐增大。前 10 次重试间隔与立即重试模式相同，后续逐步递增至 10 分钟、30 分钟、60 分钟、一天。</li>
+        # <li> NO_RETRY，不进行重试，直到再次收到用户调用或者告警信息后才会重试。</li>
         # @type RetryPolicy: String
         # @param ZonesCheckPolicy: 可用区校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
-        # <br><li> ALL，所有可用区（Zone）或子网（SubnetId）都可用则通过校验，否则校验报错。
-        # <br><li> ANY，存在任何一个可用区（Zone）或子网（SubnetId）可用则通过校验，否则校验报错。
+        # <li> ALL，所有可用区（Zone）或子网（SubnetId）都可用则通过校验，否则校验报错。</li>
+        # <li> ANY，存在任何一个可用区（Zone）或子网（SubnetId）可用则通过校验，否则校验报错。</li>
 
         # 可用区或子网不可用的常见原因包括该可用区CVM实例类型售罄、该可用区CBS云盘售罄、该可用区配额不足、该子网IP不足等。
         # 如果 Zones/SubnetIds 中可用区或者子网不存在，则无论 ZonesCheckPolicy 采用何种取值，都会校验报错。
@@ -803,29 +807,31 @@ module TencentCloud
         # @param Ipv6AddressCount: 实例具有IPv6地址数量的配置，取值包括 0、1，默认值为0。
         # @type Ipv6AddressCount: Integer
         # @param MultiZoneSubnetPolicy: 多可用区/子网策略，取值包括 PRIORITY 和 EQUALITY，默认为 PRIORITY。
-        # <br><li> PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。
-        # <br><li> EQUALITY：扩容出的实例会打散到多个可用区/子网，保证扩容后的各个可用区/子网实例数相对均衡。
+        # <li> PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。</li>
+        # <li> EQUALITY：扩容出的实例会打散到多个可用区/子网，保证扩容后的各个可用区/子网实例数相对均衡。</li>
 
         # 与本策略相关的注意点：
-        # <br><li> 当伸缩组为基础网络时，本策略适用于多可用区；当伸缩组为VPC网络时，本策略适用于多子网，此时不再考虑可用区因素，例如四个子网ABCD，其中ABC处于可用区1，D处于可用区2，此时考虑子网ABCD进行排序，而不考虑可用区1、2。
-        # <br><li> 本策略适用于多可用区/子网，不适用于启动配置的多机型。多机型按照优先级策略进行选择。
-        # <br><li> 按照 PRIORITY 策略创建实例时，先保证多机型的策略，后保证多可用区/子网的策略。例如多机型A、B，多子网1、2、3，会按照A1、A2、A3、B1、B2、B3 进行尝试，如果A1售罄，会尝试A2（而非B1）。
+        # <li> 当伸缩组为基础网络时，本策略适用于多可用区；当伸缩组为VPC网络时，本策略适用于多子网，此时不再考虑可用区因素，例如四个子网ABCD，其中ABC处于可用区1，D处于可用区2，此时考虑子网ABCD进行排序，而不考虑可用区1、2。</li>
+        # <li> 本策略适用于多可用区/子网，不适用于启动配置的多机型。多机型按照优先级策略进行选择。</li>
+        # <li> 按照 PRIORITY 策略创建实例时，先保证多机型的策略，后保证多可用区/子网的策略。例如多机型A、B，多子网1、2、3，会按照A1、A2、A3、B1、B2、B3 进行尝试，如果A1售罄，会尝试A2（而非B1）。</li>
         # @type MultiZoneSubnetPolicy: String
-        # @param HealthCheckType: 伸缩组实例健康检查类型，取值如下：<br><li>CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)<br><li>CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097) <br>如果选择了`CLB`类型，伸缩组将同时检查实例网络状态与CLB健康检查状态，如果出现实例网络状态不健康，实例将被标记为 UNHEALTHY 状态；如果出现 CLB 健康检查状态异常，实例将被标记为CLB_UNHEALTHY 状态，如果两个异常状态同时出现，实例`HealthStatus`字段将返回 UNHEALTHY|CLB_UNHEALTHY。默认值：CLB
+        # @param HealthCheckType: 伸缩组实例健康检查类型，取值如下：
+        # <li>CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)</li>
+        # <li>CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097) </li>
+        # 如果选择了`CLB`类型，伸缩组将同时检查实例网络状态与CLB健康检查状态，如果出现实例网络状态不健康，实例将被标记为 UNHEALTHY 状态；如果出现 CLB 健康检查状态异常，实例将被标记为CLB_UNHEALTHY 状态，如果两个异常状态同时出现，实例`HealthStatus`字段将返回 UNHEALTHY|CLB_UNHEALTHY。默认值：CLB
         # @type HealthCheckType: String
         # @param LoadBalancerHealthCheckGracePeriod: CLB健康检查宽限期，当扩容的实例进入`IN_SERVICE`后，在宽限期时间范围内将不会被标记为不健康`CLB_UNHEALTHY`。<br>默认值：0。取值范围[0, 7200]，单位：秒。
         # @type LoadBalancerHealthCheckGracePeriod: Integer
         # @param InstanceAllocationPolicy: 实例分配策略，取值包括 LAUNCH_CONFIGURATION 和 SPOT_MIXED，默认取 LAUNCH_CONFIGURATION。
-        # <br><li> LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。
-        # <br><li> SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。
+        # <li> LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。</li>
+        # <li> SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。</li>
         # @type InstanceAllocationPolicy: String
         # @param SpotMixedAllocationPolicy: 竞价混合模式下，各计费类型实例的分配策略。
         # 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时可用。
         # @type SpotMixedAllocationPolicy: :class:`Tencentcloud::As.v20180419.models.SpotMixedAllocationPolicy`
         # @param CapacityRebalance: 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
-        # <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
-        # <br><li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
-
+        # <li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。</li>
+        # <li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。</li>
         # 默认取 FALSE。
         # @type CapacityRebalance: Boolean
         # @param InstanceNameIndexSettings: 实例名称序号相关设置。若不指定该参数，则默认不开启。开启后为伸缩组内自动创建的实例名称添加递增的数字序号。
@@ -1285,19 +1291,34 @@ module TencentCloud
         # @type ScalingPolicyType: String
         # @param AdjustmentType: 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         # @type AdjustmentType: String
-        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。<br><li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。
+        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。
+        # <li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li>
+        # <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li>
+        # <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。</li>
         # @type AdjustmentValue: Integer
         # @param Cooldown: 冷却时间，单位为秒，仅适用于简单策略。默认冷却时间300秒。
         # @type Cooldown: Integer
         # @param MetricAlarm: 告警监控指标，仅适用于简单策略。
         # @type MetricAlarm: :class:`Tencentcloud::As.v20180419.models.MetricAlarm`
-        # @param PredefinedMetricType: 预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        # @param PredefinedMetricType: 预定义监控项，仅适用于目标追踪策略。取值范围：
+        # <li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li>
+        # <li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li>
+        # <li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li>
+        # <li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li>
+        # <li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
         # @type PredefinedMetricType: String
-        # @param TargetValue: 目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # @param TargetValue: 目标值，仅适用于目标追踪策略。
+        # <li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li>
+        # <li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li>
+        # <li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # <li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li>
+        # <li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
         # @type TargetValue: Integer
         # @param EstimatedInstanceWarmup: 实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600，默认预热时间300秒。
         # @type EstimatedInstanceWarmup: Integer
-        # @param DisableScaleIn: 是否禁用缩容，仅适用于目标追踪策略，默认值为 false。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        # @param DisableScaleIn: 是否禁用缩容，仅适用于目标追踪策略，默认值为 false。取值范围：
+        # <li>true：目标追踪策略仅触发扩容</li>
+        # <li>false：目标追踪策略触发扩容和缩容</li>
         # @type DisableScaleIn: Boolean
         # @param NotificationUserGroupIds: 此参数已不再生效，请使用[创建通知](https://cloud.tencent.com/document/api/377/33185)。
         # 通知组ID，即为用户组ID集合。
@@ -2249,7 +2270,7 @@ module TencentCloud
         # <li> refresh-activity-status-code - String - 是否必填：否 -（过滤条件）按照刷新活动状态过滤。（INIT：初始化中 | RUNNING：运行中 | SUCCESSFUL：活动成功 | FAILED_PAUSE：失败暂停 | AUTO_PAUSE：自动暂停 | MANUAL_PAUSE：手动暂停 | CANCELLED：活动取消 | FAILED：活动失败）</li>
         # <li> refresh-activity-type - String - 是否必填：否 -（过滤条件）按照刷新活动类型过滤。（NORMAL：正常刷新活动 | ROLLBACK：回滚刷新活动）</li>
         # <li> refresh-activity-id - String - 是否必填：否 -（过滤条件）按照刷新活动ID过滤。</li>
-        # <li> 每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定RefreshActivityIds和Filters。
+        # <li> 每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定RefreshActivityIds和Filters。</li>
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
@@ -4041,12 +4062,12 @@ module TencentCloud
         # @param LifecycleHookName: 生命周期挂钩名称。
         # @type LifecycleHookName: String
         # @param LifecycleTransition: 进入生命周期挂钩场景，取值包括：
-        # <li> INSTANCE_LAUNCHING：实例启动后
-        # <li> INSTANCE_TERMINATING：实例销毁前
+        # <li> INSTANCE_LAUNCHING：实例启动后</li>
+        # <li> INSTANCE_TERMINATING：实例销毁前</li>
         # @type LifecycleTransition: String
         # @param DefaultResult: 定义伸缩组在生命周期挂钩超时的情况下应采取的操作，取值包括：
-        # <li> CONTINUE： 超时后继续伸缩活动
-        # <li> ABANDON：超时后终止伸缩活动
+        # <li> CONTINUE： 超时后继续伸缩活动</li>
+        # <li> ABANDON：超时后终止伸缩活动</li>
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从 30 到 7200 秒。
         # @type HeartbeatTimeout: Integer
@@ -4164,8 +4185,8 @@ module TencentCloud
         # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type ForwardLoadBalancers: Array
         # @param LoadBalancersCheckPolicy: 负载均衡器校验策略，取值包括 ALL 和 DIFF，默认取值为 ALL。
-        # <br><li> ALL，所有负载均衡器都合法则通过校验，否则校验报错。
-        # <br><li> DIFF，仅校验负载均衡器参数中实际变化的部分，如果合法则通过校验，否则校验报错。
+        # <li> ALL，所有负载均衡器都合法则通过校验，否则校验报错。</li>
+        # <li> DIFF，仅校验负载均衡器参数中实际变化的部分，如果合法则通过校验，否则校验报错。</li>
         # @type LoadBalancersCheckPolicy: String
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancers, :LoadBalancersCheckPolicy
@@ -4445,9 +4466,19 @@ module TencentCloud
         # @type RefreshMode: String
         # @param RefreshSettings: 实例更新设置参数。
         # @type RefreshSettings: :class:`Tencentcloud::As.v20180419.models.RefreshSettings`
-        # @param ActivityType: 刷新活动类型。取值如下：<br><li>NORMAL：正常刷新活动</li><li>ROLLBACK：回滚刷新活动
+        # @param ActivityType: 刷新活动类型。取值如下：
+        # <li>NORMAL：正常刷新活动</li>
+        # <li>ROLLBACK：回滚刷新活动</li>
         # @type ActivityType: String
-        # @param Status: 刷新活动状态。取值如下：<br><li>INIT：初始化中</li><li>RUNNING：运行中</li><li>SUCCESSFUL：活动成功</li><li>FAILED_PAUSE：因刷新批次失败暂停</li><li>AUTO_PAUSE：因暂停策略自动暂停</li><li>MANUAL_PAUSE：手动暂停</li><li>CANCELLED：活动取消</li><li>FAILED：活动失败
+        # @param Status: 刷新活动状态。取值如下：
+        # <li>INIT：初始化中</li>
+        # <li>RUNNING：运行中</li>
+        # <li>SUCCESSFUL：活动成功</li>
+        # <li>FAILED_PAUSE：因刷新批次失败暂停</li>
+        # <li>AUTO_PAUSE：因暂停策略自动暂停</li>
+        # <li>MANUAL_PAUSE：手动暂停</li>
+        # <li>CANCELLED：活动取消</li>
+        # <li>FAILED：活动失败</li>
         # @type Status: String
         # @param CurrentRefreshBatchNum: 当前刷新批次序号。例如，2 表示当前活动正在刷新第二批次的实例。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4509,7 +4540,7 @@ module TencentCloud
       class RefreshBatch < TencentCloud::Common::AbstractModel
         # @param RefreshBatchNum: 刷新批次序号。例如，2 表示当前批次实例会在第二批次进行实例刷新。
         # @type RefreshBatchNum: Integer
-        # @param RefreshBatchStatus: 刷新批次状态。取值如下：<br><li>WAITING：待刷新</li><li>INIT：初始化中</li><li>RUNNING：刷新中</li><li>FAILED:  刷新失败</li><li>PARTIALLY_SUCCESSFUL：批次部分成功</li><li>CANCELLED：已取消</li><li>SUCCESSFUL：刷新成功
+        # @param RefreshBatchStatus: 刷新批次状态。取值如下：<li>WAITING：待刷新</li><li>INIT：初始化中</li><li>RUNNING：刷新中</li><li>FAILED:  刷新失败</li><li>PARTIALLY_SUCCESSFUL：批次部分成功</li><li>CANCELLED：已取消</li><li>SUCCESSFUL：刷新成功</li>
         # @type RefreshBatchStatus: String
         # @param RefreshBatchRelatedInstanceSet: 刷新批次关联实例列表。
         # @type RefreshBatchRelatedInstanceSet: Array
@@ -4582,7 +4613,7 @@ module TencentCloud
         # @param RollingUpdateSettings: 滚动更新设置参数。RefreshMode 为滚动更新该参数必须填写。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RollingUpdateSettings: :class:`Tencentcloud::As.v20180419.models.RollingUpdateSettings`
-        # @param CheckInstanceTargetHealth: 实例后端服务健康状态检查，默认为 FALSE。仅针对绑定应用型负载均衡器的伸缩组生效，开启该检查后，如刷新后实例未通过检查，负载均衡器端口权重始终为 0，且标记为刷新失败。取值范围如下：<br><li>TRUE：开启检查</li><li>FALSE：不开启检查
+        # @param CheckInstanceTargetHealth: 实例后端服务健康状态检查，默认为 FALSE。仅针对绑定应用型负载均衡器的伸缩组生效，开启该检查后，如刷新后实例未通过检查，负载均衡器端口权重始终为 0，且标记为刷新失败。取值范围如下：<li>TRUE：开启检查</li><li>FALSE：不开启检查</li>
         # @type CheckInstanceTargetHealth: Boolean
 
         attr_accessor :RollingUpdateSettings, :CheckInstanceTargetHealth
@@ -4803,7 +4834,10 @@ module TencentCloud
 
       # 描述了 “云监控” 服务相关的信息。
       class RunMonitorServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云监控](https://cloud.tencent.com/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
+        # @param Enabled: 是否开启[云监控](https://cloud.tencent.com/document/product/248)服务。取值范围：
+        # <li>TRUE：表示开启云监控服务</li>
+        # <li>FALSE：表示不开启云监控服务</li>
+        # 默认取值：TRUE。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
@@ -4820,7 +4854,10 @@ module TencentCloud
 
       # 描述了 “云安全” 服务相关的信息
       class RunSecurityServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云安全](https://cloud.tencent.com/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
+        # @param Enabled: 是否开启[云安全](https://cloud.tencent.com/document/product/296)服务。取值范围：
+        # <li>TRUE：表示开启云安全服务</li>
+        # <li>FALSE：表示不开启云安全服务</li>
+        # 默认取值：TRUE。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
@@ -5022,7 +5059,9 @@ module TencentCloud
         # @type MinSize: Integer
         # @param CreatedTime: 定时任务的创建时间。取值为`UTC`时间，按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ssZ`。
         # @type CreatedTime: String
-        # @param ScheduledType: 定时任务的执行类型。取值范围：<br><li>CRONTAB：代表定时任务为重复执行。<br><li>ONCE：代表定时任务为单次执行。
+        # @param ScheduledType: 定时任务的执行类型。取值范围：
+        # <li>CRONTAB：代表定时任务为重复执行。</li>
+        # <li>ONCE：代表定时任务为单次执行。</li>
         # @type ScheduledType: String
 
         attr_accessor :ScheduledActionId, :ScheduledActionName, :AutoScalingGroupId, :StartTime, :Recurrence, :EndTime, :MaxSize, :DesiredCapacity, :MinSize, :CreatedTime, :ScheduledType

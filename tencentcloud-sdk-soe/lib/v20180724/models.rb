@@ -362,7 +362,7 @@ module TencentCloud
         # @type PronFluency: Float
         # @param PronCompletion: 发音完整度，取值范围[0, 1]，当为词模式时，取值无意义；当为流式模式且请求中IsEnd未置1时，取值无意义
         # @type PronCompletion: Float
-        # @param SuggestedScore: 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracyfloat）* 完整度（PronCompletionfloat）*（2 - 完整度（PronCompletionfloat）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
+        # @param SuggestedScore: 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracyfloat）× 完整度（PronCompletionfloat）×（2 - 完整度（PronCompletionfloat）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
         # @type SuggestedScore: Float
         # @param RefTextId: 匹配候选文本的序号，在句子多分支、情景对 话、段落模式下表示匹配到的文本序号
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -656,8 +656,8 @@ module TencentCloud
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword, :COSBucketURL
         extend Gem::Deprecate
-        deprecate :StorageMode, :none, 2024, 4
-        deprecate :StorageMode=, :none, 2024, 4
+        deprecate :StorageMode, :none, 2024, 11
+        deprecate :StorageMode=, :none, 2024, 11
 
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil, cosbucketurl=nil)
           @SeqId = seqid
@@ -738,8 +738,8 @@ module TencentCloud
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         extend Gem::Deprecate
-        deprecate :AudioUrl, :none, 2024, 4
-        deprecate :AudioUrl=, :none, 2024, 4
+        deprecate :AudioUrl, :none, 2024, 11
+        deprecate :AudioUrl=, :none, 2024, 11
 
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy

@@ -93,7 +93,7 @@ module TencentCloud
         # @type CbsInfo: :class:`Tencentcloud::Cdc.v20201214.models.CbsInfo`
         # @param PurchaseSource: 购买来源，默认为cloudApi
         # @type PurchaseSource: String
-        # @param DedicatedClusterOrderId: 当调用API接口提交订单时，需要提交DedicatedClusterOrderId
+        # @param DedicatedClusterOrderId: 当调用API接口提交订单时，需要提交DedicatedClusterOrderId，此处DedicatedClusterOrderId是之前创建的订单，可通过DescribeDedicatedClusterOrders接口查询，这里传入DedicatedClusterOrderId用于调整订单和支付。
         # @type DedicatedClusterOrderId: String
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypes, :CosInfo, :CbsInfo, :PurchaseSource, :DedicatedClusterOrderId
@@ -215,19 +215,19 @@ module TencentCloud
         # @type Description: String
         # @param Note: 注意事项
         # @type Note: String
-        # @param FiberType: 您将使用光纤类型将CDC设备连接到网络。有单模和多模两种选项。
+        # @param FiberType: 您将使用光纤类型将CDC设备连接到网络。有单模和多模两种选项。取值范围："MM","SM"
         # @type FiberType: String
         # @param OpticalStandard: 您将CDC连接到网络时采用的光学标准。此字段取决于上行链路速度、光纤类型和到上游设备的距离。
         # @type OpticalStandard: String
         # @param PowerConnectors: 电源连接器类型
         # @type PowerConnectors: String
-        # @param PowerFeedDrop: 从机架上方还是下方供电。
+        # @param PowerFeedDrop: 从机架上方还是下方供电。取值范围：["UP","DOWN"]
         # @type PowerFeedDrop: String
         # @param MaxWeight: 最大承重(KG)
         # @type MaxWeight: Integer
         # @param PowerDrawKva: 功耗(KW)
         # @type PowerDrawKva: Integer
-        # @param UplinkSpeedGbps: 网络到腾讯云Region区域的上行链路速度
+        # @param UplinkSpeedGbps: 网络到腾讯云Region区域的上行链路速度(Gbps)
         # @type UplinkSpeedGbps: Integer
         # @param UplinkCount: 将CDC连接到网络时，每台CDC网络设备(每个机架 2 台设备)使用的上行链路数量。
         # @type UplinkCount: Integer
@@ -937,7 +937,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param Period: 时间范围精度，1分钟/5分钟
+        # @param Period: 时间范围精度，1分钟(ONE_MINUTE)/5分钟(FIVE_MINUTE)
         # @type Period: String
 
         attr_accessor :DedicatedClusterId, :HostId, :StartTime, :EndTime, :Period
@@ -1847,9 +1847,9 @@ module TencentCloud
       class ModifyOrderStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 要更新成的状态
         # @type Status: String
-        # @param DedicatedClusterOrderId: 大订单ID
+        # @param DedicatedClusterOrderId: 大订单ID，可以在本地专用集群的基础信息页获取大订单ID
         # @type DedicatedClusterOrderId: String
-        # @param SubOrderIds: 小订单ID
+        # @param SubOrderIds: 小订单ID，进入大订单的详情页，可以看到小订单ID
         # @type SubOrderIds: Array
 
         attr_accessor :Status, :DedicatedClusterOrderId, :SubOrderIds
@@ -1893,7 +1893,7 @@ module TencentCloud
         # @type OpticalStandard: String
         # @param PowerConnectors: 电源连接器类型
         # @type PowerConnectors: String
-        # @param PowerFeedDrop: 从机架上方还是下方供电。
+        # @param PowerFeedDrop: 从机架上方还是下方供电。取值范围：["UP","DOWN"]
         # @type PowerFeedDrop: String
         # @param MaxWeight: 最大承重(KG)
         # @type MaxWeight: Integer

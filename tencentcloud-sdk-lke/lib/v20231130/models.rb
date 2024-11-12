@@ -2485,7 +2485,7 @@ module TencentCloud
         # @type BotBizId: String
         # @param FileType: 文件类型,正常的文件名类型后缀，例如 xlsx、pdf、 docx、png 等
         # @type FileType: String
-        # @param IsPublic: IsPublic为空用于上传文件时选择场景，当上传为图片文件是IsPublic为true，上传文档文件时场景IsPublic为false
+        # @param IsPublic: IsPublic用于上传文件时选择场景，当上传为对话端文件时IsPublic为true，上传文档库文件时场景IsPublic为false
         # @type IsPublic: Boolean
         # @param TypeKey: 存储类型: offline:离线文件，realtime:实时文件；为空默认为offline
         # @type TypeKey: String
@@ -3419,7 +3419,7 @@ module TencentCloud
 
       # GetDocPreview请求参数结构体
       class GetDocPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param DocBizId: 文档业务ID
+        # @param DocBizId: 文档BizID
         # @type DocBizId: String
         # @param BotBizId: 应用ID
         # @type BotBizId: String
@@ -3685,7 +3685,7 @@ module TencentCloud
 
       # GetReconstructDocumentResult请求参数结构体
       class GetReconstructDocumentResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务唯一id
+        # @param TaskId: 任务唯一Id。[CreateReconstructDocumentFlow](https://cloud.tencent.com/document/product/1759/107506) 返回的TaskId。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -3701,11 +3701,11 @@ module TencentCloud
 
       # GetReconstructDocumentResult返回参数结构体
       class GetReconstructDocumentResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态: Success->执行完成；Processing->执行中；Failed->执行失败；WaitExecute->等待执行；
+        # @param Status: 任务状态: Success->执行完成；Processing->执行中；Failed->执行失败；WaitExecute->等待执行。
         # @type Status: String
-        # @param DocumentRecognizeResultUrl: 输入文件中嵌入的图片中文字内容的识别结果，存储在腾讯云cos的下载地址
+        # @param DocumentRecognizeResultUrl: 本次文档解析的结果文件，存储在腾讯云COS的下载URL，下载URL的有效期为10分钟。
         # @type DocumentRecognizeResultUrl: String
-        # @param FailedPages: 文档解析失败的页码
+        # @param FailedPages: 本次文档解析失败的页码信息。
         # @type FailedPages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3888,7 +3888,7 @@ module TencentCloud
       class GroupQARequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
         # @type BotBizId: String
-        # @param QaBizIds: QA业务ID列表
+        # @param QaBizIds: QaBizID列表
         # @type QaBizIds: Array
         # @param CateBizId: 分组 ID
         # @type CateBizId: String
@@ -5296,7 +5296,7 @@ module TencentCloud
         # @type PageSize: Integer
         # @param Query: 查询内容
         # @type Query: String
-        # @param ReleaseBizId: 发布业务ID
+        # @param ReleaseBizId: 发布单ID
         # @type ReleaseBizId: String
         # @param StartTime: 开始时间
         # @type StartTime: String

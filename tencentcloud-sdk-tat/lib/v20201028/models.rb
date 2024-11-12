@@ -117,10 +117,8 @@ module TencentCloud
         # @param DefaultParameters: 自定义参数的默认取值。
         # @type DefaultParameters: String
         # @param DefaultParameterConfs: 自定义参数的默认取值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultParameterConfs: Array
         # @param Scenes: 命令关联的场景
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scenes: Array
         # @param FormattedDescription: 命令的结构化描述。公共命令有值，用户命令为空字符串。
         # @type FormattedDescription: String
@@ -468,13 +466,10 @@ module TencentCloud
       # 自定义参数。
       class DefaultParameterConf < TencentCloud::Common::AbstractModel
         # @param ParameterName: 参数名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
         # @param ParameterValue: 参数默认值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterValue: String
         # @param ParameterDescription: 参数描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterDescription: String
 
         attr_accessor :ParameterName, :ParameterValue, :ParameterDescription
@@ -999,11 +994,7 @@ module TencentCloud
       class DescribeInvokersRequest < TencentCloud::Common::AbstractModel
         # @param InvokerIds: 执行器ID列表。
         # @type InvokerIds: Array
-        # @param Filters: 过滤条件：
-
-        # <li> invoker-id - String - 是否必填：否 - （过滤条件）按执行器ID过滤。
-        # <li> command-id - String - 是否必填：否 - （过滤条件）按命令ID过滤。
-        # <li> type - String - 是否必填：否 - （过滤条件）按执行器类型过滤。
+        # @param Filters: 过滤条件：<li> invoker-id - String - 是否必填：否 - （过滤条件）按执行器ID过滤。</li> <li> command-id - String - 是否必填：否 - （过滤条件）按命令ID过滤。</li> <li> type - String - 是否必填：否 - （过滤条件）按执行器类型过滤。</li>
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer

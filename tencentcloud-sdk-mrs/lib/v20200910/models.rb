@@ -5400,12 +5400,15 @@ module TencentCloud
         # @type Image: :class:`Tencentcloud::Mrs.v20200910.models.ImageInfo`
         # @param MaskFlag: 图片脱敏选项, 不传默认都脱敏
         # @type MaskFlag: :class:`Tencentcloud::Mrs.v20200910.models.ImageMaskFlags`
+        # @param AutoFixImageDirection: 是否自动矫正图片方向
+        # @type AutoFixImageDirection: Boolean
 
-        attr_accessor :Image, :MaskFlag
+        attr_accessor :Image, :MaskFlag, :AutoFixImageDirection
 
-        def initialize(image=nil, maskflag=nil)
+        def initialize(image=nil, maskflag=nil, autofiximagedirection=nil)
           @Image = image
           @MaskFlag = maskflag
+          @AutoFixImageDirection = autofiximagedirection
         end
 
         def deserialize(params)
@@ -5417,6 +5420,7 @@ module TencentCloud
             @MaskFlag = ImageMaskFlags.new
             @MaskFlag.deserialize(params['MaskFlag'])
           end
+          @AutoFixImageDirection = params['AutoFixImageDirection']
         end
       end
 
@@ -5475,12 +5479,15 @@ module TencentCloud
         # @type Image: :class:`Tencentcloud::Mrs.v20200910.models.ImageInfo`
         # @param MaskFlag: 图片脱敏选项, 不传默认都脱敏
         # @type MaskFlag: :class:`Tencentcloud::Mrs.v20200910.models.ImageMaskFlags`
+        # @param AutoFixImageDirection: 是否自动矫正图片方向
+        # @type AutoFixImageDirection: Boolean
 
-        attr_accessor :Image, :MaskFlag
+        attr_accessor :Image, :MaskFlag, :AutoFixImageDirection
 
-        def initialize(image=nil, maskflag=nil)
+        def initialize(image=nil, maskflag=nil, autofiximagedirection=nil)
           @Image = image
           @MaskFlag = maskflag
+          @AutoFixImageDirection = autofiximagedirection
         end
 
         def deserialize(params)
@@ -5492,6 +5499,7 @@ module TencentCloud
             @MaskFlag = ImageMaskFlags.new
             @MaskFlag.deserialize(params['MaskFlag'])
           end
+          @AutoFixImageDirection = params['AutoFixImageDirection']
         end
       end
 
