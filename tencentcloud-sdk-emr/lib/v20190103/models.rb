@@ -1674,10 +1674,12 @@ module TencentCloud
         # @type ZoneSettings: Array
         # @param Tags: 实例要绑定的标签列表。
         # @type Tags: Array
+        # @param PrePaySetting: 预付费参数
+        # @type PrePaySetting: :class:`Tencentcloud::Emr.v20190103.models.PrePaySetting`
 
-        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags
+        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting
 
-        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil)
+        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil)
           @InstanceName = instancename
           @PayMode = paymode
           @DiskType = disktype
@@ -1685,6 +1687,7 @@ module TencentCloud
           @NodeType = nodetype
           @ZoneSettings = zonesettings
           @Tags = tags
+          @PrePaySetting = prepaysetting
         end
 
         def deserialize(params)
@@ -1708,6 +1711,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['PrePaySetting'].nil?
+            @PrePaySetting = PrePaySetting.new
+            @PrePaySetting.deserialize(params['PrePaySetting'])
           end
         end
       end
@@ -3587,6 +3594,8 @@ module TencentCloud
 
       # DescribeSLInstance返回参数结构体
       class DescribeSLInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例字符串标识。
+        # @type InstanceId: String
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
         # @param PayMode: 实例计费模式。0表示后付费，即按量计费，1表示预付费，即包年包月。
@@ -3602,12 +3611,31 @@ module TencentCloud
         # @param Tags: 实例绑定的标签列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param ClusterId: 实例数字标识。
+        # @type ClusterId: Integer
+        # @param RegionId: 实例区域ID。
+        # @type RegionId: Integer
+        # @param Zone: 实例主可用区。
+        # @type Zone: String
+        # @param ExpireTime: 实例过期时间，后付费返回0000-00-00 00:00:00
+        # @type ExpireTime: String
+        # @param IsolateTime: 实例隔离时间，未隔离返回0000-00-00 00:00:00。
+        # @type IsolateTime: String
+        # @param CreateTime: 实例创建时间。
+        # @type CreateTime: String
+        # @param Status: 实例状态码，-2:  "TERMINATED", 2:   "RUNNING", 14:  "TERMINATING", 19:  "ISOLATING", 22:  "ADJUSTING", 201: "ISOLATED"。
+        # @type Status: Integer
+        # @param AutoRenewFlag: 自动续费标记， 0：表示通知即将过期，但不自动续费 1：表示通知即将过期，而且自动续费 2：表示不通知即将过期，也不自动续费，若业务无续费概念为0
+        # @type AutoRenewFlag: Integer
+        # @param NodeNum: 实例节点总数。
+        # @type NodeNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :ClusterId, :RegionId, :Zone, :ExpireTime, :IsolateTime, :CreateTime, :Status, :AutoRenewFlag, :NodeNum, :RequestId
 
-        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, clusterid=nil, regionid=nil, zone=nil, expiretime=nil, isolatetime=nil, createtime=nil, status=nil, autorenewflag=nil, nodenum=nil, requestid=nil)
+          @InstanceId = instanceid
           @InstanceName = instancename
           @PayMode = paymode
           @DiskType = disktype
@@ -3615,10 +3643,20 @@ module TencentCloud
           @NodeType = nodetype
           @ZoneSettings = zonesettings
           @Tags = tags
+          @ClusterId = clusterid
+          @RegionId = regionid
+          @Zone = zone
+          @ExpireTime = expiretime
+          @IsolateTime = isolatetime
+          @CreateTime = createtime
+          @Status = status
+          @AutoRenewFlag = autorenewflag
+          @NodeNum = nodenum
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @PayMode = params['PayMode']
           @DiskType = params['DiskType']
@@ -3640,6 +3678,15 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @ClusterId = params['ClusterId']
+          @RegionId = params['RegionId']
+          @Zone = params['Zone']
+          @ExpireTime = params['ExpireTime']
+          @IsolateTime = params['IsolateTime']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @NodeNum = params['NodeNum']
           @RequestId = params['RequestId']
         end
       end
@@ -8028,6 +8075,28 @@ module TencentCloud
         end
       end
 
+      # Serverless HBase包年包月时间
+      class Period < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 时间跨度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 时间单位，"m"代表月。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+
+        attr_accessor :TimeSpan, :TimeUnit
+
+        def initialize(timespan=nil, timeunit=nil)
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+        end
+      end
+
       # Pod PVC存储方式描述
       class PersistentVolumeContext < TencentCloud::Common::AbstractModel
         # @param DiskSize: 磁盘大小，单位为GB。
@@ -8680,6 +8749,31 @@ module TencentCloud
         end
       end
 
+      # Serverless HBase 预付费设置
+      class PrePaySetting < TencentCloud::Common::AbstractModel
+        # @param Period: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: :class:`Tencentcloud::Emr.v20190103.models.Period`
+        # @param AutoRenewFlag: 自动续费标记，0：表示通知即将过期，但不自动续费 1：表示通知即将过期，而且自动续费 2：表示不通知即将过期，也不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :Period, :AutoRenewFlag
+
+        def initialize(period=nil, autorenewflag=nil)
+          @Period = period
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          unless params['Period'].nil?
+            @Period = Period.new
+            @Period.deserialize(params['Period'])
+          end
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
       # 价格详情
       class PriceDetail < TencentCloud::Common::AbstractModel
         # @param ResourceId: 节点ID
@@ -9320,7 +9414,7 @@ module TencentCloud
         end
       end
 
-      # EMR Lite HBase 实例信息
+      # Serverless HBase 实例信息
       class SLInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群实例字符串ID
         # @type ClusterId: String
@@ -9354,10 +9448,16 @@ module TencentCloud
         # @param Tags: 实例标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param AutoRenewFlag: 自动续费标记， 0：表示通知即将过期，但不自动续费 1：表示通知即将过期，而且自动续费 2：表示不通知即将过期，也不自动续费，若业务无续费概念，设置为0
+        # @type AutoRenewFlag: Integer
+        # @param IsolateTime: 隔离时间，未隔离返回0000-00-00 00:00:00。
+        # @type IsolateTime: String
+        # @param ExpireTime: 过期时间，后付费返回0000-00-00 00:00:00
+        # @type ExpireTime: String
 
-        attr_accessor :ClusterId, :Id, :StatusDesc, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags
+        attr_accessor :ClusterId, :Id, :StatusDesc, :ClusterName, :RegionId, :ZoneId, :Zone, :AppId, :VpcId, :SubnetId, :Status, :AddTime, :PayMode, :ZoneSettings, :Tags, :AutoRenewFlag, :IsolateTime, :ExpireTime
 
-        def initialize(clusterid=nil, id=nil, statusdesc=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil)
+        def initialize(clusterid=nil, id=nil, statusdesc=nil, clustername=nil, regionid=nil, zoneid=nil, zone=nil, appid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, paymode=nil, zonesettings=nil, tags=nil, autorenewflag=nil, isolatetime=nil, expiretime=nil)
           @ClusterId = clusterid
           @Id = id
           @StatusDesc = statusdesc
@@ -9373,6 +9473,9 @@ module TencentCloud
           @PayMode = paymode
           @ZoneSettings = zonesettings
           @Tags = tags
+          @AutoRenewFlag = autorenewflag
+          @IsolateTime = isolatetime
+          @ExpireTime = expiretime
         end
 
         def deserialize(params)
@@ -9405,6 +9508,9 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @IsolateTime = params['IsolateTime']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

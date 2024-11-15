@@ -626,10 +626,12 @@ module TencentCloud
         # @type BusinessId: String
         # @param ModifyTime: 修改时间
         # @type ModifyTime: Integer
+        # @param ContractNo: 合同编号
+        # @type ContractNo: String
 
-        attr_accessor :Id, :CompanyName, :CreateTime, :CheckTime, :CheckMsg, :State, :BusinessId, :ModifyTime
+        attr_accessor :Id, :CompanyName, :CreateTime, :CheckTime, :CheckMsg, :State, :BusinessId, :ModifyTime, :ContractNo
 
-        def initialize(id=nil, companyname=nil, createtime=nil, checktime=nil, checkmsg=nil, state=nil, businessid=nil, modifytime=nil)
+        def initialize(id=nil, companyname=nil, createtime=nil, checktime=nil, checkmsg=nil, state=nil, businessid=nil, modifytime=nil, contractno=nil)
           @Id = id
           @CompanyName = companyname
           @CreateTime = createtime
@@ -638,6 +640,7 @@ module TencentCloud
           @State = state
           @BusinessId = businessid
           @ModifyTime = modifytime
+          @ContractNo = contractno
         end
 
         def deserialize(params)
@@ -649,6 +652,7 @@ module TencentCloud
           @State = params['State']
           @BusinessId = params['BusinessId']
           @ModifyTime = params['ModifyTime']
+          @ContractNo = params['ContractNo']
         end
       end
 

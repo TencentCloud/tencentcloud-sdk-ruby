@@ -187,12 +187,11 @@ module TencentCloud
         # @type StatusCode: String
         # @param StatusMsg: 任务状态信息
         # @type StatusMsg: String
-        # @param ErrorCode: 错误码
+        # @param ErrorCode: 任务执行错误码。当任务状态不为FAIL时，该值为""。
         # @type ErrorCode: String
-        # @param ErrorMessage: 错误信息
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为FAIL时，该值为""。
         # @type ErrorMessage: String
-        # @param ResultVideoUrl: 生成视频的URL地址
-        # 有效期24小时
+        # @param ResultVideoUrl: 生成视频的URL地址。有效期24小时。
         # @type ResultVideoUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -374,13 +373,10 @@ module TencentCloud
       # logo参数
       class LogoParam < TencentCloud::Common::AbstractModel
         # @param LogoUrl: 水印 Url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoUrl: String
         # @param LogoImage: 水印 Base64，Url 和 Base64 二选一传入，如果都提供以 Url 为准
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogoImage: String
-        # @param LogoRect: 水印图片位于生成结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param LogoRect: 水印图片位于生成结果图中的坐标及宽高，将按照坐标对标识图片进行位置和大小的拉伸匹配。
         # @type LogoRect: :class:`Tencentcloud::Vclm.v20240523.models.LogoRect`
 
         attr_accessor :LogoUrl, :LogoImage, :LogoRect
@@ -401,19 +397,15 @@ module TencentCloud
         end
       end
 
-      # 输入框
+      # 水印图输入框
       class LogoRect < TencentCloud::Common::AbstractModel
-        # @param X: 左上角X坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param X: 水印图框X坐标值。当值大于0时，坐标轴原点位于原图左侧，方向指右；当值小于0时，坐标轴原点位于原图右侧，方向指左。
         # @type X: Integer
-        # @param Y: 左上角Y坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Y: 水印图框Y坐标值。当值大于0时，坐标轴原点位于原图上侧，方向指下；当值小于0时，坐标轴原点位于原图下侧，方向指上。
         # @type Y: Integer
-        # @param Width: 方框宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Width: 水印图框宽度。
         # @type Width: Integer
-        # @param Height: 方框高度
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Height: 水印图框高度。
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
@@ -519,7 +511,7 @@ module TencentCloud
         # - 图片分辨率：192～4096
         # - 图片大小：不超过10M
         # - 图片宽高比：图片【宽：高】在1:2到2:1范围内
-        # - 图片内容：避免上传无人脸/宠物脸或脸部过小、不完整、不清晰、偏转角度过大的图片。
+        # - 图片内容：避免上传无人脸、无宠物脸或脸部过小、不完整、不清晰、偏转角度过大、嘴部被遮挡的图片。
         # @type ImageUrl: String
         # @param ImageBase64: 传入图片Base64编码，编码后请求体大小不超过10M。
         # 图片Base64编码与URL地址必传其一，如果都传以ImageBase64为准。
@@ -528,14 +520,31 @@ module TencentCloud
         # Person：人像模式，仅支持上传人像图片，人像生成效果更好，如果图中未检测到有效人脸将被拦截，生成时会将视频短边分辨率放缩至512。
         # Pet：宠物模式，支持宠物等非人像图片，固定生成512:512分辨率视频。
         # @type Mode: String
+        # @param Resolution: 生成视频尺寸。可选取值："512:512"。
 
-        attr_accessor :AudioUrl, :ImageUrl, :ImageBase64, :Mode
+        # 人像模式下，如果不传该参数，默认生成视频的短边分辨率为512，长边分辨率不固定、由模型根据生成效果自动适配得到。如需固定生成分辨率可传入512:512。
 
-        def initialize(audiourl=nil, imageurl=nil, imagebase64=nil, mode=nil)
+        # 宠物模式下，如果不传该参数，默认将脸部唱演视频回贴原图，生成视频分辨率与原图一致。如不需要脸部回贴，仅保留脸部唱演视频，可传入512:512。
+        # @type Resolution: String
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为0。
+        # 1：添加标识；
+        #  0：不添加标识；
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
+
+        attr_accessor :AudioUrl, :ImageUrl, :ImageBase64, :Mode, :Resolution, :LogoAdd, :LogoParam
+
+        def initialize(audiourl=nil, imageurl=nil, imagebase64=nil, mode=nil, resolution=nil, logoadd=nil, logoparam=nil)
           @AudioUrl = audiourl
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @Mode = mode
+          @Resolution = resolution
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
         end
 
         def deserialize(params)
@@ -543,12 +552,18 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
           @Mode = params['Mode']
+          @Resolution = params['Resolution']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
         end
       end
 
       # SubmitPortraitSingJob返回参数结构体
       class SubmitPortraitSingJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID
+        # @param JobId: 任务ID。任务有效期为48小时。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -621,61 +636,67 @@ module TencentCloud
       class SubmitVideoTranslateJobRequest < TencentCloud::Common::AbstractModel
         # @param VideoUrl: 视频地址URL。
         # 格式要求：支持 mp4、mov 。
-        # 时长要求：【10-300】秒。
+        # 时长要求：【5-600】秒。
         # fps 要求：【15-60】fps
-        # 分辨率要求：单边像素要求在 【540~1920】 之间。
+        # 分辨率要求：单边像素要求在 【360~4096】 之间。
+        # 大小要求：不超过500Mb
         # @type VideoUrl: String
-        # @param SrcLang: 源语言：zh(中文), en(英文)
+        # @param SrcLang: 输入视频中音频语种
+        # 目前支持语种范围：zh(中文), en(英文)
         # @type SrcLang: String
-        # @param DstLang: 目标语种：
-        # zh(简体中文)、en(英语)、ar(阿拉伯语)、de(德语)、es(西班牙语)、fr(法语)、id(印尼语)、it(意大利语)、ja(日语)、ko(韩语)、ms(马来语)、pt(葡萄牙语)、ru(俄语)、th(泰语)、tr(土耳其语)、vi(越南语)
-        # @type DstLang: String
-        # @param AudioUrl: 当音频 URL 不为空时，默认以音频驱动视频任务口型。
+        # @param AudioUrl: 当音频 URL 不为空时，不经过语音AI处理，直接以视频为素材用音频内容做视频口型驱动。
         # 格式要求：支持 mp3、m4a、acc、wav 格式。
-        # 时长要求：【10~300】秒
-        # 大小要求：不超过 100M。
+        # 时长要求：【5~600】秒，音频时长要匹配视频时长。
+        # 大小要求：不超过 100Mb。
         # @type AudioUrl: String
+        # @param DstLang: 输出视频中翻译语种
+        # 目前支持语种范围：zh(简体中文)、en(英语)、ar(阿拉伯语)、de(德语)、es(西班牙语)、fr(法语)、id(印尼语)、it(意大利语)、ja(日语)、ko(韩语)、ms(马来语)、pt(葡萄牙语)、ru(俄语)、th(泰语)、tr(土耳其语)、vi(越南语)
+        # @type DstLang: String
+        # @param VoiceType: 翻译语种匹配音色种别，其他说明如下：
+        # 1）默认不填代表克隆输入视频中音频音色；
+        # 2）翻译语种非中英（即zh、en），该项必填；
+
+        # 具体音色种别详见说明“支持音色种别列表”，每个音色都支持 15 个目标语种。
+        # @type VoiceType: String
+        # @param Confirm: 是否需要纠正视频中音频识别与翻译内容，取值范围：0-不需要，1-需要，默认0。
+        # @type Confirm: Integer
         # @param RemoveVocal: 是否需要去除VideoUrl或AudioUrl中背景音，取值范围：0-不需要，1-需要，默认0 。
         # @type RemoveVocal: Integer
-        # @param Confirm: 是否需要确认翻译结果0：不需要，1：需要
-        # @type Confirm: Integer
-        # @param LipSync: 是否开启口型驱动，0：不开启，1：开启。默认开启。
+        # @param LipSync: 是否开启口型驱动，0-不开启，1-开启。默认0。
         # @type LipSync: Integer
-        # @param VoiceType: 音色种别：一种音色种别对应一种不同区域的音色
-        # 1）目标语种为小语种(非zh,en)时，该项为必填
-        # 2）目标语种为zh,en时，该项为非必填，若填入，则对应填入的音色
+        # @param VideoLoop: 当 AudioUrl 字段有输入音频时，如果输入音频时长大于输入视频时长，会拼接视频（ 0-正向拼接、1-反向拼接 ）对齐音频时长。默认 0。
+        # @type VideoLoop: Integer
 
-        # 具体音色包含请见“支持音色种别列表”
-        # @type VoiceType: String
+        attr_accessor :VideoUrl, :SrcLang, :AudioUrl, :DstLang, :VoiceType, :Confirm, :RemoveVocal, :LipSync, :VideoLoop
 
-        attr_accessor :VideoUrl, :SrcLang, :DstLang, :AudioUrl, :RemoveVocal, :Confirm, :LipSync, :VoiceType
-
-        def initialize(videourl=nil, srclang=nil, dstlang=nil, audiourl=nil, removevocal=nil, confirm=nil, lipsync=nil, voicetype=nil)
+        def initialize(videourl=nil, srclang=nil, audiourl=nil, dstlang=nil, voicetype=nil, confirm=nil, removevocal=nil, lipsync=nil, videoloop=nil)
           @VideoUrl = videourl
           @SrcLang = srclang
-          @DstLang = dstlang
           @AudioUrl = audiourl
-          @RemoveVocal = removevocal
-          @Confirm = confirm
-          @LipSync = lipsync
+          @DstLang = dstlang
           @VoiceType = voicetype
+          @Confirm = confirm
+          @RemoveVocal = removevocal
+          @LipSync = lipsync
+          @VideoLoop = videoloop
         end
 
         def deserialize(params)
           @VideoUrl = params['VideoUrl']
           @SrcLang = params['SrcLang']
-          @DstLang = params['DstLang']
           @AudioUrl = params['AudioUrl']
-          @RemoveVocal = params['RemoveVocal']
-          @Confirm = params['Confirm']
-          @LipSync = params['LipSync']
+          @DstLang = params['DstLang']
           @VoiceType = params['VoiceType']
+          @Confirm = params['Confirm']
+          @RemoveVocal = params['RemoveVocal']
+          @LipSync = params['LipSync']
+          @VideoLoop = params['VideoLoop']
         end
       end
 
       # SubmitVideoTranslateJob返回参数结构体
       class SubmitVideoTranslateJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 视频转译任务的Job id
+        # @param JobId: 视频转译任务的ID
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

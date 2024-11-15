@@ -3605,11 +3605,16 @@ module TencentCloud
 
       # 描述了实例登录相关配置与信息。
       class LoginSettings < TencentCloud::Common::AbstractModel
-        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        # <li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。</li>
+        # <li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。</li>
+        # 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         # @type Password: String
         # @param KeyIds: 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         # @type KeyIds: Array
-        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
+        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        # <li>TRUE：表示保持镜像的登录设置</li>
+        # <li>FALSE：表示不保持镜像的登录设置</li>默认取值：FALSE。
         # @type KeepImageLogin: Boolean
 
         attr_accessor :Password, :KeyIds, :KeepImageLogin
@@ -5428,7 +5433,7 @@ module TencentCloud
         # @type Key: String
         # @param Value: 标签值
         # @type Value: String
-        # @param ResourceType: 标签绑定的资源类型，当前支持类型："auto-scaling-group
+        # @param ResourceType: 标签绑定的资源类型，当前支持类型："auto-scaling-group", "launch-configuration"
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
 

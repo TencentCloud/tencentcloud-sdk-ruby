@@ -606,6 +606,9 @@ module TencentCloud
         # @type Pinyin: String
 
         attr_accessor :Text, :GenericName, :BarndName, :EnName, :Pinyin
+        extend Gem::Deprecate
+        deprecate :BarndName, :none, 2024, 11
+        deprecate :BarndName=, :none, 2024, 11
 
         def initialize(text=nil, genericname=nil, barndname=nil, enname=nil, pinyin=nil)
           @Text = text
@@ -1964,15 +1967,21 @@ module TencentCloud
         # @param Pinyin: 拼音
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pinyin: String
+        # @param BrandName: 品牌名
+        # @type BrandName: String
 
-        attr_accessor :Text, :GenericName, :BarndName, :EnName, :Pinyin
+        attr_accessor :Text, :GenericName, :BarndName, :EnName, :Pinyin, :BrandName
+        extend Gem::Deprecate
+        deprecate :BarndName, :none, 2024, 11
+        deprecate :BarndName=, :none, 2024, 11
 
-        def initialize(text=nil, genericname=nil, barndname=nil, enname=nil, pinyin=nil)
+        def initialize(text=nil, genericname=nil, barndname=nil, enname=nil, pinyin=nil, brandname=nil)
           @Text = text
           @GenericName = genericname
           @BarndName = barndname
           @EnName = enname
           @Pinyin = pinyin
+          @BrandName = brandname
         end
 
         def deserialize(params)
@@ -1981,6 +1990,7 @@ module TencentCloud
           @BarndName = params['BarndName']
           @EnName = params['EnName']
           @Pinyin = params['Pinyin']
+          @BrandName = params['BrandName']
         end
       end
 

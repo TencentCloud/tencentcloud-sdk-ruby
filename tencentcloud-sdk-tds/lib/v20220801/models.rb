@@ -473,9 +473,9 @@ module TencentCloud
 
       # 风险信息
       class RiskInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 风险类型
+        # @param Type: 风险类型。更多详情请参见：[Android](https://cloud.tencent.com/document/product/1628/85898)、[iOS](https://cloud.tencent.com/document/product/1628/85896)、[H5](https://cloud.tencent.com/document/product/1628/85897)、[小程序](https://cloud.tencent.com/document/product/1628/85895)、[场景风险](https://cloud.tencent.com/document/product/1628/88912)
         # @type Type: Integer
-        # @param Level: 风险等级
+        # @param Level: [风险等级](https://cloud.tencent.com/document/product/1628/85308)
         # @type Level: Integer
 
         attr_accessor :Type, :Level

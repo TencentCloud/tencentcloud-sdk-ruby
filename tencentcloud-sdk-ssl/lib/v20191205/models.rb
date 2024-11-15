@@ -3176,7 +3176,7 @@ module TencentCloud
       class DescribeDownloadCertificateUrlRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书ID
         # @type CertificateId: String
-        # @param ServiceType: 下载的服务类型: nginx tomcat apache iis jks other root
+        # @param ServiceType: 必填选项，下载的服务类型: nginx tomcat apache iis jks other root
         # @type ServiceType: String
 
         attr_accessor :CertificateId, :ServiceType

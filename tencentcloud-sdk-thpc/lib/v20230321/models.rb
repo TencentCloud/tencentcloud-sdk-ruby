@@ -624,7 +624,7 @@ module TencentCloud
         # <li>SLURM：21.08.8、23.11.7</li>
         # <li>SGE：     8.1.9</li>
         # @type SchedulerVersion: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。公共镜像请参考[镜像限制](https://cloud.tencent.com/document/product/1527/64818)
         # @type ImageId: String
         # @param VirtualPrivateCloud: 私有网络相关信息配置。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20230321.models.VirtualPrivateCloud`

@@ -745,16 +745,19 @@ module TencentCloud
         # @type DeleteType: Integer
         # @param BizId: 应用id
         # @type BizId: Integer
-        # @param Uids: 要剔除的用户列表
+        # @param Uids: 要剔除的用户列表（整型）
         # @type Uids: Array
+        # @param StrUids: 要剔除的用户列表（字符串类型）
+        # @type StrUids: Array
 
-        attr_accessor :RoomId, :DeleteType, :BizId, :Uids
+        attr_accessor :RoomId, :DeleteType, :BizId, :Uids, :StrUids
 
-        def initialize(roomid=nil, deletetype=nil, bizid=nil, uids=nil)
+        def initialize(roomid=nil, deletetype=nil, bizid=nil, uids=nil, struids=nil)
           @RoomId = roomid
           @DeleteType = deletetype
           @BizId = bizid
           @Uids = uids
+          @StrUids = struids
         end
 
         def deserialize(params)
@@ -762,6 +765,7 @@ module TencentCloud
           @DeleteType = params['DeleteType']
           @BizId = params['BizId']
           @Uids = params['Uids']
+          @StrUids = params['StrUids']
         end
       end
 

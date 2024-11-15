@@ -7546,10 +7546,12 @@ module TencentCloud
         # @type GmSSLId: String
         # @param Labels: 域名标签
         # @type Labels: Array
+        # @param ProbeStatus: 拨测状态。 0: 禁用拨测, 1: 启用拨测
+        # @type ProbeStatus: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -7600,6 +7602,7 @@ module TencentCloud
           @GmEncPrivateKey = gmencprivatekey
           @GmSSLId = gmsslid
           @Labels = labels
+          @ProbeStatus = probestatus
         end
 
         def deserialize(params)
@@ -7660,6 +7663,7 @@ module TencentCloud
           @GmEncPrivateKey = params['GmEncPrivateKey']
           @GmSSLId = params['GmSSLId']
           @Labels = params['Labels']
+          @ProbeStatus = params['ProbeStatus']
         end
       end
 

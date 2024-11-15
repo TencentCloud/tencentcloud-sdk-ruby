@@ -2035,7 +2035,7 @@ module TencentCloud
         # @param DealNames: 订单号列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
-        # @param InstanceId: 实例Id，当购买多个实例时，默认返回购买的第一个实例 id
+        # @param InstanceId: ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
@@ -2369,8 +2369,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 10
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 10
+        deprecate :DeleteRouteTimestamp, :none, 2024, 11
+        deprecate :DeleteRouteTimestamp=, :none, 2024, 11
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2462,9 +2462,9 @@ module TencentCloud
 
       # CreatePostPaidInstance请求参数结构体
       class CreatePostPaidInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param InstanceName: ckafka集群实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type InstanceName: String
-        # @param VpcId: 创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
+        # @param VpcId: 私有网络Id  创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
         # @type VpcId: String
         # @param SubnetId: 子网id。创建实例默认接入点所在的子网对应的子网 id
         # @type SubnetId: String
@@ -2500,10 +2500,12 @@ module TencentCloud
         # @type PublicNetworkMonthly: Integer
         # @param Tags: 标签
         # @type Tags: Array
+        # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认
+        # @type ElasticBandwidthSwitch: Integer
 
-        attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch
 
-        def initialize(instancename=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2523,6 +2525,7 @@ module TencentCloud
           @InstanceNum = instancenum
           @PublicNetworkMonthly = publicnetworkmonthly
           @Tags = tags
+          @ElasticBandwidthSwitch = elasticbandwidthswitch
         end
 
         def deserialize(params)
@@ -2552,6 +2555,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
         end
       end
 
@@ -9192,8 +9196,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2024, 10
-        deprecate :DynamicDiskConfig=, :none, 2024, 10
+        deprecate :DynamicDiskConfig, :none, 2024, 11
+        deprecate :DynamicDiskConfig=, :none, 2024, 11
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
           @InstanceId = instanceid
@@ -12372,8 +12376,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 10
-        deprecate :Exflag=, :none, 2024, 10
+        deprecate :Exflag, :none, 2024, 11
+        deprecate :Exflag=, :none, 2024, 11
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

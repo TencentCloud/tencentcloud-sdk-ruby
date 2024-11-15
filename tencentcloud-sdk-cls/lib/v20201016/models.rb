@@ -5032,12 +5032,45 @@ module TencentCloud
 
       # DescribeCloudProductLogTasks请求参数结构体
       class DescribeCloudProductLogTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为100，最大值100。
+        # @type Limit: Integer
+        # @param Filters: - assumerName
+        #   - 按照【云产品标识】进行过滤。
+        #   - 类型：String
+        #   - 必选：否
+        #   - 枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
+        # - logType
+        #   - 按照【日志类型】进行过滤。
+        #   - 类型：String
+        #   - 必选：否
+        #   - 枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
+        # - instanceId
+        #   - 按照【实例ID】进行过滤。
+        #   - 类型：String
+        #   - 必选：否
+        # @type Filters: Array
 
+        attr_accessor :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

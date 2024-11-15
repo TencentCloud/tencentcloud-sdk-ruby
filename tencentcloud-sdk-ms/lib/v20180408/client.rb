@@ -151,6 +151,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不再使用
+
         # 用户可以使用该接口自建资源，只支持白名单用户
 
         # @param request: Request instance for CreateResourceInstances.

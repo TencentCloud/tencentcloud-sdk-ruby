@@ -586,7 +586,7 @@ module TencentCloud
 
       # 地址信息
       class AddressTemplateItem < TencentCloud::Common::AbstractModel
-        # @param AddressTemplateId: ipm-xxxxxxxx
+        # @param AddressTemplateId: IP地址模板ID
         # @type AddressTemplateId: String
         # @param AddressTemplateName: IP模板名称
         # @type AddressTemplateName: String
@@ -725,6 +725,8 @@ module TencentCloud
         # @param AnycastZone: Anycast发布域。
         # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>ANYCAST_ZONE_GLOBAL：全球发布域（需要额外开通Anycast全球加速白名单）</li><li>ANYCAST_ZONE_OVERSEAS：境外发布域</li><li><b>[已废弃]</b> ANYCAST_ZONE_A：发布域A（已更新为全球发布域）</li><li><b>[已废弃]</b> ANYCAST_ZONE_B：发布域B（已更新为全球发布域）</li></ul>默认值：ANYCAST_ZONE_OVERSEAS。</li></ul>
         # @type AnycastZone: String
+        # @param VipCluster: 指定IP地址申请EIP，每个账户每个月只有三次配额
+        # @type VipCluster: Array
         # @param ApplicableForCLB: <b>[已废弃]</b> AnycastEIP不再区分是否负载均衡。原参数说明如下：
         # AnycastEIP是否用于绑定负载均衡。
         # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>TRUE：AnycastEIP可绑定对象为负载均衡</li>
@@ -745,9 +747,9 @@ module TencentCloud
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :Egress, :AntiDDoSPackageId, :ClientToken
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :Egress, :AntiDDoSPackageId, :ClientToken
 
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
@@ -755,6 +757,7 @@ module TencentCloud
           @AddressChargePrepaid = addresschargeprepaid
           @AddressType = addresstype
           @AnycastZone = anycastzone
+          @VipCluster = vipcluster
           @ApplicableForCLB = applicableforclb
           @Tags = tags
           @BandwidthPackageId = bandwidthpackageid
@@ -776,6 +779,7 @@ module TencentCloud
           end
           @AddressType = params['AddressType']
           @AnycastZone = params['AnycastZone']
+          @VipCluster = params['VipCluster']
           @ApplicableForCLB = params['ApplicableForCLB']
           unless params['Tags'].nil?
             @Tags = []
@@ -3010,21 +3014,25 @@ module TencentCloud
 
       # 冲突资源条目信息。
       class ConflictItem < TencentCloud::Common::AbstractModel
-        # @param ConfilctId: 冲突资源的ID
+        # @param ConfilctId: 冲突资源的ID。已废弃
         # @type ConfilctId: String
         # @param DestinationItem: 冲突目的资源
         # @type DestinationItem: String
+        # @param ConflictId: 冲突资源的ID
+        # @type ConflictId: String
 
-        attr_accessor :ConfilctId, :DestinationItem
+        attr_accessor :ConfilctId, :DestinationItem, :ConflictId
 
-        def initialize(confilctid=nil, destinationitem=nil)
+        def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
           @DestinationItem = destinationitem
+          @ConflictId = conflictid
         end
 
         def deserialize(params)
           @ConfilctId = params['ConfilctId']
           @DestinationItem = params['DestinationItem']
+          @ConflictId = params['ConflictId']
         end
       end
 
@@ -3974,16 +3982,19 @@ module TencentCloud
         # @type NetworkInterfaceId: String
         # @param CheckAssociate: 是否开启`HAVIP`漂移时子机或网卡范围的校验。默认不开启。
         # @type CheckAssociate: Boolean
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :HaVipName, :SubnetId, :Vip, :NetworkInterfaceId, :CheckAssociate
+        attr_accessor :VpcId, :HaVipName, :SubnetId, :Vip, :NetworkInterfaceId, :CheckAssociate, :Tags
 
-        def initialize(vpcid=nil, havipname=nil, subnetid=nil, vip=nil, networkinterfaceid=nil, checkassociate=nil)
+        def initialize(vpcid=nil, havipname=nil, subnetid=nil, vip=nil, networkinterfaceid=nil, checkassociate=nil, tags=nil)
           @VpcId = vpcid
           @HaVipName = havipname
           @SubnetId = subnetid
           @Vip = vip
           @NetworkInterfaceId = networkinterfaceid
           @CheckAssociate = checkassociate
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3993,6 +4004,14 @@ module TencentCloud
           @Vip = params['Vip']
           @NetworkInterfaceId = params['NetworkInterfaceId']
           @CheckAssociate = params['CheckAssociate']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -17695,12 +17714,16 @@ module TencentCloud
       # 单项计费价格信息
       class ItemPrice < TencentCloud::Common::AbstractModel
         # @param UnitPrice: 按量计费后付费单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPrice: Float
         # @param ChargeUnit: 按量计费后付费计价单元，可取值范围： HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）： GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param OriginalPrice: 预付费商品的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 预付费商品的折扣价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
 
         attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice
@@ -24464,7 +24487,7 @@ module TencentCloud
         # @type PrivateIpAddress: String
         # @param PublicIpAddresses: 弹性IP地址池
         # @type PublicIpAddresses: Array
-        # @param Description: 描述
+        # @param Description: 规则描述
         # @type Description: String
         # @param NatGatewaySnatId: Snat规则ID
         # @type NatGatewaySnatId: String

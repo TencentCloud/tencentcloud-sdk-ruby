@@ -52,8 +52,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2024, 9
-        deprecate :GitInfo=, :none, 2024, 9
+        deprecate :GitInfo, :none, 2024, 11
+        deprecate :GitInfo=, :none, 2024, 11
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil)
           @Type = type
@@ -271,7 +271,6 @@ module TencentCloud
       # CreateVolume返回参数结构体
       class CreateVolumeResponse < TencentCloud::Common::AbstractModel
         # @param VolumeId: 缓存卷ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -798,10 +797,8 @@ module TencentCloud
       # DescribeVolumes返回参数结构体
       class DescribeVolumesResponse < TencentCloud::Common::AbstractModel
         # @param Volumes: 缓存卷。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volumes: Array
         # @param TotalCount: 符合条件的数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -861,10 +858,8 @@ module TencentCloud
         # @param ResourceIds: 云资源ID。
         # @type ResourceIds: :class:`Tencentcloud::Omics.v20221128.models.ResourceIds`
         # @param LastWorkflowUuid: 上个工作流UUID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastWorkflowUuid: String
         # @param CreationTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreationTime: String
 
         attr_accessor :EnvironmentId, :Name, :Description, :Region, :Type, :Status, :Available, :IsDefault, :IsManaged, :Message, :ResourceIds, :LastWorkflowUuid, :CreationTime
@@ -1270,10 +1265,8 @@ module TencentCloud
       # 资源限制范围。
       class LimitRange < TencentCloud::Common::AbstractModel
         # @param MaxCPU: 最大CPU设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxCPU: String
         # @param MaxMemory: 最大内存设置（单位：Mi，Gi，Ti，M，G，T）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMemory: String
 
         attr_accessor :MaxCPU, :MaxMemory
@@ -1376,32 +1369,24 @@ module TencentCloud
       # 云资源ID。
       class ResourceIds < TencentCloud::Common::AbstractModel
         # @param VPCId: 私有网络ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VPCId: String
         # @param SubnetId: 子网ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param SecurityGroupId: 安全组ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupId: String
         # @param TDSQLCId: TDSQL-C Mysql版数据库ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TDSQLCId: String
         # @param CFSId: 文件存储ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSId: String
         # @param CFSStorageType: 文件存储类型：取值范围：
         # - SD：通用标准型
         # - HP：通用性能型
         # - TB：turbo标准型
         # - TP：turbo性能型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CFSStorageType: String
         # @param CVMId: 云服务器ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CVMId: String
         # @param EKSId: 弹性容器集群ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EKSId: String
 
         attr_accessor :VPCId, :SubnetId, :SecurityGroupId, :TDSQLCId, :CFSId, :CFSStorageType, :CVMId, :EKSId
@@ -1432,13 +1417,10 @@ module TencentCloud
       # 资源配额。
       class ResourceQuota < TencentCloud::Common::AbstractModel
         # @param CPULimit: CPU Limit设置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CPULimit: String
         # @param MemoryLimit: 内存Limit设置（单位：Mi，Gi，Ti，M，G，T）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemoryLimit: String
         # @param Pods: Pods数量设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pods: String
 
         attr_accessor :CPULimit, :MemoryLimit, :Pods
@@ -1556,8 +1538,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2024, 9
-        deprecate :Option=, :none, 2024, 9
+        deprecate :Option, :none, 2024, 11
+        deprecate :Option=, :none, 2024, 11
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -2388,20 +2370,15 @@ module TencentCloud
       # 缓存卷。
       class Volume < TencentCloud::Common::AbstractModel
         # @param VolumeId: 缓存卷ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeId: String
         # @param Name: 名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param EnvironmentId: 环境ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentId: String
         # @param Type: 缓存卷类型，取值范围：
         # * SHARED：多点挂载共享存储
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Spec: 缓存卷规格，取值范围：
 
@@ -2409,25 +2386,18 @@ module TencentCloud
         # - HP：通用性能型
         # - TB：turbo标准型
         # - TP：turbo性能型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Spec: String
         # @param Capacity: 缓存卷大小（GB）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Capacity: Integer
         # @param Usage: 缓存卷使用量（Byte）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Usage: Integer
         # @param BandwidthLimit: 缓存卷吞吐上限（MiB/s）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthLimit: Float
         # @param DefaultMountPath: 默认挂载路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultMountPath: String
         # @param IsDefault: 是否为默认缓存卷。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefault: Boolean
         # @param Status: 状态。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
 
         attr_accessor :VolumeId, :Name, :Description, :EnvironmentId, :Type, :Spec, :Capacity, :Usage, :BandwidthLimit, :DefaultMountPath, :IsDefault, :Status

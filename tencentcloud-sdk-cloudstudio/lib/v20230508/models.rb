@@ -185,7 +185,6 @@ module TencentCloud
       # DescribeConfig返回参数结构体
       class DescribeConfigResponse < TencentCloud::Common::AbstractModel
         # @param Data: 配置值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -590,28 +589,20 @@ module TencentCloud
         # @param Memory: 内存
         # @type Memory: Integer
         # @param Icon: 工作空间图标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Icon: String
         # @param StatusReason: 工作空间状态, 异常原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusReason: String
         # @param Description: 工作空间描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param WorkspaceType: 工作空间类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceType: String
         # @param VersionControlUrl: Git 仓库 HTTPS 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionControlUrl: String
         # @param VersionControlRef: Git 仓库引用。指定分支使用 /refs/heads/{分支名}, 指定 Tag 用 /refs/tags/{Tag名}
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionControlRef: String
         # @param LastOpsDate: 最后操作时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastOpsDate: String
         # @param CreateDate: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateDate: String
 
         attr_accessor :Id, :Name, :SpaceKey, :Status, :Cpu, :Memory, :Icon, :StatusReason, :Description, :WorkspaceType, :VersionControlUrl, :VersionControlRef, :LastOpsDate, :CreateDate

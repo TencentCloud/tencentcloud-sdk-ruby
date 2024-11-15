@@ -5496,38 +5496,6 @@ module TencentCloud
         end
       end
 
-      # 云护航服务详情信息
-      class CloudProtectService < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
-        # @type ResourceId: String
-        # @param Type: 类型： 这里为新购
-        # @type Type: String
-        # @param Config: 配置：购买的配置信息
-        # @type Config: String
-        # @param ServiceName: 服务名称
-        # @type ServiceName: String
-        # @param BeginTime: 购买时间
-        # @type BeginTime: String
-
-        attr_accessor :ResourceId, :Type, :Config, :ServiceName, :BeginTime
-
-        def initialize(resourceid=nil, type=nil, config=nil, servicename=nil, begintime=nil)
-          @ResourceId = resourceid
-          @Type = type
-          @Config = config
-          @ServiceName = servicename
-          @BeginTime = begintime
-        end
-
-        def deserialize(params)
-          @ResourceId = params['ResourceId']
-          @Type = params['Type']
-          @Config = params['Config']
-          @ServiceName = params['ServiceName']
-          @BeginTime = params['BeginTime']
-        end
-      end
-
       # 命令行内容
       class CommandLine < TencentCloud::Common::AbstractModel
         # @param Exe: 路径,需要base64加密
@@ -14625,54 +14593,6 @@ module TencentCloud
               recordinfo_tmp = RecordInfo.new
               recordinfo_tmp.deserialize(i)
               @Records << recordinfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeCloudProtectServiceOrderList请求参数结构体
-      class DescribeCloudProtectServiceOrderListRequest < TencentCloud::Common::AbstractModel
-        # @param Order: 排序字段,当前支持: BeginTime
-        # @type Order: String
-        # @param By: 排序方式,当前支持:
-        # ASC 正序,DESC 倒序
-        # @type By: String
-
-        attr_accessor :Order, :By
-
-        def initialize(order=nil, by=nil)
-          @Order = order
-          @By = by
-        end
-
-        def deserialize(params)
-          @Order = params['Order']
-          @By = params['By']
-        end
-      end
-
-      # DescribeCloudProtectServiceOrderList返回参数结构体
-      class DescribeCloudProtectServiceOrderListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 云护航订单列表信息
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              cloudprotectservice_tmp = CloudProtectService.new
-              cloudprotectservice_tmp.deserialize(i)
-              @Data << cloudprotectservice_tmp
             end
           end
           @RequestId = params['RequestId']

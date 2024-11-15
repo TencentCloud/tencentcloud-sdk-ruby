@@ -1311,10 +1311,12 @@ module TencentCloud
         # @type ResourceIDs: Array
         # @param NodeIpType: 拨测节点的IP类型，0-不限，1-IPv4，2-IPv6
         # @type NodeIpType: Integer
+        # @param BatchTasks: 批量任务名-地址
+        # @type BatchTasks: Array
 
-        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron, :ResourceIDs, :NodeIpType
+        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron, :ResourceIDs, :NodeIpType, :BatchTasks
 
-        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil, resourceids=nil, nodeiptype=nil)
+        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil, resourceids=nil, nodeiptype=nil, batchtasks=nil)
           @TaskIds = taskids
           @Nodes = nodes
           @Interval = interval
@@ -1322,6 +1324,7 @@ module TencentCloud
           @Cron = cron
           @ResourceIDs = resourceids
           @NodeIpType = nodeiptype
+          @BatchTasks = batchtasks
         end
 
         def deserialize(params)
@@ -1332,6 +1335,14 @@ module TencentCloud
           @Cron = params['Cron']
           @ResourceIDs = params['ResourceIDs']
           @NodeIpType = params['NodeIpType']
+          unless params['BatchTasks'].nil?
+            @BatchTasks = []
+            params['BatchTasks'].each do |i|
+              probetaskbasicconfiguration_tmp = ProbeTaskBasicConfiguration.new
+              probetaskbasicconfiguration_tmp.deserialize(i)
+              @BatchTasks << probetaskbasicconfiguration_tmp
+            end
+          end
         end
       end
 

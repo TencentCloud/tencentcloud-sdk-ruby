@@ -4207,10 +4207,18 @@ module TencentCloud
         # @type LogDelivery: String
         # @param DeployModel: 部署模式
         # @type DeployModel: Integer
+        # @param IntranetAccess: 0 默认值，非内网访问，1 内网访问
+        # @type IntranetAccess: Integer
+        # @param IntranetPrivateIpSet: 内网访问的ip
+        # @type IntranetPrivateIpSet: Array
+        # @param IntranetVpcId: 开通内网访问的vpc
+        # @type IntranetVpcId: String
+        # @param IntranetVpcCidr: 开通内网访问vpc的网段
+        # @type IntranetVpcCidr: String
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :CdcClusterId, :LogDelivery, :DeployModel
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :CdcClusterId, :LogDelivery, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, cdcclusterid=nil, logdelivery=nil, deploymodel=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, cdcclusterid=nil, logdelivery=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -4247,6 +4255,10 @@ module TencentCloud
           @CdcClusterId = cdcclusterid
           @LogDelivery = logdelivery
           @DeployModel = deploymodel
+          @IntranetAccess = intranetaccess
+          @IntranetPrivateIpSet = intranetprivateipset
+          @IntranetVpcId = intranetvpcid
+          @IntranetVpcCidr = intranetvpccidr
         end
 
         def deserialize(params)
@@ -4293,6 +4305,10 @@ module TencentCloud
           @CdcClusterId = params['CdcClusterId']
           @LogDelivery = params['LogDelivery']
           @DeployModel = params['DeployModel']
+          @IntranetAccess = params['IntranetAccess']
+          @IntranetPrivateIpSet = params['IntranetPrivateIpSet']
+          @IntranetVpcId = params['IntranetVpcId']
+          @IntranetVpcCidr = params['IntranetVpcCidr']
         end
       end
 

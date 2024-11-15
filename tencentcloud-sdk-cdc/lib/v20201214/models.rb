@@ -402,7 +402,7 @@ module TencentCloud
         # @type Fpga: Integer
         # @param Remark: 机型描述
         # @type Remark: String
-        # @param Status: 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br><li>SOLD_OUT：表示实例已售罄。
+        # @param Status: 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br></li><li>SOLD_OUT：表示实例已售罄。</li>
         # @type Status: String
 
         attr_accessor :Zone, :InstanceType, :NetworkCard, :Cpu, :Memory, :InstanceFamily, :TypeName, :StorageBlockAmount, :InstanceBandwidth, :InstancePps, :CpuType, :Gpu, :Fpga, :Remark, :Status
@@ -496,25 +496,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderType: String
         # @param CheckStatus: 验收状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStatus: String
         # @param DeliverExpectTime: 交付预期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverExpectTime: String
         # @param DeliverFinishTime: 交付实际完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliverFinishTime: String
         # @param CheckExpectTime: 验收预期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckExpectTime: String
         # @param CheckFinishTime: 验收实际完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckFinishTime: String
         # @param OrderSLA: 订单SLA
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderSLA: String
         # @param OrderPayPlan: 订单支付计划
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderPayPlan: String
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
@@ -858,10 +851,8 @@ module TencentCloud
       # DescribeDedicatedClusterCbsStatistics返回参数结构体
       class DescribeDedicatedClusterCbsStatisticsResponse < TencentCloud::Common::AbstractModel
         # @param SetList: 云硬盘仓库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetList: Array
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1191,13 +1182,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpnConnectionBandwidthData: Array
         # @param HostDetailInfo: 宿主机资源概览信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostDetailInfo: Array
         # @param HostStandbyCount: 热备宿主机数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostStandbyCount: Integer
         # @param HostNormalCount: 普通宿主机数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNormalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1549,10 +1537,8 @@ module TencentCloud
       # 带有时间戳的详细数据。
       class DetailData < TencentCloud::Common::AbstractModel
         # @param Timestamps: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamps: Array
         # @param Values: 对应的具体值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Timestamps, :Values
@@ -1571,19 +1557,14 @@ module TencentCloud
       # 宿主机资源的概览详细信息。
       class HostDetailInfo < TencentCloud::Common::AbstractModel
         # @param HostTypeFamily: 类型族
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostTypeFamily: String
         # @param CpuTotal: 总CPU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuTotal: Float
         # @param CpuAvailable: 可用CPU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuAvailable: Float
         # @param MemTotal: 总内存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemTotal: Float
         # @param MemAvailable: 可用内存
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemAvailable: Float
 
         attr_accessor :HostTypeFamily, :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable
@@ -1675,25 +1656,18 @@ module TencentCloud
         # @param Count: 该规格宿主机的数量
         # @type Count: Integer
         # @param CpuAverage: 平均cpu负载百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuAverage: Float
         # @param MemAverage: 平均内存使用率百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemAverage: Float
         # @param NetAverage: 平均网络流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetAverage: Float
         # @param CpuDetailData: cpu详细监控数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param MemDetailData: 内存详细数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param NetRateDetailData: 网络速率详细数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetRateDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
         # @param NetPacketDetailData: 网速包详细数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetPacketDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
 
         attr_accessor :HostType, :HostFamily, :Cpu, :Memory, :Count, :CpuAverage, :MemAverage, :NetAverage, :CpuDetailData, :MemDetailData, :NetRateDetailData, :NetPacketDetailData

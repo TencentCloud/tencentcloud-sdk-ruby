@@ -2975,10 +2975,12 @@ module TencentCloud
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
         # @param DiskType: 磁盘类型，基础版或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
         # @type DiskType: String
+        # @param ClusterType: 集群类型:cage——金融围拢，cdc——CDB ON CDC；dedicate——独享集群
+        # @type ClusterType: String
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :ClusterType
 
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, clustertype=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -3019,6 +3021,7 @@ module TencentCloud
           @DataProtectVolume = dataprotectvolume
           @ClusterTopology = clustertopology
           @DiskType = disktype
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -3082,6 +3085,7 @@ module TencentCloud
             @ClusterTopology.deserialize(params['ClusterTopology'])
           end
           @DiskType = params['DiskType']
+          @ClusterType = params['ClusterType']
         end
       end
 
@@ -3132,7 +3136,7 @@ module TencentCloud
         # @type Port: Integer
         # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，dr - 表示灾备实例，ro - 表示只读实例。
         # @type InstanceRole: String
-        # @param MasterInstanceId: 实例 ID，购买只读实例时必填，该字段表示只读实例的主实例ID，请使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询云数据库实例 ID。
+        # @param MasterInstanceId: 实例 ID，购买只读实例时必填，该字段表示只读实例的主实例 ID，请使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询云数据库实例 ID。
         # @type MasterInstanceId: String
         # @param EngineVersion: MySQL 版本，值包括：5.5、5.6、5.7和8.0，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的实例版本。
         # 说明：创建非集群版实例时，请根据需要指定实例版本（推荐5.7或8.0），若此参数不填，则默认值为5.6；若创建的是集群版实例，则此参数仅能指定为5.7或8.0。
@@ -11821,10 +11825,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
         # @param InstNodeId: 实例节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstNodeId: String
         # @param InstNodeRole: 节点角色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstNodeRole: String
 
         attr_accessor :InstanceId, :InstanceName, :InstanceType, :Status, :Weight, :Region, :Zone, :InstNodeId, :InstNodeRole

@@ -354,10 +354,22 @@ module TencentCloud
         # @param DefaultTSF: 是否tsf默认业务系统（0=否，1-是）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultTSF: Integer
+        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRelatedDashboard: Integer
+        # @param DashboardTopicID: dashboard ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DashboardTopicID: String
+        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInstrumentationVulnerabilityScan: Integer
+        # @param IsSqlInjectionAnalysis: 是否开启SQL注入分析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSqlInjectionAnalysis: Integer
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF
+        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis
 
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil)
+        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
           @Tags = tags
@@ -390,6 +402,10 @@ module TencentCloud
           @ResponseDurationWarningThreshold = responsedurationwarningthreshold
           @Free = free
           @DefaultTSF = defaulttsf
+          @IsRelatedDashboard = isrelateddashboard
+          @DashboardTopicID = dashboardtopicid
+          @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
+          @IsSqlInjectionAnalysis = issqlinjectionanalysis
         end
 
         def deserialize(params)
@@ -432,6 +448,10 @@ module TencentCloud
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
           @Free = params['Free']
           @DefaultTSF = params['DefaultTSF']
+          @IsRelatedDashboard = params['IsRelatedDashboard']
+          @DashboardTopicID = params['DashboardTopicID']
+          @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
+          @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
         end
       end
 
@@ -503,16 +523,19 @@ module TencentCloud
         # @type SpanDailyCounters: Integer
         # @param PayMode: 实例的计费模式
         # @type PayMode: Integer
+        # @param Free: （0=付费版；1=tsf受限免费版；2=免费版）
+        # @type Free: Integer
 
-        attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode
+        attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
 
-        def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil)
+        def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil, free=nil)
           @Name = name
           @Description = description
           @TraceDuration = traceduration
           @Tags = tags
           @SpanDailyCounters = spandailycounters
           @PayMode = paymode
+          @Free = free
         end
 
         def deserialize(params)
@@ -529,6 +552,7 @@ module TencentCloud
           end
           @SpanDailyCounters = params['SpanDailyCounters']
           @PayMode = params['PayMode']
+          @Free = params['Free']
         end
       end
 
@@ -1353,14 +1377,20 @@ module TencentCloud
         # @type PayMode: Integer
         # @param ResponseDurationWarningThreshold: 响应时间满意阈值
         # @type ResponseDurationWarningThreshold: Integer
+        # @param Free: （0=付费版；1=tsf受限免费版；2=免费版）
+        # @type Free: Integer
         # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
         # @type IsRelatedDashboard: Integer
         # @param DashboardTopicID: dashboard ID
         # @type DashboardTopicID: String
+        # @param IsSqlInjectionAnalysis: 是否开启SQL注入检测
+        # @type IsSqlInjectionAnalysis: Integer
+        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # @type IsInstrumentationVulnerabilityScan: Integer
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :IsRelatedDashboard, :DashboardTopicID
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, isrelateddashboard=nil, dashboardtopicid=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1380,8 +1410,11 @@ module TencentCloud
           @CustomShowTags = customshowtags
           @PayMode = paymode
           @ResponseDurationWarningThreshold = responsedurationwarningthreshold
+          @Free = free
           @IsRelatedDashboard = isrelateddashboard
           @DashboardTopicID = dashboardtopicid
+          @IsSqlInjectionAnalysis = issqlinjectionanalysis
+          @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
         end
 
         def deserialize(params)
@@ -1411,8 +1444,11 @@ module TencentCloud
           @CustomShowTags = params['CustomShowTags']
           @PayMode = params['PayMode']
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
+          @Free = params['Free']
           @IsRelatedDashboard = params['IsRelatedDashboard']
           @DashboardTopicID = params['DashboardTopicID']
+          @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
+          @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
         end
       end
 

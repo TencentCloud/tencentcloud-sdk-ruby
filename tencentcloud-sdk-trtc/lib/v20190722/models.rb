@@ -823,7 +823,6 @@ module TencentCloud
         # Exited：表示当前录制任务正在退出的过程中。
         # @type Status: String
         # @param StorageFileList: 录制文件信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageFileList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2208,6 +2207,32 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 渲染移动模式参数，不渲染移动模式时，请勿设置此参数。
+      class EmulateMobileParams < TencentCloud::Common::AbstractModel
+        # @param MobileDeviceType: 移动设备类型，
+        # 0: 手机
+        # 1: 平板
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MobileDeviceType: Integer
+        # @param ScreenOrientation: 屏幕方向，
+        # 0: 竖屏，
+        # 1: 横屏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScreenOrientation: Integer
+
+        attr_accessor :MobileDeviceType, :ScreenOrientation
+
+        def initialize(mobiledevicetype=nil, screenorientation=nil)
+          @MobileDeviceType = mobiledevicetype
+          @ScreenOrientation = screenorientation
+        end
+
+        def deserialize(params)
+          @MobileDeviceType = params['MobileDeviceType']
+          @ScreenOrientation = params['ScreenOrientation']
         end
       end
 
@@ -3978,20 +4003,24 @@ module TencentCloud
         # @param AlternativeLanguage: 发起模糊识别额外可能替代语言类型,最多填写3种语言类型,
         # 注：Language指定为"zh-dialect" # 中国方言 时，不支持模糊识别，该字段无效
         # @type AlternativeLanguage: Array
+        # @param CustomParam: 自定义参数，联系后台使用
+        # @type CustomParam: String
         # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
         # @type VadSilenceTime: Integer
 
-        attr_accessor :Language, :AlternativeLanguage, :VadSilenceTime
+        attr_accessor :Language, :AlternativeLanguage, :CustomParam, :VadSilenceTime
 
-        def initialize(language=nil, alternativelanguage=nil, vadsilencetime=nil)
+        def initialize(language=nil, alternativelanguage=nil, customparam=nil, vadsilencetime=nil)
           @Language = language
           @AlternativeLanguage = alternativelanguage
+          @CustomParam = customparam
           @VadSilenceTime = vadsilencetime
         end
 
         def deserialize(params)
           @Language = params['Language']
           @AlternativeLanguage = params['AlternativeLanguage']
+          @CustomParam = params['CustomParam']
           @VadSilenceTime = params['VadSilenceTime']
         end
       end
@@ -4725,10 +4754,12 @@ module TencentCloud
         # @type PublishCdnParams: Array
         # @param ReadyTimeout: 录制页面资源加载的超时时间，单位：秒。默认值为 0 秒，该值需大于等于 0秒，且小于等于 60秒。录制页面未启用页面加载超时检测时，请勿设置此参数。
         # @type ReadyTimeout: Integer
+        # @param EmulateMobileParams: 渲染移动模式参数；不准备渲染移动模式页面时，请勿设置此参数。
+        # @type EmulateMobileParams: :class:`Tencentcloud::Trtc.v20190722.models.EmulateMobileParams`
 
-        attr_accessor :RecordUrl, :MaxDurationLimit, :StorageParams, :WebRecordVideoParams, :SdkAppId, :RecordId, :PublishCdnParams, :ReadyTimeout
+        attr_accessor :RecordUrl, :MaxDurationLimit, :StorageParams, :WebRecordVideoParams, :SdkAppId, :RecordId, :PublishCdnParams, :ReadyTimeout, :EmulateMobileParams
 
-        def initialize(recordurl=nil, maxdurationlimit=nil, storageparams=nil, webrecordvideoparams=nil, sdkappid=nil, recordid=nil, publishcdnparams=nil, readytimeout=nil)
+        def initialize(recordurl=nil, maxdurationlimit=nil, storageparams=nil, webrecordvideoparams=nil, sdkappid=nil, recordid=nil, publishcdnparams=nil, readytimeout=nil, emulatemobileparams=nil)
           @RecordUrl = recordurl
           @MaxDurationLimit = maxdurationlimit
           @StorageParams = storageparams
@@ -4737,6 +4768,7 @@ module TencentCloud
           @RecordId = recordid
           @PublishCdnParams = publishcdnparams
           @ReadyTimeout = readytimeout
+          @EmulateMobileParams = emulatemobileparams
         end
 
         def deserialize(params)
@@ -4761,6 +4793,10 @@ module TencentCloud
             end
           end
           @ReadyTimeout = params['ReadyTimeout']
+          unless params['EmulateMobileParams'].nil?
+            @EmulateMobileParams = EmulateMobileParams.new
+            @EmulateMobileParams.deserialize(params['EmulateMobileParams'])
+          end
         end
       end
 

@@ -40,7 +40,6 @@ module TencentCloud
       # BatchDeleteDevices返回参数结构体
       class BatchDeleteDevicesResponse < TencentCloud::Common::AbstractModel
         # @param FailedDeviceIds: 删除失败的设备ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedDeviceIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1187,22 +1186,16 @@ module TencentCloud
       # 按授权查看的license列表
       class License < TencentCloud::Common::AbstractModel
         # @param Count: 该类型的license个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Status: license状态：0:未绑定；1:已绑定；2:已停服；3:已退费
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ExpireTime: 到期时间戳：s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
         # @param Duration: 服务时长：s
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: String
         # @param RemainDay: 剩余天数：天
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainDay: Integer
         # @param LicenseIds: 该类型的licenseId列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseIds: Array
 
         attr_accessor :Count, :Status, :ExpireTime, :Duration, :RemainDay, :LicenseIds
@@ -1305,10 +1298,8 @@ module TencentCloud
       # ModifyPolicy返回参数结构体
       class ModifyPolicyResponse < TencentCloud::Common::AbstractModel
         # @param FailedInsertIds: 添加关联失败的现场设备ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedInsertIds: Array
         # @param FailedDeleteIds: 解除关联失败的现场设备ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedDeleteIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1375,22 +1366,16 @@ module TencentCloud
       # 多网的网卡状态信息
       class MultiNet < TencentCloud::Common::AbstractModel
         # @param NetId: 网卡序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetId: Integer
         # @param NetIp: 网卡IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetIp: String
         # @param Rtt: 时延，单位ms
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rtt: Array
         # @param Lost: 丢包率，单位%
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lost: Array
         # @param SendBps: 发送bps，单位kbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendBps: Array
         # @param RecvBps: 接收bps，单位kbps
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecvBps: Array
 
         attr_accessor :NetId, :NetIp, :Rtt, :Lost, :SendBps, :RecvBps
@@ -1605,8 +1590,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2024, 7
-        deprecate :RenderConst=, :none, 2024, 7
+        deprecate :RenderConst, :none, 2024, 11
+        deprecate :RenderConst=, :none, 2024, 11
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype

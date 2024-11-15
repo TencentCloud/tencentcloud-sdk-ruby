@@ -11549,6 +11549,7 @@ module TencentCloud
         # <li> VideoProduce: 视频制作</li>
         # <li> MediaCast: 媒体转推</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
+        # <li>VoiceTranslation: 语音翻译</li>
         # @type Type: String
 
         attr_accessor :StartTime, :EndTime, :SubAppId, :Type
@@ -13229,10 +13230,13 @@ module TencentCloud
         # @param QUICConfig: 域名 QUIC 配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QUICConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainQUICConfig`
+        # @param IPFilterPolicy: IP 访问限制配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPFilterPolicy: :class:`Tencentcloud::Vod.v20180717.models.IPFilterPolicy`
 
-        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime, :QUICConfig
+        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime, :QUICConfig, :IPFilterPolicy
 
-        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil, quicconfig=nil)
+        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil, quicconfig=nil, ipfilterpolicy=nil)
           @Domain = domain
           @AccelerateAreaInfos = accelerateareainfos
           @DeployStatus = deploystatus
@@ -13241,6 +13245,7 @@ module TencentCloud
           @RefererAuthPolicy = refererauthpolicy
           @CreateTime = createtime
           @QUICConfig = quicconfig
+          @IPFilterPolicy = ipfilterpolicy
         end
 
         def deserialize(params)
@@ -13270,6 +13275,10 @@ module TencentCloud
           unless params['QUICConfig'].nil?
             @QUICConfig = DomainQUICConfig.new
             @QUICConfig.deserialize(params['QUICConfig'])
+          end
+          unless params['IPFilterPolicy'].nil?
+            @IPFilterPolicy = IPFilterPolicy.new
+            @IPFilterPolicy.deserialize(params['IPFilterPolicy'])
           end
         end
       end
@@ -15296,6 +15305,33 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # IP 访问限制规则，当前支持配置 IP 黑名单和白名单。
+      class IPFilterPolicy < TencentCloud::Common::AbstractModel
+        # @param Status: IP 访问限制状态，可选值：
+        # <li>Enabled：启用；</li>
+        # <li>Disabled：禁用。</li>
+        # @type Status: String
+        # @param FilterType: IP 访问限制类型：  <li>Black：黑名单方式校验。只有来自 IPList 列表中的 IP 请求会被拦截。</li>
+        # <li>White：白名单方式校验。只有来自 IPList 列表中的 IP 请求会被放行。</li>当 Status 取值为 Enabled 时，FilterType  必须赋值。
+        # @type FilterType: String
+        # @param IPList: IP 列表，支持 X.X.X.X 格式 IPV4 地址，或 X:X:X:X:X:X:X:X 格式 IPV6 地址，或网段格式 /N（IPV4:1≤N≤32；IPV6:1≤N≤128）；最多可填充 200 个 IP 或网段。当 Status 取值为 Enabled 时，IPList 必须赋值。
+        # @type IPList: Array
+
+        attr_accessor :Status, :FilterType, :IPList
+
+        def initialize(status=nil, filtertype=nil, iplist=nil)
+          @Status = status
+          @FilterType = filtertype
+          @IPList = iplist
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @FilterType = params['FilterType']
+          @IPList = params['IPList']
         end
       end
 
@@ -20479,15 +20515,18 @@ module TencentCloud
         # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
         # @param QUICConfig: QUIC 配置。
         # @type QUICConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainQUICConfig`
+        # @param IPFilterPolicy: IP 访问限制规则。
+        # @type IPFilterPolicy: :class:`Tencentcloud::Vod.v20180717.models.IPFilterPolicy`
 
-        attr_accessor :Domain, :SubAppId, :RefererAuthPolicy, :UrlSignatureAuthPolicy, :QUICConfig
+        attr_accessor :Domain, :SubAppId, :RefererAuthPolicy, :UrlSignatureAuthPolicy, :QUICConfig, :IPFilterPolicy
 
-        def initialize(domain=nil, subappid=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil, quicconfig=nil)
+        def initialize(domain=nil, subappid=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil, quicconfig=nil, ipfilterpolicy=nil)
           @Domain = domain
           @SubAppId = subappid
           @RefererAuthPolicy = refererauthpolicy
           @UrlSignatureAuthPolicy = urlsignatureauthpolicy
           @QUICConfig = quicconfig
+          @IPFilterPolicy = ipfilterpolicy
         end
 
         def deserialize(params)
@@ -20504,6 +20543,10 @@ module TencentCloud
           unless params['QUICConfig'].nil?
             @QUICConfig = DomainQUICConfig.new
             @QUICConfig.deserialize(params['QUICConfig'])
+          end
+          unless params['IPFilterPolicy'].nil?
+            @IPFilterPolicy = IPFilterPolicy.new
+            @IPFilterPolicy.deserialize(params['IPFilterPolicy'])
           end
         end
       end
@@ -27379,6 +27422,7 @@ module TencentCloud
         # <li> RebuildMedia: 音画质重生</li>
         # <li> QualityInspect: 音画质检测</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
+        # <li>VoiceTranslation: 语音翻译</li>
         # @type TaskType: String
         # @param Summary: 任务数统计数据概览，用量单位为秒。
         # @type Summary: Array

@@ -46,16 +46,12 @@ module TencentCloud
         # @param ProjectType: 项目类型：可以为self(自拓项目)/platform(合作项目)/repeat(复算项目  )/空
         # @type ProjectType: String
         # @param SalesUin: 业务员ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesUin: String
         # @param SalesName: 业务员姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesName: String
         # @param Mail: 代客邮箱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mail: String
         # @param TransactionType: 交易类型:交易类型 1-原类型 2-代理型  3-代采型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransactionType: String
 
         attr_accessor :Uin, :ClientUin, :AgentTime, :ClientFlag, :ClientRemark, :ClientName, :AuthType, :AppId, :LastMonthAmt, :ThisMonthAmt, :HasOverdueBill, :ClientType, :ProjectType, :SalesUin, :SalesName, :Mail, :TransactionType
@@ -124,13 +120,10 @@ module TencentCloud
         # @param PayerMode: agentpay：代付；selfpay：自付
         # @type PayerMode: String
         # @param ClientType: 客户类型：可以为new(自拓)/assign(指定)/old(官网)/direct(直销)/direct_newopp(直销(新商机))/空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientType: String
         # @param ProjectType: 项目类型：可以为self(自拓项目)/platform(合作项目)/repeat(复算项目  )/空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectType: String
         # @param ActivityId: 活动ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityId: String
 
         attr_accessor :Uin, :OrderId, :ClientUin, :ClientRemark, :PayTime, :GoodsType, :PayMode, :SettleMonth, :Amt, :PayerMode, :ClientType, :ProjectType, :ActivityId
@@ -176,7 +169,7 @@ module TencentCloud
         # @type ClientUin: String
         # @param ApplyTime: 代客申请时间戳
         # @type ApplyTime: Integer
-        # @param ClientFlag: 代客类型，可能值为a/b/c
+        # @param ClientFlag: 代客类型，可能值为a/b/c/other
         # @type ClientFlag: String
         # @param Mail: 代客邮箱，打码显示
         # @type Mail: String
@@ -187,13 +180,10 @@ module TencentCloud
         # @param Status: 1:待代理商审核;2:待腾讯云审核4:待腾讯云渠道审批
         # @type Status: Integer
         # @param SalesUin: 业务员ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesUin: String
         # @param SalesName: 业务员姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesName: String
         # @param ClientName: 客户名称，此字段和控制台返回一致。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientName: String
 
         attr_accessor :Uin, :ClientUin, :ApplyTime, :ClientFlag, :Mail, :Phone, :HasOverdueBill, :Status, :SalesUin, :SalesName, :ClientName
@@ -238,85 +228,58 @@ module TencentCloud
         # @param OwnerUin: 订单所有者
         # @type OwnerUin: String
         # @param AppId: 订单所有者对应 appId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param GoodsNum: 商品数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsNum: String
         # @param GoodsPrice: 价格详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsPrice: :class:`Tencentcloud::Partners.v20180321.models.DealGoodsPriceNewElem`
         # @param Creater: 下单人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creater: String
         # @param CreatTime: 下单时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatTime: String
         # @param PayEndTime: 支付结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayEndTime: String
         # @param BillId: 扣费流水号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillId: String
         # @param Payer: 支付人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Payer: String
         # @param DealStatus: 订单状态，中文描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealStatus: String
         # @param Status: 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param GoodsName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsName: String
         # @param ClientRemark: 客户备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientRemark: String
         # @param ActionType: 订单操作类型，"purchase":"新购","upgrade":"升配","upConvertExpire":"升配","downgrade":"降配","downConvertExpire":"降配","renew":"续费","refund":"退货","modifyNetworkMode":"调整带宽模式","modifyNetworkSize":"调整带宽大小","preMoveOut":"资源迁出","preMoveIn":"资源迁入","preToPost":"包年包月转按量","modify":"变配","postMoveOut":"资源迁出","postMoveIn":"资源迁入","recoverRefundForward":"调账补偿","recoverPayReserve":"调账补偿","recoverPayForward":"调账扣费","recoverRefundReserve":"调账扣费"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param VoucherDecline: 代金券抵扣金额，单位分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherDecline: String
         # @param BigDealId: 大订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
         # @param ClientType: 客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientType: String
         # @param ProjectType: 项目类型（self：自拓；repeat：直销；platform：官网合作）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectType: String
         # @param SalesUin: 业务员账号ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesUin: String
         # @param PayerMode: 支付方式，0：自付；1：代付
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayerMode: String
         # @param ActivityId: 活动ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityId: String
         # @param OverdueTime: 订单过期时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverdueTime: String
         # @param ProductInfo: 产品详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductInfo: Array
         # @param PaymentMethod: 付款方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PaymentMethod: String
         # @param UpdateTime: 订单更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ResourceIds: 资源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
         # @param RefundMap: 退款单的原订单信息。当前仅 DescribeClientDealsByCache 接口会返回该字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefundMap: Array
         # @param SubGoodsName: 子产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubGoodsName: String
 
         attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime, :ResourceIds, :RefundMap, :SubGoodsName
@@ -542,10 +505,8 @@ module TencentCloud
       # AssignClientsToSales返回参数结构体
       class AssignClientsToSalesResponse < TencentCloud::Common::AbstractModel
         # @param SucceedUins: 处理成功的代客uin列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SucceedUins: Array
         # @param FailedUins: 处理失败的代客uin列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedUins: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -598,7 +559,6 @@ module TencentCloud
         # @param AuditResult: 审核结果，包括accept/reject/qcloudaudit（腾讯云审核）
         # @type AuditResult: String
         # @param AgentTime: 关联时间对应的时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1144,7 +1104,6 @@ module TencentCloud
       # DescribeAgentRelateBigDealIds返回参数结构体
       class DescribeAgentRelateBigDealIdsResponse < TencentCloud::Common::AbstractModel
         # @param BigDealIdList: 申请合并支付的关联大订单号列表（不包含请求的订单号）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealIdList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1584,16 +1543,22 @@ module TencentCloud
       # 返佣信息定义
       class RebateInfoElem < TencentCloud::Common::AbstractModel
         # @param Uin: 代理商账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param RebateMonth: 返佣月份，如2018-02
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RebateMonth: String
         # @param Amt: 返佣金额，单位分
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amt: Integer
         # @param MonthSales: 月度业绩，单位分
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonthSales: Integer
         # @param QuarterSales: 季度业绩，单位分
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuarterSales: Integer
         # @param ExceptionFlag: NORMAL(正常)/HAS_OVERDUE_BILL(欠费)/NO_CONTRACT(缺合同)
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionFlag: String
 
         attr_accessor :Uin, :RebateMonth, :Amt, :MonthSales, :QuarterSales, :ExceptionFlag
@@ -1656,10 +1621,8 @@ module TencentCloud
       # 退款单关联的原始订单信息
       class RefundMap < TencentCloud::Common::AbstractModel
         # @param DealName: 退款单关联的原始子订单号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealName: String
         # @param RefundAmount: 退款金额，单位分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefundAmount: Integer
 
         attr_accessor :DealName, :RefundAmount
@@ -1716,10 +1679,8 @@ module TencentCloud
         # @param Status: 状态：0:审核中；1：已解绑；2：已撤销 3：关联撤销 4: 已驳回
         # @type Status: Integer
         # @param ApplyTime: 申请时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyTime: String
         # @param ActionTime: 解绑/撤销时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTime: String
 
         attr_accessor :Uin, :Name, :Status, :ApplyTime, :ActionTime
