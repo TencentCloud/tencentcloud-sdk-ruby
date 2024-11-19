@@ -1543,22 +1543,16 @@ module TencentCloud
       # 返佣信息定义
       class RebateInfoElem < TencentCloud::Common::AbstractModel
         # @param Uin: 代理商账号ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
         # @param RebateMonth: 返佣月份，如2018-02
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RebateMonth: String
         # @param Amt: 返佣金额，单位分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amt: Integer
         # @param MonthSales: 月度业绩，单位分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonthSales: Integer
         # @param QuarterSales: 季度业绩，单位分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuarterSales: Integer
         # @param ExceptionFlag: NORMAL(正常)/HAS_OVERDUE_BILL(欠费)/NO_CONTRACT(缺合同)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionFlag: String
 
         attr_accessor :Uin, :RebateMonth, :Amt, :MonthSales, :QuarterSales, :ExceptionFlag

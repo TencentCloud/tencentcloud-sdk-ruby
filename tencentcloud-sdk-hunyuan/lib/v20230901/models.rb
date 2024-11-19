@@ -287,13 +287,16 @@ module TencentCloud
         # @param Message: 返回值，非流式调用时使用该字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: :class:`Tencentcloud::Hunyuan.v20230901.models.Message`
+        # @param Index: 索引值，流式调用时使用该字段。
+        # @type Index: Integer
 
-        attr_accessor :FinishReason, :Delta, :Message
+        attr_accessor :FinishReason, :Delta, :Message, :Index
 
-        def initialize(finishreason=nil, delta=nil, message=nil)
+        def initialize(finishreason=nil, delta=nil, message=nil, index=nil)
           @FinishReason = finishreason
           @Delta = delta
           @Message = message
+          @Index = index
         end
 
         def deserialize(params)
@@ -306,6 +309,7 @@ module TencentCloud
             @Message = Message.new
             @Message.deserialize(params['Message'])
           end
+          @Index = params['Index']
         end
       end
 
@@ -1785,6 +1789,8 @@ module TencentCloud
         # 算法将根据输入的文本智能生成与之相关的图像。
         # 不能为空，推荐使用中文。最多可传1024个 utf-8 字符。
         # @type Prompt: String
+        # @param NegativePrompt: 反向提示词。 推荐使用中文。最多可传1024个 utf-8 字符。
+        # @type NegativePrompt: String
         # @param Style: 绘画风格。
         # 请在 [混元生图风格列表](https://cloud.tencent.com/document/product/1729/105846) 中选择期望的风格，传入风格编号。
         # 不传默认不指定风格。
@@ -1814,10 +1820,11 @@ module TencentCloud
         # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoParam`
 
-        attr_accessor :Prompt, :Style, :Resolution, :Num, :Seed, :Revise, :LogoAdd, :LogoParam
+        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :Num, :Seed, :Revise, :LogoAdd, :LogoParam
 
-        def initialize(prompt=nil, style=nil, resolution=nil, num=nil, seed=nil, revise=nil, logoadd=nil, logoparam=nil)
+        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, num=nil, seed=nil, revise=nil, logoadd=nil, logoparam=nil)
           @Prompt = prompt
+          @NegativePrompt = negativeprompt
           @Style = style
           @Resolution = resolution
           @Num = num
@@ -1829,6 +1836,7 @@ module TencentCloud
 
         def deserialize(params)
           @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
           @Style = params['Style']
           @Resolution = params['Resolution']
           @Num = params['Num']

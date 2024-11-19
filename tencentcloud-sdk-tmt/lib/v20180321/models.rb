@@ -116,11 +116,16 @@ module TencentCloud
         end
       end
 
-      # 查询文件翻译任务
+      # 文件翻译任务结果
       class GetFileTranslateData < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
         # @type TaskId: String
-        # @param Status: 状态
+        # @param Status: 任务状态
+
+        # - init：任务已初始化
+        # - wait：任务等待执行
+        # - success：任务执行成功
+        # - fail：任务执行失败
         # @type Status: String
         # @param FileData: 文件数据，目标文件必须小于50M，否则请通过回调方式请求文件翻译接口
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -128,17 +133,20 @@ module TencentCloud
         # @param Message: 错误提示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Progress: 翻译进度
+        # @param Progress: 任务进度
         # @type Progress: Integer
+        # @param UsedAmount: 本次翻译消耗的字符数
+        # @type UsedAmount: Integer
 
-        attr_accessor :TaskId, :Status, :FileData, :Message, :Progress
+        attr_accessor :TaskId, :Status, :FileData, :Message, :Progress, :UsedAmount
 
-        def initialize(taskid=nil, status=nil, filedata=nil, message=nil, progress=nil)
+        def initialize(taskid=nil, status=nil, filedata=nil, message=nil, progress=nil, usedamount=nil)
           @TaskId = taskid
           @Status = status
           @FileData = filedata
           @Message = message
           @Progress = progress
+          @UsedAmount = usedamount
         end
 
         def deserialize(params)
@@ -147,6 +155,7 @@ module TencentCloud
           @FileData = params['FileData']
           @Message = params['Message']
           @Progress = params['Progress']
+          @UsedAmount = params['UsedAmount']
         end
       end
 
@@ -399,10 +408,10 @@ module TencentCloud
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
         extend Gem::Deprecate
-        deprecate :Mode, :none, 2024, 10
-        deprecate :Mode=, :none, 2024, 10
-        deprecate :TransType, :none, 2024, 10
-        deprecate :TransType=, :none, 2024, 10
+        deprecate :Mode, :none, 2024, 11
+        deprecate :Mode=, :none, 2024, 11
+        deprecate :TransType, :none, 2024, 11
+        deprecate :TransType=, :none, 2024, 11
 
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid
@@ -577,15 +586,18 @@ module TencentCloud
         # @type Target: String
         # @param TargetTextList: 翻译后的文本列表
         # @type TargetTextList: Array
+        # @param UsedAmount: 本次翻译消耗的字符数
+        # @type UsedAmount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Source, :Target, :TargetTextList, :RequestId
+        attr_accessor :Source, :Target, :TargetTextList, :UsedAmount, :RequestId
 
-        def initialize(source=nil, target=nil, targettextlist=nil, requestid=nil)
+        def initialize(source=nil, target=nil, targettextlist=nil, usedamount=nil, requestid=nil)
           @Source = source
           @Target = target
           @TargetTextList = targettextlist
+          @UsedAmount = usedamount
           @RequestId = requestid
         end
 
@@ -593,6 +605,7 @@ module TencentCloud
           @Source = params['Source']
           @Target = params['Target']
           @TargetTextList = params['TargetTextList']
+          @UsedAmount = params['UsedAmount']
           @RequestId = params['RequestId']
         end
       end
@@ -683,15 +696,18 @@ module TencentCloud
         # @type Source: String
         # @param Target: 目标语言，详见入参Target
         # @type Target: String
+        # @param UsedAmount: 本次翻译消耗的字符数
+        # @type UsedAmount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TargetText, :Source, :Target, :RequestId
+        attr_accessor :TargetText, :Source, :Target, :UsedAmount, :RequestId
 
-        def initialize(targettext=nil, source=nil, target=nil, requestid=nil)
+        def initialize(targettext=nil, source=nil, target=nil, usedamount=nil, requestid=nil)
           @TargetText = targettext
           @Source = source
           @Target = target
+          @UsedAmount = usedamount
           @RequestId = requestid
         end
 
@@ -699,6 +715,7 @@ module TencentCloud
           @TargetText = params['TargetText']
           @Source = params['Source']
           @Target = params['Target']
+          @UsedAmount = params['UsedAmount']
           @RequestId = params['RequestId']
         end
       end

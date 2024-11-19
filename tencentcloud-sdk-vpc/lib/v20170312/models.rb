@@ -3719,14 +3719,17 @@ module TencentCloud
         # @type DhcpIpName: String
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数。总数不能超过64个，为了兼容性，当前参数必填。
         # @type SecondaryPrivateIpAddressCount: Integer
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :SubnetId, :DhcpIpName, :SecondaryPrivateIpAddressCount
+        attr_accessor :VpcId, :SubnetId, :DhcpIpName, :SecondaryPrivateIpAddressCount, :Tags
 
-        def initialize(vpcid=nil, subnetid=nil, dhcpipname=nil, secondaryprivateipaddresscount=nil)
+        def initialize(vpcid=nil, subnetid=nil, dhcpipname=nil, secondaryprivateipaddresscount=nil, tags=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @DhcpIpName = dhcpipname
           @SecondaryPrivateIpAddressCount = secondaryprivateipaddresscount
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3734,6 +3737,14 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @DhcpIpName = params['DhcpIpName']
           @SecondaryPrivateIpAddressCount = params['SecondaryPrivateIpAddressCount']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -4198,19 +4209,30 @@ module TencentCloud
         # @type VpcId: String
         # @param CdcId: CDC实例ID。
         # @type CdcId: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :LocalGatewayName, :VpcId, :CdcId
+        attr_accessor :LocalGatewayName, :VpcId, :CdcId, :Tags
 
-        def initialize(localgatewayname=nil, vpcid=nil, cdcid=nil)
+        def initialize(localgatewayname=nil, vpcid=nil, cdcid=nil, tags=nil)
           @LocalGatewayName = localgatewayname
           @VpcId = vpcid
           @CdcId = cdcid
+          @Tags = tags
         end
 
         def deserialize(params)
           @LocalGatewayName = params['LocalGatewayName']
           @VpcId = params['VpcId']
           @CdcId = params['CdcId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -4458,10 +4480,12 @@ module TencentCloud
         # @type NextHopDestination: String
         # @param NetDetectDescription: 网络探测描述。
         # @type NetDetectDescription: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :SubnetId, :NetDetectName, :DetectDestinationIp, :NextHopType, :NextHopDestination, :NetDetectDescription
+        attr_accessor :VpcId, :SubnetId, :NetDetectName, :DetectDestinationIp, :NextHopType, :NextHopDestination, :NetDetectDescription, :Tags
 
-        def initialize(vpcid=nil, subnetid=nil, netdetectname=nil, detectdestinationip=nil, nexthoptype=nil, nexthopdestination=nil, netdetectdescription=nil)
+        def initialize(vpcid=nil, subnetid=nil, netdetectname=nil, detectdestinationip=nil, nexthoptype=nil, nexthopdestination=nil, netdetectdescription=nil, tags=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @NetDetectName = netdetectname
@@ -4469,6 +4493,7 @@ module TencentCloud
           @NextHopType = nexthoptype
           @NextHopDestination = nexthopdestination
           @NetDetectDescription = netdetectdescription
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4479,6 +4504,14 @@ module TencentCloud
           @NextHopType = params['NextHopType']
           @NextHopDestination = params['NextHopDestination']
           @NetDetectDescription = params['NetDetectDescription']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -4652,6 +4685,7 @@ module TencentCloud
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
         # @param SecondaryPrivateIpAddressCount: 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
+        # 配额数查询：[DescribeVpcLimits](https://cloud.tencent.com/document/api/215/42942)。
         # @type SecondaryPrivateIpAddressCount: Integer
         # @param QosLevel: IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
         # @type QosLevel: String
@@ -9661,6 +9695,8 @@ module TencentCloud
         # @type UniformSocialCreditCode: String
         # @param LegalPerson: （模糊查询）法定代表人。
         # @type LegalPerson: String
+        # @param LegalPersonId: （精确查询）法人身份证号。
+        # @type LegalPersonId: String
         # @param IssuingAuthority: （模糊查询）发证机关。
         # @type IssuingAuthority: String
         # @param BusinessAddress: （模糊查询）营业执照住所。
@@ -9688,14 +9724,15 @@ module TencentCloud
         # @param Limit: 返回数量
         # @type Limit: Integer
 
-        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerAddress, :ManagerTelephone, :Email, :ServiceStartDate, :ServiceEndDate, :State, :Offset, :Limit
+        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :LegalPersonId, :IssuingAuthority, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerAddress, :ManagerTelephone, :Email, :ServiceStartDate, :ServiceEndDate, :State, :Offset, :Limit
 
-        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageraddress=nil, managertelephone=nil, email=nil, servicestartdate=nil, serviceenddate=nil, state=nil, offset=nil, limit=nil)
+        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, legalpersonid=nil, issuingauthority=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageraddress=nil, managertelephone=nil, email=nil, servicestartdate=nil, serviceenddate=nil, state=nil, offset=nil, limit=nil)
           @ServiceProvider = serviceprovider
           @ComplianceId = complianceid
           @Company = company
           @UniformSocialCreditCode = uniformsocialcreditcode
           @LegalPerson = legalperson
+          @LegalPersonId = legalpersonid
           @IssuingAuthority = issuingauthority
           @BusinessAddress = businessaddress
           @PostCode = postcode
@@ -9717,6 +9754,7 @@ module TencentCloud
           @Company = params['Company']
           @UniformSocialCreditCode = params['UniformSocialCreditCode']
           @LegalPerson = params['LegalPerson']
+          @LegalPersonId = params['LegalPersonId']
           @IssuingAuthority = params['IssuingAuthority']
           @BusinessAddress = params['BusinessAddress']
           @PostCode = params['PostCode']
@@ -10780,7 +10818,7 @@ module TencentCloud
         # <li> ip6-translator-id - String - 是否必填：否 - （过滤条件）按照IPV6转换实例的唯一ID过滤,形如ip6-xxxxxxx。</li>
         # <li> ip6-translator-vip6 - String - 是否必填：否 - （过滤条件）按照IPV6地址过滤。不支持模糊过滤。</li>
         # <li> ip6-translator-name - String - 是否必填：否 - （过滤条件）按照IPV6转换实例名称过滤。不支持模糊过滤。</li>
-        # <li> ip6-translator-status - String - 是否必填：否 - （过滤条件）按照IPV6转换实例的状态过滤。状态取值范围为"CREATING","RUNNING","DELETING","MODIFYING"
+        # <li> ip6-translator-status - String - 是否必填：否 - （过滤条件）按照IPV6转换实例的状态过滤。状态取值范围为"CREATING","RUNNING","DELETING","MODIFYING"。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
@@ -15073,10 +15111,13 @@ module TencentCloud
         # @type State: String
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param TagSet: 标签键值对。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :DhcpIpId, :VpcId, :SubnetId, :DhcpIpName, :PrivateIpAddress, :AddressIp, :NetworkInterfaceId, :InstanceId, :State, :CreatedTime
+        attr_accessor :DhcpIpId, :VpcId, :SubnetId, :DhcpIpName, :PrivateIpAddress, :AddressIp, :NetworkInterfaceId, :InstanceId, :State, :CreatedTime, :TagSet
 
-        def initialize(dhcpipid=nil, vpcid=nil, subnetid=nil, dhcpipname=nil, privateipaddress=nil, addressip=nil, networkinterfaceid=nil, instanceid=nil, state=nil, createdtime=nil)
+        def initialize(dhcpipid=nil, vpcid=nil, subnetid=nil, dhcpipname=nil, privateipaddress=nil, addressip=nil, networkinterfaceid=nil, instanceid=nil, state=nil, createdtime=nil, tagset=nil)
           @DhcpIpId = dhcpipid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -15087,6 +15128,7 @@ module TencentCloud
           @InstanceId = instanceid
           @State = state
           @CreatedTime = createdtime
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -15100,6 +15142,14 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @State = params['State']
           @CreatedTime = params['CreatedTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -20342,7 +20392,7 @@ module TencentCloud
         # @type VpcId: String
         # @param EndPointServiceName: 终端节点服务名称。
         # @type EndPointServiceName: String
-        # @param AutoAcceptFlag: 是否自动接受终端节点的连接请求。<ui><li>true：自动接受<li>false：不自动接受</ul>
+        # @param AutoAcceptFlag: 是否自动接受终端节点的连接请求。<ul><li>true：自动接受</li><li>false：不自动接受</li></ul>
         # @type AutoAcceptFlag: Boolean
         # @param ServiceInstanceId: 后端服务的ID，比如lb-xxx。
         # @type ServiceInstanceId: String

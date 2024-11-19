@@ -1360,7 +1360,7 @@ module TencentCloud
         # 3：已过期。查询不到设备保存在云端的数据。
         # 4：等待服务生效。
         # @type Status: Integer
-        # @param Data: 新增的云存定单列表
+        # @param Data: 新增的云存订单列表
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2397,7 +2397,7 @@ module TencentCloud
         # 3：已过期。查询不到设备保存在云端的数据。
         # 4：等待服务生效。
         # @type Status: Integer
-        # @param Data: 云存定单列表
+        # @param Data: 云存订单列表
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

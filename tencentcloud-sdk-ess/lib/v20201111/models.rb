@@ -4284,15 +4284,18 @@ module TencentCloud
         # @type ApproverComponentLimitTypes: Array
         # @param ForbidPersonalMultipleSign: 禁止个人用户重复签署，默认不禁止，即同一用户可多次扫码签署多份合同。若要求同一用户仅能扫码签署一份合同，请传入true。
         # @type ForbidPersonalMultipleSign: Boolean
+        # @param FlowNameAppendScannerInfo: 合同流程名称是否应包含扫码签署人的信息，且遵循特定格式（flowname-姓名-手机号后四位）。
+        # 例如，通过参数FlowName设定的扫码发起合同名称为“员工入职合同”，当扫码人张三（手机号18800009527）扫码签署时，合同名称将自动生成为“员工入职合同-张三-9527”。
+        # @type FlowNameAppendScannerInfo: Boolean
 
-        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes, :ForbidPersonalMultipleSign
+        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes, :ForbidPersonalMultipleSign, :FlowNameAppendScannerInfo
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 11
         deprecate :CallbackUrl=, :none, 2024, 11
         deprecate :ApproverRestrictions, :none, 2024, 11
         deprecate :ApproverRestrictions=, :none, 2024, 11
 
-        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil, forbidpersonalmultiplesign=nil)
+        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil, forbidpersonalmultiplesign=nil, flownameappendscannerinfo=nil)
           @Operator = operator
           @TemplateId = templateid
           @FlowName = flowname
@@ -4306,6 +4309,7 @@ module TencentCloud
           @ApproverRestrictions = approverrestrictions
           @ApproverComponentLimitTypes = approvercomponentlimittypes
           @ForbidPersonalMultipleSign = forbidpersonalmultiplesign
+          @FlowNameAppendScannerInfo = flownameappendscannerinfo
         end
 
         def deserialize(params)
@@ -4345,6 +4349,7 @@ module TencentCloud
             end
           end
           @ForbidPersonalMultipleSign = params['ForbidPersonalMultipleSign']
+          @FlowNameAppendScannerInfo = params['FlowNameAppendScannerInfo']
         end
       end
 

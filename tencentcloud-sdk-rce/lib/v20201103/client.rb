@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # RCE控制台预付费和后付费次数展示
+
+        # @param request: Request instance for DescribeUserUsageCnt.
+        # @type request: :class:`Tencentcloud::rce::V20201103::DescribeUserUsageCntRequest`
+        # @rtype: :class:`Tencentcloud::rce::V20201103::DescribeUserUsageCntResponse`
+        def DescribeUserUsageCnt(request)
+          body = send_request('DescribeUserUsageCnt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserUsageCntResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新增黑白名单数据，所有黑白名单数据总量上限为10000
 
         # @param request: Request instance for ImportNameListData.

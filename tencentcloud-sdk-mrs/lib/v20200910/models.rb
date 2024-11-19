@@ -5670,10 +5670,8 @@ module TencentCloud
       # ImageToObject返回参数结构体
       class ImageToObjectResponse < TencentCloud::Common::AbstractModel
         # @param Template: 报告结构化结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Template: :class:`Tencentcloud::Mrs.v20200910.models.Template`
         # @param TextTypeList: 多级分类结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6890,10 +6888,10 @@ module TencentCloud
         # @type Name: String
         # @param TransferNum: 转移数量
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TransferNum: String
+        # @type TransferNum: Integer
         # @param Total: 总数量
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Total: String
+        # @type Total: Integer
         # @param Src: 原文
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String

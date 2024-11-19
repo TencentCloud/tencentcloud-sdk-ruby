@@ -1462,10 +1462,16 @@ module TencentCloud
         # @type IVRId: Integer
         # @param RetryTimes: 呼叫重试次数，0 - 2
         # @type RetryTimes: Integer
+        # @param Variables: 自定义变量
+        # @type Variables: Array
+        # @param UUI: UUI
+        # @type UUI: String
+        # @param CalleeAttributes: 被叫属性
+        # @type CalleeAttributes: Array
 
-        attr_accessor :SdkAppId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes
+        attr_accessor :SdkAppId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes, :Variables, :UUI, :CalleeAttributes
 
-        def initialize(sdkappid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil)
+        def initialize(sdkappid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil, variables=nil, uui=nil, calleeattributes=nil)
           @SdkAppId = sdkappid
           @Name = name
           @Callees = callees
@@ -1479,6 +1485,9 @@ module TencentCloud
           @EndTime = endtime
           @IVRId = ivrid
           @RetryTimes = retrytimes
+          @Variables = variables
+          @UUI = uui
+          @CalleeAttributes = calleeattributes
         end
 
         def deserialize(params)
@@ -1495,6 +1504,23 @@ module TencentCloud
           @EndTime = params['EndTime']
           @IVRId = params['IVRId']
           @RetryTimes = params['RetryTimes']
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
+          @UUI = params['UUI']
+          unless params['CalleeAttributes'].nil?
+            @CalleeAttributes = []
+            params['CalleeAttributes'].each do |i|
+              calleeattribute_tmp = CalleeAttribute.new
+              calleeattribute_tmp.deserialize(i)
+              @CalleeAttributes << calleeattribute_tmp
+            end
+          end
         end
       end
 
@@ -5473,10 +5499,16 @@ module TencentCloud
         # @type IVRId: Integer
         # @param RetryTimes: 呼叫重试次数，0 - 2
         # @type RetryTimes: Integer
+        # @param Variables: 自定义变量
+        # @type Variables: Array
+        # @param UUI: 	UUI
+        # @type UUI: String
+        # @param CalleeAttributes: 被叫属性
+        # @type CalleeAttributes: Array
 
-        attr_accessor :SdkAppId, :CampaignId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes
+        attr_accessor :SdkAppId, :CampaignId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes, :Variables, :UUI, :CalleeAttributes
 
-        def initialize(sdkappid=nil, campaignid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil)
+        def initialize(sdkappid=nil, campaignid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil, variables=nil, uui=nil, calleeattributes=nil)
           @SdkAppId = sdkappid
           @CampaignId = campaignid
           @Name = name
@@ -5491,6 +5523,9 @@ module TencentCloud
           @EndTime = endtime
           @IVRId = ivrid
           @RetryTimes = retrytimes
+          @Variables = variables
+          @UUI = uui
+          @CalleeAttributes = calleeattributes
         end
 
         def deserialize(params)
@@ -5508,6 +5543,23 @@ module TencentCloud
           @EndTime = params['EndTime']
           @IVRId = params['IVRId']
           @RetryTimes = params['RetryTimes']
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
+          @UUI = params['UUI']
+          unless params['CalleeAttributes'].nil?
+            @CalleeAttributes = []
+            params['CalleeAttributes'].each do |i|
+              calleeattribute_tmp = CalleeAttribute.new
+              calleeattribute_tmp.deserialize(i)
+              @CalleeAttributes << calleeattribute_tmp
+            end
+          end
         end
       end
 

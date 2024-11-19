@@ -5516,7 +5516,7 @@ module TencentCloud
 
       # 自适应码流任务的流参数。
       class ComplexAdaptiveDynamicStreamingTaskStreamPara < TencentCloud::Common::AbstractModel
-        # @param Definition: 自适应码流模版 ID。
+        # @param Definition: 自适应码流模板 ID。
         # @type Definition: Integer
 
         attr_accessor :Definition

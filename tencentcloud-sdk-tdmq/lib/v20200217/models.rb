@@ -1624,7 +1624,7 @@ module TencentCloud
       class CreateRabbitMQBindingRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: Vhost名称
         # @type VirtualHost: String
         # @param Source: 源exchange
         # @type Source: String
@@ -1632,7 +1632,7 @@ module TencentCloud
         # @type DestinationType: String
         # @param Destination: 目标
         # @type Destination: String
-        # @param RoutingKey: 绑定key
+        # @param RoutingKey: 路由键
         # @type RoutingKey: String
 
         attr_accessor :InstanceId, :VirtualHost, :Source, :DestinationType, :Destination, :RoutingKey
@@ -1661,7 +1661,7 @@ module TencentCloud
         # @param InstanceId: 实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param VirtualHost: vhost参数
+        # @param VirtualHost: vhost名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHost: String
         # @param BindingId: 路由关系Id
@@ -2805,7 +2805,7 @@ module TencentCloud
 
       # DeleteRabbitMQBinding返回参数结构体
       class DeleteRabbitMQBindingResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 队列名称
+        # @param InstanceId: 实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param VirtualHost: vhost参数
@@ -4904,7 +4904,7 @@ module TencentCloud
       class DescribeRabbitMQBindingsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param VirtualHost: Vhost参数
+        # @param VirtualHost: Vhost名称
         # @type VirtualHost: String
         # @param Offset: 分页offset
         # @type Offset: Integer
@@ -10401,10 +10401,12 @@ module TencentCloud
         # @param PayMode: 计费模式，0-后付费，1-预付费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
+        # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
+        # @type InstanceType: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -10428,6 +10430,7 @@ module TencentCloud
           @MessageConsumeRate = messageconsumerate
           @ClusterVersion = clusterversion
           @PayMode = paymode
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -10461,6 +10464,7 @@ module TencentCloud
           @MessageConsumeRate = params['MessageConsumeRate']
           @ClusterVersion = params['ClusterVersion']
           @PayMode = params['PayMode']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -10910,10 +10914,12 @@ module TencentCloud
         # @param CreateTime: 创建时间，毫秒为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
+        # @param InstanceType: 实例类型，0 专享版、1 Serverless 版
+        # @type InstanceType: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs, :CreateTime, :InstanceType
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil, createtime=nil, instancetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -10933,6 +10939,7 @@ module TencentCloud
           @PublicAccessEndpoint = publicaccessendpoint
           @Vpcs = vpcs
           @CreateTime = createtime
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -10962,6 +10969,7 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          @InstanceType = params['InstanceType']
         end
       end
 

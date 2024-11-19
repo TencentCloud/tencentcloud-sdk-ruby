@@ -705,13 +705,15 @@ module TencentCloud
         # @type DeviceDepartmentName: String
         # @param Size: 会话大小
         # @type Size: Integer
+        # @param SignValue: 签名值
+        # @type SignValue: String
 
-        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
+        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue
         extend Gem::Deprecate
         deprecate :SessTime, :none, 2024, 11
         deprecate :SessTime=, :none, 2024, 11
 
-        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
+        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil, signvalue=nil)
           @Cmd = cmd
           @Time = time
           @TimeOffset = timeoffset
@@ -729,6 +731,7 @@ module TencentCloud
           @DeviceDepartmentId = devicedepartmentid
           @DeviceDepartmentName = devicedepartmentname
           @Size = size
+          @SignValue = signvalue
         end
 
         def deserialize(params)
@@ -749,6 +752,7 @@ module TencentCloud
           @DeviceDepartmentId = params['DeviceDepartmentId']
           @DeviceDepartmentName = params['DeviceDepartmentName']
           @Size = params['Size']
+          @SignValue = params['SignValue']
         end
       end
 
@@ -4013,10 +4017,12 @@ module TencentCloud
         # @type Operation: String
         # @param Result: 操作结果，1-成功，2-失败
         # @type Result: Integer
+        # @param SignValue: 签名值
+        # @type SignValue: String
 
-        attr_accessor :UserName, :RealName, :Time, :SourceIp, :Kind, :Operation, :Result
+        attr_accessor :UserName, :RealName, :Time, :SourceIp, :Kind, :Operation, :Result, :SignValue
 
-        def initialize(username=nil, realname=nil, time=nil, sourceip=nil, kind=nil, operation=nil, result=nil)
+        def initialize(username=nil, realname=nil, time=nil, sourceip=nil, kind=nil, operation=nil, result=nil, signvalue=nil)
           @UserName = username
           @RealName = realname
           @Time = time
@@ -4024,6 +4030,7 @@ module TencentCloud
           @Kind = kind
           @Operation = operation
           @Result = result
+          @SignValue = signvalue
         end
 
         def deserialize(params)
@@ -4034,6 +4041,7 @@ module TencentCloud
           @Kind = params['Kind']
           @Operation = params['Operation']
           @Result = params['Result']
+          @SignValue = params['SignValue']
         end
       end
 
@@ -4207,7 +4215,7 @@ module TencentCloud
         # @type LogDelivery: String
         # @param DeployModel: 部署模式
         # @type DeployModel: Integer
-        # @param IntranetAccess: 0 默认值，非内网访问，1 内网访问
+        # @param IntranetAccess: 0 默认值，非内网访问，1 内网访问，2 内网访问开通中，3 内网访问关闭中
         # @type IntranetAccess: Integer
         # @param IntranetPrivateIpSet: 内网访问的ip
         # @type IntranetPrivateIpSet: Array
@@ -4646,13 +4654,15 @@ module TencentCloud
         # @type DeviceDepartmentName: String
         # @param Size: 会话大小
         # @type Size: Integer
+        # @param SignValue: 签名值
+        # @type SignValue: String
 
-        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue
         extend Gem::Deprecate
         deprecate :SessTime, :none, 2024, 11
         deprecate :SessTime=, :none, 2024, 11
 
-        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil, signvalue=nil)
           @Time = time
           @UserName = username
           @RealName = realname
@@ -4674,6 +4684,7 @@ module TencentCloud
           @DeviceDepartmentId = devicedepartmentid
           @DeviceDepartmentName = devicedepartmentname
           @Size = size
+          @SignValue = signvalue
         end
 
         def deserialize(params)
@@ -4698,6 +4709,7 @@ module TencentCloud
           @DeviceDepartmentId = params['DeviceDepartmentId']
           @DeviceDepartmentName = params['DeviceDepartmentName']
           @Size = params['Size']
+          @SignValue = params['SignValue']
         end
       end
 
@@ -4795,10 +4807,12 @@ module TencentCloud
         # @type Size: Integer
         # @param Action: 堡垒机拦截情况, 1-已执行，  2-被阻断
         # @type Action: Integer
+        # @param SignValue: 签名值
+        # @type SignValue: String
 
-        attr_accessor :Time, :Method, :Protocol, :FileCurr, :FileNew, :Size, :Action
+        attr_accessor :Time, :Method, :Protocol, :FileCurr, :FileNew, :Size, :Action, :SignValue
 
-        def initialize(time=nil, method=nil, protocol=nil, filecurr=nil, filenew=nil, size=nil, action=nil)
+        def initialize(time=nil, method=nil, protocol=nil, filecurr=nil, filenew=nil, size=nil, action=nil, signvalue=nil)
           @Time = time
           @Method = method
           @Protocol = protocol
@@ -4806,6 +4820,7 @@ module TencentCloud
           @FileNew = filenew
           @Size = size
           @Action = action
+          @SignValue = signvalue
         end
 
         def deserialize(params)
@@ -4816,6 +4831,7 @@ module TencentCloud
           @FileNew = params['FileNew']
           @Size = params['Size']
           @Action = params['Action']
+          @SignValue = params['SignValue']
         end
       end
 
@@ -4938,10 +4954,12 @@ module TencentCloud
         # @type FileCurr: String
         # @param FileNew: 上传或新建文件（夹）路径及名称
         # @type FileNew: String
+        # @param SignValue: 签名值
+        # @type SignValue: String
 
-        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Action, :Method, :FileCurr, :FileNew
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Action, :Method, :FileCurr, :FileNew, :SignValue
 
-        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, action=nil, method=nil, filecurr=nil, filenew=nil)
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, action=nil, method=nil, filecurr=nil, filenew=nil, signvalue=nil)
           @Time = time
           @UserName = username
           @RealName = realname
@@ -4953,6 +4971,7 @@ module TencentCloud
           @Method = method
           @FileCurr = filecurr
           @FileNew = filenew
+          @SignValue = signvalue
         end
 
         def deserialize(params)
@@ -4967,6 +4986,7 @@ module TencentCloud
           @Method = params['Method']
           @FileCurr = params['FileCurr']
           @FileNew = params['FileNew']
+          @SignValue = params['SignValue']
         end
       end
 
@@ -5360,14 +5380,16 @@ module TencentCloud
         # @type ActiveStatus: Integer
         # @param LockStatus: 锁定状态 0 - 未锁定 1 - 锁定
         # @type LockStatus: Integer
+        # @param UKeyStatus: ukey绑定状态 0 - 未绑定 1 - 已绑定
+        # @type UKeyStatus: Integer
         # @param Status: 状态 与Filter中一致
         # @type Status: String
         # @param AclVersion: 权限版本
         # @type AclVersion: Integer
 
-        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :Status, :AclVersion
+        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :UKeyStatus, :Status, :AclVersion
 
-        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, status=nil, aclversion=nil)
+        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, ukeystatus=nil, status=nil, aclversion=nil)
           @UserName = username
           @RealName = realname
           @Id = id
@@ -5382,6 +5404,7 @@ module TencentCloud
           @DepartmentId = departmentid
           @ActiveStatus = activestatus
           @LockStatus = lockstatus
+          @UKeyStatus = ukeystatus
           @Status = status
           @AclVersion = aclversion
         end
@@ -5411,6 +5434,7 @@ module TencentCloud
           @DepartmentId = params['DepartmentId']
           @ActiveStatus = params['ActiveStatus']
           @LockStatus = params['LockStatus']
+          @UKeyStatus = params['UKeyStatus']
           @Status = params['Status']
           @AclVersion = params['AclVersion']
         end

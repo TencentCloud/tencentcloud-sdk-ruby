@@ -414,6 +414,40 @@ module TencentCloud
         end
       end
 
+      # DescribeUserUsageCnt请求参数结构体
+      class DescribeUserUsageCntRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserUsageCnt返回参数结构体
+      class DescribeUserUsageCntResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeUserUsageCntData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputDescribeUserUsageCntData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ImportNameListData请求参数结构体
       class ImportNameListDataRequest < TencentCloud::Common::AbstractModel
         # @param BusinessSecurityData: 业务入参
@@ -1513,6 +1547,81 @@ module TencentCloud
               outputdescribenamelistfrontfix_tmp.deserialize(i)
               @List << outputdescribenamelistfrontfix_tmp
             end
+          end
+        end
+      end
+
+      # 预付费 后付费 总数显示接口出参
+      class OutputDescribeUserUsageCnt < TencentCloud::Common::AbstractModel
+        # @param PayMode: 当前付费模式，0 后付费 1 预付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
+        # @param AfterPayModeThisMonthUsedCnt: 后付费本月使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AfterPayModeThisMonthUsedCnt: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireTime: 超出时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param AfterPayModeLastMonthUsedCnt: 后付费上月使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AfterPayModeLastMonthUsedCnt: Integer
+        # @param BeforePayModeTotalUsedCnt: 预付费总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeforePayModeTotalUsedCnt: Integer
+        # @param BeforePayModeRemainUsedCnt: 预付费剩余用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeforePayModeRemainUsedCnt: Integer
+
+        attr_accessor :PayMode, :AfterPayModeThisMonthUsedCnt, :CreateTime, :ExpireTime, :AfterPayModeLastMonthUsedCnt, :BeforePayModeTotalUsedCnt, :BeforePayModeRemainUsedCnt
+
+        def initialize(paymode=nil, afterpaymodethismonthusedcnt=nil, createtime=nil, expiretime=nil, afterpaymodelastmonthusedcnt=nil, beforepaymodetotalusedcnt=nil, beforepaymoderemainusedcnt=nil)
+          @PayMode = paymode
+          @AfterPayModeThisMonthUsedCnt = afterpaymodethismonthusedcnt
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @AfterPayModeLastMonthUsedCnt = afterpaymodelastmonthusedcnt
+          @BeforePayModeTotalUsedCnt = beforepaymodetotalusedcnt
+          @BeforePayModeRemainUsedCnt = beforepaymoderemainusedcnt
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+          @AfterPayModeThisMonthUsedCnt = params['AfterPayModeThisMonthUsedCnt']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @AfterPayModeLastMonthUsedCnt = params['AfterPayModeLastMonthUsedCnt']
+          @BeforePayModeTotalUsedCnt = params['BeforePayModeTotalUsedCnt']
+          @BeforePayModeRemainUsedCnt = params['BeforePayModeRemainUsedCnt']
+        end
+      end
+
+      # RCE控制台预付费和后付费次数展示出参数据
+      class OutputDescribeUserUsageCntData < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码，0 表示成功，非0表示失败错误码。 0：成功 4300：未开通服务
+        # @type Code: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Value: 业务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Rce.v20201103.models.OutputDescribeUserUsageCnt`
+
+        attr_accessor :Code, :Message, :Value
+
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['Value'].nil?
+            @Value = OutputDescribeUserUsageCnt.new
+            @Value.deserialize(params['Value'])
           end
         end
       end

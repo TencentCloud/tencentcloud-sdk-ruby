@@ -20,42 +20,34 @@ module TencentCloud
       # 应用版本。
       class ApplicationVersion < TencentCloud::Common::AbstractModel
         # @param Type: 版本类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param ApplicationVersionId: 版本ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationVersionId: String
         # @param Name: 发布名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 发布描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Entrypoint: 入口文件。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Entrypoint: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param CreatorName: 创建者名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorName: String
         # @param CreatorId: 创建者ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorId: String
         # @param GitInfo: Git信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GitInfo: String
         # @param GitSource: Git信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GitSource: :class:`Tencentcloud::Omics.v20221128.models.GitInfo`
+        # @param CosSource: COS信息。
+        # @type CosSource: :class:`Tencentcloud::Omics.v20221128.models.CosFileInfo`
 
-        attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource
+        attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
         deprecate :GitInfo, :none, 2024, 11
         deprecate :GitInfo=, :none, 2024, 11
 
-        def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil)
+        def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
           @ApplicationVersionId = applicationversionid
           @Name = name
@@ -66,6 +58,7 @@ module TencentCloud
           @CreatorId = creatorid
           @GitInfo = gitinfo
           @GitSource = gitsource
+          @CosSource = cossource
         end
 
         def deserialize(params)
@@ -81,6 +74,10 @@ module TencentCloud
           unless params['GitSource'].nil?
             @GitSource = GitInfo.new
             @GitSource.deserialize(params['GitSource'])
+          end
+          unless params['CosSource'].nil?
+            @CosSource = CosFileInfo.new
+            @CosSource.deserialize(params['CosSource'])
           end
         end
       end
@@ -108,13 +105,10 @@ module TencentCloud
       # 缓存信息。
       class CacheInfo < TencentCloud::Common::AbstractModel
         # @param CacheClearDelay: 缓存清理时间(小时)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheClearDelay: Integer
         # @param CacheClearTime: 缓存清理计划时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheClearTime: String
         # @param CacheCleared: 缓存是否已被清理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheCleared: Boolean
 
         attr_accessor :CacheClearDelay, :CacheClearTime, :CacheCleared
@@ -168,6 +162,30 @@ module TencentCloud
             @LimitRange = LimitRange.new
             @LimitRange.deserialize(params['LimitRange'])
           end
+        end
+      end
+
+      # COS 文件信息
+      class CosFileInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: 存储桶。
+        # @type Bucket: String
+        # @param Uri: COS文件地址。
+        # @type Uri: String
+        # @param Region: 地域。
+        # @type Region: String
+
+        attr_accessor :Bucket, :Uri, :Region
+
+        def initialize(bucket=nil, uri=nil, region=nil)
+          @Bucket = bucket
+          @Uri = uri
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Uri = params['Uri']
+          @Region = params['Region']
         end
       end
 
@@ -344,7 +362,7 @@ module TencentCloud
       class DeleteVolumeDataRequest < TencentCloud::Common::AbstractModel
         # @param VolumeId: 缓存卷ID。
         # @type VolumeId: String
-        # @param Path: 需要删除的路径
+        # @param Path: 需要删除的路径。
         # @type Path: String
 
         attr_accessor :VolumeId, :Path
@@ -957,13 +975,10 @@ module TencentCloud
       # 执行时间。
       class ExecutionTime < TencentCloud::Common::AbstractModel
         # @param SubmitTime: 提交时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitTime: String
         # @param StartTime: 开始时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :SubmitTime, :StartTime, :EndTime
@@ -1109,7 +1124,6 @@ module TencentCloud
         # @param CosSignedUrl: 文件预签名链接，一分钟内有效。
         # @type CosSignedUrl: String
         # @param CosSignedUrls: 批量文件预签名链接，一分钟内有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosSignedUrls: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1176,19 +1190,14 @@ module TencentCloud
       # Git信息。
       class GitInfo < TencentCloud::Common::AbstractModel
         # @param GitHttpPath: Git地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GitHttpPath: String
         # @param GitUserName: Git用户名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GitUserName: String
         # @param GitTokenOrPassword: Git密码或者Token。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GitTokenOrPassword: String
         # @param Branch: 分支。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branch: String
         # @param Tag: 标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
 
         attr_accessor :GitHttpPath, :GitUserName, :GitTokenOrPassword, :Branch, :Tag
@@ -1325,24 +1334,18 @@ module TencentCloud
       # Nextflow选项。
       class NFOption < TencentCloud::Common::AbstractModel
         # @param Config: Config。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: String
         # @param Profile: Profile。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Profile: String
         # @param Report: Report。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Report: Boolean
         # @param Resume: Resume。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resume: Boolean
         # @param NFVersion: Nextflow引擎版本，取值范围：
         # - 22.10.7
         # - 23.10.1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NFVersion: String
         # @param LaunchDir: 启动路径。可填写指定缓存卷内的绝对路径，nextflow run 命令将在此路径执行。当WorkDir为COS路径时必填；当WorkDir为缓存卷路径时选填，不填默认使用WorkDir作为LaunchDir。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaunchDir: String
 
         attr_accessor :Config, :Profile, :Report, :Resume, :NFVersion, :LaunchDir
@@ -1479,7 +1482,6 @@ module TencentCloud
       # RetryRuns返回参数结构体
       class RetryRunsResponse < TencentCloud::Common::AbstractModel
         # @param RunGroupId: 新的任务批次ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1510,13 +1512,10 @@ module TencentCloud
         # @param EnvironmentId: 环境ID。
         # @type EnvironmentId: String
         # @param UserDefinedId: 用户定义ID，单例运行为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefinedId: String
         # @param TableId: 表格ID，单例运行为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableId: String
         # @param TableRowUuid: 表格行UUID，单例运行为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableRowUuid: String
         # @param Status: 任务状态。
         # @type Status: String
@@ -1527,7 +1526,6 @@ module TencentCloud
         # @param ExecutionTime: 执行时间。
         # @type ExecutionTime: :class:`Tencentcloud::Omics.v20221128.models.ExecutionTime`
         # @param Cache: 缓存信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cache: :class:`Tencentcloud::Omics.v20221128.models.CacheInfo`
         # @param ErrorMessage: 错误信息。
         # @type ErrorMessage: String
@@ -1708,19 +1706,16 @@ module TencentCloud
         # @param ApplicationType: 应用类型。
         # @type ApplicationType: String
         # @param ApplicationVersion: 应用版本。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationVersion: :class:`Tencentcloud::Omics.v20221128.models.ApplicationVersion`
         # @param AccessMode: 应用访问类型：
         # - PRIVATE 私有应用
         # - PUBLIC 公共应用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessMode: String
         # @param EnvironmentId: 环境ID。
         # @type EnvironmentId: String
         # @param EnvironmentName: 环境名称。
         # @type EnvironmentName: String
         # @param TableId: 表格ID，单例运行为空。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableId: String
         # @param Name: 任务名称。
         # @type Name: String
@@ -1731,10 +1726,8 @@ module TencentCloud
         # @param Type: 任务批次类型 ：
         # - WDL
         # - NEXTFLOW
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param WorkDir: 工作目录。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkDir: String
         # @param Input: 任务输入。
         # @type Input: String
@@ -1742,21 +1735,16 @@ module TencentCloud
         # - JSON: 导入JSON
         # - MANUAL: 手动输入
         # - COS: COS文件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputType: String
         # @param InputCosUri: 输入COS地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputCosUri: String
         # @param InputTemplateId: 输入模版ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputTemplateId: String
         # @param Option: WDL运行选项。
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
         # @param NFOption: Nextflow运行选项。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
         # @param Volumes: 使用的缓存卷。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volumes: Array
         # @param TotalRun: 任务总数量。
         # @type TotalRun: Integer
@@ -1767,17 +1755,14 @@ module TencentCloud
         # @param ErrorMessage: 错误信息。
         # @type ErrorMessage: String
         # @param ResultNotify: 运行结果通知方式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultNotify: String
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
         # @param Creator: 创建者。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
         # @param CreatorId: 创建者ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorId: String
 
         attr_accessor :RunGroupId, :ProjectId, :ProjectName, :ApplicationId, :ApplicationName, :ApplicationType, :ApplicationVersion, :AccessMode, :EnvironmentId, :EnvironmentName, :TableId, :Name, :Description, :Status, :Type, :WorkDir, :Input, :InputType, :InputCosUri, :InputTemplateId, :Option, :NFOption, :Volumes, :TotalRun, :RunStatusCounts, :ExecutionTime, :ErrorMessage, :ResultNotify, :CreateTime, :UpdateTime, :Creator, :CreatorId
@@ -1882,70 +1867,48 @@ module TencentCloud
       # 任务作业详情。
       class RunMetadata < TencentCloud::Common::AbstractModel
         # @param RunType: 任务类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunType: String
         # @param RunId: 任务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunId: String
         # @param ParentId: 父层ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentId: String
         # @param JobId: 作业ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
         # @param CallName: 作业名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallName: String
         # @param ScatterIndex: Scatter索引。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScatterIndex: String
         # @param Input: 输入。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: String
         # @param Output: 输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ErrorMessage: 错误信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
         # @param StartTime: 开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param SubmitTime: 提交时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitTime: String
         # @param EndTime: 结束时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param Command: 命令行。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Command: String
         # @param Runtime: 运行时。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Runtime: String
         # @param Preprocess: 预处理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Preprocess: Boolean
         # @param PostProcess: 后处理。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostProcess: Boolean
         # @param CallCached: Cache命中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallCached: Boolean
         # @param WorkDir: 工作目录。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkDir: String
         # @param Stdout: 标准输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stdout: String
         # @param Stderr: 错误输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stderr: String
         # @param Meta: 其他信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Meta: String
 
         attr_accessor :RunType, :RunId, :ParentId, :JobId, :CallName, :ScatterIndex, :Input, :Output, :Status, :ErrorMessage, :StartTime, :SubmitTime, :EndTime, :Command, :Runtime, :Preprocess, :PostProcess, :CallCached, :WorkDir, :Stdout, :Stderr, :Meta
@@ -2012,13 +1975,10 @@ module TencentCloud
         # @param UseErrorOnHold: 是否使用错误挂起功能。
         # @type UseErrorOnHold: Boolean
         # @param FinalWorkflowOutputsDir: 输出归档COS路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinalWorkflowOutputsDir: String
         # @param UseRelativeOutputPaths: 是否使用相对目录归档输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseRelativeOutputPaths: Boolean
         # @param AddRunInfoToOutputDir: 是否添加运行信息到输出目录中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddRunInfoToOutputDir: Boolean
 
         attr_accessor :FailureMode, :UseCallCache, :UseErrorOnHold, :FinalWorkflowOutputsDir, :UseRelativeOutputPaths, :AddRunInfoToOutputDir
@@ -2203,30 +2163,25 @@ module TencentCloud
       # 表格。
       class Table < TencentCloud::Common::AbstractModel
         # @param TableId: 表格ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableId: String
         # @param ProjectId: 关联项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param Name: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 表格描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Columns: 表格列
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Creator: 创建人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
+        # @param CreatorId: 创建人ID
+        # @type CreatorId: String
 
-        attr_accessor :TableId, :ProjectId, :Name, :Description, :Columns, :CreateTime, :Creator
+        attr_accessor :TableId, :ProjectId, :Name, :Description, :Columns, :CreateTime, :Creator, :CreatorId
 
-        def initialize(tableid=nil, projectid=nil, name=nil, description=nil, columns=nil, createtime=nil, creator=nil)
+        def initialize(tableid=nil, projectid=nil, name=nil, description=nil, columns=nil, createtime=nil, creator=nil, creatorid=nil)
           @TableId = tableid
           @ProjectId = projectid
           @Name = name
@@ -2234,6 +2189,7 @@ module TencentCloud
           @Columns = columns
           @CreateTime = createtime
           @Creator = creator
+          @CreatorId = creatorid
         end
 
         def deserialize(params)
@@ -2251,16 +2207,15 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @Creator = params['Creator']
+          @CreatorId = params['CreatorId']
         end
       end
 
       # 表格列。
       class TableColumn < TencentCloud::Common::AbstractModel
         # @param Header: 列名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Header: String
         # @param DataType: 列数据类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: String
 
         attr_accessor :Header, :DataType
@@ -2279,10 +2234,8 @@ module TencentCloud
       # 表格行。
       class TableRow < TencentCloud::Common::AbstractModel
         # @param TableRowUuid: 表格行UUID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableRowUuid: String
         # @param Content: 表格行内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
 
         attr_accessor :TableRowUuid, :Content
@@ -2436,13 +2389,10 @@ module TencentCloud
       # 缓存卷信息。
       class VolumeInfo < TencentCloud::Common::AbstractModel
         # @param VolumeId: 缓存卷ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeId: String
         # @param Name: 名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param MountPath: 挂载路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountPath: String
 
         attr_accessor :VolumeId, :Name, :MountPath

@@ -2068,9 +2068,9 @@ module TencentCloud
 
       # CreateInstancePost请求参数结构体
       class CreateInstancePostRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param InstanceName: ckafka集群实例Name，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type InstanceName: String
-        # @param VpcId: 创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
+        # @param VpcId: 私有网络Id 创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
         # @type VpcId: String
         # @param SubnetId: 子网id。创建实例默认接入点所在的子网对应的子网 id
         # @type SubnetId: String
@@ -2106,10 +2106,12 @@ module TencentCloud
         # @type PublicNetworkMonthly: Integer
         # @param Tags: 标签
         # @type Tags: Array
+        # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认）
+        # @type ElasticBandwidthSwitch: Integer
 
-        attr_accessor :InstanceName, :VpcId, :SubnetId, :BandWidth, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :BandWidth, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch
 
-        def initialize(instancename=nil, vpcid=nil, subnetid=nil, bandwidth=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, bandwidth=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2129,6 +2131,7 @@ module TencentCloud
           @InstanceNum = instancenum
           @PublicNetworkMonthly = publicnetworkmonthly
           @Tags = tags
+          @ElasticBandwidthSwitch = elasticbandwidthswitch
         end
 
         def deserialize(params)
@@ -2158,6 +2161,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
         end
       end
 
@@ -2220,7 +2224,7 @@ module TencentCloud
         # @param DealNames: 订单号列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
-        # @param InstanceId: 实例Id，当购买多个实例时，默认返回购买的第一个实例 id
+        # @param InstanceId: ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
@@ -2253,7 +2257,7 @@ module TencentCloud
 
       # CreateInstancePre请求参数结构体
       class CreateInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param InstanceName: ckafka集群实例Name，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type InstanceName: String
         # @param ZoneId: 可用区。当购买多可用区实例时，当前参数为主可用区。需要保证传入的参数和 SubnetId 所在子网属于同一个可用区
         # @type ZoneId: Integer
@@ -2261,7 +2265,7 @@ module TencentCloud
         # @type Period: String
         # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
         # @type InstanceType: Integer
-        # @param VpcId: vpcId，必填
+        # @param VpcId: 私有网络Id，必填
         # @type VpcId: String
         # @param SubnetId: 子网id，必填
         # @type SubnetId: String
@@ -2277,7 +2281,7 @@ module TencentCloud
         # @type SpecificationsType: String
         # @param DiskSize: 磁盘大小，如果跟控制台规格配比不相符，则无法创建成功
         # @type DiskSize: Integer
-        # @param BandWidth: 带宽，如果跟控制台规格配比不相符，则无法创建成功
+        # @param BandWidth: 实例带宽,单位MB/s; 最小值:20MB/s, 高级版最大值:360MB/s,专业版最大值:100000MB/s  标准版固定带宽规格: 40MB/s, 100MB/s, 150MB/s
         # @type BandWidth: Integer
         # @param Partition: 分区大小，如果跟控制台规格配比不相符，则无法创建成功
         # @type Partition: Integer
@@ -2295,10 +2299,12 @@ module TencentCloud
         # @type InstanceNum: Integer
         # @param AutoVoucher: 是否自动选择代金券:1-是;0否。默认为0
         # @type AutoVoucher: Integer
+        # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认）
+        # @type ElasticBandwidthSwitch: Integer
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher, :ElasticBandwidthSwitch
 
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil, elasticbandwidthswitch=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -2320,6 +2326,7 @@ module TencentCloud
           @PublicNetworkMonthly = publicnetworkmonthly
           @InstanceNum = instancenum
           @AutoVoucher = autovoucher
+          @ElasticBandwidthSwitch = elasticbandwidthswitch
         end
 
         def deserialize(params)
@@ -2351,6 +2358,7 @@ module TencentCloud
           @PublicNetworkMonthly = params['PublicNetworkMonthly']
           @InstanceNum = params['InstanceNum']
           @AutoVoucher = params['AutoVoucher']
+          @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
         end
       end
 
@@ -10124,7 +10132,7 @@ module TencentCloud
 
       # 操作类型返回的Data结构
       class OperateResponseData < TencentCloud::Common::AbstractModel
-        # @param FlowId: FlowId11
+        # @param FlowId: 流程Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RouteDTO: RouteIdDto
@@ -10798,7 +10806,7 @@ module TencentCloud
 
       # RouteDTO
       class RouteDTO < TencentCloud::Common::AbstractModel
-        # @param RouteId: RouteId11
+        # @param RouteId: 路由Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteId: Integer
 

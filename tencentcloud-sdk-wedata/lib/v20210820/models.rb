@@ -29064,10 +29064,10 @@ module TencentCloud
         # @type CloudappId: String
         # @param AppCamRole: 数语的CAM角色
         # @type AppCamRole: String
-        # @param Vip: 数语的ip
-        # @type Vip: String
-        # @param Vport: 数语的端口
-        # @type Vport: Integer
+        # @param Ip: 数语的ip
+        # @type Ip: String
+        # @param Port: 数语的端口
+        # @type Port: Integer
         # @param AppCamRoleId: 数语的CAM角色id
         # @type AppCamRoleId: String
         # @param Provider: 服务提供方
@@ -29077,13 +29077,13 @@ module TencentCloud
         # @param OwnId: 主账号id
         # @type OwnId: String
 
-        attr_accessor :CloudappId, :AppCamRole, :Vip, :Vport, :AppCamRoleId, :Provider, :TenantId, :OwnId
+        attr_accessor :CloudappId, :AppCamRole, :Ip, :Port, :AppCamRoleId, :Provider, :TenantId, :OwnId
 
-        def initialize(cloudappid=nil, appcamrole=nil, vip=nil, vport=nil, appcamroleid=nil, provider=nil, tenantid=nil, ownid=nil)
+        def initialize(cloudappid=nil, appcamrole=nil, ip=nil, port=nil, appcamroleid=nil, provider=nil, tenantid=nil, ownid=nil)
           @CloudappId = cloudappid
           @AppCamRole = appcamrole
-          @Vip = vip
-          @Vport = vport
+          @Ip = ip
+          @Port = port
           @AppCamRoleId = appcamroleid
           @Provider = provider
           @TenantId = tenantid
@@ -29093,8 +29093,8 @@ module TencentCloud
         def deserialize(params)
           @CloudappId = params['CloudappId']
           @AppCamRole = params['AppCamRole']
-          @Vip = params['Vip']
-          @Vport = params['Vport']
+          @Ip = params['Ip']
+          @Port = params['Port']
           @AppCamRoleId = params['AppCamRoleId']
           @Provider = params['Provider']
           @TenantId = params['TenantId']

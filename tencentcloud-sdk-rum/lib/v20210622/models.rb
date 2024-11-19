@@ -2876,19 +2876,23 @@ module TencentCloud
         # @type FileType: Integer
         # @param Site: 获取临时签名的bucket是国内站还是国际站（1表示国际站，其它表示国内站）
         # @type Site: Integer
+        # @param ID: ProjectID
+        # @type ID: Integer
 
-        attr_accessor :Timeout, :FileType, :Site
+        attr_accessor :Timeout, :FileType, :Site, :ID
 
-        def initialize(timeout=nil, filetype=nil, site=nil)
+        def initialize(timeout=nil, filetype=nil, site=nil, id=nil)
           @Timeout = timeout
           @FileType = filetype
           @Site = site
+          @ID = id
         end
 
         def deserialize(params)
           @Timeout = params['Timeout']
           @FileType = params['FileType']
           @Site = params['Site']
+          @ID = params['ID']
         end
       end
 

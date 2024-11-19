@@ -1960,7 +1960,7 @@ module TencentCloud
         # @type IsExtranet: Boolean
         # @param Domain: 设置域名
         # @type Domain: String
-        # @param SecurityGroup: 使用的安全组，只有外网访问需要传递（开启外网访问时必传）
+        # @param SecurityGroup: 使用的安全组，只有外网访问需要传递（开启外网访问且不使用已有clb时必传）
         # @type SecurityGroup: String
         # @param ExtensiveParameters: 创建lb参数，只有外网访问需要设置，是一个json格式化后的字符串：{"InternetAccessible":{"InternetChargeType":"TRAFFIC_POSTPAID_BY_HOUR","InternetMaxBandwidthOut":200},"VipIsp":"","BandwidthPackageId":""}。
         # 各个参数意义：

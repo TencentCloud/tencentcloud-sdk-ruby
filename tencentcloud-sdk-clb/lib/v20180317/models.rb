@@ -157,7 +157,7 @@ module TencentCloud
 
       # 监听器绑定的后端服务的详细信息
       class Backend < TencentCloud::Common::AbstractModel
-        # @param Type: 后端服务的类型，可取：CVM、ENI、CCN
+        # @param Type: 后端服务的类型，可取：CVM、ENI、CCN、EVM、GLOBALROUTE、NAT、SRV等
         # @type Type: String
         # @param InstanceId: 后端服务的唯一 ID，如 ins-abcd1234
         # @type InstanceId: String
@@ -1460,10 +1460,10 @@ module TencentCloud
         # @type AddressIPVersion: String
         # @param Number: 创建负载均衡的个数，默认值 1。
         # @type Number: Integer
-        # @param MasterZoneId: 仅适用于公网负载均衡。设置跨可用区容灾时的主可用区ID，例如 100001 或 ap-guangzhou-1
-        # 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区。目前仅广州、上海、南京、北京、成都、深圳金融、中国香港、首尔、法兰克福、新加坡地域的 IPv4 版本的 CLB 支持主备可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主可用区的列表。
+        # @param MasterZoneId: 仅适用于公网且IP版本为IPv4的负载均衡。设置跨可用区容灾时的主可用区ID，例如 100001 或 ap-guangzhou-1
+        # 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区。目前仅广州、上海、南京、北京、成都、深圳金融、中国香港、首尔、法兰克福、新加坡地域的 IPv4 版本的 CLB 支持主备可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主可用区的列表。【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】
         # @type MasterZoneId: String
-        # @param ZoneId: 仅适用于公网负载均衡。可用区ID，指定可用区以创建负载均衡实例。如：ap-guangzhou-1。
+        # @param ZoneId: 仅适用于公网且IP版本为IPv4的负载均衡。可用区ID，指定可用区以创建负载均衡实例。如：ap-guangzhou-1。
         # @type ZoneId: String
         # @param InternetAccessible: 网络计费模式，最大出带宽。仅对内网属性的性能容量型实例和公网属性的所有实例生效。
         # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
@@ -1491,8 +1491,8 @@ module TencentCloud
         # @type SnatIps: Array
         # @param ClusterTag: Stgw独占集群的标签。
         # @type ClusterTag: String
-        # @param SlaveZoneId: 仅适用于公网负载均衡。设置跨可用区容灾时的备可用区ID，例如 100001 或 ap-guangzhou-1
-        # 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主/备可用区的列表。
+        # @param SlaveZoneId: 仅适用于公网且IP版本为IPv4的负载均衡。设置跨可用区容灾时的备可用区ID，例如 100001 或 ap-guangzhou-1
+        # 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主/备可用区的列表。【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】
         # @type SlaveZoneId: String
         # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         # @type EipAddressId: String
@@ -4020,20 +4020,25 @@ module TencentCloud
         # @param LoadBalancerIds: 由负载均衡实例唯一 ID 组成的数组。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerIds: Array
+        # @param Message: 辅助描述信息，如失败原因等。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :LoadBalancerIds, :RequestId
+        attr_accessor :Status, :LoadBalancerIds, :Message, :RequestId
 
-        def initialize(status=nil, loadbalancerids=nil, requestid=nil)
+        def initialize(status=nil, loadbalancerids=nil, message=nil, requestid=nil)
           @Status = status
           @LoadBalancerIds = loadbalancerids
+          @Message = message
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
           @LoadBalancerIds = params['LoadBalancerIds']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -5062,7 +5067,7 @@ module TencentCloud
         # @param LoadBalancerName: 负载均衡实例的名称。
         # @type LoadBalancerName: String
         # @param LoadBalancerType: 负载均衡实例的网络类型：
-        # OPEN：公网属性， INTERNAL：内网属性。
+        # OPEN：公网属性， INTERNAL：内网属性；对于内网属性的负载均衡，可通过绑定EIP出公网，具体可参考EIP文档。
         # @type LoadBalancerType: String
         # @param Forward: 负载均衡类型标识，1：负载均衡，0：传统型负载均衡。
         # @type Forward: Integer
@@ -5393,7 +5398,7 @@ module TencentCloud
         # @param LoadBalancerName: 负载均衡实例的名称。
         # @type LoadBalancerName: String
         # @param LoadBalancerType: 负载均衡实例的网络类型：
-        # OPEN：公网属性，INTERNAL：内网属性。
+        # OPEN：公网属性，INTERNAL：内网属性；对于内网属性的负载均衡，可通过绑定EIP出公网，具体可参考EIP文档。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
         # @param Status: 负载均衡实例的状态，包括
@@ -7908,7 +7913,7 @@ module TencentCloud
         # @param Type: 后端服务的类型，可取：CVM（云服务器）、ENI（弹性网卡）；作为入参时，目前本参数暂不生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param InstanceId: 绑定CVM时需要传入此参数，代表CVM的唯一 ID，可通过 DescribeInstances 接口返回字段中的 InstanceId 字段获取。表示绑定主网卡主IP。
+        # @param InstanceId: 绑定CVM时需要传入此参数，代表CVM的唯一 ID，可通过 DescribeInstances 接口返回字段中的 InstanceId 字段获取。表示绑定主网卡主IPv4地址；以下场景都不支持指定InstanceId：绑定非CVM，绑定CVM上的辅助网卡IP，通过跨域2.0绑定CVM，以及绑定CVM的IPv6地址等。
         # 注意：参数 InstanceId、EniIp 有且只能传入其中一个参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
@@ -8124,23 +8129,27 @@ module TencentCloud
         # @type HealthStatus: Boolean
         # @param TargetId: Target的实例ID，如 ins-12345678
         # @type TargetId: String
-        # @param HealthStatusDetail: 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
+        # @param HealthStatusDetail: 当前健康状态的详细信息。如：Alive、Dead、Unknown、Close。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知，Close表示健康检查关闭或监听器状态停止。
         # @type HealthStatusDetail: String
         # @param HealthStatusDetial: (**该参数对象即将下线，不推荐使用，请使用HealthStatusDetail获取健康详情**) 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
         # @type HealthStatusDetial: String
+        # @param TargetGroupId: 目标组唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetGroupId: String
 
-        attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
+        attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId
         extend Gem::Deprecate
         deprecate :HealthStatusDetial, :none, 2024, 11
         deprecate :HealthStatusDetial=, :none, 2024, 11
 
-        def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
+        def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil)
           @IP = ip
           @Port = port
           @HealthStatus = healthstatus
           @TargetId = targetid
           @HealthStatusDetail = healthstatusdetail
           @HealthStatusDetial = healthstatusdetial
+          @TargetGroupId = targetgroupid
         end
 
         def deserialize(params)
@@ -8150,6 +8159,7 @@ module TencentCloud
           @TargetId = params['TargetId']
           @HealthStatusDetail = params['HealthStatusDetail']
           @HealthStatusDetial = params['HealthStatusDetial']
+          @TargetGroupId = params['TargetGroupId']
         end
       end
 

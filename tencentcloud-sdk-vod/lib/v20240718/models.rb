@@ -19,13 +19,13 @@ module TencentCloud
     module V20240718
       # CreateStorageCredentials请求参数结构体
       class CreateStorageCredentialsRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <b>点播专业版[应用](/document/product/266/14574) ID。</b>
         # @type SubAppId: Integer
-        # @param Policy: 按照下方语法组装好策略后，先序列化为字符串，再做 urlencode，结果作为 Policy 字段入参。服务端会对该字段做 urldecode，并按解析后的策略授予临时访问凭证权限，请按规范传入参数。
+        # @param Policy: 按照下方语法组装好策略后，先序列化为字符串，再做 URL Encode，结果作为 Policy 字段入参。服务端会对该字段做 URL Decode，并按解析后的策略授予临时访问凭证权限，请按规范传入参数。
         # 注意：
         # 1.策略语法参照[访问管理策略](/document/product/598/10603)。
         # 2.策略中不能包含 principal 元素。
-        # 3.策略的 action 元素仅支持：<li>name/vod:PutObject;</li><li>name/vod:ListParts;</li><li>name/vod:PostObject;</li><li>name/vod:InitiateMultipartUpload;</li><li>name/vod:UploadPart;</li><li>name/vod:CompleteMultipartUpload;</li><li>name/vod:AbortMultipartUpload;</li><li>name/vod:ListMultipartUploads;</li>4.策略的 resource 元素填写格式为：qcs::vod::uid/[账号AppID]:prefix//[子应用ID]/[存储桶ID]/[存储路径]，其中账号AppID、子应用ID、存储桶ID和存储路径要按需填写，其他内容不允许改动，例：qcs::vod::uid/1:prefix//1/1/path。
+        # 3.策略的 action 元素仅支持：<li>name/vod:PutObject;</li><li>name/vod:ListParts;</li><li>name/vod:PostObject;</li><li>name/vod:InitiateMultipartUpload;</li><li>name/vod:UploadPart;</li><li>name/vod:CompleteMultipartUpload;</li><li>name/vod:AbortMultipartUpload;</li><li>name/vod:ListMultipartUploads;</li>4.策略的 resource 元素填写格式为：`qcs::vod:[存储地域]:uid/[账号AppID]:prefix//[点播应用ID]/[存储桶ID]/[存储路径]`，其中存储地域、账号 AppID、点播应用 ID、存储桶 ID 和存储路径要按需填写，其他内容不允许改动，例：`qcs:ap-chongqing:vod::uid/1231456789:prefix//1234567890/2ceds3ew323w3mu/file_path`。
         # @type Policy: String
         # @param DurationSeconds: 指定临时证书的有效期，单位：秒。
         # 默认 1800 秒，最大 129600 秒。
@@ -69,15 +69,15 @@ module TencentCloud
         end
       end
 
-      # 临时证书。
+      # 临时访问凭证。
       class Credentials < TencentCloud::Common::AbstractModel
-        # @param AccessKeyId: 秘钥 ID。
+        # @param AccessKeyId: 访问凭证 ID。
         # @type AccessKeyId: String
-        # @param SecretAccessKey: 秘钥 Key。
+        # @param SecretAccessKey: 访问凭证 Key。
         # @type SecretAccessKey: String
-        # @param SessionToken: token。token长度和绑定的策略有关，最长不超过4096字节。
+        # @param SessionToken: 访问凭证 Token，长度和绑定的策略有关，最长不超过 4096 字节。
         # @type SessionToken: String
-        # @param Expiration: 凭据的过期时间。
+        # @param Expiration: 访问凭证的过期时间。
         # @type Expiration: String
 
         attr_accessor :AccessKeyId, :SecretAccessKey, :SessionToken, :Expiration

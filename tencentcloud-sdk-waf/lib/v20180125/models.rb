@@ -1471,6 +1471,72 @@ module TencentCloud
         end
       end
 
+      # BatchOperateUserSignatureRules请求参数结构体
+      class BatchOperateUserSignatureRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: 0:关闭，1:开启，2:仅观察
+        # @type Status: String
+        # @param RuleIds: 如果SelectedAll为true，则表示反选的规则，否则表示手动选择的规则ID
+        # @type RuleIds: Array
+        # @param Reason: 仅观察原因
+        # @type Reason: Integer
+        # @param SelectedAll: 是否全选
+        # @type SelectedAll: Boolean
+        # @param Filters: 过滤
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Status, :RuleIds, :Reason, :SelectedAll, :Filters
+
+        def initialize(domain=nil, status=nil, ruleids=nil, reason=nil, selectedall=nil, filters=nil)
+          @Domain = domain
+          @Status = status
+          @RuleIds = ruleids
+          @Reason = reason
+          @SelectedAll = selectedall
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @RuleIds = params['RuleIds']
+          @Reason = params['Reason']
+          @SelectedAll = params['SelectedAll']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # BatchOperateUserSignatureRules返回参数结构体
+      class BatchOperateUserSignatureRulesResponse < TencentCloud::Common::AbstractModel
+        # @param CommonRsp: 操作结果
+        # @type CommonRsp: :class:`Tencentcloud::Waf.v20180125.models.CommonRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CommonRsp, :RequestId
+
+        def initialize(commonrsp=nil, requestid=nil)
+          @CommonRsp = commonrsp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CommonRsp'].nil?
+            @CommonRsp = CommonRspData.new
+            @CommonRsp.deserialize(params['CommonRsp'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Bot资源信息
       class BotPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
@@ -2104,6 +2170,26 @@ module TencentCloud
           @Text = params['Text']
           @Value = params['Value']
           @Code = params['Code']
+        end
+      end
+
+      # 通用返回
+      class CommonRspData < TencentCloud::Common::AbstractModel
+        # @param Code: 操作结果
+        # @type Code: Integer
+        # @param Msg: 输出信息
+        # @type Msg: String
+
+        attr_accessor :Code, :Msg
+
+        def initialize(code=nil, msg=nil)
+          @Code = code
+          @Msg = msg
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
         end
       end
 
@@ -6791,6 +6877,53 @@ module TencentCloud
         end
       end
 
+      # DescribeUserSignatureClass请求参数结构体
+      class DescribeUserSignatureClassRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 查询域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeUserSignatureClass返回参数结构体
+      class DescribeUserSignatureClassResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则类型数量
+        # @type Total: Integer
+        # @param RuleTypeList: 规则类型列表及信息
+        # @type RuleTypeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RuleTypeList, :RequestId
+
+        def initialize(total=nil, ruletypelist=nil, requestid=nil)
+          @Total = total
+          @RuleTypeList = ruletypelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['RuleTypeList'].nil?
+            @RuleTypeList = []
+            params['RuleTypeList'].each do |i|
+              ruletype_tmp = RuleType.new
+              ruletype_tmp.deserialize(i)
+              @RuleTypeList << ruletype_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserSignatureRule请求参数结构体
       class DescribeUserSignatureRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要查询的域名
@@ -6836,6 +6969,80 @@ module TencentCloud
 
       # DescribeUserSignatureRule返回参数结构体
       class DescribeUserSignatureRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则总数
+        # @type Total: Integer
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Rules, :RequestId
+
+        def initialize(total=nil, rules=nil, requestid=nil)
+          @Total = total
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              usersignaturerule_tmp = UserSignatureRule.new
+              usersignaturerule_tmp.deserialize(i)
+              @Rules << usersignaturerule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserSignatureRuleV2请求参数结构体
+      class DescribeUserSignatureRuleV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 每页容量
+        # @type Limit: Integer
+        # @param By: 排序字段，支持 signature_id, modify_time
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param Filters: 筛选条件，支持 MainClassName，SubClassID ,CveID, Status, ID;  ID为规则id
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Offset, :Limit, :By, :Order, :Filters
+
+        def initialize(domain=nil, offset=nil, limit=nil, by=nil, order=nil, filters=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUserSignatureRuleV2返回参数结构体
+      class DescribeUserSignatureRuleV2Response < TencentCloud::Common::AbstractModel
         # @param Total: 规则总数
         # @type Total: Integer
         # @param Rules: 规则列表
@@ -12208,6 +12415,42 @@ module TencentCloud
           @Time = params['Time']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # Tiga规则
+      class RuleType < TencentCloud::Common::AbstractModel
+        # @param TypeID: 规则ID
+        # @type TypeID: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Desc: 规则类型描述
+        # @type Desc: String
+        # @param RuleTypeStatus: 规则类型状态，即类型生效开关，0：关闭，1：开启
+        # @type RuleTypeStatus: Integer
+        # @param ActiveRuleCount: 类型下生效的规则数量
+        # @type ActiveRuleCount: Integer
+        # @param TotalRuleCount: 类型下的规则总数量
+        # @type TotalRuleCount: Integer
+
+        attr_accessor :TypeID, :Name, :Desc, :RuleTypeStatus, :ActiveRuleCount, :TotalRuleCount
+
+        def initialize(typeid=nil, name=nil, desc=nil, ruletypestatus=nil, activerulecount=nil, totalrulecount=nil)
+          @TypeID = typeid
+          @Name = name
+          @Desc = desc
+          @RuleTypeStatus = ruletypestatus
+          @ActiveRuleCount = activerulecount
+          @TotalRuleCount = totalrulecount
+        end
+
+        def deserialize(params)
+          @TypeID = params['TypeID']
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @RuleTypeStatus = params['RuleTypeStatus']
+          @ActiveRuleCount = params['ActiveRuleCount']
+          @TotalRuleCount = params['TotalRuleCount']
         end
       end
 

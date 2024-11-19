@@ -1321,10 +1321,13 @@ module TencentCloud
         # @param HierarchicalValue: 告警分级阈值配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HierarchicalValue: :class:`Tencentcloud::Monitor.v20180724.models.AlarmHierarchicalValue`
+        # @param RuleType: 指标类型，用于区分动态指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
 
-        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit, :IsAdvanced, :IsOpen, :ProductId, :HierarchicalValue
+        attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :CalcType, :CalcValue, :ContinueTime, :MetricID, :MetricDisplayName, :Period, :RuleID, :Unit, :IsAdvanced, :IsOpen, :ProductId, :HierarchicalValue, :RuleType
 
-        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil, isadvanced=nil, isopen=nil, productid=nil, hierarchicalvalue=nil)
+        def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, calctype=nil, calcvalue=nil, continuetime=nil, metricid=nil, metricdisplayname=nil, period=nil, ruleid=nil, unit=nil, isadvanced=nil, isopen=nil, productid=nil, hierarchicalvalue=nil, ruletype=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
           @AlarmNotifyType = alarmnotifytype
           @CalcType = calctype
@@ -1339,6 +1342,7 @@ module TencentCloud
           @IsOpen = isopen
           @ProductId = productid
           @HierarchicalValue = hierarchicalvalue
+          @RuleType = ruletype
         end
 
         def deserialize(params)
@@ -1359,6 +1363,7 @@ module TencentCloud
             @HierarchicalValue = AlarmHierarchicalValue.new
             @HierarchicalValue.deserialize(params['HierarchicalValue'])
           end
+          @RuleType = params['RuleType']
         end
       end
 

@@ -19,7 +19,7 @@ module TencentCloud
     module V20190423
       # ActivateTWeCallLicense请求参数结构体
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgType: TWecall类型： 0-测试激活码； 1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
+        # @param PkgType: TWecall类型：1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
         # @type PkgType: Integer
         # @param MiniProgramAppId: appId
         # @type MiniProgramAppId: String
@@ -4912,7 +4912,7 @@ module TencentCloud
 
       # 设备激活结果数据
       class DeviceActiveResult < TencentCloud::Common::AbstractModel
-        # @param ModelId: 模版ID
+        # @param ModelId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
         # @param Sn: SN信息
@@ -8302,7 +8302,7 @@ module TencentCloud
         # @type ProductName: String
         # @param CategoryId: 产品分组模板ID
         # @type CategoryId: Integer
-        # @param EncryptionType: 加密类型。1表示证书认证，2表示秘钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
+        # @param EncryptionType: 加密类型。1表示证书认证，2表示密钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
         # @type EncryptionType: String
         # @param NetType: 连接类型。如：
         # wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
@@ -9846,7 +9846,7 @@ module TencentCloud
         # @param SNTicket: 票据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SNTicket: String
-        # @param ModelId: 模版ID
+        # @param ModelId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
 

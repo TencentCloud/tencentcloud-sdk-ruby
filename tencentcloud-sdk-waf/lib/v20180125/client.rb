@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量操作tiga子规则
+
+        # @param request: Request instance for BatchOperateUserSignatureRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::BatchOperateUserSignatureRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::BatchOperateUserSignatureRulesResponse`
+        def BatchOperateUserSignatureRules(request)
+          body = send_request('BatchOperateUserSignatureRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchOperateUserSignatureRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建访问日志导出
 
         # @param request: Request instance for CreateAccessExport.
@@ -1973,6 +1997,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Tiga引擎规则类型及状态
+
+        # @param request: Request instance for DescribeUserSignatureClass.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeUserSignatureClassRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeUserSignatureClassResponse`
+        def DescribeUserSignatureClass(request)
+          body = send_request('DescribeUserSignatureClass', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserSignatureClassResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户特征规则列表
 
         # @param request: Request instance for DescribeUserSignatureRule.
@@ -1983,6 +2031,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserSignatureRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户特征规则列表
+
+        # @param request: Request instance for DescribeUserSignatureRuleV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeUserSignatureRuleV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeUserSignatureRuleV2Response`
+        def DescribeUserSignatureRuleV2(request)
+          body = send_request('DescribeUserSignatureRuleV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserSignatureRuleV2Response.new
             model.deserialize(response['Response'])
             model
           else
