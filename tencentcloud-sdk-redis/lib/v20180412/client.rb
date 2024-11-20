@@ -2215,7 +2215,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改复制组信息
+        # 本接口（ModifyReplicationGroup）用于修改复制组信息。
 
         # @param request: Request instance for ModifyReplicationGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyReplicationGroupRequest`

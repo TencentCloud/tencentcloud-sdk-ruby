@@ -664,6 +664,68 @@ module TencentCloud
         end
       end
 
+      # 导播台简略信息
+      class CasterBriefInfo < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param CasterName: 导播台名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CasterName: String
+        # @param Description: 导播台的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param StartBillingTime: 开始计费时间，值为unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartBillingTime: Integer
+        # @param StopBillingTime: 结束计费时间，值为unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StopBillingTime: Integer
+        # @param CreateTime: 创建时间，值为unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param Status: 导播台状态
+        # 0：停止状态，无预监，无输出
+        # 1：无预监，有输出状态（非法状态）
+        # 2：有预监，无输出状态
+        # 3：有预监，有输出状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ExpireTime: 导播台的过期时间，值为-1或unix时间戳。
+        # 当值为-1时，代表永不过期。
+        # 当值为特定unix时间戳时，代表过期时间为对应的时间，导播台在该时间自动停止。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param FeeType: 计费字段，该字段暂无作用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeeType: Integer
+
+        attr_accessor :CasterId, :CasterName, :Description, :StartBillingTime, :StopBillingTime, :CreateTime, :Status, :ExpireTime, :FeeType
+
+        def initialize(casterid=nil, castername=nil, description=nil, startbillingtime=nil, stopbillingtime=nil, createtime=nil, status=nil, expiretime=nil, feetype=nil)
+          @CasterId = casterid
+          @CasterName = castername
+          @Description = description
+          @StartBillingTime = startbillingtime
+          @StopBillingTime = stopbillingtime
+          @CreateTime = createtime
+          @Status = status
+          @ExpireTime = expiretime
+          @FeeType = feetype
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @CasterName = params['CasterName']
+          @Description = params['Description']
+          @StartBillingTime = params['StartBillingTime']
+          @StopBillingTime = params['StopBillingTime']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @FeeType = params['FeeType']
+        end
+      end
+
       # 下行播放统计指标
       class CdnPlayStatData < TencentCloud::Common::AbstractModel
         # @param Time: 时间点，
@@ -3803,6 +3865,123 @@ module TencentCloud
           @PageSize = params['PageSize']
           @TotalNum = params['TotalNum']
           @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterList请求参数结构体
+      class DescribeCasterListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCasterList返回参数结构体
+      class DescribeCasterListResponse < TencentCloud::Common::AbstractModel
+        # @param CasterList: 用户对应的导播台简要信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CasterList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CasterList, :RequestId
+
+        def initialize(casterlist=nil, requestid=nil)
+          @CasterList = casterlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CasterList'].nil?
+            @CasterList = []
+            params['CasterList'].each do |i|
+              casterbriefinfo_tmp = CasterBriefInfo.new
+              casterbriefinfo_tmp.deserialize(i)
+              @CasterList << casterbriefinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterTransitionTypes请求参数结构体
+      class DescribeCasterTransitionTypesRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterTransitionTypes返回参数结构体
+      class DescribeCasterTransitionTypesResponse < TencentCloud::Common::AbstractModel
+        # @param TransitionTypes: 转场信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransitionTypes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransitionTypes, :RequestId
+
+        def initialize(transitiontypes=nil, requestid=nil)
+          @TransitionTypes = transitiontypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TransitionTypes'].nil?
+            @TransitionTypes = []
+            params['TransitionTypes'].each do |i|
+              transitiontypeinfo_tmp = TransitionTypeInfo.new
+              transitiontypeinfo_tmp.deserialize(i)
+              @TransitionTypes << transitiontypeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterUserStatus请求参数结构体
+      class DescribeCasterUserStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCasterUserStatus返回参数结构体
+      class DescribeCasterUserStatusResponse < TencentCloud::Common::AbstractModel
+        # @param UserStatus: 0: 未开通导播台
+        # 1:开通了导播台，且处于正常状态
+        # 2:开通了导播台，但处于欠费状态
+        # 3:开通了导播台，但处于封禁状态
+        # @type UserStatus: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserStatus, :RequestId
+
+        def initialize(userstatus=nil, requestid=nil)
+          @UserStatus = userstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserStatus = params['UserStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -12726,6 +12905,33 @@ module TencentCloud
           @Duration = params['Duration']
           @ModuleCodec = params['ModuleCodec']
           @Resolution = params['Resolution']
+        end
+      end
+
+      # 转场信息
+      class TransitionTypeInfo < TencentCloud::Common::AbstractModel
+        # @param TransitionType: 转场名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransitionType: String
+        # @param SourceUrl: 素材url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceUrl: String
+        # @param Index: 转场的下标，可用来排序，从1开始递增
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Integer
+
+        attr_accessor :TransitionType, :SourceUrl, :Index
+
+        def initialize(transitiontype=nil, sourceurl=nil, index=nil)
+          @TransitionType = transitiontype
+          @SourceUrl = sourceurl
+          @Index = index
+        end
+
+        def deserialize(params)
+          @TransitionType = params['TransitionType']
+          @SourceUrl = params['SourceUrl']
+          @Index = params['Index']
         end
       end
 

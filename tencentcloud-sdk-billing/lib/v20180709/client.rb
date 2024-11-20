@@ -53,6 +53,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口迁移到其他业务
+
         # 创建节省计划订单，创建订单完成需调用PayDeals接口完成订单支付
 
         # @param request: Request instance for CreateSavingPlanOrder.
@@ -972,6 +974,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口迁移到其他业务
+
         # 查用当前用户明细节省计划总览查询时段内的使用情况
 
         # @param request: Request instance for DescribeSavingPlanOverview.
@@ -1019,6 +1023,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口迁移到其他业务
 
         # 查用当前用户明细节省计划查询时段内的使用情况
 

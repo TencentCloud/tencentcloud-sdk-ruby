@@ -2907,8 +2907,10 @@ module TencentCloud
       # 私有网络和基础网络互通设备
       class ClassicLinkInstance < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param InstanceId: 云服务器实例唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
 
         attr_accessor :VpcId, :InstanceId
@@ -3629,7 +3631,7 @@ module TencentCloud
 
       # CreateDefaultSecurityGroup请求参数结构体
       class CreateDefaultSecurityGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
+        # @param ProjectId: 项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">qcloud控制台项目管理页面</a>查询到。
         # @type ProjectId: String
 
         attr_accessor :ProjectId
@@ -12435,14 +12437,17 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param NeedRouterInfo: 是否需要获取路由策略信息，默认获取，当控制台不需要拉取路由策略信息时，改为False。
+        # @type NeedRouterInfo: Boolean
 
-        attr_accessor :Filters, :RouteTableIds, :Offset, :Limit
+        attr_accessor :Filters, :RouteTableIds, :Offset, :Limit, :NeedRouterInfo
 
-        def initialize(filters=nil, routetableids=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, routetableids=nil, offset=nil, limit=nil, needrouterinfo=nil)
           @Filters = filters
           @RouteTableIds = routetableids
           @Offset = offset
           @Limit = limit
+          @NeedRouterInfo = needrouterinfo
         end
 
         def deserialize(params)
@@ -12457,6 +12462,7 @@ module TencentCloud
           @RouteTableIds = params['RouteTableIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @NeedRouterInfo = params['NeedRouterInfo']
         end
       end
 
@@ -13590,10 +13596,7 @@ module TencentCloud
       class DescribeTrafficPackagesRequest < TencentCloud::Common::AbstractModel
         # @param TrafficPackageIds: 共享流量包ID，支持批量
         # @type TrafficPackageIds: Array
-        # @param Filters: 每次请求的`Filters`的上限为10。参数不支持同时指定`TrafficPackageIds`和`Filters`。详细的过滤条件如下：
-        # <li> traffic-package_id - String - 是否必填：否 - （过滤条件）按照共享流量包的唯一标识ID过滤。</li>
-        # <li> traffic-package-name - String - 是否必填：否 - （过滤条件）按照共享流量包名称过滤。不支持模糊过滤。</li>
-        # <li> status - String - 是否必填：否 - （过滤条件）按照共享流量包状态过滤。可选状态：[AVAILABLE|EXPIRED|EXHAUSTED]</li>
+        # @param Filters: 每次请求的`Filters`的上限为10。参数不支持同时指定`TrafficPackageIds`和`Filters`。详细的过滤条件如下：<li> traffic-package_id - String - 是否必填：否 - （过滤条件）按照共享流量包的唯一标识ID过滤。</li><li> traffic-package-name - String - 是否必填：否 - （过滤条件）按照共享流量包名称过滤。不支持模糊过滤。</li><li> status - String - 是否必填：否 - （过滤条件）按照共享流量包状态过滤。可选状态：[AVAILABLE|EXPIRED|EXHAUSTED]</li>
         # @type Filters: Array
         # @param Offset: 分页参数
         # @type Offset: Integer
@@ -14354,7 +14357,7 @@ module TencentCloud
         # <li>tag:tag-key：按照标签键值对进行过滤，非必填参数。 其中 tag-key 请使用具体的标签键进行替换，可参考示例2。</li>
         #   **说明：**若同一个过滤条件（Filter）存在多个Values，则同一Filter下Values间的关系为逻辑或（OR）关系；若存在多个过滤条件（Filter），Filter之间的关系为逻辑与（AND）关系。
         # <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
-        # <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 取值范围：'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调。</li>
+        # <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 取值范围：'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联通。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -20074,7 +20077,7 @@ module TencentCloud
         # @type ServiceTemplateId: String
         # @param ServiceTemplateName: 协议端口模板名称。
         # @type ServiceTemplateName: String
-        # @param Services: 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。
+        # @param Services: 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。协议后面的端口部分长度不能超过128个字符。
         # @type Services: Array
         # @param ServicesExtra: 支持添加备注的协议端口信息，支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。
         # @type ServicesExtra: Array
@@ -23848,8 +23851,10 @@ module TencentCloud
       # 路由表关联关系
       class RouteTableAssociation < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param RouteTableId: 路由表实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableId: String
 
         attr_accessor :SubnetId, :RouteTableId

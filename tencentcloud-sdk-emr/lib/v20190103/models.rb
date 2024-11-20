@@ -1666,7 +1666,7 @@ module TencentCloud
         # @type PayMode: Integer
         # @param DiskType: 实例存储类型，填写CLOUD_HSSD，表示性能云存储。
         # @type DiskType: String
-        # @param DiskSize: 实例单节点磁盘容量，单位GB，单节点磁盘容量需大于等于100，小于等于10000，容量调整步长为20。
+        # @param DiskSize: 实例单节点磁盘容量，单位GB，单节点磁盘容量需大于等于100，小于等于250*CPU核心数，容量调整步长为100。
         # @type DiskSize: Integer
         # @param NodeType: 实例节点规格，可填写4C16G、8C32G、16C64G、32C128G，不区分大小写。
         # @type NodeType: String

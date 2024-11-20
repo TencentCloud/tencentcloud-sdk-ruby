@@ -2016,6 +2016,49 @@ module TencentCloud
         end
       end
 
+      # RebootMachines请求参数结构体
+      class RebootMachinesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param MachineNames: 节点名字列表，一次请求，传入节点数量上限为100个
+        # @type MachineNames: Array
+        # @param StopType: 实例的关闭模式。取值范围：
+        # soft_first：表示在正常关闭失败后进行强制关闭
+        # hard：直接强制关闭
+        # soft：仅软关机默认取值：soft。
+        # @type StopType: String
+
+        attr_accessor :ClusterId, :MachineNames, :StopType
+
+        def initialize(clusterid=nil, machinenames=nil, stoptype=nil)
+          @ClusterId = clusterid
+          @MachineNames = machinenames
+          @StopType = stoptype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MachineNames = params['MachineNames']
+          @StopType = params['StopType']
+        end
+      end
+
+      # RebootMachines返回参数结构体
+      class RebootMachinesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 普通节点信息
       class RegularNodeInfo < TencentCloud::Common::AbstractModel
         # @param InstanceAdvancedSettings: 节点配置
@@ -2145,6 +2188,85 @@ module TencentCloud
         def deserialize(params)
           @FieldName = params['FieldName']
           @OrderType = params['OrderType']
+        end
+      end
+
+      # StartMachines请求参数结构体
+      class StartMachinesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param MachineNames: 节点名字列表，一次请求，传入节点数量上限为100个
+        # @type MachineNames: Array
+
+        attr_accessor :ClusterId, :MachineNames
+
+        def initialize(clusterid=nil, machinenames=nil)
+          @ClusterId = clusterid
+          @MachineNames = machinenames
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MachineNames = params['MachineNames']
+        end
+      end
+
+      # StartMachines返回参数结构体
+      class StartMachinesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopMachines请求参数结构体
+      class StopMachinesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param MachineNames: 节点名字列表，一次请求，传入节点数量上限为100个
+        # @type MachineNames: Array
+        # @param StopType: 实例的关闭模式。取值范围：
+        # soft_first：表示在正常关闭失败后进行强制关闭
+        # hard：直接强制关闭
+        # soft：仅软关机
+        # @type StopType: String
+
+        attr_accessor :ClusterId, :MachineNames, :StopType
+
+        def initialize(clusterid=nil, machinenames=nil, stoptype=nil)
+          @ClusterId = clusterid
+          @MachineNames = machinenames
+          @StopType = stoptype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MachineNames = params['MachineNames']
+          @StopType = params['StopType']
+        end
+      end
+
+      # StopMachines返回参数结构体
+      class StopMachinesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

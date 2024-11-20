@@ -21,7 +21,7 @@ module TencentCloud
       class AddClusterStorageOptionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param StorageOption: 集群存储选项。
+        # @param StorageOption: 集群存储选项；集群已存在的节点和新增节点都会挂载此存储。
         # @type StorageOption: :class:`Tencentcloud::Thpc.v20230321.models.StorageOption`
 
         attr_accessor :ClusterId, :StorageOption

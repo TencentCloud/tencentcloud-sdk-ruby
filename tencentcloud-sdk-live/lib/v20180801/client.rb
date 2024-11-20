@@ -1320,6 +1320,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用来查询账号下所有的导播台列表
+
+        # @param request: Request instance for DescribeCasterList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterListResponse`
+        def DescribeCasterList(request)
+          body = send_request('DescribeCasterList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来获取所有的转场名称及其对应的素材url。
+
+        # @param request: Request instance for DescribeCasterTransitionTypes.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterTransitionTypesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterTransitionTypesResponse`
+        def DescribeCasterTransitionTypes(request)
+          body = send_request('DescribeCasterTransitionTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterTransitionTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用来查询当前APPID导播台业务状态
+
+        # @param request: Request instance for DescribeCasterUserStatus.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterUserStatusRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterUserStatusResponse`
+        def DescribeCasterUserStatus(request)
+          body = send_request('DescribeCasterUserStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterUserStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询并发录制路数，对慢直播和普通直播适用。
 
         # @param request: Request instance for DescribeConcurrentRecordStreamNum.

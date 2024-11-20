@@ -4508,18 +4508,21 @@ module TencentCloud
         # @type ProjectId: String
         # @param FolderName: 文件夹名称
         # @type FolderName: String
-        # @param WorkflowId: 工作量ID
+        # @param WorkflowId: 工作流ID
         # @type WorkflowId: String
         # @param ParentFolderId: 父文件夹ID
         # @type ParentFolderId: String
+        # @param TaskNodeType: 目录分类
+        # @type TaskNodeType: String
 
-        attr_accessor :ProjectId, :FolderName, :WorkflowId, :ParentFolderId
+        attr_accessor :ProjectId, :FolderName, :WorkflowId, :ParentFolderId, :TaskNodeType
 
-        def initialize(projectid=nil, foldername=nil, workflowid=nil, parentfolderid=nil)
+        def initialize(projectid=nil, foldername=nil, workflowid=nil, parentfolderid=nil, tasknodetype=nil)
           @ProjectId = projectid
           @FolderName = foldername
           @WorkflowId = workflowid
           @ParentFolderId = parentfolderid
+          @TaskNodeType = tasknodetype
         end
 
         def deserialize(params)
@@ -4527,6 +4530,7 @@ module TencentCloud
           @FolderName = params['FolderName']
           @WorkflowId = params['WorkflowId']
           @ParentFolderId = params['ParentFolderId']
+          @TaskNodeType = params['TaskNodeType']
         end
       end
 

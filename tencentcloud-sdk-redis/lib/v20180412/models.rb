@@ -914,7 +914,7 @@ module TencentCloud
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TypeId: 实例类型。
-        # <ul><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li><li>15：Redis 6.2 内存版（标准架构）。</li><li>16：Redis 6.2 内存版（集群架构）。</li><li>17：Redis 7.0 内存版（标准架构）。</li><li>18：Redis 7.0 内存版（集群架构）。</li></ul>
+        # <ul><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li><li>15：Redis 6.2 内存版（标准架构）。</li><li>16：Redis 6.2 内存版（集群架构）。</li><li>17：Redis 7.0 内存版（标准架构）。</li><li>18：Redis 7.0 内存版（集群架构）。</li>说明：CKV 版本当前有存量用户使用，暂时保留。</ul>
         # @type TypeId: Integer
         # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍。具体规格，请通过 [DescribeProductInfo](https://cloud.tencent.com/document/api/239/30600) 接口查询全地域的售卖规格。
         # - **TypeId**为标准架构时，**MemSize**是实例总内存容量；
@@ -934,8 +934,8 @@ module TencentCloud
         # @type ZoneId: Integer
         # @param Password: 访问实例的密码。
         # - 当输入参数**NoAuth**为**true**时，指设置实例为免密码访问，Password可不用配置，否则Password为必填参数。
-        # - 当实例类型**TypeId**为Redis 2.8 内存版标准架构、Redis 4.0、5.0、6.0内存版标准架构或集群架构时，其密码复杂度要求为：8-30个字符，至少包含小写字母、大写字母、数字和字符()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
-        # - 当实例类型**TypeId**为CKV 3.2 内存版标准架构或集群架构时，其密码复杂度为：8-30个字符，必须包含字母和数字，且 不包含其他字符。
+        # - 当实例类型**TypeId**为Redis 2.8 内存版标准架构、Redis 4.0、5.0、6.0内存版标准架构或集群架构时，其密码复杂度要求为：8-64个字符，至少包含小写字母、大写字母、数字和字符()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
+        # - 当实例类型**TypeId**为CKV 3.2 内存版标准架构或集群架构时，其密码复杂度为：8-30个字符，必须包含字母和数字，且不包含其他字符。
         # @type Password: String
         # @param VpcId: 私有网络ID。如果不配置该参数则默认选择基础网络。请登录 [私有网络](https://console.cloud.tencent.com/vpc)控制台查询具体的ID。
         # @type VpcId: String
@@ -6734,7 +6734,7 @@ module TencentCloud
 
       # ModifyNetworkConfig请求参数结构体
       class ModifyNetworkConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param Operation: 指预修改网络的类别，包括：
         # - changeVip：指切换私有网络，包含其内网IPv4地址及端口。
@@ -6744,14 +6744,17 @@ module TencentCloud
         # @type Operation: String
         # @param Vip: 指实例私有网络内网 IPv4 地址。当**Operation**为**changeVip**时，需配置该参数。
         # @type Vip: String
-        # @param VpcId: 指修改后的私有网络 ID，当**Operation**为**changeVpc**或**changeBaseToVpc**时，需配置该参数。
+        # @param VpcId: 指修改后的私有网络 ID。
+        # - 当**Operation**为**changeVpc**或**changeBaseToVpc**时，需配置该参数。
+        # - 请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)，切换至**实例详情**页面，在**网络信息**区域，单击所属网络后面的私有网络名称，获取私有网络 ID。
         # @type VpcId: String
-        # @param SubnetId: 指修改后的私有网络所属子网 ID，当**Operation**为**changeVpc**或**changeBaseToVpc**时，需配置该参数。
+        # @param SubnetId: 指修改后的私有网络所属子网 ID。
+        # - 当**Operation**为**changeVpc**或**changeBaseToVpc**时，需配置该参数。
+        # - 请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)，切换至**实例详情**页面，在**网络信息**区域，单击所属网络后面的子网名称，获取子网ID。
         # @type SubnetId: String
         # @param Recycle: 原内网 IPv4 地址保留时长。
         # - 单位：天。
         # - 取值范围：0、1、2、3、7、15。
-
         # **说明**：设置原地址保留时长需最新版SDK，否则原地址将立即释放，查看SDK版本，请参见 [SDK中心](https://cloud.tencent.com/document/sdk)。
         # @type Recycle: Integer
         # @param VPort: 指修改后的网络端口。当**Operation**为**changeVPort**或**changeVip**时，需配置该参数。取值范围为[1024,65535]。
@@ -6790,7 +6793,7 @@ module TencentCloud
         # @type VpcId: String
         # @param Vip: 指实例新的内网 IPv4 地址。
         # @type Vip: String
-        # @param TaskId: 任务 ID。可获取**taskId**，通过接口 **DescribeTaskInfo **查询任务执行状态。
+        # @param TaskId: 任务 ID。获取**taskId**，通过接口 [DescribeTaskInfo](https://cloud.tencent.com/document/product/239/30601) 查询任务执行状态。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6869,11 +6872,11 @@ module TencentCloud
 
       # ModifyReplicationGroup请求参数结构体
       class ModifyReplicationGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组字符串ID
+        # @param GroupId: 复制组ID。请登录[Redis控制台的全球复制](https://console.cloud.tencent.com/redis/replication)页面获取复制组 ID。
         # @type GroupId: String
-        # @param GroupName: 复制组名称
+        # @param GroupName: 修改后的复制组名称。
         # @type GroupName: String
-        # @param Remark: 备注
+        # @param Remark: 备注描述。
         # @type Remark: String
 
         attr_accessor :GroupId, :GroupName, :Remark
@@ -7648,7 +7651,7 @@ module TencentCloud
       class RenewInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Period: 购买时长，单位：月。
         # @type Period: Integer
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param ModifyPayMode: 标识是否修改计费模式。<ul><li>当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 <b>prepaid</b>。</li><li>当前实例计费模式为包年包月方式，可不设置该参数。</li></ul>
         # @type ModifyPayMode: String
