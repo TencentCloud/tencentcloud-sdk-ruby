@@ -823,6 +823,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询录制信息
+
+        # @param request: Request instance for DescribeRecord.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeRecordRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeRecordResponse`
+        def DescribeRecord(request)
+          body = send_request('DescribeRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 录制流查询
 
         # @param request: Request instance for DescribeRecordStream.
@@ -1449,6 +1473,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开始录制
+
+        # @param request: Request instance for StartRecord.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::StartRecordRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::StartRecordResponse`
+        def StartRecord(request)
+          body = send_request('StartRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开始房间的直播。 说明：开始房间接口调用之前需要有用户进入课堂初始化课堂信息。
 
         # @param request: Request instance for StartRoom.
@@ -1459,6 +1507,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止录制
+
+        # @param request: Request instance for StopRecord.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::StopRecordRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::StopRecordResponse`
+        def StopRecord(request)
+          body = send_request('StopRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopRecordResponse.new
             model.deserialize(response['Response'])
             model
           else

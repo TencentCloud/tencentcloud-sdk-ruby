@@ -6456,7 +6456,7 @@ module TencentCloud
       class CreateInput < TencentCloud::Common::AbstractModel
         # @param InputName: 输入名称，可填大小写、数字和下划线，长度为[1, 32]。
         # @type InputName: String
-        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL]。
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST]。
         # @type Protocol: String
         # @param Description: 输入描述，长度为[0, 255]。
         # @type Description: String
@@ -6480,10 +6480,14 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区，非必填，如果开启容灾必须输入两个不同的可用区，否则最多只允许输入一个可用区。
         # @type Zones: Array
+        # @param RISTSettings: 输入的RIST配置信息。
+        # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRISTSettings`
+        # @param InputRegion: 输入节点的地区
+        # @type InputRegion: String
 
-        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :InputRegion
 
-        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil)
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, inputregion=nil)
           @InputName = inputname
           @Protocol = protocol
           @Description = description
@@ -6497,6 +6501,8 @@ module TencentCloud
           @ResilientStream = resilientstream
           @SecurityGroupIds = securitygroupids
           @Zones = zones
+          @RISTSettings = ristsettings
+          @InputRegion = inputregion
         end
 
         def deserialize(params)
@@ -6531,6 +6537,11 @@ module TencentCloud
           end
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
+          unless params['RISTSettings'].nil?
+            @RISTSettings = CreateInputRISTSettings.new
+            @RISTSettings.deserialize(params['RISTSettings'])
+          end
+          @InputRegion = params['InputRegion']
         end
       end
 
@@ -6554,6 +6565,30 @@ module TencentCloud
               @SourceAddresses << hlspullsourceaddress_tmp
             end
           end
+        end
+      end
+
+      # 创建的输入RIST的配置信息。
+      class CreateInputRISTSettings < TencentCloud::Common::AbstractModel
+        # @param Mode: RIST模式，可选[LISTENER]，默认为LISTENER。
+        # @type Mode: String
+        # @param Profile: RIST配置方案，可选[MAIN|SIMPLE]，默认为MAIN。
+        # @type Profile: String
+        # @param Buffer: RIST缓冲区大小，单位为毫秒。最小值为50毫秒，最大值为5000毫秒。默认值：120
+        # @type Buffer: Integer
+
+        attr_accessor :Mode, :Profile, :Buffer
+
+        def initialize(mode=nil, profile=nil, buffer=nil)
+          @Mode = mode
+          @Profile = profile
+          @Buffer = buffer
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Profile = params['Profile']
+          @Buffer = params['Buffer']
         end
       end
 
@@ -6684,7 +6719,7 @@ module TencentCloud
         # @type OutputName: String
         # @param Description: 输出描述。
         # @type Description: String
-        # @param Protocol: 输出协议，可选[SRT|RTP|RTMP|RTMP_PULL]。
+        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP|RIST。
         # @type Protocol: String
         # @param OutputRegion: 输出地区。
         # @type OutputRegion: String
@@ -6703,10 +6738,14 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区，output最多只支持输入一个可用区。
         # @type Zones: Array
+        # @param OutputType: 输出类型：Internet/TencentCSS/StreamLive
+        # @type OutputType: String
+        # @param RISTSettings: 输出的RIST的配置。
+        # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :OutputType, :RISTSettings
 
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, outputtype=nil, ristsettings=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
@@ -6718,6 +6757,8 @@ module TencentCloud
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
           @Zones = zones
+          @OutputType = outputtype
+          @RISTSettings = ristsettings
         end
 
         def deserialize(params)
@@ -6741,6 +6782,11 @@ module TencentCloud
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
+          @OutputType = params['OutputType']
+          unless params['RISTSettings'].nil?
+            @RISTSettings = CreateOutputRistSettings.new
+            @RISTSettings.deserialize(params['RISTSettings'])
+          end
         end
       end
 
@@ -6819,6 +6865,30 @@ module TencentCloud
         def deserialize(params)
           @Ip = params['Ip']
           @Port = params['Port']
+        end
+      end
+
+      # 创建媒体传输流的输出的RIST配置。
+      class CreateOutputRistSettings < TencentCloud::Common::AbstractModel
+        # @param Mode: RIST模式，可选[LISTENER|CALLER]，默认为LISTENER。
+        # @type Mode: String
+        # @param Profile: RIST配置方案，可选[MAIN|SIMPLE]，默认为MAIN。
+        # @type Profile: String
+        # @param Buffer: RIST缓冲区大小，单位为毫秒。最小值为50毫秒，最大值为5000毫秒。默认值：120
+        # @type Buffer: Integer
+
+        attr_accessor :Mode, :Profile, :Buffer
+
+        def initialize(mode=nil, profile=nil, buffer=nil)
+          @Mode = mode
+          @Profile = profile
+          @Buffer = buffer
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Profile = params['Profile']
+          @Buffer = params['Buffer']
         end
       end
 
@@ -9067,10 +9137,13 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区配置，开启容灾情况下最多有两个，顺序和pipeline 0、1对应，否则最多只有一个可用区。
         # @type Zones: Array
+        # @param RISTSettings: 输入的RIST配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRISTSettings`
 
-        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings
 
-        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -9088,6 +9161,7 @@ module TencentCloud
           @ResilientStream = resilientstream
           @SecurityGroupIds = securitygroupids
           @Zones = zones
+          @RISTSettings = ristsettings
         end
 
         def deserialize(params)
@@ -9136,6 +9210,10 @@ module TencentCloud
           end
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
+          unless params['RISTSettings'].nil?
+            @RISTSettings = DescribeInputRISTSettings.new
+            @RISTSettings.deserialize(params['RISTSettings'])
+          end
         end
       end
 
@@ -9159,6 +9237,30 @@ module TencentCloud
               @SourceAddresses << describehlspullsourceaddress_tmp
             end
           end
+        end
+      end
+
+      # 查询输入的RIST配置信息。
+      class DescribeInputRISTSettings < TencentCloud::Common::AbstractModel
+        # @param Mode: RIST模式，可选[LISTENER|CALLER]，默认为LISTENER。
+        # @type Mode: String
+        # @param Profile: RIST配置方案，可选[MAIN|SIMPLE]，默认为MAIN。
+        # @type Profile: String
+        # @param Buffer: RIST缓冲区大小，单位为毫秒。最小值为50毫秒，最大值为5000毫秒。默认值：120
+        # @type Buffer: Integer
+
+        attr_accessor :Mode, :Profile, :Buffer
+
+        def initialize(mode=nil, profile=nil, buffer=nil)
+          @Mode = mode
+          @Profile = profile
+          @Buffer = buffer
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Profile = params['Profile']
+          @Buffer = params['Buffer']
         end
       end
 
@@ -9396,10 +9498,13 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区，output目前最多只支持一个。
         # @type Zones: Array
+        # @param RISTSettings: 输出的RIST配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRISTSettings`
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -9417,6 +9522,7 @@ module TencentCloud
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
           @Zones = zones
+          @RISTSettings = ristsettings
         end
 
         def deserialize(params)
@@ -9462,6 +9568,10 @@ module TencentCloud
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
+          unless params['RISTSettings'].nil?
+            @RISTSettings = DescribeOutputRISTSettings.new
+            @RISTSettings.deserialize(params['RISTSettings'])
+          end
         end
       end
 
@@ -9500,6 +9610,42 @@ module TencentCloud
               describeoutputhlspullserverurl_tmp = DescribeOutputHLSPullServerUrl.new
               describeoutputhlspullserverurl_tmp.deserialize(i)
               @ServerUrls << describeoutputhlspullserverurl_tmp
+            end
+          end
+        end
+      end
+
+      # 查询输出的RIST拉流配置信息。
+      class DescribeOutputRISTSettings < TencentCloud::Common::AbstractModel
+        # @param Mode: RIST模式，可选[LISTENER|CALLER]，默认为LISTENER。
+        # @type Mode: String
+        # @param Profile: RIST配置方案，可选[MAIN|SIMPLE]，默认为MAIN。
+        # @type Profile: String
+        # @param Buffer: RIST缓冲区大小，单位为毫秒。最小值为50毫秒，最大值为5000毫秒。默认值：120
+        # @type Buffer: Integer
+        # @param SourceAddresses: 服务器监听地址，RIST模式为LISTENER时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceAddresses: Array
+
+        attr_accessor :Mode, :Profile, :Buffer, :SourceAddresses
+
+        def initialize(mode=nil, profile=nil, buffer=nil, sourceaddresses=nil)
+          @Mode = mode
+          @Profile = profile
+          @Buffer = buffer
+          @SourceAddresses = sourceaddresses
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Profile = params['Profile']
+          @Buffer = params['Buffer']
+          unless params['SourceAddresses'].nil?
+            @SourceAddresses = []
+            params['SourceAddresses'].each do |i|
+              outputristsourceaddressresp_tmp = OutputRISTSourceAddressResp.new
+              outputristsourceaddressresp_tmp.deserialize(i)
+              @SourceAddresses << outputristsourceaddressresp_tmp
             end
           end
         end
@@ -16162,7 +16308,7 @@ module TencentCloud
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputSRTSettings`
         # @param RTPSettings: RTP的配置信息。
         # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRTPSettings`
-        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP]。
+        # @param Protocol: 输入的协议，可选[SRT|RTP|RTMP|RTMP_PULL|RTSP_PULL|RIST]。
         # 当输出包含RTP时，输入只能是RTP。
         # 当输出包含RTMP时，输入可以是SRT/RTMP。
         # 当输出包含SRT时，输入只能是SRT。
@@ -16181,10 +16327,14 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区，非必填，最多支持输入两个可用区，对于需改接口，只要第二个可用区会参与到资源分配。如果input开启容灾或者涉及RTSP_PULL协议切换时有效(会重新分配地址)。
         # @type Zones: Array
+        # @param RISTSettings: RIST的配置信息。
+        # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRISTSettings`
+        # @param InputRegion: 输入节点的地区
+        # @type InputRegion: String
 
-        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :InputRegion
 
-        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, inputregion=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -16199,6 +16349,8 @@ module TencentCloud
           @ResilientStream = resilientstream
           @SecurityGroupIds = securitygroupids
           @Zones = zones
+          @RISTSettings = ristsettings
+          @InputRegion = inputregion
         end
 
         def deserialize(params)
@@ -16234,6 +16386,11 @@ module TencentCloud
           end
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
+          unless params['RISTSettings'].nil?
+            @RISTSettings = CreateInputRISTSettings.new
+            @RISTSettings.deserialize(params['RISTSettings'])
+          end
+          @InputRegion = params['InputRegion']
         end
       end
 
@@ -16245,7 +16402,7 @@ module TencentCloud
         # @type OutputName: String
         # @param Description: 输出的描述。
         # @type Description: String
-        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP。
+        # @param Protocol: 输出的转推协议，支持SRT|RTP|RTMP|RTMP_PULL|RTSP|RIST。
         # @type Protocol: String
         # @param SRTSettings: 转推SRT的配置。
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputSRTSettings`
@@ -16262,10 +16419,12 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param Zones: 可用区
         # @type Zones: Array
+        # @param RISTSettings: 转推RIST的配置。
+        # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -16277,6 +16436,7 @@ module TencentCloud
           @MaxConcurrent = maxconcurrent
           @SecurityGroupIds = securitygroupids
           @Zones = zones
+          @RISTSettings = ristsettings
         end
 
         def deserialize(params)
@@ -16300,6 +16460,10 @@ module TencentCloud
           @MaxConcurrent = params['MaxConcurrent']
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zones = params['Zones']
+          unless params['RISTSettings'].nil?
+            @RISTSettings = CreateOutputRistSettings.new
+            @RISTSettings.deserialize(params['RISTSettings'])
+          end
         end
       end
 
@@ -17251,6 +17415,28 @@ module TencentCloud
 
         def deserialize(params)
           @Ip = params['Ip']
+        end
+      end
+
+      # RIST输出的监听地址。
+      class OutputRISTSourceAddressResp < TencentCloud::Common::AbstractModel
+        # @param Ip: 监听IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Port: 监听端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
         end
       end
 

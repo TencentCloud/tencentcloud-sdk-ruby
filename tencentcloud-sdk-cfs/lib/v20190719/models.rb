@@ -2773,15 +2773,19 @@ module TencentCloud
         # @param TieringSizeInBytes: 低频存储容量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TieringSizeInBytes: Integer
+        # @param SecondaryTieringSizeInBytes: 冷存储容量
+        # @type SecondaryTieringSizeInBytes: Integer
 
-        attr_accessor :TieringSizeInBytes
+        attr_accessor :TieringSizeInBytes, :SecondaryTieringSizeInBytes
 
-        def initialize(tieringsizeinbytes=nil)
+        def initialize(tieringsizeinbytes=nil, secondarytieringsizeinbytes=nil)
           @TieringSizeInBytes = tieringsizeinbytes
+          @SecondaryTieringSizeInBytes = secondarytieringsizeinbytes
         end
 
         def deserialize(params)
           @TieringSizeInBytes = params['TieringSizeInBytes']
+          @SecondaryTieringSizeInBytes = params['SecondaryTieringSizeInBytes']
         end
       end
 

@@ -2341,9 +2341,9 @@ module TencentCloud
         # @type HardwareResourceType: String
         # @param SearchFields: 支持搜索的字段
         # @type SearchFields: Array
-        # @param OrderField: 无
+        # @param OrderField: 排序字段
         # @type OrderField: String
-        # @param Asc: 无
+        # @param Asc: 是否升序，1:升序，0:降序
         # @type Asc: Integer
 
         attr_accessor :InstanceId, :NodeFlag, :ExportDb, :Offset, :Limit, :HardwareResourceType, :SearchFields, :OrderField, :Asc
@@ -3723,12 +3723,7 @@ module TencentCloud
         # @type HealthStateId: String
         # @param ServiceName: 服务组件名称，都是大写例如YARN
         # @type ServiceName: String
-        # @param NodeTypeName: 节点名称
-        # master
-        # core
-        # task
-        # common
-        # router
+        # @param NodeTypeName: 节点名称master,core,task,common,router
         # @type NodeTypeName: String
         # @param DataNodeMaintenanceId: 过滤条件：dn是否处于维护状态
         # 0代表所有状态
@@ -5578,11 +5573,7 @@ module TencentCloud
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaInfo`
         # @param ProductId: 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：<li>2：表示EMR-V2.0.1</li><li>16：表示EMR-V2.3.0</li><li>20：表示EMR-V2.5.0</li><li>30：表示EMR-V2.6.0</li><li>38：表示EMR-V2.7.0</li><li>57：表示EMR-V2.8.0</li><li>7：表示EMR-V3.0.0</li><li>25：表示EMR-V3.1.0</li><li>31：表示EMR-V3.1.1</li><li>28：表示EMR-V3.2.0</li><li>33：表示EMR-V3.2.1</li><li>34：表示EMR-V3.3.0</li><li>37：表示EMR-V3.4.0</li><li>44：表示EMR-V3.5.0</li><li>53：表示EMR-V3.6.0</li><li>58：表示EMR-V3.6.1</li><li>47：表示EMR-V4.0.0</li>
         # @type ProductId: Integer
-        # @param SceneName: 场景化取值：
-        # Hadoop-Kudu
-        # Hadoop-Zookeeper
-        # Hadoop-Presto
-        # Hadoop-Hbase
+        # @param SceneName: 场景化取值：Hadoop-Kudu，Hadoop-Zookeeper，Hadoop-Presto，Hadoop-Hbase
         # @type SceneName: String
         # @param ExternalService: 共用组件信息
         # @type ExternalService: Array

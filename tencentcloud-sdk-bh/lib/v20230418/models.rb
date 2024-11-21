@@ -360,7 +360,7 @@ module TencentCloud
       class BindDeviceAccountPrivateKeyRequest < TencentCloud::Common::AbstractModel
         # @param Id: 主机账号ID
         # @type Id: Integer
-        # @param PrivateKey: 主机账号私钥，最新长度128字节，最大长度8192字节
+        # @param PrivateKey: 主机账号私钥，最小长度128字节，最大长度8192字节
         # @type PrivateKey: String
         # @param PrivateKeyPassword: 主机账号私钥口令，最大长度256字节
         # @type PrivateKeyPassword: String

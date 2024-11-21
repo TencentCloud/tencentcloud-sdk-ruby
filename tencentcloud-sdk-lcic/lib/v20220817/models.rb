@@ -1095,6 +1095,50 @@ module TencentCloud
         end
       end
 
+      # 自定义录制信息
+      class CustomRecordInfo < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param StopTime: 结束时间
+        # @type StopTime: Integer
+        # @param Duration: 总时长
+        # @type Duration: Integer
+        # @param FileFormat: 文件格式
+        # @type FileFormat: String
+        # @param RecordUrl: 流url
+        # @type RecordUrl: String
+        # @param RecordSize: 流大小
+        # @type RecordSize: Integer
+        # @param VideoId: 流ID
+        # @type VideoId: String
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+
+        attr_accessor :StartTime, :StopTime, :Duration, :FileFormat, :RecordUrl, :RecordSize, :VideoId, :TaskId
+
+        def initialize(starttime=nil, stoptime=nil, duration=nil, fileformat=nil, recordurl=nil, recordsize=nil, videoid=nil, taskid=nil)
+          @StartTime = starttime
+          @StopTime = stoptime
+          @Duration = duration
+          @FileFormat = fileformat
+          @RecordUrl = recordurl
+          @RecordSize = recordsize
+          @VideoId = videoid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @Duration = params['Duration']
+          @FileFormat = params['FileFormat']
+          @RecordUrl = params['RecordUrl']
+          @RecordSize = params['RecordSize']
+          @VideoId = params['VideoId']
+          @TaskId = params['TaskId']
+        end
+      end
+
       # DeleteAppCustomContent请求参数结构体
       class DeleteAppCustomContentRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID。
@@ -2058,6 +2102,61 @@ module TencentCloud
               questioninfo_tmp = QuestionInfo.new
               questioninfo_tmp.deserialize(i)
               @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRecord请求参数结构体
+      class DescribeRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeRecord返回参数结构体
+      class DescribeRecordResponse < TencentCloud::Common::AbstractModel
+        # @param SchoolId: 学校ID
+        # @type SchoolId: Integer
+        # @param ClassId: 课堂ID
+        # @type ClassId: Integer
+        # @param RecordInfo: 录制信息
+        # @type RecordInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SchoolId, :ClassId, :RecordInfo, :RequestId
+
+        def initialize(schoolid=nil, classid=nil, recordinfo=nil, requestid=nil)
+          @SchoolId = schoolid
+          @ClassId = classid
+          @RecordInfo = recordinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SchoolId = params['SchoolId']
+          @ClassId = params['ClassId']
+          unless params['RecordInfo'].nil?
+            @RecordInfo = []
+            params['RecordInfo'].each do |i|
+              customrecordinfo_tmp = CustomRecordInfo.new
+              customrecordinfo_tmp.deserialize(i)
+              @RecordInfo << customrecordinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4683,6 +4782,46 @@ module TencentCloud
         end
       end
 
+      # StartRecord请求参数结构体
+      class StartRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # StartRecord返回参数结构体
+      class StartRecordResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartRoom请求参数结构体
       class StartRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间ID。
@@ -4701,6 +4840,46 @@ module TencentCloud
 
       # StartRoom返回参数结构体
       class StartRoomResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopRecord请求参数结构体
+      class StopRecordRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :RoomId, :TaskId
+
+        def initialize(sdkappid=nil, roomid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopRecord返回参数结构体
+      class StopRecordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

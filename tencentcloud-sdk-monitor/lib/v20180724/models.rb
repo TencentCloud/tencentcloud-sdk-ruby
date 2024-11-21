@@ -12033,24 +12033,26 @@ module TencentCloud
         # @type Region: String
         # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc，分别代表标准集群、弹性集群、边缘集群、注册集群
         # @type ClusterType: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID
         # @type ClusterId: String
-        # @param EnableExternal: 是否开启公网CLB
+        # @param EnableExternal: 是否开启公网 CLB
         # @type EnableExternal: Boolean
-        # @param InClusterPodConfig: 集群内部署组件的pod配置
+        # @param InClusterPodConfig: 集群内部署组件的pod 配置
         # @type InClusterPodConfig: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusClusterAgentPodConfig`
         # @param ExternalLabels: 该集群采集的所有指标都会带上这些labels
         # @type ExternalLabels: Array
-        # @param NotInstallBasicScrape: 是否安装默认采集配置
+        # @param NotInstallBasicScrape: 是否安装默认采集 exporter 和采集配置
         # @type NotInstallBasicScrape: Boolean
-        # @param NotScrape: 是否采集指标，true代表drop所有指标，false代表采集默认指标
+        # @param NotScrape: 是否安装采集配置，true 只安装采集 exporter 不会安装采集配置，false 会同时安装采集配置
         # @type NotScrape: Boolean
+        # @param DropAll: 是否丢弃所有指标，true 代表丢弃所有指标，false 代表采集默认指标
+        # @type DropAll: Boolean
         # @param OpenDefaultRecord: 是否开启默认预聚合规则
         # @type OpenDefaultRecord: Boolean
 
-        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape, :OpenDefaultRecord
+        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape, :DropAll, :OpenDefaultRecord
 
-        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil, opendefaultrecord=nil)
+        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil, dropall=nil, opendefaultrecord=nil)
           @Region = region
           @ClusterType = clustertype
           @ClusterId = clusterid
@@ -12059,6 +12061,7 @@ module TencentCloud
           @ExternalLabels = externallabels
           @NotInstallBasicScrape = notinstallbasicscrape
           @NotScrape = notscrape
+          @DropAll = dropall
           @OpenDefaultRecord = opendefaultrecord
         end
 
@@ -12081,6 +12084,7 @@ module TencentCloud
           end
           @NotInstallBasicScrape = params['NotInstallBasicScrape']
           @NotScrape = params['NotScrape']
+          @DropAll = params['DropAll']
           @OpenDefaultRecord = params['OpenDefaultRecord']
         end
       end

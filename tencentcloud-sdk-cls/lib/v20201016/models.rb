@@ -969,37 +969,37 @@ module TencentCloud
 
       # CKafka的描述-需要投递到的kafka信息
       class Ckafka < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Ckafka 的 InstanceId
+        # @type InstanceId: String
+        # @param TopicName: Ckafka 的 TopicName
+        # @type TopicName: String
         # @param Vip: Ckafka 的 Vip
         # @type Vip: String
         # @param Vport: Ckafka 的 Vport
         # @type Vport: String
-        # @param InstanceId: Ckafka 的 InstanceId
-        # @type InstanceId: String
         # @param InstanceName: Ckafka 的 InstanceName
         # @type InstanceName: String
         # @param TopicId: Ckafka 的 TopicId
         # @type TopicId: String
-        # @param TopicName: Ckafka 的 TopicName
-        # @type TopicName: String
 
-        attr_accessor :Vip, :Vport, :InstanceId, :InstanceName, :TopicId, :TopicName
+        attr_accessor :InstanceId, :TopicName, :Vip, :Vport, :InstanceName, :TopicId
 
-        def initialize(vip=nil, vport=nil, instanceid=nil, instancename=nil, topicid=nil, topicname=nil)
+        def initialize(instanceid=nil, topicname=nil, vip=nil, vport=nil, instancename=nil, topicid=nil)
+          @InstanceId = instanceid
+          @TopicName = topicname
           @Vip = vip
           @Vport = vport
-          @InstanceId = instanceid
           @InstanceName = instancename
           @TopicId = topicid
-          @TopicName = topicname
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TopicName = params['TopicName']
           @Vip = params['Vip']
           @Vport = params['Vport']
-          @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @TopicId = params['TopicId']
-          @TopicName = params['TopicName']
         end
       end
 

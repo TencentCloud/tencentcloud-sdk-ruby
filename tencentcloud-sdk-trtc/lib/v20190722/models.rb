@@ -4664,8 +4664,10 @@ module TencentCloud
         # @type RepeatNum: Integer
         # @param MaxDuration: 循环播放最大时长,仅支持RepeatNum设置-1时生效，取值范围[1, 10080]，单位分钟。
         # @type MaxDuration: Integer
+        # @param Volume: 音量，取值范围[0, 100]，默认100，表示原音量。
+        # @type Volume: Integer
 
-        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
         deprecate :VideoEncodeParams, :none, 2024, 11
         deprecate :VideoEncodeParams=, :none, 2024, 11
@@ -4674,7 +4676,7 @@ module TencentCloud
         deprecate :SourceUrl, :none, 2024, 11
         deprecate :SourceUrl=, :none, 2024, 11
 
-        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil)
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RoomIdType = roomidtype
@@ -4689,6 +4691,7 @@ module TencentCloud
           @AutoPush = autopush
           @RepeatNum = repeatnum
           @MaxDuration = maxduration
+          @Volume = volume
         end
 
         def deserialize(params)
@@ -4712,6 +4715,7 @@ module TencentCloud
           @AutoPush = params['AutoPush']
           @RepeatNum = params['RepeatNum']
           @MaxDuration = params['MaxDuration']
+          @Volume = params['Volume']
         end
       end
 
@@ -5525,21 +5529,25 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param TaskId: 任务的唯一Id，在启动任务成功后会返回。
         # @type TaskId: String
-        # @param StreamUrl: 源流URL【必填】。
+        # @param StreamUrl: 源流URL。
         # @type StreamUrl: String
+        # @param Volume: 音量，取值范围[0, 100]，默认100，表示原音量。
+        # @type Volume: Integer
 
-        attr_accessor :SdkAppId, :TaskId, :StreamUrl
+        attr_accessor :SdkAppId, :TaskId, :StreamUrl, :Volume
 
-        def initialize(sdkappid=nil, taskid=nil, streamurl=nil)
+        def initialize(sdkappid=nil, taskid=nil, streamurl=nil, volume=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
           @StreamUrl = streamurl
+          @Volume = volume
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @TaskId = params['TaskId']
           @StreamUrl = params['StreamUrl']
+          @Volume = params['Volume']
         end
       end
 

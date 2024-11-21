@@ -1660,10 +1660,16 @@ module TencentCloud
         # @param OsImage: OS的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsImage: String
+        # @param InstanceId: **原生节点对应的实例 ID**
 
-        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage
+        # - ins-q47ofw6 表示这个实例是一个 CVM 的实例
+        # - eks-f8mvyaep 表示这个实例是一个 CXM 的实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil)
+        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :InstanceId
+
+        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, instanceid=nil)
           @MachineName = machinename
           @MachineState = machinestate
           @Zone = zone
@@ -1686,6 +1692,7 @@ module TencentCloud
           @VpcId = vpcid
           @SubnetId = subnetid
           @OsImage = osimage
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -1714,6 +1721,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @OsImage = params['OsImage']
+          @InstanceId = params['InstanceId']
         end
       end
 

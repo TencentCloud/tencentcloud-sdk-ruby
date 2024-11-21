@@ -126,7 +126,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询视频翻译任务
+        # 查询视频转译任务
 
         # @param request: Request instance for DescribeVideoTranslateJob.
         # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeVideoTranslateJobRequest`

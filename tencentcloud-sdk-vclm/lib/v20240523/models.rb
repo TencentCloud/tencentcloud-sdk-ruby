@@ -46,7 +46,7 @@ module TencentCloud
 
       # ConfirmVideoTranslateJob请求参数结构体
       class ConfirmVideoTranslateJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 视频翻译任务 ID
+        # @param JobId: 视频转译任务 ID
         # @type JobId: String
         # @param TranslateResults: 待确认文本
         # @type TranslateResults: Array
@@ -73,15 +73,15 @@ module TencentCloud
 
       # ConfirmVideoTranslateJob返回参数结构体
       class ConfirmVideoTranslateJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 视频翻译任务 ID
+        # @param JobId: 视频转译任务 ID。
         # @type JobId: String
-        # @param TaskId: 音频转换任务 ID
+        # @param TaskId: 音频转译任务 ID。
         # @type TaskId: String
-        # @param SessionId: 音频翻译结果确认 session
+        # @param SessionId: 音频转译结果确认 session。
         # @type SessionId: String
-        # @param Status: 视频转译任务状态
+        # @param Status: 该字段与 DescribeVideoTranslateJob 接口的 Status 功能相同，均表示任务状态。0：任务初始化。1：音频翻译中。 2：音频翻译失败。 3：音频翻译成功。 4：音频结果待确认。 5：音频结果已确认完毕。6：视频翻译中。 7：视频翻译失败。 8：视频翻译成功。
         # @type Status: Integer
-        # @param Message: 视频转译任务信息
+        # @param Message: 视频转译任务信息。
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -239,14 +239,19 @@ module TencentCloud
       class DescribeVideoStylizationJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
         # @type JobId: String
-        # @param StatusCode: 任务状态码：
-        # JobInit:  "初始化中"
-        # JobModerationFailed: "审核失败",
-        # JobRunning: "处理中",
-        # JobFailed: "处理失败",
+        # @param StatusCode: 任务状态码。取值说明：
+        # JobInit:  "初始化中"；
+        # JobModerationFailed: "审核失败"；
+        # JobRunning: "处理中"；
+        # JobFailed: "处理失败"；
         # JobSuccess: "处理完成"。
         # @type StatusCode: String
-        # @param StatusMsg: 任务状态描述。
+        # @param StatusMsg: 任务状态描述。取值说明：
+        # JobInit:  "初始化中"；
+        # JobModerationFailed: "审核失败"；
+        # JobRunning: "处理中"；
+        # JobFailed: "处理失败"；
+        # JobSuccess: "处理完成"。
         # @type StatusMsg: String
         # @param ResultVideoUrl: 处理结果视频Url。URL有效期为24小时。
         # @type ResultVideoUrl: String
@@ -290,31 +295,32 @@ module TencentCloud
 
       # DescribeVideoTranslateJob返回参数结构体
       class DescribeVideoTranslateJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobStatus: 任务状态。 1：音频翻译中。 2：音频翻译失败。 3：音频翻译成功。 4：音频结果待确认。 5：音频结果已确认完毕。6：视频翻译中。 7：视频翻译失败。 8：视频翻译成功。
+        # @param JobStatus: 任务状态。0: 任务初始化。 1：音频转译中。 2：音频转译失败。 3：音频转译成功。 4：音频结果待确认。 5：音频结果已确认完毕。6：视频转译中。 7：视频转译失败。 8：视频转译成功。
         # @type JobStatus: Integer
-        # @param JobErrorCode: 任务错误码。
+        # @param JobErrorCode: 本次任务出错的错误码，用来定位问题原因。
         # @type JobErrorCode: String
-        # @param JobErrorMsg: 任务错误信息。
+        # @param JobErrorMsg: 任务错误信息，错误码出现的原因。
         # @type JobErrorMsg: String
-        # @param ResultVideoUrl: 视频翻译结果。
+        # @param ResultVideoUrl: 视频转译生成结果视频url，有效期1天。当JobStatus为8时，该字段返回视频Url。
         # @type ResultVideoUrl: String
-        # @param TranslateResults: 音频翻译结果。
+        # @param TranslateResults: 音频转译后分句翻译内容，包含分句起始时间、源识别文本以及翻译后文本。
+        # 当JobStatus为3、4时，该字段返回分句翻译数据。
         # @type TranslateResults: Array
-        # @param JobConfirm: 是否需要确认翻译结果。0：不需要，1：需要
+        # @param JobConfirm: 是否需要确认翻译结果。0：不需要，1：需要。
         # @type JobConfirm: Integer
-        # @param JobAudioTaskId: 音频任务 ID
+        # @param JobAudioTaskId: 音频任务 ID。
         # @type JobAudioTaskId: String
-        # @param JobVideoModerationId: 视频审核任务ID
+        # @param JobVideoModerationId: 视频审核任务ID。
         # @type JobVideoModerationId: String
-        # @param JobAudioModerationId: 音频审核任务 ID
+        # @param JobAudioModerationId: 音频审核任务 ID。
         # @type JobAudioModerationId: String
-        # @param JobVideoId: 口型驱动任务 ID
+        # @param JobVideoId: 口型驱动任务 ID。
         # @type JobVideoId: String
-        # @param OriginalVideoUrl: 视频素材原始 URL
+        # @param OriginalVideoUrl: 视频素材原始 URL。
         # @type OriginalVideoUrl: String
-        # @param AsrTimestamps: 文本片段及其时间戳
+        # @param AsrTimestamps: 文本片段及其时间戳。
         # @type AsrTimestamps: Array
-        # @param JobSubmitReqId: 提交视频翻译任务时的 requestId
+        # @param JobSubmitReqId: 提交视频转译任务时的 requestId。
         # @type JobSubmitReqId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -583,7 +589,11 @@ module TencentCloud
 
       # SubmitVideoStylizationJob请求参数结构体
       class SubmitVideoStylizationJobRequest < TencentCloud::Common::AbstractModel
-        # @param StyleId: 风格ID，取值说明：2d_anime 2D动漫；3d_cartoon 3D卡通；3d_china 3D国潮；pixel_art	像素风。
+        # @param StyleId: 风格ID。取值说明：
+        # 2d_anime：2D动漫；
+        # 3d_cartoon：3D卡通；
+        # 3d_china：3D国潮；
+        # pixel_art：像素风。
         # @type StyleId: String
         # @param VideoUrl: 输入视频URL。视频要求：
         # - 视频格式：mp4、mov；
@@ -592,9 +602,11 @@ module TencentCloud
         # - 视频大小：不超过200M；
         # - 视频FPS：15～60fps。
         # @type VideoUrl: String
-        # @param StyleStrength: 风格化强度 可选参数["low","medium","high"]
-        # "low":风格化强度弱,"medium":"风格化强度中等","high":"风格化强度强"
-        # 默认为medium
+        # @param StyleStrength: 风格化强度。取值说明：
+        # low：风格化强度弱；
+        # medium：风格化强度中等；
+        # high：风格化强度强。
+        # 默认值为medium。
         # @type StyleStrength: String
 
         attr_accessor :StyleId, :VideoUrl, :StyleStrength
@@ -614,7 +626,7 @@ module TencentCloud
 
       # SubmitVideoStylizationJob返回参数结构体
       class SubmitVideoStylizationJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID
+        # @param JobId: 任务ID。任务有效期为48小时。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -645,7 +657,7 @@ module TencentCloud
         # 目前支持语种范围：zh(中文), en(英文)
         # @type SrcLang: String
         # @param AudioUrl: 当音频 URL 不为空时，不经过语音AI处理，直接以视频为素材用音频内容做视频口型驱动。
-        # 格式要求：支持 mp3、m4a、acc、wav 格式。
+        # 格式要求：支持 mp3、m4a、aac、wav 格式。
         # 时长要求：【5~600】秒，音频时长要匹配视频时长。
         # 大小要求：不超过 100Mb。
         # @type AudioUrl: String

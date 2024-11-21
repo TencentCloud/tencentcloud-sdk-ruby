@@ -11492,7 +11492,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最小值为1，最大值为100。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。
+        # @param Filters: 过滤条件，参数不支持同时指定`NetworkAclId`和`Filters`。
         # <li>protocol - String - 协议，形如：`TCP`。</li>
         # <li>description - String - 描述。</li>
         # <li>destination-cidr - String - 目的CIDR， 形如：'192.168.0.0/24'。</li>
@@ -13955,8 +13955,7 @@ module TencentCloud
 
       # DescribeVpcInstances请求参数结构体
       class DescribeVpcInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，参数不支持同时指定RouteTableIds和Filters。
-        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        # @param Filters: <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
         # <li>instance-id - String - （过滤条件）云主机实例ID。</li>
         # <li>instance-name - String - （过滤条件）云主机名称。</li>
         # @type Filters: Array

@@ -7434,6 +7434,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已无效
+
         # 获取安全防护状态汇总
 
         # @param request: Request instance for DescribeSecurityProtectionStat.
