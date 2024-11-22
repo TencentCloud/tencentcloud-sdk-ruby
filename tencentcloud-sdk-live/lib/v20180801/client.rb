@@ -151,6 +151,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用来复制导播台配置
+
+        # @param request: Request instance for CopyCaster.
+        # @type request: :class:`Tencentcloud::live::V20180801::CopyCasterRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CopyCasterResponse`
+        def CopyCaster(request)
+          body = send_request('CopyCaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyCasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来创建新的导播台
+
+        # @param request: Request instance for CreateCaster.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateCasterRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateCasterResponse`
+        def CreateCaster(request)
+          body = send_request('CreateCaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
         # 注意：当前最多支持16路混流。
         # 最佳实践：https://cloud.tencent.com/document/product/267/45566
@@ -672,6 +720,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateScreenshotTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来删除一个导播台的所有信息。
+        # 注意，调用该接口后，所有的导播台信息将被清除，包括正在直播的内容也将直接中断。
+
+        # @param request: Request instance for DeleteCaster.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteCasterRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteCasterResponse`
+        def DeleteCaster(request)
+          body = send_request('DeleteCaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCasterResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1320,6 +1393,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询导播台信息接口，用来查询导播台状态、描述、输出长、宽等信息
+
+        # @param request: Request instance for DescribeCaster.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterResponse`
+        def DescribeCaster(request)
+          body = send_request('DescribeCaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询导播台PVW任务和PGM任务的展示信息，包括使用的布局、水印、字幕等信息。
+
+        # @param request: Request instance for DescribeCasterDisplayInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterDisplayInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterDisplayInfoResponse`
+        def DescribeCasterDisplayInfo(request)
+          body = send_request('DescribeCasterDisplayInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterDisplayInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来查询账号下所有的导播台列表
 
         # @param request: Request instance for DescribeCasterList.
@@ -1330,6 +1451,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCasterListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来获取导播台视频流的播放url，用来在页面上拉流展示。
+
+        # @param request: Request instance for DescribeCasterPlayUrl.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterPlayUrlRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterPlayUrlResponse`
+        def DescribeCasterPlayUrl(request)
+          body = send_request('DescribeCasterPlayUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterPlayUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2451,6 +2596,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 支持直播时移写入量数据查询。
+
+        # @param request: Request instance for DescribeLiveTimeShiftWriteSizeInfoList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftWriteSizeInfoListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveTimeShiftWriteSizeInfoListResponse`
+        def DescribeLiveTimeShiftWriteSizeInfoList(request)
+          body = send_request('DescribeLiveTimeShiftWriteSizeInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveTimeShiftWriteSizeInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
         # 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
 
@@ -3302,6 +3471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ForbidLiveStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来设置导播台的描述、名称、录制模板id等参数。
+
+        # @param request: Request instance for ModifyCaster.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyCasterRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyCasterResponse`
+        def ModifyCaster(request)
+          body = send_request('ModifyCaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCasterResponse.new
             model.deserialize(response['Response'])
             model
           else

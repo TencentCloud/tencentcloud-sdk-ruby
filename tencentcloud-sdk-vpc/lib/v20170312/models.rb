@@ -2970,15 +2970,19 @@ module TencentCloud
         # @type ProjectId: String
         # @param RemoteRegion: 源Region,跨地域克隆安全组时，需要传入源安全组所属地域信息，例如：克隆广州的安全组到上海，则这里需要传入广州安全的地域信息：ap-guangzhou。
         # @type RemoteRegion: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # 若指定Tags入参且指定IsCloneTags为true，会合并源安全组的标签和新增的标签。
+        # @type Tags: :class:`Tencentcloud::Vpc.v20170312.models.Tag`
 
-        attr_accessor :SecurityGroupId, :GroupName, :GroupDescription, :ProjectId, :RemoteRegion
+        attr_accessor :SecurityGroupId, :GroupName, :GroupDescription, :ProjectId, :RemoteRegion, :Tags
 
-        def initialize(securitygroupid=nil, groupname=nil, groupdescription=nil, projectid=nil, remoteregion=nil)
+        def initialize(securitygroupid=nil, groupname=nil, groupdescription=nil, projectid=nil, remoteregion=nil, tags=nil)
           @SecurityGroupId = securitygroupid
           @GroupName = groupname
           @GroupDescription = groupdescription
           @ProjectId = projectid
           @RemoteRegion = remoteregion
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2987,13 +2991,16 @@ module TencentCloud
           @GroupDescription = params['GroupDescription']
           @ProjectId = params['ProjectId']
           @RemoteRegion = params['RemoteRegion']
+          unless params['Tags'].nil?
+            @Tags = Tag.new
+            @Tags.deserialize(params['Tags'])
+          end
         end
       end
 
       # CloneSecurityGroup返回参数结构体
       class CloneSecurityGroupResponse < TencentCloud::Common::AbstractModel
         # @param SecurityGroup: 安全组对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroup: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3286,7 +3293,6 @@ module TencentCloud
       # CreateAssistantCidr返回参数结构体
       class CreateAssistantCidrResponse < TencentCloud::Common::AbstractModel
         # @param AssistantCidrSet: 辅助CIDR数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssistantCidrSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4993,6 +4999,84 @@ module TencentCloud
 
         def deserialize(params)
           @NatGatewayId = params['NatGatewayId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateReserveIpAddresses请求参数结构体
+      class CreateReserveIpAddressesRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一 ID。
+        # @type VpcId: String
+        # @param IpAddresses: 指定IP申请的内网保留IP地址。
+        # @type IpAddresses: Array
+        # @param IpAddressCount: 不指定IP地址，指定个数自动分配保留内网IP。
+        # @type IpAddressCount: Integer
+        # @param SubnetId: 子网唯一 ID。
+        # @type SubnetId: String
+        # @param Name: 内网保留 IP名称。
+        # @type Name: String
+        # @param Description: 内网保留 IP描述。
+        # @type Description: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+
+        attr_accessor :VpcId, :IpAddresses, :IpAddressCount, :SubnetId, :Name, :Description, :Tags, :ClientToken
+
+        def initialize(vpcid=nil, ipaddresses=nil, ipaddresscount=nil, subnetid=nil, name=nil, description=nil, tags=nil, clienttoken=nil)
+          @VpcId = vpcid
+          @IpAddresses = ipaddresses
+          @IpAddressCount = ipaddresscount
+          @SubnetId = subnetid
+          @Name = name
+          @Description = description
+          @Tags = tags
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @IpAddresses = params['IpAddresses']
+          @IpAddressCount = params['IpAddressCount']
+          @SubnetId = params['SubnetId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # CreateReserveIpAddresses返回参数结构体
+      class CreateReserveIpAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param ReserveIpAddressSet: 内网保留 IP返回信息
+        # @type ReserveIpAddressSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReserveIpAddressSet, :RequestId
+
+        def initialize(reserveipaddressset=nil, requestid=nil)
+          @ReserveIpAddressSet = reserveipaddressset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReserveIpAddressSet'].nil?
+            @ReserveIpAddressSet = []
+            params['ReserveIpAddressSet'].each do |i|
+              reserveipaddressinfo_tmp = ReserveIpAddressInfo.new
+              reserveipaddressinfo_tmp.deserialize(i)
+              @ReserveIpAddressSet << reserveipaddressinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7734,6 +7818,42 @@ module TencentCloud
         end
       end
 
+      # DeleteReserveIpAddresses请求参数结构体
+      class DeleteReserveIpAddressesRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一 ID。
+        # @type VpcId: String
+        # @param ReserveIpIds: 内网保留IP地址列表。
+        # @type ReserveIpIds: Array
+
+        attr_accessor :VpcId, :ReserveIpIds
+
+        def initialize(vpcid=nil, reserveipids=nil)
+          @VpcId = vpcid
+          @ReserveIpIds = reserveipids
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @ReserveIpIds = params['ReserveIpIds']
+        end
+      end
+
+      # DeleteReserveIpAddresses返回参数结构体
+      class DeleteReserveIpAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRouteTable请求参数结构体
       class DeleteRouteTableRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -8770,7 +8890,6 @@ module TencentCloud
       # DescribeAssistantCidr返回参数结构体
       class DescribeAssistantCidrResponse < TencentCloud::Common::AbstractModel
         # @param AssistantCidrSet: 符合条件的辅助CIDR数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssistantCidrSet: Array
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
@@ -10253,9 +10372,9 @@ module TencentCloud
         # @type CloudLogId: String
         # @param CloudLogState: 流日志存储ID状态。
         # @type CloudLogState: String
-        # @param OrderField: 按某个字段排序,支持字段：flowLogName,createTime，默认按createTime。
+        # @param OrderField: 按某个字段排序,支持字段：flowLogName,createTime，默认按CreatedTime。
         # @type OrderField: String
-        # @param OrderDirection: 升序（asc）还是降序（desc）,默认：desc。
+        # @param OrderDirection: 升序（ASC）还是降序（DESC）,默认：DESC。
         # @type OrderDirection: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -11351,10 +11470,8 @@ module TencentCloud
       # DescribeNetDetectStates返回参数结构体
       class DescribeNetDetectStatesResponse < TencentCloud::Common::AbstractModel
         # @param NetDetectStateSet: 符合条件的网络探测验证结果对象数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetDetectStateSet: Array
         # @param TotalCount: 符合条件的网络探测验证结果对象数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11423,10 +11540,8 @@ module TencentCloud
       # DescribeNetDetects返回参数结构体
       class DescribeNetDetectsResponse < TencentCloud::Common::AbstractModel
         # @param NetDetectSet: 符合条件的网络探测对象数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetDetectSet: Array
         # @param TotalCount: 符合条件的网络探测对象数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11657,16 +11772,12 @@ module TencentCloud
         # @param EniPrivateIpAddressQuantity: 每个标准型弹性网卡可以分配的IP配额。
         # @type EniPrivateIpAddressQuantity: Integer
         # @param ExtendEniQuantity: 扩展型网卡配额。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendEniQuantity: Integer
         # @param ExtendEniPrivateIpAddressQuantity: 每个扩展型弹性网卡可以分配的IP配额。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendEniPrivateIpAddressQuantity: Integer
         # @param SubEniQuantity: 中继网卡配额。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubEniQuantity: Integer
         # @param SubEniPrivateIpAddressQuantity: 每个中继网卡可以分配的IP配额。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubEniPrivateIpAddressQuantity: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12206,6 +12317,83 @@ module TencentCloud
               productquota_tmp = ProductQuota.new
               productquota_tmp.deserialize(i)
               @ProductQuotaSet << productquota_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReserveIpAddresses请求参数结构体
+      class DescribeReserveIpAddressesRequest < TencentCloud::Common::AbstractModel
+        # @param ReserveIpIds: 内网保留IP唯一ID 列表
+        # @type ReserveIpIds: Array
+        # @param Filters: 过滤条件，参数不支持同时指定ReserveIpIds和Filters。
+
+        # reserve-ip-id  - String - （过滤条件）内网保留 IP唯一 ID，形如：rsvip-pvqgv9vi。
+        # vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
+        # subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。
+        # address-ip - String - （过滤条件）内网保留 IP 地址，形如：192.168.0.10。
+        # ip-type - String - （过滤条件）业务类型 ipType，0。
+        # name - String - （过滤条件）名称。
+        # state - String - （过滤条件）状态，可选值：Bind， UnBind。
+        # resource-id - String - （过滤条件）绑定的实例资源，形如：eni-059qmnif。
+        # tag-key - String -（过滤条件）按照标签键进行过滤。
+        # tag:tag-key - String - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+
+        attr_accessor :ReserveIpIds, :Filters, :Offset, :Limit
+
+        def initialize(reserveipids=nil, filters=nil, offset=nil, limit=nil)
+          @ReserveIpIds = reserveipids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ReserveIpIds = params['ReserveIpIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeReserveIpAddresses返回参数结构体
+      class DescribeReserveIpAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param ReserveIpAddressSet: 内网保留 IP返回信息。
+        # @type ReserveIpAddressSet: Array
+        # @param TotalCount: 返回内网保留IP的个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReserveIpAddressSet, :TotalCount, :RequestId
+
+        def initialize(reserveipaddressset=nil, totalcount=nil, requestid=nil)
+          @ReserveIpAddressSet = reserveipaddressset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReserveIpAddressSet'].nil?
+            @ReserveIpAddressSet = []
+            params['ReserveIpAddressSet'].each do |i|
+              reserveipaddressinfo_tmp = ReserveIpAddressInfo.new
+              reserveipaddressinfo_tmp.deserialize(i)
+              @ReserveIpAddressSet << reserveipaddressinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -12793,7 +12981,6 @@ module TencentCloud
       # DescribeSecurityGroups返回参数结构体
       class DescribeSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param SecurityGroupSet: 安全组对象。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupSet: Array
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer
@@ -13704,10 +13891,8 @@ module TencentCloud
       # DescribeUsedIpAddress返回参数结构体
       class DescribeUsedIpAddressResponse < TencentCloud::Common::AbstractModel
         # @param IpAddressStates: 占用ip地址的资源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpAddressStates: Array
         # @param TotalCount: 返回占用资源的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19884,6 +20069,50 @@ module TencentCloud
         end
       end
 
+      # ModifyReserveIpAddress请求参数结构体
+      class ModifyReserveIpAddressRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC唯一 ID。
+        # @type VpcId: String
+        # @param ReserveIpId: 内网保留IP唯一ID。
+        # @type ReserveIpId: String
+        # @param Name: 内网保留 IP名称。
+        # @type Name: String
+        # @param Description: 内网保留 IP描述。
+        # @type Description: String
+
+        attr_accessor :VpcId, :ReserveIpId, :Name, :Description
+
+        def initialize(vpcid=nil, reserveipid=nil, name=nil, description=nil)
+          @VpcId = vpcid
+          @ReserveIpId = reserveipid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @ReserveIpId = params['ReserveIpId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyReserveIpAddress返回参数结构体
+      class ModifyReserveIpAddressResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRouteTableAttribute请求参数结构体
       class ModifyRouteTableAttributeRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -22995,6 +23224,69 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 内网保留IP数据
+      class ReserveIpAddressInfo < TencentCloud::Common::AbstractModel
+        # @param ReserveIpId: 内网保留IP唯一 ID。
+        # @type ReserveIpId: String
+        # @param VpcId: VPC唯一 ID。
+        # @type VpcId: String
+        # @param SubnetId: 子网唯一 ID。
+        # @type SubnetId: String
+        # @param ReserveIpAddress: 内网保留IP地址。
+        # @type ReserveIpAddress: String
+        # @param ResourceId: 内网保留 IP绑定的资源实例 ID。
+        # @type ResourceId: String
+        # @param IpType: 产品申请的IpType。
+        # @type IpType: Integer
+        # @param State: 绑定状态，UnBind-未绑定， Bind-绑定。
+        # @type State: String
+        # @param Name: 保留 IP名称。
+        # @type Name: String
+        # @param Description: 保留 IP描述。
+        # @type Description: String
+        # @param CreatedTime: 创建时间。
+        # @type CreatedTime: String
+        # @param TagSet: 标签键值对。
+        # @type TagSet: Array
+
+        attr_accessor :ReserveIpId, :VpcId, :SubnetId, :ReserveIpAddress, :ResourceId, :IpType, :State, :Name, :Description, :CreatedTime, :TagSet
+
+        def initialize(reserveipid=nil, vpcid=nil, subnetid=nil, reserveipaddress=nil, resourceid=nil, iptype=nil, state=nil, name=nil, description=nil, createdtime=nil, tagset=nil)
+          @ReserveIpId = reserveipid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ReserveIpAddress = reserveipaddress
+          @ResourceId = resourceid
+          @IpType = iptype
+          @State = state
+          @Name = name
+          @Description = description
+          @CreatedTime = createdtime
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @ReserveIpId = params['ReserveIpId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ReserveIpAddress = params['ReserveIpAddress']
+          @ResourceId = params['ResourceId']
+          @IpType = params['IpType']
+          @State = params['State']
+          @Name = params['Name']
+          @Description = params['Description']
+          @CreatedTime = params['CreatedTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 

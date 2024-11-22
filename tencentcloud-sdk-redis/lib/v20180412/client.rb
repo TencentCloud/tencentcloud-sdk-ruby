@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 添加复制组成员
+        # 本接口（AddReplicationInstance）用于为全球复制组添加实例成员。
 
         # @param request: Request instance for AddReplicationInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::AddReplicationInstanceRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开通外网
+        # 本接口（AllocateWanAddress）用于开通实例外网访问。
 
         # @param request: Request instance for AllocateWanAddress.
         # @type request: :class:`Tencentcloud::redis::V20180412::AllocateWanAddressRequest`
@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 应用参数模板到实例
+        # 本接口（ApplyParamsTemplate）用于应用参数模板到实例。
 
         # @param request: Request instance for ApplyParamsTemplate.
         # @type request: :class:`Tencentcloud::redis::V20180412::ApplyParamsTemplateRequest`
@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 复制组实例更换角色
+        # 本接口（ChangeInstanceRole）用于更换复制组内实例的角色。
 
         # @param request: Request instance for ChangeInstanceRole.
         # @type request: :class:`Tencentcloud::redis::V20180412::ChangeInstanceRoleRequest`
@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 回收站实例立即下线
+        # 本接口（CleanUpInstance）用于立即下线回收站的实例。
 
         # @param request: Request instance for CleanUpInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::CleanUpInstanceRequest`
@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 清空Redis实例的实例数据。
+        # 本接口（ClearInstance）用于清空实例数据。
 
         # @param request: Request instance for ClearInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::ClearInstanceRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 关闭SSL
+        # 本接口（CloseSSL）用于关闭SSL加密认证。
 
         # @param request: Request instance for CloseSSL.
         # @type request: :class:`Tencentcloud::redis::V20180412::CloseSSLRequest`
@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（CreateInstanceAccount）用于自定义访问实例的账号。
+        # 本接口（CreateInstanceAccount）用于自定义访问实例的账号。
 
         # @param request: Request instance for CreateInstanceAccount.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateInstanceAccountRequest`
@@ -365,7 +365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（CreateReplicationGroup）用于创建复制组。
+        # 本接口（CreateReplicationGroup）用于创建复制组。
 
         # @param request: Request instance for CreateReplicationGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateReplicationGroupRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除实例子账号
+        # 本接口（DeleteInstanceAccount）用于删除实例子账号。
 
         # @param request: Request instance for DeleteInstanceAccount.
         # @type request: :class:`Tencentcloud::redis::V20180412::DeleteInstanceAccountRequest`
@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 移除复制组成员。注：该接口下线中，请使用 [RemoveReplicationInstance](https://cloud.tencent.com/document/product/239/90099)。
+        # 本接口（DeleteReplicationInstance）移除复制组成员。注：该接口下线中，请使用 [RemoveReplicationInstance](https://cloud.tencent.com/document/product/239/90099)。
 
         # @param request: Request instance for DeleteReplicationInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::DeleteReplicationInstanceRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Redis实例列表信息。该接口已废弃。
+        # 本接口（DescribeCommonDBInstances）用于查询Redis实例列表信息。当前该接口已废弃。
 
         # @param request: Request instance for DescribeCommonDBInstances.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeCommonDBInstancesRequest`
@@ -701,7 +701,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例DTS信息
+        # 本接口（DescribeInstanceDTSInfo）用于查询实例 DTS 信息。
 
         # @param request: Request instance for DescribeInstanceDTSInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceDTSInfoRequest`
@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例访问的耗时分布
+        # 本接口（DescribeInstanceMonitorTookDist）用于查询实例访问的耗时分布。
 
         # @param request: Request instance for DescribeInstanceMonitorTookDist.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceMonitorTookDistRequest`
@@ -965,7 +965,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例CPU耗时
+        # 本接口（DescribeInstanceMonitorTopNCmdTook）用于查询实例 CPU 耗时。
 
         # @param request: Request instance for DescribeInstanceMonitorTopNCmdTook.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceMonitorTopNCmdTookRequest`
@@ -1301,7 +1301,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询项目安全组信息
+        # 本接口（DescribeProjectSecurityGroup）用于查询项目安全组信息。
 
         # @param request: Request instance for DescribeProjectSecurityGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeProjectSecurityGroupRequest`
@@ -1325,7 +1325,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+        # 本接口（DescribeProjectSecurityGroups）用于查询项目的安全组详情。
 
         # @param request: Request instance for DescribeProjectSecurityGroups.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeProjectSecurityGroupsRequest`
@@ -1373,7 +1373,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Redis独享集群概览信息
+        # 本接口（DescribeRedisClusterOverview）用于查询 Redis 独享集群概览信息。
 
         # @param request: Request instance for DescribeRedisClusterOverview.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeRedisClusterOverviewRequest`
@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Redis独享集群列表
+        # 本接口（DescribeRedisClusters）用于查询Redis独享集群列表。
 
         # @param request: Request instance for DescribeRedisClusters.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeRedisClustersRequest`
@@ -1445,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询复制组信息
+        # 本接口（DescribeReplicationGroupInstance）用于查询复制组信息。
 
         # @param request: Request instance for DescribeReplicationGroupInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupInstanceRequest`
@@ -1567,7 +1567,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Tendis慢查询
+        # 本接口（DescribeTendisSlowLog）用于查询 Tendis 实例慢查询。
 
         # @param request: Request instance for DescribeTendisSlowLog.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeTendisSlowLogRequest`
@@ -1591,7 +1591,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 按量计费实例销毁
+        # 本接口（DestroyPostpaidInstance）用于销毁按量计费实例。
 
         # @param request: Request instance for DestroyPostpaidInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::DestroyPostpaidInstanceRequest`
@@ -1615,7 +1615,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 包年包月实例退还
+        # 本接口（DestroyPrepaidInstance）用于退还包年包月计费的 Redis 实例。
 
         # @param request: Request instance for DestroyPrepaidInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::DestroyPrepaidInstanceRequest`
@@ -1639,7 +1639,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 禁用读写分离
+        # 本接口（DisableReplicaReadonly）用于禁用读写分离功能。
 
         # @param request: Request instance for DisableReplicaReadonly.
         # @type request: :class:`Tencentcloud::redis::V20180412::DisableReplicaReadonlyRequest`
@@ -1663,7 +1663,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+        # 本接口（DisassociateSecurityGroups）用于安全组批量解绑实例。
 
         # @param request: Request instance for DisassociateSecurityGroups.
         # @type request: :class:`Tencentcloud::redis::V20180412::DisassociateSecurityGroupsRequest`
@@ -1687,7 +1687,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启用读写分离
+        # 本接口（EnableReplicaReadonly）用于启用读写分离功能。
 
         # @param request: Request instance for EnableReplicaReadonly.
         # @type request: :class:`Tencentcloud::redis::V20180412::EnableReplicaReadonlyRequest`
@@ -1711,7 +1711,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询新购实例价格
+        # 本接口（InquiryPriceCreateInstance）用于查询新购实例价格。
 
         # @param request: Request instance for InquiryPriceCreateInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::InquiryPriceCreateInstanceRequest`
@@ -1759,7 +1759,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例扩容价格
+        # 本接口（InquiryPriceUpgradeInstance）用于查询实例扩容价格。
 
         # @param request: Request instance for InquiryPriceUpgradeInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::InquiryPriceUpgradeInstanceRequest`
@@ -1783,7 +1783,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（KillMasterGroup）模拟故障。
+        # 本接口（KillMasterGroup）用于模拟故障。
 
         # @param request: Request instance for KillMasterGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::KillMasterGroupRequest`
@@ -1903,7 +1903,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例的连接配置，包括带宽和最大连接数。
+        # 本接口（ModifyConnectionConfig）用于修改实例的连接配置，包括带宽和最大连接数。
 
         # @param request: Request instance for ModifyConnectionConfig.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyConnectionConfigRequest`
@@ -1951,7 +1951,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例相关信息
+        # 本接口（ModifyInstance）用于修改实例相关信息。
 
         # @param request: Request instance for ModifyInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceRequest`
@@ -1975,7 +1975,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例子账号
+        # 本接口（ModifyInstanceAccount）用于修改实例子账号。
 
         # @param request: Request instance for ModifyInstanceAccount.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceAccountRequest`
@@ -2071,7 +2071,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
+        # 本接口（ModifyInstanceParams）用于修改 Redis 实例的参数配置。
 
         # @param request: Request instance for ModifyInstanceParams.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceParamsRequest`
@@ -2119,7 +2119,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置实例输入模式
+        # 本接口（ModifyInstanceReadOnly）用于设置实例输入模式。
 
         # @param request: Request instance for ModifyInstanceReadOnly.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceReadOnlyRequest`
@@ -2143,7 +2143,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
+        # 本接口（ModifyMaintenanceWindow）用于修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
 
         # @param request: Request instance for ModifyMaintenanceWindow.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyMaintenanceWindowRequest`
@@ -2191,7 +2191,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改参数模板
+        # 本接口（ModifyParamTemplate）用于修改参数模板。
 
         # @param request: Request instance for ModifyParamTemplate.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyParamTemplateRequest`
@@ -2239,7 +2239,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开启SSL
+        # 本接口（OpenSSL）用于开启 SSL 加密认证功能。
 
         # @param request: Request instance for OpenSSL.
         # @type request: :class:`Tencentcloud::redis::V20180412::OpenSSLRequest`
@@ -2263,7 +2263,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 关闭外网
+        # 本接口（ReleaseWanAddress）用于关闭外网访问。
 
         # @param request: Request instance for ReleaseWanAddress.
         # @type request: :class:`Tencentcloud::redis::V20180412::ReleaseWanAddressRequest`
@@ -2287,7 +2287,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 移除复制组成员
+        # 本接口（RemoveReplicationInstance）用于移除复制组中的实例。
 
         # @param request: Request instance for RemoveReplicationInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::RemoveReplicationInstanceRequest`
@@ -2335,7 +2335,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重置密码
+        # 本接口（ResetPassword）用于重置实例访问密码。
 
         # @param request: Request instance for ResetPassword.
         # @type request: :class:`Tencentcloud::redis::V20180412::ResetPasswordRequest`
@@ -2383,7 +2383,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例解隔离
+        # 本接口（StartupInstance）用于实例解隔离。
 
         # @param request: Request instance for StartupInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::StartupInstanceRequest`
@@ -2431,7 +2431,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 在通过DTS支持跨可用区灾备的场景中，通过该接口交换实例VIP完成实例灾备切换。交换VIP后目标实例可写，源和目标实例VIP互换，同时源与目标实例间DTS同步任务断开
+        # 在通过 DTS 支持跨可用区灾备的场景中，通过该接口（SwitchInstanceVip）交换实例 VIP 完成实例灾备切换。交换 VIP 后目标实例可写，源和目标实例VIP互换，同时源与目标实例间 DTS 同步任务断开。
 
         # @param request: Request instance for SwitchInstanceVip.
         # @type request: :class:`Tencentcloud::redis::V20180412::SwitchInstanceVipRequest`
@@ -2455,7 +2455,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Proxy模拟故障接口
+        # 本接口（SwitchProxy）为 Proxy 模拟故障接口。
 
         # @param request: Request instance for SwitchProxy.
         # @type request: :class:`Tencentcloud::redis::V20180412::SwitchProxyRequest`
@@ -2503,7 +2503,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
+        # 本接口（UpgradeInstanceVersion）用于将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
 
         # @param request: Request instance for UpgradeInstanceVersion.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeInstanceVersionRequest`
@@ -2527,7 +2527,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例proxy版本升级
+        # 本接口（UpgradeProxyVersion）用于升级实例 Proxy 版本。
 
         # @param request: Request instance for UpgradeProxyVersion.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeProxyVersionRequest`
@@ -2551,7 +2551,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 实例小版本升级
+        # 本接口（UpgradeSmallVersion）用于实例小版本升级。
 
         # @param request: Request instance for UpgradeSmallVersion.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeSmallVersionRequest`
@@ -2575,7 +2575,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升级实例支持多AZ
+        # 本接口（UpgradeVersionToMultiAvailabilityZones）用于升级实例支持多AZ。
 
         # @param request: Request instance for UpgradeVersionToMultiAvailabilityZones.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeVersionToMultiAvailabilityZonesRequest`

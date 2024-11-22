@@ -1979,10 +1979,18 @@ module TencentCloud
         # @type JumpToDetail: Boolean
         # @param FlowBatchUrlInfo: 批量签署合同相关信息，指定合同和签署方的信息，用于补充动态签署人。
         # @type FlowBatchUrlInfo: :class:`Tencentcloud::Ess.v20201111.models.FlowBatchUrlInfo`
+        # @param AutoJumpBack: 签署完成后是否自动回跳
+        # <ul><li>false：否, 签署完成不会自动跳转回来(默认)</li><li>true：是, 签署完成会自动跳转回来</li></ul>
 
-        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo
+        # 注:
+        # 1. 该参数<font color="red">只针对APP类型（电子签小程序跳转贵方小程序）场景</font> 的签署链接有效
+        # 2. <font color="red">手机应用APP 或 微信小程序需要监控界面的返回走后序逻辑</font>, 微信小程序的文档可以参考[这个](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onShow-Object-object)
+        # 3. <font color="red">电子签小程序跳转贵方APP，不支持自动跳转，必需用户手动点击完成按钮（微信的限制）</font>
+        # @type AutoJumpBack: Boolean
 
-        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil)
+        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail, :FlowBatchUrlInfo, :AutoJumpBack
+
+        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil, flowbatchurlinfo=nil, autojumpback=nil)
           @Operator = operator
           @Name = name
           @Mobile = mobile
@@ -1994,6 +2002,7 @@ module TencentCloud
           @OrganizationName = organizationname
           @JumpToDetail = jumptodetail
           @FlowBatchUrlInfo = flowbatchurlinfo
+          @AutoJumpBack = autojumpback
         end
 
         def deserialize(params)
@@ -2017,6 +2026,7 @@ module TencentCloud
             @FlowBatchUrlInfo = FlowBatchUrlInfo.new
             @FlowBatchUrlInfo.deserialize(params['FlowBatchUrlInfo'])
           end
+          @AutoJumpBack = params['AutoJumpBack']
         end
       end
 

@@ -726,6 +726,159 @@ module TencentCloud
         end
       end
 
+      # 导播台展示信息，包括使用的布局、水印、字幕、转场、音频等信息
+      class CasterDisplayInfo < TencentCloud::Common::AbstractModel
+        # @param LayoutIndex: 布局Index。
+        # 如果使用自定义布局，为自定义布局下标。
+        # 如果使用单输入布局，如使用输入1，则LayoutIndexType=1， 且LayoutIndex=1，以此类推。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LayoutIndex: Integer
+        # @param MarkPicIndexList: 使用的水印Index列表。
+        # 注：当作为入参使用时，列表中的水印Index需要已经存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkPicIndexList: Array
+        # @param MarkWordIndexList: 使用的文字水印Index列表。
+        # 注：作为入参使用时，列表中的Index需要已经存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordIndexList: Array
+        # @param TransitionType: 使用的转场类型。
+        # 注：支持的转场类型可通过DescribeCasterTransitionTypes接口获取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransitionType: String
+        # @param AudioIndexList: 使用的音频输入Index列表。
+        # 注：当该字段非空时，表示使用布局中对应的输入源的视频，AudioIndexList中对应的输入源的音频。且这些输入源需已存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioIndexList: Array
+        # @param InputStartType: 作为入参时，表示使用点播输入源，单画面输入时，点播文件是否从头开始播放。
+        # 默认为0。
+        # 有效值，0,1。
+        # 0代表不从头播放
+        # 1代表从头播放
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputStartType: Integer
+        # @param LayoutIndexType: LayoutIndex类型，
+        # 默认值:0
+        # 可选值[0,1]
+        # 0:默认类型，代表普通布局
+        # 1:单输入类型，代表单输入布局
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LayoutIndexType: Integer
+
+        attr_accessor :LayoutIndex, :MarkPicIndexList, :MarkWordIndexList, :TransitionType, :AudioIndexList, :InputStartType, :LayoutIndexType
+
+        def initialize(layoutindex=nil, markpicindexlist=nil, markwordindexlist=nil, transitiontype=nil, audioindexlist=nil, inputstarttype=nil, layoutindextype=nil)
+          @LayoutIndex = layoutindex
+          @MarkPicIndexList = markpicindexlist
+          @MarkWordIndexList = markwordindexlist
+          @TransitionType = transitiontype
+          @AudioIndexList = audioindexlist
+          @InputStartType = inputstarttype
+          @LayoutIndexType = layoutindextype
+        end
+
+        def deserialize(params)
+          @LayoutIndex = params['LayoutIndex']
+          @MarkPicIndexList = params['MarkPicIndexList']
+          @MarkWordIndexList = params['MarkWordIndexList']
+          @TransitionType = params['TransitionType']
+          @AudioIndexList = params['AudioIndexList']
+          @InputStartType = params['InputStartType']
+          @LayoutIndexType = params['LayoutIndexType']
+        end
+      end
+
+      # 导播台信息
+      class CasterInfo < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param CasterName: 导播台名称
+        # @type CasterName: String
+        # @param StartLiveTime: 导播台上一次启动pgm的时间，值为unix时间戳。
+        # @type StartLiveTime: Integer
+        # @param Description: 导播台的描述
+        # @type Description: String
+        # @param CreateTime: 导播台创建时间，值为unix时间戳。
+        # @type CreateTime: Integer
+        # @param Status: 导播台状态
+        # 0：停止状态，无预监，无主监
+        # 1：无预监，有主监
+        # 2：有预监，无主监
+        # 3：有预监，有主监
+        # @type Status: Integer
+        # @param ExpireTime: 导播台的过期时间戳。值为-1或unix时间戳。
+        # 默认值为-1。 当值为-1时，表示该导播台永不过期。
+        # 当值为正常unix时间戳时，导播台将在该时间过期。
+        # 导播台过期后，预监与主监画面将自动停止，转推自动停止。
+        # 点播、直播url将停止转拉，推流url需自行停止推流。
+        # @type ExpireTime: Integer
+        # @param DelayTime: 导播台延时播放时间，单位为秒。
+        # @type DelayTime: Integer
+        # @param PgmWidth: 导播台主监输出的宽度，单位为像素。
+        # @type PgmWidth: Integer
+        # @param PgmHeight: 导播台主监输出的高度，单位为像素。
+        # @type PgmHeight: Integer
+        # @param PgmFps: 导播台主监输出的帧率。
+        # @type PgmFps: Integer
+        # @param PgmBitRate: 导播台主监输出的码率，单位为kbps
+        # @type PgmBitRate: Integer
+        # @param PgmAudioBitRate: 导播台主监输出的音频码率，单位为kbps。
+        # @type PgmAudioBitRate: Integer
+        # @param FeeType: 导播台的计费类型。
+        # 0 通用型 1 播单型。
+        # 注： 本参数暂无作用。
+        # @type FeeType: Integer
+        # @param RecordTemplateId: 录制模板id。
+        # @type RecordTemplateId: Integer
+        # @param RecordStatus: 录制状态。
+        # 0：未录制
+        # 1：录制中
+        # @type RecordStatus: Integer
+        # @param RecordTaskId: 录制接口返回的taskid
+        # @type RecordTaskId: String
+
+        attr_accessor :CasterId, :CasterName, :StartLiveTime, :Description, :CreateTime, :Status, :ExpireTime, :DelayTime, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :PgmAudioBitRate, :FeeType, :RecordTemplateId, :RecordStatus, :RecordTaskId
+
+        def initialize(casterid=nil, castername=nil, startlivetime=nil, description=nil, createtime=nil, status=nil, expiretime=nil, delaytime=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, pgmaudiobitrate=nil, feetype=nil, recordtemplateid=nil, recordstatus=nil, recordtaskid=nil)
+          @CasterId = casterid
+          @CasterName = castername
+          @StartLiveTime = startlivetime
+          @Description = description
+          @CreateTime = createtime
+          @Status = status
+          @ExpireTime = expiretime
+          @DelayTime = delaytime
+          @PgmWidth = pgmwidth
+          @PgmHeight = pgmheight
+          @PgmFps = pgmfps
+          @PgmBitRate = pgmbitrate
+          @PgmAudioBitRate = pgmaudiobitrate
+          @FeeType = feetype
+          @RecordTemplateId = recordtemplateid
+          @RecordStatus = recordstatus
+          @RecordTaskId = recordtaskid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @CasterName = params['CasterName']
+          @StartLiveTime = params['StartLiveTime']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @DelayTime = params['DelayTime']
+          @PgmWidth = params['PgmWidth']
+          @PgmHeight = params['PgmHeight']
+          @PgmFps = params['PgmFps']
+          @PgmBitRate = params['PgmBitRate']
+          @PgmAudioBitRate = params['PgmAudioBitRate']
+          @FeeType = params['FeeType']
+          @RecordTemplateId = params['RecordTemplateId']
+          @RecordStatus = params['RecordStatus']
+          @RecordTaskId = params['RecordTaskId']
+        end
+      end
+
       # 下行播放统计指标
       class CdnPlayStatData < TencentCloud::Common::AbstractModel
         # @param Time: 时间点，
@@ -1098,6 +1251,147 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Num = params['Num']
+        end
+      end
+
+      # CopyCaster请求参数结构体
+      class CopyCasterRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 源导播台的ID
+        # @type CasterId: Integer
+        # @param CasterName: 复制产生的新导播台名称
+        # @type CasterName: String
+        # @param OutputStreamId: 复制产生的导播台推送到云直播的流id
+        # 注意：该流id不能与云直播中的流id重复
+        # @type OutputStreamId: String
+
+        attr_accessor :CasterId, :CasterName, :OutputStreamId
+
+        def initialize(casterid=nil, castername=nil, outputstreamid=nil)
+          @CasterId = casterid
+          @CasterName = castername
+          @OutputStreamId = outputstreamid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @CasterName = params['CasterName']
+          @OutputStreamId = params['OutputStreamId']
+        end
+      end
+
+      # CopyCaster返回参数结构体
+      class CopyCasterResponse < TencentCloud::Common::AbstractModel
+        # @param CasterId: 复制生成的导播台ID
+        # @type CasterId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CasterId, :RequestId
+
+        def initialize(casterid=nil, requestid=nil)
+          @CasterId = casterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCaster请求参数结构体
+      class CreateCasterRequest < TencentCloud::Common::AbstractModel
+        # @param CasterName: 导播台名称
+        # @type CasterName: String
+        # @param Description: 导播台的描述
+        # 最大允许长度256
+        # @type Description: String
+        # @param ExpireTime: 导播台的过期时间戳。值为-1或unix时间戳。
+        # 默认值为-1。
+        # 当值为-1时，表示该导播台永不过期。
+        # 当值为正常unix时间戳时，导播台将在该时间过期。
+        # 导播台过期后，预监与主监画面将自动停止，转推自动停止。
+        # 点播、直播url将停止转拉，推流url需自行停止推流。
+        # @type ExpireTime: Integer
+        # @param DelayTime: 导播台延时播放时间，单位为秒。
+        # 默认为0，最大支持300秒
+        # @type DelayTime: Integer
+        # @param TransitionType: 导播台转场类型。
+        # 默认为空。
+        # 允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。
+        # @type TransitionType: String
+        # @param PgmWidth: 导播台主监输出的宽度，单位为像素。
+        # 默认为1280，最大允许4096。
+        # @type PgmWidth: Integer
+        # @param PgmHeight: 导播台主监输出的高度，单位为像素。
+        # 默认为720，最大允许2160。
+        # @type PgmHeight: Integer
+        # @param PgmFps: 导播台主监输出的帧率。
+        # 默认为0，表示随源输出。
+        # 最大支持60。
+        # @type PgmFps: Integer
+        # @param PgmBitRate: 导播台主监输出的码率，单位为kbps。
+        # 默认为0，表示随源的码率输出。
+        # 最大允许10000kbps。
+        # @type PgmBitRate: Integer
+        # @param FeeType: 导播台的计费类型。
+        # 0 通用型
+        # 1 播单型。
+        # 注： 本参数暂无作用。
+        # @type FeeType: Integer
+        # @param PgmAudioBitRate: 导播台主监输出的音频码率，单位为kbps。
+        # 可选项：[0, 128, 192, 256]
+        # 默认值为0，表示随源的音频码率输出。
+        # @type PgmAudioBitRate: Integer
+
+        attr_accessor :CasterName, :Description, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :PgmAudioBitRate
+
+        def initialize(castername=nil, description=nil, expiretime=nil, delaytime=nil, transitiontype=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, feetype=nil, pgmaudiobitrate=nil)
+          @CasterName = castername
+          @Description = description
+          @ExpireTime = expiretime
+          @DelayTime = delaytime
+          @TransitionType = transitiontype
+          @PgmWidth = pgmwidth
+          @PgmHeight = pgmheight
+          @PgmFps = pgmfps
+          @PgmBitRate = pgmbitrate
+          @FeeType = feetype
+          @PgmAudioBitRate = pgmaudiobitrate
+        end
+
+        def deserialize(params)
+          @CasterName = params['CasterName']
+          @Description = params['Description']
+          @ExpireTime = params['ExpireTime']
+          @DelayTime = params['DelayTime']
+          @TransitionType = params['TransitionType']
+          @PgmWidth = params['PgmWidth']
+          @PgmHeight = params['PgmHeight']
+          @PgmFps = params['PgmFps']
+          @PgmBitRate = params['PgmBitRate']
+          @FeeType = params['FeeType']
+          @PgmAudioBitRate = params['PgmAudioBitRate']
+        end
+      end
+
+      # CreateCaster返回参数结构体
+      class CreateCasterResponse < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CasterId, :RequestId
+
+        def initialize(casterid=nil, requestid=nil)
+          @CasterId = casterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2750,6 +3044,38 @@ module TencentCloud
         end
       end
 
+      # DeleteCaster请求参数结构体
+      class DeleteCasterRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 待删除的导播台ID
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DeleteCaster返回参数结构体
+      class DeleteCasterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLiveCallbackRule请求参数结构体
       class DeleteLiveCallbackRuleRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 推流域名。
@@ -3869,6 +4195,68 @@ module TencentCloud
         end
       end
 
+      # DescribeCasterDisplayInfo请求参数结构体
+      class DescribeCasterDisplayInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterDisplayInfo返回参数结构体
+      class DescribeCasterDisplayInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 导播台状态
+        # 0：停止状态，无预监，无主监
+        # 1：无预监，有主监
+        # 2：有预监，无主监
+        # 3：有预监，有主监
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param PvwDisplayInfo: 预监使用的展示参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PvwDisplayInfo: :class:`Tencentcloud::Live.v20180801.models.CasterDisplayInfo`
+        # @param PgmDisplayInfo: 主监使用的展示参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PgmDisplayInfo: :class:`Tencentcloud::Live.v20180801.models.CasterDisplayInfo`
+        # @param StartLiveTime: 启动直播的时间，值为unix时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartLiveTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :PvwDisplayInfo, :PgmDisplayInfo, :StartLiveTime, :RequestId
+
+        def initialize(status=nil, pvwdisplayinfo=nil, pgmdisplayinfo=nil, startlivetime=nil, requestid=nil)
+          @Status = status
+          @PvwDisplayInfo = pvwdisplayinfo
+          @PgmDisplayInfo = pgmdisplayinfo
+          @StartLiveTime = startlivetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['PvwDisplayInfo'].nil?
+            @PvwDisplayInfo = CasterDisplayInfo.new
+            @PvwDisplayInfo.deserialize(params['PvwDisplayInfo'])
+          end
+          unless params['PgmDisplayInfo'].nil?
+            @PgmDisplayInfo = CasterDisplayInfo.new
+            @PgmDisplayInfo.deserialize(params['PgmDisplayInfo'])
+          end
+          @StartLiveTime = params['StartLiveTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCasterList请求参数结构体
       class DescribeCasterListRequest < TencentCloud::Common::AbstractModel
 
@@ -3903,6 +4291,103 @@ module TencentCloud
               casterbriefinfo_tmp.deserialize(i)
               @CasterList << casterbriefinfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterPlayUrl请求参数结构体
+      class DescribeCasterPlayUrlRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param PlayUrlType: 请求播放url的类型。
+        # 取值范围[1，2，3]
+        # 1：获取输入源的播放url
+        # 2：获取pvw的播放url
+        # 3：获取pgm的播放url
+        # @type PlayUrlType: Integer
+        # @param PlayUrlIndex: 仅在PlayUrlType为1时生效，此时该参数表示请求的输入源Index。
+        # 注：对应的输入源必须存在。
+        # @type PlayUrlIndex: Integer
+
+        attr_accessor :CasterId, :PlayUrlType, :PlayUrlIndex
+
+        def initialize(casterid=nil, playurltype=nil, playurlindex=nil)
+          @CasterId = casterid
+          @PlayUrlType = playurltype
+          @PlayUrlIndex = playurlindex
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @PlayUrlType = params['PlayUrlType']
+          @PlayUrlIndex = params['PlayUrlIndex']
+        end
+      end
+
+      # DescribeCasterPlayUrl返回参数结构体
+      class DescribeCasterPlayUrlResponse < TencentCloud::Common::AbstractModel
+        # @param PlayUrl: 播放url。
+        # 当导播台不存在预监或主监时，若请求预监或主监的播放地址，该字段为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlayUrl: String
+        # @param WebRTCPlayUrl: webrtc协议播放地址。
+        # 当导播台不存在预监或主监时，若请求预监或主监的webrtc播放地址，该字段为空。
+        # 注：webrtc协议播放地址需配合腾讯云快直播播放sdk方可使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebRTCPlayUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlayUrl, :WebRTCPlayUrl, :RequestId
+
+        def initialize(playurl=nil, webrtcplayurl=nil, requestid=nil)
+          @PlayUrl = playurl
+          @WebRTCPlayUrl = webrtcplayurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PlayUrl = params['PlayUrl']
+          @WebRTCPlayUrl = params['WebRTCPlayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCaster请求参数结构体
+      class DescribeCasterRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 需查询的导播台ID
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCaster返回参数结构体
+      class DescribeCasterResponse < TencentCloud::Common::AbstractModel
+        # @param CasterInfo: 导播台信息
+        # @type CasterInfo: :class:`Tencentcloud::Live.v20180801.models.CasterInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CasterInfo, :RequestId
+
+        def initialize(casterinfo=nil, requestid=nil)
+          @CasterInfo = casterinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CasterInfo'].nil?
+            @CasterInfo = CasterInfo.new
+            @CasterInfo.deserialize(params['CasterInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -5260,19 +5745,24 @@ module TencentCloud
         # @param PageSize: 分页大小，默认值：10。
         # 取值范围：1~20 之前的任意整数。
         # @type PageSize: Integer
+        # @param SpecifyTaskId: 使用指定任务 ID 查询任务信息。
+        # 注意：仅供使用指定 ID 创建的任务查询。
+        # @type SpecifyTaskId: String
 
-        attr_accessor :TaskId, :PageNum, :PageSize
+        attr_accessor :TaskId, :PageNum, :PageSize, :SpecifyTaskId
 
-        def initialize(taskid=nil, pagenum=nil, pagesize=nil)
+        def initialize(taskid=nil, pagenum=nil, pagesize=nil, specifytaskid=nil)
           @TaskId = taskid
           @PageNum = pagenum
           @PageSize = pagesize
+          @SpecifyTaskId = specifytaskid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @PageNum = params['PageNum']
           @PageSize = params['PageSize']
+          @SpecifyTaskId = params['SpecifyTaskId']
         end
       end
 
@@ -6218,6 +6708,82 @@ module TencentCloud
               timeshifttemplate_tmp = TimeShiftTemplate.new
               timeshifttemplate_tmp.deserialize(i)
               @Templates << timeshifttemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveTimeShiftWriteSizeInfoList请求参数结构体
+      class DescribeLiveTimeShiftWriteSizeInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 支持最近六个月的查询，查询开始和结束时间跨度不支持超过31天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 支持最近六个月的查询，查询开始和结束时间跨度不支持超过31天。
+        # @type EndTime: String
+        # @param DomainNames: 域名。
+        # @type DomainNames: Array
+        # @param Dimensions: 维度
+        # Area地区、Domain 域名、StorageDays 时移天数
+        # @type Dimensions: Array
+        # @param StorageDays: 时移天数。
+        # @type StorageDays: Array
+        # @param Granularity: 时间跨度（分钟）
+        # 默认5，可选 5、60或者1440。
+        # @type Granularity: Integer
+        # @param MainlandOrOversea: 区域
+        # 可选Mainland、Oversea。
+        # @type MainlandOrOversea: String
+
+        attr_accessor :StartTime, :EndTime, :DomainNames, :Dimensions, :StorageDays, :Granularity, :MainlandOrOversea
+
+        def initialize(starttime=nil, endtime=nil, domainnames=nil, dimensions=nil, storagedays=nil, granularity=nil, mainlandoroversea=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @DomainNames = domainnames
+          @Dimensions = dimensions
+          @StorageDays = storagedays
+          @Granularity = granularity
+          @MainlandOrOversea = mainlandoroversea
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DomainNames = params['DomainNames']
+          @Dimensions = params['Dimensions']
+          @StorageDays = params['StorageDays']
+          @Granularity = params['Granularity']
+          @MainlandOrOversea = params['MainlandOrOversea']
+        end
+      end
+
+      # DescribeLiveTimeShiftWriteSizeInfoList返回参数结构体
+      class DescribeLiveTimeShiftWriteSizeInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 直播时移写入量数据明细。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              timeshiftwritesizedata_tmp = TimeShiftWriteSizeData.new
+              timeshiftwritesizedata_tmp.deserialize(i)
+              @DataInfoList << timeshiftwritesizedata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9390,6 +9956,120 @@ module TencentCloud
 
         def deserialize(params)
           @Color = params['Color']
+        end
+      end
+
+      # ModifyCaster请求参数结构体
+      class ModifyCasterRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param CasterName: 导播台名称
+        # @type CasterName: String
+        # @param Description: 导播台的描述
+        # 最大允许长度256
+        # @type Description: String
+        # @param RecordTemplateId: 录制模板id。
+        # 默认为0。
+        # 当使用直播录制功能时，可将使用的录制模版填入。
+        # 该接口仅保存字段，不涉及任何录制功能。
+        # @type RecordTemplateId: Integer
+        # @param RecordStatus: 录制状态，当调用录制接口后，可通过该字段保存录制状态。
+        # 0：未录制
+        # 1：录制中
+        # 该接口仅保存字段，不涉及任何录制处理。
+        # @type RecordStatus: Integer
+        # @param ExpireTime: 导播台的过期时间戳。值为-1或unix时间戳。
+        # 默认值为-1。
+        # 当值为-1时，表示该导播台永不过期。
+        # 当值为正常unix时间戳时，导播台将在该时间过期。
+        # 导播台过期后，预监与主监画面将自动停止，转推自动停止。
+        # 点播、直播url将停止转拉，推流url需自行停止推流。
+        # @type ExpireTime: Integer
+        # @param DelayTime: 导播台延时播放时间，单位为秒。
+        # 默认为0，最大支持300秒
+        # @type DelayTime: Integer
+        # @param TransitionType: 导播台转场类型。
+        # 默认为空。
+        # 允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。
+        # @type TransitionType: String
+        # @param PgmWidth: 导播台主监输出的宽度，单位为像素。
+        # 默认为1280，最大允许4096。
+        # @type PgmWidth: Integer
+        # @param PgmHeight: 导播台主监输出的高度，单位为像素。
+        # 默认为720，最大允许2160。
+        # @type PgmHeight: Integer
+        # @param PgmFps: 导播台主监输出的帧率。
+        # 默认为0，表示随源输出。 最大支持60。
+        # @type PgmFps: Integer
+        # @param PgmBitRate: 导播台主监输出的码率，单位为kbps。
+        # 默认为0，表示随源的码率输出。
+        # 最大允许10000kbps。
+        # @type PgmBitRate: Integer
+        # @param FeeType: 导播台的计费类型。
+        # 0 通用型
+        # 1 播单型。
+        # 注： 本参数暂无作用。
+        # @type FeeType: Integer
+        # @param RecordTaskId: 录制接口返回的taskid
+        # 注：该接口只做字段保存，不涉及录制操作。
+        # @type RecordTaskId: String
+        # @param PgmAudioBitRate: 导播台主监输出的音频码率，单位为kbps。
+        # 可选项：[0, 128, 192, 256]
+        # 默认值为0，表示随源的音频码率输出。
+        # @type PgmAudioBitRate: Integer
+
+        attr_accessor :CasterId, :CasterName, :Description, :RecordTemplateId, :RecordStatus, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :RecordTaskId, :PgmAudioBitRate
+
+        def initialize(casterid=nil, castername=nil, description=nil, recordtemplateid=nil, recordstatus=nil, expiretime=nil, delaytime=nil, transitiontype=nil, pgmwidth=nil, pgmheight=nil, pgmfps=nil, pgmbitrate=nil, feetype=nil, recordtaskid=nil, pgmaudiobitrate=nil)
+          @CasterId = casterid
+          @CasterName = castername
+          @Description = description
+          @RecordTemplateId = recordtemplateid
+          @RecordStatus = recordstatus
+          @ExpireTime = expiretime
+          @DelayTime = delaytime
+          @TransitionType = transitiontype
+          @PgmWidth = pgmwidth
+          @PgmHeight = pgmheight
+          @PgmFps = pgmfps
+          @PgmBitRate = pgmbitrate
+          @FeeType = feetype
+          @RecordTaskId = recordtaskid
+          @PgmAudioBitRate = pgmaudiobitrate
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @CasterName = params['CasterName']
+          @Description = params['Description']
+          @RecordTemplateId = params['RecordTemplateId']
+          @RecordStatus = params['RecordStatus']
+          @ExpireTime = params['ExpireTime']
+          @DelayTime = params['DelayTime']
+          @TransitionType = params['TransitionType']
+          @PgmWidth = params['PgmWidth']
+          @PgmHeight = params['PgmHeight']
+          @PgmFps = params['PgmFps']
+          @PgmBitRate = params['PgmBitRate']
+          @FeeType = params['FeeType']
+          @RecordTaskId = params['RecordTaskId']
+          @PgmAudioBitRate = params['PgmAudioBitRate']
+        end
+      end
+
+      # ModifyCaster返回参数结构体
+      class ModifyCasterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12763,6 +13443,38 @@ module TencentCloud
           @Area = params['Area']
           @RemoveWatermark = params['RemoveWatermark']
           @TranscodeTemplateIds = params['TranscodeTemplateIds']
+        end
+      end
+
+      # 直播时移写入量数据。
+      class TimeShiftWriteSizeData < TencentCloud::Common::AbstractModel
+        # @param Area: 区域。
+        # @type Area: String
+        # @param Time: 时间，格式为：yyyy-mm-ddTHH:MM:SSZ。
+        # @type Time: String
+        # @param WriteSize: 写入量（单位：字节）
+        # @type WriteSize: Float
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param StorageDays: 时移天数。
+        # @type StorageDays: Integer
+
+        attr_accessor :Area, :Time, :WriteSize, :Domain, :StorageDays
+
+        def initialize(area=nil, time=nil, writesize=nil, domain=nil, storagedays=nil)
+          @Area = area
+          @Time = time
+          @WriteSize = writesize
+          @Domain = domain
+          @StorageDays = storagedays
+        end
+
+        def deserialize(params)
+          @Area = params['Area']
+          @Time = params['Time']
+          @WriteSize = params['WriteSize']
+          @Domain = params['Domain']
+          @StorageDays = params['StorageDays']
         end
       end
 

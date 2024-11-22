@@ -19991,12 +19991,17 @@ module TencentCloud
         # @param SegmentUrl: 拆条片段URL。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentUrl: String
+        # @param CovImgUrl: 拆条片段封面。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CovImgUrl: String
         # @param Title: 分段标题。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Title: String
         # @param Summary: 分段概要。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: String
+        # @param Keywords: 分段关键词。
+        # @type Keywords: Array
         # @param BeginTime: 直播切片对应直播起始时间点，采用 ISO 日期格式。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
@@ -20004,15 +20009,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :Title, :Summary, :BeginTime, :EndTime
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentUrl, :CovImgUrl, :Title, :Summary, :Keywords, :BeginTime, :EndTime
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, title=nil, summary=nil, begintime=nil, endtime=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenturl=nil, covimgurl=nil, title=nil, summary=nil, keywords=nil, begintime=nil, endtime=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @SegmentUrl = segmenturl
+          @CovImgUrl = covimgurl
           @Title = title
           @Summary = summary
+          @Keywords = keywords
           @BeginTime = begintime
           @EndTime = endtime
         end
@@ -20022,8 +20029,10 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @SegmentUrl = params['SegmentUrl']
+          @CovImgUrl = params['CovImgUrl']
           @Title = params['Title']
           @Summary = params['Summary']
+          @Keywords = params['Keywords']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
         end

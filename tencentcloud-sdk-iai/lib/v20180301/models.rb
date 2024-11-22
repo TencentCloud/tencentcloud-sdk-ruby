@@ -1763,16 +1763,16 @@ module TencentCloud
       # 检测出的人脸框的位置
       class FaceRect < TencentCloud::Common::AbstractModel
         # @param X: 人脸框左上角横坐标。
-        # 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
-        # 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
+        # - 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
+        # - 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
         # @type X: Integer
         # @param Y: 人脸框左上角纵坐标。
-        # 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
-        # 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
+        # - 人脸框包含人脸五官位置并在此基础上进行一定的扩展，若人脸框超出图片范围，会导致坐标负值。
+        # - 若需截取完整人脸，可以在完整分completess满足需求的情况下，将负值坐标取0。
         # @type Y: Integer
-        # @param Width: 人脸宽度
+        # @param Width: 人脸宽度。
         # @type Width: Integer
-        # @param Height: 人脸高度
+        # @param Height: 人脸高度。
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height

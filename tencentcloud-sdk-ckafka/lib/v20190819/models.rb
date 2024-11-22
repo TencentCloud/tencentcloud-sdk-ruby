@@ -9266,7 +9266,7 @@ module TencentCloud
 
       # ModifyInstancePre请求参数结构体
       class ModifyInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名称
+        # @param InstanceId: ckafka集群实例Id
         # @type InstanceId: String
         # @param DiskSize: 预计磁盘，根据磁盘步长，规格向上调整。
         # @type DiskSize: Integer

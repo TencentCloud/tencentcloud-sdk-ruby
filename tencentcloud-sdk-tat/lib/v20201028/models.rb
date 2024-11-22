@@ -252,7 +252,7 @@ module TencentCloud
         # 一旦创建，此值不提供修改。
         # 默认值：false。
         # @type EnableParameter: Boolean
-        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
         # 自定义参数最多20个。
@@ -1729,7 +1729,7 @@ module TencentCloud
         # @type CommandId: String
         # @param InstanceIds: 待执行命令的实例ID列表，上限200。
         # @type InstanceIds: Array
-        # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果未提供该参数取值，将使用 Command 的 DefaultParameters 进行替换。
         # 自定义参数最多20个。
@@ -1903,7 +1903,7 @@ module TencentCloud
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间。取值范围[1, 86400]。
         # @type Timeout: Integer
-        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
         # 采取整体全覆盖式修改，即修改时必须提供所有新默认值。
         # 必须 Command 的 EnableParameter 为 true 时，才允许修改这个值。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
@@ -2299,7 +2299,7 @@ module TencentCloud
         # <li> false：不启用 </li>
         # 默认值：false。
         # @type EnableParameter: Boolean
-        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果 Parameters 未提供，将使用这里的默认值进行替换。
         # 自定义参数最多20个。
@@ -2307,7 +2307,7 @@ module TencentCloud
         # @type DefaultParameters: String
         # @param DefaultParameterConfs: 自定义参数数组。 如果 Parameters 未提供，将使用这里的默认值进行替换。 自定义参数最多20个。
         # @type DefaultParameterConfs: Array
-        # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{"varA": "222"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果未提供该参数取值，将使用 DefaultParameters 进行替换。
         # 自定义参数最多20个。

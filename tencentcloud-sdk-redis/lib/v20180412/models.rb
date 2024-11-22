@@ -74,9 +74,9 @@ module TencentCloud
 
       # AddReplicationInstance请求参数结构体
       class AddReplicationInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID。
+        # @param GroupId: 复制组ID。请登录[Redis控制台的全球复制](https://console.cloud.tencent.com/redis/replication)页面获取复制组 ID。
         # @type GroupId: String
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param InstanceRole: 给复制组添加的实例分配角色。<ul><li>rw：可读写。</li><li>r：只读。</li></ul>
         # @type InstanceRole: String
@@ -118,7 +118,7 @@ module TencentCloud
 
       # AllocateWanAddress请求参数结构体
       class AllocateWanAddressRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -158,9 +158,9 @@ module TencentCloud
 
       # ApplyParamsTemplate请求参数结构体
       class ApplyParamsTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表
+        # @param InstanceIds: 实例 ID 列表，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceIds: Array
-        # @param TemplateId: 应用的参数模板ID
+        # @param TemplateId: 应用的参数模板ID，请通过接口[DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/239/58748)的返回参数 **TemplateId** 获取参数模板 ID。
         # @type TemplateId: String
 
         attr_accessor :InstanceIds, :TemplateId
@@ -200,9 +200,9 @@ module TencentCloud
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：redis。
         # @type Product: String
-        # @param SecurityGroupId: 要绑定的安全组ID，类似sg-efil73jd。
+        # @param SecurityGroupId: 要绑定的安全组ID，请在[控制台安全组](https://console.cloud.tencent.com/vpc/security-group)页面获取安全组 ID。
         # @type SecurityGroupId: String
-        # @param InstanceIds: 被绑定的实例ID，类似ins-lesecurk，支持指定多个实例。
+        # @param InstanceIds: 被绑定的实例ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID，支持指定多个实例。
         # @type InstanceIds: Array
 
         attr_accessor :Product, :SecurityGroupId, :InstanceIds
@@ -450,11 +450,13 @@ module TencentCloud
 
       # ChangeInstanceRole请求参数结构体
       class ChangeInstanceRoleRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组ID。请登录[Redis控制台的全球复制](https://console.cloud.tencent.com/redis/replication)页面获取复制组 ID。
         # @type GroupId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param InstanceRole: 实例角色，rw可读写，r只读
+        # @param InstanceRole: 实例角色。
+        # - rw：可读写。
+        # - r：只读。
         # @type InstanceRole: String
 
         attr_accessor :GroupId, :InstanceId, :InstanceRole
@@ -581,7 +583,7 @@ module TencentCloud
 
       # CleanUpInstance请求参数结构体
       class CleanUpInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -617,9 +619,11 @@ module TencentCloud
 
       # ClearInstance请求参数结构体
       class ClearInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Password: redis的实例密码（免密实例不需要传密码，非免密实例必传）
+        # @param Password: 实例访问密码。
+        # - 免密访问：无需配置。
+        # - 密码认证：必须配置。字符个数为[8,64]，至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
         # @type Password: String
 
         attr_accessor :InstanceId, :Password
@@ -792,7 +796,7 @@ module TencentCloud
 
       # CloseSSL请求参数结构体
       class CloseSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -848,9 +852,9 @@ module TencentCloud
 
       # CreateInstanceAccount请求参数结构体
       class CreateInstanceAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param AccountName: 自定义访问数据库的名称。
+        # @param AccountName: 自定义的访问数据库的账号名称。
         # - 仅由字母、数字、下划线、中划线组成。
         # - 长度不能大于32位。
         # @type AccountName: String
@@ -1170,9 +1174,9 @@ module TencentCloud
 
       # CreateReplicationGroup请求参数结构体
       class CreateReplicationGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定复制组中的主实例ID。
+        # @param InstanceId: 指定复制组中的主实例ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param GroupName: 复制组名称。名称只支持长度为2-64个字符的中文、英文、数字、下划线_、分隔符-。
+        # @param GroupName: 配置复制组名称。仅支持长度为2-64个字符的中文、英文、数字、下划线_、分隔符-。
         # @type GroupName: String
         # @param Remark: 备注信息。
         # @type Remark: String
@@ -1244,9 +1248,9 @@ module TencentCloud
 
       # DeleteInstanceAccount请求参数结构体
       class DeleteInstanceAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param AccountName: 子账号名称
+        # @param AccountName: 子账号名称。请登录[Redis控制台](https://console.cloud.tencent.com/redis)，切换至**账号管理**页面获取。具体信息，请参见[管理账号](https://cloud.tencent.com/document/product/239/36710)。
         # @type AccountName: String
 
         attr_accessor :InstanceId, :AccountName
@@ -1316,11 +1320,13 @@ module TencentCloud
 
       # DeleteReplicationInstance请求参数结构体
       class DeleteReplicationInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组ID。请登录[Redis控制台的全球复制](https://console.cloud.tencent.com/redis/replication)页面获取复制组 ID。
         # @type GroupId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param SyncType: 数据同步类型，true:需要数据强同步,false:不需要强同步，仅限删除主实例
+        # @param SyncType: 数据同步类型。
+        # - true：需要数据强同步。
+        # - false：不需要强同步，仅限删除主实例。
         # @type SyncType: Boolean
 
         attr_accessor :GroupId, :InstanceId, :SyncType
@@ -1412,7 +1418,7 @@ module TencentCloud
 
       # DescribeBackupDetail请求参数结构体
       class DescribeBackupDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param BackupId: 备份 ID，可通过接口 [DescribeInstanceBackups](https://cloud.tencent.com/document/product/239/20011) 返回的参数 **RedisBackupSet** 获取。
         # @type BackupId: String
@@ -1662,7 +1668,7 @@ module TencentCloud
 
       # DescribeBandwidthRange请求参数结构体
       class DescribeBandwidthRangeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2032,7 +2038,7 @@ module TencentCloud
 
       # DescribeInstanceDTSInfo请求参数结构体
       class DescribeInstanceDTSInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2523,7 +2529,7 @@ module TencentCloud
 
       # DescribeInstanceMonitorSIP请求参数结构体
       class DescribeInstanceMonitorSIPRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2566,7 +2572,7 @@ module TencentCloud
 
       # DescribeInstanceMonitorTookDist请求参数结构体
       class DescribeInstanceMonitorTookDistRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param Date: 查询时间日期。
         # @type Date: String
@@ -2672,7 +2678,7 @@ module TencentCloud
 
       # DescribeInstanceMonitorTopNCmdTook请求参数结构体
       class DescribeInstanceMonitorTopNCmdTookRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param SpanType: 查询时间范围。
         # - 1：实时。
@@ -3579,9 +3585,12 @@ module TencentCloud
 
       # DescribeProjectSecurityGroup请求参数结构体
       class DescribeProjectSecurityGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 0:默认项目；-1 所有项目; >0: 特定项目
+        # @param ProjectId: 指定查询的项目 ID。
+        # - 0：默认项目。
+        # - -1：所有项目。
+        # - 大于0：特定项目。请登录[Redis控制台的项目管理](https://console.cloud.tencent.com/project)页面，在**项目名称**中复制项目 ID。
         # @type ProjectId: Integer
-        # @param SecurityGroupId: 安全组Id
+        # @param SecurityGroupId: 安全组 ID，通过接口[DescribeInstanceSecurityGroup](https://cloud.tencent.com/document/product/239/34447)的返回参数 **InstanceSecurityGroupsDetail** 的子参数 **SecurityGroupId** 获取。
         # @type SecurityGroupId: String
 
         attr_accessor :ProjectId, :SecurityGroupId
@@ -3628,7 +3637,7 @@ module TencentCloud
       class DescribeProjectSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：redis。
         # @type Product: String
-        # @param ProjectId: 项目 ID。
+        # @param ProjectId: 项目 ID，请登录[Redis控制台的项目管理](https://console.cloud.tencent.com/project)页面，在**项目名称**中复制项目 ID。
         # @type ProjectId: Integer
         # @param Offset: 偏移量，取值为Limit的整数倍。
         # @type Offset: Integer
@@ -3756,7 +3765,8 @@ module TencentCloud
 
       # DescribeRedisClusterOverview请求参数结构体
       class DescribeRedisClusterOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param DedicatedClusterId: 本地专用集群id
+        # @param DedicatedClusterId: 本地专用集群 ID，请登录[专用集群控制台](https://console.cloud.tencent.com/cdc/dedicatedcluster/index?rid=1
+        # )实例列表获取集群 ID。
         # @type DedicatedClusterId: String
 
         attr_accessor :DedicatedClusterId
@@ -3796,23 +3806,31 @@ module TencentCloud
 
       # DescribeRedisClusters请求参数结构体
       class DescribeRedisClustersRequest < TencentCloud::Common::AbstractModel
-        # @param RedisClusterIds: Redis独享集群id
+        # @param RedisClusterIds: Redis独享集群 ID。请登录[专用集群控制台](https://console.cloud.tencent.com/cdc/dedicatedcluster/index?rid=1
+        # )切换至**云服务管理**页面，在下拉框选择**云数据库 Redis**，可获取独享集群ID。
         # @type RedisClusterIds: Array
-        # @param Status: 集群状态：1-流程中，2-运行中，3-已隔离
+        # @param Status: 集群状态。
+        # - 1：流程。
+        # - 2：运行中。
+        # - 3：已隔离。
         # @type Status: Array
-        # @param ProjectIds: 项目ID数组
+        # @param ProjectIds: 项目ID数组。请登录[项目管理](https://console.cloud.tencent.com/project)页面，在**项目名称**中复制项目 ID。
         # @type ProjectIds: Array
-        # @param AutoRenewFlag: 续费模式：0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
+        # @param AutoRenewFlag: 续费模式。
+        # - 0：默认状态，手动续费。
+        # - 1：自动续费。
+        # - 2：明确不自动续费。
         # @type AutoRenewFlag: Array
-        # @param ClusterName: Redis独享集群名称
+        # @param ClusterName: Redis 独享集群名称。
         # @type ClusterName: String
-        # @param SearchKey: 搜索关键词：支持集群Id、集群名称
+        # @param SearchKey: 搜索关键词：支持集群 ID、集群名称。
         # @type SearchKey: String
-        # @param Limit: 分页限制返回大小，不传则默认为20
+        # @param Limit: 分页限制返回大小，不传则默认为20。
         # @type Limit: Integer
         # @param Offset: 偏移量，取Limit整数倍
         # @type Offset: Integer
-        # @param DedicatedClusterId: 本地专用集群id
+        # @param DedicatedClusterId: 本地专用集群 ID，请登录[专用集群控制台](https://console.cloud.tencent.com/cdc/dedicatedcluster/index?rid=1
+        # )实例列表获取集群 ID。
         # @type DedicatedClusterId: String
 
         attr_accessor :RedisClusterIds, :Status, :ProjectIds, :AutoRenewFlag, :ClusterName, :SearchKey, :Limit, :Offset, :DedicatedClusterId
@@ -4130,7 +4148,7 @@ module TencentCloud
 
       # DescribeTaskInfo请求参数结构体
       class DescribeTaskInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: 任务 ID, 请通过接口[DescribeTaskList](https://cloud.tencent.com/document/product/239/39374) 的返回参数 **Tasks** 的子参数 **TaskId** 获取。
         # @type TaskId: Integer
 
         attr_accessor :TaskId
@@ -4338,7 +4356,7 @@ module TencentCloud
 
       # DescribeTendisSlowLog请求参数结构体
       class DescribeTendisSlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id：crs-ngvou0i1
+        # @param InstanceId: 实例 ID，请登录[Tendis控制台](https://console.cloud.tencent.com/tendis)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param BeginTime: 开始时间：2019-09-08 12:12:41，查询时间最大跨度30天。
         # @type BeginTime: String
@@ -4405,7 +4423,7 @@ module TencentCloud
 
       # DestroyPostpaidInstance请求参数结构体
       class DestroyPostpaidInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4441,7 +4459,7 @@ module TencentCloud
 
       # DestroyPrepaidInstance请求参数结构体
       class DestroyPrepaidInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4477,7 +4495,7 @@ module TencentCloud
 
       # DisableReplicaReadonly请求参数结构体
       class DisableReplicaReadonlyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例序号ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4516,9 +4534,9 @@ module TencentCloud
       class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：redis。
         # @type Product: String
-        # @param SecurityGroupId: 安全组 ID。
+        # @param SecurityGroupId: 安全组 ID，请通过接口[DescribeInstanceSecurityGroup](https://cloud.tencent.com/document/product/239/34447)的返回参数InstanceSecurityGroupsDetail 的子参数**SecurityGroupId**获取。
         # @type SecurityGroupId: String
-        # @param InstanceIds: 实例ID列表，一个或者多个实例 ID 组成的数组。
+        # @param InstanceIds: 实例ID列表，一个或者多个实例 ID 组成的数组。请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceIds: Array
 
         attr_accessor :Product, :SecurityGroupId, :InstanceIds
@@ -4554,9 +4572,12 @@ module TencentCloud
 
       # EnableReplicaReadonly请求参数结构体
       class EnableReplicaReadonlyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例序号ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param ReadonlyPolicy: 账号路由策略：填写master或者replication，表示路由主节点，从节点；不填路由策略默认为写主节点，读从节点
+        # @param ReadonlyPolicy: 只读路由策略。
+        # - master：表示只读路由至主节点。
+        # - replication：表示只读路由至从节点。
+        # - 默认策略：表示写主节点，读从节点。
         # @type ReadonlyPolicy: Array
 
         attr_accessor :InstanceId, :ReadonlyPolicy
@@ -4878,13 +4899,13 @@ module TencentCloud
 
       # InquiryPriceUpgradeInstance请求参数结构体
       class InquiryPriceUpgradeInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param MemSize: 分片大小 单位 MB
+        # @param MemSize: 分片大小，单位：MB。
         # @type MemSize: Integer
-        # @param RedisShardNum: 分片数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
+        # @param RedisShardNum: 分片数量，Redis 2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
+        # @param RedisReplicasNum: 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type RedisReplicasNum: Integer
 
         attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum
@@ -5876,7 +5897,7 @@ module TencentCloud
         # - 不能以"/"开头
         # - 至少包含小写字母a-z、大写字母A-Z、数字0-9及其 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
         # @type Password: String
-        # @param ShardIds: 分片集群的分片 ID。
+        # @param ShardIds: 分片集群的分片 ID。请通过接口[DescribeInstanceNodeInfo](https://cloud.tencent.com/document/product/239/48603) 的返回参数 **Redis** 中的 **ClusterId** 获取。
         # @type ShardIds: Array
 
         attr_accessor :InstanceId, :Password, :ShardIds
@@ -6164,13 +6185,13 @@ module TencentCloud
 
       # ModifyConnectionConfig请求参数结构体
       class ModifyConnectionConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例的ID，长度在12-36之间。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param Bandwidth: 附加带宽，大于0，单位MB。
         # @type Bandwidth: Integer
         # @param ClientLimit: 单分片的总连接数。
-        # 未开启副本只读时，下限为10000，上限为40000；
-        # 开启副本只读时，下限为10000，上限为10000×(只读副本数+3)。
+        # - 未开启副本只读时，下限为10000，上限为40000。
+        # - 开启副本只读时，下限为10000，上限为10000×(只读副本数+3)。
         # @type ClientLimit: Integer
 
         attr_accessor :InstanceId, :Bandwidth, :ClientLimit
@@ -6212,9 +6233,11 @@ module TencentCloud
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：redis。
         # @type Product: String
-        # @param SecurityGroupIds: 更换为新的安全组 ID 列表，即一个或者多个安全组 ID 组成的数组。若实例第一次配置安全组，请使用接口[AssociateSecurityGroups](https://cloud.tencent.com/document/product/239/41260)先绑定安全组。
+        # @param SecurityGroupIds: 更换为新的安全组 ID 列表，即一个或者多个安全组 ID 组成的数组。
+        # - 若实例第一次配置安全组，请使用接口[AssociateSecurityGroups](https://cloud.tencent.com/document/product/239/41260)先绑定安全组。
+        # - 更换安全组，请在[控制台安全组](https://console.cloud.tencent.com/vpc/security-group)页面获取安全组 ID。
         # @type SecurityGroupIds: Array
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :Product, :SecurityGroupIds, :InstanceId
@@ -6250,19 +6273,26 @@ module TencentCloud
 
       # ModifyInstanceAccount请求参数结构体
       class ModifyInstanceAccountRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param AccountName: 子账号名称，如果要修改主账号，填root
+        # @param AccountName: 子账号名称，如果要修改主账号，填 root。
         # @type AccountName: String
-        # @param AccountPassword: 子账号密码
+        # @param AccountPassword: 子账号密码。
         # @type AccountPassword: String
         # @param Remark: 子账号描述信息
         # @type Remark: String
-        # @param ReadonlyPolicy: 路由策略：填写master或者replication，表示主节点或者从节点
+        # @param ReadonlyPolicy: 账号读写路由策略。
+        # - master：表示主节点。
+        # - replication：表示从节点。
         # @type ReadonlyPolicy: Array
-        # @param Privilege: 子账号读写策略：填写r、w、rw，表示只读，只写，读写策略
+        # @param Privilege: 子账号读写策略。
+        # - r：只读。
+        # - w：只写。
+        # - rw：读写。
         # @type Privilege: String
-        # @param NoAuth: true表示将主账号切换为免密账号，这里只适用于主账号，子账号不可免密。
+        # @param NoAuth: 指定是否将主账号切换为免密账号。这里只适用于主账号，子账号不可免密。
+        # - true：将主账号切换为免密账号。
+        # - false：不切换。
         # @type NoAuth: Boolean
 
         attr_accessor :InstanceId, :AccountName, :AccountPassword, :Remark, :ReadonlyPolicy, :Privilege, :NoAuth
@@ -6422,7 +6452,7 @@ module TencentCloud
 
       # ModifyInstanceLogDelivery请求参数结构体
       class ModifyInstanceLogDeliveryRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param LogType: 日志类型。当前仅支持设置为slowlog，指慢查询日志。
         # @type LogType: String
@@ -6430,9 +6460,9 @@ module TencentCloud
         # - true：开启。
         # - false：关闭。
         # @type Enabled: Boolean
-        # @param LogsetId: 投递的日志集ID。
+        # @param LogsetId: 投递的日志集ID。通过接口[DescribeInstanceLogDelivery](https://cloud.tencent.com/document/product/239/110878)的返回参数 **SlowLog** 的子参数 **LogsetId** 获取。
         # @type LogsetId: String
-        # @param TopicId: 投递的日志主题ID。
+        # @param TopicId: 投递的日志主题ID。请通过接口[DescribeInstanceLogDelivery](https://cloud.tencent.com/document/product/239/110878)的返回参数 **SlowLog** 的子参数 **TopicId** 获取。
         # @type TopicId: String
         # @param LogsetName: 日志集名称。若**LogsetId**未指定具体的日志集ID，请配置该参数，设置日志集名称，系统会以设置的日志集名称自动创建新的日志集。
         # @type LogsetName: String
@@ -6492,7 +6522,7 @@ module TencentCloud
 
       # ModifyInstanceParams请求参数结构体
       class ModifyInstanceParamsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param InstanceParams: 实例修改的参数列表。
         # @type InstanceParams: Array
@@ -6590,9 +6620,11 @@ module TencentCloud
 
       # ModifyInstanceReadOnly请求参数结构体
       class ModifyInstanceReadOnlyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param InputMode: 实例输入模式，0：读写 1：只读
+        # @param InputMode: 实例输入模式。
+        # - 0：读写。
+        # - 1：只读。
         # @type InputMode: String
 
         attr_accessor :InstanceId, :InputMode
@@ -6630,21 +6662,27 @@ module TencentCloud
 
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Operation: 修改实例操作，如填写：rename-表示实例重命名；modifyProject-修改实例所属项目；modifyAutoRenew-修改实例续费标记
+        # @param Operation: 修改实例操作。如填写：
+        # - rename：表示实例重命名。
+        # - modifyProject：修改实例所属项目。
+        # - modifyAutoRenew：修改实例续费标记。
         # @type Operation: String
-        # @param InstanceIds: 实例Id，每次请求的实例的上限为10。
+        # @param InstanceIds: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。每次请求的实例数量的上限为10。
         # @type InstanceIds: Array
-        # @param InstanceNames: 实例的新名称
+        # @param InstanceNames: 实例的新名称。
         # @type InstanceNames: Array
-        # @param ProjectId: 项目Id
+        # @param ProjectId: 项目 ID，请登录[Redis控制台的项目管理](https://console.cloud.tencent.com/project)页面，在**项目名称**中复制项目 ID。
         # @type ProjectId: Integer
-        # @param AutoRenews: 自动续费标识。0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
+        # @param AutoRenews: 自动续费标识。
+        # - 0：默认状态，指手动续费。
+        # - 1：自动续费。
+        # - 2：明确不自动续费。
         # @type AutoRenews: Array
-        # @param InstanceId: 已经废弃
+        # @param InstanceId: 目前在废弃中，存量用户还可以使用，建议新用户使用 InstanceIds。
         # @type InstanceId: String
         # @param InstanceName: 已经废弃
         # @type InstanceName: String
-        # @param AutoRenew: 已经废弃
+        # @param AutoRenew: 已经废弃。
         # @type AutoRenew: Integer
 
         attr_accessor :Operation, :InstanceIds, :InstanceNames, :ProjectId, :AutoRenews, :InstanceId, :InstanceName, :AutoRenew
@@ -6690,11 +6728,11 @@ module TencentCloud
 
       # ModifyMaintenanceWindow请求参数结构体
       class ModifyMaintenanceWindowRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param StartTime: 维护时间窗起始时间，如：17:00
+        # @param StartTime: 维护时间窗起始时间，如：17:00。
         # @type StartTime: String
-        # @param EndTime: 维护时间窗结束时间，如：19:00
+        # @param EndTime: 维护时间窗结束时间，如：19:00。
         # @type EndTime: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime
@@ -6821,7 +6859,7 @@ module TencentCloud
 
       # ModifyParamTemplate请求参数结构体
       class ModifyParamTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 源参数模板 ID。
+        # @param TemplateId: 源参数模板 ID。 请通过接口[DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/239/58748)的返回参数 **TemplateId** 获取参数模板 ID。
         # @type TemplateId: String
         # @param Name: 参数模板修改后的新名称。
         # @type Name: String
@@ -6912,7 +6950,7 @@ module TencentCloud
 
       # OpenSSL请求参数结构体
       class OpenSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -7565,7 +7603,7 @@ module TencentCloud
 
       # ReleaseWanAddress请求参数结构体
       class ReleaseWanAddressRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -7605,11 +7643,13 @@ module TencentCloud
 
       # RemoveReplicationInstance请求参数结构体
       class RemoveReplicationInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组 ID。例如：crs-rpl-m3zt****。请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID。
         # @type GroupId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param SyncType: 数据同步类型，true:需要数据强同步,false:不需要强同步，仅限删除主实例
+        # @param SyncType: 数据同步类型。
+        # - true：需数据强同步。
+        # - false：无需强同步，仅限删除主实例。
         # @type SyncType: Boolean
 
         attr_accessor :GroupId, :InstanceId, :SyncType
@@ -7629,7 +7669,7 @@ module TencentCloud
 
       # RemoveReplicationInstance返回参数结构体
       class RemoveReplicationInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID
+        # @param TaskId: 异步任务ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7732,11 +7772,13 @@ module TencentCloud
 
       # ResetPassword请求参数结构体
       class ResetPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Redis实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Password: 重置的密码（切换为免密实例时，可不传；其他情况必传）
+        # @param Password: 重置的密码。若切换为免密实例时，可不配置该参数。其他情况必须配置。
         # @type Password: String
-        # @param NoAuth: 是否切换免密实例，false-切换为非免密码实例，true-切换为免密码实例；默认false
+        # @param NoAuth: 是否切换免密实例。
+        # - false：切换为非免密码实例。
+        # - true：切换为免密码实例。默认 false。
         # @type NoAuth: Boolean
 
         attr_accessor :InstanceId, :Password, :NoAuth
@@ -8046,7 +8088,7 @@ module TencentCloud
 
       # StartupInstance请求参数结构体
       class StartupInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -8115,13 +8157,15 @@ module TencentCloud
 
       # SwitchInstanceVip请求参数结构体
       class SwitchInstanceVipRequest < TencentCloud::Common::AbstractModel
-        # @param SrcInstanceId: 源实例ID
+        # @param SrcInstanceId: 源实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type SrcInstanceId: String
-        # @param DstInstanceId: 目标实例ID
+        # @param DstInstanceId: 目标实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type DstInstanceId: String
-        # @param TimeDelay: 单位为秒。源实例与目标实例间DTS已断开时间，如果DTS断开时间大于TimeDelay，则不切换VIP，建议尽量根据业务设置一个可接受的值。
+        # @param TimeDelay: 单位为秒。源实例与目标实例间DTS已断开时间。如果 DTS 断开时间大于TimeDelay，则不切换VIP，建议尽量根据业务设置一个可接受的值。
         # @type TimeDelay: Integer
-        # @param ForceSwitch: 在DTS断开的情况下是否强制切换。1：强制切换，0：不强制切换
+        # @param ForceSwitch: 在 DTS 断开的情况下是否强制切换。
+        # - 1：强制切换。
+        # - 0：不强制切换。
         # @type ForceSwitch: Integer
         # @param SwitchTime: now: 立即切换，syncComplete：等待同步完成后切换
         # @type SwitchTime: String
@@ -8167,9 +8211,9 @@ module TencentCloud
 
       # SwitchProxy请求参数结构体
       class SwitchProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param ProxyID: 实例ProxyID
+        # @param ProxyID: 实例 ProxyID，请通过接口[DescribeInstanceNodeInfo](https://cloud.tencent.com/document/product/239/48603)的返回参数**Proxy**中的**NodeId**获取。
         # @type ProxyID: String
 
         attr_accessor :InstanceId, :ProxyID
@@ -8545,13 +8589,15 @@ module TencentCloud
 
       # UpgradeProxyVersion请求参数结构体
       class UpgradeProxyVersionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param CurrentProxyVersion: 当前proxy版本
+        # @param CurrentProxyVersion: 当前 Proxy 版本。
         # @type CurrentProxyVersion: String
-        # @param UpgradeProxyVersion: 可升级的redis版本
+        # @param UpgradeProxyVersion: 可升级的 Redis 版本。
         # @type UpgradeProxyVersion: String
-        # @param InstanceTypeUpgradeNow: 1-立即升级   0-维护时间窗口升级
+        # @param InstanceTypeUpgradeNow: 指定是否立即升级。
+        # - 1：立即升级。
+        # - 0：维护时间窗口升级。
         # @type InstanceTypeUpgradeNow: Integer
 
         attr_accessor :InstanceId, :CurrentProxyVersion, :UpgradeProxyVersion, :InstanceTypeUpgradeNow
@@ -8593,13 +8639,15 @@ module TencentCloud
 
       # UpgradeSmallVersion请求参数结构体
       class UpgradeSmallVersionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param CurrentRedisVersion: 当前redis版本
+        # @param CurrentRedisVersion: 当前 Redis 小版本。小版本信息，请参见[升级实例版本](https://cloud.tencent.com/document/product/239/46457)。
         # @type CurrentRedisVersion: String
-        # @param UpgradeRedisVersion: 可升级的redis版本
+        # @param UpgradeRedisVersion: 升级后的 Redis 小版本。小版本信息，请参见[升级实例版本](https://cloud.tencent.com/document/product/239/46457)。
         # @type UpgradeRedisVersion: String
-        # @param InstanceTypeUpgradeNow: 1-立即升级   0-维护时间窗口升级
+        # @param InstanceTypeUpgradeNow: 指定是否立即升级。
+        # - 1：立即升级。
+        # - 0：维护时间窗口升级。
         # @type InstanceTypeUpgradeNow: Integer
 
         attr_accessor :InstanceId, :CurrentRedisVersion, :UpgradeRedisVersion, :InstanceTypeUpgradeNow
@@ -8641,7 +8689,7 @@ module TencentCloud
 
       # UpgradeVersionToMultiAvailabilityZones请求参数结构体
       class UpgradeVersionToMultiAvailabilityZonesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param UpgradeProxyAndRedisServer: 升级多可用区之后是否支持就近访问功能。
         # <ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>

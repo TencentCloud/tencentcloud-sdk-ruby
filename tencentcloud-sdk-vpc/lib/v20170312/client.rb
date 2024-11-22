@@ -746,7 +746,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
+        # 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。默认仅克隆安全组及其规则信息，可通过入参开启克隆安全组标签信息。
 
         # @param request: Request instance for CloneSecurityGroup.
         # @type request: :class:`Tencentcloud::vpc::V20170312::CloneSecurityGroupRequest`
@@ -1578,6 +1578,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePrivateNatGatewayTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建内网保留IP
+
+        # @param request: Request instance for CreateReserveIpAddresses.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateReserveIpAddressesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateReserveIpAddressesResponse`
+        def CreateReserveIpAddresses(request)
+          body = send_request('CreateReserveIpAddresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReserveIpAddressesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2873,6 +2897,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePrivateNatGatewayTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除内网保留IP
+
+        # @param request: Request instance for DeleteReserveIpAddresses.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteReserveIpAddressesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteReserveIpAddressesResponse`
+        def DeleteReserveIpAddresses(request)
+          body = send_request('DeleteReserveIpAddresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReserveIpAddressesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4815,6 +4863,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProductQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询内网保留 IP
+
+        # @param request: Request instance for DescribeReserveIpAddresses.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeReserveIpAddressesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeReserveIpAddressesResponse`
+        def DescribeReserveIpAddresses(request)
+          body = send_request('DescribeReserveIpAddresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReserveIpAddressesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -7818,6 +7890,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPrivateNatGatewayTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改内网保留 IP
+
+        # @param request: Request instance for ModifyReserveIpAddress.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyReserveIpAddressRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyReserveIpAddressResponse`
+        def ModifyReserveIpAddress(request)
+          body = send_request('ModifyReserveIpAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReserveIpAddressResponse.new
             model.deserialize(response['Response'])
             model
           else

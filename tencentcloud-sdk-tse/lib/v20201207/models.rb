@@ -1500,10 +1500,13 @@ module TencentCloud
         # @param Format: 格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
+        # @param ConfigFileId: 配置文件ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileId: String
 
-        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format
+        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format, :ConfigFileId
 
-        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil)
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil, configfileid=nil)
           @Id = id
           @Name = name
           @Namespace = namespace
@@ -1520,6 +1523,7 @@ module TencentCloud
           @ReleaseDescription = releasedescription
           @Active = active
           @Format = format
+          @ConfigFileId = configfileid
         end
 
         def deserialize(params)
@@ -1539,6 +1543,7 @@ module TencentCloud
           @ReleaseDescription = params['ReleaseDescription']
           @Active = params['Active']
           @Format = params['Format']
+          @ConfigFileId = params['ConfigFileId']
         end
       end
 
@@ -1556,14 +1561,18 @@ module TencentCloud
         # @param ReleaseVersion: 发布版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseVersion: String
+        # @param Id: 配置发布ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
 
-        attr_accessor :Namespace, :Group, :FileName, :ReleaseVersion
+        attr_accessor :Namespace, :Group, :FileName, :ReleaseVersion, :Id
 
-        def initialize(namespace=nil, group=nil, filename=nil, releaseversion=nil)
+        def initialize(namespace=nil, group=nil, filename=nil, releaseversion=nil, id=nil)
           @Namespace = namespace
           @Group = group
           @FileName = filename
           @ReleaseVersion = releaseversion
+          @Id = id
         end
 
         def deserialize(params)
@@ -1571,6 +1580,7 @@ module TencentCloud
           @Group = params['Group']
           @FileName = params['FileName']
           @ReleaseVersion = params['ReleaseVersion']
+          @Id = params['Id']
         end
       end
 
@@ -2521,18 +2531,23 @@ module TencentCloud
       class CreateConfigFileResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否创建成功
         # @type Result: Boolean
+        # @param ConfigFileId: 创建的配置文件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :Result, :ConfigFileId, :RequestId
 
-        def initialize(result=nil, requestid=nil)
+        def initialize(result=nil, configfileid=nil, requestid=nil)
           @Result = result
+          @ConfigFileId = configfileid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
+          @ConfigFileId = params['ConfigFileId']
           @RequestId = params['RequestId']
         end
       end
@@ -3035,12 +3050,15 @@ module TencentCloud
         # @type InstanceId: String
         # @param ConfigFilePublishInfo: 配置文件列表详情
         # @type ConfigFilePublishInfo: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePublishInfo`
+        # @param StrictEnable: 控制开启校验配置版本是否已经存在
+        # @type StrictEnable: Boolean
 
-        attr_accessor :InstanceId, :ConfigFilePublishInfo
+        attr_accessor :InstanceId, :ConfigFilePublishInfo, :StrictEnable
 
-        def initialize(instanceid=nil, configfilepublishinfo=nil)
+        def initialize(instanceid=nil, configfilepublishinfo=nil, strictenable=nil)
           @InstanceId = instanceid
           @ConfigFilePublishInfo = configfilepublishinfo
+          @StrictEnable = strictenable
         end
 
         def deserialize(params)
@@ -3049,6 +3067,7 @@ module TencentCloud
             @ConfigFilePublishInfo = ConfigFilePublishInfo.new
             @ConfigFilePublishInfo.deserialize(params['ConfigFilePublishInfo'])
           end
+          @StrictEnable = params['StrictEnable']
         end
       end
 
@@ -3056,18 +3075,28 @@ module TencentCloud
       class CreateOrUpdateConfigFileAndReleaseResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作是否成功
         # @type Result: Boolean
+        # @param ConfigFileReleaseId: 配置发布Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileReleaseId: String
+        # @param ConfigFileId: 配置文件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :Result, :ConfigFileReleaseId, :ConfigFileId, :RequestId
 
-        def initialize(result=nil, requestid=nil)
+        def initialize(result=nil, configfilereleaseid=nil, configfileid=nil, requestid=nil)
           @Result = result
+          @ConfigFileReleaseId = configfilereleaseid
+          @ConfigFileId = configfileid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
+          @ConfigFileReleaseId = params['ConfigFileReleaseId']
+          @ConfigFileId = params['ConfigFileId']
           @RequestId = params['RequestId']
         end
       end
@@ -3606,14 +3635,17 @@ module TencentCloud
         # @type Group: String
         # @param Name: 配置文件名称
         # @type Name: String
+        # @param Id: 配置文件Id
+        # @type Id: String
 
-        attr_accessor :InstanceId, :Namespace, :Group, :Name
+        attr_accessor :InstanceId, :Namespace, :Group, :Name, :Id
 
-        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil)
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, id=nil)
           @InstanceId = instanceid
           @Namespace = namespace
           @Group = group
           @Name = name
+          @Id = id
         end
 
         def deserialize(params)
@@ -3621,6 +3653,7 @@ module TencentCloud
           @Namespace = params['Namespace']
           @Group = params['Group']
           @Name = params['Name']
+          @Id = params['Id']
         end
       end
 
@@ -5096,19 +5129,22 @@ module TencentCloud
         # @type Name: String
         # @param EndId: 发布历史记录id，用于分页优化，一般指定 EndId，就不用指定 Offset，否则分页可能不连续
         # @type EndId: Integer
+        # @param ConfigFileId: 配置文件ID
+        # @type ConfigFileId: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
 
-        attr_accessor :InstanceId, :Namespace, :Group, :Name, :EndId, :Limit, :Offset
+        attr_accessor :InstanceId, :Namespace, :Group, :Name, :EndId, :ConfigFileId, :Limit, :Offset
 
-        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, endid=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, endid=nil, configfileid=nil, limit=nil, offset=nil)
           @InstanceId = instanceid
           @Namespace = namespace
           @Group = group
           @Name = name
           @EndId = endid
+          @ConfigFileId = configfileid
           @Limit = limit
           @Offset = offset
         end
@@ -5119,6 +5155,7 @@ module TencentCloud
           @Group = params['Group']
           @Name = params['Name']
           @EndId = params['EndId']
+          @ConfigFileId = params['ConfigFileId']
           @Limit = params['Limit']
           @Offset = params['Offset']
         end
@@ -5167,15 +5204,18 @@ module TencentCloud
         # @type Name: String
         # @param ReleaseName: 配置文件发布名称
         # @type ReleaseName: String
+        # @param Id: 配置文件发布Id
+        # @type Id: String
 
-        attr_accessor :InstanceId, :Namespace, :Group, :Name, :ReleaseName
+        attr_accessor :InstanceId, :Namespace, :Group, :Name, :ReleaseName, :Id
 
-        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, releasename=nil)
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, releasename=nil, id=nil)
           @InstanceId = instanceid
           @Namespace = namespace
           @Group = group
           @Name = name
           @ReleaseName = releasename
+          @Id = id
         end
 
         def deserialize(params)
@@ -5184,6 +5224,7 @@ module TencentCloud
           @Group = params['Group']
           @Name = params['Name']
           @ReleaseName = params['ReleaseName']
+          @Id = params['Id']
         end
       end
 
@@ -5220,14 +5261,17 @@ module TencentCloud
         # @type Group: String
         # @param FileName: 文件名称
         # @type FileName: String
+        # @param ConfigFileId: 配置文件ID
+        # @type ConfigFileId: String
 
-        attr_accessor :InstanceId, :Namespace, :Group, :FileName
+        attr_accessor :InstanceId, :Namespace, :Group, :FileName, :ConfigFileId
 
-        def initialize(instanceid=nil, namespace=nil, group=nil, filename=nil)
+        def initialize(instanceid=nil, namespace=nil, group=nil, filename=nil, configfileid=nil)
           @InstanceId = instanceid
           @Namespace = namespace
           @Group = group
           @FileName = filename
+          @ConfigFileId = configfileid
         end
 
         def deserialize(params)
@@ -5235,6 +5279,7 @@ module TencentCloud
           @Namespace = params['Namespace']
           @Group = params['Group']
           @FileName = params['FileName']
+          @ConfigFileId = params['ConfigFileId']
         end
       end
 
@@ -5288,10 +5333,12 @@ module TencentCloud
         # @type OrderField: String
         # @param OrderDesc: 排序，asc/desc，默认 desc
         # @type OrderDesc: String
+        # @param Id: 配置发布ID
+        # @type Id: String
 
-        attr_accessor :InstanceId, :Limit, :Offset, :Namespace, :Group, :FileName, :OnlyUse, :ReleaseName, :OrderField, :OrderDesc
+        attr_accessor :InstanceId, :Limit, :Offset, :Namespace, :Group, :FileName, :OnlyUse, :ReleaseName, :OrderField, :OrderDesc, :Id
 
-        def initialize(instanceid=nil, limit=nil, offset=nil, namespace=nil, group=nil, filename=nil, onlyuse=nil, releasename=nil, orderfield=nil, orderdesc=nil)
+        def initialize(instanceid=nil, limit=nil, offset=nil, namespace=nil, group=nil, filename=nil, onlyuse=nil, releasename=nil, orderfield=nil, orderdesc=nil, id=nil)
           @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
@@ -5302,6 +5349,7 @@ module TencentCloud
           @ReleaseName = releasename
           @OrderField = orderfield
           @OrderDesc = orderdesc
+          @Id = id
         end
 
         def deserialize(params)
@@ -5315,6 +5363,7 @@ module TencentCloud
           @ReleaseName = params['ReleaseName']
           @OrderField = params['OrderField']
           @OrderDesc = params['OrderDesc']
+          @Id = params['Id']
         end
       end
 
@@ -5357,16 +5406,19 @@ module TencentCloud
         # @type Namespace: String
         # @param Group: 组
         # @type Group: String
-        # @param Name: 名称
+        # @param Name: 配置文件名称
         # @type Name: String
+        # @param Id: 配置文件Id
+        # @type Id: String
 
-        attr_accessor :InstanceId, :Namespace, :Group, :Name
+        attr_accessor :InstanceId, :Namespace, :Group, :Name, :Id
 
-        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil)
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, id=nil)
           @InstanceId = instanceid
           @Namespace = namespace
           @Group = group
           @Name = name
+          @Id = id
         end
 
         def deserialize(params)
@@ -5374,6 +5426,7 @@ module TencentCloud
           @Namespace = params['Namespace']
           @Group = params['Group']
           @Name = params['Name']
+          @Id = params['Id']
         end
       end
 
@@ -5472,7 +5525,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Group: 组名
         # @type Group: String
-        # @param Name: 名称
+        # @param Name: 配置文件名称
         # @type Name: String
         # @param Tags: 标签列表
         # @type Tags: Array
@@ -5480,10 +5533,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
+        # @param Id: 配置文件ID
+        # @type Id: String
 
-        attr_accessor :Namespace, :InstanceId, :Group, :Name, :Tags, :Limit, :Offset
+        attr_accessor :Namespace, :InstanceId, :Group, :Name, :Tags, :Limit, :Offset, :Id
 
-        def initialize(namespace=nil, instanceid=nil, group=nil, name=nil, tags=nil, limit=nil, offset=nil)
+        def initialize(namespace=nil, instanceid=nil, group=nil, name=nil, tags=nil, limit=nil, offset=nil, id=nil)
           @Namespace = namespace
           @InstanceId = instanceid
           @Group = group
@@ -5491,6 +5546,7 @@ module TencentCloud
           @Tags = tags
           @Limit = limit
           @Offset = offset
+          @Id = id
         end
 
         def deserialize(params)
@@ -5508,6 +5564,7 @@ module TencentCloud
           end
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Id = params['Id']
         end
       end
 
@@ -10470,12 +10527,15 @@ module TencentCloud
         # @type InstanceId: String
         # @param ConfigFileReleases: 配置文件发布
         # @type ConfigFileReleases: :class:`Tencentcloud::Tse.v20201207.models.ConfigFileRelease`
+        # @param StrictEnable: 控制开启校验配置版本是否已经存在
+        # @type StrictEnable: Boolean
 
-        attr_accessor :InstanceId, :ConfigFileReleases
+        attr_accessor :InstanceId, :ConfigFileReleases, :StrictEnable
 
-        def initialize(instanceid=nil, configfilereleases=nil)
+        def initialize(instanceid=nil, configfilereleases=nil, strictenable=nil)
           @InstanceId = instanceid
           @ConfigFileReleases = configfilereleases
+          @StrictEnable = strictenable
         end
 
         def deserialize(params)
@@ -10484,6 +10544,7 @@ module TencentCloud
             @ConfigFileReleases = ConfigFileRelease.new
             @ConfigFileReleases.deserialize(params['ConfigFileReleases'])
           end
+          @StrictEnable = params['StrictEnable']
         end
       end
 
@@ -10491,18 +10552,23 @@ module TencentCloud
       class PublishConfigFilesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 配置文件发布是否成功
         # @type Result: Boolean
+        # @param ConfigFileReleaseId: 配置文件发布Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileReleaseId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :Result, :ConfigFileReleaseId, :RequestId
 
-        def initialize(result=nil, requestid=nil)
+        def initialize(result=nil, configfilereleaseid=nil, requestid=nil)
           @Result = result
+          @ConfigFileReleaseId = configfilereleaseid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
+          @ConfigFileReleaseId = params['ConfigFileReleaseId']
           @RequestId = params['RequestId']
         end
       end
@@ -10563,23 +10629,43 @@ module TencentCloud
 
       # 配置发布版本信息
       class ReleaseVersion < TencentCloud::Common::AbstractModel
-        # @param Name: 名称
+        # @param Name: 配置发布的版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Active: 是否生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Active: Boolean
+        # @param Id: 配置发布的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Namespace: 配置发布的命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Group: 配置发布的分组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: String
+        # @param FileName: 配置发布的文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
 
-        attr_accessor :Name, :Active
+        attr_accessor :Name, :Active, :Id, :Namespace, :Group, :FileName
 
-        def initialize(name=nil, active=nil)
+        def initialize(name=nil, active=nil, id=nil, namespace=nil, group=nil, filename=nil)
           @Name = name
           @Active = active
+          @Id = id
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Active = params['Active']
+          @Id = params['Id']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
         end
       end
 
