@@ -1514,10 +1514,12 @@ module TencentCloud
         # @param InstanceStorageType: 实例存储类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStorageType: String
+        # @param DbMode: 数据库类型
+        # @type DbMode: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -1534,6 +1536,7 @@ module TencentCloud
           @InstanceTasks = instancetasks
           @InstanceDeviceType = instancedevicetype
           @InstanceStorageType = instancestoragetype
+          @DbMode = dbmode
         end
 
         def deserialize(params)
@@ -1560,6 +1563,7 @@ module TencentCloud
           end
           @InstanceDeviceType = params['InstanceDeviceType']
           @InstanceStorageType = params['InstanceStorageType']
+          @DbMode = params['DbMode']
         end
       end
 
@@ -3029,7 +3033,7 @@ module TencentCloud
         # @type CreateTime: String
         # @param DbType: 数据库类型
         # @type DbType: String
-        # @param DbMode: 数据库类型，normal，serverless
+        # @param DbMode: Db类型：<li>NORMAL</li><li>SERVERLESS</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbMode: String
         # @param DbVersion: 数据库版本

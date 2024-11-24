@@ -2496,6 +2496,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起图片处理，功能包括：
+        # 1. 格式转换；
+        # 2. 图像增强；
+
+        # @param request: Request instance for ProcessImage.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ProcessImageRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ProcessImageResponse`
+        def ProcessImage(request)
+          body = send_request('ProcessImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ProcessImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对直播流媒体发起处理任务，功能包括：
 
         # * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；

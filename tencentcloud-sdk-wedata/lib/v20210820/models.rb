@@ -29068,9 +29068,9 @@ module TencentCloud
         # @type CloudappId: String
         # @param AppCamRole: 数语的CAM角色
         # @type AppCamRole: String
-        # @param Ip: 数语的ip
+        # @param Ip: 数语的公网访问ip
         # @type Ip: String
-        # @param Port: 数语的端口
+        # @param Port: 数语的公网访问端口
         # @type Port: Integer
         # @param AppCamRoleId: 数语的CAM角色id
         # @type AppCamRoleId: String
@@ -29080,10 +29080,20 @@ module TencentCloud
         # @type TenantId: String
         # @param OwnId: 主账号id
         # @type OwnId: String
+        # @param VpcId: VpcId
+        # @type VpcId: String
+        # @param VpcRegion: Vpc地域
+        # @type VpcRegion: String
+        # @param Pip: 数语的内网访问ip
+        # @type Pip: String
+        # @param Pport: 数语的内网访问端口
+        # @type Pport: Integer
+        # @param IsPublic: 是否开放公网访问数语, 1:是，0:否，默认1开放
+        # @type IsPublic: Integer
 
-        attr_accessor :CloudappId, :AppCamRole, :Ip, :Port, :AppCamRoleId, :Provider, :TenantId, :OwnId
+        attr_accessor :CloudappId, :AppCamRole, :Ip, :Port, :AppCamRoleId, :Provider, :TenantId, :OwnId, :VpcId, :VpcRegion, :Pip, :Pport, :IsPublic
 
-        def initialize(cloudappid=nil, appcamrole=nil, ip=nil, port=nil, appcamroleid=nil, provider=nil, tenantid=nil, ownid=nil)
+        def initialize(cloudappid=nil, appcamrole=nil, ip=nil, port=nil, appcamroleid=nil, provider=nil, tenantid=nil, ownid=nil, vpcid=nil, vpcregion=nil, pip=nil, pport=nil, ispublic=nil)
           @CloudappId = cloudappid
           @AppCamRole = appcamrole
           @Ip = ip
@@ -29092,6 +29102,11 @@ module TencentCloud
           @Provider = provider
           @TenantId = tenantid
           @OwnId = ownid
+          @VpcId = vpcid
+          @VpcRegion = vpcregion
+          @Pip = pip
+          @Pport = pport
+          @IsPublic = ispublic
         end
 
         def deserialize(params)
@@ -29103,6 +29118,11 @@ module TencentCloud
           @Provider = params['Provider']
           @TenantId = params['TenantId']
           @OwnId = params['OwnId']
+          @VpcId = params['VpcId']
+          @VpcRegion = params['VpcRegion']
+          @Pip = params['Pip']
+          @Pport = params['Pport']
+          @IsPublic = params['IsPublic']
         end
       end
 

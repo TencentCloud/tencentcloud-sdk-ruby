@@ -1547,22 +1547,32 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param OperateTypes: 初始化操作类型
-        # <ul><li>CREATE_SEAL : 创建印章</li>
+        # <ul>
+        # <li>CREATE_SEAL : 创建印章</li>
         # <li>AUTH_JOIN_ORGANIZATION_GROUP : 加入集团企业</li>
-        # <li>OPEN_AUTO_SIGN :开通企业自动签署</li></ul>
+        # <li>OPEN_AUTO_SIGN :开通企业自动签署</li>
+        # <li>PARTNER_AUTO_SIGN_AUTH :合作方企业授权自动签</li>
+        # </ul>
         # @type OperateTypes: Array
         # @param OrganizationIds: 批量操作的企业Id列表，最大支持50个
         # @type OrganizationIds: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param AuthorizedOrganizationId: 被授权的合作方企业在电子签的企业电子签账号，当操作类型包含 PARTNER_AUTO_SIGN_AUTH （合作方企业授权自动签）时必传。
 
-        attr_accessor :Operator, :OperateTypes, :OrganizationIds, :Agent
+        # 企业电子签账号可在[电子签的网页端](https://qian.tencent.com/console/company-settings/company-center) ，于企业设置-企业信息菜单栏下复制获取。
 
-        def initialize(operator=nil, operatetypes=nil, organizationids=nil, agent=nil)
+        # ![企业电子签账号](https://qcloudimg.tencent-cloud.cn/raw/4e6b30ee92f00671f7f1c5bd127c27db.png)
+        # @type AuthorizedOrganizationId: String
+
+        attr_accessor :Operator, :OperateTypes, :OrganizationIds, :Agent, :AuthorizedOrganizationId
+
+        def initialize(operator=nil, operatetypes=nil, organizationids=nil, agent=nil, authorizedorganizationid=nil)
           @Operator = operator
           @OperateTypes = operatetypes
           @OrganizationIds = organizationids
           @Agent = agent
+          @AuthorizedOrganizationId = authorizedorganizationid
         end
 
         def deserialize(params)
@@ -1576,6 +1586,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
         end
       end
 

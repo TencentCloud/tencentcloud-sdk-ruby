@@ -2536,6 +2536,69 @@ module TencentCloud
         end
       end
 
+      # ScaleCNOutUpInstance请求参数结构体
+      class ScaleCNOutUpInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例唯一ID
+        # @type InstanceId: String
+        # @param VirtualCluster: warehouse名称
+        # @type VirtualCluster: String
+        # @param UserSubnetID: 子网id
+        # @type UserSubnetID: String
+        # @param NewCount: 新的warehouse的个数
+        # @type NewCount: Integer
+        # @param NewSpecName: 集群的规格2X-Small、X-Small、Small
+        # @type NewSpecName: String
+
+        attr_accessor :InstanceId, :VirtualCluster, :UserSubnetID, :NewCount, :NewSpecName
+
+        def initialize(instanceid=nil, virtualcluster=nil, usersubnetid=nil, newcount=nil, newspecname=nil)
+          @InstanceId = instanceid
+          @VirtualCluster = virtualcluster
+          @UserSubnetID = usersubnetid
+          @NewCount = newcount
+          @NewSpecName = newspecname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualCluster = params['VirtualCluster']
+          @UserSubnetID = params['UserSubnetID']
+          @NewCount = params['NewCount']
+          @NewSpecName = params['NewSpecName']
+        end
+      end
+
+      # ScaleCNOutUpInstance返回参数结构体
+      class ScaleCNOutUpInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :InstanceId, :ErrorMsg, :RequestId
+
+        def initialize(flowid=nil, instanceid=nil, errormsg=nil, requestid=nil)
+          @FlowId = flowid
+          @InstanceId = instanceid
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @InstanceId = params['InstanceId']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ScaleOutInstance请求参数结构体
       class ScaleOutInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例唯一ID

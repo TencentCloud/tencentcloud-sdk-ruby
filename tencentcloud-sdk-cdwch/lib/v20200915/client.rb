@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # open-api接口提供弹性伸缩云原生集群能力
+
+        # @param request: Request instance for ScaleCNOutUpInstance.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::ScaleCNOutUpInstanceRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::ScaleCNOutUpInstanceResponse`
+        def ScaleCNOutUpInstance(request)
+          body = send_request('ScaleCNOutUpInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleCNOutUpInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调整clickhouse节点数量
 
         # @param request: Request instance for ScaleOutInstance.

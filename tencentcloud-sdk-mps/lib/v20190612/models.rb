@@ -12880,6 +12880,48 @@ module TencentCloud
         end
       end
 
+      # 图片编码格式参数
+      class ImageEncodeConfig < TencentCloud::Common::AbstractModel
+        # @param Format: 图片格式，取值范围：JPG、BMP、GIF、PNG、WebP，缺省为原图格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+        # @param Quality: 图片的相对质量，取值范围：1 - 100，数值以原图质量为标准，缺省为原图质量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quality: Integer
+
+        attr_accessor :Format, :Quality
+
+        def initialize(format=nil, quality=nil)
+          @Format = format
+          @Quality = quality
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @Quality = params['Quality']
+        end
+      end
+
+      # 图片增强参数
+      class ImageEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param SuperResolution: 超分配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
+
+        attr_accessor :SuperResolution
+
+        def initialize(superresolution=nil)
+          @SuperResolution = superresolution
+        end
+
+        def deserialize(params)
+          unless params['SuperResolution'].nil?
+            @SuperResolution = SuperResolutionConfig.new
+            @SuperResolution.deserialize(params['SuperResolution'])
+          end
+        end
+      end
+
       # 综合增强配置
       class ImageQualityEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -13042,6 +13084,34 @@ module TencentCloud
           @FillType = params['FillType']
           @Comment = params['Comment']
           @Format = params['Format']
+        end
+      end
+
+      # 图片任务输入参数
+      class ImageTaskInput < TencentCloud::Common::AbstractModel
+        # @param EncodeConfig: 图片编码配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncodeConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEncodeConfig`
+        # @param EnhanceConfig: 图片增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageEnhanceConfig`
+
+        attr_accessor :EncodeConfig, :EnhanceConfig
+
+        def initialize(encodeconfig=nil, enhanceconfig=nil)
+          @EncodeConfig = encodeconfig
+          @EnhanceConfig = enhanceconfig
+        end
+
+        def deserialize(params)
+          unless params['EncodeConfig'].nil?
+            @EncodeConfig = ImageEncodeConfig.new
+            @EncodeConfig.deserialize(params['EncodeConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = ImageEnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
+          end
         end
       end
 
@@ -18211,6 +18281,63 @@ module TencentCloud
           @Switch = params['Switch']
           @BlockConfidence = params['BlockConfidence']
           @ReviewConfidence = params['ReviewConfidence']
+        end
+      end
+
+      # ProcessImage请求参数结构体
+      class ProcessImageRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: 图片处理的文件输入信息。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param OutputStorage: 图片处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputDir: 图片处理生成的文件输出的路径。如果不填表示与 InputInfo 中文件所在的目录一致。如果是目录，如`/image/201907/`，表示继承原文件名输出到该目录。
+        # @type OutputDir: String
+        # @param ImageTask: 图片处理参数。
+        # @type ImageTask: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
+
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ImageTask
+
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, imagetask=nil)
+          @InputInfo = inputinfo
+          @OutputStorage = outputstorage
+          @OutputDir = outputdir
+          @ImageTask = imagetask
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputDir = params['OutputDir']
+          unless params['ImageTask'].nil?
+            @ImageTask = ImageTaskInput.new
+            @ImageTask.deserialize(params['ImageTask'])
+          end
+        end
+      end
+
+      # ProcessImage返回参数结构体
+      class ProcessImageResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
