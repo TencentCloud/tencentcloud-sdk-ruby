@@ -344,6 +344,65 @@ module TencentCloud
         end
       end
 
+      # CreateTaskFromMultiAction请求参数结构体
+      class CreateTaskFromMultiActionRequest < TencentCloud::Common::AbstractModel
+        # @param TaskInstances: 参与演练的实例ID
+        # @type TaskInstances: Array
+        # @param TaskTitle: 演练名称，不填则默认取动作名称
+        # @type TaskTitle: String
+        # @param TaskDescription: 演练描述，不填则默认取动作描述
+        # @type TaskDescription: String
+        # @param TaskPauseDuration: 演练自动暂停时间，单位分钟, 不填则默认为60
+        # @type TaskPauseDuration: Integer
+        # @param TaskAction: 演练动作组配置
+        # @type TaskAction: Array
+
+        attr_accessor :TaskInstances, :TaskTitle, :TaskDescription, :TaskPauseDuration, :TaskAction
+
+        def initialize(taskinstances=nil, tasktitle=nil, taskdescription=nil, taskpauseduration=nil, taskaction=nil)
+          @TaskInstances = taskinstances
+          @TaskTitle = tasktitle
+          @TaskDescription = taskdescription
+          @TaskPauseDuration = taskpauseduration
+          @TaskAction = taskaction
+        end
+
+        def deserialize(params)
+          @TaskInstances = params['TaskInstances']
+          @TaskTitle = params['TaskTitle']
+          @TaskDescription = params['TaskDescription']
+          @TaskPauseDuration = params['TaskPauseDuration']
+          unless params['TaskAction'].nil?
+            @TaskAction = []
+            params['TaskAction'].each do |i|
+              taskgroupforaction_tmp = TaskGroupForAction.new
+              taskgroupforaction_tmp.deserialize(i)
+              @TaskAction << taskgroupforaction_tmp
+            end
+          end
+        end
+      end
+
+      # CreateTaskFromMultiAction返回参数结构体
+      class CreateTaskFromMultiActionResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 创建成功的演练ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTaskFromTemplate请求参数结构体
       class CreateTaskFromTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 从经验库中查询到的经验模板ID
@@ -1929,6 +1988,30 @@ module TencentCloud
               @TaskGroupActionsConfig << taskgroupactionconfig_tmp
             end
           end
+        end
+      end
+
+      # 演练动作组简易配置
+      class TaskGroupForAction < TencentCloud::Common::AbstractModel
+        # @param TaskActionId: 动作ID
+        # @type TaskActionId: Integer
+        # @param TaskActionGeneralConfiguration: {"ActionTimeout":1800}
+        # @type TaskActionGeneralConfiguration: String
+        # @param TaskActionCustomConfiguration: {"ip": "0.0.0.0"}
+        # @type TaskActionCustomConfiguration: String
+
+        attr_accessor :TaskActionId, :TaskActionGeneralConfiguration, :TaskActionCustomConfiguration
+
+        def initialize(taskactionid=nil, taskactiongeneralconfiguration=nil, taskactioncustomconfiguration=nil)
+          @TaskActionId = taskactionid
+          @TaskActionGeneralConfiguration = taskactiongeneralconfiguration
+          @TaskActionCustomConfiguration = taskactioncustomconfiguration
+        end
+
+        def deserialize(params)
+          @TaskActionId = params['TaskActionId']
+          @TaskActionGeneralConfiguration = params['TaskActionGeneralConfiguration']
+          @TaskActionCustomConfiguration = params['TaskActionCustomConfiguration']
         end
       end
 

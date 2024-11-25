@@ -3649,10 +3649,13 @@ module TencentCloud
         # @type MinCpu: Float
         # @param MaxCpu: serverless实例cpu上限
         # @type MaxCpu: Float
+        # @param DbMode: Db类型:<li>NORMAL</li><li>SERVERLESS</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbMode: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -3687,6 +3690,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @MinCpu = mincpu
           @MaxCpu = maxcpu
+          @DbMode = dbmode
         end
 
         def deserialize(params)
@@ -3724,6 +3728,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
+          @DbMode = params['DbMode']
         end
       end
 

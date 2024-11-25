@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 以多个动作创建演练
+
+        # @param request: Request instance for CreateTaskFromMultiAction.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::CreateTaskFromMultiActionRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::CreateTaskFromMultiActionResponse`
+        def CreateTaskFromMultiAction(request)
+          body = send_request('CreateTaskFromMultiAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTaskFromMultiActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 从经验库创建演练
 
         # @param request: Request instance for CreateTaskFromTemplate.

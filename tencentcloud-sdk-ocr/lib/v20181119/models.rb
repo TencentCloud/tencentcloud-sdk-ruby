@@ -9448,12 +9448,22 @@ module TencentCloud
         # -9108 证件模糊告警
         # -9109 告警能力未开通
         # @type WarnCardInfos: Array
+        # @param AdvancedInfo: 字段置信度：
+        # {
+        #     "ID": {
+        #         "Confidence": 0.9999
+        #     },
+        #     "ThaiName": {
+        #         "Confidence": 0.9996
+        #     }
+        # }
+        # @type AdvancedInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :PortraitImage, :WarnCardInfos, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :RequestId
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, portraitimage=nil, warncardinfos=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -9469,6 +9479,7 @@ module TencentCloud
           @Address = address
           @PortraitImage = portraitimage
           @WarnCardInfos = warncardinfos
+          @AdvancedInfo = advancedinfo
           @RequestId = requestid
         end
 
@@ -9488,6 +9499,7 @@ module TencentCloud
           @Address = params['Address']
           @PortraitImage = params['PortraitImage']
           @WarnCardInfos = params['WarnCardInfos']
+          @AdvancedInfo = params['AdvancedInfo']
           @RequestId = params['RequestId']
         end
       end

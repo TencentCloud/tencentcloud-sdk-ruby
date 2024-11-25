@@ -6990,6 +6990,26 @@ module TencentCloud
         end
       end
 
+      # 重排数据, 计算2段内容的关联性
+      class ReRankDataObject < TencentCloud::Common::AbstractModel
+        # @param PromptA: 第一段内容
+        # @type PromptA: String
+        # @param PromptB: 第二段内容
+        # @type PromptB: String
+
+        attr_accessor :PromptA, :PromptB
+
+        def initialize(prompta=nil, promptb=nil)
+          @PromptA = prompta
+          @PromptB = promptb
+        end
+
+        def deserialize(params)
+          @PromptA = params['PromptA']
+          @PromptB = params['PromptB']
+        end
+      end
+
       # ReconstructDocument配置选项
       class ReconstructDocumentConfig < TencentCloud::Common::AbstractModel
         # @param EnableInsetImage: 生成的Markdown中是否嵌入图片
@@ -7605,6 +7625,77 @@ module TencentCloud
               @SlotValues << valueinfo_tmp
             end
           end
+        end
+      end
+
+      # RunReRank请求参数结构体
+      class RunReRankRequest < TencentCloud::Common::AbstractModel
+        # @param Query: 模型名称, 必填，默认: lke-reranker-base
+        # @type Query: String
+        # @param Docs: 文档列表，必填，最多20个
+        # @type Docs: Array
+        # @param Model: 模型名称, 非必填，默认: lke-reranker-base
+        # @type Model: String
+        # @param DataList: 需要计算关联性的2段内容
+        # @type DataList: Array
+        # @param Online: 是否在线, 后台异步任务使用离线, 实时任务使用在线, 默认值: false
+        # @type Online: Boolean
+
+        attr_accessor :Query, :Docs, :Model, :DataList, :Online
+        extend Gem::Deprecate
+        deprecate :DataList, :none, 2024, 11
+        deprecate :DataList=, :none, 2024, 11
+        deprecate :Online, :none, 2024, 11
+        deprecate :Online=, :none, 2024, 11
+
+        def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
+          @Query = query
+          @Docs = docs
+          @Model = model
+          @DataList = datalist
+          @Online = online
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @Docs = params['Docs']
+          @Model = params['Model']
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              rerankdataobject_tmp = ReRankDataObject.new
+              rerankdataobject_tmp.deserialize(i)
+              @DataList << rerankdataobject_tmp
+            end
+          end
+          @Online = params['Online']
+        end
+      end
+
+      # RunReRank返回参数结构体
+      class RunReRankResponse < TencentCloud::Common::AbstractModel
+        # @param ScoreList: 相关性, 数值越大越相关
+        # @type ScoreList: Array
+        # @param Usage: 消耗量，仅返回TotalToken
+        # @type Usage: :class:`Tencentcloud::Lke.v20231130.models.Usage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScoreList, :Usage, :RequestId
+
+        def initialize(scorelist=nil, usage=nil, requestid=nil)
+          @ScoreList = scorelist
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ScoreList = params['ScoreList']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

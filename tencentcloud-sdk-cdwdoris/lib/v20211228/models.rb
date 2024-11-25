@@ -1516,13 +1516,25 @@ module TencentCloud
       class DescribeBackUpTablesResponse < TencentCloud::Common::AbstractModel
         # @param AvailableTables: 可备份表列表
         # @type AvailableTables: Array
+        # @param Msg: msg
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param IsUnknownVersion: 未知version
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUnknownVersion: Boolean
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AvailableTables, :RequestId
+        attr_accessor :AvailableTables, :Msg, :IsUnknownVersion, :ErrorMsg, :RequestId
 
-        def initialize(availabletables=nil, requestid=nil)
+        def initialize(availabletables=nil, msg=nil, isunknownversion=nil, errormsg=nil, requestid=nil)
           @AvailableTables = availabletables
+          @Msg = msg
+          @IsUnknownVersion = isunknownversion
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
@@ -1535,6 +1547,9 @@ module TencentCloud
               @AvailableTables << backuptablecontent_tmp
             end
           end
+          @Msg = params['Msg']
+          @IsUnknownVersion = params['IsUnknownVersion']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -2041,17 +2056,21 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param SlowQueryRecords: 记录列表
         # @type SlowQueryRecords: :class:`Tencentcloud::Cdwdoris.v20211228.models.DataBaseAuditRecord`
+        # @param Records: 记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
         # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :SlowQueryRecords, :ErrorMsg, :RequestId
+        attr_accessor :TotalCount, :SlowQueryRecords, :Records, :ErrorMsg, :RequestId
 
-        def initialize(totalcount=nil, slowqueryrecords=nil, errormsg=nil, requestid=nil)
+        def initialize(totalcount=nil, slowqueryrecords=nil, records=nil, errormsg=nil, requestid=nil)
           @TotalCount = totalcount
           @SlowQueryRecords = slowqueryrecords
+          @Records = records
           @ErrorMsg = errormsg
           @RequestId = requestid
         end
@@ -2061,6 +2080,14 @@ module TencentCloud
           unless params['SlowQueryRecords'].nil?
             @SlowQueryRecords = DataBaseAuditRecord.new
             @SlowQueryRecords.deserialize(params['SlowQueryRecords'])
+          end
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              databaseauditrecord_tmp = DataBaseAuditRecord.new
+              databaseauditrecord_tmp.deserialize(i)
+              @Records << databaseauditrecord_tmp
+            end
           end
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']

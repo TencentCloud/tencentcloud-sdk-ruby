@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 主实例创建数据库代理
+        # 本接口（CreateCdbProxy）用于主实例创建数据库代理。
 
         # @param request: Request instance for CreateCdbProxy.
         # @type request: :class:`Tencentcloud::cdb::V20170320::CreateCdbProxyRequest`
