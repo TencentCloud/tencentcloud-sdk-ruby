@@ -17,6 +17,135 @@
 module TencentCloud
   module Live
     module V20180801
+      # AddCasterInputInfo请求参数结构体
+      class AddCasterInputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param InputInfo: 导播台输入源详细信息。
+        # @type InputInfo: :class:`Tencentcloud::Live.v20180801.models.CasterInputInfo`
+
+        attr_accessor :CasterId, :InputInfo
+
+        def initialize(casterid=nil, inputinfo=nil)
+          @CasterId = casterid
+          @InputInfo = inputinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['InputInfo'].nil?
+            @InputInfo = CasterInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+        end
+      end
+
+      # AddCasterInputInfo返回参数结构体
+      class AddCasterInputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param InputPlayUrl: rtmp协议输入源播放地址。
+        # 注：仅可作为预览使用，不可分发。
+        # @type InputPlayUrl: String
+        # @param InputWebRTCPlayUrl: webrtc协议播放地址。
+        # 注：
+        # 1. 需配合使用腾讯云快直播播放SDK使用才可正常播放。
+        # 2. 仅作为预览使用，不可分发。
+        # @type InputWebRTCPlayUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InputPlayUrl, :InputWebRTCPlayUrl, :RequestId
+
+        def initialize(inputplayurl=nil, inputwebrtcplayurl=nil, requestid=nil)
+          @InputPlayUrl = inputplayurl
+          @InputWebRTCPlayUrl = inputwebrtcplayurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InputPlayUrl = params['InputPlayUrl']
+          @InputWebRTCPlayUrl = params['InputWebRTCPlayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddCasterLayoutInfo请求参数结构体
+      class AddCasterLayoutInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param LayoutInfo: 导播台布局参数信息。
+        # @type LayoutInfo: :class:`Tencentcloud::Live.v20180801.models.CasterLayoutInfo`
+
+        attr_accessor :CasterId, :LayoutInfo
+
+        def initialize(casterid=nil, layoutinfo=nil)
+          @CasterId = casterid
+          @LayoutInfo = layoutinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['LayoutInfo'].nil?
+            @LayoutInfo = CasterLayoutInfo.new
+            @LayoutInfo.deserialize(params['LayoutInfo'])
+          end
+        end
+      end
+
+      # AddCasterLayoutInfo返回参数结构体
+      class AddCasterLayoutInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddCasterOutputInfo请求参数结构体
+      class AddCasterOutputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param OutputInfo: 导播台推流参数信息。
+        # @type OutputInfo: :class:`Tencentcloud::Live.v20180801.models.CasterOutputInfo`
+
+        attr_accessor :CasterId, :OutputInfo
+
+        def initialize(casterid=nil, outputinfo=nil)
+          @CasterId = casterid
+          @OutputInfo = outputinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['OutputInfo'].nil?
+            @OutputInfo = CasterOutputInfo.new
+            @OutputInfo.deserialize(params['OutputInfo'])
+          end
+        end
+      end
+
+      # AddCasterOutputInfo返回参数结构体
+      class AddCasterOutputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddDelayLiveStream请求参数结构体
       class AddDelayLiveStreamRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 推流路径，与推流和播放地址中的 AppName 保持一致，默认为 live。
@@ -879,6 +1008,244 @@ module TencentCloud
         end
       end
 
+      # 导播台输入信息参数
+      class CasterInputInfo < TencentCloud::Common::AbstractModel
+        # @param InputIndex: 输入源Index。
+        # 范围[1, 20]
+        # @type InputIndex: Integer
+        # @param InputType: 输入源类型。
+        # 范围[0,1,2,3,4]。
+        # 0：推流地址。
+        # 1：点播文件地址。
+        # 2：直播拉流地址。
+        # 3：图片地址。
+        # 4：webrtc协议推流地址。
+        # @type InputType: Integer
+        # @param InputUrl: 输入源的源地址。
+        # 最大允许长度512。
+        # 当InputType为0（推流地址），2（直播拉流地址），3（图片地址）,4（webrtc推流地址）这几种类型时，URL需填入该字段。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputUrl: String
+        # @param Description: 输入源描述。
+        # 最大允许长度256字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param InputUrls: 点播地址列表。仅当input type为1（点播地址）时，将一个或多个点播地址，填入该字段。
+        # 单个地址最大允许长度512字符。
+        # 最多允许同时填入5个地址。
+        # 注：此时需保持InputUrl字段为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputUrls: Array
+        # @param LoopEnable: 是否启用点播无限循环播放。
+        # 注：当前该字段未生效，默认为True。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoopEnable: Boolean
+        # @param LoopNumber: 点播循环次数。
+        # 允许值-1或正整数。
+        # 当值为-1时，表示无限循环。
+        # 当值为其他正整数时，表示循环对应次数。
+        # 注：该字段暂未生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoopNumber: Integer
+        # @param PullPushEnable: 是否启用拉取到导播台。
+        # 注：该字段默认强制为true。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PullPushEnable: Boolean
+        # @param Volume: 输入源音量百分比。
+        # 默认为100。表示音量为原始大小。
+        # 允许值[0,200]。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Volume: Integer
+
+        attr_accessor :InputIndex, :InputType, :InputUrl, :Description, :InputUrls, :LoopEnable, :LoopNumber, :PullPushEnable, :Volume
+
+        def initialize(inputindex=nil, inputtype=nil, inputurl=nil, description=nil, inputurls=nil, loopenable=nil, loopnumber=nil, pullpushenable=nil, volume=nil)
+          @InputIndex = inputindex
+          @InputType = inputtype
+          @InputUrl = inputurl
+          @Description = description
+          @InputUrls = inputurls
+          @LoopEnable = loopenable
+          @LoopNumber = loopnumber
+          @PullPushEnable = pullpushenable
+          @Volume = volume
+        end
+
+        def deserialize(params)
+          @InputIndex = params['InputIndex']
+          @InputType = params['InputType']
+          @InputUrl = params['InputUrl']
+          @Description = params['Description']
+          @InputUrls = params['InputUrls']
+          @LoopEnable = params['LoopEnable']
+          @LoopNumber = params['LoopNumber']
+          @PullPushEnable = params['PullPushEnable']
+          @Volume = params['Volume']
+        end
+      end
+
+      # 导播台布局参数。
+      class CasterLayoutInfo < TencentCloud::Common::AbstractModel
+        # @param LayoutIndex: 布局Index。
+        # @type LayoutIndex: Integer
+        # @param LayoutTemplateId: 布局模板Id。
+        # 有效值[1，20，21，31，32，41]
+        # 当使用布局模版时，无需LayoutParams参数，导播台将使用模版布局参数。
+        # @type LayoutTemplateId: Integer
+        # @param InputIndexList: 布局绑定的输入列表。按布局LayerId从小到大，按顺序排列。
+        # 已有两个画面的布局为例，输入1对应LayerId为1，输入2对应的LayerId为2，该字段应该填入"1|2"。
+        # @type InputIndexList: String
+        # @param LayoutParams: 详细的布局参数列表。
+        # @type LayoutParams: Array
+        # @param LayoutWidth: 布局输出的宽度，单位为像素。
+        # 默认为1280像素。
+        # 注：该值仅在画中画布局，且未设置PgmWidth时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LayoutWidth: Integer
+        # @param LayoutHeight: 布局输出的高度，单位为像素。
+        # 注：该参数仅在画中画布局，且未设置PgmHeight时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LayoutHeight: Integer
+
+        attr_accessor :LayoutIndex, :LayoutTemplateId, :InputIndexList, :LayoutParams, :LayoutWidth, :LayoutHeight
+
+        def initialize(layoutindex=nil, layouttemplateid=nil, inputindexlist=nil, layoutparams=nil, layoutwidth=nil, layoutheight=nil)
+          @LayoutIndex = layoutindex
+          @LayoutTemplateId = layouttemplateid
+          @InputIndexList = inputindexlist
+          @LayoutParams = layoutparams
+          @LayoutWidth = layoutwidth
+          @LayoutHeight = layoutheight
+        end
+
+        def deserialize(params)
+          @LayoutIndex = params['LayoutIndex']
+          @LayoutTemplateId = params['LayoutTemplateId']
+          @InputIndexList = params['InputIndexList']
+          unless params['LayoutParams'].nil?
+            @LayoutParams = []
+            params['LayoutParams'].each do |i|
+              casterlayoutparam_tmp = CasterLayoutParam.new
+              casterlayoutparam_tmp.deserialize(i)
+              @LayoutParams << casterlayoutparam_tmp
+            end
+          end
+          @LayoutWidth = params['LayoutWidth']
+          @LayoutHeight = params['LayoutHeight']
+        end
+      end
+
+      # 导播台布局详细参数。
+      class CasterLayoutParam < TencentCloud::Common::AbstractModel
+        # @param LayerId: 布局层ID。
+        # 在画面最终渲染时，将按ID从小到大的顺序，由下至上渲染。
+        # @type LayerId: Integer
+        # @param LayerWidth: 布局层宽度。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面上所占的比例值。
+        # @type LayerWidth: Float
+        # @param LayerHeight: 布局层高度.
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面上所占的比例值。
+        # @type LayerHeight: Float
+        # @param LayerLocationX: 布局层位置x坐标。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面上x坐标所占的比例值。
+        # @type LayerLocationX: Float
+        # @param LayerLocationY: 布局层位置Y坐标。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示该层在最终画面Y坐标上所占的比例值。
+        # @type LayerLocationY: Float
+        # @param UsePortraitSegment: 是否启用抠图。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsePortraitSegment: Boolean
+
+        attr_accessor :LayerId, :LayerWidth, :LayerHeight, :LayerLocationX, :LayerLocationY, :UsePortraitSegment
+
+        def initialize(layerid=nil, layerwidth=nil, layerheight=nil, layerlocationx=nil, layerlocationy=nil, useportraitsegment=nil)
+          @LayerId = layerid
+          @LayerWidth = layerwidth
+          @LayerHeight = layerheight
+          @LayerLocationX = layerlocationx
+          @LayerLocationY = layerlocationy
+          @UsePortraitSegment = useportraitsegment
+        end
+
+        def deserialize(params)
+          @LayerId = params['LayerId']
+          @LayerWidth = params['LayerWidth']
+          @LayerHeight = params['LayerHeight']
+          @LayerLocationX = params['LayerLocationX']
+          @LayerLocationY = params['LayerLocationY']
+          @UsePortraitSegment = params['UsePortraitSegment']
+        end
+      end
+
+      # 导播台推流信息。
+      # 当导播台主监启动后，系统将自动将主监推流到腾讯云和其他第三方平台。
+      class CasterOutputInfo < TencentCloud::Common::AbstractModel
+        # @param OutputIndex: 推流信息Index。
+        # 当OutputType为1（表示推流到腾讯云直播）时，该值固定为0。
+        # 范围[0,10]。
+        # @type OutputIndex: Integer
+        # @param OutputUrl: rtmp协议推流地址。
+        # 最大允许长度512字符。
+        # @type OutputUrl: String
+        # @param Description: 描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param OutputStreamId: 推流到腾讯云直播源站时，使用的流ID。
+        # 仅当OutputType为1时生效。
+        # 最大允许128字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStreamId: String
+        # @param OutputType: 推流类型。
+        # 范围[1,2]
+        # 1. 推送到腾讯云直播源站。
+        # 2. 推送到第三方源站。
+        # @type OutputType: Integer
+        # @param OutputDomainName: 推到腾讯云直播源站时，使用的域名。
+        # 最大允许128字符，且域名需属于当前账号绑定的云直播推流域名。
+        # 仅在OutputType为1时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputDomainName: String
+        # @param OutputAppName: 推到腾讯云直播源站时，使用的AppName。
+        # 最大允许64字符。
+        # 仅在OutputType为1时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputAppName: String
+        # @param OutputParam: 推到腾讯云直播源站时需要添加的推流参数。
+        # 最大允许长度256字符。
+        # 仅在OutputType为1时生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputParam: String
+
+        attr_accessor :OutputIndex, :OutputUrl, :Description, :OutputStreamId, :OutputType, :OutputDomainName, :OutputAppName, :OutputParam
+
+        def initialize(outputindex=nil, outputurl=nil, description=nil, outputstreamid=nil, outputtype=nil, outputdomainname=nil, outputappname=nil, outputparam=nil)
+          @OutputIndex = outputindex
+          @OutputUrl = outputurl
+          @Description = description
+          @OutputStreamId = outputstreamid
+          @OutputType = outputtype
+          @OutputDomainName = outputdomainname
+          @OutputAppName = outputappname
+          @OutputParam = outputparam
+        end
+
+        def deserialize(params)
+          @OutputIndex = params['OutputIndex']
+          @OutputUrl = params['OutputUrl']
+          @Description = params['Description']
+          @OutputStreamId = params['OutputStreamId']
+          @OutputType = params['OutputType']
+          @OutputDomainName = params['OutputDomainName']
+          @OutputAppName = params['OutputAppName']
+          @OutputParam = params['OutputParam']
+        end
+      end
+
       # 下行播放统计指标
       class CdnPlayStatData < TencentCloud::Common::AbstractModel
         # @param Time: 时间点，
@@ -1295,6 +1662,53 @@ module TencentCloud
 
         def deserialize(params)
           @CasterId = params['CasterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCasterInputPushUrl请求参数结构体
+      class CreateCasterInputPushUrlRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param InputIndex: 请求生成推流地址的输入Index。
+        # 允许范围[1,20]。
+        # @type InputIndex: Integer
+        # @param Protocol: 生成推流地址协议。
+        # 范围[rtmp,webrtc]。
+        # 注：获取webrtc推流地址时，需配合腾讯云快直播推流sdk才可成功推流。
+        # @type Protocol: String
+
+        attr_accessor :CasterId, :InputIndex, :Protocol
+
+        def initialize(casterid=nil, inputindex=nil, protocol=nil)
+          @CasterId = casterid
+          @InputIndex = inputindex
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @InputIndex = params['InputIndex']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # CreateCasterInputPushUrl返回参数结构体
+      class CreateCasterInputPushUrlResponse < TencentCloud::Common::AbstractModel
+        # @param PushUrl: 生成可使用的推流地址。
+        # @type PushUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PushUrl, :RequestId
+
+        def initialize(pushurl=nil, requestid=nil)
+          @PushUrl = pushurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PushUrl = params['PushUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -3044,6 +3458,118 @@ module TencentCloud
         end
       end
 
+      # DeleteCasterInputInfo请求参数结构体
+      class DeleteCasterInputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param InputIndex: 导播台输入Index。
+        # 范围[0,20]
+        # 注：该Index对应的输入源需存在。
+        # @type InputIndex: Integer
+
+        attr_accessor :CasterId, :InputIndex
+
+        def initialize(casterid=nil, inputindex=nil)
+          @CasterId = casterid
+          @InputIndex = inputindex
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @InputIndex = params['InputIndex']
+        end
+      end
+
+      # DeleteCasterInputInfo返回参数结构体
+      class DeleteCasterInputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCasterLayoutInfo请求参数结构体
+      class DeleteCasterLayoutInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param LayoutIndex: 要删除的布局Index。
+        # 注：待删除的Index对应的布局需存在。
+        # @type LayoutIndex: Integer
+
+        attr_accessor :CasterId, :LayoutIndex
+
+        def initialize(casterid=nil, layoutindex=nil)
+          @CasterId = casterid
+          @LayoutIndex = layoutindex
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @LayoutIndex = params['LayoutIndex']
+        end
+      end
+
+      # DeleteCasterLayoutInfo返回参数结构体
+      class DeleteCasterLayoutInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCasterOutputInfo请求参数结构体
+      class DeleteCasterOutputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param OutputIndex: 待删除的推流信息Index。
+        # 注：删除时，该Index对应的配置需要存在。
+        # @type OutputIndex: Integer
+
+        attr_accessor :CasterId, :OutputIndex
+
+        def initialize(casterid=nil, outputindex=nil)
+          @CasterId = casterid
+          @OutputIndex = outputindex
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @OutputIndex = params['OutputIndex']
+        end
+      end
+
+      # DeleteCasterOutputInfo返回参数结构体
+      class DeleteCasterOutputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCaster请求参数结构体
       class DeleteCasterRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 待删除的导播台ID
@@ -4257,6 +4783,92 @@ module TencentCloud
         end
       end
 
+      # DescribeCasterInputInfos请求参数结构体
+      class DescribeCasterInputInfosRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterInputInfos返回参数结构体
+      class DescribeCasterInputInfosResponse < TencentCloud::Common::AbstractModel
+        # @param InputInfos: 导播台输入源信息列表。
+        # @type InputInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InputInfos, :RequestId
+
+        def initialize(inputinfos=nil, requestid=nil)
+          @InputInfos = inputinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InputInfos'].nil?
+            @InputInfos = []
+            params['InputInfos'].each do |i|
+              casterinputinfo_tmp = CasterInputInfo.new
+              casterinputinfo_tmp.deserialize(i)
+              @InputInfos << casterinputinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterLayoutInfos请求参数结构体
+      class DescribeCasterLayoutInfosRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterLayoutInfos返回参数结构体
+      class DescribeCasterLayoutInfosResponse < TencentCloud::Common::AbstractModel
+        # @param LayoutInfos: 导播台的布局列表。
+        # @type LayoutInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LayoutInfos, :RequestId
+
+        def initialize(layoutinfos=nil, requestid=nil)
+          @LayoutInfos = layoutinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LayoutInfos'].nil?
+            @LayoutInfos = []
+            params['LayoutInfos'].each do |i|
+              casterlayoutinfo_tmp = CasterLayoutInfo.new
+              casterlayoutinfo_tmp.deserialize(i)
+              @LayoutInfos << casterlayoutinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCasterList请求参数结构体
       class DescribeCasterListRequest < TencentCloud::Common::AbstractModel
 
@@ -4290,6 +4902,50 @@ module TencentCloud
               casterbriefinfo_tmp = CasterBriefInfo.new
               casterbriefinfo_tmp.deserialize(i)
               @CasterList << casterbriefinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterOutputInfos请求参数结构体
+      class DescribeCasterOutputInfosRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterOutputInfos返回参数结构体
+      class DescribeCasterOutputInfosResponse < TencentCloud::Common::AbstractModel
+        # @param OutputInfos: 导播台的推流信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OutputInfos, :RequestId
+
+        def initialize(outputinfos=nil, requestid=nil)
+          @OutputInfos = outputinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OutputInfos'].nil?
+            @OutputInfos = []
+            params['OutputInfos'].each do |i|
+              casteroutputinfo_tmp = CasterOutputInfo.new
+              casteroutputinfo_tmp.deserialize(i)
+              @OutputInfos << casteroutputinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9956,6 +10612,134 @@ module TencentCloud
 
         def deserialize(params)
           @Color = params['Color']
+        end
+      end
+
+      # ModifyCasterInputInfo请求参数结构体
+      class ModifyCasterInputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param InputInfo: 修改的导播台输入源信息
+        # @type InputInfo: :class:`Tencentcloud::Live.v20180801.models.CasterInputInfo`
+
+        attr_accessor :CasterId, :InputInfo
+
+        def initialize(casterid=nil, inputinfo=nil)
+          @CasterId = casterid
+          @InputInfo = inputinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['InputInfo'].nil?
+            @InputInfo = CasterInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+        end
+      end
+
+      # ModifyCasterInputInfo返回参数结构体
+      class ModifyCasterInputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param InputPlayUrl: 修改输入源后的预览地址。
+        # 注：该地址仅作为预览使用，不可分发。
+        # @type InputPlayUrl: String
+        # @param InputWebRTCPlayUrl: 修改后的输入源webrtc预览地址。
+        # 该地址需配合腾讯云快直播播放SDK使用。
+        # 注：该地址仅做预览使用，不可分发。
+        # @type InputWebRTCPlayUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InputPlayUrl, :InputWebRTCPlayUrl, :RequestId
+
+        def initialize(inputplayurl=nil, inputwebrtcplayurl=nil, requestid=nil)
+          @InputPlayUrl = inputplayurl
+          @InputWebRTCPlayUrl = inputwebrtcplayurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InputPlayUrl = params['InputPlayUrl']
+          @InputWebRTCPlayUrl = params['InputWebRTCPlayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCasterLayoutInfo请求参数结构体
+      class ModifyCasterLayoutInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param LayoutInfo: 导播台布局参数信息。
+        # @type LayoutInfo: :class:`Tencentcloud::Live.v20180801.models.CasterLayoutInfo`
+
+        attr_accessor :CasterId, :LayoutInfo
+
+        def initialize(casterid=nil, layoutinfo=nil)
+          @CasterId = casterid
+          @LayoutInfo = layoutinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['LayoutInfo'].nil?
+            @LayoutInfo = CasterLayoutInfo.new
+            @LayoutInfo.deserialize(params['LayoutInfo'])
+          end
+        end
+      end
+
+      # ModifyCasterLayoutInfo返回参数结构体
+      class ModifyCasterLayoutInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCasterOutputInfo请求参数结构体
+      class ModifyCasterOutputInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param OutputInfo: 导播台推流参数信息。
+        # @type OutputInfo: :class:`Tencentcloud::Live.v20180801.models.CasterOutputInfo`
+
+        attr_accessor :CasterId, :OutputInfo
+
+        def initialize(casterid=nil, outputinfo=nil)
+          @CasterId = casterid
+          @OutputInfo = outputinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['OutputInfo'].nil?
+            @OutputInfo = CasterOutputInfo.new
+            @OutputInfo.deserialize(params['OutputInfo'])
+          end
+        end
+      end
+
+      # ModifyCasterOutputInfo返回参数结构体
+      class ModifyCasterOutputInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

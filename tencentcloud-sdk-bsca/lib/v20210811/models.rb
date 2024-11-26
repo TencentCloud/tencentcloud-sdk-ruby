@@ -536,17 +536,20 @@ module TencentCloud
         # @type VulnerabilityList: Array
         # @param PURL: 组件purl
         # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
-        # @param RecommendedVersion: 推荐版本，当前版本中的所有漏洞都修复了的版本
+        # @param RecommendedVersion: 推荐版本，最小无高危/严重漏洞的版本。无法升级到安全版本时的备选方案。
         # @type RecommendedVersion: String
+        # @param SecureVersion: 安全版本（首选），最小无漏洞的版本。当无法升级到安全版本时可考虑使用推荐版本。
+        # @type SecureVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VulnerabilityList, :PURL, :RecommendedVersion, :RequestId
+        attr_accessor :VulnerabilityList, :PURL, :RecommendedVersion, :SecureVersion, :RequestId
 
-        def initialize(vulnerabilitylist=nil, purl=nil, recommendedversion=nil, requestid=nil)
+        def initialize(vulnerabilitylist=nil, purl=nil, recommendedversion=nil, secureversion=nil, requestid=nil)
           @VulnerabilityList = vulnerabilitylist
           @PURL = purl
           @RecommendedVersion = recommendedversion
+          @SecureVersion = secureversion
           @RequestId = requestid
         end
 
@@ -564,6 +567,7 @@ module TencentCloud
             @PURL.deserialize(params['PURL'])
           end
           @RecommendedVersion = params['RecommendedVersion']
+          @SecureVersion = params['SecureVersion']
           @RequestId = params['RequestId']
         end
       end
@@ -1096,8 +1100,8 @@ module TencentCloud
 
         attr_accessor :VulID, :CVEID, :CNVDID, :CNNVDID, :Name, :IsSuggest, :Severity, :Architecture, :ArchitectureList, :PatchUrlList
         extend Gem::Deprecate
-        deprecate :Architecture, :none, 2024, 10
-        deprecate :Architecture=, :none, 2024, 10
+        deprecate :Architecture, :none, 2024, 11
+        deprecate :Architecture=, :none, 2024, 11
 
         def initialize(vulid=nil, cveid=nil, cnvdid=nil, cnnvdid=nil, name=nil, issuggest=nil, severity=nil, architecture=nil, architecturelist=nil, patchurllist=nil)
           @VulID = vulid

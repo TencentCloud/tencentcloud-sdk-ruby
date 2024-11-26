@@ -9227,27 +9227,27 @@ module TencentCloud
 
       # TWeCall信息
       class TWeCallInfo < TencentCloud::Common::AbstractModel
-        # @param ModelId: 小程序ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ModelId: String
         # @param Sn: Sn信息，SN格式：产品ID_设备名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sn: String
+        # @param ModelId: 小程序ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
         # @param ActiveNum: 激活数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveNum: Integer
 
-        attr_accessor :ModelId, :Sn, :ActiveNum
+        attr_accessor :Sn, :ModelId, :ActiveNum
 
-        def initialize(modelid=nil, sn=nil, activenum=nil)
-          @ModelId = modelid
+        def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
+          @ModelId = modelid
           @ActiveNum = activenum
         end
 
         def deserialize(params)
-          @ModelId = params['ModelId']
           @Sn = params['Sn']
+          @ModelId = params['ModelId']
           @ActiveNum = params['ActiveNum']
         end
       end

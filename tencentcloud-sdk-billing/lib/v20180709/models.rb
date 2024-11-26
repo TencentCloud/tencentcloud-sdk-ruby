@@ -8572,7 +8572,6 @@ module TencentCloud
         # @param TotalBalance: 总余额（微分）
         # @type TotalBalance: Integer
         # @param VoucherInfos: 代金券相关信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9862,10 +9861,8 @@ module TencentCloud
         # @param EndTime: 有效期截止时间
         # @type EndTime: String
         # @param ApplicableProducts: 适用商品信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicableProducts: :class:`Tencentcloud::Billing.v20180709.models.ApplicableProducts`
         # @param ExcludedProducts: 不适用商品信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludedProducts: Array
 
         attr_accessor :OwnerUin, :Status, :NominalValue, :Balance, :VoucherId, :PayMode, :PayScene, :BeginTime, :EndTime, :ApplicableProducts, :ExcludedProducts

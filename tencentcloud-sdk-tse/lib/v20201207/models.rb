@@ -6335,11 +6335,11 @@ module TencentCloud
       class DescribeNativeGatewayServerGroupsRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。
         # @type GatewayId: String
-        # @param Offset: 翻页从第几个开始获取
+        # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
-        # @param Limit: 翻页获取多少个
+        # @param Limit: 返回数量，默认为 20。
         # @type Limit: Integer
-        # @param Filters: 过滤参数
+        # @param Filters: 过滤参数，支持按照分组名称、分组ID（Name、GroupId）筛选
         # @type Filters: Array
 
         attr_accessor :GatewayId, :Offset, :Limit, :Filters

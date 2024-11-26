@@ -2261,7 +2261,7 @@ module TencentCloud
 
       # DescribeMigrateDBInstances请求参数结构体
       class DescribeMigrateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DatabaseType: 数据库类型，如mysql
+        # @param DatabaseType: 数据库类型，如mysql,redis等
         # @type DatabaseType: String
         # @param MigrateRole: 实例作为迁移的源还是目标,src(表示源)，dst(表示目标)
         # @type MigrateRole: String

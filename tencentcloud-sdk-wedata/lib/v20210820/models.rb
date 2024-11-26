@@ -9241,11 +9241,11 @@ module TencentCloud
         # @type LogLevelType: String
         # @param ExecutionFileType: 文件类型,Log/Code
         # @type ExecutionFileType: String
-        # @param ExecutionJobId: 统一执行平台执行id
+        # @param ExecutionJobId: 统一执行平台执行id, 注意: ExecutionJobId 跟 "BrokerIp+OriginFileName" 必须有一个不为空
         # @type ExecutionJobId: String
-        # @param BrokerIp: 服务器Ip
+        # @param BrokerIp: 服务器Ip, 注意: "BrokerIp+OriginFileName"跟ExecutionJobId必须有一个不为空
         # @type BrokerIp: String
-        # @param OriginFileName: 文件Name
+        # @param OriginFileName: 文件Name, 注意: "BrokerIp+OriginFileName"跟ExecutionJobId必须有一个不为空
         # @type OriginFileName: String
         # @param StartCount: 起始行
         # @type StartCount: Integer
