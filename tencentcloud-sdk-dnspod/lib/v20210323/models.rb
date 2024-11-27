@@ -1156,6 +1156,54 @@ module TencentCloud
         end
       end
 
+      # CreateSubdomainValidateTXTValue请求参数结构体
+      class CreateSubdomainValidateTXTValueRequest < TencentCloud::Common::AbstractModel
+        # @param DomainZone: 要添加的子域名 Zone 域。
+        # @type DomainZone: String
+
+        attr_accessor :DomainZone
+
+        def initialize(domainzone=nil)
+          @DomainZone = domainzone
+        end
+
+        def deserialize(params)
+          @DomainZone = params['DomainZone']
+        end
+      end
+
+      # CreateSubdomainValidateTXTValue返回参数结构体
+      class CreateSubdomainValidateTXTValueResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要添加 TXT 记录的域名。
+        # @type Domain: String
+        # @param Subdomain: 需要添加 TXT 记录的主机记录。
+        # @type Subdomain: String
+        # @param RecordType: 需要添加记录类型。
+        # @type RecordType: String
+        # @param Value: 需要添加 TXT 记录的记录值。
+        # @type Value: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :Subdomain, :RecordType, :Value, :RequestId
+
+        def initialize(domain=nil, subdomain=nil, recordtype=nil, value=nil, requestid=nil)
+          @Domain = domain
+          @Subdomain = subdomain
+          @RecordType = recordtype
+          @Value = value
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Subdomain = params['Subdomain']
+          @RecordType = params['RecordType']
+          @Value = params['Value']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTXTRecord请求参数结构体
       class CreateTXTRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3696,6 +3744,38 @@ module TencentCloud
               @AliasData << subdomainaliasanalyticsitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubdomainValidateStatus请求参数结构体
+      class DescribeSubdomainValidateStatusRequest < TencentCloud::Common::AbstractModel
+        # @param DomainZone: 要查看 TXT 记录校验状态的子域名 Zone 域。
+        # @type DomainZone: String
+
+        attr_accessor :DomainZone
+
+        def initialize(domainzone=nil)
+          @DomainZone = domainzone
+        end
+
+        def deserialize(params)
+          @DomainZone = params['DomainZone']
+        end
+      end
+
+      # DescribeSubdomainValidateStatus返回参数结构体
+      class DescribeSubdomainValidateStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

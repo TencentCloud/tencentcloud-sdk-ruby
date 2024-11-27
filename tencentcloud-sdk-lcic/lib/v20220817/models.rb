@@ -2706,15 +2706,19 @@ module TencentCloud
       class DescribeUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id。
         # @type UserId: String
+        # @param OriginId: 客户端用户 id,如果未指定则为用户 id。
+        # @type OriginId: String
 
-        attr_accessor :UserId
+        attr_accessor :UserId, :OriginId
 
-        def initialize(userid=nil)
+        def initialize(userid=nil, originid=nil)
           @UserId = userid
+          @OriginId = originid
         end
 
         def deserialize(params)
           @UserId = params['UserId']
+          @OriginId = params['OriginId']
         end
       end
 

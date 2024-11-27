@@ -12072,10 +12072,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数目，默认值为20。
         # @type Limit: Integer
+        # @param Description: ACL规则描述
+        # @type Description: String
 
-        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :OriginalIp, :Offset, :Limit
+        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :OriginalIp, :Offset, :Limit, :Description
 
-        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, originalip=nil, offset=nil, limit=nil)
+        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, originalip=nil, offset=nil, limit=nil, description=nil)
           @NatGatewayId = natgatewayid
           @TranslationDirection = translationdirection
           @TranslationType = translationtype
@@ -12083,6 +12085,7 @@ module TencentCloud
           @OriginalIp = originalip
           @Offset = offset
           @Limit = limit
+          @Description = description
         end
 
         def deserialize(params)
@@ -12093,6 +12096,7 @@ module TencentCloud
           @OriginalIp = params['OriginalIp']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Description = params['Description']
         end
       end
 
@@ -25401,10 +25405,12 @@ module TencentCloud
         # @type AclRuleId: Integer
         # @param Action: 是否匹配。
         # @type Action: Integer
+        # @param Description: ACL规则描述
+        # @type Description: String
 
-        attr_accessor :Protocol, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :AclRuleId, :Action
+        attr_accessor :Protocol, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :AclRuleId, :Action, :Description
 
-        def initialize(protocol=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, aclruleid=nil, action=nil)
+        def initialize(protocol=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, aclruleid=nil, action=nil, description=nil)
           @Protocol = protocol
           @SourcePort = sourceport
           @SourceCidr = sourcecidr
@@ -25412,6 +25418,7 @@ module TencentCloud
           @DestinationCidr = destinationcidr
           @AclRuleId = aclruleid
           @Action = action
+          @Description = description
         end
 
         def deserialize(params)
@@ -25422,6 +25429,7 @@ module TencentCloud
           @DestinationCidr = params['DestinationCidr']
           @AclRuleId = params['AclRuleId']
           @Action = params['Action']
+          @Description = params['Description']
         end
       end
 

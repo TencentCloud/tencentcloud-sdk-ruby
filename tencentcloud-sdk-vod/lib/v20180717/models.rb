@@ -8341,19 +8341,23 @@ module TencentCloud
         # <li>Global: 全球范围。</li>
         # 如果没有设置 AccelerateArea， 点播会根据用户在腾讯云设置的地域信息自动开通中国境内或者中国境外的 CDN 加速。开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         # @type AccelerateArea: String
+        # @param Type: 域名类型，取值有： <li>VOD：使用 VOD 产品分发的域名；</li> <li>EdgeOne：使用 EdgeOne 产品分发的域名。</li>不填默认取值为 VOD 。
+        # @type Type: String
 
-        attr_accessor :Domain, :SubAppId, :AccelerateArea
+        attr_accessor :Domain, :SubAppId, :AccelerateArea, :Type
 
-        def initialize(domain=nil, subappid=nil, acceleratearea=nil)
+        def initialize(domain=nil, subappid=nil, acceleratearea=nil, type=nil)
           @Domain = domain
           @SubAppId = subappid
           @AccelerateArea = acceleratearea
+          @Type = type
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @SubAppId = params['SubAppId']
           @AccelerateArea = params['AccelerateArea']
+          @Type = params['Type']
         end
       end
 
@@ -13233,10 +13237,12 @@ module TencentCloud
         # @param IPFilterPolicy: IP 访问限制配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPFilterPolicy: :class:`Tencentcloud::Vod.v20180717.models.IPFilterPolicy`
+        # @param Type: 域名类型，取值有： <li>VOD：使用 VOD 产品分发的域名；</li> <li>EdgeOne：使用 EdgeOne 产品分发的域名。</li>
+        # @type Type: String
 
-        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime, :QUICConfig, :IPFilterPolicy
+        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime, :QUICConfig, :IPFilterPolicy, :Type
 
-        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil, quicconfig=nil, ipfilterpolicy=nil)
+        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil, quicconfig=nil, ipfilterpolicy=nil, type=nil)
           @Domain = domain
           @AccelerateAreaInfos = accelerateareainfos
           @DeployStatus = deploystatus
@@ -13246,6 +13252,7 @@ module TencentCloud
           @CreateTime = createtime
           @QUICConfig = quicconfig
           @IPFilterPolicy = ipfilterpolicy
+          @Type = type
         end
 
         def deserialize(params)
@@ -13280,6 +13287,7 @@ module TencentCloud
             @IPFilterPolicy = IPFilterPolicy.new
             @IPFilterPolicy.deserialize(params['IPFilterPolicy'])
           end
+          @Type = params['Type']
         end
       end
 

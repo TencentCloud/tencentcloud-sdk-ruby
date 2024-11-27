@@ -2404,7 +2404,9 @@ module TencentCloud
 
       # 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例，当前仅支持绑定标签到云主机实例。
       class TagSpecification < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 标签绑定的资源类型，当前支持类型："cluster"
+        # @param ResourceType: 标签绑定的资源类型，当前支持类型：
+        # 1.cluster：集群相关接口，TagSpecification 的 ResourceType 传参为 cluster
+        # 2.machine：节点池相关接口，如：CreateNodePool, DescribeNodePools 等，TagSpecification 的 ResourceType 传参为 machine
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param Tags: 标签对列表

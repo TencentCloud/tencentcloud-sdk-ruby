@@ -243,7 +243,7 @@ module TencentCloud
         end
       end
 
-      # 属性标签详情
+      # 标签详情
       class AttrLabelDetail < TencentCloud::Common::AbstractModel
         # @param AttrBizId: 属性ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -260,15 +260,23 @@ module TencentCloud
         # @param IsUpdating: 属性标签是否在更新中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdating: Boolean
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusDesc: 状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
 
-        attr_accessor :AttrBizId, :AttrKey, :AttrName, :LabelNames, :IsUpdating
+        attr_accessor :AttrBizId, :AttrKey, :AttrName, :LabelNames, :IsUpdating, :Status, :StatusDesc
 
-        def initialize(attrbizid=nil, attrkey=nil, attrname=nil, labelnames=nil, isupdating=nil)
+        def initialize(attrbizid=nil, attrkey=nil, attrname=nil, labelnames=nil, isupdating=nil, status=nil, statusdesc=nil)
           @AttrBizId = attrbizid
           @AttrKey = attrkey
           @AttrName = attrname
           @LabelNames = labelnames
           @IsUpdating = isupdating
+          @Status = status
+          @StatusDesc = statusdesc
         end
 
         def deserialize(params)
@@ -277,6 +285,8 @@ module TencentCloud
           @AttrName = params['AttrName']
           @LabelNames = params['LabelNames']
           @IsUpdating = params['IsUpdating']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
         end
       end
 

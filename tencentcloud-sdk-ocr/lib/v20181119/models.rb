@@ -12149,10 +12149,14 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FuelType: String
+        # @param AddressElectronic: 住址
+        # @type AddressElectronic: String
+        # @param IssueAuthorityElectronic: 发证机关
+        # @type IssueAuthorityElectronic: String
 
-        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode, :FuelType
+        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode, :FuelType, :AddressElectronic, :IssueAuthorityElectronic
 
-        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil, fueltype=nil)
+        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil, fueltype=nil, addresselectronic=nil, issueauthorityelectronic=nil)
           @PlateNo = plateno
           @FileNo = fileno
           @AllowNum = allownum
@@ -12165,6 +12169,8 @@ module TencentCloud
           @TotalQuasiMass = totalquasimass
           @SubPageCode = subpagecode
           @FuelType = fueltype
+          @AddressElectronic = addresselectronic
+          @IssueAuthorityElectronic = issueauthorityelectronic
         end
 
         def deserialize(params)
@@ -12180,6 +12186,8 @@ module TencentCloud
           @TotalQuasiMass = params['TotalQuasiMass']
           @SubPageCode = params['SubPageCode']
           @FuelType = params['FuelType']
+          @AddressElectronic = params['AddressElectronic']
+          @IssueAuthorityElectronic = params['IssueAuthorityElectronic']
         end
       end
 
@@ -14428,16 +14436,19 @@ module TencentCloud
         # WARN_DRIVER_LICENSE_BORDER_INCOMPLETE 边框不完整告警
         # 注：告警信息可以同时存在多个
         # @type RecognizeWarnMsg: Array
+        # @param VehicleLicenseType: 行驶证类型 电子行驶证：Electronic 普通行驶证：Normal
+        # @type VehicleLicenseType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FrontInfo, :BackInfo, :RecognizeWarnCode, :RecognizeWarnMsg, :RequestId
+        attr_accessor :FrontInfo, :BackInfo, :RecognizeWarnCode, :RecognizeWarnMsg, :VehicleLicenseType, :RequestId
 
-        def initialize(frontinfo=nil, backinfo=nil, recognizewarncode=nil, recognizewarnmsg=nil, requestid=nil)
+        def initialize(frontinfo=nil, backinfo=nil, recognizewarncode=nil, recognizewarnmsg=nil, vehiclelicensetype=nil, requestid=nil)
           @FrontInfo = frontinfo
           @BackInfo = backinfo
           @RecognizeWarnCode = recognizewarncode
           @RecognizeWarnMsg = recognizewarnmsg
+          @VehicleLicenseType = vehiclelicensetype
           @RequestId = requestid
         end
 
@@ -14452,6 +14463,7 @@ module TencentCloud
           end
           @RecognizeWarnCode = params['RecognizeWarnCode']
           @RecognizeWarnMsg = params['RecognizeWarnMsg']
+          @VehicleLicenseType = params['VehicleLicenseType']
           @RequestId = params['RequestId']
         end
       end

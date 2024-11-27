@@ -11611,6 +11611,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSplitPartitions: Integer
         # @param StorageType: 主题的存储类型
+
+        # - hot: 标准存储
+        # - cold: 低频存储
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
         # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存

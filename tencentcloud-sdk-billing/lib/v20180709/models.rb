@@ -118,13 +118,10 @@ module TencentCloud
       # 分账账单趋势图平均值
       class AllocationAverageData < TencentCloud::Common::AbstractModel
         # @param BeginMonth: 起始月份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginMonth: String
         # @param EndMonth: 结束月份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndMonth: String
         # @param RealTotalCost: 合计费用(折后总额)平均值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: String
 
         attr_accessor :BeginMonth, :EndMonth, :RealTotalCost
@@ -145,13 +142,10 @@ module TencentCloud
       # 分账趋势图详情数据
       class AllocationBillTrendDetail < TencentCloud::Common::AbstractModel
         # @param Month: 账单月份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Month: String
         # @param Name: 账单月份展示名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param RealTotalCost: 合计费用(折后总额)：分账单元总费用，归集费用(折后总额) + 分摊费用(折后总额)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCost: String
 
         attr_accessor :Month, :Name, :RealTotalCost
@@ -1673,10 +1667,8 @@ module TencentCloud
       # 成本分析交易类型复杂类型
       class AnalyseActionTypeDetail < TencentCloud::Common::AbstractModel
         # @param ActionType: 交易类型code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
         # @param ActionTypeName: 交易类型Name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTypeName: String
 
         attr_accessor :ActionType, :ActionTypeName
@@ -1695,10 +1687,8 @@ module TencentCloud
       # 成本分析金额返回数据模型
       class AnalyseAmountDetail < TencentCloud::Common::AbstractModel
         # @param Key: 费用类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Display: 是否展示
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Display: Integer
 
         attr_accessor :Key, :Display
@@ -1717,10 +1707,8 @@ module TencentCloud
       # 成本分析产品返回复杂类型
       class AnalyseBusinessDetail < TencentCloud::Common::AbstractModel
         # @param BusinessCode: 产品码code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
         # @param BusinessCodeName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCodeName: String
 
         attr_accessor :BusinessCode, :BusinessCodeName
@@ -1847,31 +1835,22 @@ module TencentCloud
       # 成本分析查询条件
       class AnalyseConditions < TencentCloud::Common::AbstractModel
         # @param BusinessCodes: 产品名称代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCodes: String
         # @param ProductCodes: 子产品名称代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCodes: String
         # @param ComponentCode: 组件类型代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCode: String
         # @param ZoneIds: 可用区ID：资源所属可用区ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: String
         # @param RegionIds: 地域ID:资源所属地域ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionIds: String
         # @param ProjectIds: 项目ID:资源所属项目ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectIds: String
         # @param PayModes: 计费模式 prePay(表示包年包月)/postPay(表示按量计费)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayModes: String
         # @param ActionTypes: 交易类型，查询交易类型（请使用交易类型code入参）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionTypes: String
         # @param Tags: 分账标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: String
         # @param FeeType: 费用类型，查询费用类型（请使用费用类型code入参)入参枚举如下：
         # cashPayAmount:现金
@@ -1879,16 +1858,12 @@ module TencentCloud
         # voucherPayAmount:优惠券
         # tax:税金
         # costBeforeTax:税前价
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FeeType: String
         # @param PayerUins: 查询成本分析数据的用户UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayerUins: String
         # @param OwnerUins: 使用资源的用户UIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUins: String
         # @param ConsumptionTypes: 消耗类型，查询消耗类型（请使用消耗类型code入参）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumptionTypes: String
 
         attr_accessor :BusinessCodes, :ProductCodes, :ComponentCode, :ZoneIds, :RegionIds, :ProjectIds, :PayModes, :ActionTypes, :Tags, :FeeType, :PayerUins, :OwnerUins, :ConsumptionTypes
@@ -1961,13 +1936,10 @@ module TencentCloud
       # 成本分析表头数据复杂类型
       class AnalyseHeaderDetail < TencentCloud::Common::AbstractModel
         # @param HeadDetail: 表头日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadDetail: Array
         # @param Name: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Total: 总计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: String
 
         attr_accessor :HeadDetail, :Name, :Total
@@ -1995,7 +1967,6 @@ module TencentCloud
       # 成本分析header表头数据
       class AnalyseHeaderTimeDetail < TencentCloud::Common::AbstractModel
         # @param Name: 日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Name
@@ -2012,7 +1983,6 @@ module TencentCloud
       # 成本分析使用者uin复杂类型
       class AnalyseOwnerUinDetail < TencentCloud::Common::AbstractModel
         # @param OwnerUin: 使用者uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
 
         attr_accessor :OwnerUin
@@ -2029,10 +1999,8 @@ module TencentCloud
       # 成本分析支付方式复杂类型
       class AnalysePayModeDetail < TencentCloud::Common::AbstractModel
         # @param PayMode: 计费模式code
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param PayModeName: 计费模式Name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayModeName: String
 
         attr_accessor :PayMode, :PayModeName
@@ -2051,10 +2019,8 @@ module TencentCloud
       # 成本分析项目返回复杂类型
       class AnalyseProjectDetail < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
         # @param ProjectName: 默认项目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
 
         attr_accessor :ProjectId, :ProjectName
@@ -2073,10 +2039,8 @@ module TencentCloud
       # 成本分析地域返回复杂类型
       class AnalyseRegionDetail < TencentCloud::Common::AbstractModel
         # @param RegionId: 地域id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
         # @param RegionName: 地域名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
 
         attr_accessor :RegionId, :RegionName
@@ -2095,10 +2059,8 @@ module TencentCloud
       # 成本分返回值复杂类型
       class AnalyseTimeDetail < TencentCloud::Common::AbstractModel
         # @param Time: 日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param Money: 金额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Money: String
 
         attr_accessor :Time, :Money
@@ -2117,10 +2079,8 @@ module TencentCloud
       # 成本分析可用区复杂类型
       class AnalyseZoneDetail < TencentCloud::Common::AbstractModel
         # @param ZoneId: 可用区id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: String
         # @param ZoneName: 可用区Name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
 
         attr_accessor :ZoneId, :ZoneName

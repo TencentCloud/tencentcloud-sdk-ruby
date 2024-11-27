@@ -1713,6 +1713,173 @@ module TencentCloud
         end
       end
 
+      # CreateCasterPgmFromPvw请求参数结构体
+      class CreateCasterPgmFromPvwRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # CreateCasterPgmFromPvw返回参数结构体
+      class CreateCasterPgmFromPvwResponse < TencentCloud::Common::AbstractModel
+        # @param PgmPlayUrl: 主监任务的rtmp协议预览地址。
+        # 注：该地址仅供预览，不可分发。
+        # @type PgmPlayUrl: String
+        # @param CdnPlayUrl: 注：该字段已废弃，请结合腾讯云直播播放地址生成策略生成cdn播放地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdnPlayUrl: String
+        # @param CdnStreamId: 主监任务在腾讯云直播侧的流ID。
+        # @type CdnStreamId: String
+        # @param PgmWebRTCPlayUrl: 主监任务的webrtc协议播放地址。
+        # 注：
+        # 1.该预览地址仅作为预览，不可分发。
+        # 2.webrtc播放地址需配合腾讯云快直播播放sdk使用。
+        # @type PgmWebRTCPlayUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PgmPlayUrl, :CdnPlayUrl, :CdnStreamId, :PgmWebRTCPlayUrl, :RequestId
+
+        def initialize(pgmplayurl=nil, cdnplayurl=nil, cdnstreamid=nil, pgmwebrtcplayurl=nil, requestid=nil)
+          @PgmPlayUrl = pgmplayurl
+          @CdnPlayUrl = cdnplayurl
+          @CdnStreamId = cdnstreamid
+          @PgmWebRTCPlayUrl = pgmwebrtcplayurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PgmPlayUrl = params['PgmPlayUrl']
+          @CdnPlayUrl = params['CdnPlayUrl']
+          @CdnStreamId = params['CdnStreamId']
+          @PgmWebRTCPlayUrl = params['PgmWebRTCPlayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCasterPgm请求参数结构体
+      class CreateCasterPgmRequest < TencentCloud::Common::AbstractModel
+        # @param PgmDisplayInfo: 导播台展示信息参数。
+        # @type PgmDisplayInfo: :class:`Tencentcloud::Live.v20180801.models.CasterDisplayInfo`
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :PgmDisplayInfo, :CasterId
+
+        def initialize(pgmdisplayinfo=nil, casterid=nil)
+          @PgmDisplayInfo = pgmdisplayinfo
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          unless params['PgmDisplayInfo'].nil?
+            @PgmDisplayInfo = CasterDisplayInfo.new
+            @PgmDisplayInfo.deserialize(params['PgmDisplayInfo'])
+          end
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # CreateCasterPgm返回参数结构体
+      class CreateCasterPgmResponse < TencentCloud::Common::AbstractModel
+        # @param PgmPlayUrl: 主监任务的rtmp协议预览地址。
+        # 注：该地址仅供预览，不可分发。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PgmPlayUrl: String
+        # @param CdnPlayUrl: 注：该字段已废弃，请结合腾讯云直播播放地址生成策略生成cdn播放地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdnPlayUrl: String
+        # @param CdnStreamId: 主监任务在腾讯云直播侧的流ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdnStreamId: String
+        # @param PgmWebRTCPlayUrl: 主监任务的webrtc协议播放地址。
+        # 注：
+        # 1. 该预览地址仅作为预览，不可分发。
+        # 2. webrtc播放地址需配合腾讯云快直播播放sdk使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PgmWebRTCPlayUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PgmPlayUrl, :CdnPlayUrl, :CdnStreamId, :PgmWebRTCPlayUrl, :RequestId
+
+        def initialize(pgmplayurl=nil, cdnplayurl=nil, cdnstreamid=nil, pgmwebrtcplayurl=nil, requestid=nil)
+          @PgmPlayUrl = pgmplayurl
+          @CdnPlayUrl = cdnplayurl
+          @CdnStreamId = cdnstreamid
+          @PgmWebRTCPlayUrl = pgmwebrtcplayurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PgmPlayUrl = params['PgmPlayUrl']
+          @CdnPlayUrl = params['CdnPlayUrl']
+          @CdnStreamId = params['CdnStreamId']
+          @PgmWebRTCPlayUrl = params['PgmWebRTCPlayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCasterPvw请求参数结构体
+      class CreateCasterPvwRequest < TencentCloud::Common::AbstractModel
+        # @param PvwDisplayInfo: 导播台预监展示信息参数
+        # @type PvwDisplayInfo: :class:`Tencentcloud::Live.v20180801.models.CasterDisplayInfo`
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :PvwDisplayInfo, :CasterId
+
+        def initialize(pvwdisplayinfo=nil, casterid=nil)
+          @PvwDisplayInfo = pvwdisplayinfo
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          unless params['PvwDisplayInfo'].nil?
+            @PvwDisplayInfo = CasterDisplayInfo.new
+            @PvwDisplayInfo.deserialize(params['PvwDisplayInfo'])
+          end
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # CreateCasterPvw返回参数结构体
+      class CreateCasterPvwResponse < TencentCloud::Common::AbstractModel
+        # @param PvwPlayUrl: 预监任务的画面rtmp协议预览地址。
+        # 注：该预览地址仅供画面预览，不可分发。
+        # @type PvwPlayUrl: String
+        # @param PvwWebRTCPlayUrl: 预监任务的webrtc协议预览画面。
+        # 注：
+        # 1. 该预览地址仅供预览，不可分发。
+        # 2. webrtc播放地址，需配合腾讯云快直播播放sdk使用
+        # @type PvwWebRTCPlayUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PvwPlayUrl, :PvwWebRTCPlayUrl, :RequestId
+
+        def initialize(pvwplayurl=nil, pvwwebrtcplayurl=nil, requestid=nil)
+          @PvwPlayUrl = pvwplayurl
+          @PvwWebRTCPlayUrl = pvwwebrtcplayurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PvwPlayUrl = params['PvwPlayUrl']
+          @PvwWebRTCPlayUrl = params['PvwWebRTCPlayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCaster请求参数结构体
       class CreateCasterRequest < TencentCloud::Common::AbstractModel
         # @param CasterName: 导播台名称
@@ -3793,17 +3960,21 @@ module TencentCloud
         # @type TaskId: String
         # @param Operator: 操作人姓名。
         # @type Operator: String
+        # @param SpecifyTaskId: 指定任务 ID。注意：用于删除使用自定义任务 ID 创建的任务。
+        # @type SpecifyTaskId: String
 
-        attr_accessor :TaskId, :Operator
+        attr_accessor :TaskId, :Operator, :SpecifyTaskId
 
-        def initialize(taskid=nil, operator=nil)
+        def initialize(taskid=nil, operator=nil, specifytaskid=nil)
           @TaskId = taskid
           @Operator = operator
+          @SpecifyTaskId = specifytaskid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @Operator = params['Operator']
+          @SpecifyTaskId = params['SpecifyTaskId']
         end
       end
 
@@ -13178,6 +13349,38 @@ module TencentCloud
         end
       end
 
+      # ReleaseCaster请求参数结构体
+      class ReleaseCasterRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # ReleaseCaster返回参数结构体
+      class ReleaseCasterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RestartLivePullStreamTask请求参数结构体
       class RestartLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 Id。
@@ -13464,6 +13667,70 @@ module TencentCloud
 
       # StartLiveStreamMonitor返回参数结构体
       class StartLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopCasterPgm请求参数结构体
+      class StopCasterPgmRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # StopCasterPgm返回参数结构体
+      class StopCasterPgmResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopCasterPvw请求参数结构体
+      class StopCasterPvwRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # StopCasterPvw返回参数结构体
+      class StopCasterPvwResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

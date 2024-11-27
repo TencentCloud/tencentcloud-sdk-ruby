@@ -1134,15 +1134,19 @@ module TencentCloud
         # @param ToolCalls: 模型生成的工具调用，仅 hunyuan-pro 或者 hunyuan-functioncall 模型支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ToolCalls: Array
+        # @param FileIDs: 文件标识符。单次最大 50 个文件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileIDs: Array
 
-        attr_accessor :Role, :Content, :Contents, :ToolCallId, :ToolCalls
+        attr_accessor :Role, :Content, :Contents, :ToolCallId, :ToolCalls, :FileIDs
 
-        def initialize(role=nil, content=nil, contents=nil, toolcallid=nil, toolcalls=nil)
+        def initialize(role=nil, content=nil, contents=nil, toolcallid=nil, toolcalls=nil, fileids=nil)
           @Role = role
           @Content = content
           @Contents = contents
           @ToolCallId = toolcallid
           @ToolCalls = toolcalls
+          @FileIDs = fileids
         end
 
         def deserialize(params)
@@ -1165,6 +1169,7 @@ module TencentCloud
               @ToolCalls << toolcall_tmp
             end
           end
+          @FileIDs = params['FileIDs']
         end
       end
 

@@ -426,10 +426,12 @@ module TencentCloud
         # @type GooseFSxBuildElements: :class:`Tencentcloud::Goosefs.v20220519.models.GooseFSxBuildElement`
         # @param SecurityGroupId: 客户端集群所属的安全组
         # @type SecurityGroupId: String
+        # @param ClusterPort: 集群ssh通信端口，默认是22
+        # @type ClusterPort: Integer
 
-        attr_accessor :Type, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :GooseFSxBuildElements, :SecurityGroupId
+        attr_accessor :Type, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
 
-        def initialize(type=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil)
+        def initialize(type=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Type = type
           @Name = name
           @Description = description
@@ -439,6 +441,7 @@ module TencentCloud
           @Tag = tag
           @GooseFSxBuildElements = goosefsxbuildelements
           @SecurityGroupId = securitygroupid
+          @ClusterPort = clusterport
         end
 
         def deserialize(params)
@@ -461,6 +464,7 @@ module TencentCloud
             @GooseFSxBuildElements.deserialize(params['GooseFSxBuildElements'])
           end
           @SecurityGroupId = params['SecurityGroupId']
+          @ClusterPort = params['ClusterPort']
         end
       end
 

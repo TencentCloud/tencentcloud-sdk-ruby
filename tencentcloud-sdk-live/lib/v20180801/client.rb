@@ -295,6 +295,79 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用来启动主监任务，并将获取主监画面的播放地址。
+
+        # @param request: Request instance for CreateCasterPgm.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateCasterPgmRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateCasterPgmResponse`
+        def CreateCasterPgm(request)
+          body = send_request('CreateCasterPgm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCasterPgmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来将预监画面的布局、水印、字幕等配置，复制到主监画面中。
+        # 该接口使用时，预监任务需处于运行状态。
+
+        # @param request: Request instance for CreateCasterPgmFromPvw.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateCasterPgmFromPvwRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateCasterPgmFromPvwResponse`
+        def CreateCasterPgmFromPvw(request)
+          body = send_request('CreateCasterPgmFromPvw', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCasterPgmFromPvwResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来启动预监任务，并将获取预监画面的播放地址。
+
+        # @param request: Request instance for CreateCasterPvw.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateCasterPvwRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateCasterPvwResponse`
+        def CreateCasterPvw(request)
+          body = send_request('CreateCasterPvw', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCasterPvwResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
         # 注意：当前最多支持16路混流。
         # 最佳实践：https://cloud.tencent.com/document/product/267/45566
@@ -4187,6 +4260,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，释放导播台实例，但保留所有的配置。
+        # 执行该接口，预监与主监画面停止，第三方推流停止。
+        # 点播文件与直播地址将停止展示，客户自行推到导播台的流需要手动停止。
+
+        # @param request: Request instance for ReleaseCaster.
+        # @type request: :class:`Tencentcloud::live::V20180801::ReleaseCasterRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ReleaseCasterResponse`
+        def ReleaseCaster(request)
+          body = send_request('ReleaseCaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReleaseCasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将正在运行的拉流转推任务进行重启。
         # 注意：
         # 1. 重启任务会造成推流中断。
@@ -4272,6 +4371,55 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartLiveStreamMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来停止导播台的主监输出。
+        # 停止主监后，对应的推流到腾讯云直播源站和推流到其他第三方平台均将会停止。
+
+        # @param request: Request instance for StopCasterPgm.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopCasterPgmRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopCasterPgmResponse`
+        def StopCasterPgm(request)
+          body = send_request('StopCasterPgm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopCasterPgmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来停止导播台的预监任务。
+
+        # @param request: Request instance for StopCasterPvw.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopCasterPvwRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopCasterPvwResponse`
+        def StopCasterPvw(request)
+          body = send_request('StopCasterPvw', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopCasterPvwResponse.new
             model.deserialize(response['Response'])
             model
           else

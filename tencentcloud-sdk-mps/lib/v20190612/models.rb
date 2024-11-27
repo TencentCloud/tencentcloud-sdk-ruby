@@ -1531,11 +1531,15 @@ module TencentCloud
       class AiAnalysisTaskSegmentOutput < TencentCloud::Common::AbstractModel
         # @param SegmentSet: 智能拆条子片段列表。
         # @type SegmentSet: Array
+        # @param Abstract: 视频摘要，离线场景用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Abstract: String
 
-        attr_accessor :SegmentSet
+        attr_accessor :SegmentSet, :Abstract
 
-        def initialize(segmentset=nil)
+        def initialize(segmentset=nil, abstract=nil)
           @SegmentSet = segmentset
+          @Abstract = abstract
         end
 
         def deserialize(params)
@@ -1547,6 +1551,7 @@ module TencentCloud
               @SegmentSet << segmentrecognitionitem_tmp
             end
           end
+          @Abstract = params['Abstract']
         end
       end
 
