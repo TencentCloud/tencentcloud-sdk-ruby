@@ -2160,16 +2160,24 @@ module TencentCloud
 
       # 产品级联筛选值
       class BillBusinessLink < TencentCloud::Common::AbstractModel
+        # @param BusinessCode: 产品编码
+        # @type BusinessCode: String
+        # @param BusinessCodeName: 产品名称
+        # @type BusinessCodeName: String
         # @param Children: 子产品
         # @type Children: Array
 
-        attr_accessor :Children
+        attr_accessor :BusinessCode, :BusinessCodeName, :Children
 
-        def initialize(children=nil)
+        def initialize(businesscode=nil, businesscodename=nil, children=nil)
+          @BusinessCode = businesscode
+          @BusinessCodeName = businesscodename
           @Children = children
         end
 
         def deserialize(params)
+          @BusinessCode = params['BusinessCode']
+          @BusinessCodeName = params['BusinessCodeName']
           unless params['Children'].nil?
             @Children = []
             params['Children'].each do |i|
@@ -2915,12 +2923,35 @@ module TencentCloud
 
       # 分账条件子产品筛选
       class BillProductLink < TencentCloud::Common::AbstractModel
+        # @param ProductCode: 子产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCode: String
+        # @param ProductCodeName: 子产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCodeName: String
+        # @param Children: 组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
 
+        attr_accessor :ProductCode, :ProductCodeName, :Children
 
-        def initialize()
+        def initialize(productcode=nil, productcodename=nil, children=nil)
+          @ProductCode = productcode
+          @ProductCodeName = productcodename
+          @Children = children
         end
 
         def deserialize(params)
+          @ProductCode = params['ProductCode']
+          @ProductCodeName = params['ProductCodeName']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              billitem_tmp = BillItem.new
+              billitem_tmp.deserialize(i)
+              @Children << billitem_tmp
+            end
+          end
         end
       end
 
@@ -7357,7 +7388,7 @@ module TencentCloud
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTotal`
         # @param Data: 消耗按业务汇总详情
         # @type Data: Array
-        # @param RecordNum: 记录数量，NeedRecordNum为0是返回null
+        # @param RecordNum: 记录数量，NeedRecordNum为0时返回null
         # @type RecordNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7435,7 +7466,7 @@ module TencentCloud
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTotal`
         # @param Data: 消耗按地域汇总详情
         # @type Data: Array
-        # @param RecordNum: 记录数量，NeedRecordNum为0是返回null
+        # @param RecordNum: 记录数量，NeedRecordNum为0时返回null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8595,7 +8626,6 @@ module TencentCloud
         # @param TotalUsedAmount: 总已用金额（微分）
         # @type TotalUsedAmount: Integer
         # @param UsageRecords: 代金券使用记录细节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsageRecords: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9690,34 +9720,24 @@ module TencentCloud
       # 购买商品信息
       class UsageDetails < TencentCloud::Common::AbstractModel
         # @param ProductName: 商品名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param SubProductName: 商品细节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductName: String
         # @param ProductCode: 产品码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
         # @param SubProductCode: 子产品码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
         # @param BillingItemCode: 计费项码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItemCode: String
         # @param SubBillingItemCode: 计费细项码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubBillingItemCode: String
         # @param ProductEnName: 产品英文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductEnName: String
         # @param SubProductEnName: 子产品英文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductEnName: String
         # @param CalcUnit: 结算周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcUnit: String
         # @param Action: payMode为prepay 且 payScene为common的情况下存在
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
 
         attr_accessor :ProductName, :SubProductName, :ProductCode, :SubProductCode, :BillingItemCode, :SubBillingItemCode, :ProductEnName, :SubProductEnName, :CalcUnit, :Action
@@ -9756,18 +9776,14 @@ module TencentCloud
         # @param UsedTime: 使用时间
         # @type UsedTime: String
         # @param UsageDetails: 使用记录细节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsageDetails: Array
         # @param PayMode: 付费模式
         # @type PayMode: String
         # @param VoucherId: 查询的券id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherId: String
         # @param PayScene: 交易场景：（adjust：调账、common：正常交易场景）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayScene: String
         # @param SeqId: 唯一id,对应交易:预付费的dealName,调账/后付费的outTradeNo
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeqId: String
 
         attr_accessor :UsedAmount, :UsedTime, :UsageDetails, :PayMode, :VoucherId, :PayScene, :SeqId

@@ -799,6 +799,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询跑马灯配置
+
+        # @param request: Request instance for DescribeMarquee.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeMarqueeRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeMarqueeResponse`
+        def DescribeMarquee(request)
+          body = send_request('DescribeMarquee', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMarqueeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间提问列表
 
         # @param request: Request instance for DescribeQuestionList.
@@ -1435,6 +1459,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAppCustomContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置跑马灯参数设置
+
+        # @param request: Request instance for SetMarquee.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::SetMarqueeRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::SetMarqueeResponse`
+        def SetMarquee(request)
+          body = send_request('SetMarquee', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetMarqueeResponse.new
             model.deserialize(response['Response'])
             model
           else

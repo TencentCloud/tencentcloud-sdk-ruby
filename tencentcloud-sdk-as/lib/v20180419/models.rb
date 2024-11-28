@@ -1310,7 +1310,7 @@ module TencentCloud
         # <li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li>
         # <li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li>
         # <li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li>
-        # <li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        # <li>ASG_AVG_WAN_TRAFFIC_IN：平均外网入带宽</li>
         # @type PredefinedMetricType: String
         # @param TargetValue: 目标值，仅适用于目标追踪策略。
         # <li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li>
@@ -3615,9 +3615,10 @@ module TencentCloud
       # 描述了实例登录相关配置与信息。
       class LoginSettings < TencentCloud::Common::AbstractModel
         # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
-        # <li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。</li>
-        # <li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。</li>
-        # 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        # - Linux实例密码必须8到30位，至少包括四项（小写字母、大写字母、数字和特殊符号）中的两项。
+        # - Windows实例密码必须12到30位，至少包括包括四项（小写字母、大写字母、数字和特殊符号）中的三项。
+        # - 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        # 特殊符号的取值范围： [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]
         # @type Password: String
         # @param KeyIds: 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         # @type KeyIds: Array
@@ -4851,9 +4852,9 @@ module TencentCloud
         end
       end
 
-      # 描述了 “云监控” 服务相关的信息。
+      # 描述了 “可观测平台（原名云监控）” 服务相关的信息。
       class RunMonitorServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云监控](https://cloud.tencent.com/document/product/248)服务。取值范围：
+        # @param Enabled: 是否开启[可观测平台（原名云监控）](https://cloud.tencent.com/document/product/248)服务。取值范围：
         # <li>TRUE：表示开启云监控服务</li>
         # <li>FALSE：表示不开启云监控服务</li>
         # 默认取值：TRUE。

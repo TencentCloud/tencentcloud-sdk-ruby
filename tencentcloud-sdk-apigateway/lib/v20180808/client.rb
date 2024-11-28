@@ -297,6 +297,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建专享实例
+
+        # @param request: Request instance for CreateExclusiveInstances.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::CreateExclusiveInstancesRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::CreateExclusiveInstancesResponse`
+        def CreateExclusiveInstances(request)
+          body = send_request('CreateExclusiveInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExclusiveInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateIPStrategy）用于创建服务IP策略。
 
         # @param request: Request instance for CreateIPStrategy.
@@ -1179,6 +1203,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIPStrategysStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取专享实例网络配置列表
+
+        # @param request: Request instance for DescribeInstancesNetworkConfig.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeInstancesNetworkConfigRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeInstancesNetworkConfigResponse`
+        def DescribeInstancesNetworkConfig(request)
+          body = send_request('DescribeInstancesNetworkConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesNetworkConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

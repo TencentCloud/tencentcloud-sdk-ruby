@@ -1221,7 +1221,7 @@ module TencentCloud
         # - PING: icmp
         # - TCP: tcp
         # @type Protocol: String
-        # @param Port: 健康检查端口，探测协议未tcp时，该参数必填。
+        # @param Port: 健康检查端口，探测协议为tcp时，该参数必填。
         # @type Port: Integer
         # @param Timeout: 健康检查超时时间。 默认为2秒。 可配置范围：2 - 30秒。
         # @type Timeout: Integer

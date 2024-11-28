@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询页面组件信息
+
+        # @param request: Request instance for DescribePageWidgetList.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribePageWidgetListRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribePageWidgetListResponse`
+        def DescribePageWidgetList(request)
+          body = send_request('DescribePageWidgetList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePageWidgetListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 项目详情接口
 
         # @param request: Request instance for DescribeProjectInfo.
@@ -423,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserRoleProjectListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 页面截图导出
+
+        # @param request: Request instance for ExportScreenPage.
+        # @type request: :class:`Tencentcloud::bi::V20220105::ExportScreenPageRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::ExportScreenPageResponse`
+        def ExportScreenPage(request)
+          body = send_request('ExportScreenPage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportScreenPageResponse.new
             model.deserialize(response['Response'])
             model
           else

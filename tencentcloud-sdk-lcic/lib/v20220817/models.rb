@@ -2052,6 +2052,86 @@ module TencentCloud
         end
       end
 
+      # DescribeMarquee请求参数结构体
+      class DescribeMarqueeRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间号
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeMarquee返回参数结构体
+      class DescribeMarqueeResponse < TencentCloud::Common::AbstractModel
+        # @param MarqueeType:  跑马灯类型：1为固定值，2为用户昵称，3为固定值+用户昵称，4为用户ID，5为originId+固定值，6为用户昵称（originId）
+        # @type MarqueeType: Integer
+        # @param Content: 固定值内容（当MarqueeType=1或5，则展示固定值内容）
+        # @type Content: String
+        # @param FontSize: 字体大小（数字，像素单位，范围：10到24）
+        # @type FontSize: Integer
+        # @param FontWeight: 字体粗细：1为粗体，0为细体
+        # @type FontWeight: Integer
+        # @param FontColor: 字体颜色（十六进制颜色值）
+        # @type FontColor: String
+        # @param FontOpacity: 字体透明度（数字，范围 0.0 到 1.0）
+        # @type FontOpacity: Float
+        # @param BackgroundColor: 背景颜色（十六进制颜色值）
+        # @type BackgroundColor: String
+        # @param BackgroundOpacity: 背景透明度（数字，范围 0.0 到 1.0）
+        # @type BackgroundOpacity: Float
+        # @param DisplayMode: 显示方式：1为滚动，2为闪烁
+        # @type DisplayMode: Integer
+        # @param Duration: 停留时长（秒，整数，范围 1～10）
+        # @type Duration: Integer
+        # @param MarqueeCount: 跑马灯个数：目前仅支持1或2, 对应显示单排或双排
+        # @type MarqueeCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MarqueeType, :Content, :FontSize, :FontWeight, :FontColor, :FontOpacity, :BackgroundColor, :BackgroundOpacity, :DisplayMode, :Duration, :MarqueeCount, :RequestId
+
+        def initialize(marqueetype=nil, content=nil, fontsize=nil, fontweight=nil, fontcolor=nil, fontopacity=nil, backgroundcolor=nil, backgroundopacity=nil, displaymode=nil, duration=nil, marqueecount=nil, requestid=nil)
+          @MarqueeType = marqueetype
+          @Content = content
+          @FontSize = fontsize
+          @FontWeight = fontweight
+          @FontColor = fontcolor
+          @FontOpacity = fontopacity
+          @BackgroundColor = backgroundcolor
+          @BackgroundOpacity = backgroundopacity
+          @DisplayMode = displaymode
+          @Duration = duration
+          @MarqueeCount = marqueecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MarqueeType = params['MarqueeType']
+          @Content = params['Content']
+          @FontSize = params['FontSize']
+          @FontWeight = params['FontWeight']
+          @FontColor = params['FontColor']
+          @FontOpacity = params['FontOpacity']
+          @BackgroundColor = params['BackgroundColor']
+          @BackgroundOpacity = params['BackgroundOpacity']
+          @DisplayMode = params['DisplayMode']
+          @Duration = params['Duration']
+          @MarqueeCount = params['MarqueeCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQuestionList请求参数结构体
       class DescribeQuestionListRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间ID
@@ -2704,9 +2784,9 @@ module TencentCloud
 
       # DescribeUser请求参数结构体
       class DescribeUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户Id。
+        # @param UserId: 用户id。支持通过 user_id 或 OriginId 查询用户信息，优先使用 user_id 进行查询。
         # @type UserId: String
-        # @param OriginId: 客户端用户 id,如果未指定则为用户 id。
+        # @param OriginId: 用户在客户系统的Id。支持通过 user_id 或 OriginId 查询用户信息，优先使用 user_id 进行查询（UserId不为空时，OriginId不生效）。
         # @type OriginId: String
 
         attr_accessor :UserId, :OriginId
@@ -4634,6 +4714,86 @@ module TencentCloud
 
       # SetAppCustomContent返回参数结构体
       class SetAppCustomContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetMarquee请求参数结构体
+      class SetMarqueeRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 学校ID
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间号
+        # @type RoomId: Integer
+        # @param MarqueeType:  跑马灯类型：1为固定值，2为用户昵称，3为固定值+用户昵称，4为用户ID，5为originId+固定值，6为用户昵称（originId）
+        # @type MarqueeType: Integer
+        # @param DisplayMode: 显示方式：1为滚动，2为闪烁
+        # @type DisplayMode: Integer
+        # @param Content: 固定值内容（当MarqueeType=1或5，则展示固定值内容）
+        # @type Content: String
+        # @param FontSize: 字体大小（数字，像素单位，范围：10到24）。
+        # @type FontSize: Integer
+        # @param FontWeight: 字体粗细：1为粗体，0为细体
+        # @type FontWeight: Integer
+        # @param FontColor: 字体颜色（十六进制颜色值，例如：#00FF00（绿色））
+        # @type FontColor: String
+        # @param FontOpacity: 字体透明度（数字，范围 0.0 到 1.0）
+        # @type FontOpacity: Float
+        # @param BackgroundColor: 背景颜色（十六进制颜色值，例如：#FFFF00（黄色））
+        # @type BackgroundColor: String
+        # @param BackgroundOpacity: 背景透明度（数字，范围 0.0 到 1.0）
+        # @type BackgroundOpacity: Float
+        # @param Duration: 跑马灯文字移动/闪烁指定像素所需时间，范围：1-10；数值越小，跑马灯滚动/闪烁速度越快
+        # @type Duration: Integer
+        # @param MarqueeCount: 跑马灯个数：目前仅支持1或2, 对应显示单排或双排
+        # @type MarqueeCount: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :MarqueeType, :DisplayMode, :Content, :FontSize, :FontWeight, :FontColor, :FontOpacity, :BackgroundColor, :BackgroundOpacity, :Duration, :MarqueeCount
+
+        def initialize(sdkappid=nil, roomid=nil, marqueetype=nil, displaymode=nil, content=nil, fontsize=nil, fontweight=nil, fontcolor=nil, fontopacity=nil, backgroundcolor=nil, backgroundopacity=nil, duration=nil, marqueecount=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @MarqueeType = marqueetype
+          @DisplayMode = displaymode
+          @Content = content
+          @FontSize = fontsize
+          @FontWeight = fontweight
+          @FontColor = fontcolor
+          @FontOpacity = fontopacity
+          @BackgroundColor = backgroundcolor
+          @BackgroundOpacity = backgroundopacity
+          @Duration = duration
+          @MarqueeCount = marqueecount
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @MarqueeType = params['MarqueeType']
+          @DisplayMode = params['DisplayMode']
+          @Content = params['Content']
+          @FontSize = params['FontSize']
+          @FontWeight = params['FontWeight']
+          @FontColor = params['FontColor']
+          @FontOpacity = params['FontOpacity']
+          @BackgroundColor = params['BackgroundColor']
+          @BackgroundOpacity = params['BackgroundOpacity']
+          @Duration = params['Duration']
+          @MarqueeCount = params['MarqueeCount']
+        end
+      end
+
+      # SetMarquee返回参数结构体
+      class SetMarqueeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

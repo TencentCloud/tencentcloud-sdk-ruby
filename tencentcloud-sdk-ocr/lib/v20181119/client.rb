@@ -1812,32 +1812,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 印尼身份证识别
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for RecognizeIndonesiaIDCardOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeIndonesiaIDCardOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeIndonesiaIDCardOCRResponse`
-        def RecognizeIndonesiaIDCardOCR(request)
-          body = send_request('RecognizeIndonesiaIDCardOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizeIndonesiaIDCardOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 韩国驾驶证识别
 
         # @param request: Request instance for RecognizeKoreanDrivingLicenseOCR.
@@ -1848,30 +1822,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RecognizeKoreanDrivingLicenseOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 韩国身份证识别
-
-        # @param request: Request instance for RecognizeKoreanIDCardOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeKoreanIDCardOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeKoreanIDCardOCRResponse`
-        def RecognizeKoreanIDCardOCR(request)
-          body = send_request('RecognizeKoreanIDCardOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizeKoreanIDCardOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1924,130 +1874,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RecognizeOnlineTaxiItineraryOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 菲律宾驾驶证识别
-
-        # 默认接口请求频率限制：20次/秒。
-
-        # @param request: Request instance for RecognizePhilippinesDrivingLicenseOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesDrivingLicenseOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesDrivingLicenseOCRResponse`
-        def RecognizePhilippinesDrivingLicenseOCR(request)
-          body = send_request('RecognizePhilippinesDrivingLicenseOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizePhilippinesDrivingLicenseOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 菲律宾SSSID/UMID识别
-
-        # @param request: Request instance for RecognizePhilippinesSssIDOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesSssIDOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesSssIDOCRResponse`
-        def RecognizePhilippinesSssIDOCR(request)
-          body = send_request('RecognizePhilippinesSssIDOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizePhilippinesSssIDOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 菲律宾TinID识别
-
-        # @param request: Request instance for RecognizePhilippinesTinIDOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesTinIDOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesTinIDOCRResponse`
-        def RecognizePhilippinesTinIDOCR(request)
-          body = send_request('RecognizePhilippinesTinIDOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizePhilippinesTinIDOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 菲律宾UMID识别
-
-        # @param request: Request instance for RecognizePhilippinesUMIDOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesUMIDOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesUMIDOCRResponse`
-        def RecognizePhilippinesUMIDOCR(request)
-          body = send_request('RecognizePhilippinesUMIDOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizePhilippinesUMIDOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
-
-        # 默认接口请求频率限制：20次/秒。
-
-        # @param request: Request instance for RecognizePhilippinesVoteIDOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesVoteIDOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizePhilippinesVoteIDOCRResponse`
-        def RecognizePhilippinesVoteIDOCR(request)
-          body = send_request('RecognizePhilippinesVoteIDOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RecognizePhilippinesVoteIDOCRResponse.new
             model.deserialize(response['Response'])
             model
           else

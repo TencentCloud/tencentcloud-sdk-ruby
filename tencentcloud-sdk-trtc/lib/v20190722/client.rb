@@ -54,6 +54,31 @@ module TencentCloud
         end
 
         # 接口说明：
+        # 启动终端审核功能，完成房间内的音频审核。
+
+        # @param request: Request instance for CreateBasicModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateBasicModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateBasicModerationResponse`
+        def CreateBasicModeration(request)
+          body = send_request('CreateBasicModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBasicModerationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
         # 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制又或者多路视频画面合流混成一路。
 
         # 您可以通过此接口实现如下目标：
@@ -98,6 +123,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePictureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启审核任务后，可以使用此接口来停止任务。
+
+        # @param request: Request instance for DeleteBasicModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteBasicModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteBasicModerationResponse`
+        def DeleteBasicModeration(request)
+          body = send_request('DeleteBasicModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBasicModerationResponse.new
             model.deserialize(response['Response'])
             model
           else

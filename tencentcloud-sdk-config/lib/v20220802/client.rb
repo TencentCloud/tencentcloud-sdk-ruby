@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 资源详情
+
+        # @param request: Request instance for DescribeDiscoveredResource.
+        # @type request: :class:`Tencentcloud::config::V20220802::DescribeDiscoveredResourceRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::DescribeDiscoveredResourceResponse`
+        def DescribeDiscoveredResource(request)
+          body = send_request('DescribeDiscoveredResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiscoveredResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 账号组获取规则列表
 
         # @param request: Request instance for ListAggregateConfigRules.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListConfigRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资源列表
+
+        # @param request: Request instance for ListDiscoveredResources.
+        # @type request: :class:`Tencentcloud::config::V20220802::ListDiscoveredResourcesRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::ListDiscoveredResourcesResponse`
+        def ListDiscoveredResources(request)
+          body = send_request('ListDiscoveredResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListDiscoveredResourcesResponse.new
             model.deserialize(response['Response'])
             model
           else

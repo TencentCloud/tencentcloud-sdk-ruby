@@ -334,6 +334,54 @@ module TencentCloud
         end
       end
 
+      # CreateBasicModeration请求参数结构体
+      class CreateBasicModerationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和TRTC的房间所对应的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，为TRTC房间所对应的RoomId。
+        # @type RoomId: String
+        # @param UserId: 目标审核用户id
+        # @type UserId: String
+        # @param RoomIdType: TRTC房间号的类型。【*注意】必须和TRTC的房间所对应的RoomId类型相同:0: 字符串类型的RoomId1: 32位整型的RoomId（默认）
+        # @type RoomIdType: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :UserId, :RoomIdType
+
+        def initialize(sdkappid=nil, roomid=nil, userid=nil, roomidtype=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @UserId = userid
+          @RoomIdType = roomidtype
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @RoomIdType = params['RoomIdType']
+        end
+      end
+
+      # CreateBasicModeration返回参数结构体
+      class CreateBasicModerationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 审核服务分配的任务ID。任务ID是对一次审核任务生命周期过程的唯一标识，结束任务时会失去意义。任务ID需要业务保存下来，作为下次针对这个任务操作的参数
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudRecording请求参数结构体
       class CreateCloudRecordingRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和录制的房间所对应的SdkAppId相同。
@@ -483,6 +531,46 @@ module TencentCloud
 
         def deserialize(params)
           @PictureId = params['PictureId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBasicModeration请求参数结构体
+      class DeleteBasicModerationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId，和TRTC的房间所对应的SDKAppId相同。
+        # @type SdkAppId: Integer
+        # @param TaskId: 审核任务的唯一Id，在启动审核任务成功后会返回。
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteBasicModeration返回参数结构体
+      class DeleteBasicModerationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 审核任务的唯一Id，在启动审核任务成功后会返回。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

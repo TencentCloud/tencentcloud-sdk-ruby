@@ -1436,6 +1436,68 @@ module TencentCloud
         end
       end
 
+      # DescribePageWidgetList请求参数结构体
+      class DescribePageWidgetListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PageId: 页面id
+        # @type PageId: String
+
+        attr_accessor :ProjectId, :PageId
+
+        def initialize(projectid=nil, pageid=nil)
+          @ProjectId = projectid
+          @PageId = pageid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageId = params['PageId']
+        end
+      end
+
+      # DescribePageWidgetList返回参数结构体
+      class DescribePageWidgetListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 返回数据结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.WidgetListVO`
+        # @param Msg: 返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Data = data
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          unless params['Data'].nil?
+            @Data = WidgetListVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProjectInfo请求参数结构体
       class DescribeProjectInfoRequest < TencentCloud::Common::AbstractModel
         # @param Id: 项目Id
@@ -1945,6 +2007,88 @@ module TencentCloud
           @DocLink = params['DocLink']
           @FAQ = params['FAQ']
           @ReservedField = params['ReservedField']
+        end
+      end
+
+      # ExportScreenPage请求参数结构体
+      class ExportScreenPageRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PageId: 页面id
+        # @type PageId: String
+        # @param CanvasType: 画布类型。栅格画布：GRID；自由画布：FREE
+        # @type CanvasType: String
+        # @param PicType: 图片导出类型。base64；url（有效期：1天）
+        # @type PicType: String
+        # @param WidgetIds: 组件Ids。为空时，导出整个页面
+        # @type WidgetIds: Array
+        # @param AsyncRequest: 是否是异步请求
+        # @type AsyncRequest: Boolean
+        # @param TranId: 事务id
+        # @type TranId: String
+
+        attr_accessor :ProjectId, :PageId, :CanvasType, :PicType, :WidgetIds, :AsyncRequest, :TranId
+
+        def initialize(projectid=nil, pageid=nil, canvastype=nil, pictype=nil, widgetids=nil, asyncrequest=nil, tranid=nil)
+          @ProjectId = projectid
+          @PageId = pageid
+          @CanvasType = canvastype
+          @PicType = pictype
+          @WidgetIds = widgetids
+          @AsyncRequest = asyncrequest
+          @TranId = tranid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageId = params['PageId']
+          @CanvasType = params['CanvasType']
+          @PicType = params['PicType']
+          @WidgetIds = params['WidgetIds']
+          @AsyncRequest = params['AsyncRequest']
+          @TranId = params['TranId']
+        end
+      end
+
+      # ExportScreenPage返回参数结构体
+      class ExportScreenPageResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 返回数据结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.PageScreenListVO`
+        # @param Msg: 返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Data = data
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          unless params['Data'].nil?
+            @Data = PageScreenListVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2497,6 +2641,68 @@ module TencentCloud
           @Msg = params['Msg']
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 页面截图列表
+      class PageScreenListVO < TencentCloud::Common::AbstractModel
+        # @param PicType: 图片导出类型。base64；url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PicType: String
+        # @param List: 图片列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TranId: 异步事务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param TranStatus: 事务状态
+        # 1: 处理中; 2: 处理成功; 3 处理失败(错误内容见外层Msg)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranStatus: Integer
+
+        attr_accessor :PicType, :List, :TranId, :TranStatus
+
+        def initialize(pictype=nil, list=nil, tranid=nil, transtatus=nil)
+          @PicType = pictype
+          @List = list
+          @TranId = tranid
+          @TranStatus = transtatus
+        end
+
+        def deserialize(params)
+          @PicType = params['PicType']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              pagescreenvo_tmp = PageScreenVO.new
+              pagescreenvo_tmp.deserialize(i)
+              @List << pagescreenvo_tmp
+            end
+          end
+          @TranId = params['TranId']
+          @TranStatus = params['TranStatus']
+        end
+      end
+
+      # 页面截图信息
+      class PageScreenVO < TencentCloud::Common::AbstractModel
+        # @param Content: 截图base64或 url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param WidgetId: 组件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WidgetId: String
+
+        attr_accessor :Content, :WidgetId
+
+        def initialize(content=nil, widgetid=nil)
+          @Content = content
+          @WidgetId = widgetid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @WidgetId = params['WidgetId']
         end
       end
 
@@ -3132,6 +3338,67 @@ module TencentCloud
           @AppUserName = params['AppUserName']
           @InValidateAppRange = params['InValidateAppRange']
           @AppOpenUserId = params['AppOpenUserId']
+        end
+      end
+
+      # 页面组件信息
+      class WidgetListVO < TencentCloud::Common::AbstractModel
+        # @param CorpId: uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpId: String
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param PageId: 页面id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageId: String
+        # @param WidgetList: 组件数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WidgetList: Array
+
+        attr_accessor :CorpId, :ProjectId, :PageId, :WidgetList
+
+        def initialize(corpid=nil, projectid=nil, pageid=nil, widgetlist=nil)
+          @CorpId = corpid
+          @ProjectId = projectid
+          @PageId = pageid
+          @WidgetList = widgetlist
+        end
+
+        def deserialize(params)
+          @CorpId = params['CorpId']
+          @ProjectId = params['ProjectId']
+          @PageId = params['PageId']
+          unless params['WidgetList'].nil?
+            @WidgetList = []
+            params['WidgetList'].each do |i|
+              widgetvo_tmp = WidgetVO.new
+              widgetvo_tmp.deserialize(i)
+              @WidgetList << widgetvo_tmp
+            end
+          end
+        end
+      end
+
+      # 组件信息
+      class WidgetVO < TencentCloud::Common::AbstractModel
+        # @param WidgetId: 组件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WidgetId: String
+        # @param WidgetName: 组件name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WidgetName: String
+
+        attr_accessor :WidgetId, :WidgetName
+
+        def initialize(widgetid=nil, widgetname=nil)
+          @WidgetId = widgetid
+          @WidgetName = widgetname
+        end
+
+        def deserialize(params)
+          @WidgetId = params['WidgetId']
+          @WidgetName = params['WidgetName']
         end
       end
 

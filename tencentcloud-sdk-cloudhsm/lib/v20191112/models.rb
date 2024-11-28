@@ -141,7 +141,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param VpcId: 查询指定VpcId下的子网信息。
         # @type VpcId: String
-        # @param SearchWord: 查找关键字
+        # @param SearchWord: 过滤条件
         # @type SearchWord: String
 
         attr_accessor :Limit, :Offset, :VpcId, :SearchWord
@@ -166,7 +166,6 @@ module TencentCloud
         # @param TotalCount: 返回的子网数量。
         # @type TotalCount: Integer
         # @param SubnetList: 返回的子网实例列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -212,7 +211,6 @@ module TencentCloud
       # DescribeSupportedHsm返回参数结构体
       class DescribeSupportedHsmResponse < TencentCloud::Common::AbstractModel
         # @param DeviceTypes: 当前地域所支持的设备列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceTypes: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -243,7 +241,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回量，当Offset和Limit均为0时将一次性返回用户所有的安全组列表。
         # @type Limit: Integer
-        # @param SearchWord: 搜索关键字
+        # @param SearchWord: 过滤条件，支持安全组id
         # @type SearchWord: String
 
         attr_accessor :Offset, :Limit, :SearchWord
@@ -264,7 +262,6 @@ module TencentCloud
       # DescribeUsg返回参数结构体
       class DescribeUsgResponse < TencentCloud::Common::AbstractModel
         # @param SgList: 用户的安全组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgList: Array
         # @param TotalCount: 返回的安全组数量
         # @type TotalCount: Integer
@@ -295,7 +292,7 @@ module TencentCloud
 
       # DescribeUsgRule请求参数结构体
       class DescribeUsgRuleRequest < TencentCloud::Common::AbstractModel
-        # @param SgIds: 根据安全组Id获取安全组详情
+        # @param SgIds: 安全组Id列表
         # @type SgIds: Array
 
         attr_accessor :SgIds
@@ -312,10 +309,8 @@ module TencentCloud
       # DescribeUsgRule返回参数结构体
       class DescribeUsgRuleResponse < TencentCloud::Common::AbstractModel
         # @param SgRules: 安全组详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgRules: Array
         # @param TotalCount: 安全组详情数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -371,7 +366,6 @@ module TencentCloud
         # @param TotalCount: 可查询到的所有Vpc实例总数。
         # @type TotalCount: Integer
         # @param VpcList: Vpc对象列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -438,41 +432,29 @@ module TencentCloud
         # @type ZoneId: Integer
         # @param ExpireTime: 资源过期时间，以时间戳形式展示。
         # @type ExpireTime: Integer
-        # @param SgList: 安全组详情信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param SgList: 安全组详情信息,如果未配置字段返回null
         # @type SgList: Array
         # @param SubnetName: 子网名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
         # @param RegionName: 地域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param ZoneName: 区域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
         # @param Expired: 实例是否已经过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expired: Boolean
         # @param RemainSeconds: 为正数表示实例距离过期时间剩余秒数，为负数表示实例已经过期多少秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainSeconds: Integer
         # @param VpcName: 私有虚拟网络名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param VpcCidrBlock: VPC的IPv4 CIDR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcCidrBlock: String
         # @param SubnetCidrBlock: 子网的CIDR
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetCidrBlock: String
-        # @param Tags: 资源所关联的Tag
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Tags: 资源所关联的标签Tag
         # @type Tags: Array
         # @param RenewFlag: 资源续费标识，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param Manufacturer: 厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -596,7 +578,6 @@ module TencentCloud
         # @param TotalCount: 获取实例的总个数
         # @type TotalCount: Integer
         # @param VsmList: 资源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VsmList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -664,7 +645,6 @@ module TencentCloud
       # GetAlarmEvent返回参数结构体
       class GetAlarmEventResponse < TencentCloud::Common::AbstractModel
         # @param AlarmConfig: 用户所有的告警策略
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmConfig: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -803,19 +783,14 @@ module TencentCloud
       # InquiryPriceBuyVsm返回参数结构体
       class InquiryPriceBuyVsmResponse < TencentCloud::Common::AbstractModel
         # @param TotalCost: 原始总金额，浮点型参数，精确到小数点后两位，如：2000.99
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param GoodsNum: 购买的实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsNum: Integer
         # @param TimeSpan: 商品的时间大小，整型参数，举例：当TimeSpan为1，TImeUnit为m时，表示询价购买时长为1个月时的价格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: String
         # @param TimeUnit: 商品的时间单位，m表示月，y表示年
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param OriginalCost: 应付总金额，浮点型参数，精确到小数点后两位，如：2000.99
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -951,73 +926,50 @@ module TencentCloud
       # 资源信息
       class ResourceInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param ResourceName: 资源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
         # @param Status: 资源状态，1-正常，2-隔离，3-销毁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Vip: 资源IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
         # @param VpcId: 资源所属Vpc
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 资源所属子网
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param Model: 资源所属HSM规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Model: String
         # @param VsmType: 云加密机类型id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VsmType: Integer
         # @param RegionId: 地域Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
         # @param ZoneId: 区域Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param ExpireTime: 过期时间（Epoch Unix Timestamp）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
         # @param RegionName: 地域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionName: String
         # @param ZoneName: 区域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
         # @param SgList: 实例的安全组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgList: Array
         # @param SubnetName: 子网名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
         # @param Expired: 当前实例是否已经过期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expired: Boolean
         # @param RemainSeconds: 为正数表示实例距离过期时间还剩余多少秒，为负数表示已经过期多少秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainSeconds: Integer
         # @param VpcName: Vpc名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param CreateUin: 创建者Uin账号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUin: String
         # @param RenewFlag: 自动续费状态标识， 0-手动续费，1-自动续费，2-到期不续
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param Tags: 标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Manufacturer: 厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
         # @param AlarmStatus: 告警状态，0：停用，1：启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmStatus: Integer
 
         attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus
@@ -1092,16 +1044,12 @@ module TencentCloud
       # 安全组基础信息
       class SgUnit < TencentCloud::Common::AbstractModel
         # @param SgId: 安全组Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgId: String
         # @param SgName: 安全组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgName: String
         # @param SgRemark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgRemark: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
 
         attr_accessor :SgId, :SgName, :SgRemark, :CreateTime
@@ -1124,31 +1072,22 @@ module TencentCloud
       # Subnet对象
       class Subnet < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网实例ID，例如：subnet-bthucmmy。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
         # @param SubnetName: 子网名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetName: String
         # @param CidrBlock: 子网的 IPv4 CIDR。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CidrBlock: String
         # @param CreatedTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param AvailableIpAddressCount: 可用IP数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailableIpAddressCount: Integer
         # @param Ipv6CidrBlock: 子网的 IPv6 CIDR。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6CidrBlock: String
         # @param TotalIpAddressCount: 总IP数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalIpAddressCount: Integer
         # @param IsDefault: 是否为默认Subnet
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefault: Boolean
 
         attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :TotalIpAddressCount, :IsDefault
@@ -1221,28 +1160,20 @@ module TencentCloud
       # 安全组策略
       class UsgPolicy < TencentCloud::Common::AbstractModel
         # @param Ip: cidr格式地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Id: 安全组id代表的地址集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param AddressModule: 地址组id代表的地址集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressModule: String
         # @param Proto: 协议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Proto: String
         # @param Port: 端口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: String
         # @param ServiceModule: 服务组id代表的协议和端口集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceModule: String
         # @param Desc: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
         # @param Action: 匹配后行为:ACCEPT/DROP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Action: String
 
         attr_accessor :Ip, :Id, :AddressModule, :Proto, :Port, :ServiceModule, :Desc, :Action
@@ -1273,25 +1204,18 @@ module TencentCloud
       # 安全组规则详情
       class UsgRuleDetail < TencentCloud::Common::AbstractModel
         # @param InBound: 入站规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InBound: Array
         # @param OutBound: 出站规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutBound: Array
         # @param SgId: 安全组Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgId: String
         # @param SgName: 安全组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgName: String
         # @param SgRemark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgRemark: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: Integer
 
         attr_accessor :InBound, :OutBound, :SgId, :SgName, :SgRemark, :CreateTime, :Version
@@ -1334,16 +1258,12 @@ module TencentCloud
       # VPC对象
       class Vpc < TencentCloud::Common::AbstractModel
         # @param VpcName: Vpc名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
         # @param VpcId: VpcId
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param CreatedTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param IsDefault: 是否为默认VPC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefault: Boolean
 
         attr_accessor :VpcName, :VpcId, :CreatedTime, :IsDefault

@@ -245,6 +245,98 @@ module TencentCloud
         end
       end
 
+      # DescribeDiscoveredResource请求参数结构体
+      class DescribeDiscoveredResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceRegion: 资源地域
+        # @type ResourceRegion: String
+
+        attr_accessor :ResourceId, :ResourceType, :ResourceRegion
+
+        def initialize(resourceid=nil, resourcetype=nil, resourceregion=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceRegion = resourceregion
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceRegion = params['ResourceRegion']
+        end
+      end
+
+      # DescribeDiscoveredResource返回参数结构体
+      class DescribeDiscoveredResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param ResourceName: 资源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceRegion: 资源地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
+        # @param ResourceZone: 资源可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceZone: String
+        # @param Configuration: 资源配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configuration: String
+        # @param ResourceCreateTime: 资源创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceCreateTime: String
+        # @param Tags: 资源标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param UpdateTime: 资源更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :ResourceType, :ResourceName, :ResourceRegion, :ResourceZone, :Configuration, :ResourceCreateTime, :Tags, :UpdateTime, :RequestId
+
+        def initialize(resourceid=nil, resourcetype=nil, resourcename=nil, resourceregion=nil, resourcezone=nil, configuration=nil, resourcecreatetime=nil, tags=nil, updatetime=nil, requestid=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @ResourceRegion = resourceregion
+          @ResourceZone = resourcezone
+          @Configuration = configuration
+          @ResourceCreateTime = resourcecreatetime
+          @Tags = tags
+          @UpdateTime = updatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          @ResourceRegion = params['ResourceRegion']
+          @ResourceZone = params['ResourceZone']
+          @Configuration = params['Configuration']
+          @ResourceCreateTime = params['ResourceCreateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 自定义规则评估结果
       class Evaluation < TencentCloud::Common::AbstractModel
         # @param ComplianceResourceId: 已评估资源ID。长度为0~256个字符
@@ -282,6 +374,26 @@ module TencentCloud
             @Annotation = Annotation.new
             @Annotation.deserialize(params['Annotation'])
           end
+        end
+      end
+
+      # 资源列表筛选
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 查询字段名称 资源名称：resourceName  资源ID：resourceId 资源类型：resourceType 资源地域：resourceRegion    删除状态：resourceDelete 0未删除，1已删除  resourceRegionAndZone地域/可用区
+        # @type Name: String
+        # @param Values: 查询字段值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -503,6 +615,84 @@ module TencentCloud
         end
       end
 
+      # ListDiscoveredResources请求参数结构体
+      class ListDiscoveredResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param MaxResults: 每页显示数量
+        # @type MaxResults: Integer
+        # @param Filters: resourceName：资源名  resourceId ：资源ID
+        # @type Filters: Array
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param NextToken: 下一页token
+        # @type NextToken: String
+        # @param OrderType: 排序方式 asc、desc
+        # @type OrderType: String
+
+        attr_accessor :MaxResults, :Filters, :Tags, :NextToken, :OrderType
+
+        def initialize(maxresults=nil, filters=nil, tags=nil, nexttoken=nil, ordertype=nil)
+          @MaxResults = maxresults
+          @Filters = filters
+          @Tags = tags
+          @NextToken = nexttoken
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @MaxResults = params['MaxResults']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # ListDiscoveredResources返回参数结构体
+      class ListDiscoveredResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 详情
+        # @type Items: Array
+        # @param NextToken: 下一页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :NextToken, :RequestId
+
+        def initialize(items=nil, nexttoken=nil, requestid=nil)
+          @Items = items
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              resourcelistinfo_tmp = ResourceListInfo.new
+              resourcelistinfo_tmp.deserialize(i)
+              @Items << resourcelistinfo_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PutEvaluations请求参数结构体
       class PutEvaluationsRequest < TencentCloud::Common::AbstractModel
         # @param ResultToken: 回调令牌。从自定义规则所选的scf云函数Context中取参数ResultToken值
@@ -543,6 +733,72 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源列列表信息
+      class ResourceListInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceRegion: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
+        # @param ResourceStatus: 资源状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceStatus: String
+        # @param ResourceDelete: 1 :已删除 2：未删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceDelete: Integer
+        # @param ResourceCreateTime: 资源创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceCreateTime: String
+        # @param Tags: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ResourceZone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceZone: String
+        # @param ComplianceResult: 合规状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplianceResult: String
+
+        attr_accessor :ResourceType, :ResourceName, :ResourceId, :ResourceRegion, :ResourceStatus, :ResourceDelete, :ResourceCreateTime, :Tags, :ResourceZone, :ComplianceResult
+
+        def initialize(resourcetype=nil, resourcename=nil, resourceid=nil, resourceregion=nil, resourcestatus=nil, resourcedelete=nil, resourcecreatetime=nil, tags=nil, resourcezone=nil, complianceresult=nil)
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @ResourceId = resourceid
+          @ResourceRegion = resourceregion
+          @ResourceStatus = resourcestatus
+          @ResourceDelete = resourcedelete
+          @ResourceCreateTime = resourcecreatetime
+          @Tags = tags
+          @ResourceZone = resourcezone
+          @ComplianceResult = complianceresult
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          @ResourceId = params['ResourceId']
+          @ResourceRegion = params['ResourceRegion']
+          @ResourceStatus = params['ResourceStatus']
+          @ResourceDelete = params['ResourceDelete']
+          @ResourceCreateTime = params['ResourceCreateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ResourceZone = params['ResourceZone']
+          @ComplianceResult = params['ComplianceResult']
         end
       end
 

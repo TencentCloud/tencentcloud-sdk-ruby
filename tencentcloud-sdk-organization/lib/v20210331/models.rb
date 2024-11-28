@@ -489,13 +489,10 @@ module TencentCloud
       # 互信主体主要信息
       class AuthNode < TencentCloud::Common::AbstractModel
         # @param RelationId: 互信主体关系ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelationId: Integer
         # @param AuthName: 互信主体名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthName: String
         # @param Manager: 主体管理员
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manager: :class:`Tencentcloud::Organization.v20210331.models.MemberMainInfo`
 
         attr_accessor :RelationId, :AuthName, :Manager
@@ -519,10 +516,8 @@ module TencentCloud
       # 野鹤实名互信申请证明文件
       class AuthRelationFile < TencentCloud::Common::AbstractModel
         # @param Name: 文件名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Url: 文件路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
 
         attr_accessor :Name, :Url
@@ -826,7 +821,6 @@ module TencentCloud
       # CreateOrganizationIdentity返回参数结构体
       class CreateOrganizationIdentityResponse < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -911,7 +905,6 @@ module TencentCloud
       # CreateOrganizationMemberPolicy返回参数结构体
       class CreateOrganizationMemberPolicyResponse < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -995,7 +988,6 @@ module TencentCloud
       # CreateOrganizationMember返回参数结构体
       class CreateOrganizationMemberResponse < TencentCloud::Common::AbstractModel
         # @param Uin: 成员Uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1044,7 +1036,6 @@ module TencentCloud
       # CreateOrganizationMembersPolicy返回参数结构体
       class CreateOrganizationMembersPolicyResponse < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2134,7 +2125,6 @@ module TencentCloud
       # DescribeEffectivePolicy返回参数结构体
       class DescribeEffectivePolicyResponse < TencentCloud::Common::AbstractModel
         # @param EffectivePolicy: 有效策略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EffectivePolicy: :class:`Tencentcloud::Organization.v20210331.models.EffectivePolicy`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2233,10 +2223,8 @@ module TencentCloud
       # DescribeOrganizationAuthNode返回参数结构体
       class DescribeOrganizationAuthNodeResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 条目详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2302,13 +2290,10 @@ module TencentCloud
       # DescribeOrganizationFinancialByMember返回参数结构体
       class DescribeOrganizationFinancialByMemberResponse < TencentCloud::Common::AbstractModel
         # @param TotalCost: 当月总消耗。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param Items: 成员消耗详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2368,7 +2353,6 @@ module TencentCloud
       # DescribeOrganizationFinancialByMonth返回参数结构体
       class DescribeOrganizationFinancialByMonthResponse < TencentCloud::Common::AbstractModel
         # @param Items: 产品消耗详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2432,13 +2416,10 @@ module TencentCloud
       # DescribeOrganizationFinancialByProduct返回参数结构体
       class DescribeOrganizationFinancialByProductResponse < TencentCloud::Common::AbstractModel
         # @param TotalCost: 当月总消耗。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param Items: 产品消耗详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2498,10 +2479,8 @@ module TencentCloud
       # DescribeOrganizationMemberAuthAccounts返回参数结构体
       class DescribeOrganizationMemberAuthAccountsResponse < TencentCloud::Common::AbstractModel
         # @param Items: 列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Total: 总数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2559,10 +2538,8 @@ module TencentCloud
       # DescribeOrganizationMemberAuthIdentities返回参数结构体
       class DescribeOrganizationMemberAuthIdentitiesResponse < TencentCloud::Common::AbstractModel
         # @param Items: 授权身份列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2608,31 +2585,22 @@ module TencentCloud
       # DescribeOrganizationMemberEmailBind返回参数结构体
       class DescribeOrganizationMemberEmailBindResponse < TencentCloud::Common::AbstractModel
         # @param BindId: 绑定ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindId: Integer
         # @param ApplyTime: 申请时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyTime: String
         # @param Email: 邮箱地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
         # @param Phone: 安全手机号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param BindStatus: 绑定状态。    未绑定：Unbound，待激活：Valid，绑定成功：Success，绑定失败：Failed
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindStatus: String
         # @param BindTime: 绑定时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindTime: String
         # @param Description: 失败说明。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param PhoneBind: 安全手机绑定状态 。 未绑定：0，已绑定：1
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneBind: Integer
         # @param CountryCode: 国际区号。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CountryCode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2697,10 +2665,8 @@ module TencentCloud
       # DescribeOrganizationMemberPolicies返回参数结构体
       class DescribeOrganizationMemberPoliciesResponse < TencentCloud::Common::AbstractModel
         # @param Items: 列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2839,10 +2805,8 @@ module TencentCloud
       # DescribeOrganizationNodes返回参数结构体
       class DescribeOrganizationNodesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 列表详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2892,52 +2856,36 @@ module TencentCloud
       # DescribeOrganization返回参数结构体
       class DescribeOrganizationResponse < TencentCloud::Common::AbstractModel
         # @param OrgId: 企业组织ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgId: Integer
         # @param HostUin: 创建者UIN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostUin: Integer
         # @param NickName: 创建者昵称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NickName: String
         # @param OrgType: 企业组织类型。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgType: Integer
         # @param IsManager: 是否组织管理员。是：true ，否：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsManager: Boolean
         # @param OrgPolicyType: 策略类型。财务管理：Financial
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgPolicyType: String
         # @param OrgPolicyName: 策略名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgPolicyName: String
         # @param OrgPermission: 成员财务权限列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgPermission: Array
         # @param RootNodeId: 组织根节点ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RootNodeId: Integer
         # @param CreateTime: 组织创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param JoinTime: 成员加入时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTime: String
         # @param IsAllowQuit: 成员是否允许退出。允许：Allow，不允许：Denied
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowQuit: String
         # @param PayUin: 代付者Uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayUin: String
         # @param PayName: 代付者名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayName: String
         # @param IsAssignManager: 是否可信服务管理员。是：true，否：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAssignManager: Boolean
         # @param IsAuthManager: 是否实名主体管理员。是：true，否：false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAuthManager: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3124,7 +3072,6 @@ module TencentCloud
       # DescribeShareAreas返回参数结构体
       class DescribeShareAreasResponse < TencentCloud::Common::AbstractModel
         # @param Items: 详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3184,10 +3131,8 @@ module TencentCloud
       # DescribeShareUnitMembers返回参数结构体
       class DescribeShareUnitMembersResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 共享单元成员列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3253,10 +3198,8 @@ module TencentCloud
       # DescribeShareUnitResources返回参数结构体
       class DescribeShareUnitResourcesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 共享单元资源列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3314,10 +3257,8 @@ module TencentCloud
       # DescribeShareUnits返回参数结构体
       class DescribeShareUnitsResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数目。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 共享单元列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5736,10 +5677,8 @@ module TencentCloud
       # 成员管理身份
       class MemberIdentity < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
         # @param IdentityAliasName: 身份名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityAliasName: String
 
         attr_accessor :IdentityId, :IdentityAliasName
@@ -5758,10 +5697,8 @@ module TencentCloud
       # 成员主要信息
       class MemberMainInfo < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberUin: Integer
-        # @param MemberName: 成员名称j
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param MemberName: 成员名称
         # @type MemberName: String
 
         attr_accessor :MemberUin, :MemberName
@@ -5838,31 +5775,22 @@ module TencentCloud
       # 不允许删除的原因。
       class NotAllowReason < TencentCloud::Common::AbstractModel
         # @param IsCreateMember: 是否创建的成员。true-是、false-否；成员不是创建的成员不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCreateMember: Boolean
         # @param DeletionPermission: 成员删除许可。true-开启、false-关闭；成员删除许可关闭时不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionPermission: Boolean
         # @param IsAssignManager: 是否可信服务委派管理员。true-是、false-否；成员是可信服务委派管理员不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAssignManager: Boolean
         # @param IsAuthManager: 是否主体管理员。true-是、false-否；成员是主体管理员不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAuthManager: Boolean
         # @param IsShareManager: 是否共享资源管理员。true-是、false-否；成员是共享资源管理员不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsShareManager: Boolean
         # @param OperateProcess: 成员是否设置了操作审批。true-是、false-否；成员设置了操作审批时不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateProcess: Boolean
         # @param BillingPermission: 是否允许解除成员财务权限。true-是、false-否；成员不能解除财务权限时不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingPermission: Boolean
         # @param ExistResources: 存在的资源列表。账号存在资源时不允许删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExistResources: Array
         # @param DetectFailedResources: 检测失败的资源列表。账号有资源检测失败时不允许删除。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectFailedResources: Array
 
         attr_accessor :IsCreateMember, :DeletionPermission, :IsAssignManager, :IsAuthManager, :IsShareManager, :OperateProcess, :BillingPermission, :ExistResources, :DetectFailedResources
@@ -5963,22 +5891,16 @@ module TencentCloud
       # 组织身份
       class OrgIdentity < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
         # @param IdentityAliasName: 身份名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityAliasName: String
         # @param Description: 描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param IdentityPolicy: 身份策略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityPolicy: Array
         # @param IdentityType: 身份类型。 1-预设、 2-自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityType: Integer
         # @param UpdateTime: 更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :IdentityId, :IdentityAliasName, :Description, :IdentityPolicy, :IdentityType, :UpdateTime
@@ -6012,58 +5934,40 @@ module TencentCloud
       # 企业组织成员
       class OrgMember < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberUin: Integer
         # @param Name: 成员名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param MemberType: 成员类型，邀请：Invite， 创建：Create
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberType: String
         # @param OrgPolicyType: 关系策略类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgPolicyType: String
         # @param OrgPolicyName: 关系策略名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgPolicyName: String
         # @param OrgPermission: 关系策略权限
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgPermission: Array
         # @param NodeId: 所属节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: Integer
         # @param NodeName: 所属节点名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param IsAllowQuit: 是否允许成员退出。允许：Allow，不允许：Denied。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowQuit: String
         # @param PayUin: 代付者Uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayUin: String
         # @param PayName: 代付者名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayName: String
         # @param OrgIdentity: 管理身份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgIdentity: Array
         # @param BindStatus: 安全信息绑定状态  未绑定：Unbound，待激活：Valid，绑定成功：Success，绑定失败：Failed
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindStatus: String
         # @param PermissionStatus: 成员权限状态 已确认：Confirmed ，待确认：UnConfirmed
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PermissionStatus: String
         # @param Tags: 成员标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :MemberUin, :Name, :MemberType, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :NodeId, :NodeName, :Remark, :CreateTime, :UpdateTime, :IsAllowQuit, :PayUin, :PayName, :OrgIdentity, :BindStatus, :PermissionStatus, :Tags
@@ -6135,31 +6039,22 @@ module TencentCloud
       # 成员和子账号的授权关系
       class OrgMemberAuthAccount < TencentCloud::Common::AbstractModel
         # @param OrgSubAccountUin: 组织子账号Uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgSubAccountUin: Integer
         # @param PolicyId: 策略ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: Integer
         # @param PolicyName: 策略名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param IdentityId: 身份ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
         # @param IdentityRoleName: 身份角色名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleName: String
         # @param IdentityRoleAliasName: 身份角色别名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleAliasName: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param OrgSubAccountName: 子账号名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrgSubAccountName: String
 
         attr_accessor :OrgSubAccountUin, :PolicyId, :PolicyName, :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :CreateTime, :UpdateTime, :OrgSubAccountName
@@ -6192,34 +6087,24 @@ module TencentCloud
       # 组织成员可授权的身份
       class OrgMemberAuthIdentity < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
         # @param IdentityRoleName: 身份的角色名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleName: String
         # @param IdentityRoleAliasName: 身份的角色别名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleAliasName: String
         # @param Description: 身份描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateTime: 首次配置成功的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 最后一次配置成功的时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param IdentityType: 身份类型。取值： 1-预设身份  2-自定义身份
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityType: Integer
         # @param Status: 配置状态。取值：1-配置完成 2-需重新配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param MemberUin: 成员Uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberUin: Integer
         # @param MemberName: 成员名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberName: String
 
         attr_accessor :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :Description, :CreateTime, :UpdateTime, :IdentityType, :Status, :MemberUin, :MemberName
@@ -6254,16 +6139,12 @@ module TencentCloud
       # 组织成员财务信息。
       class OrgMemberFinancial < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberUin: Integer
         # @param MemberName: 成员名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberName: String
         # @param TotalCost: 消耗金额，单位：元。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param Ratio: 占比%。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ratio: String
 
         attr_accessor :MemberUin, :MemberName, :TotalCost, :Ratio
@@ -6286,28 +6167,20 @@ module TencentCloud
       # 组织成员被授权的策略
       class OrgMemberPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: Integer
         # @param PolicyName: 策略名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
         # @param IdentityId: 身份ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityId: Integer
         # @param IdentityRoleName: 身份角色名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleName: String
         # @param IdentityRoleAliasName: 身份角色别名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleAliasName: String
         # @param Description: 描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param CreateTime: 创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
         attr_accessor :PolicyId, :PolicyName, :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :Description, :CreateTime, :UpdateTime
@@ -6338,25 +6211,18 @@ module TencentCloud
       # 企业组织单元
       class OrgNode < TencentCloud::Common::AbstractModel
         # @param NodeId: 组织节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeId: Integer
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ParentNodeId: 父节点ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentNodeId: Integer
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Tags: 成员标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :NodeId, :Name, :ParentNodeId, :Remark, :CreateTime, :UpdateTime, :Tags
@@ -6444,44 +6310,31 @@ module TencentCloud
       # 集团服务设置
       class OrganizationServiceAssign < TencentCloud::Common::AbstractModel
         # @param ServiceId: 集团服务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceId: Integer
         # @param ProductName: 集团服务产品名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param IsAssign: 是否支持委派。取值: 1-是  2-否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAssign: Integer
         # @param Description: 集团服务描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param MemberNum: 当前委派管理员数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberNum: String
         # @param Document: 帮助文档。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Document: String
         # @param ConsoleUrl: 集团服务产品控制台路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsoleUrl: String
         # @param IsUsageStatus: 是否接入使用状态。取值: 1-是
         #  2-否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUsageStatus: Integer
         # @param CanAssignCount: 委派管理员数量限制。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanAssignCount: Integer
         # @param Product: 集团服务产品标识。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Product: String
         # @param ServiceGrant: 是否支持集团服务授权。取值 1-是、2-否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceGrant: Integer
         # @param GrantStatus: 集团服务授权启用状态。ServiceGrant值为1时该字段有效 ，取值：Enabled-开启  Disabled-关闭
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GrantStatus: String
         # @param IsSetManagementScope: 是否支持设置委派管理范围。取值: 1-是  2-否
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSetManagementScope: Integer
 
         attr_accessor :ServiceId, :ProductName, :IsAssign, :Description, :MemberNum, :Document, :ConsoleUrl, :IsUsageStatus, :CanAssignCount, :Product, :ServiceGrant, :GrantStatus, :IsSetManagementScope
@@ -6522,31 +6375,22 @@ module TencentCloud
       # 集团服务委派成员信息
       class OrganizationServiceAssignMember < TencentCloud::Common::AbstractModel
         # @param ServiceId: 集团服务ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceId: Integer
         # @param ProductName: 集团服务产品名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param MemberUin: 委派管理员Uin。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberUin: Integer
         # @param MemberName: 委派管理员名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberName: String
         # @param UsageStatus: 启用状态 。取值：0-服务无启用状态  1-已启用  2-未启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsageStatus: Integer
         # @param CreateTime: 委派时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ManagementScope: 委派管理员管理范围。取值: 1-全部成员  2-部分成员
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagementScope: Integer
         # @param ManagementScopeMembers: 管理的成员Uin列表。ManagementScope值为2时该参数有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagementScopeMembers: Array
         # @param ManagementScopeNodes: 管理的部门ID列表。ManagementScope值为2时该参数有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagementScopeNodes: Array
 
         attr_accessor :ServiceId, :ProductName, :MemberUin, :MemberName, :UsageStatus, :CreateTime, :ManagementScope, :ManagementScopeMembers, :ManagementScopeNodes
@@ -6877,13 +6721,10 @@ module TencentCloud
       class ResourceTagMapping < TencentCloud::Common::AbstractModel
         # @param Resource: 资源六段式。腾讯云使用资源六段式描述一个资源。
         # 例如：qcs::${ServiceType}:${Region}:${Account}:${ResourcePreifx}/${ResourceId}。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param ComplianceDetails: 合规详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceDetails: :class:`Tencentcloud::Organization.v20210331.models.TagComplianceDetails`
         # @param Tags: 资源标签。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
 
         attr_accessor :Resource, :ComplianceDetails, :Tags
@@ -7563,13 +7404,10 @@ module TencentCloud
       # 标签合规信息
       class TagComplianceDetails < TencentCloud::Common::AbstractModel
         # @param ComplianceStatus: 合规状态。true-合规，false-不合规
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceStatus: Boolean
         # @param KeysWithNonCompliantValues: 值不合规的标签键列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeysWithNonCompliantValues: Array
         # @param NonCompliantKeys: 键不合规的标签键列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonCompliantKeys: Array
 
         attr_accessor :ComplianceStatus, :KeysWithNonCompliantValues, :NonCompliantKeys
@@ -7590,10 +7428,8 @@ module TencentCloud
       # 标签键值对
       class Tags < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

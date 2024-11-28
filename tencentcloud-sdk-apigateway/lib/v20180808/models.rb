@@ -2338,6 +2338,101 @@ module TencentCloud
         end
       end
 
+      # CreateExclusiveInstances请求参数结构体
+      class CreateExclusiveInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Zones: 可用区
+        # @type Zones: Array
+        # @param InstanceType: 实例类型：
+        # basic：            基础版
+        # professional： 专业版
+        # enterprise：     企业版
+        # platium：         铂金版
+        # diamond：       钻石版
+        # @type InstanceType: String
+        # @param NetworkConfig: 网络配置
+        # @type NetworkConfig: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceNetworkConfig`
+        # @param VpcConfig: VPC配置
+        # @type VpcConfig: :class:`Tencentcloud::Apigateway.v20180808.models.VpcConfig`
+        # @param PayMode: 付费类型：
+        # POSTPAID：后付费
+        # PREPAID： 预付费
+        # @type PayMode: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param InstanceDescription: 实例描述
+        # @type InstanceDescription: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param Period: 预付费付费时长：单位是月
+        # @type Period: Integer
+        # @param AutoRenewFlag: 预付费续费标志：
+        # NOTIFY_AND_MANUAL_RENEW 手动续费
+        # NOTIFY_AND_AUTO_RENEW 自动续费
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW 不续费
+        # @type AutoRenewFlag: String
+
+        attr_accessor :Zones, :InstanceType, :NetworkConfig, :VpcConfig, :PayMode, :InstanceName, :InstanceDescription, :Tags, :Period, :AutoRenewFlag
+
+        def initialize(zones=nil, instancetype=nil, networkconfig=nil, vpcconfig=nil, paymode=nil, instancename=nil, instancedescription=nil, tags=nil, period=nil, autorenewflag=nil)
+          @Zones = zones
+          @InstanceType = instancetype
+          @NetworkConfig = networkconfig
+          @VpcConfig = vpcconfig
+          @PayMode = paymode
+          @InstanceName = instancename
+          @InstanceDescription = instancedescription
+          @Tags = tags
+          @Period = period
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @Zones = params['Zones']
+          @InstanceType = params['InstanceType']
+          unless params['NetworkConfig'].nil?
+            @NetworkConfig = InstanceNetworkConfig.new
+            @NetworkConfig.deserialize(params['NetworkConfig'])
+          end
+          unless params['VpcConfig'].nil?
+            @VpcConfig = VpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          @PayMode = params['PayMode']
+          @InstanceName = params['InstanceName']
+          @InstanceDescription = params['InstanceDescription']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Period = params['Period']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # CreateExclusiveInstances返回参数结构体
+      class CreateExclusiveInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 实例ID
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateIPStrategy请求参数结构体
       class CreateIPStrategyRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务的唯一ID。
@@ -4529,6 +4624,42 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesNetworkConfig请求参数结构体
+      class DescribeInstancesNetworkConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInstancesNetworkConfig返回参数结构体
+      class DescribeInstancesNetworkConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogSearch请求参数结构体
       class DescribeLogSearchRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 日志开始时间
@@ -6694,6 +6825,22 @@ module TencentCloud
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
           end
           @UniqVpcId = params['UniqVpcId']
+        end
+      end
+
+      # 专享网络配置
+      class InstanceNetworkConfig < TencentCloud::Common::AbstractModel
+        # @param InternetMaxBandwidthOut: 公网带宽
+        # @type InternetMaxBandwidthOut: Integer
+
+        attr_accessor :InternetMaxBandwidthOut
+
+        def initialize(internetmaxbandwidthout=nil)
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+        end
+
+        def deserialize(params)
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
         end
       end
 
