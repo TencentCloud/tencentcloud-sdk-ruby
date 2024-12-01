@@ -107,6 +107,84 @@ module TencentCloud
         end
       end
 
+      # AddCasterMarkPicInfo请求参数结构体
+      class AddCasterMarkPicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID
+        # @type CasterId: Integer
+        # @param MarkPicInfo: 图片水印详细参数。
+        # @type MarkPicInfo: :class:`Tencentcloud::Live.v20180801.models.CasterMarkPicInfo`
+
+        attr_accessor :CasterId, :MarkPicInfo
+
+        def initialize(casterid=nil, markpicinfo=nil)
+          @CasterId = casterid
+          @MarkPicInfo = markpicinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['MarkPicInfo'].nil?
+            @MarkPicInfo = CasterMarkPicInfo.new
+            @MarkPicInfo.deserialize(params['MarkPicInfo'])
+          end
+        end
+      end
+
+      # AddCasterMarkPicInfo返回参数结构体
+      class AddCasterMarkPicInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddCasterMarkWordInfo请求参数结构体
+      class AddCasterMarkWordInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param MarkWordInfo: 文本的详细配置。
+        # @type MarkWordInfo: :class:`Tencentcloud::Live.v20180801.models.CasterMarkWordInfo`
+
+        attr_accessor :CasterId, :MarkWordInfo
+
+        def initialize(casterid=nil, markwordinfo=nil)
+          @CasterId = casterid
+          @MarkWordInfo = markwordinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['MarkWordInfo'].nil?
+            @MarkWordInfo = CasterMarkWordInfo.new
+            @MarkWordInfo.deserialize(params['MarkWordInfo'])
+          end
+        end
+      end
+
+      # AddCasterMarkWordInfo返回参数结构体
+      class AddCasterMarkWordInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddCasterOutputInfo请求参数结构体
       class AddCasterOutputInfoRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID
@@ -1179,6 +1257,157 @@ module TencentCloud
           @LayerLocationX = params['LayerLocationX']
           @LayerLocationY = params['LayerLocationY']
           @UsePortraitSegment = params['UsePortraitSegment']
+        end
+      end
+
+      # 导播台水印信息。
+      class CasterMarkPicInfo < TencentCloud::Common::AbstractModel
+        # @param MarkPicIndex: 水印图片Index。
+        # @type MarkPicIndex: Integer
+        # @param MarkPicId: 注：该字段已废弃。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkPicId: Integer
+        # @param MarkPicWidth: 水印图片在输出时的宽度。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示水印在最终画面上所占的比例值。
+        # @type MarkPicWidth: Float
+        # @param MarkPicHeight: 水印图片在输出时的高度。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1080]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示水印在输出上所占的比例值。
+        # @type MarkPicHeight: Float
+        # @param MarkPicLocationX: 水印图片在输出时的X轴坐标。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1920]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示水印在最终画面上x坐标所占的比例值。
+        # @type MarkPicLocationX: Float
+        # @param MarkPicLocationY: 水印图片在输出时的Y坐标。
+        # 当该值为大于1的整数值时，单位为像素，允许范围[1,1080]。
+        # 当该值为小于1大于0的小数时，单位为百分比，表示水印在最终画面Y坐标上所占的比例值。
+        # @type MarkPicLocationY: Float
+        # @param MarkPicUrl: 水印地址。
+        # 最大长度256字符，且url需以jpg、jpeg、png、bmp、gif后缀结尾。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkPicUrl: String
+        # @param Description: 水印描述。
+        # 最大允许长度为256。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param IsEqualProportion: 是否启用了等比例缩放。
+        # 注：该字段仅做状态保存，无实际效果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEqualProportion: Boolean
+
+        attr_accessor :MarkPicIndex, :MarkPicId, :MarkPicWidth, :MarkPicHeight, :MarkPicLocationX, :MarkPicLocationY, :MarkPicUrl, :Description, :IsEqualProportion
+
+        def initialize(markpicindex=nil, markpicid=nil, markpicwidth=nil, markpicheight=nil, markpiclocationx=nil, markpiclocationy=nil, markpicurl=nil, description=nil, isequalproportion=nil)
+          @MarkPicIndex = markpicindex
+          @MarkPicId = markpicid
+          @MarkPicWidth = markpicwidth
+          @MarkPicHeight = markpicheight
+          @MarkPicLocationX = markpiclocationx
+          @MarkPicLocationY = markpiclocationy
+          @MarkPicUrl = markpicurl
+          @Description = description
+          @IsEqualProportion = isequalproportion
+        end
+
+        def deserialize(params)
+          @MarkPicIndex = params['MarkPicIndex']
+          @MarkPicId = params['MarkPicId']
+          @MarkPicWidth = params['MarkPicWidth']
+          @MarkPicHeight = params['MarkPicHeight']
+          @MarkPicLocationX = params['MarkPicLocationX']
+          @MarkPicLocationY = params['MarkPicLocationY']
+          @MarkPicUrl = params['MarkPicUrl']
+          @Description = params['Description']
+          @IsEqualProportion = params['IsEqualProportion']
+        end
+      end
+
+      # 导播台文字水印配置。
+      class CasterMarkWordInfo < TencentCloud::Common::AbstractModel
+        # @param MarkWordIndex: 文字水印Index。
+        # @type MarkWordIndex: Integer
+        # @param MarkWordText: 文字水印内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordText: String
+        # @param MarkWordFontSize: 文字水印的字号。
+        # 范围[16, 60]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordFontSize: Integer
+        # @param MarkWordFontColor: 文字水印的颜色，值为HEX颜色代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordFontColor: String
+        # @param MarkWordFontType: 文字水印的字体类型。
+        # 范围[1,2]。
+        # 1. 宋体
+        # 2. 黑体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordFontType: Integer
+        # @param MarkWordLocationX: 文字水印的x坐标位置，单位百分比。
+        # 范围[0.0, 1.0]
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordLocationX: Float
+        # @param MarkWordLocationY: 文字水印的Y坐标位置，单位百分比。
+        # 范围[0.0, 1.0]
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordLocationY: Float
+        # @param MarkWordRollEnable: 是否开启文字跑马灯功能。
+        # 默认为false。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordRollEnable: Boolean
+        # @param MarkWordRollOnceTime: 跑马灯文字显示一遍的时间，单位为秒。
+        # 默认为5s。
+        # 范围[5, 600]。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordRollOnceTime: Integer
+        # @param MarkWordRollDirection: 跑马灯文字的方向。
+        # 默认值为0。
+        # 范围[0,1]。
+        # 0 从左到右
+        # 1 从右到左
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordRollDirection: Integer
+        # @param MarkWordRollStartLocationX: 跑马灯文字显示的起始x坐标，单位百分比。
+        # 范围[0.0, 1.0]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordRollStartLocationX: Float
+        # @param MarkWordRollEndLocationX: 跑马灯文字显示的截止x坐标，单位百分比。
+        # 范围[0.0, 1.0]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordRollEndLocationX: Float
+
+        attr_accessor :MarkWordIndex, :MarkWordText, :MarkWordFontSize, :MarkWordFontColor, :MarkWordFontType, :MarkWordLocationX, :MarkWordLocationY, :MarkWordRollEnable, :MarkWordRollOnceTime, :MarkWordRollDirection, :MarkWordRollStartLocationX, :MarkWordRollEndLocationX
+
+        def initialize(markwordindex=nil, markwordtext=nil, markwordfontsize=nil, markwordfontcolor=nil, markwordfonttype=nil, markwordlocationx=nil, markwordlocationy=nil, markwordrollenable=nil, markwordrolloncetime=nil, markwordrolldirection=nil, markwordrollstartlocationx=nil, markwordrollendlocationx=nil)
+          @MarkWordIndex = markwordindex
+          @MarkWordText = markwordtext
+          @MarkWordFontSize = markwordfontsize
+          @MarkWordFontColor = markwordfontcolor
+          @MarkWordFontType = markwordfonttype
+          @MarkWordLocationX = markwordlocationx
+          @MarkWordLocationY = markwordlocationy
+          @MarkWordRollEnable = markwordrollenable
+          @MarkWordRollOnceTime = markwordrolloncetime
+          @MarkWordRollDirection = markwordrolldirection
+          @MarkWordRollStartLocationX = markwordrollstartlocationx
+          @MarkWordRollEndLocationX = markwordrollendlocationx
+        end
+
+        def deserialize(params)
+          @MarkWordIndex = params['MarkWordIndex']
+          @MarkWordText = params['MarkWordText']
+          @MarkWordFontSize = params['MarkWordFontSize']
+          @MarkWordFontColor = params['MarkWordFontColor']
+          @MarkWordFontType = params['MarkWordFontType']
+          @MarkWordLocationX = params['MarkWordLocationX']
+          @MarkWordLocationY = params['MarkWordLocationY']
+          @MarkWordRollEnable = params['MarkWordRollEnable']
+          @MarkWordRollOnceTime = params['MarkWordRollOnceTime']
+          @MarkWordRollDirection = params['MarkWordRollDirection']
+          @MarkWordRollStartLocationX = params['MarkWordRollStartLocationX']
+          @MarkWordRollEndLocationX = params['MarkWordRollEndLocationX']
         end
       end
 
@@ -3700,6 +3929,78 @@ module TencentCloud
         end
       end
 
+      # DeleteCasterMarkPicInfo请求参数结构体
+      class DeleteCasterMarkPicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param MarkPicIndex: 需要删除的水印Index。
+        # @type MarkPicIndex: Integer
+
+        attr_accessor :CasterId, :MarkPicIndex
+
+        def initialize(casterid=nil, markpicindex=nil)
+          @CasterId = casterid
+          @MarkPicIndex = markpicindex
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @MarkPicIndex = params['MarkPicIndex']
+        end
+      end
+
+      # DeleteCasterMarkPicInfo返回参数结构体
+      class DeleteCasterMarkPicInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCasterMarkWordInfo请求参数结构体
+      class DeleteCasterMarkWordInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param MarkWordIndex: 需要删除的文字水印Index。
+        # @type MarkWordIndex: Integer
+
+        attr_accessor :CasterId, :MarkWordIndex
+
+        def initialize(casterid=nil, markwordindex=nil)
+          @CasterId = casterid
+          @MarkWordIndex = markwordindex
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          @MarkWordIndex = params['MarkWordIndex']
+        end
+      end
+
+      # DeleteCasterMarkWordInfo返回参数结构体
+      class DeleteCasterMarkWordInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCasterOutputInfo请求参数结构体
       class DeleteCasterOutputInfoRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID。
@@ -5073,6 +5374,94 @@ module TencentCloud
               casterbriefinfo_tmp = CasterBriefInfo.new
               casterbriefinfo_tmp.deserialize(i)
               @CasterList << casterbriefinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterMarkPicInfos请求参数结构体
+      class DescribeCasterMarkPicInfosRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterMarkPicInfos返回参数结构体
+      class DescribeCasterMarkPicInfosResponse < TencentCloud::Common::AbstractModel
+        # @param MarkPicInfos: 导播台的水印信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkPicInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MarkPicInfos, :RequestId
+
+        def initialize(markpicinfos=nil, requestid=nil)
+          @MarkPicInfos = markpicinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MarkPicInfos'].nil?
+            @MarkPicInfos = []
+            params['MarkPicInfos'].each do |i|
+              castermarkpicinfo_tmp = CasterMarkPicInfo.new
+              castermarkpicinfo_tmp.deserialize(i)
+              @MarkPicInfos << castermarkpicinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCasterMarkWordInfos请求参数结构体
+      class DescribeCasterMarkWordInfosRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+
+        attr_accessor :CasterId
+
+        def initialize(casterid=nil)
+          @CasterId = casterid
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+        end
+      end
+
+      # DescribeCasterMarkWordInfos返回参数结构体
+      class DescribeCasterMarkWordInfosResponse < TencentCloud::Common::AbstractModel
+        # @param MarkWordInfos: 导播台的文本信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkWordInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MarkWordInfos, :RequestId
+
+        def initialize(markwordinfos=nil, requestid=nil)
+          @MarkWordInfos = markwordinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MarkWordInfos'].nil?
+            @MarkWordInfos = []
+            params['MarkWordInfos'].each do |i|
+              castermarkwordinfo_tmp = CasterMarkWordInfo.new
+              castermarkwordinfo_tmp.deserialize(i)
+              @MarkWordInfos << castermarkwordinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -10861,6 +11250,84 @@ module TencentCloud
 
       # ModifyCasterLayoutInfo返回参数结构体
       class ModifyCasterLayoutInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCasterMarkPicInfo请求参数结构体
+      class ModifyCasterMarkPicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param MarkPicInfo: 新的水印信息。
+        # @type MarkPicInfo: :class:`Tencentcloud::Live.v20180801.models.CasterMarkPicInfo`
+
+        attr_accessor :CasterId, :MarkPicInfo
+
+        def initialize(casterid=nil, markpicinfo=nil)
+          @CasterId = casterid
+          @MarkPicInfo = markpicinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['MarkPicInfo'].nil?
+            @MarkPicInfo = CasterMarkPicInfo.new
+            @MarkPicInfo.deserialize(params['MarkPicInfo'])
+          end
+        end
+      end
+
+      # ModifyCasterMarkPicInfo返回参数结构体
+      class ModifyCasterMarkPicInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCasterMarkWordInfo请求参数结构体
+      class ModifyCasterMarkWordInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CasterId: 导播台ID。
+        # @type CasterId: Integer
+        # @param MarkWordInfo: 修改的文本配置。
+        # @type MarkWordInfo: :class:`Tencentcloud::Live.v20180801.models.CasterMarkWordInfo`
+
+        attr_accessor :CasterId, :MarkWordInfo
+
+        def initialize(casterid=nil, markwordinfo=nil)
+          @CasterId = casterid
+          @MarkWordInfo = markwordinfo
+        end
+
+        def deserialize(params)
+          @CasterId = params['CasterId']
+          unless params['MarkWordInfo'].nil?
+            @MarkWordInfo = CasterMarkWordInfo.new
+            @MarkWordInfo.deserialize(params['MarkWordInfo'])
+          end
+        end
+      end
+
+      # ModifyCasterMarkWordInfo返回参数结构体
+      class ModifyCasterMarkWordInfoResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

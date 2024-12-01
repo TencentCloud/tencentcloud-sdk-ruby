@@ -7382,6 +7382,62 @@ module TencentCloud
         end
       end
 
+      # DescribeZoneConfigImportResult请求参数结构体
+      class DescribeZoneConfigImportResultRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TaskId: 表示需要查询结果的导入配置任务 Id，导入任务 Id 仅支持查询最近 7 天的导入任务。
+        # @type TaskId: String
+
+        attr_accessor :ZoneId, :TaskId
+
+        def initialize(zoneid=nil, taskid=nil)
+          @ZoneId = zoneid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeZoneConfigImportResult返回参数结构体
+      class DescribeZoneConfigImportResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 本次导入任务的导入状态。取值有：  <li>success：表示配置项导入成功；</li> <li>failure：表示配置项导入失败；</li> <li>doing：表示配置项正在导入中。</li>
+        # @type Status: String
+        # @param Message: 本次导入任务的状态的提示信息。当配置项导入失败时，可通过本字段查看失败原因。
+        # @type Message: String
+        # @param Content: 本次导入任务的配置内容。
+        # @type Content: String
+        # @param ImportTime: 本次导入任务的开始时间。
+        # @type ImportTime: String
+        # @param FinishTime: 本次导入任务的结束时间。
+        # @type FinishTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Message, :Content, :ImportTime, :FinishTime, :RequestId
+
+        def initialize(status=nil, message=nil, content=nil, importtime=nil, finishtime=nil, requestid=nil)
+          @Status = status
+          @Message = message
+          @Content = content
+          @ImportTime = importtime
+          @FinishTime = finishtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          @Content = params['Content']
+          @ImportTime = params['ImportTime']
+          @FinishTime = params['FinishTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZoneSetting请求参数结构体
       class DescribeZoneSettingRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -8253,6 +8309,47 @@ module TencentCloud
         end
       end
 
+      # ExportZoneConfig请求参数结构体
+      class ExportZoneConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Types: 导出配置项的类型列表，不填表示导出所有类型的配置，当前支持的取值有：<li>L7AccelerationConfig：表示导出七层加速配置，对应控制台「站点加速-全局加速配置」和「站点加速-规则引擎」。</li>
+        # 需注意：后续支持导出的类型会随着迭代增加，导出所有类型时需要注意导出文件大小，建议使用时指定需要导出的配置类型，以便控制请求响应包负载大小。
+        # @type Types: Array
+
+        attr_accessor :ZoneId, :Types
+
+        def initialize(zoneid=nil, types=nil)
+          @ZoneId = zoneid
+          @Types = types
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Types = params['Types']
+        end
+      end
+
+      # ExportZoneConfig返回参数结构体
+      class ExportZoneConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Content: 导出的配置的具体内容。以 JSON 格式返回，按照 UTF-8 方式进行编码。配置内容可参考下方示例。
+        # @type Content: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :RequestId
+
+        def initialize(content=nil, requestid=nil)
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 失败原因
       class FailReason < TencentCloud::Common::AbstractModel
         # @param Reason: 失败原因。
@@ -9022,6 +9119,46 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # ImportZoneConfig请求参数结构体
+      class ImportZoneConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Content: 待导入的配置内容。要求采用 JSON 格式，按照 UTF-8 方式进行编码。配置内容可通过站点配置导出接口（ExportZoneConfig）获取。您可以单独导入「站点加速-全局加速配置」或「站点加速-规则引擎」，传入对应的字段即可，详情可以参考下方示例。
+        # @type Content: String
+
+        attr_accessor :ZoneId, :Content
+
+        def initialize(zoneid=nil, content=nil)
+          @ZoneId = zoneid
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Content = params['Content']
+        end
+      end
+
+      # ImportZoneConfig返回参数结构体
+      class ImportZoneConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 表示该次导入配置的任务 Id，通过查询站点配置导入结果接口（DescribeZoneConfigImportResult）获取本次导入任务执行的结果。注意：导入任务 Id 仅支持查询最近 7 天的导入任务。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

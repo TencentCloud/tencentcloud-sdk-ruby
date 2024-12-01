@@ -21,12 +21,15 @@ module TencentCloud
       class ActivateTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
         # @param PkgType: TWecall类型：1-家庭安防场景； 2-穿戴类场景； 3-生活娱乐场景； 4-对讲及其它场景
         # @type PkgType: Integer
-        # @param MiniProgramAppId: appId
+        # @param MiniProgramAppId: 参数已弃用，不用传参
         # @type MiniProgramAppId: String
         # @param DeviceList: 设备列表
         # @type DeviceList: Array
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
+        extend Gem::Deprecate
+        deprecate :MiniProgramAppId, :none, 2024, 12
+        deprecate :MiniProgramAppId=, :none, 2024, 12
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -4926,6 +4929,9 @@ module TencentCloud
         # @type ExpireTime: Integer
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
+        extend Gem::Deprecate
+        deprecate :ModelId, :none, 2024, 12
+        deprecate :ModelId=, :none, 2024, 12
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -6539,12 +6545,15 @@ module TencentCloud
 
       # GetTWeCallActiveStatus请求参数结构体
       class GetTWeCallActiveStatusRequest < TencentCloud::Common::AbstractModel
-        # @param MiniProgramAppId: appId
+        # @param MiniProgramAppId: 参数已弃用，不用传参
         # @type MiniProgramAppId: String
         # @param DeviceList: 设备列表
         # @type DeviceList: Array
 
         attr_accessor :MiniProgramAppId, :DeviceList
+        extend Gem::Deprecate
+        deprecate :MiniProgramAppId, :none, 2024, 12
+        deprecate :MiniProgramAppId=, :none, 2024, 12
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -6605,6 +6614,9 @@ module TencentCloud
         # @type Limit: Integer
 
         attr_accessor :MiniProgramAppId, :PkgType, :Status, :Offset, :Limit
+        extend Gem::Deprecate
+        deprecate :MiniProgramAppId, :none, 2024, 12
+        deprecate :MiniProgramAppId=, :none, 2024, 12
 
         def initialize(miniprogramappid=nil, pkgtype=nil, status=nil, offset=nil, limit=nil)
           @MiniProgramAppId = miniprogramappid
@@ -9184,6 +9196,9 @@ module TencentCloud
         # @type ExpireTime: Integer
 
         attr_accessor :ModelId, :Sn, :ExpireTime
+        extend Gem::Deprecate
+        deprecate :ModelId, :none, 2024, 12
+        deprecate :ModelId=, :none, 2024, 12
 
         def initialize(modelid=nil, sn=nil, expiretime=nil)
           @ModelId = modelid
@@ -9230,7 +9245,7 @@ module TencentCloud
         # @param Sn: Sn信息，SN格式：产品ID_设备名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sn: String
-        # @param ModelId: 小程序ID
+        # @param ModelId: 小程序ID，参数已弃用，不用传参
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelId: String
         # @param ActiveNum: 激活数
@@ -9238,6 +9253,11 @@ module TencentCloud
         # @type ActiveNum: Integer
 
         attr_accessor :Sn, :ModelId, :ActiveNum
+        extend Gem::Deprecate
+        deprecate :ModelId, :none, 2024, 12
+        deprecate :ModelId=, :none, 2024, 12
+        deprecate :ActiveNum, :none, 2024, 12
+        deprecate :ActiveNum=, :none, 2024, 12
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

@@ -1703,8 +1703,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :Angle, :Height, :Width, :OriginHeight, :OriginWidth, :Elements, :RotatedAngle
         extend Gem::Deprecate
-        deprecate :Angle, :none, 2024, 11
-        deprecate :Angle=, :none, 2024, 11
+        deprecate :Angle, :none, 2024, 12
+        deprecate :Angle=, :none, 2024, 12
 
         def initialize(pagenumber=nil, angle=nil, height=nil, width=nil, originheight=nil, originwidth=nil, elements=nil, rotatedangle=nil)
           @PageNumber = pagenumber
@@ -3510,8 +3510,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 11
-        deprecate :Angel=, :none, 2024, 11
+        deprecate :Angel, :none, 2024, 12
+        deprecate :Angel=, :none, 2024, 12
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3617,8 +3617,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 11
-        deprecate :Angel=, :none, 2024, 11
+        deprecate :Angel, :none, 2024, 12
+        deprecate :Angel=, :none, 2024, 12
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3830,8 +3830,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 11
-        deprecate :Angel=, :none, 2024, 11
+        deprecate :Angel, :none, 2024, 12
+        deprecate :Angel=, :none, 2024, 12
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4015,8 +4015,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2024, 11
-        deprecate :DetectFake=, :none, 2024, 11
+        deprecate :DetectFake, :none, 2024, 12
+        deprecate :DetectFake=, :none, 2024, 12
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4085,10 +4085,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2024, 11
-        deprecate :FakeDetectResult=, :none, 2024, 11
-        deprecate :WarningCode, :none, 2024, 11
-        deprecate :WarningCode=, :none, 2024, 11
+        deprecate :FakeDetectResult, :none, 2024, 12
+        deprecate :FakeDetectResult=, :none, 2024, 12
+        deprecate :WarningCode, :none, 2024, 12
+        deprecate :WarningCode=, :none, 2024, 12
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, warncardinfos=nil, requestid=nil)
           @CnName = cnname
@@ -5272,8 +5272,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2024, 11
-        deprecate :Warn=, :none, 2024, 11
+        deprecate :Warn, :none, 2024, 12
+        deprecate :Warn=, :none, 2024, 12
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -8233,97 +8233,6 @@ module TencentCloud
           @Vaccination = params['Vaccination']
           @SpotName = params['SpotName']
           @VaccinationTime = params['VaccinationTime']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RecognizeKoreanDrivingLicenseOCR请求参数结构体
-      class RecognizeKoreanDrivingLicenseOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param ReturnHeadImage: 是否返回人像照片。
-        # @type ReturnHeadImage: Boolean
-
-        attr_accessor :ImageBase64, :ImageUrl, :ReturnHeadImage
-
-        def initialize(imagebase64=nil, imageurl=nil, returnheadimage=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @ReturnHeadImage = returnheadimage
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @ReturnHeadImage = params['ReturnHeadImage']
-        end
-      end
-
-      # RecognizeKoreanDrivingLicenseOCR返回参数结构体
-      class RecognizeKoreanDrivingLicenseOCRResponse < TencentCloud::Common::AbstractModel
-        # @param ID: 身份证号码
-        # @type ID: String
-        # @param LicenseNumber: 驾照号码
-        # @type LicenseNumber: String
-        # @param Number: 居民登记号码
-        # @type Number: String
-        # @param Type: 驾照类型
-        # @type Type: String
-        # @param Address: 地址
-        # @type Address: String
-        # @param Name: 姓名
-        # @type Name: String
-        # @param AptitudeTesDate: 换证时间
-        # @type AptitudeTesDate: String
-        # @param DateOfIssue: 发证日期
-        # @type DateOfIssue: String
-        # @param Photo: 人像截图Base64后的结果
-        # @type Photo: String
-        # @param Sex: 性别
-        # @type Sex: String
-        # @param Birthday: 生日，格式为dd/mm/yyyy
-        # @type Birthday: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ID, :LicenseNumber, :Number, :Type, :Address, :Name, :AptitudeTesDate, :DateOfIssue, :Photo, :Sex, :Birthday, :RequestId
-
-        def initialize(id=nil, licensenumber=nil, number=nil, type=nil, address=nil, name=nil, aptitudetesdate=nil, dateofissue=nil, photo=nil, sex=nil, birthday=nil, requestid=nil)
-          @ID = id
-          @LicenseNumber = licensenumber
-          @Number = number
-          @Type = type
-          @Address = address
-          @Name = name
-          @AptitudeTesDate = aptitudetesdate
-          @DateOfIssue = dateofissue
-          @Photo = photo
-          @Sex = sex
-          @Birthday = birthday
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ID = params['ID']
-          @LicenseNumber = params['LicenseNumber']
-          @Number = params['Number']
-          @Type = params['Type']
-          @Address = params['Address']
-          @Name = params['Name']
-          @AptitudeTesDate = params['AptitudeTesDate']
-          @DateOfIssue = params['DateOfIssue']
-          @Photo = params['Photo']
-          @Sex = params['Sex']
-          @Birthday = params['Birthday']
           @RequestId = params['RequestId']
         end
       end

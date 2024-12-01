@@ -4569,8 +4569,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 11
-        deprecate :Decription=, :none, 2024, 11
+        deprecate :Decription, :none, 2024, 12
+        deprecate :Decription=, :none, 2024, 12
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -13174,7 +13174,7 @@ module TencentCloud
         # @param Filters: 过滤条件。
         # <li>StrategyId- Uint64 - 基线策略id</li>
         # <li>Status - Uint64 - 处理状态1已通过 0未通过</li>
-        # <li>Level - Uint64[] - 处理状态1已通过 0未通过</li>BaselineName
+        # <li>Level - Uint64[] - 威胁等级</li>
         # <li>BaselineName  - String - 基线名称</li>
         # <li>Quuid- String - 主机quuid</li>
         # <li>Uuid- String - 主机uuid</li>
@@ -17713,16 +17713,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2024, 11
-        deprecate :TencentCloudMachineCnt=, :none, 2024, 11
-        deprecate :AliCloudMachineCnt, :none, 2024, 11
-        deprecate :AliCloudMachineCnt=, :none, 2024, 11
-        deprecate :BaiduCloudMachineCnt, :none, 2024, 11
-        deprecate :BaiduCloudMachineCnt=, :none, 2024, 11
-        deprecate :IDCMachineCnt, :none, 2024, 11
-        deprecate :IDCMachineCnt=, :none, 2024, 11
-        deprecate :OtherCloudMachineCnt, :none, 2024, 11
-        deprecate :OtherCloudMachineCnt=, :none, 2024, 11
+        deprecate :TencentCloudMachineCnt, :none, 2024, 12
+        deprecate :TencentCloudMachineCnt=, :none, 2024, 12
+        deprecate :AliCloudMachineCnt, :none, 2024, 12
+        deprecate :AliCloudMachineCnt=, :none, 2024, 12
+        deprecate :BaiduCloudMachineCnt, :none, 2024, 12
+        deprecate :BaiduCloudMachineCnt=, :none, 2024, 12
+        deprecate :IDCMachineCnt, :none, 2024, 12
+        deprecate :IDCMachineCnt=, :none, 2024, 12
+        deprecate :OtherCloudMachineCnt, :none, 2024, 12
+        deprecate :OtherCloudMachineCnt=, :none, 2024, 12
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -27956,8 +27956,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 11
-        deprecate :Fileds=, :none, 2024, 11
+        deprecate :Fileds, :none, 2024, 12
+        deprecate :Fileds=, :none, 2024, 12
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

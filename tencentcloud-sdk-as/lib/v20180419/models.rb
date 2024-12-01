@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2024, 11
-        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 11
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 12
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 12
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2685,8 +2685,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2024, 11
-        deprecate :AutomationService=, :none, 2024, 11
+        deprecate :AutomationService, :none, 2024, 12
+        deprecate :AutomationService=, :none, 2024, 12
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -5132,14 +5132,17 @@ module TencentCloud
         # 默认取值：RECREATE
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplaceMode: String
+        # @param AutoUpdateInstanceTags: 自动更新实例标签。默认取值为 false，配置后如伸缩组标签发生更新，会同步更新（同步更新仅支持新增、修改标签，暂不支持删除标签）伸缩组内运行中状态实例的标签，同步更新非立即生效，存在一定延迟。
+        # @type AutoUpdateInstanceTags: Boolean
 
-        attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy, :ReplaceMode
+        attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy, :ReplaceMode, :AutoUpdateInstanceTags
 
-        def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil, replacemode=nil)
+        def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil, replacemode=nil, autoupdateinstancetags=nil)
           @ReplaceMonitorUnhealthy = replacemonitorunhealthy
           @ScalingMode = scalingmode
           @ReplaceLoadBalancerUnhealthy = replaceloadbalancerunhealthy
           @ReplaceMode = replacemode
+          @AutoUpdateInstanceTags = autoupdateinstancetags
         end
 
         def deserialize(params)
@@ -5147,6 +5150,7 @@ module TencentCloud
           @ScalingMode = params['ScalingMode']
           @ReplaceLoadBalancerUnhealthy = params['ReplaceLoadBalancerUnhealthy']
           @ReplaceMode = params['ReplaceMode']
+          @AutoUpdateInstanceTags = params['AutoUpdateInstanceTags']
         end
       end
 

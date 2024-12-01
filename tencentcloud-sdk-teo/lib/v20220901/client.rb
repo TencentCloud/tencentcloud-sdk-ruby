@@ -2058,6 +2058,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询站点配置项导入结果接口，本接口用于站点配置导入接口（ImportZoneConfig）的结果查询。该功能仅支持标准版或企业版套餐的站点使用。
+
+        # @param request: Request instance for DescribeZoneConfigImportResult.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeZoneConfigImportResultRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeZoneConfigImportResultResponse`
+        def DescribeZoneConfigImportResult(request)
+          body = send_request('DescribeZoneConfigImportResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeZoneConfigImportResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询站点的所有配置信息。
 
         # @param request: Request instance for DescribeZoneSetting.
@@ -2185,6 +2209,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导出站点配置接口，本接口支持用户根据需要的配置项进行配置导出，导出的配置用于导入站点配置接口（ImportZoneConfig）进行配置导入。该功能仅支持标准版和企业版套餐站点使用。
+
+        # @param request: Request instance for ExportZoneConfig.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ExportZoneConfigRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ExportZoneConfigResponse`
+        def ExportZoneConfig(request)
+          body = send_request('ExportZoneConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportZoneConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 操作边缘函数运行环境，支持环境变量的相关设置。
         # 设置环境变量后，可在函数代码中使用，具体参考 [边缘函数引入环境变量](https://cloud.tencent.com/document/product/1552/109151#0151fd9a-8b0e-407b-ae37-54553a60ded6)。
 
@@ -2220,6 +2268,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = IdentifyZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导入站点配置接口，本接口支持站点配置文件的快速导入，发起导入后接口会返回对应的任务 ID（TaskId），用户需通过查询站点配置导入结果接口（DescribeZoneConfigImportResult）获取本次导入任务执行的结果。该功能仅支持标准版和企业版套餐站点使用。
+
+        # @param request: Request instance for ImportZoneConfig.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ImportZoneConfigRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ImportZoneConfigResponse`
+        def ImportZoneConfig(request)
+          body = send_request('ImportZoneConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportZoneConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

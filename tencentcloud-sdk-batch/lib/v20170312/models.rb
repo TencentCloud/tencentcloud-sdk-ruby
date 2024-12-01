@@ -737,46 +737,16 @@ module TencentCloud
       class DataDisk < TencentCloud::Common::AbstractModel
         # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         # @type DiskSize: Integer
-        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br />
-        # <li>
-        #   LOCAL_BASIC：本地硬盘<br />
-        #   <li>
-        #     LOCAL_SSD：本地SSD硬盘<br />
-        #     <li>
-        #       LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br />
-        #       <li>
-        #         LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br />
-        #         <li>
-        #           CLOUD_BASIC：普通云硬盘<br />
-        #           <li>
-        #             CLOUD_PREMIUM：高性能云硬盘<br />
-        #             <li>
-        #               CLOUD_SSD：SSD云硬盘<br />
-        #               <li>
-        #                 CLOUD_HSSD：增强型SSD云硬盘<br />
-        #                 <li>
-        #                   CLOUD_TSSD：极速型SSD云硬盘<br />
-        #                   <li>
-        #                     CLOUD_BSSD：通用型SSD云硬盘<br /><br />默认取值：LOCAL_BASIC。<br /><br />该参数对`ResizeInstanceDisk`接口无效。
-        #                   </li>
-        #                 </li>
-        #               </li>
-        #             </li>
-        #           </li>
-        #         </li>
-        #       </li>
-        #     </li>
-        #   </li>
-        # </li>
+        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br /><li>LOCAL_BASIC：本地硬盘<br /> <li>LOCAL_SSD：本地SSD硬盘<br /><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br /><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br /><li>CLOUD_BASIC：普通云硬盘<br /><li> CLOUD_PREMIUM：高性能云硬盘<br /><li>CLOUD_SSD：SSD云硬盘<br /><li> CLOUD_HSSD：增强型SSD云硬盘<br /> <li>CLOUD_TSSD：极速型SSD云硬盘<br /><li>CLOUD_BSSD：通用型SSD云硬盘<br /><br />默认取值：LOCAL_BASIC。<br /><br />该参数对`ResizeInstanceDisk`接口无效。</li></li></li> </li> </li></li></li></li></li></li>
         # @type DiskType: String
         # @param DiskId: 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
         # 该参数目前仅用于`DescribeInstances`等查询类接口的返回参数，不可用于`RunInstances`等写接口的入参。
         # @type DiskId: String
         # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：
-        # <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li>
+        # <li>true：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li>
         # <li>
-        #   FALSE：子机销毁时，保留数据盘<br />
-        #   默认取值：TRUE<br />
+        #   false：子机销毁时，保留数据盘<br />
+        #   默认取值：true<br />
         #   该参数目前仅用于 `RunInstances` 接口。
         # </li>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -809,10 +779,14 @@ module TencentCloud
         #  <b>注：内测中。</b>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BurstPerformance: Boolean
+        # @param DiskName: 磁盘名称，长度不超过128 个字符。
 
-        attr_accessor :DiskSize, :DiskType, :DiskId, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId, :ThroughputPerformance, :CdcId, :BurstPerformance
+        # 该参数正在邀测中，暂未开放使用。
+        # @type DiskName: String
 
-        def initialize(disksize=nil, disktype=nil, diskid=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil, throughputperformance=nil, cdcid=nil, burstperformance=nil)
+        attr_accessor :DiskSize, :DiskType, :DiskId, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId, :ThroughputPerformance, :CdcId, :BurstPerformance, :DiskName
+
+        def initialize(disksize=nil, disktype=nil, diskid=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil, throughputperformance=nil, cdcid=nil, burstperformance=nil, diskname=nil)
           @DiskSize = disksize
           @DiskType = disktype
           @DiskId = diskid
@@ -823,6 +797,7 @@ module TencentCloud
           @ThroughputPerformance = throughputperformance
           @CdcId = cdcid
           @BurstPerformance = burstperformance
+          @DiskName = diskname
         end
 
         def deserialize(params)
@@ -836,6 +811,7 @@ module TencentCloud
           @ThroughputPerformance = params['ThroughputPerformance']
           @CdcId = params['CdcId']
           @BurstPerformance = params['BurstPerformance']
+          @DiskName = params['DiskName']
         end
       end
 
@@ -3889,14 +3865,20 @@ module TencentCloud
         # @param CdcId: 所属的独享集群ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
+        # @param DiskName: 磁盘名称，长度不超过128 个字符。
 
-        attr_accessor :DiskType, :DiskId, :DiskSize, :CdcId
+        # 该参数正在邀测中，暂未开放使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskName: String
 
-        def initialize(disktype=nil, diskid=nil, disksize=nil, cdcid=nil)
+        attr_accessor :DiskType, :DiskId, :DiskSize, :CdcId, :DiskName
+
+        def initialize(disktype=nil, diskid=nil, disksize=nil, cdcid=nil, diskname=nil)
           @DiskType = disktype
           @DiskId = diskid
           @DiskSize = disksize
           @CdcId = cdcid
+          @DiskName = diskname
         end
 
         def deserialize(params)
@@ -3904,6 +3886,7 @@ module TencentCloud
           @DiskId = params['DiskId']
           @DiskSize = params['DiskSize']
           @CdcId = params['CdcId']
+          @DiskName = params['DiskName']
         end
       end
 

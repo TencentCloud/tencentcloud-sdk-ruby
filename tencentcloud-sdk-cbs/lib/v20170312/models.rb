@@ -1518,7 +1518,7 @@ module TencentCloud
       class DetachDisksRequest < TencentCloud::Common::AbstractModel
         # @param DiskIds: 将要卸载的云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询，单次请求最多可卸载10块弹性云盘。
         # @type DiskIds: Array
-        # @param InstanceId: 对于非共享型云盘，会忽略该参数；对于共享型云盘，该参数表示要从哪个CVM实例上卸载云盘。
+        # @param InstanceId: 对于非共享型云盘，会根据该参数校验是否与实际挂载的实例一致；对于共享型云盘，该参数表示要从哪个CVM实例上卸载云盘。
         # @type InstanceId: String
 
         attr_accessor :DiskIds, :InstanceId

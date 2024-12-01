@@ -20,14 +20,10 @@ module TencentCloud
       # 入院情况
       class AdmissionConditionBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
@@ -48,16 +44,12 @@ module TencentCloud
       # 入院诊断
       class AdmissionDiagnosisBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Value
@@ -80,7 +72,6 @@ module TencentCloud
       # 建议
       class Advice < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -97,19 +88,14 @@ module TencentCloud
       # 纵横比
       class AspectRatio < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Number: 数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: String
         # @param Relation: 关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Index, :Number, :Relation, :Src, :Value
@@ -134,19 +120,14 @@ module TencentCloud
       # 标准信息类
       class BaseInfo < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 标准值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :Coords
@@ -178,19 +159,14 @@ module TencentCloud
       # 基础类型
       class BaseItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原始文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 归一化后值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Alias: 别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param Coords: 四点坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Src, :Value, :Alias, :Coords
@@ -222,16 +198,12 @@ module TencentCloud
       # 基础类型
       class BaseItem2 < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原始文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 归一化后值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Coords: 四点坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Src, :Value, :Coords
@@ -261,19 +233,14 @@ module TencentCloud
       # 基础类型
       class BaseItem3 < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原始文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 归一化后值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Coords: 四点坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
         # @param Order: 第几次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: Integer
 
         attr_accessor :Name, :Src, :Value, :Coords, :Order
@@ -305,49 +272,34 @@ module TencentCloud
       # 预防用生物制品说明书
       class BiologicalProductInfo < TencentCloud::Common::AbstractModel
         # @param Name: 药品名称，包括通用名和商品名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoName`
         # @param IngredientAndAppearance: 成份和性状
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IngredientAndAppearance: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoIngredientAndAppearance`
         # @param VaccinationTarget: 接种对象
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VaccinationTarget: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoVaccinationTarget`
         # @param Indications: 作用与用途
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indications: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoIndications`
         # @param Brochure: 规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Brochure: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoBrochure`
         # @param Dosage: 免疫程序和剂量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dosage: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoDosage`
         # @param AdverseReaction: 不良反应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdverseReaction: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoAdverseReaction`
         # @param Contraindications: 禁忌情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contraindications: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoContraindications`
         # @param Precautions: 注意事项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Precautions: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoPrecautions`
         # @param Storage: 储存条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoStorage`
         # @param Packaging: 包装信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Packaging: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoPackaging`
         # @param ValidityPeriod: 有效期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityPeriod: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoValidityPeriod`
         # @param ExecutiveStandards: 执行标准
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutiveStandards: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoExecutiveStandards`
         # @param Approval: 批准文号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approval: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoApproval`
         # @param Manufacturer: 生产企业名称和地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfoManufacturer`
 
         attr_accessor :Name, :IngredientAndAppearance, :VaccinationTarget, :Indications, :Brochure, :Dosage, :AdverseReaction, :Contraindications, :Precautions, :Storage, :Packaging, :ValidityPeriod, :ExecutiveStandards, :Approval, :Manufacturer
@@ -437,7 +389,6 @@ module TencentCloud
       # 不良反应
       class BiologicalProductInfoAdverseReaction < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -454,7 +405,6 @@ module TencentCloud
       # 批准文号
       class BiologicalProductInfoApproval < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -471,7 +421,6 @@ module TencentCloud
       # 规格
       class BiologicalProductInfoBrochure < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -488,7 +437,6 @@ module TencentCloud
       # 禁忌情况
       class BiologicalProductInfoContraindications < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -505,7 +453,6 @@ module TencentCloud
       # 免疫程序和剂量
       class BiologicalProductInfoDosage < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -522,7 +469,6 @@ module TencentCloud
       # 执行标准
       class BiologicalProductInfoExecutiveStandards < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -539,7 +485,6 @@ module TencentCloud
       # 作用与用途
       class BiologicalProductInfoIndications < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -556,7 +501,6 @@ module TencentCloud
       # 成份和性状
       class BiologicalProductInfoIngredientAndAppearance < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -573,7 +517,6 @@ module TencentCloud
       # 生产企业名称和地址
       class BiologicalProductInfoManufacturer < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -590,19 +533,15 @@ module TencentCloud
       # 药品名称，包括通用名和商品名
       class BiologicalProductInfoName < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param GenericName: 通用名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GenericName: String
         # @param BarndName: 品牌名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BarndName: String
         # @param EnName: 英文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnName: String
         # @param Pinyin: 拼音
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pinyin: String
 
         attr_accessor :Text, :GenericName, :BarndName, :EnName, :Pinyin
@@ -630,7 +569,6 @@ module TencentCloud
       # 包装信息
       class BiologicalProductInfoPackaging < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -647,7 +585,6 @@ module TencentCloud
       # 注意事项
       class BiologicalProductInfoPrecautions < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -664,7 +601,6 @@ module TencentCloud
       # 储存条件
       class BiologicalProductInfoStorage < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -681,7 +617,6 @@ module TencentCloud
       # 接种对象
       class BiologicalProductInfoVaccinationTarget < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -698,7 +633,6 @@ module TencentCloud
       # 有效期
       class BiologicalProductInfoValidityPeriod < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -715,13 +649,10 @@ module TencentCloud
       # 活检部位
       class BiopsyPart < TencentCloud::Common::AbstractModel
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Value, :Src, :Coords
@@ -749,19 +680,14 @@ module TencentCloud
       # 出生证明结构化信息
       class BirthCert < TencentCloud::Common::AbstractModel
         # @param NeonatalInfo: 新生儿信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeonatalInfo: :class:`Tencentcloud::Mrs.v20200910.models.NeonatalInfo`
         # @param MotherInfo: 母亲信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MotherInfo: :class:`Tencentcloud::Mrs.v20200910.models.ParentInfo`
         # @param FatherInfo: 父亲信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FatherInfo: :class:`Tencentcloud::Mrs.v20200910.models.ParentInfo`
         # @param IssueInfo: 签发信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssueInfo: :class:`Tencentcloud::Mrs.v20200910.models.IssueInfo`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :NeonatalInfo, :MotherInfo, :FatherInfo, :IssueInfo, :Page
@@ -798,13 +724,10 @@ module TencentCloud
       # 出生地
       class BirthPlaceBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
@@ -825,79 +748,54 @@ module TencentCloud
       # 结构化信息
       class Block < TencentCloud::Common::AbstractModel
         # @param Check: 诊断信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Check: Array
         # @param Pathology: 病理报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pathology: Array
         # @param MedDoc: 医学资料
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedDoc: Array
         # @param DiagCert: 诊断证明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagCert: Array
         # @param FirstPage: 病案首页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstPage: Array
         # @param Indicator: 检验报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indicator: Array
         # @param MedicalRecordInfo: 门诊病历信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalRecordInfo: Array
         # @param Hospitalization: 出入院信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hospitalization: Array
         # @param Surgery: 手术记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Surgery: Array
         # @param Prescription: 处方单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Prescription: Array
         # @param VaccineCertificate: 免疫接种证明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VaccineCertificate: Array
         # @param Electrocardiogram: 心电图
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Electrocardiogram: Array
         # @param PathologyV2: 病理报告v2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologyV2: Array
         # @param Endoscopy: 内窥镜报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endoscopy: Array
         # @param C14: C14检验报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type C14: Array
         # @param Exame: 体检结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exame: Array
         # @param MedDocV2: 出入院结构体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedDocV2: Array
         # @param IndicatorV3: 检验报告v3
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndicatorV3: Array
         # @param Maternity: 孕产报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Maternity: Array
         # @param Timeline: 时间轴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeline: Array
         # @param Covid: 核酸报告结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Covid: Array
         # @param Eye: 眼科报告结构体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Eye: Array
         # @param BirthCert: 出生证明结构化信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthCert: Array
         # @param TextTypeListBlocks: 文本类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeListBlocks: Array
         # @param PhysicalExamination: 体检报告信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalExamination: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalExaminationV1`
 
         attr_accessor :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :MedicalRecordInfo, :Hospitalization, :Surgery, :Prescription, :VaccineCertificate, :Electrocardiogram, :PathologyV2, :Endoscopy, :C14, :Exame, :MedDocV2, :IndicatorV3, :Maternity, :Timeline, :Covid, :Eye, :BirthCert, :TextTypeListBlocks, :PhysicalExamination
@@ -1133,25 +1031,18 @@ module TencentCloud
       # 块信息
       class BlockInfo < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Positive: 阳性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Size: 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Array
 
         attr_accessor :Index, :Positive, :Src, :Value, :Type, :Name, :Size
@@ -1187,19 +1078,14 @@ module TencentCloud
       # 块信息
       class BlockInfoV2 < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Code: 疾病编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
 
         attr_accessor :Index, :Src, :Value, :Name, :Code
@@ -1224,13 +1110,10 @@ module TencentCloud
       # 块标题
       class BlockTitle < TencentCloud::Common::AbstractModel
         # @param Name: name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: src
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: value
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
@@ -1251,25 +1134,18 @@ module TencentCloud
       # 血压
       class BloodPressureBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param NormDiastolic: 舒张压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormDiastolic: String
         # @param NormSystolic: 收缩压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormSystolic: String
 
         attr_accessor :Name, :Src, :Norm, :Unit, :Value, :NormDiastolic, :NormSystolic
@@ -1298,25 +1174,18 @@ module TencentCloud
       # 体检报告血压检测信息
       class BloodPressureItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Item: 项目原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Result: 数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Times: 第几次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Times: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Location: 左右手臂
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Name, :Item, :Result, :Unit, :Times, :Location, :Page
@@ -1360,16 +1229,12 @@ module TencentCloud
       # 查体
       class BodyExaminationBlock < TencentCloud::Common::AbstractModel
         # @param BodyTemperature: 体温
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyTemperature: :class:`Tencentcloud::Mrs.v20200910.models.BodyTemperatureBlock`
         # @param Pulse: 脉搏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pulse: :class:`Tencentcloud::Mrs.v20200910.models.BodyTemperatureBlock`
         # @param Breathe: 呼吸
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Breathe: :class:`Tencentcloud::Mrs.v20200910.models.BodyTemperatureBlock`
         # @param BloodPressure: 血压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BloodPressure: :class:`Tencentcloud::Mrs.v20200910.models.BloodPressureBlock`
 
         attr_accessor :BodyTemperature, :Pulse, :Breathe, :BloodPressure
@@ -1404,19 +1269,14 @@ module TencentCloud
       # 体温名称
       class BodyTemperatureBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Unit, :Value
@@ -1441,16 +1301,12 @@ module TencentCloud
       # 检查报告单
       class Check < TencentCloud::Common::AbstractModel
         # @param Desc: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: :class:`Tencentcloud::Mrs.v20200910.models.Desc`
         # @param Summary: 结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.Summary`
         # @param BlockTitle: 检查报告块标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockTitle: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Desc, :Summary, :BlockTitle, :Page
@@ -1486,73 +1342,50 @@ module TencentCloud
       # 药品说明书消息定义
       class ChemicalProductInfo < TencentCloud::Common::AbstractModel
         # @param Name: 药品名称，包括通用名和商品名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoName`
         # @param ActiveIngredient: 活性成份消息定义，如果是复方制剂，可以不列出每个活性成份的详细信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveIngredient: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoActiveIngredient`
         # @param Appearance: 性状
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Appearance: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoAppearance`
         # @param Indications: 适应症描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indications: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoIndications`
         # @param Brochure: 规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Brochure: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoBrochure`
         # @param Dosage: 用法用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dosage: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoDosage`
         # @param AdverseReaction: 不良反应
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdverseReaction: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoAdverseReaction`
         # @param Contraindications: 禁忌情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contraindications: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoContraindications`
         # @param Precautions: 注意事项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Precautions: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPrecautions`
         # @param PregnancyLactationUse: 孕妇及哺乳期妇女用药
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PregnancyLactationUse: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPregnancyLactationUse`
         # @param PediatricUse: 儿童用药
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PediatricUse: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPediatricUse`
         # @param GeriatricUse: 老年用药
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeriatricUse: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoGeriatricUse`
         # @param Interactions: 药品的药物相互作用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interactions: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoInteractions`
         # @param Overdose: 药物过量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Overdose: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoOverdose`
         # @param ClinicalTrial: 临床试验
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClinicalTrial: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoClinicalTrial`
         # @param PharmacologyToxicology: 药理毒理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PharmacologyToxicology: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPharmacologyToxicology`
         # @param Pharmacokinetics: 药代动力学
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pharmacokinetics: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPharmacokinetics`
         # @param Storage: 储存条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoStorage`
         # @param Packaging: 包装信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Packaging: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoPackaging`
         # @param ValidityPeriod: 有效期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityPeriod: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoValidityPeriod`
         # @param ExecutiveStandards: 执行标准
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutiveStandards: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoExecutiveStandards`
         # @param Approval: 批准文号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approval: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoApproval`
         # @param Manufacturer: 生产企业名称和地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfoManufacturer`
 
         attr_accessor :Name, :ActiveIngredient, :Appearance, :Indications, :Brochure, :Dosage, :AdverseReaction, :Contraindications, :Precautions, :PregnancyLactationUse, :PediatricUse, :GeriatricUse, :Interactions, :Overdose, :ClinicalTrial, :PharmacologyToxicology, :Pharmacokinetics, :Storage, :Packaging, :ValidityPeriod, :ExecutiveStandards, :Approval, :Manufacturer
@@ -1682,19 +1515,14 @@ module TencentCloud
       # 活性成份消息定义，如果是复方制剂，可以不列出每个活性成份的详细信息
       class ChemicalProductInfoActiveIngredient < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param ChemicalName: 活性成份的化学名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChemicalName: String
         # @param ChemicalFormula: 活性成份的化学结构式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChemicalFormula: String
         # @param MolecularFormula: 活性成份的分子式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MolecularFormula: String
         # @param MolecularWeight: 活性成份的分子量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MolecularWeight: String
 
         attr_accessor :Text, :ChemicalName, :ChemicalFormula, :MolecularFormula, :MolecularWeight
@@ -1719,7 +1547,6 @@ module TencentCloud
       # 不良反应
       class ChemicalProductInfoAdverseReaction < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1736,7 +1563,6 @@ module TencentCloud
       # 性状
       class ChemicalProductInfoAppearance < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1753,7 +1579,6 @@ module TencentCloud
       # 批准文号
       class ChemicalProductInfoApproval < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1770,7 +1595,6 @@ module TencentCloud
       # 规格
       class ChemicalProductInfoBrochure < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1787,7 +1611,6 @@ module TencentCloud
       # 临床试验
       class ChemicalProductInfoClinicalTrial < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1804,7 +1627,6 @@ module TencentCloud
       # 禁忌情况
       class ChemicalProductInfoContraindications < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1821,7 +1643,6 @@ module TencentCloud
       # 用法用量
       class ChemicalProductInfoDosage < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1838,7 +1659,6 @@ module TencentCloud
       # 执行标准
       class ChemicalProductInfoExecutiveStandards < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1855,7 +1675,6 @@ module TencentCloud
       # 老年用药
       class ChemicalProductInfoGeriatricUse < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1872,7 +1691,6 @@ module TencentCloud
       # 适应症描述
       class ChemicalProductInfoIndications < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1889,7 +1707,6 @@ module TencentCloud
       # 药品的药物相互作用
       class ChemicalProductInfoInteractions < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -1906,25 +1723,18 @@ module TencentCloud
       # 生产企业名称和地址
       class ChemicalProductInfoManufacturer < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Name: 企业名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Address: 生产地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param PostalCode: 邮政编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostalCode: String
         # @param Phone: 电话，包含区号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param Fax: 传真，包含区号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fax: String
         # @param Website: 网址，如无则不填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Website: String
 
         attr_accessor :Text, :Name, :Address, :PostalCode, :Phone, :Fax, :Website
@@ -1953,19 +1763,15 @@ module TencentCloud
       # 药品名称，包括通用名和商品名
       class ChemicalProductInfoName < TencentCloud::Common::AbstractModel
         # @param Text: 文本内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param GenericName: 通用名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GenericName: String
         # @param BarndName: 品牌名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BarndName: String
         # @param EnName: 英文名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnName: String
         # @param Pinyin: 拼音
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pinyin: String
         # @param BrandName: 品牌名
         # @type BrandName: String
@@ -1997,7 +1803,6 @@ module TencentCloud
       # 药物过量
       class ChemicalProductInfoOverdose < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2014,7 +1819,6 @@ module TencentCloud
       # 包装信息
       class ChemicalProductInfoPackaging < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2031,7 +1835,6 @@ module TencentCloud
       # 儿童用药
       class ChemicalProductInfoPediatricUse < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2048,7 +1851,6 @@ module TencentCloud
       # 药代动力学
       class ChemicalProductInfoPharmacokinetics < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2065,7 +1867,6 @@ module TencentCloud
       # 药理毒理
       class ChemicalProductInfoPharmacologyToxicology < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2082,7 +1883,6 @@ module TencentCloud
       # 注意事项
       class ChemicalProductInfoPrecautions < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2099,7 +1899,6 @@ module TencentCloud
       # 孕妇及哺乳期妇女用药
       class ChemicalProductInfoPregnancyLactationUse < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2116,7 +1915,6 @@ module TencentCloud
       # 储存条件
       class ChemicalProductInfoStorage < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2133,7 +1931,6 @@ module TencentCloud
       # 有效期
       class ChemicalProductInfoValidityPeriod < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
 
         attr_accessor :Text
@@ -2150,19 +1947,14 @@ module TencentCloud
       # 体检报告-胸围信息
       class ChestCircumferenceItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Item: 项目原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Result: 数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param State: 呼吸状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
 
         attr_accessor :Name, :Item, :Result, :Unit, :State
@@ -2199,16 +1991,12 @@ module TencentCloud
       # 主诉
       class ChiefComplaintBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 单位输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Detail: 主诉详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
 
         attr_accessor :Name, :Src, :Value, :Detail
@@ -2238,16 +2026,12 @@ module TencentCloud
       # 主诉详情
       class ChiefComplaintDetailBlock < TencentCloud::Common::AbstractModel
         # @param DiseaseName: 疾病名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseaseName: String
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: String
         # @param Time: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param TimeType: 时间类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeType: String
 
         attr_accessor :DiseaseName, :Part, :Time, :TimeType
@@ -2270,13 +2054,10 @@ module TencentCloud
       # 临床分期
       class ClinicalStaging < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
@@ -2297,7 +2078,6 @@ module TencentCloud
       # 坐标
       class Coord < TencentCloud::Common::AbstractModel
         # @param Points: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Points: Array
 
         attr_accessor :Points
@@ -2321,16 +2101,12 @@ module TencentCloud
       # 坐标
       class Coordinate < TencentCloud::Common::AbstractModel
         # @param X: 左上角x坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
         # @param Y: 左上角y坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
         # @param Width: 宽度，单位像素
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 高度，单位像素
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height
@@ -2353,19 +2129,14 @@ module TencentCloud
       # 核酸报告结论结构
       class CovidItem < TencentCloud::Common::AbstractModel
         # @param SampleTime: 采样时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleTime: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param TestTime: 检测时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TestTime: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param TestOrganization: 检测机构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TestOrganization: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param TestResult: 检测结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TestResult: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param CodeColor: 健康码颜色
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeColor: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
 
         attr_accessor :SampleTime, :TestTime, :TestOrganization, :TestResult, :CodeColor
@@ -2405,13 +2176,10 @@ module TencentCloud
       # 核酸报告结论
       class CovidItemsInfo < TencentCloud::Common::AbstractModel
         # @param CovidItems: 核酸报告结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CovidItems: Array
         # @param Version: 版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :CovidItems, :Version, :Page
@@ -2439,25 +2207,18 @@ module TencentCloud
       # 死亡时间
       class DeathDateBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Type, :Norm, :Unit, :Timestamp, :Value
@@ -2486,16 +2247,12 @@ module TencentCloud
       # 描述
       class Desc < TencentCloud::Common::AbstractModel
         # @param Text: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Organ: 器官
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Organ: Array
         # @param Tuber: 结节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tuber: Array
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Text, :Organ, :Tuber, :Coords
@@ -2539,10 +2296,8 @@ module TencentCloud
       # 描述段落
       class DescInfo < TencentCloud::Common::AbstractModel
         # @param Text: 描述段落文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Infos: 描述段落详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Infos: Array
 
         attr_accessor :Text, :Infos
@@ -2571,46 +2326,32 @@ module TencentCloud
       # 详情
       class DetailInformation < TencentCloud::Common::AbstractModel
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param TissueSizes: 组织大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TissueSizes: Array
         # @param TuberSizes: 结节大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TuberSizes: Array
         # @param CancerSizes: 肿瘤大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CancerSizes: Array
         # @param HistologyLevel: 组织学等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistologyLevel: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param HistologyType: 组织学类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistologyType: :class:`Tencentcloud::Mrs.v20200910.models.HistologyTypeV2`
         # @param Invasive: 侵犯
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Invasive: Array
         # @param PTNM: pTNM
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNM: :class:`Tencentcloud::Mrs.v20200910.models.PTNM`
         # @param InfiltrationDepth: 浸润深度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InfiltrationDepth: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param TuberNum: 结节数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TuberNum: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Calcification: 钙化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Calcification: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Necrosis: 坏死
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Necrosis: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Abnormity: 异形
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Abnormity: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Breaked: 断链
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Breaked: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
 
         attr_accessor :Part, :TissueSizes, :TuberSizes, :CancerSizes, :HistologyLevel, :HistologyType, :Invasive, :PTNM, :InfiltrationDepth, :TuberNum, :Calcification, :Necrosis, :Abnormity, :Breaked
@@ -2711,13 +2452,10 @@ module TencentCloud
       # 诊断证明
       class DiagCert < TencentCloud::Common::AbstractModel
         # @param Advice: 建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Advice: :class:`Tencentcloud::Mrs.v20200910.models.Advice`
         # @param Diagnosis: 诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnosis: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Advice, :Diagnosis, :Page
@@ -2748,13 +2486,10 @@ module TencentCloud
       # 诊断证明项
       class DiagCertItem < TencentCloud::Common::AbstractModel
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Array
 
         attr_accessor :Text, :Type, :Value
@@ -2775,16 +2510,12 @@ module TencentCloud
       # 出院情况
       class DischargeConditionBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
 
         attr_accessor :Name, :Src, :Value, :Norm
@@ -2807,19 +2538,14 @@ module TencentCloud
       # 出入院诊断
       class DischargeDiagnosis < TencentCloud::Common::AbstractModel
         # @param TableIndex: 表格位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIndex: Integer
         # @param OutDiagnosis: 出院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param DiseaseCode: 疾病编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseaseCode: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param InStatus: 入院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InStatus: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param OutStatus: 出院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutStatus: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
 
         attr_accessor :TableIndex, :OutDiagnosis, :DiseaseCode, :InStatus, :OutStatus
@@ -2856,16 +2582,12 @@ module TencentCloud
       # 出院诊断
       class DischargeDiagnosisBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Value
@@ -2888,22 +2610,16 @@ module TencentCloud
       # 出入院结构体
       class DischargeInfoBlock < TencentCloud::Common::AbstractModel
         # @param DiseaseHistory: 疾病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseaseHistory: :class:`Tencentcloud::Mrs.v20200910.models.DiseaseHistoryBlock`
         # @param PersonalHistory: 个人史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersonalHistory: :class:`Tencentcloud::Mrs.v20200910.models.PersonalHistoryBlock`
         # @param DrugHistory: 药物史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrugHistory: :class:`Tencentcloud::Mrs.v20200910.models.DrugHistoryBlock`
         # @param TreatmentRecord: 治疗相关
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentRecord: :class:`Tencentcloud::Mrs.v20200910.models.TreatmentRecordBlock`
         # @param ParagraphBlock: 文本段落
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParagraphBlock: :class:`Tencentcloud::Mrs.v20200910.models.ParagraphBlock`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :DiseaseHistory, :PersonalHistory, :DrugHistory, :TreatmentRecord, :ParagraphBlock, :Page
@@ -2945,19 +2661,14 @@ module TencentCloud
       # 疾病史
       class DiseaseHistoryBlock < TencentCloud::Common::AbstractModel
         # @param MainDiseaseHistory: 主要病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainDiseaseHistory: :class:`Tencentcloud::Mrs.v20200910.models.MainDiseaseHistoryBlock`
         # @param AllergyHistory: 过敏史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllergyHistory: :class:`Tencentcloud::Mrs.v20200910.models.MainDiseaseHistoryBlock`
         # @param InfectHistory: 注射史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InfectHistory: :class:`Tencentcloud::Mrs.v20200910.models.MainDiseaseHistoryBlock`
         # @param SurgeryHistory: 手术史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryHistory: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryHistoryBlock`
         # @param TransfusionHistory: 输血史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransfusionHistory: :class:`Tencentcloud::Mrs.v20200910.models.TransfusionHistoryBlock`
 
         attr_accessor :MainDiseaseHistory, :AllergyHistory, :InfectHistory, :SurgeryHistory, :TransfusionHistory
@@ -2997,19 +2708,14 @@ module TencentCloud
       # 疾病史
       class DiseaseMedicalHistory < TencentCloud::Common::AbstractModel
         # @param MainDiseaseHistory: 主病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainDiseaseHistory: String
         # @param AllergyHistory: 过敏史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllergyHistory: String
         # @param InfectHistory: 传染疾病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InfectHistory: String
         # @param OperationHistory: 手术史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperationHistory: String
         # @param TransfusionHistory: 输血史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransfusionHistory: String
 
         attr_accessor :MainDiseaseHistory, :AllergyHistory, :InfectHistory, :OperationHistory, :TransfusionHistory
@@ -3034,16 +2740,12 @@ module TencentCloud
       # 现病史
       class DiseasePresentBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Norm: 归一化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
 
         attr_accessor :Name, :Src, :Value, :Norm
@@ -3066,16 +2768,12 @@ module TencentCloud
       # 药物用法用量
       class DosageBlock < TencentCloud::Common::AbstractModel
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param SingleMeasurement: 单次计量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SingleMeasurement: String
         # @param Frequency: 频次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Frequency: String
         # @param DrugDeliveryRoute: 给药途径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrugDeliveryRoute: String
 
         attr_accessor :Value, :SingleMeasurement, :Frequency, :DrugDeliveryRoute
@@ -3098,16 +2796,12 @@ module TencentCloud
       # 药物史
       class DrugHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 药品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param DrugList: 药物列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrugList: Array
         # @param Value: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :DrugList, :Value
@@ -3156,10 +2850,8 @@ module TencentCloud
       # DrugInstructionObject返回参数结构体
       class DrugInstructionObjectResponse < TencentCloud::Common::AbstractModel
         # @param ChemicalProductInfo: 药品说明书消息定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChemicalProductInfo: :class:`Tencentcloud::Mrs.v20200910.models.ChemicalProductInfo`
         # @param BiologicalProductInfo: 预防用生物制品说明书
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiologicalProductInfo: :class:`Tencentcloud::Mrs.v20200910.models.BiologicalProductInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3188,16 +2880,12 @@ module TencentCloud
       # 药物史
       class DrugListBlock < TencentCloud::Common::AbstractModel
         # @param CommonName: 通用名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CommonName: String
         # @param TradeName: 商品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeName: String
         # @param Dosage: 用法用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dosage: :class:`Tencentcloud::Mrs.v20200910.models.DosageBlock`
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :CommonName, :TradeName, :Dosage, :Value
@@ -3223,64 +2911,44 @@ module TencentCloud
       # 心电图详情
       class EcgDescription < TencentCloud::Common::AbstractModel
         # @param HeartRate: 心率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeartRate: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param AuricularRate: 心房率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuricularRate: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param VentricularRate: 心室率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VentricularRate: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param Rhythm: 节律
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rhythm: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param PDuration: P波时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PDuration: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param QrsDuration: QRS时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QrsDuration: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param QrsAxis: QRS电轴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QrsAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param PRInterval: P-R间期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PRInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param PPInterval: P-P间期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PPInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param RRInterval: R-R间期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RRInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param PJInterval: P-J间期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PJInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param QTInterval: Q-T间期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QTInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param QTCInterval: qt/qtc间期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QTCInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param Rv5SV1Amplitude: RV5/SV1振幅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rv5SV1Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param Rv5AddSV1Amplitude: RV5+SV1振幅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rv5AddSV1Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param PRTAxis: PRT电轴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PRTAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param Rv5Amplitude: RV5振幅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rv5Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param SV1Amplitude: SV1振幅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SV1Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param RV6SV2: RV6/SV2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RV6SV2: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
         # @param PQRSTAxis: P/QRS/T电轴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PQRSTAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
 
         attr_accessor :HeartRate, :AuricularRate, :VentricularRate, :Rhythm, :PDuration, :QrsDuration, :QrsAxis, :PRInterval, :PPInterval, :RRInterval, :PJInterval, :QTInterval, :QTCInterval, :Rv5SV1Amplitude, :Rv5AddSV1Amplitude, :PRTAxis, :Rv5Amplitude, :SV1Amplitude, :RV6SV2, :PQRSTAxis
@@ -3395,10 +3063,8 @@ module TencentCloud
       # 心电图诊断
       class EcgDiagnosis < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Array
 
         attr_accessor :Name, :Value
@@ -3417,16 +3083,12 @@ module TencentCloud
       # 心电图指标项
       class EcgItem < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
 
         attr_accessor :Name, :Value, :Unit, :Src
@@ -3449,19 +3111,14 @@ module TencentCloud
       # 弹性质地
       class Elastic < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Score: 分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Index, :Score, :Src, :Value, :Name
@@ -3486,13 +3143,10 @@ module TencentCloud
       # 心电图
       class Electrocardiogram < TencentCloud::Common::AbstractModel
         # @param EcgDescription: 心电图详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EcgDescription: :class:`Tencentcloud::Mrs.v20200910.models.EcgDescription`
         # @param EcgDiagnosis: 心电图诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EcgDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.EcgDiagnosis`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :EcgDescription, :EcgDiagnosis, :Page
@@ -3519,16 +3173,12 @@ module TencentCloud
       # 内窥镜报告
       class Endoscopy < TencentCloud::Common::AbstractModel
         # @param BiopsyPart: 活检部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BiopsyPart: :class:`Tencentcloud::Mrs.v20200910.models.BiopsyPart`
         # @param Desc: 可见描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: :class:`Tencentcloud::Mrs.v20200910.models.EndoscopyDesc`
         # @param Summary: 结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.Summary`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :BiopsyPart, :Desc, :Summary, :Page
@@ -3560,13 +3210,10 @@ module TencentCloud
       # 内窥镜描述
       class EndoscopyDesc < TencentCloud::Common::AbstractModel
         # @param Text: 描述内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Organ: 器官
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Organ: Array
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Text, :Organ, :Coords
@@ -3601,22 +3248,16 @@ module TencentCloud
       # 内窥部位
       class EndoscopyOrgan < TencentCloud::Common::AbstractModel
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param PartAlias: 部位别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartAlias: String
         # @param SymDescList: 症状描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymDescList: Array
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Part, :Index, :Src, :PartAlias, :SymDescList, :Coords
@@ -3660,10 +3301,8 @@ module TencentCloud
       # 体检结论
       class Exame < TencentCloud::Common::AbstractModel
         # @param OverView: 结论段落
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverView: Array
         # @param Abnormality: 异常与建议段落
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Abnormality: Array
 
         attr_accessor :OverView, :Abnormality
@@ -3696,16 +3335,12 @@ module TencentCloud
       # 眼科子结构
       class EyeChildItem < TencentCloud::Common::AbstractModel
         # @param Sph: 球镜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sph: Array
         # @param Cyl: 柱镜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cyl: Array
         # @param Ax: 轴位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ax: Array
         # @param Se: 等效球镜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Se: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem2`
 
         attr_accessor :Sph, :Cyl, :Ax, :Se
@@ -3752,13 +3387,10 @@ module TencentCloud
       # 眼科结构体
       class EyeItem < TencentCloud::Common::AbstractModel
         # @param Left: 左眼
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Left: :class:`Tencentcloud::Mrs.v20200910.models.EyeChildItem`
         # @param Right: 右眼
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Right: :class:`Tencentcloud::Mrs.v20200910.models.EyeChildItem`
         # @param Pd: 瞳距
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pd: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem2`
 
         attr_accessor :Left, :Right, :Pd
@@ -3788,13 +3420,10 @@ module TencentCloud
       # 眼科报告结构体
       class EyeItemsInfo < TencentCloud::Common::AbstractModel
         # @param EyeItems: 眼科报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EyeItems: :class:`Tencentcloud::Mrs.v20200910.models.EyeItem`
         # @param Version: 版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :EyeItems, :Version, :Page
@@ -3818,13 +3447,10 @@ module TencentCloud
       # 家族史
       class FamilyHistoryBlock < TencentCloud::Common::AbstractModel
         # @param RelativeHistory: 家庭成员
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelativeHistory: :class:`Tencentcloud::Mrs.v20200910.models.RelativeHistoryBlock`
         # @param RelativeCancerHistory: 家族肿瘤史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelativeCancerHistory: :class:`Tencentcloud::Mrs.v20200910.models.RelativeCancerHistoryBlock`
         # @param GeneticHistory: 家族遗传史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneticHistory: :class:`Tencentcloud::Mrs.v20200910.models.GeneticHistoryBlock`
 
         attr_accessor :RelativeHistory, :RelativeCancerHistory, :GeneticHistory
@@ -3854,13 +3480,10 @@ module TencentCloud
       # 家族疾病史
       class FamilyMedicalHistory < TencentCloud::Common::AbstractModel
         # @param RelativeHistory: 家族成员史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelativeHistory: String
         # @param RelativeCancerHistory: 家族肿瘤史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelativeCancerHistory: String
         # @param GeneticHistory: 家族遗传史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneticHistory: String
 
         attr_accessor :RelativeHistory, :RelativeCancerHistory, :GeneticHistory
@@ -3881,25 +3504,18 @@ module TencentCloud
       # 婚育史
       class FertilityHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param State: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param PregCount: 妊娠次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PregCount: String
         # @param ProduCount: 生产次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProduCount: String
 
         attr_accessor :Name, :Src, :State, :Norm, :Value, :PregCount, :ProduCount
@@ -3928,85 +3544,58 @@ module TencentCloud
       # 胎儿数据结构
       class Fetus < TencentCloud::Common::AbstractModel
         # @param BPD: 双顶径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BPD: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param APTD: 腹前后径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type APTD: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param TTD: 腹左右径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TTD: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param CRL: 头臀径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CRL: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param HC: 头围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HC: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param AC: 腹围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AC: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param FL: 股骨长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FL: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param HL: 肱骨长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HL: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Weight: 胎儿重量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param NT: 颈项透明层
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NT: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param UmbilicalCord: 脐动脉血流
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UmbilicalCord: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param WaterDeep: 羊水最大深度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaterDeep: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param WaterQuad: 羊水四象限测量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaterQuad: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param AFI: 羊水指数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AFI: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param FHR: 胎心
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FHR: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Movement: 胎动
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Movement: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Num: 胎数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Num: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Position: 胎位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Alive: 是否活胎
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alive: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param PlacentaLocation: 胎盘位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlacentaLocation: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param PlacentaThickness: 胎盘厚度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlacentaThickness: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param PlacentaGrade: 胎盘成熟度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlacentaGrade: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param GestationTime: 妊娠时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GestationTime: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param GestationPeriod: 妊娠周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GestationPeriod: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param AroundNeck: 绕颈
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AroundNeck: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Sym: 病变
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sym: Array
         # @param Src: 原文内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
 
         attr_accessor :BPD, :APTD, :TTD, :CRL, :HC, :AC, :FL, :HL, :Weight, :NT, :UmbilicalCord, :WaterDeep, :WaterQuad, :AFI, :FHR, :Movement, :Num, :Position, :Alive, :PlacentaLocation, :PlacentaThickness, :PlacentaGrade, :GestationTime, :GestationPeriod, :AroundNeck, :Sym, :Src
@@ -4157,16 +3746,12 @@ module TencentCloud
       # 通用块信息
       class FieldInfo < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Nums: 数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nums: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
 
         attr_accessor :Name, :Value, :Nums, :Src
@@ -4196,22 +3781,16 @@ module TencentCloud
       # 病案首页
       class FirstPage < TencentCloud::Common::AbstractModel
         # @param DischargeDiagnosis: 出入院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeDiagnosis: Array
         # @param PathologicalDiagnosis: 病理诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologicalDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param ClinicalDiagnosis: 临床诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClinicalDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param DamagePoi: 受伤中毒的外部原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DamagePoi: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfoV2`
         # @param Fp2NdItems: 病案首页第二页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fp2NdItems: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :DischargeDiagnosis, :PathologicalDiagnosis, :ClinicalDiagnosis, :DamagePoi, :Fp2NdItems, :Page
@@ -4261,28 +3840,20 @@ module TencentCloud
       # 病案首页第二页
       class Fp2NdItem < TencentCloud::Common::AbstractModel
         # @param Code: 手术编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Name: 手术名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param StartTime: 手术开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param EndTime: 手术结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Level: 手术等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Type: 手术类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param IncisionHealingGrade: 醉愈合方式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncisionHealingGrade: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param AnesthesiaMethod: 麻醉方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnesthesiaMethod: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
 
         attr_accessor :Code, :Name, :StartTime, :EndTime, :Level, :Type, :IncisionHealingGrade, :AnesthesiaMethod
@@ -4337,13 +3908,10 @@ module TencentCloud
       # 体检报告-一般检测信息
       class GeneralExaminationBaseItem < TencentCloud::Common::AbstractModel
         # @param VitalSign: 生命体征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VitalSign: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationVitalSign`
         # @param Others: 其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationOthers`
         # @param BriefSummary: 小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationBriefSummary`
 
         attr_accessor :VitalSign, :Others, :BriefSummary
@@ -4373,7 +3941,6 @@ module TencentCloud
       # 体检报告-小结
       class GeneralExaminationBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 一般检查小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4393,34 +3960,24 @@ module TencentCloud
       # 体检报告-其他项
       class GeneralExaminationOthers < TencentCloud::Common::AbstractModel
         # @param Countenance: 面容与表情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Countenance: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param MentalStatus: 精神状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MentalStatus: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param DevelopmentCondition: 发育及营养状况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevelopmentCondition: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Memory: 记忆力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Hipline: 臀围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hipline: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param WaistHipRatio: 腰臀比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaistHipRatio: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param Addiction: 生活嗜好
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Addiction: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param AbilityOfLifeADL: 生活能力评定
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AbilityOfLifeADL: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Others: 一般检查其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param ChestCircumference: 胸围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChestCircumference: :class:`Tencentcloud::Mrs.v20200910.models.ChestCircumferenceItem`
 
         attr_accessor :Countenance, :MentalStatus, :DevelopmentCondition, :Memory, :Hipline, :WaistHipRatio, :Addiction, :AbilityOfLifeADL, :Others, :ChestCircumference
@@ -4489,34 +4046,24 @@ module TencentCloud
       # 生命体征
       class GeneralExaminationVitalSign < TencentCloud::Common::AbstractModel
         # @param Text: 生命体征总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param BodyTemperature: 体温
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyTemperature: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param Pulse: 脉率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pulse: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param HeartRate: 心率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeartRate: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param BreathingRate: 呼吸频率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BreathingRate: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param BodyHeight: 身高
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyHeight: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param BodyWeight: 体重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyWeight: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param BodyMassIndex: 体质指数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyMassIndex: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param Waistline: 腰围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Waistline: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param BloodPressure: 血压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BloodPressure: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationVitalSignBloodPressure`
 
         attr_accessor :Text, :BodyTemperature, :Pulse, :HeartRate, :BreathingRate, :BodyHeight, :BodyWeight, :BodyMassIndex, :Waistline, :BloodPressure
@@ -4581,16 +4128,12 @@ module TencentCloud
       # 血压
       class GeneralExaminationVitalSignBloodPressure < TencentCloud::Common::AbstractModel
         # @param Text: 血压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.BloodPressureItem`
         # @param SystolicDiastolicPressure: 收缩压/舒张压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystolicDiastolicPressure: Array
         # @param SystolicPressure: 收缩压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystolicPressure: Array
         # @param DiastolicPressure: 舒张压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiastolicPressure: Array
 
         attr_accessor :Text, :SystolicDiastolicPressure, :SystolicPressure, :DiastolicPressure
@@ -4637,16 +4180,12 @@ module TencentCloud
       # 家族遗传史
       class GeneticHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param GeneticList: 遗传列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneticList: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :GeneticList, :Value
@@ -4669,7 +4208,6 @@ module TencentCloud
       # 体检报告-妇科-子宫附件
       class GynaecologyAdnexal < TencentCloud::Common::AbstractModel
         # @param Text: 子宫附件总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4689,31 +4227,22 @@ module TencentCloud
       # 体检报告-妇科
       class GynaecologyBaseItem < TencentCloud::Common::AbstractModel
         # @param Vulva: 外阴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vulva: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyVulva`
         # @param Vagina: 阴道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vagina: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyVagina`
         # @param Cervix: 子宫颈
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cervix: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyCervix`
         # @param Uterus: 子宫
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uterus: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyUterus`
         # @param Adnexal: 子宫附件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Adnexal: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyAdnexal`
         # @param PelvicCavity: 盆腔
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PelvicCavity: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyPelvicCavity`
         # @param Others: 妇科其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param MenstrualHistory: 月经史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualHistory: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyMenstrualHistory`
         # @param BriefSummary: 小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyBriefSummary`
 
         attr_accessor :Vulva, :Vagina, :Cervix, :Uterus, :Adnexal, :PelvicCavity, :Others, :MenstrualHistory, :BriefSummary
@@ -4777,7 +4306,6 @@ module TencentCloud
       # 体检报告-妇科-小结
       class GynaecologyBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4797,7 +4325,6 @@ module TencentCloud
       # 体检报告-妇科-子宫颈
       class GynaecologyCervix < TencentCloud::Common::AbstractModel
         # @param Text: 子宫颈总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4817,7 +4344,6 @@ module TencentCloud
       # 体检报告-妇科-月经史
       class GynaecologyMenstrualHistory < TencentCloud::Common::AbstractModel
         # @param Text: 妇科月经史总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4837,7 +4363,6 @@ module TencentCloud
       # 体检报告-妇科-盆腔
       class GynaecologyPelvicCavity < TencentCloud::Common::AbstractModel
         # @param Text: 盆腔总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4857,7 +4382,6 @@ module TencentCloud
       # 体检报告-妇科-子宫
       class GynaecologyUterus < TencentCloud::Common::AbstractModel
         # @param Text: 子宫总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4877,7 +4401,6 @@ module TencentCloud
       # 体检报告-妇科-阴道
       class GynaecologyVagina < TencentCloud::Common::AbstractModel
         # @param Text: 阴道总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4897,7 +4420,6 @@ module TencentCloud
       # 体检报告-妇科-外阴
       class GynaecologyVulva < TencentCloud::Common::AbstractModel
         # @param Text: 外阴总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -4961,16 +4483,12 @@ module TencentCloud
       # 听力信息
       class HearingItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Item: 项目原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Location: 方位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Result: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
 
         attr_accessor :Name, :Item, :Location, :Result
@@ -5002,19 +4520,14 @@ module TencentCloud
       # 组织学类
       class HistologyClass < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :Coords
@@ -5046,13 +4559,10 @@ module TencentCloud
       # 组织学等级
       class HistologyLevel < TencentCloud::Common::AbstractModel
         # @param Grade: 等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grade: String
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
 
         attr_accessor :Grade, :Index, :Src
@@ -5073,16 +4583,12 @@ module TencentCloud
       # 组织学类型
       class HistologyType < TencentCloud::Common::AbstractModel
         # @param Infiltration: 浸润
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Infiltration: String
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Infiltration, :Index, :Src, :Type
@@ -5105,22 +4611,16 @@ module TencentCloud
       # 组织学类型
       class HistologyTypeV2 < TencentCloud::Common::AbstractModel
         # @param Infiltration: 浸润
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Infiltration: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Type: 归一化后的组织学类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Infiltration, :Index, :Src, :Type, :Name, :Coords
@@ -5154,34 +4654,25 @@ module TencentCloud
       # 出入院信息
       class Hospitalization < TencentCloud::Common::AbstractModel
         # @param AdmissionTime: 入院时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionTime: String
         # @param DischargeTime: 出院时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeTime: String
         # @param AdmissionDays: 住院天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDays: String
         # @param AdmissionDignosis: 入院诊断
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDignosis: String
         # @param AdmissionCondition: 入院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionCondition: String
         # @param DiagnosisTreatment: 诊疗经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagnosisTreatment: String
         # @param DischargeDiagnosis: 出院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeDiagnosis: String
         # @param DischargeInstruction: 出院医嘱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeInstruction: String
         # @param AdmissionDiagnosis: 入院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDiagnosis: String
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis, :Page
@@ -5219,19 +4710,14 @@ module TencentCloud
       # IHC块
       class IHCBlock < TencentCloud::Common::AbstractModel
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 具体值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Mrs.v20200910.models.ValueBlock`
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Index, :Src, :Name, :Value, :Coords
@@ -5266,13 +4752,10 @@ module TencentCloud
       # Ihc信息
       class IHCInfo < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
         # @type Value: :class:`Tencentcloud::Mrs.v20200910.models.Value`
@@ -5300,19 +4783,14 @@ module TencentCloud
       # IHC
       class IHCV2 < TencentCloud::Common::AbstractModel
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Name: ihc归一化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: ihc详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Mrs.v20200910.models.Value`
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Index, :Src, :Name, :Value, :Coords
@@ -5574,7 +5052,6 @@ module TencentCloud
       # ImageToClass返回参数结构体
       class ImageToClassResponse < TencentCloud::Common::AbstractModel
         # @param TextTypeList: 分类结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5704,13 +5181,10 @@ module TencentCloud
       # 免疫组化
       class ImmunohistochemistryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 免疫组化详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Array
 
         attr_accessor :Name, :Src, :Value
@@ -5738,13 +5212,10 @@ module TencentCloud
       # 检验报告
       class Indicator < TencentCloud::Common::AbstractModel
         # @param Indicators: 检验指标项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indicators: Array
         # @param BlockTitle: 检验报告块标题
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockTitle: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Indicators, :BlockTitle, :Page
@@ -5779,43 +5250,30 @@ module TencentCloud
       # 检验指标项
       class IndicatorItem < TencentCloud::Common::AbstractModel
         # @param Code: 英文缩写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Scode: 标准缩写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scode: String
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Sname: 标准名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sname: String
         # @param Result: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Range: 参考范围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Range: String
         # @param Arrow: 上下箭头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arrow: String
         # @param Normal: 是否正常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Normal: Boolean
         # @param ItemString: 项目原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemString: String
         # @param Id: 指标项ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Coords: 指标项坐标位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: :class:`Tencentcloud::Mrs.v20200910.models.Coordinate`
         # @param InferNormal: 推测结果是否异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InferNormal: String
 
         attr_accessor :Code, :Scode, :Name, :Sname, :Result, :Unit, :Range, :Arrow, :Normal, :ItemString, :Id, :Coords, :InferNormal
@@ -5859,37 +5317,26 @@ module TencentCloud
       # 检验指标项结构v2
       class IndicatorItemV2 < TencentCloud::Common::AbstractModel
         # @param Item: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Code: 英文编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Result: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Range: 参考范围
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Range: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Arrow: 上下箭头
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arrow: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Method: 检测方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Method: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
         # @param Normal: 结果是否异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Normal: Boolean
         # @param Id: ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Order: 序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: Integer
         # @param InferNormal: 推测结果是否异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InferNormal: String
 
         attr_accessor :Item, :Code, :Result, :Unit, :Range, :Arrow, :Method, :Normal, :Id, :Order, :InferNormal
@@ -5950,13 +5397,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIndictors: Array
         # @param Version: 版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param TableIndicators: 检验报告V3结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIndicators: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :TableIndictors, :Version, :TableIndicators, :Page
@@ -5996,25 +5440,18 @@ module TencentCloud
       # 体检报告-内科-腹部
       class InternalMedicineAbdomen < TencentCloud::Common::AbstractModel
         # @param Text: 内科腹部小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Liver: 肝脏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Liver: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenLiver`
         # @param GallBladder: 胆囊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GallBladder: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenGallBladder`
         # @param Pancreas: 胰腺
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pancreas: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenPancreas`
         # @param Spleen: 脾脏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Spleen: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenSpleen`
         # @param Kidney: 肾脏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kidney: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenKidney`
         # @param Others: 腹部其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
 
         attr_accessor :Text, :Liver, :GallBladder, :Pancreas, :Spleen, :Kidney, :Others
@@ -6068,22 +5505,16 @@ module TencentCloud
       # 体检报告-内科-腹部-胆囊
       class InternalMedicineAbdomenGallBladder < TencentCloud::Common::AbstractModel
         # @param Src: 胆囊总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Size: 胆囊大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Palpation: 胆囊触诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Percussion: 胆囊叩诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Tenderness: 胆囊压痛
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Consistency: 胆囊质地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
@@ -6128,22 +5559,16 @@ module TencentCloud
       # 体检报告-内科-腹部-肾脏
       class InternalMedicineAbdomenKidney < TencentCloud::Common::AbstractModel
         # @param Src: 肾脏总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Size: 肾脏大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Palpation: 肾脏触诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Percussion: 肾脏叩诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Tenderness: 肾脏压痛
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Consistency: 肾脏质地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
@@ -6188,22 +5613,16 @@ module TencentCloud
       # 体检报告-内科-腹部-肝脏
       class InternalMedicineAbdomenLiver < TencentCloud::Common::AbstractModel
         # @param Src: 肝脏总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Size: 肝脏大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Palpation: 肝脏触诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Percussion: 肝脏叩诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Tenderness: 肝脏压痛
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Consistency: 肝脏质地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
@@ -6248,22 +5667,16 @@ module TencentCloud
       # 体检报告-内科-腹部-胰腺
       class InternalMedicineAbdomenPancreas < TencentCloud::Common::AbstractModel
         # @param Src: 胰腺总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Size: 胰腺大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Palpation: 胰腺触诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Percussion: 胰腺叩诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Tenderness: 肝脏压痛
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Consistency: 胰腺质地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
@@ -6308,22 +5721,16 @@ module TencentCloud
       # 体检报告-内科-腹部-脾脏
       class InternalMedicineAbdomenSpleen < TencentCloud::Common::AbstractModel
         # @param Src: 脾脏总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Size: 脾脏大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Palpation: 脾脏触诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Percussion: 脾脏叩诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Tenderness: 脾脏压痛
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Consistency: 脾脏质地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
@@ -6368,22 +5775,16 @@ module TencentCloud
       # 体检报告-内科
       class InternalMedicineBaseItem < TencentCloud::Common::AbstractModel
         # @param Abdomen: 体检报告-内科-腹部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Abdomen: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomen`
         # @param Heart: 体检报告-内科-心脏
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Heart: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineHeart`
         # @param Vessel: 体检报告-内科-血管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vessel: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineVessel`
         # @param RespiratorySystem: 体检报告-内科-呼吸系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RespiratorySystem: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineRespiratorySystem`
         # @param Others: 体检报告-内科-内科其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param BriefSummary: 体检报告-内科-小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineBriefSummary`
 
         attr_accessor :Abdomen, :Heart, :Vessel, :RespiratorySystem, :Others, :BriefSummary
@@ -6432,7 +5833,6 @@ module TencentCloud
       # 体检报告-内科-内科小结
       class InternalMedicineBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 内科小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -6452,16 +5852,12 @@ module TencentCloud
       # 体检报告-内科-心脏
       class InternalMedicineHeart < TencentCloud::Common::AbstractModel
         # @param Text: 心脏总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param HeartRhythm: 心律
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeartRhythm: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param HeartRate: 心率
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeartRate: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
         # @param HeartAuscultation: 心脏听诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeartAuscultation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text, :HeartRhythm, :HeartRate, :HeartAuscultation
@@ -6496,19 +5892,14 @@ module TencentCloud
       # 体检报告-内科-呼吸系统
       class InternalMedicineRespiratorySystem < TencentCloud::Common::AbstractModel
         # @param Text: 呼吸系统总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Thoracic: 胸廓
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Thoracic: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Sputum: 痰量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sputum: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param LungPercussion: 肺部叩诊
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LungPercussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param LungAuscultation: 肺部听诊其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LungAuscultation: Array
 
         attr_accessor :Text, :Thoracic, :Sputum, :LungPercussion, :LungAuscultation
@@ -6552,13 +5943,10 @@ module TencentCloud
       # 体检报告-内科-血管
       class InternalMedicineVessel < TencentCloud::Common::AbstractModel
         # @param Text: 血管总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param VascularMurmur: 血管杂音
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VascularMurmur: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param PeripheralVessel: 外周血管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeripheralVessel: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text, :VascularMurmur, :PeripheralVessel
@@ -6588,16 +5976,12 @@ module TencentCloud
       # 侵犯扩散
       class Invas < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Positive: 阳性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
 
         attr_accessor :Index, :Part, :Positive, :Src
@@ -6623,19 +6007,14 @@ module TencentCloud
       # 侵犯
       class InvasiveV2 < TencentCloud::Common::AbstractModel
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Positive: 阴性或阳性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Index, :Part, :Positive, :Src, :Coords
@@ -6670,13 +6049,10 @@ module TencentCloud
       # 签发信息
       class IssueInfo < TencentCloud::Common::AbstractModel
         # @param CertNumber: 编号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertNumber: String
         # @param IssuedAuthority: 签发机构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssuedAuthority: String
         # @param IssuedDate: 签发日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssuedDate: String
 
         attr_accessor :CertNumber, :IssuedAuthority, :IssuedDate
@@ -6697,16 +6073,12 @@ module TencentCloud
       # 体检报告信息
       class KeyValueItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Item: 项目原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Result: 结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Name, :Item, :Result, :Page
@@ -6735,25 +6107,18 @@ module TencentCloud
       # 末次月经
       class LastMenstrualPeriodBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Type, :Timestamp, :Unit, :Value
@@ -6782,19 +6147,14 @@ module TencentCloud
       # 淋巴
       class Lymph < TencentCloud::Common::AbstractModel
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Total: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param TransferNum: 转移数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferNum: Integer
 
         attr_accessor :Src, :Index, :Part, :Total, :TransferNum
@@ -6822,28 +6182,20 @@ module TencentCloud
       # 单淋巴结转移信息
       class LymphNode < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Total: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param TransferNum: 转移数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferNum: Integer
         # @param Sizes: 淋巴结大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sizes: Array
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Part, :Src, :Total, :TransferNum, :Sizes, :Coords
@@ -6884,22 +6236,16 @@ module TencentCloud
       # 淋巴结总计转移信息
       class LymphTotal < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TransferNum: 转移数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferNum: Integer
         # @param Total: 总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :TransferNum, :Total, :Src, :Index, :Coords
@@ -6933,22 +6279,16 @@ module TencentCloud
       # 既往史
       class MainDiseaseHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param State: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Boolean
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Neglist: 否定列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Neglist: :class:`Tencentcloud::Mrs.v20200910.models.NeglistBlock`
         # @param Poslist: 肯定列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Poslist: :class:`Tencentcloud::Mrs.v20200910.models.PoslistBlock`
 
         attr_accessor :Name, :Src, :State, :Value, :Neglist, :Poslist
@@ -6981,16 +6321,12 @@ module TencentCloud
       # 孕产报告
       class Maternity < TencentCloud::Common::AbstractModel
         # @param Desc: 描述部分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: :class:`Tencentcloud::Mrs.v20200910.models.MaternityDesc`
         # @param Summary: 结论部分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.MaternitySummary`
         # @param OcrText: 报告原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrText: String
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Desc, :Summary, :OcrText, :Page
@@ -7019,16 +6355,12 @@ module TencentCloud
       # 孕产描述部分
       class MaternityDesc < TencentCloud::Common::AbstractModel
         # @param Fetus: 胎儿数据结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fetus: Array
         # @param FetusNum: 胎儿数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FetusNum: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Text: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Fetus, :FetusNum, :Text, :Coords
@@ -7068,19 +6400,14 @@ module TencentCloud
       # 孕产结论部分
       class MaternitySummary < TencentCloud::Common::AbstractModel
         # @param Fetus: 胎儿数据结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fetus: Array
         # @param FetusNum: 胎儿数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FetusNum: :class:`Tencentcloud::Mrs.v20200910.models.FieldInfo`
         # @param Sym: 病变
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sym: Array
         # @param Text: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Fetus, :FetusNum, :Sym, :Text, :Coords
@@ -7129,13 +6456,10 @@ module TencentCloud
       # 医学资料
       class MedDoc < TencentCloud::Common::AbstractModel
         # @param Advice: 建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Advice: :class:`Tencentcloud::Mrs.v20200910.models.Advice`
         # @param Diagnosis: 诊断结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnosis: Array
         # @param DiseaseMedicalHistory: 疾病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseaseMedicalHistory: :class:`Tencentcloud::Mrs.v20200910.models.DiseaseMedicalHistory`
         # @param PersonalMedicalHistory: 个人史
         # @type PersonalMedicalHistory: :class:`Tencentcloud::Mrs.v20200910.models.PersonalMedicalHistory`
@@ -7148,7 +6472,6 @@ module TencentCloud
         # @param TreatmentRecord: 诊疗记录
         # @type TreatmentRecord: :class:`Tencentcloud::Mrs.v20200910.models.TreatmentRecord`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Advice, :Diagnosis, :DiseaseMedicalHistory, :PersonalMedicalHistory, :ObstericalMedicalHistory, :FamilyMedicalHistory, :MenstrualMedicalHistory, :TreatmentRecord, :Page
@@ -7209,31 +6532,22 @@ module TencentCloud
       # 门诊病历信息
       class MedicalRecordInfo < TencentCloud::Common::AbstractModel
         # @param DiagnosisTime: 就诊日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagnosisTime: String
         # @param DiagnosisDepartmentName: 就诊科室
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagnosisDepartmentName: String
         # @param DiagnosisDoctorName: 就诊医生
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagnosisDoctorName: String
         # @param ClinicalDiagnosis: 临床诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClinicalDiagnosis: String
         # @param MainNarration: 主述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainNarration: String
         # @param PhysicalExamination: 体格检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalExamination: String
         # @param InspectionFindings: 检查结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InspectionFindings: String
         # @param TreatmentOpinion: 治疗意见
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentOpinion: String
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :DiagnosisTime, :DiagnosisDepartmentName, :DiagnosisDoctorName, :ClinicalDiagnosis, :MainNarration, :PhysicalExamination, :InspectionFindings, :TreatmentOpinion, :Page
@@ -7266,28 +6580,20 @@ module TencentCloud
       # 药品
       class Medicine < TencentCloud::Common::AbstractModel
         # @param Name: 药品名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TradeName: 商品名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeName: String
         # @param Firm: 厂商
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Firm: String
         # @param Category: 医保类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
         # @param Specification: 规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Specification: String
         # @param MinQuantity: 最小包装数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinQuantity: String
         # @param DosageUnit: 最小制剂单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DosageUnit: String
         # @param PackingUnit: 最小包装单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackingUnit: String
 
         attr_accessor :Name, :TradeName, :Firm, :Category, :Specification, :MinQuantity, :DosageUnit, :PackingUnit
@@ -7318,13 +6624,10 @@ module TencentCloud
       # 月经量
       class MenstrualFlowBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Value
@@ -7345,22 +6648,16 @@ module TencentCloud
       # 月经史
       class MenstrualHistoryBlock < TencentCloud::Common::AbstractModel
         # @param LastMenstrualPeriod: 末次月经
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastMenstrualPeriod: :class:`Tencentcloud::Mrs.v20200910.models.LastMenstrualPeriodBlock`
         # @param MenstrualFlow: 月经量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualFlow: :class:`Tencentcloud::Mrs.v20200910.models.MenstrualFlowBlock`
         # @param MenarcheAge: 初潮时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenarcheAge: :class:`Tencentcloud::Mrs.v20200910.models.LastMenstrualPeriodBlock`
         # @param MenstruationOrNot: 是否绝经
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstruationOrNot: :class:`Tencentcloud::Mrs.v20200910.models.MenstruationOrNotBlock`
         # @param MenstrualCycles: 月经周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualCycles: :class:`Tencentcloud::Mrs.v20200910.models.LastMenstrualPeriodBlock`
         # @param MenstrualPeriod: 月经经期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualPeriod: :class:`Tencentcloud::Mrs.v20200910.models.MenstrualPeriodBlock`
 
         attr_accessor :LastMenstrualPeriod, :MenstrualFlow, :MenarcheAge, :MenstruationOrNot, :MenstrualCycles, :MenstrualPeriod
@@ -7405,28 +6702,20 @@ module TencentCloud
       # 月经史
       class MenstrualHistoryDetailBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param State: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param TimeType: 时间类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeType: String
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :State, :Norm, :TimeType, :Timestamp, :Unit, :Value
@@ -7457,22 +6746,16 @@ module TencentCloud
       # 月经史
       class MenstrualMedicalHistory < TencentCloud::Common::AbstractModel
         # @param LastMenstrualPeriod: 末次月经时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastMenstrualPeriod: String
         # @param MenstrualFlow: 经量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualFlow: String
         # @param MenarcheAge: 月经初潮年龄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenarcheAge: String
         # @param MenstruationOrNot: 是否来月经
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstruationOrNot: String
         # @param MenstrualCycles: 月经周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualCycles: String
         # @param MenstrualPeriod: 月经持续天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualPeriod: String
 
         attr_accessor :LastMenstrualPeriod, :MenstrualFlow, :MenarcheAge, :MenstruationOrNot, :MenstrualCycles, :MenstrualPeriod
@@ -7499,25 +6782,18 @@ module TencentCloud
       # 月经经期
       class MenstrualPeriodBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :Type, :Timestamp, :Unit, :Value
@@ -7546,22 +6822,16 @@ module TencentCloud
       # 是否绝经
       class MenstruationOrNotBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param TimeType: 时间类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeType: String
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Norm, :TimeType, :Timestamp, :Value
@@ -7588,19 +6858,14 @@ module TencentCloud
       # 分子病理
       class Molecular < TencentCloud::Common::AbstractModel
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Name: 基因名称标注化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 分子病理详细信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: :class:`Tencentcloud::Mrs.v20200910.models.MolecularValue`
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Index, :Src, :Name, :Value, :Coords
@@ -7635,19 +6900,14 @@ module TencentCloud
       # 分子病理详细信息
       class MolecularValue < TencentCloud::Common::AbstractModel
         # @param Exon: 外显子
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exon: String
         # @param Position: 点位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Positive: 阳性或阴性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: String
         # @param Src: 基因名称原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
 
         attr_accessor :Exon, :Position, :Type, :Positive, :Src
@@ -7672,19 +6932,14 @@ module TencentCloud
       # 多发
       class Multiple < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Count: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Index, :Src, :Value, :Count, :Name
@@ -7709,10 +6964,8 @@ module TencentCloud
       # 否定列表
       class NeglistBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -7731,28 +6984,20 @@ module TencentCloud
       # 新生儿信息
       class NeonatalInfo < TencentCloud::Common::AbstractModel
         # @param NeonatalName: 新生儿名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeonatalName: String
         # @param NeonatalGender: 新生儿性别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeonatalGender: String
         # @param BirthLength: 出生身长
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthLength: String
         # @param BirthWeight: 出生体重
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthWeight: String
         # @param GestationalAge: 出生孕周
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GestationalAge: String
         # @param BirthTime: 出生时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthTime: String
         # @param BirthPlace: 出生地点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthPlace: String
         # @param MedicalInstitutions: 医疗机构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalInstitutions: String
 
         attr_accessor :NeonatalName, :NeonatalGender, :BirthLength, :BirthWeight, :GestationalAge, :BirthTime, :BirthPlace, :MedicalInstitutions
@@ -7783,25 +7028,19 @@ module TencentCloud
       # 标准部位
       class NormPart < TencentCloud::Common::AbstractModel
         # @param Part: 部位值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: String
         # @param PartDirection: 部位方向
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartDirection: String
         # @param Tissue: 组织值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tissue: String
         # @param TissueDirection: 组织方向
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TissueDirection: String
         # @param Upper: 上级部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Upper: String
         # @param PartDetail: 部位详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartDetail: :class:`Tencentcloud::Mrs.v20200910.models.PartDesc`
         # @param PartDetailList: 部位详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartDetailList: Array
 
         attr_accessor :Part, :PartDirection, :Tissue, :TissueDirection, :Upper, :PartDetail, :PartDetailList
@@ -7843,16 +7082,12 @@ module TencentCloud
       # 大小
       class NormSize < TencentCloud::Common::AbstractModel
         # @param Number: 数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: Array
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Impl: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Impl: String
 
         attr_accessor :Number, :Type, :Unit, :Impl
@@ -7875,10 +7110,8 @@ module TencentCloud
       # 数值结构体
       class NumValue < TencentCloud::Common::AbstractModel
         # @param Num: 数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Num: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
 
         attr_accessor :Num, :Unit
@@ -7897,10 +7130,8 @@ module TencentCloud
       # 孕产史
       class ObstericalMedicalHistory < TencentCloud::Common::AbstractModel
         # @param MarriageHistory: 婚史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarriageHistory: String
         # @param FertilityHistory: 孕史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FertilityHistory: String
 
         attr_accessor :MarriageHistory, :FertilityHistory
@@ -7919,10 +7150,8 @@ module TencentCloud
       # 婚姻-生育史
       class ObstetricalHistoryBlock < TencentCloud::Common::AbstractModel
         # @param MarriageHistory: 婚姻史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarriageHistory: :class:`Tencentcloud::Mrs.v20200910.models.MenstrualHistoryDetailBlock`
         # @param FertilityHistory: 婚育史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FertilityHistory: :class:`Tencentcloud::Mrs.v20200910.models.FertilityHistoryBlock`
 
         attr_accessor :MarriageHistory, :FertilityHistory
@@ -8008,13 +7237,10 @@ module TencentCloud
       # 体检报告-眼科-裸眼视力
       class OphthalmologyBareEyeSight < TencentCloud::Common::AbstractModel
         # @param LeftEyeVisual: 左眼视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Text: 裸眼视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param RightEyeVisual: 右眼视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RightEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :LeftEyeVisual, :Text, :RightEyeVisual
@@ -8044,22 +7270,16 @@ module TencentCloud
       # 体检报告-眼科
       class OphthalmologyBaseItem < TencentCloud::Common::AbstractModel
         # @param BareEyeSight: 裸眼视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BareEyeSight: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyBareEyeSight`
         # @param CorrectedVisualAcuity: 矫正视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorrectedVisualAcuity: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyCorrectedVisualAcuity`
         # @param ColourVision: 色觉
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColourVision: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyColourVision`
         # @param Fundoscopy: 眼底
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Fundoscopy: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyFundoscopy`
         # @param Others: 眼科其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param BriefSummary: 眼科小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyBriefSummary`
 
         attr_accessor :BareEyeSight, :CorrectedVisualAcuity, :ColourVision, :Fundoscopy, :Others, :BriefSummary
@@ -8108,7 +7328,6 @@ module TencentCloud
       # 体检报告-眼科-小结
       class OphthalmologyBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 眼科小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -8128,7 +7347,6 @@ module TencentCloud
       # 体检报告-眼科-色觉
       class OphthalmologyColourVision < TencentCloud::Common::AbstractModel
         # @param Text: 色觉总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -8148,13 +7366,10 @@ module TencentCloud
       # 体检报告-眼科-矫正视力
       class OphthalmologyCorrectedVisualAcuity < TencentCloud::Common::AbstractModel
         # @param LeftEyeVisual: 左眼矫正视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Text: 矫正视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param RightEyeVisual: 右眼矫正视力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RightEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :LeftEyeVisual, :Text, :RightEyeVisual
@@ -8184,7 +7399,6 @@ module TencentCloud
       # 体检报告-眼科-眼底
       class OphthalmologyFundoscopy < TencentCloud::Common::AbstractModel
         # @param Text: 眼底检查总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -8204,118 +7418,81 @@ module TencentCloud
       # 器官
       class Organ < TencentCloud::Common::AbstractModel
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Size: 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Array
         # @param Envelope: 包膜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Envelope: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Edge: 边缘
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Edge: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param InnerEcho: 内部回声
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerEcho: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Gland: 腺体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gland: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Shape: 形状
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Shape: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Thickness: 厚度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Thickness: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param ShapeAttr: 形态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShapeAttr: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param CDFI: 血液cdfi
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CDFI: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param SymDesc: 描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymDesc: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param SizeStatus: 大小状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SizeStatus: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Outline: 轮廓
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Outline: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Structure: 结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Structure: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Density: 密度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Density: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Vas: 血管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vas: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Cysticwall: 囊壁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cysticwall: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Capsule: 被膜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Capsule: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param IsthmusThicknese: 峡部厚度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsthmusThicknese: :class:`Tencentcloud::Mrs.v20200910.models.Size`
         # @param InnerEchoDistribution: 内部回声分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerEchoDistribution: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Transparent: 透声度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Transparent: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriAdc: MRI ADC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriAdc: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriDwi: MRI DWI
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriDwi: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriT1: MRI T1信号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriT1: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriT2: MRI T2信号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriT2: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param CtHu: CT HU值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtHu: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Suvmax: SUmax值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suvmax: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Metabolism: 代谢情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metabolism: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param RadioactiveUptake: 放射性摄取
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RadioactiveUptake: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param LymphEnlargement: 淋巴结情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphEnlargement: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param ImageFeature: 影像特征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageFeature: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Duct: 导管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duct: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Trend: 趋势
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trend: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Operation: 手术情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Coords: 器官在报告图片中的坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
         # @param IsthmusThickness: 峡部厚度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsthmusThickness: :class:`Tencentcloud::Mrs.v20200910.models.Size`
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
@@ -8525,22 +7702,16 @@ module TencentCloud
       # 其他信息
       class OtherInfo < TencentCloud::Common::AbstractModel
         # @param Anesthesia: 麻醉方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Anesthesia: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param BloodLoss: 术中出血
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BloodLoss: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param BloodTransfusion: 输血
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BloodTransfusion: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param Duration: 手术用时
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param EndTime: 手术开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param StartTime: 手术结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
 
         attr_accessor :Anesthesia, :BloodLoss, :BloodTransfusion, :Duration, :EndTime, :StartTime
@@ -8585,19 +7756,14 @@ module TencentCloud
       # 体检报告-耳鼻喉科
       class OtolaryngologyBaseItem < TencentCloud::Common::AbstractModel
         # @param Ear: 耳朵
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ear: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyEar`
         # @param Nose: 鼻
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nose: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyNose`
         # @param Larynx: 喉
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Larynx: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyLarynx`
         # @param Others: 耳鼻喉其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param BriefSummary: 小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyBriefSummary`
 
         attr_accessor :Ear, :Nose, :Larynx, :Others, :BriefSummary
@@ -8641,7 +7807,6 @@ module TencentCloud
       # 体检报告-耳鼻喉科-小结
       class OtolaryngologyBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 耳鼻喉小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -8661,10 +7826,8 @@ module TencentCloud
       # 体检报告-耳鼻喉科-耳朵
       class OtolaryngologyEar < TencentCloud::Common::AbstractModel
         # @param Text: 耳总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Hearing: 听力
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hearing: :class:`Tencentcloud::Mrs.v20200910.models.HearingItem`
 
         attr_accessor :Text, :Hearing
@@ -8689,7 +7852,6 @@ module TencentCloud
       # 体检报告-耳鼻喉科-喉
       class OtolaryngologyLarynx < TencentCloud::Common::AbstractModel
         # @param Text: 喉总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -8709,7 +7871,6 @@ module TencentCloud
       # 体检报告-耳鼻喉科-鼻
       class OtolaryngologyNose < TencentCloud::Common::AbstractModel
         # @param Text: 鼻总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -8729,28 +7890,20 @@ module TencentCloud
       # pTNM
       class PTNM < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param PT: pT
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PT: String
         # @param PN: pN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PN: String
         # @param PM: pM
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PM: String
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :PT, :PN, :PM, :Coords
@@ -8788,19 +7941,14 @@ module TencentCloud
       # PTNM分期
       class PTNMBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param PTNMM: PTNM分期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNMM: String
         # @param PTNMN: PTNM分期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNMN: String
         # @param PTNMT: PTNM分期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNMT: String
 
         attr_accessor :Name, :Src, :PTNMM, :PTNMN, :PTNMT
@@ -8825,89 +7973,61 @@ module TencentCloud
       # 文本块
       class ParagraphBlock < TencentCloud::Common::AbstractModel
         # @param IncisionHealingText: 切口愈合情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncisionHealingText: String
         # @param AuxiliaryExaminationText: 辅助检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuxiliaryExaminationText: String
         # @param SpecialExamText: 特殊检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialExamText: String
         # @param OutpatientDiagnosisText: 门诊诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutpatientDiagnosisText: String
         # @param AdmissionConditionText: 入院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionConditionText: String
         # @param CheckAndTreatmentProcessText: 诊疗经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckAndTreatmentProcessText: String
         # @param SymptomsAndSignsText: 体征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymptomsAndSignsText: String
         # @param DischargeInstructionsText: 出院医嘱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeInstructionsText: String
         # @param AdmissionDiagnosisText: 入院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDiagnosisText: String
         # @param SurgeryConditionText: 手术情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryConditionText: String
         # @param PathologicalDiagnosisText: 病理诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologicalDiagnosisText: String
         # @param DischargeConditionText: 出院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeConditionText: String
         # @param CheckRecordText: 检查记录
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckRecordText: String
         # @param ChiefComplaintText: 主诉
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChiefComplaintText: String
         # @param DischargeDiagnosisText: 出院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeDiagnosisText: String
         # @param MainDiseaseHistoryText: 既往史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainDiseaseHistoryText: String
         # @param DiseasePresentText: 现病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseasePresentText: String
         # @param PersonalHistoryText: 个人史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PersonalHistoryText: String
         # @param MenstruallHistoryText: 月经史
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstruallHistoryText: String
         # @param ObstericalHistoryText: 婚育史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObstericalHistoryText: String
         # @param FamilyHistoryText: 家族史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FamilyHistoryText: String
         # @param AllergyHistoryText: 过敏史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllergyHistoryText: String
         # @param DiseaseHistoryText: 病史信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseaseHistoryText: String
         # @param OtherDiagnosisText: 其它诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherDiagnosisText: String
         # @param BodyExaminationText: 体格检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyExaminationText: String
         # @param SpecialistExaminationText: 专科检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialistExaminationText: String
         # @param TreatmentResultText: 治疗结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentResultText: String
         # @param MenstrualHistoryText: 月经史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualHistoryText: String
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
@@ -8981,22 +8101,16 @@ module TencentCloud
       # 母亲或父亲信息
       class ParentInfo < TencentCloud::Common::AbstractModel
         # @param Name: 名字
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Age: 年龄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Age: String
         # @param IdCard: 证件号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCard: String
         # @param Ethnicity: 民族
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ethnicity: String
         # @param Nationality: 国籍
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nationality: String
         # @param Address: 地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
 
         attr_accessor :Name, :Age, :IdCard, :Ethnicity, :Nationality, :Address
@@ -9023,22 +8137,16 @@ module TencentCloud
       # 部位信息
       class Part < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param NormPart: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormPart: :class:`Tencentcloud::Mrs.v20200910.models.NormPart`
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param ValueBrief: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueBrief: String
 
         attr_accessor :Index, :NormPart, :Src, :Value, :Name, :ValueBrief
@@ -9068,16 +8176,12 @@ module TencentCloud
       # 部位描述
       class PartDesc < TencentCloud::Common::AbstractModel
         # @param MainDir: 主要部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MainDir: String
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: String
         # @param SecondaryDir: 次要部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondaryDir: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :MainDir, :Part, :SecondaryDir, :Type
@@ -9100,16 +8204,12 @@ module TencentCloud
       # 病理诊断
       class PathologicalDiagnosisBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Detail: 病理详细
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :Detail, :Value
@@ -9139,13 +8239,10 @@ module TencentCloud
       # 病理详细
       class PathologicalDiagnosisDetailBlock < TencentCloud::Common::AbstractModel
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: String
         # @param HistologicalType: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistologicalType: String
         # @param HistologicalGrade: 等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistologicalGrade: String
 
         attr_accessor :Part, :HistologicalType, :HistologicalGrade
@@ -9166,46 +8263,32 @@ module TencentCloud
       # 病理报告
       class PathologyReport < TencentCloud::Common::AbstractModel
         # @param CancerPart: 癌症部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CancerPart: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param CancerSize: 癌症部位大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CancerSize: Array
         # @param DescText: 描述文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescText: String
         # @param HistologyLevel: 组织学等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistologyLevel: :class:`Tencentcloud::Mrs.v20200910.models.HistologyLevel`
         # @param HistologyType: 组织学类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistologyType: :class:`Tencentcloud::Mrs.v20200910.models.HistologyType`
         # @param IHC: IHC信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IHC: Array
         # @param InfiltrationDepth: 浸润深度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InfiltrationDepth: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Invasive: 肿瘤扩散
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Invasive: Array
         # @param LymphNodes: 淋巴结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphNodes: Array
         # @param PTNM: PTNM信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNM: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param PathologicalReportType: 病理报告类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologicalReportType: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param ReportText: 报告原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportText: String
         # @param SampleType: 标本类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleType: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param SummaryText: 结论文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryText: String
 
         attr_accessor :CancerPart, :CancerSize, :DescText, :HistologyLevel, :HistologyType, :IHC, :InfiltrationDepth, :Invasive, :LymphNodes, :PTNM, :PathologicalReportType, :ReportText, :SampleType, :SummaryText
@@ -9297,49 +8380,34 @@ module TencentCloud
       # 病理报告v2
       class PathologyV2 < TencentCloud::Common::AbstractModel
         # @param PathologicalReportType: 报告类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologicalReportType: :class:`Tencentcloud::Mrs.v20200910.models.Report`
         # @param Desc: 描述段落
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: :class:`Tencentcloud::Mrs.v20200910.models.DescInfo`
         # @param Summary: 诊断结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.SummaryInfo`
         # @param ReportText: 报告全文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportText: String
         # @param LymphTotal: 淋巴结总计转移信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphTotal: Array
         # @param LymphNodes: 单淋巴结转移信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphNodes: Array
         # @param Ihc: ihc信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ihc: Array
         # @param Clinical: 临床诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clinical: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Precancer: 是否癌前病变
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Precancer: :class:`Tencentcloud::Mrs.v20200910.models.HistologyClass`
         # @param Malignant: 是否恶性肿瘤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Malignant: :class:`Tencentcloud::Mrs.v20200910.models.HistologyClass`
         # @param Benigntumor: 是否良性肿瘤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Benigntumor: :class:`Tencentcloud::Mrs.v20200910.models.HistologyClass`
         # @param SampleType: 送检材料
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleType: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param LymphSize: 淋巴结大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphSize: Array
         # @param Molecular: 分子病理
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Molecular: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :PathologicalReportType, :Desc, :Summary, :ReportText, :LymphTotal, :LymphNodes, :Ihc, :Clinical, :Precancer, :Malignant, :Benigntumor, :SampleType, :LymphSize, :Molecular, :Page
@@ -9443,70 +8511,49 @@ module TencentCloud
       # 患者信息
       class PatientInfo < TencentCloud::Common::AbstractModel
         # @param Name: 患者姓名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Sex: 患者性别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sex: String
         # @param Age: 患者年龄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Age: String
         # @param Phone: 患者手机号码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param Address: 患者地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param IdCard: 患者身份证
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCard: String
         # @param HealthCardNo: 健康卡号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCardNo: String
         # @param SocialSecurityCardNo: 社保卡号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SocialSecurityCardNo: String
         # @param Birthday: 出生日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Birthday: String
         # @param Ethnicity: 民族
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ethnicity: String
         # @param Married: 婚姻状况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Married: String
         # @param Profession: 职业
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Profession: String
         # @param EducationBackground: 教育程度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EducationBackground: String
         # @param Nationality: 国籍
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nationality: String
         # @param BirthPlace: 籍贯
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthPlace: String
         # @param MedicalInsuranceType: 医保类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalInsuranceType: String
         # @param AgeNorm: 标准化年龄
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgeNorm: String
         # @param Nation: 民族。该字段已不再使用，请从Ethnicity取值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nation: String
         # @param MarriedCode: 婚姻代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MarriedCode: String
         # @param ProfessionCode: 职业代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfessionCode: String
         # @param MedicalInsuranceTypeCode: 居民医保代码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalInsuranceTypeCode: String
         # @param BedNo: 床号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BedNo: String
 
         attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
@@ -9588,28 +8635,20 @@ module TencentCloud
       # 个人史
       class PersonalHistoryBlock < TencentCloud::Common::AbstractModel
         # @param BirthPlace: 出生地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthPlace: :class:`Tencentcloud::Mrs.v20200910.models.BirthPlaceBlock`
         # @param LivePlace: 居住地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivePlace: :class:`Tencentcloud::Mrs.v20200910.models.BirthPlaceBlock`
         # @param Job: 职业
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Job: :class:`Tencentcloud::Mrs.v20200910.models.BirthPlaceBlock`
         # @param SmokeHistory: 吸烟
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmokeHistory: :class:`Tencentcloud::Mrs.v20200910.models.SmokeHistoryBlock`
         # @param AlcoholicHistory: 喝酒
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlcoholicHistory: :class:`Tencentcloud::Mrs.v20200910.models.SmokeHistoryBlock`
         # @param MenstrualHistory: 月经史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MenstrualHistory: :class:`Tencentcloud::Mrs.v20200910.models.MenstrualHistoryBlock`
         # @param ObstericalHistory: 婚姻-生育史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObstericalHistory: :class:`Tencentcloud::Mrs.v20200910.models.ObstetricalHistoryBlock`
         # @param FamilyHistory: 家族史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FamilyHistory: :class:`Tencentcloud::Mrs.v20200910.models.FamilyHistoryBlock`
 
         attr_accessor :BirthPlace, :LivePlace, :Job, :SmokeHistory, :AlcoholicHistory, :MenstrualHistory, :ObstericalHistory, :FamilyHistory
@@ -9664,19 +8703,14 @@ module TencentCloud
       # 个人史
       class PersonalMedicalHistory < TencentCloud::Common::AbstractModel
         # @param BirthPlace: 出生史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthPlace: String
         # @param LivePlace: 居住史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivePlace: String
         # @param Job: 工作史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Job: String
         # @param SmokeHistory: 吸烟史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmokeHistory: String
         # @param AlcoholicHistory: 饮酒史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlcoholicHistory: String
 
         attr_accessor :BirthPlace, :LivePlace, :Job, :SmokeHistory, :AlcoholicHistory
@@ -9701,16 +8735,12 @@ module TencentCloud
       # 体检报告基础信息
       class PhysicalBaseItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原始文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 归一化后值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Coords: 四点坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Src, :Value, :Coords
@@ -9740,28 +8770,20 @@ module TencentCloud
       # 体检报告综合信息
       class PhysicalExamination < TencentCloud::Common::AbstractModel
         # @param GeneralExamination: 一般检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneralExamination: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationBaseItem`
         # @param InternalMedicine: 内科
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalMedicine: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineBaseItem`
         # @param Surgery: 外科
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Surgery: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryBaseItem`
         # @param Stomatology: 口腔科
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stomatology: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyBaseItem`
         # @param Ophthalmology: 眼科
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ophthalmology: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyBaseItem`
         # @param Otolaryngology: 耳鼻喉科
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Otolaryngology: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyBaseItem`
         # @param Gynaecology: 妇科
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gynaecology: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyBaseItem`
         # @param Unclassified: 未标准化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unclassified: Array
 
         attr_accessor :GeneralExamination, :InternalMedicine, :Surgery, :Stomatology, :Ophthalmology, :Otolaryngology, :Gynaecology, :Unclassified
@@ -9820,10 +8842,8 @@ module TencentCloud
       # 体检报告V1版本
       class PhysicalExaminationV1 < TencentCloud::Common::AbstractModel
         # @param PhysicalExaminationMulti: 体检报告信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalExaminationMulti: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalExamination`
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :PhysicalExaminationMulti, :Version
@@ -9845,10 +8865,8 @@ module TencentCloud
       # 点坐标
       class Point < TencentCloud::Common::AbstractModel
         # @param X: x坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
         # @param Y: y坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
 
         attr_accessor :X, :Y
@@ -9867,10 +8885,8 @@ module TencentCloud
       # 肯定列表
       class PoslistBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -9889,10 +8905,8 @@ module TencentCloud
       # 处方单
       class Prescription < TencentCloud::Common::AbstractModel
         # @param MedicineList: 药品列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicineList: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :MedicineList, :Page
@@ -9918,16 +8932,12 @@ module TencentCloud
       # 位置坐标
       class Rectangle < TencentCloud::Common::AbstractModel
         # @param X: x坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type X: Integer
         # @param Y: y坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Y: Integer
         # @param W: 宽
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type W: Integer
         # @param H: 高
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type H: Integer
 
         attr_accessor :X, :Y, :W, :H
@@ -9950,28 +8960,20 @@ module TencentCloud
       # 复发时间
       class RelapseDateBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param DiseaseName: 疾病名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseaseName: String
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Norm: 归一化值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Norm: String
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param Timestamp: 时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :DiseaseName, :Type, :Norm, :Unit, :Timestamp, :Value
@@ -10002,16 +9004,12 @@ module TencentCloud
       # 家族肿瘤史
       class RelativeCancerHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param RelativeCancerList: 肿瘤史列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelativeCancerList: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :RelativeCancerList, :Value
@@ -10034,16 +9032,12 @@ module TencentCloud
       # 家庭成员
       class RelativeHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Detail: 成员列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Detail, :Src, :Value
@@ -10073,16 +9067,12 @@ module TencentCloud
       # 家庭成员详情
       class RelativeHistoryDetailBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Relation: 关系
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
         # @param TimeOfDeath: 死亡时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeOfDeath: String
         # @param TimeType: 时间类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeType: String
 
         attr_accessor :Name, :Relation, :TimeOfDeath, :TimeType
@@ -10105,19 +9095,14 @@ module TencentCloud
       # 报告类型
       class Report < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Index: 索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 报告类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Coords: 原文对应坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Name, :Index, :Src, :Value, :Coords
@@ -10149,82 +9134,56 @@ module TencentCloud
       # 报告基本信息
       class ReportInfo < TencentCloud::Common::AbstractModel
         # @param Hospital: 医院名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hospital: String
         # @param DepartmentName: 科室名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentName: String
         # @param BillingTime: 申请时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingTime: String
         # @param ReportTime: 报告时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTime: String
         # @param InspectTime: 检查时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InspectTime: String
         # @param CheckNum: 检查号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckNum: String
         # @param ImageNum: 影像号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageNum: String
         # @param RadiationNum: 放射号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RadiationNum: String
         # @param TestNum: 检验号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TestNum: String
         # @param OutpatientNum: 门诊号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutpatientNum: String
         # @param PathologyNum: 病理号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologyNum: String
         # @param InHospitalNum: 住院号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InHospitalNum: String
         # @param SampleNum: 样本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleNum: String
         # @param SampleType: 标本种类
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleType: String
         # @param MedicalRecordNum: 病历号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalRecordNum: String
         # @param ReportName: 报告名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportName: String
         # @param UltraNum: 超声号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UltraNum: String
         # @param Diagnose: 临床诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Diagnose: String
         # @param CheckItem: 检查项目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckItem: String
         # @param CheckMethod: 检查方法
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckMethod: String
         # @param DiagnoseTime: 诊断时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagnoseTime: String
         # @param HealthCheckupNum: 体检号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckupNum: String
         # @param OtherTime: 其它时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherTime: String
         # @param PrintTime: 打印时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrintTime: String
         # @param Times: 未归类时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Times: Array
         # @param BedNo: 床号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BedNo: String
 
         attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose, :CheckItem, :CheckMethod, :DiagnoseTime, :HealthCheckupNum, :OtherTime, :PrintTime, :Times, :BedNo
@@ -10318,13 +9277,10 @@ module TencentCloud
       # 结论信息
       class ResultInfo < TencentCloud::Common::AbstractModel
         # @param Text: 段落文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Items: 结论详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Text, :Items, :Page
@@ -10355,19 +9311,14 @@ module TencentCloud
       # 大小
       class Size < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param NormSize: 标准大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NormSize: :class:`Tencentcloud::Mrs.v20200910.models.NormSize`
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Index, :NormSize, :Src, :Value, :Name
@@ -10395,28 +9346,20 @@ module TencentCloud
       # 吸烟史
       class SmokeHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param TimeUnit: 时间单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeNorm: 时间归一化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeNorm: String
         # @param Amount: 吸烟量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amount: String
         # @param QuitState: 戒烟状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuitState: Boolean
         # @param State: 是否吸烟
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Boolean
         # @param Value: 对外输出值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :TimeUnit, :TimeNorm, :Amount, :QuitState, :State, :Value
@@ -10447,19 +9390,14 @@ module TencentCloud
       # 体检报告-口腔科
       class StomatologyBaseItem < TencentCloud::Common::AbstractModel
         # @param ToothDecay: 龋齿
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ToothDecay: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyToothDecay`
         # @param Gingiva: 牙龈
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gingiva: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyGingiva`
         # @param Periodontics: 牙周
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Periodontics: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyPeriodontics`
         # @param Others: 口腔其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param BriefSummary: 小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyBriefSummary`
 
         attr_accessor :ToothDecay, :Gingiva, :Periodontics, :Others, :BriefSummary
@@ -10503,7 +9441,6 @@ module TencentCloud
       # 体检报告-口腔科-小结
       class StomatologyBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 口腔小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10523,7 +9460,6 @@ module TencentCloud
       # 体检报告-口腔科-牙龈
       class StomatologyGingiva < TencentCloud::Common::AbstractModel
         # @param Text: 牙龈总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10543,7 +9479,6 @@ module TencentCloud
       # 体检报告-口腔科-牙周
       class StomatologyPeriodontics < TencentCloud::Common::AbstractModel
         # @param Text: 牙周总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10563,7 +9498,6 @@ module TencentCloud
       # 体检报告-口腔科-龋齿
       class StomatologyToothDecay < TencentCloud::Common::AbstractModel
         # @param Text: 龋齿总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10583,13 +9517,10 @@ module TencentCloud
       # 结论
       class Summary < TencentCloud::Common::AbstractModel
         # @param Symptom: 症状
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Symptom: Array
         # @param Text: 文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: String
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Symptom, :Text, :Coords
@@ -10624,10 +9555,8 @@ module TencentCloud
       # 诊断结论
       class SummaryInfo < TencentCloud::Common::AbstractModel
         # @param Text: 诊断结论文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.BaseInfo`
         # @param Infos: 诊断结论详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Infos: Array
 
         attr_accessor :Text, :Infos
@@ -10656,13 +9585,10 @@ module TencentCloud
       # 手术记录
       class Surgery < TencentCloud::Common::AbstractModel
         # @param SurgeryHistory: 手术史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryHistory: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryHistory`
         # @param OtherInfo: 其他信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherInfo: :class:`Tencentcloud::Mrs.v20200910.models.OtherInfo`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :SurgeryHistory, :OtherInfo, :Page
@@ -10689,13 +9615,10 @@ module TencentCloud
       # 体检报告-外科-肛门直肠
       class SurgeryAnorectal < TencentCloud::Common::AbstractModel
         # @param Text: 肛门直肠总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param DigitalRectalExamination: 直肠指检
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DigitalRectalExamination: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Hemorrhoid: 痔疮
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hemorrhoid: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text, :DigitalRectalExamination, :Hemorrhoid
@@ -10725,10 +9648,8 @@ module TencentCloud
       # 手术记录属性
       class SurgeryAttr < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -10747,34 +9668,24 @@ module TencentCloud
       # 体检报告-外科
       class SurgeryBaseItem < TencentCloud::Common::AbstractModel
         # @param HeadNeck: 体检报告-外科-头颈部
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadNeck: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryHeadNeck`
         # @param Thyroid: 体检报告-外科-甲状腺
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Thyroid: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryThyroid`
         # @param Breast: 体检报告-外科-乳房
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Breast: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryBreast`
         # @param LymphNode: 体检报告-外科-浅表淋巴结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphNode: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryLymphNode`
         # @param SpinalExtremities: 体检报告-外科-脊柱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpinalExtremities: :class:`Tencentcloud::Mrs.v20200910.models.SurgerySpinalExtremities`
         # @param Skin: 体检报告-外科-皮肤
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Skin: :class:`Tencentcloud::Mrs.v20200910.models.SurgerySkin`
         # @param Anorectal: 体检报告-外科-肛门直肠
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Anorectal: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAnorectal`
         # @param UrogenitalSystem: 体检报告-外科-泌尿生殖系统
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UrogenitalSystem: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryUrogenitalSystem`
         # @param Others: 体检报告-外科-外科其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Others: Array
         # @param BriefSummary: 体检报告-外科-小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryBriefSummary`
 
         attr_accessor :HeadNeck, :Thyroid, :Breast, :LymphNode, :SpinalExtremities, :Skin, :Anorectal, :UrogenitalSystem, :Others, :BriefSummary
@@ -10843,7 +9754,6 @@ module TencentCloud
       # 体检报告-外科-乳房
       class SurgeryBreast < TencentCloud::Common::AbstractModel
         # @param Text: 乳房总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10863,7 +9773,6 @@ module TencentCloud
       # 体检报告-外科-小结
       class SurgeryBriefSummary < TencentCloud::Common::AbstractModel
         # @param Text: 外科小结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10883,17 +9792,12 @@ module TencentCloud
       # 手术经过
       class SurgeryConditionBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param SurgeryList: 手术历史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryList: Array
         # @param Value: 对外输出值
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :SurgeryList, :Value
@@ -10923,7 +9827,6 @@ module TencentCloud
       # 体检报告-外科-头颈部
       class SurgeryHeadNeck < TencentCloud::Common::AbstractModel
         # @param Text: 头颈部总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -10943,22 +9846,16 @@ module TencentCloud
       # 手术史
       class SurgeryHistory < TencentCloud::Common::AbstractModel
         # @param SurgeryName: 手术名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryName: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param SurgeryDate: 手术日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryDate: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param PreoperativePathology: 术前诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreoperativePathology: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param IntraoperativePathology: 术中诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntraoperativePathology: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param PostoperativePathology: 术后诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostoperativePathology: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
         # @param DischargeDiagnosis: 出院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
 
         attr_accessor :SurgeryName, :SurgeryDate, :PreoperativePathology, :IntraoperativePathology, :PostoperativePathology, :DischargeDiagnosis
@@ -11003,16 +9900,12 @@ module TencentCloud
       # 手术史
       class SurgeryHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Surgerylist: 手术列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Surgerylist: Array
 
         attr_accessor :Name, :Src, :Value, :Surgerylist
@@ -11042,16 +9935,12 @@ module TencentCloud
       # 手术列表
       class SurgeryListBlock < TencentCloud::Common::AbstractModel
         # @param Time: 时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param TimeType: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeType: String
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: Array
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: String
 
         attr_accessor :Time, :TimeType, :Name, :Part
@@ -11074,7 +9963,6 @@ module TencentCloud
       # 体检报告-外科-浅表淋巴结
       class SurgeryLymphNode < TencentCloud::Common::AbstractModel
         # @param Text: 浅表淋巴结总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -11094,7 +9982,6 @@ module TencentCloud
       # 体检报告-外科-皮肤
       class SurgerySkin < TencentCloud::Common::AbstractModel
         # @param Text: 皮肤总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -11114,25 +10001,18 @@ module TencentCloud
       # 体检报告-外科-脊柱
       class SurgerySpinalExtremities < TencentCloud::Common::AbstractModel
         # @param Text: 脊柱四肢总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param SpinalColumn: 脊柱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpinalColumn: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param LimbJoint: 四肢和关节
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimbJoint: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Foot: 平跛足
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Foot: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Bone: 骨骼
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bone: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Gait: 步态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gait: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Deformity: 残疾或畸形
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deformity: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text, :SpinalColumn, :LimbJoint, :Foot, :Bone, :Gait, :Deformity
@@ -11182,7 +10062,6 @@ module TencentCloud
       # 体检报告-外科-甲状腺
       class SurgeryThyroid < TencentCloud::Common::AbstractModel
         # @param Text: 甲状腺总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text
@@ -11202,13 +10081,10 @@ module TencentCloud
       # 体检报告-外科-泌尿生殖系统
       class SurgeryUrogenitalSystem < TencentCloud::Common::AbstractModel
         # @param Text: 泌尿生殖系统总体描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param Prostate: 前列腺
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Prostate: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
         # @param ExternalReproductiveOrgans: 外生殖器（男性）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalReproductiveOrgans: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
 
         attr_accessor :Text, :Prostate, :ExternalReproductiveOrgans
@@ -11238,25 +10114,18 @@ module TencentCloud
       # 病症描述信息
       class SymptomInfo < TencentCloud::Common::AbstractModel
         # @param Grade: 等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grade: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param Symptom: 病变
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Symptom: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Attrs: 属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Attrs: Array
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Coords: 坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
 
         attr_accessor :Grade, :Part, :Index, :Symptom, :Attrs, :Src, :Coords
@@ -11308,10 +10177,8 @@ module TencentCloud
       # 检验报告结构
       class TableIndicators < TencentCloud::Common::AbstractModel
         # @param Indicators: 项目列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indicators: Array
         # @param Sample: 采样标本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sample: :class:`Tencentcloud::Mrs.v20200910.models.BaseItem`
 
         attr_accessor :Indicators, :Sample
@@ -11340,91 +10207,62 @@ module TencentCloud
       # 报告模板
       class Template < TencentCloud::Common::AbstractModel
         # @param PatientInfo: 患者信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PatientInfo: :class:`Tencentcloud::Mrs.v20200910.models.PatientInfo`
         # @param ReportInfo: 报告信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportInfo: :class:`Tencentcloud::Mrs.v20200910.models.ReportInfo`
         # @param Check: 检查报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Check: :class:`Tencentcloud::Mrs.v20200910.models.Check`
         # @param Pathology: 病理报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pathology: :class:`Tencentcloud::Mrs.v20200910.models.PathologyReport`
         # @param MedDoc: 出院报告，入院报告，门诊病历
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedDoc: :class:`Tencentcloud::Mrs.v20200910.models.MedDoc`
         # @param DiagCert: 诊断证明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiagCert: :class:`Tencentcloud::Mrs.v20200910.models.DiagCert`
         # @param FirstPage: 病案首页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstPage: :class:`Tencentcloud::Mrs.v20200910.models.FirstPage`
         # @param Indicator: 检验报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Indicator: :class:`Tencentcloud::Mrs.v20200910.models.Indicator`
         # @param ReportType: 报告类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportType: String
         # @param MedicalRecordInfo: 门诊病历信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalRecordInfo: :class:`Tencentcloud::Mrs.v20200910.models.MedicalRecordInfo`
         # @param Hospitalization: 出入院信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hospitalization: :class:`Tencentcloud::Mrs.v20200910.models.Hospitalization`
         # @param Surgery: 手术记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Surgery: :class:`Tencentcloud::Mrs.v20200910.models.Surgery`
         # @param Electrocardiogram: 心电图报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Electrocardiogram: :class:`Tencentcloud::Mrs.v20200910.models.Electrocardiogram`
         # @param Endoscopy: 内窥镜报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Endoscopy: :class:`Tencentcloud::Mrs.v20200910.models.Endoscopy`
         # @param Prescription: 处方单
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Prescription: :class:`Tencentcloud::Mrs.v20200910.models.Prescription`
         # @param VaccineCertificate: 疫苗接种凭证
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VaccineCertificate: :class:`Tencentcloud::Mrs.v20200910.models.VaccineCertificate`
         # @param OcrText: OCR文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrText: String
         # @param OcrResult: OCR拼接后文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrResult: String
         # @param ReportTypeDesc: 报告类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTypeDesc: String
         # @param PathologyV2: 病理报告v2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologyV2: :class:`Tencentcloud::Mrs.v20200910.models.PathologyV2`
         # @param C14: 碳14尿素呼气试验
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type C14: :class:`Tencentcloud::Mrs.v20200910.models.Indicator`
         # @param Exame: 体检结论
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exame: :class:`Tencentcloud::Mrs.v20200910.models.Exame`
         # @param MedDocV2: 出院报告v2，入院报告v2，门诊病历v2
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedDocV2: :class:`Tencentcloud::Mrs.v20200910.models.DischargeInfoBlock`
         # @param IndicatorV3: 检验报告v3
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndicatorV3: :class:`Tencentcloud::Mrs.v20200910.models.IndicatorV3`
         # @param Covid: 核酸报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Covid: :class:`Tencentcloud::Mrs.v20200910.models.CovidItemsInfo`
         # @param Maternity: 孕产报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Maternity: :class:`Tencentcloud::Mrs.v20200910.models.Maternity`
         # @param Eye: 眼科报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Eye: :class:`Tencentcloud::Mrs.v20200910.models.EyeItemsInfo`
         # @param BirthCert: 出生证明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BirthCert: :class:`Tencentcloud::Mrs.v20200910.models.BirthCert`
         # @param Timeline: 时间轴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeline: :class:`Tencentcloud::Mrs.v20200910.models.TimelineInformation`
 
         attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription, :VaccineCertificate, :OcrText, :OcrResult, :ReportTypeDesc, :PathologyV2, :C14, :Exame, :MedDocV2, :IndicatorV3, :Covid, :Maternity, :Eye, :BirthCert, :Timeline
@@ -11685,13 +10523,10 @@ module TencentCloud
       # 文本类型
       class TextType < TencentCloud::Common::AbstractModel
         # @param Id: 类别Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Level: 类别层级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param Name: 类别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Id, :Level, :Name
@@ -11712,10 +10547,8 @@ module TencentCloud
       # 文本类型列表块
       class TextTypeListBlock < TencentCloud::Common::AbstractModel
         # @param TextTypeList: 文本类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeList: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :TextTypeList, :Page
@@ -11741,10 +10574,8 @@ module TencentCloud
       # 时间
       class Time < TencentCloud::Common::AbstractModel
         # @param Name: 具体时间类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 时间值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -11763,28 +10594,20 @@ module TencentCloud
       # 时间轴事件
       class TimelineEvent < TencentCloud::Common::AbstractModel
         # @param Type: 事件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Src: 原文本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param SubType: 事件子类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubType: String
         # @param Time: 事件发生时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param Value: 事件值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Rectangle: 位置坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rectangle: :class:`Tencentcloud::Mrs.v20200910.models.Rectangle`
         # @param Place: 事件发生地点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Place: String
         # @param EndTime: 结束时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :Type, :Src, :SubType, :Time, :Value, :Rectangle, :Place, :EndTime
@@ -11818,10 +10641,8 @@ module TencentCloud
       # 时间轴
       class TimelineInformation < TencentCloud::Common::AbstractModel
         # @param Timeline: 时间轴
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeline: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Timeline, :Page
@@ -11847,16 +10668,12 @@ module TencentCloud
       # 输血史
       class TransfusionHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param State: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Boolean
         # @param Value: 值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Src, :State, :Value
@@ -11882,85 +10699,58 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DmissionCondition: String
         # @param ChiefComplaint: 主诉
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChiefComplaint: String
         # @param DiseasePresent: 现病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseasePresent: String
         # @param SymptomsAndSigns: 主要症状体征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymptomsAndSigns: String
         # @param AuxiliaryExamination: 辅助检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuxiliaryExamination: String
         # @param BodyExamination: 体格检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyExamination: String
         # @param SpecialistExamination: 专科检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialistExamination: String
         # @param MentalExamination: 精神检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MentalExamination: String
         # @param CheckRecord: 检查记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckRecord: String
         # @param InspectResult: 化验结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InspectResult: String
         # @param IncisionHealing: 切口愈合情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncisionHealing: String
         # @param TreatmentSuggestion: 处理意见
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentSuggestion: String
         # @param FollowUpRequirements: 门诊随访要求
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FollowUpRequirements: String
         # @param CheckAndTreatmentProcess: 诊疗经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckAndTreatmentProcess: String
         # @param SurgeryCondition: 手术经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryCondition: String
         # @param ConditionChanges: 入院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionChanges: String
         # @param DischargeCondition: 出院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeCondition: String
         # @param PTNM: pTNM信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNM: String
         # @param PTNMM: pTNMM信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNMM: String
         # @param PTNMN: pTNMN信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNMN: String
         # @param PTNMT: pTNMT信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNMT: String
         # @param ECOG: ECOG信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ECOG: String
         # @param NRS: NRS信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NRS: String
         # @param KPS: KPS信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KPS: String
         # @param DeathDate: 死亡日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeathDate: String
         # @param RelapseDate: 复发日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelapseDate: String
         # @param ObservationDays: 观测天数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObservationDays: String
         # @param AdmissionCondition: 入院
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionCondition: String
 
         attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays, :AdmissionCondition
@@ -12034,157 +10824,106 @@ module TencentCloud
       # 治疗记录
       class TreatmentRecordBlock < TencentCloud::Common::AbstractModel
         # @param Immunohistochemistry: 免疫组化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Immunohistochemistry: :class:`Tencentcloud::Mrs.v20200910.models.ImmunohistochemistryBlock`
         # @param ChiefComplaint: 主诉
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChiefComplaint: :class:`Tencentcloud::Mrs.v20200910.models.ChiefComplaintBlock`
         # @param AdmissionCondition: 入院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionCondition: :class:`Tencentcloud::Mrs.v20200910.models.AdmissionConditionBlock`
         # @param BodyExamination: 查体
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BodyExamination: :class:`Tencentcloud::Mrs.v20200910.models.BodyExaminationBlock`
         # @param AdmissionDiagnosis: 入院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.AdmissionDiagnosisBlock`
         # @param AdmissionTraditionalDiagnosis: 入院中医诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionTraditionalDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.AdmissionDiagnosisBlock`
         # @param AdmissionModernDiagnosis: 入院西医诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionModernDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.AdmissionDiagnosisBlock`
         # @param PathologicalDiagnosis: 病理诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologicalDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.PathologicalDiagnosisBlock`
         # @param DiseasePresent: 现病史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiseasePresent: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param SymptomsAndSigns: 体征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymptomsAndSigns: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param AuxiliaryExamination: 辅助检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuxiliaryExamination: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param SpecialistExamination: 特殊检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialistExamination: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param MentalExamination: 精神检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MentalExamination: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param CheckRecord: 检查记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckRecord: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param InspectResult: 检查结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InspectResult: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param CheckAndTreatmentProcess: 治疗经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckAndTreatmentProcess: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param SurgeryCondition: 手术经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryCondition: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryConditionBlock`
         # @param IncisionHealing: 切口愈合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncisionHealing: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param DischargeDiagnosis: 出院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.DischargeDiagnosisBlock`
         # @param DischargeTraditionalDiagnosis: 出院中医诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeTraditionalDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param DischargeModernDiagnosis: 出院西医诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeModernDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.DischargeDiagnosisBlock`
         # @param DischargeCondition: 出院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeCondition: :class:`Tencentcloud::Mrs.v20200910.models.DischargeConditionBlock`
         # @param DischargeInstructions: 出院医嘱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeInstructions: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param TreatmentSuggestion: 治疗建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentSuggestion: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param FollowUpRequirements: 随访
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FollowUpRequirements: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param ConditionChanges: 治疗情况变化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionChanges: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param PulmonaryArterySystolicPressure: 收缩压
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PulmonaryArterySystolicPressure: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param BCLC: bclc分期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BCLC: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param PTNM: PTNM分期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PTNM: :class:`Tencentcloud::Mrs.v20200910.models.PTNMBlock`
         # @param ECOG: ECOG评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ECOG: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param NRS: NRS评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NRS: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param KPS: kps评分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KPS: :class:`Tencentcloud::Mrs.v20200910.models.DiseasePresentBlock`
         # @param Cancerstaging: 癌症分期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cancerstaging: :class:`Tencentcloud::Mrs.v20200910.models.ClinicalStaging`
         # @param DeathDate: 死亡时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeathDate: :class:`Tencentcloud::Mrs.v20200910.models.DeathDateBlock`
         # @param RelapseDate: 复发日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelapseDate: :class:`Tencentcloud::Mrs.v20200910.models.RelapseDateBlock`
         # @param ObservationDays: 观察日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObservationDays: :class:`Tencentcloud::Mrs.v20200910.models.DeathDateBlock`
         # @param IncisionHealingText: 切口愈合情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncisionHealingText: String
         # @param AuxiliaryExaminationText: 辅助检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuxiliaryExaminationText: String
         # @param SpecialExamText: 特殊检查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialExamText: String
         # @param OutpatientDiagnosisText: 门诊诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutpatientDiagnosisText: String
         # @param AdmissionConditionText: 入院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionConditionText: String
         # @param CheckAndTreatmentProcessText: 诊疗经过
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckAndTreatmentProcessText: String
         # @param SymptomsAndSignsText: 体征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymptomsAndSignsText: String
         # @param DischargeInstructionsText: 出院医嘱
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeInstructionsText: String
         # @param AdmissionDiagnosisText: 入院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdmissionDiagnosisText: String
         # @param SurgeryConditionText: 手术情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SurgeryConditionText: String
         # @param PathologicalDiagnosisText: 病理诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathologicalDiagnosisText: String
         # @param DischargeConditionText: 出院情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeConditionText: String
         # @param CheckRecordText: 检查记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckRecordText: String
         # @param ChiefComplaintText: 主诉
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChiefComplaintText: String
         # @param DischargeDiagnosisText: 出院诊断
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeDiagnosisText: String
 
         attr_accessor :Immunohistochemistry, :ChiefComplaint, :AdmissionCondition, :BodyExamination, :AdmissionDiagnosis, :AdmissionTraditionalDiagnosis, :AdmissionModernDiagnosis, :PathologicalDiagnosis, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :CheckAndTreatmentProcess, :SurgeryCondition, :IncisionHealing, :DischargeDiagnosis, :DischargeTraditionalDiagnosis, :DischargeModernDiagnosis, :DischargeCondition, :DischargeInstructions, :TreatmentSuggestion, :FollowUpRequirements, :ConditionChanges, :PulmonaryArterySystolicPressure, :BCLC, :PTNM, :ECOG, :NRS, :KPS, :Cancerstaging, :DeathDate, :RelapseDate, :ObservationDays, :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText
@@ -12409,142 +11148,97 @@ module TencentCloud
       # 结节
       class TuberInfo < TencentCloud::Common::AbstractModel
         # @param Type: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Part: 部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
         # @param Size: 大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Array
         # @param Multiple: 多发
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Multiple: :class:`Tencentcloud::Mrs.v20200910.models.Multiple`
         # @param AspectRatio: 纵横比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AspectRatio: :class:`Tencentcloud::Mrs.v20200910.models.AspectRatio`
         # @param Edge: 边缘
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Edge: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param InnerEcho: 内部回声
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerEcho: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param RearEcho: 外部回声
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RearEcho: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Elastic: 弹性质地
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Elastic: :class:`Tencentcloud::Mrs.v20200910.models.Elastic`
         # @param Shape: 形状
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Shape: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param ShapeAttr: 形态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShapeAttr: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param SkinMedulla: 皮髓质信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkinMedulla: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Trend: 变化趋势
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Trend: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Calcification: 钙化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Calcification: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Envelope: 包膜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Envelope: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Enhancement: 强化
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enhancement: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param LymphEnlargement: 淋巴结
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphEnlargement: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param LymphDoor: 淋巴门
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LymphDoor: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Activity: 活动度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Activity: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Operation: 手术情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param CDFI: 血液cdfi
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CDFI: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Index: 原文位置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Index: Array
         # @param SizeStatus: 大小状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SizeStatus: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param InnerEchoDistribution: 内部回声分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerEchoDistribution: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param InnerEchoType: 内部回声类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerEchoType: Array
         # @param Outline: 轮廓
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Outline: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Structure: 结构
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Structure: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Density: 密度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Density: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Vas: 血管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vas: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Cysticwall: 囊壁
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cysticwall: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Capsule: 被膜
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Capsule: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param IsthmusThicknese: 峡部厚度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsthmusThicknese: :class:`Tencentcloud::Mrs.v20200910.models.Size`
         # @param Src: 原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Src: String
         # @param Transparent: 透声度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Transparent: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriAdc: MRI ADC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriAdc: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriDwi: MRI DWI
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriDwi: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriT1: MRI T1信号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriT1: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param MriT2: MRI T2信号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MriT2: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param CtHu: CT HU值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtHu: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Suvmax: SUmax值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Suvmax: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Metabolism: 代谢情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metabolism: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param RadioactiveUptake: 放射性摄取
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RadioactiveUptake: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param SymDesc: 病变
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SymDesc: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param ImageFeature: 影像特征
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageFeature: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
         # @param Coords: 在报告图片中的坐标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
         # @param IsthmusThickness: 峡部厚度
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsthmusThickness: :class:`Tencentcloud::Mrs.v20200910.models.Size`
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
@@ -12982,34 +11676,24 @@ module TencentCloud
       # 免疫接种记录
       class Vaccination < TencentCloud::Common::AbstractModel
         # @param Id: 序号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Vaccine: 疫苗名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vaccine: String
         # @param Dose: 剂次
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dose: String
         # @param Date: 接种日期
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
         # @param LotNumber: 疫苗批号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LotNumber: String
         # @param Manufacturer: 生产企业
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Manufacturer: String
         # @param Clinic: 接种单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clinic: String
         # @param Site: 接种部位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Site: String
         # @param Provider: 接种者
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Provider: String
         # @param Lot: 疫苗批号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lot: String
 
         attr_accessor :Id, :Vaccine, :Dose, :Date, :LotNumber, :Manufacturer, :Clinic, :Site, :Provider, :Lot
@@ -13044,10 +11728,8 @@ module TencentCloud
       # 免疫接种证明
       class VaccineCertificate < TencentCloud::Common::AbstractModel
         # @param VaccineList: 免疫接种列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VaccineList: Array
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :VaccineList, :Page
@@ -13073,13 +11755,10 @@ module TencentCloud
       # 值
       class Value < TencentCloud::Common::AbstractModel
         # @param Grade: 等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grade: String
         # @param Percent: 百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Array
         # @param Positive: 阳性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: String
 
         attr_accessor :Grade, :Percent, :Positive
@@ -13100,13 +11779,10 @@ module TencentCloud
       # 值块
       class ValueBlock < TencentCloud::Common::AbstractModel
         # @param Grade: 等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grade: String
         # @param Percent: 百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Array
         # @param Positive: 阳性阴性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Positive: String
 
         attr_accessor :Grade, :Percent, :Positive
@@ -13127,19 +11803,14 @@ module TencentCloud
       # 体检报告信息-包含单位
       class ValueUnitItem < TencentCloud::Common::AbstractModel
         # @param Name: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Item: 项目原文
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Result: 数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Unit: 单位
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
         # @param Page: 数据在原PDF文件中的第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
 
         attr_accessor :Name, :Item, :Result, :Unit, :Page

@@ -77,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用来新增图片水印。
+
+        # @param request: Request instance for AddCasterMarkPicInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::AddCasterMarkPicInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::AddCasterMarkPicInfoResponse`
+        def AddCasterMarkPicInfo(request)
+          body = send_request('AddCasterMarkPicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCasterMarkPicInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为导播台添加文本配置。
+
+        # @param request: Request instance for AddCasterMarkWordInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::AddCasterMarkWordInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::AddCasterMarkWordInfoResponse`
+        def AddCasterMarkWordInfo(request)
+          body = send_request('AddCasterMarkWordInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCasterMarkWordInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来新增导播台推流信息。导播台主监启动后，将会将主监画面推向该接口设置的地址。
 
         # @param request: Request instance for AddCasterOutputInfo.
@@ -976,6 +1024,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用来删除导播台某个Index对应的水印。
+
+        # @param request: Request instance for DeleteCasterMarkPicInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteCasterMarkPicInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteCasterMarkPicInfoResponse`
+        def DeleteCasterMarkPicInfo(request)
+          body = send_request('DeleteCasterMarkPicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCasterMarkPicInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来删除导播台的文本配置。
+
+        # @param request: Request instance for DeleteCasterMarkWordInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteCasterMarkWordInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteCasterMarkWordInfoResponse`
+        def DeleteCasterMarkWordInfo(request)
+          body = send_request('DeleteCasterMarkWordInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCasterMarkWordInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来删除导播台的推流信息。
         # 注：若删除推流到腾讯云直播源站配置，即OutputIndex为0，OutputType为1的推流配置，在重新启动主监后，系统会自动重新生成一个推流到腾讯云直播源站配置。
 
@@ -1741,6 +1837,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCasterListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来查询某个导播台的水印列表。
+
+        # @param request: Request instance for DescribeCasterMarkPicInfos.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterMarkPicInfosRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterMarkPicInfosResponse`
+        def DescribeCasterMarkPicInfos(request)
+          body = send_request('DescribeCasterMarkPicInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterMarkPicInfosResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来查询某个导播台的文本列表。
+
+        # @param request: Request instance for DescribeCasterMarkWordInfos.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterMarkWordInfosRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterMarkWordInfosResponse`
+        def DescribeCasterMarkWordInfos(request)
+          body = send_request('DescribeCasterMarkWordInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterMarkWordInfosResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3858,6 +4002,55 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCasterLayoutInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来修改导播台水印信息。
+        # 注意，修改的Index对应的水印需已存在
+
+        # @param request: Request instance for ModifyCasterMarkPicInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyCasterMarkPicInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyCasterMarkPicInfoResponse`
+        def ModifyCasterMarkPicInfo(request)
+          body = send_request('ModifyCasterMarkPicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCasterMarkPicInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来修改导播台文本配置。
+
+        # @param request: Request instance for ModifyCasterMarkWordInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyCasterMarkWordInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyCasterMarkWordInfoResponse`
+        def ModifyCasterMarkWordInfo(request)
+          body = send_request('ModifyCasterMarkWordInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCasterMarkWordInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
