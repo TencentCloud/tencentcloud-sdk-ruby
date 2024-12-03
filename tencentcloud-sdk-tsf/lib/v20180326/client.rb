@@ -2047,6 +2047,9 @@ module TencentCloud
         end
 
         # 获取容器事件列表
+        # 参数限制
+
+        # - 当类型是 instance 时，GroupId是必填项
 
         # @param request: Request instance for DescribeContainerEvents.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeContainerEventsRequest`

@@ -85,13 +85,13 @@ module TencentCloud
 
       # AclRule列表接口出参
       class AclRule < TencentCloud::Common::AbstractModel
-        # @param RuleName: Acl规则名称
+        # @param RuleName: ACL规则名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: ckafka集群实例Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param PatternType: 匹配类型，目前只支持前缀匹配，枚举值列表：PREFIXED
+        # @param PatternType: ACL规则匹配类型，目前只支持前缀匹配，枚举值列表：PREFIXED
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PatternType: String
         # @param Pattern: 表示前缀匹配的前缀的值
@@ -637,7 +637,7 @@ module TencentCloud
         # @param TopicName: 主题名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
-        # @param TopicId: 主题ID
+        # @param TopicId: 主题Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param DataSize: 主题占用Broker 容量大小
@@ -661,10 +661,10 @@ module TencentCloud
 
       # broker维度topic 流量排行指标
       class BrokerTopicFlowData < TencentCloud::Common::AbstractModel
-        # @param TopicName: Topic 名称
+        # @param TopicName: 主题名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
-        # @param TopicId: Topic Id
+        # @param TopicId: 主题Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param TopicTraffic: Topic 流量(MB)
@@ -1196,11 +1196,11 @@ module TencentCloud
 
       # Connection信息
       class Connection < TencentCloud::Common::AbstractModel
-        # @param TopicName: Topic名称
+        # @param TopicName: 主题名
         # @type TopicName: String
         # @param GroupId: 消费组ID
         # @type GroupId: String
-        # @param TopicId: Topic的Id
+        # @param TopicId: 主题Id
         # @type TopicId: String
 
         attr_accessor :TopicName, :GroupId, :TopicId
@@ -2377,8 +2377,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 11
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 11
+        deprecate :DeleteRouteTimestamp, :none, 2024, 12
+        deprecate :DeleteRouteTimestamp=, :none, 2024, 12
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -3246,7 +3246,7 @@ module TencentCloud
 
       # Datahub任务信息
       class DatahubTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务Id
         # @type TaskId: String
         # @param TaskName: 任务名称
         # @type TaskName: String
@@ -5167,7 +5167,7 @@ module TencentCloud
 
       # DescribeGroup返回实体
       class DescribeGroup < TencentCloud::Common::AbstractModel
-        # @param Group: groupId
+        # @param Group: 消费分组名称
         # @type Group: String
         # @param Protocol: 该 group 使用的协议。
         # @type Protocol: String
@@ -5815,9 +5815,9 @@ module TencentCloud
 
       # DescribeTopicFlowRanking请求参数结构体
       class DescribeTopicFlowRankingRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: ckafka集群实例Id
         # @type InstanceId: String
-        # @param RankingType: 排行类别(PRO-Topic生产流量/CON-Topic消费流量)
+        # @param RankingType: 排行类别，PRO：Topic生产流量；CON：Topic消费流量
         # @type RankingType: String
         # @param BeginDate: 排行起始日期
         # @type BeginDate: String
@@ -5847,7 +5847,7 @@ module TencentCloud
 
       # DescribeTopicFlowRanking返回参数结构体
       class DescribeTopicFlowRankingResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 流量排行
+        # @param Result: 流量排行返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicFlowRankingResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6588,7 +6588,7 @@ module TencentCloud
 
       # Es类型入参
       class EsParam < TencentCloud::Common::AbstractModel
-        # @param Resource: 实例资源
+        # @param Resource: Es实例资源Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
         # @param Port: Es的连接port
@@ -6735,7 +6735,7 @@ module TencentCloud
 
       # EventBus配置
       class EventBusParam < TencentCloud::Common::AbstractModel
-        # @param Type: 资源类型。EB_COS/EB_ES/EB_CLS
+        # @param Type: 资源类型。COS/ES/CLS
         # @type Type: String
         # @param SelfBuilt: 是否为自建集群
         # @type SelfBuilt: Boolean
@@ -7216,7 +7216,7 @@ module TencentCloud
 
       # 组实体
       class Group < TencentCloud::Common::AbstractModel
-        # @param GroupName: 组名称
+        # @param GroupName: 消费分组名称
         # @type GroupName: String
 
         attr_accessor :GroupName
@@ -7817,11 +7817,11 @@ module TencentCloud
 
       # 实例对象
       class Instance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: ckafka集群实例Id
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: ckafka集群实例Name
         # @type InstanceName: String
-        # @param Status: 实例的状态。0：创建中，1：运行中，2：删除中 ， 5 隔离中，-1 创建失败
+        # @param Status: 实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败
         # @type Status: Integer
         # @param IfCommunity: 是否开源实例。开源：true，不开源：false
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7846,9 +7846,9 @@ module TencentCloud
 
       # 实例属性返回结果对象
       class InstanceAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: ckafka集群实例Id
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: ckafka集群实例Name
         # @type InstanceName: String
         # @param VipList: 接入点 VIP 列表信息
         # @type VipList: Array
@@ -7856,7 +7856,7 @@ module TencentCloud
         # @type Vip: String
         # @param Vport: 虚拟端口
         # @type Vport: String
-        # @param Status: 实例的状态。0：创建中，1：运行中，2：删除中
+        # @param Status: 实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败
         # @type Status: Integer
         # @param Bandwidth: 实例带宽，单位：Mbps
         # @type Bandwidth: Integer
@@ -7892,10 +7892,10 @@ module TencentCloud
         # @param ExpireTime: 过期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
-        # @param ZoneIds: 跨可用区
+        # @param ZoneIds: 可用区列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneIds: Array
-        # @param Version: kafka版本信息
+        # @param Version: ckafka集群实例版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param MaxGroupNum: 最大分组数
@@ -7934,10 +7934,18 @@ module TencentCloud
         # @param InstanceChargeType: 实例计费类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceChargeType: String
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param FreePartitionNumber: 免费分区数量
+        # @type FreePartitionNumber: Integer
+        # @param ElasticFloatBandwidth: 弹性带宽上浮值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticFloatBandwidth: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth
 
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -7974,6 +7982,9 @@ module TencentCloud
           @RemainingTopics = remainingtopics
           @DynamicDiskConfig = dynamicdiskconfig
           @InstanceChargeType = instancechargetype
+          @ClusterType = clustertype
+          @FreePartitionNumber = freepartitionnumber
+          @ElasticFloatBandwidth = elasticfloatbandwidth
         end
 
         def deserialize(params)
@@ -8036,6 +8047,9 @@ module TencentCloud
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
           @InstanceChargeType = params['InstanceChargeType']
+          @ClusterType = params['ClusterType']
+          @FreePartitionNumber = params['FreePartitionNumber']
+          @ElasticFloatBandwidth = params['ElasticFloatBandwidth']
         end
       end
 
@@ -8102,9 +8116,9 @@ module TencentCloud
 
       # 实例详情
       class InstanceDetail < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: ckafka集群实例Id
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: ckafka集群实例名称
         # @type InstanceName: String
         # @param Vip: 访问实例的vip 信息
         # @type Vip: String
@@ -8112,11 +8126,11 @@ module TencentCloud
         # @type Vport: String
         # @param VipList: 虚拟IP列表
         # @type VipList: Array
-        # @param Status: 实例的状态。0：创建中，1：运行中，2：删除中：5隔离中， -1 创建失败
+        # @param Status: 实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败
         # @type Status: Integer
         # @param Bandwidth: 实例带宽，单位Mbps
         # @type Bandwidth: Integer
-        # @param DiskSize: 实例的存储大小，单位GB
+        # @param DiskSize: ckafka集群实例磁盘大小，单位G
         # @type DiskSize: Integer
         # @param ZoneId: 可用区域ID
         # @type ZoneId: Integer
@@ -8149,10 +8163,10 @@ module TencentCloud
         # @param Cvm: ckafka售卖类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cvm: Integer
-        # @param InstanceType: ckafka实例类型
+        # @param InstanceType: ckafka集群实例类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
-        # @param DiskType: 磁盘类型
+        # @param DiskType: ckafka集群实例磁盘类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param MaxTopicNumber: 当前规格最大Topic数
@@ -8167,13 +8181,13 @@ module TencentCloud
         # @param PartitionNumber: 实例当前partition数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionNumber: Integer
-        # @param PublicNetworkChargeType: 公网带宽类型
+        # @param PublicNetworkChargeType: ckafka集群实例公网带宽类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetworkChargeType: String
-        # @param PublicNetwork: 公网带宽值
+        # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: Integer
-        # @param ClusterType: 实例类型
+        # @param ClusterType: ckafka集群实例底层集群类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
         # @param Features: 实例功能列表
@@ -8516,9 +8530,9 @@ module TencentCloud
       class KafkaParam < TencentCloud::Common::AbstractModel
         # @param SelfBuilt: 是否为自建集群
         # @type SelfBuilt: Boolean
-        # @param Resource: 实例资源
+        # @param Resource: ckafka集群实例Id
         # @type Resource: String
-        # @param Topic: Topic名称，多个以“,”分隔
+        # @param Topic: 主题名，多个以“,”分隔
         # @type Topic: String
         # @param OffsetType: Offset类型，最开始位置earliest，最新位置latest，时间点位置timestamp
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8529,10 +8543,10 @@ module TencentCloud
         # @param ResourceName: 实例资源名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
-        # @param ZoneId: Zone ID
+        # @param ZoneId: 可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
-        # @param TopicId: Topic的Id
+        # @param TopicId: 主题Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param PartitionNum: Topic的分区数
@@ -8758,7 +8772,7 @@ module TencentCloud
         # @param Resource: 该MariaDB在连接管理内的Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
-        # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认位initial
+        # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认值initial
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotMode: String
         # @param KeyColumns: 格式：库1.表1:字段1,字段2;库2.表2:字段2，表之间;（分号）隔开，字段之间,（逗号）隔开。不指定的表默认取表的主键
@@ -9204,8 +9218,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2024, 11
-        deprecate :DynamicDiskConfig=, :none, 2024, 11
+        deprecate :DynamicDiskConfig, :none, 2024, 12
+        deprecate :DynamicDiskConfig=, :none, 2024, 12
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil)
           @InstanceId = instanceid
@@ -9979,7 +9993,7 @@ module TencentCloud
         # @param Resource: 该MySQL在连接管理内的Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
-        # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认位initial
+        # @param SnapshotMode: 复制存量信息(schema_only不复制, initial全量)，默认值initial
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotMode: String
         # @param DdlTopic: 存放MySQL的Ddl信息的Topic，为空则默认不存放
@@ -10173,10 +10187,10 @@ module TencentCloud
 
       # 分区和位移
       class PartitionOffset < TencentCloud::Common::AbstractModel
-        # @param Partition: Partition,例如"0"或"1"
+        # @param Partition: 分区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Partition: String
-        # @param Offset: Offset,例如100
+        # @param Offset: 位点偏移量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
 
@@ -10608,7 +10622,7 @@ module TencentCloud
         # @param RegionCodeV3: 地域代码（V3版本）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionCodeV3: String
-        # @param Support: NONE:默认值不支持任何特殊机型\nCVM:支持CVM类型
+        # @param Support: NONE:默认值不支持任何特殊类型 实例类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Support: String
         # @param Ipv6: 是否支持ipv6, 0：表示不支持，1：表示支持
@@ -10736,7 +10750,7 @@ module TencentCloud
         # 2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）
         # 3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
         # @type AccessType: Integer
-        # @param RouteId: 路由ID
+        # @param RouteId: 路由Id
         # @type RouteId: Integer
         # @param VipType: vip网络类型（1:外网TGW  2:基础网络 3:VPC网络 4:支撑网络(idc 环境) 5:SSL外网访问方式访问 6:黑石环境vpc 7:支撑网络(cvm 环境）
         # @type VipType: Integer
@@ -10751,13 +10765,13 @@ module TencentCloud
         # @param DeleteTimestamp: 时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteTimestamp: String
-        # @param Subnet: 子网信息
+        # @param Subnet: 子网Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnet: String
         # @param BrokerVipList: 虚拟IP列表(1对1 broker节点)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerVipList: Array
-        # @param VpcId: vpc信息
+        # @param VpcId: 私有网络Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
 
@@ -11622,7 +11636,7 @@ module TencentCloud
         # @type PartitionNum: Integer
         # @param ReplicaNum: 副本数
         # @type ReplicaNum: Integer
-        # @param TopicTraffic: Topic 流量
+        # @param TopicTraffic: Topic 流量,单位MB(设置date时以sum方式聚合)
         # @type TopicTraffic: String
         # @param MessageHeap: Topic 消息堆积
         # @type MessageHeap: Integer
@@ -11887,7 +11901,7 @@ module TencentCloud
 
       # 分区详情
       class TopicPartitionDO < TencentCloud::Common::AbstractModel
-        # @param Partition: Partition ID
+        # @param Partition: Partition 分区ID
         # @type Partition: Integer
         # @param LeaderStatus: Leader 运行状态
         # @type LeaderStatus: Integer
@@ -12360,21 +12374,21 @@ module TencentCloud
 
       # zone信息实体
       class ZoneInfo < TencentCloud::Common::AbstractModel
-        # @param ZoneId: zone的id
+        # @param ZoneId: 可用区
         # @type ZoneId: String
         # @param IsInternalApp: 是否内部APP
         # @type IsInternalApp: Integer
-        # @param AppId: app id
+        # @param AppId: 应用标识
         # @type AppId: Integer
         # @param Flag: 标识
         # @type Flag: Boolean
-        # @param ZoneName: zone名称
+        # @param ZoneName: 可用区名称
         # @type ZoneName: String
-        # @param ZoneStatus: zone状态
+        # @param ZoneStatus: 可用区状态
         # @type ZoneStatus: Integer
         # @param Exflag: 额外标识
         # @type Exflag: String
-        # @param SoldOut: json对象，key为机型，value true为售罄，false为未售罄
+        # @param SoldOut: true为售罄，false为未售罄
         # @type SoldOut: String
         # @param SalesInfo: 标准版售罄信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -12384,8 +12398,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 11
-        deprecate :Exflag=, :none, 2024, 11
+        deprecate :Exflag, :none, 2024, 12
+        deprecate :Exflag=, :none, 2024, 12
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid
@@ -12448,13 +12462,13 @@ module TencentCloud
         # @param Physical: 购买物理独占版配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Physical: String
-        # @param PublicNetwork: 公网带宽
+        # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetwork: String
         # @param PublicNetworkLimit: 公网带宽配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicNetworkLimit: String
-        # @param RequestId: 请求ID
+        # @param RequestId: 请求Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
         # @param Version: 版本

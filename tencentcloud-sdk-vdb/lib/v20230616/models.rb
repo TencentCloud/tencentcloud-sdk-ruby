@@ -556,14 +556,20 @@ module TencentCloud
         # @param Port: 内网访问Port。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
+        # @param PreserveDuration: 旧 ip 保留时长，单位天
+        # @type PreserveDuration: Integer
+        # @param ExpireTime: 旧 ip 到期时间
+        # @type ExpireTime: String
 
-        attr_accessor :VpcId, :SubnetId, :Vip, :Port
+        attr_accessor :VpcId, :SubnetId, :Vip, :Port, :PreserveDuration, :ExpireTime
 
-        def initialize(vpcid=nil, subnetid=nil, vip=nil, port=nil)
+        def initialize(vpcid=nil, subnetid=nil, vip=nil, port=nil, preserveduration=nil, expiretime=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @Vip = vip
           @Port = port
+          @PreserveDuration = preserveduration
+          @ExpireTime = expiretime
         end
 
         def deserialize(params)
@@ -571,6 +577,8 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Vip = params['Vip']
           @Port = params['Port']
+          @PreserveDuration = params['PreserveDuration']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

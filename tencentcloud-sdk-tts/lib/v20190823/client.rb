@@ -103,7 +103,7 @@ module TencentCloud
         # 默认接口请求频率限制：
         # 精品音色和标准音色：20次/秒
         # 大模型音色：10次/秒
-        # 一句话复刻音色：5次/秒
+        # 一句话复刻音色：暂不支持
 
         # @param request: Request instance for TextToVoice.
         # @type request: :class:`Tencentcloud::tts::V20190823::TextToVoiceRequest`

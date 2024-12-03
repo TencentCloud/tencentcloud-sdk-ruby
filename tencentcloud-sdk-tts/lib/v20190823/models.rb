@@ -279,7 +279,7 @@ module TencentCloud
         # @type EmotionCategory: String
         # @param EmotionIntensity: 控制合成音频情感程度，取值范围为[50,200],默认为100；只有EmotionCategory不为空时生效；
         # @type EmotionIntensity: Integer
-        # @param FastVoiceType: 一句话版声音复刻音色ID，使用一句话版声音复刻音色时需填写。
+        # @param FastVoiceType: 一句话版声音复刻音色ID，使用一句话版声音复刻音色时需填写。【已废弃】
         # @type FastVoiceType: String
 
         attr_accessor :Text, :SessionId, :Volume, :Speed, :ProjectId, :ModelType, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :EnableSubtitle, :SegmentRate, :EmotionCategory, :EmotionIntensity, :FastVoiceType

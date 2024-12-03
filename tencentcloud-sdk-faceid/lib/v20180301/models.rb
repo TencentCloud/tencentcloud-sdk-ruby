@@ -316,8 +316,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 11
-        deprecate :Idcard=, :none, 2024, 11
+        deprecate :Idcard, :none, 2024, 12
+        deprecate :Idcard=, :none, 2024, 12
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -3091,8 +3091,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 11
-        deprecate :AsrResultSimilarity=, :none, 2024, 11
+        deprecate :AsrResultSimilarity, :none, 2024, 12
+        deprecate :AsrResultSimilarity=, :none, 2024, 12
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3585,7 +3585,6 @@ module TencentCloud
         # 0：正常。
         # 1：停机。
         # 2：销号。
-        # 3：空号。
         # 4：不在网。
         # 99：未知状态。
         # @type StatusCode: Integer

@@ -2554,7 +2554,7 @@ module TencentCloud
         # @type BotBizId: String
         # @param FileType: 文件类型,正常的文件名类型后缀，例如 xlsx、pdf、 docx、png 等
         # @type FileType: String
-        # @param IsPublic: IsPublic用于上传文件时选择场景，当上传为对话端文件时IsPublic为true，上传文档库文件时场景IsPublic为false
+        # @param IsPublic: IsPublic用于上传文件或图片时选择场景，当上传为对话端图片时IsPublic为true，上传文件（包括文档库文件和对话端文件）时IsPublic为false
         # @type IsPublic: Boolean
         # @param TypeKey: 存储类型: offline:离线文件，realtime:实时文件；为空默认为offline
         # @type TypeKey: String
@@ -6664,8 +6664,8 @@ module TencentCloud
 
         attr_accessor :Name, :Url, :TaskId, :Policy, :Operate
         extend Gem::Deprecate
-        deprecate :Operate, :none, 2024, 11
-        deprecate :Operate=, :none, 2024, 11
+        deprecate :Operate, :none, 2024, 12
+        deprecate :Operate=, :none, 2024, 12
 
         def initialize(name=nil, url=nil, taskid=nil, policy=nil, operate=nil)
           @Name = name
@@ -7832,10 +7832,10 @@ module TencentCloud
 
         attr_accessor :Query, :Docs, :Model, :DataList, :Online
         extend Gem::Deprecate
-        deprecate :DataList, :none, 2024, 11
-        deprecate :DataList=, :none, 2024, 11
-        deprecate :Online, :none, 2024, 11
-        deprecate :Online=, :none, 2024, 11
+        deprecate :DataList, :none, 2024, 12
+        deprecate :DataList=, :none, 2024, 12
+        deprecate :Online, :none, 2024, 12
+        deprecate :Online=, :none, 2024, 12
 
         def initialize(query=nil, docs=nil, model=nil, datalist=nil, online=nil)
           @Query = query

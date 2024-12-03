@@ -2022,8 +2022,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2024, 11
-        deprecate :OutputStorage=, :none, 2024, 11
+        deprecate :OutputStorage, :none, 2024, 12
+        deprecate :OutputStorage=, :none, 2024, 12
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -2058,14 +2058,17 @@ module TencentCloud
         # @type EndTimeOffset: Float
         # @param Text: 识别文本。
         # @type Text: String
+        # @param Wordlist: 字词时间戳信息。
+        # @type Wordlist: Array
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Wordlist
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, wordlist=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @Text = text
+          @Wordlist = wordlist
         end
 
         def deserialize(params)
@@ -2073,6 +2076,14 @@ module TencentCloud
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @Text = params['Text']
+          unless params['Wordlist'].nil?
+            @Wordlist = []
+            params['Wordlist'].each do |i|
+              wordresult_tmp = WordResult.new
+              wordresult_tmp.deserialize(i)
+              @Wordlist << wordresult_tmp
+            end
+          end
         end
       end
 
@@ -2411,15 +2422,19 @@ module TencentCloud
       class AiRecognitionTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频智能识别模板 ID 。
         # @type Definition: Integer
+        # @param UserExtPara: 用户扩展字段，一般场景不用填。
+        # @type UserExtPara: String
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :UserExtPara
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, userextpara=nil)
           @Definition = definition
+          @UserExtPara = userextpara
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          @UserExtPara = params['UserExtPara']
         end
       end
 
@@ -2933,15 +2948,18 @@ module TencentCloud
         # @type Text: String
         # @param Trans: 翻译文本。
         # @type Trans: String
+        # @param Wordlist: 字词时间戳信息。
+        # @type Wordlist: Array
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Trans
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Trans, :Wordlist
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, trans=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, trans=nil, wordlist=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @Text = text
           @Trans = trans
+          @Wordlist = wordlist
         end
 
         def deserialize(params)
@@ -2950,6 +2968,14 @@ module TencentCloud
           @EndTimeOffset = params['EndTimeOffset']
           @Text = params['Text']
           @Trans = params['Trans']
+          unless params['Wordlist'].nil?
+            @Wordlist = []
+            params['Wordlist'].each do |i|
+              wordresult_tmp = WordResult.new
+              wordresult_tmp.deserialize(i)
+              @Wordlist << wordresult_tmp
+            end
+          end
         end
       end
 
@@ -11143,10 +11169,26 @@ module TencentCloud
         # @type TranscodeType: String
         # @param Name: 转码模板标识过滤条件，长度限制：64 个字符。
         # @type Name: String
+        # @param SceneType: 视频场景化，可选值：
+        # normal：通用转码场景：通用转码压缩场景。
+        # pgc：PGC高清影视：压缩时会注重影视剧的观看体验，根据影视剧特性进行ROI编码，同时保留高质量的视频内容和音频。
+        # materials_video：高清素材：素材资源类场景，对画质要求极高，较多透明画面内容，在压缩的同时接近视觉无损。
+        # ugc：UGC内容：适用于广泛的UGC/短视频场景，针对短视频的特性优化编码码率， 画质提升，提升业务QOS/QOE指标。
+        # e-commerce_video：秀场/电商类：压缩时会强调细节清晰度和ROI区域提升，尤其注重保持人脸区域的画质。
+        # educational_video：教育类：压缩时会强调文字和图像的清晰度和可读性，以便学生更好地理解内容，确保讲解内容清晰传达。
+        # no_config：未配置。
+        # @type SceneType: String
+        # @param CompressType: 转码策略，可选值：
+        # ultra_compress：极致压缩：相比标准压缩，该策略能在保证一定画质的基础上最大限度压缩码率，极大节约带宽和存储成本。
+        # standard_compress：综合最优：平衡压缩率与画质，在保证主观画质没有明显降低的情况下尽可能压缩文件。该策略仅收取音视频极速高清转码费用。
+        # high_compress：码率优先：优先保证降低文件体积大小，可能有一定画质损失。该策略仅收取音视频极速高清转码费用。
+        # low_compress：画质优先：优先保证画质，压缩出来的文件体积可能相对较大。该策略仅收取音视频极速高清转码费用。
+        # no_config：未配置。
+        # @type CompressType: String
 
-        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType, :Name
+        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType, :Name, :SceneType, :CompressType
 
-        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil, name=nil)
+        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil, name=nil, scenetype=nil, compresstype=nil)
           @Definitions = definitions
           @Type = type
           @ContainerType = containertype
@@ -11155,6 +11197,8 @@ module TencentCloud
           @Limit = limit
           @TranscodeType = transcodetype
           @Name = name
+          @SceneType = scenetype
+          @CompressType = compresstype
         end
 
         def deserialize(params)
@@ -11166,6 +11210,8 @@ module TencentCloud
           @Limit = params['Limit']
           @TranscodeType = params['TranscodeType']
           @Name = params['Name']
+          @SceneType = params['SceneType']
+          @CompressType = params['CompressType']
         end
       end
 
@@ -13580,10 +13626,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2024, 11
-        deprecate :QualityControlResults=, :none, 2024, 11
-        deprecate :DiagnoseResults, :none, 2024, 11
-        deprecate :DiagnoseResults=, :none, 2024, 11
+        deprecate :QualityControlResults, :none, 2024, 12
+        deprecate :QualityControlResults=, :none, 2024, 12
+        deprecate :DiagnoseResults, :none, 2024, 12
+        deprecate :DiagnoseResults=, :none, 2024, 12
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -21257,10 +21303,13 @@ module TencentCloud
         # @param EnhanceConfig: 音视频增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
+        # @param AliasName: 转码模板别名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasName: String
 
-        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime, :EnhanceConfig
+        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime, :EnhanceConfig, :AliasName
 
-        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil, enhanceconfig=nil)
+        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil, enhanceconfig=nil, aliasname=nil)
           @Definition = definition
           @Container = container
           @Name = name
@@ -21275,6 +21324,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @EnhanceConfig = enhanceconfig
+          @AliasName = aliasname
         end
 
         def deserialize(params)
@@ -21304,6 +21354,7 @@ module TencentCloud
             @EnhanceConfig = EnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
+          @AliasName = params['AliasName']
         end
       end
 
@@ -21930,10 +21981,35 @@ module TencentCloud
         # @param SegmentSpecificInfo: 切片特殊配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentSpecificInfo: :class:`Tencentcloud::Mps.v20190612.models.SegmentSpecificInfo`
+        # @param ScenarioBased: 模版是否开启场景化
+        # 0：不开启
+        # 1：开启
+        # 默认值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScenarioBased: Integer
+        # @param SceneType: 视频场景化，可选值：
+        # normal：通用转码场景：通用转码压缩场景。
+        # pgc：PGC高清影视：压缩时会注重影视剧的观看体验，根据影视剧特性进行ROI编码，同时保留高质量的视频内容和音频。
+        # materials_video：高清素材：素材资源类场景，对画质要求极高，较多透明画面内容，在压缩的同时接近视觉无损。
+        # ugc：UGC内容：适用于广泛的UGC/短视频场景，针对短视频的特性优化编码码率， 画质提升，提升业务QOS/QOE指标。
+        # e-commerce_video：秀场/电商类：压缩时会强调细节清晰度和ROI区域提升，尤其注重保持人脸区域的画质。
+        # educational_video：教育类：压缩时会强调文字和图像的清晰度和可读性，以便学生更好地理解内容，确保讲解内容清晰传达。
+        # 默认值：normal
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneType: String
+        # @param CompressType: 转码策略，可选值：
+        # ultra_compress：极致压缩：相比标准压缩，该策略能在保证一定画质的基础上最大限度压缩码率，极大节约带宽和存储成本。
+        # standard_compress：综合最优：平衡压缩率与画质，在保证主观画质没有明显降低的情况下尽可能压缩文件。该策略仅收取音视频极速高清转码费用。
+        # high_compress：码率优先：优先保证降低文件体积大小，可能有一定画质损失。该策略仅收取音视频极速高清转码费用。
+        # low_compress：画质优先：优先保证画质，压缩出来的文件体积可能相对较大。该策略仅收取音视频极速高清转码费用。
+        # 默认值：standard_compress
+        # 注：若需要在电视上观看视频，不建议使用ultra_compress策略。ultra_compress策略计费标准为极速高清转码 + 音视频增强-去毛刺。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompressType: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :GopUnit, :FillType, :Vcrf, :HlsTime, :SegmentType, :FpsDenominator, :Stereo3dType, :VideoProfile, :VideoLevel, :Bframes, :Mode, :Sar, :NoScenecut, :BitDepth, :RawPts, :Compress, :SegmentSpecificInfo
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :GopUnit, :FillType, :Vcrf, :HlsTime, :SegmentType, :FpsDenominator, :Stereo3dType, :VideoProfile, :VideoLevel, :Bframes, :Mode, :Sar, :NoScenecut, :BitDepth, :RawPts, :Compress, :SegmentSpecificInfo, :ScenarioBased, :SceneType, :CompressType
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, gopunit=nil, filltype=nil, vcrf=nil, hlstime=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil, videoprofile=nil, videolevel=nil, bframes=nil, mode=nil, sar=nil, noscenecut=nil, bitdepth=nil, rawpts=nil, compress=nil, segmentspecificinfo=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, gopunit=nil, filltype=nil, vcrf=nil, hlstime=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil, videoprofile=nil, videolevel=nil, bframes=nil, mode=nil, sar=nil, noscenecut=nil, bitdepth=nil, rawpts=nil, compress=nil, segmentspecificinfo=nil, scenariobased=nil, scenetype=nil, compresstype=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -21958,6 +22034,9 @@ module TencentCloud
           @RawPts = rawpts
           @Compress = compress
           @SegmentSpecificInfo = segmentspecificinfo
+          @ScenarioBased = scenariobased
+          @SceneType = scenetype
+          @CompressType = compresstype
         end
 
         def deserialize(params)
@@ -21988,6 +22067,9 @@ module TencentCloud
             @SegmentSpecificInfo = SegmentSpecificInfo.new
             @SegmentSpecificInfo.deserialize(params['SegmentSpecificInfo'])
           end
+          @ScenarioBased = params['ScenarioBased']
+          @SceneType = params['SceneType']
+          @CompressType = params['CompressType']
         end
       end
 
@@ -22147,10 +22229,34 @@ module TencentCloud
         # @param SegmentSpecificInfo: 切片特殊配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentSpecificInfo: :class:`Tencentcloud::Mps.v20190612.models.SegmentSpecificInfo`
+        # @param ScenarioBased: 模版是否开启场景化
+        # 0：不开启
+        # 1：开启
+        # 默认值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScenarioBased: Integer
+        # @param SceneType: 视频场景化，可选值：
+        # normal：通用转码场景：通用转码压缩场景 pgc：PGC高清影视：压缩时会注重影视剧的观看体验，根据影视剧特性进行ROI编码，同时保留高质量的视频内容和音频。
+        # materials_video：高清素材：素材资源类场景，对画质要求极高，较多透明画面内容，在压缩的同时接近视觉无损。
+        # ugc：UGC内容：适用于广泛的UGC/短视频场景，针对短视频的特性优化编码码率， 画质提升，提升业务QOS/QOE指标。
+        # e-commerce_video：秀场/电商类：压缩时会强调细节清晰度和ROI区域提升，尤其注重保持人脸区域的画质。
+        # educational_video：教育类：压缩时会强调文字和图像的清晰度和可读性，以便学生更好地理解内容，确保讲解内容清晰传达。
+        # 默认值：normal
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneType: String
+        # @param CompressType: 转码策略，可选值：
+        # ultra_compress：极致压缩：相比标准压缩，该策略能在保证一定画质的基础上最大限度压缩码率，极大节约带宽和存储成本。
+        # standard_compress：综合最优：平衡压缩率与画质，在保证主观画质没有明显降低的情况下尽可能压缩文件。该策略仅收取音视频极速高清转码费用。
+        # high_compress：码率优先：优先保证降低文件体积大小，可能有一定画质损失。该策略仅收取音视频极速高清转码费用。
+        # low_compress：画质优先：优先保证画质，压缩出来的文件体积可能相对较大。该策略仅收取音视频极速高清转码费用。
+        # 默认值：standard_compress
+        # 注：若需要在电视上观看视频，不建议使用ultra_compress策略。ultra_compress策略计费标准为极速高清转码 + 音视频增强-去毛刺。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompressType: String
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :GopUnit, :FillType, :Vcrf, :ContentAdaptStream, :HlsTime, :SegmentType, :FpsDenominator, :Stereo3dType, :VideoProfile, :VideoLevel, :Bframes, :Mode, :Sar, :NoScenecut, :BitDepth, :RawPts, :Compress, :SegmentSpecificInfo
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :GopUnit, :FillType, :Vcrf, :ContentAdaptStream, :HlsTime, :SegmentType, :FpsDenominator, :Stereo3dType, :VideoProfile, :VideoLevel, :Bframes, :Mode, :Sar, :NoScenecut, :BitDepth, :RawPts, :Compress, :SegmentSpecificInfo, :ScenarioBased, :SceneType, :CompressType
 
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, gopunit=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, hlstime=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil, videoprofile=nil, videolevel=nil, bframes=nil, mode=nil, sar=nil, noscenecut=nil, bitdepth=nil, rawpts=nil, compress=nil, segmentspecificinfo=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, gopunit=nil, filltype=nil, vcrf=nil, contentadaptstream=nil, hlstime=nil, segmenttype=nil, fpsdenominator=nil, stereo3dtype=nil, videoprofile=nil, videolevel=nil, bframes=nil, mode=nil, sar=nil, noscenecut=nil, bitdepth=nil, rawpts=nil, compress=nil, segmentspecificinfo=nil, scenariobased=nil, scenetype=nil, compresstype=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -22176,6 +22282,9 @@ module TencentCloud
           @RawPts = rawpts
           @Compress = compress
           @SegmentSpecificInfo = segmentspecificinfo
+          @ScenarioBased = scenariobased
+          @SceneType = scenetype
+          @CompressType = compresstype
         end
 
         def deserialize(params)
@@ -22207,6 +22316,9 @@ module TencentCloud
             @SegmentSpecificInfo = SegmentSpecificInfo.new
             @SegmentSpecificInfo.deserialize(params['SegmentSpecificInfo'])
           end
+          @ScenarioBased = params['ScenarioBased']
+          @SceneType = params['SceneType']
+          @CompressType = params['CompressType']
         end
       end
 
@@ -22417,6 +22529,30 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 字词信息。
+      class WordResult < TencentCloud::Common::AbstractModel
+        # @param Word: 字词文本。
+        # @type Word: String
+        # @param Start: 字词起始时间戳，单位秒。
+        # @type Start: Float
+        # @param End: 字词结束时间戳，单位秒。
+        # @type End: Float
+
+        attr_accessor :Word, :Start, :End
+
+        def initialize(word=nil, start=nil, _end=nil)
+          @Word = word
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Word = params['Word']
+          @Start = params['Start']
+          @End = params['End']
         end
       end
 

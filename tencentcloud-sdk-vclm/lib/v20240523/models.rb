@@ -44,6 +44,61 @@ module TencentCloud
         end
       end
 
+      # CheckAnimateImageJob请求参数结构体
+      class CheckAnimateImageJobRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 动作模板ID。
+        # @type TemplateId: String
+        # @param ImageUrl: 图片格式：支持PNG、JPG、JPEG、BMP、WEBP格式；
+        # 图片分辨率：长边分辨率范围【192，4096】；
+        # 图片大小：不超过10M；
+        # 图片宽高比：【宽：高】数值在 1:2 到 1:1.2 范围内
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片base64数据。
+        # 图片格式：支持PNG、JPG、JPEG、BMP、WEBP格式；
+        # 图片分辨率：长边分辨率范围【192，4096】；
+        # 图片大小：不超过10M；
+        # 图片宽高比：【宽：高】数值在 1:2 到 1:1.2 范围内
+        # @type ImageBase64: String
+        # @param EnableBodyJoins: 是否检测输入图人体12个身体部位（头部、颈部、右肩、右肘、右腕、左肩、左肘、左腕、右髋、左髋,、左膝、右膝）。默认不检测。
+        # @type EnableBodyJoins: Boolean
+
+        attr_accessor :TemplateId, :ImageUrl, :ImageBase64, :EnableBodyJoins
+
+        def initialize(templateid=nil, imageurl=nil, imagebase64=nil, enablebodyjoins=nil)
+          @TemplateId = templateid
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @EnableBodyJoins = enablebodyjoins
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @EnableBodyJoins = params['EnableBodyJoins']
+        end
+      end
+
+      # CheckAnimateImageJob返回参数结构体
+      class CheckAnimateImageJobResponse < TencentCloud::Common::AbstractModel
+        # @param CheckPass: 输入图是否通过校验。
+        # @type CheckPass: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckPass, :RequestId
+
+        def initialize(checkpass=nil, requestid=nil)
+          @CheckPass = checkpass
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CheckPass = params['CheckPass']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ConfirmVideoTranslateJob请求参数结构体
       class ConfirmVideoTranslateJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 视频转译任务 ID
@@ -433,12 +488,16 @@ module TencentCloud
 
       # SubmitImageAnimateJob请求参数结构体
       class SubmitImageAnimateJobRequest < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片格式：支持PNG、JPG、JPEG格式；
-        # 图片分辨率：长边分辨率不超过2056；
+        # @param ImageUrl: 图片格式：支持PNG、JPG、JPEG、BMP、WEBP格式；
+        # 图片分辨率：长边分辨率范围【192，4096】；
         # 图片大小：不超过10M；
         # 图片宽高比：【宽：高】数值在 1:2 到 1:1.2 范围内
         # @type ImageUrl: String
-        # @param ImageBase64: 图片base64数据。图片格式：支持PNG、JPG、JPEG格式；图片分辨率：长边分辨率不超过2056；图片大小：不超过10M；图片宽高比：【宽：高】数值在 1:2 到 1:1.2 范围内
+        # @param ImageBase64: 图片base64数据。
+        # 图片格式：支持PNG、JPG、JPEG、BMP、WEBP格式；
+        # 图片分辨率：长边分辨率范围【192，4096】；
+        # 图片大小：不超过10M；
+        # 图片宽高比：【宽：高】数值在 1:2 到 1:1.2 范围内
         # @type ImageBase64: String
         # @param TemplateId: 动作模板ID。取值说明：ke3 科目三；tuziwu 兔子舞；huajiangwu 划桨舞。
         # @type TemplateId: String
@@ -446,7 +505,7 @@ module TencentCloud
         # @type EnableAudio: Boolean
         # @param EnableBodyJoins: 是否检测输入图人体12个身体部位（头部、颈部、右肩、右肘、右腕、左肩、左肘、左腕、右髋、左髋,、左膝、右膝）。默认不检测。
         # @type EnableBodyJoins: Boolean
-        # @param EnableSegment: 最终视频是否保留原图的背景（该模式对于tuziwu、huajiangwu不生效）
+        # @param EnableSegment: 最终视频是否保留原图的背景，默认不保留。
         # @type EnableSegment: Boolean
         # @param LogoAdd: 为生成视频添加标识的开关，默认为0。
         # 1：添加标识。
@@ -488,7 +547,7 @@ module TencentCloud
 
       # SubmitImageAnimateJob返回参数结构体
       class SubmitImageAnimateJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
+        # @param JobId: 图片跳舞任务ID。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1696,28 +1696,110 @@ module TencentCloud
 
       # CheckMigrateCluster请求参数结构体
       class CheckMigrateClusterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+        # @param Cpu: 实例CPU核数
+        # @type Cpu: Integer
+        # @param Memory: 实例内存大小，单位：MB
+        # @type Memory: Integer
+        # @param Volume: 实例硬盘大小，单位：GB
+        # @type Volume: Integer
+        # @param DiskType: 磁盘类型。 CLOUD_SSD: SSD云硬盘; CLOUD_HSSD: 增强型SSD云硬盘
+        # @type DiskType: String
+        # @param ClusterTopology: 集群版节点拓扑配置。
+        # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
+        # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 标准型集群版实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 加强型集群版实例。
+        # @type DeviceType: String
+        # @param RoInfo: 只读实例信息
+        # @type RoInfo: Array
 
+        attr_accessor :InstanceId, :Cpu, :Memory, :Volume, :DiskType, :ClusterTopology, :DeviceType, :RoInfo
 
-        def initialize()
+        def initialize(instanceid=nil, cpu=nil, memory=nil, volume=nil, disktype=nil, clustertopology=nil, devicetype=nil, roinfo=nil)
+          @InstanceId = instanceid
+          @Cpu = cpu
+          @Memory = memory
+          @Volume = volume
+          @DiskType = disktype
+          @ClusterTopology = clustertopology
+          @DeviceType = devicetype
+          @RoInfo = roinfo
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Volume = params['Volume']
+          @DiskType = params['DiskType']
+          unless params['ClusterTopology'].nil?
+            @ClusterTopology = ClusterTopology.new
+            @ClusterTopology.deserialize(params['ClusterTopology'])
+          end
+          @DeviceType = params['DeviceType']
+          unless params['RoInfo'].nil?
+            @RoInfo = []
+            params['RoInfo'].each do |i|
+              migrateclusterroinfo_tmp = MigrateClusterRoInfo.new
+              migrateclusterroinfo_tmp.deserialize(i)
+              @RoInfo << migrateclusterroinfo_tmp
+            end
+          end
         end
       end
 
       # CheckMigrateCluster返回参数结构体
       class CheckMigrateClusterResponse < TencentCloud::Common::AbstractModel
+        # @param CheckResult: 校验是否通过，通过为pass，失败为fail
+        # @type CheckResult: String
+        # @param Items: 校验项
+        # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CheckResult, :Items, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(checkresult=nil, items=nil, requestid=nil)
+          @CheckResult = checkresult
+          @Items = items
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @CheckResult = params['CheckResult']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              checkmigrateresult_tmp = CheckMigrateResult.new
+              checkmigrateresult_tmp.deserialize(i)
+              @Items << checkmigrateresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 迁移集群版校验结果
+      class CheckMigrateResult < TencentCloud::Common::AbstractModel
+        # @param Name: 校验名称
+        # @type Name: String
+        # @param Status: 校验结果，通过为pass，失败为fail
+        # @type Status: String
+        # @param Desc: 校验结果描述
+        # @type Desc: String
+
+        attr_accessor :Name, :Status, :Desc
+
+        def initialize(name=nil, status=nil, desc=nil)
+          @Name = name
+          @Status = status
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Status = params['Status']
+          @Desc = params['Desc']
         end
       end
 
@@ -9449,6 +9531,54 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @ExClusterId = params['ExClusterId']
           @ExClusterName = params['ExClusterName']
+        end
+      end
+
+      # 一键迁移集群版只读实例信息
+      class MigrateClusterRoInfo < TencentCloud::Common::AbstractModel
+        # @param RoInstanceId: 只读实例名称
+        # @type RoInstanceId: String
+        # @param Cpu: 只读实例CPU核数
+        # @type Cpu: Integer
+        # @param Memory: 只读实例内存大小，单位：MB
+        # @type Memory: Integer
+        # @param Volume: 只读实例硬盘大小，单位：GB
+        # @type Volume: Integer
+        # @param DiskType: 磁盘类型。 CLOUD_SSD: SSD云硬盘; CLOUD_HSSD: 增强型SSD云硬盘
+        # @type DiskType: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 标准型集群版实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 加强型集群版实例。
+        # @type DeviceType: String
+        # @param RoGroupId: 只读实例所在ro组，例：cdbrg-xxx
+        # @type RoGroupId: String
+        # @param SrcAlarmPolicyList: 实例当前告警策略id数组
+        # @type SrcAlarmPolicyList: Array
+
+        attr_accessor :RoInstanceId, :Cpu, :Memory, :Volume, :DiskType, :Zone, :DeviceType, :RoGroupId, :SrcAlarmPolicyList
+
+        def initialize(roinstanceid=nil, cpu=nil, memory=nil, volume=nil, disktype=nil, zone=nil, devicetype=nil, rogroupid=nil, srcalarmpolicylist=nil)
+          @RoInstanceId = roinstanceid
+          @Cpu = cpu
+          @Memory = memory
+          @Volume = volume
+          @DiskType = disktype
+          @Zone = zone
+          @DeviceType = devicetype
+          @RoGroupId = rogroupid
+          @SrcAlarmPolicyList = srcalarmpolicylist
+        end
+
+        def deserialize(params)
+          @RoInstanceId = params['RoInstanceId']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Volume = params['Volume']
+          @DiskType = params['DiskType']
+          @Zone = params['Zone']
+          @DeviceType = params['DeviceType']
+          @RoGroupId = params['RoGroupId']
+          @SrcAlarmPolicyList = params['SrcAlarmPolicyList']
         end
       end
 

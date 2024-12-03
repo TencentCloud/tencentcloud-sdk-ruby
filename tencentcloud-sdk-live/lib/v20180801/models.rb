@@ -6537,6 +6537,79 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveEnhanceInfoList请求参数结构体
+      class DescribeLiveEnhanceInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，使用ISO格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见[ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
+        # 接口支持最近三个月的查询，开始时间和结束时间查询跨度不能超过三十天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，使用ISO格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见[ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
+        # 接口支持最近三个月的查询，开始时间和结束时间查询跨度不能超过三十天。
+        # @type EndTime: String
+        # @param Granularity: 查询粒度，支持5，60分钟。
+        # @type Granularity: Integer
+        # @param DomainNames: 查询域名，如果不填则默认查全部的数据。
+        # @type DomainNames: Array
+        # @param Type: 增强服务类型，如果不填则默认查全部的数据。
+        # @type Type: Array
+        # @param Resolution: 分辨率，如果不填则默认查全部的数据。
+        # @type Resolution: Array
+        # @param Fps: 帧率，如果不填则默认查全部的数据。
+        # @type Fps: Array
+
+        attr_accessor :StartTime, :EndTime, :Granularity, :DomainNames, :Type, :Resolution, :Fps
+
+        def initialize(starttime=nil, endtime=nil, granularity=nil, domainnames=nil, type=nil, resolution=nil, fps=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Granularity = granularity
+          @DomainNames = domainnames
+          @Type = type
+          @Resolution = resolution
+          @Fps = fps
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Granularity = params['Granularity']
+          @DomainNames = params['DomainNames']
+          @Type = params['Type']
+          @Resolution = params['Resolution']
+          @Fps = params['Fps']
+        end
+      end
+
+      # DescribeLiveEnhanceInfoList返回参数结构体
+      class DescribeLiveEnhanceInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 直播增强统计信息列表。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              liveenhanceinfo_tmp = LiveEnhanceInfo.new
+              liveenhanceinfo_tmp.deserialize(i)
+              @DataInfoList << liveenhanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveForbidStreamList请求参数结构体
       class DescribeLiveForbidStreamListRequest < TencentCloud::Common::AbstractModel
         # @param PageNum: 取得第几页，默认1。
@@ -10790,6 +10863,42 @@ module TencentCloud
           @CertId = params['CertId']
           @CloudCertId = params['CloudCertId']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 直播增强计费信息。
+      class LiveEnhanceInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param Time: 时间。
+        # @type Time: String
+        # @param Duration: 计费时长，单位分钟。
+        # @type Duration: Integer
+        # @param Fps: 帧率。
+        # @type Fps: String
+        # @param Resolution: 分辨率。
+        # @type Resolution: String
+        # @param Type: 增强服务类型。
+        # @type Type: String
+
+        attr_accessor :Domain, :Time, :Duration, :Fps, :Resolution, :Type
+
+        def initialize(domain=nil, time=nil, duration=nil, fps=nil, resolution=nil, type=nil)
+          @Domain = domain
+          @Time = time
+          @Duration = duration
+          @Fps = fps
+          @Resolution = resolution
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Time = params['Time']
+          @Duration = params['Duration']
+          @Fps = params['Fps']
+          @Resolution = params['Resolution']
+          @Type = params['Type']
         end
       end
 

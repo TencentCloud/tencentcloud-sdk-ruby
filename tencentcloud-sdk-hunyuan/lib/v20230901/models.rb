@@ -134,10 +134,15 @@ module TencentCloud
         # @type EnableDeepSearch: Boolean
         # @param Seed: 说明： 1. 确保模型的输出是可复现的。 2. 取值区间为非0正整数，最大值10000。 3. 非必要不建议使用，不合理的取值会影响效果。
         # @type Seed: Integer
+        # @param ForceSearchEnhancement: 强制搜索增强开关。
+        # 说明：
+        # 1. 未传值时默认关闭。
+        # 2. 开启后，将强制走AI搜索，当AI搜索结果为空时，由大模型回复兜底话术。
+        # @type ForceSearchEnhancement: Boolean
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -154,6 +159,7 @@ module TencentCloud
           @EnableMultimedia = enablemultimedia
           @EnableDeepSearch = enabledeepsearch
           @Seed = seed
+          @ForceSearchEnhancement = forcesearchenhancement
         end
 
         def deserialize(params)
@@ -190,6 +196,7 @@ module TencentCloud
           @EnableMultimedia = params['EnableMultimedia']
           @EnableDeepSearch = params['EnableDeepSearch']
           @Seed = params['Seed']
+          @ForceSearchEnhancement = params['ForceSearchEnhancement']
         end
       end
 
@@ -269,6 +276,124 @@ module TencentCloud
               replace_tmp.deserialize(i)
               @Replaces << replace_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChatTranslations请求参数结构体
+      class ChatTranslationsRequest < TencentCloud::Common::AbstractModel
+        # @param Model: 模型名称，可选值包括 hunyuan-translation、hunyuan-translation-lite。
+        # 各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。
+
+        # 注意：
+        # 不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
+        # @type Model: String
+        # @param Stream: 流式调用开关。
+        # 说明：
+        # 1. 未传值时默认为非流式调用（false）。
+        # 2. 流式调用时以 SSE 协议增量返回结果（返回值取 Choices[n].Delta 中的值，需要拼接增量数据才能获得完整结果）。
+        # 3. 非流式调用时：
+        # 调用方式与普通 HTTP 请求无异。
+        # 接口响应耗时较长，**如需更低时延建议设置为 true**。
+        # 只返回一次最终结果（返回值取 Choices[n].Message 中的值）。
+
+        # 注意：
+        # 通过 SDK 调用时，流式和非流式调用需用**不同的方式**获取返回值，具体参考 SDK 中的注释或示例（在各语言 SDK 代码仓库的 examples/hunyuan/v20230901/ 目录中）。
+        # @type Stream: Boolean
+        # @param Text: 待翻译的文本
+        # @type Text: String
+        # @param Source: 源语言。
+        # 支持语言列表: 1. 简体中文：zh，2. 粤语：yue，3. 英语：en，4. 法语：fr，5. 葡萄牙语：pt，6. 西班牙语：es，7. 日语：ja，8. 土耳其语：tr，9. 俄语：ru，10. 阿拉伯语：ar，11. 韩语：ko，12. 泰语：th，13. 意大利语：it，14. 德语：de，15. 越南语：vi，16. 马来语：ms，17. 印尼语：id
+        # @type Source: String
+        # @param Target: 目标语言。
+        # 支持语言列表: 1. 简体中文：zh，2. 粤语：yue，3. 英语：en，4. 法语：fr，5. 葡萄牙语：pt，6. 西班牙语：es，7. 日语：ja，8. 土耳其语：tr，9. 俄语：ru，10. 阿拉伯语：ar，11. 韩语：ko，12. 泰语：th，13. 意大利语：it，14. 德语：de，15. 越南语：vi，16. 马来语：ms，17. 印尼语：id
+        # @type Target: String
+        # @param Field: 待翻译文本所属领域，例如游戏剧情等
+        # @type Field: String
+        # @param References: 参考示例，最多10个
+        # @type References: Array
+
+        attr_accessor :Model, :Stream, :Text, :Source, :Target, :Field, :References
+
+        def initialize(model=nil, stream=nil, text=nil, source=nil, target=nil, field=nil, references=nil)
+          @Model = model
+          @Stream = stream
+          @Text = text
+          @Source = source
+          @Target = target
+          @Field = field
+          @References = references
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Stream = params['Stream']
+          @Text = params['Text']
+          @Source = params['Source']
+          @Target = params['Target']
+          @Field = params['Field']
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              reference_tmp = Reference.new
+              reference_tmp.deserialize(i)
+              @References << reference_tmp
+            end
+          end
+        end
+      end
+
+      # ChatTranslations返回参数结构体
+      class ChatTranslationsResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 本次请求的 RequestId。
+        # @type Id: String
+        # @param Note: 免责声明。
+        # @type Note: String
+        # @param Created: Unix 时间戳，单位为秒。
+        # @type Created: Integer
+        # @param Usage: Token 统计信息。
+        # 按照总 Token 数量计费。
+        # @type Usage: :class:`Tencentcloud::Hunyuan.v20230901.models.Usage`
+        # @param Choices: 回复内容。
+        # @type Choices: Array
+        # @param ErrorMsg: 错误信息。
+        # 如果流式返回中服务处理异常，返回该错误信息。
+        # @type ErrorMsg: :class:`Tencentcloud::Hunyuan.v20230901.models.ErrorMsg`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :Id, :Note, :Created, :Usage, :Choices, :ErrorMsg, :RequestId
+
+        def initialize(id=nil, note=nil, created=nil, usage=nil, choices=nil, errormsg=nil, requestid=nil)
+          @Id = id
+          @Note = note
+          @Created = created
+          @Usage = usage
+          @Choices = choices
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Note = params['Note']
+          @Created = params['Created']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              translationchoice_tmp = TranslationChoice.new
+              translationchoice_tmp.deserialize(i)
+              @Choices << translationchoice_tmp
+            end
+          end
+          unless params['ErrorMsg'].nil?
+            @ErrorMsg = ErrorMsg.new
+            @ErrorMsg.deserialize(params['ErrorMsg'])
           end
           @RequestId = params['RequestId']
         end
@@ -1391,6 +1516,30 @@ module TencentCloud
         end
       end
 
+      # 翻译对话参考示例
+      class Reference < TencentCloud::Common::AbstractModel
+        # @param Type: 翻译文本类型，枚举"sentence"表示句子, "term"表示术语
+        # @type Type: String
+        # @param Text: 原文
+        # @type Text: String
+        # @param Translation: 译文
+        # @type Translation: String
+
+        attr_accessor :Type, :Text, :Translation
+
+        def initialize(type=nil, text=nil, translation=nil)
+          @Type = type
+          @Text = text
+          @Translation = translation
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Text = params['Text']
+          @Translation = params['Translation']
+        end
+      end
+
       # 相关组织及人物
       class RelevantEntity < TencentCloud::Common::AbstractModel
         # @param Name: 相关组织及人物名称
@@ -1811,6 +1960,10 @@ module TencentCloud
         # 不传：随机种子生成。
         # 正数：固定种子生成。
         # @type Seed: Integer
+        # @param Clarity: 超分选项，默认不做超分，可选开启。
+        #  x2：2倍超分
+        #  x4：4倍超分
+        # @type Clarity: String
         # @param Revise: prompt 扩写开关。1为开启，0为关闭，不传默认开启。
         # 开启扩写后，将自动扩写原始输入的 prompt 并使用扩写后的 prompt 生成图片，返回生成图片结果时将一并返回扩写后的 prompt 文本。
         # 如果关闭扩写，将直接使用原始输入的 prompt 生成图片。
@@ -1826,15 +1979,16 @@ module TencentCloud
         # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Hunyuan.v20230901.models.LogoParam`
 
-        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :Num, :Seed, :Revise, :LogoAdd, :LogoParam
+        attr_accessor :Prompt, :NegativePrompt, :Style, :Resolution, :Num, :Seed, :Clarity, :Revise, :LogoAdd, :LogoParam
 
-        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, num=nil, seed=nil, revise=nil, logoadd=nil, logoparam=nil)
+        def initialize(prompt=nil, negativeprompt=nil, style=nil, resolution=nil, num=nil, seed=nil, clarity=nil, revise=nil, logoadd=nil, logoparam=nil)
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @Style = style
           @Resolution = resolution
           @Num = num
           @Seed = seed
+          @Clarity = clarity
           @Revise = revise
           @LogoAdd = logoadd
           @LogoParam = logoparam
@@ -1847,6 +2001,7 @@ module TencentCloud
           @Resolution = params['Resolution']
           @Num = params['Num']
           @Seed = params['Seed']
+          @Clarity = params['Clarity']
           @Revise = params['Revise']
           @LogoAdd = params['LogoAdd']
           unless params['LogoParam'].nil?
@@ -2239,6 +2394,82 @@ module TencentCloud
           @Name = params['Name']
           @Parameters = params['Parameters']
           @Description = params['Description']
+        end
+      end
+
+      # 翻译接口返回的回复，支持多个
+      class TranslationChoice < TencentCloud::Common::AbstractModel
+        # @param FinishReason: 结束标志位，可能为 stop、 sensitive。
+        # stop 表示输出正常结束。
+        # sensitive 只在开启流式输出审核时会出现，表示安全审核未通过。
+        # @type FinishReason: String
+        # @param Index: 索引值，流式调用时使用该字段。
+        # @type Index: Integer
+        # @param Delta: 增量返回值，流式调用时使用该字段。
+        # @type Delta: :class:`Tencentcloud::Hunyuan.v20230901.models.TranslationDelta`
+        # @param Message: 返回值，非流式调用时使用该字段。
+        # @type Message: :class:`Tencentcloud::Hunyuan.v20230901.models.TranslationMessage`
+
+        attr_accessor :FinishReason, :Index, :Delta, :Message
+
+        def initialize(finishreason=nil, index=nil, delta=nil, message=nil)
+          @FinishReason = finishreason
+          @Index = index
+          @Delta = delta
+          @Message = message
+        end
+
+        def deserialize(params)
+          @FinishReason = params['FinishReason']
+          @Index = params['Index']
+          unless params['Delta'].nil?
+            @Delta = TranslationDelta.new
+            @Delta.deserialize(params['Delta'])
+          end
+          unless params['Message'].nil?
+            @Message = TranslationMessage.new
+            @Message.deserialize(params['Message'])
+          end
+        end
+      end
+
+      # 翻译接口返回的内容（流式返回）
+      class TranslationDelta < TencentCloud::Common::AbstractModel
+        # @param Role: 角色名称。
+        # @type Role: String
+        # @param Content: 内容详情。
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
+      # 翻译接口会话内容
+      class TranslationMessage < TencentCloud::Common::AbstractModel
+        # @param Role: 角色，可选值包括 system、user、assistant、 tool。
+        # @type Role: String
+        # @param Content: 文本内容
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
         end
       end
 

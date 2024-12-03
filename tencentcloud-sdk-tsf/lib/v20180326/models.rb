@@ -221,6 +221,40 @@ module TencentCloud
         end
       end
 
+      # 亲和规则
+      class Affinity < TencentCloud::Common::AbstractModel
+        # @param Scope: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scope: String
+        # @param Weight: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: String
+        # @param Paths: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paths: Array
+
+        attr_accessor :Scope, :Weight, :Paths
+
+        def initialize(scope=nil, weight=nil, paths=nil)
+          @Scope = scope
+          @Weight = weight
+          @Paths = paths
+        end
+
+        def deserialize(params)
+          @Scope = params['Scope']
+          @Weight = params['Weight']
+          unless params['Paths'].nil?
+            @Paths = []
+            params['Paths'].each do |i|
+              commonoption_tmp = CommonOption.new
+              commonoption_tmp.deserialize(i)
+              @Paths << commonoption_tmp
+            end
+          end
+        end
+      end
+
       # 部署javaagent的类型、版本信息
       class AgentProfile < TencentCloud::Common::AbstractModel
         # @param AgentType: Agent类型
@@ -885,10 +919,37 @@ module TencentCloud
         # @param IgnoreCreateImageRepository: IgnoreCreateImageRepository
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreCreateImageRepository: Boolean
+        # @param ApmInstanceId: Apm业务系统id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmInstanceId: String
+        # @param ApmInstanceName: Apm业务系统Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmInstanceName: String
+        # @param SyncDeleteImageRepository: 同步删除镜像仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncDeleteImageRepository: Boolean
+        # @param MicroserviceSubType: 应用微服务子类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MicroserviceSubType: String
+        # @param ProgramLanguage: 应用编程语言类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramLanguage: String
+        # @param FrameworkType: 开发框架类型[SpringCloud，Dubbo，Go-GRPC，Other]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameworkType: String
+        # @param ServiceGovernanceConfig: 注册配置治理信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
+        # @param MicroserviceTypeList: 微服务类型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MicroserviceTypeList: Array
+        # @param CreateSameNameImageRepository: 是否同时创建镜像仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateSameNameImageRepository: Boolean
 
-        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName, :ServiceConfigList, :IgnoreCreateImageRepository
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName, :ServiceConfigList, :IgnoreCreateImageRepository, :ApmInstanceId, :ApmInstanceName, :SyncDeleteImageRepository, :MicroserviceSubType, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :MicroserviceTypeList, :CreateSameNameImageRepository
 
-        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil)
+        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, apminstanceid=nil, apminstancename=nil, syncdeleteimagerepository=nil, microservicesubtype=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, microservicetypelist=nil, createsamenameimagerepository=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationDesc = applicationdesc
@@ -903,6 +964,15 @@ module TencentCloud
           @ApplicationRemarkName = applicationremarkname
           @ServiceConfigList = serviceconfiglist
           @IgnoreCreateImageRepository = ignorecreateimagerepository
+          @ApmInstanceId = apminstanceid
+          @ApmInstanceName = apminstancename
+          @SyncDeleteImageRepository = syncdeleteimagerepository
+          @MicroserviceSubType = microservicesubtype
+          @ProgramLanguage = programlanguage
+          @FrameworkType = frameworktype
+          @ServiceGovernanceConfig = servicegovernanceconfig
+          @MicroserviceTypeList = microservicetypelist
+          @CreateSameNameImageRepository = createsamenameimagerepository
         end
 
         def deserialize(params)
@@ -927,6 +997,18 @@ module TencentCloud
             end
           end
           @IgnoreCreateImageRepository = params['IgnoreCreateImageRepository']
+          @ApmInstanceId = params['ApmInstanceId']
+          @ApmInstanceName = params['ApmInstanceName']
+          @SyncDeleteImageRepository = params['SyncDeleteImageRepository']
+          @MicroserviceSubType = params['MicroserviceSubType']
+          @ProgramLanguage = params['ProgramLanguage']
+          @FrameworkType = params['FrameworkType']
+          unless params['ServiceGovernanceConfig'].nil?
+            @ServiceGovernanceConfig = ServiceGovernanceConfig.new
+            @ServiceGovernanceConfig.deserialize(params['ServiceGovernanceConfig'])
+          end
+          @MicroserviceTypeList = params['MicroserviceTypeList']
+          @CreateSameNameImageRepository = params['CreateSameNameImageRepository']
         end
       end
 
@@ -1032,6 +1114,33 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 打散调度规则
+      class AvailableZoneScatterScheduleRule < TencentCloud::Common::AbstractModel
+        # @param ScatterDimension: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScatterDimension: String
+        # @param MaxUnbalanceQuantity: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxUnbalanceQuantity: Integer
+        # @param IsForceSchedule: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsForceSchedule: Boolean
+
+        attr_accessor :ScatterDimension, :MaxUnbalanceQuantity, :IsForceSchedule
+
+        def initialize(scatterdimension=nil, maxunbalancequantity=nil, isforceschedule=nil)
+          @ScatterDimension = scatterdimension
+          @MaxUnbalanceQuantity = maxunbalancequantity
+          @IsForceSchedule = isforceschedule
+        end
+
+        def deserialize(params)
+          @ScatterDimension = params['ScatterDimension']
+          @MaxUnbalanceQuantity = params['MaxUnbalanceQuantity']
+          @IsForceSchedule = params['IsForceSchedule']
         end
       end
 
@@ -1224,8 +1333,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 9
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 9
+        deprecate :ConfigAssociatedGroups, :none, 2024, 12
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 12
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
@@ -1821,6 +1930,55 @@ module TencentCloud
         end
       end
 
+      # 通用选项
+      class CommonOption < TencentCloud::Common::AbstractModel
+        # @param LabelName: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelName: String
+        # @param Operator: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param LabelValue: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+
+        attr_accessor :LabelName, :Operator, :LabelValue
+
+        def initialize(labelname=nil, operator=nil, labelvalue=nil)
+          @LabelName = labelname
+          @Operator = operator
+          @LabelValue = labelvalue
+        end
+
+        def deserialize(params)
+          @LabelName = params['LabelName']
+          @Operator = params['Operator']
+          @LabelValue = params['LabelValue']
+        end
+      end
+
+      # ValueFrom 通用结构
+      class CommonRef < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Key: Key值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+
+        attr_accessor :Name, :Key
+
+        def initialize(name=nil, key=nil)
+          @Name = name
+          @Key = key
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Key = params['Key']
+        end
+      end
+
       # 配置项
       class Config < TencentCloud::Common::AbstractModel
         # @param ConfigId: 配置项ID
@@ -1890,6 +2048,33 @@ module TencentCloud
           @DeleteFlag = params['DeleteFlag']
           @LastUpdateTime = params['LastUpdateTime']
           @ConfigVersionCount = params['ConfigVersionCount']
+        end
+      end
+
+      # ConfigMap可选项
+      class ConfigMapOption < TencentCloud::Common::AbstractModel
+        # @param Key: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Path: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Mode: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+
+        attr_accessor :Key, :Path, :Mode
+
+        def initialize(key=nil, path=nil, mode=nil)
+          @Key = key
+          @Path = path
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Path = params['Path']
+          @Mode = params['Mode']
         end
       end
 
@@ -3282,10 +3467,20 @@ module TencentCloud
         # @type IgnoreCreateImageRepository: Boolean
         # @param ProgramIdList: 无
         # @type ProgramIdList: Array
+        # @param ApmInstanceId: apm业务系统id
+        # @type ApmInstanceId: String
+        # @param ProgramLanguage: 编程语言
+        # @type ProgramLanguage: String
+        # @param FrameworkType: 开发框架
+        # @type FrameworkType: String
+        # @param ServiceGovernanceConfig: 注册配置治理
+        # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
+        # @param CreateSameNameImageRepository: 是否创建并关联同名镜像仓库
+        # @type CreateSameNameImageRepository: Boolean
 
-        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList
+        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
 
-        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil)
+        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
           @ApplicationType = applicationtype
           @MicroserviceType = microservicetype
@@ -3297,6 +3492,11 @@ module TencentCloud
           @ServiceConfigList = serviceconfiglist
           @IgnoreCreateImageRepository = ignorecreateimagerepository
           @ProgramIdList = programidlist
+          @ApmInstanceId = apminstanceid
+          @ProgramLanguage = programlanguage
+          @FrameworkType = frameworktype
+          @ServiceGovernanceConfig = servicegovernanceconfig
+          @CreateSameNameImageRepository = createsamenameimagerepository
         end
 
         def deserialize(params)
@@ -3318,6 +3518,14 @@ module TencentCloud
           end
           @IgnoreCreateImageRepository = params['IgnoreCreateImageRepository']
           @ProgramIdList = params['ProgramIdList']
+          @ApmInstanceId = params['ApmInstanceId']
+          @ProgramLanguage = params['ProgramLanguage']
+          @FrameworkType = params['FrameworkType']
+          unless params['ServiceGovernanceConfig'].nil?
+            @ServiceGovernanceConfig = ServiceGovernanceConfig.new
+            @ServiceGovernanceConfig.deserialize(params['ServiceGovernanceConfig'])
+          end
+          @CreateSameNameImageRepository = params['CreateSameNameImageRepository']
         end
       end
 
@@ -4043,10 +4251,12 @@ module TencentCloud
         # @type GroupResourceType: String
         # @param Alias: 部署组备注
         # @type Alias: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :ApplicationId, :NamespaceId, :GroupName, :ClusterId, :GroupDesc, :GroupResourceType, :Alias
+        attr_accessor :ApplicationId, :NamespaceId, :GroupName, :ClusterId, :GroupDesc, :GroupResourceType, :Alias, :Tags
 
-        def initialize(applicationid=nil, namespaceid=nil, groupname=nil, clusterid=nil, groupdesc=nil, groupresourcetype=nil, _alias=nil)
+        def initialize(applicationid=nil, namespaceid=nil, groupname=nil, clusterid=nil, groupdesc=nil, groupresourcetype=nil, _alias=nil, tags=nil)
           @ApplicationId = applicationid
           @NamespaceId = namespaceid
           @GroupName = groupname
@@ -4054,6 +4264,7 @@ module TencentCloud
           @GroupDesc = groupdesc
           @GroupResourceType = groupresourcetype
           @Alias = _alias
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4064,6 +4275,14 @@ module TencentCloud
           @GroupDesc = params['GroupDesc']
           @GroupResourceType = params['GroupResourceType']
           @Alias = params['Alias']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5040,6 +5259,71 @@ module TencentCloud
           @Label = params['Label']
           @Value = params['Value']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 自定义Pod调度规则
+      class CustomPodSchedule < TencentCloud::Common::AbstractModel
+        # @param ForceSchedule: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceSchedule: :class:`Tencentcloud::Tsf.v20180326.models.ForceSchedule`
+        # @param TrySchedule: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrySchedule: :class:`Tencentcloud::Tsf.v20180326.models.TrySchedule`
+
+        attr_accessor :ForceSchedule, :TrySchedule
+
+        def initialize(forceschedule=nil, tryschedule=nil)
+          @ForceSchedule = forceschedule
+          @TrySchedule = tryschedule
+        end
+
+        def deserialize(params)
+          unless params['ForceSchedule'].nil?
+            @ForceSchedule = ForceSchedule.new
+            @ForceSchedule.deserialize(params['ForceSchedule'])
+          end
+          unless params['TrySchedule'].nil?
+            @TrySchedule = TrySchedule.new
+            @TrySchedule.deserialize(params['TrySchedule'])
+          end
+        end
+      end
+
+      # 自定义容忍调度规则列表
+      class CustomTolerateSchedule < TencentCloud::Common::AbstractModel
+        # @param Key: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Operator: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param Value: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Effect: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Effect: String
+        # @param TolerationSeconds: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TolerationSeconds: Integer
+
+        attr_accessor :Key, :Operator, :Value, :Effect, :TolerationSeconds
+
+        def initialize(key=nil, operator=nil, value=nil, effect=nil, tolerationseconds=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+          @Effect = effect
+          @TolerationSeconds = tolerationseconds
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+          @Effect = params['Effect']
+          @TolerationSeconds = params['TolerationSeconds']
         end
       end
 
@@ -6893,10 +7177,12 @@ module TencentCloud
         # @type ApplicationResourceTypeList: Array
         # @param ApplicationIdList: IdList
         # @type ApplicationIdList: Array
+        # @param MicroserviceTypeList: 查询多种微服务类型的应用
+        # @type MicroserviceTypeList: Array
 
-        attr_accessor :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ApplicationType, :MicroserviceType, :ApplicationResourceTypeList, :ApplicationIdList
+        attr_accessor :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ApplicationType, :MicroserviceType, :ApplicationResourceTypeList, :ApplicationIdList, :MicroserviceTypeList
 
-        def initialize(searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, applicationtype=nil, microservicetype=nil, applicationresourcetypelist=nil, applicationidlist=nil)
+        def initialize(searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, applicationtype=nil, microservicetype=nil, applicationresourcetypelist=nil, applicationidlist=nil, microservicetypelist=nil)
           @SearchWord = searchword
           @OrderBy = orderby
           @OrderType = ordertype
@@ -6906,6 +7192,7 @@ module TencentCloud
           @MicroserviceType = microservicetype
           @ApplicationResourceTypeList = applicationresourcetypelist
           @ApplicationIdList = applicationidlist
+          @MicroserviceTypeList = microservicetypelist
         end
 
         def deserialize(params)
@@ -6918,6 +7205,7 @@ module TencentCloud
           @MicroserviceType = params['MicroserviceType']
           @ApplicationResourceTypeList = params['ApplicationResourceTypeList']
           @ApplicationIdList = params['ApplicationIdList']
+          @MicroserviceTypeList = params['MicroserviceTypeList']
         end
       end
 
@@ -7560,15 +7848,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param GroupId: 当类型是 instance 时需要
         # @type GroupId: String
+        # @param Kind: event的资源kind
+        # @type Kind: String
+        # @param Type: event 的type
+        # @type Type: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param SearchWord: 关键词查询
+        # @type SearchWord: String
 
-        attr_accessor :ResourceType, :ResourceId, :Offset, :Limit, :GroupId
+        attr_accessor :ResourceType, :ResourceId, :Offset, :Limit, :GroupId, :Kind, :Type, :ResourceName, :SearchWord
 
-        def initialize(resourcetype=nil, resourceid=nil, offset=nil, limit=nil, groupid=nil)
+        def initialize(resourcetype=nil, resourceid=nil, offset=nil, limit=nil, groupid=nil, kind=nil, type=nil, resourcename=nil, searchword=nil)
           @ResourceType = resourcetype
           @ResourceId = resourceid
           @Offset = offset
           @Limit = limit
           @GroupId = groupid
+          @Kind = kind
+          @Type = type
+          @ResourceName = resourcename
+          @SearchWord = searchword
         end
 
         def deserialize(params)
@@ -7577,6 +7877,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @GroupId = params['GroupId']
+          @Kind = params['Kind']
+          @Type = params['Type']
+          @ResourceName = params['ResourceName']
+          @SearchWord = params['SearchWord']
         end
       end
 
@@ -8896,7 +9200,7 @@ module TencentCloud
         # @type ApplicationId: String
         # @param TcrRepoInfo: TcrRepoInfo值
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
-        # @param RepoName: 镜像仓库
+        # @param RepoName: 镜像仓库名称
         # @type RepoName: String
 
         attr_accessor :SearchWord, :Offset, :Limit, :RepoType, :ApplicationId, :TcrRepoInfo, :RepoName
@@ -10113,14 +10417,20 @@ module TencentCloud
         # @type Limit: Integer
         # @param PodNameList: 过滤字段
         # @type PodNameList: Array
+        # @param DeployVersion: 新老版本pod批次标识
+        # @type DeployVersion: String
+        # @param TaskId: 任务ID
+        # @type TaskId: String
 
-        attr_accessor :GroupId, :Offset, :Limit, :PodNameList
+        attr_accessor :GroupId, :Offset, :Limit, :PodNameList, :DeployVersion, :TaskId
 
-        def initialize(groupid=nil, offset=nil, limit=nil, podnamelist=nil)
+        def initialize(groupid=nil, offset=nil, limit=nil, podnamelist=nil, deployversion=nil, taskid=nil)
           @GroupId = groupid
           @Offset = offset
           @Limit = limit
           @PodNameList = podnamelist
+          @DeployVersion = deployversion
+          @TaskId = taskid
         end
 
         def deserialize(params)
@@ -10128,6 +10438,8 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @PodNameList = params['PodNameList']
+          @DeployVersion = params['DeployVersion']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -10658,10 +10970,12 @@ module TencentCloud
         # @type SearchWord: String
         # @param DisableProgramAuthCheck: 无
         # @type DisableProgramAuthCheck: Boolean
+        # @param MicroserviceTypeList: 查询指定微服务类型的应用列表
+        # @type MicroserviceTypeList: Array
 
-        attr_accessor :ApplicationIdList, :ApplicationType, :Limit, :Offset, :MicroserviceType, :ApplicationResourceTypeList, :SearchWord, :DisableProgramAuthCheck
+        attr_accessor :ApplicationIdList, :ApplicationType, :Limit, :Offset, :MicroserviceType, :ApplicationResourceTypeList, :SearchWord, :DisableProgramAuthCheck, :MicroserviceTypeList
 
-        def initialize(applicationidlist=nil, applicationtype=nil, limit=nil, offset=nil, microservicetype=nil, applicationresourcetypelist=nil, searchword=nil, disableprogramauthcheck=nil)
+        def initialize(applicationidlist=nil, applicationtype=nil, limit=nil, offset=nil, microservicetype=nil, applicationresourcetypelist=nil, searchword=nil, disableprogramauthcheck=nil, microservicetypelist=nil)
           @ApplicationIdList = applicationidlist
           @ApplicationType = applicationtype
           @Limit = limit
@@ -10670,6 +10984,7 @@ module TencentCloud
           @ApplicationResourceTypeList = applicationresourcetypelist
           @SearchWord = searchword
           @DisableProgramAuthCheck = disableprogramauthcheck
+          @MicroserviceTypeList = microservicetypelist
         end
 
         def deserialize(params)
@@ -10681,6 +10996,7 @@ module TencentCloud
           @ApplicationResourceTypeList = params['ApplicationResourceTypeList']
           @SearchWord = params['SearchWord']
           @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
+          @MicroserviceTypeList = params['MicroserviceTypeList']
         end
       end
 
@@ -11868,6 +12184,38 @@ module TencentCloud
         end
       end
 
+      # 空目录选项
+      class EmptyDirOption < TencentCloud::Common::AbstractModel
+        # @param EnableMemory: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMemory: Boolean
+        # @param StorageCapacity: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageCapacity: Integer
+        # @param StorageUnit: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageUnit: String
+        # @param SizeLimit: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SizeLimit: String
+
+        attr_accessor :EnableMemory, :StorageCapacity, :StorageUnit, :SizeLimit
+
+        def initialize(enablememory=nil, storagecapacity=nil, storageunit=nil, sizelimit=nil)
+          @EnableMemory = enablememory
+          @StorageCapacity = storagecapacity
+          @StorageUnit = storageunit
+          @SizeLimit = sizelimit
+        end
+
+        def deserialize(params)
+          @EnableMemory = params['EnableMemory']
+          @StorageCapacity = params['StorageCapacity']
+          @StorageUnit = params['StorageUnit']
+          @SizeLimit = params['SizeLimit']
+        end
+      end
+
       # EnableLaneRule请求参数结构体
       class EnableLaneRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 泳道规则ID
@@ -12076,6 +12424,48 @@ module TencentCloud
             @ValueFrom = ValueFrom.new
             @ValueFrom.deserialize(params['ValueFrom'])
           end
+        end
+      end
+
+      # 独占实例
+      class ExclusiveInstance < TencentCloud::Common::AbstractModel
+        # @param CenterType: 配置中心类型[Registration、Configuration]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CenterType: String
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceType: 实例类型[Polaris]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param RegionId: 实例地域id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param InstanceNamespaceId: 实例命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNamespaceId: String
+
+        attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId
+
+        def initialize(centertype=nil, instanceid=nil, instancetype=nil, instancename=nil, regionid=nil, instancenamespaceid=nil)
+          @CenterType = centertype
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+          @InstanceName = instancename
+          @RegionId = regionid
+          @InstanceNamespaceId = instancenamespaceid
+        end
+
+        def deserialize(params)
+          @CenterType = params['CenterType']
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
+          @InstanceName = params['InstanceName']
+          @RegionId = params['RegionId']
+          @InstanceNamespaceId = params['InstanceNamespaceId']
         end
       end
 
@@ -12408,6 +12798,42 @@ module TencentCloud
         end
       end
 
+      # 强制调度配置
+      class ForceSchedule < TencentCloud::Common::AbstractModel
+        # @param AffinityList: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffinityList: Array
+        # @param AntiAffinityList: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AntiAffinityList: Array
+
+        attr_accessor :AffinityList, :AntiAffinityList
+
+        def initialize(affinitylist=nil, antiaffinitylist=nil)
+          @AffinityList = affinitylist
+          @AntiAffinityList = antiaffinitylist
+        end
+
+        def deserialize(params)
+          unless params['AffinityList'].nil?
+            @AffinityList = []
+            params['AffinityList'].each do |i|
+              affinity_tmp = Affinity.new
+              affinity_tmp.deserialize(i)
+              @AffinityList << affinity_tmp
+            end
+          end
+          unless params['AntiAffinityList'].nil?
+            @AntiAffinityList = []
+            params['AntiAffinityList'].each do |i|
+              affinity_tmp = Affinity.new
+              affinity_tmp.deserialize(i)
+              @AntiAffinityList << affinity_tmp
+            end
+          end
+        end
+      end
+
       # 网关分组简单信息
       class GatewayApiGroupVo < TencentCloud::Common::AbstractModel
         # @param GroupId: 分组ID
@@ -12459,12 +12885,18 @@ module TencentCloud
 
       # TSF Envoy网关服务配置
       class GatewayConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
+        attr_accessor :Name
 
-        def initialize()
+        def initialize(name=nil)
+          @Name = name
         end
 
         def deserialize(params)
+          @Name = params['Name']
         end
       end
 
@@ -12982,10 +13414,13 @@ module TencentCloud
         # @param NodeInstanceId: 节点实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeInstanceId: String
+        # @param SpecTotalCount: 预期副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecTotalCount: String
 
-        attr_accessor :PodName, :PodId, :Status, :Reason, :NodeIp, :Ip, :RestartCount, :ReadyCount, :Runtime, :CreatedAt, :ServiceInstanceStatus, :InstanceAvailableStatus, :InstanceStatus, :NodeInstanceId
+        attr_accessor :PodName, :PodId, :Status, :Reason, :NodeIp, :Ip, :RestartCount, :ReadyCount, :Runtime, :CreatedAt, :ServiceInstanceStatus, :InstanceAvailableStatus, :InstanceStatus, :NodeInstanceId, :SpecTotalCount
 
-        def initialize(podname=nil, podid=nil, status=nil, reason=nil, nodeip=nil, ip=nil, restartcount=nil, readycount=nil, runtime=nil, createdat=nil, serviceinstancestatus=nil, instanceavailablestatus=nil, instancestatus=nil, nodeinstanceid=nil)
+        def initialize(podname=nil, podid=nil, status=nil, reason=nil, nodeip=nil, ip=nil, restartcount=nil, readycount=nil, runtime=nil, createdat=nil, serviceinstancestatus=nil, instanceavailablestatus=nil, instancestatus=nil, nodeinstanceid=nil, spectotalcount=nil)
           @PodName = podname
           @PodId = podid
           @Status = status
@@ -13000,6 +13435,7 @@ module TencentCloud
           @InstanceAvailableStatus = instanceavailablestatus
           @InstanceStatus = instancestatus
           @NodeInstanceId = nodeinstanceid
+          @SpecTotalCount = spectotalcount
         end
 
         def deserialize(params)
@@ -13017,6 +13453,7 @@ module TencentCloud
           @InstanceAvailableStatus = params['InstanceAvailableStatus']
           @InstanceStatus = params['InstanceStatus']
           @NodeInstanceId = params['NodeInstanceId']
+          @SpecTotalCount = params['SpecTotalCount']
         end
       end
 
@@ -13414,10 +13851,16 @@ module TencentCloud
         # @param Public: 是否公共,1:公有,0:私有
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Public: Integer
+        # @param CreateMode: 创建方式：manual | automatic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateMode: String
+        # @param RepoName: 仓库名，等同reponame字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
 
-        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public
+        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName
 
-        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil)
+        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil)
           @Reponame = reponame
           @Repotype = repotype
           @TagCount = tagcount
@@ -13435,6 +13878,8 @@ module TencentCloud
           @ApplicationName = applicationname
           @ApplicationNameReal = applicationnamereal
           @Public = public
+          @CreateMode = createmode
+          @RepoName = reponame
         end
 
         def deserialize(params)
@@ -13461,6 +13906,8 @@ module TencentCloud
           end
           @ApplicationNameReal = params['ApplicationNameReal']
           @Public = params['Public']
+          @CreateMode = params['CreateMode']
+          @RepoName = params['RepoName']
         end
       end
 
@@ -14936,15 +15383,24 @@ module TencentCloud
         # @type ApplicationRemarkName: String
         # @param ServiceConfigList: 服务配置信息列表
         # @type ServiceConfigList: Array
+        # @param MicroserviceType: 应用的微服务类型
+        # @type MicroserviceType: String
+        # @param ServiceGovernanceConfig: 注册配置治理信息
+        # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
+        # @param FrameworkType: 应用开发框架
+        # @type FrameworkType: String
 
-        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationRemarkName, :ServiceConfigList
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationRemarkName, :ServiceConfigList, :MicroserviceType, :ServiceGovernanceConfig, :FrameworkType
 
-        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationremarkname=nil, serviceconfiglist=nil)
+        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationremarkname=nil, serviceconfiglist=nil, microservicetype=nil, servicegovernanceconfig=nil, frameworktype=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationDesc = applicationdesc
           @ApplicationRemarkName = applicationremarkname
           @ServiceConfigList = serviceconfiglist
+          @MicroserviceType = microservicetype
+          @ServiceGovernanceConfig = servicegovernanceconfig
+          @FrameworkType = frameworktype
         end
 
         def deserialize(params)
@@ -14960,6 +15416,12 @@ module TencentCloud
               @ServiceConfigList << serviceconfig_tmp
             end
           end
+          @MicroserviceType = params['MicroserviceType']
+          unless params['ServiceGovernanceConfig'].nil?
+            @ServiceGovernanceConfig = ServiceGovernanceConfig.new
+            @ServiceGovernanceConfig.deserialize(params['ServiceGovernanceConfig'])
+          end
+          @FrameworkType = params['FrameworkType']
         end
       end
 
@@ -16596,7 +17058,7 @@ module TencentCloud
         end
       end
 
-      # 	端口对象
+      # 端口对象
       class ProtocolPort < TencentCloud::Common::AbstractModel
         # @param Protocol: TCP UDP
         # @type Protocol: String
@@ -16607,14 +17069,18 @@ module TencentCloud
         # @param NodePort: 主机端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodePort: Integer
+        # @param Name: 端口名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
-        attr_accessor :Protocol, :Port, :TargetPort, :NodePort
+        attr_accessor :Protocol, :Port, :TargetPort, :NodePort, :Name
 
-        def initialize(protocol=nil, port=nil, targetport=nil, nodeport=nil)
+        def initialize(protocol=nil, port=nil, targetport=nil, nodeport=nil, name=nil)
           @Protocol = protocol
           @Port = port
           @TargetPort = targetport
           @NodePort = nodeport
+          @Name = name
         end
 
         def deserialize(params)
@@ -16622,6 +17088,7 @@ module TencentCloud
           @Port = params['Port']
           @TargetPort = params['TargetPort']
           @NodePort = params['NodePort']
+          @Name = params['Name']
         end
       end
 
@@ -17533,15 +18000,108 @@ module TencentCloud
         # @param Type: NONE：不使用调度策略；CROSS_AZ：跨可用区部署
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
+        # @param NodeScheduleStrategyType: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeScheduleStrategyType: String
+        # @param NodeScheduleOptions: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeScheduleOptions: Array
+        # @param StrongAffinityList: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrongAffinityList: Array
+        # @param WeakAffinityList: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeakAffinityList: Array
+        # @param WeakAffinityWeight: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeakAffinityWeight: Integer
+        # @param AvailableZoneScatterScheduleType: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableZoneScatterScheduleType: String
+        # @param AvailableZoneScatterScheduleRules: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableZoneScatterScheduleRules: Array
+        # @param PodScheduleStrategyType: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodScheduleStrategyType: String
+        # @param CustomPodSchedule: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomPodSchedule: :class:`Tencentcloud::Tsf.v20180326.models.CustomPodSchedule`
+        # @param TolerateScheduleType: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TolerateScheduleType: String
+        # @param CustomTolerateSchedules: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomTolerateSchedules: Array
 
-        attr_accessor :Type
+        attr_accessor :Type, :NodeScheduleStrategyType, :NodeScheduleOptions, :StrongAffinityList, :WeakAffinityList, :WeakAffinityWeight, :AvailableZoneScatterScheduleType, :AvailableZoneScatterScheduleRules, :PodScheduleStrategyType, :CustomPodSchedule, :TolerateScheduleType, :CustomTolerateSchedules
 
-        def initialize(type=nil)
+        def initialize(type=nil, nodeschedulestrategytype=nil, nodescheduleoptions=nil, strongaffinitylist=nil, weakaffinitylist=nil, weakaffinityweight=nil, availablezonescatterscheduletype=nil, availablezonescatterschedulerules=nil, podschedulestrategytype=nil, custompodschedule=nil, toleratescheduletype=nil, customtolerateschedules=nil)
           @Type = type
+          @NodeScheduleStrategyType = nodeschedulestrategytype
+          @NodeScheduleOptions = nodescheduleoptions
+          @StrongAffinityList = strongaffinitylist
+          @WeakAffinityList = weakaffinitylist
+          @WeakAffinityWeight = weakaffinityweight
+          @AvailableZoneScatterScheduleType = availablezonescatterscheduletype
+          @AvailableZoneScatterScheduleRules = availablezonescatterschedulerules
+          @PodScheduleStrategyType = podschedulestrategytype
+          @CustomPodSchedule = custompodschedule
+          @TolerateScheduleType = toleratescheduletype
+          @CustomTolerateSchedules = customtolerateschedules
         end
 
         def deserialize(params)
           @Type = params['Type']
+          @NodeScheduleStrategyType = params['NodeScheduleStrategyType']
+          unless params['NodeScheduleOptions'].nil?
+            @NodeScheduleOptions = []
+            params['NodeScheduleOptions'].each do |i|
+              commonoption_tmp = CommonOption.new
+              commonoption_tmp.deserialize(i)
+              @NodeScheduleOptions << commonoption_tmp
+            end
+          end
+          unless params['StrongAffinityList'].nil?
+            @StrongAffinityList = []
+            params['StrongAffinityList'].each do |i|
+              commonoption_tmp = CommonOption.new
+              commonoption_tmp.deserialize(i)
+              @StrongAffinityList << commonoption_tmp
+            end
+          end
+          unless params['WeakAffinityList'].nil?
+            @WeakAffinityList = []
+            params['WeakAffinityList'].each do |i|
+              commonoption_tmp = CommonOption.new
+              commonoption_tmp.deserialize(i)
+              @WeakAffinityList << commonoption_tmp
+            end
+          end
+          @WeakAffinityWeight = params['WeakAffinityWeight']
+          @AvailableZoneScatterScheduleType = params['AvailableZoneScatterScheduleType']
+          unless params['AvailableZoneScatterScheduleRules'].nil?
+            @AvailableZoneScatterScheduleRules = []
+            params['AvailableZoneScatterScheduleRules'].each do |i|
+              availablezonescatterschedulerule_tmp = AvailableZoneScatterScheduleRule.new
+              availablezonescatterschedulerule_tmp.deserialize(i)
+              @AvailableZoneScatterScheduleRules << availablezonescatterschedulerule_tmp
+            end
+          end
+          @PodScheduleStrategyType = params['PodScheduleStrategyType']
+          unless params['CustomPodSchedule'].nil?
+            @CustomPodSchedule = CustomPodSchedule.new
+            @CustomPodSchedule.deserialize(params['CustomPodSchedule'])
+          end
+          @TolerateScheduleType = params['TolerateScheduleType']
+          unless params['CustomTolerateSchedules'].nil?
+            @CustomTolerateSchedules = []
+            params['CustomTolerateSchedules'].each do |i|
+              customtolerateschedule_tmp = CustomTolerateSchedule.new
+              customtolerateschedule_tmp.deserialize(i)
+              @CustomTolerateSchedules << customtolerateschedule_tmp
+            end
+          end
         end
       end
 
@@ -17756,6 +18316,40 @@ module TencentCloud
         end
       end
 
+      # 注册配置治理信息
+      class ServiceGovernanceConfig < TencentCloud::Common::AbstractModel
+        # @param EnableGovernance: 是否开启服务注册治理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableGovernance: Boolean
+        # @param GovernanceType: 服务治理类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernanceType: String
+        # @param ExclusiveInstances: 独享实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveInstances: Array
+
+        attr_accessor :EnableGovernance, :GovernanceType, :ExclusiveInstances
+
+        def initialize(enablegovernance=nil, governancetype=nil, exclusiveinstances=nil)
+          @EnableGovernance = enablegovernance
+          @GovernanceType = governancetype
+          @ExclusiveInstances = exclusiveinstances
+        end
+
+        def deserialize(params)
+          @EnableGovernance = params['EnableGovernance']
+          @GovernanceType = params['GovernanceType']
+          unless params['ExclusiveInstances'].nil?
+            @ExclusiveInstances = []
+            params['ExclusiveInstances'].each do |i|
+              exclusiveinstance_tmp = ExclusiveInstance.new
+              exclusiveinstance_tmp.deserialize(i)
+              @ExclusiveInstances << exclusiveinstance_tmp
+            end
+          end
+        end
+      end
+
       # 容器网络设置。
       class ServiceSetting < TencentCloud::Common::AbstractModel
         # @param AccessType: 0:公网, 1:集群内访问, 2：NodePort, 3: VPC 内网访问
@@ -17782,10 +18376,49 @@ module TencentCloud
         # @param SessionAffinityTimeoutSeconds: SessionAffinity会话时间，默认10800
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionAffinityTimeoutSeconds: Integer
+        # @param ServiceName: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ExternalTrafficStrategy: 外部流量策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalTrafficStrategy: String
+        # @param ExternalTrafficPolicy: 外部流量策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalTrafficPolicy: String
+        # @param LoadBalancerProvisioner: 负载均衡提供者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerProvisioner: String
+        # @param LoadBalancingType: 负载均衡类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancingType: String
+        # @param ClusterIp: k8s负载均衡内网vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIp: String
+        # @param DisableServiceInt: 禁用服务Int记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableServiceInt: Integer
+        # @param OpenSessionAffinityInt: 开启SessionAffinity Int记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenSessionAffinityInt: Integer
+        # @param HeadlessServiceInt: 开启HeadlessService int记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadlessServiceInt: Integer
+        # @param Name: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param VpcId: VPC网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param LoadBalancingIp: 负载均衡VIP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancingIp: String
+        # @param LoadBalancerId: 负载均衡id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerId: String
 
-        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService, :OpenSessionAffinity, :SessionAffinityTimeoutSeconds
+        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService, :OpenSessionAffinity, :SessionAffinityTimeoutSeconds, :ServiceName, :ExternalTrafficStrategy, :ExternalTrafficPolicy, :LoadBalancerProvisioner, :LoadBalancingType, :ClusterIp, :DisableServiceInt, :OpenSessionAffinityInt, :HeadlessServiceInt, :Name, :VpcId, :LoadBalancingIp, :LoadBalancerId
 
-        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil, opensessionaffinity=nil, sessionaffinitytimeoutseconds=nil)
+        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil, opensessionaffinity=nil, sessionaffinitytimeoutseconds=nil, servicename=nil, externaltrafficstrategy=nil, externaltrafficpolicy=nil, loadbalancerprovisioner=nil, loadbalancingtype=nil, clusterip=nil, disableserviceint=nil, opensessionaffinityint=nil, headlessserviceint=nil, name=nil, vpcid=nil, loadbalancingip=nil, loadbalancerid=nil)
           @AccessType = accesstype
           @ProtocolPorts = protocolports
           @SubnetId = subnetid
@@ -17794,6 +18427,19 @@ module TencentCloud
           @AllowDeleteService = allowdeleteservice
           @OpenSessionAffinity = opensessionaffinity
           @SessionAffinityTimeoutSeconds = sessionaffinitytimeoutseconds
+          @ServiceName = servicename
+          @ExternalTrafficStrategy = externaltrafficstrategy
+          @ExternalTrafficPolicy = externaltrafficpolicy
+          @LoadBalancerProvisioner = loadbalancerprovisioner
+          @LoadBalancingType = loadbalancingtype
+          @ClusterIp = clusterip
+          @DisableServiceInt = disableserviceint
+          @OpenSessionAffinityInt = opensessionaffinityint
+          @HeadlessServiceInt = headlessserviceint
+          @Name = name
+          @VpcId = vpcid
+          @LoadBalancingIp = loadbalancingip
+          @LoadBalancerId = loadbalancerid
         end
 
         def deserialize(params)
@@ -17812,6 +18458,19 @@ module TencentCloud
           @AllowDeleteService = params['AllowDeleteService']
           @OpenSessionAffinity = params['OpenSessionAffinity']
           @SessionAffinityTimeoutSeconds = params['SessionAffinityTimeoutSeconds']
+          @ServiceName = params['ServiceName']
+          @ExternalTrafficStrategy = params['ExternalTrafficStrategy']
+          @ExternalTrafficPolicy = params['ExternalTrafficPolicy']
+          @LoadBalancerProvisioner = params['LoadBalancerProvisioner']
+          @LoadBalancingType = params['LoadBalancingType']
+          @ClusterIp = params['ClusterIp']
+          @DisableServiceInt = params['DisableServiceInt']
+          @OpenSessionAffinityInt = params['OpenSessionAffinityInt']
+          @HeadlessServiceInt = params['HeadlessServiceInt']
+          @Name = params['Name']
+          @VpcId = params['VpcId']
+          @LoadBalancingIp = params['LoadBalancingIp']
+          @LoadBalancerId = params['LoadBalancerId']
         end
       end
 
@@ -18146,10 +18805,16 @@ module TencentCloud
         # @param ApplicationRuntimeType: ApplicationRuntimeType
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationRuntimeType: String
+        # @param AmpInstanceId: Apm业务系统id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmpInstanceId: String
+        # @param ApmInstanceName: Apm业务系统Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmInstanceName: String
 
-        attr_accessor :ApplicationId, :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ProgLang, :ApplicationResourceType, :CreateTime, :UpdateTime, :ApigatewayServiceId, :ApplicationRuntimeType
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ProgLang, :ApplicationResourceType, :CreateTime, :UpdateTime, :ApigatewayServiceId, :ApplicationRuntimeType, :AmpInstanceId, :ApmInstanceName
 
-        def initialize(applicationid=nil, applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, proglang=nil, applicationresourcetype=nil, createtime=nil, updatetime=nil, apigatewayserviceid=nil, applicationruntimetype=nil)
+        def initialize(applicationid=nil, applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, proglang=nil, applicationresourcetype=nil, createtime=nil, updatetime=nil, apigatewayserviceid=nil, applicationruntimetype=nil, ampinstanceid=nil, apminstancename=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationType = applicationtype
@@ -18161,6 +18826,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @ApigatewayServiceId = apigatewayserviceid
           @ApplicationRuntimeType = applicationruntimetype
+          @AmpInstanceId = ampinstanceid
+          @ApmInstanceName = apminstancename
         end
 
         def deserialize(params)
@@ -18175,6 +18842,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @ApigatewayServiceId = params['ApigatewayServiceId']
           @ApplicationRuntimeType = params['ApplicationRuntimeType']
+          @AmpInstanceId = params['AmpInstanceId']
+          @ApmInstanceName = params['ApmInstanceName']
         end
       end
 
@@ -18546,6 +19215,28 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -18977,6 +19668,42 @@ module TencentCloud
         end
       end
 
+      # 尽量调度
+      class TrySchedule < TencentCloud::Common::AbstractModel
+        # @param AffinityList: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffinityList: Array
+        # @param AntiAffinityList: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AntiAffinityList: Array
+
+        attr_accessor :AffinityList, :AntiAffinityList
+
+        def initialize(affinitylist=nil, antiaffinitylist=nil)
+          @AffinityList = affinitylist
+          @AntiAffinityList = antiaffinitylist
+        end
+
+        def deserialize(params)
+          unless params['AffinityList'].nil?
+            @AffinityList = []
+            params['AffinityList'].each do |i|
+              affinity_tmp = Affinity.new
+              affinity_tmp.deserialize(i)
+              @AffinityList << affinity_tmp
+            end
+          end
+          unless params['AntiAffinityList'].nil?
+            @AntiAffinityList = []
+            params['AntiAffinityList'].each do |i|
+              affinity_tmp = Affinity.new
+              affinity_tmp.deserialize(i)
+              @AntiAffinityList << affinity_tmp
+            end
+          end
+        end
+      end
+
       # TsfApiListResponse
       class TsfApiListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 数量
@@ -19115,12 +19842,16 @@ module TencentCloud
         # @param Content: 应用信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: Array
+        # @param SpecTotalCount: 获取部署组实例列表返回的原始批次个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecTotalCount: Integer
 
-        attr_accessor :TotalCount, :Content
+        attr_accessor :TotalCount, :Content, :SpecTotalCount
 
-        def initialize(totalcount=nil, content=nil)
+        def initialize(totalcount=nil, content=nil, spectotalcount=nil)
           @TotalCount = totalcount
           @Content = content
+          @SpecTotalCount = spectotalcount
         end
 
         def deserialize(params)
@@ -19133,6 +19864,7 @@ module TencentCloud
               @Content << applicationforpage_tmp
             end
           end
+          @SpecTotalCount = params['SpecTotalCount']
         end
       end
 
@@ -20551,12 +21283,20 @@ module TencentCloud
         # @param ResourceFieldRef: k8s env 的 ResourceFieldRef
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceFieldRef: :class:`Tencentcloud::Tsf.v20180326.models.ResourceFieldRef`
+        # @param ConfigMapKeyRef: k8s env的configMapKeyRef
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigMapKeyRef: :class:`Tencentcloud::Tsf.v20180326.models.CommonRef`
+        # @param SecretKeyRef: k8s env 的 secretKeyRef
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKeyRef: :class:`Tencentcloud::Tsf.v20180326.models.CommonRef`
 
-        attr_accessor :FieldRef, :ResourceFieldRef
+        attr_accessor :FieldRef, :ResourceFieldRef, :ConfigMapKeyRef, :SecretKeyRef
 
-        def initialize(fieldref=nil, resourcefieldref=nil)
+        def initialize(fieldref=nil, resourcefieldref=nil, configmapkeyref=nil, secretkeyref=nil)
           @FieldRef = fieldref
           @ResourceFieldRef = resourcefieldref
+          @ConfigMapKeyRef = configmapkeyref
+          @SecretKeyRef = secretkeyref
         end
 
         def deserialize(params)
@@ -20567,6 +21307,14 @@ module TencentCloud
           unless params['ResourceFieldRef'].nil?
             @ResourceFieldRef = ResourceFieldRef.new
             @ResourceFieldRef.deserialize(params['ResourceFieldRef'])
+          end
+          unless params['ConfigMapKeyRef'].nil?
+            @ConfigMapKeyRef = CommonRef.new
+            @ConfigMapKeyRef.deserialize(params['ConfigMapKeyRef'])
+          end
+          unless params['SecretKeyRef'].nil?
+            @SecretKeyRef = CommonRef.new
+            @SecretKeyRef.deserialize(params['SecretKeyRef'])
           end
         end
       end
@@ -20969,19 +21717,39 @@ module TencentCloud
         # @type VolumeName: String
         # @param VolumeConfig: 数据卷配置
         # @type VolumeConfig: String
+        # @param ConfigMapOptions: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigMapOptions: Array
+        # @param EmptyDirOption: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmptyDirOption: :class:`Tencentcloud::Tsf.v20180326.models.EmptyDirOption`
 
-        attr_accessor :VolumeType, :VolumeName, :VolumeConfig
+        attr_accessor :VolumeType, :VolumeName, :VolumeConfig, :ConfigMapOptions, :EmptyDirOption
 
-        def initialize(volumetype=nil, volumename=nil, volumeconfig=nil)
+        def initialize(volumetype=nil, volumename=nil, volumeconfig=nil, configmapoptions=nil, emptydiroption=nil)
           @VolumeType = volumetype
           @VolumeName = volumename
           @VolumeConfig = volumeconfig
+          @ConfigMapOptions = configmapoptions
+          @EmptyDirOption = emptydiroption
         end
 
         def deserialize(params)
           @VolumeType = params['VolumeType']
           @VolumeName = params['VolumeName']
           @VolumeConfig = params['VolumeConfig']
+          unless params['ConfigMapOptions'].nil?
+            @ConfigMapOptions = []
+            params['ConfigMapOptions'].each do |i|
+              configmapoption_tmp = ConfigMapOption.new
+              configmapoption_tmp.deserialize(i)
+              @ConfigMapOptions << configmapoption_tmp
+            end
+          end
+          unless params['EmptyDirOption'].nil?
+            @EmptyDirOption = EmptyDirOption.new
+            @EmptyDirOption.deserialize(params['EmptyDirOption'])
+          end
         end
       end
 

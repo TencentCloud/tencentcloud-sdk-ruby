@@ -295,7 +295,7 @@ module TencentCloud
         # @param BackupErrorMsg: 备份的错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupErrorMsg: String
-        # @param IsOpenCoolDown: 改库表是否绑定降冷策略
+        # @param IsOpenCoolDown: 该库表是否绑定降冷策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOpenCoolDown: Boolean
 
@@ -515,8 +515,8 @@ module TencentCloud
 
         attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2024, 11
-        deprecate :FileKeyValues=, :none, 2024, 11
+        deprecate :FileKeyValues, :none, 2024, 12
+        deprecate :FileKeyValues=, :none, 2024, 12
 
         def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @FileName = filename
@@ -773,10 +773,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket
         extend Gem::Deprecate
-        deprecate :WeekDays, :none, 2024, 11
-        deprecate :WeekDays=, :none, 2024, 11
-        deprecate :ExecuteHour, :none, 2024, 11
-        deprecate :ExecuteHour=, :none, 2024, 11
+        deprecate :WeekDays, :none, 2024, 12
+        deprecate :WeekDays=, :none, 2024, 12
+        deprecate :ExecuteHour, :none, 2024, 12
+        deprecate :ExecuteHour=, :none, 2024, 12
 
         def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil)
           @InstanceId = instanceid
@@ -2498,8 +2498,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2024, 11
-        deprecate :InstanceID=, :none, 2024, 11
+        deprecate :InstanceID, :none, 2024, 12
+        deprecate :InstanceID=, :none, 2024, 12
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -3488,8 +3488,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2024, 11
-        deprecate :IfExistCatalog=, :none, 2024, 11
+        deprecate :IfExistCatalog, :none, 2024, 12
+        deprecate :IfExistCatalog=, :none, 2024, 12
 
         def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil)
           @InstanceId = instanceid

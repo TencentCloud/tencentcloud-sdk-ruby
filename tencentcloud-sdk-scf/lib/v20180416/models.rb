@@ -4492,12 +4492,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 11
-        deprecate :ResourceId=, :none, 2024, 11
-        deprecate :BindStatus, :none, 2024, 11
-        deprecate :BindStatus=, :none, 2024, 11
-        deprecate :TriggerAttribute, :none, 2024, 11
-        deprecate :TriggerAttribute=, :none, 2024, 11
+        deprecate :ResourceId, :none, 2024, 12
+        deprecate :ResourceId=, :none, 2024, 12
+        deprecate :BindStatus, :none, 2024, 12
+        deprecate :BindStatus=, :none, 2024, 12
+        deprecate :TriggerAttribute, :none, 2024, 12
+        deprecate :TriggerAttribute=, :none, 2024, 12
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4658,12 +4658,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 11
-        deprecate :ResourceId=, :none, 2024, 11
-        deprecate :BindStatus, :none, 2024, 11
-        deprecate :BindStatus=, :none, 2024, 11
-        deprecate :TriggerAttribute, :none, 2024, 11
-        deprecate :TriggerAttribute=, :none, 2024, 11
+        deprecate :ResourceId, :none, 2024, 12
+        deprecate :ResourceId=, :none, 2024, 12
+        deprecate :BindStatus, :none, 2024, 12
+        deprecate :BindStatus=, :none, 2024, 12
+        deprecate :TriggerAttribute, :none, 2024, 12
+        deprecate :TriggerAttribute=, :none, 2024, 12
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable
@@ -4763,7 +4763,7 @@ module TencentCloud
         # @type CertConfig: :class:`Tencentcloud::Scf.v20180416.models.CertConf`
         # @param WafConfig: web 应用防火墙配置
         # @type WafConfig: :class:`Tencentcloud::Scf.v20180416.models.WafConf`
-        # @param EndpointsConfig: 	路由配置
+        # @param EndpointsConfig: 路由配置
         # @type EndpointsConfig: Array
 
         attr_accessor :Domain, :Protocol, :CertConfig, :WafConfig, :EndpointsConfig

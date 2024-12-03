@@ -93,10 +93,14 @@ module TencentCloud
         # @type InterruptMode: Integer
         # @param InterruptSpeechDuration: InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断。
         # @type InterruptSpeechDuration: Integer
+        # @param TurnDetectionMode: 控制新一轮对话的触发方式，默认为0。
+        # - 0表示当服务端语音识别检测出的完整一句话后，自动触发一轮新的对话。
+        # - 1表示客户端在收到字幕消息后，自行决定是否手动发送聊天信令触发一轮新的对话。
+        # @type TurnDetectionMode: Integer
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -104,6 +108,7 @@ module TencentCloud
           @WelcomeMessage = welcomemessage
           @InterruptMode = interruptmode
           @InterruptSpeechDuration = interruptspeechduration
+          @TurnDetectionMode = turndetectionmode
         end
 
         def deserialize(params)
@@ -114,6 +119,7 @@ module TencentCloud
           @WelcomeMessage = params['WelcomeMessage']
           @InterruptMode = params['InterruptMode']
           @InterruptSpeechDuration = params['InterruptSpeechDuration']
+          @TurnDetectionMode = params['TurnDetectionMode']
         end
       end
 
@@ -3834,10 +3840,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage
         extend Gem::Deprecate
-        deprecate :Model, :none, 2024, 11
-        deprecate :Model=, :none, 2024, 11
-        deprecate :TranslationLanguage, :none, 2024, 11
-        deprecate :TranslationLanguage=, :none, 2024, 11
+        deprecate :Model, :none, 2024, 12
+        deprecate :Model=, :none, 2024, 12
+        deprecate :TranslationLanguage, :none, 2024, 12
+        deprecate :TranslationLanguage=, :none, 2024, 12
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil)
           @Language = language
@@ -4288,19 +4294,25 @@ module TencentCloud
         # @type Interrupt: Boolean
         # @param StopAfterPlay: 播报完文本后，是否自动关闭对话任务
         # @type StopAfterPlay: Boolean
+        # @param Audio: 服务端推送播报音频
+        #     格式说明：音频以16KHz采样率的单声道格式提供，编码为Base64字符串。
+        #     输入规则：当提供Audio字段时，将不接受Text字段的输入。系统将直接播放Audio字段中的音频内容。
+        # @type Audio: String
 
-        attr_accessor :Text, :Interrupt, :StopAfterPlay
+        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio
 
-        def initialize(text=nil, interrupt=nil, stopafterplay=nil)
+        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil)
           @Text = text
           @Interrupt = interrupt
           @StopAfterPlay = stopafterplay
+          @Audio = audio
         end
 
         def deserialize(params)
           @Text = params['Text']
           @Interrupt = params['Interrupt']
           @StopAfterPlay = params['StopAfterPlay']
+          @Audio = params['Audio']
         end
       end
 
@@ -4778,12 +4790,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2024, 11
-        deprecate :VideoEncodeParams=, :none, 2024, 11
-        deprecate :AudioEncodeParams, :none, 2024, 11
-        deprecate :AudioEncodeParams=, :none, 2024, 11
-        deprecate :SourceUrl, :none, 2024, 11
-        deprecate :SourceUrl=, :none, 2024, 11
+        deprecate :VideoEncodeParams, :none, 2024, 12
+        deprecate :VideoEncodeParams=, :none, 2024, 12
+        deprecate :AudioEncodeParams, :none, 2024, 12
+        deprecate :AudioEncodeParams=, :none, 2024, 12
+        deprecate :SourceUrl, :none, 2024, 12
+        deprecate :SourceUrl=, :none, 2024, 12
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -5430,10 +5442,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2024, 11
-        deprecate :IMAdminUserId=, :none, 2024, 11
-        deprecate :IMAdminUserSig, :none, 2024, 11
-        deprecate :IMAdminUserSig=, :none, 2024, 11
+        deprecate :IMAdminUserId, :none, 2024, 12
+        deprecate :IMAdminUserId=, :none, 2024, 12
+        deprecate :IMAdminUserSig, :none, 2024, 12
+        deprecate :IMAdminUserSig=, :none, 2024, 12
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil)
           @UserId = userid

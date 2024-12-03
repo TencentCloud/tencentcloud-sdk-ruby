@@ -6710,15 +6710,23 @@ module TencentCloud
       class SubsErr < TencentCloud::Common::AbstractModel
         # @param Message: 报错信息
         # @type Message: String
+        # @param Reason: 报错原因
+        # @type Reason: String
+        # @param Solution: 建议的修复方案
+        # @type Solution: String
 
-        attr_accessor :Message
+        attr_accessor :Message, :Reason, :Solution
 
-        def initialize(message=nil)
+        def initialize(message=nil, reason=nil, solution=nil)
           @Message = message
+          @Reason = reason
+          @Solution = solution
         end
 
         def deserialize(params)
           @Message = params['Message']
+          @Reason = params['Reason']
+          @Solution = params['Solution']
         end
       end
 
