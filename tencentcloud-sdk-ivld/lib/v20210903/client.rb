@@ -523,7 +523,6 @@ module TencentCloud
 
         # 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
 
-
         # @param request: Request instance for DescribeTask.
         # @type request: :class:`Tencentcloud::ivld::V20210903::DescribeTaskRequest`
         # @rtype: :class:`Tencentcloud::ivld::V20210903::DescribeTaskResponse`

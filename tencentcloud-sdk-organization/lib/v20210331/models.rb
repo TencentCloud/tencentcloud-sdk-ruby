@@ -2986,7 +2986,7 @@ module TencentCloud
 
       # DescribePolicy请求参数结构体
       class DescribePolicyRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略Id。
+        # @param PolicyId: 策略Id。可以调用[ListPolicies](https://cloud.tencent.com/document/product/850/105311)获取
         # @type PolicyId: Integer
         # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
         # @type PolicyType: String
@@ -4442,10 +4442,8 @@ module TencentCloud
       # ListNonCompliantResource返回参数结构体
       class ListNonCompliantResourceResponse < TencentCloud::Common::AbstractModel
         # @param Items: 资源及标签合规信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param PaginationToken: 获取的下一页的Token值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PaginationToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4499,10 +4497,8 @@ module TencentCloud
       # ListOrgServiceAssignMember返回参数结构体
       class ListOrgServiceAssignMemberResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 委派管理员列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4564,10 +4560,8 @@ module TencentCloud
       # ListOrganizationIdentity返回参数结构体
       class ListOrganizationIdentityResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 条目详情。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4621,10 +4615,8 @@ module TencentCloud
       # ListOrganizationService返回参数结构体
       class ListOrganizationServiceResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param Items: 集团服务列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4800,7 +4792,6 @@ module TencentCloud
         # @param TotalNum: 总数。
         # @type TotalNum: Integer
         # @param List: 目标关联的策略列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4864,7 +4855,6 @@ module TencentCloud
         # @param TotalNum: 策略总数
         # @type TotalNum: Integer
         # @param List: 策略列表数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5313,7 +5303,6 @@ module TencentCloud
         # @param TotalNum: 总数。
         # @type TotalNum: Integer
         # @param List: 指定SCP策略关联目标列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6464,8 +6453,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 11
-        deprecate :ResourceGrantLast=, :none, 2024, 11
+        deprecate :ResourceGrantLast, :none, 2024, 12
+        deprecate :ResourceGrantLast=, :none, 2024, 12
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7300,8 +7289,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 11
-        deprecate :ResourceId=, :none, 2024, 11
+        deprecate :ResourceId, :none, 2024, 12
+        deprecate :ResourceId=, :none, 2024, 12
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

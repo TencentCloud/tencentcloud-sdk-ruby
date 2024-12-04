@@ -180,12 +180,16 @@ module TencentCloud
         # @type AudioInfoSet: Array
         # @param TextTagSet: 音频识别标签数据
         # @type TextTagSet: :class:`Tencentcloud::Ivld.v20210903.models.MultiLevelTag`
+        # @param WebMediaURL: 音频下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebMediaURL: String
 
-        attr_accessor :AudioInfoSet, :TextTagSet
+        attr_accessor :AudioInfoSet, :TextTagSet, :WebMediaURL
 
-        def initialize(audioinfoset=nil, texttagset=nil)
+        def initialize(audioinfoset=nil, texttagset=nil, webmediaurl=nil)
           @AudioInfoSet = audioinfoset
           @TextTagSet = texttagset
+          @WebMediaURL = webmediaurl
         end
 
         def deserialize(params)
@@ -201,6 +205,7 @@ module TencentCloud
             @TextTagSet = MultiLevelTag.new
             @TextTagSet.deserialize(params['TextTagSet'])
           end
+          @WebMediaURL = params['WebMediaURL']
         end
       end
 
@@ -252,16 +257,24 @@ module TencentCloud
         # @param Format: 媒资音频文件格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
+        # @param BitDepth: Audio Bit Depth: 16/24 bit .etc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitDepth: Integer
+        # @param ShortFormat: 封装格式短后缀
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortFormat: String
 
-        attr_accessor :FileSize, :MD5, :Duration, :SampleRate, :BitRate, :Format
+        attr_accessor :FileSize, :MD5, :Duration, :SampleRate, :BitRate, :Format, :BitDepth, :ShortFormat
 
-        def initialize(filesize=nil, md5=nil, duration=nil, samplerate=nil, bitrate=nil, format=nil)
+        def initialize(filesize=nil, md5=nil, duration=nil, samplerate=nil, bitrate=nil, format=nil, bitdepth=nil, shortformat=nil)
           @FileSize = filesize
           @MD5 = md5
           @Duration = duration
           @SampleRate = samplerate
           @BitRate = bitrate
           @Format = format
+          @BitDepth = bitdepth
+          @ShortFormat = shortformat
         end
 
         def deserialize(params)
@@ -271,6 +284,8 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @BitRate = params['BitRate']
           @Format = params['Format']
+          @BitDepth = params['BitDepth']
+          @ShortFormat = params['ShortFormat']
         end
       end
 
@@ -463,7 +478,7 @@ module TencentCloud
 
       # CreateTask请求参数结构体
       class CreateTaskRequest < TencentCloud::Common::AbstractModel
-        # @param MediaId: 媒资文件ID，最长32B
+        # @param MediaId: 媒资文件ID
         # @type MediaId: String
         # @param MediaPreknownInfo: 媒资素材先验知识，相关限制参考MediaPreknownInfo
         # @type MediaPreknownInfo: :class:`Tencentcloud::Ivld.v20210903.models.MediaPreknownInfo`
@@ -757,7 +772,7 @@ module TencentCloud
 
       # DeleteCustomCategory返回参数结构体
       class DeleteCustomCategoryResponse < TencentCloud::Common::AbstractModel
-        # @param CategoryId: 123
+        # @param CategoryId: 自定义分类ID
         # @type CategoryId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1103,7 +1118,7 @@ module TencentCloud
 
       # DescribeMedia请求参数结构体
       class DescribeMediaRequest < TencentCloud::Common::AbstractModel
-        # @param MediaId: 导入媒资返回的媒资ID，最长32B
+        # @param MediaId: 导入媒资返回的媒资ID
         # @type MediaId: String
 
         attr_accessor :MediaId
@@ -1281,7 +1296,7 @@ module TencentCloud
 
       # DescribeTask请求参数结构体
       class DescribeTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: CreateTask返回的任务ID，最长32B
+        # @param TaskId: CreateTask返回的任务ID
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -1666,11 +1681,11 @@ module TencentCloud
 
       # ImportMedia请求参数结构体
       class ImportMediaRequest < TencentCloud::Common::AbstractModel
-        # @param URL: 待分析视频的URL，目前只支持*不带签名的*COS地址，长度最长1KB
+        # @param URL: 待分析视频的URL，目前只支持*不带签名的*COS地址，字段输入内容最大为1KB
         # @type URL: String
-        # @param MD5: 待分析视频的MD5，为空时不做校验，否则会做MD5校验，长度必须为32B
+        # @param MD5: 待分析视频的MD5，为空时不做校验，否则会做MD5校验，长度必须为32
         # @type MD5: String
-        # @param Name: 待分析视频的名称，指定后可支持筛选，最多64B
+        # @param Name: 待分析视频的名称，指定后可支持筛选，视频名称的大小长度不能超过64
         # @type Name: String
         # @param WriteBackCosPath: 当非本人外部视频地址导入时，该字段为转存的cos桶地址且不可为空; 示例：https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${PathPrefix}/  (注意，cos路径需要以/分隔符结尾)。
         # 推荐采用本主帐号COS桶，如果使用其他帐号COS桶，请确保COS桶可写，否则可导致分析失败
@@ -1856,7 +1871,6 @@ module TencentCloud
       end
 
       # 媒资过滤条件
-
       class MediaFilter < TencentCloud::Common::AbstractModel
         # @param MediaNameSet: 媒资名称过滤条件
         # @type MediaNameSet: Array
@@ -2258,15 +2272,19 @@ module TencentCloud
         # @param AppearRect: 人脸在图片中的位置，仅在图片标签任务有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppearRect: :class:`Tencentcloud::Ivld.v20210903.models.Rectf`
+        # @param PersonId: 人物的personId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PersonId: String
 
-        attr_accessor :Name, :Job, :FirstAppear, :AppearInfo, :AppearRect
+        attr_accessor :Name, :Job, :FirstAppear, :AppearInfo, :AppearRect, :PersonId
 
-        def initialize(name=nil, job=nil, firstappear=nil, appearinfo=nil, appearrect=nil)
+        def initialize(name=nil, job=nil, firstappear=nil, appearinfo=nil, appearrect=nil, personid=nil)
           @Name = name
           @Job = job
           @FirstAppear = firstappear
           @AppearInfo = appearinfo
           @AppearRect = appearrect
+          @PersonId = personid
         end
 
         def deserialize(params)
@@ -2281,6 +2299,7 @@ module TencentCloud
             @AppearRect = Rectf.new
             @AppearRect.deserialize(params['AppearRect'])
           end
+          @PersonId = params['PersonId']
         end
       end
 
@@ -2777,13 +2796,17 @@ module TencentCloud
         # @param TextTagSet: 文本标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTagSet: :class:`Tencentcloud::Ivld.v20210903.models.MultiLevelTag`
+        # @param WebMediaURL: 文档下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebMediaURL: String
 
-        attr_accessor :Content, :Summary, :TextTagSet
+        attr_accessor :Content, :Summary, :TextTagSet, :WebMediaURL
 
-        def initialize(content=nil, summary=nil, texttagset=nil)
+        def initialize(content=nil, summary=nil, texttagset=nil, webmediaurl=nil)
           @Content = content
           @Summary = summary
           @TextTagSet = texttagset
+          @WebMediaURL = webmediaurl
         end
 
         def deserialize(params)
@@ -2793,6 +2816,7 @@ module TencentCloud
             @TextTagSet = MultiLevelTag.new
             @TextTagSet.deserialize(params['TextTagSet'])
           end
+          @WebMediaURL = params['WebMediaURL']
         end
       end
 
@@ -2838,14 +2862,18 @@ module TencentCloud
         # @param Format: 媒资文本文件格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Format: String
+        # @param ShortFormat: 封装格式短后缀
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortFormat: String
 
-        attr_accessor :FileSize, :MD5, :Length, :Format
+        attr_accessor :FileSize, :MD5, :Length, :Format, :ShortFormat
 
-        def initialize(filesize=nil, md5=nil, length=nil, format=nil)
+        def initialize(filesize=nil, md5=nil, length=nil, format=nil, shortformat=nil)
           @FileSize = filesize
           @MD5 = md5
           @Length = length
           @Format = format
+          @ShortFormat = shortformat
         end
 
         def deserialize(params)
@@ -2853,6 +2881,7 @@ module TencentCloud
           @MD5 = params['MD5']
           @Length = params['Length']
           @Format = params['Format']
+          @ShortFormat = params['ShortFormat']
         end
       end
 
@@ -2881,12 +2910,16 @@ module TencentCloud
         # @param PutLibraryAllowed: 未知人物是否可以入库(只有当未知人物人脸小图质量分符合要求时才可入库)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PutLibraryAllowed: Boolean
+        # @param AuditClass: 内容审核结果: 0-正常;1-涉政;其他待确定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditClass: Integer
 
-        attr_accessor :VideoAppearSet, :PutLibraryAllowed
+        attr_accessor :VideoAppearSet, :PutLibraryAllowed, :AuditClass
 
-        def initialize(videoappearset=nil, putlibraryallowed=nil)
+        def initialize(videoappearset=nil, putlibraryallowed=nil, auditclass=nil)
           @VideoAppearSet = videoappearset
           @PutLibraryAllowed = putlibraryallowed
+          @AuditClass = auditclass
         end
 
         def deserialize(params)
@@ -2899,6 +2932,7 @@ module TencentCloud
             end
           end
           @PutLibraryAllowed = params['PutLibraryAllowed']
+          @AuditClass = params['AuditClass']
         end
       end
 

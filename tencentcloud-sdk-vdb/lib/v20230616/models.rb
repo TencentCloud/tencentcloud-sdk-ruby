@@ -171,6 +171,8 @@ module TencentCloud
         # @type EngineNames: Array
         # @param EngineVersions: 按照版本筛选实例。
         # @type EngineVersions: Array
+        # @param ApiVersions: 按照api版本筛选实例
+        # @type ApiVersions: Array
         # @param CreateAt: 按照创建时间筛选实例。
         # @type CreateAt: String
         # @param Zones: 按照可用区筛选实例。
@@ -186,15 +188,16 @@ module TencentCloud
         # @param ResourceTags: 按照标签筛选实例
         # @type ResourceTags: Array
 
-        attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags
+        attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags
 
-        def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil)
+        def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil)
           @InstanceIds = instanceids
           @InstanceNames = instancenames
           @InstanceKeys = instancekeys
           @Status = status
           @EngineNames = enginenames
           @EngineVersions = engineversions
+          @ApiVersions = apiversions
           @CreateAt = createat
           @Zones = zones
           @OrderBy = orderby
@@ -211,6 +214,7 @@ module TencentCloud
           @Status = params['Status']
           @EngineNames = params['EngineNames']
           @EngineVersions = params['EngineVersions']
+          @ApiVersions = params['ApiVersions']
           @CreateAt = params['CreateAt']
           @Zones = params['Zones']
           @OrderBy = params['OrderBy']

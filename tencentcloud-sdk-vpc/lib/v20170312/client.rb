@@ -5455,6 +5455,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询流量调度规则
+
+        # @param request: Request instance for DescribeTrafficQosPolicy.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficQosPolicyRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeTrafficQosPolicyResponse`
+        def DescribeTrafficQosPolicy(request)
+          body = send_request('DescribeTrafficQosPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrafficQosPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeUsedIpAddress)用于查询Subnet或者Vpc内的ip的使用情况，
         # 如ip被占用，返回占用ip的资源类别与id；如未被占用，返回空值
 

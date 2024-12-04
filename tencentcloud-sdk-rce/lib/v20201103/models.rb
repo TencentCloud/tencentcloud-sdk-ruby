@@ -144,7 +144,7 @@ module TencentCloud
 
         # 示例值：https://www.*****.com/*
         # @type PrivacyPolicyLink: String
-        # @param IsPersonalData: 是否是用户个人敏感数据。
+        # @param IsPersonalData: 是否是用户个人敏感数据（不推荐使用）。
 
         # 固定填：1。
 

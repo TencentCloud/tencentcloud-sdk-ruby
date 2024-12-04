@@ -4376,10 +4376,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2024, 11
-        deprecate :Limit=, :none, 2024, 11
-        deprecate :Offset, :none, 2024, 11
-        deprecate :Offset=, :none, 2024, 11
+        deprecate :Limit, :none, 2024, 12
+        deprecate :Limit=, :none, 2024, 12
+        deprecate :Offset, :none, 2024, 12
+        deprecate :Offset=, :none, 2024, 12
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -6713,8 +6713,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 11
-        deprecate :Regions=, :none, 2024, 11
+        deprecate :Regions, :none, 2024, 12
+        deprecate :Regions=, :none, 2024, 12
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

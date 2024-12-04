@@ -232,6 +232,74 @@ module TencentCloud
         end
       end
 
+      # 审核存储参数
+      class AuditStorageParams < TencentCloud::Common::AbstractModel
+        # @param CloudAuditStorage: 腾讯云对象存储COS以及第三方云存储的账号信息
+        # @type CloudAuditStorage: :class:`Tencentcloud::Trtc.v20190722.models.CloudAuditStorage`
+
+        attr_accessor :CloudAuditStorage
+
+        def initialize(cloudauditstorage=nil)
+          @CloudAuditStorage = cloudauditstorage
+        end
+
+        def deserialize(params)
+          unless params['CloudAuditStorage'].nil?
+            @CloudAuditStorage = CloudAuditStorage.new
+            @CloudAuditStorage.deserialize(params['CloudAuditStorage'])
+          end
+        end
+      end
+
+      # 腾讯云对象存储COS以及第三方云存储的账号信息
+      class CloudAuditStorage < TencentCloud::Common::AbstractModel
+        # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
+        # 0：腾讯云对象存储 COS
+        # 1：AWS
+        # 【注意】目前第三方云存储仅支持AWS，更多第三方云存储陆续支持中
+        # 示例值：0
+        # @type Vendor: Integer
+        # @param Region: 腾讯云对象存储的[地域信息]（https://cloud.tencent.com/document/product/436/6224#.E5.9C.B0.E5.9F.9F）。
+        # 示例值：cn-shanghai-1
+
+        # AWS S3[地域信息]（https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions）
+        # 示例值：ap-southeast-3
+        # @type Region: String
+        # @param Bucket: 云存储桶名称。
+        # @type Bucket: String
+        # @param AccessKey: 云存储的access_key账号信息。
+        # 若存储至腾讯云对象存储COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretId值。
+        # 示例值：test-accesskey
+        # @type AccessKey: String
+        # @param SecretKey: 云存储的secret_key账号信息。
+        # 若存储至腾讯云对象存储COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretKey值。
+        # 示例值：test-secretkey
+        # @type SecretKey: String
+        # @param FileNamePrefix: 云存储bucket 的指定位置，由字符串数组组成。合法的字符串范围az,AZ,0~9,'_'和'-'，举个例子，录制文件xxx.m3u8在 ["prefix1", "prefix2"]作用下，会变成prefix1/prefix2/TaskId/xxx.m3u8。
+        # 示例值：["prefix1", "prefix2"]
+        # @type FileNamePrefix: Array
+
+        attr_accessor :Vendor, :Region, :Bucket, :AccessKey, :SecretKey, :FileNamePrefix
+
+        def initialize(vendor=nil, region=nil, bucket=nil, accesskey=nil, secretkey=nil, filenameprefix=nil)
+          @Vendor = vendor
+          @Region = region
+          @Bucket = bucket
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+          @FileNamePrefix = filenameprefix
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+          @FileNamePrefix = params['FileNamePrefix']
+        end
+      end
+
       # 腾讯云对象存储COS以及第三方云存储的账号信息
       class CloudStorage < TencentCloud::Common::AbstractModel
         # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
@@ -350,14 +418,17 @@ module TencentCloud
         # @type UserId: String
         # @param RoomIdType: TRTC房间号的类型。【*注意】必须和TRTC的房间所对应的RoomId类型相同:0: 字符串类型的RoomId1: 32位整型的RoomId（默认）
         # @type RoomIdType: Integer
+        # @param AuditStorageParams: 音频文件上传到云存储的参数
+        # @type AuditStorageParams: :class:`Tencentcloud::Trtc.v20190722.models.AuditStorageParams`
 
-        attr_accessor :SdkAppId, :RoomId, :UserId, :RoomIdType
+        attr_accessor :SdkAppId, :RoomId, :UserId, :RoomIdType, :AuditStorageParams
 
-        def initialize(sdkappid=nil, roomid=nil, userid=nil, roomidtype=nil)
+        def initialize(sdkappid=nil, roomid=nil, userid=nil, roomidtype=nil, auditstorageparams=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @UserId = userid
           @RoomIdType = roomidtype
+          @AuditStorageParams = auditstorageparams
         end
 
         def deserialize(params)
@@ -365,6 +436,10 @@ module TencentCloud
           @RoomId = params['RoomId']
           @UserId = params['UserId']
           @RoomIdType = params['RoomIdType']
+          unless params['AuditStorageParams'].nil?
+            @AuditStorageParams = AuditStorageParams.new
+            @AuditStorageParams.deserialize(params['AuditStorageParams'])
+          end
         end
       end
 

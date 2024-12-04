@@ -944,6 +944,73 @@ module TencentCloud
         end
       end
 
+      # 机型名称与GPU相关的参数，包括驱动版本，CUDA版本，cuDNN版本，是否开启MIG以及是否开启Fabric等相关配置信息
+      class GPUConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 机型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param GPUParams: GPU相关的参数，包括驱动版本，CUDA版本，cuDNN版本，是否开启MIG以及是否开启Fabric等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUParams: :class:`Tencentcloud::Tke.v20220501.models.GPUParams`
+
+        attr_accessor :InstanceType, :GPUParams
+
+        def initialize(instancetype=nil, gpuparams=nil)
+          @InstanceType = instancetype
+          @GPUParams = gpuparams
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          unless params['GPUParams'].nil?
+            @GPUParams = GPUParams.new
+            @GPUParams.deserialize(params['GPUParams'])
+          end
+        end
+      end
+
+      # GPU相关的参数，包括驱动版本，CUDA版本，cuDNN版本，是否开启MIG以及是否开启Fabric
+      class GPUParams < TencentCloud::Common::AbstractModel
+        # @param Driver: GPU驱动版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Driver: String
+        # @param CUDA: CUDA版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CUDA: String
+        # @param CUDNN: CUDNN版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CUDNN: String
+        # @param MIGEnable: 是否启用MIG特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MIGEnable: Boolean
+        # @param Fabric: 是否启用Fabric特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fabric: Boolean
+        # @param CustomGPUDriver: 自定义驱动下载地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomGPUDriver: String
+
+        attr_accessor :Driver, :CUDA, :CUDNN, :MIGEnable, :Fabric, :CustomGPUDriver
+
+        def initialize(driver=nil, cuda=nil, cudnn=nil, migenable=nil, fabric=nil, customgpudriver=nil)
+          @Driver = driver
+          @CUDA = cuda
+          @CUDNN = cudnn
+          @MIGEnable = migenable
+          @Fabric = fabric
+          @CustomGPUDriver = customgpudriver
+        end
+
+        def deserialize(params)
+          @Driver = params['Driver']
+          @CUDA = params['CUDA']
+          @CUDNN = params['CUDNN']
+          @MIGEnable = params['MIGEnable']
+          @Fabric = params['Fabric']
+          @CustomGPUDriver = params['CustomGPUDriver']
+        end
+      end
+
       # 健康检测规则
       class HealthCheckPolicy < TencentCloud::Common::AbstractModel
         # @param Name: 健康检测策略名称
@@ -2499,10 +2566,12 @@ module TencentCloud
         # @type DataDisks: Array
         # @param KeyIds: ssh公钥id数组
         # @type KeyIds: Array
+        # @param GPUConfigs: 节点池 GPU 配置
+        # @type GPUConfigs: Array
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :DataDisks, :KeyIds
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :DataDisks, :KeyIds, :GPUConfigs
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, datadisks=nil, keyids=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, datadisks=nil, keyids=nil, gpuconfigs=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -2522,6 +2591,7 @@ module TencentCloud
           @Replicas = replicas
           @DataDisks = datadisks
           @KeyIds = keyids
+          @GPUConfigs = gpuconfigs
         end
 
         def deserialize(params)
@@ -2569,6 +2639,14 @@ module TencentCloud
             end
           end
           @KeyIds = params['KeyIds']
+          unless params['GPUConfigs'].nil?
+            @GPUConfigs = []
+            params['GPUConfigs'].each do |i|
+              gpuconfig_tmp = GPUConfig.new
+              gpuconfig_tmp.deserialize(i)
+              @GPUConfigs << gpuconfig_tmp
+            end
+          end
         end
       end
 

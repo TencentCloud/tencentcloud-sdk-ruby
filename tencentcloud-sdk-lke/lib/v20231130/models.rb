@@ -199,21 +199,21 @@ module TencentCloud
         end
       end
 
-      # 属性标签详情信息
+      # 标签详情信息
       class AttrLabel < TencentCloud::Common::AbstractModel
-        # @param Source: 属性标签来源
+        # @param Source: 标签来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
-        # @param AttrBizId: 属性ID
+        # @param AttrBizId: 标签ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrBizId: String
-        # @param AttrKey: 属性标识
+        # @param AttrKey: 标签标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrKey: String
-        # @param AttrName: 属性名称
+        # @param AttrName: 标签名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrName: String
-        # @param Labels: 标签ID
+        # @param Labels: 标签值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
 
@@ -245,19 +245,19 @@ module TencentCloud
 
       # 标签详情
       class AttrLabelDetail < TencentCloud::Common::AbstractModel
-        # @param AttrBizId: 属性ID
+        # @param AttrBizId: 标签ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrBizId: String
-        # @param AttrKey: 属性标识
+        # @param AttrKey: 标签标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrKey: String
-        # @param AttrName: 属性名称
+        # @param AttrName: 标签名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttrName: String
-        # @param LabelNames: 标签名称
+        # @param LabelNames: 标签值名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelNames: Array
-        # @param IsUpdating: 属性标签是否在更新中
+        # @param IsUpdating: 标签是否在更新中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdating: Boolean
         # @param Status: 状态
@@ -290,13 +290,13 @@ module TencentCloud
         end
       end
 
-      # 属性标签引用信息
+      # 标签引用信息
       class AttrLabelRefer < TencentCloud::Common::AbstractModel
-        # @param Source: 属性标签来源，1：属性标签
+        # @param Source: 标签来源，1：标签
         # @type Source: Integer
-        # @param AttributeBizId: 属性ID
+        # @param AttributeBizId: 标签ID
         # @type AttributeBizId: String
-        # @param LabelBizIds: 标签ID
+        # @param LabelBizIds: 标签值ID
         # @type LabelBizIds: Array
 
         attr_accessor :Source, :AttributeBizId, :LabelBizIds
@@ -330,15 +330,15 @@ module TencentCloud
         end
       end
 
-      # 属性标签
+      # 标签值
       class AttributeLabel < TencentCloud::Common::AbstractModel
-        # @param LabelBizId: 标签ID
+        # @param LabelBizId: 标准词ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelBizId: String
-        # @param LabelName: 标签名称
+        # @param LabelName: 标准词名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelName: String
-        # @param SimilarLabels: 相似标签名称
+        # @param SimilarLabels: 同义词名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SimilarLabels: Array
 

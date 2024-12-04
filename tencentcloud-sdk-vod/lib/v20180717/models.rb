@@ -2181,8 +2181,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2024, 11
-        deprecate :SegmentSet=, :none, 2024, 11
+        deprecate :SegmentSet, :none, 2024, 12
+        deprecate :SegmentSet=, :none, 2024, 12
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -10639,8 +10639,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2024, 11
-        deprecate :DomainName=, :none, 2024, 11
+        deprecate :DomainName, :none, 2024, 12
+        deprecate :DomainName=, :none, 2024, 12
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -18438,8 +18438,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2024, 11
-        deprecate :Transitions=, :none, 2024, 11
+        deprecate :Transitions, :none, 2024, 12
+        deprecate :Transitions=, :none, 2024, 12
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22392,8 +22392,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2024, 11
-        deprecate :ProductInstanceResourceSet=, :none, 2024, 11
+        deprecate :ProductInstanceResourceSet, :none, 2024, 12
+        deprecate :ProductInstanceResourceSet=, :none, 2024, 12
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype

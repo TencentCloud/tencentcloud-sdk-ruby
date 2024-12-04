@@ -677,7 +677,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除Datahub主题
+        # 删除DIP主题
 
         # @param request: Request instance for DeleteDatahubTopic.
         # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteDatahubTopicRequest`

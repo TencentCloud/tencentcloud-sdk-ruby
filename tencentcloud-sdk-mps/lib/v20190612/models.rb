@@ -14422,10 +14422,14 @@ module TencentCloud
 
       # 任务处理的事件通知配置。
       class LiveStreamTaskNotifyConfig < TencentCloud::Common::AbstractModel
-        # @param NotifyType: 通知类型，默认CMQ，指定URL时HTTP回调推送到 NotifyUrl 指定的地址。
+        # @param NotifyType: 通知类型：
+        # "CMQ"：回调消息写入cmq队列；
+        # "URL"： 指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同[解析直播事件通知接口](https://cloud.tencent.com/document/product/862/39229) 的输出参数
 
         # <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         # @type NotifyType: String
+        # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
+        # @type NotifyUrl: String
         # @param CmqModel: CMQ 的模型，有 Queue 和 Topic 两种，目前仅支持 Queue。
         # @type CmqModel: String
         # @param CmqRegion: CMQ 的园区，如 sh，bj 等。
@@ -14434,31 +14438,29 @@ module TencentCloud
         # @type QueueName: String
         # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 CMQ 的主题名。
         # @type TopicName: String
-        # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
-        # @type NotifyUrl: String
         # @param NotifyKey: 用于生成回调签名的 Key。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyKey: String
 
-        attr_accessor :NotifyType, :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyUrl, :NotifyKey
+        attr_accessor :NotifyType, :NotifyUrl, :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyKey
 
-        def initialize(notifytype=nil, cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifyurl=nil, notifykey=nil)
+        def initialize(notifytype=nil, notifyurl=nil, cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifykey=nil)
           @NotifyType = notifytype
+          @NotifyUrl = notifyurl
           @CmqModel = cmqmodel
           @CmqRegion = cmqregion
           @QueueName = queuename
           @TopicName = topicname
-          @NotifyUrl = notifyurl
           @NotifyKey = notifykey
         end
 
         def deserialize(params)
           @NotifyType = params['NotifyType']
+          @NotifyUrl = params['NotifyUrl']
           @CmqModel = params['CmqModel']
           @CmqRegion = params['CmqRegion']
           @QueueName = params['QueueName']
           @TopicName = params['TopicName']
-          @NotifyUrl = params['NotifyUrl']
           @NotifyKey = params['NotifyKey']
         end
       end

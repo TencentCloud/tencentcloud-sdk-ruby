@@ -4339,8 +4339,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2024, 11
-        deprecate :SubnetId=, :none, 2024, 11
+        deprecate :SubnetId, :none, 2024, 12
+        deprecate :SubnetId=, :none, 2024, 12
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -13847,6 +13847,57 @@ module TencentCloud
         end
       end
 
+      # DescribeTrafficQosPolicy请求参数结构体
+      class DescribeTrafficQosPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
+        # @type CcnId: String
+        # @param LocalRegion: 本端地域。
+        # @type LocalRegion: String
+        # @param RemoteRegion: 远端地域。
+        # @type RemoteRegion: String
+
+        attr_accessor :CcnId, :LocalRegion, :RemoteRegion
+
+        def initialize(ccnid=nil, localregion=nil, remoteregion=nil)
+          @CcnId = ccnid
+          @LocalRegion = localregion
+          @RemoteRegion = remoteregion
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @LocalRegion = params['LocalRegion']
+          @RemoteRegion = params['RemoteRegion']
+        end
+      end
+
+      # DescribeTrafficQosPolicy返回参数结构体
+      class DescribeTrafficQosPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TrafficQosPolicySet: 流量调度规则。
+        # @type TrafficQosPolicySet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrafficQosPolicySet, :RequestId
+
+        def initialize(trafficqospolicyset=nil, requestid=nil)
+          @TrafficQosPolicySet = trafficqospolicyset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TrafficQosPolicySet'].nil?
+            @TrafficQosPolicySet = []
+            params['TrafficQosPolicySet'].each do |i|
+              trafficqospolicyset_tmp = TrafficQosPolicySet.new
+              trafficqospolicyset_tmp.deserialize(i)
+              @TrafficQosPolicySet << trafficqospolicyset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsedIpAddress请求参数结构体
       class DescribeUsedIpAddressRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID。
@@ -17317,8 +17368,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 11
-        deprecate :IntegrityAlgorith=, :none, 2024, 11
+        deprecate :IntegrityAlgorith, :none, 2024, 12
+        deprecate :IntegrityAlgorith=, :none, 2024, 12
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -25346,6 +25397,48 @@ module TencentCloud
             end
           end
           @DeductType = params['DeductType']
+        end
+      end
+
+      # 流量调度规则
+      class TrafficQosPolicySet < TencentCloud::Common::AbstractModel
+        # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
+        # @param QosId: qos id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QosId: Integer
+        # @param QosPolicyDescription: 描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QosPolicyDescription: String
+        # @param QosPolicyName: 名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QosPolicyName: String
+        # @param Bandwidth: 带宽。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param QosPolicyId: 流量调度策略ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QosPolicyId: String
+
+        attr_accessor :CcnId, :QosId, :QosPolicyDescription, :QosPolicyName, :Bandwidth, :QosPolicyId
+
+        def initialize(ccnid=nil, qosid=nil, qospolicydescription=nil, qospolicyname=nil, bandwidth=nil, qospolicyid=nil)
+          @CcnId = ccnid
+          @QosId = qosid
+          @QosPolicyDescription = qospolicydescription
+          @QosPolicyName = qospolicyname
+          @Bandwidth = bandwidth
+          @QosPolicyId = qospolicyid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @QosId = params['QosId']
+          @QosPolicyDescription = params['QosPolicyDescription']
+          @QosPolicyName = params['QosPolicyName']
+          @Bandwidth = params['Bandwidth']
+          @QosPolicyId = params['QosPolicyId']
         end
       end
 
