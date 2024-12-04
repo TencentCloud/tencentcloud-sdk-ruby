@@ -384,6 +384,136 @@ module TencentCloud
         end
       end
 
+      # 调用类型
+      class CallDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 关联ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param CallTime: 调用时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallTime: String
+        # @param TotalTokenUsage: 总token消耗
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalTokenUsage: Float
+        # @param InputTokenUsage: 输入token消耗
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputTokenUsage: Float
+        # @param OutputTokenUsage: 输出token消耗
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputTokenUsage: Float
+        # @param SearchUsage: 搜索服务调用次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchUsage: Integer
+        # @param ModelName: 模型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param CallType: 调用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallType: String
+        # @param UinAccount: 账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UinAccount: String
+        # @param AppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param PageUsage: 总消耗页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageUsage: Integer
+        # @param SubScene: 筛选子场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubScene: String
+
+        attr_accessor :Id, :CallTime, :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :SearchUsage, :ModelName, :CallType, :UinAccount, :AppName, :PageUsage, :SubScene
+
+        def initialize(id=nil, calltime=nil, totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, searchusage=nil, modelname=nil, calltype=nil, uinaccount=nil, appname=nil, pageusage=nil, subscene=nil)
+          @Id = id
+          @CallTime = calltime
+          @TotalTokenUsage = totaltokenusage
+          @InputTokenUsage = inputtokenusage
+          @OutputTokenUsage = outputtokenusage
+          @SearchUsage = searchusage
+          @ModelName = modelname
+          @CallType = calltype
+          @UinAccount = uinaccount
+          @AppName = appname
+          @PageUsage = pageusage
+          @SubScene = subscene
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CallTime = params['CallTime']
+          @TotalTokenUsage = params['TotalTokenUsage']
+          @InputTokenUsage = params['InputTokenUsage']
+          @OutputTokenUsage = params['OutputTokenUsage']
+          @SearchUsage = params['SearchUsage']
+          @ModelName = params['ModelName']
+          @CallType = params['CallType']
+          @UinAccount = params['UinAccount']
+          @AppName = params['AppName']
+          @PageUsage = params['PageUsage']
+          @SubScene = params['SubScene']
+        end
+      end
+
+      # 分类信息
+      class CateInfo < TencentCloud::Common::AbstractModel
+        # @param CateBizId: 分类ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CateBizId: String
+        # @param Name: 分类名称
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Total: 分类下的Record（如文档、同义词等）数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param CanAdd: 是否可新增
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanAdd: Boolean
+        # @param CanEdit: 是否可编辑
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanEdit: Boolean
+        # @param CanDelete: 是否可删除
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDelete: Boolean
+        # @param Children: 子分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+
+        attr_accessor :CateBizId, :Name, :Total, :CanAdd, :CanEdit, :CanDelete, :Children
+
+        def initialize(catebizid=nil, name=nil, total=nil, canadd=nil, canedit=nil, candelete=nil, children=nil)
+          @CateBizId = catebizid
+          @Name = name
+          @Total = total
+          @CanAdd = canadd
+          @CanEdit = canedit
+          @CanDelete = candelete
+          @Children = children
+        end
+
+        def deserialize(params)
+          @CateBizId = params['CateBizId']
+          @Name = params['Name']
+          @Total = params['Total']
+          @CanAdd = params['CanAdd']
+          @CanEdit = params['CanEdit']
+          @CanDelete = params['CanDelete']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              cateinfo_tmp = CateInfo.new
+              cateinfo_tmp.deserialize(i)
+              @Children << cateinfo_tmp
+            end
+          end
+        end
+      end
+
       # CheckAttributeLabelExist请求参数结构体
       class CheckAttributeLabelExistRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -847,6 +977,62 @@ module TencentCloud
         end
       end
 
+      # CreateDocCate请求参数结构体
+      class CreateDocCateRequest < TencentCloud::Common::AbstractModel
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param ParentBizId: 父级业务ID
+        # @type ParentBizId: String
+        # @param Name: 分类名称
+        # @type Name: String
+
+        attr_accessor :BotBizId, :ParentBizId, :Name
+
+        def initialize(botbizid=nil, parentbizid=nil, name=nil)
+          @BotBizId = botbizid
+          @ParentBizId = parentbizid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @BotBizId = params['BotBizId']
+          @ParentBizId = params['ParentBizId']
+          @Name = params['Name']
+        end
+      end
+
+      # CreateDocCate返回参数结构体
+      class CreateDocCateResponse < TencentCloud::Common::AbstractModel
+        # @param CanAdd: 是否可新增
+        # @type CanAdd: Boolean
+        # @param CanEdit: 是否可编辑
+        # @type CanEdit: Boolean
+        # @param CanDelete: 是否可删除
+        # @type CanDelete: Boolean
+        # @param CateBizId: 分类业务ID
+        # @type CateBizId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CanAdd, :CanEdit, :CanDelete, :CateBizId, :RequestId
+
+        def initialize(canadd=nil, canedit=nil, candelete=nil, catebizid=nil, requestid=nil)
+          @CanAdd = canadd
+          @CanEdit = canedit
+          @CanDelete = candelete
+          @CateBizId = catebizid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CanAdd = params['CanAdd']
+          @CanEdit = params['CanEdit']
+          @CanDelete = params['CanDelete']
+          @CateBizId = params['CateBizId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateQACate请求参数结构体
       class CreateQACateRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -1259,6 +1445,42 @@ module TencentCloud
 
       # DeleteAttributeLabel返回参数结构体
       class DeleteAttributeLabelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDocCate请求参数结构体
+      class DeleteDocCateRequest < TencentCloud::Common::AbstractModel
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param CateBizId: 分类业务ID
+        # @type CateBizId: String
+
+        attr_accessor :BotBizId, :CateBizId
+
+        def initialize(botbizid=nil, catebizid=nil)
+          @BotBizId = botbizid
+          @CateBizId = catebizid
+        end
+
+        def deserialize(params)
+          @BotBizId = params['BotBizId']
+          @CateBizId = params['CateBizId']
+        end
+      end
+
+      # DeleteDocCate返回参数结构体
+      class DeleteDocCateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2554,7 +2776,7 @@ module TencentCloud
         # @type BotBizId: String
         # @param FileType: 文件类型,正常的文件名类型后缀，例如 xlsx、pdf、 docx、png 等
         # @type FileType: String
-        # @param IsPublic: IsPublic用于上传文件或图片时选择场景，当上传为对话端图片时IsPublic为true，上传文件（包括文档库文件和对话端文件）时IsPublic为false
+        # @param IsPublic: IsPublic用于上传文件或图片时选择场景，当上传对话端图片时IsPublic为true，上传文件（包括文档库文件/图片等和对话端文件）时IsPublic为false
         # @type IsPublic: Boolean
         # @param TypeKey: 存储类型: offline:离线文件，realtime:实时文件；为空默认为offline
         # @type TypeKey: String
@@ -3961,6 +4183,46 @@ module TencentCloud
         end
       end
 
+      # GroupDoc请求参数结构体
+      class GroupDocRequest < TencentCloud::Common::AbstractModel
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param BizIds: 操作对象的业务ID列表
+        # @type BizIds: Array
+        # @param CateBizId: 分组 ID
+        # @type CateBizId: String
+
+        attr_accessor :BotBizId, :BizIds, :CateBizId
+
+        def initialize(botbizid=nil, bizids=nil, catebizid=nil)
+          @BotBizId = botbizid
+          @BizIds = bizids
+          @CateBizId = catebizid
+        end
+
+        def deserialize(params)
+          @BotBizId = params['BotBizId']
+          @BizIds = params['BizIds']
+          @CateBizId = params['CateBizId']
+        end
+      end
+
+      # GroupDoc返回参数结构体
+      class GroupDocResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GroupQA请求参数结构体
       class GroupQARequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -4234,6 +4496,38 @@ module TencentCloud
           @AppName = params['AppName']
           @UsedCharSize = params['UsedCharSize']
           @Proportion = params['Proportion']
+        end
+      end
+
+      # 应用使用知识库容量详情
+      class KnowledgeDetail < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param UsedCharSize: 已用字符数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedCharSize: String
+        # @param Proportion: 使用占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proportion: Float
+        # @param ExceedCharSize: 超量字符数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExceedCharSize: String
+
+        attr_accessor :AppName, :UsedCharSize, :Proportion, :ExceedCharSize
+
+        def initialize(appname=nil, usedcharsize=nil, proportion=nil, exceedcharsize=nil)
+          @AppName = appname
+          @UsedCharSize = usedcharsize
+          @Proportion = proportion
+          @ExceedCharSize = exceedcharsize
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UsedCharSize = params['UsedCharSize']
+          @Proportion = params['Proportion']
+          @ExceedCharSize = params['ExceedCharSize']
         end
       end
 
@@ -4534,6 +4828,61 @@ module TencentCloud
         end
       end
 
+      # ListAppKnowledgeDetail请求参数结构体
+      class ListAppKnowledgeDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 页面大小
+        # @type PageSize: Integer
+        # @param AppBizIds: 应用ID列表
+        # @type AppBizIds: Array
+
+        attr_accessor :PageNumber, :PageSize, :AppBizIds
+
+        def initialize(pagenumber=nil, pagesize=nil, appbizids=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @AppBizIds = appbizids
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @AppBizIds = params['AppBizIds']
+        end
+      end
+
+      # ListAppKnowledgeDetail返回参数结构体
+      class ListAppKnowledgeDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 列表总数
+        # @type Total: Integer
+        # @param List: 应用使用知识库容量详情
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              knowledgedetail_tmp = KnowledgeDetail.new
+              knowledgedetail_tmp.deserialize(i)
+              @List << knowledgedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListApp请求参数结构体
       class ListAppRequest < TencentCloud::Common::AbstractModel
         # @param AppType: 应用类型；knowledge_qa-知识问答管理；summary-知识摘要；classifys-知识标签提取
@@ -4658,6 +5007,49 @@ module TencentCloud
               attrlabeldetail_tmp = AttrLabelDetail.new
               attrlabeldetail_tmp.deserialize(i)
               @List << attrlabeldetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListDocCate请求参数结构体
+      class ListDocCateRequest < TencentCloud::Common::AbstractModel
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+
+        attr_accessor :BotBizId
+
+        def initialize(botbizid=nil)
+          @BotBizId = botbizid
+        end
+
+        def deserialize(params)
+          @BotBizId = params['BotBizId']
+        end
+      end
+
+      # ListDocCate返回参数结构体
+      class ListDocCateResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              cateinfo_tmp = CateInfo.new
+              cateinfo_tmp.deserialize(i)
+              @List << cateinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5788,6 +6180,85 @@ module TencentCloud
         end
       end
 
+      # ListUsageCallDetail请求参数结构体
+      class ListUsageCallDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型标识
+        # @type ModelName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页数量
+        # @type PageSize: Integer
+        # @param UinAccount: uin列表
+        # @type UinAccount: Array
+        # @param AppBizIds: 应用ID列表
+        # @type AppBizIds: Array
+        # @param CallType: 调用类型列表
+        # @type CallType: String
+        # @param SubScenes: 筛选子场景
+        # @type SubScenes: Array
+
+        attr_accessor :ModelName, :StartTime, :EndTime, :PageNumber, :PageSize, :UinAccount, :AppBizIds, :CallType, :SubScenes
+
+        def initialize(modelname=nil, starttime=nil, endtime=nil, pagenumber=nil, pagesize=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil)
+          @ModelName = modelname
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @UinAccount = uinaccount
+          @AppBizIds = appbizids
+          @CallType = calltype
+          @SubScenes = subscenes
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @UinAccount = params['UinAccount']
+          @AppBizIds = params['AppBizIds']
+          @CallType = params['CallType']
+          @SubScenes = params['SubScenes']
+        end
+      end
+
+      # ListUsageCallDetail返回参数结构体
+      class ListUsageCallDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 列表总数
+        # @type Total: Integer
+        # @param List: 列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              calldetail_tmp = CallDetail.new
+              calldetail_tmp.deserialize(i)
+              @List << calldetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 一条message代表一条对话记录
       # role表示角色  user或者assistant
       # content表示对话内容
@@ -6072,6 +6543,46 @@ module TencentCloud
 
       # ModifyDocAttrRange返回参数结构体
       class ModifyDocAttrRangeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDocCate请求参数结构体
+      class ModifyDocCateRequest < TencentCloud::Common::AbstractModel
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param Name: 分类名称
+        # @type Name: String
+        # @param CateBizId: 分类业务ID
+        # @type CateBizId: String
+
+        attr_accessor :BotBizId, :Name, :CateBizId
+
+        def initialize(botbizid=nil, name=nil, catebizid=nil)
+          @BotBizId = botbizid
+          @Name = name
+          @CateBizId = catebizid
+        end
+
+        def deserialize(params)
+          @BotBizId = params['BotBizId']
+          @Name = params['Name']
+          @CateBizId = params['CateBizId']
+        end
+      end
+
+      # ModifyDocCate返回参数结构体
+      class ModifyDocCateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -4001,10 +4001,14 @@ module TencentCloud
         # @type CheckAssociate: Boolean
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
+        # @param HaVipAssociationSet: HaVip绑定的子机或网卡。最多支持10个实例。
+        # @type HaVipAssociationSet: Array
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
 
-        attr_accessor :VpcId, :HaVipName, :SubnetId, :Vip, :NetworkInterfaceId, :CheckAssociate, :Tags
+        attr_accessor :VpcId, :HaVipName, :SubnetId, :Vip, :NetworkInterfaceId, :CheckAssociate, :Tags, :HaVipAssociationSet, :ClientToken
 
-        def initialize(vpcid=nil, havipname=nil, subnetid=nil, vip=nil, networkinterfaceid=nil, checkassociate=nil, tags=nil)
+        def initialize(vpcid=nil, havipname=nil, subnetid=nil, vip=nil, networkinterfaceid=nil, checkassociate=nil, tags=nil, havipassociationset=nil, clienttoken=nil)
           @VpcId = vpcid
           @HaVipName = havipname
           @SubnetId = subnetid
@@ -4012,6 +4016,8 @@ module TencentCloud
           @NetworkInterfaceId = networkinterfaceid
           @CheckAssociate = checkassociate
           @Tags = tags
+          @HaVipAssociationSet = havipassociationset
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -4029,6 +4035,15 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          unless params['HaVipAssociationSet'].nil?
+            @HaVipAssociationSet = []
+            params['HaVipAssociationSet'].each do |i|
+              havipassociation_tmp = HaVipAssociation.new
+              havipassociation_tmp.deserialize(i)
+              @HaVipAssociationSet << havipassociation_tmp
+            end
+          end
+          @ClientToken = params['ClientToken']
         end
       end
 
@@ -14551,7 +14566,6 @@ module TencentCloud
         # @param Output: 异步任务执行输出。
         # @type Output: String
         # @param Result: 异步任务详细结果。只用于特殊场景，如批量删除弹性网卡时查询成功的网卡列表和失败的列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

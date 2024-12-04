@@ -175,6 +175,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建Doc分类
+
+        # @param request: Request instance for CreateDocCate.
+        # @type request: :class:`Tencentcloud::lke::V20231130::CreateDocCateRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::CreateDocCateResponse`
+        def CreateDocCate(request)
+          body = send_request('CreateDocCate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDocCateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 录入问答
 
         # @param request: Request instance for CreateQA.
@@ -356,6 +380,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Doc分类删除
+
+        # @param request: Request instance for DeleteDocCate.
+        # @type request: :class:`Tencentcloud::lke::V20231130::DeleteDocCateRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::DeleteDocCateResponse`
+        def DeleteDocCate(request)
+          body = send_request('DeleteDocCate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDocCateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1259,6 +1307,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Doc分组
+
+        # @param request: Request instance for GroupDoc.
+        # @type request: :class:`Tencentcloud::lke::V20231130::GroupDocRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::GroupDocResponse`
+        def GroupDoc(request)
+          body = send_request('GroupDoc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GroupDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # QA分组
 
         # @param request: Request instance for GroupQA.
@@ -1379,6 +1451,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列表查询知识库容量详情
+
+        # @param request: Request instance for ListAppKnowledgeDetail.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ListAppKnowledgeDetailRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ListAppKnowledgeDetailResponse`
+        def ListAppKnowledgeDetail(request)
+          body = send_request('ListAppKnowledgeDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAppKnowledgeDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询属性标签列表
 
         # @param request: Request instance for ListAttributeLabel.
@@ -1413,6 +1509,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Doc分类
+
+        # @param request: Request instance for ListDocCate.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ListDocCateRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ListDocCateResponse`
+        def ListDocCate(request)
+          body = send_request('ListDocCate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListDocCateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1691,6 +1811,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列表查询单次调用明细
+
+        # @param request: Request instance for ListUsageCallDetail.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ListUsageCallDetailRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ListUsageCallDetailResponse`
+        def ListUsageCallDetail(request)
+          body = send_request('ListUsageCallDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListUsageCallDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改应用请求结构体
 
         # @param request: Request instance for ModifyApp.
@@ -1773,6 +1917,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDocAttrRangeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改Doc分类
+
+        # @param request: Request instance for ModifyDocCate.
+        # @type request: :class:`Tencentcloud::lke::V20231130::ModifyDocCateRequest`
+        # @rtype: :class:`Tencentcloud::lke::V20231130::ModifyDocCateResponse`
+        def ModifyDocCate(request)
+          body = send_request('ModifyDocCate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDocCateResponse.new
             model.deserialize(response['Response'])
             model
           else

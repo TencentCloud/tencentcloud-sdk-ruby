@@ -5845,6 +5845,46 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterTransparentEncryptInfo请求参数结构体
+      class DescribeClusterTransparentEncryptInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterTransparentEncryptInfo返回参数结构体
+      class DescribeClusterTransparentEncryptInfoResponse < TencentCloud::Common::AbstractModel
+        # @param KeyId: 加密秘钥id
+        # @type KeyId: String
+        # @param KeyRegion: 加密秘钥地域
+        # @type KeyRegion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyId, :KeyRegion, :RequestId
+
+        def initialize(keyid=nil, keyregion=nil, requestid=nil)
+          @KeyId = keyid
+          @KeyRegion = keyregion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @KeyRegion = params['KeyRegion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusters请求参数结构体
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
         # @param DbType: 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
@@ -10982,6 +11022,54 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenClusterTransparentEncrypt请求参数结构体
+      class OpenClusterTransparentEncryptRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param KeyType: 秘钥类型(cloud,custom)
+        # @type KeyType: String
+        # @param KeyId: 秘钥Id
+        # @type KeyId: String
+        # @param KeyRegion: 秘钥地域
+        # @type KeyRegion: String
+
+        attr_accessor :ClusterId, :KeyType, :KeyId, :KeyRegion
+
+        def initialize(clusterid=nil, keytype=nil, keyid=nil, keyregion=nil)
+          @ClusterId = clusterid
+          @KeyType = keytype
+          @KeyId = keyid
+          @KeyRegion = keyregion
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @KeyType = params['KeyType']
+          @KeyId = params['KeyId']
+          @KeyRegion = params['KeyRegion']
+        end
+      end
+
+      # OpenClusterTransparentEncrypt返回参数结构体
+      class OpenClusterTransparentEncryptResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

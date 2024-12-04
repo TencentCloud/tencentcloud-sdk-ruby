@@ -6994,27 +6994,80 @@ module TencentCloud
 
       # DescribeInstanceAlarmEvents请求参数结构体
       class DescribeInstanceAlarmEventsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param StartTime: 事件查询范围开始时间，闭区间。
+        # @type StartTime: String
+        # @param EndTime: 事件查询范围截止时间，闭区间。
+        # @type EndTime: String
+        # @param EventName: 事件名称。 Outofmemory - 内存OOM（有状态事件）; Switch - 主从切换（有状态事件）; Roremove - 只读实例剔除（有状态事件）; MemoryUsedHigh - 内存使用率过高（有状态事件）; CPUExpansion - CPU性能扩容（无状态事件）; CPUExpansionFailed - CPU性能扩容失败（无状态事件）; CPUContraction - CPU性能回缩（无状态事件）; Restart - 实例重启（有状态事件）; ServerFailureNodeMigration - ServerFailureNodeMigration（有状态事件）; PlannedSwitch - 计划内主备切换（无状态事件）; OverusedReadonlySet - 实例将被锁定（无状态事件）; OverusedReadWriteSet - 实例解除锁定（无状态事件）。
+        # @type EventName: Array
+        # @param EventStatus: 事件状态。"1" - 发生事件；"0" - 恢复事件；"-" - 无状态事件。
+        # @type EventStatus: String
+        # @param Order: 排序方式。按事件发生事件进行排序，"DESC"-倒排；”ASC“-正序，默认倒排。
+        # @type Order: String
+        # @param Limit: 事件展示数量。
+        # @type Limit: String
+        # @param Offset: 偏移量。
+        # @type Offset: String
+        # @param NodeId: 节点 ID。
+        # @type NodeId: String
 
+        attr_accessor :InstanceId, :StartTime, :EndTime, :EventName, :EventStatus, :Order, :Limit, :Offset, :NodeId
 
-        def initialize()
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, eventname=nil, eventstatus=nil, order=nil, limit=nil, offset=nil, nodeid=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @EventName = eventname
+          @EventStatus = eventstatus
+          @Order = order
+          @Limit = limit
+          @Offset = offset
+          @NodeId = nodeid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @EventName = params['EventName']
+          @EventStatus = params['EventStatus']
+          @Order = params['Order']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @NodeId = params['NodeId']
         end
       end
 
       # DescribeInstanceAlarmEvents返回参数结构体
       class DescribeInstanceAlarmEventsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 事件数。
+        # @type TotalCount: Integer
+        # @param Items: 事件信息。查询不到信息时，Items为null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :Items, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              insteventinfo_tmp = InstEventInfo.new
+              insteventinfo_tmp.deserialize(i)
+              @Items << insteventinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8853,6 +8906,39 @@ module TencentCloud
           @Price = params['Price']
           @OriginalPrice = params['OriginalPrice']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例事件信息
+      class InstEventInfo < TencentCloud::Common::AbstractModel
+        # @param EventName: 事件名称。
+        # @type EventName: String
+        # @param EventStatus: 事件状态。
+        # @type EventStatus: String
+        # @param OccurTime: 事件发生时间。
+        # @type OccurTime: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param NodeId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+
+        attr_accessor :EventName, :EventStatus, :OccurTime, :InstanceId, :NodeId
+
+        def initialize(eventname=nil, eventstatus=nil, occurtime=nil, instanceid=nil, nodeid=nil)
+          @EventName = eventname
+          @EventStatus = eventstatus
+          @OccurTime = occurtime
+          @InstanceId = instanceid
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventStatus = params['EventStatus']
+          @OccurTime = params['OccurTime']
+          @InstanceId = params['InstanceId']
+          @NodeId = params['NodeId']
         end
       end
 

@@ -722,10 +722,12 @@ module TencentCloud
         # @type FsName: String
         # @param BucketPath: 源桶路径，默认为/
         # @type BucketPath: String
+        # @param Direction: 迁移方向。0: 对象存储迁移至文件系统，1: 文件系统迁移至对象存储。默认 0
+        # @type Direction: Integer
 
-        attr_accessor :TaskName, :MigrationType, :MigrationMode, :SrcSecretId, :SrcSecretKey, :FileSystemId, :FsPath, :CoverType, :SrcService, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :BucketPath
+        attr_accessor :TaskName, :MigrationType, :MigrationMode, :SrcSecretId, :SrcSecretKey, :FileSystemId, :FsPath, :CoverType, :SrcService, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :BucketPath, :Direction
 
-        def initialize(taskname=nil, migrationtype=nil, migrationmode=nil, srcsecretid=nil, srcsecretkey=nil, filesystemid=nil, fspath=nil, covertype=nil, srcservice=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, bucketpath=nil)
+        def initialize(taskname=nil, migrationtype=nil, migrationmode=nil, srcsecretid=nil, srcsecretkey=nil, filesystemid=nil, fspath=nil, covertype=nil, srcservice=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, bucketpath=nil, direction=nil)
           @TaskName = taskname
           @MigrationType = migrationtype
           @MigrationMode = migrationmode
@@ -741,6 +743,7 @@ module TencentCloud
           @ListAddress = listaddress
           @FsName = fsname
           @BucketPath = bucketpath
+          @Direction = direction
         end
 
         def deserialize(params)
@@ -759,6 +762,7 @@ module TencentCloud
           @ListAddress = params['ListAddress']
           @FsName = params['FsName']
           @BucketPath = params['BucketPath']
+          @Direction = params['Direction']
         end
       end
 
@@ -2169,10 +2173,12 @@ module TencentCloud
         # @param BucketPath: 源桶路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketPath: String
+        # @param Direction: 迁移方向。0: 对象存储迁移至文件系统，1: 文件系统迁移至对象存储。默认 0
+        # @type Direction: Integer
 
-        attr_accessor :TaskName, :TaskId, :MigrationType, :MigrationMode, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :FileSystemId, :FsPath, :CoverType, :CreateTime, :EndTime, :Status, :FileTotalCount, :FileMigratedCount, :FileFailedCount, :FileTotalSize, :FileMigratedSize, :FileFailedSize, :FileTotalList, :FileCompletedList, :FileFailedList, :BucketPath
+        attr_accessor :TaskName, :TaskId, :MigrationType, :MigrationMode, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :FileSystemId, :FsPath, :CoverType, :CreateTime, :EndTime, :Status, :FileTotalCount, :FileMigratedCount, :FileFailedCount, :FileTotalSize, :FileMigratedSize, :FileFailedSize, :FileTotalList, :FileCompletedList, :FileFailedList, :BucketPath, :Direction
 
-        def initialize(taskname=nil, taskid=nil, migrationtype=nil, migrationmode=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, filesystemid=nil, fspath=nil, covertype=nil, createtime=nil, endtime=nil, status=nil, filetotalcount=nil, filemigratedcount=nil, filefailedcount=nil, filetotalsize=nil, filemigratedsize=nil, filefailedsize=nil, filetotallist=nil, filecompletedlist=nil, filefailedlist=nil, bucketpath=nil)
+        def initialize(taskname=nil, taskid=nil, migrationtype=nil, migrationmode=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, filesystemid=nil, fspath=nil, covertype=nil, createtime=nil, endtime=nil, status=nil, filetotalcount=nil, filemigratedcount=nil, filefailedcount=nil, filetotalsize=nil, filemigratedsize=nil, filefailedsize=nil, filetotallist=nil, filecompletedlist=nil, filefailedlist=nil, bucketpath=nil, direction=nil)
           @TaskName = taskname
           @TaskId = taskid
           @MigrationType = migrationtype
@@ -2198,6 +2204,7 @@ module TencentCloud
           @FileCompletedList = filecompletedlist
           @FileFailedList = filefailedlist
           @BucketPath = bucketpath
+          @Direction = direction
         end
 
         def deserialize(params)
@@ -2226,6 +2233,7 @@ module TencentCloud
           @FileCompletedList = params['FileCompletedList']
           @FileFailedList = params['FileFailedList']
           @BucketPath = params['BucketPath']
+          @Direction = params['Direction']
         end
       end
 

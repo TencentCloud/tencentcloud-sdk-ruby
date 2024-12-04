@@ -7825,16 +7825,22 @@ module TencentCloud
         # <li>Linear：单次播放，播单播放完停止播放。</li>
         # 默认值：Loop。
         # @type PlayBackMode: String
+        # @param RoundPlayId: 播单唯一标识 ID，长度限制为64个字符，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）和连字符（-）。如果存在相同 RoundPlayId 的播单，返回 InvalidParameterValue.RoundPlayAlreadyExists 错误。默认取值为空，表示由系统分配。
+        # @type RoundPlayId: String
+        # @param ExpiredTime: 过期时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。过期后的播单将停止播放，“9999-12-31T23:59:59+08:00“表示不过期。默认值：9999-12-31T23:59:59+08:00。
+        # @type ExpiredTime: String
 
-        attr_accessor :StartTime, :RoundPlaylist, :SubAppId, :Name, :Desc, :PlayBackMode
+        attr_accessor :StartTime, :RoundPlaylist, :SubAppId, :Name, :Desc, :PlayBackMode, :RoundPlayId, :ExpiredTime
 
-        def initialize(starttime=nil, roundplaylist=nil, subappid=nil, name=nil, desc=nil, playbackmode=nil)
+        def initialize(starttime=nil, roundplaylist=nil, subappid=nil, name=nil, desc=nil, playbackmode=nil, roundplayid=nil, expiredtime=nil)
           @StartTime = starttime
           @RoundPlaylist = roundplaylist
           @SubAppId = subappid
           @Name = name
           @Desc = desc
           @PlayBackMode = playbackmode
+          @RoundPlayId = roundplayid
+          @ExpiredTime = expiredtime
         end
 
         def deserialize(params)
@@ -7851,6 +7857,8 @@ module TencentCloud
           @Name = params['Name']
           @Desc = params['Desc']
           @PlayBackMode = params['PlayBackMode']
+          @RoundPlayId = params['RoundPlayId']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 
@@ -19975,10 +19983,12 @@ module TencentCloud
         # <li>Loop：循环播放播单；</li>
         # <li>Linear：单次播放，播单播放完停止播放。</li>
         # @type PlayBackMode: String
+        # @param ExpiredTime: 过期时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)，过期后将停止播放。“9999-12-31T23:59:59+08:00”表示不过期。
+        # @type ExpiredTime: String
 
-        attr_accessor :RoundPlayId, :SubAppId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode
+        attr_accessor :RoundPlayId, :SubAppId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode, :ExpiredTime
 
-        def initialize(roundplayid=nil, subappid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil)
+        def initialize(roundplayid=nil, subappid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil, expiredtime=nil)
           @RoundPlayId = roundplayid
           @SubAppId = subappid
           @StartTime = starttime
@@ -19987,6 +19997,7 @@ module TencentCloud
           @Desc = desc
           @Status = status
           @PlayBackMode = playbackmode
+          @ExpiredTime = expiredtime
         end
 
         def deserialize(params)
@@ -20005,6 +20016,7 @@ module TencentCloud
           @Desc = params['Desc']
           @Status = params['Status']
           @PlayBackMode = params['PlayBackMode']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 
@@ -25628,10 +25640,12 @@ module TencentCloud
         # @param UpdateTime: 更新时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param ExpiredTime: 过期时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)，过期后将停止播单的播放。“9999-12-31T23:59:59+08:00”表示永不过期。
+        # @type ExpiredTime: String
 
-        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode, :Url, :CreateTime, :UpdateTime
+        attr_accessor :RoundPlayId, :StartTime, :RoundPlaylist, :Name, :Desc, :Status, :PlayBackMode, :Url, :CreateTime, :UpdateTime, :ExpiredTime
 
-        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil, url=nil, createtime=nil, updatetime=nil)
+        def initialize(roundplayid=nil, starttime=nil, roundplaylist=nil, name=nil, desc=nil, status=nil, playbackmode=nil, url=nil, createtime=nil, updatetime=nil, expiredtime=nil)
           @RoundPlayId = roundplayid
           @StartTime = starttime
           @RoundPlaylist = roundplaylist
@@ -25642,6 +25656,7 @@ module TencentCloud
           @Url = url
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @ExpiredTime = expiredtime
         end
 
         def deserialize(params)
@@ -25662,6 +25677,7 @@ module TencentCloud
           @Url = params['Url']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 
@@ -25676,7 +25692,7 @@ module TencentCloud
         # @type AudioVideoType: String
         # @param ItemId: 播放节目的 ID，由系统分配。
         # @type ItemId: String
-        # @param Definition: 指定播放的转码模版，当 AudioVideoType 为 Transcode 时必须指定。
+        # @param Definition: 指定播放的转码模板，当 AudioVideoType 为 Transcode 时必须指定。
         # @type Definition: Integer
 
         attr_accessor :FileId, :AudioVideoType, :ItemId, :Definition

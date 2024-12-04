@@ -299,10 +299,12 @@ module TencentCloud
         # @type MX: Integer
         # @param TTL: 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         # @type TTL: Integer
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :ZoneId, :RecordType, :SubDomain, :RecordValue, :Weight, :MX, :TTL
+        attr_accessor :ZoneId, :RecordType, :SubDomain, :RecordValue, :Weight, :MX, :TTL, :Remark
 
-        def initialize(zoneid=nil, recordtype=nil, subdomain=nil, recordvalue=nil, weight=nil, mx=nil, ttl=nil)
+        def initialize(zoneid=nil, recordtype=nil, subdomain=nil, recordvalue=nil, weight=nil, mx=nil, ttl=nil, remark=nil)
           @ZoneId = zoneid
           @RecordType = recordtype
           @SubDomain = subdomain
@@ -310,6 +312,7 @@ module TencentCloud
           @Weight = weight
           @MX = mx
           @TTL = ttl
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -320,6 +323,7 @@ module TencentCloud
           @Weight = params['Weight']
           @MX = params['MX']
           @TTL = params['TTL']
+          @Remark = params['Remark']
         end
       end
 
@@ -1295,10 +1299,12 @@ module TencentCloud
         # @type MX: Integer
         # @param TTL: 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         # @type TTL: Integer
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :ZoneId, :RecordId, :RecordType, :SubDomain, :RecordValue, :Weight, :MX, :TTL
+        attr_accessor :ZoneId, :RecordId, :RecordType, :SubDomain, :RecordValue, :Weight, :MX, :TTL, :Remark
 
-        def initialize(zoneid=nil, recordid=nil, recordtype=nil, subdomain=nil, recordvalue=nil, weight=nil, mx=nil, ttl=nil)
+        def initialize(zoneid=nil, recordid=nil, recordtype=nil, subdomain=nil, recordvalue=nil, weight=nil, mx=nil, ttl=nil, remark=nil)
           @ZoneId = zoneid
           @RecordId = recordid
           @RecordType = recordtype
@@ -1307,6 +1313,7 @@ module TencentCloud
           @Weight = weight
           @MX = mx
           @TTL = ttl
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -1318,6 +1325,7 @@ module TencentCloud
           @Weight = params['Weight']
           @MX = params['MX']
           @TTL = params['TTL']
+          @Remark = params['Remark']
         end
       end
 
@@ -1694,10 +1702,13 @@ module TencentCloud
         # @param Enabled: 0暂停，1启用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Integer
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :RecordId, :ZoneId, :SubDomain, :RecordType, :RecordValue, :TTL, :MX, :Status, :Weight, :CreatedOn, :UpdatedOn, :Extra, :Enabled
+        attr_accessor :RecordId, :ZoneId, :SubDomain, :RecordType, :RecordValue, :TTL, :MX, :Status, :Weight, :CreatedOn, :UpdatedOn, :Extra, :Enabled, :Remark
 
-        def initialize(recordid=nil, zoneid=nil, subdomain=nil, recordtype=nil, recordvalue=nil, ttl=nil, mx=nil, status=nil, weight=nil, createdon=nil, updatedon=nil, extra=nil, enabled=nil)
+        def initialize(recordid=nil, zoneid=nil, subdomain=nil, recordtype=nil, recordvalue=nil, ttl=nil, mx=nil, status=nil, weight=nil, createdon=nil, updatedon=nil, extra=nil, enabled=nil, remark=nil)
           @RecordId = recordid
           @ZoneId = zoneid
           @SubDomain = subdomain
@@ -1711,6 +1722,7 @@ module TencentCloud
           @UpdatedOn = updatedon
           @Extra = extra
           @Enabled = enabled
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -1727,6 +1739,7 @@ module TencentCloud
           @UpdatedOn = params['UpdatedOn']
           @Extra = params['Extra']
           @Enabled = params['Enabled']
+          @Remark = params['Remark']
         end
       end
 

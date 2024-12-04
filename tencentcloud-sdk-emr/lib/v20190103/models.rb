@@ -807,15 +807,18 @@ module TencentCloud
         # @param ConfigDetail: 集群产品配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigDetail: :class:`Tencentcloud::Emr.v20190103.models.EmrProductConfigDetail`
+        # @param BindFileSystemNum: 集群绑定的文件系统数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindFileSystemNum: Integer
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 11
-        deprecate :Ftitle=, :none, 2024, 11
-        deprecate :Config, :none, 2024, 11
-        deprecate :Config=, :none, 2024, 11
+        deprecate :Ftitle, :none, 2024, 12
+        deprecate :Ftitle=, :none, 2024, 12
+        deprecate :Config, :none, 2024, 12
+        deprecate :Config=, :none, 2024, 12
 
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -860,6 +863,7 @@ module TencentCloud
           @IsCvmReplace = iscvmreplace
           @ClusterTitle = clustertitle
           @ConfigDetail = configdetail
+          @BindFileSystemNum = bindfilesystemnum
         end
 
         def deserialize(params)
@@ -934,6 +938,7 @@ module TencentCloud
             @ConfigDetail = EmrProductConfigDetail.new
             @ConfigDetail.deserialize(params['ConfigDetail'])
           end
+          @BindFileSystemNum = params['BindFileSystemNum']
         end
       end
 
@@ -5035,24 +5040,26 @@ module TencentCloud
       class ExternalService < TencentCloud::Common::AbstractModel
         # @param ShareType: 共用组件类型，EMR/CUSTOM
         # @type ShareType: String
-        # @param CustomServiceDefineList: 自定义参数集合
-        # @type CustomServiceDefineList: Array
         # @param Service: 共用组件名
         # @type Service: String
         # @param InstanceId: 共用组件集群
         # @type InstanceId: String
+        # @param CustomServiceDefineList: 自定义参数集合
+        # @type CustomServiceDefineList: Array
 
-        attr_accessor :ShareType, :CustomServiceDefineList, :Service, :InstanceId
+        attr_accessor :ShareType, :Service, :InstanceId, :CustomServiceDefineList
 
-        def initialize(sharetype=nil, customservicedefinelist=nil, service=nil, instanceid=nil)
+        def initialize(sharetype=nil, service=nil, instanceid=nil, customservicedefinelist=nil)
           @ShareType = sharetype
-          @CustomServiceDefineList = customservicedefinelist
           @Service = service
           @InstanceId = instanceid
+          @CustomServiceDefineList = customservicedefinelist
         end
 
         def deserialize(params)
           @ShareType = params['ShareType']
+          @Service = params['Service']
+          @InstanceId = params['InstanceId']
           unless params['CustomServiceDefineList'].nil?
             @CustomServiceDefineList = []
             params['CustomServiceDefineList'].each do |i|
@@ -5061,8 +5068,6 @@ module TencentCloud
               @CustomServiceDefineList << customservicedefine_tmp
             end
           end
-          @Service = params['Service']
-          @InstanceId = params['InstanceId']
         end
       end
 
@@ -10253,12 +10258,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2024, 11
-        deprecate :DetetcFunctionKey=, :none, 2024, 11
-        deprecate :DetetcFunctionValue, :none, 2024, 11
-        deprecate :DetetcFunctionValue=, :none, 2024, 11
-        deprecate :DetetcTime, :none, 2024, 11
-        deprecate :DetetcTime=, :none, 2024, 11
+        deprecate :DetetcFunctionKey, :none, 2024, 12
+        deprecate :DetetcFunctionKey=, :none, 2024, 12
+        deprecate :DetetcFunctionValue, :none, 2024, 12
+        deprecate :DetetcFunctionValue=, :none, 2024, 12
+        deprecate :DetetcTime, :none, 2024, 12
+        deprecate :DetetcTime=, :none, 2024, 12
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

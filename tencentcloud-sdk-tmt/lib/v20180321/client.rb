@@ -181,7 +181,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 文本翻译的批量接口
+        # 批量翻译文本的接口
 
         # @param request: Request instance for TextTranslateBatch.
         # @type request: :class:`Tencentcloud::tmt::V20180321::TextTranslateBatchRequest`

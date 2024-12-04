@@ -774,9 +774,9 @@ module TencentCloud
 
       # DeleteMQTTTopic请求参数结构体
       class DeleteMQTTTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
 
         attr_accessor :InstanceId, :Topic
@@ -1848,9 +1848,9 @@ module TencentCloud
 
       # DescribeMQTTMessageList请求参数结构体
       class DescribeMQTTMessageListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
         # @param StartTime: 开始时间
         # @type StartTime: Integer
@@ -2041,7 +2041,7 @@ module TencentCloud
 
       # DescribeMQTTTopicList请求参数结构体
       class DescribeMQTTTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param Filters: 查询条件列表
         # @type Filters: Array
@@ -2108,9 +2108,9 @@ module TencentCloud
 
       # DescribeMQTTTopic请求参数结构体
       class DescribeMQTTTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称
         # @type Topic: String
 
         attr_accessor :InstanceId, :Topic
@@ -2573,7 +2573,7 @@ module TencentCloud
 
       # 查询过滤器
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤条件名
+        # @param Name: 过滤条件参数名
         # @type Name: String
         # @param Values: 过滤条件的值
         # @type Values: Array
@@ -2948,13 +2948,13 @@ module TencentCloud
         # @param MaxStorage: 专享集群最大存储
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxStorage: Integer
-        # @param MaxRetention: 专享集群最大保留时间
+        # @param MaxRetention: 专享集群最大保留时间，单位：小时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetention: Integer
-        # @param MinRetention: 专项集群最大保留时间
+        # @param MinRetention: 专项集群最大保留时间，单位：小时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinRetention: Integer
-        # @param InstanceStatus: 4.0共享集群
+        # @param InstanceStatus: 4.0共享集群状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceStatus: Integer
 
@@ -3512,7 +3512,7 @@ module TencentCloud
 
       # ModifyMQTTInstanceCertBinding请求参数结构体
       class ModifyMQTTInstanceCertBindingRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 集群ID
         # @type InstanceId: String
         # @param SSLServerCertId: 服务端证书id
         # @type SSLServerCertId: String
