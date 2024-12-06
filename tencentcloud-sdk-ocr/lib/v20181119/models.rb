@@ -4353,16 +4353,19 @@ module TencentCloud
 
         # 此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的"ReflectWarn":true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。
         # @type EnableReflectDetail: Boolean
+        # @param EnableDateVerify: 用于控制是否开启日期校验，默认值为true，打开会进行日期校验。
+        # @type EnableDateVerify: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail
+        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify
 
-        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardSide = cardside
           @Config = config
           @EnableRecognitionRectify = enablerecognitionrectify
           @EnableReflectDetail = enablereflectdetail
+          @EnableDateVerify = enabledateverify
         end
 
         def deserialize(params)
@@ -4372,6 +4375,7 @@ module TencentCloud
           @Config = params['Config']
           @EnableRecognitionRectify = params['EnableRecognitionRectify']
           @EnableReflectDetail = params['EnableReflectDetail']
+          @EnableDateVerify = params['EnableDateVerify']
         end
       end
 

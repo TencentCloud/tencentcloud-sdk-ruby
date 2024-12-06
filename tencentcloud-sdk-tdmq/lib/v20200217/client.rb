@@ -1109,6 +1109,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 历史原因，该接口位于tdmq-manager，目前rabbitmq产品没有使用该接口，当前使用的是DescribeRabbitMQVipInstances。不过从调用链上看，线网还有请求流程，所以走预下线流程。
+
         # 获取amqp集群列表
 
         # @param request: Request instance for DescribeAMQPClusters.
@@ -1239,32 +1241,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClustersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口很久之前已删除，需下线
-
-        # 枚举cmq死信队列源队列
-
-        # @param request: Request instance for DescribeCmqDeadLetterSourceQueues.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeCmqDeadLetterSourceQueuesRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeCmqDeadLetterSourceQueuesResponse`
-        def DescribeCmqDeadLetterSourceQueues(request)
-          body = send_request('DescribeCmqDeadLetterSourceQueues', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCmqDeadLetterSourceQueuesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2694,6 +2670,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 历史原因，该接口位于tdmq-manager，目前rabbitmq产品没有使用该接口，当前使用的是ModifyRabbitMQVipInstance。不过从调用链上看，线网还有请求流程，所以走预下线流程。
 
         # 更新Amqp集群信息
 

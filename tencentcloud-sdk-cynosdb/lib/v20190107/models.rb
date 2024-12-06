@@ -1378,6 +1378,50 @@ module TencentCloud
         end
       end
 
+      # CloseProxyEndPoint请求参数结构体
+      class CloseProxyEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ProxyGroupId: 数据库代理组ID
+        # @type ProxyGroupId: String
+
+        attr_accessor :ClusterId, :ProxyGroupId
+
+        def initialize(clusterid=nil, proxygroupid=nil)
+          @ClusterId = clusterid
+          @ProxyGroupId = proxygroupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ProxyGroupId = params['ProxyGroupId']
+        end
+      end
+
+      # CloseProxyEndPoint返回参数结构体
+      class CloseProxyEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程ID
+        # @type FlowId: Integer
+        # @param TaskId: 异步任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :TaskId, :RequestId
+
+        def initialize(flowid=nil, taskid=nil, requestid=nil)
+          @FlowId = flowid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseProxy请求参数结构体
       class CloseProxyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6499,6 +6543,50 @@ module TencentCloud
               @InstanceSet << cynosdbinstance_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstancesWithinSameCluster请求参数结构体
+      class DescribeInstancesWithinSameClusterRequest < TencentCloud::Common::AbstractModel
+        # @param UniqVpcId: vpcId
+        # @type UniqVpcId: String
+        # @param Vip: vip
+        # @type Vip: String
+
+        attr_accessor :UniqVpcId, :Vip
+
+        def initialize(uniqvpcid=nil, vip=nil)
+          @UniqVpcId = uniqvpcid
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @UniqVpcId = params['UniqVpcId']
+          @Vip = params['Vip']
+        end
+      end
+
+      # DescribeInstancesWithinSameCluster返回参数结构体
+      class DescribeInstancesWithinSameClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例个数
+        # @type TotalCount: Integer
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceIds, :RequestId
+
+        def initialize(totalcount=nil, instanceids=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceIds = instanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @InstanceIds = params['InstanceIds']
           @RequestId = params['RequestId']
         end
       end

@@ -832,14 +832,17 @@ module TencentCloud
         # @type InternetChargeType: String
         # @param BandwidthPackageId: 带宽包id，上移账号，申请带宽包计费模式的ipv6地址需要传入.
         # @type BandwidthPackageId: String
+        # @param Tags: 需要关联的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :Ip6Addresses, :InternetMaxBandwidthOut, :InternetChargeType, :BandwidthPackageId
+        attr_accessor :Ip6Addresses, :InternetMaxBandwidthOut, :InternetChargeType, :BandwidthPackageId, :Tags
 
-        def initialize(ip6addresses=nil, internetmaxbandwidthout=nil, internetchargetype=nil, bandwidthpackageid=nil)
+        def initialize(ip6addresses=nil, internetmaxbandwidthout=nil, internetchargetype=nil, bandwidthpackageid=nil, tags=nil)
           @Ip6Addresses = ip6addresses
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @InternetChargeType = internetchargetype
           @BandwidthPackageId = bandwidthpackageid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -847,6 +850,14 @@ module TencentCloud
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @InternetChargeType = params['InternetChargeType']
           @BandwidthPackageId = params['BandwidthPackageId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2006,10 +2017,8 @@ module TencentCloud
         # @param Description: 备注
         # @type Description: String
         # @param RouteTableId: 路由表ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableId: String
         # @param RouteTableName: 路由表名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteTableName: String
 
         attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea, :Description, :RouteTableId, :RouteTableName
@@ -5374,17 +5383,28 @@ module TencentCloud
         # @type ServiceTemplateGroupName: String
         # @param ServiceTemplateIds: 协议端口模板实例ID，例如：ppm-4dw6agho。
         # @type ServiceTemplateIds: Array
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :ServiceTemplateGroupName, :ServiceTemplateIds
+        attr_accessor :ServiceTemplateGroupName, :ServiceTemplateIds, :Tags
 
-        def initialize(servicetemplategroupname=nil, servicetemplateids=nil)
+        def initialize(servicetemplategroupname=nil, servicetemplateids=nil, tags=nil)
           @ServiceTemplateGroupName = servicetemplategroupname
           @ServiceTemplateIds = servicetemplateids
+          @Tags = tags
         end
 
         def deserialize(params)
           @ServiceTemplateGroupName = params['ServiceTemplateGroupName']
           @ServiceTemplateIds = params['ServiceTemplateIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -17290,40 +17310,28 @@ module TencentCloud
       # IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
       class IKEOptionsSpecification < TencentCloud::Common::AbstractModel
         # @param PropoEncryAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBS-192', 'AES-CBC-256', 'DES-CBC'，'SM4', 默认为3DES-CBC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropoEncryAlgorithm: String
         # @param PropoAuthenAlgorithm: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为MD5
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropoAuthenAlgorithm: String
         # @param ExchangeMode: 协商模式：可选值：'AGGRESSIVE', 'MAIN'，默认为MAIN
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExchangeMode: String
         # @param LocalIdentity: 本端标识类型：可选值：'ADDRESS', 'FQDN'，默认为ADDRESS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalIdentity: String
         # @param RemoteIdentity: 对端标识类型：可选值：'ADDRESS', 'FQDN'，默认为ADDRESS
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteIdentity: String
         # @param LocalAddress: 本端标识，当LocalIdentity选为ADDRESS时，LocalAddress必填。localAddress默认为vpn网关公网IP
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalAddress: String
         # @param RemoteAddress: 对端标识，当RemoteIdentity选为ADDRESS时，RemoteAddress必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteAddress: String
         # @param LocalFqdnName: 本端标识，当LocalIdentity选为FQDN时，LocalFqdnName必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalFqdnName: String
         # @param RemoteFqdnName: 对端标识，当remoteIdentity选为FQDN时，RemoteFqdnName必填
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteFqdnName: String
         # @param DhGroupName: DH group，指定IKE交换密钥时使用的DH组，可选值：'GROUP1', 'GROUP2', 'GROUP5', 'GROUP14', 'GROUP24'，
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DhGroupName: String
         # @param IKESaLifetimeSeconds: IKE SA Lifetime，单位：秒，设置IKE SA的生存周期，取值范围：60-604800
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IKESaLifetimeSeconds: Integer
         # @param IKEVersion: IKE版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IKEVersion: String
 
         attr_accessor :PropoEncryAlgorithm, :PropoAuthenAlgorithm, :ExchangeMode, :LocalIdentity, :RemoteIdentity, :LocalAddress, :RemoteAddress, :LocalFqdnName, :RemoteFqdnName, :DhGroupName, :IKESaLifetimeSeconds, :IKEVersion
@@ -17362,22 +17370,17 @@ module TencentCloud
       # IPSec配置，腾讯云提供IPSec安全会话设置
       class IPSECOptionsSpecification < TencentCloud::Common::AbstractModel
         # @param EncryptAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBC-192', 'AES-CBC-256', 'DES-CBC', 'SM4', 'NULL'， 默认为AES-CBC-128
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptAlgorithm: String
         # @param IntegrityAlgorith: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrityAlgorith: String
         # @param IPSECSaLifetimeSeconds: IPsec SA lifetime(s)：单位秒，取值范围：180-604800
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPSECSaLifetimeSeconds: Integer
         # @param PfsDhGroup: PFS：可选值：'NULL', 'DH-GROUP1', 'DH-GROUP2', 'DH-GROUP5', 'DH-GROUP14', 'DH-GROUP24'，默认为NULL
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PfsDhGroup: String
         # @param IPSECSaLifetimeTraffic: IPsec SA lifetime(KB)：单位KB，取值范围：2560-604800
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPSECSaLifetimeTraffic: Integer
         # @param IntegrityAlgorithm: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrityAlgorithm: String
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm

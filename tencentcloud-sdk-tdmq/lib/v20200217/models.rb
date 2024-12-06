@@ -3736,65 +3736,6 @@ module TencentCloud
         end
       end
 
-      # DescribeCmqDeadLetterSourceQueues请求参数结构体
-      class DescribeCmqDeadLetterSourceQueuesRequest < TencentCloud::Common::AbstractModel
-        # @param DeadLetterQueueName: 死信队列名称
-        # @type DeadLetterQueueName: String
-        # @param Limit: 分页时本页获取主题列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0。
-        # @type Limit: Integer
-        # @param Offset: 分页时本页获取主题的个数，如果不传递该参数，则该参数默认为20，最大值为50。
-        # @type Offset: Integer
-        # @param SourceQueueName: 根据SourceQueueName过滤
-        # @type SourceQueueName: String
-
-        attr_accessor :DeadLetterQueueName, :Limit, :Offset, :SourceQueueName
-
-        def initialize(deadletterqueuename=nil, limit=nil, offset=nil, sourcequeuename=nil)
-          @DeadLetterQueueName = deadletterqueuename
-          @Limit = limit
-          @Offset = offset
-          @SourceQueueName = sourcequeuename
-        end
-
-        def deserialize(params)
-          @DeadLetterQueueName = params['DeadLetterQueueName']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @SourceQueueName = params['SourceQueueName']
-        end
-      end
-
-      # DescribeCmqDeadLetterSourceQueues返回参数结构体
-      class DescribeCmqDeadLetterSourceQueuesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 满足本次条件的队列个数
-        # @type TotalCount: Integer
-        # @param QueueSet: 死信队列源队列
-        # @type QueueSet: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :QueueSet, :RequestId
-
-        def initialize(totalcount=nil, queueset=nil, requestid=nil)
-          @TotalCount = totalcount
-          @QueueSet = queueset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['QueueSet'].nil?
-            @QueueSet = []
-            params['QueueSet'].each do |i|
-              cmqdeadlettersource_tmp = CmqDeadLetterSource.new
-              cmqdeadlettersource_tmp.deserialize(i)
-              @QueueSet << cmqdeadlettersource_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeCmqQueueDetail请求参数结构体
       class DescribeCmqQueueDetailRequest < TencentCloud::Common::AbstractModel
         # @param QueueName: 精确匹配QueueName
@@ -6349,8 +6290,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 11
-        deprecate :QueryDlqMsg=, :none, 2024, 11
+        deprecate :QueryDlqMsg, :none, 2024, 12
+        deprecate :QueryDlqMsg=, :none, 2024, 12
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6455,8 +6396,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2024, 11
-        deprecate :QueryDLQMsg=, :none, 2024, 11
+        deprecate :QueryDLQMsg, :none, 2024, 12
+        deprecate :QueryDLQMsg=, :none, 2024, 12
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7234,8 +7175,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 11
-        deprecate :QueryDlqMsg=, :none, 2024, 11
+        deprecate :QueryDlqMsg, :none, 2024, 12
+        deprecate :QueryDlqMsg=, :none, 2024, 12
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -11334,7 +11275,7 @@ module TencentCloud
 
       # RocketMQ集群配置
       class RocketMQClusterConfig < TencentCloud::Common::AbstractModel
-        # @param MaxTpsPerNamespace: 单命名空间TPS上线
+        # @param MaxTpsPerNamespace: 单命名空间TPS上限
         # @type MaxTpsPerNamespace: Integer
         # @param MaxNamespaceNum: 最大命名空间数量
         # @type MaxNamespaceNum: Integer
@@ -11360,6 +11301,9 @@ module TencentCloud
         # @type TopicDistribution: Array
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
+        extend Gem::Deprecate
+        deprecate :MaxTpsPerNamespace, :none, 2024, 12
+        deprecate :MaxTpsPerNamespace=, :none, 2024, 12
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -11808,7 +11752,7 @@ module TencentCloud
         # @param GroupName: 消费组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param Imported: 导入状态
+        # @param Imported: 是否已导入
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Imported: Boolean
         # @param Remark: remark

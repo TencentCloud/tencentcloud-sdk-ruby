@@ -118,7 +118,7 @@ module TencentCloud
         # @param ManageInputParameter: 参数详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManageInputParameter: Array
-        # @param CompliancePackName: 规则名称
+        # @param CompliancePackName: 合规包名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompliancePackName: String
         # @param RegionsScope: 关联地域
@@ -543,20 +543,28 @@ module TencentCloud
 
       # ListConfigRules请求参数结构体
       class ListConfigRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页限制
+        # @param Limit: 每页数量。
+        # 取值范围：1~200
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量。
+        # 取值范围：最小值为0
         # @type Offset: Integer
-        # @param OrderType: 排序类型, 倒序：desc，顺序：asc
+        # @param OrderType: 排序类型(规则名称)。
+        # 倒序：desc，
+        # 顺序：asc
         # @type OrderType: String
-        # @param RiskLevel: 风险等级
-        # 1：高风险。
-        # 2：中风险。
+        # @param RiskLevel: 风险等级。
+        # 1：高风险，
+        # 2：中风险，
         # 3：低风险。
         # @type RiskLevel: Array
-        # @param State: 规则状态
+        # @param State: 规则状态。
+        # ACTIVE：启用
+        # UN_ACTIVE：停用
         # @type State: String
-        # @param ComplianceResult: 评估结果
+        # @param ComplianceResult: 评估结果。
+        # COMPLIANT：合规
+        # NON_COMPLIANT：不合规
         # @type ComplianceResult: Array
         # @param RuleName: 规则名
         # @type RuleName: String
@@ -695,7 +703,8 @@ module TencentCloud
 
       # PutEvaluations请求参数结构体
       class PutEvaluationsRequest < TencentCloud::Common::AbstractModel
-        # @param ResultToken: 回调令牌。从自定义规则所选的scf云函数Context中取参数ResultToken值
+        # @param ResultToken: 回调令牌。从自定义规则所选的scf云函数入参中取参数ResultToken值
+        # <a href="https://cloud.tencent.com/document/product/583/9210#.E5.87.BD.E6.95.B0.E5.85.A5.E5.8F.82.3Ca-id.3D.22input.22.3E.3C.2Fa.3E" target="_blank">云函数入参说明</a>
         # @type ResultToken: String
         # @param Evaluations: 自定义规则评估结果信息。
         # @type Evaluations: Array

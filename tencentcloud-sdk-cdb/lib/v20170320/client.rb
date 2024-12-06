@@ -389,6 +389,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不再支持审计规则创建
+
         # 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
 
         # @param request: Request instance for CreateAuditRule.
@@ -813,6 +815,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 不再支持审计规则创建
 
         # 本接口(DeleteAuditRule)用于删除用户的审计规则。
 
@@ -1245,6 +1249,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 不再支持审计规则创建
 
         # 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
 
@@ -2860,6 +2866,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 不再支持审计规则创建
 
         # 本接口(ModifyAuditRule)用于修改用户的审计规则。
 

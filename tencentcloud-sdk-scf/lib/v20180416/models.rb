@@ -3694,11 +3694,14 @@ module TencentCloud
         # @param TKE: 基于TKE集群的资源池
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TKE: :class:`Tencentcloud::Scf.v20180416.models.NamespaceResourceEnvTKE`
+        # @param OFFLINE: 近离线计算类型的命名空间
+        # @type OFFLINE: Boolean
 
-        attr_accessor :TKE
+        attr_accessor :TKE, :OFFLINE
 
-        def initialize(tke=nil)
+        def initialize(tke=nil, offline=nil)
           @TKE = tke
+          @OFFLINE = offline
         end
 
         def deserialize(params)
@@ -3706,6 +3709,7 @@ module TencentCloud
             @TKE = NamespaceResourceEnvTKE.new
             @TKE.deserialize(params['TKE'])
           end
+          @OFFLINE = params['OFFLINE']
         end
       end
 

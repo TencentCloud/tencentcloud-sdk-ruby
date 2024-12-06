@@ -134,21 +134,33 @@ module TencentCloud
         # @type TaskId: String
         # @param SessionId: 音频转译结果确认 session。
         # @type SessionId: String
-        # @param Status: 该字段与 DescribeVideoTranslateJob 接口的 Status 功能相同，均表示任务状态。0：任务初始化。1：音频翻译中。 2：音频翻译失败。 3：音频翻译成功。 4：音频结果待确认。 5：音频结果已确认完毕。6：视频翻译中。 7：视频翻译失败。 8：视频翻译成功。
+        # @param Status: 任务状态。0：任务初始化。1：音频翻译中。 2：音频翻译失败。 3：音频翻译成功。 4：音频结果待确认。 5：音频结果已确认完毕。6：视频翻译中。 7：视频翻译失败。 8：视频翻译成功。
         # @type Status: Integer
         # @param Message: 视频转译任务信息。
         # @type Message: String
+        # @param JobStatus: 任务状态。0：任务初始化。1：音频翻译中。 2：音频翻译失败。 3：音频翻译成功。 4：音频结果待确认。 5：音频结果已确认完毕。6：视频翻译中。 7：视频翻译失败。 8：视频翻译成功。
+        # @type JobStatus: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :TaskId, :SessionId, :Status, :Message, :RequestId
+        attr_accessor :JobId, :TaskId, :SessionId, :Status, :Message, :JobStatus, :RequestId
+        extend Gem::Deprecate
+        deprecate :TaskId, :none, 2024, 12
+        deprecate :TaskId=, :none, 2024, 12
+        deprecate :SessionId, :none, 2024, 12
+        deprecate :SessionId=, :none, 2024, 12
+        deprecate :Status, :none, 2024, 12
+        deprecate :Status=, :none, 2024, 12
+        deprecate :Message, :none, 2024, 12
+        deprecate :Message=, :none, 2024, 12
 
-        def initialize(jobid=nil, taskid=nil, sessionid=nil, status=nil, message=nil, requestid=nil)
+        def initialize(jobid=nil, taskid=nil, sessionid=nil, status=nil, message=nil, jobstatus=nil, requestid=nil)
           @JobId = jobid
           @TaskId = taskid
           @SessionId = sessionid
           @Status = status
           @Message = message
+          @JobStatus = jobstatus
           @RequestId = requestid
         end
 
@@ -158,6 +170,7 @@ module TencentCloud
           @SessionId = params['SessionId']
           @Status = params['Status']
           @Message = params['Message']
+          @JobStatus = params['JobStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -381,6 +394,21 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :JobStatus, :JobErrorCode, :JobErrorMsg, :ResultVideoUrl, :TranslateResults, :JobConfirm, :JobAudioTaskId, :JobVideoModerationId, :JobAudioModerationId, :JobVideoId, :OriginalVideoUrl, :AsrTimestamps, :JobSubmitReqId, :RequestId
+        extend Gem::Deprecate
+        deprecate :JobConfirm, :none, 2024, 12
+        deprecate :JobConfirm=, :none, 2024, 12
+        deprecate :JobAudioTaskId, :none, 2024, 12
+        deprecate :JobAudioTaskId=, :none, 2024, 12
+        deprecate :JobVideoModerationId, :none, 2024, 12
+        deprecate :JobVideoModerationId=, :none, 2024, 12
+        deprecate :JobAudioModerationId, :none, 2024, 12
+        deprecate :JobAudioModerationId=, :none, 2024, 12
+        deprecate :JobVideoId, :none, 2024, 12
+        deprecate :JobVideoId=, :none, 2024, 12
+        deprecate :OriginalVideoUrl, :none, 2024, 12
+        deprecate :OriginalVideoUrl=, :none, 2024, 12
+        deprecate :JobSubmitReqId, :none, 2024, 12
+        deprecate :JobSubmitReqId=, :none, 2024, 12
 
         def initialize(jobstatus=nil, joberrorcode=nil, joberrormsg=nil, resultvideourl=nil, translateresults=nil, jobconfirm=nil, jobaudiotaskid=nil, jobvideomoderationid=nil, jobaudiomoderationid=nil, jobvideoid=nil, originalvideourl=nil, asrtimestamps=nil, jobsubmitreqid=nil, requestid=nil)
           @JobStatus = jobstatus

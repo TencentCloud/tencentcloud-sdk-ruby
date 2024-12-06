@@ -17,6 +17,42 @@
 module TencentCloud
   module Mqtt
     module V20240516
+      # ActivateDeviceCertificate请求参数结构体
+      class ActivateDeviceCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceCertificateSn: 设备证书序列号
+        # @type DeviceCertificateSn: String
+
+        attr_accessor :InstanceId, :DeviceCertificateSn
+
+        def initialize(instanceid=nil, devicecertificatesn=nil)
+          @InstanceId = instanceid
+          @DeviceCertificateSn = devicecertificatesn
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+        end
+      end
+
+      # ActivateDeviceCertificate返回参数结构体
+      class ActivateDeviceCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AuthorizationPolicyItem
       class AuthorizationPolicyItem < TencentCloud::Common::AbstractModel
         # @param Id: 规则ID
@@ -567,9 +603,85 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceCertificates请求参数结构体
+      class DescribeDeviceCertificatesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param Filters: 过滤器支持ClientId、CaSn、DeviceCertificateSn、Status搜索
+        # @type Filters: Array
+        # @param Limit: 分页limit
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param OrderBy: CREATE_TIME_DESC, 创建时间降序
+        #     CREATE_TIME_ASC,创建时间升序
+        #     UPDATE_TIME_DESC,更新时间降序
+        #     UPDATE_TIME_ASC,更新时间升序
+        # @type OrderBy: String
+
+        attr_accessor :InstanceId, :Filters, :Limit, :Offset, :OrderBy
+
+        def initialize(instanceid=nil, filters=nil, limit=nil, offset=nil, orderby=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # DescribeDeviceCertificates返回参数结构体
+      class DescribeDeviceCertificatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 设备证书
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              devicecertificateitem_tmp = DeviceCertificateItem.new
+              devicecertificateitem_tmp.deserialize(i)
+              @Data << devicecertificateitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceList请求参数结构体
       class DescribeInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件列表
+        # @param Filters: 查询条件列表,支持以下子弹
+        # InstanceName：集群名模糊搜索
+        # InstanceId：集群id精确搜索
+        # InstanceStatus：集群状态搜索
         # @type Filters: Array
         # @param Offset: 查询起始位置
         # @type Offset: Integer
@@ -775,7 +887,8 @@ module TencentCloud
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param Filters: 查询条件列表
+        # @param Filters: 查询条件列表:
+        # 支持TopicName模糊查询
         # @type Filters: Array
         # @param Offset: 查询起始位置
         # @type Offset: Integer
@@ -887,6 +1000,87 @@ module TencentCloud
           @Remark = params['Remark']
           @CreatedTime = params['CreatedTime']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备证书信息
+      class DeviceCertificateItem < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param DeviceCertificate: 设备证书
+        # @type DeviceCertificate: String
+        # @param DeviceCertificateSn: 设备证书Sn
+        # @type DeviceCertificateSn: String
+        # @param DeviceCertificateCn: 设备证书Cn
+        # @type DeviceCertificateCn: String
+        # @param CaSn: 签发ca的序列号
+        # @type CaSn: String
+        # @param Format: 证书格式
+        # @type Format: String
+        # @param Status: 证书状态
+        #     ACTIVE,//激活
+        #     INACTIVE,//未激活
+        #     REVOKED,//吊销
+        #     PENDING_ACTIVATION,//注册待激活
+        # @type Status: String
+        # @param LastActivationTime: 上次激活时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastActivationTime: Integer
+        # @param LastInactivationTime: 上次取消激活时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastInactivationTime: Integer
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: Integer
+        # @param UpdateTime: 预销毁时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param CertificateSource: 证书来源：
+        # API, 手动注册
+        # JITP 自动注册
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificateSource: String
+        # @param NotAfterTime: 证书失效日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotAfterTime: Integer
+        # @param NotBeforeTime: 证书生效开始日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotBeforeTime: Integer
+
+        attr_accessor :ClientId, :DeviceCertificate, :DeviceCertificateSn, :DeviceCertificateCn, :CaSn, :Format, :Status, :LastActivationTime, :LastInactivationTime, :CreatedTime, :UpdateTime, :CertificateSource, :NotAfterTime, :NotBeforeTime
+
+        def initialize(clientid=nil, devicecertificate=nil, devicecertificatesn=nil, devicecertificatecn=nil, casn=nil, format=nil, status=nil, lastactivationtime=nil, lastinactivationtime=nil, createdtime=nil, updatetime=nil, certificatesource=nil, notaftertime=nil, notbeforetime=nil)
+          @ClientId = clientid
+          @DeviceCertificate = devicecertificate
+          @DeviceCertificateSn = devicecertificatesn
+          @DeviceCertificateCn = devicecertificatecn
+          @CaSn = casn
+          @Format = format
+          @Status = status
+          @LastActivationTime = lastactivationtime
+          @LastInactivationTime = lastinactivationtime
+          @CreatedTime = createdtime
+          @UpdateTime = updatetime
+          @CertificateSource = certificatesource
+          @NotAfterTime = notaftertime
+          @NotBeforeTime = notbeforetime
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @DeviceCertificate = params['DeviceCertificate']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+          @DeviceCertificateCn = params['DeviceCertificateCn']
+          @CaSn = params['CaSn']
+          @Format = params['Format']
+          @Status = params['Status']
+          @LastActivationTime = params['LastActivationTime']
+          @LastInactivationTime = params['LastInactivationTime']
+          @CreatedTime = params['CreatedTime']
+          @UpdateTime = params['UpdateTime']
+          @CertificateSource = params['CertificateSource']
+          @NotAfterTime = params['NotAfterTime']
+          @NotBeforeTime = params['NotBeforeTime']
         end
       end
 
@@ -1236,7 +1430,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param Algorithm: 算法：hmac-based，public-key
         # @type Algorithm: String
-        # @param From: 设备连接时传递jwt的key；username-使用用户名字段传递；password-使用密码字段传递
+        # @param From: 设备连接时传递jwt的key；
+        # username-使用用户名字段传递；
+        # password-使用密码字段传递
         # @type From: String
         # @param Secret: 密码
         # @type Secret: String

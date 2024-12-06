@@ -4072,10 +4072,12 @@ module TencentCloud
         # @type Status: String
         # @param Result: 响应详情
         # @type Result: String
+        # @param RPS: 平均rps, 单位req/s
+        # @type RPS: Float
 
-        attr_accessor :Service, :Method, :Count, :Average, :P90, :P95, :Min, :Max, :ErrorPercentage, :P99, :Status, :Result
+        attr_accessor :Service, :Method, :Count, :Average, :P90, :P95, :Min, :Max, :ErrorPercentage, :P99, :Status, :Result, :RPS
 
-        def initialize(service=nil, method=nil, count=nil, average=nil, p90=nil, p95=nil, min=nil, max=nil, errorpercentage=nil, p99=nil, status=nil, result=nil)
+        def initialize(service=nil, method=nil, count=nil, average=nil, p90=nil, p95=nil, min=nil, max=nil, errorpercentage=nil, p99=nil, status=nil, result=nil, rps=nil)
           @Service = service
           @Method = method
           @Count = count
@@ -4088,6 +4090,7 @@ module TencentCloud
           @P99 = p99
           @Status = status
           @Result = result
+          @RPS = rps
         end
 
         def deserialize(params)
@@ -4103,6 +4106,7 @@ module TencentCloud
           @P99 = params['P99']
           @Status = params['Status']
           @Result = params['Result']
+          @RPS = params['RPS']
         end
       end
 

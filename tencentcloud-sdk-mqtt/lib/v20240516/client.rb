@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 生效设备证书
+
+        # @param request: Request instance for ActivateDeviceCertificate.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ActivateDeviceCertificateRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ActivateDeviceCertificateResponse`
+        def ActivateDeviceCertificate(request)
+          body = send_request('ActivateDeviceCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ActivateDeviceCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建MQTT实例的性能测试任务
 
         # @param request: Request instance for CreateAuthorizationPolicy.
@@ -245,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 分页查询设备证书
+
+        # @param request: Request instance for DescribeDeviceCertificates.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceCertificatesRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceCertificatesResponse`
+        def DescribeDeviceCertificates(request)
+          body = send_request('DescribeDeviceCertificates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceCertificatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例信息
 
         # @param request: Request instance for DescribeInstance.
@@ -272,7 +320,6 @@ module TencentCloud
         # 获取实例列表，Filters参数使用说明如下：
         # 1. InstanceName, 名称模糊查询
         # 2. InstanceId，实例ID查询
-        # 3. InstanceType, 实例类型查询，支持多选
         # 3. InstanceStatus，实例状态查询，支持多选
 
         # 当使用TagFilters查询时，Filters参数失效。

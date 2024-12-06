@@ -1126,7 +1126,7 @@ module TencentCloud
       class CommitCertificateInformationRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
-        # @param VerifyType: 域名验证方式
+        # @param VerifyType: 域名验证方式，如 DNS,DNS_AUTO,FILE
         # @type VerifyType: String
 
         attr_accessor :CertificateId, :VerifyType
@@ -1779,7 +1779,7 @@ module TencentCloud
         # @type CertificateId: String
         # @param InstanceIdList: 需要部署实例列表
         # @type InstanceIdList: Array
-        # @param ResourceType: 部署的云资源类型
+        # @param ResourceType: 部署的云资源类型,如clb，cos
         # @type ResourceType: String
         # @param Status: 部署云资源状态：
         # 云直播：
@@ -1836,9 +1836,9 @@ module TencentCloud
 
       # DeployCertificateRecordRetry请求参数结构体
       class DeployCertificateRecordRetryRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID
+        # @param DeployRecordId: 待重试部署记录ID，通过DeployCertificateInstance获得
         # @type DeployRecordId: Integer
-        # @param DeployRecordDetailId: 待重试部署记录详情ID
+        # @param DeployRecordDetailId: 待重试部署记录详情ID，通过DescribeHostDeployRecordDetail获得
         # @type DeployRecordDetailId: Integer
 
         attr_accessor :DeployRecordId, :DeployRecordDetailId
@@ -1872,7 +1872,7 @@ module TencentCloud
 
       # DeployCertificateRecordRollback请求参数结构体
       class DeployCertificateRecordRollbackRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID
+        # @param DeployRecordId: 待重试部署记录ID,就是通过DeployCertificateInstance返回的DeployRecordId
         # @type DeployRecordId: Integer
 
         attr_accessor :DeployRecordId
@@ -2294,7 +2294,7 @@ module TencentCloud
 
       # DescribeCertificateBindResourceTaskResult请求参数结构体
       class DescribeCertificateBindResourceTaskResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIds: 任务ID，根据任务ID查询绑定云资源结果， 最大支持100个
+        # @param TaskIds: 任务ID，根据CreateCertificateBindResourceSyncTask得到的任务ID查询绑定云资源结果， 最大支持100个
         # @type TaskIds: Array
 
         attr_accessor :TaskIds
@@ -2914,7 +2914,7 @@ module TencentCloud
       class DescribeCertificatesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量，从0开始。
         # @type Offset: Integer
-        # @param Limit: 每页数量，默认10。最大1000
+        # @param Limit: 每页数量，默认10。最大值1000，如超过1000按1000处理
         # @type Limit: Integer
         # @param SearchKey: 搜索关键词，可搜索证书 ID、备注名称、域名。例如： a8xHcaIs。
         # @type SearchKey: String
@@ -2942,7 +2942,7 @@ module TencentCloud
         # @type Hostable: Integer
         # @param Tags: 筛选指定标签的证书
         # @type Tags: Array
-        # @param IsPendingIssue: //是否筛选等待签发的证书，传1是筛选，0和null不筛选
+        # @param IsPendingIssue: 是否筛选等待签发的证书，传1是筛选，0和null不筛选
         # @type IsPendingIssue: Integer
 
         attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring, :Hostable, :Tags, :IsPendingIssue
@@ -3220,28 +3220,33 @@ module TencentCloud
       class DescribeHostApiGatewayInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型apigateway
+        # @type ResourceType: String
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
+        # @param Limit: 每页数量，默认10。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量，从0开始。
+        # @type Offset: String
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Limit, :Offset
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, limit=nil, offset=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
           @OldCertificateId = oldcertificateid
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3251,16 +3256,19 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
           @OldCertificateId = params['OldCertificateId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
       # DescribeHostApiGatewayInstanceList返回参数结构体
       class DescribeHostApiGatewayInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: apiGateway实例列表
+        # @param InstanceList: apiGateway实例列表,如取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: 总数，如取不到值返回0
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3291,28 +3299,28 @@ module TencentCloud
       class DescribeHostCdnInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型cdn
+        # @type ResourceType: String
         # @param OldCertificateId: 原证书ID
         # @type OldCertificateId: String
         # @param Offset: 分页偏移量，从0开始。
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
-        # @param AsyncCache: 是否异步
+        # @param AsyncCache: 是否异步,0表示否，1表示是，默认为0
         # @type AsyncCache: Integer
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
           @OldCertificateId = oldcertificateid
           @Offset = offset
           @Limit = limit
@@ -3321,7 +3329,6 @@ module TencentCloud
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3331,6 +3338,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
           @OldCertificateId = params['OldCertificateId']
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -3340,16 +3348,16 @@ module TencentCloud
 
       # DescribeHostCdnInstanceList返回参数结构体
       class DescribeHostCdnInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: CDN实例列表
+        # @param InstanceList: CDN实例列表，如取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
-        # @param TotalCount: CDN域名总数
+        # @param TotalCount: CDN域名总数，如取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param AsyncTotalNum: 异步刷新总数
+        # @param AsyncTotalNum: 异步刷新总数，如取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncTotalNum: Integer
-        # @param AsyncOffset: 异步刷新当前执行数
+        # @param AsyncOffset: 异步刷新当前执行数，如取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncOffset: Integer
         # @param AsyncCacheTime: 当前缓存读取时间
@@ -3388,27 +3396,27 @@ module TencentCloud
 
       # DescribeHostClbInstanceList请求参数结构体
       class DescribeHostClbInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 待部署的证书ID
-        # @type CertificateId: String
         # @param Offset: 分页偏移量，从0开始。
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
+        # @param CertificateId: 待部署的证书ID
+        # @type CertificateId: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
-        # @param AsyncCache: 是否异步缓存
+        # @param AsyncCache: 是否异步缓存,0表示否,1表示是
         # @type AsyncCache: Integer
         # @param OldCertificateId: 原证书ID
         # @type OldCertificateId: String
 
-        attr_accessor :CertificateId, :Offset, :Limit, :IsCache, :Filters, :AsyncCache, :OldCertificateId
+        attr_accessor :Offset, :Limit, :CertificateId, :IsCache, :Filters, :AsyncCache, :OldCertificateId
 
-        def initialize(certificateid=nil, offset=nil, limit=nil, iscache=nil, filters=nil, asynccache=nil, oldcertificateid=nil)
-          @CertificateId = certificateid
+        def initialize(offset=nil, limit=nil, certificateid=nil, iscache=nil, filters=nil, asynccache=nil, oldcertificateid=nil)
           @Offset = offset
           @Limit = limit
+          @CertificateId = certificateid
           @IsCache = iscache
           @Filters = filters
           @AsyncCache = asynccache
@@ -3416,9 +3424,9 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CertificateId = params['CertificateId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @CertificateId = params['CertificateId']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3435,19 +3443,19 @@ module TencentCloud
 
       # DescribeHostClbInstanceList返回参数结构体
       class DescribeHostClbInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: 总数，取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param InstanceList: CLB实例监听器列表
+        # @param InstanceList: CLB实例监听器列表，取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
-        # @param AsyncTotalNum: 异步刷新总数
+        # @param AsyncTotalNum: 异步刷新总数，取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncTotalNum: Integer
-        # @param AsyncOffset: 异步刷新当前执行数
+        # @param AsyncOffset: 异步刷新当前执行数，取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncOffset: Integer
-        # @param AsyncCacheTime: 当前缓存读取时间
+        # @param AsyncCacheTime: 当前缓存读取时间，去不到值返回空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncCacheTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3497,7 +3505,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
-        # @param AsyncCache: 是否异步
+        # @param AsyncCache: 是否异步，0表示否，1表示是
         # @type AsyncCache: Integer
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
@@ -3584,28 +3592,33 @@ module TencentCloud
       class DescribeHostDdosInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型ddos
+        # @type ResourceType: String
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
+        # @param Offset: 分页偏移量，从0开始。
+        # @type Offset: Integer
+        # @param Limit: 每页数量，默认10。
+        # @type Limit: Integer
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
           @OldCertificateId = oldcertificateid
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3615,22 +3628,29 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
           @OldCertificateId = params['OldCertificateId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeHostDdosInstanceList返回参数结构体
       class DescribeHostDdosInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: DDOS实例列表
+        # @param InstanceList: DDOS实例列表,取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceList, :RequestId
+        attr_accessor :InstanceList, :TotalCount, :RequestId
 
-        def initialize(instancelist=nil, requestid=nil)
+        def initialize(instancelist=nil, totalcount=nil, requestid=nil)
           @InstanceList = instancelist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -3643,6 +3663,7 @@ module TencentCloud
               @InstanceList << ddosinstancedetail_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3727,7 +3748,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
-        # @param ResourceType: 资源类型
+        # @param ResourceType: 支持的资源类型如下,clb,cdn,ddos,waf,apigateway,teo,tke,cos,lighthouse,vod,tcb,tse
         # @type ResourceType: String
 
         attr_accessor :CertificateId, :Offset, :Limit, :ResourceType
@@ -3784,25 +3805,24 @@ module TencentCloud
       class DescribeHostLighthouseInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型 lighthouse
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型 lighthouse
+        # @type ResourceType: String
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3812,15 +3832,16 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
         end
       end
 
       # DescribeHostLighthouseInstanceList返回参数结构体
       class DescribeHostLighthouseInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: Lighthouse实例列表
+        # @param InstanceList: Lighthouse实例列表,如取不到返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: 总数，如取不到返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3852,28 +3873,30 @@ module TencentCloud
       class DescribeHostLiveInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型
+        # @type ResourceType: String
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2024, 12
+        deprecate :ResourceType=, :none, 2024, 12
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
           @OldCertificateId = oldcertificateid
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -3883,13 +3906,14 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
           @OldCertificateId = params['OldCertificateId']
         end
       end
 
       # DescribeHostLiveInstanceList返回参数结构体
       class DescribeHostLiveInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: live实例列表
+        # @param InstanceList: live实例列表,如取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4000,27 +4024,27 @@ module TencentCloud
 
       # DescribeHostTkeInstanceList请求参数结构体
       class DescribeHostTkeInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 待部署的证书ID
-        # @type CertificateId: String
         # @param Offset: 分页偏移量，从0开始。
         # @type Offset: Integer
         # @param Limit: 每页数量，默认10。
         # @type Limit: Integer
+        # @param CertificateId: 待部署的证书ID
+        # @type CertificateId: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
-        # @param AsyncCache: 是否异步缓存
+        # @param AsyncCache: 是否异步缓存，0表示否，1表示是，默认为0
         # @type AsyncCache: Integer
         # @param OldCertificateId: 原证书ID
         # @type OldCertificateId: String
 
-        attr_accessor :CertificateId, :Offset, :Limit, :IsCache, :Filters, :AsyncCache, :OldCertificateId
+        attr_accessor :Offset, :Limit, :CertificateId, :IsCache, :Filters, :AsyncCache, :OldCertificateId
 
-        def initialize(certificateid=nil, offset=nil, limit=nil, iscache=nil, filters=nil, asynccache=nil, oldcertificateid=nil)
-          @CertificateId = certificateid
+        def initialize(offset=nil, limit=nil, certificateid=nil, iscache=nil, filters=nil, asynccache=nil, oldcertificateid=nil)
           @Offset = offset
           @Limit = limit
+          @CertificateId = certificateid
           @IsCache = iscache
           @Filters = filters
           @AsyncCache = asynccache
@@ -4028,9 +4052,9 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CertificateId = params['CertificateId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @CertificateId = params['CertificateId']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -4047,16 +4071,16 @@ module TencentCloud
 
       # DescribeHostTkeInstanceList返回参数结构体
       class DescribeHostTkeInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: 总数，取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param InstanceList: CLB实例监听器列表
+        # @param InstanceList: tke实例列表，取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
-        # @param AsyncTotalNum: 异步刷新总数
+        # @param AsyncTotalNum: 异步刷新总数，取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncTotalNum: Integer
-        # @param AsyncOffset: 异步刷新当前执行数
+        # @param AsyncOffset: 异步刷新当前执行数，取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncOffset: Integer
         # @param AsyncCacheTime: 当前缓存读取时间
@@ -4095,7 +4119,7 @@ module TencentCloud
 
       # DescribeHostUpdateRecordDetail请求参数结构体
       class DescribeHostUpdateRecordDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 一键更新记录ID
+        # @param DeployRecordId: 一键更新记录ID,从接口UpdateCertificateInstance获得
         # @type DeployRecordId: String
         # @param Limit: 每页数量，默认10。
         # @type Limit: String
@@ -4119,19 +4143,19 @@ module TencentCloud
 
       # DescribeHostUpdateRecordDetail返回参数结构体
       class DescribeHostUpdateRecordDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: 总数,如果取不到返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param RecordDetailList: 证书部署记录列表
+        # @param RecordDetailList: 证书部署记录列表，如果取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordDetailList: Array
-        # @param SuccessTotalCount: 成功总数
+        # @param SuccessTotalCount: 成功总数,如果取不到返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessTotalCount: Integer
-        # @param FailedTotalCount: 失败总数
+        # @param FailedTotalCount: 失败总数,如果取不到返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedTotalCount: Integer
-        # @param RunningTotalCount: 部署中总数
+        # @param RunningTotalCount: 部署中总数,如果取不到返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4230,28 +4254,30 @@ module TencentCloud
       class DescribeHostVodInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型 vod
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型 vod
+        # @type ResourceType: String
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2024, 12
+        deprecate :ResourceType=, :none, 2024, 12
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
           @OldCertificateId = oldcertificateid
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -4261,16 +4287,17 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
           @OldCertificateId = params['OldCertificateId']
         end
       end
 
       # DescribeHostVodInstanceList返回参数结构体
       class DescribeHostVodInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: Vod实例列表
+        # @param InstanceList: Vod实例列表，如果取不到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: 总数,如果取不到值返回0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4302,28 +4329,30 @@ module TencentCloud
       class DescribeHostWafInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 待部署的证书ID
         # @type CertificateId: String
-        # @param ResourceType: 部署资源类型
-        # @type ResourceType: String
         # @param IsCache: 是否查询缓存，1：是； 0：否， 默认为查询缓存，缓存半小时
         # @type IsCache: Integer
         # @param Filters: 过滤参数列表； FilterKey：domainMatch（查询域名是否匹配的实例列表） FilterValue：1，表示查询匹配； 0，表示查询不匹配； 默认查询匹配
         # @type Filters: Array
+        # @param ResourceType: 部署资源类型，如waf
+        # @type ResourceType: String
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
+        attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
+        extend Gem::Deprecate
+        deprecate :ResourceType, :none, 2024, 12
+        deprecate :ResourceType=, :none, 2024, 12
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
+        def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
-          @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
+          @ResourceType = resourcetype
           @OldCertificateId = oldcertificateid
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
           @IsCache = params['IsCache']
           unless params['Filters'].nil?
             @Filters = []
@@ -4333,13 +4362,14 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ResourceType = params['ResourceType']
           @OldCertificateId = params['OldCertificateId']
         end
       end
 
       # DescribeHostWafInstanceList返回参数结构体
       class DescribeHostWafInstanceListResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: WAF实例列表
+        # @param InstanceList: WAF实例列表，如果没有取到值返回空数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4367,7 +4397,7 @@ module TencentCloud
 
       # DescribeManagerDetail请求参数结构体
       class DescribeManagerDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ManagerId: 管理人ID
+        # @param ManagerId: 管理人ID,可以从describeManagers接口获得
         # @type ManagerId: Integer
         # @param Limit: 分页每页数量
         # @type Limit: Integer
@@ -4500,7 +4530,7 @@ module TencentCloud
 
       # DescribeManagers请求参数结构体
       class DescribeManagersRequest < TencentCloud::Common::AbstractModel
-        # @param CompanyId: 公司ID
+        # @param CompanyId: 公司ID,可以从DescribeCompanies接口获取
         # @type CompanyId: Integer
         # @param Offset: 分页偏移量
         # @type Offset: Integer
@@ -6800,9 +6830,9 @@ module TencentCloud
 
       # UpdateCertificateRecordRetry请求参数结构体
       class UpdateCertificateRecordRetryRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID
+        # @param DeployRecordId: 待重试部署记录ID,通过UpdateCertificateInstance得到部署记录ID
         # @type DeployRecordId: Integer
-        # @param DeployRecordDetailId: 待重试部署记录详情ID
+        # @param DeployRecordDetailId: 待重试部署记录详情ID,通过DescribeHostUpdateRecordDetail接口获得
         # @type DeployRecordDetailId: Integer
 
         attr_accessor :DeployRecordId, :DeployRecordDetailId
@@ -6836,7 +6866,7 @@ module TencentCloud
 
       # UpdateCertificateRecordRollback请求参数结构体
       class UpdateCertificateRecordRollbackRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待重试部署记录ID
+        # @param DeployRecordId: 待重试部署记录ID,通过UpdateCertificateInstance获得
         # @type DeployRecordId: Integer
 
         attr_accessor :DeployRecordId

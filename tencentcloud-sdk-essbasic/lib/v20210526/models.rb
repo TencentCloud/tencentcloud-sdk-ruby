@@ -8146,10 +8146,13 @@ module TencentCloud
         # @param ApproverRoleName: 自定义签署人的角色名, 如: 收款人、开具人、见证人等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverRoleName: String
+        # @param SignId: 签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignId: String
 
-        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType, :ApproverRoleName
+        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType, :ApproverRoleName, :SignId
 
-        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil, approverrolename=nil)
+        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil, approverrolename=nil, signid=nil)
           @ReceiptId = receiptid
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @ProxyOperatorOpenId = proxyoperatoropenid
@@ -8162,6 +8165,7 @@ module TencentCloud
           @ApproveTime = approvetime
           @ApproveType = approvetype
           @ApproverRoleName = approverrolename
+          @SignId = signid
         end
 
         def deserialize(params)
@@ -8177,6 +8181,7 @@ module TencentCloud
           @ApproveTime = params['ApproveTime']
           @ApproveType = params['ApproveType']
           @ApproverRoleName = params['ApproverRoleName']
+          @SignId = params['SignId']
         end
       end
 

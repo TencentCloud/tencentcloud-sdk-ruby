@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭数据库代理连接地址
+
+        # @param request: Request instance for CloseProxyEndPoint.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseProxyEndPointRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CloseProxyEndPointResponse`
+        def CloseProxyEndPoint(request)
+          body = send_request('CloseProxyEndPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseProxyEndPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloseWan）用于关闭外网。
 
         # @param request: Request instance for CloseWan.
@@ -1527,6 +1551,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeInstancesWithinSameCluster)用于查询同一集群下实例列表
+
+        # @param request: Request instance for DescribeInstancesWithinSameCluster.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstancesWithinSameClusterRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstancesWithinSameClusterResponse`
+        def DescribeInstancesWithinSameCluster(request)
+          body = send_request('DescribeInstancesWithinSameCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesWithinSameClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

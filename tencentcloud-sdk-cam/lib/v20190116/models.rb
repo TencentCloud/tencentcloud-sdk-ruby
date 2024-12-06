@@ -287,10 +287,10 @@ module TencentCloud
         # @param AddTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
-        # @param CreateMode: 创建来源，1 通过控制台创建, 2 通过策略语法创建。
+        # @param CreateMode: 创建来源，1 通过控制台创建, 2 通过策略语法创建
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateMode: Integer
-        # @param PolicyType: 取值为user和QCS
+        # @param PolicyType: 取值为User和QCS。User代表自定义策略，QCS代表系统策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param Remark: 策略备注
@@ -302,10 +302,10 @@ module TencentCloud
         # @param OperateUin: 策略关联操作者ID，如果UinType为0表示子账号Uin，如果UinType为1表示角色ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUin: String
-        # @param OperateUinType: UinType为0表示OperateUin字段是子账号Uin，如果UinType为1表示OperateUin字段是角色ID
+        # @param OperateUinType: 取值为0和1。OperateUinType为0表示OperateUin字段是子账号Uin。如果OperateUinType为1表示OperateUin字段是角色ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUinType: Integer
-        # @param Deactived: 是否已下线
+        # @param Deactived: 是否已下线，1代表已下线，0代表未下线
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deactived: Integer
         # @param DeactivedDetail: 已下线的产品列表
