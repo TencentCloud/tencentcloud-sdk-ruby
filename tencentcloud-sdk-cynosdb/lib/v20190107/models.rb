@@ -7464,6 +7464,49 @@ module TencentCloud
         end
       end
 
+      # DescribeServerlessInstanceSpecs请求参数结构体
+      class DescribeServerlessInstanceSpecsRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :Zone
+
+        def initialize(zone=nil)
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+        end
+      end
+
+      # DescribeServerlessInstanceSpecs返回参数结构体
+      class DescribeServerlessInstanceSpecsResponse < TencentCloud::Common::AbstractModel
+        # @param Specs: Serverless实例可选规格
+        # @type Specs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Specs, :RequestId
+
+        def initialize(specs=nil, requestid=nil)
+          @Specs = specs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Specs'].nil?
+            @Specs = []
+            params['Specs'].each do |i|
+              serverlessspec_tmp = ServerlessSpec.new
+              serverlessspec_tmp.deserialize(i)
+              @Specs << serverlessspec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServerlessStrategy请求参数结构体
       class DescribeServerlessStrategyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: serverless集群id
@@ -10568,14 +10611,10 @@ module TencentCloud
         # @type MinRoCount: Integer
         # @param MaxRoCount: 只读节点最大个数
         # @type MaxRoCount: Integer
-        # @param AutoScaleUp: 集群是否允许扩容，可选范围<li>yes</li><li>no</li>
-        # @type AutoScaleUp: String
-        # @param AutoScaleDown: 集群是否允许缩容，可选范围<li>yes</li><li>no</li>
-        # @type AutoScaleDown: String
 
-        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoScaleUp, :AutoScaleDown
+        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount
 
-        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoscaleup=nil, autoscaledown=nil)
+        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil)
           @ClusterId = clusterid
           @AutoPause = autopause
           @AutoPauseDelay = autopausedelay
@@ -10587,8 +10626,6 @@ module TencentCloud
           @MaxRoCpu = maxrocpu
           @MinRoCount = minrocount
           @MaxRoCount = maxrocount
-          @AutoScaleUp = autoscaleup
-          @AutoScaleDown = autoscaledown
         end
 
         def deserialize(params)
@@ -10603,8 +10640,6 @@ module TencentCloud
           @MaxRoCpu = params['MaxRoCpu']
           @MinRoCount = params['MinRoCount']
           @MaxRoCount = params['MaxRoCount']
-          @AutoScaleUp = params['AutoScaleUp']
-          @AutoScaleDown = params['AutoScaleDown']
         end
       end
 
@@ -13664,6 +13699,93 @@ module TencentCloud
           @SecurityGroupId = params['SecurityGroupId']
           @SecurityGroupName = params['SecurityGroupName']
           @SecurityGroupRemark = params['SecurityGroupRemark']
+        end
+      end
+
+      # serverless规格
+      class ServerlessSpec < TencentCloud::Common::AbstractModel
+        # @param MinCpu: cpu最小值
+        # @type MinCpu: Float
+        # @param MaxCpu: cpu最大值
+        # @type MaxCpu: Float
+        # @param MaxStorageSize: 最大存储空间
+        # @type MaxStorageSize: Integer
+        # @param IsDefault: 是否为默认规格
+        # @type IsDefault: Integer
+        # @param HasStock: 是否有库存
+        # @type HasStock: Boolean
+        # @param StockCount: 库存数量
+        # @type StockCount: Integer
+        # @param ZoneStockInfos: 可用区库存信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneStockInfos: Array
+
+        attr_accessor :MinCpu, :MaxCpu, :MaxStorageSize, :IsDefault, :HasStock, :StockCount, :ZoneStockInfos
+
+        def initialize(mincpu=nil, maxcpu=nil, maxstoragesize=nil, isdefault=nil, hasstock=nil, stockcount=nil, zonestockinfos=nil)
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @MaxStorageSize = maxstoragesize
+          @IsDefault = isdefault
+          @HasStock = hasstock
+          @StockCount = stockcount
+          @ZoneStockInfos = zonestockinfos
+        end
+
+        def deserialize(params)
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @MaxStorageSize = params['MaxStorageSize']
+          @IsDefault = params['IsDefault']
+          @HasStock = params['HasStock']
+          @StockCount = params['StockCount']
+          unless params['ZoneStockInfos'].nil?
+            @ZoneStockInfos = []
+            params['ZoneStockInfos'].each do |i|
+              serverlesszonestockinfo_tmp = ServerlessZoneStockInfo.new
+              serverlesszonestockinfo_tmp.deserialize(i)
+              @ZoneStockInfos << serverlesszonestockinfo_tmp
+            end
+          end
+        end
+      end
+
+      # serverless类型的可用区库存信息
+      class ServerlessZoneStockInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param StockCount: 存储量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StockCount: Integer
+        # @param HasStock: 是否包含库存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasStock: Boolean
+        # @param SlaveZoneStockInfos: 从可用区库存信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZoneStockInfos: Array
+
+        attr_accessor :Zone, :StockCount, :HasStock, :SlaveZoneStockInfos
+
+        def initialize(zone=nil, stockcount=nil, hasstock=nil, slavezonestockinfos=nil)
+          @Zone = zone
+          @StockCount = stockcount
+          @HasStock = hasstock
+          @SlaveZoneStockInfos = slavezonestockinfos
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @StockCount = params['StockCount']
+          @HasStock = params['HasStock']
+          unless params['SlaveZoneStockInfos'].nil?
+            @SlaveZoneStockInfos = []
+            params['SlaveZoneStockInfos'].each do |i|
+              slavezonestockinfo_tmp = SlaveZoneStockInfo.new
+              slavezonestockinfo_tmp.deserialize(i)
+              @SlaveZoneStockInfos << slavezonestockinfo_tmp
+            end
+          end
         end
       end
 

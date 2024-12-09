@@ -822,6 +822,117 @@ module TencentCloud
         end
       end
 
+      # AllocateIPv6Addresses请求参数结构体
+      class AllocateIPv6AddressesRequest < TencentCloud::Common::AbstractModel
+        # @param AddressName: EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名。
+        # @type AddressName: String
+        # @param AddressType: 弹性公网IPv6类型，可选值：
+
+        # - EIPv6：普通IPv6
+        # - HighQualityEIPv6：精品IPv6
+        # 注意：需联系产品开通精品IPv6白名单，且仅部分地域支持精品IPv6
+
+        # 默认值：EIPv6。
+        # @type AddressType: String
+        # @param AddressCount: 申请的弹性公网IPv6数量，默认值：1。
+        # @type AddressCount: Integer
+        # @param InternetChargeType: 弹性公网IPv6计费方式，可选值：
+
+        # - BANDWIDTH_PACKAGE：[共享带宽包](https://cloud.tencent.com/document/product/684/15255)付费
+        # - TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
+
+        # 默认值：TRAFFIC_POSTPAID_BY_HOUR。
+        # @type InternetChargeType: String
+        # @param InternetServiceProvider: 弹性公网IPv6线路类型，默认值：BGP。
+
+        # 已开通静态单线IP白名单的用户，可选值：
+        # - CMCC：中国移动
+        # - CTCC：中国电信
+        # - CUCC：中国联通
+        # 注意：仅部分地域支持静态单线IP。
+        # @type InternetServiceProvider: String
+        # @param InternetMaxBandwidthOut: 弹性公网IPv6带宽上限，单位：Mbps。
+
+        # 可选值范围取决于EIP计费方式：
+
+        # - BANDWIDTH_PACKAGE：1 Mbps 至 2000 Mbps
+        # - TRAFFIC_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps
+
+        # 默认值：1 Mbps。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param BandwidthPackageId: 带宽包唯一ID参数。
+        # 设定该参数且InternetChargeType为BANDWIDTH_PACKAGE，则表示创建的EIP加入该BGP带宽包并采用带宽包计费。
+        # @type BandwidthPackageId: String
+        # @param Tags: 需要关联的标签列表。
+        # @type Tags: Array
+        # @param Egress: 弹性公网IPv6网络出口，可选值：
+
+        # - CENTER_EGRESS_1：中心出口一
+        # - CENTER_EGRESS_2：中心出口二
+        # - CENTER_EGRESS_3：中心出口三
+        # 注意：不同运营商或资源类型对应的网络出口需要联系产品开白
+
+        # 默认值：CENTER_EGRESS_1。
+        # @type Egress: String
+
+        attr_accessor :AddressName, :AddressType, :AddressCount, :InternetChargeType, :InternetServiceProvider, :InternetMaxBandwidthOut, :BandwidthPackageId, :Tags, :Egress
+
+        def initialize(addressname=nil, addresstype=nil, addresscount=nil, internetchargetype=nil, internetserviceprovider=nil, internetmaxbandwidthout=nil, bandwidthpackageid=nil, tags=nil, egress=nil)
+          @AddressName = addressname
+          @AddressType = addresstype
+          @AddressCount = addresscount
+          @InternetChargeType = internetchargetype
+          @InternetServiceProvider = internetserviceprovider
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @BandwidthPackageId = bandwidthpackageid
+          @Tags = tags
+          @Egress = egress
+        end
+
+        def deserialize(params)
+          @AddressName = params['AddressName']
+          @AddressType = params['AddressType']
+          @AddressCount = params['AddressCount']
+          @InternetChargeType = params['InternetChargeType']
+          @InternetServiceProvider = params['InternetServiceProvider']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @BandwidthPackageId = params['BandwidthPackageId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Egress = params['Egress']
+        end
+      end
+
+      # AllocateIPv6Addresses返回参数结构体
+      class AllocateIPv6AddressesResponse < TencentCloud::Common::AbstractModel
+        # @param AddressSet: 申请到的弹性公网 IPv6 地址的唯一 ID 列表。
+        # @type AddressSet: Array
+        # @param TaskId: 异步任务TaskId，可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AddressSet, :TaskId, :RequestId
+
+        def initialize(addressset=nil, taskid=nil, requestid=nil)
+          @AddressSet = addressset
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AddressSet = params['AddressSet']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AllocateIp6AddressesBandwidth请求参数结构体
       class AllocateIp6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
         # @param Ip6Addresses: 需要开通公网访问能力的IPV6地址
@@ -1261,6 +1372,46 @@ module TencentCloud
 
       # AssociateDirectConnectGatewayNatGateway返回参数结构体
       class AssociateDirectConnectGatewayNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AssociateIPv6Address请求参数结构体
+      class AssociateIPv6AddressRequest < TencentCloud::Common::AbstractModel
+        # @param IPv6AddressId: 弹性公网IPv6唯一ID，EIPv6 唯一 ID 形如：eipv6-11112222。
+        # @type IPv6AddressId: String
+        # @param NetworkInterfaceId: 要绑定的弹性网卡 ID。 弹性网卡 ID 形如：eni-11112222。NetworkInterfaceId 与 InstanceId 不可同时指定。弹性网卡 ID 可通过登录控制台查询，也可通过DescribeNetworkInterfaces接口返回值中的networkInterfaceId获取。
+        # @type NetworkInterfaceId: String
+        # @param PrivateIPv6Address: 要绑定的内网 IPv6。如果指定了 NetworkInterfaceId 则也必须指定 PrivateIPv6Address ，表示将 EIP 绑定到指定弹性网卡的指定内网 IP 上。同时要确保指定的 PrivateIPv6Address 是指定的 NetworkInterfaceId 上的一个内网 IPv6。指定弹性网卡的内网 IPv6 可通过登录控制台查询，也可通过DescribeNetworkInterfaces接口返回值中的Ipv6AddressSet.Address获取。
+        # @type PrivateIPv6Address: String
+
+        attr_accessor :IPv6AddressId, :NetworkInterfaceId, :PrivateIPv6Address
+
+        def initialize(ipv6addressid=nil, networkinterfaceid=nil, privateipv6address=nil)
+          @IPv6AddressId = ipv6addressid
+          @NetworkInterfaceId = networkinterfaceid
+          @PrivateIPv6Address = privateipv6address
+        end
+
+        def deserialize(params)
+          @IPv6AddressId = params['IPv6AddressId']
+          @NetworkInterfaceId = params['NetworkInterfaceId']
+          @PrivateIPv6Address = params['PrivateIPv6Address']
+        end
+      end
+
+      # AssociateIPv6Address返回参数结构体
+      class AssociateIPv6AddressResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3089,17 +3240,28 @@ module TencentCloud
         # @type AddressTemplateGroupName: String
         # @param AddressTemplateIds: IP地址模板实例ID，例如：ipm-mdunqeb6。
         # @type AddressTemplateIds: Array
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :AddressTemplateGroupName, :AddressTemplateIds
+        attr_accessor :AddressTemplateGroupName, :AddressTemplateIds, :Tags
 
-        def initialize(addresstemplategroupname=nil, addresstemplateids=nil)
+        def initialize(addresstemplategroupname=nil, addresstemplateids=nil, tags=nil)
           @AddressTemplateGroupName = addresstemplategroupname
           @AddressTemplateIds = addresstemplateids
+          @Tags = tags
         end
 
         def deserialize(params)
           @AddressTemplateGroupName = params['AddressTemplateGroupName']
           @AddressTemplateIds = params['AddressTemplateIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -3134,13 +3296,16 @@ module TencentCloud
         # @type Addresses: Array
         # @param AddressesExtra: 地址信息，支持携带备注，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
         # @type AddressesExtra: Array
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :AddressTemplateName, :Addresses, :AddressesExtra
+        attr_accessor :AddressTemplateName, :Addresses, :AddressesExtra, :Tags
 
-        def initialize(addresstemplatename=nil, addresses=nil, addressesextra=nil)
+        def initialize(addresstemplatename=nil, addresses=nil, addressesextra=nil, tags=nil)
           @AddressTemplateName = addresstemplatename
           @Addresses = addresses
           @AddressesExtra = addressesextra
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3152,6 +3317,14 @@ module TencentCloud
               addressinfo_tmp = AddressInfo.new
               addressinfo_tmp.deserialize(i)
               @AddressesExtra << addressinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -5439,13 +5612,16 @@ module TencentCloud
         # @type Services: Array
         # @param ServicesExtra: 支持添加备注，单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
         # @type ServicesExtra: Array
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :ServiceTemplateName, :Services, :ServicesExtra
+        attr_accessor :ServiceTemplateName, :Services, :ServicesExtra, :Tags
 
-        def initialize(servicetemplatename=nil, services=nil, servicesextra=nil)
+        def initialize(servicetemplatename=nil, services=nil, servicesextra=nil, tags=nil)
           @ServiceTemplateName = servicetemplatename
           @Services = services
           @ServicesExtra = servicesextra
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5457,6 +5633,14 @@ module TencentCloud
               servicesinfo_tmp = ServicesInfo.new
               servicesinfo_tmp.deserialize(i)
               @ServicesExtra << servicesinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -10852,6 +11036,96 @@ module TencentCloud
         end
       end
 
+      # DescribeIPv6Addresses请求参数结构体
+      class DescribeIPv6AddressesRequest < TencentCloud::Common::AbstractModel
+        # @param IPv6AddressIds: 标识 IPv6 的唯一 ID 列。
+
+        # - 传统弹性公网 IPv6 唯一 ID 形如：`eip-11112222`
+        # - 弹性公网 IPv6 唯一 ID 形如：`eipv6-11112222`
+
+        # 注意：参数不支持同时指定`IPv6AddressIds`和`Filters`。
+        # @type IPv6AddressIds: Array
+        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。参数不支持同时指定`IPv6AddressIds`和`Filters`。详细的过滤条件如下：
+
+        # - address-id - String - 是否必填：否 - （过滤条件）按照弹性公网IPv6的唯一ID过滤。
+        # - public-ipv6-address - String - 是否必填：否 - （过滤条件）按照公网 IPv6 的 IP 地址过滤。
+        # - network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。
+        # - instance-id - String - 是否必填：否 - （过滤条件）按照绑定实例的唯一ID过滤。
+        # - charge-type - String - 是否必填：否 - （过滤条件）按照计费类型过滤。
+        # - private-ipv6-address - String - 是否必填：否 - （过滤条件）按照绑定的内网 IPv6 地址过滤。
+        # - egress - String - 是否必填：否 - （过滤条件）按照出口过滤。
+        # - address-type - String - 是否必填：否 - （过滤条件）按照IPv6类型 进行过滤。可选值：'EIP6'，'EIPv6'，'WanIPv6'，'HighQualityEIPv6'。默认值是'EIPv6'。
+        # - address-isp - String - 是否必填：否 - （过滤条件）按照 运营商类型 进行过滤。可选值：'BGP'，'CMCC'，'CUCC', 'CTCC'。
+        # - address-status - String - 是否必填：否 - （过滤条件）按照 EIP 的状态过滤。状态包含：'CREATING'，'BINDING'，'BIND'，'UNBINDING'，'UNBIND'，'OFFLINING'，'BIND_ENI'，'PRIVATE'。
+        # - address-name - String - 是否必填：否 - （过滤条件）按照 EIP 名称过滤。不支持模糊过滤。
+        # - tag-key - String - 是否必填：否 - （过滤条件）按照标签键进行过滤。
+        # - tag-value - String - 是否必填：否 - （过滤条件）按照标签值进行过滤。
+        # - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。tag-key使用具体的标签键进行替换。
+        # @type Filters: Array
+        # @param Traditional: 是否查询传统型IPv6地址信息。
+        # @type Traditional: Boolean
+        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :IPv6AddressIds, :Filters, :Traditional, :Offset, :Limit
+
+        def initialize(ipv6addressids=nil, filters=nil, traditional=nil, offset=nil, limit=nil)
+          @IPv6AddressIds = ipv6addressids
+          @Filters = filters
+          @Traditional = traditional
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @IPv6AddressIds = params['IPv6AddressIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Traditional = params['Traditional']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeIPv6Addresses返回参数结构体
+      class DescribeIPv6AddressesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的 IPv6 数量。
+        # @type TotalCount: Integer
+        # @param AddressSet: IPv6 详细信息列表。
+        # @type AddressSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AddressSet, :RequestId
+
+        def initialize(totalcount=nil, addressset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AddressSet = addressset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AddressSet'].nil?
+            @AddressSet = []
+            params['AddressSet'].each do |i|
+              address_tmp = Address.new
+              address_tmp.deserialize(i)
+              @AddressSet << address_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIp6Addresses请求参数结构体
       class DescribeIp6AddressesRequest < TencentCloud::Common::AbstractModel
         # @param Ip6AddressIds: 标识 IPV6 的唯一 ID 列表。IPV6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
@@ -15932,6 +16206,42 @@ module TencentCloud
         end
       end
 
+      # DisassociateIPv6Address请求参数结构体
+      class DisassociateIPv6AddressRequest < TencentCloud::Common::AbstractModel
+        # @param IPv6AddressId: 弹性公网IPv6唯一ID，EIPv6 唯一 ID 形如：eipv6-11112222。
+        # @type IPv6AddressId: String
+        # @param KeepBindWithEni: 解绑时是否保持绑定弹性网卡。
+        # @type KeepBindWithEni: Boolean
+
+        attr_accessor :IPv6AddressId, :KeepBindWithEni
+
+        def initialize(ipv6addressid=nil, keepbindwitheni=nil)
+          @IPv6AddressId = ipv6addressid
+          @KeepBindWithEni = keepbindwitheni
+        end
+
+        def deserialize(params)
+          @IPv6AddressId = params['IPv6AddressId']
+          @KeepBindWithEni = params['KeepBindWithEni']
+        end
+      end
+
+      # DisassociateIPv6Address返回参数结构体
+      class DisassociateIPv6AddressResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateNatGatewayAddress请求参数结构体
       class DisassociateNatGatewayAddressRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
@@ -19269,6 +19579,78 @@ module TencentCloud
 
       # ModifyHighPriorityRouteTableAttribute返回参数结构体
       class ModifyHighPriorityRouteTableAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIPv6AddressesAttributes请求参数结构体
+      class ModifyIPv6AddressesAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param IPv6AddressIds: 弹性公网IPv6唯一ID列表。
+        # @type IPv6AddressIds: Array
+        # @param IPv6AddressName: 弹性公网IPv6地址名称
+        # @type IPv6AddressName: String
+
+        attr_accessor :IPv6AddressIds, :IPv6AddressName
+
+        def initialize(ipv6addressids=nil, ipv6addressname=nil)
+          @IPv6AddressIds = ipv6addressids
+          @IPv6AddressName = ipv6addressname
+        end
+
+        def deserialize(params)
+          @IPv6AddressIds = params['IPv6AddressIds']
+          @IPv6AddressName = params['IPv6AddressName']
+        end
+      end
+
+      # ModifyIPv6AddressesAttributes返回参数结构体
+      class ModifyIPv6AddressesAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIPv6AddressesBandwidth请求参数结构体
+      class ModifyIPv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
+        # @param IPv6AddressIds: 弹性公网IPv6地址唯一ID
+        # @type IPv6AddressIds: Array
+        # @param InternetMaxBandwidthOut: 弹性公网IPv6地址网络带宽
+        # @type InternetMaxBandwidthOut: Integer
+
+        attr_accessor :IPv6AddressIds, :InternetMaxBandwidthOut
+
+        def initialize(ipv6addressids=nil, internetmaxbandwidthout=nil)
+          @IPv6AddressIds = ipv6addressids
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+        end
+
+        def deserialize(params)
+          @IPv6AddressIds = params['IPv6AddressIds']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+        end
+      end
+
+      # ModifyIPv6AddressesBandwidth返回参数结构体
+      class ModifyIPv6AddressesBandwidthResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -22663,6 +23045,38 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReleaseIPv6Addresses请求参数结构体
+      class ReleaseIPv6AddressesRequest < TencentCloud::Common::AbstractModel
+        # @param IPv6AddressIds: IPv6地址唯一ID。
+        # @type IPv6AddressIds: Array
+
+        attr_accessor :IPv6AddressIds
+
+        def initialize(ipv6addressids=nil)
+          @IPv6AddressIds = ipv6addressids
+        end
+
+        def deserialize(params)
+          @IPv6AddressIds = params['IPv6AddressIds']
+        end
+      end
+
+      # ReleaseIPv6Addresses返回参数结构体
+      class ReleaseIPv6AddressesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

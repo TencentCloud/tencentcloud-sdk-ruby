@@ -78,6 +78,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建EMR容器集群实例
+
+        # @param request: Request instance for CreateCloudInstance.
+        # @type request: :class:`Tencentcloud::emr::V20190103::CreateCloudInstanceRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::CreateCloudInstanceResponse`
+        def CreateCloudInstance(request)
+          body = send_request('CreateCloudInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建EMR集群实例
 
         # @param request: Request instance for CreateCluster.
@@ -1148,6 +1172,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyGlobalConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调整Pod数量
+
+        # @param request: Request instance for ModifyPodNum.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyPodNumRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyPodNumResponse`
+        def ModifyPodNum(request)
+          body = send_request('ModifyPodNum', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPodNumResponse.new
             model.deserialize(response['Response'])
             model
           else

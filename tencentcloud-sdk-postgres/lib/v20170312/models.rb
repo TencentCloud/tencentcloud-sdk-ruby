@@ -7163,7 +7163,7 @@ module TencentCloud
       class RestoreDBInstanceObjectsRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
-        # @param RestoreObjects: 需要恢复的对象列表。假设需要恢复的对象名为test，则恢复后的名称为test_bak_${LinuxTime}。${LinuxTime}无法指定，由系统根据任务发起的linux时间设定。
+        # @param RestoreObjects: 需要恢复的对象列表。假设需要恢复的对象名为user，则恢复后的名称为user_bak_${LinuxTime}。${LinuxTime}无法指定，由系统根据任务发起的linux时间设定。
         # @type RestoreObjects: Array
         # @param BackupSetId: 恢复所用备份集。BackupSetId与RestoreTargetTime有且只能传一个。
         # @type BackupSetId: String

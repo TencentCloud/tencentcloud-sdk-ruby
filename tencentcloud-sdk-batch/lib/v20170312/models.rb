@@ -2085,12 +2085,12 @@ module TencentCloud
 
       # Docker容器信息
       class Docker < TencentCloud::Common::AbstractModel
-        # @param User: Docker Hub 用户名或 Tencent Registry 用户名
-        # @type User: String
-        # @param Password: Docker Hub 密码或 Tencent Registry 密码
-        # @type Password: String
         # @param Image: Docker Hub填写“[user/repo]:[tag]”，Tencent Registry填写“ccr.ccs.tencentyun.com/[namespace/repo]:[tag]”
         # @type Image: String
+        # @param User: Docker Hub 用户名或 Tencent Registry 用户名；公共镜像可不填写此参数。
+        # @type User: String
+        # @param Password: Docker Hub 密码或 Tencent Registry 密码；公共镜像可不填写此参数。
+        # @type Password: String
         # @param Server: Docker Hub 可以不填，但确保具有公网访问能力。或者是 Tencent Registry 服务地址“ccr.ccs.tencentyun.com”
         # @type Server: String
         # @param MaxRetryCount: 拉取Docker镜像重试次数。默认值：0。
@@ -2101,12 +2101,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerRunOption: String
 
-        attr_accessor :User, :Password, :Image, :Server, :MaxRetryCount, :DelayOnRetry, :DockerRunOption
+        attr_accessor :Image, :User, :Password, :Server, :MaxRetryCount, :DelayOnRetry, :DockerRunOption
 
-        def initialize(user=nil, password=nil, image=nil, server=nil, maxretrycount=nil, delayonretry=nil, dockerrunoption=nil)
+        def initialize(image=nil, user=nil, password=nil, server=nil, maxretrycount=nil, delayonretry=nil, dockerrunoption=nil)
+          @Image = image
           @User = user
           @Password = password
-          @Image = image
           @Server = server
           @MaxRetryCount = maxretrycount
           @DelayOnRetry = delayonretry
@@ -2114,9 +2114,9 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Image = params['Image']
           @User = params['User']
           @Password = params['Password']
-          @Image = params['Image']
           @Server = params['Server']
           @MaxRetryCount = params['MaxRetryCount']
           @DelayOnRetry = params['DelayOnRetry']

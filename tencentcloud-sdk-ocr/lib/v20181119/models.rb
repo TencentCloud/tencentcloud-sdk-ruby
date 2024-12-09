@@ -280,10 +280,24 @@ module TencentCloud
         # @type QRCodeMark: Integer
         # @param FlightItems: 条目
         # @type FlightItems: Array
+        # @param PromptInformation: 提示信息
+        # @type PromptInformation: String
+        # @param BuyerTaxID: 统一社会信用代码/纳税人识别号
+        # @type BuyerTaxID: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param ReceiptNumber: 发票号码
+        # @type ReceiptNumber: String
+        # @param InvoiceStatus: 开票状态
+        # @type InvoiceStatus: String
+        # @param TaxRate: 增值税税率
+        # @type TaxRate: String
+        # @param TaxAmount: 增值税税额
+        # @type TaxAmount: String
 
-        attr_accessor :Title, :Number, :CheckCode, :SerialNumber, :Date, :AgentCode, :AgentCodeFirst, :AgentCodeSecond, :UserName, :UserID, :Issuer, :Fare, :Tax, :FuelSurcharge, :AirDevelopmentFund, :Insurance, :Total, :Kind, :DomesticInternationalTag, :DateStart, :DateEnd, :Endorsement, :QRCodeMark, :FlightItems
+        attr_accessor :Title, :Number, :CheckCode, :SerialNumber, :Date, :AgentCode, :AgentCodeFirst, :AgentCodeSecond, :UserName, :UserID, :Issuer, :Fare, :Tax, :FuelSurcharge, :AirDevelopmentFund, :Insurance, :Total, :Kind, :DomesticInternationalTag, :DateStart, :DateEnd, :Endorsement, :QRCodeMark, :FlightItems, :PromptInformation, :BuyerTaxID, :Buyer, :ReceiptNumber, :InvoiceStatus, :TaxRate, :TaxAmount
 
-        def initialize(title=nil, number=nil, checkcode=nil, serialnumber=nil, date=nil, agentcode=nil, agentcodefirst=nil, agentcodesecond=nil, username=nil, userid=nil, issuer=nil, fare=nil, tax=nil, fuelsurcharge=nil, airdevelopmentfund=nil, insurance=nil, total=nil, kind=nil, domesticinternationaltag=nil, datestart=nil, dateend=nil, endorsement=nil, qrcodemark=nil, flightitems=nil)
+        def initialize(title=nil, number=nil, checkcode=nil, serialnumber=nil, date=nil, agentcode=nil, agentcodefirst=nil, agentcodesecond=nil, username=nil, userid=nil, issuer=nil, fare=nil, tax=nil, fuelsurcharge=nil, airdevelopmentfund=nil, insurance=nil, total=nil, kind=nil, domesticinternationaltag=nil, datestart=nil, dateend=nil, endorsement=nil, qrcodemark=nil, flightitems=nil, promptinformation=nil, buyertaxid=nil, buyer=nil, receiptnumber=nil, invoicestatus=nil, taxrate=nil, taxamount=nil)
           @Title = title
           @Number = number
           @CheckCode = checkcode
@@ -308,6 +322,13 @@ module TencentCloud
           @Endorsement = endorsement
           @QRCodeMark = qrcodemark
           @FlightItems = flightitems
+          @PromptInformation = promptinformation
+          @BuyerTaxID = buyertaxid
+          @Buyer = buyer
+          @ReceiptNumber = receiptnumber
+          @InvoiceStatus = invoicestatus
+          @TaxRate = taxrate
+          @TaxAmount = taxamount
         end
 
         def deserialize(params)
@@ -342,6 +363,13 @@ module TencentCloud
               @FlightItems << flightitem_tmp
             end
           end
+          @PromptInformation = params['PromptInformation']
+          @BuyerTaxID = params['BuyerTaxID']
+          @Buyer = params['Buyer']
+          @ReceiptNumber = params['ReceiptNumber']
+          @InvoiceStatus = params['InvoiceStatus']
+          @TaxRate = params['TaxRate']
+          @TaxAmount = params['TaxAmount']
         end
       end
 
@@ -2500,10 +2528,12 @@ module TencentCloud
         # @type BuyerTaxID: String
         # @param OriginalNumber: 原发票号码
         # @type OriginalNumber: String
+        # @param IDInfo: 标识信息
+        # @type IDInfo: String
 
-        attr_accessor :TypeOfVoucher, :ElectronicTicketNum, :Date, :StationGetOn, :StationGetOff, :TrainNumber, :DateGetOn, :TimeGetOn, :Seat, :SeatNumber, :Fare, :Number, :UserID, :UserName, :Total, :TaxRate, :Tax, :Buyer, :BuyerTaxID, :OriginalNumber
+        attr_accessor :TypeOfVoucher, :ElectronicTicketNum, :Date, :StationGetOn, :StationGetOff, :TrainNumber, :DateGetOn, :TimeGetOn, :Seat, :SeatNumber, :Fare, :Number, :UserID, :UserName, :Total, :TaxRate, :Tax, :Buyer, :BuyerTaxID, :OriginalNumber, :IDInfo
 
-        def initialize(typeofvoucher=nil, electronicticketnum=nil, date=nil, stationgeton=nil, stationgetoff=nil, trainnumber=nil, dategeton=nil, timegeton=nil, seat=nil, seatnumber=nil, fare=nil, number=nil, userid=nil, username=nil, total=nil, taxrate=nil, tax=nil, buyer=nil, buyertaxid=nil, originalnumber=nil)
+        def initialize(typeofvoucher=nil, electronicticketnum=nil, date=nil, stationgeton=nil, stationgetoff=nil, trainnumber=nil, dategeton=nil, timegeton=nil, seat=nil, seatnumber=nil, fare=nil, number=nil, userid=nil, username=nil, total=nil, taxrate=nil, tax=nil, buyer=nil, buyertaxid=nil, originalnumber=nil, idinfo=nil)
           @TypeOfVoucher = typeofvoucher
           @ElectronicTicketNum = electronicticketnum
           @Date = date
@@ -2524,6 +2554,7 @@ module TencentCloud
           @Buyer = buyer
           @BuyerTaxID = buyertaxid
           @OriginalNumber = originalnumber
+          @IDInfo = idinfo
         end
 
         def deserialize(params)
@@ -2547,6 +2578,7 @@ module TencentCloud
           @Buyer = params['Buyer']
           @BuyerTaxID = params['BuyerTaxID']
           @OriginalNumber = params['OriginalNumber']
+          @IDInfo = params['IDInfo']
         end
       end
 
@@ -10472,8 +10504,9 @@ module TencentCloud
         # @param Cells: 单元格内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cells: Array
-        # @param Type: 图像中的文本块类型，0 为非表格文本，
-        # 1 为有线表格，2 为无线表格
+        # @param Type: 图像中的文本块类型：0为非表格文本、1为有线表格、2为无线表格，
+        # 有线表格：在表格内部，有横线/竖线纵跨整个表格的宽/高；
+        # 无线表格：在表格内部，无横线/竖线纵跨整个表格的宽/高。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param TableCoordPoint: 表格主体四个顶点坐标（依次为左上角，

@@ -80,6 +80,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 扩图接口支持对输入图像按指定宽高比实现智能扩图。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务。
+
+        # @param request: Request instance for ImageOutpainting.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::ImageOutpaintingRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::ImageOutpaintingResponse`
+        def ImageOutpainting(request)
+          body = send_request('ImageOutpainting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImageOutpaintingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 图像风格化（图生图）接口提供生成式的图生图风格转化能力，将根据输入的图像及文本描述，智能生成风格转化后的图像。建议避免输入人像过小、姿势复杂、人数较多的人像图片。
         # 图像风格化（图生图）默认提供3个并发任务数，代表最多能同时处理3个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
 

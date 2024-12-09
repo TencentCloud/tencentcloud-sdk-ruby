@@ -3260,7 +3260,7 @@ module TencentCloud
 
       # DescribeBlockStaticList返回参数结构体
       class DescribeBlockStaticListResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 无
+        # @param Data: 查询结果
         # @type Data: Array
         # @param Status: 异步查询状态，1查询执行中，0查询已结束
         # @type Status: Integer

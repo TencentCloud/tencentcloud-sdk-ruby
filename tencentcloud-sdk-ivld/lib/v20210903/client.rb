@@ -442,7 +442,6 @@ module TencentCloud
 
         # 批量描述自定义人物
 
-
         # @param request: Request instance for DescribeCustomPersons.
         # @type request: :class:`Tencentcloud::ivld::V20210903::DescribeCustomPersonsRequest`
         # @rtype: :class:`Tencentcloud::ivld::V20210903::DescribeCustomPersonsResponse`

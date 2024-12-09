@@ -116,12 +116,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OcrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.OcrWordsConfigureInfo`
         # @param AsrFullTextConfigure: 语音全文识别控制参数。
+        # <font color=red>注意：本参数已不再维护，推荐使用 AsrTranslateConfigure 参数发起语音翻译识别（当 DstLanguage 不填或填空字符串时，则不进行翻译，计费项和语音全文识别一致）。</font>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrFullTextConfigureInfo`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfo`
-        # @param AsrTranslateConfigure: 语音翻译控制参数。
+        # @param AsrTranslateConfigure: 语音翻译识别控制参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfo`
         # @param ObjectConfigure: 物体识别控制参数。
@@ -1630,13 +1631,13 @@ module TencentCloud
         end
       end
 
-      # 语音翻译片段。
+      # 语音翻译识别片段。
       class AiRecognitionTaskAsrTranslateSegmentItem < TencentCloud::Common::AbstractModel
-        # @param Confidence: 语音翻译片段置信度。取值：0~100。
+        # @param Confidence: 语音翻译识别片段置信度。取值：0~100。
         # @type Confidence: Float
-        # @param StartTimeOffset: 语音翻译片段起始的偏移时间，单位：秒。
+        # @param StartTimeOffset: 语音翻译识别片段起始的偏移时间，单位：秒。
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 语音翻译片段终止的偏移时间，单位：秒。
+        # @param EndTimeOffset: 语音翻译识别片段终止的偏移时间，单位：秒。
         # @type EndTimeOffset: Float
         # @param Text: 识别文本。
         # @type Text: String
@@ -4312,7 +4313,8 @@ module TencentCloud
         end
       end
 
-      # 语音全文识别任务控制参数
+      # 语音全文识别任务控制参数。
+      # <font color=red>注意：本参数已不再维护，推荐使用 AsrTranslateConfigure 参数发起语音翻译识别（当 DstLanguage 不填或填空字符串时，则不进行翻译，计费项和语音全文识别一致）。</font>
       class AsrFullTextConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 语音全文识别任务开关，可选值：
         # <li>ON：开启智能语音全文识别任务；</li>
@@ -4401,11 +4403,11 @@ module TencentCloud
         end
       end
 
-      # 语音翻译任务控制参数
+      # 语音翻译识别任务控制参数
       class AsrTranslateConfigureInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 语音翻译任务开关，可选值：
+        # @param Switch: 语音翻译识别任务开关，可选值：
         # <li>ON：开启；</li>
-        # <li>OFF：关闭。</li><font color=red>注意：</font>语音翻译任务本身会返回 ASR 全文识别结果，为避免重复收费，因此禁止同时开启语音翻译和 ASR 全文识别功能项。
+        # <li>OFF：关闭。</li><font color=red>注意：</font>语音翻译识别任务本身会返回 ASR 全文识别结果，为避免重复收费，因此禁止同时开启语音翻译识别和 ASR 全文识别功能项。
         # @type Switch: String
         # @param SrcLanguage: 媒体源语言，当 Switch 为 ON 时，此参数必填。取值范围：
         # <li>zh：中文；</li>
@@ -4422,7 +4424,9 @@ module TencentCloud
         # <li>hi：印地语；</li>
         # <li>fr：法语。</li>
         # @type SrcLanguage: String
-        # @param DstLanguage: 翻译目标语言，当 Switch 为 ON 时，此参数必填。
+        # @param DstLanguage: 翻译目标语言，当 Switch 为 ON 时，此参数有效。
+        # 若此参数不填或者填写空字符串，则表示只进行语音全文识别，不进行翻译（计费项与 AsrFullTextConfigure 语音全文识别一致）；
+        # 否则，此参数的取值范围分为如下几种情况：
         # 当 SrcLanguage 为 zh（中文）时，取值范围：
         # <li>en：英文；</li>
         # <li>ja：日文；</li>
@@ -4532,11 +4536,11 @@ module TencentCloud
         end
       end
 
-      # 语音翻译控制参数
+      # 语音翻译识别控制参数
       class AsrTranslateConfigureInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 语音翻译任务开关，可选值：
+        # @param Switch: 语音翻译识别任务开关，可选值：
         # <li>ON：开启；</li>
-        # <li>OFF：关闭。</li>
+        # <li>OFF：关闭。</li><font color=red>注意：</font>语音翻译识别任务本身会返回 ASR 全文识别结果，为避免重复收费，因此禁止同时开启语音翻译识别和 ASR 全文识别功能项。
         # @type Switch: String
         # @param SrcLanguage: 媒体源语言，取值范围：
         # <li>zh：中文；</li>
@@ -4554,6 +4558,8 @@ module TencentCloud
         # <li>fr：法语。</li>
         # @type SrcLanguage: String
         # @param DstLanguage: 翻译目标语言。
+        # 若此参数填写空字符串，则表示只进行语音全文识别，不进行翻译（计费项与 AsrFullTextConfigure 语音全文识别一致）；
+        # 否则，此参数的取值范围分为如下几种情况：
         # 当 SrcLanguage 为 zh（中文）时，取值范围：
         # <li>en：英文；</li>
         # <li>ja：日文；</li>
@@ -6355,10 +6361,11 @@ module TencentCloud
         # @param OcrWordsConfigure: 文本关键词识别控制参数。
         # @type OcrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.OcrWordsConfigureInfo`
         # @param AsrFullTextConfigure: 语音全文识别控制参数。
+        # <font color=red>注意：本参数已不再维护，推荐使用 AsrTranslateConfigure 参数发起语音翻译识别（当 DstLanguage 不填或填空字符串时，则不进行翻译，计费项和语音全文识别一致）。</font>
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrFullTextConfigureInfo`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfo`
-        # @param AsrTranslateConfigure: 语音翻译控制参数。
+        # @param AsrTranslateConfigure: 语音翻译识别控制参数。
         # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfo`
         # @param ObjectConfigure: 物体识别控制参数。
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfo`
@@ -18620,10 +18627,11 @@ module TencentCloud
         # @param OcrWordsConfigure: 文本关键词识别控制参数。
         # @type OcrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.OcrWordsConfigureInfoForUpdate`
         # @param AsrFullTextConfigure: 语音全文识别控制参数。
+        # <font color=red>注意：本参数已不再维护，推荐使用 AsrTranslateConfigure 参数发起语音翻译识别（当 DstLanguage 不填或填空字符串时，则不进行翻译，计费项和语音全文识别一致）。</font>
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrFullTextConfigureInfoForUpdate`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrWordsConfigureInfoForUpdate`
-        # @param AsrTranslateConfigure: 语音翻译控制参数。
+        # @param AsrTranslateConfigure: 语音翻译识别控制参数。
         # @type AsrTranslateConfigure: :class:`Tencentcloud::Vod.v20180717.models.AsrTranslateConfigureInfoForUpdate`
         # @param ObjectConfigure: 物体识别控制参数。
         # @type ObjectConfigure: :class:`Tencentcloud::Vod.v20180717.models.ObjectConfigureInfoForUpdate`
