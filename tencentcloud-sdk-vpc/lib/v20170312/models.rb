@@ -5992,16 +5992,19 @@ module TencentCloud
         # @type IsPassService: Boolean
         # @param ServiceType: 挂载的PAAS服务类型，CLB,CDB,CRS，不填默认挂载为CLB。
         # @type ServiceType: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType
+        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags
 
-        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil)
+        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil)
           @VpcId = vpcid
           @EndPointServiceName = endpointservicename
           @AutoAcceptFlag = autoacceptflag
           @ServiceInstanceId = serviceinstanceid
           @IsPassService = ispassservice
           @ServiceType = servicetype
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6011,6 +6014,14 @@ module TencentCloud
           @ServiceInstanceId = params['ServiceInstanceId']
           @IsPassService = params['IsPassService']
           @ServiceType = params['ServiceType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

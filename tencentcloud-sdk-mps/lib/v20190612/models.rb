@@ -697,12 +697,16 @@ module TencentCloud
         # @param Subtitle: 字幕文件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subtitle: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param SubtitleName: 字幕名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleName: String
 
-        attr_accessor :Type, :Subtitle
+        attr_accessor :Type, :Subtitle, :SubtitleName
 
-        def initialize(type=nil, subtitle=nil)
+        def initialize(type=nil, subtitle=nil, subtitlename=nil)
           @Type = type
           @Subtitle = subtitle
+          @SubtitleName = subtitlename
         end
 
         def deserialize(params)
@@ -711,6 +715,7 @@ module TencentCloud
             @Subtitle = MediaInputInfo.new
             @Subtitle.deserialize(params['Subtitle'])
           end
+          @SubtitleName = params['SubtitleName']
         end
       end
 

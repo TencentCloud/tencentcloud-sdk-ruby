@@ -220,6 +220,84 @@ module TencentCloud
         end
       end
 
+      # ImageInpaintingRemoval请求参数结构体
+      class ImageInpaintingRemovalRequest < TencentCloud::Common::AbstractModel
+        # @param InputImage: 输入图 Base64 数据。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputImage: String
+        # @param InputUrl: 输入图 Url。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000，转成 Base64 字符串后小于 6MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type InputUrl: String
+        # @param Mask: 消除区域 Mask 图 Base64 数据。
+        # Mask 为单通道灰度图，待消除部分呈白色区域，原图保持部分呈黑色区域。
+        # Mask 的 Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：Mask 分辨率需要和输入原图保持一致，转成 Base64 字符串后小于 6MB。
+        # @type Mask: String
+        # @param MaskUrl: 消除区域 Mask 图 Url。
+        # Mask 为单通道灰度图，待消除部分呈白色区域，原图保持部分呈黑色区域。
+        # Mask 的 Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：Mask 分辨率需要和输入原图保持一致，转成 Base64 字符串后小于 6MB。
+        # @type MaskUrl: String
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        # @type RspImgType: String
+        # @param LogoAdd: 为生成结果图添加标识的开关，默认为1。
+        # 1：添加标识。
+        # 0：不添加标识。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+
+        attr_accessor :InputImage, :InputUrl, :Mask, :MaskUrl, :RspImgType, :LogoAdd, :LogoParam
+
+        def initialize(inputimage=nil, inputurl=nil, mask=nil, maskurl=nil, rspimgtype=nil, logoadd=nil, logoparam=nil)
+          @InputImage = inputimage
+          @InputUrl = inputurl
+          @Mask = mask
+          @MaskUrl = maskurl
+          @RspImgType = rspimgtype
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @InputImage = params['InputImage']
+          @InputUrl = params['InputUrl']
+          @Mask = params['Mask']
+          @MaskUrl = params['MaskUrl']
+          @RspImgType = params['RspImgType']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # ImageInpaintingRemoval返回参数结构体
+      class ImageInpaintingRemovalResponse < TencentCloud::Common::AbstractModel
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。 如果传入 base64 则返回生成图 Base64 编码。 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
+        # @type ResultImage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultImage, :RequestId
+
+        def initialize(resultimage=nil, requestid=nil)
+          @ResultImage = resultimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultImage = params['ResultImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ImageOutpainting请求参数结构体
       class ImageOutpaintingRequest < TencentCloud::Common::AbstractModel
         # @param Ratio: 扩展后的比例（宽:高），需要不等于原图比例。

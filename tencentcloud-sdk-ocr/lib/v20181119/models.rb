@@ -5233,26 +5233,34 @@ module TencentCloud
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # @type ImageBase64: String
+        # @param BackImageBase64: 卡证背面图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type BackImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。( 中国地区之外不支持这个字段 )
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param BackImageUrl: 卡证背面图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type BackImageUrl: String
         # @param RetImage: 是否返回图片，默认false
         # @type RetImage: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :RetImage
+        attr_accessor :ImageBase64, :BackImageBase64, :ImageUrl, :BackImageUrl, :RetImage
 
-        def initialize(imagebase64=nil, imageurl=nil, retimage=nil)
+        def initialize(imagebase64=nil, backimagebase64=nil, imageurl=nil, backimageurl=nil, retimage=nil)
           @ImageBase64 = imagebase64
+          @BackImageBase64 = backimagebase64
           @ImageUrl = imageurl
+          @BackImageUrl = backimageurl
           @RetImage = retimage
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
+          @BackImageBase64 = params['BackImageBase64']
           @ImageUrl = params['ImageUrl']
+          @BackImageUrl = params['BackImageUrl']
           @RetImage = params['RetImage']
         end
       end
@@ -5294,6 +5302,8 @@ module TencentCloud
         # @type Type: String
         # @param Birthday: 出生日期（目前该字段仅支持IKAD劳工证、MyKad 身份证）
         # @type Birthday: String
+        # @param MyKadNumber: 马来身份证背面号码
+        # @type MyKadNumber: String
         # @param WarnCardInfos: 告警码
         # -9101 证件边框不完整告警
         # -9102 证件复印件告警
@@ -5306,12 +5316,12 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :WarnCardInfos, :RequestId
+        attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
         deprecate :Warn, :none, 2024, 12
         deprecate :Warn=, :none, 2024, 12
 
-        def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, warncardinfos=nil, requestid=nil)
+        def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
           @Name = name
           @Address = address
@@ -5321,6 +5331,7 @@ module TencentCloud
           @AdvancedInfo = advancedinfo
           @Type = type
           @Birthday = birthday
+          @MyKadNumber = mykadnumber
           @WarnCardInfos = warncardinfos
           @RequestId = requestid
         end
@@ -5335,6 +5346,7 @@ module TencentCloud
           @AdvancedInfo = params['AdvancedInfo']
           @Type = params['Type']
           @Birthday = params['Birthday']
+          @MyKadNumber = params['MyKadNumber']
           @WarnCardInfos = params['WarnCardInfos']
           @RequestId = params['RequestId']
         end
@@ -11287,6 +11299,63 @@ module TencentCloud
         end
       end
 
+      # 拖拉机行驶证副页正面的识别结果
+      class TextTractorVehicleBack < TencentCloud::Common::AbstractModel
+        # @param PlateNo: 号牌号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateNo: String
+        # @param AllowNum: 准乘人数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowNum: String
+        # @param CombineHarvesterQuality: 联合收割机质量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CombineHarvesterQuality: String
+        # @param TractorMinUsageWeight: 拖拉机最小使用质量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TractorMinUsageWeight: String
+        # @param TractorMaxAllowLoadCapacity: 拖拉机最大允许载质量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TractorMaxAllowLoadCapacity: String
+        # @param ExternalSize: 外廓尺寸
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalSize: String
+        # @param Record: 检验记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Record: String
+        # @param VehicleType: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VehicleType: String
+        # @param Address: 住址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+
+        attr_accessor :PlateNo, :AllowNum, :CombineHarvesterQuality, :TractorMinUsageWeight, :TractorMaxAllowLoadCapacity, :ExternalSize, :Record, :VehicleType, :Address
+
+        def initialize(plateno=nil, allownum=nil, combineharvesterquality=nil, tractorminusageweight=nil, tractormaxallowloadcapacity=nil, externalsize=nil, record=nil, vehicletype=nil, address=nil)
+          @PlateNo = plateno
+          @AllowNum = allownum
+          @CombineHarvesterQuality = combineharvesterquality
+          @TractorMinUsageWeight = tractorminusageweight
+          @TractorMaxAllowLoadCapacity = tractormaxallowloadcapacity
+          @ExternalSize = externalsize
+          @Record = record
+          @VehicleType = vehicletype
+          @Address = address
+        end
+
+        def deserialize(params)
+          @PlateNo = params['PlateNo']
+          @AllowNum = params['AllowNum']
+          @CombineHarvesterQuality = params['CombineHarvesterQuality']
+          @TractorMinUsageWeight = params['TractorMinUsageWeight']
+          @TractorMaxAllowLoadCapacity = params['TractorMaxAllowLoadCapacity']
+          @ExternalSize = params['ExternalSize']
+          @Record = params['Record']
+          @VehicleType = params['VehicleType']
+          @Address = params['Address']
+        end
+      end
+
       # 增值税发票识别结果
       class TextVatInvoice < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称（关键字）。支持以下字段的识别：
@@ -13603,19 +13672,23 @@ module TencentCloud
         # DOUBLE 为行驶证主页正面和副页正面。
         # 默认值为：FRONT。
         # @type CardSide: String
+        # @param TractorCardSide: FRONT为行驶证主页正面（有红色印章的一面），BACK 为拖拉机行驶证副页正面识别
+        # @type TractorCardSide: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardSide
+        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :TractorCardSide
 
-        def initialize(imagebase64=nil, imageurl=nil, cardside=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, tractorcardside=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardSide = cardside
+          @TractorCardSide = tractorcardside
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @CardSide = params['CardSide']
+          @TractorCardSide = params['TractorCardSide']
         end
       end
 
@@ -13645,17 +13718,21 @@ module TencentCloud
         # @type RecognizeWarnMsg: Array
         # @param VehicleLicenseType: 行驶证类型 电子行驶证：Electronic 普通行驶证：Normal
         # @type VehicleLicenseType: String
+        # @param TractorBackInfo: 拖拉机行驶证副页正面的识别结果，CardSide 为 BACK。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TractorBackInfo: :class:`Tencentcloud::Ocr.v20181119.models.TextTractorVehicleBack`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FrontInfo, :BackInfo, :RecognizeWarnCode, :RecognizeWarnMsg, :VehicleLicenseType, :RequestId
+        attr_accessor :FrontInfo, :BackInfo, :RecognizeWarnCode, :RecognizeWarnMsg, :VehicleLicenseType, :TractorBackInfo, :RequestId
 
-        def initialize(frontinfo=nil, backinfo=nil, recognizewarncode=nil, recognizewarnmsg=nil, vehiclelicensetype=nil, requestid=nil)
+        def initialize(frontinfo=nil, backinfo=nil, recognizewarncode=nil, recognizewarnmsg=nil, vehiclelicensetype=nil, tractorbackinfo=nil, requestid=nil)
           @FrontInfo = frontinfo
           @BackInfo = backinfo
           @RecognizeWarnCode = recognizewarncode
           @RecognizeWarnMsg = recognizewarnmsg
           @VehicleLicenseType = vehiclelicensetype
+          @TractorBackInfo = tractorbackinfo
           @RequestId = requestid
         end
 
@@ -13671,6 +13748,10 @@ module TencentCloud
           @RecognizeWarnCode = params['RecognizeWarnCode']
           @RecognizeWarnMsg = params['RecognizeWarnMsg']
           @VehicleLicenseType = params['VehicleLicenseType']
+          unless params['TractorBackInfo'].nil?
+            @TractorBackInfo = TextTractorVehicleBack.new
+            @TractorBackInfo.deserialize(params['TractorBackInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end

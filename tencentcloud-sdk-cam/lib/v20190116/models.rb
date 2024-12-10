@@ -2956,10 +2956,13 @@ module TencentCloud
         # @type CreateTime: String
         # @param IsReceiverOwner: 是否为主消息接收人。0-否 1-是
         # @type IsReceiverOwner: Integer
+        # @param Remark: 昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :Uid, :Uin, :Name, :PhoneNum, :CountryCode, :PhoneFlag, :Email, :EmailFlag, :UserType, :CreateTime, :IsReceiverOwner
+        attr_accessor :Uid, :Uin, :Name, :PhoneNum, :CountryCode, :PhoneFlag, :Email, :EmailFlag, :UserType, :CreateTime, :IsReceiverOwner, :Remark
 
-        def initialize(uid=nil, uin=nil, name=nil, phonenum=nil, countrycode=nil, phoneflag=nil, email=nil, emailflag=nil, usertype=nil, createtime=nil, isreceiverowner=nil)
+        def initialize(uid=nil, uin=nil, name=nil, phonenum=nil, countrycode=nil, phoneflag=nil, email=nil, emailflag=nil, usertype=nil, createtime=nil, isreceiverowner=nil, remark=nil)
           @Uid = uid
           @Uin = uin
           @Name = name
@@ -2971,6 +2974,7 @@ module TencentCloud
           @UserType = usertype
           @CreateTime = createtime
           @IsReceiverOwner = isreceiverowner
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -2985,6 +2989,7 @@ module TencentCloud
           @UserType = params['UserType']
           @CreateTime = params['CreateTime']
           @IsReceiverOwner = params['IsReceiverOwner']
+          @Remark = params['Remark']
         end
       end
 
@@ -5175,6 +5180,46 @@ module TencentCloud
 
       # UpdateRoleDescription返回参数结构体
       class UpdateRoleDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateRoleSessionDuration请求参数结构体
+      class UpdateRoleSessionDurationRequest < TencentCloud::Common::AbstractModel
+        # @param SessionDuration: 时长(秒)
+        # @type SessionDuration: Integer
+        # @param RoleName: 角色名(与角色ID必填一个)
+        # @type RoleName: String
+        # @param RoleId: 角色ID(与角色名必填一个)
+        # @type RoleId: Integer
+
+        attr_accessor :SessionDuration, :RoleName, :RoleId
+
+        def initialize(sessionduration=nil, rolename=nil, roleid=nil)
+          @SessionDuration = sessionduration
+          @RoleName = rolename
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @SessionDuration = params['SessionDuration']
+          @RoleName = params['RoleName']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # UpdateRoleSessionDuration返回参数结构体
+      class UpdateRoleSessionDurationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

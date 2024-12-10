@@ -5180,11 +5180,11 @@ module TencentCloud
         # @type CPU: Integer
         # @param Memory: 实例内存容量，单位：`GB`。
         # @type Memory: Integer
-        # @param RestrictState: 实例业务状态。取值范围：<br><li>NORMAL：表示正常状态的实例<br><li>EXPIRED：表示过期的实例<br><li>PROTECTIVELY_ISOLATED：表示被安全隔离的实例。
+        # @param RestrictState: 实例业务状态。取值范围：<br><li>NORMAL：表示正常状态的实例</li><li>EXPIRED：表示过期的实例</li><li>PROTECTIVELY_ISOLATED：表示被安全隔离的实例。</li>
         # @type RestrictState: String
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        # @param InstanceChargeType: 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月</li><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费</li><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。</li><li>`SPOTPAID`：表示竞价实例付费。</li>
         # @type InstanceChargeType: String
         # @param SystemDisk: 实例系统盘信息。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
@@ -5201,8 +5201,8 @@ module TencentCloud
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
         # @param ImageId: 生产实例所使用的镜像`ID`。
         # @type ImageId: String
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>`NOTIFY_AND_MANUAL_RENEW`：表示通知即将过期，但不自动续费<br><li>`NOTIFY_AND_AUTO_RENEW`：表示通知即将过期，而且自动续费<br><li>`DISABLE_NOTIFY_AND_MANUAL_RENEW`：表示不通知即将过期，也不自动续费。
-        # <br><li>注意：后付费模式本项为null
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>`NOTIFY_AND_MANUAL_RENEW`：表示通知即将过期，但不自动续费</li><li>`NOTIFY_AND_AUTO_RENEW`：表示通知即将过期，而且自动续费</li><li>`DISABLE_NOTIFY_AND_MANUAL_RENEW`：表示不通知即将过期，也不自动续费。
+        # </li><li>注意：后付费模式本项为null</li>
         # @type RenewFlag: String
         # @param CreatedTime: 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
         # @type CreatedTime: String
@@ -5219,14 +5219,14 @@ module TencentCloud
         # @param Tags: 实例关联的标签列表。
         # @type Tags: Array
         # @param StopChargingMode: 实例的关机计费模式。
-        # 取值范围：<br><li>KEEP_CHARGING：关机继续收费<br><li>STOP_CHARGING：关机停止收费<li>NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件<br>
+        # 取值范围：<br><li>KEEP_CHARGING：关机继续收费</li><li>STOP_CHARGING：关机停止收费</li><li>NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件</li>
         # @type StopChargingMode: String
         # @param Uuid: 实例全局唯一ID
         # @type Uuid: String
         # @param LatestOperation: 实例的最新操作。例：StopInstances、ResetInstance。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperation: String
-        # @param LatestOperationState: 实例的最新操作状态。取值范围：<br><li>SUCCESS：表示操作成功<br><li>OPERATING：表示操作执行中<br><li>FAILED：表示操作失败
+        # @param LatestOperationState: 实例的最新操作状态。取值范围：<br><li>SUCCESS：表示操作成功</li><li>OPERATING：表示操作执行中</li><li>FAILED：表示操作失败</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationState: String
         # @param LatestOperationRequestId: 实例最新操作的唯一请求 ID。
@@ -5258,7 +5258,7 @@ module TencentCloud
         # @type GPUInfo: :class:`Tencentcloud::Cvm.v20170312.models.GPUInfo`
         # @param LicenseType: 实例的操作系统许可类型，默认为TencentCloud
         # @type LicenseType: String
-        # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例<br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br><br>默认取值：FALSE。
+        # @param DisableApiTermination: 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br>默认取值：false。
         # @type DisableApiTermination: Boolean
         # @param DefaultLoginUser: 默认登录用户。
         # @type DefaultLoginUser: String

@@ -80,6 +80,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 消除补全接口通过图像 mask 指定需要消除的人、物、文字等区域，在选定区域对图像内容进行消除与重绘补全。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务。
+
+        # @param request: Request instance for ImageInpaintingRemoval.
+        # @type request: :class:`Tencentcloud::aiart::V20221229::ImageInpaintingRemovalRequest`
+        # @rtype: :class:`Tencentcloud::aiart::V20221229::ImageInpaintingRemovalResponse`
+        def ImageInpaintingRemoval(request)
+          body = send_request('ImageInpaintingRemoval', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImageInpaintingRemovalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 扩图接口支持对输入图像按指定宽高比实现智能扩图。
         # 默认提供1个并发，代表最多能同时处理1个已提交的任务。
 

@@ -771,10 +771,12 @@ module TencentCloud
         # @type ApplicationName: Array
         # @param TaskStatusList: 任务状态筛选--支持多选 任务状态(1001 -- 未开始 1002 -- 进行中 1003 -- 暂停中 1004 -- 任务结束)
         # @type TaskStatusList: Array
+        # @param ArchId: 架构ID
+        # @type ArchId: String
 
-        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :TaskUpdateTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName, :TaskStatusList
+        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :TaskUpdateTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName, :TaskStatusList, :ArchId
 
-        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, taskupdatetime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil, taskstatuslist=nil)
+        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, taskupdatetime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil, taskstatuslist=nil, archid=nil)
           @Limit = limit
           @Offset = offset
           @TaskTitle = tasktitle
@@ -789,6 +791,7 @@ module TencentCloud
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @TaskStatusList = taskstatuslist
+          @ArchId = archid
         end
 
         def deserialize(params)
@@ -820,6 +823,7 @@ module TencentCloud
           @ApplicationId = params['ApplicationId']
           @ApplicationName = params['ApplicationName']
           @TaskStatusList = params['TaskStatusList']
+          @ArchId = params['ArchId']
         end
       end
 
@@ -2048,8 +2052,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 11
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 11
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 12
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 12
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid

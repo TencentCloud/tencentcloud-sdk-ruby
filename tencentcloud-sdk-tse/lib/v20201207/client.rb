@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建网关服务来源
+
+        # @param request: Request instance for CreateNativeGatewayServiceSource.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateNativeGatewayServiceSourceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateNativeGatewayServiceSourceResponse`
+        def CreateNativeGatewayServiceSource(request)
+          body = send_request('CreateNativeGatewayServiceSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNativeGatewayServiceSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建或更新配置文件并发布配置
 
         # @param request: Request instance for CreateOrUpdateConfigFileAndRelease.
@@ -975,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNativeGatewayServerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除网关服务来源实例
+
+        # @param request: Request instance for DeleteNativeGatewayServiceSource.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteNativeGatewayServiceSourceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteNativeGatewayServiceSourceResponse`
+        def DeleteNativeGatewayServiceSource(request)
+          body = send_request('DeleteNativeGatewayServiceSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNativeGatewayServiceSourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1829,6 +1877,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询网关服务来源实例列表
+
+        # @param request: Request instance for DescribeNativeGatewayServiceSources.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeNativeGatewayServiceSourcesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeNativeGatewayServiceSourcesResponse`
+        def DescribeNativeGatewayServiceSources(request)
+          body = send_request('DescribeNativeGatewayServiceSources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNativeGatewayServiceSourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云原生网关服务详情
 
         # @param request: Request instance for DescribeOneCloudNativeAPIGatewayService.
@@ -2439,6 +2511,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNativeGatewayServerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改网关服务来源
+
+        # @param request: Request instance for ModifyNativeGatewayServiceSource.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyNativeGatewayServiceSourceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyNativeGatewayServiceSourceResponse`
+        def ModifyNativeGatewayServiceSource(request)
+          body = send_request('ModifyNativeGatewayServiceSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNativeGatewayServiceSourceResponse.new
             model.deserialize(response['Response'])
             model
           else

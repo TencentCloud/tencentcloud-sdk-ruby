@@ -2095,6 +2095,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改角色会话时长
+
+        # @param request: Request instance for UpdateRoleSessionDuration.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UpdateRoleSessionDurationRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UpdateRoleSessionDurationResponse`
+        def UpdateRoleSessionDuration(request)
+          body = send_request('UpdateRoleSessionDuration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateRoleSessionDurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新SAML身份提供商信息
 
         # @param request: Request instance for UpdateSAMLProvider.

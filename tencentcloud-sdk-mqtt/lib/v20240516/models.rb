@@ -405,6 +405,42 @@ module TencentCloud
         end
       end
 
+      # DeactivateDeviceCertificate请求参数结构体
+      class DeactivateDeviceCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceCertificateSn: 设备证书序列号
+        # @type DeviceCertificateSn: String
+
+        attr_accessor :InstanceId, :DeviceCertificateSn
+
+        def initialize(instanceid=nil, devicecertificatesn=nil)
+          @InstanceId = instanceid
+          @DeviceCertificateSn = devicecertificatesn
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+        end
+      end
+
+      # DeactivateDeviceCertificate返回参数结构体
+      class DeactivateDeviceCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAuthenticator请求参数结构体
       class DeleteAuthenticatorRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -463,6 +499,42 @@ module TencentCloud
 
       # DeleteAuthorizationPolicy返回参数结构体
       class DeleteAuthorizationPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDeviceCertificate请求参数结构体
+      class DeleteDeviceCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceCertificateSn: 设备证书序列号
+        # @type DeviceCertificateSn: String
+
+        attr_accessor :InstanceId, :DeviceCertificateSn
+
+        def initialize(instanceid=nil, devicecertificatesn=nil)
+          @InstanceId = instanceid
+          @DeviceCertificateSn = devicecertificatesn
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+        end
+      end
+
+      # DeleteDeviceCertificate返回参数结构体
+      class DeleteDeviceCertificateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -599,6 +671,100 @@ module TencentCloud
               @Data << authorizationpolicyitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceCertificate请求参数结构体
+      class DescribeDeviceCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceCertificateSn: 设备证书sn
+        # @type DeviceCertificateSn: String
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+
+        attr_accessor :DeviceCertificateSn, :InstanceId
+
+        def initialize(devicecertificatesn=nil, instanceid=nil)
+          @DeviceCertificateSn = devicecertificatesn
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDeviceCertificate返回参数结构体
+      class DescribeDeviceCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: Integer
+        # @param UpdateTime: 上次更新时间
+        # @type UpdateTime: Integer
+        # @param NotAfterTime: 证书失效日期
+        # @type NotAfterTime: Integer
+        # @param LastActivationTime: 上次激活时间
+        # @type LastActivationTime: Integer
+        # @param LastInactivationTime: 上次取消激活时间
+        # @type LastInactivationTime: Integer
+        # @param Status: 证书状态
+        # @type Status: String
+        # @param CaSn: 证书序列号
+        # @type CaSn: String
+        # @param DeviceCertificateSn: 设备证书sn
+        # @type DeviceCertificateSn: String
+        # @param DeviceCertificate: 证书内容
+        # @type DeviceCertificate: String
+        # @param DeviceCertificateCn: 设备证书cn
+        # @type DeviceCertificateCn: String
+        # @param Format: 证书格式
+        # @type Format: String
+        # @param ClientId: 客户端id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param CertificateSource:     API, 手动注册
+        #     JITP 自动注册
+        # @type CertificateSource: String
+        # @param NotBeforeTime: 证书生效开始时间
+        # @type NotBeforeTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CreatedTime, :UpdateTime, :NotAfterTime, :LastActivationTime, :LastInactivationTime, :Status, :CaSn, :DeviceCertificateSn, :DeviceCertificate, :DeviceCertificateCn, :Format, :ClientId, :CertificateSource, :NotBeforeTime, :RequestId
+
+        def initialize(createdtime=nil, updatetime=nil, notaftertime=nil, lastactivationtime=nil, lastinactivationtime=nil, status=nil, casn=nil, devicecertificatesn=nil, devicecertificate=nil, devicecertificatecn=nil, format=nil, clientid=nil, certificatesource=nil, notbeforetime=nil, requestid=nil)
+          @CreatedTime = createdtime
+          @UpdateTime = updatetime
+          @NotAfterTime = notaftertime
+          @LastActivationTime = lastactivationtime
+          @LastInactivationTime = lastinactivationtime
+          @Status = status
+          @CaSn = casn
+          @DeviceCertificateSn = devicecertificatesn
+          @DeviceCertificate = devicecertificate
+          @DeviceCertificateCn = devicecertificatecn
+          @Format = format
+          @ClientId = clientid
+          @CertificateSource = certificatesource
+          @NotBeforeTime = notbeforetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CreatedTime = params['CreatedTime']
+          @UpdateTime = params['UpdateTime']
+          @NotAfterTime = params['NotAfterTime']
+          @LastActivationTime = params['LastActivationTime']
+          @LastInactivationTime = params['LastInactivationTime']
+          @Status = params['Status']
+          @CaSn = params['CaSn']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+          @DeviceCertificate = params['DeviceCertificate']
+          @DeviceCertificateCn = params['DeviceCertificateCn']
+          @Format = params['Format']
+          @ClientId = params['ClientId']
+          @CertificateSource = params['CertificateSource']
+          @NotBeforeTime = params['NotBeforeTime']
           @RequestId = params['RequestId']
         end
       end
@@ -1560,6 +1726,42 @@ module TencentCloud
 
       # RegisterDeviceCertificate返回参数结构体
       class RegisterDeviceCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RevokedDeviceCertificate请求参数结构体
+      class RevokedDeviceCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceCertificateSn: 设备证书序列号
+        # @type DeviceCertificateSn: String
+
+        attr_accessor :InstanceId, :DeviceCertificateSn
+
+        def initialize(instanceid=nil, devicecertificatesn=nil)
+          @InstanceId = instanceid
+          @DeviceCertificateSn = devicecertificatesn
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+        end
+      end
+
+      # RevokedDeviceCertificate返回参数结构体
+      class RevokedDeviceCertificateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
