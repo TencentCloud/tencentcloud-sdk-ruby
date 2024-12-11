@@ -89,15 +89,15 @@ module TencentCloud
       # ChatCompletion请求参数结构体
       class ChatCompletionRequest < TencentCloud::Common::AbstractModel
         # @param Model: 对话的目标模型ID。
-        # 自行部署的开源大模型聊天：部署的模型服务组ID，形如ms-xxyyzz。
+        # 自行部署的开源大模型聊天：部署的模型服务组ID，形如ms-q7pfr29p。
         # @type Model: String
         # @param Messages: 输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。
         # @type Messages: Array
-        # @param Temperature: 仅当模型为自行部署的开源大模型时生效。采样随机值，默认值为1.0，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。
+        # @param Temperature: 仅当模型为自行部署的开源大模型时生效。采样随机值，默认值为0.7，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。
         # @type Temperature: Float
         # @param TopP: 仅当模型为自行部署的开源大模型时生效。核采样，默认值为1，取值范围[0,1]。指的是预先设置一个概率界限 p，然后将所有可能生成的token，根据概率大小从高到低排列，依次选取。当这些选取的token的累积概率大于或等于 p 值时停止，然后从已经选取的token中进行采样，生成下一个token。例如top_p为0.1时意味着模型只考虑累积概率为10%的token。建议仅修改此参数或Temperature，不建议两者都修改。
         # @type TopP: Float
-        # @param MaxTokens: 仅当模型为自行部署的开源大模型时生效。最大生成的token数目。默认为无限大。
+        # @param MaxTokens: 仅当模型为自行部署的开源大模型时生效。默认 512，模型可生成内容的最长 token 数量，最大不能超过模型支持的上下文长度。
         # @type MaxTokens: Integer
 
         attr_accessor :Model, :Messages, :Temperature, :TopP, :MaxTokens
@@ -128,15 +128,13 @@ module TencentCloud
 
       # ChatCompletion返回参数结构体
       class ChatCompletionResponse < TencentCloud::Common::AbstractModel
-        # @param Model: 部署好的服务Id
+        # @param Model: 对话的模型服务组ID
         # @type Model: String
         # @param Choices: 本次问答的答案。
         # @type Choices: Array
         # @param Id: 会话Id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param Usage: token统计
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Usage: :class:`Tencentcloud::Tione.v20211111.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -173,7 +171,6 @@ module TencentCloud
       # 对话结果
       class Choice < TencentCloud::Common::AbstractModel
         # @param Message: 对话结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: :class:`Tencentcloud::Tione.v20211111.models.Message`
         # @param FinishReason: 结束理由: stop, length, content_filter, null
         # @type FinishReason: String
@@ -322,23 +319,37 @@ module TencentCloud
         # ANNOTATION_TYPE_DETECTION，目标检测
         # ANNOTATION_TYPE_SEGMENTATION，图片分割
         # ANNOTATION_TYPE_TRACKING，目标跟踪
+        # ANNOTATION_TYPE_OCR，OCR
+        # ANNOTATION_TYPE_TEXT_CLASSIFICATION，文本分类
         # @type AnnotationType: String
         # @param AnnotationFormat: 标注格式:
         # ANNOTATION_FORMAT_TI，TI平台格式
         # ANNOTATION_FORMAT_PASCAL，Pascal Voc
         # ANNOTATION_FORMAT_COCO，COCO
         # ANNOTATION_FORMAT_FILE，文件目录结构
+        # ANNOTATION_FORMAT_TEXT_TI，文本类型TI平台格式
+        # ANNOTATION_FORMAT_TXT，文本类型TXT格式
+        # ANNOTATION_FORMAT_CSV，文本类型CSV格式
+        # ANNOTATION_FORMAT_JSON，文本类型JSON格式
         # @type AnnotationFormat: String
         # @param SchemaInfos: 表头信息
         # @type SchemaInfos: Array
         # @param IsSchemaExisted: 数据是否存在表头
         # @type IsSchemaExisted: Boolean
-        # @param ContentType: 导入文件粒度，按行或者按文件
+        # @param ContentType: 导入文件粒度
+        # TYPE_TEXT_LINE，按行
+        # TYPE_TEXT_FILE，按文件
         # @type ContentType: String
+        # @param DatasetScene: 数据集建模一级类别。LLM,CV,STRUCTURE,OTHER
+        # @type DatasetScene: String
+        # @param SceneTags: 数据集标签。
+        # @type SceneTags: Array
+        # @param CFSConfig: 数据集CFS配置。仅支持LLM场景
+        # @type CFSConfig: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
 
-        attr_accessor :DatasetName, :DatasetType, :StorageDataPath, :StorageLabelPath, :DatasetTags, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :SchemaInfos, :IsSchemaExisted, :ContentType
+        attr_accessor :DatasetName, :DatasetType, :StorageDataPath, :StorageLabelPath, :DatasetTags, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :SchemaInfos, :IsSchemaExisted, :ContentType, :DatasetScene, :SceneTags, :CFSConfig
 
-        def initialize(datasetname=nil, datasettype=nil, storagedatapath=nil, storagelabelpath=nil, datasettags=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, schemainfos=nil, isschemaexisted=nil, contenttype=nil)
+        def initialize(datasetname=nil, datasettype=nil, storagedatapath=nil, storagelabelpath=nil, datasettags=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, schemainfos=nil, isschemaexisted=nil, contenttype=nil, datasetscene=nil, scenetags=nil, cfsconfig=nil)
           @DatasetName = datasetname
           @DatasetType = datasettype
           @StorageDataPath = storagedatapath
@@ -350,6 +361,9 @@ module TencentCloud
           @SchemaInfos = schemainfos
           @IsSchemaExisted = isschemaexisted
           @ContentType = contenttype
+          @DatasetScene = datasetscene
+          @SceneTags = scenetags
+          @CFSConfig = cfsconfig
         end
 
         def deserialize(params)
@@ -384,6 +398,12 @@ module TencentCloud
           end
           @IsSchemaExisted = params['IsSchemaExisted']
           @ContentType = params['ContentType']
+          @DatasetScene = params['DatasetScene']
+          @SceneTags = params['SceneTags']
+          unless params['CFSConfig'].nil?
+            @CFSConfig = CFSConfig.new
+            @CFSConfig.deserialize(params['CFSConfig'])
+          end
         end
       end
 
@@ -499,10 +519,14 @@ module TencentCloud
         # @type CommandBase64: String
         # @param ServicePort: 服务端口，仅在非内置镜像时生效，默认8501。不支持输入8501-8510,6006,9092
         # @type ServicePort: Integer
+        # @param DeployType: 服务的部署类型 [STANDARD 标准部署，DIST 分布式多机部署] 默认STANDARD
+        # @type DeployType: String
+        # @param InstancePerReplicas: 单副本下的实例数，仅在部署类型为DIST时生效，默认1
+        # @type InstancePerReplicas: Integer
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -536,6 +560,8 @@ module TencentCloud
           @ServiceEIP = serviceeip
           @CommandBase64 = commandbase64
           @ServicePort = serviceport
+          @DeployType = deploytype
+          @InstancePerReplicas = instanceperreplicas
         end
 
         def deserialize(params)
@@ -620,13 +646,14 @@ module TencentCloud
           end
           @CommandBase64 = params['CommandBase64']
           @ServicePort = params['ServicePort']
+          @DeployType = params['DeployType']
+          @InstancePerReplicas = params['InstancePerReplicas']
         end
       end
 
       # CreateModelService返回参数结构体
       class CreateModelServiceResponse < TencentCloud::Common::AbstractModel
         # @param Service: 生成的模型服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Service: :class:`Tencentcloud::Tione.v20211111.models.Service`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1079,6 +1106,10 @@ module TencentCloud
       class DataConfig < TencentCloud::Common::AbstractModel
         # @param MappingPath: 映射路径
         # @type MappingPath: String
+        # @param DataSourceUsage: 存储用途
+        # 可选值为 BUILTIN_CODE, BUILTIN_DATA, BUILTIN_MODEL, USER_DATA, USER_CODE, USER_MODEL, OUTPUT, OTHER
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceUsage: String
         # @param DataSourceType: DATASET、COS、CFS、CFSTurbo、GooseFSx、HDFS、WEDATA_HDFS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
@@ -1107,10 +1138,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CBSSource: :class:`Tencentcloud::Tione.v20211111.models.CBSConfig`
 
-        attr_accessor :MappingPath, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource
+        attr_accessor :MappingPath, :DataSourceUsage, :DataSourceType, :DataSetSource, :COSSource, :CFSSource, :HDFSSource, :GooseFSSource, :CFSTurboSource, :LocalDiskSource, :CBSSource
 
-        def initialize(mappingpath=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil)
+        def initialize(mappingpath=nil, datasourceusage=nil, datasourcetype=nil, datasetsource=nil, cossource=nil, cfssource=nil, hdfssource=nil, goosefssource=nil, cfsturbosource=nil, localdisksource=nil, cbssource=nil)
           @MappingPath = mappingpath
+          @DataSourceUsage = datasourceusage
           @DataSourceType = datasourcetype
           @DataSetSource = datasetsource
           @COSSource = cossource
@@ -1124,6 +1156,7 @@ module TencentCloud
 
         def deserialize(params)
           @MappingPath = params['MappingPath']
+          @DataSourceUsage = params['DataSourceUsage']
           @DataSourceType = params['DataSourceType']
           unless params['DataSetSource'].nil?
             @DataSetSource = DataSetConfig.new
@@ -1276,10 +1309,28 @@ module TencentCloud
         # @param ContentType: 文本数据集导入方式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentType: String
+        # @param DatasetScene: 数据集建模类别。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasetScene: String
+        # @param CFSConfig: CFS配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFSConfig: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param SceneTags: 数据集标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneTags: Array
+        # @param NumAnnotated: 已标注数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumAnnotated: Integer
+        # @param AnnotationSpecification: 标注规范
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnnotationSpecification: String
+        # @param AnnotationSchemaConfigured: 标注Schema是否配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnnotationSchemaConfigured: Boolean
 
-        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :DatasetVersions, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType
+        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :DatasetVersions, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType, :DatasetScene, :CFSConfig, :SceneTags, :NumAnnotated, :AnnotationSpecification, :AnnotationSchemaConfigured
 
-        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, datasetversions=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil)
+        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, datasetversions=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil, datasetscene=nil, cfsconfig=nil, scenetags=nil, numannotated=nil, annotationspecification=nil, annotationschemaconfigured=nil)
           @DatasetId = datasetid
           @DatasetName = datasetname
           @Creator = creator
@@ -1306,6 +1357,12 @@ module TencentCloud
           @OcrScene = ocrscene
           @AnnotationKeyStatus = annotationkeystatus
           @ContentType = contenttype
+          @DatasetScene = datasetscene
+          @CFSConfig = cfsconfig
+          @SceneTags = scenetags
+          @NumAnnotated = numannotated
+          @AnnotationSpecification = annotationspecification
+          @AnnotationSchemaConfigured = annotationschemaconfigured
         end
 
         def deserialize(params)
@@ -1355,6 +1412,15 @@ module TencentCloud
           @OcrScene = params['OcrScene']
           @AnnotationKeyStatus = params['AnnotationKeyStatus']
           @ContentType = params['ContentType']
+          @DatasetScene = params['DatasetScene']
+          unless params['CFSConfig'].nil?
+            @CFSConfig = CFSConfig.new
+            @CFSConfig.deserialize(params['CFSConfig'])
+          end
+          @SceneTags = params['SceneTags']
+          @NumAnnotated = params['NumAnnotated']
+          @AnnotationSpecification = params['AnnotationSpecification']
+          @AnnotationSchemaConfigured = params['AnnotationSchemaConfigured']
         end
       end
 
@@ -1432,10 +1498,31 @@ module TencentCloud
         # @param AnnotationKeyStatus: 数据集字典修改状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnnotationKeyStatus: String
+        # @param ContentType: 内容类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentType: String
+        # @param DatasetScene: 数据集建模类别。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasetScene: String
+        # @param CFSConfig: CFS配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFSConfig: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param SceneTags: 数据集标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneTags: Array
+        # @param NumAnnotated: 已标注数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumAnnotated: Integer
+        # @param AnnotationSpecification: 标注规范
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnnotationSpecification: String
+        # @param AnnotationSchemaConfigured: 标注Schema是否配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnnotationSchemaConfigured: Boolean
 
-        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus
+        attr_accessor :DatasetId, :DatasetName, :Creator, :DatasetVersion, :DatasetType, :DatasetTags, :DatasetAnnotationTaskName, :DatasetAnnotationTaskId, :Process, :DatasetStatus, :ErrorMsg, :CreateTime, :UpdateTime, :ExternalTaskType, :DatasetSize, :FileNum, :StorageDataPath, :StorageLabelPath, :AnnotationStatus, :AnnotationType, :AnnotationFormat, :DatasetScope, :OcrScene, :AnnotationKeyStatus, :ContentType, :DatasetScene, :CFSConfig, :SceneTags, :NumAnnotated, :AnnotationSpecification, :AnnotationSchemaConfigured
 
-        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil)
+        def initialize(datasetid=nil, datasetname=nil, creator=nil, datasetversion=nil, datasettype=nil, datasettags=nil, datasetannotationtaskname=nil, datasetannotationtaskid=nil, process=nil, datasetstatus=nil, errormsg=nil, createtime=nil, updatetime=nil, externaltasktype=nil, datasetsize=nil, filenum=nil, storagedatapath=nil, storagelabelpath=nil, annotationstatus=nil, annotationtype=nil, annotationformat=nil, datasetscope=nil, ocrscene=nil, annotationkeystatus=nil, contenttype=nil, datasetscene=nil, cfsconfig=nil, scenetags=nil, numannotated=nil, annotationspecification=nil, annotationschemaconfigured=nil)
           @DatasetId = datasetid
           @DatasetName = datasetname
           @Creator = creator
@@ -1460,6 +1547,13 @@ module TencentCloud
           @DatasetScope = datasetscope
           @OcrScene = ocrscene
           @AnnotationKeyStatus = annotationkeystatus
+          @ContentType = contenttype
+          @DatasetScene = datasetscene
+          @CFSConfig = cfsconfig
+          @SceneTags = scenetags
+          @NumAnnotated = numannotated
+          @AnnotationSpecification = annotationspecification
+          @AnnotationSchemaConfigured = annotationschemaconfigured
         end
 
         def deserialize(params)
@@ -1500,6 +1594,16 @@ module TencentCloud
           @DatasetScope = params['DatasetScope']
           @OcrScene = params['OcrScene']
           @AnnotationKeyStatus = params['AnnotationKeyStatus']
+          @ContentType = params['ContentType']
+          @DatasetScene = params['DatasetScene']
+          unless params['CFSConfig'].nil?
+            @CFSConfig = CFSConfig.new
+            @CFSConfig.deserialize(params['CFSConfig'])
+          end
+          @SceneTags = params['SceneTags']
+          @NumAnnotated = params['NumAnnotated']
+          @AnnotationSpecification = params['AnnotationSpecification']
+          @AnnotationSchemaConfigured = params['AnnotationSchemaConfigured']
         end
       end
 
@@ -1850,10 +1954,7 @@ module TencentCloud
         # 枚举值:
         # 空: 通用, TRAIN: 训练, INFERENCE: 推理
         # @type Type: String
-        # @param Filters: Filter.Name: 枚举值: ResourceGroupId (资源组id列表)
-        #                     ResourceGroupName (资源组名称列表)
-        # Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询
-        # 每次请求的Filters的上限为5，Filter.Values的上限为100
+        # @param Filters: Filter.Name: 枚举值: ResourceGroupId (资源组id列表)                    ResourceGroupName (资源组名称列表)                    AvailableNodeCount（资源组中可用节点数量）Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询每次请求的Filters的上限为5，Filter.Values的上限为100
         # @type Filters: Array
         # @param TagFilters: 标签过滤
         # @type TagFilters: Array
@@ -1985,6 +2086,107 @@ module TencentCloud
         end
       end
 
+      # DescribeBillingSpecsPrice请求参数结构体
+      class DescribeBillingSpecsPriceRequest < TencentCloud::Common::AbstractModel
+        # @param SpecsParam: 询价参数，支持批量询价
+        # @type SpecsParam: Array
+
+        attr_accessor :SpecsParam
+
+        def initialize(specsparam=nil)
+          @SpecsParam = specsparam
+        end
+
+        def deserialize(params)
+          unless params['SpecsParam'].nil?
+            @SpecsParam = []
+            params['SpecsParam'].each do |i|
+              specunit_tmp = SpecUnit.new
+              specunit_tmp.deserialize(i)
+              @SpecsParam << specunit_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeBillingSpecsPrice返回参数结构体
+      class DescribeBillingSpecsPriceResponse < TencentCloud::Common::AbstractModel
+        # @param SpecsPrice: 计费项价格，支持批量返回
+        # @type SpecsPrice: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpecsPrice, :RequestId
+
+        def initialize(specsprice=nil, requestid=nil)
+          @SpecsPrice = specsprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SpecsPrice'].nil?
+            @SpecsPrice = []
+            params['SpecsPrice'].each do |i|
+              specprice_tmp = SpecPrice.new
+              specprice_tmp.deserialize(i)
+              @SpecsPrice << specprice_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBillingSpecs请求参数结构体
+      class DescribeBillingSpecsRequest < TencentCloud::Common::AbstractModel
+        # @param ChargeType: 付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月
+        # @type ChargeType: String
+        # @param TaskType: 枚举值：空、TRAIN、NOTEBOOK、INFERENCE或EMS
+        # @type TaskType: String
+        # @param ResourceType: 资源类型：["", "CALC", "CPU", "GPU", "GPU-SW"]
+        # @type ResourceType: String
+
+        attr_accessor :ChargeType, :TaskType, :ResourceType
+
+        def initialize(chargetype=nil, tasktype=nil, resourcetype=nil)
+          @ChargeType = chargetype
+          @TaskType = tasktype
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @ChargeType = params['ChargeType']
+          @TaskType = params['TaskType']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # DescribeBillingSpecs返回参数结构体
+      class DescribeBillingSpecsResponse < TencentCloud::Common::AbstractModel
+        # @param Specs: 计费项列表
+        # @type Specs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Specs, :RequestId
+
+        def initialize(specs=nil, requestid=nil)
+          @Specs = specs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Specs'].nil?
+            @Specs = []
+            params['Specs'].each do |i|
+              spec_tmp = Spec.new
+              spec_tmp.deserialize(i)
+              @Specs << spec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBuildInImages请求参数结构体
       class DescribeBuildInImagesRequest < TencentCloud::Common::AbstractModel
         # @param ImageFilters: 镜像过滤器
@@ -2053,10 +2255,14 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数据个数，默认20，最大支持200
         # @type Limit: Integer
+        # @param CFSChecking: 是否检查CFS。若开启，则在CFS挂载好之前，不会返回数据集列表。
+        # @type CFSChecking: Boolean
+        # @param CFSDetail: 是否返回CFS详情。
+        # @type CFSDetail: Boolean
 
-        attr_accessor :DatasetIds, :Filters, :TagFilters, :Order, :OrderField, :Offset, :Limit
+        attr_accessor :DatasetIds, :Filters, :TagFilters, :Order, :OrderField, :Offset, :Limit, :CFSChecking, :CFSDetail
 
-        def initialize(datasetids=nil, filters=nil, tagfilters=nil, order=nil, orderfield=nil, offset=nil, limit=nil)
+        def initialize(datasetids=nil, filters=nil, tagfilters=nil, order=nil, orderfield=nil, offset=nil, limit=nil, cfschecking=nil, cfsdetail=nil)
           @DatasetIds = datasetids
           @Filters = filters
           @TagFilters = tagfilters
@@ -2064,6 +2270,8 @@ module TencentCloud
           @OrderField = orderfield
           @Offset = offset
           @Limit = limit
+          @CFSChecking = cfschecking
+          @CFSDetail = cfsdetail
         end
 
         def deserialize(params)
@@ -2088,6 +2296,8 @@ module TencentCloud
           @OrderField = params['OrderField']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @CFSChecking = params['CFSChecking']
+          @CFSDetail = params['CFSDetail']
         end
       end
 
@@ -2102,15 +2312,18 @@ module TencentCloud
         # @param DatasetIdNums: 数据集ID总量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasetIdNums: Integer
+        # @param CFSNotReady: 若开启了CFSChecking，则检查CFS是否准备完毕。若CFS未准备完毕，则返回true，并且TotalCount为0，DatasetGroups为空。
+        # @type CFSNotReady: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :DatasetGroups, :DatasetIdNums, :RequestId
+        attr_accessor :TotalCount, :DatasetGroups, :DatasetIdNums, :CFSNotReady, :RequestId
 
-        def initialize(totalcount=nil, datasetgroups=nil, datasetidnums=nil, requestid=nil)
+        def initialize(totalcount=nil, datasetgroups=nil, datasetidnums=nil, cfsnotready=nil, requestid=nil)
           @TotalCount = totalcount
           @DatasetGroups = datasetgroups
           @DatasetIdNums = datasetidnums
+          @CFSNotReady = cfsnotready
           @RequestId = requestid
         end
 
@@ -2125,6 +2338,7 @@ module TencentCloud
             end
           end
           @DatasetIdNums = params['DatasetIdNums']
+          @CFSNotReady = params['CFSNotReady']
           @RequestId = params['RequestId']
         end
       end
@@ -2718,10 +2932,8 @@ module TencentCloud
       # DescribeNotebooks返回参数结构体
       class DescribeNotebooksResponse < TencentCloud::Common::AbstractModel
         # @param NotebookSet: 详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotebookSet: Array
         # @param TotalCount: 总条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3328,13 +3540,10 @@ module TencentCloud
         # @param SupportDataPipeline: 是否支持数据构建
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataPipeline: Boolean
-        # @param ImageSecret: 镜像仓库用户名密码信息(仅当ImageType为CUSTOM第三方镜像的时候需要)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ImageSecret: :class:`Tencentcloud::Tione.v20211111.models.ImageSecret`
 
-        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline, :ImageSecret
+        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline
 
-        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil, imagesecret=nil)
+        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil)
           @ImageType = imagetype
           @ImageUrl = imageurl
           @RegistryRegion = registryregion
@@ -3342,7 +3551,6 @@ module TencentCloud
           @AllowSaveAllContent = allowsaveallcontent
           @ImageName = imagename
           @SupportDataPipeline = supportdatapipeline
-          @ImageSecret = imagesecret
         end
 
         def deserialize(params)
@@ -3353,37 +3561,22 @@ module TencentCloud
           @AllowSaveAllContent = params['AllowSaveAllContent']
           @ImageName = params['ImageName']
           @SupportDataPipeline = params['SupportDataPipeline']
-          unless params['ImageSecret'].nil?
-            @ImageSecret = ImageSecret.new
-            @ImageSecret.deserialize(params['ImageSecret'])
-          end
         end
       end
 
-      # 自定义镜像仓库凭据
-      class ImageSecret < TencentCloud::Common::AbstractModel
-        # @param KeyId: 用于加密密码的KMS公钥ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type KeyId: String
-        # @param Username: 用户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Username: String
-        # @param Password: 密码,base64编码； 当keyId不为空时，密码是加密后的
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Password: String
+      # 多模态对话图片信息
+      class ImageUrl < TencentCloud::Common::AbstractModel
+        # @param Url: 图片url
+        # @type Url: String
 
-        attr_accessor :KeyId, :Username, :Password
+        attr_accessor :Url
 
-        def initialize(keyid=nil, username=nil, password=nil)
-          @KeyId = keyid
-          @Username = username
-          @Password = password
+        def initialize(url=nil)
+          @Url = url
         end
 
         def deserialize(params)
-          @KeyId = params['KeyId']
-          @Username = params['Username']
-          @Password = params['Password']
+          @Url = params['Url']
         end
       end
 
@@ -3753,22 +3946,31 @@ module TencentCloud
       # 对话输入内容
       class Message < TencentCloud::Common::AbstractModel
         # @param Role: 角色名。支持三个角色：system、user、assistant，其中system仅开头可出现一次，也可忽略。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param Content: 对话输入内容。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
+        # @param MultiModalContents: 多模态对话输入内容，Content与MultiModalContents两者只需要填写其中一个即可，当对话中包含多模态对话信息时，则填写本参数
+        # @type MultiModalContents: Array
 
-        attr_accessor :Role, :Content
+        attr_accessor :Role, :Content, :MultiModalContents
 
-        def initialize(role=nil, content=nil)
+        def initialize(role=nil, content=nil, multimodalcontents=nil)
           @Role = role
           @Content = content
+          @MultiModalContents = multimodalcontents
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+          unless params['MultiModalContents'].nil?
+            @MultiModalContents = []
+            params['MultiModalContents'].each do |i|
+              multimodalcontent_tmp = MultiModalContent.new
+              multimodalcontent_tmp.deserialize(i)
+              @MultiModalContents << multimodalcontent_tmp
+            end
+          end
         end
       end
 
@@ -3914,10 +4116,19 @@ module TencentCloud
         # @param FrameworkVersion: 加速引擎对应的框架版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameworkVersion: String
+        # @param ModelVersionId: 模型版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersionId: String
+        # @param ResourceGroupId: 资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param ResourceGroupName: 资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
 
-        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature, :QATModel, :FrameworkVersion
+        attr_accessor :ModelAccTaskId, :ModelAccTaskName, :ModelId, :ModelName, :ModelVersion, :ModelSource, :OptimizationLevel, :TaskStatus, :ModelInputNum, :ModelInputInfos, :GPUType, :ChargeType, :Speedup, :ModelInputPath, :ModelOutputPath, :ErrorMsg, :AlgorithmFramework, :WaitNumber, :CreateTime, :TaskProgress, :ModelFormat, :TensorInfos, :HyperParameter, :AccEngineVersion, :Tags, :IsSaved, :ModelSignature, :QATModel, :FrameworkVersion, :ModelVersionId, :ResourceGroupId, :ResourceGroupName
 
-        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil, qatmodel=nil, frameworkversion=nil)
+        def initialize(modelacctaskid=nil, modelacctaskname=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, optimizationlevel=nil, taskstatus=nil, modelinputnum=nil, modelinputinfos=nil, gputype=nil, chargetype=nil, speedup=nil, modelinputpath=nil, modeloutputpath=nil, errormsg=nil, algorithmframework=nil, waitnumber=nil, createtime=nil, taskprogress=nil, modelformat=nil, tensorinfos=nil, hyperparameter=nil, accengineversion=nil, tags=nil, issaved=nil, modelsignature=nil, qatmodel=nil, frameworkversion=nil, modelversionid=nil, resourcegroupid=nil, resourcegroupname=nil)
           @ModelAccTaskId = modelacctaskid
           @ModelAccTaskName = modelacctaskname
           @ModelId = modelid
@@ -3947,6 +4158,9 @@ module TencentCloud
           @ModelSignature = modelsignature
           @QATModel = qatmodel
           @FrameworkVersion = frameworkversion
+          @ModelVersionId = modelversionid
+          @ResourceGroupId = resourcegroupid
+          @ResourceGroupName = resourcegroupname
         end
 
         def deserialize(params)
@@ -4002,6 +4216,9 @@ module TencentCloud
           @ModelSignature = params['ModelSignature']
           @QATModel = params['QATModel']
           @FrameworkVersion = params['FrameworkVersion']
+          @ModelVersionId = params['ModelVersionId']
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceGroupName = params['ResourceGroupName']
         end
       end
 
@@ -4128,10 +4345,12 @@ module TencentCloud
         # @param IsPrivateModel: 是否为私有化大模型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPrivateModel: Boolean
+        # @param ModelCategory: 模型的类别 多模态MultiModal, 文本大模型 LLM
+        # @type ModelCategory: String
 
-        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel
+        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel, :ModelCategory
 
-        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil)
+        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil, modelcategory=nil)
           @ModelVersionId = modelversionid
           @ModelId = modelid
           @ModelName = modelname
@@ -4142,6 +4361,7 @@ module TencentCloud
           @ModelType = modeltype
           @ModelFormat = modelformat
           @IsPrivateModel = isprivatemodel
+          @ModelCategory = modelcategory
         end
 
         def deserialize(params)
@@ -4158,6 +4378,7 @@ module TencentCloud
           @ModelType = params['ModelType']
           @ModelFormat = params['ModelFormat']
           @IsPrivateModel = params['IsPrivateModel']
+          @ModelCategory = params['ModelCategory']
         end
       end
 
@@ -4330,10 +4551,12 @@ module TencentCloud
         # @type CommandBase64: String
         # @param ServicePort: 服务端口，仅在非内置镜像时生效，默认8501。不支持输入8501-8510,6006,9092
         # @type ServicePort: Integer
+        # @param InstancePerReplicas: 单副本下的实例数，仅在部署类型为DIST时生效，默认1
+        # @type InstancePerReplicas: Integer
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -4359,6 +4582,7 @@ module TencentCloud
           @ServiceEIP = serviceeip
           @CommandBase64 = commandbase64
           @ServicePort = serviceport
+          @InstancePerReplicas = instanceperreplicas
         end
 
         def deserialize(params)
@@ -4428,6 +4652,7 @@ module TencentCloud
           end
           @CommandBase64 = params['CommandBase64']
           @ServicePort = params['ServicePort']
+          @InstancePerReplicas = params['InstancePerReplicas']
         end
       end
 
@@ -4452,6 +4677,33 @@ module TencentCloud
             @Service.deserialize(params['Service'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 多模态对话内容,支持图片与文字信息
+      class MultiModalContent < TencentCloud::Common::AbstractModel
+        # @param Type: 对话类型，text表示文本对话内容，image_url表示图片对话内容
+        # @type Type: String
+        # @param Text: 文本对话内容，当Type为text时需要填写该值
+        # @type Text: String
+        # @param ImageUrl: 图片对话内容，当Type为image_url时需要填写该值
+        # @type ImageUrl: :class:`Tencentcloud::Tione.v20211111.models.ImageUrl`
+
+        attr_accessor :Type, :Text, :ImageUrl
+
+        def initialize(type=nil, text=nil, imageurl=nil)
+          @Type = type
+          @Text = text
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Text = params['Text']
+          unless params['ImageUrl'].nil?
+            @ImageUrl = ImageUrl.new
+            @ImageUrl.deserialize(params['ImageUrl'])
+          end
         end
       end
 
@@ -4566,10 +4818,18 @@ module TencentCloud
         # @param VolumeSourceGooseFS: GooseFS存储配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
+        # @param SubUin: 子用户ID
+        # @type SubUin: String
+        # @param ResourceGroupInstanceId: 调度节点ID
+        # @type ResourceGroupInstanceId: String
+        # @param SubUinName: 子用户名称
+        # @type SubUinName: String
+        # @param JobCreateTime: 任务实例创建时间
+        # @type JobCreateTime: String
 
-        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS
+        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime
 
-        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil)
+        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil)
           @Id = id
           @Name = name
           @LifecycleScriptId = lifecyclescriptid
@@ -4609,6 +4869,10 @@ module TencentCloud
           @ImageType = imagetype
           @SSHConfig = sshconfig
           @VolumeSourceGooseFS = volumesourcegoosefs
+          @SubUin = subuin
+          @ResourceGroupInstanceId = resourcegroupinstanceid
+          @SubUinName = subuinname
+          @JobCreateTime = jobcreatetime
         end
 
         def deserialize(params)
@@ -4683,6 +4947,10 @@ module TencentCloud
             @VolumeSourceGooseFS = GooseFS.new
             @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
+          @SubUin = params['SubUin']
+          @ResourceGroupInstanceId = params['ResourceGroupInstanceId']
+          @SubUinName = params['SubUinName']
+          @JobCreateTime = params['JobCreateTime']
         end
       end
 
@@ -4765,10 +5033,12 @@ module TencentCloud
         # @param VolumeSourceGooseFS: GooseFS存储配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
+        # @param SubUinName: 子用户名称
+        # @type SubUinName: String
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUinName
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuinname=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -4796,6 +5066,7 @@ module TencentCloud
           @UserTypes = usertypes
           @SSHConfig = sshconfig
           @VolumeSourceGooseFS = volumesourcegoosefs
+          @SubUinName = subuinname
         end
 
         def deserialize(params)
@@ -4845,6 +5116,7 @@ module TencentCloud
             @VolumeSourceGooseFS = GooseFS.new
             @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
+          @SubUinName = params['SubUinName']
         end
       end
 
@@ -5381,14 +5653,18 @@ module TencentCloud
         # @param LoginCommand: 登录命令
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginCommand: String
+        # @param IsAddressChanged: 登录地址是否改变
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAddressChanged: Boolean
 
-        attr_accessor :Enable, :PublicKey, :Port, :LoginCommand
+        attr_accessor :Enable, :PublicKey, :Port, :LoginCommand, :IsAddressChanged
 
-        def initialize(enable=nil, publickey=nil, port=nil, logincommand=nil)
+        def initialize(enable=nil, publickey=nil, port=nil, logincommand=nil, isaddresschanged=nil)
           @Enable = enable
           @PublicKey = publickey
           @Port = port
           @LoginCommand = logincommand
+          @IsAddressChanged = isaddresschanged
         end
 
         def deserialize(params)
@@ -5396,6 +5672,7 @@ module TencentCloud
           @PublicKey = params['PublicKey']
           @Port = params['Port']
           @LoginCommand = params['LoginCommand']
+          @IsAddressChanged = params['IsAddressChanged']
         end
       end
 
@@ -5436,69 +5713,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
-        end
-      end
-
-      # SendChatMessage请求参数结构体
-      class SendChatMessageRequest < TencentCloud::Common::AbstractModel
-        # @param SessionId: 会话id，标识一组对话的唯一id，id变更则重置会话
-        # @type SessionId: String
-        # @param Question: 问题描述
-        # @type Question: String
-        # @param ModelVersion: 会话模型版本。
-        # 金融大模型：填写sn-finllm-13b-chat-v1。
-        # 默认为sn-finllm-13b-chat-v1，即金融大模型。
-        # @type ModelVersion: String
-        # @param Mode: 使用模式。
-        # 通用问答：填写General。
-        # 搜索增强问答：填写WithSearchPlugin。
-        # 默认为General，即通用问答。
-        # 当前可体验模型仅支持General。
-        # @type Mode: String
-        # @param SearchSource: 搜索来源。仅当Mode为WithSearchPlugin时生效。
-        # 预置文稿库：填写Preset。自定义：填写Custom。
-        # @type SearchSource: String
-
-        attr_accessor :SessionId, :Question, :ModelVersion, :Mode, :SearchSource
-
-        def initialize(sessionid=nil, question=nil, modelversion=nil, mode=nil, searchsource=nil)
-          @SessionId = sessionid
-          @Question = question
-          @ModelVersion = modelversion
-          @Mode = mode
-          @SearchSource = searchsource
-        end
-
-        def deserialize(params)
-          @SessionId = params['SessionId']
-          @Question = params['Question']
-          @ModelVersion = params['ModelVersion']
-          @Mode = params['Mode']
-          @SearchSource = params['SearchSource']
-        end
-      end
-
-      # SendChatMessage返回参数结构体
-      class SendChatMessageResponse < TencentCloud::Common::AbstractModel
-        # @param Answer: 答案
-        # @type Answer: String
-        # @param SessionId: 会话id,返回请求的会话id
-        # @type SessionId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Answer, :SessionId, :RequestId
-
-        def initialize(answer=nil, sessionid=nil, requestid=nil)
-          @Answer = answer
-          @SessionId = sessionid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Answer = params['Answer']
-          @SessionId = params['SessionId']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -5601,15 +5815,24 @@ module TencentCloud
         # @param ResourceGroupSWType: 资源组类别 托管 NORMAL，纳管 SW
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupSWType: String
+        # @param ArchiveStatus: 服务的归档状态  Waiting 等待归档中，Archived 已归档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArchiveStatus: String
+        # @param DeployType: 服务的部署类型 [STANDARD 标准部署，DIST 分布式多机部署] 默认STANDARD
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployType: String
+        # @param InstancePerReplicas: 单副本下的实例数，仅在部署类型为DIST时生效，默认1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePerReplicas: String
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2024, 6
-        deprecate :ServiceLimit=, :none, 2024, 6
-        deprecate :ScheduledAction, :none, 2024, 6
-        deprecate :ScheduledAction=, :none, 2024, 6
+        deprecate :ServiceLimit, :none, 2024, 12
+        deprecate :ServiceLimit=, :none, 2024, 12
+        deprecate :ScheduledAction, :none, 2024, 12
+        deprecate :ScheduledAction=, :none, 2024, 12
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -5640,6 +5863,9 @@ module TencentCloud
           @Version = version
           @LatestVersion = latestversion
           @ResourceGroupSWType = resourcegroupswtype
+          @ArchiveStatus = archivestatus
+          @DeployType = deploytype
+          @InstancePerReplicas = instanceperreplicas
         end
 
         def deserialize(params)
@@ -5689,6 +5915,9 @@ module TencentCloud
           @Version = params['Version']
           @LatestVersion = params['LatestVersion']
           @ResourceGroupSWType = params['ResourceGroupSWType']
+          @ArchiveStatus = params['ArchiveStatus']
+          @DeployType = params['DeployType']
+          @InstancePerReplicas = params['InstancePerReplicas']
         end
       end
 
@@ -6017,6 +6246,8 @@ module TencentCloud
         # @param ModelHotUpdateEnable: 是否开启模型的热更新。默认不开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelHotUpdateEnable: Boolean
+        # @param InstanceAlias: 服务的规格别名
+        # @type InstanceAlias: String
         # @param ScaleMode: 实例数量调节方式,默认为手动
         # 支持：自动 - "AUTO", 手动 - "MANUAL"
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6061,14 +6292,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServicePort: Integer
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2024, 6
-        deprecate :PodList=, :none, 2024, 6
-        deprecate :Pods, :none, 2024, 6
-        deprecate :Pods=, :none, 2024, 6
+        deprecate :PodList, :none, 2024, 12
+        deprecate :PodList=, :none, 2024, 12
+        deprecate :Pods, :none, 2024, 12
+        deprecate :Pods=, :none, 2024, 12
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -6086,6 +6317,7 @@ module TencentCloud
           @HybridBillingPrepaidReplicas = hybridbillingprepaidreplicas
           @OldHybridBillingPrepaidReplicas = oldhybridbillingprepaidreplicas
           @ModelHotUpdateEnable = modelhotupdateenable
+          @InstanceAlias = instancealias
           @ScaleMode = scalemode
           @CronScaleJobs = cronscalejobs
           @ScaleStrategy = scalestrategy
@@ -6148,6 +6380,7 @@ module TencentCloud
           @HybridBillingPrepaidReplicas = params['HybridBillingPrepaidReplicas']
           @OldHybridBillingPrepaidReplicas = params['OldHybridBillingPrepaidReplicas']
           @ModelHotUpdateEnable = params['ModelHotUpdateEnable']
+          @InstanceAlias = params['InstanceAlias']
           @ScaleMode = params['ScaleMode']
           unless params['CronScaleJobs'].nil?
             @CronScaleJobs = []
@@ -6219,6 +6452,106 @@ module TencentCloud
           @InstanceRpsLimit = params['InstanceRpsLimit']
           @EnableInstanceReqLimit = params['EnableInstanceReqLimit']
           @InstanceReqLimit = params['InstanceReqLimit']
+        end
+      end
+
+      # 计费项内容
+      class Spec < TencentCloud::Common::AbstractModel
+        # @param SpecId: 计费项标签
+        # @type SpecId: String
+        # @param SpecName: 计费项名称
+        # @type SpecName: String
+        # @param SpecAlias: 计费项显示名称
+        # @type SpecAlias: String
+        # @param Available: 是否售罄
+        # @type Available: Boolean
+        # @param AvailableRegion: 当前资源售罄时，可用的区域有哪些
+        # @type AvailableRegion: Array
+        # @param SpecFeatures: 当前计费项支持的特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecFeatures: Array
+        # @param SpecType: 计费项类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecType: String
+        # @param GpuType: GPU类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuType: String
+        # @param CategoryId: 计费项CategoryId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryId: String
+
+        attr_accessor :SpecId, :SpecName, :SpecAlias, :Available, :AvailableRegion, :SpecFeatures, :SpecType, :GpuType, :CategoryId
+
+        def initialize(specid=nil, specname=nil, specalias=nil, available=nil, availableregion=nil, specfeatures=nil, spectype=nil, gputype=nil, categoryid=nil)
+          @SpecId = specid
+          @SpecName = specname
+          @SpecAlias = specalias
+          @Available = available
+          @AvailableRegion = availableregion
+          @SpecFeatures = specfeatures
+          @SpecType = spectype
+          @GpuType = gputype
+          @CategoryId = categoryid
+        end
+
+        def deserialize(params)
+          @SpecId = params['SpecId']
+          @SpecName = params['SpecName']
+          @SpecAlias = params['SpecAlias']
+          @Available = params['Available']
+          @AvailableRegion = params['AvailableRegion']
+          @SpecFeatures = params['SpecFeatures']
+          @SpecType = params['SpecType']
+          @GpuType = params['GpuType']
+          @CategoryId = params['CategoryId']
+        end
+      end
+
+      # 计费项询价结果
+      class SpecPrice < TencentCloud::Common::AbstractModel
+        # @param SpecName: 计费项名称
+        # @type SpecName: String
+        # @param TotalCost: 原价，单位：分。最大值42亿，超过则返回0
+        # @type TotalCost: Integer
+        # @param RealTotalCost: 优惠后的价格，单位：分
+        # @type RealTotalCost: Integer
+        # @param SpecCount: 计费项数量
+        # @type SpecCount: Integer
+
+        attr_accessor :SpecName, :TotalCost, :RealTotalCost, :SpecCount
+
+        def initialize(specname=nil, totalcost=nil, realtotalcost=nil, speccount=nil)
+          @SpecName = specname
+          @TotalCost = totalcost
+          @RealTotalCost = realtotalcost
+          @SpecCount = speccount
+        end
+
+        def deserialize(params)
+          @SpecName = params['SpecName']
+          @TotalCost = params['TotalCost']
+          @RealTotalCost = params['RealTotalCost']
+          @SpecCount = params['SpecCount']
+        end
+      end
+
+      # 计费项询价单元
+      class SpecUnit < TencentCloud::Common::AbstractModel
+        # @param SpecName: 计费项名称
+        # @type SpecName: String
+        # @param SpecCount: 计费项数量,建议不超过100万
+        # @type SpecCount: Integer
+
+        attr_accessor :SpecName, :SpecCount
+
+        def initialize(specname=nil, speccount=nil)
+          @SpecName = specname
+          @SpecCount = speccount
+        end
+
+        def deserialize(params)
+          @SpecName = params['SpecName']
+          @SpecCount = params['SpecCount']
         end
       end
 
@@ -6634,6 +6967,9 @@ module TencentCloud
         # @type Uin: String
         # @param SubUin: 子账号uin
         # @type SubUin: String
+        # @param SubUinName: 创建者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubUinName: String
         # @param Region: 地域
         # @type Region: String
         # @param FrameworkName: 训练框架名称，eg：SPARK、PYSARK、TENSORFLOW、PYTORCH
@@ -6729,13 +7065,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallbackUrl: String
 
-        attr_accessor :Id, :Name, :Uin, :SubUin, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status, :CallbackUrl
+        attr_accessor :Id, :Name, :Uin, :SubUin, :SubUinName, :Region, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ChargeType, :ResourceGroupId, :ResourceConfigInfos, :Tags, :TrainingMode, :CodePackagePath, :StartCmdInfo, :DataSource, :DataConfigs, :TuningParameters, :Output, :LogEnable, :LogConfig, :VpcId, :SubnetId, :ImageInfo, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :LatestInstanceId, :TensorBoardId, :Remark, :FailureReason, :UpdateTime, :EndTime, :BillingInfo, :ResourceGroupName, :Message, :Status, :CallbackUrl
 
-        def initialize(id=nil, name=nil, uin=nil, subuin=nil, region=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, trainingmode=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, imageinfo=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil, status=nil, callbackurl=nil)
+        def initialize(id=nil, name=nil, uin=nil, subuin=nil, subuinname=nil, region=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, chargetype=nil, resourcegroupid=nil, resourceconfiginfos=nil, tags=nil, trainingmode=nil, codepackagepath=nil, startcmdinfo=nil, datasource=nil, dataconfigs=nil, tuningparameters=nil, output=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, imageinfo=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, latestinstanceid=nil, tensorboardid=nil, remark=nil, failurereason=nil, updatetime=nil, endtime=nil, billinginfo=nil, resourcegroupname=nil, message=nil, status=nil, callbackurl=nil)
           @Id = id
           @Name = name
           @Uin = uin
           @SubUin = subuin
+          @SubUinName = subuinname
           @Region = region
           @FrameworkName = frameworkname
           @FrameworkVersion = frameworkversion
@@ -6778,6 +7115,7 @@ module TencentCloud
           @Name = params['Name']
           @Uin = params['Uin']
           @SubUin = params['SubUin']
+          @SubUinName = params['SubUinName']
           @Region = params['Region']
           @FrameworkName = params['FrameworkName']
           @FrameworkVersion = params['FrameworkVersion']
@@ -6997,13 +7335,10 @@ module TencentCloud
       # 大模型生成Token统计
       class Usage < TencentCloud::Common::AbstractModel
         # @param CompletionTokens: 生成的token数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompletionTokens: Integer
         # @param PromptTokens: 输入的token数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PromptTokens: Integer
         # @param TotalTokens: 总共token数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalTokens: Integer
 
         attr_accessor :CompletionTokens, :PromptTokens, :TotalTokens
@@ -7073,8 +7408,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2024, 6
-        deprecate :StatefulSetCondition=, :none, 2024, 6
+        deprecate :StatefulSetCondition, :none, 2024, 12
+        deprecate :StatefulSetCondition=, :none, 2024, 12
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

@@ -8244,14 +8244,18 @@ module TencentCloud
         # @type NodeCount: Integer
         # @param NodePermWipeFlag: 有调度任务且没有切回的可用区，此标识为true
         # @type NodePermWipeFlag: Boolean
+        # @param ZoneStatus: 可用区状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneStatus: String
 
-        attr_accessor :ZoneName, :ZoneId, :NodeCount, :NodePermWipeFlag
+        attr_accessor :ZoneName, :ZoneId, :NodeCount, :NodePermWipeFlag, :ZoneStatus
 
-        def initialize(zonename=nil, zoneid=nil, nodecount=nil, nodepermwipeflag=nil)
+        def initialize(zonename=nil, zoneid=nil, nodecount=nil, nodepermwipeflag=nil, zonestatus=nil)
           @ZoneName = zonename
           @ZoneId = zoneid
           @NodeCount = nodecount
           @NodePermWipeFlag = nodepermwipeflag
+          @ZoneStatus = zonestatus
         end
 
         def deserialize(params)
@@ -8259,6 +8263,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @NodeCount = params['NodeCount']
           @NodePermWipeFlag = params['NodePermWipeFlag']
+          @ZoneStatus = params['ZoneStatus']
         end
       end
 

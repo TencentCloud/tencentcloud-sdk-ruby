@@ -389,6 +389,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeBillingSpecs) 提供查询计费项列表
+
+        # @param request: Request instance for DescribeBillingSpecs.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsResponse`
+        def DescribeBillingSpecs(request)
+          body = send_request('DescribeBillingSpecs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillingSpecsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
+
+        # @param request: Request instance for DescribeBillingSpecsPrice.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsPriceRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsPriceResponse`
+        def DescribeBillingSpecsPrice(request)
+          body = send_request('DescribeBillingSpecsPrice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillingSpecsPriceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取内置镜像列表
 
         # @param request: Request instance for DescribeBuildInImages.
@@ -831,30 +879,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PushTrainingMetricsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 这是一个供您体验大模型聊天的接口。
-
-        # @param request: Request instance for SendChatMessage.
-        # @type request: :class:`Tencentcloud::tione::V20211111::SendChatMessageRequest`
-        # @rtype: :class:`Tencentcloud::tione::V20211111::SendChatMessageResponse`
-        def SendChatMessage(request)
-          body = send_request('SendChatMessage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SendChatMessageResponse.new
             model.deserialize(response['Response'])
             model
           else

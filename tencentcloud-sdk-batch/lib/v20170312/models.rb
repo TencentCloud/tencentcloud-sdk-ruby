@@ -2443,7 +2443,7 @@ module TencentCloud
         # @param ReleaseAddress: 释放地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseAddress: Boolean
-        # @param UnsupportNetworks: 不支持的网络类型，取值范围：<br><li>BASIC：基础网络<br><li>VPC1.0：私有网络VPC1.0
+        # @param UnsupportNetworks: 不支持的网络类型，取值范围：<br><li>BASIC：基础网络</li><li>VPC1.0：私有网络VPC1.0</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnsupportNetworks: Array
         # @param StorageBlockAttr: HDD本地存储属性

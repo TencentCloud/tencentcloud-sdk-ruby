@@ -103,7 +103,8 @@ module TencentCloud
       class ConfirmVideoTranslateJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 视频转译任务 ID
         # @type JobId: String
-        # @param TranslateResults: 待确认文本
+        # @param TranslateResults: 待确认文本。
+        # 如果文本中含有数字，支持将数字配置为SSML语言
         # @type TranslateResults: Array
 
         attr_accessor :JobId, :TranslateResults
