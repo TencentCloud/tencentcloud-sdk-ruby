@@ -1637,6 +1637,114 @@ module TencentCloud
         end
       end
 
+      # CreateAlarmShield请求参数结构体
+      class CreateAlarmShieldRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param Name: 屏蔽策略名称
+        # @type Name: String
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+        # @param NameSpace: 命名空间即策略类型
+        # @type NameSpace: String
+        # @param ShieldTimeType: 屏蔽时间类型 FOREVER_SHIELD:永久屏蔽 PERIOD_SHIELD:绝对时间范围屏蔽 LOOP_SHIELD:相对时间范围屏蔽
+        # @type ShieldTimeType: String
+        # @param ShieldObject: 屏蔽对象
+        # @type ShieldObject: Array
+        # @param ShieldMetric: 屏蔽指标 为空则为全部指标
+        # @type ShieldMetric: Array
+        # @param StartTime: 开始时间 相对时间范围:36000 绝对时间范围:1648742400 缺省:0
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间 相对时间范围:72000 绝对时间范围:1649088000 缺省:0
+        # @type EndTime: Integer
+        # @param LoopStartDate: 循环开始日期 2022/04/01 缺省:0
+        # @type LoopStartDate: Integer
+        # @param LoopEndDate: 循环结束日期 2022/04/05 缺省:0
+        # @type LoopEndDate: Integer
+        # @param ShieldPolicyId: 需要屏蔽的策略ID
+        # @type ShieldPolicyId: String
+        # @param ShieldAlarmLevel: 需要屏蔽的告警等级，取值范围Warn,Remind,Serious
+        # @type ShieldAlarmLevel: Array
+        # @param VersionTag: 屏蔽类型，为OBJNAME是老版本实例名屏蔽，为POLICY是新版本维度匹配
+        # @type VersionTag: String
+        # @param Description: 屏蔽规则的描述
+        # @type Description: String
+        # @param TimeZone:  时区，东八区+8，西八区减8，以此类推
+        # @type TimeZone: Float
+        # @param ShieldEvent: 屏蔽事件 为空则为全部指标
+        # @type ShieldEvent: Array
+        # @param ShieldMetricFlag: 是否对指标屏蔽 1=是 0=否
+        # @type ShieldMetricFlag: Integer
+        # @param ShieldEventFlag: 是否对事件屏蔽 1=是 0=否
+        # @type ShieldEventFlag: Integer
+
+        attr_accessor :Module, :Name, :MonitorType, :NameSpace, :ShieldTimeType, :ShieldObject, :ShieldMetric, :StartTime, :EndTime, :LoopStartDate, :LoopEndDate, :ShieldPolicyId, :ShieldAlarmLevel, :VersionTag, :Description, :TimeZone, :ShieldEvent, :ShieldMetricFlag, :ShieldEventFlag
+
+        def initialize(_module=nil, name=nil, monitortype=nil, namespace=nil, shieldtimetype=nil, shieldobject=nil, shieldmetric=nil, starttime=nil, endtime=nil, loopstartdate=nil, loopenddate=nil, shieldpolicyid=nil, shieldalarmlevel=nil, versiontag=nil, description=nil, timezone=nil, shieldevent=nil, shieldmetricflag=nil, shieldeventflag=nil)
+          @Module = _module
+          @Name = name
+          @MonitorType = monitortype
+          @NameSpace = namespace
+          @ShieldTimeType = shieldtimetype
+          @ShieldObject = shieldobject
+          @ShieldMetric = shieldmetric
+          @StartTime = starttime
+          @EndTime = endtime
+          @LoopStartDate = loopstartdate
+          @LoopEndDate = loopenddate
+          @ShieldPolicyId = shieldpolicyid
+          @ShieldAlarmLevel = shieldalarmlevel
+          @VersionTag = versiontag
+          @Description = description
+          @TimeZone = timezone
+          @ShieldEvent = shieldevent
+          @ShieldMetricFlag = shieldmetricflag
+          @ShieldEventFlag = shieldeventflag
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Name = params['Name']
+          @MonitorType = params['MonitorType']
+          @NameSpace = params['NameSpace']
+          @ShieldTimeType = params['ShieldTimeType']
+          @ShieldObject = params['ShieldObject']
+          @ShieldMetric = params['ShieldMetric']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LoopStartDate = params['LoopStartDate']
+          @LoopEndDate = params['LoopEndDate']
+          @ShieldPolicyId = params['ShieldPolicyId']
+          @ShieldAlarmLevel = params['ShieldAlarmLevel']
+          @VersionTag = params['VersionTag']
+          @Description = params['Description']
+          @TimeZone = params['TimeZone']
+          @ShieldEvent = params['ShieldEvent']
+          @ShieldMetricFlag = params['ShieldMetricFlag']
+          @ShieldEventFlag = params['ShieldEventFlag']
+        end
+      end
+
+      # CreateAlarmShield返回参数结构体
+      class CreateAlarmShieldResponse < TencentCloud::Common::AbstractModel
+        # @param ShieldId: 屏蔽规则的Id
+        # @type ShieldId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ShieldId, :RequestId
+
+        def initialize(shieldid=nil, requestid=nil)
+          @ShieldId = shieldid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ShieldId = params['ShieldId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAlertRule请求参数结构体
       class CreateAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID，例如：prom-abcd1234

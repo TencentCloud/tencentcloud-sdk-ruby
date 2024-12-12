@@ -1700,15 +1700,22 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
         # @type FlowDisplayType: Integer
+        # @param NeedPreview: 是否为预览模式，取值如下： <ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li> <li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。</li></ul>
+        # @type NeedPreview: Boolean
+        # @param PreviewType: 预览模式下产生的预览链接类型
+        # <ul><li> **0** :(默认) 文件流 ,点开后下载预览的合同PDF文件 </li>
+        # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子</li></ul>
+        # 注: `此参数在NeedPreview 为true时有效`
+        # @type PreviewType: Integer
 
-        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType
+        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator, :FlowDisplayType, :NeedPreview, :PreviewType
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 12
         deprecate :CallbackUrl=, :none, 2024, 12
         deprecate :Operator, :none, 2024, 12
         deprecate :Operator=, :none, 2024, 12
 
-        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil)
+        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil, flowdisplaytype=nil, needpreview=nil, previewtype=nil)
           @Agent = agent
           @FlowName = flowname
           @FlowDescription = flowdescription
@@ -1729,6 +1736,8 @@ module TencentCloud
           @AutoSignScene = autosignscene
           @Operator = operator
           @FlowDisplayType = flowdisplaytype
+          @NeedPreview = needpreview
+          @PreviewType = previewtype
         end
 
         def deserialize(params)
@@ -1779,6 +1788,8 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @FlowDisplayType = params['FlowDisplayType']
+          @NeedPreview = params['NeedPreview']
+          @PreviewType = params['PreviewType']
         end
       end
 

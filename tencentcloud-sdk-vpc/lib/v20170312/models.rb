@@ -5673,11 +5673,14 @@ module TencentCloud
       class CreateSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotPolicies: 快照策略详情。
         # @type SnapshotPolicies: Array
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @type Tags: Array
 
-        attr_accessor :SnapshotPolicies
+        attr_accessor :SnapshotPolicies, :Tags
 
-        def initialize(snapshotpolicies=nil)
+        def initialize(snapshotpolicies=nil, tags=nil)
           @SnapshotPolicies = snapshotpolicies
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5687,6 +5690,14 @@ module TencentCloud
               snapshotpolicy_tmp = SnapshotPolicy.new
               snapshotpolicy_tmp.deserialize(i)
               @SnapshotPolicies << snapshotpolicy_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end

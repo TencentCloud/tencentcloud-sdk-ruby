@@ -259,7 +259,9 @@ module TencentCloud
         # @type Status: String
         # @param Remark: 说明
         # @type Remark: String
-        # @param From: 设备连接时传递jwt的key；username-使用用户名字段传递；password-使用密码字段传递
+        # @param From: 设备连接时传递jwt的key；
+        # username-使用用户名字段传递；
+        # password-使用密码字段传递
         # @type From: String
 
         attr_accessor :InstanceId, :Endpoint, :RefreshInterval, :Text, :Status, :Remark, :From
@@ -445,7 +447,10 @@ module TencentCloud
       class DeleteAuthenticatorRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param Type: 认证器类型
+        # @param Type: 认证器类型:
+        # JWT：JWT认证器
+        # JWKS：JWKS认证器
+        # BYOC：一端一证认证器
         # @type Type: String
 
         attr_accessor :InstanceId, :Type
@@ -589,7 +594,7 @@ module TencentCloud
       class DescribeAuthenticatorRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param Type: 认证器类型
+        # @param Type: 认证器类型: JWT：JWT认证器 JWKS：JWKS认证器 HTTP:HTTP认证器
         # @type Type: String
 
         attr_accessor :InstanceId, :Type
@@ -709,13 +714,13 @@ module TencentCloud
         # @type LastInactivationTime: Integer
         # @param Status: 证书状态
         # @type Status: String
-        # @param CaSn: 证书序列号
+        # @param CaSn: Ca证书序列号
         # @type CaSn: String
-        # @param DeviceCertificateSn: 设备证书sn
+        # @param DeviceCertificateSn: 设备证书序列号
         # @type DeviceCertificateSn: String
-        # @param DeviceCertificate: 证书内容
+        # @param DeviceCertificate: 设备证书内容
         # @type DeviceCertificate: String
-        # @param DeviceCertificateCn: 设备证书cn
+        # @param DeviceCertificateCn: 设备证书common name
         # @type DeviceCertificateCn: String
         # @param Format: 证书格式
         # @type Format: String
@@ -937,11 +942,9 @@ module TencentCloud
 
       # DescribeInstance返回参数结构体
       class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 实例类型，
-        # EXPERIMENT 体验版
+        # @param InstanceType: 实例类型
         # BASIC 基础版
         # PRO  专业版
-        # PLATINUM 铂金版
         # @type InstanceType: String
         # @param InstanceId: 实例ID
         # @type InstanceId: String
@@ -967,7 +970,9 @@ module TencentCloud
         # @type AuthorizationPolicyLimit: Integer
         # @param ClientNumLimit: 客户端数量上限
         # @type ClientNumLimit: Integer
-        # @param DeviceCertificateProvisionType: 客户端证书注册方式：JITP，API
+        # @param DeviceCertificateProvisionType: 客户端证书注册方式：
+        # JITP：自动注册
+        # API：通过API手动注册
         # @type DeviceCertificateProvisionType: String
         # @param AutomaticActivation: 自动注册设备证书时是否自动激活
         # @type AutomaticActivation: Boolean
@@ -979,9 +984,7 @@ module TencentCloud
         # @type ExpiryTime: Integer
         # @param DestroyTime: 预销毁时间
         # @type DestroyTime: Integer
-        # @param X509Mode:     TLS,单向认证
-        #     mTLS,双向认证
-        #     BYOC;一机一证
+        # @param X509Mode: TLS,单向认证    mTLS,双向认证    BYOC;一机一证
         # @type X509Mode: String
         # @param MaxCaNum: 最大Ca配额
         # @type MaxCaNum: Integer
