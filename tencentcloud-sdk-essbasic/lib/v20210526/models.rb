@@ -5358,13 +5358,13 @@ module TencentCloud
 
       # CreateBatchInitOrganizationUrl返回参数结构体
       class CreateBatchInitOrganizationUrlResponse < TencentCloud::Common::AbstractModel
-        # @param MiniAppPath: 小程序路径
+        # @param MiniAppPath: 小程序路径，有效时间为7天
         # @type MiniAppPath: String
-        # @param OperateLongUrl: 操作长链
+        # @param OperateLongUrl: 操作长链，有效时间为7天
         # @type OperateLongUrl: String
-        # @param OperateShortUrl: 操作短链
+        # @param OperateShortUrl: 操作短链，有效时间为7天
         # @type OperateShortUrl: String
-        # @param QRCodeUrl: 操作二维码
+        # @param QRCodeUrl: 操作二维码，有效时间为7天
         # @type QRCodeUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11195,12 +11195,22 @@ module TencentCloud
         # @param Description: 模板描述信息
         # @type Description: String
         # @param Components: 模板的填充控件列表
+
+        # [点击查看在模板中配置的填充控件的样子](https://qcloudimg.tencent-cloud.cn/raw/cb2f58529fca8d909258f9d45a56f7f4.png)
         # @type Components: Array
         # @param Recipients: 此模块需要签署的各个参与方的角色列表。RecipientId标识每个参与方角色对应的唯一标识符，用于确定此角色的信息。
+
+        # [点击查看在模板中配置的签署参与方角色列表的样子](https://qcloudimg.tencent-cloud.cn/raw/e082bbcc0d923f8cb723d98382410aa2.png)
+
         # @type Recipients: Array
         # @param SignComponents: 此模板中的签署控件列表
+
+        # [点击查看在模板中配置的签署控件的样子](https://qcloudimg.tencent-cloud.cn/raw/29bc6ed753a5a0fce4a3ab02e2c0d955.png)
         # @type SignComponents: Array
-        # @param TemplateType: 模板类型：1-静默签；3-普通模板
+        # @param TemplateType: 模板类型可以分为以下两种：
+
+        # <b>1</b>：带有<b>本企业自动签署</b>的模板，即签署过程无需签署人手动操作，系统自动完成签署。
+        # <b>3</b>：普通模板，即签署人需要手动进行签署操作。
         # @type TemplateType: Integer
         # @param IsPromoter: 是否是发起人 ,已弃用
         # @type IsPromoter: Boolean
@@ -11208,8 +11218,10 @@ module TencentCloud
         # @type Creator: String
         # @param CreatedOn: 模板创建的时间戳，格式为Unix标准时间戳（秒）
         # @type CreatedOn: Integer
-        # @param PreviewUrl: 模板的H5预览链接,有效期5分钟。
-        # 可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。
+        # @param PreviewUrl: 模板的 H5 预览链接，有效期为 5 分钟。
+        # 您可以通过浏览器直接打开此链接预览模板，或将其嵌入到 iframe 中进行预览。
+
+        # 注意：只有在请求接口时将 <b>WithPreviewUrl </b>参数设置为 true，才会生成预览链接。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
         # @param PdfUrl: 第三方应用集成-模板PDF文件链接，有效期5分钟。

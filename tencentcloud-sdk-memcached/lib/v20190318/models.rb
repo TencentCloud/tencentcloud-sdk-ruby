@@ -119,7 +119,6 @@ module TencentCloud
         # @param CmemId: 实例内置ID
         # @type CmemId: Integer
         # @param Tags: 实例关联的标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param InstanceId: 实例ID
         # @type InstanceId: String
@@ -223,10 +222,8 @@ module TencentCloud
       # 标签信息
       class TagInfo < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

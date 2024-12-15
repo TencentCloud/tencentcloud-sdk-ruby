@@ -4724,6 +4724,9 @@ module TencentCloud
         # @param TemplateRuleSet: 模板规则列表。
         # @type TemplateRuleSet: Array
         # @param ApplyState: 应用模板的执行状态。
+
+        # - SUCCESS：成功
+        # - FAILED：失败
         # @type ApplyState: String
         # @param SuccessCount: 应用成功的实例数量。
         # @type SuccessCount: Integer
@@ -4778,6 +4781,9 @@ module TencentCloud
         # @param Instance: 实例标识信息。
         # @type Instance: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceIdentifier`
         # @param ApplyState: 防火墙模板应用状态。
+
+        # - SUCCESS：成功
+        # - FAILED：失败
         # @type ApplyState: String
         # @param ErrorMessage: 防火墙模板应用错误信息。
         # @type ErrorMessage: String
@@ -4847,7 +4853,6 @@ module TencentCloud
       end
 
       # 描述通用资源配额信息。
-
       class GeneralResourceQuota < TencentCloud::Common::AbstractModel
         # @param ResourceName: 资源名称。
         # @type ResourceName: String

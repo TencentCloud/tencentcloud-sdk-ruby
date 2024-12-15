@@ -740,6 +740,12 @@ module TencentCloud
         # @type AddressName: String
         # @param DedicatedClusterId: CDC唯一ID
         # @type DedicatedClusterId: String
+        # @param IsDedicatedAddressPool: 是否使用独占资源池，默认值：True
+        # - True：表示使用独占资源池
+        # - False：表示使用共享资源池
+
+        # 说明：如需使用独占资源池，请 提交工单(https://console.cloud.tencent.com/workorder/category) 咨询，具体费用请咨询商务经理。
+        # @type IsDedicatedAddressPool: Boolean
         # @param Egress: 网络出口，当前仅支持精品BGP、静态单线，这2种IP 地址类型的指定出口传入，默认值：center_egress1，其它可选值：center_egress2、center_egress3
         # @type Egress: String
         # @param AntiDDoSPackageId: 高防包ID， 申请高防IP时，该字段必传。
@@ -747,9 +753,9 @@ module TencentCloud
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :Egress, :AntiDDoSPackageId, :ClientToken
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
 
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
@@ -763,6 +769,7 @@ module TencentCloud
           @BandwidthPackageId = bandwidthpackageid
           @AddressName = addressname
           @DedicatedClusterId = dedicatedclusterid
+          @IsDedicatedAddressPool = isdedicatedaddresspool
           @Egress = egress
           @AntiDDoSPackageId = antiddospackageid
           @ClientToken = clienttoken
@@ -792,6 +799,7 @@ module TencentCloud
           @BandwidthPackageId = params['BandwidthPackageId']
           @AddressName = params['AddressName']
           @DedicatedClusterId = params['DedicatedClusterId']
+          @IsDedicatedAddressPool = params['IsDedicatedAddressPool']
           @Egress = params['Egress']
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
           @ClientToken = params['ClientToken']

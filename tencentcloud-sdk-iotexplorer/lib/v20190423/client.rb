@@ -53,6 +53,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 微信VOIP功能调整下线
+
         # 分配License
 
         # @param request: Request instance for AssignTWeCallLicense.
@@ -2524,6 +2526,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 微信VOIP功能调整下线
 
         # 查询TWeCall包列表
 

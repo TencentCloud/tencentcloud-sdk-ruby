@@ -2954,9 +2954,9 @@ module TencentCloud
         # @type SubBizType: String
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒
+        # @param StartTime: 开始时间戳, 单位为秒(默认值0)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒
+        # @param EndTime: 结束时间戳, 单位为秒(默认值0， 必须大于开始时间戳)
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array

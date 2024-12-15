@@ -21508,17 +21508,22 @@ module TencentCloud
         # @type Key: String
         # @param Value: 值
         # @type Value: String
+        # @param Id:  唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
 
-        attr_accessor :Key, :Value
+        attr_accessor :Key, :Value, :Id
 
-        def initialize(key=nil, value=nil)
+        def initialize(key=nil, value=nil, id=nil)
           @Key = key
           @Value = value
+          @Id = id
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+          @Id = params['Id']
         end
       end
 
