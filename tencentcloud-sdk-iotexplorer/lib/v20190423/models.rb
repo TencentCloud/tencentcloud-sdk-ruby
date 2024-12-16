@@ -1038,6 +1038,46 @@ module TencentCloud
         end
       end
 
+      # CreateDeviceChannel请求参数结构体
+      class CreateDeviceChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # CreateDeviceChannel返回参数结构体
+      class CreateDeviceChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDevice请求参数结构体
       class CreateDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID。
@@ -1203,6 +1243,78 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFreeCloudStorage请求参数结构体
+      class CreateFreeCloudStorageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param PackageId: 云存套餐ID：
+        # lye1w3d：低功耗事件3天周套餐。
+        # ye1w3d：事件3天周套餐
+        # @type PackageId: String
+        # @param Override: 如果当前设备已开启云存套餐，Override=1会使用新套餐覆盖原有套餐。不传此参数则默认为0。
+        # @type Override: Integer
+        # @param PackageQueue: 套餐列表顺序：PackageQueue=front会立即使用新购买的套餐，新购套餐结束后，列表中下一个未过期的套餐继续生效；PackageQueue=end会等设备当前所有已购买套餐过期后才会生效新购套餐。与Override参数不能同时使用。
+        # @type PackageQueue: String
+        # @param OrderId: 订单id
+        # @type OrderId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
+        # @param StorageRegion: 云存视频存储区域，国内默认为ap-guangzhou。海外默认为东南亚ap-singapore，可选美东na-ashburn、欧洲eu-frankfurt。
+        # @type StorageRegion: String
+
+        attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue, :OrderId, :ChannelId, :StorageRegion
+
+        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil, packagequeue=nil, orderid=nil, channelid=nil, storageregion=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @PackageId = packageid
+          @Override = override
+          @PackageQueue = packagequeue
+          @OrderId = orderid
+          @ChannelId = channelid
+          @StorageRegion = storageregion
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @PackageId = params['PackageId']
+          @Override = params['Override']
+          @PackageQueue = params['PackageQueue']
+          @OrderId = params['OrderId']
+          @ChannelId = params['ChannelId']
+          @StorageRegion = params['StorageRegion']
+        end
+      end
+
+      # CreateFreeCloudStorage返回参数结构体
+      class CreateFreeCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 订单金额，单位为分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Integer
+        # @param Amount: 支付金额，单位为分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :Amount, :RequestId
+
+        def initialize(price=nil, amount=nil, requestid=nil)
+          @Price = price
+          @Amount = amount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Price = params['Price']
+          @Amount = params['Amount']
           @RequestId = params['RequestId']
         end
       end

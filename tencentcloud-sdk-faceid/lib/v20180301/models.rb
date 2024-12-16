@@ -2811,15 +2811,20 @@ module TencentCloud
         # @param Encryption: 敏感数据加密信息。
         # - 对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param Extra: 自定义描述字段。
+        # - 用于描述调用业务信息，出参中将返回此描述字段。
+        # - 每个自定义描述字段支持[1,10]个字符。
+        # @type Extra: String
 
-        attr_accessor :IdCard, :Name, :ImageBase64, :Optional, :Encryption
+        attr_accessor :IdCard, :Name, :ImageBase64, :Optional, :Encryption, :Extra
 
-        def initialize(idcard=nil, name=nil, imagebase64=nil, optional=nil, encryption=nil)
+        def initialize(idcard=nil, name=nil, imagebase64=nil, optional=nil, encryption=nil, extra=nil)
           @IdCard = idcard
           @Name = name
           @ImageBase64 = imagebase64
           @Optional = optional
           @Encryption = encryption
+          @Extra = extra
         end
 
         def deserialize(params)
@@ -2831,6 +2836,7 @@ module TencentCloud
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
           end
+          @Extra = params['Extra']
         end
       end
 
@@ -2846,15 +2852,18 @@ module TencentCloud
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
+        # @param Extra: 调用接口中自定义的描述字段。
+        # @type Extra: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Sim, :Result, :Description, :RequestId
+        attr_accessor :Sim, :Result, :Description, :Extra, :RequestId
 
-        def initialize(sim=nil, result=nil, description=nil, requestid=nil)
+        def initialize(sim=nil, result=nil, description=nil, extra=nil, requestid=nil)
           @Sim = sim
           @Result = result
           @Description = description
+          @Extra = extra
           @RequestId = requestid
         end
 
@@ -2862,6 +2871,7 @@ module TencentCloud
           @Sim = params['Sim']
           @Result = params['Result']
           @Description = params['Description']
+          @Extra = params['Extra']
           @RequestId = params['RequestId']
         end
       end

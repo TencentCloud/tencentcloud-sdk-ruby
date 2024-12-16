@@ -4152,16 +4152,18 @@ module TencentCloud
         # @type ModifyTime: String
         # @param RuleCategory: 规则类别  0=系统规则，1=用户规则
         # @type RuleCategory: Integer
-        # @param RegexBashCmd: 自动生成的正则表达式
+        # @param RegexBashCmd: 转义后的正则表达式
         # @type RegexBashCmd: String
+        # @param RegexExe: 转义后的正则表达式
+        # @type RegexExe: String
         # @param MachineType: 0:普通 1:专业版 2:旗舰版
         # @type MachineType: Integer
         # @param MachineExtraInfo: 机器额外信息
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :MachineType, :MachineExtraInfo
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :RegexExe, :MachineType, :MachineExtraInfo
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, machinetype=nil, machineextrainfo=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, regexexe=nil, machinetype=nil, machineextrainfo=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -4181,6 +4183,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @RuleCategory = rulecategory
           @RegexBashCmd = regexbashcmd
+          @RegexExe = regexexe
           @MachineType = machinetype
           @MachineExtraInfo = machineextrainfo
         end
@@ -4205,6 +4208,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @RuleCategory = params['RuleCategory']
           @RegexBashCmd = params['RegexBashCmd']
+          @RegexExe = params['RegexExe']
           @MachineType = params['MachineType']
           unless params['MachineExtraInfo'].nil?
             @MachineExtraInfo = MachineExtraInfo.new
@@ -7499,6 +7503,38 @@ module TencentCloud
 
       # DeleteProtectDir返回参数结构体
       class DeleteProtectDirResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRaspRules请求参数结构体
+      class DeleteRaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param IDs: 待删除的规则ID数组 (最大100条)
+        # @type IDs: Array
+
+        attr_accessor :IDs
+
+        def initialize(ids=nil)
+          @IDs = ids
+        end
+
+        def deserialize(params)
+          @IDs = params['IDs']
+        end
+      end
+
+      # DeleteRaspRules返回参数结构体
+      class DeleteRaspRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -20606,6 +20642,170 @@ module TencentCloud
           @EventCount = params['EventCount']
           @IndustryCount = params['IndustryCount']
           @CompanyCount = params['CompanyCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRaspMaxCpu请求参数结构体
+      class DescribeRaspMaxCpuRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRaspMaxCpu返回参数结构体
+      class DescribeRaspMaxCpuResponse < TencentCloud::Common::AbstractModel
+        # @param RaspMaxCpu: rasp当前最大cpu限制，0<cpu<=100，默认100表示不限制
+        # @type RaspMaxCpu: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RaspMaxCpu, :RequestId
+
+        def initialize(raspmaxcpu=nil, requestid=nil)
+          @RaspMaxCpu = raspmaxcpu
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RaspMaxCpu = params['RaspMaxCpu']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRaspRuleVuls请求参数结构体
+      class DescribeRaspRuleVulsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。Name=WhiteType的必选，0：表示自定义范围的漏洞列表，1：表示全部请求范围的列表
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为10，最大值为1000。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :Limit, :Offset
+
+        def initialize(filters=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeRaspRuleVuls返回参数结构体
+      class DescribeRaspRuleVulsResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表内容
+        # @type List: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              rasprulevul_tmp = RaspRuleVul.new
+              rasprulevul_tmp.deserialize(i)
+              @List << rasprulevul_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRaspRules请求参数结构体
+      class DescribeRaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Keywords - String - 是否必填：否 - 关键字(进程名称)</li>
+        # @type Filters: Array
+        # @param By: 排序字段，目前有：CreateTime、ModifyTime，默认按照ModifyTime排序
+        # @type By: String
+        # @param Order: 排序升序还是倒序，DESC有ASC、
+        # @type Order: String
+
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order
+
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeRaspRules返回参数结构体
+      class DescribeRaspRulesResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表内容
+        # @type List: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              rasprule_tmp = RaspRule.new
+              rasprule_tmp.deserialize(i)
+              @List << rasprule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -34351,6 +34551,82 @@ module TencentCloud
         end
       end
 
+      # ModifyRaspMaxCpu请求参数结构体
+      class ModifyRaspMaxCpuRequest < TencentCloud::Common::AbstractModel
+        # @param RaspMaxCpu: rasp当前最大cpu限制，0<cpu<=100，默认100表示不限制
+        # @type RaspMaxCpu: Integer
+
+        attr_accessor :RaspMaxCpu
+
+        def initialize(raspmaxcpu=nil)
+          @RaspMaxCpu = raspmaxcpu
+        end
+
+        def deserialize(params)
+          @RaspMaxCpu = params['RaspMaxCpu']
+        end
+      end
+
+      # ModifyRaspMaxCpu返回参数结构体
+      class ModifyRaspMaxCpuResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRaspRules请求参数结构体
+      class ModifyRaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID(新增时请留空，编辑时候必传)
+        # @type Id: Integer
+        # @param VulVulsIDs: 漏洞id数组
+        # @type VulVulsIDs: Array
+        # @param URLRegexp: 自定义请求范围加白正则表达式，选择全部请求范围时候为空，否则不能为空，base64编码
+        # @type URLRegexp: String
+        # @param WhiteType: 加白方式，0：自定义请求范围加白。1：全部请求加白
+        # @type WhiteType: Integer
+
+        attr_accessor :Id, :VulVulsIDs, :URLRegexp, :WhiteType
+
+        def initialize(id=nil, vulvulsids=nil, urlregexp=nil, whitetype=nil)
+          @Id = id
+          @VulVulsIDs = vulvulsids
+          @URLRegexp = urlregexp
+          @WhiteType = whitetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @VulVulsIDs = params['VulVulsIDs']
+          @URLRegexp = params['URLRegexp']
+          @WhiteType = params['WhiteType']
+        end
+      end
+
+      # ModifyRaspRules返回参数结构体
+      class ModifyRaspRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyReverseShellRulesAggregation请求参数结构体
       class ModifyReverseShellRulesAggregationRequest < TencentCloud::Common::AbstractModel
         # @param Id: 规则ID(新增时请留空)
@@ -36930,6 +37206,86 @@ module TencentCloud
         def deserialize(params)
           @Uuid = params['Uuid']
           @DiskInfo = params['DiskInfo']
+        end
+      end
+
+      # rasp白名单规则
+      class RaspRule < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: Integer
+        # @param URLRegexp: 自定义请求url范围正则表达式，为空则保存不成功
+        # @type URLRegexp: String
+        # @param VulVulsID: 漏洞id
+        # @type VulVulsID: Integer
+        # @param VulVulsName: 漏洞名称
+        # @type VulVulsName: String
+        # @param CveID: cve_id
+        # @type CveID: String
+        # @param SupportDefense: 漏洞防御类型，从漏洞表富化， 1:支持组件漏洞防御，组件漏洞没有正则加白。2:支持正则防御
+        # @type SupportDefense: Integer
+        # @param WhiteType: 加白范围，0:全部请求加白，1:自定义请求范围加白
+        # @type WhiteType: Integer
+        # @param Status: 状态 0: 有效
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :URLRegexp, :VulVulsID, :VulVulsName, :CveID, :SupportDefense, :WhiteType, :Status, :CreateTime, :ModifyTime
+
+        def initialize(id=nil, urlregexp=nil, vulvulsid=nil, vulvulsname=nil, cveid=nil, supportdefense=nil, whitetype=nil, status=nil, createtime=nil, modifytime=nil)
+          @Id = id
+          @URLRegexp = urlregexp
+          @VulVulsID = vulvulsid
+          @VulVulsName = vulvulsname
+          @CveID = cveid
+          @SupportDefense = supportdefense
+          @WhiteType = whitetype
+          @Status = status
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @URLRegexp = params['URLRegexp']
+          @VulVulsID = params['VulVulsID']
+          @VulVulsName = params['VulVulsName']
+          @CveID = params['CveID']
+          @SupportDefense = params['SupportDefense']
+          @WhiteType = params['WhiteType']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # rasp白名单漏洞列表
+      class RaspRuleVul < TencentCloud::Common::AbstractModel
+        # @param VulVulsID: 漏洞id
+        # @type VulVulsID: Integer
+        # @param VulVulsName: 漏洞名称
+        # @type VulVulsName: String
+        # @param CveID: cve_id
+        # @type CveID: String
+        # @param SupportDefense: 漏洞防御类型，从漏洞表富化， 1:支持组件漏洞防御，组件漏洞没有正则加白。2:支持正则防御
+        # @type SupportDefense: Integer
+
+        attr_accessor :VulVulsID, :VulVulsName, :CveID, :SupportDefense
+
+        def initialize(vulvulsid=nil, vulvulsname=nil, cveid=nil, supportdefense=nil)
+          @VulVulsID = vulvulsid
+          @VulVulsName = vulvulsname
+          @CveID = cveid
+          @SupportDefense = supportdefense
+        end
+
+        def deserialize(params)
+          @VulVulsID = params['VulVulsID']
+          @VulVulsName = params['VulVulsName']
+          @CveID = params['CveID']
+          @SupportDefense = params['SupportDefense']
         end
       end
 

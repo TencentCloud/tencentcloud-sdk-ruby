@@ -139,10 +139,12 @@ module TencentCloud
         # 1. 未传值时默认关闭。
         # 2. 开启后，将强制走AI搜索，当AI搜索结果为空时，由大模型回复兜底话术。
         # @type ForceSearchEnhancement: Boolean
+        # @param Stop: 自定义结束生成字符串
+        # @type Stop: Array
 
-        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement
+        attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop
 
-        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil)
+        def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
@@ -160,6 +162,7 @@ module TencentCloud
           @EnableDeepSearch = enabledeepsearch
           @Seed = seed
           @ForceSearchEnhancement = forcesearchenhancement
+          @Stop = stop
         end
 
         def deserialize(params)
@@ -197,6 +200,7 @@ module TencentCloud
           @EnableDeepSearch = params['EnableDeepSearch']
           @Seed = params['Seed']
           @ForceSearchEnhancement = params['ForceSearchEnhancement']
+          @Stop = params['Stop']
         end
       end
 

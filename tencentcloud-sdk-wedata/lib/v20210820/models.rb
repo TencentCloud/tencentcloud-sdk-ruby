@@ -5061,6 +5061,42 @@ module TencentCloud
         end
       end
 
+      # 数据源云梯连接状态
+      class DataSourceConnectStatus < TencentCloud::Common::AbstractModel
+        # @param Id: id
+        # @type Id: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DatasourceId: 数据源id
+        # @type DatasourceId: String
+        # @param ConnectResult: 连接结果
+        # @type ConnectResult: Integer
+        # @param ConnectError: 错误信息
+        # @type ConnectError: String
+        # @param Timestamp: 时间戳
+        # @type Timestamp: Integer
+
+        attr_accessor :Id, :ProjectId, :DatasourceId, :ConnectResult, :ConnectError, :Timestamp
+
+        def initialize(id=nil, projectid=nil, datasourceid=nil, connectresult=nil, connecterror=nil, timestamp=nil)
+          @Id = id
+          @ProjectId = projectid
+          @DatasourceId = datasourceid
+          @ConnectResult = connectresult
+          @ConnectError = connecterror
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ProjectId = params['ProjectId']
+          @DatasourceId = params['DatasourceId']
+          @ConnectResult = params['ConnectResult']
+          @ConnectError = params['ConnectError']
+          @Timestamp = params['Timestamp']
+        end
+      end
+
       # 数据源对象
       class DataSourceInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 若数据源列表为绑定数据库，则为db名称
@@ -5165,10 +5201,13 @@ module TencentCloud
         # @param DevelopmentParams: 同params 内容为开发数据源的数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevelopmentParams: String
+        # @param ConnectStatus: 数据源连接状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectStatus: :class:`Tencentcloud::Wedata.v20210820.models.DataSourceConnectStatus`
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus
 
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -5203,6 +5242,7 @@ module TencentCloud
           @ProductId = productid
           @DevelopmentId = developmentid
           @DevelopmentParams = developmentparams
+          @ConnectStatus = connectstatus
         end
 
         def deserialize(params)
@@ -5240,6 +5280,10 @@ module TencentCloud
           @ProductId = params['ProductId']
           @DevelopmentId = params['DevelopmentId']
           @DevelopmentParams = params['DevelopmentParams']
+          unless params['ConnectStatus'].nil?
+            @ConnectStatus = DataSourceConnectStatus.new
+            @ConnectStatus.deserialize(params['ConnectStatus'])
+          end
         end
       end
 

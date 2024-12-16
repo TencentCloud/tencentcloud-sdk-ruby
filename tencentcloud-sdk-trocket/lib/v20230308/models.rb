@@ -171,10 +171,12 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param MaxTopicNum: 最大可创建主题数
         # @type MaxTopicNum: Integer
+        # @param ZoneIds: 部署可用区列表
+        # @type ZoneIds: Array
 
-        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :BillingFlow, :Bandwidth, :IpRules, :MessageRetention, :PayMode, :RenewFlag, :TimeSpan, :MaxTopicNum
+        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :BillingFlow, :Bandwidth, :IpRules, :MessageRetention, :PayMode, :RenewFlag, :TimeSpan, :MaxTopicNum, :ZoneIds
 
-        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, billingflow=nil, bandwidth=nil, iprules=nil, messageretention=nil, paymode=nil, renewflag=nil, timespan=nil, maxtopicnum=nil)
+        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, billingflow=nil, bandwidth=nil, iprules=nil, messageretention=nil, paymode=nil, renewflag=nil, timespan=nil, maxtopicnum=nil, zoneids=nil)
           @InstanceType = instancetype
           @Name = name
           @SkuCode = skucode
@@ -190,6 +192,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @TimeSpan = timespan
           @MaxTopicNum = maxtopicnum
+          @ZoneIds = zoneids
         end
 
         def deserialize(params)
@@ -229,6 +232,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @TimeSpan = params['TimeSpan']
           @MaxTopicNum = params['MaxTopicNum']
+          @ZoneIds = params['ZoneIds']
         end
       end
 
@@ -1349,12 +1353,14 @@ module TencentCloud
         # @param TopicNumUpperLimit: 最大可设置的topic个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNumUpperLimit: Integer
+        # @param ZoneIds: 可用区列表
+        # @type ZoneIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :ScaledTpsEnabled, :RenewFlag, :ExpiryTime, :RoleNumLimit, :AclEnabled, :TopicNumLowerLimit, :TopicNumUpperLimit, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :ScaledTpsEnabled, :RenewFlag, :ExpiryTime, :RoleNumLimit, :AclEnabled, :TopicNumLowerLimit, :TopicNumUpperLimit, :ZoneIds, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, scaledtpsenabled=nil, renewflag=nil, expirytime=nil, rolenumlimit=nil, aclenabled=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, scaledtpsenabled=nil, renewflag=nil, expirytime=nil, rolenumlimit=nil, aclenabled=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, zoneids=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1385,6 +1391,7 @@ module TencentCloud
           @AclEnabled = aclenabled
           @TopicNumLowerLimit = topicnumlowerlimit
           @TopicNumUpperLimit = topicnumupperlimit
+          @ZoneIds = zoneids
           @RequestId = requestid
         end
 
@@ -1433,6 +1440,7 @@ module TencentCloud
           @AclEnabled = params['AclEnabled']
           @TopicNumLowerLimit = params['TopicNumLowerLimit']
           @TopicNumUpperLimit = params['TopicNumUpperLimit']
+          @ZoneIds = params['ZoneIds']
           @RequestId = params['RequestId']
         end
       end

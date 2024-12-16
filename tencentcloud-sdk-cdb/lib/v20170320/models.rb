@@ -3060,7 +3060,8 @@ module TencentCloud
         # @param ClusterTopology: 集群版节点拓扑配置。
         # 说明：若购买的是集群版实例，此参数为必填，需设置集群版实例的 RW 和 RO 节点拓扑，RO 节点范围是1 - 5个，请至少设置1个 RO 节点。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
-        # @param DiskType: 磁盘类型，基础版或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
+        # @param DiskType: 硬盘类型，单节点（云盘版）或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
+        # 说明：单节点（云盘版）、集群版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 [地域和可用区](https://cloud.tencent.com/document/product/236/8458)。
         # @type DiskType: String
         # @param ClusterType: 集群类型:cage——金融围拢，cdc——CDB ON CDC；dedicate——独享集群
         # @type ClusterType: String
@@ -3292,7 +3293,8 @@ module TencentCloud
         # @param ClusterTopology: 集群版节点拓扑配置。
         # 说明：若购买的是集群版实例，此参数为必填，需设置集群版实例的 RW 和 RO 节点拓扑，RO 节点范围是1 - 5个，请至少设置1个 RO 节点。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
-        # @param DiskType: 磁盘类型，基础版或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
+        # @param DiskType: 磁盘类型，单节点（云盘版）或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
+        # 说明：单节点（云盘版）、集群版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 [地域和可用区](https://cloud.tencent.com/document/product/236/8458)。
         # @type DiskType: String
 
         attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType

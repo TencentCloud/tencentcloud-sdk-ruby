@@ -359,13 +359,10 @@ module TencentCloud
       # DescribeCloudRunServerDetail返回参数结构体
       class DescribeCloudRunServerDetailResponse < TencentCloud::Common::AbstractModel
         # @param BaseInfo: 服务基本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaseInfo: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseInfo`
         # @param ServerConfig: 服务配置信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
         # @param OnlineVersionInfos: 在线版本信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineVersionInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -618,24 +615,18 @@ module TencentCloud
         # <li>UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中</li>
         # @type Status: String
         # @param IsAutoDegrade: 是否到期自动降为免费版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAutoDegrade: Boolean
         # @param EnvChannel: 环境渠道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvChannel: String
         # @param PayMode: 支付方式。包含以下取值：
         # <li> prepayment：预付费</li>
         # <li> postpaid：后付费</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: String
         # @param IsDefault: 是否为默认环境
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefault: Boolean
         # @param Region: 环境所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param EnvType: 环境类型：baas, run, hosting, weda,tcbr
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvType: String
         # @param Databases: 数据库列表
         # @type Databases: Array
@@ -644,22 +635,16 @@ module TencentCloud
         # @param Functions: 函数列表
         # @type Functions: Array
         # @param LogServices: 云日志服务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogServices: Array
         # @param StaticStorages: 静态资源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaticStorages: Array
         # @param Tags: 环境标签列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param CustomLogServices: 自定义日志服务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomLogServices: Array
         # @param PackageId: tcb产品套餐ID，参考DescribePackages接口的返回值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageId: String
         # @param PackageName: 套餐中文名称，参考DescribePackages接口的返回值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
 
         attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :EnvType, :Databases, :Storages, :Functions, :LogServices, :StaticStorages, :Tags, :CustomLogServices, :PackageId, :PackageName
@@ -786,10 +771,8 @@ module TencentCloud
       # 扩缩容入参
       class HpaPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyType: 扩缩容类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyType: String
         # @param PolicyThreshold: 扩缩容阈值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyThreshold: Integer
 
         attr_accessor :PolicyType, :PolicyThreshold
@@ -860,13 +843,10 @@ module TencentCloud
       # 在线版本信息
       class OnlineVersionInfo < TencentCloud::Common::AbstractModel
         # @param VersionName: 版本名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
         # @param ImageUrl: 镜像url
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
         # @param FlowRatio: 流量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowRatio: String
 
         attr_accessor :VersionName, :ImageUrl, :FlowRatio
@@ -1062,7 +1042,6 @@ module TencentCloud
         # @param LogParseType: 解析类型：json ｜ line
         # @type LogParseType: String
         # @param Tag: 服务标签, function: 函数托管
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: String
 
         attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag

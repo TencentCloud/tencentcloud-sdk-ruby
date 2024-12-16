@@ -1352,6 +1352,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除漏洞防御白名单
+
+        # @param request: Request instance for DeleteRaspRules.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DeleteRaspRulesRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DeleteRaspRulesResponse`
+        def DeleteRaspRules(request)
+          body = send_request('DeleteRaspRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRaspRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据Ids删除反弹Shell事件
 
         # @param request: Request instance for DeleteReverseShellEvents.
@@ -6546,6 +6570,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看漏洞防御最大cpu限制
+
+        # @param request: Request instance for DescribeRaspMaxCpu.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeRaspMaxCpuRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeRaspMaxCpuResponse`
+        def DescribeRaspMaxCpu(request)
+          body = send_request('DescribeRaspMaxCpu', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRaspMaxCpuResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞防御白名单漏洞列表
+
+        # @param request: Request instance for DescribeRaspRuleVuls.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeRaspRuleVulsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeRaspRuleVulsResponse`
+        def DescribeRaspRuleVuls(request)
+          body = send_request('DescribeRaspRuleVuls', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRaspRuleVulsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询漏洞防御白名单
+
+        # @param request: Request instance for DescribeRaspRules.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeRaspRulesRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeRaspRulesResponse`
+        def DescribeRaspRules(request)
+          body = send_request('DescribeRaspRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRaspRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询推荐购买防护核数
 
         # @param request: Request instance for DescribeRecommendedProtectCpu.
@@ -11238,6 +11334,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRansomDefenseStrategyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑漏洞防御最大cpu配置
+
+        # @param request: Request instance for ModifyRaspMaxCpu.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyRaspMaxCpuRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyRaspMaxCpuResponse`
+        def ModifyRaspMaxCpu(request)
+          body = send_request('ModifyRaspMaxCpu', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRaspMaxCpuResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加漏洞防御白名单
+
+        # @param request: Request instance for ModifyRaspRules.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyRaspRulesRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyRaspRulesResponse`
+        def ModifyRaspRules(request)
+          body = send_request('ModifyRaspRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRaspRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

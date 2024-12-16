@@ -208,6 +208,7 @@ module TencentCloud
       # 高级选项设置
       class AdvanceSettings < TencentCloud::Common::AbstractModel
         # @param SubTaskConcurrency: 子任务单机并发数限制，默认值为2
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubTaskConcurrency: Integer
 
         attr_accessor :SubTaskConcurrency
@@ -223,10 +224,10 @@ module TencentCloud
 
       # 亲和规则
       class Affinity < TencentCloud::Common::AbstractModel
-        # @param Scope: -
+        # @param Scope: 亲和性范围
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scope: String
-        # @param Weight: -
+        # @param Weight: 亲和规则的权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: String
         # @param Paths: -
@@ -859,19 +860,29 @@ module TencentCloud
         # @param GroupCount: 应用下部署组个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupCount: Integer
+        # @param RunningGroupCount: 运行中部署组个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningGroupCount: String
+        # @param AbnormalCount: 异常部署组个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbnormalCount: String
 
-        attr_accessor :InstanceCount, :RunInstanceCount, :GroupCount
+        attr_accessor :InstanceCount, :RunInstanceCount, :GroupCount, :RunningGroupCount, :AbnormalCount
 
-        def initialize(instancecount=nil, runinstancecount=nil, groupcount=nil)
+        def initialize(instancecount=nil, runinstancecount=nil, groupcount=nil, runninggroupcount=nil, abnormalcount=nil)
           @InstanceCount = instancecount
           @RunInstanceCount = runinstancecount
           @GroupCount = groupcount
+          @RunningGroupCount = runninggroupcount
+          @AbnormalCount = abnormalcount
         end
 
         def deserialize(params)
           @InstanceCount = params['InstanceCount']
           @RunInstanceCount = params['RunInstanceCount']
           @GroupCount = params['GroupCount']
+          @RunningGroupCount = params['RunningGroupCount']
+          @AbnormalCount = params['AbnormalCount']
         end
       end
 
@@ -2628,10 +2639,13 @@ module TencentCloud
         # @param InternalContainerList: 内部容器列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternalContainerList: Array
+        # @param ServiceSettingList: service列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceSettingList: Array
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType, :WarmupSetting, :GatewayConfig, :ContainerName, :AdditionalContainerList, :InternalContainerList
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType, :WarmupSetting, :GatewayConfig, :ContainerName, :AdditionalContainerList, :InternalContainerList, :ServiceSettingList
 
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil, warmupsetting=nil, gatewayconfig=nil, containername=nil, additionalcontainerlist=nil, internalcontainerlist=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil, warmupsetting=nil, gatewayconfig=nil, containername=nil, additionalcontainerlist=nil, internalcontainerlist=nil, servicesettinglist=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -2673,6 +2687,7 @@ module TencentCloud
           @ContainerName = containername
           @AdditionalContainerList = additionalcontainerlist
           @InternalContainerList = internalcontainerlist
+          @ServiceSettingList = servicesettinglist
         end
 
         def deserialize(params)
@@ -2769,6 +2784,14 @@ module TencentCloud
               groupcontainerinfo_tmp = GroupContainerInfo.new
               groupcontainerinfo_tmp.deserialize(i)
               @InternalContainerList << groupcontainerinfo_tmp
+            end
+          end
+          unless params['ServiceSettingList'].nil?
+            @ServiceSettingList = []
+            params['ServiceSettingList'].each do |i|
+              servicesetting_tmp = ServiceSetting.new
+              servicesetting_tmp.deserialize(i)
+              @ServiceSettingList << servicesetting_tmp
             end
           end
         end
@@ -3465,13 +3488,18 @@ module TencentCloud
         # @type ServiceConfigList: Array
         # @param IgnoreCreateImageRepository: 忽略创建镜像仓库
         # @type IgnoreCreateImageRepository: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 数据集id列表
         # @type ProgramIdList: Array
         # @param ApmInstanceId: apm业务系统id
         # @type ApmInstanceId: String
-        # @param ProgramLanguage: 编程语言
+        # @param ProgramLanguage: 编程语言;
+        # J - JAVA；
+        # C - C/C++；
+        # P - Python；
+        # G - Go；
+        # O - Other；
         # @type ProgramLanguage: String
-        # @param FrameworkType: 开发框架
+        # @param FrameworkType: 开发框架-SpringCloud/Dubbo/Go-GRPC/Other
         # @type FrameworkType: String
         # @param ServiceGovernanceConfig: 注册配置治理
         # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
@@ -3922,7 +3950,9 @@ module TencentCloud
         # @type CpuRequest: String
         # @param MemRequest: 初始分配的内存 MiB 数，对应 K8S request
         # @type MemRequest: String
-        # @param GroupResourceType: 部署组资源类型
+        # @param GroupResourceType: 部署组资源类型；
+        # DEF — 默认资源类型；
+        # GW — 网关资源类型；
         # @type GroupResourceType: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
@@ -4247,7 +4277,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param GroupDesc: 部署组描述
         # @type GroupDesc: String
-        # @param GroupResourceType: 部署组资源类型
+        # @param GroupResourceType: 部署组资源类型；DEF 表示默认资源类型；GW 表示网关资源类型
         # @type GroupResourceType: String
         # @param Alias: 部署组备注
         # @type Alias: String
@@ -4531,11 +4561,11 @@ module TencentCloud
         # @type NamespaceType: String
         # @param NamespaceId: 命名空间ID
         # @type NamespaceId: String
-        # @param IsHaEnable: 是否开启高可用
+        # @param IsHaEnable: 是否开启高可用，1 表示开启，0 表示不开启
         # @type IsHaEnable: String
         # @param ProgramId: 需要绑定的数据集ID
         # @type ProgramId: String
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID
         # @type ProgramIdList: Array
 
         attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable, :ProgramId, :ProgramIdList
@@ -6483,13 +6513,15 @@ module TencentCloud
         # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
+        extend Gem::Deprecate
+        deprecate :Reponame, :none, 2024, 12
+        deprecate :Reponame=, :none, 2024, 12
 
-        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
+        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
           @TagName = tagname
           @InstanceNum = instancenum
           @Server = server
-          @Reponame = reponame
           @CpuLimit = cpulimit
           @MemLimit = memlimit
           @JvmOpts = jvmopts
@@ -6530,7 +6562,6 @@ module TencentCloud
           @TagName = params['TagName']
           @InstanceNum = params['InstanceNum']
           @Server = params['Server']
-          @Reponame = params['Reponame']
           @CpuLimit = params['CpuLimit']
           @MemLimit = params['MemLimit']
           @JvmOpts = params['JvmOpts']
@@ -9469,9 +9500,9 @@ module TencentCloud
         # @type EndTime: String
         # @param Period: 查询时间粒度，单位秒可选值：60、3600、86400
         # @type Period: Integer
-        # @param MetricDimensions: 查询指标维度
+        # @param MetricDimensions: 查询指标维度，不能为空，支持 ServiceName, OperationName, PeerServiceName, PeerOperationName
         # @type MetricDimensions: Array
-        # @param Metrics: 查询指标名
+        # @param Metrics: 查询指标名，不能为空.
         # @type Metrics: Array
         # @param Kind: 视图视角。可选值：SERVER, CLIENT。默认为SERVER
         # @type Kind: String
@@ -9619,9 +9650,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param MetricDimensionValues: 维度
+        # @param MetricDimensionValues: 维度，并且 维度 key value 不能为空
         # @type MetricDimensionValues: Array
-        # @param Metrics: 指标
+        # @param Metrics: 指标，并且 key, value 不能为空
         # @type Metrics: Array
         # @param Kind: 调用视角。可选值：SERVER, CLIENT。默认为SERVER
         # @type Kind: String
@@ -11036,7 +11067,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchWord: 对id和name进行关键词过滤
         # @type SearchWord: String
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 是否关闭鉴权
         # @type DisableProgramAuthCheck: Boolean
 
         attr_accessor :ClusterIdList, :ClusterType, :Offset, :Limit, :SearchWord, :DisableProgramAuthCheck
@@ -11178,7 +11209,7 @@ module TencentCloud
         # @type NamespaceName: String
         # @param IsDefault: 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认命名空间。1：非默认命名空间
         # @type IsDefault: String
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 是否关闭鉴权查询
         # @type DisableProgramAuthCheck: Boolean
 
         attr_accessor :NamespaceIdList, :ClusterId, :Limit, :Offset, :NamespaceId, :NamespaceResourceTypeList, :SearchWord, :NamespaceTypeList, :NamespaceName, :IsDefault, :DisableProgramAuthCheck

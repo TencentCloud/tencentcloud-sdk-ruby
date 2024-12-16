@@ -343,6 +343,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建设备通道
+
+        # @param request: Request instance for CreateDeviceChannel.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateDeviceChannelRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateDeviceChannelResponse`
+        def CreateDeviceChannel(request)
+          body = send_request('CreateDeviceChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeviceChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建外部视频 AI 分析任务
 
         # @param request: Request instance for CreateExternalSourceAIServiceTask.
@@ -377,6 +401,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateFenceBindResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开通免费云存服务
+
+        # @param request: Request instance for CreateFreeCloudStorage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateFreeCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateFreeCloudStorageResponse`
+        def CreateFreeCloudStorage(request)
+          body = send_request('CreateFreeCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFreeCloudStorageResponse.new
             model.deserialize(response['Response'])
             model
           else
