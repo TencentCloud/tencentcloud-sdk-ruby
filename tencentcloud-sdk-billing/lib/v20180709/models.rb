@@ -4582,6 +4582,11 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
+        extend Gem::Deprecate
+        deprecate :IsAllowArrears, :none, 2024, 12
+        deprecate :IsAllowArrears=, :none, 2024, 12
+        deprecate :IsCreditLimited, :none, 2024, 12
+        deprecate :IsCreditLimited=, :none, 2024, 12
 
         def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
           @Balance = balance

@@ -44,7 +44,7 @@ module TencentCloud
 
       # AssignProject请求参数结构体
       class AssignProjectRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vn****。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceIds: Array
         # @param ProjectId: 项目ID，用户已创建项目的唯一ID,非自定义
         # @type ProjectId: Integer
@@ -867,44 +867,48 @@ module TencentCloud
 
       # 云数据库实例当前操作
       class CurrentOp < TencentCloud::Common::AbstractModel
-        # @param OpId: 操作序号
+        # @param OpId: 操作序号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpId: Integer
-        # @param Ns: 操作所在的命名空间，形式如db.collection
+        # @param Ns: 操作所在的命名空间，形式如db.collection。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ns: String
-        # @param Query: 操作执行语句
+        # @param Query: 操作执行语句。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Query: String
-        # @param Op: 操作类型，可能的取值：aggregate、count、delete、distinct、find、findAndModify、getMore、insert、mapReduce、update和command
+        # @param Op: 操作类型，可能的取值：aggregate、count、delete、distinct、find、findAndModify、getMore、insert、mapReduce、update和command。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Op: String
-        # @param ReplicaSetName: 操作所在的分片名称
+        # @param ReplicaSetName: 操作所在的分片名称。
         # @type ReplicaSetName: String
-        # @param State: 筛选条件，节点状态，可能的取值为：Primary、Secondary
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type State: String
-        # @param Operation: 操作详细信息
+        # @param NodeName: 操作所在的节点名称。
+        # @type NodeName: String
+        # @param Operation: 操作详细信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operation: String
-        # @param NodeName: 操作所在的节点名称
-        # @type NodeName: String
-        # @param MicrosecsRunning: 操作已执行时间（ms）
+        # @param State: 筛选条件，节点状态，可能的取值为：Primary、Secondary。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param MicrosecsRunning: 操作已执行时间（ms）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicrosecsRunning: Integer
+        # @param ExecNode: 当前操作所在节点信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecNode: String
 
-        attr_accessor :OpId, :Ns, :Query, :Op, :ReplicaSetName, :State, :Operation, :NodeName, :MicrosecsRunning
+        attr_accessor :OpId, :Ns, :Query, :Op, :ReplicaSetName, :NodeName, :Operation, :State, :MicrosecsRunning, :ExecNode
 
-        def initialize(opid=nil, ns=nil, query=nil, op=nil, replicasetname=nil, state=nil, operation=nil, nodename=nil, microsecsrunning=nil)
+        def initialize(opid=nil, ns=nil, query=nil, op=nil, replicasetname=nil, nodename=nil, operation=nil, state=nil, microsecsrunning=nil, execnode=nil)
           @OpId = opid
           @Ns = ns
           @Query = query
           @Op = op
           @ReplicaSetName = replicasetname
-          @State = state
-          @Operation = operation
           @NodeName = nodename
+          @Operation = operation
+          @State = state
           @MicrosecsRunning = microsecsrunning
+          @ExecNode = execnode
         end
 
         def deserialize(params)
@@ -913,10 +917,11 @@ module TencentCloud
           @Query = params['Query']
           @Op = params['Op']
           @ReplicaSetName = params['ReplicaSetName']
-          @State = params['State']
-          @Operation = params['Operation']
           @NodeName = params['NodeName']
+          @Operation = params['Operation']
+          @State = params['State']
           @MicrosecsRunning = params['MicrosecsRunning']
+          @ExecNode = params['ExecNode']
         end
       end
 
@@ -1270,18 +1275,21 @@ module TencentCloud
 
       # DescribeCurrentOp请求参数结构体
       class DescribeCurrentOpRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 指定要查询的实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Ns: 筛选条件，操作所属的命名空间namespace，格式为db.collection
+        # @param Ns: 操作所属的命名空间 namespace，格式为 db.collection。
         # @type Ns: String
-        # @param MillisecondRunning: 筛选条件，操作已经执行的时间（单位：毫秒），结果将返回超过设置时间的操作，默认值为0，取值范围为[0, 3600000]
+        # @param MillisecondRunning: 设置查询筛选条件为操作任务已经执行的时间。
+        # - 默认值为0，取值范围为[0, 3600000]，单位：毫秒。
+        # - 结果将返回超过设置时间的操作。
         # @type MillisecondRunning: Integer
-        # @param Op: 筛选条件，操作类型，可能的取值：none，update，insert，query，command，getmore，remove和killcursors
+        # @param Op: 设置查询筛选条件为操作任务类型。取值包括：none、update、insert，query、command、getmore、remove 和 killcursors。
         # @type Op: String
-        # @param ReplicaSetName: 筛选条件，分片名称
+        # @param ReplicaSetName: 筛选条件，分片名称。
         # @type ReplicaSetName: String
-        # @param State: 筛选条件，节点状态，可能的取值为：primary
-        # secondary
+        # @param State: 设置查询筛选条件为节点角色。
+        # - primary：主节点。
+        # - secondary：从节点。
         # @type State: String
         # @param Limit: 单次请求返回的数量，默认值为100，取值范围为[0,100]
         # @type Limit: Integer
@@ -1323,9 +1331,9 @@ module TencentCloud
 
       # DescribeCurrentOp返回参数结构体
       class DescribeCurrentOpResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的操作总数
+        # @param TotalCount: 符合查询条件的操作总数。
         # @type TotalCount: Integer
-        # @param CurrentOps: 当前操作列表
+        # @param CurrentOps: 当前操作列表。
         # @type CurrentOps: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2605,7 +2613,7 @@ module TencentCloud
 
       # InquirePriceRenewDBInstances请求参数结构体
       class InquirePriceRenewDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同，接口单次最多只支持5个实例进行操作。
+        # @param InstanceIds: 实例ID，格式如：cmgo-p8vn****。与云数据库控制台页面中显示的实例ID相同，接口单次最多只支持5个实例进行操作。
         # @type InstanceIds: Array
         # @param InstanceChargePrepaid: 预付费模式（即包年包月）相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Mongodb.v20190725.models.InstanceChargePrepaid`

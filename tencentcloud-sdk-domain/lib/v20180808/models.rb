@@ -2551,7 +2551,7 @@ module TencentCloud
 
       # DescribeTemplate请求参数结构体
       class DescribeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: 模板ID(模板列表接口可获取)
         # @type TemplateId: String
 
         attr_accessor :TemplateId

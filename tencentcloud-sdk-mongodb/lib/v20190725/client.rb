@@ -246,7 +246,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询异步任务状态接口
+        # 本接口（DescribeAsyncRequestInfo）用于查询异步任务状态接口。
 
         # @param request: Request instance for DescribeAsyncRequestInfo.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeAsyncRequestInfoRequest`
@@ -342,7 +342,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+        # 本接口（DescribeCurrentOp）用于查询云数据库实例的当前正在执行的操作。
 
         # @param request: Request instance for DescribeCurrentOp.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeCurrentOpRequest`

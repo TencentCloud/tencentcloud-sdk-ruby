@@ -1247,10 +1247,12 @@ module TencentCloud
         # @param ObjectSupportType: 1：平台支持的对象 2：应用支持的部分对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectSupportType: Integer
+        # @param ArchLayer: 1.接入层 2.逻辑层 3. 数据层
+        # @type ArchLayer: Integer
 
-        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction, :ObjectPlatformName, :ObjectSupportType
+        attr_accessor :ObjectTypeId, :ObjectTypeTitle, :ObjectTypeLevelOne, :ObjectTypeParams, :ObjectTypeJsonParse, :ObjectHasNewAction, :ObjectPlatformName, :ObjectSupportType, :ArchLayer
 
-        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil, objectplatformname=nil, objectsupporttype=nil)
+        def initialize(objecttypeid=nil, objecttypetitle=nil, objecttypelevelone=nil, objecttypeparams=nil, objecttypejsonparse=nil, objecthasnewaction=nil, objectplatformname=nil, objectsupporttype=nil, archlayer=nil)
           @ObjectTypeId = objecttypeid
           @ObjectTypeTitle = objecttypetitle
           @ObjectTypeLevelOne = objecttypelevelone
@@ -1259,6 +1261,7 @@ module TencentCloud
           @ObjectHasNewAction = objecthasnewaction
           @ObjectPlatformName = objectplatformname
           @ObjectSupportType = objectsupporttype
+          @ArchLayer = archlayer
         end
 
         def deserialize(params)
@@ -1276,6 +1279,7 @@ module TencentCloud
           @ObjectHasNewAction = params['ObjectHasNewAction']
           @ObjectPlatformName = params['ObjectPlatformName']
           @ObjectSupportType = params['ObjectSupportType']
+          @ArchLayer = params['ArchLayer']
         end
       end
 
@@ -2526,10 +2530,12 @@ module TencentCloud
         # @param ActionRisk: 动作风险等级，1:低风险 2:中风险 3:高风险
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionRisk: String
+        # @param FailurePerformance: 故障表现
+        # @type FailurePerformance: String
 
-        attr_accessor :TemplateGroupActionId, :ActionId, :Order, :GeneralConfiguration, :CustomConfiguration, :CreateTime, :UpdateTime, :ActionTitle, :RandomId, :RecoverId, :ExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :ActionRisk
+        attr_accessor :TemplateGroupActionId, :ActionId, :Order, :GeneralConfiguration, :CustomConfiguration, :CreateTime, :UpdateTime, :ActionTitle, :RandomId, :RecoverId, :ExecuteId, :ActionApiType, :ActionAttribute, :ActionType, :ActionRisk, :FailurePerformance
 
-        def initialize(templategroupactionid=nil, actionid=nil, order=nil, generalconfiguration=nil, customconfiguration=nil, createtime=nil, updatetime=nil, actiontitle=nil, randomid=nil, recoverid=nil, executeid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, actionrisk=nil)
+        def initialize(templategroupactionid=nil, actionid=nil, order=nil, generalconfiguration=nil, customconfiguration=nil, createtime=nil, updatetime=nil, actiontitle=nil, randomid=nil, recoverid=nil, executeid=nil, actionapitype=nil, actionattribute=nil, actiontype=nil, actionrisk=nil, failureperformance=nil)
           @TemplateGroupActionId = templategroupactionid
           @ActionId = actionid
           @Order = order
@@ -2545,6 +2551,7 @@ module TencentCloud
           @ActionAttribute = actionattribute
           @ActionType = actiontype
           @ActionRisk = actionrisk
+          @FailurePerformance = failureperformance
         end
 
         def deserialize(params)
@@ -2563,6 +2570,7 @@ module TencentCloud
           @ActionAttribute = params['ActionAttribute']
           @ActionType = params['ActionType']
           @ActionRisk = params['ActionRisk']
+          @FailurePerformance = params['FailurePerformance']
         end
       end
 

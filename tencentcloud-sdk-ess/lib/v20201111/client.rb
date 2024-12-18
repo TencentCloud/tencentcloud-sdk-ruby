@@ -2585,6 +2585,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 仅且仅能查询企业本身在电子签的认证状态
+
+        # @param request: Request instance for DescribeOrganizationVerifyStatus.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationVerifyStatusRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeOrganizationVerifyStatusResponse`
+        def DescribeOrganizationVerifyStatus(request)
+          body = send_request('DescribeOrganizationVerifyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationVerifyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribePersonCertificate）用于查询个人数字证书信息。<br />注：`1.目前仅用于查询开通了医疗自动签署功能的个人数字证书。`<br />`2.调用此接口需要开通白名单，使用前请联系相关人员开通白名单。`
 
         # @param request: Request instance for DescribePersonCertificate.

@@ -181,9 +181,9 @@ module TencentCloud
         # @type Memory: Integer
         # @param Volume: 实例硬盘大小，单位：GB
         # @type Volume: Integer
-        # @param MongoVersion: 版本号，当前支持 MONGO_3_WT、MONGO_3_ROCKS、MONGO_36_WT
+        # @param MongoVersion: 指版本信息。具体支持的版本信息 ，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。 - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。 - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。 - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。 - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。 - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。 - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param MachineCode: 机器类型，GIO：高IO版；TGIO：高IO万兆
+        # @param MachineCode: 机器类型，HIO10G：高IO万兆。
         # @type MachineCode: String
         # @param GoodsNum: 实例数量，默认值为1, 最小值1，最大值为10
         # @type GoodsNum: Integer
@@ -201,10 +201,12 @@ module TencentCloud
         # @type UniqVpcId: String
         # @param UniqSubnetId: 私有网络下的子网ID，如果设置了 VpcId，则 SubnetId必填
         # @type UniqSubnetId: String
+        # @param InstanceType: 实例类型，REPLSET-副本集，SHARD-分片集群，默认为REPLSET
+        # @type InstanceType: String
 
-        attr_accessor :SecondaryNum, :Memory, :Volume, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :TimeSpan, :Password, :ProjectId, :SecurityGroup, :UniqVpcId, :UniqSubnetId
+        attr_accessor :SecondaryNum, :Memory, :Volume, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :TimeSpan, :Password, :ProjectId, :SecurityGroup, :UniqVpcId, :UniqSubnetId, :InstanceType
 
-        def initialize(secondarynum=nil, memory=nil, volume=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, timespan=nil, password=nil, projectid=nil, securitygroup=nil, uniqvpcid=nil, uniqsubnetid=nil)
+        def initialize(secondarynum=nil, memory=nil, volume=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, timespan=nil, password=nil, projectid=nil, securitygroup=nil, uniqvpcid=nil, uniqsubnetid=nil, instancetype=nil)
           @SecondaryNum = secondarynum
           @Memory = memory
           @Volume = volume
@@ -218,6 +220,7 @@ module TencentCloud
           @SecurityGroup = securitygroup
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -234,6 +237,7 @@ module TencentCloud
           @SecurityGroup = params['SecurityGroup']
           @UniqVpcId = params['UniqVpcId']
           @UniqSubnetId = params['UniqSubnetId']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -312,7 +316,7 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vn****。与云数据库控制台页面中显示的实例ID相同。
         # @type InstanceIds: Array
         # @param InstanceType: 实例类型，取值范围：
         # <ul><li>0： 所有实例</li><li>1： 正式实例</li><li>2： 临时实例</li><li>3： 只读实例</li><li>-1： 正式实例+只读+灾备实例</li></ul>
@@ -854,11 +858,11 @@ module TencentCloud
 
       # SetPassword请求参数结构体
       class SetPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vn****。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
         # @param UserName: 实例账户名。初始化实例密码，本参数传mongouser。
         # @type UserName: String
-        # @param Password: 实例新密码，至少包含字母、数字和字符（!@#%^*()）中的两种，长度为8-16个字符
+        # @param Password: 指定账户的新密码， 密码格式为8-32个字符长度，至少包含字母、数字和字符（!@#%^*()_）中的两种
         # @type Password: String
 
         attr_accessor :InstanceId, :UserName, :Password
@@ -1129,7 +1133,7 @@ module TencentCloud
 
       # UpgradeDBInstance请求参数结构体
       class UpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例ID，格式如：cmgo-iga0****。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
         # @param Memory: 升级后的内存大小，单位：GB
         # @type Memory: Integer

@@ -20,14 +20,19 @@ module TencentCloud
       # AttributeKey值详情
       class AttributeKeyDetail < TencentCloud::Common::AbstractModel
         # @param LabelType: 输入框类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelType: String
         # @param Starter: 初始化展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Starter: String
         # @param Order: 展示排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: Integer
         # @param Value: AttributeKey值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
         # @param Label: 中文标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
 
         attr_accessor :LabelType, :Starter, :Order, :Value, :Label
@@ -755,8 +760,10 @@ module TencentCloud
       # CMK属性
       class KeyMetadata < TencentCloud::Common::AbstractModel
         # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
         # @param KeyId: CMK的全局唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyId: String
 
         attr_accessor :Alias, :KeyId

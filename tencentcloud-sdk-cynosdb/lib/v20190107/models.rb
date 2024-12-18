@@ -5422,6 +5422,71 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterDatabaseTables请求参数结构体
+      class DescribeClusterDatabaseTablesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Db: 数据库名
+        # @type Db: String
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 个数
+        # @type Limit: Integer
+        # @param TableType: 数据表类型。
+        # "view"表示只返回 view，"base_table" 表示只返回基本表，"all" 表示返回 view 和表。默认为 all。
+        # @type TableType: String
+
+        attr_accessor :ClusterId, :Db, :Offset, :Limit, :TableType
+
+        def initialize(clusterid=nil, db=nil, offset=nil, limit=nil, tabletype=nil)
+          @ClusterId = clusterid
+          @Db = db
+          @Offset = offset
+          @Limit = limit
+          @TableType = tabletype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Db = params['Db']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TableType = params['TableType']
+        end
+      end
+
+      # DescribeClusterDatabaseTables返回参数结构体
+      class DescribeClusterDatabaseTablesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页限制数量
+        # @type Limit: Integer
+        # @param Tables: 数据库表列表
+        # @type Tables: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Offset, :Limit, :Tables, :RequestId
+
+        def initialize(totalcount=nil, offset=nil, limit=nil, tables=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Offset = offset
+          @Limit = limit
+          @Tables = tables
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Tables = params['Tables']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterDatabases请求参数结构体
       class DescribeClusterDatabasesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id

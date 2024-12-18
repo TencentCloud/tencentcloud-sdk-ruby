@@ -53,10 +53,12 @@ module TencentCloud
         # @type ExpirationDate: String
         # @param LifeSpanUnit: 授权时长单位，枚举值有Y年/M月/D日三种
         # @type LifeSpanUnit: String
+        # @param LicenseType: 授权的类型：Standard正式版/Development开发版/Trial体验版
+        # @type LicenseType: String
 
-        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit
+        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType
 
-        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil)
+        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil)
           @LicenseId = licenseid
           @LicenseMode = licensemode
           @LicenseStatus = licensestatus
@@ -73,6 +75,7 @@ module TencentCloud
           @ActivationDate = activationdate
           @ExpirationDate = expirationdate
           @LifeSpanUnit = lifespanunit
+          @LicenseType = licensetype
         end
 
         def deserialize(params)
@@ -99,6 +102,7 @@ module TencentCloud
           @ActivationDate = params['ActivationDate']
           @ExpirationDate = params['ExpirationDate']
           @LifeSpanUnit = params['LifeSpanUnit']
+          @LicenseType = params['LicenseType']
         end
       end
 

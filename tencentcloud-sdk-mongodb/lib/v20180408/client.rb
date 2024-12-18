@@ -247,7 +247,6 @@ module TencentCloud
 
         # 本接口(SetPassword)用于设置（初始化）MongoDB云数据库实例账户密码。
 
-
         # @param request: Request instance for SetPassword.
         # @type request: :class:`Tencentcloud::mongodb::V20180408::SetPasswordRequest`
         # @rtype: :class:`Tencentcloud::mongodb::V20180408::SetPasswordResponse`

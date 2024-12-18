@@ -1089,7 +1089,7 @@ module TencentCloud
       # 导播台输入信息参数
       class CasterInputInfo < TencentCloud::Common::AbstractModel
         # @param InputIndex: 输入源Index。
-        # 范围[1, 20]
+        # 范围[1, 24]
         # @type InputIndex: Integer
         # @param InputType: 输入源类型。
         # 范围[0,1,2,3,4]。
@@ -1900,7 +1900,7 @@ module TencentCloud
         # @param CasterId: 导播台ID
         # @type CasterId: Integer
         # @param InputIndex: 请求生成推流地址的输入Index。
-        # 允许范围[1,20]。
+        # 允许范围[1,24]。
         # @type InputIndex: Integer
         # @param Protocol: 生成推流地址协议。
         # 范围[rtmp,webrtc]。
@@ -9178,12 +9178,12 @@ module TencentCloud
       # DescribePushBandwidthAndFluxList请求参数结构体
       class DescribePushBandwidthAndFluxListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间点，精确到分钟粒度，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO%20%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F,-ISO%20%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#52)。
         # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         # 支持最近两个月的查询，查询开始和结束时间跨度不支持超过31天。
         # @type StartTime: String
         # @param EndTime: 查询结束时间点，精确到分钟粒度，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO%20%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F,-ISO%20%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#52)。
         # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         # 支持最近两个月的查询，查询开始和结束时间跨度不支持超过31天。
         # @type EndTime: String

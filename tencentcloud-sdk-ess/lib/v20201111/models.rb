@@ -8316,6 +8316,57 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganizationVerifyStatus请求参数结构体
+      class DescribeOrganizationVerifyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :Agent
+
+        def initialize(operator=nil, agent=nil)
+          @Operator = operator
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeOrganizationVerifyStatus返回参数结构体
+      class DescribeOrganizationVerifyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param VerifyStatus: 当前企业认证状态
+        # <ul>
+        # <li> <b>0 </b>:未认证</li>
+        # <li> <b>1 </b> : 认证中</li>
+        # <li> <b>2 </b> : 已认证</li>
+        # </ul>
+        # @type VerifyStatus: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VerifyStatus, :RequestId
+
+        def initialize(verifystatus=nil, requestid=nil)
+          @VerifyStatus = verifystatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VerifyStatus = params['VerifyStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePersonCertificate请求参数结构体
       class DescribePersonCertificateRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
