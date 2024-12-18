@@ -500,6 +500,53 @@ module TencentCloud
         end
       end
 
+      # GetVRSVoiceTypeInfo请求参数结构体
+      class GetVRSVoiceTypeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceType: 音色id。
+        # @type VoiceType: Integer
+        # @param TaskType: 0 - 除快速声音复刻外其他复刻类型（默认）； 5 - 快速声音复刻。 默认为0。
+        # @type TaskType: Integer
+        # @param FastVoiceType: 快速复刻音色id。
+        # @type FastVoiceType: String
+
+        attr_accessor :VoiceType, :TaskType, :FastVoiceType
+
+        def initialize(voicetype=nil, tasktype=nil, fastvoicetype=nil)
+          @VoiceType = voicetype
+          @TaskType = tasktype
+          @FastVoiceType = fastvoicetype
+        end
+
+        def deserialize(params)
+          @VoiceType = params['VoiceType']
+          @TaskType = params['TaskType']
+          @FastVoiceType = params['FastVoiceType']
+        end
+      end
+
+      # GetVRSVoiceTypeInfo返回参数结构体
+      class GetVRSVoiceTypeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 音色信息
+        # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.VoiceTypeInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoiceTypeInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetVRSVoiceTypes请求参数结构体
       class GetVRSVoiceTypesRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 复刻类型。
@@ -667,10 +714,10 @@ module TencentCloud
       # 1.检测字是否存在多读、 少读、 错读等
       # 2.检测准确度和流畅度
       class Words < TencentCloud::Common::AbstractModel
-        # @param PronAccuracy: 准确度 (<75则认为不合格)
+        # @param PronAccuracy: 准确度 (小于75则认为不合格)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PronAccuracy: Float
-        # @param PronFluency: 流畅度 (<0.95则认为不合格)
+        # @param PronFluency: 流畅度 (小于0.95则认为不合格)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PronFluency: Float
         # @param Tag: tag:

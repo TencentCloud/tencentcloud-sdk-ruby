@@ -856,7 +856,7 @@ module TencentCloud
         # @type PhoneNumber: String
         # @param IsoCode: 国家码或地区码，例如 CN、US 等，对于未识别出国家码或者地区码，默认返回 DEF。
         # @type IsoCode: String
-        # @param IsoName: 国家码或地区名，例如 China，可参考 [国际/港澳台短信价格总览](https://cloud.tencent.com/document/product/382/18051#.E6.97.A5.E7.BB.93.E5.90.8E.E4.BB.98.E8.B4.B9.3Ca-id.3D.22post-payment.22.3E.3C.2Fa.3E)
+        # @param IsoName: 国家码或地区名，例如 China，可参考 [国际/港澳台短信价格总览](https://cloud.tencent.com/document/product/382/18051)
         # @type IsoName: String
 
         attr_accessor :Code, :Message, :NationCode, :SubscriberNumber, :PhoneNumber, :IsoCode, :IsoName

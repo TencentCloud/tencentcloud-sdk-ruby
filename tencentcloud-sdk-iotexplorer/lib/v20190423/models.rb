@@ -1038,6 +1038,81 @@ module TencentCloud
         end
       end
 
+      # CreateCloudStorageAIServiceTask请求参数结构体
+      class CreateCloudStorageAIServiceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 云存 AI 服务类型。可选值：
+        # - `RealtimeObjectDetect`：目标检测
+        # - `Highlight`：视频浓缩
+        # - `VideoToText`：视频语义理解
+        # @type ServiceType: String
+        # @param StartTime: 待分析云存的起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 待分析云存的结束时间
+        # @type EndTime: Integer
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param Config: 视频分析配置参数
+        # @type Config: String
+        # @param ROI: 视频分析识别区域
+        # @type ROI: String
+        # @param VideoURLs: 分析外部传入的视频 URL 列表，支持 HLS 点播（m3u8）及常见视频格式（mp4 等）
+        # @type VideoURLs: Array
+        # @param CustomId: 自定义任务 ID
+        # @type CustomId: String
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :StartTime, :EndTime, :ChannelId, :Config, :ROI, :VideoURLs, :CustomId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, starttime=nil, endtime=nil, channelid=nil, config=nil, roi=nil, videourls=nil, customid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChannelId = channelid
+          @Config = config
+          @ROI = roi
+          @VideoURLs = videourls
+          @CustomId = customid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChannelId = params['ChannelId']
+          @Config = params['Config']
+          @ROI = params['ROI']
+          @VideoURLs = params['VideoURLs']
+          @CustomId = params['CustomId']
+        end
+      end
+
+      # CreateCloudStorageAIServiceTask返回参数结构体
+      class CreateCloudStorageAIServiceTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDeviceChannel请求参数结构体
       class CreateDeviceChannelRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

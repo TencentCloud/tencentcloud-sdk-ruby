@@ -185,6 +185,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于查询复刻音色详细信息。
+
+        # @param request: Request instance for GetVRSVoiceTypeInfo.
+        # @type request: :class:`Tencentcloud::vrs::V20200824::GetVRSVoiceTypeInfoRequest`
+        # @rtype: :class:`Tencentcloud::vrs::V20200824::GetVRSVoiceTypeInfoResponse`
+        def GetVRSVoiceTypeInfo(request)
+          body = send_request('GetVRSVoiceTypeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetVRSVoiceTypeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询复刻音色
 
         # @param request: Request instance for GetVRSVoiceTypes.

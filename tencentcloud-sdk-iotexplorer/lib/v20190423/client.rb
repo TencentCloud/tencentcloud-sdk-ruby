@@ -319,6 +319,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建设备云存 AI 分析任务
+
+        # @param request: Request instance for CreateCloudStorageAIServiceTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateCloudStorageAIServiceTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateCloudStorageAIServiceTaskResponse`
+        def CreateCloudStorageAIServiceTask(request)
+          body = send_request('CreateCloudStorageAIServiceTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudStorageAIServiceTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建设备
 
         # @param request: Request instance for CreateDevice.
@@ -3129,6 +3153,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发布广播消息、发布RRPC消息属于早期服务，目前已停止维护，需要从官网下线。
+
         # 发布广播消息
 
         # @param request: Request instance for PublishBroadcastMessage.
@@ -3200,6 +3226,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 发布广播消息、发布RRPC消息属于早期服务，目前已停止维护，需要从官网下线。
 
         # 下发RRPC消息
 

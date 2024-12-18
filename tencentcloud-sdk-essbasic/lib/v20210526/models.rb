@@ -1804,14 +1804,18 @@ module TencentCloud
         # @param Approvers: 签署方信息，如角色ID、角色名称等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approvers: Array
+        # @param PreviewUrl: 预览链接，有效期5分钟
+        # 注：如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL
+        # @type PreviewUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :Approvers, :RequestId
+        attr_accessor :FlowId, :Approvers, :PreviewUrl, :RequestId
 
-        def initialize(flowid=nil, approvers=nil, requestid=nil)
+        def initialize(flowid=nil, approvers=nil, previewurl=nil, requestid=nil)
           @FlowId = flowid
           @Approvers = approvers
+          @PreviewUrl = previewurl
           @RequestId = requestid
         end
 
@@ -1825,6 +1829,7 @@ module TencentCloud
               @Approvers << approveritem_tmp
             end
           end
+          @PreviewUrl = params['PreviewUrl']
           @RequestId = params['RequestId']
         end
       end
