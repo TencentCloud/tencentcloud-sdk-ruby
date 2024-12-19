@@ -8876,6 +8876,41 @@ module TencentCloud
         end
       end
 
+      # ModifyPublicNetworkSecurityPolicy请求参数结构体
+      class ModifyPublicNetworkSecurityPolicyRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyPublicNetworkSecurityPolicy返回参数结构体
+      class ModifyPublicNetworkSecurityPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param ModifyResult: SUCCESS或者FAILURE
+        # @type ModifyResult: String
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModifyResult, :InstanceId, :RequestId
+
+        def initialize(modifyresult=nil, instanceid=nil, requestid=nil)
+          @ModifyResult = modifyresult
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModifyResult = params['ModifyResult']
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRabbitMQUser请求参数结构体
       class ModifyRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id

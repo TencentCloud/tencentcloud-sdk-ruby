@@ -5483,6 +5483,9 @@ module TencentCloud
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
+        # @param StartPosition: 同步到kafka链路指定位点。目前只支持时间格式：yyyy-mm-dd hh:mm:ss。如果没有指定位点，为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartPosition: String
         # @param FilterBeginCommit: 同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterBeginCommit: Boolean
@@ -5490,9 +5493,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterCheckpoint: Boolean
 
-        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :FilterBeginCommit, :FilterCheckpoint
+        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :StartPosition, :FilterBeginCommit, :FilterCheckpoint
 
-        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil, filterbegincommit=nil, filtercheckpoint=nil)
+        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil, startposition=nil, filterbegincommit=nil, filtercheckpoint=nil)
           @InitType = inittype
           @DealOfExistSameTable = dealofexistsametable
           @ConflictHandleType = conflicthandletype
@@ -5503,6 +5506,7 @@ module TencentCloud
           @KafkaOption = kafkaoption
           @RateLimitOption = ratelimitoption
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
+          @StartPosition = startposition
           @FilterBeginCommit = filterbegincommit
           @FilterCheckpoint = filtercheckpoint
         end
@@ -5534,6 +5538,7 @@ module TencentCloud
             @RateLimitOption.deserialize(params['RateLimitOption'])
           end
           @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
+          @StartPosition = params['StartPosition']
           @FilterBeginCommit = params['FilterBeginCommit']
           @FilterCheckpoint = params['FilterCheckpoint']
         end

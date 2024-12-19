@@ -1572,15 +1572,18 @@ module TencentCloud
         # @type AllPage: Boolean
         # @param ModuleCollection: 角色信息
         # @type ModuleCollection: String
+        # @param ModuleIdList: moduleId集合
+        # @type ModuleIdList: Array
 
-        attr_accessor :PageSize, :PageNo, :Keyword, :AllPage, :ModuleCollection
+        attr_accessor :PageSize, :PageNo, :Keyword, :AllPage, :ModuleCollection, :ModuleIdList
 
-        def initialize(pagesize=nil, pageno=nil, keyword=nil, allpage=nil, modulecollection=nil)
+        def initialize(pagesize=nil, pageno=nil, keyword=nil, allpage=nil, modulecollection=nil, moduleidlist=nil)
           @PageSize = pagesize
           @PageNo = pageno
           @Keyword = keyword
           @AllPage = allpage
           @ModuleCollection = modulecollection
+          @ModuleIdList = moduleidlist
         end
 
         def deserialize(params)
@@ -1589,6 +1592,7 @@ module TencentCloud
           @Keyword = params['Keyword']
           @AllPage = params['AllPage']
           @ModuleCollection = params['ModuleCollection']
+          @ModuleIdList = params['ModuleIdList']
         end
       end
 

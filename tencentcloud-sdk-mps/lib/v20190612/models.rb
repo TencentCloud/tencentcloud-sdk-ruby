@@ -697,7 +697,8 @@ module TencentCloud
         # @param Subtitle: 字幕文件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subtitle: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
-        # @param SubtitleName: 字幕名称
+        # @param SubtitleName: 字幕名称	。
+        # 注意：仅支持中文、英文、数字、空格、下划线(_)、短横线(-)、句点(.)和中英文括号，长度不能超过64个字符。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleName: String
 
@@ -6170,16 +6171,16 @@ module TencentCloud
         # @type DisableHigherVideoResolution: Integer
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param PureAudio: 是否为纯音频，0表示视频模版，1表示纯音频模版
+        # @param PureAudio: 是否为纯音频，0表示视频模板，1表示纯音频模板
         # 当值为1：
         # 1. StreamInfos.N.RemoveVideo=1
         # 2. StreamInfos.N.RemoveAudio=0
         # 3. StreamInfos.N.Video.Codec=copy
-
         # 当值为0：
-
         # 1. StreamInfos.N.Video.Codec不能为copy
         # 2. StreamInfos.N.Video.Fps不能为null
+        # 注意：
+        # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
         # @param SegmentType: hls 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
         # 注：自适应码流的hls分片格式已此字段为准
@@ -16126,20 +16127,22 @@ module TencentCloud
         # <li>1：是。</li>
         # @type DisableHigherVideoResolution: Integer
         # @param StreamInfos: 转自适应码流输入流参数信息，最多输入10路流。
-        # 注意：各个流的帧率必须保持一致；如果不一致，采用第一个流的帧率作为输出帧率。
+        # 注意：
+        # 1、各个流的帧率必须保持一致；如果不一致，采用第一个流的帧率作为输出帧率。
+        # 2、修改子流信息时需要全量修改添加所有字段值，否则没填字段会使用默认值。
         # @type StreamInfos: Array
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param PureAudio: 是否为纯音频，0表示视频模版，1表示纯音频模版
+        # @param PureAudio: 是否为纯音频，0表示视频模板，1表示纯音频模板
         # 当值为1：
         # 1. StreamInfos.N.RemoveVideo=1
         # 2. StreamInfos.N.RemoveAudio=0
         # 3. StreamInfos.N.Video.Codec=copy
-
         # 当值为0：
-
         # 1. StreamInfos.N.Video.Codec不能为copy
         # 2. StreamInfos.N.Video.Fps不能为null
+        # 注意：
+        # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
         # @param SegmentType: hls 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
         # 注：自适应码流的hls分片格式已此字段为准
@@ -21938,18 +21941,15 @@ module TencentCloud
         # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
         # <li>smarttailor：智能剪裁：智能选取视频画面，来保证画面比例裁剪。</li>
         # 默认值：black 。
-        # 注意：自适应码流只支持 stretch、black。
         # @type FillType: String
-        # @param Vcrf: 视频恒定码率控制因子，取值范围为[0, 51]。
-        # 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）。
-        # 如果没有特殊需求，不建议指定该参数。
-        # 注意：
-        # 若Mode选择ABR，无需配置Vcrf值
-        # 若Mode选择CBR，无需配置Vcrf值
+        # @param Vcrf: 视频的恒定码率控制因子，取值范围为[0, 51]，不填表示“自动”。如果没有特殊需求，建议不指定该参数。
+        # 当Mode参数设置为VBR时，如果同时配置了Vcrf值，MPS将在VBR模式下处理视频，同时考虑Vcrf和Bitrate参数的设置，以平衡视频质量、码率、转码效率和文件大小。
+        # 当Mode参数设置为CRF，Bitrate设置将失效，编码将根据Vcrf值进行。
+        # 当Mode参数选择ABR或CBR时，无需配置Vcrf值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vcrf: Integer
         # @param HlsTime: 分片平均时长，范围：（0-10]，单位：秒
-        # 默认值：10
+        # 不填表示自动，将根据视频的GOP等特征自动选择合适的分片时长。
         # 注意：只能在封装格式hls的情况下使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HlsTime: Integer
@@ -21959,6 +21959,7 @@ module TencentCloud
         # <li>7：HLS+MP4 切片</li>
         # <li>5：HLS+MP4 byte range</li>
         # 默认值：0
+        # 注意：该字段用于普通/极速高清转码设置，对自适应码流不生效，如需给自适应码流配置分片类型，可以使用外层字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentType: Integer
         # @param FpsDenominator: 帧率分母部分
@@ -22020,13 +22021,14 @@ module TencentCloud
         # 不填此值表示不开启，默认不开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Compress: Integer
-        # @param SegmentSpecificInfo: 切片特殊配置
+        # @param SegmentSpecificInfo: 启动时分片时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentSpecificInfo: :class:`Tencentcloud::Mps.v20190612.models.SegmentSpecificInfo`
-        # @param ScenarioBased: 模版是否开启场景化
+        # @param ScenarioBased: 模板是否开启场景化
         # 0：不开启
         # 1：开启
         # 默认值：0
+        # 注意：只有此字段值为1时，SceneType和CompressType字段的值才会生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioBased: Integer
         # @param SceneType: 视频场景化，可选值：
@@ -22037,6 +22039,7 @@ module TencentCloud
         # e-commerce_video：秀场/电商类：压缩时会强调细节清晰度和ROI区域提升，尤其注重保持人脸区域的画质。
         # educational_video：教育类：压缩时会强调文字和图像的清晰度和可读性，以便学生更好地理解内容，确保讲解内容清晰传达。
         # 默认值：normal
+        # 注意：要使用此值ScenarioBased的值必须为1，否则此值不生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneType: String
         # @param CompressType: 转码策略，可选值：
@@ -22046,6 +22049,7 @@ module TencentCloud
         # low_compress：画质优先：优先保证画质，压缩出来的文件体积可能相对较大。该策略仅收取音视频极速高清转码费用。
         # 默认值：standard_compress
         # 注：若需要在电视上观看视频，不建议使用ultra_compress策略。ultra_compress策略计费标准为极速高清转码 + 音视频增强-去毛刺。
+        # 注意：要使用此值ScenarioBased的值必须为1，否则此值不生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressType: String
 
@@ -22178,15 +22182,14 @@ module TencentCloud
         # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
         # <li>smarttailor：智能剪裁：智能选取视频画面，来保证画面比例裁剪。</li>
         # 默认值：black 。
-        # 注意：自适应码流只支持 stretch、black。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FillType: String
-        # @param Vcrf: 视频恒定码率控制因子。取值范围为[0, 51]和100。
-        # 如果没有特殊需求，不建议指定该参数。
-        # 注意：
-        # 需要修改为自动时，填100
-        # 若Mode选择ABR，无需配置Vcrf值
-        # 若Mode选择CBR，无需配置Vcrf值
+        # @param Vcrf: 视频的恒定码率控制因子，取值范围为[0, 51]，不填表示“自动”。如果没有特殊需求，建议不指定该参数。
+        # 当Mode参数设置为VBR时，如果同时配置了Vcrf值，MPS将在VBR模式下处理视频，同时考虑Vcrf和Bitrate参数的设置，以平衡视频质量、码率、转码效率和文件大小。
+        # 当Mode参数设置为CRF，Bitrate设置将失效，编码将根据Vcrf值进行。
+        # 当Mode参数选择ABR或CBR时，无需配置Vcrf值。
+        # 注意：需要修改为自动时，填100
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vcrf: Integer
         # @param ContentAdaptStream: 内容自适应编码。可选值：
@@ -22206,6 +22209,7 @@ module TencentCloud
         # <li>7：HLS+MP4 切片</li>
         # <li>5：HLS+MP4 byte range</li>
         # 默认值：0
+        # 注意：该字段用于普通/极速高清转码设置，对自适应码流不生效，如需给自适应码流配置分片类型，可以使用外层字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentType: Integer
         # @param FpsDenominator: 帧率分母部分
@@ -22268,13 +22272,14 @@ module TencentCloud
         # 注意：-1表示修改为自动
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Compress: Integer
-        # @param SegmentSpecificInfo: 切片特殊配置
+        # @param SegmentSpecificInfo: 启动时分片时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentSpecificInfo: :class:`Tencentcloud::Mps.v20190612.models.SegmentSpecificInfo`
-        # @param ScenarioBased: 模版是否开启场景化
+        # @param ScenarioBased: 模板是否开启场景化
         # 0：不开启
         # 1：开启
         # 默认值：0
+        # 注意：只有此字段值为1时，SceneType和CompressType字段的值才会生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScenarioBased: Integer
         # @param SceneType: 视频场景化，可选值：
@@ -22284,6 +22289,7 @@ module TencentCloud
         # e-commerce_video：秀场/电商类：压缩时会强调细节清晰度和ROI区域提升，尤其注重保持人脸区域的画质。
         # educational_video：教育类：压缩时会强调文字和图像的清晰度和可读性，以便学生更好地理解内容，确保讲解内容清晰传达。
         # 默认值：normal
+        # 注意：要使用此值ScenarioBased的值必须为1，否则此值不生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneType: String
         # @param CompressType: 转码策略，可选值：
@@ -22293,6 +22299,7 @@ module TencentCloud
         # low_compress：画质优先：优先保证画质，压缩出来的文件体积可能相对较大。该策略仅收取音视频极速高清转码费用。
         # 默认值：standard_compress
         # 注：若需要在电视上观看视频，不建议使用ultra_compress策略。ultra_compress策略计费标准为极速高清转码 + 音视频增强-去毛刺。
+        # 注意：要使用此值ScenarioBased的值必须为1，否则此值不生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressType: String
 

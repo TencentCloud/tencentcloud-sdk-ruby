@@ -4133,10 +4133,12 @@ module TencentCloud
         # @type UseMobileCallOut: Boolean
         # @param UseMobileAccept: 手机接听模式 0 - 关闭 | 1 - 仅离线 | 2 - 始终
         # @type UseMobileAccept: Integer
+        # @param ExtensionNumber: 座席分机号（1 到 8 打头，4 - 6 位）
+        # @type ExtensionNumber: String
 
-        attr_accessor :SdkAppId, :Email, :Name, :Phone, :Nick, :StaffNo, :SkillGroupIds, :UseMobileCallOut, :UseMobileAccept
+        attr_accessor :SdkAppId, :Email, :Name, :Phone, :Nick, :StaffNo, :SkillGroupIds, :UseMobileCallOut, :UseMobileAccept, :ExtensionNumber
 
-        def initialize(sdkappid=nil, email=nil, name=nil, phone=nil, nick=nil, staffno=nil, skillgroupids=nil, usemobilecallout=nil, usemobileaccept=nil)
+        def initialize(sdkappid=nil, email=nil, name=nil, phone=nil, nick=nil, staffno=nil, skillgroupids=nil, usemobilecallout=nil, usemobileaccept=nil, extensionnumber=nil)
           @SdkAppId = sdkappid
           @Email = email
           @Name = name
@@ -4146,6 +4148,7 @@ module TencentCloud
           @SkillGroupIds = skillgroupids
           @UseMobileCallOut = usemobilecallout
           @UseMobileAccept = usemobileaccept
+          @ExtensionNumber = extensionnumber
         end
 
         def deserialize(params)
@@ -4158,6 +4161,7 @@ module TencentCloud
           @SkillGroupIds = params['SkillGroupIds']
           @UseMobileCallOut = params['UseMobileCallOut']
           @UseMobileAccept = params['UseMobileAccept']
+          @ExtensionNumber = params['ExtensionNumber']
         end
       end
 
@@ -4628,10 +4632,12 @@ module TencentCloud
         # 3:普通座席
         # else:自定义角色ID
         # @type Role: Integer
+        # @param ExtensionNumber: 座席分机号（1 到 8 打头，4 - 6 位）
+        # @type ExtensionNumber: String
 
-        attr_accessor :Name, :Mail, :StaffNumber, :Phone, :Nick, :UserId, :SkillGroupNameList, :Role
+        attr_accessor :Name, :Mail, :StaffNumber, :Phone, :Nick, :UserId, :SkillGroupNameList, :Role, :ExtensionNumber
 
-        def initialize(name=nil, mail=nil, staffnumber=nil, phone=nil, nick=nil, userid=nil, skillgroupnamelist=nil, role=nil)
+        def initialize(name=nil, mail=nil, staffnumber=nil, phone=nil, nick=nil, userid=nil, skillgroupnamelist=nil, role=nil, extensionnumber=nil)
           @Name = name
           @Mail = mail
           @StaffNumber = staffnumber
@@ -4640,6 +4646,7 @@ module TencentCloud
           @UserId = userid
           @SkillGroupNameList = skillgroupnamelist
           @Role = role
+          @ExtensionNumber = extensionnumber
         end
 
         def deserialize(params)
@@ -4651,6 +4658,7 @@ module TencentCloud
           @UserId = params['UserId']
           @SkillGroupNameList = params['SkillGroupNameList']
           @Role = params['Role']
+          @ExtensionNumber = params['ExtensionNumber']
         end
       end
 
@@ -4860,10 +4868,12 @@ module TencentCloud
         # @type SkillGroupList: Array
         # @param LastModifyTimestamp: 最后修改时间
         # @type LastModifyTimestamp: Integer
+        # @param ExtensionNumber: 座席分机号（1 到 8 打头，4 - 6 位）
+        # @type ExtensionNumber: String
 
-        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :SkillGroupList, :LastModifyTimestamp
+        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber
 
-        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, skillgrouplist=nil, lastmodifytimestamp=nil)
+        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil)
           @Name = name
           @Mail = mail
           @Phone = phone
@@ -4872,6 +4882,7 @@ module TencentCloud
           @RoleId = roleid
           @SkillGroupList = skillgrouplist
           @LastModifyTimestamp = lastmodifytimestamp
+          @ExtensionNumber = extensionnumber
         end
 
         def deserialize(params)
@@ -4890,6 +4901,7 @@ module TencentCloud
             end
           end
           @LastModifyTimestamp = params['LastModifyTimestamp']
+          @ExtensionNumber = params['ExtensionNumber']
         end
       end
 

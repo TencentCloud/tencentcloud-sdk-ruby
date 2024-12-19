@@ -1145,7 +1145,7 @@ module TencentCloud
       class AddUserDeviceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 设备名称，仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位；（设备名称无需全局唯一，可以重复）
         # @type Name: String
-        # @param AccessProtocol: 设备接入协议（1:RTMP,2:GB,3:GW,4:IVCP）
+        # @param AccessProtocol: 设备接入协议（1:RTMP,2:GB,3:GW,6:ISUP）
         # @type AccessProtocol: Integer
         # @param Type: 设备类型，1:IPC,2:NVR；（若设备接入协议选择RTMP,IVCP，则设备类型只能选择IPC）
         # @type Type: Integer

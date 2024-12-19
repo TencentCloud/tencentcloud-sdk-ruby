@@ -6352,6 +6352,68 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationAuthFile请求参数结构体
+      class CreateOrganizationAuthFileRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param OrganizationCommonInfo: 企业授权书信息参数， 需要自行保证这些参数跟营业执照中的信息一致。
+        # @type OrganizationCommonInfo: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationCommonInfo`
+        # @param Type: 授权书类型：
+        # - 0: 企业认证超管授权书
+        # - 1: 超管变更授权书
+        # - 2: 企业注销授权书
+        # @type Type: Integer
+
+        attr_accessor :Agent, :OrganizationCommonInfo, :Type
+
+        def initialize(agent=nil, organizationcommoninfo=nil, type=nil)
+          @Agent = agent
+          @OrganizationCommonInfo = organizationcommoninfo
+          @Type = type
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['OrganizationCommonInfo'].nil?
+            @OrganizationCommonInfo = OrganizationCommonInfo.new
+            @OrganizationCommonInfo.deserialize(params['OrganizationCommonInfo'])
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # CreateOrganizationAuthFile返回参数结构体
+      class CreateOrganizationAuthFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 授权书链接，有效期5分钟。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileUrl, :RequestId
+
+        def initialize(fileurl=nil, requestid=nil)
+          @FileUrl = fileurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePartnerAutoSignAuthUrl请求参数结构体
       class CreatePartnerAutoSignAuthUrlRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -8331,7 +8393,8 @@ module TencentCloud
         # <li>**5**：设备指纹识别，需要对比手机机主预留的指纹信息，校验一致才能成功进行合同签署。（iOS系统暂不支持该校验方式）</li>
         # <li>**6**：设备面容识别，需要对比手机机主预留的人脸信息，校验一致才能成功进行合同签署。（Android系统暂不支持该校验方式）</li></ul>
 
-        # 默认为1(人脸认证 ),2(签署密码),3(运营商三要素),5(设备指纹识别),6(设备面容识别)
+        # 默认为：
+        # 1(人脸认证 ),2(签署密码),3(运营商三要素),5(设备指纹识别),6(设备面容识别)
 
         # 注:
         # 1. 用<font color='red'>模板创建合同场景</font>, 签署人的认证方式需要在配置模板的时候指定, <font color='red'>在创建合同重新指定无效</font>
@@ -10002,6 +10065,91 @@ module TencentCloud
         end
       end
 
+      # 企业认证信息参数， 需要保证这些参数跟营业执照中的信息一致。
+      class OrganizationCommonInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationName: 组织机构名称。
+        # 请确认该名称与企业营业执照中注册的名称一致。
+        # 如果名称中包含英文括号()，请使用中文括号（）代替。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationName: String
+        # @param UniformSocialCreditCode: 组织机构企业统一社会信用代码。
+        # 请确认该企业统一社会信用代码与企业营业执照中注册的统一社会信用代码一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniformSocialCreditCode: String
+        # @param LegalName: 组织机构法人的姓名。
+        # 请确认该企业统一社会信用代码与企业营业执照中注册的法人姓名一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalName: String
+        # @param LegalIdCardType: 组织机构法人的证件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalIdCardType: String
+        # @param LegalIdCardNumber: 组织机构法人的证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalIdCardNumber: String
+        # @param AdminName: 组织机构超管姓名。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminName: String
+        # @param AdminMobile: 组织机构超管手机号。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminMobile: String
+        # @param AdminIdCardType: 组织机构超管证件类型
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminIdCardType: String
+        # @param AdminIdCardNumber: 组织机构超管证件号码
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminIdCardNumber: String
+        # @param OldAdminName: 原超管姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldAdminName: String
+        # @param OldAdminMobile: 原超管手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldAdminMobile: String
+        # @param OldAdminIdCardType: 原超管证件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldAdminIdCardType: String
+        # @param OldAdminIdCardNumber: 原超管证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldAdminIdCardNumber: String
+
+        attr_accessor :OrganizationName, :UniformSocialCreditCode, :LegalName, :LegalIdCardType, :LegalIdCardNumber, :AdminName, :AdminMobile, :AdminIdCardType, :AdminIdCardNumber, :OldAdminName, :OldAdminMobile, :OldAdminIdCardType, :OldAdminIdCardNumber
+
+        def initialize(organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, legalidcardtype=nil, legalidcardnumber=nil, adminname=nil, adminmobile=nil, adminidcardtype=nil, adminidcardnumber=nil, oldadminname=nil, oldadminmobile=nil, oldadminidcardtype=nil, oldadminidcardnumber=nil)
+          @OrganizationName = organizationname
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalName = legalname
+          @LegalIdCardType = legalidcardtype
+          @LegalIdCardNumber = legalidcardnumber
+          @AdminName = adminname
+          @AdminMobile = adminmobile
+          @AdminIdCardType = adminidcardtype
+          @AdminIdCardNumber = adminidcardnumber
+          @OldAdminName = oldadminname
+          @OldAdminMobile = oldadminmobile
+          @OldAdminIdCardType = oldadminidcardtype
+          @OldAdminIdCardNumber = oldadminidcardnumber
+        end
+
+        def deserialize(params)
+          @OrganizationName = params['OrganizationName']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalName = params['LegalName']
+          @LegalIdCardType = params['LegalIdCardType']
+          @LegalIdCardNumber = params['LegalIdCardNumber']
+          @AdminName = params['AdminName']
+          @AdminMobile = params['AdminMobile']
+          @AdminIdCardType = params['AdminIdCardType']
+          @AdminIdCardNumber = params['AdminIdCardNumber']
+          @OldAdminName = params['OldAdminName']
+          @OldAdminMobile = params['OldAdminMobile']
+          @OldAdminIdCardType = params['OldAdminIdCardType']
+          @OldAdminIdCardNumber = params['OldAdminIdCardNumber']
+        end
+      end
+
       # 机构信息
       class OrganizationInfo < TencentCloud::Common::AbstractModel
         # @param OrganizationOpenId: 用户在渠道的机构编号
@@ -10651,17 +10799,19 @@ module TencentCloud
         end
       end
 
-      # 解除协议文档中内容信息，包括但不限于：解除理由、解除后仍然有效的条款-保留条款、原合同事项处理-费用结算、原合同事项处理-其他事项、其他约定等。
+      # 解除协议文档中内容信息，包括但不限于：解除理由、解除后仍然有效的条款-保留条款、原合同事项处理-费用结算、原合同事项处理-其他事项、其他约定等。下面各种字段在解除协议中的位置参考：
+
+      # ![image](https://qcloudimg.tencent-cloud.cn/raw/5087164cfe5a15fa3ced3180842d5da9.png)
       class RelieveInfo < TencentCloud::Common::AbstractModel
-        # @param Reason: 解除理由，最大支持200个字
+        # @param Reason: 解除理由，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         # @type Reason: String
-        # @param RemainInForceItem: 解除后仍然有效的条款，保留条款，最大支持200个字
+        # @param RemainInForceItem: 解除后仍然有效的条款，保留条款，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         # @type RemainInForceItem: String
-        # @param OriginalExpenseSettlement: 原合同事项处理-费用结算，最大支持200个字
+        # @param OriginalExpenseSettlement: 原合同事项处理-费用结算，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         # @type OriginalExpenseSettlement: String
-        # @param OriginalOtherSettlement: 原合同事项处理-其他事项，最大支持200个字
+        # @param OriginalOtherSettlement: 原合同事项处理-其他事项，长度不能超过200，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         # @type OriginalOtherSettlement: String
-        # @param OtherDeals: 其他约定，最大支持200个字
+        # @param OtherDeals: 其他约定（如约定的与解除协议存在冲突的，以【其他约定】为准），最大支持200个字，只能由中文、字母、数字、中文标点和英文标点组成(不支持表情)。
         # @type OtherDeals: String
 
         attr_accessor :Reason, :RemainInForceItem, :OriginalExpenseSettlement, :OriginalOtherSettlement, :OtherDeals
@@ -10745,19 +10895,23 @@ module TencentCloud
         # @param ExpiredTime: 二维码的有截止时间，格式为Unix标准时间戳（秒），可以通过入参的QrEffectiveDay来设置有效期，默认为7天有效期。
         # 一旦超过二维码的有效期限，该二维码将自动失效。
         # @type ExpiredTime: Integer
+        # @param WeixinQrCodeUrl: 微信小程序二维码
+        # @type WeixinQrCodeUrl: String
 
-        attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime
+        attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime, :WeixinQrCodeUrl
 
-        def initialize(qrcodeid=nil, qrcodeurl=nil, expiredtime=nil)
+        def initialize(qrcodeid=nil, qrcodeurl=nil, expiredtime=nil, weixinqrcodeurl=nil)
           @QrCodeId = qrcodeid
           @QrCodeUrl = qrcodeurl
           @ExpiredTime = expiredtime
+          @WeixinQrCodeUrl = weixinqrcodeurl
         end
 
         def deserialize(params)
           @QrCodeId = params['QrCodeId']
           @QrCodeUrl = params['QrCodeUrl']
           @ExpiredTime = params['ExpiredTime']
+          @WeixinQrCodeUrl = params['WeixinQrCodeUrl']
         end
       end
 

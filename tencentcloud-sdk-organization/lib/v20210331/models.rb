@@ -741,10 +741,12 @@ module TencentCloud
 
       # CreateOrgServiceAssign请求参数结构体
       class CreateOrgServiceAssignRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 集团服务ID。可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
-        # @type ServiceId: Integer
         # @param MemberUins: 委派管理员Uin列表。 最大长度20个
         # @type MemberUins: Array
+        # @param ServiceId: 集团服务ID。和集团服务产品标识二选一必填，可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type ServiceId: Integer
+        # @param Product: 集团服务产品标识。和集团服务ID二选一必填，可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type Product: String
         # @param ManagementScope: 委派管理员管理范围。 取值：1-全部成员 2-部分成员，默认值1
         # @type ManagementScope: Integer
         # @param ManagementScopeUins: 管理的成员Uin列表。ManagementScope为2时该参数有效
@@ -752,19 +754,21 @@ module TencentCloud
         # @param ManagementScopeNodeIds: 管理的部门ID列表。ManagementScope为2时该参数有效
         # @type ManagementScopeNodeIds: Array
 
-        attr_accessor :ServiceId, :MemberUins, :ManagementScope, :ManagementScopeUins, :ManagementScopeNodeIds
+        attr_accessor :MemberUins, :ServiceId, :Product, :ManagementScope, :ManagementScopeUins, :ManagementScopeNodeIds
 
-        def initialize(serviceid=nil, memberuins=nil, managementscope=nil, managementscopeuins=nil, managementscopenodeids=nil)
-          @ServiceId = serviceid
+        def initialize(memberuins=nil, serviceid=nil, product=nil, managementscope=nil, managementscopeuins=nil, managementscopenodeids=nil)
           @MemberUins = memberuins
+          @ServiceId = serviceid
+          @Product = product
           @ManagementScope = managementscope
           @ManagementScopeUins = managementscopeuins
           @ManagementScopeNodeIds = managementscopenodeids
         end
 
         def deserialize(params)
-          @ServiceId = params['ServiceId']
           @MemberUins = params['MemberUins']
+          @ServiceId = params['ServiceId']
+          @Product = params['Product']
           @ManagementScope = params['ManagementScope']
           @ManagementScopeUins = params['ManagementScopeUins']
           @ManagementScopeNodeIds = params['ManagementScopeNodeIds']
@@ -1501,21 +1505,25 @@ module TencentCloud
 
       # DeleteOrgServiceAssign请求参数结构体
       class DeleteOrgServiceAssignRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 集团服务ID。可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
-        # @type ServiceId: Integer
         # @param MemberUin: 委派管理员Uin。
         # @type MemberUin: Integer
+        # @param ServiceId: 集团服务ID。和集团服务产品标识二选一必填，可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type ServiceId: Integer
+        # @param Product: 集团服务产品标识。和集团服务ID二选一必填，可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type Product: String
 
-        attr_accessor :ServiceId, :MemberUin
+        attr_accessor :MemberUin, :ServiceId, :Product
 
-        def initialize(serviceid=nil, memberuin=nil)
-          @ServiceId = serviceid
+        def initialize(memberuin=nil, serviceid=nil, product=nil)
           @MemberUin = memberuin
+          @ServiceId = serviceid
+          @Product = product
         end
 
         def deserialize(params)
-          @ServiceId = params['ServiceId']
           @MemberUin = params['MemberUin']
+          @ServiceId = params['ServiceId']
+          @Product = params['Product']
         end
       end
 
@@ -4476,21 +4484,25 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制数目。取值范围：1~50，默认值：10
         # @type Limit: Integer
-        # @param ServiceId: 集团服务ID。可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @param ServiceId: 集团服务ID。和集团服务产品标识二选一必填，可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
         # @type ServiceId: Integer
+        # @param Product: 集团服务产品标识。和集团服务ID二选一必填，可以通过[ListOrganizationService](https://cloud.tencent.com/document/product/850/109561)获取
+        # @type Product: String
 
-        attr_accessor :Offset, :Limit, :ServiceId
+        attr_accessor :Offset, :Limit, :ServiceId, :Product
 
-        def initialize(offset=nil, limit=nil, serviceid=nil)
+        def initialize(offset=nil, limit=nil, serviceid=nil, product=nil)
           @Offset = offset
           @Limit = limit
           @ServiceId = serviceid
+          @Product = product
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ServiceId = params['ServiceId']
+          @Product = params['Product']
         end
       end
 

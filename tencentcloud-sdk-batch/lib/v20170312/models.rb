@@ -229,10 +229,13 @@ module TencentCloud
       # 授权认证信息
       class Authentication < TencentCloud::Common::AbstractModel
         # @param Scene: 授权场景，例如COS
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param SecretId: SecretId
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretId: String
         # @param SecretKey: SecretKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
 
         attr_accessor :Scene, :SecretId, :SecretKey
@@ -2374,8 +2377,10 @@ module TencentCloud
       # 环境变量
       class EnvVar < TencentCloud::Common::AbstractModel
         # @param Name: 环境变量名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 环境变量取值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -2421,8 +2426,10 @@ module TencentCloud
       # 自定义键值对
       class EventVar < TencentCloud::Common::AbstractModel
         # @param Name: 自定义键
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 自定义值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -2502,10 +2509,13 @@ module TencentCloud
       # 输入映射
       class InputMapping < TencentCloud::Common::AbstractModel
         # @param SourcePath: 源端路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourcePath: String
         # @param DestinationPath: 目的端路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DestinationPath: String
         # @param MountOptionParameter: 挂载配置项参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountOptionParameter: String
 
         attr_accessor :SourcePath, :DestinationPath, :MountOptionParameter
@@ -3100,11 +3110,12 @@ module TencentCloud
 
       # 描述了实例登录相关配置与信息。
       class LoginSettings < TencentCloud::Common::AbstractModel
-        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? \/ ]中的特殊符号。<br><li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? \/]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? \/ ]中的特殊符号。</li>
+        # <li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? \/]中的特殊符号。</li><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         # @type Password: String
         # @param KeyIds: 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         # @type KeyIds: Array
-        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
+        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<li>TRUE：表示保持镜像的登录设置</li><li>FALSE：表示不保持镜像的登录设置</li>默认取值：FALSE。
         # @type KeepImageLogin: String
 
         attr_accessor :Password, :KeyIds, :KeepImageLogin
@@ -3223,8 +3234,10 @@ module TencentCloud
       # 数据盘挂载选项
       class MountDataDisk < TencentCloud::Common::AbstractModel
         # @param LocalPath: 挂载点，Linux系统合法路径，或Windows系统盘符,比如"H:\\"
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalPath: String
         # @param FileSystemType: 文件系统类型，Linux系统下支持"EXT3"和"EXT4"两种，默认"EXT3"；Windows系统下仅支持"NTFS"
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSystemType: String
 
         attr_accessor :LocalPath, :FileSystemType
@@ -3445,8 +3458,10 @@ module TencentCloud
       # 通知信息
       class Notification < TencentCloud::Common::AbstractModel
         # @param TopicName: CMQ主题名字，要求主题名有效且关联订阅
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
         # @param EventConfigs: 事件配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventConfigs: Array
 
         attr_accessor :TopicName, :EventConfigs
@@ -3610,13 +3625,17 @@ module TencentCloud
 
       # 重定向信息
       class RedirectInfo < TencentCloud::Common::AbstractModel
-        # @param StdoutRedirectPath: 标准输出重定向路径
+        # @param StdoutRedirectPath: 标准输出重定向路径;
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutRedirectPath: String
         # @param StderrRedirectPath: 标准错误重定向路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrRedirectPath: String
         # @param StdoutRedirectFileName: 标准输出重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutRedirectFileName: String
         # @param StderrRedirectFileName: 标准错误重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrRedirectFileName: String
 
         attr_accessor :StdoutRedirectPath, :StderrRedirectPath, :StdoutRedirectFileName, :StderrRedirectFileName
@@ -3639,12 +3658,16 @@ module TencentCloud
       # 本地重定向信息
       class RedirectLocalInfo < TencentCloud::Common::AbstractModel
         # @param StdoutLocalPath: 标准输出重定向本地路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutLocalPath: String
         # @param StderrLocalPath: 标准错误重定向本地路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrLocalPath: String
         # @param StdoutLocalFileName: 标准输出重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdoutLocalFileName: String
         # @param StderrLocalFileName: 标准错误重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StderrLocalFileName: String
 
         attr_accessor :StdoutLocalPath, :StderrLocalPath, :StdoutLocalFileName, :StderrLocalFileName
@@ -4099,20 +4122,28 @@ module TencentCloud
       # 任务实例统计指标
       class TaskInstanceMetrics < TencentCloud::Common::AbstractModel
         # @param SubmittedCount: Submitted个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmittedCount: Integer
         # @param PendingCount: Pending个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCount: Integer
         # @param RunnableCount: Runnable个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunnableCount: Integer
         # @param StartingCount: Starting个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartingCount: Integer
         # @param RunningCount: Running个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCount: Integer
         # @param SucceedCount: Succeed个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SucceedCount: Integer
         # @param FailedInterruptedCount: FailedInterrupted个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedInterruptedCount: Integer
         # @param FailedCount: Failed个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
 
         attr_accessor :SubmittedCount, :PendingCount, :RunnableCount, :StartingCount, :RunningCount, :SucceedCount, :FailedInterruptedCount, :FailedCount
@@ -4207,20 +4238,28 @@ module TencentCloud
       # 任务统计指标
       class TaskMetrics < TencentCloud::Common::AbstractModel
         # @param SubmittedCount: Submitted个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmittedCount: Integer
         # @param PendingCount: Pending个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCount: Integer
         # @param RunnableCount: Runnable个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunnableCount: Integer
         # @param StartingCount: Starting个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartingCount: Integer
         # @param RunningCount: Running个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCount: Integer
         # @param SucceedCount: Succeed个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SucceedCount: Integer
         # @param FailedInterruptedCount: FailedInterrupted个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedInterruptedCount: Integer
         # @param FailedCount: Failed个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
 
         attr_accessor :SubmittedCount, :PendingCount, :RunnableCount, :StartingCount, :RunningCount, :SucceedCount, :FailedInterruptedCount, :FailedCount

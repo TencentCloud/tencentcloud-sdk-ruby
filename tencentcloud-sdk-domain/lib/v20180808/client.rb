@@ -1037,7 +1037,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
+        # 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
 
         # @param request: Request instance for ModifyDomainDNSBatch.
         # @type request: :class:`Tencentcloud::domain::V20180808::ModifyDomainDNSBatchRequest`
