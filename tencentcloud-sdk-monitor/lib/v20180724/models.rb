@@ -940,6 +940,28 @@ module TencentCloud
         end
       end
 
+      # url鉴权
+      class BasicAuth < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: 密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+
+        attr_accessor :UserName, :Password
+
+        def initialize(username=nil, password=nil)
+          @UserName = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Password = params['Password']
+        end
+      end
+
       # BindPrometheusManagedGrafana请求参数结构体
       class BindPrometheusManagedGrafanaRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -8902,6 +8924,53 @@ module TencentCloud
         end
       end
 
+      # DescribeRemoteURLs请求参数结构体
+      class DescribeRemoteURLsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RemoteURLs: url数组
+        # @type RemoteURLs: Array
+
+        attr_accessor :InstanceId, :RemoteURLs
+
+        def initialize(instanceid=nil, remoteurls=nil)
+          @InstanceId = instanceid
+          @RemoteURLs = remoteurls
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RemoteURLs = params['RemoteURLs']
+        end
+      end
+
+      # DescribeRemoteURLs返回参数结构体
+      class DescribeRemoteURLsResponse < TencentCloud::Common::AbstractModel
+        # @param RemoteWrites: 多写配置
+        # @type RemoteWrites: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RemoteWrites, :RequestId
+
+        def initialize(remotewrites=nil, requestid=nil)
+          @RemoteWrites = remotewrites
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RemoteWrites'].nil?
+            @RemoteWrites = []
+            params['RemoteWrites'].each do |i|
+              remotewrite_tmp = RemoteWrite.new
+              remotewrite_tmp.deserialize(i)
+              @RemoteWrites << remotewrite_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSSOAccount请求参数结构体
       class DescribeSSOAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
@@ -11322,6 +11391,49 @@ module TencentCloud
         end
       end
 
+      # ModifyRemoteURLs请求参数结构体
+      class ModifyRemoteURLsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RemoteWrites: 多写配置
+        # @type RemoteWrites: Array
+
+        attr_accessor :InstanceId, :RemoteWrites
+
+        def initialize(instanceid=nil, remotewrites=nil)
+          @InstanceId = instanceid
+          @RemoteWrites = remotewrites
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['RemoteWrites'].nil?
+            @RemoteWrites = []
+            params['RemoteWrites'].each do |i|
+              remotewrite_tmp = RemoteWrite.new
+              remotewrite_tmp.deserialize(i)
+              @RemoteWrites << remotewrite_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyRemoteURLs返回参数结构体
+      class ModifyRemoteURLsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 监控类型详细信息
       class MonitorTypeInfo < TencentCloud::Common::AbstractModel
         # @param Id: 监控类型ID
@@ -13416,6 +13528,79 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
           @RuleName = params['RuleName']
+        end
+      end
+
+      # 多写配置
+      class RemoteWrite < TencentCloud::Common::AbstractModel
+        # @param URL: 多写url
+        # @type URL: String
+        # @param URLRelabelConfig: RelabelConfig
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URLRelabelConfig: String
+        # @param BasicAuth: 鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasicAuth: :class:`Tencentcloud::Monitor.v20180724.models.BasicAuth`
+        # @param MaxBlockSize: 最大block
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxBlockSize: String
+        # @param Label: Label
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Headers: HTTP 额外添加的头
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: Array
+
+        attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
+
+        def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
+          @URL = url
+          @URLRelabelConfig = urlrelabelconfig
+          @BasicAuth = basicauth
+          @MaxBlockSize = maxblocksize
+          @Label = label
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @URL = params['URL']
+          @URLRelabelConfig = params['URLRelabelConfig']
+          unless params['BasicAuth'].nil?
+            @BasicAuth = BasicAuth.new
+            @BasicAuth.deserialize(params['BasicAuth'])
+          end
+          @MaxBlockSize = params['MaxBlockSize']
+          @Label = params['Label']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              remotewriteheader_tmp = RemoteWriteHeader.new
+              remotewriteheader_tmp.deserialize(i)
+              @Headers << remotewriteheader_tmp
+            end
+          end
+        end
+      end
+
+      # Remote Write 协议额外添加的 HTTP 头
+      class RemoteWriteHeader < TencentCloud::Common::AbstractModel
+        # @param Key: HTTP 头的键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: HTTP 头的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

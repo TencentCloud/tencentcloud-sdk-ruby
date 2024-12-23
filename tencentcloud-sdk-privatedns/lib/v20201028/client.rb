@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建私有域解析账号
+        # 跨账号关联VPC时绑定其他账号
 
         # @param request: Request instance for CreatePrivateDNSAccount.
         # @type request: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateDNSAccountRequest`

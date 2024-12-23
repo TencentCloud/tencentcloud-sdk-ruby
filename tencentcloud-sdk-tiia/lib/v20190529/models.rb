@@ -115,7 +115,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rect: :class:`Tencentcloud::Tiia.v20190529.models.ImageRect`
         # @param DetectConfidence: 人体检测置信度。取值0-1之间，当不开启人体检测开关时默认为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectConfidence: Float
         # @param Attributes: 属性信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -149,13 +148,10 @@ module TencentCloud
       # 属性列表。
       class BodyAttributes < TencentCloud::Common::AbstractModel
         # @param Label: 属性值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Confidence: 置信度，取值0-1之间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Confidence: Float
         # @param Name: 属性名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Label, :Confidence, :Name
@@ -203,28 +199,22 @@ module TencentCloud
       # 车牌信息
       class CarPlateContent < TencentCloud::Common::AbstractModel
         # @param Plate: 车牌信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Plate: String
         # @param Color: 车牌颜色。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Color: String
         # @param Type: 车牌类型，包含：0普通蓝牌，1双层黄牌，2单层黄牌，3新能源车牌，4使馆车牌，5领馆车牌，6澳门车牌，7香港车牌，8警用车牌，9教练车牌，10武警车牌，11军用车牌   -2遮挡污损模糊车牌/异常   其他无牌
         # 注意：
         # 此字段可能返回 null，表示取不到有效值。
         # 此字段结果遮挡污损模糊车牌/异常：包含PlateStatus参数的“遮挡污损模糊车牌”，针对车牌异常，建议参考此字段，更全面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param PlateLocation: 车牌在图片中的坐标信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateLocation: Array
         # @param PlateStatus: 判断车牌是否遮挡：“遮挡污损模糊车牌”和"正常车牌"。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateStatus: String
         # @param PlateStatusConfidence: 车牌遮挡的置信度，0-100。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateStatusConfidence: Integer
         # @param PlateAngle: 车牌角度。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateAngle: Float
 
         attr_accessor :Plate, :Color, :Type, :PlateLocation, :PlateStatus, :PlateStatusConfidence, :PlateAngle
@@ -277,19 +267,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateContent: :class:`Tencentcloud::Tiia.v20190529.models.CarPlateContent`
         # @param PlateConfidence: 车牌信息置信度，0-100，仅车辆识别（增强版）支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlateConfidence: Integer
         # @param TypeConfidence: 车辆类型置信度，0-100，仅车辆识别（增强版）支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeConfidence: Integer
         # @param ColorConfidence: 车辆颜色置信度，0-100，仅车辆识别（增强版）支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorConfidence: Integer
         # @param Orientation: 车辆朝向，仅车辆识别（增强版）支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Orientation: String
         # @param OrientationConfidence: 车辆朝向置信度，0-100，仅车辆识别（增强版）支持
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrientationConfidence: Integer
 
         attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent, :PlateConfidence, :TypeConfidence, :ColorConfidence, :Orientation, :OrientationConfidence
@@ -709,7 +694,6 @@ module TencentCloud
       # DescribeGroups返回参数结构体
       class DescribeGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 图库信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Groups: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -837,7 +821,6 @@ module TencentCloud
       # DetectChefDress返回参数结构体
       class DetectChefDressResponse < TencentCloud::Common::AbstractModel
         # @param Bodies: 识别到的人体属性信息。单个人体属性信息包括人体检测置信度，属性信息，人体检测框。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bodies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -941,10 +924,8 @@ module TencentCloud
       # DetectEnvelope返回参数结构体
       class DetectEnvelopeResponse < TencentCloud::Common::AbstractModel
         # @param FirstTags: 一级标签结果数组。识别是否文件封。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstTags: Array
         # @param SecondTags: 二级标签结果数组。识别文件封正反面。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondTags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1171,7 +1152,6 @@ module TencentCloud
       # DetectLabelPro返回参数结构体
       class DetectLabelProResponse < TencentCloud::Common::AbstractModel
         # @param Labels: 返回标签数组。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1507,7 +1487,6 @@ module TencentCloud
       # DetectSecurity返回参数结构体
       class DetectSecurityResponse < TencentCloud::Common::AbstractModel
         # @param Bodies: 识别到的人体属性信息。单个人体属性信息包括人体检测置信度，属性信息，人体检测框。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bodies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2037,6 +2016,7 @@ module TencentCloud
         # @type MatchThreshold: Integer
         # @param Filter: 标签过滤条件。
         # 针对创建图片时提交的Tags信息进行条件过滤。支持>、>=、 <、 <=、=，!=，多个条件之间支持AND和OR进行连接。
+        # 最大支持64字符。
         # @type Filter: String
         # @param ImageRect: 图像主体区域。
         # 若设置主体区域，提取指定的区域进行检索。

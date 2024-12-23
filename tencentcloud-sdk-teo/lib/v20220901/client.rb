@@ -272,6 +272,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建内容标识符，可以设置描述、标签等信息，同时需要绑定企业版套餐用于统计计费数据；一个内容标识符只能绑定一个计费套餐，一个计费套餐可以绑定多个内容标识符。该功能仅限白名单开放。
+
+        # @param request: Request instance for CreateContentIdentifier.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateContentIdentifierRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateContentIdentifierResponse`
+        def CreateContentIdentifier(request)
+          body = send_request('CreateContentIdentifier', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateContentIdentifierResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义错误页面。
 
         # @param request: Request instance for CreateCustomizeErrorPage.
@@ -282,6 +306,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCustomizeErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在创建完站点后，并且站点为 NS 模式接入时，您可以通过本接口创建 DNS 记录。
+
+        # @param request: Request instance for CreateDnsRecord.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateDnsRecordRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateDnsRecordResponse`
+        def CreateDnsRecord(request)
+          body = send_request('CreateDnsRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDnsRecordResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -759,6 +807,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除指定的内容标识符。该功能仅白名单开放。
+
+        # @param request: Request instance for DeleteContentIdentifier.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteContentIdentifierRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteContentIdentifierResponse`
+        def DeleteContentIdentifier(request)
+          body = send_request('DeleteContentIdentifier', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteContentIdentifierResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除自定义错误页面。
 
         # @param request: Request instance for DeleteCustomErrorPage.
@@ -769,6 +841,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCustomErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 您可以用本接口批量删除 DNS 记录。
+
+        # @param request: Request instance for DeleteDnsRecords.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteDnsRecordsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteDnsRecordsResponse`
+        def DeleteDnsRecords(request)
+          body = send_request('DeleteDnsRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDnsRecordsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1239,6 +1335,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量查询内容标识符，可以根据 ID、描述、状态或者标签过滤。按照状态查询被删除的内容标识符仅保留三个月。该功能仅白名单开放。
+
+        # @param request: Request instance for DescribeContentIdentifiers.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeContentIdentifiersRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeContentIdentifiersResponse`
+        def DescribeContentIdentifiers(request)
+          body = send_request('DescribeContentIdentifiers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContentIdentifiersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询内容管理接口配额
 
         # @param request: Request instance for DescribeContentQuota.
@@ -1393,6 +1513,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeployHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 您可以用过本接口查看站点下的 DNS 记录信息，包括 DNS 记录名、记录类型以及记录内容等信息。您可以查看站点下全部 DNS 记录的信息，也可以指定过滤条件查询对应的 DNS 记录信息。
+
+        # @param request: Request instance for DescribeDnsRecords.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeDnsRecordsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeDnsRecordsResponse`
+        def DescribeDnsRecords(request)
+          body = send_request('DescribeDnsRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDnsRecordsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2526,6 +2670,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改内容标识符，仅支持修改描述。该功能仅白名单开放。
+
+        # @param request: Request instance for ModifyContentIdentifier.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyContentIdentifierRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyContentIdentifierResponse`
+        def ModifyContentIdentifier(request)
+          body = send_request('ModifyContentIdentifier', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyContentIdentifierResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改自定义错误页面。
 
         # @param request: Request instance for ModifyCustomErrorPage.
@@ -2536,6 +2704,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 您可以通过本接口批量修改 DNS 记录。
+
+        # @param request: Request instance for ModifyDnsRecords.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyDnsRecordsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyDnsRecordsResponse`
+        def ModifyDnsRecords(request)
+          body = send_request('ModifyDnsRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDnsRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 您可以通过本接口批量修改 DNS 记录的状态，批量对记录进行开启和停用。
+
+        # @param request: Request instance for ModifyDnsRecordsStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyDnsRecordsStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyDnsRecordsStatusResponse`
+        def ModifyDnsRecordsStatus(request)
+          body = send_request('ModifyDnsRecordsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDnsRecordsStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

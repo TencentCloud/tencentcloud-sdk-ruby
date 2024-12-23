@@ -20,13 +20,10 @@ module TencentCloud
       # AKSK泄漏信息
       class AKSKLeak < TencentCloud::Common::AbstractModel
         # @param AK: AK编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AK: String
         # @param SK: SK编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SK: String
         # @param URL: URL编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type URL: String
 
         attr_accessor :AK, :SK, :URL
@@ -47,10 +44,8 @@ module TencentCloud
       # 账户风险
       class AccountRisk < TencentCloud::Common::AbstractModel
         # @param Id: id（可不参考）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
         # @param RiskAccount: 风险账户
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskAccount: String
 
         attr_accessor :Id, :RiskAccount
@@ -73,7 +68,6 @@ module TencentCloud
         # @param ItemName: 评估项名称
         # @type ItemName: String
         # @param Description: 评估项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 评估项来源，内置/用户自定，取值（system，user）
         # @type Source: String
@@ -86,7 +80,6 @@ module TencentCloud
         # @param Status: 评估项启用状态，启用/未启用，取值draft / launched
         # @type Status: String
         # @param TemplateCount: 评估项关联的模板数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateCount: Integer
 
         attr_accessor :ItemId, :ItemName, :Description, :Source, :ItemType, :ItemSubType, :CreatedTime, :Status, :TemplateCount
@@ -121,7 +114,6 @@ module TencentCloud
         # @param RiskId: 风险项Id
         # @type RiskId: String
         # @param RiskDescription: 风险项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDescription: String
         # @param TemplateId: 评估模板Id
         # @type TemplateId: String
@@ -146,25 +138,18 @@ module TencentCloud
         # @param RelatedAsset: 风险涉及资产
         # @type RelatedAsset: String
         # @param DataSourceId: 风险涉及资产id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param DataSourceName: 风险涉及资产名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param AssetName: 资产名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param SecurityProduct: 建议使用安全产品
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityProduct: Array
         # @param RiskType: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
         # @param RiskSide: 风险面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSide: String
         # @param DataSourceType: 数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
 
         attr_accessor :RiskId, :RiskDescription, :TemplateId, :TemplateName, :ControlItemId, :ControlItemName, :ControlItemDesc, :RiskLevel, :RiskMitigation, :Status, :CreatedTime, :RiskOwner, :RelatedAsset, :DataSourceId, :DataSourceName, :AssetName, :SecurityProduct, :RiskType, :RiskSide, :DataSourceType
@@ -226,31 +211,22 @@ module TencentCloud
       # 风险项列表详细数据
       class AssessmentRiskItem < TencentCloud::Common::AbstractModel
         # @param Id: 脆弱项id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param RiskName: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskName: String
         # @param Level: 脆弱性级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
         # @param Description: 说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param RiskType: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
         # @param ReferTemplateCount: 关联模板个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferTemplateCount: Integer
         # @param SupportDataSource: 支持的数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataSource: Array
         # @param RiskSide: 风险面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSide: String
         # @param ReferTemplateList: 关联模板列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferTemplateList: Array
 
         attr_accessor :Id, :RiskName, :Level, :Description, :RiskType, :ReferTemplateCount, :SupportDataSource, :RiskSide, :ReferTemplateList
@@ -292,8 +268,6 @@ module TencentCloud
         # @param TaskId: 评估任务Id
         # @type TaskId: String
         # @param TaskUid: 评估任务的自增ID
-
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskUid: Integer
         # @param TaskName: 评估任务名称
         # @type TaskName: String
@@ -316,7 +290,6 @@ module TencentCloud
         # @param RiskCount: 风险项数量（仅状态为finished的风险项不计入总数，其余状态均算入该数量）
         # @type RiskCount: Integer
         # @param FinishedTime: 评估任务完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishedTime: String
         # @param CreatedTime: 评估任务发起时间
         # @type CreatedTime: String
@@ -325,15 +298,12 @@ module TencentCloud
         # @param RiskCountInfoList: 待处理各等级风险项信息
         # @type RiskCountInfoList: Array
         # @param DiscoveryCondition: 数据源信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscoveryCondition: :class:`Tencentcloud::Dsgc.v20190723.models.DiscoveryCondition`
         # @param ErrorInfo: 评估任务失败信息
         # @type ErrorInfo: String
         # @param TemplateUid: 模板主键id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateUid: Integer
         # @param ProgressPercent: 进度百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgressPercent: Integer
 
         attr_accessor :TaskId, :TaskUid, :TaskName, :BusinessName, :BusinessDept, :BusinessOwner, :TemplateId, :TemplateName, :ComplianceGroupId, :ComplianceGroupName, :ControlItemCount, :RiskCount, :FinishedTime, :CreatedTime, :Status, :RiskCountInfoList, :DiscoveryCondition, :ErrorInfo, :TemplateUid, :ProgressPercent
@@ -398,14 +368,12 @@ module TencentCloud
       # DSPA评估模板
       class AssessmentTemplate < TencentCloud::Common::AbstractModel
         # @param Id: id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param TemplateId: 评估模板Id
         # @type TemplateId: String
         # @param TemplateName: 评估模板名称
         # @type TemplateName: String
         # @param Description: 描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 模板来源，内置/用户自定，取值（system，user）
         # @type Source: String
@@ -420,13 +388,10 @@ module TencentCloud
         # @param Status: 模板启用状态，草稿/已启用，取值draft / launched
         # @type Status: String
         # @param SupportDataSource: 支持的数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataSource: Array
         # @param IsASMTemplate: 是否包含攻击面风险
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsASMTemplate: Boolean
         # @param IdentifyComplianceId: 合规组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyComplianceId: Integer
 
         attr_accessor :Id, :TemplateId, :TemplateName, :Description, :Source, :UseType, :CreatedTime, :ControlItemCount, :AppliedItemCount, :Status, :SupportDataSource, :IsASMTemplate, :IdentifyComplianceId
@@ -467,22 +432,16 @@ module TencentCloud
       # 数据资产报告-cos的资产详情
       class AssetCosDetail < TencentCloud::Common::AbstractModel
         # @param Bucket: 桶的名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
         # @param DataType: 数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: String
         # @param FileNums: 文件的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileNums: Integer
         # @param SensitiveFileNums: 敏感的文件个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFileNums: Integer
         # @param DistributionData: 敏感分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DistributionData: Array
         # @param MatchedNum: cos文件的敏感数据个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchedNum: Integer
 
         attr_accessor :Bucket, :DataType, :FileNums, :SensitiveFileNums, :DistributionData, :MatchedNum
@@ -516,28 +475,20 @@ module TencentCloud
       # RDB敏感资产详情列表
       class AssetDBDetail < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param DdName: 数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdName: String
         # @param DataType: 数据库类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: String
         # @param TableNums: 表的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableNums: Integer
         # @param SensitiveTableNums: 敏感表数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveTableNums: Integer
         # @param FieldNums: 字段的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param SensitiveFieldNums: 敏感字段的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldNums: Integer
         # @param DistributionData: 敏感数据分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DistributionData: Array
 
         attr_accessor :DataSourceId, :DdName, :DataType, :TableNums, :SensitiveTableNums, :FieldNums, :SensitiveFieldNums, :DistributionData
@@ -651,7 +602,6 @@ module TencentCloud
         # @param DspaId: DSPA实例ID。
         # @type DspaId: String
         # @param Results: 授权结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -883,16 +833,12 @@ module TencentCloud
         # @param Id: 分类规则绑定关系id
         # @type Id: Integer
         # @param AliasRuleId: 别名ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasRuleId: Integer
         # @param AliasRuleName: 别名规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasRuleName: String
         # @param RuleEffectItems: 各类分类分级规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleEffectItems: Array
         # @param RuleStatus: 规则状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleStatus: Integer
 
         attr_accessor :CategoryId, :RuleId, :RuleName, :LevelId, :LevelName, :Id, :AliasRuleId, :AliasRuleName, :RuleEffectItems, :RuleStatus
@@ -989,23 +935,18 @@ module TencentCloud
         # @param Name: 模板名称
         # @type Name: String
         # @param Description: 描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ComplianceGroupType: 模板类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupType: Integer
         # @param LevelGroupId: 模板分级方案id
         # @type LevelGroupId: Integer
         # @param LevelGroupName: 模板分级方案名称
         # @type LevelGroupName: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param ModifyTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
         # @param IsAlias: 是否开启别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAlias: Boolean
 
         attr_accessor :Id, :Name, :Description, :ComplianceGroupType, :LevelGroupId, :LevelGroupName, :CreateTime, :ModifyTime, :IsAlias
@@ -1102,16 +1043,12 @@ module TencentCloud
       # 数据资产报告-cos的敏感资产报告详情
       class CosAsset < TencentCloud::Common::AbstractModel
         # @param BucketNums: 桶的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketNums: Integer
         # @param SensitiveBucketNums: 敏感桶的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveBucketNums: Integer
         # @param FileNums: 文件个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileNums: Integer
         # @param SensitiveFileNums: 敏感文件的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFileNums: Integer
 
         attr_accessor :BucketNums, :SensitiveBucketNums, :FileNums, :SensitiveFileNums
@@ -1182,7 +1119,6 @@ module TencentCloud
         # @param ResultDescription: 结果描述。
         # @type ResultDescription: String
         # @param ErrDescription: 错误信息描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrDescription: :class:`Tencentcloud::Dsgc.v20190723.models.ErrDescription`
         # @param ResourceId: 资源ID。
         # @type ResourceId: String
@@ -1230,10 +1166,8 @@ module TencentCloud
       # CreateAssetSortingReportRetryTask返回参数结构体
       class CreateAssetSortingReportRetryTaskResponse < TencentCloud::Common::AbstractModel
         # @param ReportTaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTaskId: Integer
         # @param Remark: 提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1287,10 +1221,8 @@ module TencentCloud
       # CreateAssetSortingReportTask返回参数结构体
       class CreateAssetSortingReportTaskResponse < TencentCloud::Common::AbstractModel
         # @param ReportTaskId: 报表任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTaskId: Integer
         # @param Remark: 提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1483,12 +1415,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2024, 10
-        deprecate :BusinessName=, :none, 2024, 10
-        deprecate :BusinessDept, :none, 2024, 10
-        deprecate :BusinessDept=, :none, 2024, 10
-        deprecate :BusinessOwner, :none, 2024, 10
-        deprecate :BusinessOwner=, :none, 2024, 10
+        deprecate :BusinessName, :none, 2024, 12
+        deprecate :BusinessName=, :none, 2024, 12
+        deprecate :BusinessDept, :none, 2024, 12
+        deprecate :BusinessDept=, :none, 2024, 12
+        deprecate :BusinessOwner, :none, 2024, 12
+        deprecate :BusinessOwner=, :none, 2024, 12
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -1550,8 +1482,6 @@ module TencentCloud
         # @type Enable: Integer
         # @param Bucket: 桶名
         # @type Bucket: String
-        # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
-        # @type GeneralRuleSetEnable: Integer
         # @param Plan: 执行计划， 0立即 1定时，选择“立即”时，扫描周期只能选择单次。
         # @type Plan: Integer
         # @param Period: 扫描周期，0单次 1每天 2每周 3每月
@@ -1564,27 +1494,29 @@ module TencentCloud
         # @type ResourceRegion: String
         # @param Description: 任务描述，最大长度为1024个字符
         # @type Description: String
+        # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
+        # @type GeneralRuleSetEnable: Integer
         # @param ComplianceGroupIds: 合规组ID列表，最多支持添加5个
         # @type ComplianceGroupIds: Array
         # @param TimingStartTime: 任务定时启动时间，格式如：2006-01-02 15:04:05
         # 当执行计划（Plan字段）为”立即“时，定时启动时间不会生效，此场景下给该字段传值不会被保存。
         # @type TimingStartTime: String
 
-        attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Bucket, :GeneralRuleSetEnable, :Plan, :Period, :FileTypes, :FileSizeLimit, :ResourceRegion, :Description, :ComplianceGroupIds, :TimingStartTime
+        attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Bucket, :Plan, :Period, :FileTypes, :FileSizeLimit, :ResourceRegion, :Description, :GeneralRuleSetEnable, :ComplianceGroupIds, :TimingStartTime
 
-        def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, bucket=nil, generalrulesetenable=nil, plan=nil, period=nil, filetypes=nil, filesizelimit=nil, resourceregion=nil, description=nil, compliancegroupids=nil, timingstarttime=nil)
+        def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, bucket=nil, plan=nil, period=nil, filetypes=nil, filesizelimit=nil, resourceregion=nil, description=nil, generalrulesetenable=nil, compliancegroupids=nil, timingstarttime=nil)
           @DspaId = dspaid
           @Name = name
           @DataSourceId = datasourceid
           @Enable = enable
           @Bucket = bucket
-          @GeneralRuleSetEnable = generalrulesetenable
           @Plan = plan
           @Period = period
           @FileTypes = filetypes
           @FileSizeLimit = filesizelimit
           @ResourceRegion = resourceregion
           @Description = description
+          @GeneralRuleSetEnable = generalrulesetenable
           @ComplianceGroupIds = compliancegroupids
           @TimingStartTime = timingstarttime
         end
@@ -1595,13 +1527,13 @@ module TencentCloud
           @DataSourceId = params['DataSourceId']
           @Enable = params['Enable']
           @Bucket = params['Bucket']
-          @GeneralRuleSetEnable = params['GeneralRuleSetEnable']
           @Plan = params['Plan']
           @Period = params['Period']
           @FileTypes = params['FileTypes']
           @FileSizeLimit = params['FileSizeLimit']
           @ResourceRegion = params['ResourceRegion']
           @Description = params['Description']
+          @GeneralRuleSetEnable = params['GeneralRuleSetEnable']
           @ComplianceGroupIds = params['ComplianceGroupIds']
           @TimingStartTime = params['TimingStartTime']
         end
@@ -1612,7 +1544,6 @@ module TencentCloud
         # @param TaskId: 任务ID
         # @type TaskId: Integer
         # @param ResultId: 扫描结果ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1728,15 +1659,21 @@ module TencentCloud
         # @type ComplianceGroupRules: Array
         # @param LevelGroupId: 分级组ID，默认值为1，新增参数，可选
         # @type LevelGroupId: Integer
+        # @param Status: 1代表模版开启，0代表模版关闭
+        # @type Status: Integer
+        # @param CloseComplianceId: 该complianceId的开启状态将被关闭
+        # @type CloseComplianceId: Integer
 
-        attr_accessor :DspaId, :Name, :Description, :ComplianceGroupRules, :LevelGroupId
+        attr_accessor :DspaId, :Name, :Description, :ComplianceGroupRules, :LevelGroupId, :Status, :CloseComplianceId
 
-        def initialize(dspaid=nil, name=nil, description=nil, compliancegrouprules=nil, levelgroupid=nil)
+        def initialize(dspaid=nil, name=nil, description=nil, compliancegrouprules=nil, levelgroupid=nil, status=nil, closecomplianceid=nil)
           @DspaId = dspaid
           @Name = name
           @Description = description
           @ComplianceGroupRules = compliancegrouprules
           @LevelGroupId = levelgroupid
+          @Status = status
+          @CloseComplianceId = closecomplianceid
         end
 
         def deserialize(params)
@@ -1752,6 +1689,8 @@ module TencentCloud
             end
           end
           @LevelGroupId = params['LevelGroupId']
+          @Status = params['Status']
+          @CloseComplianceId = params['CloseComplianceId']
         end
       end
 
@@ -1839,10 +1778,10 @@ module TencentCloud
 
         attr_accessor :DspaId, :ResourceRegion, :Buckets, :CosBucketItems
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2024, 10
-        deprecate :ResourceRegion=, :none, 2024, 10
-        deprecate :Buckets, :none, 2024, 10
-        deprecate :Buckets=, :none, 2024, 10
+        deprecate :ResourceRegion, :none, 2024, 12
+        deprecate :ResourceRegion=, :none, 2024, 12
+        deprecate :Buckets, :none, 2024, 12
+        deprecate :Buckets=, :none, 2024, 12
 
         def initialize(dspaid=nil, resourceregion=nil, buckets=nil, cosbucketitems=nil)
           @DspaId = dspaid
@@ -1901,14 +1840,14 @@ module TencentCloud
 
         attr_accessor :DspaId, :MetaType, :ResourceRegion, :UpdateStatus, :UpdateId, :Items, :CloudResourceItems
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2024, 10
-        deprecate :ResourceRegion=, :none, 2024, 10
-        deprecate :UpdateStatus, :none, 2024, 10
-        deprecate :UpdateStatus=, :none, 2024, 10
-        deprecate :UpdateId, :none, 2024, 10
-        deprecate :UpdateId=, :none, 2024, 10
-        deprecate :Items, :none, 2024, 10
-        deprecate :Items=, :none, 2024, 10
+        deprecate :ResourceRegion, :none, 2024, 12
+        deprecate :ResourceRegion=, :none, 2024, 12
+        deprecate :UpdateStatus, :none, 2024, 12
+        deprecate :UpdateStatus=, :none, 2024, 12
+        deprecate :UpdateId, :none, 2024, 12
+        deprecate :UpdateId=, :none, 2024, 12
+        deprecate :Items, :none, 2024, 12
+        deprecate :Items=, :none, 2024, 12
 
         def initialize(dspaid=nil, metatype=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil, cloudresourceitems=nil)
           @DspaId = dspaid
@@ -1960,10 +1899,10 @@ module TencentCloud
 
         attr_accessor :UpdateId, :MetaType, :DspaId, :ResourceRegion, :RequestId
         extend Gem::Deprecate
-        deprecate :UpdateId, :none, 2024, 10
-        deprecate :UpdateId=, :none, 2024, 10
-        deprecate :ResourceRegion, :none, 2024, 10
-        deprecate :ResourceRegion=, :none, 2024, 10
+        deprecate :UpdateId, :none, 2024, 12
+        deprecate :UpdateId=, :none, 2024, 12
+        deprecate :ResourceRegion, :none, 2024, 12
+        deprecate :ResourceRegion=, :none, 2024, 12
 
         def initialize(updateid=nil, metatype=nil, dspaid=nil, resourceregion=nil, requestid=nil)
           @UpdateId = updateid
@@ -2054,8 +1993,6 @@ module TencentCloud
         # @type DataSourceId: String
         # @param Enable: 任务开关，0 关闭，1 启用
         # @type Enable: Integer
-        # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
-        # @type GeneralRuleSetEnable: Integer
         # @param Plan: 执行计划， 0立即 1定时，选择“立即”时，扫描周期只能选择单次
         # @type Plan: Integer
         # @param Period: 扫描周期，0单次 1每天 2每周 3每月
@@ -2071,6 +2008,8 @@ module TencentCloud
         # cynosdbmysql 表示TDSQL-C MySQL版,
         # selfbuilt-db 表示自建数据库
         # @type DataSourceType: String
+        # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
+        # @type GeneralRuleSetEnable: Integer
         # @param Description: 任务描述，最大长度为1024个字符
         # @type Description: String
         # @param Condition: 用于传入的数据源的条件，目前只支持数据库，所以目前表示数据库的名称，选择多个数据库，之间通过逗号分隔，若不选，则默认选择全部数据库
@@ -2087,18 +2026,21 @@ module TencentCloud
         # @param GlobalOrderField: 抽样的排序字段
         # @type GlobalOrderField: String
 
-        attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :GeneralRuleSetEnable, :Plan, :Period, :ResourceRegion, :DataSourceType, :Description, :Condition, :ComplianceGroupIds, :TimingStartTime, :Order, :Rows, :GlobalOrderField
+        attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Plan, :Period, :ResourceRegion, :DataSourceType, :GeneralRuleSetEnable, :Description, :Condition, :ComplianceGroupIds, :TimingStartTime, :Order, :Rows, :GlobalOrderField
+        extend Gem::Deprecate
+        deprecate :GeneralRuleSetEnable, :none, 2024, 12
+        deprecate :GeneralRuleSetEnable=, :none, 2024, 12
 
-        def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, generalrulesetenable=nil, plan=nil, period=nil, resourceregion=nil, datasourcetype=nil, description=nil, condition=nil, compliancegroupids=nil, timingstarttime=nil, order=nil, rows=nil, globalorderfield=nil)
+        def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, plan=nil, period=nil, resourceregion=nil, datasourcetype=nil, generalrulesetenable=nil, description=nil, condition=nil, compliancegroupids=nil, timingstarttime=nil, order=nil, rows=nil, globalorderfield=nil)
           @DspaId = dspaid
           @Name = name
           @DataSourceId = datasourceid
           @Enable = enable
-          @GeneralRuleSetEnable = generalrulesetenable
           @Plan = plan
           @Period = period
           @ResourceRegion = resourceregion
           @DataSourceType = datasourcetype
+          @GeneralRuleSetEnable = generalrulesetenable
           @Description = description
           @Condition = condition
           @ComplianceGroupIds = compliancegroupids
@@ -2113,11 +2055,11 @@ module TencentCloud
           @Name = params['Name']
           @DataSourceId = params['DataSourceId']
           @Enable = params['Enable']
-          @GeneralRuleSetEnable = params['GeneralRuleSetEnable']
           @Plan = params['Plan']
           @Period = params['Period']
           @ResourceRegion = params['ResourceRegion']
           @DataSourceType = params['DataSourceType']
+          @GeneralRuleSetEnable = params['GeneralRuleSetEnable']
           @Description = params['Description']
           @Condition = params['Condition']
           @ComplianceGroupIds = params['ComplianceGroupIds']
@@ -2133,7 +2075,6 @@ module TencentCloud
         # @param TaskId: 任务ID
         # @type TaskId: Integer
         # @param ResultId: 扫描结果ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2436,10 +2377,8 @@ module TencentCloud
       # CreateIdentifyRuleAnotherName返回参数结构体
       class CreateIdentifyRuleAnotherNameResponse < TencentCloud::Common::AbstractModel
         # @param AliasRuleId: 创建的别名规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasRuleId: Integer
         # @param AliasRuleName: 别名规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasRuleName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2516,10 +2455,8 @@ module TencentCloud
       # 绑定的实例信息
       class DBInstanceInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceId: String
         # @param DbInfos: 数据源绑定的db信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbInfos: Array
 
         attr_accessor :ResourceId, :DbInfos
@@ -2609,7 +2546,6 @@ module TencentCloud
       # DSPA数据源的数据库信息
       class DSPADataSourceDbInfo < TencentCloud::Common::AbstractModel
         # @param DbName: 数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
 
         attr_accessor :DbName
@@ -2626,16 +2562,13 @@ module TencentCloud
       # 元数据类型
       class DSPAMetaType < TencentCloud::Common::AbstractModel
         # @param MetaType: 元数据类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaType: String
         # @param Regions: 支持的此元数据类型的地域列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Regions: Array
         # @param SupportedAuthTypes: 此元数据类型支持的授权类型：
         # account    -- 账户名密码授权，账户的最高只读权限需要由用户自行赋予；
         # automatic -- 一键授权，由DSPA自动生成账户名密码并自动在实例中给账户名赋予最高只读权限；
         # 如果此列表为空，表明此类资源不支持以上的授权机制，无法通过后台进行授权。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportedAuthTypes: Array
 
         attr_accessor :MetaType, :Regions, :SupportedAuthTypes
@@ -2656,7 +2589,6 @@ module TencentCloud
       # DSPA分类分级任务扫描的表信息
       class DSPATableInfo < TencentCloud::Common::AbstractModel
         # @param TableName: 表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
 
         attr_accessor :TableName
@@ -2759,7 +2691,6 @@ module TencentCloud
         # @param Operator: 操作符；只能取and, or的其中一种
         # @type Operator: String
         # @param Contents: 规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contents: Array
 
         attr_accessor :Operator, :Contents
@@ -2807,10 +2738,8 @@ module TencentCloud
         # @param Name: 扩展参数名称，目前支持如下两个扩展属性名称：
         # IsFullWordMatch，表示是否全文匹配，该Name对应的Value可取值为"true"或"false":，默认值为"false"，
         # IsIgnoreCase，表示是否忽略大小写，该Name对应的Value可取值为"true"或"false"，默认值为"true"
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 扩展参数值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -2829,13 +2758,10 @@ module TencentCloud
       # 查询绑定的db信息
       class DbInfo < TencentCloud::Common::AbstractModel
         # @param DbName: 数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbName: String
         # @param ValidStatus: 绑定的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidStatus: String
         # @param BindType: 绑定的类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindType: String
 
         attr_accessor :DbName, :ValidStatus, :BindType
@@ -2900,7 +2826,6 @@ module TencentCloud
         # @param ResultDescription: 结果描述。
         # @type ResultDescription: String
         # @param ErrDescription: 错误信息描述。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrDescription: :class:`Tencentcloud::Dsgc.v20190723.models.ErrDescription`
         # @param ResourceId: 资源ID。
         # @type ResourceId: String
@@ -3021,7 +2946,6 @@ module TencentCloud
       # DeleteCosMetaResource返回参数结构体
       class DeleteCosMetaResourceResponse < TencentCloud::Common::AbstractModel
         # @param Results: 结果集合。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param DspaId: DSPA实例ID。
         # @type DspaId: String
@@ -3363,52 +3287,36 @@ module TencentCloud
       # DescribeAssetOverview返回参数结构体
       class DescribeAssetOverviewResponse < TencentCloud::Common::AbstractModel
         # @param DBInstanceNums: 数据库实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBInstanceNums: Integer
         # @param DBNums: 数据库个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBNums: Integer
         # @param TableNums: 表的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableNums: Integer
         # @param FieldNums: 字段个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param DBInstanceDistribution: 数据库实例的分布情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBInstanceDistribution: Array
         # @param DBDistribution: db分布情况
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBDistribution: Array
         # @param BucketNums: cos桶的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketNums: Integer
         # @param FileNums: 文件个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileNums: Integer
         # @param Remark: 用于对用户进行提示信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param EsInstanceNums: es实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsInstanceNums: Integer
         # @param EsIndexNums: es索引数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsIndexNums: Integer
         # @param EsFieldNums: es字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsFieldNums: Integer
         # @param MongoInstanceNums: mongo实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoInstanceNums: Integer
         # @param MongoDbNums: mongo数据库数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoDbNums: Integer
         # @param MongoColNums: mongo集合数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoColNums: Integer
         # @param MongoFieldNums: mongo字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoFieldNums: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3497,10 +3405,8 @@ module TencentCloud
       # DescribeBindDBList返回参数结构体
       class DescribeBindDBListResponse < TencentCloud::Common::AbstractModel
         # @param BindDBList: 绑定的DB列表（已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindDBList: Array
         # @param BindList: 绑定信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3561,13 +3467,10 @@ module TencentCloud
       # DescribeCOSAssetSensitiveDistribution返回参数结构体
       class DescribeCOSAssetSensitiveDistributionResponse < TencentCloud::Common::AbstractModel
         # @param CosAsset: cos的涉敏资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosAsset: :class:`Tencentcloud::Dsgc.v20190723.models.CosAsset`
         # @param TopAsset: 涉敏top
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopAsset: Array
         # @param CosDetail: cos资产详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3688,7 +3591,6 @@ module TencentCloud
       # DescribeDSPAAssessmentHighRiskTop10Overview返回参数结构体
       class DescribeDSPAAssessmentHighRiskTop10OverviewResponse < TencentCloud::Common::AbstractModel
         # @param AssetsList: 含高风险资产TOP10的列表数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetsList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3740,61 +3642,42 @@ module TencentCloud
       # DescribeDSPAAssessmentLatestRiskDetailInfo返回参数结构体
       class DescribeDSPAAssessmentLatestRiskDetailInfoResponse < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param DataSourceName: 数据源name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param AssetName: 资产对象名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param AssessmentTemplateId: 风险评估模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssessmentTemplateId: Integer
         # @param IdentifyTemplateId: 分类分级的模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyTemplateId: Integer
         # @param RiskType: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
         # @param RiskName: 风险项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskName: String
         # @param RiskDescription: 风险的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDescription: String
         # @param RiskLevel: 风险的级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param SuggestAction: 处置的建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuggestAction: String
         # @param Status: 处置状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param SecurityProduct: 安全产品
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityProduct: Array
         # @param RiskDimension: 风险归属
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDimension: String
         # @param RelationAsset: 关联数据库（如果风险归属是instance）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelationAsset: Array
         # @param AccountRiskDetail: 风险账号详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountRiskDetail: Array
         # @param PrivilegeRiskDetail: 权限风险详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivilegeRiskDetail: Array
         # @param PolicyRiskCosFileList: 策略风险的cos风险文件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyRiskCosFileList: Array
         # @param AKSKLeak: AKSK泄漏列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AKSKLeak: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3943,7 +3826,6 @@ module TencentCloud
       # DescribeDSPAAssessmentLatestRiskList返回参数结构体
       class DescribeDSPAAssessmentLatestRiskListResponse < TencentCloud::Common::AbstractModel
         # @param LatestRiskList: 最新风险详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestRiskList: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
@@ -4178,8 +4060,7 @@ module TencentCloud
 
       # DescribeDSPAAssessmentRiskDatasourceTop5返回参数结构体
       class DescribeDSPAAssessmentRiskDatasourceTop5Response < TencentCloud::Common::AbstractModel
-        # @param Items: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Items: 风险值
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4283,7 +4164,6 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskDealedTrend返回参数结构体
       class DescribeDSPAAssessmentRiskDealedTrendResponse < TencentCloud::Common::AbstractModel
         # @param Items: 趋势统计结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4336,13 +4216,10 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskDistributionOverview返回参数结构体
       class DescribeDSPAAssessmentRiskDistributionOverviewResponse < TencentCloud::Common::AbstractModel
         # @param RiskTypeDistribution: 风险类型分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskTypeDistribution: Array
         # @param RiskDetailDistribution: 风险详情分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDetailDistribution: Array
         # @param RiskAssetsDistribution: 风险资产详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskAssetsDistribution: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4403,8 +4280,7 @@ module TencentCloud
 
       # DescribeDSPAAssessmentRiskItemTop5返回参数结构体
       class DescribeDSPAAssessmentRiskItemTop5Response < TencentCloud::Common::AbstractModel
-        # @param Items: 无
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Items: 风险结果
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4454,15 +4330,12 @@ module TencentCloud
         # @param RiskLevelName: 风险级别名称
         # @type RiskLevelName: String
         # @param RiskLevelDescription: 风险级别描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelDescription: String
         # @param IdentifyComplianceId: 分类分级id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyComplianceId: Integer
         # @param IdentifyComplianceName: 分类分级模板名称
         # @type IdentifyComplianceName: String
         # @param RiskLevelMatrix: 风险数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelMatrix: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4524,7 +4397,6 @@ module TencentCloud
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
         # @param RiskLevelList: 风险等级列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4582,7 +4454,6 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskLevelTrend返回参数结构体
       class DescribeDSPAAssessmentRiskLevelTrendResponse < TencentCloud::Common::AbstractModel
         # @param Items: 结果集
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4659,7 +4530,7 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskProcessHistoryRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param RiskId: xxx
+        # @param RiskId: 风险id
         # @type RiskId: Integer
 
         attr_accessor :DspaId, :RiskId
@@ -4678,7 +4549,6 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskProcessHistory返回参数结构体
       class DescribeDSPAAssessmentRiskProcessHistoryResponse < TencentCloud::Common::AbstractModel
         # @param ProcessHistory: 处理的历史
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessHistory: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4726,7 +4596,6 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskSideDistributed返回参数结构体
       class DescribeDSPAAssessmentRiskSideDistributedResponse < TencentCloud::Common::AbstractModel
         # @param RiskSideDistributed: 风险面的分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSideDistributed: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4774,7 +4643,6 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskSideList返回参数结构体
       class DescribeDSPAAssessmentRiskSideListResponse < TencentCloud::Common::AbstractModel
         # @param RiskSideItmeList: 风险面列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSideItmeList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4834,20 +4702,16 @@ module TencentCloud
         # @param TemplateName: 模板名称
         # @type TemplateName: String
         # @param TemplateDescription: 模板的描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateDescription: String
         # @param RiskLevelId: 风险等级
         # @type RiskLevelId: Integer
         # @param RiskLevelName: 风险等级名称
         # @type RiskLevelName: String
         # @param RiskItemList: 脆弱项配置列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskItemList: Array
         # @param TotalCount: 脆弱项配置条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param TaskCitations: 被任务引用次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCitations: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4925,7 +4789,6 @@ module TencentCloud
       # DescribeDSPAAssessmentRiskTemplateVulnerableList返回参数结构体
       class DescribeDSPAAssessmentRiskTemplateVulnerableListResponse < TencentCloud::Common::AbstractModel
         # @param RiskItemList: 脆弱项列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskItemList: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
@@ -5036,13 +4899,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 结果集个数限制。默认为20，最大值为100
         # @type Limit: Integer
-        # @param Filters: 过滤项。
-        # 支持模糊搜索：TaskId，TaskName
-        # 支持过滤：
-        # BusinessName：业务名称
-        # BusinessDept：业务部门名称
-        # TemplateName：评估模版名称
-        # Status：评估状态 (waiting待评估，processing评估中, , finished已评估, failed评估失败)
+        # @param Filters: 过滤项。支持模糊搜索：TaskId，TaskName支持过滤：BusinessName：业务名称BusinessDept：业务部门名称TemplateName：评估模板名称Status：评估状态 (waiting待评估，processing评估中, , finished已评估, failed评估失败)
         # @type Filters: Array
 
         attr_accessor :DspaId, :Offset, :Limit, :Filters
@@ -5265,7 +5122,6 @@ module TencentCloud
       # DescribeDSPACOSDataAssetBuckets返回参数结构体
       class DescribeDSPACOSDataAssetBucketsResponse < TencentCloud::Common::AbstractModel
         # @param Buckets: COS对象存储敏感数据资产已扫描的桶集合。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Buckets: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5306,7 +5162,6 @@ module TencentCloud
       # DescribeDSPACOSDataAssetByComplianceId返回参数结构体
       class DescribeDSPACOSDataAssetByComplianceIdResponse < TencentCloud::Common::AbstractModel
         # @param Stats: 符合条件的COS存储对象的敏感数据资产统计记录
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stats: :class:`Tencentcloud::Dsgc.v20190723.models.DspaCOSDataAssetCount`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5351,7 +5206,6 @@ module TencentCloud
       # DescribeDSPACOSDataAssetDetail返回参数结构体
       class DescribeDSPACOSDataAssetDetailResponse < TencentCloud::Common::AbstractModel
         # @param Details: COS对象存储敏感数据资产详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
         # @param TotalCount: 符合条件的COS对象存储敏感数据资产数量
         # @type TotalCount: Integer
@@ -5403,7 +5257,6 @@ module TencentCloud
       # DescribeDSPACOSDiscoveryTaskDetail返回参数结构体
       class DescribeDSPACOSDiscoveryTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param Task: 任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Task: :class:`Tencentcloud::Dsgc.v20190723.models.DspaCOSDiscoveryTaskDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5451,7 +5304,6 @@ module TencentCloud
       # DescribeDSPACOSDiscoveryTaskFiles返回参数结构体
       class DescribeDSPACOSDiscoveryTaskFilesResponse < TencentCloud::Common::AbstractModel
         # @param Files: 文件列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Files: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5513,10 +5365,8 @@ module TencentCloud
       # DescribeDSPACOSDiscoveryTaskResult返回参数结构体
       class DescribeDSPACOSDiscoveryTaskResultResponse < TencentCloud::Common::AbstractModel
         # @param Items: 扫描任务结果项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的数据结果数目
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5582,7 +5432,6 @@ module TencentCloud
       # DescribeDSPACOSDiscoveryTasks返回参数结构体
       class DescribeDSPACOSDiscoveryTasksResponse < TencentCloud::Common::AbstractModel
         # @param Items: 任务列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的任务列表数
         # @type TotalCount: Integer
@@ -5670,7 +5519,6 @@ module TencentCloud
       # DescribeDSPACOSTaskResultDetail返回参数结构体
       class DescribeDSPACOSTaskResultDetailResponse < TencentCloud::Common::AbstractModel
         # @param Items: 扫描结果详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的详情数量
         # @type TotalCount: Integer
@@ -5734,10 +5582,8 @@ module TencentCloud
       # DescribeDSPACategories返回参数结构体
       class DescribeDSPACategoriesResponse < TencentCloud::Common::AbstractModel
         # @param Items: 敏感数据分类列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的敏感数据分类数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5787,7 +5633,6 @@ module TencentCloud
       # DescribeDSPACategoryRuleStatistic返回参数结构体
       class DescribeDSPACategoryRuleStatisticResponse < TencentCloud::Common::AbstractModel
         # @param StatisticSet: 分类规则统计信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5839,7 +5684,6 @@ module TencentCloud
       # DescribeDSPACategoryRules返回参数结构体
       class DescribeDSPACategoryRulesResponse < TencentCloud::Common::AbstractModel
         # @param CategoryRules: 分类规则信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryRules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5887,7 +5731,6 @@ module TencentCloud
       # DescribeDSPACategoryTree返回参数结构体
       class DescribeDSPACategoryTreeResponse < TencentCloud::Common::AbstractModel
         # @param ResultJson: 分类树json
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultJson: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5932,7 +5775,6 @@ module TencentCloud
       # DescribeDSPACategoryTreeWithRules返回参数结构体
       class DescribeDSPACategoryTreeWithRulesResponse < TencentCloud::Common::AbstractModel
         # @param ResultJson: 分类树json
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultJson: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5973,7 +5815,6 @@ module TencentCloud
       # DescribeDSPAComplianceGroupDetail返回参数结构体
       class DescribeDSPAComplianceGroupDetailResponse < TencentCloud::Common::AbstractModel
         # @param Detail: 模板详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: :class:`Tencentcloud::Dsgc.v20190723.models.ComplianceGroupDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6008,16 +5849,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param ComplianceGroupTypeList: 合规组类型可选值：0 默认合规组, 1 系统合规组, 2 自定义合规组
         # @type ComplianceGroupTypeList: Array
+        # @param IsFilterCloseComplianceGroup: 是否仅显示已开启模版
+        # @type IsFilterCloseComplianceGroup: Boolean
 
-        attr_accessor :DspaId, :ComplianceGroupId, :Name, :Offset, :Limit, :ComplianceGroupTypeList
+        attr_accessor :DspaId, :ComplianceGroupId, :Name, :Offset, :Limit, :ComplianceGroupTypeList, :IsFilterCloseComplianceGroup
 
-        def initialize(dspaid=nil, compliancegroupid=nil, name=nil, offset=nil, limit=nil, compliancegrouptypelist=nil)
+        def initialize(dspaid=nil, compliancegroupid=nil, name=nil, offset=nil, limit=nil, compliancegrouptypelist=nil, isfilterclosecompliancegroup=nil)
           @DspaId = dspaid
           @ComplianceGroupId = compliancegroupid
           @Name = name
           @Offset = offset
           @Limit = limit
           @ComplianceGroupTypeList = compliancegrouptypelist
+          @IsFilterCloseComplianceGroup = isfilterclosecompliancegroup
         end
 
         def deserialize(params)
@@ -6027,16 +5871,15 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ComplianceGroupTypeList = params['ComplianceGroupTypeList']
+          @IsFilterCloseComplianceGroup = params['IsFilterCloseComplianceGroup']
         end
       end
 
       # DescribeDSPAComplianceGroups返回参数结构体
       class DescribeDSPAComplianceGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Items: 合规组列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的合规组列表数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6086,10 +5929,8 @@ module TencentCloud
       # DescribeDSPAComplianceUpdateNotification返回参数结构体
       class DescribeDSPAComplianceUpdateNotificationResponse < TencentCloud::Common::AbstractModel
         # @param IsUpdated: 模板是否更新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdated: Boolean
         # @param TaskNameSet: 任务名称集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskNameSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6136,15 +5977,17 @@ module TencentCloud
       # DescribeDSPADataSourceDbInfo返回参数结构体
       class DescribeDSPADataSourceDbInfoResponse < TencentCloud::Common::AbstractModel
         # @param Items: 数据库信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
+        # @param DataSourceId: 数据源id
+        # @type DataSourceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :RequestId
+        attr_accessor :Items, :DataSourceId, :RequestId
 
-        def initialize(items=nil, requestid=nil)
+        def initialize(items=nil, datasourceid=nil, requestid=nil)
           @Items = items
+          @DataSourceId = datasourceid
           @RequestId = requestid
         end
 
@@ -6157,6 +6000,7 @@ module TencentCloud
               @Items << dspadatasourcedbinfo_tmp
             end
           end
+          @DataSourceId = params['DataSourceId']
           @RequestId = params['RequestId']
         end
       end
@@ -6202,7 +6046,6 @@ module TencentCloud
         # @param TotalCount: 规则ID
         # @type TotalCount: Integer
         # @param Items: 规则集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6288,7 +6131,6 @@ module TencentCloud
       # DescribeDSPADiscoveryTaskDetail返回参数结构体
       class DescribeDSPADiscoveryTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param Task: 任务详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Task: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryTaskDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6368,10 +6210,8 @@ module TencentCloud
       # DescribeDSPADiscoveryTaskResultDetail返回参数结构体
       class DescribeDSPADiscoveryTaskResultDetailResponse < TencentCloud::Common::AbstractModel
         # @param Items: 扫描结果详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的扫描结果详情记录数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6456,10 +6296,8 @@ module TencentCloud
       # DescribeDSPADiscoveryTaskResult返回参数结构体
       class DescribeDSPADiscoveryTaskResultResponse < TencentCloud::Common::AbstractModel
         # @param Items: 扫描任务结果项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的扫描任务结果记录数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6517,7 +6355,6 @@ module TencentCloud
       # DescribeDSPADiscoveryTaskTables返回参数结构体
       class DescribeDSPADiscoveryTaskTablesResponse < TencentCloud::Common::AbstractModel
         # @param Items: 分类分级扫描表集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6573,7 +6410,6 @@ module TencentCloud
       # DescribeDSPAESDataAssetByComplianceId返回参数结构体
       class DescribeDSPAESDataAssetByComplianceIdResponse < TencentCloud::Common::AbstractModel
         # @param Stats: 概览统计结果
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stats: :class:`Tencentcloud::Dsgc.v20190723.models.ESDataAssetCountDto`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6641,10 +6477,8 @@ module TencentCloud
       # DescribeDSPAESDataAssetDetail返回参数结构体
       class DescribeDSPAESDataAssetDetailResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param Details: 概览详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6702,7 +6536,6 @@ module TencentCloud
       # DescribeDSPAESDataSample返回参数结构体
       class DescribeDSPAESDataSampleResponse < TencentCloud::Common::AbstractModel
         # @param Items: 数据样本列表，最多10条数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6736,7 +6569,7 @@ module TencentCloud
         # @type CategoryIdList: Array
         # @param LevelId: 敏感数据分级ID
         # @type LevelId: Integer
-        # @param DbName: 索引名称
+        # @param DbName: 数据库名称
         # @type DbName: String
 
         attr_accessor :DspaId, :TaskId, :ComplianceId, :Offset, :Limit, :CategoryIdList, :LevelId, :DbName
@@ -6767,10 +6600,8 @@ module TencentCloud
       # DescribeDSPAESDiscoveryTaskResultDetail返回参数结构体
       class DescribeDSPAESDiscoveryTaskResultDetailResponse < TencentCloud::Common::AbstractModel
         # @param Items: ES扫描结果详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的扫描结果详情记录数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6883,10 +6714,8 @@ module TencentCloud
       class DescribeDSPALevelGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Items: 符合条件的敏感数据分级标识记录
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param TotalCount: 符合条件的敏感数据分级标识记录数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7022,7 +6851,6 @@ module TencentCloud
       # DescribeDSPARDBDataAssetDetail返回参数结构体
       class DescribeDSPARDBDataAssetDetailResponse < TencentCloud::Common::AbstractModel
         # @param Details: RDB关系数据库敏感数据资产详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Details: Array
         # @param TotalCount: 符合条件的RDB关系数据库敏感数据资产数量
         # @type TotalCount: Integer
@@ -7070,7 +6898,6 @@ module TencentCloud
       # DescribeDSPASupportedMetas返回参数结构体
       class DescribeDSPASupportedMetasResponse < TencentCloud::Common::AbstractModel
         # @param Metas: 支持的元数据类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metas: Array
         # @param MaxDBInstanceLimit: 最大支持每批次同步数量
         # @type MaxDBInstanceLimit: Integer
@@ -7130,7 +6957,6 @@ module TencentCloud
       # DescribeDSPATaskResultDataSample返回参数结构体
       class DescribeDSPATaskResultDataSampleResponse < TencentCloud::Common::AbstractModel
         # @param Items: 数据样本列表，最多10条数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7189,13 +7015,10 @@ module TencentCloud
       # DescribeESAssetSensitiveDistribution返回参数结构体
       class DescribeESAssetSensitiveDistributionResponse < TencentCloud::Common::AbstractModel
         # @param ESAsset: ES的资产统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ESAsset: :class:`Tencentcloud::Dsgc.v20190723.models.ESAsset`
         # @param TopAsset: 涉敏top数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopAsset: Array
         # @param ESDetail: ES的详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ESDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7339,13 +7162,10 @@ module TencentCloud
       # DescribeMongoAssetSensitiveDistribution返回参数结构体
       class DescribeMongoAssetSensitiveDistributionResponse < TencentCloud::Common::AbstractModel
         # @param MongoAsset: mongo的资产统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoAsset: :class:`Tencentcloud::Dsgc.v20190723.models.MongoAsset`
         # @param TopAsset: 涉敏top数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopAsset: Array
         # @param MongoDetail: mongo的详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7418,13 +7238,10 @@ module TencentCloud
       # DescribeRDBAssetSensitiveDistribution返回参数结构体
       class DescribeRDBAssetSensitiveDistributionResponse < TencentCloud::Common::AbstractModel
         # @param RDBAsset: rdb的资产统计数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RDBAsset: :class:`Tencentcloud::Dsgc.v20190723.models.RDBAsset`
         # @param TopAsset: 涉敏top数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopAsset: Array
         # @param RDBDetail: rdb的详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RDBDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7490,7 +7307,6 @@ module TencentCloud
       # DescribeReportTaskDownloadUrl返回参数结构体
       class DescribeReportTaskDownloadUrlResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrlSet: 下载链接集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrlSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7539,10 +7355,8 @@ module TencentCloud
       # DescribeReportTasks返回参数结构体
       class DescribeReportTasksResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param ItemSet: 报表信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7657,16 +7471,12 @@ module TencentCloud
       # DescribeSensitiveCOSDataDistribution返回参数结构体
       class DescribeSensitiveCOSDataDistributionResponse < TencentCloud::Common::AbstractModel
         # @param LevelDistribution: 分级分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelDistribution: Array
         # @param CategoryDistribution: 分类分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryDistribution: Array
         # @param RuleDistribution: 规则分布详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleDistribution: Array
         # @param SensitiveDataNum: 计算占比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDataNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7745,16 +7555,12 @@ module TencentCloud
       # DescribeSensitiveRDBDataDistribution返回参数结构体
       class DescribeSensitiveRDBDataDistributionResponse < TencentCloud::Common::AbstractModel
         # @param LevelDistribution: 分级分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelDistribution: Array
         # @param CategoryDistribution: 分类分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryDistribution: Array
         # @param RuleDistribution: 敏感规则分布详情列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleDistribution: Array
         # @param SensitiveDataNum: 计算占比字段
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDataNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7832,7 +7638,6 @@ module TencentCloud
         # @param DspaId: DSPA实例ID。
         # @type DspaId: String
         # @param Results: 授权结果。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7862,16 +7667,12 @@ module TencentCloud
       # DSPA敏感数据扫描数据源条件
       class DiscoveryCondition < TencentCloud::Common::AbstractModel
         # @param RDBInstances: RDB实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RDBInstances: Array
         # @param COSInstances: COS实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSInstances: Array
         # @param NOSQLInstances: Mongo实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NOSQLInstances: Array
         # @param ESInstances: ES实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ESInstances: Array
 
         attr_accessor :RDBInstances, :COSInstances, :NOSQLInstances, :ESInstances
@@ -7942,31 +7743,22 @@ module TencentCloud
       # COS对象存储敏感数据资产统计
       class DspaCOSDataAssetCount < TencentCloud::Common::AbstractModel
         # @param DataAssetType: 数组资产类型，0代表关系型数据库资产，1代表对象存储COS资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataAssetType: Integer
         # @param TotalBucketCnt: 已扫描的存储桶的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalBucketCnt: Integer
         # @param TotalObjectCnt: 对象总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalObjectCnt: Integer
         # @param SensitiveCategoryCnt: 敏感数据类型个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveCategoryCnt: Integer
         # @param SensitiveDataCnt: 敏感数据条数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDataCnt: Integer
         # @param SensitiveLevel: 敏感等级分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveLevel: Array
         # @param SensitiveBucketCnt: 敏感存储桶个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveBucketCnt: Integer
         # @param SensitiveObjectCnt: 敏感对象个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveObjectCnt: Integer
         # @param CategoryDistributed: 数据分类分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryDistributed: Array
 
         attr_accessor :DataAssetType, :TotalBucketCnt, :TotalObjectCnt, :SensitiveCategoryCnt, :SensitiveDataCnt, :SensitiveLevel, :SensitiveBucketCnt, :SensitiveObjectCnt, :CategoryDistributed
@@ -8037,30 +7829,22 @@ module TencentCloud
         # @param RuleId: 规则id
         # @type RuleId: Integer
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param CategoryId: 分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param LevelId: 分级ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param FileResultId: 文件扫描结果ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileResultId: Integer
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param CategoryFullPath: 分类路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: String
         # @param IdentifyType: 0-系统识别
         # 1-人工识别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyType: Integer
         # @param CheckStatus: 0-系统识别
         # 1-人工识别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStatus: Integer
 
         attr_accessor :BucketName, :FileName, :RuleName, :SensitiveDataCount, :CategoryName, :LevelRiskName, :KMSEncrypted, :FileType, :FileSize, :LevelRiskScore, :DataSourceId, :RuleId, :ResourceRegion, :CategoryId, :LevelId, :FileResultId, :DataSourceName, :CategoryFullPath, :IdentifyType, :CheckStatus
@@ -8129,13 +7913,10 @@ module TencentCloud
         # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
         # @type GeneralRuleSetEnable: Integer
         # @param Result: 任务最新的一次执行结果信息，该字段用于查询任务列表接口
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Dsgc.v20190723.models.ScanTaskResult`
         # @param TimingStartTime: 定时开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimingStartTime: String
         # @param ComplianceUpdate: 关联分类模板是否更新
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceUpdate: Boolean
 
         attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :Result, :TimingStartTime, :ComplianceUpdate
@@ -8178,16 +7959,12 @@ module TencentCloud
         # @param DataSourceId: 数据源ID
         # @type DataSourceId: String
         # @param ProxyAddress: 代理地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyAddress: Array
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param Condition: 扫描任务条件
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryTaskCOSCondition`
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
 
         attr_accessor :DataSourceId, :ProxyAddress, :DataSourceName, :Condition, :ResourceRegion
@@ -8229,13 +8006,10 @@ module TencentCloud
         # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
         # @type GeneralRuleSetEnable: Integer
         # @param DefaultComplianceInfo: 当创建任务时，用户打开了通用规则集开关，则该字段就会保存默认合规组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultComplianceInfo: Array
         # @param CustomComplianceInfo: 该任务中用户选择的合规组信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomComplianceInfo: Array
         # @param TimingStartTime: 定时开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimingStartTime: String
 
         attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :DefaultComplianceInfo, :CustomComplianceInfo, :TimingStartTime
@@ -8305,18 +8079,14 @@ module TencentCloud
         # @param EndTime: Bucket扫描的结束时间，格式如：2006-01-02 15:04:05
         # @type EndTime: String
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param Status: Bucket扫描状态，0待扫描 1扫描中 2扫描终止 3扫描成功 4扫描失败
         # @type Status: Integer
         # @param ErrorInfo: Bucket扫描结果错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: String
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param OverSize: 是否超额
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverSize: String
 
         attr_accessor :BucketResultId, :TaskId, :TaskName, :ResultId, :DataSourceId, :BucketName, :TotalFiles, :SensitiveDataNums, :EndTime, :DataSourceName, :Status, :ErrorInfo, :ResourceRegion, :OverSize
@@ -8399,16 +8169,12 @@ module TencentCloud
       # DSPA数据分类分布
       class DspaDataCategoryDistributed < TencentCloud::Common::AbstractModel
         # @param CategoryId: 数据分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param CategoryName: 数据分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryName: String
         # @param Count: 数据分类统计个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param CategoryFullPath: 分类路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: String
 
         attr_accessor :CategoryId, :CategoryName, :Count, :CategoryFullPath
@@ -8452,10 +8218,8 @@ module TencentCloud
       class DspaDiscoveryCOSDataRule < TencentCloud::Common::AbstractModel
         # @param Operator: 只能取and 、or两个值其中之一，and：字段和内容同时满足，or：字段和内容满足其一.
         # 默认值为or
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param Contents: 规则内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contents: Array
 
         attr_accessor :Operator, :Contents
@@ -8481,19 +8245,14 @@ module TencentCloud
       # 分类分级任务COS识别规则
       class DspaDiscoveryCOSRules < TencentCloud::Common::AbstractModel
         # @param Status: 规则状态；0 不启用, 1 启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param RegexRule: regex规则内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegexRule: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryCOSDataRule`
         # @param KeywordRule: 关键词规则内容组，最大支持5个关键词。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeywordRule: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryCOSDataRule`
         # @param IgnoreStringRule: 忽略词规则内容组，最大支持5个忽略词。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreStringRule: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryCOSDataRule`
         # @param MaxMatch: 最大匹配距离，默认值为100。上限为500.
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMatch: Integer
 
         attr_accessor :Status, :RegexRule, :KeywordRule, :IgnoreStringRule, :MaxMatch
@@ -8529,60 +8288,45 @@ module TencentCloud
         # @param TaskId: 任务ID
         # @type TaskId: Integer
         # @param FileResultId: 扫描File结果详情ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileResultId: Integer
         # @param BucketName: 所属桶名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BucketName: String
         # @param FileName: 所属文件名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param CategoryId: 敏感数据分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param CategoryName: 敏感数据分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryName: String
         # @param LevelId: 敏感数据分级ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param LevelName: 敏感数据分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
         # @param KMSEncrypted: KMS加密，true or false
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KMSEncrypted: Boolean
         # @param RuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param RuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param LevelRiskScore: 敏感数据分级分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelRiskScore: Integer
         # @param FileSize: 文件大小，单位为KB
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
         # @param FileType: 文件类型，如csv，txt
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileType: String
         # @param SensitiveDataCount: 敏感数据出现次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDataCount: Integer
         # @param CategoryFullPath: 分类树路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: Array
+        # @param CategoryArr: 分类树路径
+        # @type CategoryArr: Array
         # @param ComplianceId: 合规组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceId: Integer
         # @param ResultId: 结果id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultId: Integer
 
-        attr_accessor :TaskId, :FileResultId, :BucketName, :FileName, :CategoryId, :CategoryName, :LevelId, :LevelName, :KMSEncrypted, :RuleName, :RuleId, :LevelRiskScore, :FileSize, :FileType, :SensitiveDataCount, :CategoryFullPath, :ComplianceId, :ResultId
+        attr_accessor :TaskId, :FileResultId, :BucketName, :FileName, :CategoryId, :CategoryName, :LevelId, :LevelName, :KMSEncrypted, :RuleName, :RuleId, :LevelRiskScore, :FileSize, :FileType, :SensitiveDataCount, :CategoryFullPath, :CategoryArr, :ComplianceId, :ResultId
 
-        def initialize(taskid=nil, fileresultid=nil, bucketname=nil, filename=nil, categoryid=nil, categoryname=nil, levelid=nil, levelname=nil, kmsencrypted=nil, rulename=nil, ruleid=nil, levelriskscore=nil, filesize=nil, filetype=nil, sensitivedatacount=nil, categoryfullpath=nil, complianceid=nil, resultid=nil)
+        def initialize(taskid=nil, fileresultid=nil, bucketname=nil, filename=nil, categoryid=nil, categoryname=nil, levelid=nil, levelname=nil, kmsencrypted=nil, rulename=nil, ruleid=nil, levelriskscore=nil, filesize=nil, filetype=nil, sensitivedatacount=nil, categoryfullpath=nil, categoryarr=nil, complianceid=nil, resultid=nil)
           @TaskId = taskid
           @FileResultId = fileresultid
           @BucketName = bucketname
@@ -8599,6 +8343,7 @@ module TencentCloud
           @FileType = filetype
           @SensitiveDataCount = sensitivedatacount
           @CategoryFullPath = categoryfullpath
+          @CategoryArr = categoryarr
           @ComplianceId = complianceid
           @ResultId = resultid
         end
@@ -8620,6 +8365,7 @@ module TencentCloud
           @FileType = params['FileType']
           @SensitiveDataCount = params['SensitiveDataCount']
           @CategoryFullPath = params['CategoryFullPath']
+          @CategoryArr = params['CategoryArr']
           @ComplianceId = params['ComplianceId']
           @ResultId = params['ResultId']
         end
@@ -8628,22 +8374,16 @@ module TencentCloud
       # 合规组
       class DspaDiscoveryComplianceGroup < TencentCloud::Common::AbstractModel
         # @param ComplianceGroupId: 合规组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupId: Integer
         # @param Name: 合规组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 合规组描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ComplianceGroupType: 合规组类型；0 默认合规组，1 系统合规组（除默认合规组外）, 2 自定义合规组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupType: Integer
         # @param ComplianceGroupRules: 合规组对应的规则项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupRules: Array
         # @param LevelGroupId: 合规组对应的分级组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelGroupId: Integer
 
         attr_accessor :ComplianceGroupId, :Name, :Description, :ComplianceGroupType, :ComplianceGroupRules, :LevelGroupId
@@ -8677,33 +8417,29 @@ module TencentCloud
       # 合规组信息
       class DspaDiscoveryComplianceGroupInfo < TencentCloud::Common::AbstractModel
         # @param ComplianceGroupId: 合规组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupId: Integer
         # @param Name: 合规组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 合规组描述信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param ComplianceGroupType: 合规组类型；0 默认合规组，1 系统合规组（除默认合规组外）, 2 自定义合规组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupType: Integer
         # @param ComplianceGroupRules: 合规组对应的规则项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceGroupRules: Array
         # @param LevelGroupId: 合规组对应的分级组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelGroupId: Integer
         # @param Disabled: 是否禁止使用（true，禁止使用，false，可以使用）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Disabled: Boolean
         # @param IsAlias: 是否别名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAlias: Boolean
+        # @param Status: 1代表模版开启，0代表模版关闭
+        # @type Status: Integer
+        # @param ModifyTime: 模版最后修改时间
+        # @type ModifyTime: String
 
-        attr_accessor :ComplianceGroupId, :Name, :Description, :ComplianceGroupType, :ComplianceGroupRules, :LevelGroupId, :Disabled, :IsAlias
+        attr_accessor :ComplianceGroupId, :Name, :Description, :ComplianceGroupType, :ComplianceGroupRules, :LevelGroupId, :Disabled, :IsAlias, :Status, :ModifyTime
 
-        def initialize(compliancegroupid=nil, name=nil, description=nil, compliancegrouptype=nil, compliancegrouprules=nil, levelgroupid=nil, disabled=nil, isalias=nil)
+        def initialize(compliancegroupid=nil, name=nil, description=nil, compliancegrouptype=nil, compliancegrouprules=nil, levelgroupid=nil, disabled=nil, isalias=nil, status=nil, modifytime=nil)
           @ComplianceGroupId = compliancegroupid
           @Name = name
           @Description = description
@@ -8712,6 +8448,8 @@ module TencentCloud
           @LevelGroupId = levelgroupid
           @Disabled = disabled
           @IsAlias = isalias
+          @Status = status
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -8730,28 +8468,24 @@ module TencentCloud
           @LevelGroupId = params['LevelGroupId']
           @Disabled = params['Disabled']
           @IsAlias = params['IsAlias']
+          @Status = params['Status']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
       # 合规组中规则信息，用于合规组列表中规则信息展示
       class DspaDiscoveryComplianceGroupRule < TencentCloud::Common::AbstractModel
         # @param RuleId: 敏感数据识别规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 敏感数据识别规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param CategoryId: 敏感数据分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param LevelId: 敏感数据分级ID, 目前只支持高、中、低三级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param CategoryName: 合规组对应的分类信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryName: String
         # @param LevelRiskName: 分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelRiskName: String
 
         attr_accessor :RuleId, :RuleName, :CategoryId, :LevelId, :CategoryName, :LevelRiskName
@@ -8778,16 +8512,12 @@ module TencentCloud
       # 合规组中规则信息，用于合规组列表中规则信息展示
       class DspaDiscoveryComplianceGroupRuleInfo < TencentCloud::Common::AbstractModel
         # @param RuleId: 敏感数据识别规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 敏感数据识别规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param CategoryId: 敏感数据分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param LevelId: 敏感数据分级ID, 目前只支持高、中、低三级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
 
         attr_accessor :RuleId, :RuleName, :CategoryId, :LevelId
@@ -8811,12 +8541,10 @@ module TencentCloud
       class DspaDiscoveryDataContent < TencentCloud::Common::AbstractModel
         # @param RuleContent: 规则内容，可以是正则规则，关键词，
         # 忽略词扥
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleContent: String
         # @param IsIgnoreCase: 是否区分大小写
         # false: 不区分大小写
         # true:区分大小写
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIgnoreCase: Boolean
 
         attr_accessor :RuleContent, :IsIgnoreCase
@@ -8837,13 +8565,10 @@ module TencentCloud
         # @param RuleType: 规则类型；取值：
         # keyword 关键字,
         # regex 正则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
         # @param RuleContent: 内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleContent: String
         # @param ExtendParameters: 该字段是针对规则类型RuleType为keyword类型时的一个扩展属性
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtendParameters: Array
 
         attr_accessor :RuleType, :RuleContent, :ExtendParameters
@@ -8871,10 +8596,8 @@ module TencentCloud
       # 敏感数据识别规则集
       class DspaDiscoveryDataRules < TencentCloud::Common::AbstractModel
         # @param Operator: 操作符；只能取and, or的其中一种
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param Contents: 规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Contents: Array
 
         attr_accessor :Operator, :Contents
@@ -8900,25 +8623,18 @@ module TencentCloud
       # 敏感数据分级信息
       class DspaDiscoveryLevelDetail < TencentCloud::Common::AbstractModel
         # @param LevelGroupName: 分级组名称，唯一性约束，最多60个字符，仅允许输入中文、英文字母、数字、'_'、'-'，并且开头和结尾需为中文、英文字母或者数字，Name不可重复
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelGroupName: String
         # @param Source: 分级组来源，0为内置，1为自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
         # @param LevelGroupDesc: 分级组描述，最多1024字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelGroupDesc: String
         # @param LevelDetail: 具体分级标识详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelDetail: Array
         # @param RefComplianceCnt: 引用合规组次数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefComplianceCnt: Integer
         # @param RefCompliance: 引用合规组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefCompliance: Array
         # @param LevelGroupId: 分级组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelGroupId: Integer
 
         attr_accessor :LevelGroupName, :Source, :LevelGroupDesc, :LevelDetail, :RefComplianceCnt, :RefCompliance, :LevelGroupId
@@ -8961,16 +8677,12 @@ module TencentCloud
       # 分类分级任务RDB数据规则
       class DspaDiscoveryRDBRules < TencentCloud::Common::AbstractModel
         # @param Status: 规则状态；0 不启用, 1 启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param MatchOperator: 只能取and 、or两个值其中之一，and：字段和内容同时满足，or：字段和内容满足其一
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchOperator: String
         # @param MetaRule: 字段名包含规则，最大支持选择9项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaRule: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryDataRules`
         # @param ContentRule: 内容包含规则，最大支持选择9项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentRule: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryDataRules`
 
         attr_accessor :Status, :MatchOperator, :MetaRule, :ContentRule
@@ -8999,25 +8711,18 @@ module TencentCloud
       # 敏感数据扫描任务识别规则详情
       class DspaDiscoveryRuleDetail < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param Name: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Description: 规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Source: 规则来源，取值：0 内置, 1 自定义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: Integer
         # @param RDBRules: RDB规则详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RDBRules: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryRDBRules`
         # @param COSRules: COS规则详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSRules: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryCOSRules`
         # @param Status: 0关闭，1开启
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
         attr_accessor :RuleId, :Name, :Description, :Source, :RDBRules, :COSRules, :Status
@@ -9052,13 +8757,10 @@ module TencentCloud
       # 描述对象存储类敏感识别扫描人元数据条件。
       class DspaDiscoveryTaskCOSCondition < TencentCloud::Common::AbstractModel
         # @param Bucket: 数据桶名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bucket: String
         # @param FileTypes: 文件类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileTypes: Array
         # @param FileSizeLimit: 文件大小上限，单位为KB，如1000, 目前单个文件最大只支持1GB（1048576KB）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSizeLimit: Integer
 
         attr_accessor :Bucket, :FileTypes, :FileSizeLimit
@@ -9083,16 +8785,12 @@ module TencentCloud
         # @param Condition: 用于传入的数据源的条件，可以选择多个数据库，数据库之间通过逗号分隔，如果为空，默认是全部数据库
         # @type Condition: String
         # @param ProxyAddress: 代理地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyAddress: Array
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param DataSourceType: 数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
 
         attr_accessor :DataSourceId, :Condition, :ProxyAddress, :DataSourceName, :ResourceRegion, :DataSourceType
@@ -9137,21 +8835,16 @@ module TencentCloud
         # @param EndTime: DB扫描的结束时间，格式如：2006-01-02 15:04:05
         # @type EndTime: String
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param Status: DB扫描状态，0待扫描 1扫描中 2扫描终止 3扫描成功 4扫描失败
         # @type Status: Integer
         # @param ErrorInfo: DB扫描结果错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: String
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param SensitiveField: 敏感字段数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveField: Integer
         # @param TotalField: 总的字段数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalField: Integer
 
         attr_accessor :DbResultId, :TaskId, :TaskName, :ResultId, :DataSourceId, :DbName, :TotalTables, :SensitiveTables, :EndTime, :DataSourceName, :Status, :ErrorInfo, :ResourceRegion, :SensitiveField, :TotalField
@@ -9198,7 +8891,6 @@ module TencentCloud
         # @param Name: 任务名称
         # @type Name: String
         # @param Description: 任务描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param Period: 执行周期，0单次 1每天 2每周 3每月
         # @type Period: Integer
@@ -9207,19 +8899,14 @@ module TencentCloud
         # @param Enable: 任务开关；1 打开，0 关闭
         # @type Enable: Integer
         # @param DataSourceInfo: 元数据对象信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceInfo: :class:`Tencentcloud::Dsgc.v20190723.models.DspaDiscoveryTaskDataSource`
         # @param GeneralRuleSetEnable: 通用规则集开关，0 关闭，1 启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GeneralRuleSetEnable: Integer
         # @param DefaultComplianceInfo: 当创建任务时，用户打开了通用规则集开关，则该字段就会保存默认合规组信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultComplianceInfo: Array
         # @param CustomComplianceInfo: 该任务中用户选择的合规组信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomComplianceInfo: Array
         # @param TimingStartTime: 定时开始时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimingStartTime: String
 
         attr_accessor :Name, :Description, :Period, :Plan, :Enable, :DataSourceInfo, :GeneralRuleSetEnable, :DefaultComplianceInfo, :CustomComplianceInfo, :TimingStartTime
@@ -9293,15 +8980,15 @@ module TencentCloud
         # @param LevelRiskScore: 敏感数据分级分数
         # @type LevelRiskScore: Integer
         # @param SafeGuard: 保护措施
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SafeGuard: :class:`Tencentcloud::Dsgc.v20190723.models.DspaSafeGuard`
         # @param CategoryFullPath: 分类路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: String
+        # @param SchemaName: 模式名
+        # @type SchemaName: String
 
-        attr_accessor :TaskId, :FieldResultId, :TableName, :FieldName, :CategoryId, :CategoryName, :LevelId, :LevelName, :RuleName, :RuleId, :LevelRiskScore, :SafeGuard, :CategoryFullPath
+        attr_accessor :TaskId, :FieldResultId, :TableName, :FieldName, :CategoryId, :CategoryName, :LevelId, :LevelName, :RuleName, :RuleId, :LevelRiskScore, :SafeGuard, :CategoryFullPath, :SchemaName
 
-        def initialize(taskid=nil, fieldresultid=nil, tablename=nil, fieldname=nil, categoryid=nil, categoryname=nil, levelid=nil, levelname=nil, rulename=nil, ruleid=nil, levelriskscore=nil, safeguard=nil, categoryfullpath=nil)
+        def initialize(taskid=nil, fieldresultid=nil, tablename=nil, fieldname=nil, categoryid=nil, categoryname=nil, levelid=nil, levelname=nil, rulename=nil, ruleid=nil, levelriskscore=nil, safeguard=nil, categoryfullpath=nil, schemaname=nil)
           @TaskId = taskid
           @FieldResultId = fieldresultid
           @TableName = tablename
@@ -9315,6 +9002,7 @@ module TencentCloud
           @LevelRiskScore = levelriskscore
           @SafeGuard = safeguard
           @CategoryFullPath = categoryfullpath
+          @SchemaName = schemaname
         end
 
         def deserialize(params)
@@ -9334,13 +9022,13 @@ module TencentCloud
             @SafeGuard.deserialize(params['SafeGuard'])
           end
           @CategoryFullPath = params['CategoryFullPath']
+          @SchemaName = params['SchemaName']
         end
       end
 
       # 数据样本
       class DspaFieldResultDataSample < TencentCloud::Common::AbstractModel
         # @param DataSample: 数据样本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSample: String
 
         attr_accessor :DataSample
@@ -9389,13 +9077,10 @@ module TencentCloud
         # 2: 明确不自动续费
         # @type RenewFlag: Integer
         # @param Channel: 实例渠道
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Channel: String
         # @param InsAuthCount: 已授权的实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsAuthCount: Integer
         # @param InsTotalQuota: 已购买的实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsTotalQuota: Integer
 
         attr_accessor :DspaId, :DspaName, :DspaDescription, :DBAuthCount, :CosBindCount, :InstanceVersion, :Status, :ExpiredAt, :AppId, :TrialVersion, :TrialEndAt, :DbTotalQuota, :CosTotalQuota, :CosQuotaUnit, :RenewFlag, :Channel, :InsAuthCount, :InsTotalQuota
@@ -9446,34 +9131,24 @@ module TencentCloud
       # RDB关系型数据库敏感数据资产统计
       class DspaRDBDataAssetCount < TencentCloud::Common::AbstractModel
         # @param DataAssetType: 数组资产类型，0代表关系型数据库资产，1代表对象存储COS资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataAssetType: Integer
         # @param TotalDbCnt: 已扫描的数据库的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalDbCnt: Integer
         # @param TotalTableCnt: 数据库表的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalTableCnt: Integer
         # @param SensitiveCategoryCnt: 敏感数据类型个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveCategoryCnt: Integer
         # @param SensitiveFieldCnt: 敏感字段的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldCnt: Integer
         # @param SensitiveLevel: 敏感等级分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveLevel: Array
         # @param SensitiveDbCnt: 敏感数据库的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDbCnt: Integer
         # @param SensitiveTableCnt: 敏感数据库表的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveTableCnt: Integer
         # @param TotalFieldCnt: 扫描字段的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalFieldCnt: Integer
         # @param CategoryDistributed: 数据分类分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryDistributed: Array
 
         attr_accessor :DataAssetType, :TotalDbCnt, :TotalTableCnt, :SensitiveCategoryCnt, :SensitiveFieldCnt, :SensitiveLevel, :SensitiveDbCnt, :SensitiveTableCnt, :TotalFieldCnt, :CategoryDistributed
@@ -9538,48 +9213,37 @@ module TencentCloud
         # @param LevelRiskName: 敏感等级
         # @type LevelRiskName: String
         # @param LevelRiskScore: 分级风险分数，1-10，最小值为1，最大值为10
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelRiskScore: Integer
         # @param TrustedScore: 可信分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrustedScore: String
         # @param ResourceRegion: 资源所在地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param FieldResultId: 字段扫描结果ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldResultId: String
         # @param RuleId: 规则ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param LevelId: 分级ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param CategoryId: 分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param SafeGuard: 保护措施
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SafeGuard: :class:`Tencentcloud::Dsgc.v20190723.models.DspaSafeGuard`
         # @param CategoryFullPath: 分类路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: String
         # @param IdentifyType: 0.系统识别，1人工打标
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyType: Integer
         # @param CheckStatus: 0未核查 1已核查
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckStatus: Integer
         # @param IsSensitiveData: 0非敏感，1敏感
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSensitiveData: Integer
+        # @param SchemaName: 模式名
+        # @type SchemaName: String
 
-        attr_accessor :DataSourceId, :DbType, :DbName, :TableName, :FieldName, :RuleName, :CategoryName, :LevelRiskName, :LevelRiskScore, :TrustedScore, :ResourceRegion, :FieldResultId, :RuleId, :LevelId, :CategoryId, :DataSourceName, :SafeGuard, :CategoryFullPath, :IdentifyType, :CheckStatus, :IsSensitiveData
+        attr_accessor :DataSourceId, :DbType, :DbName, :TableName, :FieldName, :RuleName, :CategoryName, :LevelRiskName, :LevelRiskScore, :TrustedScore, :ResourceRegion, :FieldResultId, :RuleId, :LevelId, :CategoryId, :DataSourceName, :SafeGuard, :CategoryFullPath, :IdentifyType, :CheckStatus, :IsSensitiveData, :SchemaName
 
-        def initialize(datasourceid=nil, dbtype=nil, dbname=nil, tablename=nil, fieldname=nil, rulename=nil, categoryname=nil, levelriskname=nil, levelriskscore=nil, trustedscore=nil, resourceregion=nil, fieldresultid=nil, ruleid=nil, levelid=nil, categoryid=nil, datasourcename=nil, safeguard=nil, categoryfullpath=nil, identifytype=nil, checkstatus=nil, issensitivedata=nil)
+        def initialize(datasourceid=nil, dbtype=nil, dbname=nil, tablename=nil, fieldname=nil, rulename=nil, categoryname=nil, levelriskname=nil, levelriskscore=nil, trustedscore=nil, resourceregion=nil, fieldresultid=nil, ruleid=nil, levelid=nil, categoryid=nil, datasourcename=nil, safeguard=nil, categoryfullpath=nil, identifytype=nil, checkstatus=nil, issensitivedata=nil, schemaname=nil)
           @DataSourceId = datasourceid
           @DbType = dbtype
           @DbName = dbname
@@ -9601,6 +9265,7 @@ module TencentCloud
           @IdentifyType = identifytype
           @CheckStatus = checkstatus
           @IsSensitiveData = issensitivedata
+          @SchemaName = schemaname
         end
 
         def deserialize(params)
@@ -9628,6 +9293,7 @@ module TencentCloud
           @IdentifyType = params['IdentifyType']
           @CheckStatus = params['CheckStatus']
           @IsSensitiveData = params['IsSensitiveData']
+          @SchemaName = params['SchemaName']
         end
       end
 
@@ -9661,13 +9327,11 @@ module TencentCloud
         # UNSET 未设置
         # DISABLE 规则设置未启用
         # ENABLE 规则设置并启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: String
         # @param Desensitization: 脱敏状态，可取值如下：
         # UNSET 未设置
         # DISABLE 规则设置未启用
         # ENABLE 规则设置并启用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desensitization: String
 
         attr_accessor :Encrypt, :Desensitization
@@ -9752,15 +9416,12 @@ module TencentCloud
         # @param ResourceAuthAccount: 授权账号名
         # @type ResourceAuthAccount: String
         # @param InstanceType: 实例类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param InstanceValue: 实例值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceValue: String
         # @param GovernAuthStatus: //治理授权状态（0：关闭 1：开启）
         # @type GovernAuthStatus: Integer
         # @param AuthRange: 授权范围：all - 授权整个数据源 manual:手动指定数据源
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthRange: String
 
         attr_accessor :ResourceId, :ResourceName, :ResourceVip, :ResourceVPort, :ResourceCreateTime, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :MetaType, :ResourceRegion, :ResourceSyncTime, :AuthStatus, :BuildType, :MasterInsId, :ResourceVpcId, :ResourceSubnetId, :Protocol, :ResourceVersion, :ResourceAuthType, :ResourceAuthAccount, :InstanceType, :InstanceValue, :GovernAuthStatus, :AuthRange
@@ -9821,16 +9482,12 @@ module TencentCloud
       # es的资产统计结果
       class ESAsset < TencentCloud::Common::AbstractModel
         # @param IndexNums: 索引总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexNums: Integer
         # @param SensitiveIndexNums: 敏感索引的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveIndexNums: Integer
         # @param FieldNums: 字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param SensitiveFieldNums: 敏感的字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldNums: Integer
 
         attr_accessor :IndexNums, :SensitiveIndexNums, :FieldNums, :SensitiveFieldNums
@@ -9853,22 +9510,16 @@ module TencentCloud
       # es敏感资产详情列表
       class ESAssetDBDetail < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param IndexName: 索引名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
         # @param DataType: 数据库类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: String
         # @param FieldNums: 字段的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param SensitiveFieldNums: 敏感字段的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldNums: Integer
         # @param DistributionData: 敏感数据分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DistributionData: Array
 
         attr_accessor :DataSourceId, :IndexName, :DataType, :FieldNums, :SensitiveFieldNums, :DistributionData
@@ -9902,28 +9553,20 @@ module TencentCloud
       # ES的概览页统计数据
       class ESDataAssetCountDto < TencentCloud::Common::AbstractModel
         # @param DataAssetType: es
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataAssetType: Integer
         # @param SensitiveIndexCnt: 敏感索引个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveIndexCnt: Integer
         # @param TotalIndexCnt: 总的索引个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalIndexCnt: Integer
         # @param SensitiveFieldCnt: 敏感字段个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldCnt: Integer
         # @param TotalFieldCnt: 总的字段个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalFieldCnt: Integer
         # @param SensitiveCategoryCnt: 敏感分类的个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveCategoryCnt: Integer
         # @param SensitiveLevel: 敏感分级的分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveLevel: Array
         # @param CategoryDistributed: 敏感分类的分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryDistributed: Array
 
         attr_accessor :DataAssetType, :SensitiveIndexCnt, :TotalIndexCnt, :SensitiveFieldCnt, :TotalFieldCnt, :SensitiveCategoryCnt, :SensitiveLevel, :CategoryDistributed
@@ -9968,52 +9611,36 @@ module TencentCloud
       # ES的概览页资产详情
       class ESDataAssetDetail < TencentCloud::Common::AbstractModel
         # @param FieldResultId: id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldResultId: Integer
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param DataSourceType: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
         # @param ResourceRegion: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param IndexName: 索引名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
         # @param FieldName: 字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldName: String
         # @param CategoryId: 分类id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param CategoryName: 分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryName: String
         # @param CategoryArr: 分类路径数组
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryArr: Array
         # @param LevelId: 等级id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param LevelRiskName: 分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelRiskName: String
         # @param LevelRiskScore: 分级分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelRiskScore: Integer
         # @param TrustedScore: 可信分
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrustedScore: Float
         # @param RuleId: 规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param IdentifyType: 0系统识别，1人工打标
         # @type IdentifyType: Integer
@@ -10100,37 +9727,26 @@ module TencentCloud
       # ES扫描任务结果详情
       class ESTaskResultDetail < TencentCloud::Common::AbstractModel
         # @param Id: id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param TaskId: 任务id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: Integer
         # @param FieldName: 字段名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldName: String
         # @param RuleId: 规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param CategoryId: 分类id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryId: Integer
         # @param CategoryName: 分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryName: String
         # @param CategoryArr: 多级分类的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryArr: Array
         # @param LevelId: 分级id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param LevelName: 分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
         # @param LevelRiskScore: 分级分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelRiskScore: Integer
 
         attr_accessor :Id, :TaskId, :FieldName, :RuleId, :RuleName, :CategoryId, :CategoryName, :CategoryArr, :LevelId, :LevelName, :LevelRiskScore
@@ -10383,7 +9999,6 @@ module TencentCloud
         # @param ConnectionStatus: 连接状态，success -- 连接成功，failed -- 连接失败
         # @type ConnectionStatus: String
         # @param ConnectionDesc: 连接状态的描述信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionDesc: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10522,31 +10137,22 @@ module TencentCloud
       # 高风险资产详情信息
       class HighRiskAssetsDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param DataSourceType: 数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param AssetsName: 资产对象名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetsName: String
         # @param HighRiskCount: 高风险个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighRiskCount: Integer
         # @param RiskType: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
         # @param TotalRiskCount: 总的风险个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRiskCount: Integer
         # @param RiskSide: 风险面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSide: String
         # @param ResourceRegion: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
 
         attr_accessor :InstanceId, :DataSourceType, :DataSourceName, :AssetsName, :HighRiskCount, :RiskType, :TotalRiskCount, :RiskSide, :ResourceRegion
@@ -10631,12 +10237,19 @@ module TencentCloud
         # @param Offset: 分页偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 过滤项。
-        # 支持的过滤项包括：DspaId、Status、Version、DspaName。
+        # 支持的过滤项包括：DspaId、Status、Version、DspaName、Channel。
         # DspaId和DspaName支持模糊搜索。
         # Status支持的可选值：enabled、disabled。
         # Version支持的可选值：trial、official。
+        # Channel支持的可选值：sp_cds_dsgc_pre（代表dsgc实例）、sp_cds_dsgc_wedata_dc（代表wedata实例）
         # @type Filters: Array
         # @param ListMode: 展示模式。
+
+        # 目前只有两个值的处理逻辑：
+
+        # 空值：需要查询每个实例的配额信息，因为是串行查询，所以速度很慢，limit最大为100
+
+        # "simple"：不需要查询每个实例的配额信息，速度快，limit最大为1000
         # @type ListMode: String
 
         attr_accessor :Limit, :Offset, :Filters, :ListMode
@@ -10747,10 +10360,8 @@ module TencentCloud
         # @param TotalCount: 符合条件的COS元数据数量。
         # @type TotalCount: Integer
         # @param Items: COS元数据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param DspaId: DSPA实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DspaId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10936,8 +10547,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :Status, :RiskLatestTableId, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2024, 10
-        deprecate :RiskLatestTableId=, :none, 2024, 10
+        deprecate :RiskLatestTableId, :none, 2024, 12
+        deprecate :RiskLatestTableId=, :none, 2024, 12
 
         def initialize(dspaid=nil, status=nil, risklatesttableid=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid
@@ -11079,32 +10690,32 @@ module TencentCloud
         # @type DspaId: String
         # @param TemplateName: 模板名称
         # @type TemplateName: String
-        # @param TemplateDescription: 模板的描述
-        # @type TemplateDescription: String
         # @param TemplateId: 模板id
         # @type TemplateId: Integer
         # @param RiskLevelId: 修改的风险等级id
         # @type RiskLevelId: Integer
+        # @param TemplateDescription: 模板的描述
+        # @type TemplateDescription: String
         # @param RiskIdList: 脆弱项列表
         # @type RiskIdList: Array
 
-        attr_accessor :DspaId, :TemplateName, :TemplateDescription, :TemplateId, :RiskLevelId, :RiskIdList
+        attr_accessor :DspaId, :TemplateName, :TemplateId, :RiskLevelId, :TemplateDescription, :RiskIdList
 
-        def initialize(dspaid=nil, templatename=nil, templatedescription=nil, templateid=nil, risklevelid=nil, riskidlist=nil)
+        def initialize(dspaid=nil, templatename=nil, templateid=nil, risklevelid=nil, templatedescription=nil, riskidlist=nil)
           @DspaId = dspaid
           @TemplateName = templatename
-          @TemplateDescription = templatedescription
           @TemplateId = templateid
           @RiskLevelId = risklevelid
+          @TemplateDescription = templatedescription
           @RiskIdList = riskidlist
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @TemplateName = params['TemplateName']
-          @TemplateDescription = params['TemplateDescription']
           @TemplateId = params['TemplateId']
           @RiskLevelId = params['RiskLevelId']
+          @TemplateDescription = params['TemplateDescription']
           @RiskIdList = params['RiskIdList']
         end
       end
@@ -11913,22 +11524,16 @@ module TencentCloud
       # mongo的资产统计结果
       class MongoAsset < TencentCloud::Common::AbstractModel
         # @param DbNums: DB总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbNums: Integer
         # @param SensitiveDbNums: 敏感DB数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDbNums: Integer
         # @param ColNums: 集合数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColNums: Integer
         # @param SensitiveColNums: 敏感集合的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveColNums: Integer
         # @param FieldNums: 字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param SensitiveFieldNums: 敏感的字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldNums: Integer
 
         attr_accessor :DbNums, :SensitiveDbNums, :ColNums, :SensitiveColNums, :FieldNums, :SensitiveFieldNums
@@ -11955,28 +11560,20 @@ module TencentCloud
       # mongo敏感资产详情列表
       class MongoAssetDBDetail < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param DdName: 数据库名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DdName: String
         # @param DataType: 数据库类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataType: String
         # @param ColNums: 集合的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColNums: Integer
         # @param SensitiveColNums: 敏感集合数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveColNums: Integer
         # @param FieldNums: 字段的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param SensitiveFieldNums: 敏感字段的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldNums: Integer
         # @param DistributionData: 敏感数据分布
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DistributionData: Array
 
         attr_accessor :DataSourceId, :DdName, :DataType, :ColNums, :SensitiveColNums, :FieldNums, :SensitiveFieldNums, :DistributionData
@@ -12046,10 +11643,8 @@ module TencentCloud
       # 数据资产报告-各种key-value的展示数据结构
       class Note < TencentCloud::Common::AbstractModel
         # @param Key: 通用key，例如分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 通用value，例如分类个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
         attr_accessor :Key, :Value
@@ -12068,13 +11663,10 @@ module TencentCloud
       # 权限风险详情
       class PrivilegeRisk < TencentCloud::Common::AbstractModel
         # @param AccountName: 账户名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountName: Array
         # @param TableName: 表名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param Description: 说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
         attr_accessor :AccountName, :TableName, :Description
@@ -12095,16 +11687,12 @@ module TencentCloud
       # 处理历史
       class ProcessHistory < TencentCloud::Common::AbstractModel
         # @param Time: 处理时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param Status: 状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Handler: 处理人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Handler: String
         # @param Note: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
 
         attr_accessor :Time, :Status, :Handler, :Note
@@ -12234,22 +11822,16 @@ module TencentCloud
       # rdb的资产统计结果
       class RDBAsset < TencentCloud::Common::AbstractModel
         # @param DbNums: DB总数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbNums: Integer
         # @param SensitiveDbNums: 敏感DB数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveDbNums: Integer
         # @param TableNums: 表数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableNums: Integer
         # @param SensitiveTableNums: 敏感表的数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveTableNums: Integer
         # @param FieldNums: 字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FieldNums: Integer
         # @param SensitiveFieldNums: 敏感的字段数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveFieldNums: Integer
 
         attr_accessor :DbNums, :SensitiveDbNums, :TableNums, :SensitiveTableNums, :FieldNums, :SensitiveFieldNums
@@ -12282,7 +11864,6 @@ module TencentCloud
         # @param ResourceRegion: 资源所在地域
         # @type ResourceRegion: String
         # @param DBs: 若未来扩展到DBName粒度，可采用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBs: Array
 
         attr_accessor :DataSourceId, :DataSourceType, :ResourceRegion, :DBs
@@ -12316,43 +11897,30 @@ module TencentCloud
         # @param ReportName: 报告名称
         # @type ReportName: String
         # @param ReportType: 报告类型（AssetSorting:资产梳理）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportType: String
         # @param ReportPeriod: 报告周期（0单次 1每天 2每周 3每月）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportPeriod: Integer
         # @param ReportPlan: 执行计划 （0:单次报告 1:定时报告）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportPlan: Integer
         # @param ReportStatus: 报告导出状态（Success 成功, Failed 失败, InProgress 进行中）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportStatus: String
         # @param TimingStartTime: 任务下次启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimingStartTime: String
         # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param FinishedTime: 完成时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishedTime: String
         # @param SubUin: 子账号uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: String
         # @param FailedMessage: 失败信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedMessage: String
         # @param Enable: 是否启用（0：否 1：是）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
         # @param ComplianceName: 识别模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplianceName: String
         # @param ProgressPercent: 进度百分比
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProgressPercent: Integer
         # @param ReportTemplateName: 报告模版名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportTemplateName: String
 
         attr_accessor :Id, :ReportName, :ReportType, :ReportPeriod, :ReportPlan, :ReportStatus, :TimingStartTime, :CreateTime, :FinishedTime, :SubUin, :FailedMessage, :Enable, :ComplianceName, :ProgressPercent, :ReportTemplateName
@@ -12437,7 +12005,6 @@ module TencentCloud
         # @param Count: 该等级风险项数量
         # @type Count: Integer
         # @param RiskLevelName: 风险等级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelName: String
 
         attr_accessor :RiskLevel, :Count, :RiskLevelName
@@ -12464,7 +12031,6 @@ module TencentCloud
         # @param Handled: 已解决数量
         # @type Handled: Integer
         # @param NewDiscoveryHandled: 新发现
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewDiscoveryHandled: Integer
 
         attr_accessor :Date, :Unhandled, :Handled, :NewDiscoveryHandled
@@ -12509,61 +12075,42 @@ module TencentCloud
         # @param Id: 最新风险项id
         # @type Id: Integer
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param DataSourceName: 数据源名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceName: String
         # @param DataSourceType: 数据源类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
         # @param ResourceRegion: 资源地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
         # @param AssetName: 资产名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
         # @param RiskType: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
         # @param RiskName: 风险项
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskName: String
         # @param RiskLevel: 风险级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
         # @param RiskDescription: 风险描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDescription: String
         # @param SuggestAction: 建议措施
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuggestAction: String
         # @param SecurityProduct: 安全产品（可能有多个）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityProduct: Array
         # @param Status: 状态(waiting:待处理，processing:处理中，finished:已处理，ignored:已忽略)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param ScanTime: 扫描时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanTime: String
         # @param LastProcessTime: 最后处置时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastProcessTime: String
         # @param IdentifyComplianceId: 分类分级合规组Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyComplianceId: Integer
         # @param ItemSubType: 类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemSubType: String
         # @param RiskSide: 风险面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSide: String
         # @param APIRiskLinkURL: API安全风险链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type APIRiskLinkURL: String
         # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
 
         attr_accessor :Id, :DataSourceId, :DataSourceName, :DataSourceType, :ResourceRegion, :AssetName, :RiskType, :RiskName, :RiskLevel, :RiskDescription, :SuggestAction, :SecurityProduct, :Status, :ScanTime, :LastProcessTime, :IdentifyComplianceId, :ItemSubType, :RiskSide, :APIRiskLinkURL, :Remark
@@ -12625,19 +12172,14 @@ module TencentCloud
       # 风险级别详情的矩阵
       class RiskLevelMatrix < TencentCloud::Common::AbstractModel
         # @param Id: 存储id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param SensitiveLevelId: 分类分级levelID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveLevelId: Integer
         # @param SensitiveLevelName: 分类分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveLevelName: String
         # @param VulnerabilityLevel: 漏洞级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityLevel: String
         # @param RiskLevel: 风险级别
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
 
         attr_accessor :Id, :SensitiveLevelId, :SensitiveLevelName, :VulnerabilityLevel, :RiskLevel
@@ -12662,19 +12204,14 @@ module TencentCloud
       # 风险等级列表
       class RiskLevelRisk < TencentCloud::Common::AbstractModel
         # @param Id: 风险id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param RiskLevelName: 风险等级列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelName: String
         # @param RiskLevelDescription: 风险级别描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelDescription: String
         # @param IdentifyComplianceName: 引用的分类分级模板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyComplianceName: String
         # @param Type: 类型，区分自定义还是系统内置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Id, :RiskLevelName, :RiskLevelDescription, :IdentifyComplianceName, :Type
@@ -12731,13 +12268,10 @@ module TencentCloud
       # 用于生成默认的风险级别矩阵
       class RiskMatrixLevel < TencentCloud::Common::AbstractModel
         # @param Name: 名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Id: 就是id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
         # @param Score: 分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Float
 
         attr_accessor :Name, :Id, :Score
@@ -12758,10 +12292,8 @@ module TencentCloud
       # 风险面的分布
       class RiskSideDistributed < TencentCloud::Common::AbstractModel
         # @param AssessmentRiskSide: 风险面
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssessmentRiskSide: :class:`Tencentcloud::Dsgc.v20190723.models.Note`
         # @param AssessmentRisk: 风险类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssessmentRisk: Array
 
         attr_accessor :AssessmentRiskSide, :AssessmentRisk
@@ -12790,19 +12322,14 @@ module TencentCloud
       # 数据资产报告-rdb的敏感数据规则分布
       class RuleDistribution < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleId: Integer
         # @param RuleName: 规则名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
         # @param LevelId: 分级id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelId: Integer
         # @param LevelName: 分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
         # @param RuleCnt: 规则数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleCnt: Integer
 
         attr_accessor :RuleId, :RuleName, :LevelId, :LevelName, :RuleCnt
@@ -12827,10 +12354,8 @@ module TencentCloud
       # 分类分级规则数量
       class RuleEffectItem < TencentCloud::Common::AbstractModel
         # @param Name: 规则描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 规则值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
         attr_accessor :Name, :Value
@@ -12849,15 +12374,12 @@ module TencentCloud
       # 敏感识别任务COS识别规则
       class ScanTaskCOSRules < TencentCloud::Common::AbstractModel
         # @param RegexRule: regex规则内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegexRule: :class:`Tencentcloud::Dsgc.v20190723.models.COSDataRule`
         # @param Status: 规则状态；0 不启用, 1 启用
         # @type Status: Integer
         # @param KeywordRule: 关键词规则内容组，最大支持5个关键词。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeywordRule: :class:`Tencentcloud::Dsgc.v20190723.models.COSDataRule`
         # @param IgnoreStringRule: 忽略词规则内容组，最大支持5个忽略词。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreStringRule: :class:`Tencentcloud::Dsgc.v20190723.models.COSDataRule`
         # @param MaxMatch: 最大匹配距离，默认值为100。上限为500.
         # @type MaxMatch: Integer
@@ -12954,14 +12476,20 @@ module TencentCloud
         # @type Status: Integer
         # @param Result: 扫描任务结果展示，如果扫描失败，则显示失败原因
         # @type Result: String
+        # @param ResultDescription: 结果描述
+        # @type ResultDescription: String
+        # @param Suggestion: 结果建议
+        # @type Suggestion: String
 
-        attr_accessor :Id, :EndTime, :Status, :Result
+        attr_accessor :Id, :EndTime, :Status, :Result, :ResultDescription, :Suggestion
 
-        def initialize(id=nil, endtime=nil, status=nil, result=nil)
+        def initialize(id=nil, endtime=nil, status=nil, result=nil, resultdescription=nil, suggestion=nil)
           @Id = id
           @EndTime = endtime
           @Status = status
           @Result = result
+          @ResultDescription = resultdescription
+          @Suggestion = suggestion
         end
 
         def deserialize(params)
@@ -12969,16 +12497,16 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Status = params['Status']
           @Result = params['Result']
+          @ResultDescription = params['ResultDescription']
+          @Suggestion = params['Suggestion']
         end
       end
 
       # 建议使用的安全产品
       class SecurityProduct < TencentCloud::Common::AbstractModel
         # @param ProductName: 产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
         # @param ReferUrl: 产品链接
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferUrl: String
 
         attr_accessor :ProductName, :ReferUrl
@@ -13045,7 +12573,6 @@ module TencentCloud
       # StartDSPADiscoveryTask返回参数结构体
       class StartDSPADiscoveryTaskResponse < TencentCloud::Common::AbstractModel
         # @param ResultId: 任务扫描结果ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13086,7 +12613,6 @@ module TencentCloud
       # StopDSPADiscoveryTask返回参数结构体
       class StopDSPADiscoveryTaskResponse < TencentCloud::Common::AbstractModel
         # @param ResultId: 任务扫描结果ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13107,7 +12633,6 @@ module TencentCloud
       # 生成的建议的风险等级矩阵
       class SuggestRiskLevelMatrix < TencentCloud::Common::AbstractModel
         # @param RiskLevelMatrix: 矩阵
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelMatrix: Array
 
         attr_accessor :RiskLevelMatrix
@@ -13131,16 +12656,12 @@ module TencentCloud
       # 建议生成的二位矩阵的第二层
       class SuggestRiskLevelMatrixItem < TencentCloud::Common::AbstractModel
         # @param SensitiveLevel: 分类分级等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveLevel: :class:`Tencentcloud::Dsgc.v20190723.models.RiskMatrixLevel`
         # @param VulnerabilityLevel: 脆弱项等级
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityLevel: :class:`Tencentcloud::Dsgc.v20190723.models.RiskMatrixLevel`
         # @param RiskName: 风险名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskName: String
         # @param RiskScore: 分数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskScore: Float
 
         attr_accessor :SensitiveLevel, :VulnerabilityLevel, :RiskName, :RiskScore
@@ -13166,13 +12687,11 @@ module TencentCloud
         end
       end
 
-      # 评估模版的详情数据
+      # 评估模板的详情数据
       class TemplateInfo < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: Integer
         # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
 
         attr_accessor :TemplateId, :TemplateName
@@ -13191,10 +12710,8 @@ module TencentCloud
       # 数据资产报告-涉敏top的资产
       class TopAsset < TencentCloud::Common::AbstractModel
         # @param LevelName: 分级名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
         # @param TopStat: top数据信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopStat: Array
 
         attr_accessor :LevelName, :TopStat
@@ -13220,13 +12737,10 @@ module TencentCloud
       # 设敏top资产的信息
       class TopAssetStat < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceId: String
         # @param SubData: db_name
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubData: String
         # @param SensitiveCnt: 敏感个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SensitiveCnt: Integer
 
         attr_accessor :DataSourceId, :SubData, :SensitiveCnt

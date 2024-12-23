@@ -145,7 +145,7 @@ module TencentCloud
         # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: 签署方经办人的证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type ApproverIdCardNumber: String
         # @param NotifyType: 通知签署方经办人的方式,  有以下途径:
@@ -2070,7 +2070,7 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
 
         # 注：`请确保和合同中填入的一致`
@@ -5039,7 +5039,7 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type IdCardNumber: String
         # @param Agent: 代理企业和员工的信息。
@@ -5310,7 +5310,7 @@ module TencentCloud
         # @type UserName: String
         # @param IdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type IdCardNumber: String
         # @param SealName: 印章名称，长度1-50个字。
@@ -5565,7 +5565,7 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成(如存在X，请大写)。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type IdCardNumber: String
         # @param EndPoint: 要跳转的链接类型
@@ -5951,9 +5951,7 @@ module TencentCloud
         # <ul><li> 不传(即为空值) 则会生成小程序端开通链接(默认)</li>
         # <li> **H5SIGN** : 生成H5端开通链接</li></ul>
         # @type UrlType: String
-        # @param NotifyType: 是否通知开通方，通知类型:
-        # <ul><li>默认不设置为不通知开通方</li>
-        # <li>**SMS** :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号</li></ul>
+        # @param NotifyType: 是否通知开通方，通知类型:<ul><li>默认为不通知开通方</li><li>**SMS** :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号</li></ul>
         # @type NotifyType: String
         # @param NotifyAddress: 如果通知类型NotifyType选择为SMS，则此处为手机号, 其他通知类型不需要设置此项
         # @type NotifyAddress: String
@@ -6160,7 +6158,7 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 要修改手机号用户的身份证号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # 如果没有传递 userId且 userAccountType 是 0 或者没有传递， 此参数为<b>必填项。</b>
         # @type IdCardNumber: String
@@ -8709,7 +8707,7 @@ module TencentCloud
         # @type Name: String
         # @param IdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type IdCardNumber: String
         # @param IdCardType: 证件类型，支持以下类型
@@ -9195,7 +9193,7 @@ module TencentCloud
         # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: 签署方经办人的证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
 
         # 注：`补充个人签署方时，若该用户已在电子签完成实名则可通过指定姓名和证件类型、证件号码完成补充。`
@@ -9597,7 +9595,7 @@ module TencentCloud
         # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type ApproverIdCardNumber: String
         # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
@@ -11278,7 +11276,7 @@ module TencentCloud
         # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: 签署方经办人的证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type ApproverIdCardNumber: String
         # @param OrganizationName: 组织机构名称。
@@ -13023,7 +13021,9 @@ module TencentCloud
       class UploadFile < TencentCloud::Common::AbstractModel
         # @param FileBody: Base64编码后的文件内容
         # @type FileBody: String
-        # @param FileName: 文件名，最大长度不超过200字符
+        # @param FileName: 文件的名字。
+        # 文件名的最大长度应不超过200个字符，并且文件名的后缀必须反映其文件类型。
+        # 例如，PDF文件应以“.pdf”结尾，如“XXX.pdf”，而Word文件应以“.doc”或“.docx”结尾，如“XXX.doc”或“XXX.docx”。
         # @type FileName: String
 
         attr_accessor :FileBody, :FileName
@@ -13049,7 +13049,9 @@ module TencentCloud
         # @param Caller: 执行本接口操作的员工信息。其中OperatorId为必填字段，即用户的UserId。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Caller: :class:`Tencentcloud::Ess.v20201111.models.Caller`
-        # @param FileInfos: 上传文件内容数组，最多支持上传20个文件。
+        # @param FileInfos: 请上传文件内容数组，最多可上传20个文件。
+
+        # <b>所有文件必须符合<font color="red">FileType</font>指定的文件类型。</b>
         # @type FileInfos: Array
         # @param FileType: 文件类型， 默认通过文件内容和文件后缀一起解析得到文件类型，调用接口时可以显示的指定上传文件的类型。
         # 可支持的指定类型如下:
@@ -13125,6 +13127,7 @@ module TencentCloud
       class UploadFilesResponse < TencentCloud::Common::AbstractModel
         # @param FileIds: 文件资源ID数组，每个文件资源ID为32位字符串。
         # 建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。
+        # 注:`有效期一个小时（超过一小时后系统不定期清理，会有部分时间差）, 有效期内此文件id可以反复使用, 超过有效期无法使用`
         # @type FileIds: Array
         # @param TotalCount: 上传成功文件数量
         # @type TotalCount: Integer
@@ -13226,7 +13229,7 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 证件号码，应符合以下规则
         # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给香港居民，“M”字头签发给澳门居民；第2位至第11位为数字。</li>
+        # <li>港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
         # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type IdCardNumber: String
 

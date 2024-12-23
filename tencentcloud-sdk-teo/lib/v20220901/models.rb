@@ -1945,6 +1945,64 @@ module TencentCloud
         end
       end
 
+      # 内容标识符。该功能仅白名单开放。
+      class ContentIdentifier < TencentCloud::Common::AbstractModel
+        # @param ContentId: 内容标识符 ID。
+        # @type ContentId: String
+        # @param Description: 内容标识符描述。
+        # @type Description: String
+        # @param ReferenceCount: 被规则引擎引用的次数。
+        # @type ReferenceCount: Integer
+        # @param PlanId: 绑定的套餐 ID。
+        # @type PlanId: String
+        # @param Tags: 绑定的标签。
+        # @type Tags: Array
+        # @param Status: 内容标识符状态，取值有：
+        # <li> active：已生效； </li>
+        # <li> deleted：已删除。</li>
+        # @type Status: String
+        # @param CreatedOn: 创建时间，时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 最新一次更新时间，时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type ModifiedOn: String
+        # @param DeletedOn: 删除时间，状态非 deleted 时候为空；时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeletedOn: String
+
+        attr_accessor :ContentId, :Description, :ReferenceCount, :PlanId, :Tags, :Status, :CreatedOn, :ModifiedOn, :DeletedOn
+
+        def initialize(contentid=nil, description=nil, referencecount=nil, planid=nil, tags=nil, status=nil, createdon=nil, modifiedon=nil, deletedon=nil)
+          @ContentId = contentid
+          @Description = description
+          @ReferenceCount = referencecount
+          @PlanId = planid
+          @Tags = tags
+          @Status = status
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+          @DeletedOn = deletedon
+        end
+
+        def deserialize(params)
+          @ContentId = params['ContentId']
+          @Description = params['Description']
+          @ReferenceCount = params['ReferenceCount']
+          @PlanId = params['PlanId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Status = params['Status']
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
+          @DeletedOn = params['DeletedOn']
+        end
+      end
+
       # CreateAccelerationDomain请求参数结构体
       class CreateAccelerationDomainRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 加速域名所属站点 ID。
@@ -2343,6 +2401,57 @@ module TencentCloud
         end
       end
 
+      # CreateContentIdentifier请求参数结构体
+      class CreateContentIdentifierRequest < TencentCloud::Common::AbstractModel
+        # @param Description: 内容标识符的描述，长度限制不超过 20 个字符。
+        # @type Description: String
+        # @param PlanId: 待绑定的目标套餐 ID，仅限企业版可用。<li>当您账号下已存在套餐时，需要先前往 [套餐管理](https://console.cloud.tencent.com/edgeone/package) 获取套餐 ID，直接将内容标识符绑定至该套餐；</li><li>若您当前没有可绑定的套餐时，请先购买企业版套餐。</li>
+        # @type PlanId: String
+        # @param Tags: 标签。该参数用于对内容标识符进行分权限管控。您需要先前往 [标签控制台](https://console.cloud.tencent.com/tag/taglist) 创建标签才可以在此处传入对应的标签键和标签值。
+        # @type Tags: Array
+
+        attr_accessor :Description, :PlanId, :Tags
+
+        def initialize(description=nil, planid=nil, tags=nil)
+          @Description = description
+          @PlanId = planid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          @PlanId = params['PlanId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateContentIdentifier返回参数结构体
+      class CreateContentIdentifierResponse < TencentCloud::Common::AbstractModel
+        # @param ContentId: 生成的内容标识符 ID。创建完成之后您可以前往规则引擎在一定匹配条件下「设置内容标识符」。
+        # @type ContentId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContentId, :RequestId
+
+        def initialize(contentid=nil, requestid=nil)
+          @ContentId = contentid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ContentId = params['ContentId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomizeErrorPage请求参数结构体
       class CreateCustomizeErrorPageRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -2391,6 +2500,74 @@ module TencentCloud
 
         def deserialize(params)
           @PageId = params['PageId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDnsRecord请求参数结构体
+      class CreateDnsRecordRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: DNS 记录名，如果是中文、韩文、日文域名，需要转换为 punycode 后输入。
+        # @type Name: String
+        # @param Type: DNS 记录类型，取值有：<li>A：将域名指向一个外网 IPv4 地址，如 8.8.8.8；</li><li>AAAA：将域名指向一个外网 IPv6 地址；</li><li>MX：用于邮箱服务器。存在多条 MX 记录时，优先级越低越优先；</li><li>CNAME：将域名指向另一个域名，再由该域名解析出最终 IP 地址；</li><li>TXT：对域名进行标识和说明，常用于域名验证和 SPF 记录（反垃圾邮件）；</li><li>NS：如果需要将子域名交给其他 DNS 服务商解析，则需要添加 NS 记录。根域名无法添加 NS 记录；</li><li>CAA：指定可为本站点颁发证书的 CA；</li><li>SRV：标识某台服务器使用了某个服务，常见于微软系统的目录管理。</li>
+        # 不同的记录类型呢例如 SRV、CAA 记录对主机记录名称、记录值格式有不同的要求，各记录类型的详细说明介绍和格式示例请参考：[解析记录类型介绍](https://cloud.tencent.com/document/product/1552/90453#2f681022-91ab-4a9e-ac3d-0a6c454d954e)。
+        # @type Type: String
+        # @param Content: DNS 记录内容，根据 Type 值填入与之相对应的内容，如果是中文、韩文、日文域名，需要转换为 punycode 后输入。
+        # @type Content: String
+        # @param Location: DNS 记录解析线路，不指定默认为 Default，表示默认解析线路，代表全部地域生效。
+
+        # - 解析线路配置仅适用于当 Type（DNS 记录类型）为 A、AAAA、CNAME 时。
+        # - 解析线路配置仅适用于标准版、企业版套餐使用，取值请参考：[解析线路及对应代码枚举](https://cloud.tencent.com/document/product/1552/112542)。
+        # @type Location: String
+        # @param TTL: 缓存时间，用户可指定值范围 60~86400，数值越小，修改记录各地生效时间越快，默认为 300，单位：秒。
+        # @type TTL: Integer
+        # @param Weight: DNS 记录权重，用户可指定值范围 -1~100，设置为 0 时表示不解析，不指定默认为 -1，表示不设置权重。权重配置仅适用于当 Type（DNS 记录类型）为 A、AAAA、CNAME 时。<br>注意：同一个子域名下，相同解析线路的不同 DNS 记录，应保持同时设置权重或者同时都不设置权重。
+        # @type Weight: Integer
+        # @param Priority: MX 记录优先级，该参数仅在当 Type（DNS 记录类型）为 MX 时生效，值越小优先级越高，用户可指定值范围0~50，不指定默认为0。
+        # @type Priority: Integer
+
+        attr_accessor :ZoneId, :Name, :Type, :Content, :Location, :TTL, :Weight, :Priority
+
+        def initialize(zoneid=nil, name=nil, type=nil, content=nil, location=nil, ttl=nil, weight=nil, priority=nil)
+          @ZoneId = zoneid
+          @Name = name
+          @Type = type
+          @Content = content
+          @Location = location
+          @TTL = ttl
+          @Weight = weight
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Content = params['Content']
+          @Location = params['Location']
+          @TTL = params['TTL']
+          @Weight = params['Weight']
+          @Priority = params['Priority']
+        end
+      end
+
+      # CreateDnsRecord返回参数结构体
+      class CreateDnsRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RecordId: DNS 记录 ID。
+        # @type RecordId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordId, :RequestId
+
+        def initialize(recordid=nil, requestid=nil)
+          @RecordId = recordid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
           @RequestId = params['RequestId']
         end
       end
@@ -3913,6 +4090,38 @@ module TencentCloud
         end
       end
 
+      # DeleteContentIdentifier请求参数结构体
+      class DeleteContentIdentifierRequest < TencentCloud::Common::AbstractModel
+        # @param ContentId: 内容标识符 ID。
+        # @type ContentId: String
+
+        attr_accessor :ContentId
+
+        def initialize(contentid=nil)
+          @ContentId = contentid
+        end
+
+        def deserialize(params)
+          @ContentId = params['ContentId']
+        end
+      end
+
+      # DeleteContentIdentifier返回参数结构体
+      class DeleteContentIdentifierResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCustomErrorPage请求参数结构体
       class DeleteCustomErrorPageRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -3935,6 +4144,42 @@ module TencentCloud
 
       # DeleteCustomErrorPage返回参数结构体
       class DeleteCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDnsRecords请求参数结构体
+      class DeleteDnsRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RecordIds: 待删除的 DNS 记录 ID 列表，上限：1000。
+        # @type RecordIds: Array
+
+        attr_accessor :ZoneId, :RecordIds
+
+        def initialize(zoneid=nil, recordids=nil)
+          @ZoneId = zoneid
+          @RecordIds = recordids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RecordIds = params['RecordIds']
+        end
+      end
+
+      # DeleteDnsRecords返回参数结构体
+      class DeleteDnsRecordsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4948,6 +5193,68 @@ module TencentCloud
         end
       end
 
+      # DescribeContentIdentifiers请求参数结构体
+      class DescribeContentIdentifiersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters 的上限为 20，Filters.Values 的上限为 20。该参数不填写时，默认返回当前 AppId 下有权限的内容标识符。详细的过滤条件如下：<li>description：按照内容标识符描述批量进行过滤；例如：test；</li><li>content-id：按照内容标识符 ID 批量进行过滤；例如：eocontent-2noz78a8ev6k；</li><li>tag-key：按照标签键进行过滤；</li> <li>tag-value： 按照标签值进行过滤；</li><li>status：按照内容标识符状态进行过滤，取值有：active：生效中；deleted：已删除。</li>仅支持按照 description 模糊查询，其余字段需要精准查询。
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeContentIdentifiers返回参数结构体
+      class DescribeContentIdentifiersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的内容标识符总数。
+        # @type TotalCount: Integer
+        # @param ContentIdentifiers: 内容标识符详细内容列表。
+        # @type ContentIdentifiers: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ContentIdentifiers, :RequestId
+
+        def initialize(totalcount=nil, contentidentifiers=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ContentIdentifiers = contentidentifiers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ContentIdentifiers'].nil?
+            @ContentIdentifiers = []
+            params['ContentIdentifiers'].each do |i|
+              contentidentifier_tmp = ContentIdentifier.new
+              contentidentifier_tmp.deserialize(i)
+              @ContentIdentifiers << contentidentifier_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContentQuota请求参数结构体
       class DescribeContentQuotaRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -5470,6 +5777,84 @@ module TencentCloud
               deployrecord_tmp = DeployRecord.new
               deployrecord_tmp.deserialize(i)
               @Records << deployrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDnsRecords请求参数结构体
+      class DescribeDnsRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目，默认值：20，上限：1000。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为20。详细的过滤条件如下：<li>id： 按照 DNS 记录 ID 进行过滤，支持模糊查询；</li><li>name：按照 DNS 记录名称进行过滤，支持模糊查询；</li><li>content：按照 DNS 记录内容进行过滤，支持模糊查询；</li><li>type：按照 DNS 记录类型进行过滤，不支持模糊查询。可选项：<br>   A：将域名指向一个外网 IPv4 地址，如 8.8.8.8；<br>   AAAA：将域名指向一个外网 IPv6 地址；<br>   CNAME：将域名指向另一个域名，再由该域名解析出最终 IP 地址；<br>   TXT：对域名进行标识和说明，常用于域名验证和 SPF 记录（反垃圾邮件）；<br>   NS：如果需要将子域名交给其他 DNS 服务商解析，则需要添加 NS 记录。根域名无法添加 NS 记录；<br>   CAA：指定可为本站点颁发证书的 CA；<br>   SRV：标识某台服务器使用了某个服务，常见于微软系统的目录管理；<br>   MX：指定收件人邮件服务器。</li><li>ttl：按照解析生效时间进行过滤，不支持模糊查询。</li>
+        # @type Filters: Array
+        # @param SortBy: 排序依据，取值有：<li>content：DNS 记录内容；</li><li>created-on：DNS 记录创建时间；</li><li>name：DNS 记录名称；</li><li>ttl：缓存时间；</li><li>type：DNS 记录类型。</li>默认根据 type, name 属性组合排序。
+        # @type SortBy: String
+        # @param SortOrder: 列表排序方式，取值有：<li>asc：升序排列；</li><li>desc：降序排列。</li>默认值为 asc。
+        # @type SortOrder: String
+        # @param Match: 匹配方式，取值有：<li>all：返回匹配所有查询条件的记录；</li><li>any：返回匹配任意一个查询条件的记录。</li>默认值为 all。
+        # @type Match: String
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters, :SortBy, :SortOrder, :Match
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil, sortby=nil, sortorder=nil, match=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Match = match
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          @Match = params['Match']
+        end
+      end
+
+      # DescribeDnsRecords返回参数结构体
+      class DescribeDnsRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: DNS 记录总数。
+        # @type TotalCount: Integer
+        # @param DnsRecords: DNS 记录列表。
+        # @type DnsRecords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DnsRecords, :RequestId
+
+        def initialize(totalcount=nil, dnsrecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DnsRecords = dnsrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DnsRecords'].nil?
+            @DnsRecords = []
+            params['DnsRecords'].each do |i|
+              dnsrecord_tmp = DnsRecord.new
+              dnsrecord_tmp.deserialize(i)
+              @DnsRecords << dnsrecord_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7788,6 +8173,74 @@ module TencentCloud
             @NoChangeIPWhitelist = IPWhitelist.new
             @NoChangeIPWhitelist.deserialize(params['NoChangeIPWhitelist'])
           end
+        end
+      end
+
+      # DNS 记录
+      class DnsRecord < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。<br>注意：ZoneId 仅做出参使用，在 ModifyDnsRecords 不可作为入参使用，如有传此参数，会忽略。
+        # @type ZoneId: String
+        # @param RecordId: DNS 记录 ID。
+        # @type RecordId: String
+        # @param Name: DNS 记录名。
+        # @type Name: String
+        # @param Type: DNS 记录类型，取值有：
+        # <li>A：将域名指向一个外网 IPv4 地址，如 8.8.8.8；</li>
+        # <li>AAAA：将域名指向一个外网 IPv6 地址；</li>
+        # <li>MX：用于邮箱服务器。存在多条 MX 记录时，优先级越低越优先；</li>
+        # <li>CNAME：将域名指向另一个域名，再由该域名解析出最终 IP 地址；</li>
+        # <li>TXT：对域名进行标识和说明，常用于域名验证和 SPF 记录（反垃圾邮件）；</li>
+        # <li>NS：如果需要将子域名交给其他 DNS 服务商解析，则需要添加 NS 记录。根域名无法添加 NS 记录；</li>
+        # <li>CAA：指定可为本站点颁发证书的 CA；</li>
+        # <li>SRV：标识某台服务器使用了某个服务，常见于微软系统的目录管理。</li>
+        # @type Type: String
+        # @param Location: DNS 记录解析线路，不指定默认为 Default，表示默认解析线路，代表全部地域生效。<br>解析线路配置仅适用于当 Type（DNS 记录类型）为 A、AAAA、CNAME 时。<br>取值请参考：[解析线路及对应代码枚举](https://cloud.tencent.com/document/product/1552/112542)。
+        # @type Location: String
+        # @param Content: DNS 记录内容。根据 Type 值填入与之相对应的内容。
+        # @type Content: String
+        # @param TTL: 缓存时间，取值范围 60~86400，数值越小，修改记录各地生效时间越快，单位：秒。
+        # @type TTL: Integer
+        # @param Weight: DNS 记录权重，取值范围 -1~100，为 -1 时表示不分配权重，为 0 时表示不解析。权重配置仅适用于当 Type（DNS 记录类型）为 A、AAAA、CNAME 时。
+        # @type Weight: Integer
+        # @param Priority: MX 记录优先级，取值范围 0~50，数值越小越优先。
+        # @type Priority: Integer
+        # @param Status: DNS 记录解析状态，取值有：<li>enable：已生效；</li><li>disable：已停用。</li>注意：Status 仅做出参使用，在 ModifyDnsRecords 不可作为入参使用，如有传此参数，会忽略。
+        # @type Status: String
+        # @param CreatedOn: 创建时间。<br>注意：CreatedOn 仅做出参使用，在 ModifyDnsRecords 不可作为入参使用，如有传此参数，会忽略。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 修改时间。<br>注意：ModifiedOn 仅做出参使用，在 ModifyDnsRecords 不可作为入参使用，如有传此参数，会忽略。
+        # @type ModifiedOn: String
+
+        attr_accessor :ZoneId, :RecordId, :Name, :Type, :Location, :Content, :TTL, :Weight, :Priority, :Status, :CreatedOn, :ModifiedOn
+
+        def initialize(zoneid=nil, recordid=nil, name=nil, type=nil, location=nil, content=nil, ttl=nil, weight=nil, priority=nil, status=nil, createdon=nil, modifiedon=nil)
+          @ZoneId = zoneid
+          @RecordId = recordid
+          @Name = name
+          @Type = type
+          @Location = location
+          @Content = content
+          @TTL = ttl
+          @Weight = weight
+          @Priority = priority
+          @Status = status
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RecordId = params['RecordId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Location = params['Location']
+          @Content = params['Content']
+          @TTL = params['TTL']
+          @Weight = params['Weight']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
         end
       end
 
@@ -10306,6 +10759,42 @@ module TencentCloud
         end
       end
 
+      # ModifyContentIdentifier请求参数结构体
+      class ModifyContentIdentifierRequest < TencentCloud::Common::AbstractModel
+        # @param ContentId: 内容标识符 ID。
+        # @type ContentId: String
+        # @param Description: 内容标识符描述，长度限制不超过 20 个字符。
+        # @type Description: String
+
+        attr_accessor :ContentId, :Description
+
+        def initialize(contentid=nil, description=nil)
+          @ContentId = contentid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ContentId = params['ContentId']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyContentIdentifier返回参数结构体
+      class ModifyContentIdentifierResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCustomErrorPage请求参数结构体
       class ModifyCustomErrorPageRequest < TencentCloud::Common::AbstractModel
         # @param PageId: 自定义错误页面 ID。
@@ -10344,6 +10833,89 @@ module TencentCloud
 
       # ModifyCustomErrorPage返回参数结构体
       class ModifyCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDnsRecords请求参数结构体
+      class ModifyDnsRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID 。
+        # @type ZoneId: String
+        # @param DnsRecords: DNS 记录修改数据列表，一次最多修改100条。
+        # @type DnsRecords: Array
+
+        attr_accessor :ZoneId, :DnsRecords
+
+        def initialize(zoneid=nil, dnsrecords=nil)
+          @ZoneId = zoneid
+          @DnsRecords = dnsrecords
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['DnsRecords'].nil?
+            @DnsRecords = []
+            params['DnsRecords'].each do |i|
+              dnsrecord_tmp = DnsRecord.new
+              dnsrecord_tmp.deserialize(i)
+              @DnsRecords << dnsrecord_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDnsRecords返回参数结构体
+      class ModifyDnsRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDnsRecordsStatus请求参数结构体
+      class ModifyDnsRecordsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param RecordsToEnable: 待启用的 DNS 记录 ID 列表，上限：200。<br>注意：同个 DNS 记录 ID 不能同时存在于 RecordsToEnable 和 RecordsToDisable。
+        # @type RecordsToEnable: Array
+        # @param RecordsToDisable: 待停用的 DNS 记录 ID 列表，上限：200。<br>注意：同个 DNS 记录 ID 不能同时存在于 RecordsToEnable 和 RecordsToDisable。
+        # @type RecordsToDisable: Array
+
+        attr_accessor :ZoneId, :RecordsToEnable, :RecordsToDisable
+
+        def initialize(zoneid=nil, recordstoenable=nil, recordstodisable=nil)
+          @ZoneId = zoneid
+          @RecordsToEnable = recordstoenable
+          @RecordsToDisable = recordstodisable
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RecordsToEnable = params['RecordsToEnable']
+          @RecordsToDisable = params['RecordsToDisable']
+        end
+      end
+
+      # ModifyDnsRecordsStatus返回参数结构体
+      class ModifyDnsRecordsStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -367,6 +367,9 @@ module TencentCloud
         # @type CnameSpeedupStatus: String
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
+        extend Gem::Deprecate
+        deprecate :Vpcs, :none, 2024, 12
+        deprecate :Vpcs=, :none, 2024, 12
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain

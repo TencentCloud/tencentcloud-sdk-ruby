@@ -2291,10 +2291,12 @@ module TencentCloud
         # @type BuyerTaxID: String
         # @param FlightItems: 机票详细信息元组
         # @type FlightItems: Array
+        # @param InvoiceStatus: 机票开具状态
+        # @type InvoiceStatus: String
 
-        attr_accessor :UserName, :UserID, :Endorsement, :GPOrder, :Number, :Fare, :FuelSurcharge, :TaxRate, :Tax, :DevelopmentFund, :OtherTax, :Total, :ElectronicTicketNum, :VerificationCode, :PromptInformation, :Insurance, :Issuer, :Date, :DomesticInternationalTag, :Buyer, :Seller, :BuyerTaxID, :FlightItems
+        attr_accessor :UserName, :UserID, :Endorsement, :GPOrder, :Number, :Fare, :FuelSurcharge, :TaxRate, :Tax, :DevelopmentFund, :OtherTax, :Total, :ElectronicTicketNum, :VerificationCode, :PromptInformation, :Insurance, :Issuer, :Date, :DomesticInternationalTag, :Buyer, :Seller, :BuyerTaxID, :FlightItems, :InvoiceStatus
 
-        def initialize(username=nil, userid=nil, endorsement=nil, gporder=nil, number=nil, fare=nil, fuelsurcharge=nil, taxrate=nil, tax=nil, developmentfund=nil, othertax=nil, total=nil, electronicticketnum=nil, verificationcode=nil, promptinformation=nil, insurance=nil, issuer=nil, date=nil, domesticinternationaltag=nil, buyer=nil, seller=nil, buyertaxid=nil, flightitems=nil)
+        def initialize(username=nil, userid=nil, endorsement=nil, gporder=nil, number=nil, fare=nil, fuelsurcharge=nil, taxrate=nil, tax=nil, developmentfund=nil, othertax=nil, total=nil, electronicticketnum=nil, verificationcode=nil, promptinformation=nil, insurance=nil, issuer=nil, date=nil, domesticinternationaltag=nil, buyer=nil, seller=nil, buyertaxid=nil, flightitems=nil, invoicestatus=nil)
           @UserName = username
           @UserID = userid
           @Endorsement = endorsement
@@ -2318,6 +2320,7 @@ module TencentCloud
           @Seller = seller
           @BuyerTaxID = buyertaxid
           @FlightItems = flightitems
+          @InvoiceStatus = invoicestatus
         end
 
         def deserialize(params)
@@ -2351,6 +2354,7 @@ module TencentCloud
               @FlightItems << flightiteminfo_tmp
             end
           end
+          @InvoiceStatus = params['InvoiceStatus']
         end
       end
 

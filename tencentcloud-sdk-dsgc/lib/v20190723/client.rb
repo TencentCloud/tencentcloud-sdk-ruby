@@ -1357,7 +1357,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改最新评估风险项状态
+        # 查询风险的处理历史
 
         # @param request: Request instance for DescribeDSPAAssessmentRiskProcessHistory.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskProcessHistoryRequest`
@@ -2662,7 +2662,6 @@ module TencentCloud
 
         # 打开或者关闭分类分级规则
         # 注：此API同时对该规则下的RDB跟COS规则操作。
-
 
         # @param request: Request instance for EnableDSPADiscoveryRule.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::EnableDSPADiscoveryRuleRequest`

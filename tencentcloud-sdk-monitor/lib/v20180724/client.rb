@@ -2492,6 +2492,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取多写配置详情
+
+        # @param request: Request instance for DescribeRemoteURLs.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeRemoteURLsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeRemoteURLsResponse`
+        def DescribeRemoteURLs(request)
+          body = send_request('DescribeRemoteURLs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRemoteURLsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出当前grafana实例的所有授权账号
 
         # @param request: Request instance for DescribeSSOAccount.
@@ -3113,6 +3137,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPrometheusTempResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改多写配置
+
+        # @param request: Request instance for ModifyRemoteURLs.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyRemoteURLsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ModifyRemoteURLsResponse`
+        def ModifyRemoteURLs(request)
+          body = send_request('ModifyRemoteURLs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRemoteURLsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -710,7 +710,7 @@ module TencentCloud
 
       # cmq订阅返回参数
       class CmqSubscription < TencentCloud::Common::AbstractModel
-        # @param SubscriptionName: 订阅名字，在单个地域同一帐号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionName: String
         # @param SubscriptionId: 订阅 ID。订阅 ID 在拉取监控数据时会用到。
@@ -8878,12 +8878,28 @@ module TencentCloud
 
       # ModifyPublicNetworkSecurityPolicy请求参数结构体
       class ModifyPublicNetworkSecurityPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param PolicyList: 策略列表
+        # @type PolicyList: Array
 
+        attr_accessor :InstanceId, :PolicyList
 
-        def initialize()
+        def initialize(instanceid=nil, policylist=nil)
+          @InstanceId = instanceid
+          @PolicyList = policylist
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              securitypolicy_tmp = SecurityPolicy.new
+              securitypolicy_tmp.deserialize(i)
+              @PolicyList << securitypolicy_tmp
+            end
+          end
         end
       end
 

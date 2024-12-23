@@ -7372,11 +7372,11 @@ module TencentCloud
 
       # 描述镜像软件详细信息。
       class SoftwareDetail < TencentCloud::Common::AbstractModel
-        # @param Key: 详情唯一键。
+        # @param Key: 软件的属性标识
         # @type Key: String
-        # @param Title: 详情标题。
+        # @param Title: 软件的属性标识描述
         # @type Title: String
-        # @param Value: 详情值。
+        # @param Value: 软件的属性值
         # @type Value: String
 
         attr_accessor :Key, :Title, :Value

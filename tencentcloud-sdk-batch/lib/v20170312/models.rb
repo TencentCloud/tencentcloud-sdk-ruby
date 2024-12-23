@@ -74,10 +74,13 @@ module TencentCloud
       # agent运行模式
       class AgentRunningMode < TencentCloud::Common::AbstractModel
         # @param Scene: 场景类型，支持WINDOWS
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scene: String
         # @param User: 运行Agent的User
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Session: 运行Agent的Session
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Session: String
 
         attr_accessor :Scene, :User, :Session
@@ -917,8 +920,10 @@ module TencentCloud
       # 依赖关系
       class Dependence < TencentCloud::Common::AbstractModel
         # @param StartTask: 依赖关系的起点任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTask: String
         # @param EndTask: 依赖关系的终点任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTask: String
 
         attr_accessor :StartTask, :EndTask

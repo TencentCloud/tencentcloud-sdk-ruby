@@ -1089,7 +1089,7 @@ module TencentCloud
         # @type UniqSubnetIds: Array
         # @param Status: 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
         # @type Status: Array
-        # @param AutoRenew: 包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        # @param AutoRenew: 续费模式。- 0：手动续费。- 1：自动续费。- 2：到期不再续费。
         # @type AutoRenew: Array
         # @param BillingMode: 计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
         # @type BillingMode: String
@@ -1919,10 +1919,13 @@ module TencentCloud
         # @type DiskShardNum: Integer
         # @param DiskReplicasNum: 1
         # @type DiskReplicasNum: Integer
+        # @param Compression: 数据压缩开关。<ul><li>ON：开启。</li><li>OFF：关闭。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compression: String
 
-        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :Status, :SubnetId, :WanIp, :Port, :Createtime, :Size, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :MachineMemory, :DiskShardSize, :DiskShardNum, :DiskReplicasNum
+        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :Status, :SubnetId, :WanIp, :Port, :Createtime, :Size, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :MachineMemory, :DiskShardSize, :DiskShardNum, :DiskReplicasNum, :Compression
 
-        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, status=nil, subnetid=nil, wanip=nil, port=nil, createtime=nil, size=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, machinememory=nil, diskshardsize=nil, diskshardnum=nil, diskreplicasnum=nil)
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, status=nil, subnetid=nil, wanip=nil, port=nil, createtime=nil, size=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, machinememory=nil, diskshardsize=nil, diskshardnum=nil, diskreplicasnum=nil, compression=nil)
           @InstanceName = instancename
           @InstanceId = instanceid
           @Appid = appid
@@ -1974,6 +1977,7 @@ module TencentCloud
           @DiskShardSize = diskshardsize
           @DiskShardNum = diskshardnum
           @DiskReplicasNum = diskreplicasnum
+          @Compression = compression
         end
 
         def deserialize(params)
@@ -2042,6 +2046,7 @@ module TencentCloud
           @DiskShardSize = params['DiskShardSize']
           @DiskShardNum = params['DiskShardNum']
           @DiskReplicasNum = params['DiskReplicasNum']
+          @Compression = params['Compression']
         end
       end
 
